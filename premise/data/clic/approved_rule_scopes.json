@@ -121353,7 +121353,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "0f4f5b899f433909647aeb273f11094dae24718906e2346a0552bb56632b40c0"
+          "fingerprint": "435b7a72f2910b5c6ed0183034530cf8b42fe489461b9cb21d6a7316d0964ff9"
         }
       ],
       "fingerprint_migrations": [
@@ -123320,7 +123320,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "e9d3f0ed97ea24b063dcc1c94b72d54aacaf019baef65ab10018055128b944b5"
+          "fingerprint": "ecc35114053eefc124b5d2749c6716956d55984d2416c61096e24ff74f8ae7ea"
         }
       ]
     },
@@ -195898,6 +195898,104 @@
             "system_model": "cutoff"
           },
           "fingerprint": "5695e46a2deb8bbf6edac2480bda390afc31338757ac595a648e841802b16538"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f1bc637c4fcf6060",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_dependency_proxy",
+      "review_path": "export/uvek_fuels_38_water_profile_review.json",
+      "review_sha256": "50ffbb6e3c544a2c6d893b95a8d48045ee2cdc9453ff750cbd32cd25f468b0cd",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for water, deionised",
+            "reference product": "water, deionised",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "b3306c5f842d4c5d5627a054f06c980c008893f26a8d5d23ad9af634cf80d52f",
+          "inventory_sha256": "25ecdc8e76e60326726f03f15e2b13e0b8667cf0bc0eb6c653448760f4143c33",
+          "nonproduction_counts": {
+            "technosphere": 1,
+            "biosphere": 0
+          },
+          "name": "market for water, deionised",
+          "reference product": "water, deionised",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "water production, deionised",
+              "reference product": "water, deionised",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "00096985ec6a6b755ee4d154b64e200749ac957dae9c79eea119450707166947",
+            "inventory_sha256": "0f79333bd5a9e64e80624f82fe2cc3b83b043c1bcbd4470816f366ee9b81ffe0",
+            "nonproduction_counts": {
+              "technosphere": 11,
+              "biosphere": 8
+            }
+          }
+        ],
+        "basis": "Use complete native ion-exchange deionised water per signed source kg. Both references are positive one kg water, not a cubic metre or kg active chemical. Source market supplies one producer with unit share and no market transport/loss requirement. Native CH is an explicit geographic/raw-water-quality proxy for Europe without Switzerland. Native cation exchange, degassing, anion exchange and counterflow regeneration provide about 1 microSiemens/cm conductivity; they do not establish ultrapure semiconductor water, reverse osmosis, electrodialysis or distilled-water equivalence. Retain complete native feed water, regeneration chemicals, energy, resin, infrastructure and emissions once; do not add source treatment chemicals, water-balance corrections, concentration factors or duplicated treatment. Source utility, wastewater, regeneration and internal uncertainty differ. Preserve signed caller quantity, uncertainty, formula and properties. Keep the complete native inventory once, including its construction or operating inputs, supply transport, dismantling and emissions where present. Source background input mix, supplier geography, allocation, internal uncertainty and vintage are replaced rather than reconstructed; unsupported native biosphere exclusions remain. No equivalence of inventory or score is claimed; score effects are unquantified.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.8 reference-sign profile; preserve all existing selected decisions and helpers",
+        "new_target": {
+          "location": "CH",
+          "name": "Water, deionised, at plant",
+          "reference product": "Water, deionised, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Water, deionised, at plant",
+              "reference product": "Water, deionised, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "metadata_sha256": "22a3d0b05c7c4a932957691c6507acb77844b985d8a0dd8ea7cecf53ea0ce684",
+            "enriched_inventory_sha256": "4d5e259068ae930cb7695457628260ab66015870328abe89441abc307a2da8e6"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native ion-exchange deionised water per signed source kg. Both references are positive one kg water, not a cubic metre or kg active chemical. Source market supplies one producer with unit share and no market transport/loss requirement. Native CH is an explicit geographic/raw-water-quality proxy for Europe without Switzerland. Native cation exchange, degassing, anion exchange and counterflow regeneration provide about 1 microSiemens/cm conductivity; they do not establish ultrapure semiconductor water, reverse osmosis, electrodialysis or distilled-water equivalence. Retain complete native feed water, regeneration chemicals, energy, resin, infrastructure and emissions once; do not add source treatment chemicals, water-balance corrections, concentration factors or duplicated treatment. Source utility, wastewater, regeneration and internal uncertainty differ.",
+        "Preserve signed caller quantity, uncertainty, formula and properties. Keep the complete native inventory once, including its construction or operating inputs, supply transport, dismantling and emissions where present. Source background input mix, supplier geography, allocation, internal uncertainty and vintage are replaced rather than reconstructed; unsupported native biosphere exclusions remain. No equivalence of inventory or score is claimed; score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e62f990eb8ffd1a2d0363202fa69bca58fa33a0b077c848d00cef909ac8250f9"
         }
       ]
     }

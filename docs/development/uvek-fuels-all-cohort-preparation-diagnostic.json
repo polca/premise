@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "3c2a673080459b9b2f0f21d103373f032dedfb32",
-  "approval_ledger_sha256": "89f4ea4e2001e85840461d4301aa6d73581efdfd1d77e24246122729fb79cc4e",
-  "validated_scopes": 672,
+  "brightpath_commit": "60a87837cbeb3dec68f6c344f93d1f1fb0793167",
+  "approval_ledger_sha256": "fd189b04464cbe204c2baf040549d2ef3391fcb1517516bc40d47192481272b7",
+  "validated_scopes": 673,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 42,
-  "distinct_unapproved_rule_identities": 38,
+  "unapproved_source_profile_cases": 41,
+  "distinct_unapproved_rule_identities": 37,
   "cohorts": [
     {
       "source": {
@@ -71,9 +71,9 @@
       },
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 14,
-      "refusal_audit_filename": "93b859747cf66b8c7cce838118d0be53023f3efb3ae00bcaa9c4161492dc92f4.audit.json.gz",
-      "refusal_audit_sha256": "4b94cf6ca58194b5612da5165176eec470237f2dbff5e1bdadaea80a6adfa20a",
+      "unapproved_count": 13,
+      "refusal_audit_filename": "e4b93b4e4e1fcb0692838e19ef5b2153119df124acb19a023c59c00183459ddc.audit.json.gz",
+      "refusal_audit_sha256": "864dce044d9e501ec359c90cc2dbb297c3151b4a4da1e0ee786176db73617d3e",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -238,21 +238,6 @@
           }
         },
         {
-          "rule_id": "bp-f1bc637c4fcf6060",
-          "source": {
-            "location": "Europe without Switzerland",
-            "name": "market for water, deionised",
-            "reference product": "water, deionised",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Water, deionised, at plant",
-            "reference product": "Water, deionised, at plant",
-            "unit": "kilogram"
-          }
-        },
-        {
           "rule_id": "bp-84bd9cf473cdeee9",
           "source": {
             "location": "Europe without Switzerland",
@@ -318,8 +303,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 24,
-      "refusal_audit_filename": "cdb4a041429a7f34784167288f85bce187ebae47557e633964a12a6691fb0cbc.audit.json.gz",
-      "refusal_audit_sha256": "c13b21570c00b62d09166fdfb97bfb73dd9abcacb77705174ae7e85d1e08ad85",
+      "refusal_audit_filename": "1d20a01af5b520188051ace91e82e0d3aa906abd098c802fed2ea9dfb874ce3a.audit.json.gz",
+      "refusal_audit_sha256": "685d104f66710b2cfa21c7c24e642e8244a156a4b0322f86b82d22f425b99ed1",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -686,8 +671,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "a1c37c905a5b7132b037fc1f75f5fbb5dc5ade81ad27e8f0942e5980f1f4b902.audit.json.gz",
-      "refusal_audit_sha256": "4053f4db0186b6f8a800235b4cb22adbcefa4ea5b1e869f5482b0b1451f789d2",
+      "refusal_audit_filename": "3e80512c0c91da74b9cc296e7a64ccfcd129eedfade6f5a4a31d1258d3f06590.audit.json.gz",
+      "refusal_audit_sha256": "35a3ad2c0662c21bb9b651a08bf3032f923a2410186f60f999d9fe96776ffd96",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

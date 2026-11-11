@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-11",
+  "status": "Exact 3.8 deionised-water reference profile qualified; complete fuels transformation/export and other sectors unfinished.",
+  "brightpath_commit": "60a87837cbeb3dec68f6c344f93d1f1fb0793167",
+  "review_sha256": "50ffbb6e3c544a2c6d893b95a8d48045ee2cdc9453ff750cbd32cd25f468b0cd",
+  "forward_resource_sha256": "cde4e42fb78cabd9d25b33dacda6b8e775250032ad826898e0588edbf1ef2e9f",
+  "new_approval_scopes": 1,
+  "validated_approval_scopes": 673,
+  "old_fingerprint_refreshes": [
+    "3.9",
+    "3.10"
+  ],
+  "refresh_proof": "Each previous fingerprint verified against frozen original rule before recomputation; old selected behavior unchanged. All other operations unchanged.",
+  "tests": {
+    "brightpath": "23 passed, including infrastructure historical-review regression, signed water statistics, uninspected version refusals and replay guards",
+    "premise": "5 passed, including fresh/cache statistics and independent approval removal",
+    "reference_sign_regression": "733 passed, including complete frozen review replay; this is not a full repository suite."
+  },
+  "native_lci": {
+    "identity": {
+      "location": "CH",
+      "name": "Water, deionised, at plant",
+      "reference product": "Water, deionised, at plant",
+      "unit": "kilogram"
+    },
+    "demand": 1,
+    "finite_supply": true,
+    "finite_inventory": true
+  },
+  "native_lci_evidence": {
+    "path": "export/uvek_fuels_38_infrastructure_water_review.json",
+    "sha256": "e84cc2133f6e3c8203f88b25dcfb576432579214aca8f4422db9973827687940",
+    "resolution": "Previously pending sign qualification now independently added for exact 3.8 only."
+  },
+  "mapping_preservation": "Only water parent changed; all recipes/shared reviews and all seven inspected other profile selections preserved.",
+  "replay_and_wheel": "Forward/canonical replay and packaged review/resource/manifest match checkout.",
+  "runtime_python_changes": false,
+  "regular_environment": "Pushed Git revision installed; resource hash and 673 scopes verified.",
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 41,
+    "distinct_rule_identities": 37,
+    "only_removed_cases": [
+      [
+        "3.8",
+        "bp-f1bc637c4fcf6060"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123372292,
+  "limitations": [
+    "Use complete native ion-exchange deionised water per signed source kg. Both references are positive one kg water, not a cubic metre or kg active chemical. Source market supplies one producer with unit share and no market transport/loss requirement. Native CH is an explicit geographic/raw-water-quality proxy for Europe without Switzerland. Native cation exchange, degassing, anion exchange and counterflow regeneration provide about 1 microSiemens/cm conductivity; they do not establish ultrapure semiconductor water, reverse osmosis, electrodialysis or distilled-water equivalence. Retain complete native feed water, regeneration chemicals, energy, resin, infrastructure and emissions once; do not add source treatment chemicals, water-balance corrections, concentration factors or duplicated treatment. Source utility, wastewater, regeneration and internal uncertainty differ.",
+    "Preserve signed caller quantity, uncertainty, formula and properties. Keep the complete native inventory once, including its construction or operating inputs, supply transport, dismantling and emissions where present. Source background input mix, supplier geography, allocation, internal uncertainty and vintage are replaced rather than reconstructed; unsupported native biosphere exclusions remain. No equivalence of inventory or score is claimed; score effects are unquantified."
+  ]
+}
