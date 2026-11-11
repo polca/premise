@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "bebddd2fd892e1b07e9aa06651e1860cba10102a",
-  "approval_ledger_sha256": "45f30e1eabf1165b3873ab9f559af059c9dba6a5b740e13cb7049952235fb294",
-  "validated_scopes": 647,
+  "brightpath_commit": "db351f745001919b59142371a92d5511aceafa2d",
+  "approval_ledger_sha256": "56c6b43b54bb34c5b2dfa79ab591c5f2eb75e138717b77eeab5052f0681a3ade",
+  "validated_scopes": 648,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 58,
-  "distinct_unapproved_rule_identities": 54,
+  "unapproved_source_profile_cases": 57,
+  "distinct_unapproved_rule_identities": 53,
   "cohorts": [
     {
       "source": {
@@ -71,9 +71,9 @@
       },
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 30,
-      "refusal_audit_filename": "435c98ab160fc94772e5e9c2cc175fea6ce1bcc5a041e23c3f2516e4b7d88945.audit.json.gz",
-      "refusal_audit_sha256": "e0dac6d3df2aa91c9e37e566b0be51828a7fb0d784b75708023b63e4c8deb68c",
+      "unapproved_count": 29,
+      "refusal_audit_filename": "5792e15754e5ecaa95939d22777140e3d69e3d12f33510991181eee8d04b313f.audit.json.gz",
+      "refusal_audit_sha256": "0b383f96a1cd4de04a9c02d661a2af2e15ca13587dc63c8b137895ae7ed758cf",
       "pending": [
         {
           "rule_id": "bp-05200779ee64a17f",
@@ -129,21 +129,6 @@
             "location": "GLO",
             "name": "Sodium methoxide, at plant",
             "reference product": "Sodium methoxide, at plant",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-42ca176032e4b754",
-          "source": {
-            "location": "RoW",
-            "name": "market for lime",
-            "reference product": "lime",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Lime, hydraulic, at plant",
-            "reference product": "Lime, hydraulic, at plant",
             "unit": "kilogram"
           }
         },
@@ -555,8 +540,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 24,
-      "refusal_audit_filename": "e3fd9bb82294ef993d9042b6dad270138eb53261e4a612edc2aca714e855d043.audit.json.gz",
-      "refusal_audit_sha256": "42d3f107de4df4cc0ff24abc3c75372852bd1c76f9cd88e3329243238e8baa99",
+      "refusal_audit_filename": "292a1d07351ed371b1b5d065cb38a13c72eafc5e31c16974362b0129529896e4.audit.json.gz",
+      "refusal_audit_sha256": "1cf4c715ada48b950c3776af9ab8deb0d5c4d4bea464711e747c1cb8831d91dd",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -923,8 +908,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "816b37ba7def35f944bf03b5d9b39af95495b03d0a14635c8c11d3d583cc5436.audit.json.gz",
-      "refusal_audit_sha256": "af4da3b489fa09ac48b194bbf439b976a1ce61b9a3150a66d4fb25a948142a02",
+      "refusal_audit_filename": "1a657b89fa27a26aaf24a7a11a5e8c5a0a1edf086dca906bc113975016f33ced.audit.json.gz",
+      "refusal_audit_sha256": "d53cfdf735f49007f46771475d5373eb5dba44779a60ed7605cd842bfe0cb627",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

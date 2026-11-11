@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-11",
+  "status": "Exact 3.8 lime mapping qualified; full fuel transformation and export unfinished.",
+  "brightpath_commit": "db351f745001919b59142371a92d5511aceafa2d",
+  "forward_resource_sha256": "2f84a38aba4177889bb851e9acb479d2e54481c87dc9fa47a0a95641db1b8e85",
+  "biosphere_resource_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "review_sha256": "47c608676be41fbf4cc2a34767e7b55ee7f1dd7c7414e2faf6b74287eb526760",
+  "validated_approval_scopes": 648,
+  "scope_change": "One exact ecoinvent 3.8 cutoff scope added; all 647 prior scopes/operations unchanged.",
+  "resource_change": "One lime parent changed, two helpers added; all previous recipes and shared reviews unchanged.",
+  "native_lci": {
+    "status": "Finite flattened native LCI for the complete reviewed delivery helper; no Brightway write or full fuel export",
+    "source_database": "BAFU:2026-reimported",
+    "source_activity_count": 11947,
+    "source_modified": "2026-09-22T10:55:01.512934",
+    "source_unchanged": true,
+    "separate_recipe_rows": 6,
+    "omissions": 0,
+    "aggregated_native_demands": [
+      {
+        "identity": {
+          "name": "Zinc, from combined metal production, at beneficiation",
+          "reference product": "Zinc, from combined metal production, at beneficiation",
+          "location": "SE",
+          "unit": "kilogram"
+        },
+        "amount": 0.002433600385931848
+      },
+      {
+        "identity": {
+          "name": "Limestone, milled, loose, at plant",
+          "reference product": "Limestone, milled, loose, at plant",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "amount": 0.9866033877060106
+      },
+      {
+        "identity": {
+          "name": "Transport, freight, lorry, fleet average",
+          "reference product": "Transport, freight, lorry, fleet average",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "amount": 0.019999999999999955
+      }
+    ],
+    "finite_supply": true,
+    "finite_inventory": true,
+    "supply_size": 11947,
+    "biosphere_nonzero": 87874
+  },
+  "verification": {
+    "brightpath_new_and_adjacent_tests": "94 passed",
+    "premise_fresh_cache_and_missing_approval_negative_control": "2 passed",
+    "generator_replay": "Forward and canonical biosphere bytes match packaged resources.",
+    "wheel": "Review, resource and manifest bytes match checkout.",
+    "regular_environment": "Git-installed site-packages resource hash and direct_url commit verified; all 648 scopes validate.",
+    "lint_format_whitespace": "Passed for new scripts and tests.",
+    "broader_sign_regression": "733 passed",
+    "broader_approval_regression": "Running; not yet counted as passing."
+  },
+  "runtime_python_changes": false,
+  "limitations": [
+    "No successful full fuel-sector update or export yet.",
+    "Open-burning/dumping packaging dependency remains unresolved.",
+    "Source and native inventories differ; proxies warn and do not claim score equivalence."
+  ],
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 57,
+    "distinct_rule_identities": 53,
+    "cohorts_inspected": 6,
+    "source_activities": 117,
+    "no_source_graph_mutation": true,
+    "no_sector_transformation_or_export": true
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123197425
+}

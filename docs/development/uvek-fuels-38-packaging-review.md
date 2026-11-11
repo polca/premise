@@ -141,3 +141,13 @@ produce finite supply and biosphere inventory arrays. The summary and explicit
 limitations are in `uvek-fuels-38-lime-feasibility.json`; full source inventories
 remain private. Market-rule implementation and full fuel qualification remain
 unfinished.
+
+The separate lime delivery correspondence is now implemented in Brightpath
+`db351f745001919b59142371a92d5511aceafa2d`, with one exact-profile Premise approval.
+All six original producer/freight rows survive unchanged statistically, and the
+allocated-mining helper is separate from both limestone-grinding branches.
+The 94 Brightpath mapping/adjacent tests and two Premise fresh/cache/removed-
+approval tests pass. Full replay and wheel data match; flattened complete-market
+native LCI is finite with the source database unchanged. See
+`uvek-fuels-38-lime-verification.json`. This resolves the lime correspondence,
+not the packaging disposal boundary or the complete fuel update.
