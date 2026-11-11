@@ -2,8 +2,9 @@ import uuid
 import copy
 import numpy as np
 import math
+from collections import defaultdict
 
-from ..inventory.activity_maps import InventorySet, get_mapping
+from ..inventory.activity_maps import FUELS_TECHS, InventorySet, act_fltr, get_mapping
 from .utils import (
     fetch_mapping,
     update_dataset,
@@ -11,6 +12,7 @@ from .utils import (
 )
 from ..core.transformation import ws, get_shares_from_production_volume
 from ..core.utils import get_fuel_properties
+from ..inventory.inventory_store import clone_inventory_dataset
 from .properties import (
     PROPERTIES_KEY,
     CarbonOriginResolver,
@@ -53,6 +55,13 @@ class FuelMarketsMixin:
         legacy market auxiliaries per reference output and record their separate
         boundary. Carbon properties describe full oxidation, not tailpipe flows.
         """
+        template = get_mapping(
+            FUELS_TECHS, var=f"{getattr(self, 'family', 'ecoinvent')}_market_template"
+        ).get(reference_fuel)
+        if template:
+            kwargs["market_ancillaries"] = self._native_fuel_market_ancillaries(
+                reference_fuel, template
+            )
         kwargs["mapping"] = self._prefer_non_recursive_market_suppliers(
             kwargs["mapping"],
             kwargs["name"],
@@ -76,6 +85,11 @@ class FuelMarketsMixin:
         callback = kwargs.pop("additional_exchanges_fn", None)
 
         def annotate(dataset):
+            if template:
+                dataset["premise fuel delivery template"] = {
+                    k: template[k]
+                    for k in ("source", "fallback_location", "limitations")
+                }
             components = []
             for exchange in dataset["exchanges"]:
                 if exchange["type"] != "technosphere":
@@ -162,6 +176,215 @@ class FuelMarketsMixin:
                 "components": components,
                 "carbon convention": "Production-weighted regional full-oxidation properties",
             }
+
+        self._handover_fuel_market_aliases(kwargs)
+
+    def _native_fuel_market_ancillaries(self, fuel, template):
+        """Preserve declared delivery infrastructure separately from fuel shares."""
+        cache = self.__dict__.setdefault("_fuel_market_ancillaries", {})
+        if fuel not in cache:
+            preserved = defaultdict(list)
+            datasets = act_fltr(self.database, fltr=template["source"], exact=True)
+            if not datasets:
+                raise ValueError(
+                    f"Missing reviewed fuel delivery template: {template['source']!r}"
+                )
+            for dataset in datasets:
+                baseline = dataset.get("premise fuel ancillary baseline")
+                if baseline is None:
+                    if dataset.get("emptied"):
+                        raise ValueError(
+                            "An emptied fuel template lacks its delivery baseline; rebuild from source."
+                        )
+                    baseline = [
+                        clone_inventory_dataset(e)
+                        for e in dataset["exchanges"]
+                        if e["type"] == "biosphere"
+                        or (
+                            e["type"] == "technosphere"
+                            and e["name"] not in template["fuel_inputs"]
+                        )
+                    ]
+                    dataset["premise fuel ancillary baseline"] = baseline
+                preserved[dataset["location"]].extend(clone_inventory_dataset(baseline))
+            fallback = template["fallback_location"]
+            if fallback not in preserved:
+                raise ValueError(
+                    f"Missing reviewed fuel delivery fallback: {fallback!r}"
+                )
+            preserved["GLO"] = clone_inventory_dataset(preserved[fallback])
+            cache[fuel] = dict(preserved)
+        return cache[fuel]
+
+    def _preserve_fuel_supply_networks(self):
+        """Keep declared historical trade networks outside the future blend."""
+        definitions = get_mapping(
+            FUELS_TECHS, var=f"{getattr(self, 'family', 'ecoinvent')}_market_handovers"
+        )
+        for entries in definitions.values():
+            for entry in entries:
+                if not entry.get("preserve_supply_network", False):
+                    continue
+                required = entry.get("requires_iam_array")
+                array = getattr(self.iam_data, required, None) if required else None
+                if required and (array is None or float(array.sum()) <= 0):
+                    continue
+                originals = [
+                    a
+                    for a in act_fltr(self.database, fltr=entry["source"], exact=True)
+                    if not a.get("regionalized", False)
+                ]
+                if originals and all(
+                    a.get("premise fuel market handover") for a in originals
+                ):
+                    original_keys = {activity_key(a) for a in originals}
+                    preserved = {
+                        activity_key(a["premise preserved fuel supply"]["source"])
+                        for a in self.database
+                        if a.get("premise preserved fuel supply")
+                    }
+                    expected = {
+                        a.get("premise preserved fuel supply count") for a in originals
+                    }
+                    if expected != {len(preserved & original_keys)}:
+                        raise ValueError(
+                            "Existing fuel handovers lack their fossil baseline; rebuild the scenario from source."
+                        )
+                    continue  # Incremental repetition retains the existing baseline.
+                pool = {activity_key(a): a for a in originals}
+                regions = [
+                    r
+                    for r in self.regions
+                    if r != "World" or entry.get("preserve_world", True)
+                ]
+                roots = self.region_to_proxy_dataset_mapping(
+                    originals, regions=regions
+                ).values()
+                pending = [
+                    activity_key(e)
+                    for a in roots
+                    for e in ws.technosphere(a)
+                    if activity_key(e) in pool
+                ]
+                needed = set()
+                while pending:
+                    key = pending.pop()
+                    if key in needed:
+                        continue
+                    needed.add(key)
+                    pending.extend(
+                        activity_key(e)
+                        for e in ws.technosphere(pool[key])
+                        if activity_key(e) in pool
+                    )
+                for original in originals:
+                    original["premise preserved fuel supply count"] = len(needed)
+                copies = {}
+                for original in originals:
+                    if activity_key(original) not in needed:
+                        continue
+                    if original.get("emptied"):
+                        raise ValueError(
+                            "Cannot preserve an already emptied fossil supply network."
+                        )
+                    frozen = clone_inventory_dataset(original)
+                    frozen[
+                        "name"
+                    ] += f" [fossil supply baseline, {original['location']}]"
+                    frozen["code"] = uuid.uuid4().hex
+                    frozen.pop("input", None)
+                    frozen["premise preserved fuel supply"] = {
+                        "source": {
+                            k: original[k]
+                            for k in ("name", "reference product", "location", "unit")
+                        },
+                        "purpose": "Historical fossil trade component, separate from IAM mixed delivery.",
+                    }
+                    for production in ws.production(frozen):
+                        production["name"] = frozen["name"]
+                        production.pop("input", None)
+                    copies[activity_key(original)] = frozen
+                # Country-specific names prevent geographical relinking from
+                # reallocating an explicitly modelled trade edge to another country.
+                for dataset in [*originals, *copies.values()]:
+                    for exchange in ws.technosphere(dataset):
+                        frozen = copies.get(activity_key(exchange))
+                        if frozen is not None:
+                            exchange["name"] = frozen["name"]
+                            exchange.pop("input", None)
+                self.database.extend(copies.values())
+                self.add_to_index(list(copies.values()))
+
+    def _handover_fuel_market_aliases(self, market):
+        """Reuse geographic forwarding for declared source-family identities.
+
+        Source forwarders are eligible by default; replacement of another
+        complete supply needs an explicit declaration. Complete regional
+        fossil inventories remain separate mixture components.
+        """
+        definitions = get_mapping(
+            FUELS_TECHS, var=f"{getattr(self, 'family', 'ecoinvent')}_market_handovers"
+        )
+        for entries in definitions.values():
+            for entry in entries:
+                target = entry["target"]
+                if (target["name"], target["reference product"], target["unit"]) != (
+                    market["name"],
+                    market["reference_product"],
+                    market["unit"],
+                ):
+                    continue
+                aliases = [
+                    a
+                    for a in act_fltr(self.database, fltr=entry["source"], exact=True)
+                    if not a.get("regionalized", False)
+                ]
+                if not aliases:
+                    if entry.get("optional_source", False):
+                        continue
+                    raise ValueError(
+                        f"Missing reviewed fuel market handover: {entry['source']!r}"
+                    )
+                for alias in aliases:
+                    production = list(ws.production(alias))
+                    if (
+                        (
+                            not alias.get("emptied")
+                            and not entry.get("replace_original_supply", False)
+                        )
+                        or len(production) != 1
+                        or production[0]["amount"] != 1
+                    ):
+                        raise ValueError(
+                            f"Fuel handover requires a unit-reference source forwarder: {alias['name']!r}"
+                        )
+                factor = float(entry["conversion_factor"])
+                if not math.isfinite(factor) or factor <= 0:
+                    raise ValueError(
+                        "Fuel market handover needs a finite positive conversion factor."
+                    )
+                self.empty_original_datasets(
+                    aliases,
+                    production_shares={},
+                    loc_map={
+                        a["location"]: self.ecoinvent_to_iam_loc.get(
+                            a["location"], "World"
+                        )
+                        for a in aliases
+                    },
+                    target=target,
+                    conversion_factor=factor,
+                )
+                for alias in aliases:
+                    alias.pop("has_downstream_consumer", None)
+                    alias["premise fuel market handover"] = {
+                        "target": target,
+                        "conversion_factor": factor,
+                        "limitations": entry["limitations"],
+                    }
+                # Keep these source identities visible: consumers retain their
+                # original product/unit and uncertainty through the forwarding node.
+                self.add_to_index(aliases)
 
     def generate_fuel_supply_chains(self):
         """Duplicate fuel chains and make them IAM region-specific."""

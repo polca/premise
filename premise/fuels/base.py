@@ -130,6 +130,8 @@ class Fuels(
             model=self.model, for_markets=True
         )
 
+        self._preserve_fuel_supply_networks()
+
         self.rev_fuel_map = {
             activity["name"]: fuel
             for fuel, activities in self.fuel_map.items()

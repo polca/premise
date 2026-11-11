@@ -13,6 +13,19 @@ class BiogasMixin:
         Generate region-specific biogas datasets from methane source mappings.
         """
         fuel_activities = fetch_mapping(METHANE_SOURCES)
+        fuel_activities = {
+            role: [
+                row
+                for row in rows
+                if not row.get("requires_iam_array")
+                or (
+                    getattr(self.iam_data, row["requires_iam_array"], None) is not None
+                    and float(getattr(self.iam_data, row["requires_iam_array"]).sum())
+                    > 0
+                )
+            ]
+            for role, rows in fuel_activities.items()
+        }
 
         methane_map = {
             k: list(
@@ -28,7 +41,7 @@ class BiogasMixin:
                 )
             )
             for k, v in fuel_activities.items()
-            if k in self.fuel_map
+            if k in self.fuel_map and v
         }
 
         if not methane_map:

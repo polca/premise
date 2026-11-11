@@ -31,5 +31,11 @@ methane, from coal:
 
 # Reviewed cubic-metre wrapper enters the ordinary gas regional-copy stage.
 natural gas:
+  # Regionalize complete native supply before its m3 wrapper is copied/relinked.
+  - name: Natural gas, high pressure, at consumer
+    reference product: Natural gas, high pressure, at consumer
+    requires_iam_array: natural_gas_blend
+
   - name: market group for natural gas, high pressure, reviewed native supply [BrightPath UVEK conversion 03a1d748] [CLIC brightpath-uvek-import-03a1d7481f35ec1a56c18cd5]
     reference product: natural gas, high pressure
+    requires_iam_array: natural_gas_blend

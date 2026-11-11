@@ -1143,6 +1143,7 @@ class BaseTransformation:
         flip_treatment_supplier_sign=False,
         retain_validation_technology=False,
         normalize_before_conversion=False,
+        market_ancillaries=None,
     ):
         """
         Generalized method to create and add regionalized market datasets.
@@ -1198,10 +1199,12 @@ class BaseTransformation:
             }
             regional_shares_dict = {reg: 1 / len(regions) for reg in regions}
 
-        preserved_exchanges = self.extract_market_ancillary_exchanges(
-            name=name,
-            reference_product=reference_product,
-            market_unit=unit,
+        preserved_exchanges = (
+            market_ancillaries
+            if market_ancillaries is not None
+            else self.extract_market_ancillary_exchanges(
+                name=name, reference_product=reference_product, market_unit=unit
+            )
         )
 
         for region in regions:
@@ -1927,18 +1930,25 @@ class BaseTransformation:
         production_shares: dict,
         loc_map: Dict[str, str],
         regions: List[str] = None,
+        target: dict = None,
+        conversion_factor: float = 1.0,
     ) -> None:
         """
-        Empty original ecoinvent datasets and replace them with IAM-based inputs.
+        Empty original datasets and replace them with IAM-based inputs.
+
+        An explicit target can retain a source forwarding identity while changing
+        the purchased product/unit. The factor expresses one source reference in
+        target units; omitted arguments retain the existing geographic routing.
         """
         regions = regions or self.regions
 
         def build_exchange(dataset, location, amount):
+            provider = target or dataset
             return {
-                "name": dataset["name"],
-                "product": dataset["reference product"],
-                "amount": amount,
-                "unit": dataset["unit"],
+                "name": provider["name"],
+                "product": provider["reference product"],
+                "amount": amount * conversion_factor,
+                "unit": provider["unit"],
                 "uncertainty type": 0,
                 "location": location,
                 "type": "technosphere",
@@ -1954,10 +1964,10 @@ class BaseTransformation:
             ecoinvent_location = dataset["location"]
             iam_location = loc_map[ecoinvent_location]
 
-            if not self.is_in_index(dataset, iam_location):
+            if not self.is_in_index(target or dataset, iam_location):
                 iam_location = "World"
 
-            if iam_location == "World":
+            if iam_location == "World" and target is None:
                 iam_location = [
                     r for r in regions if r != "World" and self.is_in_index(dataset, r)
                 ]

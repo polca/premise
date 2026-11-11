@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-11",
+  "authorization": "Standing user auto-approval for remaining inspected mapping decisions; log limitations for review.",
+  "witnesses": [
+    {
+      "name": "xxx Diesel, at regional storage",
+      "product": "xxx Diesel, at regional storage",
+      "unit": "kilogram",
+      "location": "RER",
+      "reference_amount": 1,
+      "comment_sha256": "7443f28599b85037ecab60447ae796266496f8fb4b2c5abc613b6b16d6d856bf"
+    },
+    {
+      "name": "xxx Diesel, at regional storage",
+      "product": "xxx Diesel, at regional storage",
+      "unit": "kilogram",
+      "location": "CH",
+      "reference_amount": 1,
+      "comment_sha256": "22820f0701c27ddb34c594f9f90ddd248900cd12956e526c0d2a450132402306"
+    },
+    {
+      "name": "Natural gas, at consumer",
+      "product": "Natural gas, at consumer",
+      "unit": "megajoule",
+      "location": "US",
+      "reference_amount": 1,
+      "comment_sha256": "10e1ebc91c853ae288f9a35e8a84ad28194ff85689e5a16bad4a98a62ce10d78"
+    }
+  ],
+  "decisions": [
+    "Older US delivered gas is replaced on its explicit MJ output basis by the IAM high-pressure delivered-gas proxy using 1/36 m3 per MJ. Its pressure and original energy-value metadata are unspecified; retain unquantified pressure/network, geography and vintage differences.",
+    "Legacy xxx diesel storage outputs are 1 kg diesel. Forward them to the IAM diesel mix using the reviewed modern native delivery auxiliaries; legacy refining/grade, allocation, distribution and vintage differences remain unquantified screening proxies.",
+    "Do not forward producer-specific refinery outputs or explicitly fossil-only storage through a fuel blend. Those retain their own commodity boundaries.",
+    "Rebuild historical fuel constituents using IAM shares; preserve native ancillary services by declared input identity, including kg-based water and waste services that a unit-only filter would incorrectly drop.",
+    "Directly specified upstream production, venting/flaring and production-route consumption are outside delivered-market handovers; do not substitute a different product boundary.",
+    "The separate native vehicle Fuel supply blends and combustion-carbon reclassification remain unfinished checks before public fuel support."
+  ]
+}

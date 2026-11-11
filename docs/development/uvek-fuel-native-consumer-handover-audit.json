@@ -1,0 +1,48 @@
+{
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-155713",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-review-20261111-141957",
+  "preserved_non_handover_native_consumers": 3965,
+  "preserved_fuel_exchange_rows": 5504,
+  "preserved_uncertain_fuel_rows": 5310,
+  "intentional_original_supply_handovers": 73,
+  "changed_non_handover_consumers": [],
+  "changed_fuel_quantity_or_uncertainty_consumers": [],
+  "delivered_interface_coverage": {
+    "natural gas": {
+      "purchases": 484,
+      "reaches_iam_mix": 484
+    },
+    "diesel": {
+      "purchases": 531,
+      "reaches_iam_mix": 531
+    },
+    "gasoline": {
+      "purchases": 208,
+      "reaches_iam_mix": 208
+    },
+    "kerosene": {
+      "purchases": 42,
+      "reaches_iam_mix": 42
+    }
+  },
+  "unmatched_delivered_interfaces": [],
+  "explicitly_fossil_only_supply_checks": [
+    {
+      "name": "Diesel, fossil, at regional storage",
+      "location": "CH",
+      "reaches_iam_fuel_mix": false
+    },
+    {
+      "name": "Petrol, fossil, at regional storage",
+      "location": "CH",
+      "reaches_iam_fuel_mix": false
+    }
+  ],
+  "preserved_trade_baselines": 33,
+  "referenced_trade_baselines": 33,
+  "unreferenced_trade_baselines": 0,
+  "limitations": [
+    "Interface coverage counts native original activities, not a blanket substitution of raw gas production, venting/flaring or directly specified production routes.",
+    "Combustion-carbon reclassification and source-grade blending remain separate unfinished checks before public fuel support."
+  ]
+}

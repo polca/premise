@@ -168,6 +168,47 @@ wood chips:
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
 natural gas:
+  uvek_market_handovers:
+  - source:
+      name: Natural gas, at consumer
+      reference product: Natural gas, at consumer
+      unit: megajoule
+    target:
+      name: market for natural gas, high pressure
+      reference product: natural gas, high pressure
+      unit: cubic meter
+    conversion_factor: 0.027777777777777776
+    replace_original_supply: true
+    limitations:
+    - Explicit older US delivery proxy per MJ output, using 1/36 m3 of the IAM delivered mix; source pressure and underlying energy-value metadata are unspecified.
+    - Original network, pressure, allocation and vintage differ from the reviewed high-pressure proxy, with unquantified score effects; no unused regional duplicate is created.
+  - preserve_supply_network: true
+    preserve_world: false
+    requires_iam_array: natural_gas_blend
+    source:
+      name: Natural gas, high pressure, at consumer
+      reference product: Natural gas, high pressure, at consumer
+      unit: megajoule
+    target:
+      name: market for natural gas, high pressure
+      reference product: natural gas, high pressure
+      unit: cubic meter
+    conversion_factor: 0.027777777777777776
+    limitations:
+    - Original geographic high-pressure supply forwarders use the reviewed 36 MJ/m3 basis; their complete regional copies remain separate fossil mixture components.
+    - Native low-pressure delivery remains downstream where linked to this supply, preserving its infrastructure and losses; source pressure, composition, geography and vintage proxy differences remain unquantified.
+  - optional_source: true
+    source:
+      name: market group for natural gas, high pressure, reviewed native supply [BrightPath UVEK conversion 03a1d748] [CLIC brightpath-uvek-import-03a1d7481f35ec1a56c18cd5]
+      reference product: natural gas, high pressure
+      unit: cubic meter
+    target:
+      name: market for natural gas, high pressure
+      reference product: natural gas, high pressure
+      unit: cubic meter
+    conversion_factor: 1
+    limitations:
+    - The original converted market wrapper forwards CLIC consumers to the IAM blend; its regional copies remain complete fossil supply components.
   uvek_aliases:
     market_suppliers:
       allow_generated_helpers: true
@@ -420,7 +461,53 @@ liquid fossil fuels:
     message: Secondary Energy|Liquids|Oil
     witch: Secondary Energy|Liquids|Fossil|Oil
 diesel:
+  uvek_market_template:
+    source:
+      name: Diesel, at regional storage
+      reference product: Diesel, at regional storage
+      unit: kilogram
+    fallback_location: RER
+    fuel_inputs:
+    - Diesel, at refinery
+    - Vegetable oil methyl ester, at esterification plant
+    - Methyl ester, from biogenic oils, mix, at regional storage
+    limitations:
+    - Rebuild fuel constituents from IAM shares while retaining native delivery infrastructure, freight, water and waste services, including kg-based auxiliaries.
+    - Use the native RER delivery inventory outside reviewed source coverage; source grade, volatility, allocation, losses and vintage differences remain unquantified screening limitations.
+  uvek_market_handovers:
+  - source:
+      name: Diesel, at regional storage
+      reference product: Diesel, at regional storage
+      unit: kilogram
+    target:
+      name: market for diesel
+      reference product: diesel
+      unit: kilogram
+    conversion_factor: 1
+    replace_original_supply: true
+    limitations:
+    - Delivered-fuel market replacement; producer-specific refinery and explicitly fossil-only supplies remain separate and retain their physical product boundary.
+    - Native delivery auxiliaries are retained in the IAM market using the reviewed template. Grade and vintage differences remain unquantified; downstream vehicle-blend and combustion-carbon checks are unfinished.
+  - source:
+      name: xxx Diesel, at regional storage
+      reference product: xxx Diesel, at regional storage
+      unit: kilogram
+    target:
+      name: market for diesel
+      reference product: diesel
+      unit: kilogram
+    conversion_factor: 1
+    replace_original_supply: true
+    limitations:
+    - Delivered-fuel market replacement; producer-specific refinery and explicitly fossil-only supplies remain separate and retain their physical product boundary.
+    - Native delivery auxiliaries are retained in the IAM market using the reviewed template. Grade and vintage differences remain unquantified; downstream vehicle-blend and combustion-carbon checks are unfinished.
   uvek_aliases:
+    market_suppliers:
+      exact: true
+      fltr:
+        name: Diesel, at refinery
+        reference product: Diesel, at refinery
+        unit: kilogram
     exact: true
     fltr:
       name:
@@ -471,6 +558,35 @@ diesel:
       - period
       - market
 gasoline:
+  uvek_market_template:
+    source:
+      name: Petrol, at regional storage
+      reference product: Petrol, at regional storage
+      unit: kilogram
+    fallback_location: RER
+    fuel_inputs:
+    - Petrol, at refinery
+    - Ethanol, 99.7% in H2O, from biomass, at distillation
+    - Ethanol, 99.7% in H2O, from sugarcane molasses, at distillation
+    - Ethanol, 99.7% in H2O, from wood, at distillation
+    - Methyl tert-butyl ether, at plant
+    limitations:
+    - Rebuild fuel constituents from IAM shares while retaining native delivery infrastructure, freight, water and waste services, including kg-based auxiliaries.
+    - Use the native RER delivery inventory outside reviewed source coverage; source grade, volatility, allocation, losses and vintage differences remain unquantified screening limitations.
+  uvek_market_handovers:
+  - source:
+      name: Petrol, at regional storage
+      reference product: Petrol, at regional storage
+      unit: kilogram
+    target:
+      name: market for petrol
+      reference product: petrol
+      unit: kilogram
+    conversion_factor: 1
+    replace_original_supply: true
+    limitations:
+    - Delivered-fuel market replacement; producer-specific refinery and explicitly fossil-only supplies remain separate and retain their physical product boundary.
+    - Native delivery auxiliaries are retained in the IAM market using the reviewed template. Grade and vintage differences remain unquantified; downstream vehicle-blend and combustion-carbon checks are unfinished.
   uvek_aliases:
     exact: true
     fltr:
@@ -1879,6 +1995,31 @@ Carbon monoxide, from RWGS:
     unit: megajoule
     value: 10.83
 kerosene:
+  uvek_market_template:
+    source:
+      name: Kerosene, at regional storage
+      reference product: Kerosene, at regional storage
+      unit: kilogram
+    fallback_location: RER
+    fuel_inputs:
+    - Kerosene, at refinery
+    limitations:
+    - Rebuild fuel constituents from IAM shares while retaining native delivery infrastructure, freight, water and waste services, including kg-based auxiliaries.
+    - Use the native RER delivery inventory outside reviewed source coverage; source grade, volatility, allocation, losses and vintage differences remain unquantified screening limitations.
+  uvek_market_handovers:
+  - source:
+      name: Kerosene, at regional storage
+      reference product: Kerosene, at regional storage
+      unit: kilogram
+    target:
+      name: market for kerosene
+      reference product: kerosene
+      unit: kilogram
+    conversion_factor: 1
+    replace_original_supply: true
+    limitations:
+    - Delivered-fuel market replacement; producer-specific refinery and explicitly fossil-only supplies remain separate and retain their physical product boundary.
+    - Native delivery auxiliaries are retained in the IAM market using the reviewed template. Grade and vintage differences remain unquantified; downstream vehicle-blend and combustion-carbon checks are unfinished.
   uvek_aliases:
     exact: true
     fltr:

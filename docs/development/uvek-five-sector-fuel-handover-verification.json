@@ -1,0 +1,271 @@
+{
+  "date": "2026-11-11",
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-155713",
+  "source_activity_count": 11947,
+  "export_activity_count": 14750,
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement",
+    "fuels"
+  ],
+  "public_scope_guard_bypassed": true,
+  "internal_technosphere_links_resolved": true,
+  "fuel_market_counts": {
+    "market for diesel": 13,
+    "market for diesel, low-sulfur": 13,
+    "market for hydrogen, gaseous, low pressure": 13,
+    "market for kerosene": 13,
+    "market for natural gas, high pressure": 13,
+    "market for natural gas, low pressure": 13,
+    "market for petrol": 13,
+    "market for petrol, low-sulfur": 13,
+    "market for petrol, unleaded": 13,
+    "market group for diesel": 13,
+    "market group for diesel, low-sulfur": 13,
+    "market group for natural gas, high pressure": 13
+  },
+  "native_consumer_fuel_path_coverage": {
+    "diesel": {
+      "purchases": 1175,
+      "reaches_iam_fuel_mix": 1165,
+      "distinct_consumers": 1137
+    },
+    "natural gas": {
+      "purchases": 3696,
+      "reaches_iam_fuel_mix": 2847,
+      "distinct_consumers": 2543
+    },
+    "gasoline": {
+      "purchases": 93,
+      "reaches_iam_fuel_mix": 83,
+      "distinct_consumers": 91
+    },
+    "kerosene": {
+      "purchases": 49,
+      "reaches_iam_fuel_mix": 42,
+      "distinct_consumers": 49
+    }
+  },
+  "lci_checks": [
+    {
+      "name": "market for diesel",
+      "product": "diesel",
+      "unit": "kilogram",
+      "location": "World",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "market for petrol",
+      "product": "petrol",
+      "unit": "kilogram",
+      "location": "EUR",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "market for diesel",
+      "product": "diesel",
+      "unit": "kilogram",
+      "location": "EUR",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "product": "natural gas, high pressure",
+      "unit": "cubic meter",
+      "location": "World",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "market for kerosene",
+      "product": "kerosene",
+      "unit": "kilogram",
+      "location": "EUR",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "market for petrol",
+      "product": "petrol",
+      "unit": "kilogram",
+      "location": "World",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "product": "natural gas, high pressure",
+      "unit": "cubic meter",
+      "location": "EUR",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "market for kerosene",
+      "product": "kerosene",
+      "unit": "kilogram",
+      "location": "World",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    }
+  ],
+  "pre_export_validation_phases": [
+    {
+      "phase": "sector:biomass",
+      "issues": {}
+    },
+    {
+      "phase": "sector:biomass:contract",
+      "issues": {}
+    },
+    {
+      "phase": "sector:electricity:supplier-vector",
+      "issues": {}
+    },
+    {
+      "phase": "sector:electricity",
+      "issues": {
+        "warning": 14
+      }
+    },
+    {
+      "phase": "sector:electricity:contract",
+      "issues": {}
+    },
+    {
+      "phase": "sector:heat",
+      "issues": {}
+    },
+    {
+      "phase": "sector:heat:contract",
+      "issues": {}
+    },
+    {
+      "phase": "sector:cement",
+      "issues": {}
+    },
+    {
+      "phase": "sector:cement:contract",
+      "issues": {}
+    },
+    {
+      "phase": "sector:fuels",
+      "issues": {
+        "warning": 39
+      }
+    },
+    {
+      "phase": "sector:fuels:contract",
+      "issues": {}
+    }
+  ],
+  "fossil_gas_component_checks": [
+    {
+      "region": "USA",
+      "supplier_region": "USA",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "LAM",
+      "supplier_region": "LAM",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "JPN",
+      "supplier_region": "JPN",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "CAZ",
+      "supplier_region": "CAZ",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "CHA",
+      "supplier_region": "CHA",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "OAS",
+      "supplier_region": "OAS",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "REF",
+      "supplier_region": "REF",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "EUR",
+      "supplier_region": "EUR",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "SSA",
+      "supplier_region": "SSA",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "NEU",
+      "supplier_region": "NEU",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "MEA",
+      "supplier_region": "MEA",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    },
+    {
+      "region": "IND",
+      "supplier_region": "IND",
+      "quantity_MJ_per_m3": 36.0,
+      "supplier_is_regional_fossil_copy": true,
+      "supplier_is_mixed_forwarder": false
+    }
+  ],
+  "preserved_gas_network_checks": {
+    "country_baselines": 33,
+    "preserved_trade_exchanges": 113,
+    "maximum_absolute_trade_quantity_difference": 0.0,
+    "uncertainty_field_checks": 452,
+    "all_preserved_trade_inputs_stay_in_baseline_network": true,
+    "regional_fossil_supply_trade_inputs_avoid_mixed_forwarders": true
+  },
+  "qualification": "Diagnostic handover export. Native fuel/carbon coverage and fossil component isolation require review before public fuel support; remaining sectors are unfinished."
+}
