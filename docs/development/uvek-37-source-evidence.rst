@@ -34,3 +34,11 @@ explicitly accepts functional-reference inference for the six named cases;
 it does not treat the unpatched vector as inspected or the releases as equal.
 See ``uvek-fuels-37-stocks-verification.json`` for tests and native calculations.
 Other candidate witnesses remain subject to their own boundary reviews.
+
+Four further service decisions are recorded in the separate packaged
+``uvek_fuels_37_services_review.json``. Compressed air uses complete native
+supply-network services, with an explicit patch-market-split assumption and
+native leakage-convention differences. Rail, ancillary operation and factory
+construction keep their distinct reference units. See
+``uvek-fuels-37-services-verification.json`` for component checks; these do not
+establish a complete fuel update or export.

@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "6473d980671ed2a2524819bd5765c0e50d5da61f",
-  "approval_ledger_sha256": "f5c5fb55a640b04b6987ce6a09d903aca0d7848b544801b6e26bb1328bf2eeb2",
-  "validated_scopes": 690,
+  "brightpath_commit": "7cd88edb0870801696948f2d781c9f42b8c2f09c",
+  "approval_ledger_sha256": "3b6afd3b59095650c36794689e4b1bd110cec0b8cefdd63be7d99007bf97b95d",
+  "validated_scopes": 694,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 24,
-  "distinct_unapproved_rule_identities": 23,
+  "unapproved_source_profile_cases": 20,
+  "distinct_unapproved_rule_identities": 19,
   "cohorts": [
     {
       "source": {
@@ -72,8 +72,8 @@
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 2,
-      "refusal_audit_filename": "d7e61a7c368e3508708faee658aa03fb2b4edd419f2d7ed0f323468bb80c9f73.audit.json.gz",
-      "refusal_audit_sha256": "d476abfd148f04f54d91d8cbcb6869972e962427383fdb5409b0bf2bf39ed1f9",
+      "refusal_audit_filename": "02e3267c10376f5017e0d497fa1d2662da3cefb6cc30ade139c3849e075dc479.audit.json.gz",
+      "refusal_audit_sha256": "d8c4300de36daf716af5940b8b950cc6dad37c7270724c13833f9daf5fd227da",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -140,9 +140,9 @@
       },
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 18,
-      "refusal_audit_filename": "109ab9a8c7a86a9b14c2c3faf12e5644d721e11802218cac9a2ec92bd2552011.audit.json.gz",
-      "refusal_audit_sha256": "8b7377102a62b92bf96cb56dcdc0ddf19542fd09e6bf00ca2fba8dba53265881",
+      "unapproved_count": 14,
+      "refusal_audit_filename": "14a126bca0acd7f2f51cbff20786d432b800fdb5d2253422b85e12a9d2e79c54.audit.json.gz",
+      "refusal_audit_sha256": "e384b5e309c4718239960e437c3e1caa360e481ff7ac25d0bd4a7c4a047f4af8",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -157,21 +157,6 @@
             "name": "Chromium steel 18/8, at plant",
             "reference product": "Chromium steel 18/8, at plant",
             "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-a3a951644bd5ed9c",
-          "source": {
-            "location": "Europe without Switzerland",
-            "name": "market for transport, freight train",
-            "reference product": "transport, freight train",
-            "unit": "ton kilometer"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Transport, freight, rail",
-            "reference product": "Transport, freight, rail",
-            "unit": "ton kilometer"
           }
         },
         {
@@ -202,36 +187,6 @@
           }
         },
         {
-          "rule_id": "bp-ad43c87e102ce339",
-          "source": {
-            "location": "RER",
-            "name": "market for compressed air, 700 kPa gauge",
-            "reference product": "compressed air, 700 kPa gauge",
-            "unit": "cubic meter"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Compressed air, best generation, >30kW, 7 bar gauge, at compressor",
-            "reference product": "Compressed air, best generation, >30kW, 7 bar gauge, at compressor",
-            "unit": "cubic meter"
-          }
-        },
-        {
-          "rule_id": "bp-3c662478c0f234c1",
-          "source": {
-            "location": "RER",
-            "name": "market for energy and auxilliary inputs, metal working factory",
-            "reference product": "energy and auxilliary inputs, metal working factory",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Metal working factory operation, average heat energy",
-            "reference product": "Metal working factory operation, average heat energy",
-            "unit": "kilogram"
-          }
-        },
-        {
           "rule_id": "bp-4f69327dbf9d3e42",
           "source": {
             "location": "RER",
@@ -244,21 +199,6 @@
             "name": "Lubricating oil, at plant",
             "reference product": "Lubricating oil, at plant",
             "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-270bf2428cce37a2",
-          "source": {
-            "location": "RER",
-            "name": "metal working factory construction",
-            "reference product": "metal working factory",
-            "unit": "unit"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Metal working factory",
-            "reference product": "Metal working factory",
-            "unit": "unit"
           }
         },
         {
@@ -419,8 +359,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "8ee28b63c9fd7bcb3a1109cbc772930f913553b3f672158547f66ab5e6d19235.audit.json.gz",
-      "refusal_audit_sha256": "1364451baa30605e33e0ceeec0b64c94572fa2f51f6d363fbe5ef7e14597bdb1",
+      "refusal_audit_filename": "e7d8a79b04acd6bb12c459c07f2d0a0032734fea90e21f5cdbef27479daf0b0a.audit.json.gz",
+      "refusal_audit_sha256": "6a9c72eb620fa54be540ba9b1be05ddfe7f359a5f80fcda80315e26a02838c90",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

@@ -1,0 +1,231 @@
+{
+  "date": "2026-11-11",
+  "status": "Four requested 3.7 services qualified with explicit patch evidence and compressed-air split assumptions; complete fuels transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "7cd88edb0870801696948f2d781c9f42b8c2f09c",
+  "review_sha256": "9a98471242e311d4c3f6f46247205140c1e99970fd6accf4b5d816cbac24b2e3",
+  "forward_resource_sha256": "a1360543daf3cec329188647785e10afc6720c9b3553c429c66850cd9b9fa1cc",
+  "new_approval_scopes": 4,
+  "validated_approval_scopes": 694,
+  "previous_validated_scopes": 690,
+  "previous_operation_objects": 597,
+  "all_previous_operations_and_fingerprints_preserved": true,
+  "tests": {
+    "brightpath": "20 passed; signed statistics, complete network rows, factory unit distinction, unreviewed-profile refusals and replay guards",
+    "premise": "23 passed; strict fresh/cache, exact warnings, individual approval removal and all three older rail profiles",
+    "broader_baseline": "Earlier regression checkpoints remain historical; no post-change full repository suite claimed."
+  },
+  "patch_evidence_decision": {
+    "requested_version": "3.7",
+    "inspected_version": "3.7.1",
+    "official_report_url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/change%20report_v3%207%201_20201217.pdf",
+    "basis": "Limited functional-reference inference for unchanged named services outside the reported patch corrections; no equality of unpatched vectors or downstream scores. The observed patch compressed-air split is separately adopted as a native screening-proxy assumption, not claimed as independently measured unpatched 3.7 data.",
+    "source_context_relabelled": false
+  },
+  "unpatched_37_inventory_vectors_inspected": false,
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-a3a951644bd5ed9c",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_demands": [
+        {
+          "identity": {
+            "name": "Transport, freight, rail",
+            "reference product": "Transport, freight, rail",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ad43c87e102ce339",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_demands": [
+        {
+          "identity": {
+            "name": "Compressed air, average installation, >30kW, 7 bar gauge, at supply network",
+            "reference product": "Compressed air, average installation, >30kW, 7 bar gauge, at supply network",
+            "location": "RER",
+            "unit": "cubic meter"
+          },
+          "amount": 0.333333333333333
+        },
+        {
+          "identity": {
+            "name": "xx Compressed air, best installation, >30kW, 7 bar gauge, at supply network",
+            "reference product": "xx Compressed air, best installation, >30kW, 7 bar gauge, at supply network",
+            "location": "RER",
+            "unit": "cubic meter"
+          },
+          "amount": 0.333333333333333
+        },
+        {
+          "identity": {
+            "name": "xx Compressed air, optimised installation, >30kW, 7 bar gauge, at supply network",
+            "reference product": "xx Compressed air, optimised installation, >30kW, 7 bar gauge, at supply network",
+            "location": "RER",
+            "unit": "cubic meter"
+          },
+          "amount": 0.333333333333333
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3c662478c0f234c1",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_demands": [
+        {
+          "identity": {
+            "name": "Metal working factory operation, average heat energy",
+            "reference product": "Metal working factory operation, average heat energy",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-270bf2428cce37a2",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_demands": [
+        {
+          "identity": {
+            "name": "Metal working factory",
+            "reference product": "Metal working factory",
+            "location": "RER",
+            "unit": "unit"
+          },
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "network_boundary_checks": [
+    {
+      "kind": "average",
+      "identity": {
+        "name": "Compressed air, average installation, >30kW, 7 bar gauge, at supply network",
+        "reference product": "Compressed air, average installation, >30kW, 7 bar gauge, at supply network",
+        "location": "RER",
+        "unit": "cubic meter"
+      },
+      "native_generation_factor": 1.3,
+      "inspected_patch_share": 0.333333333333333,
+      "source_producer_witness_sha256": "da3aba1740a95babca7159215c287672d3e6ac88b415c2ca499236ff4fcbb398"
+    },
+    {
+      "kind": "best",
+      "identity": {
+        "name": "xx Compressed air, best installation, >30kW, 7 bar gauge, at supply network",
+        "reference product": "xx Compressed air, best installation, >30kW, 7 bar gauge, at supply network",
+        "location": "RER",
+        "unit": "cubic meter"
+      },
+      "native_generation_factor": 1.1,
+      "inspected_patch_share": 0.333333333333333,
+      "source_producer_witness_sha256": "b794dad37b5efb15db9041c43a70ff94bbdda1f5557195b2bb0b46be2c659045"
+    },
+    {
+      "kind": "optimised",
+      "identity": {
+        "name": "xx Compressed air, optimised installation, >30kW, 7 bar gauge, at supply network",
+        "reference product": "xx Compressed air, optimised installation, >30kW, 7 bar gauge, at supply network",
+        "location": "RER",
+        "unit": "cubic meter"
+      },
+      "native_generation_factor": 1.1500000000000001,
+      "inspected_patch_share": 0.333333333333333,
+      "source_producer_witness_sha256": "4c191d95eef7029393a2255725edfb8c9410ea4ad7b12cd60095665e9f0cf560"
+    }
+  ],
+  "network_loss_diagnostics": [
+    {
+      "kind": "average",
+      "inspected_patch_effective_generation_ratio": 1.4285714285714295,
+      "native_network_generation_factor": 1.3,
+      "interpretation": "Diagnostic electricity-draw ratio only; native model retained, not rescaled to this ratio. Source evidence is 3.7.1, requested context stays 3.7."
+    },
+    {
+      "kind": "best",
+      "inspected_patch_effective_generation_ratio": 1.1111111111111087,
+      "native_network_generation_factor": 1.1,
+      "interpretation": "Diagnostic electricity-draw ratio only; native model retained, not rescaled to this ratio. Source evidence is 3.7.1, requested context stays 3.7."
+    },
+    {
+      "kind": "optimised",
+      "inspected_patch_effective_generation_ratio": 1.1764705882352968,
+      "native_network_generation_factor": 1.15,
+      "interpretation": "Diagnostic electricity-draw ratio only; native model retained, not rescaled to this ratio. Source evidence is 3.7.1, requested context stays 3.7."
+    }
+  ],
+  "mapping_preservation": "Only compressed-air parent changed; one network helper/shared review added. Three other rules and every prior helper/shared-review content preserved.",
+  "replay_and_wheel": "Forward/canonical replay and packaged review/resource/manifest match checkout.",
+  "runtime_python_changes": false,
+  "regular_environment": "Pushed Git revision installed; exact resource SHA and 694 scopes verified.",
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 20,
+    "distinct_rule_identities": 19,
+    "only_removed_cases": [
+      [
+        "3.7",
+        "bp-270bf2428cce37a2"
+      ],
+      [
+        "3.7",
+        "bp-3c662478c0f234c1"
+      ],
+      [
+        "3.7",
+        "bp-a3a951644bd5ed9c"
+      ],
+      [
+        "3.7",
+        "bp-ad43c87e102ce339"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123471048,
+  "limitations": [
+    [
+      "Complete rail freight service per metric tonne-km, including electric/diesel traction, shunting, vehicles, maintenance and track infrastructure. It is not a freight wagon or railway-construction asset. Native European DE/AT/IT/FR-based fleet and Swiss-extrapolated infrastructure replace the source Europe-without-Switzerland national supply mix. No second traction, shunting or infrastructure is added, and no payload, gross/net-tonnage or distance multiplier is introduced.",
+      "Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared unit. Retain complete native inventories once. Native geography, technology, allocation, background, internal uncertainty, vintage and biosphere exclusions differ; effects are unquantified and no inventory or LCIA equality is established. Separate caller materials, machinery, energy, transport and emissions remain unchanged unless already internal to the matched source service.",
+      "Requested source remains ecoinvent 3.7 cut-off; physical-reference definitions were inspected in 3.7.1 under the explicit limited patch-evidence decision. No unpatched source vector was directly inspected or source context relabelled. Matching identities and the patch report support the stated functional inference; upstream inventories, uncertainty and results are not treated as identical."
+    ],
+    [
+      "Delivered compressed-air screening mix at 700 kPa gauge / 7 bar gauge, not compressor-only generation. Use three complete native >30 kW supply-network installations: average, best and optimised, including compressor inputs, network material and leakage. Inspected patch market has three equal nominal shares; those observed patch shares are an explicitly chosen proxy split for requested 3.7, not recovery of an unpatched vector. Retain each native coefficient without normalisation, extra network or compressor inputs. Native network generation coefficients are 1.30/1.10/1.15; patch descriptions use 30%/10%/15% leakage and its generation draws follow a different loss convention. This proxy retains the complete native convention, rather than forcing source electricity, compressor capital or loss ratios onto it. Do not add another leakage, efficiency, pressure/gas-law or volume multiplier. Preserve the declared cubic-metre reference, without asserting unspecified ambient reference conditions. Native processes exclude on-site installation; no installation service is invented. The xx-labelled native best/optimised services were inspected as nonempty complete networks. Factory-specific pressure, leakage and efficiency require sensitivity/detail review when important.",
+      "Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared unit. Retain complete native inventories once. Native geography, technology, allocation, background, internal uncertainty, vintage and biosphere exclusions differ; effects are unquantified and no inventory or LCIA equality is established. Separate caller materials, machinery, energy, transport and emissions remain unchanged unless already internal to the matched source service.",
+      "Requested source remains ecoinvent 3.7 cut-off; physical-reference definitions were inspected in 3.7.1 under the explicit limited patch-evidence decision. No unpatched source vector was directly inspected or source context relabelled. Matching identities and the patch report support the stated functional inference; upstream inventories, uncertainty and results are not treated as identical."
+    ],
+    [
+      "Ancillary factory service per kg final metal product, not kg machine asset, MJ of heat or complete machine processing. Native average heat mix includes ancillary lighting electricity, water, waste/wastewater and heat once. It replaces source heat-source branches; source mix is not reconstructed. Process-specific machining and factory construction are separate and are not newly added here. No heat-content or throughput multiplier converts the caller kg.",
+      "Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared unit. Retain complete native inventories once. Native geography, technology, allocation, background, internal uncertainty, vintage and biosphere exclusions differ; effects are unquantified and no inventory or LCIA equality is established. Separate caller materials, machinery, energy, transport and emissions remain unchanged unless already internal to the matched source service.",
+      "Requested source remains ecoinvent 3.7 cut-off; physical-reference definitions were inspected in 3.7.1 under the explicit limited patch-evidence decision. No unpatched source vector was directly inspected or source context relabelled. Matching identities and the patch report support the stated functional inference; upstream inventories, uncertainty and results are not treated as identical."
+    ],
+    [
+      "One complete metal-working factory infrastructure unit, including buildings, roads, parking and land occupation. Both descriptions give 4.58e-10 factory units per kg final product as an allocation/use recommendation; it is not an additional conversion factor on an already unit-based caller exchange. Do not add factory operation or machine processing, divide by capacity/lifetime, convert to floor area or multiply caller units by that recommendation again.",
+      "Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared unit. Retain complete native inventories once. Native geography, technology, allocation, background, internal uncertainty, vintage and biosphere exclusions differ; effects are unquantified and no inventory or LCIA equality is established. Separate caller materials, machinery, energy, transport and emissions remain unchanged unless already internal to the matched source service.",
+      "Requested source remains ecoinvent 3.7 cut-off; physical-reference definitions were inspected in 3.7.1 under the explicit limited patch-evidence decision. No unpatched source vector was directly inspected or source context relabelled. Matching identities and the patch report support the stated functional inference; upstream inventories, uncertainty and results are not treated as identical."
+    ]
+  ],
+  "obsolete_brightpath_pip_wheel_cleanup": {
+    "obsolete_wheel_count": 1,
+    "removed_bytes": 40398394,
+    "obsolete_commit": "6473d980671ed2a2524819bd5765c0e50d5da61f",
+    "kept_commit": "7cd88edb0870801696948f2d781c9f42b8c2f09c"
+  }
+}
