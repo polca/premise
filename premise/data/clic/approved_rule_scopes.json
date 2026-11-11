@@ -197590,6 +197590,601 @@
           "fingerprint": "53e1a107fcbd7fcf26147c8522a7dd3aa03556fdc2520775b7c6a34e56f62d9d"
         }
       ]
+    },
+    {
+      "rule_id": "bp-82cb48b8f46820d5",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_37_stocks_review.json",
+      "review_sha256": "78818b5ef3c7842ac63e667374d58782fe154e8e4b8308bd7e29b3497ec0f62a",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "market for synthetic rubber",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "b219b6a4d9fe67b0dcca845653f7ab9d6f27e622db199a92a3d0196ee417f506",
+          "metadata_sha256": "fab1624679b812efcb11fc6af84431ed4d3362cf9a229e84704eeee5657c9440",
+          "inventory_sha256": "fcf31dcfb8fb212c4e61bc3c95290695907c54893a61029fa4923989a43e0732",
+          "identity": {
+            "location": "GLO",
+            "name": "market for synthetic rubber",
+            "reference product": "synthetic rubber",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "5d50c311-c131-4430-8530-32f0839c3261",
+          "inspected_activity_id": "405f5ca0-dea0-4827-a481-ea034c63b318",
+          "matching_product_id": "0da5307e-df93-4bc2-b5bc-6cda3cb55e8c",
+          "location": "GLO",
+          "name": "market for synthetic rubber",
+          "reference product": "synthetic rubber",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "synthetic rubber production",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "2d92c42c96794b7d145e7bb9ba2605ac8c003d5e40a6752bd24a4741e5444e13",
+            "metadata_sha256": "ccc9d7c41ca2c2f6851f4cc238c37f720f8e798e654b71ed6097616d3b4fd4ec",
+            "inventory_sha256": "321829b30644c294ee6d11ddaaf9910fcbfb74ebd9502e13bdce5f5f49b068c0"
+          },
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "synthetic rubber production",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "f410edc35b07bfce1118276052c46e82f1f7c9c24895eb1a652c953206daa98a",
+            "metadata_sha256": "ccc9d7c41ca2c2f6851f4cc238c37f720f8e798e654b71ed6097616d3b4fd4ec",
+            "inventory_sha256": "6cfc15012af077b1fc796f67ef22016ccb431299ba7fb7b4fc143b39e8c1fdc0"
+          }
+        ],
+        "basis": "Complete finished EPDM elastomer per kg. Both source producer and native describe polymerisation, internal mixing, extrusion and salt vulcanisation of technical EPDM profiles. The generic synthetic-rubber name does not mean unvulcanised raw polymer, natural rubber or every rubber chemistry. Keep the complete native profile once; do not add extrusion/vulcanisation again or infer filler/purity/polymer-content scaling. Formulation, performance and source final-market delivery are not reproduced.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Synthetic rubber, at plant",
+          "reference product": "Synthetic rubber, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Synthetic rubber, at plant",
+              "reference product": "Synthetic rubber, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 17,
+            "metadata_sha256": "2b61da2d27aea8f14ba0cd0f12221a1f8a1ba3d58f1db040e013b5603c02268e",
+            "inventory_sha256": "d9478cd7f6ef2d29b1c2916c46994c8a17c2084e172fd03f298319956032b6f4"
+          }
+        ]
+      },
+      "limitations": [
+        "Complete finished EPDM elastomer per kg. Both source producer and native describe polymerisation, internal mixing, extrusion and salt vulcanisation of technical EPDM profiles. The generic synthetic-rubber name does not mean unvulcanised raw polymer, natural rubber or every rubber chemistry. Keep the complete native profile once; do not add extrusion/vulcanisation again or infer filler/purity/polymer-content scaling. Formulation, performance and source final-market delivery are not reproduced.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5a657be0f8a89ea0daea944c82e34577ab077db371c3f1dc4486661f6026337b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-24eb26e899c2f905",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_37_stocks_review.json",
+      "review_sha256": "78818b5ef3c7842ac63e667374d58782fe154e8e4b8308bd7e29b3497ec0f62a",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "building construction, hall, steel construction",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "b08c84a155e3ef106e28c7ed39a400c5a6e0113186f7ee824893a5ba44f3d27f",
+          "metadata_sha256": "3871b57c2b4da5f2bcf272346cc7828ec87308a9bc357fc6089254600c2d0fce",
+          "inventory_sha256": "480f7315c0be0191cda47ac9da7412a3e44524c1e49a30fee414c2ea94a32d83",
+          "identity": {
+            "location": "CH",
+            "name": "building construction, hall, steel construction",
+            "reference product": "building, hall, steel construction",
+            "unit": "square meter"
+          },
+          "requested_catalog_activity_id": "8c590194-87ac-4dc2-80fd-1824ff21f09d",
+          "inspected_activity_id": "597f4326-4b55-4be7-b67a-2bbf6f33c13c",
+          "matching_product_id": "7aaf6060-f9b7-43bb-8aee-06aecf386798",
+          "location": "CH",
+          "name": "building construction, hall, steel construction",
+          "reference product": "building, hall, steel construction",
+          "unit": "square meter"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Complete steel-construction hall infrastructure per square metre. Both document an illustrative 50 by 30 by 7 metre hall and 50-year service life, including major construction materials, their transport/disposal and construction/maintenance/demolition electricity; building operation is excluded. Area and lifetime already belong to the source/native models. Do not treat the reference as one whole hall or apply floor-area, height or lifetime multipliers. This weak archetype is not a certified specific building design; substantial building contributions require better primary data or sensitivity analysis.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Building, hall, steel construction",
+          "reference product": "Building, hall, steel construction",
+          "unit": "square meter"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Building, hall, steel construction",
+              "reference product": "Building, hall, steel construction",
+              "unit": "square meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 23,
+            "metadata_sha256": "0fcd429da2eccad87e6d4f17bdf0ee17a904711ea468a65cefb8a2b9b27d5da2",
+            "inventory_sha256": "0e7dcba67561ad3e6762a4fd48aa554eb4397714d55924e3bfa111f691faa0c6"
+          }
+        ]
+      },
+      "limitations": [
+        "Complete steel-construction hall infrastructure per square metre. Both document an illustrative 50 by 30 by 7 metre hall and 50-year service life, including major construction materials, their transport/disposal and construction/maintenance/demolition electricity; building operation is excluded. Area and lifetime already belong to the source/native models. Do not treat the reference as one whole hall or apply floor-area, height or lifetime multipliers. This weak archetype is not a certified specific building design; substantial building contributions require better primary data or sensitivity analysis.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f16207d5f89b8ca58d09fda304df4cccb624de7888989f80ae05903b9843d526"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ab9453aea35efe0a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_37_stocks_review.json",
+      "review_sha256": "78818b5ef3c7842ac63e667374d58782fe154e8e4b8308bd7e29b3497ec0f62a",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "market for metal working machine, unspecified",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "b82cbe0af7ceff6dde04efc8b5517c2b1a6f9a2e2f9c6d6ea13d5514a99e7a80",
+          "metadata_sha256": "b6eb5631e125e0b979240ef123a29d173548cf6615595beedc9333d4098c2956",
+          "inventory_sha256": "d6e39e2c2b0028664e7ec7446a5a7e5b8ea402134bba77d5b048a1b11fc2b69d",
+          "identity": {
+            "location": "RER",
+            "name": "market for metal working machine, unspecified",
+            "reference product": "metal working machine, unspecified",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "ae4d02b5-1bef-429b-8b34-9a04af4edee4",
+          "inspected_activity_id": "4747556e-52ab-406d-99d8-13ff8e14e152",
+          "matching_product_id": "254f15c9-25c1-4f01-a416-5c1359124d97",
+          "location": "RER",
+          "name": "market for metal working machine, unspecified",
+          "reference product": "metal working machine, unspecified",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "metal working machine production, unspecified",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "075ae65b21f13623b132ba9fa1a654e415de1de22b979690fd29046df0f7fc1d",
+            "metadata_sha256": "b58fa53ded4fd413962043c473eaf554536d347b338581becee9ccc41a7010d8",
+            "inventory_sha256": "f79604a5ddefbecaa374d5fd19588972e71c3603466aed7777f61d14693d0947"
+          }
+        ],
+        "basis": "One kg of unspecified metal-working machine material inventory per source kg of machine, not one whole machine, operating hour or kg metal processed. Both are rough machine-material estimates. Preserve complete native machine mass once; do not add machine operation, assume a specific machine technology or convert by machine lifetime, nominal weight or throughput. Native at-plant supply replaces source market final delivery.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Metal working machine, unspecified, at plant",
+          "reference product": "Metal working machine, unspecified, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Metal working machine, unspecified, at plant",
+              "reference product": "Metal working machine, unspecified, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 30,
+            "metadata_sha256": "8b0638d44281ac55214feede28fceb49895ff0d3aab0b24be58f2508d4ee7582",
+            "inventory_sha256": "8538fb913d79c37ace363d761bb2019b3550ac3190732b5dc79a2bc1004c6b42"
+          }
+        ]
+      },
+      "limitations": [
+        "One kg of unspecified metal-working machine material inventory per source kg of machine, not one whole machine, operating hour or kg metal processed. Both are rough machine-material estimates. Preserve complete native machine mass once; do not add machine operation, assume a specific machine technology or convert by machine lifetime, nominal weight or throughput. Native at-plant supply replaces source market final delivery.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e162b7c04a3e7af243b93a7d807cb0f95eb38ea5ce061fe2d9c44f1b0285c5e3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1fb529c7535e435f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_37_stocks_review.json",
+      "review_sha256": "78818b5ef3c7842ac63e667374d58782fe154e8e4b8308bd7e29b3497ec0f62a",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "building construction, multi-storey",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "931aeb7433e6bb66081f34945e0a0a0e1843c76d35257e84248d5835aa4e33c1",
+          "metadata_sha256": "8e49dea8918a84944cc913cb767e8114574952d8226697d669d786e67c324e9c",
+          "inventory_sha256": "c94d28df7699cbd4449cb1e983ce4483f552fa04f0130c193ec6f2d2e4c12c06",
+          "identity": {
+            "location": "RER",
+            "name": "building construction, multi-storey",
+            "reference product": "building, multi-storey",
+            "unit": "cubic meter"
+          },
+          "requested_catalog_activity_id": "3d3805c6-5251-44cf-b214-042fe8cc131a",
+          "inspected_activity_id": "f9aafcce-1d09-4113-97e0-d6f29333704d",
+          "matching_product_id": "006863b7-d736-4eb6-bbf8-648d292184ad",
+          "location": "RER",
+          "name": "building construction, multi-storey",
+          "reference product": "building, multi-storey",
+          "unit": "cubic meter"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Complete multi-storey building infrastructure per cubic metre, not floor square metres or one whole building. Both use an illustrative combination of 1927/1972 concrete buildings with 80-year lifetime, construction materials, transport/disposal and construction/maintenance/demolition electricity; operation is excluded. Do not add heating/electricity use, infer a floor-height/density factor or annualise again by lifetime. Historic construction and weak archetype representativeness remain; substantial contributions require better primary data or sensitivity analysis.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Building, multi-storey",
+          "reference product": "Building, multi-storey",
+          "unit": "cubic meter"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Building, multi-storey",
+              "reference product": "Building, multi-storey",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 25,
+            "metadata_sha256": "aaeb57094debf444a4a70fa0c7eb5b8f7d32564b6ca9b99fc8548bf3c1a5414f",
+            "inventory_sha256": "1924bd7ca96760b626309575de75a4247092293f4c7f690c1e2ec44ba580735f"
+          }
+        ]
+      },
+      "limitations": [
+        "Complete multi-storey building infrastructure per cubic metre, not floor square metres or one whole building. Both use an illustrative combination of 1927/1972 concrete buildings with 80-year lifetime, construction materials, transport/disposal and construction/maintenance/demolition electricity; operation is excluded. Do not add heating/electricity use, infer a floor-height/density factor or annualise again by lifetime. Historic construction and weak archetype representativeness remain; substantial contributions require better primary data or sensitivity analysis.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6cfa167d89deb39f69bf541f83db881d86f5a2df40930947f8cd57c3a7729582"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1d72298e464032e1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_37_stocks_review.json",
+      "review_sha256": "78818b5ef3c7842ac63e667374d58782fe154e8e4b8308bd7e29b3497ec0f62a",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "market for drawing of pipe, steel",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "2e740efda199ab5637daa9136e424c2d90b1567c6565f928c1f5eb4b2bb611df",
+          "metadata_sha256": "82fb2bca23cf0b50301a3572f2a04f6d06dc78bc15fb031e698584bf7b8a6b0f",
+          "inventory_sha256": "d482329e571d2bef3999b7ffe110fb16d83969026bd73bee60302e5b4a1dffb9",
+          "identity": {
+            "location": "GLO",
+            "name": "market for drawing of pipe, steel",
+            "reference product": "drawing of pipe, steel",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "1996309b-ace9-4e17-83ad-11dd2c8dbb66",
+          "inspected_activity_id": "5e1a146a-2904-4af8-b089-50c7ca9635c6",
+          "matching_product_id": "68e64673-7c91-4025-af50-31317791caf7",
+          "location": "GLO",
+          "name": "market for drawing of pipe, steel",
+          "reference product": "drawing of pipe, steel",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "drawing of pipe, steel",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "b995490a4bafc0c2d59e54cef03511c3a1037d6da8f4067a2bc7493763d229e1",
+            "metadata_sha256": "7044312687ed88242894778121b53037097d8e3ffaf618fec87e5abd6cfe3412",
+            "inventory_sha256": "45f0461ecf978262dcb29bab3b498903a1991b4a3b8ccc081b8f7d157689d961"
+          },
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "drawing of pipe, steel",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "4598cbad122bf1f94dd4212add0f81448f601d20c35eb5d43d9b8963768cf2bf",
+            "metadata_sha256": "3d4979d8c0d3b027dbd59db1dd3aad9f19c89d25dbc578210e1f0d08fea939f9",
+            "inventory_sha256": "964d08ea1464a5f23ab5f2d9f1f8f7a7800128b8df72b5adde72221ac03c700f"
+          }
+        ],
+        "basis": "Seamless steel-pipe drawing service per kg processed. Both approximate it using 110% of steel-wire drawing and exclude the steel material being processed. It is not a finished pipe stock, welded-pipe manufacturing or generic steel production. Keep the native approximation once; do not add 1.1 again to caller kg, duplicate steel stock or remove separately listed caller substrate/transport. Route, geometry, energy and historical wire-drawing approximation limit representativeness.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Drawing of pipes, steel",
+          "reference product": "Drawing of pipes, steel",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Drawing of pipes, steel",
+              "reference product": "Drawing of pipes, steel",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1,
+            "metadata_sha256": "4eee644cbd6cad1fceec1e103c244757576cbca2ceabb1bdd1611aaa850c4e01",
+            "inventory_sha256": "89472f3e0032d30f16ef3d0047e02dadb721940ae7f7b91988d1af63522cadc7"
+          }
+        ]
+      },
+      "limitations": [
+        "Seamless steel-pipe drawing service per kg processed. Both approximate it using 110% of steel-wire drawing and exclude the steel material being processed. It is not a finished pipe stock, welded-pipe manufacturing or generic steel production. Keep the native approximation once; do not add 1.1 again to caller kg, duplicate steel stock or remove separately listed caller substrate/transport. Route, geometry, energy and historical wire-drawing approximation limit representativeness.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dba34bd87db2f0949b6322a9946984fe50330aff273e377ff76e0b2f32e90045"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4a11a8b2d48ed311",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_37_stocks_review.json",
+      "review_sha256": "78818b5ef3c7842ac63e667374d58782fe154e8e4b8308bd7e29b3497ec0f62a",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "powder coating, steel",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "dbda1bc52cbf8ff567350a1d32b028703c413183df8a61e521341ad42f4fc575",
+          "metadata_sha256": "fd90cb26bf569448d3dded65e626989b2b635bb79262785c7b90e232078f0288",
+          "inventory_sha256": "1158e27c90d561d3ec941e4335730b0c1fd8b8327c79f42a9a47d53a729b4451",
+          "identity": {
+            "location": "RER",
+            "name": "powder coating, steel",
+            "reference product": "powder coat, steel",
+            "unit": "square meter"
+          },
+          "requested_catalog_activity_id": "01977420-d271-4d45-9926-17935ad2f4ee",
+          "inspected_activity_id": "cd24511c-3b91-4b47-b714-cd6fc90c7a10",
+          "matching_product_id": "d187adaf-a08d-4f75-a1ba-bb46c4597f45",
+          "location": "RER",
+          "name": "powder coating, steel",
+          "reference product": "powder coat, steel",
+          "unit": "square meter"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Powder-coating service per square metre of steel surface. Both describe 80 micrometre coating with heating estimated for a 2 mm sheet, phosphating, coating and curing; workpiece transport is excluded. Preserve area rather than applying thickness, steel-density, substrate-mass or coating-yield factors. Do not turn the service into a steel stock or add a second coating/curing operation. Separate caller workpiece and transport stay separate.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Powder coating, steel",
+          "reference product": "Powder coating, steel",
+          "unit": "square meter"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Powder coating, steel",
+              "reference product": "Powder coating, steel",
+              "unit": "square meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 34,
+            "metadata_sha256": "7c2ef8935c426be4de20227211b29a3f51dc25004319c0091af8b27ab2fce198",
+            "inventory_sha256": "bacd916acb230f4fd5590c089c5b76050c54fef318121eca7a79c311bc0d2c62"
+          }
+        ]
+      },
+      "limitations": [
+        "Powder-coating service per square metre of steel surface. Both describe 80 micrometre coating with heating estimated for a 2 mm sheet, phosphating, coating and curing; workpiece transport is excluded. Preserve area rather than applying thickness, steel-density, substrate-mass or coating-yield factors. Do not turn the service into a steel stock or add a second coating/curing operation. Separate caller workpiece and transport stay separate.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ff5a8d2322598e0a369333397b82d83ab127394f735a11a1ebf053992b602d58"
+        }
+      ]
     }
   ],
   "superseded_operations": [

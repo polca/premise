@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "3b4252e4efaf552447f9346fcbcc05202c3e329a",
-  "approval_ledger_sha256": "578f6de02a976dc101d90c06d1ca330ebb0b9af156f225e6adf8d8c6a3c64546",
-  "validated_scopes": 684,
+  "brightpath_commit": "6473d980671ed2a2524819bd5765c0e50d5da61f",
+  "approval_ledger_sha256": "f5c5fb55a640b04b6987ce6a09d903aca0d7848b544801b6e26bb1328bf2eeb2",
+  "validated_scopes": 690,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 30,
-  "distinct_unapproved_rule_identities": 29,
+  "unapproved_source_profile_cases": 24,
+  "distinct_unapproved_rule_identities": 23,
   "cohorts": [
     {
       "source": {
@@ -72,8 +72,8 @@
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 2,
-      "refusal_audit_filename": "b9b036e4d70fe8c512641d9f45fc85f66c7ea4e28f503c00d534ea8e4650ac03.audit.json.gz",
-      "refusal_audit_sha256": "60ac3dac76fee674323daf1889539e25944074b110f21a18d1dc0090c4d99327",
+      "refusal_audit_filename": "d7e61a7c368e3508708faee658aa03fb2b4edd419f2d7ed0f323468bb80c9f73.audit.json.gz",
+      "refusal_audit_sha256": "d476abfd148f04f54d91d8cbcb6869972e962427383fdb5409b0bf2bf39ed1f9",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -140,9 +140,9 @@
       },
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 24,
-      "refusal_audit_filename": "cca77872e6cb209979dabdb4bc64389edb1eff942f52114f0285d1f488d4983c.audit.json.gz",
-      "refusal_audit_sha256": "fd7989739d663f132b74d7574ff30d4d3b6b9df86f729737fe3868ec75d772d1",
+      "unapproved_count": 18,
+      "refusal_audit_filename": "109ab9a8c7a86a9b14c2c3faf12e5644d721e11802218cac9a2ec92bd2552011.audit.json.gz",
+      "refusal_audit_sha256": "8b7377102a62b92bf96cb56dcdc0ddf19542fd09e6bf00ca2fba8dba53265881",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -156,21 +156,6 @@
             "location": "RER",
             "name": "Chromium steel 18/8, at plant",
             "reference product": "Chromium steel 18/8, at plant",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-82cb48b8f46820d5",
-          "source": {
-            "location": "GLO",
-            "name": "market for synthetic rubber",
-            "reference product": "synthetic rubber",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Synthetic rubber, at plant",
-            "reference product": "Synthetic rubber, at plant",
             "unit": "kilogram"
           }
         },
@@ -214,21 +199,6 @@
             "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
             "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
             "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-24eb26e899c2f905",
-          "source": {
-            "location": "CH",
-            "name": "building construction, hall, steel construction",
-            "reference product": "building, hall, steel construction",
-            "unit": "square meter"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Building, hall, steel construction",
-            "reference product": "Building, hall, steel construction",
-            "unit": "square meter"
           }
         },
         {
@@ -292,21 +262,6 @@
           }
         },
         {
-          "rule_id": "bp-ab9453aea35efe0a",
-          "source": {
-            "location": "RER",
-            "name": "market for metal working machine, unspecified",
-            "reference product": "metal working machine, unspecified",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Metal working machine, unspecified, at plant",
-            "reference product": "Metal working machine, unspecified, at plant",
-            "unit": "kilogram"
-          }
-        },
-        {
           "rule_id": "bp-8cd221dfdd41d478",
           "source": {
             "location": "RER",
@@ -334,51 +289,6 @@
             "name": "Reinforcing steel, at plant",
             "reference product": "Reinforcing steel, at plant",
             "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-1fb529c7535e435f",
-          "source": {
-            "location": "RER",
-            "name": "building construction, multi-storey",
-            "reference product": "building, multi-storey",
-            "unit": "cubic meter"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Building, multi-storey",
-            "reference product": "Building, multi-storey",
-            "unit": "cubic meter"
-          }
-        },
-        {
-          "rule_id": "bp-1d72298e464032e1",
-          "source": {
-            "location": "GLO",
-            "name": "market for drawing of pipe, steel",
-            "reference product": "drawing of pipe, steel",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Drawing of pipes, steel",
-            "reference product": "Drawing of pipes, steel",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-4a11a8b2d48ed311",
-          "source": {
-            "location": "RER",
-            "name": "powder coating, steel",
-            "reference product": "powder coat, steel",
-            "unit": "square meter"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Powder coating, steel",
-            "reference product": "Powder coating, steel",
-            "unit": "square meter"
           }
         },
         {
@@ -509,8 +419,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "3773f2bdf1b1f19333c1d6365930c975bdec71916c68603cc7db51498345784b.audit.json.gz",
-      "refusal_audit_sha256": "5ff630c26f7cda70847391bbea0a8501299cf6e6740eba4faf113c07dcba1559",
+      "refusal_audit_filename": "8ee28b63c9fd7bcb3a1109cbc772930f913553b3f672158547f66ab5e6d19235.audit.json.gz",
+      "refusal_audit_sha256": "1364451baa30605e33e0ceeec0b64c94572fa2f51f6d363fbe5ef7e14597bdb1",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

@@ -1,0 +1,184 @@
+{
+  "date": "2026-11-11",
+  "status": "Six requested 3.7 stock/service proxies qualified with explicit limited patch-reference inference; complete fuels transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "6473d980671ed2a2524819bd5765c0e50d5da61f",
+  "review_sha256": "78818b5ef3c7842ac63e667374d58782fe154e8e4b8308bd7e29b3497ec0f62a",
+  "forward_resource_sha256": "ef574711549ac2e54a01853396920fca9e9d5e671c95a2ba23fcc7bd8f897037",
+  "migration_resource_unchanged": true,
+  "new_approval_scopes": 6,
+  "validated_approval_scopes": 690,
+  "previous_validated_scopes": 684,
+  "previous_operation_objects": 591,
+  "all_previous_operations_and_fingerprints_preserved": true,
+  "tests": {
+    "brightpath": "26 passed; signed normal/lognormal statistics, unchanged rules, explicit requested/inspected version distinction and service-unit boundaries",
+    "premise": "30 passed; strict fresh/cache quantities, formulas, uncertainty, exact limitations and individual approval removal",
+    "broader_baseline": "Earlier regression checkpoints remain historical; no post-change full repository suite claimed."
+  },
+  "patch_evidence_decision": {
+    "id": "37-functional-reference-only-from-371",
+    "requested_version": "3.7",
+    "inspected_version": "3.7.1",
+    "official_report_url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/change%20report_v3%207%201_20201217.pdf",
+    "basis": "Section 2.1 describes sinter-emission, zinc-resource and paratungstate-uncertainty corrections. None of the inspected root/producer activities belongs to those named corrections. Matching product UUID, unit and exact functional definitions support the limited inference that the reference/function can be used for these 3.7 proxies. This is an inference, not proof of identical unpatched inventory vectors or downstream results.",
+    "restriction": "Do not apply this decision to changed activities, reconstruct unpatched source vectors from the patch, transfer any source LCIA result, or silently rename the requested source version."
+  },
+  "unpatched_37_inventory_vectors_inspected": false,
+  "source_context_relabelled": false,
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-82cb48b8f46820d5",
+      "identity": {
+        "location": "RER",
+        "name": "Synthetic rubber, at plant",
+        "reference product": "Synthetic rubber, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-24eb26e899c2f905",
+      "identity": {
+        "location": "CH",
+        "name": "Building, hall, steel construction",
+        "reference product": "Building, hall, steel construction",
+        "unit": "square meter"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-ab9453aea35efe0a",
+      "identity": {
+        "location": "RER",
+        "name": "Metal working machine, unspecified, at plant",
+        "reference product": "Metal working machine, unspecified, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-1fb529c7535e435f",
+      "identity": {
+        "location": "RER",
+        "name": "Building, multi-storey",
+        "reference product": "Building, multi-storey",
+        "unit": "cubic meter"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-1d72298e464032e1",
+      "identity": {
+        "location": "RER",
+        "name": "Drawing of pipes, steel",
+        "reference product": "Drawing of pipes, steel",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-4a11a8b2d48ed311",
+      "identity": {
+        "location": "RER",
+        "name": "Powder coating, steel",
+        "reference product": "Powder coating, steel",
+        "unit": "square meter"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "wheel": "Review/resource/manifest bytes match checkout.",
+  "runtime_python_changes": false,
+  "regular_environment": "Pushed Git revision installed; exact resource SHA and 690 approval scopes verified.",
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 24,
+    "distinct_rule_identities": 23,
+    "only_removed_cases": [
+      [
+        "3.7",
+        "bp-1d72298e464032e1"
+      ],
+      [
+        "3.7",
+        "bp-1fb529c7535e435f"
+      ],
+      [
+        "3.7",
+        "bp-24eb26e899c2f905"
+      ],
+      [
+        "3.7",
+        "bp-4a11a8b2d48ed311"
+      ],
+      [
+        "3.7",
+        "bp-82cb48b8f46820d5"
+      ],
+      [
+        "3.7",
+        "bp-ab9453aea35efe0a"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 41489654,
+  "limitations": [
+    [
+      "Complete finished EPDM elastomer per kg. Both source producer and native describe polymerisation, internal mixing, extrusion and salt vulcanisation of technical EPDM profiles. The generic synthetic-rubber name does not mean unvulcanised raw polymer, natural rubber or every rubber chemistry. Keep the complete native profile once; do not add extrusion/vulcanisation again or infer filler/purity/polymer-content scaling. Formulation, performance and source final-market delivery are not reproduced.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "Complete steel-construction hall infrastructure per square metre. Both document an illustrative 50 by 30 by 7 metre hall and 50-year service life, including major construction materials, their transport/disposal and construction/maintenance/demolition electricity; building operation is excluded. Area and lifetime already belong to the source/native models. Do not treat the reference as one whole hall or apply floor-area, height or lifetime multipliers. This weak archetype is not a certified specific building design; substantial building contributions require better primary data or sensitivity analysis.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "One kg of unspecified metal-working machine material inventory per source kg of machine, not one whole machine, operating hour or kg metal processed. Both are rough machine-material estimates. Preserve complete native machine mass once; do not add machine operation, assume a specific machine technology or convert by machine lifetime, nominal weight or throughput. Native at-plant supply replaces source market final delivery.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "Complete multi-storey building infrastructure per cubic metre, not floor square metres or one whole building. Both use an illustrative combination of 1927/1972 concrete buildings with 80-year lifetime, construction materials, transport/disposal and construction/maintenance/demolition electricity; operation is excluded. Do not add heating/electricity use, infer a floor-height/density factor or annualise again by lifetime. Historic construction and weak archetype representativeness remain; substantial contributions require better primary data or sensitivity analysis.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "Seamless steel-pipe drawing service per kg processed. Both approximate it using 110% of steel-wire drawing and exclude the steel material being processed. It is not a finished pipe stock, welded-pipe manufacturing or generic steel production. Keep the native approximation once; do not add 1.1 again to caller kg, duplicate steel stock or remove separately listed caller substrate/transport. Route, geometry, energy and historical wire-drawing approximation limit representativeness.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "Powder-coating service per square metre of steel surface. Both describe 80 micrometre coating with heating estimated for a 2 mm sheet, phosphating, coating and curing; workpiece transport is excluded. Preserve area rather than applying thickness, steel-density, substrate-mass or coating-yield factors. Do not turn the service into a steel stock or add a second coating/curing operation. Separate caller workpiece and transport stay separate.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ]
+  ],
+  "obsolete_brightpath_pip_wheels_removed": {
+    "count": 30,
+    "bytes": 1206668923,
+    "kept_commit": "6473d980671ed2a2524819bd5765c0e50d5da61f",
+    "current_pinned_wheel_retained": true,
+    "installed_packages_or_source_archives_removed": false
+  }
+}

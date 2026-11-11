@@ -1,7 +1,7 @@
 Source evidence for pending ecoinvent 3.7 mappings
 ================================================
 
-The fuel-preparation queue contains 24 pending ecoinvent 3.7 cut-off mappings.
+The initial evidence snapshot covered 24 pending ecoinvent 3.7 cut-off mappings.
 A local licensed 3.7.1 ecoSpold2 archive supplies candidate reference evidence.
 All 24 requested name/product/location identities match uniquely; their product
 UUIDs agree with the packaged 3.7 catalog, while dataset activity UUIDs differ.
@@ -27,3 +27,10 @@ appear in the eventual decision log.
 Raw licensed XML and vectors remain outside the repository. This step changes
 no runtime modules, migration rules, source inventories or exported databases.
 Full fuel transformation/export and the remaining sector updates are unfinished.
+
+Six bounded stock/service decisions now use this evidence through the separate
+``uvek_fuels_37_stocks_review.json`` packaged Brightpath review. That review
+explicitly accepts functional-reference inference for the six named cases;
+it does not treat the unpatched vector as inspected or the releases as equal.
+See ``uvek-fuels-37-stocks-verification.json`` for tests and native calculations.
+Other candidate witnesses remain subject to their own boundary reviews.
