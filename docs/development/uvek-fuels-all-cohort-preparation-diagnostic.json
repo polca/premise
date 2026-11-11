@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "ba6bf2c833164f80ea5bf3c4144de48b76486ef5",
-  "approval_ledger_sha256": "09fd425b8153d77b516a16505250625a3801971b6fd948a7a3f88ee31f85b4ab",
-  "validated_scopes": 697,
+  "brightpath_commit": "7d734fb17a82624bdcbd6e398771f453b1933090",
+  "approval_ledger_sha256": "591807aaf62c0cf9c0de79434fcf79fc26cb7cdeb06c4496271c42ccbe3e42c6",
+  "validated_scopes": 700,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 17,
-  "distinct_unapproved_rule_identities": 16,
+  "unapproved_source_profile_cases": 14,
+  "distinct_unapproved_rule_identities": 14,
   "cohorts": [
     {
       "source": {
@@ -72,8 +72,8 @@
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 2,
-      "refusal_audit_filename": "d3bd5704b7313feadf82e6dba323839547848073f38f28968913e32ff3517a30.audit.json.gz",
-      "refusal_audit_sha256": "29ef0778fc0e83f8f492ed689376115470b3cfc032e4de741e90985fd31ad75c",
+      "refusal_audit_filename": "8fc00b6439781684a0c96217604effbf46e0691080ac5bb805f6dbfba42b1b84.audit.json.gz",
+      "refusal_audit_sha256": "a9af3dce52ac81ab9df5693c181504f934df72b76868adc97e723c2d0f5e62e9",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -140,25 +140,10 @@
       },
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 11,
-      "refusal_audit_filename": "923444dc011fd26d72dc25ef03d9f6a50664b75b634a0911710638432ec7b2d7.audit.json.gz",
-      "refusal_audit_sha256": "f369af7d872e8654f2d9723dd14a987e4f52e616b050ce6d0dc62b6928e8e541",
+      "unapproved_count": 8,
+      "refusal_audit_filename": "dd8ec310b7528e3382796ec40bf74c50789c3456029b0fbff6c0287407d10b6c.audit.json.gz",
+      "refusal_audit_sha256": "11362340102396a4923458f6777d1a064867fa3997be995899ef9af3b6e58a9a",
       "pending": [
-        {
-          "rule_id": "bp-263c185cdbca7a8c",
-          "source": {
-            "location": "GLO",
-            "name": "market for steel, chromium steel 18/8, hot rolled",
-            "reference product": "steel, chromium steel 18/8, hot rolled",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Chromium steel 18/8, at plant",
-            "reference product": "Chromium steel 18/8, at plant",
-            "unit": "kilogram"
-          }
-        },
         {
           "rule_id": "bp-22c3a52062d0cb16",
           "source": {
@@ -198,36 +183,6 @@
             "location": "RER",
             "name": "Lubricating oil, at plant",
             "reference product": "Lubricating oil, at plant",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-8cd221dfdd41d478",
-          "source": {
-            "location": "RER",
-            "name": "steel production, low-alloyed, hot rolled",
-            "reference product": "steel, low-alloyed, hot rolled",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Steel, low-alloyed, at plant",
-            "reference product": "Steel, low-alloyed, at plant",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-7ca3587cbfe4ce9b",
-          "source": {
-            "location": "GLO",
-            "name": "market for reinforcing steel",
-            "reference product": "reinforcing steel",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Reinforcing steel, at plant",
-            "reference product": "Reinforcing steel, at plant",
             "unit": "kilogram"
           }
         },
@@ -314,8 +269,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "24a928ee7ac9f8e8ff6160f227ddb77e4dfa0122a6fc0bf1b99161d18ccfafa0.audit.json.gz",
-      "refusal_audit_sha256": "e19c0958db51b260dfa20ab399c4c6910288da312bba8185049e1789f1fd0a21",
+      "refusal_audit_filename": "18c32143ed55da9baa9197892469b9f048e48ae70ae8db1087185564ebc7a6d6.audit.json.gz",
+      "refusal_audit_sha256": "42647834ee0e290c6b11bad1fdd2226938a8709aa15a1c5895509860f68e4b8c",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

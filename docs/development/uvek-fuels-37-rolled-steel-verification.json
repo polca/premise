@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-11",
+  "status": "Three hot-rolled steel supplies qualified; full fuel transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "7d734fb17a82624bdcbd6e398771f453b1933090",
+  "review_sha256": "852faa92e68c1172dd92575518fcb09089c741a5488471f5f55bc140863ffa25",
+  "new_approval_scopes": 3,
+  "validated_approval_scopes": 700,
+  "previous_validated_scopes": 697,
+  "previous_operation_objects": 604,
+  "all_previous_operations_and_fingerprints_preserved": true,
+  "tests": {
+    "brightpath": "14 passed: signs, uncertainty, formulas, source preservation and distinct patch evidence",
+    "premise": "15 passed: strict fresh/cache, exact warning text and individual approval withdrawal"
+  },
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-263c185cdbca7a8c",
+      "identity": {
+        "location": "RER",
+        "name": "Chromium steel 18/8, at plant",
+        "reference product": "Chromium steel 18/8, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-8cd221dfdd41d478",
+      "identity": {
+        "location": "RER",
+        "name": "Steel, low-alloyed, at plant",
+        "reference product": "Steel, low-alloyed, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "identity": {
+        "location": "RER",
+        "name": "Reinforcing steel, at plant",
+        "reference product": "Reinforcing steel, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "runtime_python_changes": false,
+  "migration_resource_changes": false,
+  "regular_environment": "Pushed Git revision installed and all 700 scopes validated.",
+  "native_reinforcing_route_check": "Both native reinforcing-steel routes contain exactly 1 kg hot rolling: converter uses Hot rolling, steel; electric uses Hot rolling, electric steel.",
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 14,
+    "distinct_rule_identities": 14,
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "only_removed_cases": [
+      [
+        "3.7",
+        "bp-263c185cdbca7a8c"
+      ],
+      [
+        "3.7",
+        "bp-7ca3587cbfe4ce9b"
+      ],
+      [
+        "3.7",
+        "bp-8cd221dfdd41d478"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "limitations": [
+    [
+      "Complete hot-rolled 18/8 chromium-steel stock per kg. Native European mix includes 0.63 converter stock, 0.37 electric stock and one kg hot rolling; it is not unrolled cast stock or a rolling-only service. Both inspected market producers include hot rolling. Keep the complete inventory once with no extra rolling, alloy-content, density or yield multiplier. Historical route shares and geography replace source producer shares; no certified mechanical grade equivalence is claimed.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "Complete low-alloyed hot-rolled steel per kg, not unrolled cast stock or a processing-only service. Inspected source explicitly includes the steel mix and hot rolling; native European mix includes 0.63 converter stock, 0.37 electric stock and one kg hot rolling. No second rolling operation, material-yield multiplier or claim of exact steel-grade/strength equivalence. Historical native route technology and allocation replace the source production model.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "Complete reinforcing-steel supply per kg, including steelmaking and rolling. Native 0.30 converter and 0.70 electric reinforcing-steel routes each already include hot rolling. Preserve the full native route inventories once; do not add another rolling step or infer B500/B550 mechanical certification, diameter, bar length or density conversions. Native historical European route mix replaces the source producer shares and final delivery; performance, allocation and geography differences remain unquantified.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ]
+  ]
+}

@@ -57,3 +57,15 @@ Requested 3.7 context and inspected 3.7.1 evidence remain distinct.
 The verification receipt ``uvek-fuels-37-earthworks-verification.json`` records
 three finite native inventories, 29 focused tests and the complete six-cohort
 preflight: 17 mapping cases remain. It does not qualify fuel transformation/export.
+
+Hot-rolled steel checkpoint
+---------------------------
+
+Three further complete steel supplies use the native kg reference without a
+second rolling operation: 18/8 hot-rolled chromium steel, low-alloyed hot-rolled
+steel and reinforcing steel. Both native reinforcing-steel production routes
+were inspected and already include rolling. Historical route mixes are proxies;
+these mappings do not certify a particular mechanical grade or strength class.
+The review retains the distinction between requested 3.7 and inspected 3.7.1.
+Focused checks cover signed quantities, uncertainty, formulas, fresh/cached
+harmonization and refusal when the exact review is withdrawn.

@@ -199230,6 +199230,339 @@
           "fingerprint": "116b603d295f219a99ff94370849da23b30483132e4322dcf88bea88edf25073"
         }
       ]
+    },
+    {
+      "rule_id": "bp-263c185cdbca7a8c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_37_rolled_steel_review.json",
+      "review_sha256": "852faa92e68c1172dd92575518fcb09089c741a5488471f5f55bc140863ffa25",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "market for steel, chromium steel 18/8, hot rolled",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "f2e4c240912b503fdbde0444415a92a771effc1a78daabb28bb9d9a17ebf6b58",
+          "metadata_sha256": "dd669c628a7cc46e1e8f45263a6e3c7a9ff2e5c553ccf7c4e1523ce2170f4cbb",
+          "inventory_sha256": "720aabf63377139128f3b399a5d9998ce73eb98f94aabdfc6823d25a214cc657",
+          "identity": {
+            "location": "GLO",
+            "name": "market for steel, chromium steel 18/8, hot rolled",
+            "reference product": "steel, chromium steel 18/8, hot rolled",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "74b1381b-704f-494e-a0f6-ea68808a06eb",
+          "inspected_activity_id": "8b74c1af-6761-41a8-a557-1dd332b29bff",
+          "matching_product_id": "c5246dbb-0abd-4bee-8dda-d52a1b202322",
+          "location": "GLO",
+          "name": "market for steel, chromium steel 18/8, hot rolled",
+          "reference product": "steel, chromium steel 18/8, hot rolled",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "steel production, chromium steel 18/8, hot rolled",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "c9297f6f3f031289e9d5929082b7832e0ec10697d4b7133b2f0af873a78adad7",
+            "metadata_sha256": "e6a73c6500b07cce50138564726aad123c488e668f32ed47be327fd570495942",
+            "inventory_sha256": "090f120ecddc5d7eacb186cf6aedc949e9b3f2cd3789859cc55089da0f35317d"
+          },
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "steel production, chromium steel 18/8, hot rolled",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "0521b6465bcc3f4da8196693cb2c8a6d4c0274420879534ffeaa163f0cd6f840",
+            "metadata_sha256": "5e21b6d3acdb87526f15b9d74a4455676940763058343894651255dbc8cbe112",
+            "inventory_sha256": "d96443415fc7ee6fa332d1686c918f5b8786277f0922010bd4a1bc0d36e50176"
+          }
+        ],
+        "basis": "Complete hot-rolled 18/8 chromium-steel stock per kg. Native European mix includes 0.63 converter stock, 0.37 electric stock and one kg hot rolling; it is not unrolled cast stock or a rolling-only service. Both inspected market producers include hot rolling. Keep the complete inventory once with no extra rolling, alloy-content, density or yield multiplier. Historical route shares and geography replace source producer shares; no certified mechanical grade equivalence is claimed.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Chromium steel 18/8, at plant",
+          "reference product": "Chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Chromium steel 18/8, at plant",
+              "reference product": "Chromium steel 18/8, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "metadata_sha256": "c33af62302cac8c7b18f8be60327650b8ae4cb2125b1ded571e8217a5c7083c5",
+            "inventory_sha256": "e7569e8350367003b7e8c9130d7d44bbeae9358d3f7e09291cfc446a1735ca35"
+          }
+        ]
+      },
+      "limitations": [
+        "Complete hot-rolled 18/8 chromium-steel stock per kg. Native European mix includes 0.63 converter stock, 0.37 electric stock and one kg hot rolling; it is not unrolled cast stock or a rolling-only service. Both inspected market producers include hot rolling. Keep the complete inventory once with no extra rolling, alloy-content, density or yield multiplier. Historical route shares and geography replace source producer shares; no certified mechanical grade equivalence is claimed.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7f640afd94b587e5abbd278cee24fc286a8c0273196022ca0cf17270312076f5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8cd221dfdd41d478",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_37_rolled_steel_review.json",
+      "review_sha256": "852faa92e68c1172dd92575518fcb09089c741a5488471f5f55bc140863ffa25",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "steel production, low-alloyed, hot rolled",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "6890e056f10498f9da4cc89681862d7d3a811ea86a963f193306be5a4b3331cf",
+          "metadata_sha256": "5e21b6d3acdb87526f15b9d74a4455676940763058343894651255dbc8cbe112",
+          "inventory_sha256": "bf3b8fbc1fc0b391b8eaccdbf88f740f9f9cb6e44926ad4b09e58f8e0604c6e0",
+          "identity": {
+            "location": "RER",
+            "name": "steel production, low-alloyed, hot rolled",
+            "reference product": "steel, low-alloyed, hot rolled",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "3c483487-3df4-40f1-b747-c438a9b850f9",
+          "inspected_activity_id": "3a4173e2-8225-4f5e-b787-a5c032963df1",
+          "matching_product_id": "8cb650d5-8a48-4719-81b1-2080b3b4387f",
+          "location": "RER",
+          "name": "steel production, low-alloyed, hot rolled",
+          "reference product": "steel, low-alloyed, hot rolled",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Complete low-alloyed hot-rolled steel per kg, not unrolled cast stock or a processing-only service. Inspected source explicitly includes the steel mix and hot rolling; native European mix includes 0.63 converter stock, 0.37 electric stock and one kg hot rolling. No second rolling operation, material-yield multiplier or claim of exact steel-grade/strength equivalence. Historical native route technology and allocation replace the source production model.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Steel, low-alloyed, at plant",
+          "reference product": "Steel, low-alloyed, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Steel, low-alloyed, at plant",
+              "reference product": "Steel, low-alloyed, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "metadata_sha256": "317ca2586497ef8044a6712386f160499d40093f98d0d4d8997a49feb07c9c9f",
+            "inventory_sha256": "5639517f4afcab59216b81c8f2fa63dedf101f01e90be8da8a92e01b85652526"
+          }
+        ]
+      },
+      "limitations": [
+        "Complete low-alloyed hot-rolled steel per kg, not unrolled cast stock or a processing-only service. Inspected source explicitly includes the steel mix and hot rolling; native European mix includes 0.63 converter stock, 0.37 electric stock and one kg hot rolling. No second rolling operation, material-yield multiplier or claim of exact steel-grade/strength equivalence. Historical native route technology and allocation replace the source production model.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5d7aa40d7e175c465ddb0f802097adabd4f08bb7a4b60528f9b8361aa708dc9a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_37_rolled_steel_review.json",
+      "review_sha256": "852faa92e68c1172dd92575518fcb09089c741a5488471f5f55bc140863ffa25",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "market for reinforcing steel",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "97ee41dc616462ef41b3fc4cfbee7d292a79ee4bce348bc1715dece04edff347",
+          "metadata_sha256": "fab1624679b812efcb11fc6af84431ed4d3362cf9a229e84704eeee5657c9440",
+          "inventory_sha256": "8b829fa885ada692774060e2c5042b73063dcc71ef4e1346202eacd3d48f2b00",
+          "identity": {
+            "location": "GLO",
+            "name": "market for reinforcing steel",
+            "reference product": "reinforcing steel",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "2053401c-7b50-4ea1-9212-c00c0651377c",
+          "inspected_activity_id": "f3c43df4-f195-4ced-af3f-f7fa27d4349c",
+          "matching_product_id": "9ba48284-0f03-4fec-800d-de77833b12f6",
+          "location": "GLO",
+          "name": "market for reinforcing steel",
+          "reference product": "reinforcing steel",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "reinforcing steel production",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "3d48306e92e8f84313eb02656878728243a28d84cad415a75476b345f04b4c88",
+            "metadata_sha256": "a70cf1215245263010806a4bd67f8253fd27dd360de27b83cfcd982ee9f5b2ff",
+            "inventory_sha256": "5dcdc82e3865d5138319136c47534ade10edef79ceb232210caf8abbce5bdb55"
+          },
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "reinforcing steel production",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "02a1096b29495d43a1afb518c5a19125112c1e5e8a6e22d74f0841cae7174903",
+            "metadata_sha256": "bdf11df476926acb91d86f1b90b3005111031a2097d480aaf230c5cbd2f3b718",
+            "inventory_sha256": "20e56da96957a2b1346177ebc5afee3bdec9e5f0b788fc168c885e60f3923b3e"
+          },
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "reinforcing steel production",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "9fb5b04925317ad8497422961b751a2c139f8fe4c860d329f9feb0a24e191a76",
+            "metadata_sha256": "dbbc113451bcc80ce1198810325e968f010d281125e9e8f862e1106e84db10cf",
+            "inventory_sha256": "aed7706d8bb4401b0ac901b81f0c0bdacb63949d52094e637bd9e21f093eacad"
+          }
+        ],
+        "basis": "Complete reinforcing-steel supply per kg, including steelmaking and rolling. Native 0.30 converter and 0.70 electric reinforcing-steel routes each already include hot rolling. Preserve the full native route inventories once; do not add another rolling step or infer B500/B550 mechanical certification, diameter, bar length or density conversions. Native historical European route mix replaces the source producer shares and final delivery; performance, allocation and geography differences remain unquantified.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Reinforcing steel, at plant",
+          "reference product": "Reinforcing steel, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Reinforcing steel, at plant",
+              "reference product": "Reinforcing steel, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "ca35a53e1baab8880ef55cbb0651a17c5821f53dfdc982f76c03c12e9d53b25f",
+            "inventory_sha256": "187df5eb0eefaecc84a6d97ea284af4a43f0f7f915acd906bb3abd2089cac58b"
+          }
+        ]
+      },
+      "limitations": [
+        "Complete reinforcing-steel supply per kg, including steelmaking and rolling. Native 0.30 converter and 0.70 electric reinforcing-steel routes each already include hot rolling. Preserve the full native route inventories once; do not add another rolling step or infer B500/B550 mechanical certification, diameter, bar length or density conversions. Native historical European route mix replaces the source producer shares and final delivery; performance, allocation and geography differences remain unquantified.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b39dc1eeb7acfe91899ac00d88c12385a9e43de5b729376cad842314b42f8125"
+        }
+      ]
     }
   ],
   "superseded_operations": [
