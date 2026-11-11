@@ -1231,9 +1231,10 @@
         "docs/development/uvek-native-ng-ccs-heat-verification.json",
         "docs/development/uvek-native-coal-ccs-heat-verification.json",
         "docs/development/uvek-native-wood-ccs-heat-verification.json",
-        "docs/development/uvek-native-oil-ccs-heat-verification.json"
+        "docs/development/uvek-native-oil-ccs-heat-verification.json",
+        "docs/development/uvek-secondary-solar-heat-verification.json"
       ],
-      "latest_coverage_note": "Geothermal and all five CCS heat bindings verified in controlled shared-workflow cases through normal update, exhaustive graph validation and Brightway export. Oil CCS reconstructs the inspected source heat allocation on complete native German oil power-plant combustion; source allocated fuel mass and both CO2 components reproduced within 1e-12 relative tolerance. Ninety percent capture applies only to combustion CO2; separate limestone-treatment CO2 remains uncaptured. Four bindings remain unqualified: two solar and two residual bindings. Complete real TIAM/MESSAGE and combined fuels qualification remain unfinished.",
+      "latest_coverage_note": "Geothermal, all five CCS bindings and REMIND secondary solar heat verified in controlled shared-workflow cases. Secondary solar retains the explicitly warned electrical-energy-normalized source convention; no useful-thermal performance equivalence is claimed. Its normal update, exhaustive validation and export produced 12,633 activities and 864 signed finite LCIs. Three bindings remain: industrial solar and two residual-heat bindings. Industrial solar is not admitted while missing native frozen heat fallback remains unresolved. Complete real IAM and combined-fuels qualification remain unfinished.",
       "geothermal_stage": {
         "status": "controlled_shared_callback_export_and_signed_LCI_verified",
         "verification": "docs/development/uvek-secondary-geothermal-heat-verification.json",
@@ -1271,6 +1272,12 @@
         "verification": "docs/development/uvek-native-oil-ccs-heat-verification.json",
         "full_real_IAM_scenario_verified": false,
         "remaining_unqualified_heat_role_bindings": 4
+      },
+      "secondary_solar_stage": {
+        "status": "controlled_shared_workflow_solar_screening_update_export_and_signed_LCI_verified",
+        "verification": "docs/development/uvek-secondary-solar-heat-verification.json",
+        "thermal_delivery_performance_validated": false,
+        "remaining_unqualified_heat_role_bindings": 3
       }
     },
     {

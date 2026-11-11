@@ -1,0 +1,81 @@
+{
+  "status": "controlled_shared_workflow_solar_screening_update_export_and_signed_LCI_verified",
+  "model": "remind",
+  "actual_IAM_scenario": false,
+  "layer": "secondary",
+  "database": "BAFU:2026-controlled-REMIND-solar-heat-20261112-001625",
+  "export_activities": 12633,
+  "regional_solar_suppliers": 12,
+  "heat_markets": 13,
+  "signed_finite_LCIs": 864,
+  "regional_solar_market_share": 0.6666666666666666,
+  "solar_inputs_preserved_by_signed_unit_vector": true,
+  "construction_and_negative_reference_decommissioning_signs_preserved": true,
+  "distinct_source_rubber_uncertainty_contributors_preserved": true,
+  "internal_technosphere_links": 117433,
+  "requested_biosphere_links": 294062,
+  "exhaustive_graph_issues": {},
+  "source_heat_is_electrical_energy_normalized_screening_proxy": true,
+  "useful_thermal_delivery_performance_validated": false,
+  "full_real_IAM_scenario_verified": false,
+  "CLIC_tagged_records_including_regional_clones": 419,
+  "prepared_inventory_records": 407,
+  "source_basis": {
+    "source_heat_reference": "1 MJ heat",
+    "source_electricity_reference": "1 kWh electricity",
+    "all_nonproduction_electricity_to_heat_ratios": 3.6,
+    "compared_exchanges": 6,
+    "interpretation": "Dedicated heat-labelled source inherits electrical-energy-normalized CSP burdens; it is the existing Premise screening convention, not a demonstrated useful-thermal delivery inventory. No inferred thermal efficiency, heat recovery, temperature or new allocation correction is established.",
+    "source_snapshots_sha256": {
+      "heat": "c2f02e9a07897336de315afce89cc9bcb0242d77025ee6e8d49dd4ddd7f8e230",
+      "electricity": "43abb6ef56b2337874fb66e4db9688034018cf586e146cb667ad9ef266d80999"
+    }
+  },
+  "provenance_scope_refresh": {
+    "changed_scopes": [
+      {
+        "rule_id": "bp-cfcab3636e7a220d",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      }
+    ],
+    "all_scientific_fields_unchanged": true,
+    "old_fingerprints_verified_before_refresh": true,
+    "previous_resource_sha256": "078dd3bb4eefb1ad040426270c1d66a76ad4fd67722f51fda7ad38abc3cfb081"
+  },
+  "tests": {
+    "final_Premise_regression_group": 157,
+    "nitrate_regressions": 20,
+    "manifest_separate_rerun": 1
+  },
+  "ecoinvent_regression": {
+    "source": "ecoinvent 3.12 cut-off",
+    "scenario": "REMIND SSP2-NPi 2050",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "fuels"
+    ],
+    "updated_activities": 31205,
+    "export_created": false
+  },
+  "unqualified_heat_bindings_remaining": 3,
+  "industrial_solar_qualification": "Not admitted: missing frozen native historical heat fallback when IAM supply data is unavailable.",
+  "evidence_sha256": {
+    "controlled-secondary-solar-heat-verification.private.json": "0cbd3bf5a780dfcb021668c450d7f3ef31d3a9e11e1e2eb32d67f2b85c0f086b",
+    "controlled-secondary-solar-heat-exhaustive-validation.private.json": "fd93d3fd87a3a2325d918395ce5ed7e3181d9a28bf4ad3fede419688a83503eb",
+    "solar-heat-source-basis-verification.json": "04a750c6ae323e1d57233903dd7e268c0979ec4cdfaa7bdf171e2191afb04ded",
+    "nitrate-provenance-scope-refresh.json": "b47539dc89deff1d9e2562c04b93fb14937bdceeafb56744f959433c01f66cc7",
+    "secondary-solar-final-regressions.log": "31616eb016e67405a507f6d4ff28c7bf6786c145d33ecd048be2d95f43196b4d",
+    "nitrate-source-provenance-regressions.log": "d49ea04f8503846690faff31f1b02d011a1448e381a3c55bf04cfeb2f7f39aa4",
+    "nitrate-provenance-manifest-test.log": "b336bfbb42d8a55315e2f7350d4a6528e0fd95453f81c1e21f96f9ae7c5d2932",
+    "solar-uncertainty-ecoinvent-312-regression.log": "c20a8b83d76cb45ed2de4e83cb03f36df701dd721ed45af542d701ddbcdba464"
+  },
+  "historical_manifest_test_note": "The first combined run had twenty passing nitrate tests and a stale expected resource count in the manifest test. The manifest already had 23 resources before this change. Updating the exact expected count and biosphere-v2 path made its separate rerun pass.",
+  "preexisting_lint_findings_unchanged": 4
+}

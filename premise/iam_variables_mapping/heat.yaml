@@ -1314,6 +1314,21 @@ heat, secondary, from nuclear:
   assumption: Nuclear cogeneration burdens use exergy allocation at 140 C heat delivery.
 
 heat, secondary, from solar thermal:
+  uvek_aliases:
+    use_legacy_templates: true
+    exact: true
+    fltr:
+      name:
+      - heat production, at 110 MW concentrating solar power plant, with thermal energy storage
+      reference product:
+      - heat
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Retain the dedicated CLIC one-MJ heat-labelled CSP inventory used by the existing Premise heat roles, including complete plant construction, nine-hour molten-salt storage, operation and decommissioning. Do not match an electricity dataset or native hot-water PVT/solar-wood combined output as if it were this supplier.
+    - Source inspection shows all six nonproduction heat exchanges equal the corresponding one-kWh electricity exchanges divided by 3.6. This is the existing electrical-energy-normalized CSP screening convention, not a demonstrated useful-thermal delivery inventory. Heat grade, delivery temperature, power-cycle boundary, thermal efficiency and allocation are not established. No inferred receiver-power correction, additional heat recovery or efficiency factor is applied.
+    - The source describes a Spanish 110 MW tower plant but labels the inventory CH, with nine-hour storage and its documented lifetime and capacity factor. Geography, regional extrapolation, storage configuration, upstream background and unquantified score differences remain explicit limitations. Add no separate storage burden or electricity coproduct credit.
+    - Retain the previously approved scoped omission of the unsupported used-nitrate-salt reuse credit, with omission audit and warning. Complete plant, virgin salt production, storage and other decommissioning inputs remain; no substitute credit or zero-burden supplier is invented.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none

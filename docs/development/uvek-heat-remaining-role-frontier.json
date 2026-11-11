@@ -87,5 +87,20 @@
     "remaining_unqualified_heat_roles": 4,
     "remaining_CCS_roles": 0,
     "full_real_TIAM_scenario_verified": false
+  },
+  "follow_up_secondary_solar": {
+    "status": "controlled_shared_workflow_solar_screening_update_export_and_signed_LCI_verified",
+    "evidence": "docs/development/uvek-secondary-solar-heat-verification.json",
+    "remaining_unqualified_heat_roles": 3,
+    "remaining_solar_roles": 1,
+    "remaining_residual_roles": 2,
+    "full_real_IAM_scenario_verified": false
+  },
+  "frozen_native_source_inspection": {
+    "candidate": "District heat, at consumer, swiss average, allocation exergy",
+    "location": "CH",
+    "finding": "Eight plant-heat inputs and one separately listed district transport service. A pre-delivery frozen producer composition needs a documented derivation and protection against heat-market relinking; delivered heat must not acquire a second delivery burden. Building-residual boundary remains to review.",
+    "evidence_sha256": "949b2612d432973040861a61aa2d60eda97d6ffcccf901019f8ec70ec0cd1b8a",
+    "qualified": false
   }
 }
