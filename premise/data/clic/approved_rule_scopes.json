@@ -193110,6 +193110,348 @@
           "fingerprint": "2caa21a8072e782380a512591c976e2e0b3b42b37a47639b17849a7ac403b166"
         }
       ]
+    },
+    {
+      "rule_id": "bp-6fb142ff07a96aed",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_additional_chemicals_review.json",
+      "review_sha256": "01a5255dbc1312b892235597891c7098f77236d28cb7544387656a928867d2b0",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sodium methoxide",
+            "reference product": "sodium methoxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "e5360e9f8504449b1021396e99741dbfdeaa113e179805642f66c84b9a1fbcab",
+          "inventory_sha256": "79eaf3a8821665062e6b0645d68b4c2bf9d974937263f8c8285095dcf61d07e2",
+          "nonproduction_counts": {
+            "technosphere": 6,
+            "biosphere": 0
+          },
+          "name": "market for sodium methoxide",
+          "reference product": "sodium methoxide",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "Brown-Schlesinger process",
+              "reference product": "sodium methoxide",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "5ee2aad1e630e8433aba6fd456485d6784404df2d2f2cdfe4dd5e64503fb1f0d",
+            "inventory_sha256": "4c8055ab4b926c6a80d7538ad63a91e6ff11cfbaaef461dc6f34ee020a424ba3",
+            "nonproduction_counts": {
+              "technosphere": 5,
+              "biosphere": 12
+            }
+          },
+          {
+            "identity": {
+              "name": "sodium methoxide production",
+              "reference product": "sodium methoxide",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "79a906e1a0a3b3e556089447ccf75df82a8c737e8f0d0f36b8e9fc3250999e81",
+            "inventory_sha256": "28d877fa7d5ea685756076ac324d6f4792dda707d293bdc7a9084daf9623efb3",
+            "nonproduction_counts": {
+              "technosphere": 5,
+              "biosphere": 12
+            }
+          }
+        ],
+        "basis": "Use complete native sodium methoxide per signed kg declared product as a same-product screening proxy. This deliberately substitutes technology: source market is 20% allocated Brown-Schlesinger co-product and 80% direct methanol/alkali production, while native stock represents Brown-Schlesinger only. Source and native route-specific feedstocks, co-products, allocation, electricity, heat, wastewater, emissions and infrastructure are not equivalent. Retain the complete native inventory once; do not construct a hybrid by adding source direct-route energy or emissions to native Brown-Schlesinger, scale caller mass by 0.20/0.80, or add a borohydride recovery credit. The original source market freight, production shares and internal uncertainty are replaced, not reproduced; native process input transport does not establish final delivery. No solution concentration, purity or reaction-yield adjustment is inferred from the name. Both declare a positive one-kg sodium-methoxide reference. Source route documentation has wording inconsistencies; this is not an exact reaction reconstruction. Geographic and vintage differences and substantial unquantified score effects remain. This separately reviewed technology proxy resolves the pending case explicitly excluded from the earlier chemical-stock packet.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "GLO",
+          "name": "Sodium methoxide, at plant",
+          "reference product": "Sodium methoxide, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Sodium methoxide, at plant",
+              "reference product": "Sodium methoxide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 19,
+            "metadata_sha256": "0e41ed952283024437a4b12b7a321fc0f85e34492f3d4d9428fa1297a5514902",
+            "enriched_inventory_sha256": "1d962b4abd8dccf3467663f8fa60a4f3e05de4088ccf4144f04d3097ad549b90"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native sodium methoxide per signed kg declared product as a same-product screening proxy. This deliberately substitutes technology: source market is 20% allocated Brown-Schlesinger co-product and 80% direct methanol/alkali production, while native stock represents Brown-Schlesinger only. Source and native route-specific feedstocks, co-products, allocation, electricity, heat, wastewater, emissions and infrastructure are not equivalent. Retain the complete native inventory once; do not construct a hybrid by adding source direct-route energy or emissions to native Brown-Schlesinger, scale caller mass by 0.20/0.80, or add a borohydride recovery credit. The original source market freight, production shares and internal uncertainty are replaced, not reproduced; native process input transport does not establish final delivery. No solution concentration, purity or reaction-yield adjustment is inferred from the name. Both declare a positive one-kg sodium-methoxide reference. Source route documentation has wording inconsistencies; this is not an exact reaction reconstruction. Geographic and vintage differences and substantial unquantified score effects remain. This separately reviewed technology proxy resolves the pending case explicitly excluded from the earlier chemical-stock packet."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "573dda7a19b0d4f9c62dfbb3de68f54e22625af70a0058f303fe232b7c56eab5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-14199ba2d41a9688",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_additional_chemicals_review.json",
+      "review_sha256": "01a5255dbc1312b892235597891c7098f77236d28cb7544387656a928867d2b0",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for nitrogen, liquid",
+            "reference product": "nitrogen, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "933e6a3a9eea5123fa05efb69670d237fd5e1d453e6d6cbd4e970ef64a1a87be",
+          "inventory_sha256": "5531154427470c010526bdf740d4ff970bd5a72aa11e8a3c3b0ce601f48d4f9e",
+          "nonproduction_counts": {
+            "technosphere": 10,
+            "biosphere": 0
+          },
+          "name": "market for nitrogen, liquid",
+          "reference product": "nitrogen, liquid",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "air separation, cryogenic",
+              "reference product": "nitrogen, liquid",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "64369bc33939a2d3da05391b934164336687d1f98641c6e387d644f6d42699ae",
+            "inventory_sha256": "d536d7e63f3280fddc8552f0e73401fbd4579cd045f4233711fd5b41683834b4",
+            "nonproduction_counts": {
+              "technosphere": 2,
+              "biosphere": 6
+            }
+          },
+          {
+            "identity": {
+              "name": "air separation, cryogenic",
+              "reference product": "nitrogen, liquid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "99995f682fa1b615fa1df206e2b7897881ba1ee20fcc1ea526b0269d55cffc70",
+            "inventory_sha256": "3ccb740df5c33e1facfdda47ae032d80141be58dfef55ce6c6d84f5f29aacd4a",
+            "nonproduction_counts": {
+              "technosphere": 8,
+              "biosphere": 6
+            }
+          }
+        ],
+        "basis": "Use complete native liquid nitrogen from cryogenic air separation per signed kg liquid product. Do not substitute gaseous nitrogen, use normal cubic metres, infer gas-density factors or add a second liquefaction service. Native joint liquid nitrogen/oxygen/argon production retains its own thermophysical allocation, electricity, cooling-water, waste-heat and plant infrastructure. Source market country and producer shares, utilities, allocation, internal uncertainty, vintage and final-market transport are replaced, not reproduced. Native internal rail transport is retained once and is not an equivalence claim for source final delivery. The source RoW market uses a European native technology/geographic screening proxy. No boiling-off or delivery-loss factor is invented; score differences remain unquantified.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Nitrogen, liquid, at plant",
+          "reference product": "Nitrogen, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Nitrogen, liquid, at plant",
+              "reference product": "Nitrogen, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "ba6187f7cbe5ed08032cc16396f1684aa0038b57a59d4b5724d5438fb6337900",
+            "enriched_inventory_sha256": "77338bf6ac3ba55b2a1556e8777ec7969fe9e7bccb809115ba62e56a2faf9898"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native liquid nitrogen from cryogenic air separation per signed kg liquid product. Do not substitute gaseous nitrogen, use normal cubic metres, infer gas-density factors or add a second liquefaction service. Native joint liquid nitrogen/oxygen/argon production retains its own thermophysical allocation, electricity, cooling-water, waste-heat and plant infrastructure. Source market country and producer shares, utilities, allocation, internal uncertainty, vintage and final-market transport are replaced, not reproduced. Native internal rail transport is retained once and is not an equivalence claim for source final delivery. The source RoW market uses a European native technology/geographic screening proxy. No boiling-off or delivery-loss factor is invented; score differences remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5af91b39a35f98e4da8c17878332d7e77dd47ba980c03c21ad99b290548f2f4f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-48df3f130afafd5c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_additional_chemicals_review.json",
+      "review_sha256": "01a5255dbc1312b892235597891c7098f77236d28cb7544387656a928867d2b0",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "4feaa29e4d2ab8d2c210db12ac241e8c11e024a4f456fe9f1c327ebea377a9aa",
+          "inventory_sha256": "560e626a4adf0fc3875df193fde68bf012e0b4b8a47ff3e4bba5dbf075673aba",
+          "nonproduction_counts": {
+            "technosphere": 6,
+            "biosphere": 0
+          },
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ammonia production, partial oxidation, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d462aaf7cdcafb19392ad0c5a45e0fc8642db52b0364d8f9666625cdd068f9d3",
+            "inventory_sha256": "811b5d839b0d1848f83a802e3b1b98545846ea2f2d3911a803ad496e83c6c4ef",
+            "nonproduction_counts": {
+              "technosphere": 26,
+              "biosphere": 6
+            }
+          },
+          {
+            "identity": {
+              "name": "ammonia production, steam reforming, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "3edaafffdc8ca07752f3978a716297076ed30dffb93573e826711f10dd44da8a",
+            "inventory_sha256": "55c0e9281a344752b4a7030d4db5d340726cb73473f24ae9abe2aa50a0135252",
+            "nonproduction_counts": {
+              "technosphere": 8,
+              "biosphere": 6
+            }
+          }
+        ],
+        "basis": "Use complete native liquid anhydrous ammonia at European regional storage per signed kg NH3 product, not aqueous ammonia solution. Native storage supply retains its own 85% steam-reforming and 15% heavy-fuel-oil partial-oxidation production shares and native road/rail transport once. Those are internal native shares, not caller conversion factors or source RoW market shares. Source technology, feedstock sourcing, allocation, regional electricity, final delivery, storage boundary, internal uncertainty and vintage differ; the original source market inventory is replaced rather than reconstructed. Do not apply 0.85/0.15, concentration, nitrogen-content or density factors to caller kg, invent an aqueous dilution service, or add duplicated freight/storage. Source and native declared reference amounts are positive one kg; impacts are not equivalent and score differences remain unquantified.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Ammonia, liquid, at regional storehouse",
+          "reference product": "Ammonia, liquid, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "1b93330d4f6254ffe36fbe73f4833f073429d28f30ca000cfa353e7bfb2078ad",
+            "enriched_inventory_sha256": "343e74ece2693db030486656b577ff024b451b54e0642c87edd15499b00638a3"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native liquid anhydrous ammonia at European regional storage per signed kg NH3 product, not aqueous ammonia solution. Native storage supply retains its own 85% steam-reforming and 15% heavy-fuel-oil partial-oxidation production shares and native road/rail transport once. Those are internal native shares, not caller conversion factors or source RoW market shares. Source technology, feedstock sourcing, allocation, regional electricity, final delivery, storage boundary, internal uncertainty and vintage differ; the original source market inventory is replaced rather than reconstructed. Do not apply 0.85/0.15, concentration, nitrogen-content or density factors to caller kg, invent an aqueous dilution service, or add duplicated freight/storage. Source and native declared reference amounts are positive one kg; impacts are not equivalent and score differences remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0e35497fcf85aed7afbeaa6f6d48521db7fbd6e20f55cc9db57211fdfff4ad05"
+        }
+      ]
     }
   ],
   "superseded_operations": [

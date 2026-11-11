@@ -11,10 +11,14 @@ from test_clic_rule_approvals import graph
 from premise.inventory.clic_archive import ClicInventoryError
 from premise.inventory.clic_harmonize import ClicHarmonizer
 
-REVIEW = json.loads(
-    (DATA_DIR / "export/uvek_fuels_38_chemical_stocks_review.json").read_text()
-)
-RECORDS = {r["rule_id"]: r for r in REVIEW["records"]}
+RECORDS = {
+    row["rule_id"]: {**row, "_review_path": f"export/{name}"}
+    for name in (
+        "uvek_fuels_38_chemical_stocks_review.json",
+        "uvek_fuels_38_additional_chemicals_review.json",
+    )
+    for row in json.loads((DATA_DIR / "export" / name).read_text())["records"]
+}
 
 
 @pytest.mark.parametrize("rid", RECORDS)
@@ -73,7 +77,10 @@ def test_exact_profile_does_not_pass_without_its_new_review(tmp_path, monkeypatc
     ledger["operations"] = [
         row
         for row in ledger["operations"]
-        if row.get("review_path") != "export/uvek_fuels_38_chemical_stocks_review.json"
+        if not (
+            row.get("review_path") == RECORDS[rid]["_review_path"]
+            and row["rule_id"] == rid
+        )
     ]
     monkeypatch.setattr(clic_rule_approvals, "_approval_ledger", lambda: ledger)
     with pytest.raises(ClicInventoryError, match="requires independent review"):

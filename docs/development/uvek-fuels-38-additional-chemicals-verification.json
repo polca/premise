@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-11",
+  "status": "Three exact chemical-stock correspondences qualified; complete fuel update/export remains unfinished.",
+  "brightpath_commit": "4a716459902f2ce1f469887605716e680e848ef4",
+  "review_sha256": "01a5255dbc1312b892235597891c7098f77236d28cb7544387656a928867d2b0",
+  "migration_resource_sha256": "2f84a38aba4177889bb851e9acb479d2e54481c87dc9fa47a0a95641db1b8e85",
+  "migration_resource_modified": false,
+  "runtime_python_modified": false,
+  "new_approval_scopes": 3,
+  "validated_scopes": 655,
+  "all_prior_operations_and_fingerprints_preserved": true,
+  "prior_methoxide_disposition": {
+    "review_path": "export/uvek_fuels_38_chemical_stocks_review.json",
+    "review_sha256": "1795c57e09fa69ea4a13ab00e97d6e964de95b78980d859ff1dfd8c240b6dbb6",
+    "resolution": "Previously pending technology difference now separately reviewed as a complete same-product Brown-Schlesinger screening proxy, with explicit 20/80 source-route replacement and unquantified score warnings. No assertion of route equivalence."
+  },
+  "native_lci_checks": [
+    {
+      "identity": {
+        "name": "Sodium methoxide, at plant",
+        "reference product": "Sodium methoxide, at plant",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "identity": {
+        "name": "Nitrogen, liquid, at plant",
+        "reference product": "Nitrogen, liquid, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "identity": {
+        "name": "Ammonia, liquid, at regional storehouse",
+        "reference product": "Ammonia, liquid, at regional storehouse",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "tests": {
+    "brightpath_all_seven_chemical_stocks": "29 passed",
+    "premise_all_seven_chemical_stocks": "35 passed; signed dose, uncertainty, exact warnings, fresh/cache and individual approval removal.",
+    "full_approval_suite": "Fresh repaired-suite run remains live; not yet counted as passing."
+  },
+  "wheel": "New review, unchanged migration resource and manifest match checkout bytes.",
+  "regular_conda_install": "Git direct_url commit, review hash and 655 exact scopes verified.",
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 50,
+    "distinct_rule_identities": 46,
+    "source_activities": 117,
+    "cohorts": 6,
+    "source_graph_unchanged": true,
+    "no_transformation_or_export": true
+  },
+  "obsolete_generated_wheel_removed_bytes": 41394728,
+  "limitations": [
+    "Use complete native sodium methoxide per signed kg declared product as a same-product screening proxy. This deliberately substitutes technology: source market is 20% allocated Brown-Schlesinger co-product and 80% direct methanol/alkali production, while native stock represents Brown-Schlesinger only. Source and native route-specific feedstocks, co-products, allocation, electricity, heat, wastewater, emissions and infrastructure are not equivalent. Retain the complete native inventory once; do not construct a hybrid by adding source direct-route energy or emissions to native Brown-Schlesinger, scale caller mass by 0.20/0.80, or add a borohydride recovery credit. The original source market freight, production shares and internal uncertainty are replaced, not reproduced; native process input transport does not establish final delivery. No solution concentration, purity or reaction-yield adjustment is inferred from the name. Both declare a positive one-kg sodium-methoxide reference. Source route documentation has wording inconsistencies; this is not an exact reaction reconstruction. Geographic and vintage differences and substantial unquantified score effects remain. This separately reviewed technology proxy resolves the pending case explicitly excluded from the earlier chemical-stock packet.",
+    "Use complete native liquid nitrogen from cryogenic air separation per signed kg liquid product. Do not substitute gaseous nitrogen, use normal cubic metres, infer gas-density factors or add a second liquefaction service. Native joint liquid nitrogen/oxygen/argon production retains its own thermophysical allocation, electricity, cooling-water, waste-heat and plant infrastructure. Source market country and producer shares, utilities, allocation, internal uncertainty, vintage and final-market transport are replaced, not reproduced. Native internal rail transport is retained once and is not an equivalence claim for source final delivery. The source RoW market uses a European native technology/geographic screening proxy. No boiling-off or delivery-loss factor is invented; score differences remain unquantified.",
+    "Use complete native liquid anhydrous ammonia at European regional storage per signed kg NH3 product, not aqueous ammonia solution. Native storage supply retains its own 85% steam-reforming and 15% heavy-fuel-oil partial-oxidation production shares and native road/rail transport once. Those are internal native shares, not caller conversion factors or source RoW market shares. Source technology, feedstock sourcing, allocation, regional electricity, final delivery, storage boundary, internal uncertainty and vintage differ; the original source market inventory is replaced rather than reconstructed. Do not apply 0.85/0.15, concentration, nitrogen-content or density factors to caller kg, invent an aqueous dilution service, or add duplicated freight/storage. Source and native declared reference amounts are positive one kg; impacts are not equivalent and score differences remain unquantified."
+  ]
+}
