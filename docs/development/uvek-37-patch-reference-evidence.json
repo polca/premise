@@ -1,0 +1,449 @@
+{
+  "date": "2026-11-11",
+  "status": "Reference-evidence preparation only. None of the 24 pending 3.7 routes is approved by this artifact.",
+  "requested_profile": {
+    "family": "ecoinvent",
+    "version": "3.7",
+    "system_model": "cutoff"
+  },
+  "inspected_profile": {
+    "family": "ecoinvent",
+    "version": "3.7.1",
+    "system_model": "cutoff"
+  },
+  "identity_comparison": "Exact name, reference product and location; product UUID agrees with the requested 3.7 catalog. Dataset activity UUIDs differ. Raw unit labels normalize without numeric conversion.",
+  "official_report": {
+    "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/change%20report_v3%207%201_20201217.pdf",
+    "section": "2.1, printed page 7",
+    "observed_patch_scope": [
+      "iron sinter production",
+      "zinc mine operation",
+      "ammonium paratungstate production, solvent extraction"
+    ],
+    "qualification": "The report documents corrections with downstream effects. It does not justify asserting complete inventory or LCIA equivalence."
+  },
+  "counts": {
+    "matched_identities": 24,
+    "positive_one_references_in_inspected_patch": 20,
+    "negative_one_references_in_inspected_patch": 4
+  },
+  "requirements_before_mapping_approval": [
+    "Keep requested 3.7 and inspected 3.7.1 explicit; do not relabel source context.",
+    "Assess applicability of patch evidence for each exact functional-reference and source/native boundary.",
+    "Review material grades, service scope, physical reference conditions, signs, quantity factors and any recipe closure independently.",
+    "Do not use matching names/product UUIDs to infer identical inventory vectors or scores.",
+    "Preserve normal strict refusals until exact mapping approvals, tests and native calculations pass."
+  ],
+  "runtime_or_mapping_changes": false,
+  "source_inventories_changed": false,
+  "records": [
+    {
+      "rule_id": "bp-263c185cdbca7a8c",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "GLO",
+        "name": "market for steel, chromium steel 18/8, hot rolled",
+        "reference product": "steel, chromium steel 18/8, hot rolled",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "74b1381b-704f-494e-a0f6-ea68808a06eb",
+      "source_371_activity_id": "8b74c1af-6761-41a8-a557-1dd332b29bff",
+      "reference_product_id": "c5246dbb-0abd-4bee-8dda-d52a1b202322",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "f2e4c240912b503fdbde0444415a92a771effc1a78daabb28bb9d9a17ebf6b58"
+    },
+    {
+      "rule_id": "bp-82cb48b8f46820d5",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "GLO",
+        "name": "market for synthetic rubber",
+        "reference product": "synthetic rubber",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "5d50c311-c131-4430-8530-32f0839c3261",
+      "source_371_activity_id": "405f5ca0-dea0-4827-a481-ea034c63b318",
+      "reference_product_id": "0da5307e-df93-4bc2-b5bc-6cda3cb55e8c",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "b219b6a4d9fe67b0dcca845653f7ab9d6f27e622db199a92a3d0196ee417f506"
+    },
+    {
+      "rule_id": "bp-a3a951644bd5ed9c",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "Europe without Switzerland",
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "unit": "ton kilometer"
+      },
+      "source_37_catalog_activity_id": "f697c553-a428-4600-92ff-3c34f75fb0c7",
+      "source_371_activity_id": "7fd1570d-3c1d-47ce-815c-ef07f32a84f3",
+      "reference_product_id": "0ace02fa-eca5-482d-a829-c18e46a52db4",
+      "reference_amount": 1.0,
+      "raw_unit": "metric ton*km",
+      "source_file_sha256": "0c1d1e15a9ef7a3cb7977779259a911f813a7bb9c2bcb897ea1727a361e52d2a"
+    },
+    {
+      "rule_id": "bp-22c3a52062d0cb16",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "Europe without Switzerland",
+        "name": "market for scrap steel",
+        "reference product": "scrap steel",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "5a0422b9-0b00-43cb-a8b6-8a0ab37177f9",
+      "source_371_activity_id": "371185a4-bf73-4f3c-9cdc-c33cb41acfcb",
+      "reference_product_id": "d1a4a803-c563-4740-84cf-3c21a488bd74",
+      "reference_amount": -1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "c76e4f77c902d3bd9cdd3666595bdf9d12070d4ea3e1afd094b44a0199924db7"
+    },
+    {
+      "rule_id": "bp-2149df101fadeeb2",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "Europe without Switzerland",
+        "name": "market for waste mineral oil",
+        "reference product": "waste mineral oil",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "4891c789-d1c6-4ae9-ba43-2813bc0d13ec",
+      "source_371_activity_id": "4b6af28c-2d84-439b-81fe-2795c56635cf",
+      "reference_product_id": "1b30b018-ac39-41f4-a9e0-92057eef8bb8",
+      "reference_amount": -1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "3ed2a1ca1fe1e99297cee7d196a3dfe8bde0b79ebc1fc59e98bf084729676b4c"
+    },
+    {
+      "rule_id": "bp-24eb26e899c2f905",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "CH",
+        "name": "building construction, hall, steel construction",
+        "reference product": "building, hall, steel construction",
+        "unit": "square meter"
+      },
+      "source_37_catalog_activity_id": "8c590194-87ac-4dc2-80fd-1824ff21f09d",
+      "source_371_activity_id": "597f4326-4b55-4be7-b67a-2bbf6f33c13c",
+      "reference_product_id": "7aaf6060-f9b7-43bb-8aee-06aecf386798",
+      "reference_amount": 1.0,
+      "raw_unit": "m2",
+      "source_file_sha256": "b08c84a155e3ef106e28c7ed39a400c5a6e0113186f7ee824893a5ba44f3d27f"
+    },
+    {
+      "rule_id": "bp-ad43c87e102ce339",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "market for compressed air, 700 kPa gauge",
+        "reference product": "compressed air, 700 kPa gauge",
+        "unit": "cubic meter"
+      },
+      "source_37_catalog_activity_id": "76f34698-a048-496f-b897-401ee41d1d88",
+      "source_371_activity_id": "9d70b3f1-bfbd-45d7-b452-08182676a463",
+      "reference_product_id": "ed3b2533-9ae2-4f2d-85de-c24200ce8975",
+      "reference_amount": 1.0,
+      "raw_unit": "m3",
+      "source_file_sha256": "7e706f1e4e1550dc7c2b62ba26c20bc5f0789e5012c193f1fb24d4e268f444b5"
+    },
+    {
+      "rule_id": "bp-3c662478c0f234c1",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "market for energy and auxilliary inputs, metal working factory",
+        "reference product": "energy and auxilliary inputs, metal working factory",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "04022f42-d292-4878-b0f4-f2d7ce52c535",
+      "source_371_activity_id": "2486ff0c-0780-4356-adb0-886923e9521a",
+      "reference_product_id": "6eb8dc11-5ac4-4538-a1f1-95463b640ea5",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "c8cfdb7b47de5909f5373628b33d53869030e627d2110c39b8dc7224bd10d900"
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "market for lubricating oil",
+        "reference product": "lubricating oil",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "065fc3f1-8347-48b3-b974-56204a233df7",
+      "source_371_activity_id": "4a7e6ffe-4185-4821-8354-dccbf126ca88",
+      "reference_product_id": "ea75b944-c676-4a13-85b8-2bea98f765a4",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "7bf8a0a0f5fb9185f0426a65017c32cee2542f5863ce788bf3cf6eba02da7b98"
+    },
+    {
+      "rule_id": "bp-270bf2428cce37a2",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "metal working factory construction",
+        "reference product": "metal working factory",
+        "unit": "unit"
+      },
+      "source_37_catalog_activity_id": "173348c6-7f32-4d82-94a1-81c62c18d518",
+      "source_371_activity_id": "3b37dce5-8746-4779-8e45-8f330c4993bd",
+      "reference_product_id": "f5bfce90-cc98-41d4-b49a-e82d57550d38",
+      "reference_amount": 1.0,
+      "raw_unit": "unit",
+      "source_file_sha256": "e5c7a5cb11406572d2a02cd61f9eaefd00c7adc724c2c1a424bd7d0d25af1dad"
+    },
+    {
+      "rule_id": "bp-ab9453aea35efe0a",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "market for metal working machine, unspecified",
+        "reference product": "metal working machine, unspecified",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "ae4d02b5-1bef-429b-8b34-9a04af4edee4",
+      "source_371_activity_id": "4747556e-52ab-406d-99d8-13ff8e14e152",
+      "reference_product_id": "254f15c9-25c1-4f01-a416-5c1359124d97",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "b82cbe0af7ceff6dde04efc8b5517c2b1a6f9a2e2f9c6d6ea13d5514a99e7a80"
+    },
+    {
+      "rule_id": "bp-8cd221dfdd41d478",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "steel production, low-alloyed, hot rolled",
+        "reference product": "steel, low-alloyed, hot rolled",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "3c483487-3df4-40f1-b747-c438a9b850f9",
+      "source_371_activity_id": "3a4173e2-8225-4f5e-b787-a5c032963df1",
+      "reference_product_id": "8cb650d5-8a48-4719-81b1-2080b3b4387f",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "6890e056f10498f9da4cc89681862d7d3a811ea86a963f193306be5a4b3331cf"
+    },
+    {
+      "rule_id": "bp-7ca3587cbfe4ce9b",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "GLO",
+        "name": "market for reinforcing steel",
+        "reference product": "reinforcing steel",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "2053401c-7b50-4ea1-9212-c00c0651377c",
+      "source_371_activity_id": "f3c43df4-f195-4ced-af3f-f7fa27d4349c",
+      "reference_product_id": "9ba48284-0f03-4fec-800d-de77833b12f6",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "97ee41dc616462ef41b3fc4cfbee7d292a79ee4bce348bc1715dece04edff347"
+    },
+    {
+      "rule_id": "bp-1fb529c7535e435f",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "building construction, multi-storey",
+        "reference product": "building, multi-storey",
+        "unit": "cubic meter"
+      },
+      "source_37_catalog_activity_id": "3d3805c6-5251-44cf-b214-042fe8cc131a",
+      "source_371_activity_id": "f9aafcce-1d09-4113-97e0-d6f29333704d",
+      "reference_product_id": "006863b7-d736-4eb6-bbf8-648d292184ad",
+      "reference_amount": 1.0,
+      "raw_unit": "m3",
+      "source_file_sha256": "931aeb7433e6bb66081f34945e0a0a0e1843c76d35257e84248d5835aa4e33c1"
+    },
+    {
+      "rule_id": "bp-1d72298e464032e1",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "GLO",
+        "name": "market for drawing of pipe, steel",
+        "reference product": "drawing of pipe, steel",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "1996309b-ace9-4e17-83ad-11dd2c8dbb66",
+      "source_371_activity_id": "5e1a146a-2904-4af8-b089-50c7ca9635c6",
+      "reference_product_id": "68e64673-7c91-4025-af50-31317791caf7",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "2e740efda199ab5637daa9136e424c2d90b1567c6565f928c1f5eb4b2bb611df"
+    },
+    {
+      "rule_id": "bp-4a11a8b2d48ed311",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "powder coating, steel",
+        "reference product": "powder coat, steel",
+        "unit": "square meter"
+      },
+      "source_37_catalog_activity_id": "01977420-d271-4d45-9926-17935ad2f4ee",
+      "source_371_activity_id": "cd24511c-3b91-4b47-b714-cd6fc90c7a10",
+      "reference_product_id": "d187adaf-a08d-4f75-a1ba-bb46c4597f45",
+      "reference_amount": 1.0,
+      "raw_unit": "m2",
+      "source_file_sha256": "dbda1bc52cbf8ff567350a1d32b028703c413183df8a61e521341ad42f4fc575"
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "GLO",
+        "name": "market for steel, low-alloyed",
+        "reference product": "steel, low-alloyed",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "47049d76-9bd8-4665-a612-7ba7c423cb5c",
+      "source_371_activity_id": "aef35e37-455f-4aa8-b1a5-478d1377d1c5",
+      "reference_product_id": "817c3650-4fed-4ef2-b9b6-404a198834e6",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "f08cbdd1611bd1a10a2ec103896229d7a963be3a0182320b0f7a9001a5366f92"
+    },
+    {
+      "rule_id": "bp-7107efa3d84d4a67",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "excavation, hydraulic digger",
+        "reference product": "excavation, hydraulic digger",
+        "unit": "cubic meter"
+      },
+      "source_37_catalog_activity_id": "655ff763-3a5e-4fad-8c76-9917c76f51d3",
+      "source_371_activity_id": "3b767160-8d0f-4e57-a82a-acb67186aa57",
+      "reference_product_id": "0c826417-e870-4c43-95c4-b38ff2ff47d2",
+      "reference_amount": 1.0,
+      "raw_unit": "m3",
+      "source_file_sha256": "23517dd5541cbe880f6994a4a1b86e8878856f97e7a9e1897333df9ef679294a"
+    },
+    {
+      "rule_id": "bp-a94f92c29206ca62",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "RER",
+        "name": "excavation, skid-steer loader",
+        "reference product": "excavation, skid-steer loader",
+        "unit": "cubic meter"
+      },
+      "source_37_catalog_activity_id": "529cb0da-9775-4af9-b3bb-5557efbd8c66",
+      "source_371_activity_id": "cf1bd004-1b5b-426b-9a6c-37fbe6127167",
+      "reference_product_id": "d67e647c-1f74-4961-81c0-5b144f1ca082",
+      "reference_amount": 1.0,
+      "raw_unit": "m3",
+      "source_file_sha256": "daf53c602b5f19f1853c746bfb7725259e8d893ef3a086a944fe28ae87c36217"
+    },
+    {
+      "rule_id": "bp-714b90acb435b476",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "CH",
+        "name": "market for sand",
+        "reference product": "sand",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "5085e1a2-efb4-4c17-9715-38e226f2a2dd",
+      "source_371_activity_id": "e32f5fc9-f2c0-4495-9f19-f979bd2a12cd",
+      "reference_product_id": "f51d7ccf-0bee-430d-98a3-8334adbe39fc",
+      "reference_amount": 1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "95937166e8aa7f3ca41673af9ae11e1253d58c96236b8fe7b39b57b906adefd4"
+    },
+    {
+      "rule_id": "bp-ab9eb6c9ccfd6290",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "GLO",
+        "name": "transport, helicopter",
+        "reference product": "transport, helicopter",
+        "unit": "hour"
+      },
+      "source_37_catalog_activity_id": "a79e6d51-dc0f-4045-8b74-495ab090a84f",
+      "source_371_activity_id": "0ed35a10-b0c7-4d2b-9d53-239e71b889b3",
+      "reference_product_id": "c784e421-2f79-47e4-8b6d-2c29fa41aad0",
+      "reference_amount": 1.0,
+      "raw_unit": "hour",
+      "source_file_sha256": "16d7970c45bd9fd60252da5ccd96d06a3a65194e4b375f7dfb9c12b127c23697"
+    },
+    {
+      "rule_id": "bp-b62924eca33d09c2",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "GLO",
+        "name": "transport, helicopter, LTO cycle",
+        "reference product": "transport, helicopter, LTO cycle",
+        "unit": "unit"
+      },
+      "source_37_catalog_activity_id": "0a29a6ac-5018-4f3f-abe2-7a30f9ce3b30",
+      "source_371_activity_id": "74f7f833-7db7-4bac-bd30-3454067b0f31",
+      "reference_product_id": "cc7e810b-79d2-4c9c-96e6-60a3c739952c",
+      "reference_amount": 1.0,
+      "raw_unit": "unit",
+      "source_file_sha256": "f37fd04981bd3a180b41452d177f4a18e77c9803b21aaa028baa6c3e62e6328b"
+    },
+    {
+      "rule_id": "bp-db4b32ed567bed93",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "CH",
+        "name": "treatment of decommissioned pipeline, natural gas, inert material landfill",
+        "reference product": "decommissioned pipeline, natural gas",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "d9986916-eac4-44b3-b616-685bb56b2a9d",
+      "source_371_activity_id": "2ea9a182-845d-4c22-a351-e6e34f369040",
+      "reference_product_id": "588a2007-5fa7-45eb-9572-8addeb984539",
+      "reference_amount": -1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "c9a61baaf25ca5faa26839ededb0b9182b563f893e19e70cd1058a2a42f642eb"
+    },
+    {
+      "rule_id": "bp-e172491d6da0b115",
+      "requested_profile": "ecoinvent 3.7 cutoff",
+      "inspected_profile": "ecoinvent 3.7.1 cutoff",
+      "source_identity": {
+        "location": "DE",
+        "name": "market for waste plastic, mixture",
+        "reference product": "waste plastic, mixture",
+        "unit": "kilogram"
+      },
+      "source_37_catalog_activity_id": "dd454c1e-3cb3-4f4d-9c6b-8c12db0fc6bf",
+      "source_371_activity_id": "bd7df2f5-df80-46c2-91dd-27098ad9d590",
+      "reference_product_id": "88afd721-07ec-4910-a004-fa3fecb6bf70",
+      "reference_amount": -1.0,
+      "raw_unit": "kg",
+      "source_file_sha256": "950d81fd2f876f1108afb0626f01e031d6a3fbfc3f9a99d7120eec5eab745d20"
+    }
+  ]
+}
