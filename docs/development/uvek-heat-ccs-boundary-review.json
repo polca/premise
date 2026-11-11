@@ -1,0 +1,53 @@
+{
+  "status": "CCS_heat_mapping_withheld_pending_capture_balance_and_source_profile_review",
+  "source_archive_version": "20261110T030235Z-613ea498808a",
+  "published_heat_CCS_roots": 1,
+  "published_natural_gas_heat": {
+    "slug": "heat-production-at-co-generation-natural-gas-fired-power-plant-post-pipeline-200km-storage-1000m",
+    "version": "1.0.0",
+    "source_background": {
+      "family": "ecoinvent",
+      "version": "3.9",
+      "system_model": "cutoff"
+    },
+    "base_heat_location": "DE",
+    "base_heat_name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+    "source_base_combustion_CO2_kg_per_MJ_heat": 0.022541781248989562,
+    "source_heat_factor": 1.08,
+    "source_captured_CO2_kg_per_MJ_heat": 0.021910824,
+    "source_realized_capture_fraction": 0.9000087338221952
+  },
+  "proposed_unapproved_correspondence": {
+    "rule_id": "bp-db7582a46245e408",
+    "target_heat_name": "Heat, natural gas, at CHP power plant",
+    "target_location": "DE",
+    "target_background": "UVEK 2026",
+    "native_heat_reference_MJ": 1,
+    "native_attributable_combustion_CO2_kg_per_MJ_heat": 0.035904,
+    "unchanged_source_credit_would_capture_fraction": 0.5650568181818181,
+    "capture_kg_needed_for_native_allocated_stack_at_90_percent": 0.034898688000000004,
+    "approval_granted": false
+  },
+  "retained_workbook": {
+    "file": "lci-combined-heat-power-plant-CCS.xlsx",
+    "sha256": "794ae4c0fb686a141f8be82793d4f25b88bee017d9931548c45481fd53aeaac5",
+    "declared_source_version": "3.5",
+    "heat_records": 4,
+    "coal_label": "post-combustion",
+    "coal_actual_capture_service": "oxy-fuel hard-coal capture",
+    "oil_actual_capture_service": "post-combustion hard-coal capture",
+    "oil_specific_service_established": false
+  },
+  "next_requirements": [
+    "Use heat allocation and delivered-MJ references explicitly; do not infer physical efficiency by inverting allocated fuel draw.",
+    "Keep captured-service demand and signed CO2 subtraction consistent with the chosen native combustion inventory and capture fraction.",
+    "Check fossil/biogenic carbon origin and the combined fuels update; fixed counter-emissions must not exceed emissions after fuel changes.",
+    "Resolve the coal post/oxy mismatch and document or replace the oil/coal capture-service proxy.",
+    "Inspect source-profile preparation for the retained 3.5 workbook separately from its CLIC 3.6 capture-chain dependencies.",
+    "Use normal lazy CLIC dependency resolution and shared heat regionalization; no alternative UVEK sector engine or silent positive-IAM omission."
+  ],
+  "runtime_Python_changes": false,
+  "new_runtime_roles_admitted": 0,
+  "remaining_unqualified_heat_roles": 9,
+  "licensed_inventory_vectors_published": false
+}

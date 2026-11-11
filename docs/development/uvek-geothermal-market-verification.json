@@ -38,6 +38,14 @@
     "passed": 829,
     "failed": 3,
     "rechecked_cases_passed": 3,
-    "stable_full_rerun": "not_yet_run"
+    "stable_full_rerun": {
+      "passed": 832,
+      "failed": 0,
+      "warnings": 1,
+      "elapsed_seconds": 1343.9,
+      "premise_commit": "d27f0d94a22d75243f69983c4258e8253874d019",
+      "brightpath_commit": "e1e0e48b5c079da78eb4b9f4d489676ad939306a",
+      "frozen_committed_sources": true
+    }
   }
 }

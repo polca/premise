@@ -1226,13 +1226,24 @@
       "latest_evidence": [
         "docs/development/uvek-allocated-heat-carbon-verification.json",
         "docs/development/uvek-secondary-coke-heat-verification.json",
-        "docs/development/uvek-secondary-geothermal-heat-verification.json"
+        "docs/development/uvek-secondary-geothermal-heat-verification.json",
+        "docs/development/uvek-heat-ccs-boundary-review.json"
       ],
       "latest_coverage_note": "Deep-geothermal heat now uses the retained converted inventory through the shared Premise heat workflow: 16 regional suppliers, 17 regional/World markets, full 12,114-activity export and 172 signed finite LCIs in a controlled TIAM coal/geothermal case. Heat-output conversion is one; original geographical records forward normally and construction relinking preserves input totals and scales uncertainty consistently. Nine unqualified heat roles remain; full real TIAM/MESSAGE scenarios are not qualified.",
       "geothermal_stage": {
         "status": "controlled_shared_callback_export_and_signed_LCI_verified",
         "verification": "docs/development/uvek-secondary-geothermal-heat-verification.json",
         "full_real_IAM_scenario_verified": false
+      },
+      "CCS_boundary_review": {
+        "status": "native_carbon_balance_requires_correction_before_binding",
+        "evidence": "docs/development/uvek-heat-ccs-boundary-review.json",
+        "new_runtime_roles_admitted": 0
+      },
+      "approval_regression": {
+        "passed": 832,
+        "failed": 0,
+        "committed_sources_frozen": true
       }
     },
     {
