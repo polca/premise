@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-11",
+  "status": "Three exact 3.8 infrastructure correspondences qualified. Water reference-sign profile, complete fuel update/export and other sectors remain unfinished.",
+  "brightpath_commit": "3c2a673080459b9b2f0f21d103373f032dedfb32",
+  "review_sha256": "e84cc2133f6e3c8203f88b25dcfb576432579214aca8f4422db9973827687940",
+  "forward_resource_sha256": "a771b37a28fe876b6830dfe3ca1b0f689268ade1b9a87339905e38c9272192c8",
+  "migration_resource_unchanged": true,
+  "new_approval_scopes": 3,
+  "validated_approval_scopes": 672,
+  "all_prior_669_operations_and_fingerprints_preserved": true,
+  "tests": {
+    "brightpath": "15 passed, including explicit refusal of pending water profile",
+    "premise": "15 passed, including fresh/cache signed normal/lognormal uncertainty and individual approval removal"
+  },
+  "native_lci_checks": [
+    {
+      "identity": {
+        "location": "CH",
+        "name": "Ethanol fermentation plant",
+        "reference product": "Ethanol fermentation plant",
+        "unit": "unit"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "identity": {
+        "location": "CH",
+        "name": "Liquid storage tank, chemicals, organics",
+        "reference product": "Liquid storage tank, chemicals, organics",
+        "unit": "unit"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "identity": {
+        "location": "CH",
+        "name": "Synthetic gas plant",
+        "reference product": "Synthetic gas plant",
+        "unit": "unit"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "identity": {
+        "location": "CH",
+        "name": "Water, deionised, at plant",
+        "reference product": "Water, deionised, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "wheel": "Packaged review/resource bytes match checkout.",
+  "regular_environment": "Pushed Git commit installed and 672 exact scopes verified.",
+  "runtime_python_changes": false,
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 42,
+    "distinct_rule_identities": 38,
+    "only_removed_cases": [
+      [
+        "3.8",
+        "bp-23f6df653910092e"
+      ],
+      [
+        "3.8",
+        "bp-4c51b8491a9aebe9"
+      ],
+      [
+        "3.8",
+        "bp-c291034cfcb83f1c"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 41441584,
+  "limitations": [
+    [
+      "Use one complete native ethanol fermentation plant per source plant unit. Both document 90000 tonnes ethanol per year and a 20-year lifetime, based on a wheat plant design from the USA despite the CH native location label. Source global CH/RoW supplier weights are replaced by this complete native design as a geographic screening proxy. This is construction, not ethanol production or annual capacity. Do not divide by capacity, lifetime or ethanol yield, add plant operation or repeat decommissioning.",
+      "Preserve signed caller quantity, uncertainty, formula and properties. Keep the complete native inventory once, including its construction or operating inputs, supply transport, dismantling and emissions where present. Source background input mix, supplier geography, allocation, internal uncertainty and vintage are replaced rather than reconstructed; unsupported native biosphere exclusions remain. No equivalence of inventory or score is claimed; score effects are unquantified."
+    ],
+    [
+      "Use one complete native organic-chemical storage installation per source unit. Both document four tanks of 4000 cubic metres each, 16000 cubic metres total and a 50-year lifetime. A unit is the complete installation, not one tank, one cubic metre or one year of storage. Do not multiply by four, divide by volume or lifetime, add storage operation or invent construction energy, which the documented boundary excludes. Native Swiss weak-data fuel-storage-derived design is an explicit global geographic and technology screening proxy; construction materials, coatings, contamination assumptions and residential-building disposal approximations remain uncertain.",
+      "Preserve signed caller quantity, uncertainty, formula and properties. Keep the complete native inventory once, including its construction or operating inputs, supply transport, dismantling and emissions where present. Source background input mix, supplier geography, allocation, internal uncertainty and vintage are replaced rather than reconstructed; unsupported native biosphere exclusions remain. No equivalence of inventory or score is claimed; score effects are unquantified."
+    ],
+    [
+      "Use one complete native biomass synthetic-gas plant per source construction unit. Both document 5 MW thermal output, 7.2-7.6 MW input and a 50-year lifetime; the scope includes dryer, comminution, gasifier, gas treatment and conditioning infrastructure. Source RoW becomes a Swiss pilot-derived geographic and design screening proxy. Do not substitute operating gas production, multiply by energy efficiency, divide by lifetime or add equipment already included. Native furnace-derived construction and fixed-bed/fluidised-bed representativeness remain limitations.",
+      "Preserve signed caller quantity, uncertainty, formula and properties. Keep the complete native inventory once, including its construction or operating inputs, supply transport, dismantling and emissions where present. Source background input mix, supplier geography, allocation, internal uncertainty and vintage are replaced rather than reconstructed; unsupported native biosphere exclusions remain. No equivalence of inventory or score is claimed; score effects are unquantified."
+    ]
+  ],
+  "pending_water_case": "Physical basis and native LCI inspected, but exact 3.8 reference-sign profile remains unqualified. Not approved by this packet."
+}

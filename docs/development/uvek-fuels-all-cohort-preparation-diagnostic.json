@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "52d9a69979f5f8e6959f9ec8b7653573754aea73",
-  "approval_ledger_sha256": "ce2a175012070cc931ba2b46cd6b347c1f4fc484c00dd7e15e96bb770c973197",
-  "validated_scopes": 669,
+  "brightpath_commit": "3c2a673080459b9b2f0f21d103373f032dedfb32",
+  "approval_ledger_sha256": "89f4ea4e2001e85840461d4301aa6d73581efdfd1d77e24246122729fb79cc4e",
+  "validated_scopes": 672,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 45,
-  "distinct_unapproved_rule_identities": 41,
+  "unapproved_source_profile_cases": 42,
+  "distinct_unapproved_rule_identities": 38,
   "cohorts": [
     {
       "source": {
@@ -71,25 +71,10 @@
       },
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 17,
-      "refusal_audit_filename": "8ab7df92c9f55ae14ab5781c11e332be2a939bd6dc689440a5c039176da0ff04.audit.json.gz",
-      "refusal_audit_sha256": "c8b99472451d6aa4ccc205c1cdc9a2c71cbed323d649567a1ab91d89240a531a",
+      "unapproved_count": 14,
+      "refusal_audit_filename": "93b859747cf66b8c7cce838118d0be53023f3efb3ae00bcaa9c4161492dc92f4.audit.json.gz",
+      "refusal_audit_sha256": "4b94cf6ca58194b5612da5165176eec470237f2dbff5e1bdadaea80a6adfa20a",
       "pending": [
-        {
-          "rule_id": "bp-4c51b8491a9aebe9",
-          "source": {
-            "location": "GLO",
-            "name": "market for ethanol fermentation plant",
-            "reference product": "ethanol fermentation plant",
-            "unit": "unit"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Ethanol fermentation plant",
-            "reference product": "Ethanol fermentation plant",
-            "unit": "unit"
-          }
-        },
         {
           "rule_id": "bp-cf2ed054ced71820",
           "source": {
@@ -253,21 +238,6 @@
           }
         },
         {
-          "rule_id": "bp-c291034cfcb83f1c",
-          "source": {
-            "location": "GLO",
-            "name": "market for liquid storage tank, chemicals, organics",
-            "reference product": "liquid storage tank, chemicals, organics",
-            "unit": "unit"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Liquid storage tank, chemicals, organics",
-            "reference product": "Liquid storage tank, chemicals, organics",
-            "unit": "unit"
-          }
-        },
-        {
           "rule_id": "bp-f1bc637c4fcf6060",
           "source": {
             "location": "Europe without Switzerland",
@@ -295,21 +265,6 @@
             "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
             "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
             "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-23f6df653910092e",
-          "source": {
-            "location": "RoW",
-            "name": "synthetic gas factory construction",
-            "reference product": "synthetic gas factory",
-            "unit": "unit"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Synthetic gas plant",
-            "reference product": "Synthetic gas plant",
-            "unit": "unit"
           }
         },
         {
@@ -363,8 +318,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 24,
-      "refusal_audit_filename": "e2ec35cba88a46a4cb51c71c98e2c4af01db533c8ec02b988cfb24d6f0d6df78.audit.json.gz",
-      "refusal_audit_sha256": "525389ce37b2bc7fbaebc7d220b4a1e629cf88ccc8a4fe158946d81d74b6493c",
+      "refusal_audit_filename": "cdb4a041429a7f34784167288f85bce187ebae47557e633964a12a6691fb0cbc.audit.json.gz",
+      "refusal_audit_sha256": "c13b21570c00b62d09166fdfb97bfb73dd9abcacb77705174ae7e85d1e08ad85",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -731,8 +686,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "ba0717a1cd25963eb16855a7bdc33c95b42be0a074f4e66c1c72b235a85fb581.audit.json.gz",
-      "refusal_audit_sha256": "10996fc0d59430cdc19e5f852d663ed0f51fb96373aed9021371efc16b97756b",
+      "refusal_audit_filename": "a1c37c905a5b7132b037fc1f75f5fbb5dc5ade81ad27e8f0942e5980f1f4b902.audit.json.gz",
+      "refusal_audit_sha256": "4053f4db0186b6f8a800235b4cb22adbcefa4ea5b1e869f5482b0b1451f789d2",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

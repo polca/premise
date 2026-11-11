@@ -195590,6 +195590,316 @@
           "fingerprint": "67f06788d5766401678ed96afcd1882e16ac13ceee445126e18d99a9c7f84819"
         }
       ]
+    },
+    {
+      "rule_id": "bp-4c51b8491a9aebe9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_infrastructure_water_review.json",
+      "review_sha256": "e84cc2133f6e3c8203f88b25dcfb576432579214aca8f4422db9973827687940",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for ethanol fermentation plant",
+            "reference product": "ethanol fermentation plant",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "d09174669c8f4d5495d8d36130576fbefef37c68296cbfa4c9ce317b88981bb4",
+          "inventory_sha256": "046db4106c5104495d3e59fa1137e15deb4a5040a875dba1227421315e2e0ea3",
+          "nonproduction_counts": {
+            "technosphere": 2,
+            "biosphere": 0
+          },
+          "name": "market for ethanol fermentation plant",
+          "reference product": "ethanol fermentation plant",
+          "location": "GLO",
+          "unit": "unit"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ethanol fermentation plant construction",
+              "reference product": "ethanol fermentation plant",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e96d1cc7dc7cb128aef67551a60d50db7f180b7dd718b803daeb50de40ace7f4",
+            "inventory_sha256": "c56ce536126b1a2477afbd500a39c5328c475830a728527725d7a59f2d6730a4",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 4
+            }
+          },
+          {
+            "identity": {
+              "name": "ethanol fermentation plant construction",
+              "reference product": "ethanol fermentation plant",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b4e5aec11bb07d8eda4d6f0f8c18876230fa622a38ea8bca5f09eb7d08e37b75",
+            "inventory_sha256": "f712d17cdef0d5e6bd0593ab0bf1be82704d0ac46f089607bfd554b98942d90b",
+            "nonproduction_counts": {
+              "technosphere": 24,
+              "biosphere": 4
+            }
+          }
+        ],
+        "basis": "Use one complete native ethanol fermentation plant per source plant unit. Both document 90000 tonnes ethanol per year and a 20-year lifetime, based on a wheat plant design from the USA despite the CH native location label. Source global CH/RoW supplier weights are replaced by this complete native design as a geographic screening proxy. This is construction, not ethanol production or annual capacity. Do not divide by capacity, lifetime or ethanol yield, add plant operation or repeat decommissioning.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Ethanol fermentation plant",
+          "reference product": "Ethanol fermentation plant",
+          "unit": "unit"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Ethanol fermentation plant",
+              "reference product": "Ethanol fermentation plant",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 19,
+            "metadata_sha256": "1fdf7d5b1acedd6274a8919c453915fb49ff8135d59fa57403ee35db74d636f1",
+            "enriched_inventory_sha256": "d8f8ee5c5785fd96438f03d0feeb2017ae788330d792139668fa48646db1fde2"
+          }
+        ]
+      },
+      "limitations": [
+        "Use one complete native ethanol fermentation plant per source plant unit. Both document 90000 tonnes ethanol per year and a 20-year lifetime, based on a wheat plant design from the USA despite the CH native location label. Source global CH/RoW supplier weights are replaced by this complete native design as a geographic screening proxy. This is construction, not ethanol production or annual capacity. Do not divide by capacity, lifetime or ethanol yield, add plant operation or repeat decommissioning.",
+        "Preserve signed caller quantity, uncertainty, formula and properties. Keep the complete native inventory once, including its construction or operating inputs, supply transport, dismantling and emissions where present. Source background input mix, supplier geography, allocation, internal uncertainty and vintage are replaced rather than reconstructed; unsupported native biosphere exclusions remain. No equivalence of inventory or score is claimed; score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1fcc6ca6cb7d78f09755f6060aedfa1d212e82e6861484d12dfa7ab1160f8370"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c291034cfcb83f1c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_infrastructure_water_review.json",
+      "review_sha256": "e84cc2133f6e3c8203f88b25dcfb576432579214aca8f4422db9973827687940",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for liquid storage tank, chemicals, organics",
+            "reference product": "liquid storage tank, chemicals, organics",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "6fa0a59acfc8c4c79357387b65665deb8b6814ba797496983d87e60c2ea228d4",
+          "inventory_sha256": "81ff21dcbb6feb02f0a7861d2d9c8ddd5319e35b4b119cfaf4b4710a83894f2c",
+          "nonproduction_counts": {
+            "technosphere": 2,
+            "biosphere": 0
+          },
+          "name": "market for liquid storage tank, chemicals, organics",
+          "reference product": "liquid storage tank, chemicals, organics",
+          "location": "GLO",
+          "unit": "unit"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "liquid storage tank production, chemicals, organics",
+              "reference product": "liquid storage tank, chemicals, organics",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a575b789997afe0732f77ba14308bb20238b4bd9f0b92788cb6c0ac384314c7d",
+            "inventory_sha256": "2bf9ff065f7f0924e7ee6d1695fd779e6d7b464184f38269ded0f4e928c95be0",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "liquid storage tank production, chemicals, organics",
+              "reference product": "liquid storage tank, chemicals, organics",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9449a30e17ed5a423676efacb0bafed575838cd0be89ef4f13d2a47a8302cde3",
+            "inventory_sha256": "0c7a4dacb1773685c3c220aa5a9a6d1da6d4a9827a20b3b816d049f7451e818c",
+            "nonproduction_counts": {
+              "technosphere": 25,
+              "biosphere": 5
+            }
+          }
+        ],
+        "basis": "Use one complete native organic-chemical storage installation per source unit. Both document four tanks of 4000 cubic metres each, 16000 cubic metres total and a 50-year lifetime. A unit is the complete installation, not one tank, one cubic metre or one year of storage. Do not multiply by four, divide by volume or lifetime, add storage operation or invent construction energy, which the documented boundary excludes. Native Swiss weak-data fuel-storage-derived design is an explicit global geographic and technology screening proxy; construction materials, coatings, contamination assumptions and residential-building disposal approximations remain uncertain.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Liquid storage tank, chemicals, organics",
+          "reference product": "Liquid storage tank, chemicals, organics",
+          "unit": "unit"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Liquid storage tank, chemicals, organics",
+              "reference product": "Liquid storage tank, chemicals, organics",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 17,
+            "metadata_sha256": "0151066a7a152d6e774291bb2ec8694416f83a80f31931229f0b9e9f39dd6db5",
+            "enriched_inventory_sha256": "c71653a1812880e408e725e30d63308b53686802316cfa7b9b7cdca854b15eab"
+          }
+        ]
+      },
+      "limitations": [
+        "Use one complete native organic-chemical storage installation per source unit. Both document four tanks of 4000 cubic metres each, 16000 cubic metres total and a 50-year lifetime. A unit is the complete installation, not one tank, one cubic metre or one year of storage. Do not multiply by four, divide by volume or lifetime, add storage operation or invent construction energy, which the documented boundary excludes. Native Swiss weak-data fuel-storage-derived design is an explicit global geographic and technology screening proxy; construction materials, coatings, contamination assumptions and residential-building disposal approximations remain uncertain.",
+        "Preserve signed caller quantity, uncertainty, formula and properties. Keep the complete native inventory once, including its construction or operating inputs, supply transport, dismantling and emissions where present. Source background input mix, supplier geography, allocation, internal uncertainty and vintage are replaced rather than reconstructed; unsupported native biosphere exclusions remain. No equivalence of inventory or score is claimed; score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a0d7c1f062a490cde801ad1dc6c45c0d118f73ac9036ee3209460296b7a2f9ee"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-23f6df653910092e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_infrastructure_water_review.json",
+      "review_sha256": "e84cc2133f6e3c8203f88b25dcfb576432579214aca8f4422db9973827687940",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "synthetic gas factory construction",
+            "reference product": "synthetic gas factory",
+            "location": "RoW",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "31915cd00fd8291121fc9e032e3090a1262ad8d1ee8c203fd73c734174b7dd5a",
+          "inventory_sha256": "37ad6fe9fe8180dcd87b6f069d75d685294df0e609790d3622bbe8c0a9ab0771",
+          "nonproduction_counts": {
+            "technosphere": 27,
+            "biosphere": 4
+          },
+          "name": "synthetic gas factory construction",
+          "reference product": "synthetic gas factory",
+          "location": "RoW",
+          "unit": "unit"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Use one complete native biomass synthetic-gas plant per source construction unit. Both document 5 MW thermal output, 7.2-7.6 MW input and a 50-year lifetime; the scope includes dryer, comminution, gasifier, gas treatment and conditioning infrastructure. Source RoW becomes a Swiss pilot-derived geographic and design screening proxy. Do not substitute operating gas production, multiply by energy efficiency, divide by lifetime or add equipment already included. Native furnace-derived construction and fixed-bed/fluidised-bed representativeness remain limitations.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Synthetic gas plant",
+          "reference product": "Synthetic gas plant",
+          "unit": "unit"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Synthetic gas plant",
+              "reference product": "Synthetic gas plant",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 19,
+            "metadata_sha256": "d4063273e55cd39a6718be6ff51d002d0b19327ced13bd1bf0b11998654a8edd",
+            "enriched_inventory_sha256": "31d3fc6f06c3bb6e330f964fda6f6cd13d408d8530389111149e64eb10ca179f"
+          }
+        ]
+      },
+      "limitations": [
+        "Use one complete native biomass synthetic-gas plant per source construction unit. Both document 5 MW thermal output, 7.2-7.6 MW input and a 50-year lifetime; the scope includes dryer, comminution, gasifier, gas treatment and conditioning infrastructure. Source RoW becomes a Swiss pilot-derived geographic and design screening proxy. Do not substitute operating gas production, multiply by energy efficiency, divide by lifetime or add equipment already included. Native furnace-derived construction and fixed-bed/fluidised-bed representativeness remain limitations.",
+        "Preserve signed caller quantity, uncertainty, formula and properties. Keep the complete native inventory once, including its construction or operating inputs, supply transport, dismantling and emissions where present. Source background input mix, supplier geography, allocation, internal uncertainty and vintage are replaced rather than reconstructed; unsupported native biosphere exclusions remain. No equivalence of inventory or score is claimed; score effects are unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5695e46a2deb8bbf6edac2480bda390afc31338757ac595a648e841802b16538"
+        }
+      ]
     }
   ],
   "superseded_operations": [
