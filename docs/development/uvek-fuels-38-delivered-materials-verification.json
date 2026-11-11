@@ -1,0 +1,161 @@
+{
+  "date": "2026-11-11",
+  "status": "Two exact 3.8 delivered-material helpers qualified; complete fuels transformation/export and other sectors unfinished.",
+  "brightpath_commit": "d5f4ff04a5277474a97355c07e02340660784773",
+  "review_sha256": "357ad62ef92e5a5627e2c326b2f76ea40ec0a612a02fde761cf1edb62c7096c0",
+  "forward_resource_sha256": "d18a674f07ae5a1ee5c16955cd8c27696dd02033760be6399845fa6503ae04bf",
+  "new_approval_scopes": 2,
+  "validated_approval_scopes": 675,
+  "old_fingerprint_refreshes": [
+    "3.9 zeolite"
+  ],
+  "refresh_proof": "Old full-rule fingerprint verified before refresh; original direct 3.9 target, factor and approval review retained. All other previous operations unchanged.",
+  "tests": {
+    "brightpath": "12 passed after completing helper evidence/shared-review authoring before publication",
+    "premise": "11 passed; signed normal/lognormal caller statistics, six retained rows, fresh/cache, individual approval removal and old 3.9 direct zeolite route",
+    "broader_baseline": "Earlier reference-sign regression passed 733 checks at preceding water commit; no post-change full-suite pass claimed."
+  },
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-1b65914b2f33ba7b",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_demands": [
+        {
+          "identity": [
+            "Transport, freight, lorry, fleet average",
+            "Transport, freight, lorry, fleet average",
+            "RER",
+            "ton kilometer"
+          ],
+          "amount": 0.3354
+        },
+        {
+          "identity": [
+            "Transport, transoceanic container ship",
+            "Transport, transoceanic container ship",
+            "OCE",
+            "ton kilometer"
+          ],
+          "amount": 0.334
+        },
+        {
+          "identity": [
+            "Transport, freight, lorry, 3.5t gross weight, fleet average",
+            "Transport, freight, lorry, 3.5t gross weight, fleet average",
+            "RER",
+            "ton kilometer"
+          ],
+          "amount": 0.0104
+        },
+        {
+          "identity": [
+            "Transport, freight, rail",
+            "Transport, freight, rail",
+            "RER",
+            "ton kilometer"
+          ],
+          "amount": 0.2217
+        },
+        {
+          "identity": [
+            "Packaging film, LDPE, at plant",
+            "Packaging film, LDPE, at plant",
+            "RER",
+            "kilogram"
+          ],
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8bbb01130472bd02",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_demands": [
+        {
+          "identity": [
+            "Transport, freight, lorry, fleet average",
+            "Transport, freight, lorry, fleet average",
+            "RER",
+            "ton kilometer"
+          ],
+          "amount": 0.4344
+        },
+        {
+          "identity": [
+            "Transport, transoceanic container ship",
+            "Transport, transoceanic container ship",
+            "OCE",
+            "ton kilometer"
+          ],
+          "amount": 0.3107
+        },
+        {
+          "identity": [
+            "Transport, freight, lorry, 3.5t gross weight, fleet average",
+            "Transport, freight, lorry, 3.5t gross weight, fleet average",
+            "RER",
+            "ton kilometer"
+          ],
+          "amount": 0.0134
+        },
+        {
+          "identity": [
+            "Transport, freight, rail",
+            "Transport, freight, rail",
+            "RER",
+            "ton kilometer"
+          ],
+          "amount": 0.1076
+        },
+        {
+          "identity": [
+            "Zeolite, powder, at plant",
+            "Zeolite, powder, at plant",
+            "RER",
+            "kilogram"
+          ],
+          "amount": 1.0
+        }
+      ]
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "mapping_preservation": "Only two parents changed; all old helpers and shared reviews identical; two new helpers and two new shared cards.",
+  "profile_scope": "Previously approved 3.9 zeolite retains its exact old target and factor +1; its original review is bound unchanged. Other uninspected profiles are explicitly refused rather than borrowing the 3.8 helper.",
+  "replay_and_wheel": "Forward/canonical replay and packaged review/resource/manifest match checkout.",
+  "runtime_python_changes": false,
+  "regular_environment": "Pushed Git revision installed; resource SHA and 675 scopes verified.",
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 39,
+    "distinct_rule_identities": 35,
+    "only_removed_cases": [
+      [
+        "3.8",
+        "bp-1b65914b2f33ba7b"
+      ],
+      [
+        "3.8",
+        "bp-8bbb01130472bd02"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123403182,
+  "limitations": [
+    [
+      "Same finished LDPE packaging film per kg, not raw resin, a battery module or a forming-only service. Complete native film already includes LDPE feedstock, its transport to converting and film extrusion; add no second resin or extrusion process, scrap-yield correction, thickness or density multiplier. Exact inspected ecoinvent 3.8 cut-off only. Preserve signed caller kg, uncertainty, formula and properties; retain all two original producer entries and four separate final-freight entries in source order, with original amounts and supported marginal statistics, without aggregation, omission or normalization. Native European production replaces both RER and RoW inventories; RoW is an explicit geographic screening proxy. Complete native production and internal feedstock transport remain once; final market freight is additional and distinct. Four final freight legs retain tonne-km using native European generic road, European 3.5-tonne gross-weight fleet, European rail and ocean container services. Source global fleet mix, payload, empty return, size and technology are not reconstructed; the 3.5-tonne service is an explicit light-commercial fleet proxy. No payload or distance multiplier is invented. Native production inputs, allocation, geography, internal uncertainty, vintage and upstream biosphere exclusions differ; inventory and score differences remain unquantified. Separate caller processing and emissions remain unchanged."
+    ],
+    [
+      "Same zeolite powder per kg, not a 50% slurry or an additional drying service. Source and native describe the historical hydrogel process from five European producers. Native is a nonempty aggregated biosphere inventory despite no direct technosphere inputs; retain it whole and add no invented precursor or energy burdens. No grade, adsorption-performance, purity or hydration equivalence is established and no concentration factor is introduced. Exact inspected ecoinvent 3.8 cut-off only. Preserve signed caller kg, uncertainty, formula and properties; retain all two original producer entries and four separate final-freight entries in source order, with original amounts and supported marginal statistics, without aggregation, omission or normalization. Native European production replaces both RER and RoW inventories; RoW is an explicit geographic screening proxy. Complete native production and internal feedstock transport remain once; final market freight is additional and distinct. Four final freight legs retain tonne-km using native European generic road, European 3.5-tonne gross-weight fleet, European rail and ocean container services. Source global fleet mix, payload, empty return, size and technology are not reconstructed; the 3.5-tonne service is an explicit light-commercial fleet proxy. No payload or distance multiplier is invented. Native production inputs, allocation, geography, internal uncertainty, vintage and upstream biosphere exclusions differ; inventory and score differences remain unquantified. Separate caller processing and emissions remain unchanged."
+    ]
+  ]
+}

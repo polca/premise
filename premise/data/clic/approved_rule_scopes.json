@@ -13266,7 +13266,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "be8bcdf217b4e53ed0275c8c7245605022fd1445be9dcb828817356db5331f6b"
+          "fingerprint": "7c9203d49de10e8538ffbd709dfdc094e461fc25d5661c4733dd6846adedf4fb"
         }
       ]
     },
@@ -195996,6 +195996,324 @@
             "system_model": "cutoff"
           },
           "fingerprint": "e62f990eb8ffd1a2d0363202fa69bca58fa33a0b077c848d00cef909ac8250f9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1b65914b2f33ba7b",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_delivered_materials_review.json",
+      "review_sha256": "357ad62ef92e5a5627e2c326b2f76ea40ec0a612a02fde761cf1edb62c7096c0",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for packaging film, low density polyethylene",
+            "reference product": "packaging film, low density polyethylene",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "ed748fbcf8bf6a36d60b16f2c0f5c31c9ac54e5ddf6b63cad370d5a4a67468dd",
+          "inventory_sha256": "99f595cf95bbd8eaafe763560248abad8d367a74a80c27b4580259d0c1baacca",
+          "name": "market for packaging film, low density polyethylene",
+          "reference product": "packaging film, low density polyethylene",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "packaging film production, low density polyethylene",
+              "reference product": "packaging film, low density polyethylene",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f93c35deb843161fe1d065708733921e8a6bb1f91204f4a61cfa07b7d1810bbb",
+            "inventory_sha256": "0466a978425abd607eb34ad229fc1fa27db3008d73496a1eabb625842c9ee152"
+          },
+          {
+            "identity": {
+              "name": "packaging film production, low density polyethylene",
+              "reference product": "packaging film, low density polyethylene",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a74226e32ace85f3faabc69144e94d07c5907dded66885e31512b5ca5913e628",
+            "inventory_sha256": "430018fd737e776a556602e5ac6b1123d2802d2eb1ecb46d1eec7ff9d7d97182"
+          }
+        ],
+        "basis": "Same finished LDPE packaging film per kg, not raw resin, a battery module or a forming-only service. Complete native film already includes LDPE feedstock, its transport to converting and film extrusion; add no second resin or extrusion process, scrap-yield correction, thickness or density multiplier. Exact inspected ecoinvent 3.8 cut-off only. Preserve signed caller kg, uncertainty, formula and properties; retain all two original producer entries and four separate final-freight entries in source order, with original amounts and supported marginal statistics, without aggregation, omission or normalization. Native European production replaces both RER and RoW inventories; RoW is an explicit geographic screening proxy. Complete native production and internal feedstock transport remain once; final market freight is additional and distinct. Four final freight legs retain tonne-km using native European generic road, European 3.5-tonne gross-weight fleet, European rail and ocean container services. Source global fleet mix, payload, empty return, size and technology are not reconstructed; the 3.5-tonne service is an explicit light-commercial fleet proxy. No payload or distance multiplier is invented. Native production inputs, allocation, geography, internal uncertainty, vintage and upstream biosphere exclusions differ; inventory and score differences remain unquantified. Separate caller processing and emissions remain unchanged.",
+        "conversion_factor": 1,
+        "resource_action": "profile-scoped delivered-material helper",
+        "new_target": {
+          "recipe_ref": "fuels-38-delivered-1b65914b2f33ba7b"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "metadata_sha256": "8e30f6ed20cf4f391ba92adec8b4b712e1515313c6fdd5ab1a62aec73b5fdba8",
+            "inventory_sha256": "5cafc6fd305ff1eeb9bdd5122d058e7439116a795952bda3b9674efef99febfb"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Packaging film, LDPE, at plant",
+              "reference product": "Packaging film, LDPE, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "125dffc0836f163e593838ff7e10561c90a20c964514c7f6c17f45ee1926e90f",
+            "inventory_sha256": "f9ab8588e0ed90244c3a5f4f76f7508172d0405c1dbaf2db077d47c95f61321e"
+          },
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Zeolite, powder, at plant",
+              "reference product": "Zeolite, powder, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1301,
+            "metadata_sha256": "fb9c0006bda6d7e180162702882724eb152365a9741fcb29f6ee6d24ecb08791",
+            "inventory_sha256": "59bb958a5af3eb1c13684cef84055d5d2d9597f426dd1a223144d386199c257f"
+          }
+        ]
+      },
+      "limitations": [
+        "Same finished LDPE packaging film per kg, not raw resin, a battery module or a forming-only service. Complete native film already includes LDPE feedstock, its transport to converting and film extrusion; add no second resin or extrusion process, scrap-yield correction, thickness or density multiplier. Exact inspected ecoinvent 3.8 cut-off only. Preserve signed caller kg, uncertainty, formula and properties; retain all two original producer entries and four separate final-freight entries in source order, with original amounts and supported marginal statistics, without aggregation, omission or normalization. Native European production replaces both RER and RoW inventories; RoW is an explicit geographic screening proxy. Complete native production and internal feedstock transport remain once; final market freight is additional and distinct. Four final freight legs retain tonne-km using native European generic road, European 3.5-tonne gross-weight fleet, European rail and ocean container services. Source global fleet mix, payload, empty return, size and technology are not reconstructed; the 3.5-tonne service is an explicit light-commercial fleet proxy. No payload or distance multiplier is invented. Native production inputs, allocation, geography, internal uncertainty, vintage and upstream biosphere exclusions differ; inventory and score differences remain unquantified. Separate caller processing and emissions remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b68766543a5ef9286c20a14b28c61067d21a230da40e254617c107af128666d8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8bbb01130472bd02",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_delivered_materials_review.json",
+      "review_sha256": "357ad62ef92e5a5627e2c326b2f76ea40ec0a612a02fde761cf1edb62c7096c0",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for zeolite, powder",
+            "reference product": "zeolite, powder",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "d6c3319a039e590a0eaa6d595829718e40358fe004df80a9ab9f9e0c87b4c4aa",
+          "inventory_sha256": "b1e66ea77407eb6ee25f4dba51954878f90edccc1800e54d58029421db341133",
+          "name": "market for zeolite, powder",
+          "reference product": "zeolite, powder",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "zeolite production, powder",
+              "reference product": "zeolite, powder",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "277ab7bb219137ef498eb3b1516130e5aa6e186dafc847af6449441cee19a25b",
+            "inventory_sha256": "58dd9ba7995307d9ede85ee78fdad3c107c19d9b140a490033ac0f76949662ca"
+          },
+          {
+            "identity": {
+              "name": "zeolite production, powder",
+              "reference product": "zeolite, powder",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "bfa45bb8fa3089527fc09b948c4ac68a20bb39f417f64698c3a40e246f6c58f8",
+            "inventory_sha256": "096acb4c717c376f14a70b51a113899b5647828958154701da349ebedf25d554"
+          }
+        ],
+        "basis": "Same zeolite powder per kg, not a 50% slurry or an additional drying service. Source and native describe the historical hydrogel process from five European producers. Native is a nonempty aggregated biosphere inventory despite no direct technosphere inputs; retain it whole and add no invented precursor or energy burdens. No grade, adsorption-performance, purity or hydration equivalence is established and no concentration factor is introduced. Exact inspected ecoinvent 3.8 cut-off only. Preserve signed caller kg, uncertainty, formula and properties; retain all two original producer entries and four separate final-freight entries in source order, with original amounts and supported marginal statistics, without aggregation, omission or normalization. Native European production replaces both RER and RoW inventories; RoW is an explicit geographic screening proxy. Complete native production and internal feedstock transport remain once; final market freight is additional and distinct. Four final freight legs retain tonne-km using native European generic road, European 3.5-tonne gross-weight fleet, European rail and ocean container services. Source global fleet mix, payload, empty return, size and technology are not reconstructed; the 3.5-tonne service is an explicit light-commercial fleet proxy. No payload or distance multiplier is invented. Native production inputs, allocation, geography, internal uncertainty, vintage and upstream biosphere exclusions differ; inventory and score differences remain unquantified. Separate caller processing and emissions remain unchanged.",
+        "conversion_factor": 1,
+        "resource_action": "profile-scoped delivered-material helper",
+        "new_target": {
+          "recipe_ref": "fuels-38-delivered-8bbb01130472bd02"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "metadata_sha256": "8e30f6ed20cf4f391ba92adec8b4b712e1515313c6fdd5ab1a62aec73b5fdba8",
+            "inventory_sha256": "5cafc6fd305ff1eeb9bdd5122d058e7439116a795952bda3b9674efef99febfb"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Packaging film, LDPE, at plant",
+              "reference product": "Packaging film, LDPE, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "125dffc0836f163e593838ff7e10561c90a20c964514c7f6c17f45ee1926e90f",
+            "inventory_sha256": "f9ab8588e0ed90244c3a5f4f76f7508172d0405c1dbaf2db077d47c95f61321e"
+          },
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Zeolite, powder, at plant",
+              "reference product": "Zeolite, powder, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 1301,
+            "metadata_sha256": "fb9c0006bda6d7e180162702882724eb152365a9741fcb29f6ee6d24ecb08791",
+            "inventory_sha256": "59bb958a5af3eb1c13684cef84055d5d2d9597f426dd1a223144d386199c257f"
+          }
+        ]
+      },
+      "limitations": [
+        "Same zeolite powder per kg, not a 50% slurry or an additional drying service. Source and native describe the historical hydrogel process from five European producers. Native is a nonempty aggregated biosphere inventory despite no direct technosphere inputs; retain it whole and add no invented precursor or energy burdens. No grade, adsorption-performance, purity or hydration equivalence is established and no concentration factor is introduced. Exact inspected ecoinvent 3.8 cut-off only. Preserve signed caller kg, uncertainty, formula and properties; retain all two original producer entries and four separate final-freight entries in source order, with original amounts and supported marginal statistics, without aggregation, omission or normalization. Native European production replaces both RER and RoW inventories; RoW is an explicit geographic screening proxy. Complete native production and internal feedstock transport remain once; final market freight is additional and distinct. Four final freight legs retain tonne-km using native European generic road, European 3.5-tonne gross-weight fleet, European rail and ocean container services. Source global fleet mix, payload, empty return, size and technology are not reconstructed; the 3.5-tonne service is an explicit light-commercial fleet proxy. No payload or distance multiplier is invented. Native production inputs, allocation, geography, internal uncertainty, vintage and upstream biosphere exclusions differ; inventory and score differences remain unquantified. Separate caller processing and emissions remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2585ceec9f13cd66b6bf19c8ecdb2ee09695041c5b32540b007a65a2ec1c8dd2"
         }
       ]
     }
