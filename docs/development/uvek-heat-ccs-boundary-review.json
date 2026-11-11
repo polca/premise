@@ -49,5 +49,48 @@
   "runtime_Python_changes": false,
   "new_runtime_roles_admitted": 0,
   "remaining_unqualified_heat_roles": 9,
-  "licensed_inventory_vectors_published": false
+  "licensed_inventory_vectors_published": false,
+  "follow_up_native_ng_CCS": {
+    "status": "controlled_shared_workflow_export_and_exhaustive_validation_verified",
+    "evidence": "docs/development/uvek-native-ng-ccs-heat-verification.json",
+    "remaining_unqualified_heat_roles": 8
+  },
+  "follow_up_coal_CCS": {
+    "status": "native_allocated_stack_and_correct_post_capture_service_identified_dependency_review_pending",
+    "native_heat_identity": {
+      "name": "Heat, hard coal, at cogen, allocation exergy",
+      "reference product": "Heat, hard coal, at cogen, allocation exergy",
+      "location": "DE",
+      "unit": "megajoule"
+    },
+    "native_allocated_fuel_MJ_per_MJ_heat": 0.77,
+    "native_combustion_CO2_kg_per_MJ_fuel": 0.094634,
+    "retained_heat_penalty_factor": 1.09,
+    "gross_allocated_stack_after_penalty_kg_per_MJ_heat": 0.0794263162,
+    "capture_kg_per_MJ_heat_for_90_percent": 0.07148368458,
+    "unchanged_workbook_credit_realized_fraction": 0.6066228084741515,
+    "decision": "Use the available post-combustion capture service for a post-combustion-labelled coal model, not the oxy-fuel service in the old workbook. Do not activate a heat alias before capture-chain dependencies and controlled export pass. Coke retains the existing shared coal-proxy convention with explicit fuel warnings.",
+    "correct_capture_service": "carbon-dioxide-captured-from-hard-coal-fired-power-plant-post-pipeline-200km-storage-1000m",
+    "normal_preparation_result": "Stopped at unreviewed compatibility rule bp-4be6319700d5ef19; no bypass or new approval granted.",
+    "next_dependency_review": {
+      "source": "market for hard coal power plant / hard coal power plant / GLO / unit",
+      "target": "Hard coal power plant / Hard coal power plant / RER / unit",
+      "source_100MW_and_500MW_shares": [
+        0.275590551181102,
+        0.724409448818898
+      ],
+      "native_documented_100MW_and_500MW_shares": [
+        0.1,
+        0.9
+      ],
+      "decision": "Review the complete construction, dismantling, capacity basis, geographic portfolio and vintage before accepting a whole-plant screening proxy. A matching unit label alone does not establish equivalence."
+    },
+    "evidence_sha256": {
+      "remaining-ccs-capture-services.private.json": "7de0d0608a391fee7d2b2b0066a620bd913a527e4180f72fde12dc1cee6d1081",
+      "remaining-ccs-native-combustion.private.json": "3dee77a330a6901214238e5cf192d4c002746f0922ca44f8fdad76648fb73695",
+      "coal-power-plant-correspondence.private.json": "1c9b13087579097b8aead09bbb3755cd343400b2067ac6cf1034e0ef1a7dd955",
+      "coal-wood-ccs-capture-chains-probe.log": "7b77152bdbdeb1670130cc560754d65a4edd0a95e90c7af08afc2c64bf528689"
+    },
+    "new_runtime_roles_admitted": 0
+  }
 }
