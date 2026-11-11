@@ -3465,7 +3465,8 @@ def test_fuels_312_corrected_dependencies_keep_complete_targets_and_cache(
     bridge = TechnosphereProfile("uvek", "2025", "cutoff")
     for version, model, approved in [
         ("3.12", "cutoff", True),
-        ("3.11", "cutoff", False),
+        # This dependency also has an independent 3.11 remaining-supplies approval.
+        ("3.11", "cutoff", rule_id == "bp-cf83bb724223e5b7"),
         ("3.12", "consequential", False),
     ]:
         fingerprint = compatibility_rule_fingerprint(

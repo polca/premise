@@ -1,0 +1,43 @@
+{
+  "market_recipes": 3,
+  "service_correspondences": 2,
+  "signed_market_conversions_passed": 6,
+  "signed_service_conversions_passed": 4,
+  "new_scope_count": 5,
+  "approved_scope_count": 749,
+  "previous_39_wastewater_scientific_behavior_unchanged": true,
+  "prior_fingerprint_rebinds": [
+    {
+      "rule_id": "bp-1338a8724acf99de",
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      }
+    }
+  ],
+  "caller_magnitudes_uncertainty_and_formula_scaled_consistently": true,
+  "all_helper_terms_and_uncertainty_preserved": true,
+  "full_geothermal_qualified": false,
+  "brightpath_commit": "e1e0e48b5c079da78eb4b9f4d489676ad939306a",
+  "focused_brightpath_tests_passed": 102,
+  "built_wheel_evidence_and_resource_verified": true,
+  "selected_retained_records": 48,
+  "prepared_records_including_helpers": 53,
+  "prepared_deep_geothermal_roots": 12,
+  "retained_preparation_passed": true,
+  "regular_conda_committed_git_preparation_passed": true,
+  "remaining_unapproved_correspondences": 0,
+  "migration_diagnostic_severity_counts": {
+    "warning": 78,
+    "info": 106,
+    "metadata": 6
+  },
+  "runtime_python_changes": false,
+  "broader_approval_regression_initial": {
+    "passed": 829,
+    "failed": 3,
+    "rechecked_cases_passed": 3,
+    "stable_full_rerun": "not_yet_run"
+  }
+}

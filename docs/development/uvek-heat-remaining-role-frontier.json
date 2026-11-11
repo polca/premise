@@ -52,12 +52,11 @@
   "licensed_inventory_coefficients_published": false,
   "runtime_roles_newly_admitted": 0,
   "follow_up_geothermal_prerequisites": {
-    "retained_workbook": "lci-geothermal.xlsx",
+    "status": "retained_preparation_passed_regional_heat_role_still_unqualified",
     "selected_records": 48,
-    "reviewed_grid_correspondences": 24,
-    "remaining_non_electricity_correspondences": 5,
-    "runtime_role_qualified": false,
-    "evidence": "docs/development/uvek-geothermal-material-verification.json",
-    "reviewed_material_correspondences": 6
+    "prepared_records": 53,
+    "remaining_unapproved_correspondences": 0,
+    "evidence": "docs/development/uvek-geothermal-market-verification.json",
+    "heat_role_qualified": false
   }
 }

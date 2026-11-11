@@ -93942,7 +93942,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "aec9292af3c832722cf34e5d873f40a43bc5b7e81e6bd5b168813f5c9065a855"
+          "fingerprint": "f4f251d95c39cbc1aaec47b7be92181e67a81a9fbfc14276a40f474218f8d97a"
         }
       ]
     },
@@ -204947,6 +204947,711 @@
             "system_model": "cutoff"
           },
           "fingerprint": "4f6c4242b1b4e0c102ffdace26b05e456813cbaaf85cc47d77dc696b767de713"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8be1ae15c0ed8dc7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_service_reference_review.json",
+      "review_sha256": "3e6b765188d0e549fee2524b1b4cc2f11dd9621bec9e19a144573ceeb609921c",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous complete native service screening proxies with warnings.",
+      "inspection": {
+        "rule_id": "bp-8be1ae15c0ed8dc7",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "market for inert waste, for final disposal",
+          "reference product": "inert waste, for final disposal",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, construction waste, to final disposal type B",
+          "reference product": "Disposal, construction waste, to final disposal type B",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for inert waste, for final disposal",
+            "reference product": "inert waste, for final disposal",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1,
+          "inventory_sha256": "5ca60c75e7862bf2a679e1592d64f7f784cd00571ed372037d7a298946f23621",
+          "metadata_sha256": "2c5566dfd7b66c7a1167e1bc318daa6c42533a32483830d6239aaca797225774",
+          "nonproduction_count": 3
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of inert waste, inert material landfill",
+              "reference product": "inert waste, for final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": -1,
+            "inventory_sha256": "e2ecb52988456ac099230800b85e0dbb57ef9d346ce5f82e0d2a81e9894844c4",
+            "metadata_sha256": "3027e68122ab587b6788e1044a286b54c4001b111ffc66b6a8505a3c7c3c0bb8",
+            "nonproduction_count": 2
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, construction waste, to final disposal type B",
+              "reference product": "Disposal, construction waste, to final disposal type B",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "96a470307aad68040a257a222626cbdf47e96d37e1a11650a92dd5b8e1417088",
+            "metadata_sha256": "bd53c7d779ee391819814e2012b751cfd334e956165d98ca1a74a8dc5bee7caf",
+            "nonproduction_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, construction waste, to final disposal type B",
+              "reference product": "Disposal, construction waste, to final disposal type B",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e97115a60017d49e0c4fd1b54c52022c3d727054cbe13444320266a752c2c4f3",
+            "metadata_sha256": "2afcff0680581973d9dd2994a16c82342069bd4a15992263174bbca856f6f2c5",
+            "nonproduction_count": 2
+          }
+        },
+        "rule_sha256": "fb3352979a7a9a5757e0a369698fc2cf2a7c5a45024ce71a80cb742a2ea7c123",
+        "conversion_factor": -1,
+        "resource_action": "unchanged_rule"
+      },
+      "limitations": [
+        "Use complete native Swiss type-B construction-waste disposal as a per-kg screening proxy for the Swiss inert-waste market. Source inert-landfill documentation excludes direct leachate emissions and describes partly sealed sites; native represents 5%-water inert material plus its own disposal delivery. Moisture, landfill class, sealing, closure, emissions, infrastructure and allocation can differ.",
+        "The source negative waste reference (-1 kg) and native positive treatment reference (+1 kg) require factor -1. Flip caller exchange sign exactly once, preserve kg magnitude and transform uncertainty sign consistently. This is positive treatment burden, not an avoided-disposal credit. Native disposal/delivery replaces the original source landfill and road/rail model; no extra freight or recovery credit.",
+        "Retain caller magnitude, formula, uncertainty shape and separate inventory terms. Native screening differences have unquantified score effects. Only the enumerated ecoinvent 3.6 cut-off scope is reviewed; no other version, consequential route or complete geothermal qualification is implied."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d2913f609666623a51f8b6f8035509e728da2495f18691231e6f3f9826aaa504"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-72e073827ada5981",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_service_reference_review.json",
+      "review_sha256": "3e6b765188d0e549fee2524b1b4cc2f11dd9621bec9e19a144573ceeb609921c",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous complete native service screening proxies with warnings.",
+      "inspection": {
+        "rule_id": "bp-72e073827ada5981",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for diesel, burned in diesel-electric generating set, 10MW",
+          "reference product": "diesel, burned in diesel-electric generating set, 10MW",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Diesel, burned in diesel-electric generating set",
+          "reference product": "Diesel, burned in diesel-electric generating set",
+          "unit": "megajoule"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for diesel, burned in diesel-electric generating set, 10MW",
+            "reference product": "diesel, burned in diesel-electric generating set, 10MW",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "ab99e96bcccb5557ee19f094fbc734b48da8640583b5fe5a89b5b16b80c442b5",
+          "metadata_sha256": "84011e24c83d6eecc064590a0a605f40998ecc7fa6df399f43b80f202947839e",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "diesel, burned in diesel-electric generating set, 10MW",
+              "reference product": "diesel, burned in diesel-electric generating set, 10MW",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "1cde72b4385c99bfae7ee4e88f7698d3fe266a0210f38817325c44e0ac7375fa",
+            "metadata_sha256": "627c0816b64235976b7a0cfa8c82d9e5063ff0e04a4057a255f0de7305430fcf",
+            "nonproduction_count": 25
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Diesel, burned in diesel-electric generating set",
+              "reference product": "Diesel, burned in diesel-electric generating set",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "2d59be59effd3b0413f81ab55eb5d9ce6940f118a2adcfd6d656b4b51bf172e5",
+            "metadata_sha256": "aa53c0b86e4a07aba8339476a51eb5da50d291cf2f409456c35b8279dacd0c2e",
+            "nonproduction_count": 22
+          },
+          "2026": {
+            "identity": {
+              "name": "Diesel, burned in diesel-electric generating set",
+              "reference product": "Diesel, burned in diesel-electric generating set",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "949a829010ba1cd52cb523348689fb6a792269cfde6426da08934f378c041944",
+            "metadata_sha256": "d59425f196f91d11c3da448e49eb4eacdc12836a39a09912e26ab0404f4cd89f",
+            "nonproduction_count": 22
+          }
+        },
+        "rule_sha256": "c43f30daf4b571ec5560f3f1f17a390c5038b593bd0767259dd4cdb229575f51",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule"
+      },
+      "limitations": [
+        "Use the complete native global diesel-electric generation service per signed MJ for the inspected ecoinvent 3.6 10 MW service. Both document on-site diesel generators for exploration, with diesel consumption, emissions and 10 MW generator infrastructure; both exclude delivery to the operating site. The source and native positive 1 MJ references support factor +1.",
+        "This is the same fuel-use service reference, not a kWh generator output. Preserve caller MJ without an electrical-efficiency or fuel-demand multiplier. Diesel draw differs slightly between source and native; emissions, generator infrastructure, fuel supply, vintage, operation and allocation also differ. Native complete inventory replaces the source market/service; no extra generator, heat credit or avoided emission is added.",
+        "Retain caller magnitude, formula, uncertainty shape and separate inventory terms. Native screening differences have unquantified score effects. Only the enumerated ecoinvent 3.6 cut-off scope is reviewed; no other version, consequential route or complete geothermal qualification is implied."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0e00b68a1c56448e4519ebc04cc31b846a2ed3becf96d67621a01038caa156f5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1338a8724acf99de",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_wastewater_routes",
+      "review_path": "export/uvek_geothermal_36_market_recipe_review.json",
+      "review_sha256": "61198830017a6e18285fbc54d319c70e4be990804941c9565d91c29f5659bd41",
+      "authorization": "Active BAFU/Premise goal and standing autonomous approval for documented composition-preserving helpers and native proxies.",
+      "inspection": {
+        "rule_id": "bp-1338a8724acf99de",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "market for wastewater, average",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "source_reference_amount": -1,
+        "recipe_id": "geothermal-36-wastewater",
+        "conversion_factor": -1,
+        "source_inventory_sha256": "caeb06a60acb9c7b5c143b83076a8e5a49e1b5ba3963fa405f35aaa7557cc2f3",
+        "component_witnesses": [
+          {
+            "source_identity": {
+              "name": "treatment of wastewater, average, capacity 1.1E10l/year",
+              "reference product": "wastewater, average",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "source_edge_sha256": "7daf3cec74578b4302a72ccf6f727ed9bfc56c0ce695de96bb26b459c0d04fca",
+            "source_inventory_sha256": "77822061deb86a3913becd244a1f50a1f203569260d5da70f09373a80a7a0859",
+            "capacity_class": 2,
+            "source_COD_kg_per_m3": 0.1556,
+            "source_sewer_km_per_m3": 1.6832e-07,
+            "target": {
+              "name": "Treatment, sewage, to wastewater treatment, class 2",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 2",
+              "location": "CH",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "source_identity": {
+              "name": "treatment of wastewater, average, capacity 1.6E8l/year",
+              "reference product": "wastewater, average",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "source_edge_sha256": "ea11177330cf81b6d9344fdaf7b02f223ab264a66f5e053bf0fd4b1e26c38989",
+            "source_inventory_sha256": "d61933d0a3bd67a8ad6a593e48c4d76433295a5277dc963a90b01b4589f319a7",
+            "capacity_class": 5,
+            "source_COD_kg_per_m3": 0.1556,
+            "source_sewer_km_per_m3": 3.7624e-07,
+            "target": {
+              "name": "Treatment, sewage, to wastewater treatment, class 5",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 5",
+              "location": "CH",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "source_identity": {
+              "name": "treatment of wastewater, average, capacity 1E9l/year",
+              "reference product": "wastewater, average",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "source_edge_sha256": "ff3b9e6d7d511ca66dc0312b056f23e774dafc6e31e9b997c6de5dbef1f833c8",
+            "source_inventory_sha256": "ee86c510dec8ff7907fa61fe2873dbb0eea03fee9f05e5cde2c94ee2a604831a",
+            "capacity_class": 4,
+            "source_COD_kg_per_m3": 0.1556,
+            "source_sewer_km_per_m3": 2.8218e-07,
+            "target": {
+              "name": "Treatment, sewage, to wastewater treatment, class 4",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 4",
+              "location": "CH",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "source_identity": {
+              "name": "treatment of wastewater, average, capacity 4.7E10l/year",
+              "reference product": "wastewater, average",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "source_edge_sha256": "dfd636030354b607c1dbf7c257e2ddeb32ea5fa1c851460920e61bb474ad8851",
+            "source_inventory_sha256": "9a6f634884f6d5e82f784659d4bfd7150553525c050b68ba676548945cf152af",
+            "capacity_class": 1,
+            "source_COD_kg_per_m3": 0.1556,
+            "source_sewer_km_per_m3": 1.2376e-07,
+            "target": {
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "location": "CH",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "source_identity": {
+              "name": "treatment of wastewater, average, capacity 5E9l/year",
+              "reference product": "wastewater, average",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "source_edge_sha256": "f4d62de7afc9526b6c885344f93e1cff5422004ca44198b612cdaa298a68d5f3",
+            "source_inventory_sha256": "47ad99e0618016a5f5f68795c4b27b87542054df9d8414f7c7c1b850d806ad11",
+            "capacity_class": 3,
+            "source_COD_kg_per_m3": 0.1556,
+            "source_sewer_km_per_m3": 2.1782e-07,
+            "target": {
+              "name": "Treatment, sewage, to wastewater treatment, class 3",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 3",
+              "location": "CH",
+              "unit": "cubic meter"
+            }
+          }
+        ],
+        "rule_review": {
+          "rationale": "Exact-profile composition: ecoinvent 3.6 cut-off retains five capacity classes with collection inside each native process. Preserve all five original source treatment shares separately, using the corresponding complete native Swiss capacity classes 1–5. Source/native COD concentration is 0.1556 kg/m3 and the class-specific sewer-grid km/m3 match. Collection is already inside each complete native treatment inventory: add no separate sewer, dilution, COD or efficiency multiplier and no 3.9 untreated-discharge model. Native chemical/emission/energy/infrastructure, vintage and uncertainty differ; inventory equality is not claimed. Preserve signed caller quantity, formula and uncertainty consistently; source negative waste reference requires factor -1 to the positive treatment-service helper, whereas cement requires +1. Recipe components retain source market uncertainty where available; complete native suppliers replace internal producer uncertainty. All score effects remain unquantified. Exact inspected 3.6 cut-off only; no cross-system-model mapping or complete geothermal qualification. The separate ecoinvent 3.9 cut-off recipe and its routing remain unchanged; its original review is: User instruction auto-approve coming decisions within exactUVEK2026cutoff/ecoinvent3.10biosphere electricitypilot. Fourenumerated3.9cutoff wastewater-average markets only. Preservealloriginalrural/urbancollectionvolume shares,treatedfractions and172directuntreatedBIOterms withsignedmarginaluncertainty using43exactpublisherUUID/unit/fullcompartment/role canonical3.10definitions; label/CASdifferenceswarnedwithoutmass/speciationfactor. Negativewastereference-1m3 maps topositive1m3servicethroughfactor-1; transformnegativetreatmentdemandonce, leavepositivecollectionanduntreatedreleasesunchanged. No wholegroup100%treatment,aggregation,renormalization,physicalomission orrecovery/energycredit. Source rural/urban sewerconstructioneach explicitlydelivers1m3wastewater andhas100yearlife/70yearrenovation. Nativeclass3sewagetreatment alreadyincludes municipalSewergridclass3 at2.1782e-7kmper1m3; isolatethisoneexchangewithoriginaluncertaintyintocollection-onlyproxies forbothsourcegridproviders. Copynative2026class3treatmentinventoryonce, removingonlythatmunicipalsewerexchange; retainallother29technosphereand105biosphereinputs andtheiruncertainty exactly. Four source-regiontreatmentwrappers reuse thissharednativeplant-onlyhelper. Nativefullservice equalsplant-onlyhelper plusisolatedmunicipalgrid per1m3; no subtractiveLCI ornegativeavoidedservice. Applymunicipalcollectionperoriginal1m3collectionvolume andplant-onlytreatmentperoriginaltreatedfraction, soallsourcewaterhasitsoriginalcollectiondemandwhiletreated/untreatedportionsstaydistinct. Theclass2from-residence/plaincomparison isolatesanadditionalprivateResidentialsewergrid at2.8713e-7km/m3, butmetadataexplicitlystatesprivatebuildingnetwork; thiscandidateisexcluded andnoResidentialgridisadded. Thisisnotageneralm3-to-kmconversion; quantitiescomefromtheexactnativeper1m3sewageexchange,withnoextra length/lifetime/capacity/densityfactor. Source rural/urban networkgeometry,materialmix/endoflife,constructionenergy/machinery/geography/vintage/internaluncertainty andsharednativeuncertaintycorrelation differfromsingleSwissmunicipalgrid; distinctoriginalmarketweightsremainbutrural/urbantechnologyisnotreconstructed. Complete nativeclass3plant-onlyscreeningproxy retainshydraulicvolume despite sourceCOD0.42534kg/m3,TOC0.1091,BOD0.20572 versusnativeCOD0.1556kg/m3,24900PCEcapacityandSwiss3stage mechanical/biological/chemicaltreatmentwithsludgedigestion. Sourcegenericplantcomposition,removalefficiency,climate,sludge/energy/waterbalances,infrastructure,allocation,vintage,geography andinternaluncertainty differ; no organicload/capacity/LCIAequivalence. No2.73355CODscalingofwholemodel,whichwouldmultiplywater/infrastructurevolumes. Sourceinternalcollection/treatmentinventories,includingmaterials,sludgeroutes andinfrastructurerecoveryhandover,arereplacedbyexplicitnativecomponentmodels; donotaddthemagain oradjustoriginaluntreatedreleases tobalance nativeeffluent. All105nativecopiedbiospherecoordinatesbindexactinstalledcanonical3.10UUID/unit/fullcompartment/role; native2991upstreambiosphereexclusionspersistwithoutinventingremovedflows. Callerownership,formulas,signeduncertainty,foregroundsuppliers andseparateemissions/purchasesremain. Allproxy scoreeffects explicit/unquantified. No standalonecomponent,otherrelease,reverse,cross-system-model orfullscenario/certification/exportapproval.",
+          "limitations": [
+            "Preserve all five original source treatment shares separately, using the corresponding complete native Swiss capacity classes 1–5. Source/native COD concentration is 0.1556 kg/m3 and the class-specific sewer-grid km/m3 match. Collection is already inside each complete native treatment inventory: add no separate sewer, dilution, COD or efficiency multiplier and no 3.9 untreated-discharge model. Native chemical/emission/energy/infrastructure, vintage and uncertainty differ; inventory equality is not claimed.",
+            "Preserve signed caller quantity, formula and uncertainty consistently; source negative waste reference requires factor -1 to the positive treatment-service helper, whereas cement requires +1. Recipe components retain source market uncertainty where available; complete native suppliers replace internal producer uncertainty. All score effects remain unquantified. Exact inspected 3.6 cut-off only; no cross-system-model mapping or complete geothermal qualification.",
+            "User instruction auto-approve coming decisions within exactUVEK2026cutoff/ecoinvent3.10biosphere electricitypilot. Fourenumerated3.9cutoff wastewater-average markets only. Preservealloriginalrural/urbancollectionvolume shares,treatedfractions and172directuntreatedBIOterms withsignedmarginaluncertainty using43exactpublisherUUID/unit/fullcompartment/role canonical3.10definitions; label/CASdifferenceswarnedwithoutmass/speciationfactor. Negativewastereference-1m3 maps topositive1m3servicethroughfactor-1; transformnegativetreatmentdemandonce, leavepositivecollectionanduntreatedreleasesunchanged. No wholegroup100%treatment,aggregation,renormalization,physicalomission orrecovery/energycredit. Source rural/urban sewerconstructioneach explicitlydelivers1m3wastewater andhas100yearlife/70yearrenovation. Nativeclass3sewagetreatment alreadyincludes municipalSewergridclass3 at2.1782e-7kmper1m3; isolatethisoneexchangewithoriginaluncertaintyintocollection-onlyproxies forbothsourcegridproviders. Copynative2026class3treatmentinventoryonce, removingonlythatmunicipalsewerexchange; retainallother29technosphereand105biosphereinputs andtheiruncertainty exactly. Four source-regiontreatmentwrappers reuse thissharednativeplant-onlyhelper. Nativefullservice equalsplant-onlyhelper plusisolatedmunicipalgrid per1m3; no subtractiveLCI ornegativeavoidedservice. Applymunicipalcollectionperoriginal1m3collectionvolume andplant-onlytreatmentperoriginaltreatedfraction, soallsourcewaterhasitsoriginalcollectiondemandwhiletreated/untreatedportionsstaydistinct. Theclass2from-residence/plaincomparison isolatesanadditionalprivateResidentialsewergrid at2.8713e-7km/m3, butmetadataexplicitlystatesprivatebuildingnetwork; thiscandidateisexcluded andnoResidentialgridisadded. Thisisnotageneralm3-to-kmconversion; quantitiescomefromtheexactnativeper1m3sewageexchange,withnoextra length/lifetime/capacity/densityfactor. Source rural/urban networkgeometry,materialmix/endoflife,constructionenergy/machinery/geography/vintage/internaluncertainty andsharednativeuncertaintycorrelation differfromsingleSwissmunicipalgrid; distinctoriginalmarketweightsremainbutrural/urbantechnologyisnotreconstructed. Complete nativeclass3plant-onlyscreeningproxy retainshydraulicvolume despite sourceCOD0.42534kg/m3,TOC0.1091,BOD0.20572 versusnativeCOD0.1556kg/m3,24900PCEcapacityandSwiss3stage mechanical/biological/chemicaltreatmentwithsludgedigestion. Sourcegenericplantcomposition,removalefficiency,climate,sludge/energy/waterbalances,infrastructure,allocation,vintage,geography andinternaluncertainty differ; no organicload/capacity/LCIAequivalence. No2.73355CODscalingofwholemodel,whichwouldmultiplywater/infrastructurevolumes. Sourceinternalcollection/treatmentinventories,includingmaterials,sludgeroutes andinfrastructurerecoveryhandover,arereplacedbyexplicitnativecomponentmodels; donotaddthemagain oradjustoriginaluntreatedreleases tobalance nativeeffluent. All105nativecopiedbiospherecoordinatesbindexactinstalledcanonical3.10UUID/unit/fullcompartment/role; native2991upstreambiosphereexclusionspersistwithoutinventingremovedflows. Callerownership,formulas,signeduncertainty,foregroundsuppliers andseparateemissions/purchasesremain. Allproxy scoreeffects explicit/unquantified. No standalonecomponent,otherrelease,reverse,cross-system-model orfullscenario/certification/exportapproval."
+          ],
+          "evidence": [
+            "brightpath/data/export/uvek_geothermal_36_market_recipe_review.json",
+            "brightpath/data/export/uvek_pilot_wastewater_routes_review.json"
+          ]
+        }
+      },
+      "limitations": [
+        "Preserve all five original source treatment shares separately, using the corresponding complete native Swiss capacity classes 1–5. Source/native COD concentration is 0.1556 kg/m3 and the class-specific sewer-grid km/m3 match. Collection is already inside each complete native treatment inventory: add no separate sewer, dilution, COD or efficiency multiplier and no 3.9 untreated-discharge model. Native chemical/emission/energy/infrastructure, vintage and uncertainty differ; inventory equality is not claimed.",
+        "Preserve signed caller quantity, formula and uncertainty consistently; source negative waste reference requires factor -1 to the positive treatment-service helper, whereas cement requires +1. Recipe components retain source market uncertainty where available; complete native suppliers replace internal producer uncertainty. All score effects remain unquantified. Exact inspected 3.6 cut-off only; no cross-system-model mapping or complete geothermal qualification."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b2ff6d51d62abca083dad37ff4bd729586aac4ceb50ad4ae5c630d2679d961ad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0e06c5c52d7be464",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_market_recipe_review.json",
+      "review_sha256": "61198830017a6e18285fbc54d319c70e4be990804941c9565d91c29f5659bd41",
+      "authorization": "Active BAFU/Premise goal and standing autonomous approval for documented composition-preserving helpers and native proxies.",
+      "inspection": {
+        "rule_id": "bp-0e06c5c52d7be464",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for drilling waste",
+          "reference product": "drilling waste",
+          "unit": "kilogram"
+        },
+        "source_reference_amount": -1,
+        "recipe_id": "geothermal-36-drilling-waste",
+        "conversion_factor": -1,
+        "source_inventory_sha256": "bfff77ac99257280365cf26f43428e9d7205605a6cfd92a042bdcaf062fb5be4",
+        "component_witnesses": [
+          {
+            "source_identity": {
+              "name": "treatment of drilling waste, landfarming",
+              "reference product": "drilling waste",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source_edge_sha256": "c4b9a4e1484243873203805b8df61c85c40ad9f6a9cdfaaa8f0bc2ea26c7af31",
+            "source_inventory_sha256": "70cd7041f04269b0d73ddedd577fa1ba1b43df98d39f082326dc10da6f545bd1",
+            "target": {
+              "name": "Disposal, drilling waste, 71.5% water, to landfarming",
+              "reference product": "Disposal, drilling waste, 71.5% water, to landfarming",
+              "location": "CH",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_identity": {
+              "name": "treatment of drilling waste, residual material landfill",
+              "reference product": "drilling waste",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source_edge_sha256": "1299f78d601cfb86036df6e83caf100c64517147dbce5d10bcea49b2337fbbb1",
+            "source_inventory_sha256": "0675c8b8e3421f9e17b7135d8f8a0899e243d669cf94132a8efcead28858213e",
+            "target": {
+              "name": "Disposal, drilling waste, 71.5% water, to residual material landfill",
+              "reference product": "Disposal, drilling waste, 71.5% water, to residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "e4f351ddaddecfa15892c46b538edcbb187da9f8d663c1312ea9843969aad675",
+            "source_inventory_sha256": "63387cc1775900fea3e8fc671502e705a0976b2cd71975f8131259234fffc47d",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "3f2832a078fda6a8ca3ea297811d8173b5024035abf84519372ef320c5f1bfee",
+            "source_inventory_sha256": "769f0cf73f61d8d77c6bd7fc1695dfa4224ee8b6389b37c48b4b63d874acf127",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "1b8f68ceb1160009d9744115b09759ac53e374f05781e57848d5566956a7b1a7",
+            "source_inventory_sha256": "a18aafb890474d83c2f0a1ba94ae2569b25a07f8b09924c4728cea503da5d2bd",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "ebec35ac3be1cd252faf298c7c276b5893976d1721ea193d3ae80175a30a31db",
+            "source_inventory_sha256": "d4b0ec09e549f00b3bb647a0a18133ec68b0e5fcc9fe1d8a636b2d319970086f",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "IN",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "599213a0c679fb156db4d19f5a4ac103111caaf92841b5b733495a0102e472ca",
+            "source_inventory_sha256": "f882c7e9e3e4d32c80901f74fee88871f2fd897dd7a9b1668c2016b99acf57de",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "c76fc6cbc7c9df1846d2822ae360e35801bc336af9f66cbb630fb6970e4cd20b",
+            "source_inventory_sha256": "e0718baeb09ca79b9508a1c610a50ce72461ffe12b0ca78bf2260e87d36b4d8e",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "bccda527773b9df9ce3218aa2c18de133ae8d7f23cb52706e307b41420d6b326",
+            "source_inventory_sha256": "a581a36e31b28f79cf46176eded611ddf65eb792722d3f553d0dd212c9730008",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "b20ca27eeb3a26da02b4a4d750557b477ac0886324493e7530a2074867ba1eaa",
+            "source_inventory_sha256": "ed3e9abe0c4a24166b08866fefe0ae66c31645234f6d23cc2fd0cd04c14baa02",
+            "target": {
+              "name": "Transport, freight, rail, diesel",
+              "reference product": "Transport, freight, rail, diesel",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "3ef54cbe7ae8f13d693704e9fc097b0001bf450054c7cc9fb231b5dfd13a9f9b",
+            "source_inventory_sha256": "9a1eedaf7c11f4e549b99fd2e31e38dcec96fed9206e34a01341cce86a8118f3",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          }
+        ],
+        "rule_review": {
+          "rationale": "Preserve original 60% landfarming and 40% residual-material-landfill routes and every separate road/rail tkm. Use complete native 71.5%-water drilling-waste services. Native Swiss processes replace source RoW practices; waste composition, landfill emissions, technology, allocation and vintage differ. Do not turn the source market into pure landfarming or add recovery credit. Use complete native RER fleet-average lorry and general freight rail as geographic/fleet proxies, retaining every original tkm. Retain native US diesel rail for the US branch and the previously reviewed complete Swiss diesel/electric rail mix for the Swiss branch. Country fleets, loads, motive power, operation and allocation differ. General rail must not be matched to aircraft or coal-only rail. No freight quantity renormalization or omitted tiny branch. Preserve signed caller quantity, formula and uncertainty consistently; source negative waste reference requires factor -1 to the positive treatment-service helper, whereas cement requires +1. Recipe components retain source market uncertainty where available; complete native suppliers replace internal producer uncertainty. All score effects remain unquantified. Exact inspected 3.6 cut-off only; no cross-system-model mapping or complete geothermal qualification.",
+          "limitations": [
+            "Preserve original 60% landfarming and 40% residual-material-landfill routes and every separate road/rail tkm. Use complete native 71.5%-water drilling-waste services. Native Swiss processes replace source RoW practices; waste composition, landfill emissions, technology, allocation and vintage differ. Do not turn the source market into pure landfarming or add recovery credit.",
+            "Use complete native RER fleet-average lorry and general freight rail as geographic/fleet proxies, retaining every original tkm. Retain native US diesel rail for the US branch and the previously reviewed complete Swiss diesel/electric rail mix for the Swiss branch. Country fleets, loads, motive power, operation and allocation differ. General rail must not be matched to aircraft or coal-only rail. No freight quantity renormalization or omitted tiny branch.",
+            "Preserve signed caller quantity, formula and uncertainty consistently; source negative waste reference requires factor -1 to the positive treatment-service helper, whereas cement requires +1. Recipe components retain source market uncertainty where available; complete native suppliers replace internal producer uncertainty. All score effects remain unquantified. Exact inspected 3.6 cut-off only; no cross-system-model mapping or complete geothermal qualification."
+          ],
+          "evidence": [
+            "brightpath/data/export/uvek_geothermal_36_market_recipe_review.json"
+          ]
+        }
+      },
+      "limitations": [
+        "Preserve original 60% landfarming and 40% residual-material-landfill routes and every separate road/rail tkm. Use complete native 71.5%-water drilling-waste services. Native Swiss processes replace source RoW practices; waste composition, landfill emissions, technology, allocation and vintage differ. Do not turn the source market into pure landfarming or add recovery credit.",
+        "Use complete native RER fleet-average lorry and general freight rail as geographic/fleet proxies, retaining every original tkm. Retain native US diesel rail for the US branch and the previously reviewed complete Swiss diesel/electric rail mix for the Swiss branch. Country fleets, loads, motive power, operation and allocation differ. General rail must not be matched to aircraft or coal-only rail. No freight quantity renormalization or omitted tiny branch.",
+        "Preserve signed caller quantity, formula and uncertainty consistently; source negative waste reference requires factor -1 to the positive treatment-service helper, whereas cement requires +1. Recipe components retain source market uncertainty where available; complete native suppliers replace internal producer uncertainty. All score effects remain unquantified. Exact inspected 3.6 cut-off only; no cross-system-model mapping or complete geothermal qualification."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2b52b5bd4cbfdec3e0a08a1f00d96e7f194e150abef49b587c8fb00b6eb87500"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1fb80e50b9bf1b78",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_market_recipe_review.json",
+      "review_sha256": "61198830017a6e18285fbc54d319c70e4be990804941c9565d91c29f5659bd41",
+      "authorization": "Active BAFU/Premise goal and standing autonomous approval for documented composition-preserving helpers and native proxies.",
+      "inspection": {
+        "rule_id": "bp-1fb80e50b9bf1b78",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "market for cement, Portland",
+          "reference product": "cement, Portland",
+          "unit": "kilogram"
+        },
+        "source_reference_amount": 1,
+        "recipe_id": "geothermal-36-portland-cement",
+        "conversion_factor": 1,
+        "source_inventory_sha256": "3cdae9f69ef1856e65918843cdfa458d7cd9fe4aac11e3db4dbe00a46b5f1e60",
+        "component_witnesses": [
+          {
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "a4bdb4ca0b0f8a2d09cd0d130e5596a54f0db57050f218bbf9111162aade3f38",
+            "source_inventory_sha256": "63387cc1775900fea3e8fc671502e705a0976b2cd71975f8131259234fffc47d",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "source_edge_sha256": "cef7d057d353500a7c34fbb3842f63faf696fabb2c1b58ddaf0f0b8a81e7ebcc",
+            "source_inventory_sha256": "8f98f0f114c95c24a5d833dd6749acb941bd287f8a12d6976c86aefcd79e1adf",
+            "target": {
+              "recipe": "older-swiss-rail-061b7121127c9a779bfc"
+            },
+            "original_tkm_preserved": true
+          },
+          {
+            "source_identity": {
+              "name": "cement production, Portland",
+              "reference product": "cement, Portland",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "source_edge_sha256": "62453d7e650a450ff6ba8734dc7a5d1051a7679763d05b8a1627a98c1eb29d30",
+            "source_inventory_sha256": "abdf9d5758f7ed6fbc262c162c7576688443b03b5085b4a2ca4fb8c656810d53",
+            "target_basis": "Native documented CEM I class production shares 40:6; historical screening split, not an observed ecoinvent strength split."
+          }
+        ],
+        "rule_review": {
+          "rationale": "Correct ordinary Swiss CEM I Portland cement away from slag cement. Use complete native CEM I 42.5 and 52.5 processes with their documented historical national 40:6 production split, normalized within CEM I only. This is a screening strength split because the source does not provide its split. Native clinker/addition/gypsum shares, grinding energy, allocation, vintage and uncertainty differ. Preserve both source freight terms; do not add slag cement or infer strength/clinker equivalence. Use complete native RER fleet-average lorry and general freight rail as geographic/fleet proxies, retaining every original tkm. Retain native US diesel rail for the US branch and the previously reviewed complete Swiss diesel/electric rail mix for the Swiss branch. Country fleets, loads, motive power, operation and allocation differ. General rail must not be matched to aircraft or coal-only rail. No freight quantity renormalization or omitted tiny branch. Preserve signed caller quantity, formula and uncertainty consistently; source negative waste reference requires factor -1 to the positive treatment-service helper, whereas cement requires +1. Recipe components retain source market uncertainty where available; complete native suppliers replace internal producer uncertainty. All score effects remain unquantified. Exact inspected 3.6 cut-off only; no cross-system-model mapping or complete geothermal qualification.",
+          "limitations": [
+            "Correct ordinary Swiss CEM I Portland cement away from slag cement. Use complete native CEM I 42.5 and 52.5 processes with their documented historical national 40:6 production split, normalized within CEM I only. This is a screening strength split because the source does not provide its split. Native clinker/addition/gypsum shares, grinding energy, allocation, vintage and uncertainty differ. Preserve both source freight terms; do not add slag cement or infer strength/clinker equivalence.",
+            "Use complete native RER fleet-average lorry and general freight rail as geographic/fleet proxies, retaining every original tkm. Retain native US diesel rail for the US branch and the previously reviewed complete Swiss diesel/electric rail mix for the Swiss branch. Country fleets, loads, motive power, operation and allocation differ. General rail must not be matched to aircraft or coal-only rail. No freight quantity renormalization or omitted tiny branch.",
+            "Preserve signed caller quantity, formula and uncertainty consistently; source negative waste reference requires factor -1 to the positive treatment-service helper, whereas cement requires +1. Recipe components retain source market uncertainty where available; complete native suppliers replace internal producer uncertainty. All score effects remain unquantified. Exact inspected 3.6 cut-off only; no cross-system-model mapping or complete geothermal qualification."
+          ],
+          "evidence": [
+            "brightpath/data/export/uvek_geothermal_36_market_recipe_review.json"
+          ]
+        }
+      },
+      "limitations": [
+        "Correct ordinary Swiss CEM I Portland cement away from slag cement. Use complete native CEM I 42.5 and 52.5 processes with their documented historical national 40:6 production split, normalized within CEM I only. This is a screening strength split because the source does not provide its split. Native clinker/addition/gypsum shares, grinding energy, allocation, vintage and uncertainty differ. Preserve both source freight terms; do not add slag cement or infer strength/clinker equivalence.",
+        "Use complete native RER fleet-average lorry and general freight rail as geographic/fleet proxies, retaining every original tkm. Retain native US diesel rail for the US branch and the previously reviewed complete Swiss diesel/electric rail mix for the Swiss branch. Country fleets, loads, motive power, operation and allocation differ. General rail must not be matched to aircraft or coal-only rail. No freight quantity renormalization or omitted tiny branch.",
+        "Preserve signed caller quantity, formula and uncertainty consistently; source negative waste reference requires factor -1 to the positive treatment-service helper, whereas cement requires +1. Recipe components retain source market uncertainty where available; complete native suppliers replace internal producer uncertainty. All score effects remain unquantified. Exact inspected 3.6 cut-off only; no cross-system-model mapping or complete geothermal qualification."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c1abbecb59b5261bd4a7e55a4ad2cdae3cca5057c91390cfd12c1ce8fa5944dc"
         }
       ]
     }
