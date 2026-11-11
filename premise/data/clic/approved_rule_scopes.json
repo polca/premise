@@ -108715,6 +108715,11 @@
           "retired_recipe_id": "pilot-wool-europe-country-grid-1636f2496d5e44335462",
           "changed_recipe_id": "pilot-wool-europe-treatment-7dd5bb2aaf2bfd1b9e0c",
           "preserved": "Every source input quantity, sign and uncertainty; every non-electricity input; all previous omission boundaries."
+        },
+        "source_contributor_annotation": {
+          "review_path": "export/uvek_nitrate_rubber_source_provenance_review.json",
+          "review_sha256": "4301ce97bea8ec4f6918724e29a66d5b443d4a90641c11d0225ea2deabed46dc",
+          "non_comment_fields_identical": true
         }
       },
       "limitations": [
@@ -108733,7 +108738,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "950443313850bace5d3e5a250ea207f1630096a6931ea7679db0d8f3462cfb50"
+          "fingerprint": "776ec924cdb139ebfabc69fd20508a0a1adeabc7bb8ac46f37b4d9300296608b"
         }
       ]
     },
