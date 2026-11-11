@@ -1,0 +1,125 @@
+{
+  "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+  "actual_IAM_scenario": false,
+  "database": "BAFU:2026-controlled-TIAM-native-coal-CCS-20261111-234452",
+  "export_activities": 12074,
+  "regional_CCS_heat_suppliers": 16,
+  "secondary_heat_markets": 17,
+  "CLIC_capture_chain_records": 10,
+  "CLIC_provenance_preserved": true,
+  "capture_fraction": 0.9,
+  "captured_per_MJ_heat_kg": 0.07148368458,
+  "source_incompatible_capture_per_MJ_heat_kg": 0.048181815,
+  "capture_credits_equal_capture_service_demand": true,
+  "technosphere_links_internal": 114642,
+  "biosphere_links_requested_database": 290889,
+  "signed_finite_LCIs": 90,
+  "shared_carbon_origin_checks": 48,
+  "shared_carbon_origin_convention": "Recorded positive stack total and original negative counter-exchange convention retained; separate capture-chain burdens excluded from the base-stack subtraction. Full combined fuels scenario remains unqualified.",
+  "validation_phases": 2,
+  "phase_issue_counts": {},
+  "mapping_declared_CLIC_dependencies_prepared_normally": true,
+  "unqualified_heat_roles_after_controlled_case": 7,
+  "full_real_TIAM_scenario_verified": false,
+  "exhaustive_validation": {
+    "ruleset_version": 8,
+    "issue_count": 0,
+    "feedback_evidence": {
+      "declared_productive_feedback": [
+        {
+          "absolute_convergence_upper_bound": 0.9742679102004028,
+          "activity_count": 4218
+        }
+      ],
+      "issue_count": 0
+    }
+  },
+  "focused_tests": {
+    "signed_dependency_scopes": 11,
+    "shared_heat_mapping_preparation": 105
+  },
+  "evidence_sha256": {
+    "controlled-coal-ccs-heat-verification.private.json": "28a5db34de38031e8d4b0ed0926183ec1bd17898f7af712aa1747df91e642399",
+    "controlled-coal-ccs-heat-exhaustive-validation.private.json": "408e3a389ee2c5f120c999b895bf4ab7872e9891fa083896a1a17d11d1307828",
+    "coal-water-oil-scope-tests.log": "a6d2fdca97c5b3982bda9f6c2d9596e5d884032a01c73055fd03d96579b5f790",
+    "coal-ccs-shared-heat-regressions.log": "d4973cf048242afe3d8d55a3401b26cf70e2fec3fbc0166950c2195d228fdc14",
+    "controlled-coke-ccs-heat-verification.private.json": "fb48c751d73fef4c4d681c4a2f9dfe391b3b6217ef444c0c44fd35d67fb75ac1",
+    "controlled-coke-ccs-heat-exhaustive-validation.private.json": "2483e38b85e0ce22fba60e3ce529042dadcc1d7769608c6d913f6c476c76fe6e",
+    "controlled-coal-coke-ccs-heat-verification.private.json": "72b11965cfd1c1cb5e669caa72b90d1116f3b80077034af12ff1206dd1e6a512",
+    "controlled-coal-coke-ccs-heat-exhaustive-validation.private.json": "b888514131fdf4c8cfc397e9b242b21a4125631ebdcaa92396ae038ac8cccbfe"
+  },
+  "coke_role_qualification": {
+    "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+    "actual_IAM_scenario": false,
+    "database": "BAFU:2026-controlled-TIAM-native-coke-CCS-20261111-234649",
+    "export_activities": 12074,
+    "regional_CCS_heat_suppliers": 16,
+    "secondary_heat_markets": 17,
+    "CLIC_capture_chain_records": 10,
+    "CLIC_provenance_preserved": true,
+    "capture_fraction": 0.9,
+    "captured_per_MJ_heat_kg": 0.07148368458,
+    "source_incompatible_capture_per_MJ_heat_kg": 0.048181815,
+    "capture_credits_equal_capture_service_demand": true,
+    "technosphere_links_internal": 114642,
+    "biosphere_links_requested_database": 290889,
+    "signed_finite_LCIs": 90,
+    "shared_carbon_origin_checks": 48,
+    "shared_carbon_origin_convention": "Recorded positive stack total and original negative counter-exchange convention retained; separate capture-chain burdens excluded from the base-stack subtraction. Full combined fuels scenario remains unqualified.",
+    "validation_phases": 2,
+    "phase_issue_counts": {},
+    "mapping_declared_CLIC_dependencies_prepared_normally": true,
+    "unqualified_heat_roles_after_controlled_case": 6,
+    "full_real_TIAM_scenario_verified": false,
+    "exhaustive_graph_issue_count": 0
+  },
+  "ecoinvent_regression": {
+    "source": "ecoinvent 3.12 cut-off",
+    "scenario": "REMIND SSP2-NPi 2050",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "fuels"
+    ],
+    "updated_activities": 31205,
+    "export_created": false,
+    "log_sha256": "084c1c882e0ec4f70035984ead051334cc45541da2b8bb403d656f0ca1406a8c"
+  },
+  "remaining_unqualified_heat_role_bindings": 6,
+  "remaining_roles": [
+    "biomass CCS",
+    "oil CCS",
+    "industrial solar",
+    "secondary solar",
+    "two residual-heat bindings"
+  ],
+  "combined_coal_and_coke_case": {
+    "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+    "actual_IAM_scenario": false,
+    "database": "BAFU:2026-controlled-TIAM-native-coal-coke-CCS-20261111-234844",
+    "export_activities": 12074,
+    "regional_CCS_heat_suppliers": 16,
+    "secondary_heat_markets": 17,
+    "CLIC_capture_chain_records": 10,
+    "CLIC_provenance_preserved": true,
+    "capture_fraction": 0.9,
+    "captured_per_MJ_heat_kg": 0.07148368458,
+    "source_incompatible_capture_per_MJ_heat_kg": 0.048181815,
+    "capture_credits_equal_capture_service_demand": true,
+    "technosphere_links_internal": 114626,
+    "biosphere_links_requested_database": 290889,
+    "signed_finite_LCIs": 90,
+    "shared_carbon_origin_checks": 48,
+    "shared_carbon_origin_convention": "Recorded positive stack total and original negative counter-exchange convention retained; separate capture-chain burdens excluded from the base-stack subtraction. Full combined fuels scenario remains unqualified.",
+    "validation_phases": 2,
+    "phase_issue_counts": {},
+    "mapping_declared_CLIC_dependencies_prepared_normally": true,
+    "unqualified_heat_roles_after_controlled_case": 6,
+    "full_real_TIAM_scenario_verified": false,
+    "exhaustive_graph_issue_count": 0,
+    "regional_market_CCS_share": 1,
+    "shared_supplier_supply_not_double_counted": true
+  }
+}

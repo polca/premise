@@ -66,5 +66,12 @@
     "remaining_unqualified_heat_roles": 8,
     "remaining_CCS_roles": 4,
     "full_real_TIAM_scenario_verified": false
+  },
+  "follow_up_coal_coke_CCS": {
+    "status": "separate_controlled_shared_workflow_exports_and_signed_LCIs_verified",
+    "evidence": "docs/development/uvek-native-coal-ccs-heat-verification.json",
+    "remaining_unqualified_heat_roles": 6,
+    "remaining_CCS_roles": 2,
+    "full_real_TIAM_scenario_verified": false
   }
 }

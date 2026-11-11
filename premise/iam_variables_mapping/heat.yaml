@@ -957,6 +957,24 @@ heat, secondary, from coal residual:
           coefficient: -1
 
 heat, secondary, from coal with CCS:
+  uvek_aliases:
+    inventory_resource: heat/uvek2026_coal_ccs_heat_inventory.json
+    inventory_requires_active_role: true
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat production, at co-generation hard coal-fired power plant, post, native UVEK stack basis
+      reference product:
+      - heat, district or industrial, other than natural gas
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native German exergy-allocated coal CHP heat is the fixed screening basis in all IAM regions. Retain the original useful-heat CCS model 9% heat penalty and 90% capture of attributable allocated fossil stack CO2. Do not infer physical efficiency by inverting allocated fuel draw.
+    - Native heat consumes 0.77 MJ of German coal combustion service per MJ heat, with 0.094634 kg fossil CO2/MJ fuel service. After 1.09 heat input the gross allocated stack is 0.0794263162 kg/MJ; capture demand and its paired negative fossil stack correction are 0.07148368458 kg/MJ. The old 0.048181815 kg credit would capture only 60.6623% of this stack.
+    - Use the complete CLIC post-combustion coal capture, 200 km pipeline and 1000 m storage chain, correcting the old post-labelled workbook linkage to oxy-fuel capture. Capture energy, infrastructure, pipeline, storage leakage and emissions remain complete. No second capture credit, avoided heat/electricity output or extra distribution loss is added.
+    - German CHP allocation, geographic extrapolation, historical plant fleet, capture technology and energy penalty, upstream fuel, vintage and score differences remain screening limitations. A unique fixed-reference bridge prevents regional relinking from replacing the reviewed stack allocation while retaining its fixed capture credit.
+    - TIAM coke-with-CCS retains Premise’s existing hard-coal CHP screening convention. Coke chemistry and fuel production are not reconstructed; this is an explicit fuel/technology proxy. Full combined-fuels IAM qualification remains pending.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
@@ -996,6 +1014,24 @@ heat, secondary, from coke:
   assumption: TIAM-UCL coke heat uses the hard-coal furnace proxy.
 
 heat, secondary, from coke with CCS:
+  uvek_aliases:
+    inventory_resource: heat/uvek2026_coal_ccs_heat_inventory.json
+    inventory_requires_active_role: true
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat production, at co-generation hard coal-fired power plant, post, native UVEK stack basis
+      reference product:
+      - heat, district or industrial, other than natural gas
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native German exergy-allocated coal CHP heat is the fixed screening basis in all IAM regions. Retain the original useful-heat CCS model 9% heat penalty and 90% capture of attributable allocated fossil stack CO2. Do not infer physical efficiency by inverting allocated fuel draw.
+    - Native heat consumes 0.77 MJ of German coal combustion service per MJ heat, with 0.094634 kg fossil CO2/MJ fuel service. After 1.09 heat input the gross allocated stack is 0.0794263162 kg/MJ; capture demand and its paired negative fossil stack correction are 0.07148368458 kg/MJ. The old 0.048181815 kg credit would capture only 60.6623% of this stack.
+    - Use the complete CLIC post-combustion coal capture, 200 km pipeline and 1000 m storage chain, correcting the old post-labelled workbook linkage to oxy-fuel capture. Capture energy, infrastructure, pipeline, storage leakage and emissions remain complete. No second capture credit, avoided heat/electricity output or extra distribution loss is added.
+    - German CHP allocation, geographic extrapolation, historical plant fleet, capture technology and energy penalty, upstream fuel, vintage and score differences remain screening limitations. A unique fixed-reference bridge prevents regional relinking from replacing the reviewed stack allocation while retaining its fixed capture credit.
+    - TIAM coke-with-CCS retains Premise’s existing hard-coal CHP screening convention. Coke chemistry and fuel production are not reconstructed; this is an explicit fuel/technology proxy. Full combined-fuels IAM qualification remains pending.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none

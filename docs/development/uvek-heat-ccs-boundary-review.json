@@ -56,7 +56,7 @@
     "remaining_unqualified_heat_roles": 8
   },
   "follow_up_coal_CCS": {
-    "status": "native_allocated_stack_and_correct_post_capture_service_identified_dependency_review_pending",
+    "status": "controlled_shared_workflow_export_and_signed_LCI_verified",
     "native_heat_identity": {
       "name": "Heat, hard coal, at cogen, allocation exergy",
       "reference product": "Heat, hard coal, at cogen, allocation exergy",
@@ -71,7 +71,7 @@
     "unchanged_workbook_credit_realized_fraction": 0.6066228084741515,
     "decision": "Use the available post-combustion capture service for a post-combustion-labelled coal model, not the oxy-fuel service in the old workbook. Do not activate a heat alias before capture-chain dependencies and controlled export pass. Coke retains the existing shared coal-proxy convention with explicit fuel warnings.",
     "correct_capture_service": "carbon-dioxide-captured-from-hard-coal-fired-power-plant-post-pipeline-200km-storage-1000m",
-    "normal_preparation_result": "Coal-only and combined coal/wood preparation progressed past the reviewed coal-plant proxy, then stopped at unreviewed softened-water correspondence bp-a09df15b743513da. Full capture-chain and heat-role qualification remain incomplete.",
+    "normal_preparation_result": "Complete ten-record CLIC post-combustion capture chain prepared normally after exact construction, water and fuel dependency review. Controlled coal and coke-proxy heat updates each passed exhaustive validation, normal export and 90 signed finite LCIs.",
     "next_dependency_review": {
       "source": "market for hard coal power plant / hard coal power plant / GLO / unit",
       "target": "Hard coal power plant / Hard coal power plant / RER / unit",
@@ -95,12 +95,13 @@
       "coal-power-plant-correspondence.private.json": "1c9b13087579097b8aead09bbb3755cd343400b2067ac6cf1034e0ef1a7dd955",
       "coal-wood-ccs-capture-chains-probe.log": "7b77152bdbdeb1670130cc560754d65a4edd0a95e90c7af08afc2c64bf528689"
     },
-    "new_runtime_roles_admitted": 0,
+    "new_runtime_roles_admitted": 2,
     "next_unreviewed_dependency": {
       "rule_id": "bp-a09df15b743513da",
       "source": "market for water, completely softened / RoW / kilogram",
       "target": "Water, completely softened, at plant / RER / kilogram",
-      "status": "Needs source-treatment, delivery and native-reference review before approval."
-    }
+      "status": "Reviewed and admitted only for the inspected ecoinvent 3.6 cut-off profile; see Brightpath export/uvek_heat_ccs_water_oil_36_review.json."
+    },
+    "qualification_evidence": "docs/development/uvek-native-coal-ccs-heat-verification.json"
   }
 }

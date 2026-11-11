@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "target": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "clic_roots": [
+    "carbon-dioxide-captured-from-hard-coal-fired-power-plant-post-pipeline-200km-storage-1000m"
+  ],
+  "supplier_checks": [
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, hard coal, at cogen, allocation exergy",
+        "reference product": "Heat, hard coal, at cogen, allocation exergy",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Hard coal, burned in power plant",
+            "unit": "megajoule",
+            "reference product": "Hard coal, burned in power plant",
+            "location": "DE"
+          },
+          "amount": 0.77
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Hard coal, burned in power plant",
+        "reference product": "Hard coal, burned in power plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Hard coal, burned in power plant",
+        "reference product": "Hard coal, burned in power plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Carbon dioxide, fossil",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram"
+          },
+          "amount": 0.094634
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "carbon dioxide, captured from hard coal-fired power plant, post, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured from hard coal-fired power plant, post, pipeline 200km, storage 1000m",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "review": {
+    "authorization": "Active goal and standing autonomous approval for documented native screening reconstructions.",
+    "basis": "Useful heat, 90% capture and original 9% penalty on inspected native allocated stack; correct post-combustion chain rather than workbook oxy-fuel linkage.",
+    "source_workbook": "lci-combined-heat-power-plant-CCS.xlsx",
+    "source_workbook_sha256": "794ae4c0fb686a141f8be82793d4f25b88bee017d9931548c45481fd53aeaac5",
+    "limitations": [
+      "Complete native German exergy-allocated coal CHP heat is the fixed screening basis in all IAM regions. Retain the original useful-heat CCS model 9% heat penalty and 90% capture of attributable allocated fossil stack CO2. Do not infer physical efficiency by inverting allocated fuel draw.",
+      "Native heat consumes 0.77 MJ of German coal combustion service per MJ heat, with 0.094634 kg fossil CO2/MJ fuel service. After 1.09 heat input the gross allocated stack is 0.0794263162 kg/MJ; capture demand and its paired negative fossil stack correction are 0.07148368458 kg/MJ. The old 0.048181815 kg credit would capture only 60.6623% of this stack.",
+      "Use the complete CLIC post-combustion coal capture, 200 km pipeline and 1000 m storage chain, correcting the old post-labelled workbook linkage to oxy-fuel capture. Capture energy, infrastructure, pipeline, storage leakage and emissions remain complete. No second capture credit, avoided heat/electricity output or extra distribution loss is added.",
+      "German CHP allocation, geographic extrapolation, historical plant fleet, capture technology and energy penalty, upstream fuel, vintage and score differences remain screening limitations. A unique fixed-reference bridge prevents regional relinking from replacing the reviewed stack allocation while retaining its fixed capture credit.",
+      "TIAM coke-with-CCS retains Premise\u2019s existing hard-coal CHP screening convention. Coke chemistry and fuel production are not reconstructed; this is an explicit fuel/technology proxy. Full combined-fuels IAM qualification remains pending."
+    ],
+    "native_basis_evidence_sha256": "3dee77a330a6901214238e5cf192d4c002746f0922ca44f8fdad76648fb73695"
+  },
+  "activities": [
+    {
+      "name": "fixed German coal CHP heat reference for CCS",
+      "reference product": "heat, fixed German coal CHP reference for CCS",
+      "location": "DE",
+      "unit": "megajoule",
+      "database": "premise-UVEK-heat",
+      "code": "uvek-2026-fixed-german-coal-chp-heat-CCS-basis",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Complete native German exergy-allocated coal CHP heat is the fixed screening basis in all IAM regions. Retain the original useful-heat CCS model 9% heat penalty and 90% capture of attributable allocated fossil stack CO2. Do not infer physical efficiency by inverting allocated fuel draw. Native heat consumes 0.77 MJ of German coal combustion service per MJ heat, with 0.094634 kg fossil CO2/MJ fuel service. After 1.09 heat input the gross allocated stack is 0.0794263162 kg/MJ; capture demand and its paired negative fossil stack correction are 0.07148368458 kg/MJ. The old 0.048181815 kg credit would capture only 60.6623% of this stack. Use the complete CLIC post-combustion coal capture, 200 km pipeline and 1000 m storage chain, correcting the old post-labelled workbook linkage to oxy-fuel capture. Capture energy, infrastructure, pipeline, storage leakage and emissions remain complete. No second capture credit, avoided heat/electricity output or extra distribution loss is added. German CHP allocation, geographic extrapolation, historical plant fleet, capture technology and energy penalty, upstream fuel, vintage and score differences remain screening limitations. A unique fixed-reference bridge prevents regional relinking from replacing the reviewed stack allocation while retaining its fixed capture credit. TIAM coke-with-CCS retains Premise\u2019s existing hard-coal CHP screening convention. Coke chemistry and fuel production are not reconstructed; this is an explicit fuel/technology proxy. Full combined-fuels IAM qualification remains pending. Modified screening model. Source: \u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026. Modification record: https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-coal-ccs-heat.md",
+      "premise heat": {
+        "kind": "fixed_reference_provider",
+        "purpose": "Keep native stack and capture demand on the same reviewed allocation/geography basis."
+      },
+      "exchanges": [
+        {
+          "name": "fixed German coal CHP heat reference for CCS",
+          "reference product": "heat, fixed German coal CHP reference for CCS",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-fixed-german-coal-chp-heat-CCS-basis"
+          ]
+        },
+        {
+          "name": "Heat, hard coal, at cogen, allocation exergy",
+          "reference product": "Heat, hard coal, at cogen, allocation exergy",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ],
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-coal-ccs-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      }
+    },
+    {
+      "name": "heat production, at co-generation hard coal-fired power plant, post, native UVEK stack basis",
+      "reference product": "heat, district or industrial, other than natural gas",
+      "location": "DE",
+      "unit": "megajoule",
+      "database": "premise-UVEK-heat",
+      "code": "uvek-2026-coal-chp-ccs-native-stack-90pct",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Complete native German exergy-allocated coal CHP heat is the fixed screening basis in all IAM regions. Retain the original useful-heat CCS model 9% heat penalty and 90% capture of attributable allocated fossil stack CO2. Do not infer physical efficiency by inverting allocated fuel draw. Native heat consumes 0.77 MJ of German coal combustion service per MJ heat, with 0.094634 kg fossil CO2/MJ fuel service. After 1.09 heat input the gross allocated stack is 0.0794263162 kg/MJ; capture demand and its paired negative fossil stack correction are 0.07148368458 kg/MJ. The old 0.048181815 kg credit would capture only 60.6623% of this stack. Use the complete CLIC post-combustion coal capture, 200 km pipeline and 1000 m storage chain, correcting the old post-labelled workbook linkage to oxy-fuel capture. Capture energy, infrastructure, pipeline, storage leakage and emissions remain complete. No second capture credit, avoided heat/electricity output or extra distribution loss is added. German CHP allocation, geographic extrapolation, historical plant fleet, capture technology and energy penalty, upstream fuel, vintage and score differences remain screening limitations. A unique fixed-reference bridge prevents regional relinking from replacing the reviewed stack allocation while retaining its fixed capture credit. TIAM coke-with-CCS retains Premise\u2019s existing hard-coal CHP screening convention. Coke chemistry and fuel production are not reconstructed; this is an explicit fuel/technology proxy. Full combined-fuels IAM qualification remains pending. Modified screening model. Source: \u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026. Modification record: https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-coal-ccs-heat.md",
+      "premise heat": {
+        "kind": "native_stack_CCS_screening",
+        "capture_fraction": 0.9,
+        "native_heat_input_MJ": 1.09,
+        "allocated_stack_CO2_before_capture_kg": 0.0794263162,
+        "captured_CO2_kg": 0.07148368458,
+        "limitations": [
+          "Complete native German exergy-allocated coal CHP heat is the fixed screening basis in all IAM regions. Retain the original useful-heat CCS model 9% heat penalty and 90% capture of attributable allocated fossil stack CO2. Do not infer physical efficiency by inverting allocated fuel draw.",
+          "Native heat consumes 0.77 MJ of German coal combustion service per MJ heat, with 0.094634 kg fossil CO2/MJ fuel service. After 1.09 heat input the gross allocated stack is 0.0794263162 kg/MJ; capture demand and its paired negative fossil stack correction are 0.07148368458 kg/MJ. The old 0.048181815 kg credit would capture only 60.6623% of this stack.",
+          "Use the complete CLIC post-combustion coal capture, 200 km pipeline and 1000 m storage chain, correcting the old post-labelled workbook linkage to oxy-fuel capture. Capture energy, infrastructure, pipeline, storage leakage and emissions remain complete. No second capture credit, avoided heat/electricity output or extra distribution loss is added.",
+          "German CHP allocation, geographic extrapolation, historical plant fleet, capture technology and energy penalty, upstream fuel, vintage and score differences remain screening limitations. A unique fixed-reference bridge prevents regional relinking from replacing the reviewed stack allocation while retaining its fixed capture credit.",
+          "TIAM coke-with-CCS retains Premise\u2019s existing hard-coal CHP screening convention. Coke chemistry and fuel production are not reconstructed; this is an explicit fuel/technology proxy. Full combined-fuels IAM qualification remains pending."
+        ]
+      },
+      "exchanges": [
+        {
+          "name": "heat production, at co-generation hard coal-fired power plant, post, native UVEK stack basis",
+          "reference product": "heat, district or industrial, other than natural gas",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-coal-chp-ccs-native-stack-90pct"
+          ]
+        },
+        {
+          "name": "fixed German coal CHP heat reference for CCS",
+          "reference product": "heat, fixed German coal CHP reference for CCS",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "technosphere",
+          "amount": 1.09,
+          "uncertainty type": 0,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-fixed-german-coal-chp-heat-CCS-basis"
+          ]
+        },
+        {
+          "name": "carbon dioxide, captured from hard coal-fired power plant, post, pipeline 200km, storage 1000m",
+          "reference product": "carbon dioxide, captured from hard coal-fired power plant, post, pipeline 200km, storage 1000m",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.07148368458,
+          "uncertainty type": 0
+        },
+        {
+          "name": "Carbon dioxide, fossil",
+          "unit": "kilogram",
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "input": [
+            "__biosphere__",
+            "f9749677-9c9f-4678-ab55-c607dfdc2cb9"
+          ],
+          "type": "biosphere",
+          "amount": -0.07148368458,
+          "uncertainty type": 0,
+          "loc": -0.07148368458
+        }
+      ],
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-coal-ccs-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      }
+    }
+  ],
+  "data_terms": {
+    "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+    "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+    "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+    "modified_data": true,
+    "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-coal-ccs-heat.md",
+    "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+  }
+}
