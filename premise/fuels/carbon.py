@@ -165,7 +165,7 @@ def is_vehicle_fuel_consumer(dataset, vehicle_type=None):
         ),
     }
     return any(
-        dataset.get("name", "").startswith(prefix)
+        dataset.get("name", "").casefold().startswith(prefix)
         for kind, prefix in prefixes.items()
         if vehicle_type is None or kind == vehicle_type
     )
@@ -184,7 +184,17 @@ def vehicle_fuel_carbon(dataset, providers):
     for exchange in dataset["exchanges"]:
         if exchange.get("type") != "technosphere":
             continue
-        name = exchange.get("name", "")
+        # Unrelated inputs need not carry a complete fuel-provider identity.
+        key = tuple(
+            exchange.get(field) for field in ("name", "product", "location", "unit")
+        )
+        provider = providers.get(key)
+        handover = (
+            provider.get("premise fuel market handover", {})
+            if provider is not None
+            else {}
+        )
+        name = handover.get("target", {}).get("name", exchange.get("name", ""))
         if not name.startswith(("market for ", "market group for ")):
             continue
         stem = name.removeprefix("market for ").removeprefix("market group for ")
@@ -192,11 +202,10 @@ def vehicle_fuel_carbon(dataset, providers):
             ("petrol", "gasoline", "diesel", "natural gas", "liquefied petroleum gas")
         ):
             continue
+        key = activity_key(exchange)
         amount = float(exchange["amount"])
         if not math.isfinite(amount) or amount < 0:
             raise ValueError("Vehicle fuel quantities must be finite and nonnegative")
-        key = activity_key(exchange)
-        provider = providers.get(key)
         properties = provider.get(PROPERTIES_KEY) if provider is not None else None
         source = "linked fuel supplier properties"
         if (

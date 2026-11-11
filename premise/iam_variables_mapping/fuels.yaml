@@ -501,6 +501,25 @@ diesel:
     limitations:
     - Delivered-fuel market replacement; producer-specific refinery and explicitly fossil-only supplies remain separate and retain their physical product boundary.
     - Native delivery auxiliaries are retained in the IAM market using the reviewed template. Grade and vintage differences remain unquantified; downstream vehicle-blend and combustion-carbon checks are unfinished.
+  - source:
+      name: Fuel supply for diesel vehicles
+      reference product: Fuel supply for diesel vehicles
+      unit: kilogram
+    target:
+      name: market for diesel
+      reference product: diesel
+      unit: kilogram
+    replace_original_supply: true
+    energy_inputs:
+      Diesel, at regional storage:
+        unit: kilogram
+        MJ per unit: 43.0
+      Biodiesel, from used cooking oil, at fuelling station:
+        unit: kilogram
+        MJ per unit: 38.0
+    limitations:
+    - Replace the historical vehicle blend with the IAM blend; preserve its nominal reference energy using the actual signed ingredient quantities and shared fuel heating values, without changing downstream consumer demand or uncertainty.
+    - Use the shared dry-ethanol and ester energy bases; source grade, allocation, vintage and heating-value uncertainty remain screening limitations. This is a nominal energy calibration, not uncertainty propagation of the historical blend.
   uvek_aliases:
     market_suppliers:
       exact: true
@@ -587,6 +606,31 @@ gasoline:
     limitations:
     - Delivered-fuel market replacement; producer-specific refinery and explicitly fossil-only supplies remain separate and retain their physical product boundary.
     - Native delivery auxiliaries are retained in the IAM market using the reviewed template. Grade and vintage differences remain unquantified; downstream vehicle-blend and combustion-carbon checks are unfinished.
+  - source:
+      name: Fuel supply for gasoline vehicles
+      reference product: Fuel supply for gasoline vehicles
+      unit: kilogram
+    target:
+      name: market for petrol
+      reference product: petrol
+      unit: kilogram
+    replace_original_supply: true
+    energy_inputs:
+      Petrol, at regional storage:
+        unit: kilogram
+        MJ per unit: 42.6
+      Ethanol, 95% in H2O, from whey, at fermentation plant:
+        unit: kilogram
+        MJ per unit: 26.5
+      Ethanol, 95% in H2O, from wood, at distillery:
+        unit: kilogram
+        MJ per unit: 26.5
+      Ethanol, from wheat straw pellets, at fuelling station:
+        unit: kilogram
+        MJ per unit: 26.5
+    limitations:
+    - Replace the historical vehicle blend with the IAM blend; preserve its nominal reference energy using the actual signed ingredient quantities and shared fuel heating values, without changing downstream consumer demand or uncertainty.
+    - Use the shared dry-ethanol and ester energy bases; source grade, allocation, vintage and heating-value uncertainty remain screening limitations. This is a nominal energy calibration, not uncertainty propagation of the historical blend.
   uvek_aliases:
     exact: true
     fltr:

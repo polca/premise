@@ -177,7 +177,7 @@ class FuelMarketsMixin:
                 "carbon convention": "Production-weighted regional full-oxidation properties",
             }
 
-        self._handover_fuel_market_aliases(kwargs)
+        self._handover_fuel_market_aliases(kwargs, providers=index)
 
     def _native_fuel_market_ancillaries(self, fuel, template):
         """Preserve declared delivery infrastructure separately from fuel shares."""
@@ -315,7 +315,7 @@ class FuelMarketsMixin:
                 self.database.extend(copies.values())
                 self.add_to_index(list(copies.values()))
 
-    def _handover_fuel_market_aliases(self, market):
+    def _handover_fuel_market_aliases(self, market, providers=None):
         """Reuse geographic forwarding for declared source-family identities.
 
         Source forwarders are eligible by default; replacement of another
@@ -325,7 +325,8 @@ class FuelMarketsMixin:
         definitions = get_mapping(
             FUELS_TECHS, var=f"{getattr(self, 'family', 'ecoinvent')}_market_handovers"
         )
-        for entries in definitions.values():
+        providers = providers or {activity_key(a): a for a in self.database}
+        for fuel, entries in definitions.items():
             for entry in entries:
                 target = entry["target"]
                 if (target["name"], target["reference product"], target["unit"]) != (
@@ -358,30 +359,96 @@ class FuelMarketsMixin:
                         raise ValueError(
                             f"Fuel handover requires a unit-reference source forwarder: {alias['name']!r}"
                         )
-                factor = float(entry["conversion_factor"])
-                if not math.isfinite(factor) or factor <= 0:
-                    raise ValueError(
-                        "Fuel market handover needs a finite positive conversion factor."
-                    )
-                self.empty_original_datasets(
-                    aliases,
-                    production_shares={},
-                    loc_map={
-                        a["location"]: self.ecoinvent_to_iam_loc.get(
-                            a["location"], "World"
-                        )
-                        for a in aliases
-                    },
-                    target=target,
-                    conversion_factor=factor,
-                )
                 for alias in aliases:
+                    source_energy = None
+                    if entry.get("energy_inputs"):
+                        source_energy = alias.get(
+                            "premise fuel market handover", {}
+                        ).get("source reference energy MJ")
+                        if source_energy is None:
+                            source_energy = 0.0
+                            for exchange in ws.technosphere(alias):
+                                if not exchange["amount"]:
+                                    continue
+                                spec = entry["energy_inputs"].get(exchange["name"])
+                                if (
+                                    spec is None
+                                    or exchange["unit"] != spec["unit"]
+                                    or exchange["product"]
+                                    != spec.get("product", exchange["name"])
+                                ):
+                                    raise ValueError(
+                                        f"Unreviewed vehicle-blend energy ingredient: {exchange['name']!r}"
+                                    )
+                                source_energy += (
+                                    exchange["amount"] * spec["MJ per unit"]
+                                )
+                        factor = source_energy / energy_per_unit(
+                            fuel, target["unit"], get_fuel_properties()
+                        )
+                    else:
+                        factor = float(entry["conversion_factor"])
+                    if not math.isfinite(factor) or factor <= 0:
+                        raise ValueError(
+                            "Fuel market handover needs a finite positive conversion factor."
+                        )
+                    self.empty_original_datasets(
+                        [alias],
+                        production_shares={},
+                        loc_map={
+                            alias["location"]: self.ecoinvent_to_iam_loc.get(
+                                alias["location"], "World"
+                            )
+                        },
+                        target=target,
+                        conversion_factor=factor,
+                    )
                     alias.pop("has_downstream_consumer", None)
                     alias["premise fuel market handover"] = {
                         "target": target,
                         "conversion_factor": factor,
                         "limitations": entry["limitations"],
                     }
+                    if source_energy is not None:
+                        alias["premise fuel market handover"][
+                            "source reference energy MJ"
+                        ] = source_energy
+                    purchase = next(ws.technosphere(alias))
+                    properties = providers.get(activity_key(purchase), {}).get(
+                        PROPERTIES_KEY
+                    )
+                    if properties:
+                        alias[PROPERTIES_KEY] = {
+                            **{
+                                key: properties[key] * factor
+                                for key in (
+                                    "reference energy MJ per unit",
+                                    "energy MJ per unit",
+                                    "fossil CO2 kg per unit",
+                                    "non-fossil CO2 kg per unit",
+                                    "unresolved CO2 kg per unit",
+                                )
+                            },
+                            "reference unit": alias["unit"],
+                            "components": [
+                                {
+                                    **{
+                                        k: purchase[k]
+                                        for k in (
+                                            "name",
+                                            "product",
+                                            "location",
+                                            "unit",
+                                            "amount",
+                                        )
+                                    },
+                                    "energy_MJ_per_unit": properties[
+                                        "energy MJ per unit"
+                                    ],
+                                }
+                            ],
+                            "carbon convention": "Final linked fuel properties on the retained source reference basis",
+                        }
                 # Keep these source identities visible: consumers retain their
                 # original product/unit and uncertainty through the forwarding node.
                 self.add_to_index(aliases)

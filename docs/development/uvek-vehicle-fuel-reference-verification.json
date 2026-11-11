@@ -1,0 +1,49 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-163643",
+  "vehicle_blend_references": [
+    {
+      "name": "Fuel supply for gasoline vehicles",
+      "location": "CH",
+      "reference_energy_MJ": 42.181400000000004,
+      "market_kg_per_source_kg": 0.9901737089201879,
+      "target_region": "NEU"
+    },
+    {
+      "name": "Fuel supply for diesel vehicles",
+      "location": "CH",
+      "reference_energy_MJ": 42.705,
+      "market_kg_per_source_kg": 0.9931395348837209,
+      "target_region": "NEU"
+    },
+    {
+      "name": "Fuel supply for diesel vehicles",
+      "location": "RER",
+      "reference_energy_MJ": 42.699999999999996,
+      "market_kg_per_source_kg": 0.9930232558139533,
+      "target_region": "EUR"
+    },
+    {
+      "name": "Fuel supply for gasoline vehicles",
+      "location": "RER",
+      "reference_energy_MJ": 41.956,
+      "market_kg_per_source_kg": 0.9848826291079813,
+      "target_region": "EUR"
+    }
+  ],
+  "vehicle_carbon_checks": {
+    "resolved": 526,
+    "verified_exhaust_pools": 526,
+    "consumers_with_unchanged_demand_and_uncertainty_since_prior_five_sector_export": 526
+  },
+  "unresolved_vehicle_balances": [],
+  "limitations": [
+    "Existing car/truck/train classification only; other transport and industrial consumers require separate coverage review.",
+    "Unresolved carbon origin is reported and is not assigned a guessed fossil/biogenic split."
+  ],
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-155713",
+  "tests": {
+    "focused_regressions_passed": 235,
+    "warnings": 2
+  }
+}
