@@ -6,6 +6,11 @@ weight_basis: Native GLO production-mix hierarchy, followed to terminal generato
   by supplier geography as explicit relative weighting proxies, not measured national production volumes. The standard
   regional production-weighted aggregator normalizes these weights.
 limitations:
+- Medium- and low-voltage zero self-consumption coefficients mean no separately modelled self-loss term. Their
+  native electricity-input ratios are represented by upstream input multipliers, not by lossless physical grids.
+  Ecoinvent can supply both a market self-input and a voltage-transformation multiplier to the same shared equations.
+  Self-inputs also scale non-electricity burdens; matching electricity requirements alone does not establish
+  full-inventory equivalence. Standard Premise infrastructure and SF6 assumptions remain in use.
 - Native source production-volume metadata are zero. Generator-geography portfolio coefficients proxy country production
   weights; suppliers can represent geographic fleets beyond their own location. Effects on regional loss weights
   are unquantified. No IAM generation mix share is changed.
