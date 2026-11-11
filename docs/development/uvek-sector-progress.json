@@ -821,13 +821,12 @@
         {
           "code": "unqualified_IAM_heat_roles",
           "path": "premise/iam_variables_mapping/heat.yaml",
-          "finding": "REMIND2050 positive roles are qualified; two MESSAGE fuel-cell roles have controlled actual-graph conversion checks. Eleven remaining roles lack reviewed bindings and still fail explicitly.",
+          "finding": "Reviewed REMIND2050 positive roles remain qualified; two MESSAGE fuel-cell roles have controlled conversion checks. The TIAM-UCL coke role now retains the existing hard-coal industrial-furnace proxy and has a controlled shared-callback/export test in all 16 physical TIAM regions. Ten other roles still lack reviewed bindings and fail explicitly; full real TIAM/MESSAGE builds remain unverified.",
           "roles": [
             "heat, buildings, residual",
             "heat, industrial, from solar thermal",
             "heat, secondary, from biomass with CCS",
             "heat, secondary, from coal with CCS",
-            "heat, secondary, from coke",
             "heat, secondary, from coke with CCS",
             "heat, secondary, from geothermal",
             "heat, secondary, from natural gas with CCS",
@@ -1226,9 +1225,10 @@
         "tests_passed": 219
       },
       "latest_evidence": [
-        "docs/development/uvek-allocated-heat-carbon-verification.json"
+        "docs/development/uvek-allocated-heat-carbon-verification.json",
+        "docs/development/uvek-secondary-coke-heat-verification.json"
       ],
-      "latest_coverage_note": "The shared fuels update now refreshes final fuel-carbon origin in 51 additional native allocated operating inventories (30 heat-MJ and 21 electricity-kWh records), preserving source allocation, performance, quantities and recorded CO2 totals. This is an operating-inventory carbon fix, not an additional IAM heat-role binding. The eleven unqualified IAM heat roles and other documented heat limitations remain pending; public heat scope is not expanded by this change."
+      "latest_coverage_note": "The shared fuels update now refreshes final fuel-carbon origin in 51 additional native allocated operating inventories (30 heat-MJ and 21 electricity-kWh records), preserving source allocation, performance, quantities and recorded CO2 totals. This is an operating-inventory carbon fix, not an additional IAM heat-role binding. The eleven unqualified IAM heat roles and other documented heat limitations remain pending; public heat scope is not expanded by this change. One additional TIAM-UCL useful-heat role (coke) now has the original Premise hard-coal proxy convention, three required geography YAML aliases, 17 controlled regional/World markets and 66 signed finite LCIs with full export validation. Ten unqualified heat roles remain; this does not establish a full real TIAM scenario."
     },
     {
       "sector": "cdr",

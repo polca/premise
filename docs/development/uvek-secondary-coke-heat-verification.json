@@ -1,0 +1,527 @@
+{
+  "status": "controlled_shared_TIAM_heat_callback_export_and_signed_LCI_verified",
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-controlled-TIAM-coal-coke-heat-20261111-202851",
+  "actual_IAM_scenario": false,
+  "IAM_volumes": "Controlled postprocessed positive coal:coke useful-heat volumes 1:2 in each physical TIAM-UCL region; no unencrypted IAM file fallback.",
+  "export_activities": 12045,
+  "physical_regions": 16,
+  "source_geographies_resolved": 122,
+  "new_geography_equivalences": {
+    "CPA": "CHI",
+    "ERCOT": "USA",
+    "LBFAC32": "WEU"
+  },
+  "raw_and_delivered_role_volume_rows_verified": 32,
+  "role_shares_preserved": {
+    "coal": 0.3333333333333333,
+    "coke": 0.6666666666666666
+  },
+  "heat_output_conversion_factor": 1,
+  "regional_furnace_inventories_unchanged": 16,
+  "secondary_markets": 17,
+  "signed_finite_LCIs": 66,
+  "technosphere_links_internal": 114507,
+  "biosphere_links_in_requested_database": 290756,
+  "validation": {
+    "sector_phases": 1,
+    "export_full_validation": true,
+    "issues_by_severity": {
+      "warning": 13927
+    }
+  },
+  "unreviewed_positive_coke_CCS_refused": true,
+  "source_reference_normalization": {
+    "declared_product_identity_changes": 405,
+    "source_quantity_vectors_unchanged": true,
+    "source_identities_missing_after_declared_normalization": 0
+  },
+  "checks": [
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "FSU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "FSU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "USA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "USA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "JPN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "JPN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEX",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEX",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "ODA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "ODA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CHI",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CHI",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CSA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CSA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "SKO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "SKO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "UK",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "UK",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "EEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "EEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "IND",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "IND",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AUS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AUS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CAN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CAN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "WEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "WEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AFR",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AFR",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "World",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "World",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "AUS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "AUS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "ODA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "ODA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "MEA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "MEA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "CHI",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "CHI",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "JPN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "JPN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "WEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "WEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "USA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "USA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "UK",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "UK",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "AFR",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "AFR",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "EEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "EEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "CAN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "CAN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "SKO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "SKO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "MEX",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "MEX",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "IND",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "IND",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "CSA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "CSA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "FSU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at hard coal industrial furnace 1-10MW",
+      "location": "FSU",
+      "demand": -1,
+      "finite_LCI": true
+    }
+  ],
+  "new_Python_module_changes": false,
+  "remaining_unqualified_heat_roles": 10,
+  "full_real_TIAM_scenario_verified": false,
+  "legacy_warning_baseline_comparison": {
+    "source_only_full_validation_warning_rules": {
+      "LEGACY.CIRCULAR_REFERENCE": 2,
+      "LEGACY.ORPHANED_DATASET": 3734,
+      "LEGACY.POSITIVE_WASTE": 10087
+    },
+    "controlled_heat_full_validation_warning_rules": {
+      "LEGACY.CIRCULAR_REFERENCE": 2,
+      "LEGACY.ORPHANED_DATASET": 3839,
+      "LEGACY.POSITIVE_WASTE": 10086
+    },
+    "positive_waste_service_warning_count_unchanged": false,
+    "circular_reference_warning_identities_unchanged": [
+      [
+        "Heat, from natural gas",
+        "Heat, from natural gas",
+        "LU"
+      ],
+      [
+        "Sinter, iron, at plant",
+        "Sinter, iron, at plant",
+        "RER"
+      ]
+    ],
+    "controlled_circular_reference_warning_identities": [
+      [
+        "Heat, from natural gas",
+        "Heat, from natural gas",
+        "LU"
+      ],
+      [
+        "Sinter, iron, at plant",
+        "Sinter, iron, at plant",
+        "RER"
+      ]
+    ],
+    "no_new_warning_rule_categories": true,
+    "source_only_export_created": false,
+    "warning_suppression_or_rule_changes": false
+  },
+  "post_link_orphan_review": {
+    "source_only_post_link_orphan_count": 3737,
+    "controlled_heat_post_link_orphan_count": 3842,
+    "all_16_regional_furnaces_have_technosphere_consumers": true,
+    "new_post_link_orphans_by_name": {
+      "Heat, light fuel oil, at industrial furnace 1MW": 15,
+      "Heat, softwood chips from forest, at furnace 1000kW": 15,
+      "heat supply, district delivery": 15,
+      "Heat, natural gas, at heat plant": 10
+    }
+  },
+  "positive_waste_diagnostic_difference": "The shared relinker combines two positive same-supplier landfill-service inputs in one native steel record. Their sum is retained, producing one diagnostic instead of two; no treatment sign is flipped.",
+  "tests": {
+    "heat_conversion_data_consumer_and_geography_passed": 75,
+    "dependency_deprecation_warnings": 1
+  },
+  "real_ecoinvent_3_12_regression": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050,
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "fuels"
+    ],
+    "activities": 31205,
+    "validation_phases": 11,
+    "issues_by_severity": {
+      "warning": 85
+    },
+    "export_created": false,
+    "not_a_real_TIAM_scenario": true
+  },
+  "resource_sha256": {
+    "premise/iam_variables_mapping/heat.yaml": "f18295cb1d215815e34044756882550c309624c71c7aa7696d7179c0f2bf96aa",
+    "premise/iam_variables_mapping/missing_geography_equivalences.yaml": "2efb52b6130cf40d34e632dd674fe4ce5c42567afb09b0dadebd9489bdcc9d34",
+    "premise/data/heat/uvek2026_review.json": "92c5305e3628c65543eb9b413aa81e534cc56ce1f182abd7e32f0a684822c87d"
+  },
+  "limitations": [
+    "Preserve the existing Premise coke-to-hard-coal industrial heat proxy; this does not model coke chemistry, coke fuel production or a native industrial coke furnace.",
+    "RER furnace inventory, source capacity, heat grade/pressure, allocation, vintage and regional extrapolation retain unquantified score effects; do not use the small coke stove or infer extra heat conversion.",
+    "CPA to CHI is a representative China-centred regional proxy; ERCOT uses the USA region and LBFAC32 the established Europe-without-Switzerland WEU equivalence. Original source labels and coefficients remain.",
+    "This is a controlled postprocessed TIAM heat-array test, not a complete real TIAM-UCL NewDatabase run. Ten heat roles, remaining heat/fuel limitations and other registered sector work are unfinished.",
+    "The working tree retains pre-existing unrelated edits; this is not a new clean-checkout qualification."
+  ]
+}

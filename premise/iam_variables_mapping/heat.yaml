@@ -966,6 +966,26 @@ heat, secondary, from coal with CCS:
     tiam-ucl: Secondary Energy|Heat|Coal|Heat|w CCS
 
 heat, secondary, from coke:
+  uvek_aliases:
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - Heat, at hard coal industrial furnace 1-10MW
+      reference product:
+      - Heat, at hard coal industrial furnace 1-10MW
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - 'Preserve Premise''s existing TIAM-UCL coke-heat convention: the complete native hard-coal industrial furnace 1-10MW is a screening proxy
+      for useful heat. This is a fuel and upstream-production/emission proxy, not a native coke furnace or a reconstruction of coke chemistry. The
+      available 5-15kW coke stove is not substituted for industrial heat.'
+    - Retain the complete native one-MJ heat-output inventory, original coal burner, performance, signed inputs, infrastructure, supported uncertainty
+      and source allocation. IAM volumes already represent useful heat, so apply no final-energy conversion, heating-value multiplier, deallocation
+      or extra recovery credit.
+    - RER source geography, capacity, technology, fuel composition, vintage, heat grade/pressure and regional extrapolation retain unquantified
+      score differences. Coal and coke IAM roles may select the same physical proxy; keep their role volumes and shares rather than discarding one
+      or adding a second physical plant burden.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
