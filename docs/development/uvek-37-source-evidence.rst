@@ -42,3 +42,18 @@ native leakage-convention differences. Rail, ancillary operation and factory
 construction keep their distinct reference units. See
 ``uvek-fuels-37-services-verification.json`` for component checks; these do not
 establish a complete fuel update or export.
+
+Excavation and pipeline-disposal checkpoint
+------------------------------------------
+
+The two excavation services retain cubic-metre references and include machinery,
+fuel and operating emissions once. Their historical machine/emission assumptions
+remain explicit limitations. Pipeline disposal uses factor -1 to convert the
+negative waste reference into a positive treatment-service reference. The native
+landfill includes waste-specific emissions excluded by the inspected patch source;
+this is an explicit screening proxy, not an emissions-equivalent substitution.
+Requested 3.7 context and inspected 3.7.1 evidence remain distinct.
+
+The verification receipt ``uvek-fuels-37-earthworks-verification.json`` records
+three finite native inventories, 29 focused tests and the complete six-cohort
+preflight: 17 mapping cases remain. It does not qualify fuel transformation/export.

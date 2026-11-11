@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "7cd88edb0870801696948f2d781c9f42b8c2f09c",
-  "approval_ledger_sha256": "3b6afd3b59095650c36794689e4b1bd110cec0b8cefdd63be7d99007bf97b95d",
-  "validated_scopes": 694,
+  "brightpath_commit": "ba6bf2c833164f80ea5bf3c4144de48b76486ef5",
+  "approval_ledger_sha256": "09fd425b8153d77b516a16505250625a3801971b6fd948a7a3f88ee31f85b4ab",
+  "validated_scopes": 697,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 20,
-  "distinct_unapproved_rule_identities": 19,
+  "unapproved_source_profile_cases": 17,
+  "distinct_unapproved_rule_identities": 16,
   "cohorts": [
     {
       "source": {
@@ -72,8 +72,8 @@
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 2,
-      "refusal_audit_filename": "02e3267c10376f5017e0d497fa1d2662da3cefb6cc30ade139c3849e075dc479.audit.json.gz",
-      "refusal_audit_sha256": "d8c4300de36daf716af5940b8b950cc6dad37c7270724c13833f9daf5fd227da",
+      "refusal_audit_filename": "d3bd5704b7313feadf82e6dba323839547848073f38f28968913e32ff3517a30.audit.json.gz",
+      "refusal_audit_sha256": "29ef0778fc0e83f8f492ed689376115470b3cfc032e4de741e90985fd31ad75c",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -140,9 +140,9 @@
       },
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 14,
-      "refusal_audit_filename": "14a126bca0acd7f2f51cbff20786d432b800fdb5d2253422b85e12a9d2e79c54.audit.json.gz",
-      "refusal_audit_sha256": "e384b5e309c4718239960e437c3e1caa360e481ff7ac25d0bd4a7c4a047f4af8",
+      "unapproved_count": 11,
+      "refusal_audit_filename": "923444dc011fd26d72dc25ef03d9f6a50664b75b634a0911710638432ec7b2d7.audit.json.gz",
+      "refusal_audit_sha256": "f369af7d872e8654f2d9723dd14a987e4f52e616b050ce6d0dc62b6928e8e541",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -244,36 +244,6 @@
           }
         },
         {
-          "rule_id": "bp-7107efa3d84d4a67",
-          "source": {
-            "location": "RER",
-            "name": "excavation, hydraulic digger",
-            "reference product": "excavation, hydraulic digger",
-            "unit": "cubic meter"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Excavation, hydraulic digger (proj. 500)",
-            "reference product": "Excavation, hydraulic digger (proj. 500)",
-            "unit": "cubic meter"
-          }
-        },
-        {
-          "rule_id": "bp-a94f92c29206ca62",
-          "source": {
-            "location": "RER",
-            "name": "excavation, skid-steer loader",
-            "reference product": "excavation, skid-steer loader",
-            "unit": "cubic meter"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Excavation, skid-steer loader",
-            "reference product": "Excavation, skid-steer loader",
-            "unit": "cubic meter"
-          }
-        },
-        {
           "rule_id": "bp-714b90acb435b476",
           "source": {
             "location": "CH",
@@ -316,21 +286,6 @@
           }
         },
         {
-          "rule_id": "bp-db4b32ed567bed93",
-          "source": {
-            "location": "CH",
-            "name": "treatment of decommissioned pipeline, natural gas, inert material landfill",
-            "reference product": "decommissioned pipeline, natural gas",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Disposal, natural gas pipeline, 0% water, to construction waste landfill",
-            "reference product": "Disposal, natural gas pipeline, 0% water, to construction waste landfill",
-            "unit": "kilogram"
-          }
-        },
-        {
           "rule_id": "bp-e172491d6da0b115",
           "source": {
             "location": "DE",
@@ -359,8 +314,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "e7d8a79b04acd6bb12c459c07f2d0a0032734fea90e21f5cdbef27479daf0b0a.audit.json.gz",
-      "refusal_audit_sha256": "6a9c72eb620fa54be540ba9b1be05ddfe7f359a5f80fcda80315e26a02838c90",
+      "refusal_audit_filename": "24a928ee7ac9f8e8ff6160f227ddb77e4dfa0122a6fc0bf1b99161d18ccfafa0.audit.json.gz",
+      "refusal_audit_sha256": "e19c0958db51b260dfa20ab399c4c6910288da312bba8185049e1789f1fd0a21",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

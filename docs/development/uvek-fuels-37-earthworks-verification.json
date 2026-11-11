@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-11",
+  "status": "Three services qualified; full fuels transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "ba6bf2c833164f80ea5bf3c4144de48b76486ef5",
+  "review_sha256": "14abeb944b56b0fb8af7f8643d894e7561f40c96138a7ebd03066ed1470ccd25",
+  "new_approval_scopes": 3,
+  "validated_approval_scopes": 697,
+  "previous_validated_scopes": 694,
+  "previous_operation_objects": 601,
+  "all_previous_operations_and_fingerprints_preserved": true,
+  "tests": {
+    "brightpath": "14 passed: signs, uncertainty, formulas, source non-mutation and distinct patch evidence",
+    "premise": "15 passed: strict fresh/cache, exact warning text and individual approval withdrawal"
+  },
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-7107efa3d84d4a67",
+      "identity": {
+        "location": "RER",
+        "name": "Excavation, hydraulic digger (proj. 500)",
+        "reference product": "Excavation, hydraulic digger (proj. 500)",
+        "unit": "cubic meter"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-a94f92c29206ca62",
+      "identity": {
+        "location": "RER",
+        "name": "Excavation, skid-steer loader",
+        "reference product": "Excavation, skid-steer loader",
+        "unit": "cubic meter"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-db4b32ed567bed93",
+      "identity": {
+        "location": "CH",
+        "name": "Disposal, natural gas pipeline, 0% water, to construction waste landfill",
+        "reference product": "Disposal, natural gas pipeline, 0% water, to construction waste landfill",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "runtime_python_changes": false,
+  "migration_resource_changes": false,
+  "regular_environment": "Pushed Git revision installed; packaged review exists and all 697 scopes validated.",
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 17,
+    "distinct_rule_identities": 16,
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "only_removed_cases": [
+      [
+        "3.7",
+        "bp-7107efa3d84d4a67"
+      ],
+      [
+        "3.7",
+        "bp-a94f92c29206ca62"
+      ],
+      [
+        "3.7",
+        "bp-db4b32ed567bed93"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "limitations": [
+    [
+      "Complete hydraulic-digger excavation service per cubic metre, including machine infrastructure, diesel, lubricating oil and operating emissions. Not machine ownership, operating hours or excavated material mass. No soil-density, productivity or machine-lifetime multiplier; no extra duplicate fuel or machine. Separate caller haulage and disposal remain separate. Both definitions use an old representative machine and year-2000 off-road emissions; they warn against use when this service dominates the study. Require sensitivity or primary data for material contributions.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at the explicitly verified sign factor in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "Complete skid-steer-loader excavation service per cubic metre, including building machine, diesel, lubricating oil and operating emissions. Not a hydraulic excavator or machine ownership. No density, productivity or lifetime multiplier and no duplicated machine/fuel. Separate caller haulage/disposal remain separate. Historical representative-machine and year-2000 off-road emissions are screening assumptions; important contributions require sensitivity or primary data.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at the explicitly verified sign factor in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "Complete Swiss decommissioned-gas-pipeline landfill screening proxy per kg of the declared mixed material, not a kg of pure pipe steel or recovered metal. Source negative waste reference becomes a positive native treatment-service reference using factor -1, without reversing internal burdens. Material model includes predominantly sand and small pipe/construction fractions. The inspected source excludes direct leachate emissions as negligible; native UVEK includes waste-specific short- and long-term landfill emissions plus placement, compaction, land and infrastructure. This changed emissions boundary is explicitly accepted as a screening proxy, with unquantified score effects. Do not suppress native emissions, invent recovery credits, add excavation twice, or apply composition/density multipliers.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at the explicitly verified sign factor in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ]
+  ]
+}
