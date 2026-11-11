@@ -172,7 +172,7 @@ From the Premise checkout, run this command in the environment that runs Jupyter
     python -m pip install -e ".[bw25]"
 
 Premise pins Brightpath revision
-``a69e39bd528744655c8f55e15c288d06e3773e22`` for reproducibility. No adjacent
+``c014e597f9795a4bd98de36f30c8bd6ea5e4fb1d`` for reproducibility. No adjacent
 Brightpath checkout is required. Restart the notebook kernel after upgrading.
 
 When upgrading an existing environment that already has another GitHub
@@ -180,7 +180,7 @@ alpha14 revision, force the companion replacement once:
 
 .. code-block:: console
 
-    python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@a69e39bd528744655c8f55e15c288d06e3773e22"
+    python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@c014e597f9795a4bd98de36f30c8bd6ea5e4fb1d"
 
 With the native database and biosphere installed in the selected Brightway
 project, use the usual scenario workflow:

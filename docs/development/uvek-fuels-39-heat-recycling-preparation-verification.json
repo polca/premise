@@ -1,0 +1,191 @@
+{
+  "date": "2026-11-11",
+  "status": "Licensed preparation accepts all seven new approvals; four other source-3.9 correspondences still stop preparation.",
+  "brightpath_commit": "c014e597f9795a4bd98de36f30c8bd6ea5e4fb1d",
+  "review_sha256": "a4d9155e3b015bdd4fd7c8ec5ccba8c6ccb1431257fb0011e5da8f3d4a569d2d",
+  "resource_sha256": "51c799203b59f6d893cc7fddbc0d5c5ee3b008674ba75f8f93ec174597a3a872",
+  "new_exact_39_cutoff_operations": 7,
+  "previous_operations_unchanged": true,
+  "new_rules": [
+    "bp-3619fd839406a61f",
+    "bp-a6429485fc43a215",
+    "bp-ae076e1077dfff2c",
+    "bp-35c7a09fc71ff9db",
+    "bp-f6f59e6dec650096",
+    "bp-08e2003181e3e140",
+    "bp-126729272c9c1747"
+  ],
+  "changed_rule_count": 6,
+  "unchanged_allocated_stock_rule_count": 1,
+  "new_helpers": 0,
+  "new_omissions": 0,
+  "runtime_python_changes": 0,
+  "native_checks": {
+    "date": "2026-11-11",
+    "source_database": "BAFU:2026-reimported",
+    "source_activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "native_matrix_solves": 6,
+    "exact_empty_allocated_stock_checks": 1,
+    "results": [
+      {
+        "rule_id": "bp-3619fd839406a61f",
+        "basis_amount": 1,
+        "basis_unit": "megajoule",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "verification": "Actual installed native-matrix LCI",
+        "inventory_is_exactly_zero_in_numeric_solution": false,
+        "max_abs_inventory_entry": 1.1918992010006988,
+        "structurally_empty_direct_inventory": false,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-a6429485fc43a215",
+        "basis_amount": 1,
+        "basis_unit": "megajoule",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "verification": "Actual installed native-matrix LCI",
+        "inventory_is_exactly_zero_in_numeric_solution": false,
+        "max_abs_inventory_entry": 1.17001429888862,
+        "structurally_empty_direct_inventory": false,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-ae076e1077dfff2c",
+        "basis_amount": 1,
+        "basis_unit": "megajoule",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "verification": "Actual installed native-matrix LCI",
+        "inventory_is_exactly_zero_in_numeric_solution": false,
+        "max_abs_inventory_entry": 1.17001429888862,
+        "structurally_empty_direct_inventory": false,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-35c7a09fc71ff9db",
+        "basis_amount": 1,
+        "basis_unit": "cubic meter",
+        "source_reference_amount": -1.0,
+        "target_reference_amount": 1,
+        "verification": "Actual installed native-matrix LCI",
+        "inventory_is_exactly_zero_in_numeric_solution": false,
+        "max_abs_inventory_entry": 114.45506737356939,
+        "structurally_empty_direct_inventory": false,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-f6f59e6dec650096",
+        "basis_amount": 1,
+        "basis_unit": "kilogram",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "verification": "Actual installed native-matrix LCI",
+        "inventory_is_exactly_zero_in_numeric_solution": false,
+        "max_abs_inventory_entry": 52.58231358960135,
+        "structurally_empty_direct_inventory": false,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-08e2003181e3e140",
+        "basis_amount": 1,
+        "basis_unit": "megajoule",
+        "source_reference_amount": 1.0,
+        "target_reference_amount": 1,
+        "verification": "Actual installed native-matrix LCI",
+        "inventory_is_exactly_zero_in_numeric_solution": false,
+        "max_abs_inventory_entry": 1.232903015218289e-17,
+        "structurally_empty_direct_inventory": true,
+        "inventory_finite": true,
+        "supply_finite": true
+      },
+      {
+        "rule_id": "bp-126729272c9c1747",
+        "basis_amount": 1,
+        "basis_unit": "cubic meter",
+        "verification": "Exact observed source and generated allocated stock have one positive production reference and no nonproduction inventory; analytically zero. Not a native matrix solve.",
+        "inventory_is_zero": true,
+        "inventory_finite": true,
+        "supply_finite": true
+      }
+    ],
+    "waste_heat_source_inventory_nonzero_native_direct_inventory_structurally_empty": true,
+    "numeric_zero_check": "Native allocated heat has exactly one production exchange. Solver residual max absolute entry must be below 1e-12; raw maximum retained in results, not described as exact numeric zero.",
+    "database_written": false,
+    "scope": "Six actual native functional-output LCIs plus an exact empty allocated stock. Not prospective fuel transformation or export."
+  },
+  "tests": {
+    "brightpath_new": 55,
+    "brightpath_reference_sign_regressions": 733,
+    "premise_new_and_adjacent": 16,
+    "total": 804
+  },
+  "complete_replay_byte_identical": true,
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "wheel_review_resource_manifest_byte_identical": true,
+  "licensed_preparation": {
+    "diagnostic_only_public_guard_bypassed": true,
+    "audit_filename": "b07f6f71665f933d7fba78fceedffea35c32d2338f9b58369f780e231a39ef62.audit.json.gz",
+    "audit_sha256": "f920c79649527850e2aedc8eab0bacc545e23030131e63bee8f454a5250889e8",
+    "unapproved_before": 11,
+    "unapproved_after": 4,
+    "remaining": [
+      {
+        "rule_id": "bp-dbd744f486420f56",
+        "source": {
+          "location": "GLO",
+          "name": "market for silica sand",
+          "reference product": "silica sand",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-d262805ddd8a5f1e",
+        "source": {
+          "location": "GLO",
+          "name": "market for ethanol, without water, in 99.7% solution state, from fermentation",
+          "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-30a2d390a7132058",
+        "source": {
+          "location": "RoW",
+          "name": "market for diethyl ether, without water, in 99.95% solution state",
+          "reference product": "diethyl ether, without water, in 99.95% solution state",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-51fc380f01708bab",
+        "source": {
+          "location": "GLO",
+          "name": "market for potassium hydroxide",
+          "reference product": "potassium hydroxide",
+          "unit": "kilogram"
+        }
+      }
+    ],
+    "approved_correspondences": 124,
+    "existing_unit_planning_diagnostic_retained": true,
+    "fuel_transformation_run": false,
+    "fuel_database_exported": false
+  },
+  "limitations": [
+    "Mapping acceptance and finite native LCI do not qualify prospective sector transformation or export.",
+    "Native waste heat allocation replaces nonzero source heat inventory; unquantified score effect.",
+    "Remaining four confirmed from actual licensed audit; further cohorts and sector transformations remain unfinished."
+  ],
+  "regular_conda_git_install_verified": true,
+  "validated_scopes": 613,
+  "obsolete_verified_replay_wheel_bytes_removed": 123033945
+}

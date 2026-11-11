@@ -181738,6 +181738,1502 @@
           "fingerprint": "706bc41c9babbb137418cdf9dd74a206d4a1c39ab842f2a596ff6f931a07e8d8"
         }
       ]
+    },
+    {
+      "rule_id": "bp-3619fd839406a61f",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_heat_recycling",
+      "review_path": "export/uvek_fuels_39_heat_recycling_review.json",
+      "review_sha256": "a4d9155e3b015bdd4fd7c8ec5ccba8c6ccb1431257fb0011e5da8f3d4a569d2d",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native functional screening proxies and allocation differences, with warnings and recorded decisions. No new physical omission or invented zero process.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat and power co-generation, biogas, gas engine",
+            "reference product": "heat, central or small-scale, other than natural gas",
+            "location": "CH",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "c3ff3b5b339dde9a703142988d4c4833d7e1b0f129e3ef7044023688efe8c06e",
+          "metadata_sha256": "4808f86e77a4cb992815e09eb64238d7f848b469db627b5a2092bf9cb2d072c0",
+          "nonproduction_counts": {
+            "technosphere": 6,
+            "biosphere": 8
+          },
+          "name": "heat and power co-generation, biogas, gas engine",
+          "reference product": "heat, central or small-scale, other than natural gas",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Actual source and native provide positive one MJ allocated heat from a Swiss biogas gas-engine cogenerator. Native uses exergy allocation, with electricity exergy 1 and heat exergy 0.17; its complete heat inventory includes fuel supply, shared/heat infrastructure, operating supplements, disposal and direct emissions. Use the native useful-heat output once at factor +1. Source gas demand is 0.016230577125266824 m3/MJ versus native 0.018085 m3/MJ; operating efficiency, allocation, gas mixture, emissions and age differ. Preserve output heat quantity rather than infer a gas-input ratio, another heat/electricity allocation, extra electricity credit or source process emissions.",
+        "conversion_factor": 1.0,
+        "resource_action": "replace",
+        "new_target": {
+          "name": "Heat, at cogen with biogas engine, allocation exergy",
+          "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, at cogen with biogas engine, allocation exergy",
+              "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "73abe47a2c896293d5745815edd57f464356963db8cb9bde4d5ed17303c67eb2",
+            "inventory_sha256": "aee71f4c4778a20db0d5632936fa572540ad147e73888d40994457f3669715f3",
+            "comment_sha256": "99aa44173b94e2654f3f900e3ab29c6f3741596effc266864219e750de5ae33e"
+          },
+          {
+            "identity": {
+              "name": "Heat, from natural gas",
+              "reference product": "Heat, from natural gas",
+              "location": "ENTSO-E",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b693f0679dfcf9411c942ce178e1bfe6092ed62abe8a470851cac19f6d528bf8",
+            "inventory_sha256": "b4ead4ba296c4142726e562074618fde81b21991904dd9a5ac2e9fb35bd3a54c",
+            "comment_sha256": "85663a4a1d267ebdce2e6d1fc09c8773a6223067ecf1288433c8a14b0b287b12"
+          },
+          {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 135,
+            "metadata_sha256": "f28d14ca730a35c2b4f2eb2b8ab7311996172d725c55753e6e85e46590669b92",
+            "inventory_sha256": "b499d710008bda50196d822beac03dbfd6b7ccc5aeba977ecff61f9619e9d7c5",
+            "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9"
+          },
+          {
+            "identity": {
+              "name": "Aluminium, secondary, from old scrap, at plant",
+              "reference product": "Aluminium, secondary, from old scrap, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 29,
+            "metadata_sha256": "92505ac4ef8e5d7c2e6900952cc4928b6f50ffd4fbcc063ff028b73f0e19a7b7",
+            "inventory_sha256": "cf1a3bdd01d08bf5b0a956cc0ca9f0c7fb0318f85324356a50d24754dcf3d9e5",
+            "comment_sha256": "96df913bf8fe2779391e9554adc35fc22d70fd14072e22a33011feee3d90319b"
+          },
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 0,
+            "metadata_sha256": "a33378f7717de04ce2c5aed2314a4c1b5b2fa3ee48beaedc9aff0a67e206bc82",
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "comment_sha256": "18295bca469cfd82c4352ec08d018fe91617bfa470258f46680ff41e0d826329",
+            "allocation_basis": {
+              "native_original_xml_sha256": "d5adcaa5af335c7606a012d7b19dcf4f06abf01d739e671511589734ad12a8ee",
+              "native_original_uuid": "cc476d2d-20a3-3064-a77e-8d173cc5ac5e",
+              "original_reference_amount": 1,
+              "original_reference_unit": "MJ",
+              "original_total_exchange_count": 1,
+              "allocation_percent": {
+                "disposal": 100,
+                "energy": 0
+              },
+              "basis": "Actual native allocated co-product, not a fabricated empty process or reimport exclusion."
+            }
+          }
+        ],
+        "existing_recipe_dependencies": {
+          "allocated-sewage-gas-1d89c1d0fcbab33d0a19": "7b99aca86adbdb2852bdec1e28572cc1832f6983ecd60a0089f06a4b19772834",
+          "allocated-sewage-gas-06b8b03b6149bbfd774a": "609c780c4a4a905a317e8c31e7ea1b50e7dd87b9ff865519f4c2806c8ce33130",
+          "allocated-sewage-gas-4675f057d40d071dc50e": "8c0d8ef9aaea4f4e88f407a7791843b0b87c1ea76ffd03579b48b16d2fc6b6f2"
+        }
+      },
+      "limitations": [
+        "Actual source and native provide positive one MJ allocated heat from a Swiss biogas gas-engine cogenerator. Native uses exergy allocation, with electricity exergy 1 and heat exergy 0.17; its complete heat inventory includes fuel supply, shared/heat infrastructure, operating supplements, disposal and direct emissions. Use the native useful-heat output once at factor +1. Source gas demand is 0.016230577125266824 m3/MJ versus native 0.018085 m3/MJ; operating efficiency, allocation, gas mixture, emissions and age differ. Preserve output heat quantity rather than infer a gas-input ratio, another heat/electricity allocation, extra electricity credit or source process emissions.",
+        "Only the independently inspected ecoinvent 3.9 cut-off profile is newly approved here. Preserve signed caller quantities, uncertainty, formulas and separately listed emissions/freight. Complete native functional proxies adopt native technology, allocation, geography, vintage and internal uncertainty; source process inventories and source market mixes are replaced, not reproduced or added again. Grade, feedstock, service boundary, emissions, biosphere exclusions and score differences remain explicit and unquantified. No inferred LHV, efficiency, COD, yield, purity or gas/sludge-volume multiplier, avoided-energy/virgin-metal credit, reverse or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "754f4be778730d8dbf1a25ef632738ba073d97e636124ccf66be4f8ae5871f6a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a6429485fc43a215",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_heat_recycling",
+      "review_path": "export/uvek_fuels_39_heat_recycling_review.json",
+      "review_sha256": "a4d9155e3b015bdd4fd7c8ec5ccba8c6ccb1431257fb0011e5da8f3d4a569d2d",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native functional screening proxies and allocation differences, with warnings and recorded decisions. No new physical omission or invented zero process.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for heat, central or small-scale, natural gas",
+            "reference product": "heat, central or small-scale, natural gas",
+            "location": "Europe without Switzerland",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "2c92d008e5fdcadd80e1a96a87689863ab7428b401802123d0d12c8e449b154d",
+          "metadata_sha256": "21a73fb644548512be0593ef161058f5de0233422fe828a4cfecebc155f5e6e6",
+          "nonproduction_counts": {
+            "technosphere": 10
+          },
+          "name": "market for heat, central or small-scale, natural gas",
+          "reference product": "heat, central or small-scale, natural gas",
+          "location": "Europe without Switzerland",
+          "unit": "megajoule"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler atm. low-NOx condensing non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "6e5d8a1c1925d49fbfac16f985a719e114eac8dd40902125d6284a60af3b7799",
+            "metadata_sha256": "b54cfc8b6d37bb2e9642e69fc03afe07be8ca1ff476c63302d83229df1929b31",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 24
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "057f3ef41cd056658cedcead01e99479694422df7afa0696055cfe6186afea64",
+            "metadata_sha256": "52a6fe4a1233c4ce3689ca97e5c115b1d6171ae954827a9ac049bd23bae9e574",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 20
+            }
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 50kW electrical, lean burn",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "7595e015ccd94422fbe39d807b85f1436a21529f9ead81fd70a47b76e3ade246",
+            "metadata_sha256": "b80b646cdc0fac6da18dd61625876eacc81979db5d31b467327215a3a908b477",
+            "nonproduction_counts": {
+              "technosphere": 13,
+              "biosphere": 8
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler atmospheric low-NOx non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "14dac9e1a2d672dc9b843e60512465d76d048d626128bef05d943c6a7663f5d0",
+            "metadata_sha256": "a073d3cca95aba4ff5e86191ee6fbc3943a64d81ccbb8a586af28107c871699a",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 20
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler fan burner low-NOx non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "bdca56ebefe9db393741652a1fee70d0efd20ef06508b189be1ae5be59c95b07",
+            "metadata_sha256": "32a171a09fde63d119b4a003ca4ca72b9cc62c038336592c85dc971d3d544416",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 20
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler atmospheric non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "00ebff83ab7899f5a068f39fdc924c9a93cda2b1be5297a511a5841e8a69af19",
+            "metadata_sha256": "f07fda77df191a0af39ab44be0bf78000f1af9c03430ff053df9086355fd04a5",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 20
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler condensing modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "29b844bb0eeeb70d3dbdbab9dc518372e63c19908572326213f4c5beda01b178",
+            "metadata_sha256": "463196571a9bea426d21bb84658f1c16fd3fb7562ae66f9af7e373c8611995a3",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 24
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler fan burner non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "2ddc1ce82e434e15bc91a864f4301f42bfa561b012ca60b0efaca626d26fba84",
+            "metadata_sha256": "a1ec6ba211b1a159e6574389dda532332e8278123d3e34f75db379e61baec16c",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 20
+            }
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 160kW electrical, lambda=1",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "a21aa909ec806719af1bbe5edaacd7211de784305d7dc888441532db70f256ea",
+            "metadata_sha256": "ae7ab8071316dcc79c139c6df70bc86fdccb69d7e2b088021200e439c8f8d6a9",
+            "nonproduction_counts": {
+              "technosphere": 13,
+              "biosphere": 9
+            }
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, mini-plant 2KW electrical",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "04ec5104c5b399fe0f1996066214c6c2be3a710d3a9e497000fa854e623fdfab",
+            "metadata_sha256": "121d3b592a5cfb29b2253ef99575a30d5fb9f1d0e3b95e2209a8d045cfeaae37",
+            "nonproduction_counts": {
+              "technosphere": 13,
+              "biosphere": 8
+            }
+          }
+        ],
+        "basis": "Source European-excluding-Switzerland central/small-scale natural-gas heat uses a complete native ENTSO-E 2022 gas-heat mix per positive useful MJ, replacing the older Swiss-only candidate. Native country and CHP/heat-plant shares proxy, rather than reproduce, the source boiler/cogenerator size/technology mix. ENTSO-E includes Switzerland and has a different geographic/heat-service boundary; temperatures, distribution, allocation, operating emissions, age and internal uncertainty differ. Retain native quantities unchanged and allow shared Premise heat updates to act on native suppliers. Do not freeze a new source technology mix, add source heat/fuel inventories, multiply energy by efficiency/LHV or apply an extra coverage/loss factor.",
+        "conversion_factor": 1.0,
+        "resource_action": "replace",
+        "new_target": {
+          "name": "Heat, from natural gas",
+          "reference product": "Heat, from natural gas",
+          "location": "ENTSO-E",
+          "unit": "megajoule"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, at cogen with biogas engine, allocation exergy",
+              "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "73abe47a2c896293d5745815edd57f464356963db8cb9bde4d5ed17303c67eb2",
+            "inventory_sha256": "aee71f4c4778a20db0d5632936fa572540ad147e73888d40994457f3669715f3",
+            "comment_sha256": "99aa44173b94e2654f3f900e3ab29c6f3741596effc266864219e750de5ae33e"
+          },
+          {
+            "identity": {
+              "name": "Heat, from natural gas",
+              "reference product": "Heat, from natural gas",
+              "location": "ENTSO-E",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b693f0679dfcf9411c942ce178e1bfe6092ed62abe8a470851cac19f6d528bf8",
+            "inventory_sha256": "b4ead4ba296c4142726e562074618fde81b21991904dd9a5ac2e9fb35bd3a54c",
+            "comment_sha256": "85663a4a1d267ebdce2e6d1fc09c8773a6223067ecf1288433c8a14b0b287b12"
+          },
+          {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 135,
+            "metadata_sha256": "f28d14ca730a35c2b4f2eb2b8ab7311996172d725c55753e6e85e46590669b92",
+            "inventory_sha256": "b499d710008bda50196d822beac03dbfd6b7ccc5aeba977ecff61f9619e9d7c5",
+            "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9"
+          },
+          {
+            "identity": {
+              "name": "Aluminium, secondary, from old scrap, at plant",
+              "reference product": "Aluminium, secondary, from old scrap, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 29,
+            "metadata_sha256": "92505ac4ef8e5d7c2e6900952cc4928b6f50ffd4fbcc063ff028b73f0e19a7b7",
+            "inventory_sha256": "cf1a3bdd01d08bf5b0a956cc0ca9f0c7fb0318f85324356a50d24754dcf3d9e5",
+            "comment_sha256": "96df913bf8fe2779391e9554adc35fc22d70fd14072e22a33011feee3d90319b"
+          },
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 0,
+            "metadata_sha256": "a33378f7717de04ce2c5aed2314a4c1b5b2fa3ee48beaedc9aff0a67e206bc82",
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "comment_sha256": "18295bca469cfd82c4352ec08d018fe91617bfa470258f46680ff41e0d826329",
+            "allocation_basis": {
+              "native_original_xml_sha256": "d5adcaa5af335c7606a012d7b19dcf4f06abf01d739e671511589734ad12a8ee",
+              "native_original_uuid": "cc476d2d-20a3-3064-a77e-8d173cc5ac5e",
+              "original_reference_amount": 1,
+              "original_reference_unit": "MJ",
+              "original_total_exchange_count": 1,
+              "allocation_percent": {
+                "disposal": 100,
+                "energy": 0
+              },
+              "basis": "Actual native allocated co-product, not a fabricated empty process or reimport exclusion."
+            }
+          }
+        ],
+        "existing_recipe_dependencies": {
+          "allocated-sewage-gas-1d89c1d0fcbab33d0a19": "7b99aca86adbdb2852bdec1e28572cc1832f6983ecd60a0089f06a4b19772834",
+          "allocated-sewage-gas-06b8b03b6149bbfd774a": "609c780c4a4a905a317e8c31e7ea1b50e7dd87b9ff865519f4c2806c8ce33130",
+          "allocated-sewage-gas-4675f057d40d071dc50e": "8c0d8ef9aaea4f4e88f407a7791843b0b87c1ea76ffd03579b48b16d2fc6b6f2"
+        }
+      },
+      "limitations": [
+        "Source European-excluding-Switzerland central/small-scale natural-gas heat uses a complete native ENTSO-E 2022 gas-heat mix per positive useful MJ, replacing the older Swiss-only candidate. Native country and CHP/heat-plant shares proxy, rather than reproduce, the source boiler/cogenerator size/technology mix. ENTSO-E includes Switzerland and has a different geographic/heat-service boundary; temperatures, distribution, allocation, operating emissions, age and internal uncertainty differ. Retain native quantities unchanged and allow shared Premise heat updates to act on native suppliers. Do not freeze a new source technology mix, add source heat/fuel inventories, multiply energy by efficiency/LHV or apply an extra coverage/loss factor.",
+        "Only the independently inspected ecoinvent 3.9 cut-off profile is newly approved here. Preserve signed caller quantities, uncertainty, formulas and separately listed emissions/freight. Complete native functional proxies adopt native technology, allocation, geography, vintage and internal uncertainty; source process inventories and source market mixes are replaced, not reproduced or added again. Grade, feedstock, service boundary, emissions, biosphere exclusions and score differences remain explicit and unquantified. No inferred LHV, efficiency, COD, yield, purity or gas/sludge-volume multiplier, avoided-energy/virgin-metal credit, reverse or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4af57ca58a47b549a4c7b37e583bccd491d62cedc805c3a54e8513b2489614b3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ae076e1077dfff2c",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_heat_recycling",
+      "review_path": "export/uvek_fuels_39_heat_recycling_review.json",
+      "review_sha256": "a4d9155e3b015bdd4fd7c8ec5ccba8c6ccb1431257fb0011e5da8f3d4a569d2d",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native functional screening proxies and allocation differences, with warnings and recorded decisions. No new physical omission or invented zero process.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for heat, central or small-scale, natural gas",
+            "reference product": "heat, central or small-scale, natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "cce6e01aa19d0efcf0831c5b29cbbc9df5137849c096792c0bfcd129438e545a",
+          "metadata_sha256": "dff5b2e30d830cf664b3a382be2a5b57f50d35afe749772922d3392f379b085d",
+          "nonproduction_counts": {
+            "technosphere": 10
+          },
+          "name": "market for heat, central or small-scale, natural gas",
+          "reference product": "heat, central or small-scale, natural gas",
+          "location": "RoW",
+          "unit": "megajoule"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 50kW electrical, lean burn",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "c452bf314863ecc18a6942b27b60009008041f53280dffb134e2ffc00bfe07a3",
+            "metadata_sha256": "bab92a05113a074d495eba0416d45b56069b40ba8a6cfa6a281ede2e2f1c4343",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 8
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler atm. low-NOx condensing non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "c8a6a42be1d4a6cb5a6b90e03938515e9493784491064e198dc2f19d6177ec2c",
+            "metadata_sha256": "09929a758c313b2b01057063f7e57f736c8fcaee996d26f5ec2ba54678e26728",
+            "nonproduction_counts": {
+              "technosphere": 14,
+              "biosphere": 24
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler condensing modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "459d19a1a0ceb3b0b99bfac51c6d7c4ad61fbd63a4188b9f4f33a7041ab9a3a6",
+            "metadata_sha256": "28dd8133a77cbc189656fe1c8e314527209a943ca3c2f45eff6433d27b5c9118",
+            "nonproduction_counts": {
+              "technosphere": 12,
+              "biosphere": 24
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler atmospheric low-NOx non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "dd12e6b2ce1888fe82068879d7c58ced1c1f9f94f68d4cab38e3ec55b3323dd6",
+            "metadata_sha256": "5b207e28b78f8e51fef4683a57bc8d729b58766f99f8d4e919a57a6a10be922e",
+            "nonproduction_counts": {
+              "technosphere": 14,
+              "biosphere": 20
+            }
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 160kW electrical, lambda=1",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "434c32c1ee5a4b195dd01c906a0065f6aec101146d2ff440d08f2ca27674fb50",
+            "metadata_sha256": "2086a84362c7116a6cb3675ce5713af72deb7f6964d2778d21b0bc9cf1881baf",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 9
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler atmospheric non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "fb5ae2055b461117b62613a0e873c656f0887be6836374b29aaca2f19821c231",
+            "metadata_sha256": "84dbf9f9b5a844097b4eaf0d208f66ca317d3b9850e07f5a1ac67a03e4cf99cd",
+            "nonproduction_counts": {
+              "technosphere": 14,
+              "biosphere": 20
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler fan burner low-NOx non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "51ec6ddba8e78cb2b032cf6dfa562560b3ba681b96f3b3252344d8a0291da0b0",
+            "metadata_sha256": "f624fa4f79d88535bebf452605b4cccbab8cf5420c65bca377d6a1e67382bef5",
+            "nonproduction_counts": {
+              "technosphere": 14,
+              "biosphere": 20
+            }
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, mini-plant 2KW electrical",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "c5cc6b69b052f23801b6aa207d081ac23c84d2399a6085eb3de276e1e9874647",
+            "metadata_sha256": "ec9d084d3568c1f141d8d66bfde2456c1b3fc0d717f2b20eb7532cb06545d8fb",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 8
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "ed7e4c6892a46b3c5365fd6ca75761fae245b84537d7d397824fedb9bd648d17",
+            "metadata_sha256": "cafe57a2f4e8c6d6cbd8a64e79cda548b7f8170c157b45b2c135fe877e2a740d",
+            "nonproduction_counts": {
+              "technosphere": 14,
+              "biosphere": 20
+            }
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler fan burner non-modulating <100kW",
+              "reference product": "heat, central or small-scale, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "a25b1ea8ec1f48acd15b59488a565c38bab452d03a540dbdf09e4c21607cf074",
+            "metadata_sha256": "677da69c11f454b2b52ffd8c470b0c7576ea05fd531efb6a5adca29f6b2c2b39",
+            "nonproduction_counts": {
+              "technosphere": 14,
+              "biosphere": 20
+            }
+          }
+        ],
+        "basis": "Source RoW central/small-scale gas heat uses the complete native ENTSO-E 2022 gas-heat mix per positive useful MJ as an explicit broad geographic/technology screening proxy; a global native aggregate is not available. The source world boiler/cogenerator portfolio is replaced, not reproduced. Native country/CHP/heat-plant mix, scale, heat-service/distribution boundary, allocation, emissions, age and internal uncertainty differ. Source quantity remains one useful MJ without a geographic-share, LHV, efficiency, coverage or loss multiplier. Shared Premise transformations continue to update native suppliers; no new UVEK sector algorithm or frozen source heat mix is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "replace",
+        "new_target": {
+          "name": "Heat, from natural gas",
+          "reference product": "Heat, from natural gas",
+          "location": "ENTSO-E",
+          "unit": "megajoule"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, at cogen with biogas engine, allocation exergy",
+              "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "73abe47a2c896293d5745815edd57f464356963db8cb9bde4d5ed17303c67eb2",
+            "inventory_sha256": "aee71f4c4778a20db0d5632936fa572540ad147e73888d40994457f3669715f3",
+            "comment_sha256": "99aa44173b94e2654f3f900e3ab29c6f3741596effc266864219e750de5ae33e"
+          },
+          {
+            "identity": {
+              "name": "Heat, from natural gas",
+              "reference product": "Heat, from natural gas",
+              "location": "ENTSO-E",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b693f0679dfcf9411c942ce178e1bfe6092ed62abe8a470851cac19f6d528bf8",
+            "inventory_sha256": "b4ead4ba296c4142726e562074618fde81b21991904dd9a5ac2e9fb35bd3a54c",
+            "comment_sha256": "85663a4a1d267ebdce2e6d1fc09c8773a6223067ecf1288433c8a14b0b287b12"
+          },
+          {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 135,
+            "metadata_sha256": "f28d14ca730a35c2b4f2eb2b8ab7311996172d725c55753e6e85e46590669b92",
+            "inventory_sha256": "b499d710008bda50196d822beac03dbfd6b7ccc5aeba977ecff61f9619e9d7c5",
+            "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9"
+          },
+          {
+            "identity": {
+              "name": "Aluminium, secondary, from old scrap, at plant",
+              "reference product": "Aluminium, secondary, from old scrap, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 29,
+            "metadata_sha256": "92505ac4ef8e5d7c2e6900952cc4928b6f50ffd4fbcc063ff028b73f0e19a7b7",
+            "inventory_sha256": "cf1a3bdd01d08bf5b0a956cc0ca9f0c7fb0318f85324356a50d24754dcf3d9e5",
+            "comment_sha256": "96df913bf8fe2779391e9554adc35fc22d70fd14072e22a33011feee3d90319b"
+          },
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 0,
+            "metadata_sha256": "a33378f7717de04ce2c5aed2314a4c1b5b2fa3ee48beaedc9aff0a67e206bc82",
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "comment_sha256": "18295bca469cfd82c4352ec08d018fe91617bfa470258f46680ff41e0d826329",
+            "allocation_basis": {
+              "native_original_xml_sha256": "d5adcaa5af335c7606a012d7b19dcf4f06abf01d739e671511589734ad12a8ee",
+              "native_original_uuid": "cc476d2d-20a3-3064-a77e-8d173cc5ac5e",
+              "original_reference_amount": 1,
+              "original_reference_unit": "MJ",
+              "original_total_exchange_count": 1,
+              "allocation_percent": {
+                "disposal": 100,
+                "energy": 0
+              },
+              "basis": "Actual native allocated co-product, not a fabricated empty process or reimport exclusion."
+            }
+          }
+        ],
+        "existing_recipe_dependencies": {
+          "allocated-sewage-gas-1d89c1d0fcbab33d0a19": "7b99aca86adbdb2852bdec1e28572cc1832f6983ecd60a0089f06a4b19772834",
+          "allocated-sewage-gas-06b8b03b6149bbfd774a": "609c780c4a4a905a317e8c31e7ea1b50e7dd87b9ff865519f4c2806c8ce33130",
+          "allocated-sewage-gas-4675f057d40d071dc50e": "8c0d8ef9aaea4f4e88f407a7791843b0b87c1ea76ffd03579b48b16d2fc6b6f2"
+        }
+      },
+      "limitations": [
+        "Source RoW central/small-scale gas heat uses the complete native ENTSO-E 2022 gas-heat mix per positive useful MJ as an explicit broad geographic/technology screening proxy; a global native aggregate is not available. The source world boiler/cogenerator portfolio is replaced, not reproduced. Native country/CHP/heat-plant mix, scale, heat-service/distribution boundary, allocation, emissions, age and internal uncertainty differ. Source quantity remains one useful MJ without a geographic-share, LHV, efficiency, coverage or loss multiplier. Shared Premise transformations continue to update native suppliers; no new UVEK sector algorithm or frozen source heat mix is introduced.",
+        "Only the independently inspected ecoinvent 3.9 cut-off profile is newly approved here. Preserve signed caller quantities, uncertainty, formulas and separately listed emissions/freight. Complete native functional proxies adopt native technology, allocation, geography, vintage and internal uncertainty; source process inventories and source market mixes are replaced, not reproduced or added again. Grade, feedstock, service boundary, emissions, biosphere exclusions and score differences remain explicit and unquantified. No inferred LHV, efficiency, COD, yield, purity or gas/sludge-volume multiplier, avoided-energy/virgin-metal credit, reverse or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "331d5fba62005e7d64684a82aa65c48fd20b85b8099c6532e1015d49560f17b0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-35c7a09fc71ff9db",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_heat_recycling",
+      "review_path": "export/uvek_fuels_39_heat_recycling_review.json",
+      "review_sha256": "a4d9155e3b015bdd4fd7c8ec5ccba8c6ccb1431257fb0011e5da8f3d4a569d2d",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native functional screening proxies and allocation differences, with warnings and recorded decisions. No new physical omission or invented zero process.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of wastewater, average, wastewater treatment",
+            "reference product": "wastewater, average",
+            "location": "RoW",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "enriched_inventory_sha256": "0e173b58bb495701eb3febcb665c07e011f300feb40872aaffe1ca64f264b67f",
+          "metadata_sha256": "c5478ffe7da4330a04c74aeb82aaf1eeefe0b01df52ffe85ddd4f6dd90b4da90",
+          "nonproduction_counts": {
+            "technosphere": 66,
+            "biosphere": 81
+          },
+          "name": "treatment of wastewater, average, wastewater treatment",
+          "reference product": "wastewater, average",
+          "location": "RoW",
+          "unit": "cubic meter"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Source ordinary average-wastewater treatment has a negative one-m3 waste reference. Complete native Swiss class-1 municipal sewage treatment provides positive one-m3 service, so factor -1 changes reference convention while preserving wastewater volume, uncertainty and formula. Native capacity is 233000 population equivalents. Source COD is 0.42534 kg/m3 versus native 0.1556 kg/m3; TOC/BOD, other composition, process loading, sludge/gas allocation, effluent, infrastructure, geography and age differ. This is a volume-based ordinary-wastewater screening proxy, not a claim of equal pollutant treatment. Do not apply a single COD ratio to all burdens, convert m3 to kg, add source effluent/process emissions or a second sludge treatment over the complete native inventory.",
+        "conversion_factor": -1.0,
+        "resource_action": "replace",
+        "new_target": {
+          "name": "Treatment, sewage, to wastewater treatment, class 1",
+          "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+          "location": "CH",
+          "unit": "cubic meter"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, at cogen with biogas engine, allocation exergy",
+              "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "73abe47a2c896293d5745815edd57f464356963db8cb9bde4d5ed17303c67eb2",
+            "inventory_sha256": "aee71f4c4778a20db0d5632936fa572540ad147e73888d40994457f3669715f3",
+            "comment_sha256": "99aa44173b94e2654f3f900e3ab29c6f3741596effc266864219e750de5ae33e"
+          },
+          {
+            "identity": {
+              "name": "Heat, from natural gas",
+              "reference product": "Heat, from natural gas",
+              "location": "ENTSO-E",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b693f0679dfcf9411c942ce178e1bfe6092ed62abe8a470851cac19f6d528bf8",
+            "inventory_sha256": "b4ead4ba296c4142726e562074618fde81b21991904dd9a5ac2e9fb35bd3a54c",
+            "comment_sha256": "85663a4a1d267ebdce2e6d1fc09c8773a6223067ecf1288433c8a14b0b287b12"
+          },
+          {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 135,
+            "metadata_sha256": "f28d14ca730a35c2b4f2eb2b8ab7311996172d725c55753e6e85e46590669b92",
+            "inventory_sha256": "b499d710008bda50196d822beac03dbfd6b7ccc5aeba977ecff61f9619e9d7c5",
+            "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9"
+          },
+          {
+            "identity": {
+              "name": "Aluminium, secondary, from old scrap, at plant",
+              "reference product": "Aluminium, secondary, from old scrap, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 29,
+            "metadata_sha256": "92505ac4ef8e5d7c2e6900952cc4928b6f50ffd4fbcc063ff028b73f0e19a7b7",
+            "inventory_sha256": "cf1a3bdd01d08bf5b0a956cc0ca9f0c7fb0318f85324356a50d24754dcf3d9e5",
+            "comment_sha256": "96df913bf8fe2779391e9554adc35fc22d70fd14072e22a33011feee3d90319b"
+          },
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 0,
+            "metadata_sha256": "a33378f7717de04ce2c5aed2314a4c1b5b2fa3ee48beaedc9aff0a67e206bc82",
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "comment_sha256": "18295bca469cfd82c4352ec08d018fe91617bfa470258f46680ff41e0d826329",
+            "allocation_basis": {
+              "native_original_xml_sha256": "d5adcaa5af335c7606a012d7b19dcf4f06abf01d739e671511589734ad12a8ee",
+              "native_original_uuid": "cc476d2d-20a3-3064-a77e-8d173cc5ac5e",
+              "original_reference_amount": 1,
+              "original_reference_unit": "MJ",
+              "original_total_exchange_count": 1,
+              "allocation_percent": {
+                "disposal": 100,
+                "energy": 0
+              },
+              "basis": "Actual native allocated co-product, not a fabricated empty process or reimport exclusion."
+            }
+          }
+        ],
+        "existing_recipe_dependencies": {
+          "allocated-sewage-gas-1d89c1d0fcbab33d0a19": "7b99aca86adbdb2852bdec1e28572cc1832f6983ecd60a0089f06a4b19772834",
+          "allocated-sewage-gas-06b8b03b6149bbfd774a": "609c780c4a4a905a317e8c31e7ea1b50e7dd87b9ff865519f4c2806c8ce33130",
+          "allocated-sewage-gas-4675f057d40d071dc50e": "8c0d8ef9aaea4f4e88f407a7791843b0b87c1ea76ffd03579b48b16d2fc6b6f2"
+        }
+      },
+      "limitations": [
+        "Source ordinary average-wastewater treatment has a negative one-m3 waste reference. Complete native Swiss class-1 municipal sewage treatment provides positive one-m3 service, so factor -1 changes reference convention while preserving wastewater volume, uncertainty and formula. Native capacity is 233000 population equivalents. Source COD is 0.42534 kg/m3 versus native 0.1556 kg/m3; TOC/BOD, other composition, process loading, sludge/gas allocation, effluent, infrastructure, geography and age differ. This is a volume-based ordinary-wastewater screening proxy, not a claim of equal pollutant treatment. Do not apply a single COD ratio to all burdens, convert m3 to kg, add source effluent/process emissions or a second sludge treatment over the complete native inventory.",
+        "Only the independently inspected ecoinvent 3.9 cut-off profile is newly approved here. Preserve signed caller quantities, uncertainty, formulas and separately listed emissions/freight. Complete native functional proxies adopt native technology, allocation, geography, vintage and internal uncertainty; source process inventories and source market mixes are replaced, not reproduced or added again. Grade, feedstock, service boundary, emissions, biosphere exclusions and score differences remain explicit and unquantified. No inferred LHV, efficiency, COD, yield, purity or gas/sludge-volume multiplier, avoided-energy/virgin-metal credit, reverse or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2d26d0ebd359d35fc7c339e9db06d2ac6570c223fa2d6d1eacdac9a5bd77fa86"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f6f59e6dec650096",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_heat_recycling",
+      "review_path": "export/uvek_fuels_39_heat_recycling_review.json",
+      "review_sha256": "a4d9155e3b015bdd4fd7c8ec5ccba8c6ccb1431257fb0011e5da8f3d4a569d2d",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native functional screening proxies and allocation differences, with warnings and recorded decisions. No new physical omission or invented zero process.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at remelter",
+            "reference product": "aluminium, wrought alloy",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "2a9e3e77d1e8e4db7e0733026f96e4c890d3a1333fec4ad44a2f202d197fe58c",
+          "metadata_sha256": "003d74666f5d776e01a72253cc71f803e974a71241334c967611e24488c276f2",
+          "nonproduction_counts": {
+            "technosphere": 18,
+            "biosphere": 8
+          },
+          "name": "treatment of aluminium scrap, post-consumer, prepared for recycling, at remelter",
+          "reference product": "aluminium, wrought alloy",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Source treatment-name activity actually produces positive one kg secondary wrought-alloy stock from prepared post-consumer scrap at a remelter. Correct the previous primary/secondary wrought production-mix target to complete native old-scrap melting, alloying and casting to secondary aluminium billets. Both source and native cite EAA 2005/2008 data, but source prepared-scrap input is 1.0089799212995663 kg/kg metal versus native old-scrap input 1.118 kg/kg metal. Scrap preparation, quality/yield, alloy additions, furnace/energy, dross/salt-slag boundary, emissions, allocation, geography and age differ; exact alloy/route equivalence is not established. Preserve one kg metal output at factor +1 despite the treatment name, without a scrap/yield ratio, primary-metal input, avoided-virgin credit, extra recycling or source process emissions.",
+        "conversion_factor": 1.0,
+        "resource_action": "replace",
+        "new_target": {
+          "name": "Aluminium, secondary, from old scrap, at plant",
+          "reference product": "Aluminium, secondary, from old scrap, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, at cogen with biogas engine, allocation exergy",
+              "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "73abe47a2c896293d5745815edd57f464356963db8cb9bde4d5ed17303c67eb2",
+            "inventory_sha256": "aee71f4c4778a20db0d5632936fa572540ad147e73888d40994457f3669715f3",
+            "comment_sha256": "99aa44173b94e2654f3f900e3ab29c6f3741596effc266864219e750de5ae33e"
+          },
+          {
+            "identity": {
+              "name": "Heat, from natural gas",
+              "reference product": "Heat, from natural gas",
+              "location": "ENTSO-E",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b693f0679dfcf9411c942ce178e1bfe6092ed62abe8a470851cac19f6d528bf8",
+            "inventory_sha256": "b4ead4ba296c4142726e562074618fde81b21991904dd9a5ac2e9fb35bd3a54c",
+            "comment_sha256": "85663a4a1d267ebdce2e6d1fc09c8773a6223067ecf1288433c8a14b0b287b12"
+          },
+          {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 135,
+            "metadata_sha256": "f28d14ca730a35c2b4f2eb2b8ab7311996172d725c55753e6e85e46590669b92",
+            "inventory_sha256": "b499d710008bda50196d822beac03dbfd6b7ccc5aeba977ecff61f9619e9d7c5",
+            "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9"
+          },
+          {
+            "identity": {
+              "name": "Aluminium, secondary, from old scrap, at plant",
+              "reference product": "Aluminium, secondary, from old scrap, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 29,
+            "metadata_sha256": "92505ac4ef8e5d7c2e6900952cc4928b6f50ffd4fbcc063ff028b73f0e19a7b7",
+            "inventory_sha256": "cf1a3bdd01d08bf5b0a956cc0ca9f0c7fb0318f85324356a50d24754dcf3d9e5",
+            "comment_sha256": "96df913bf8fe2779391e9554adc35fc22d70fd14072e22a33011feee3d90319b"
+          },
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 0,
+            "metadata_sha256": "a33378f7717de04ce2c5aed2314a4c1b5b2fa3ee48beaedc9aff0a67e206bc82",
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "comment_sha256": "18295bca469cfd82c4352ec08d018fe91617bfa470258f46680ff41e0d826329",
+            "allocation_basis": {
+              "native_original_xml_sha256": "d5adcaa5af335c7606a012d7b19dcf4f06abf01d739e671511589734ad12a8ee",
+              "native_original_uuid": "cc476d2d-20a3-3064-a77e-8d173cc5ac5e",
+              "original_reference_amount": 1,
+              "original_reference_unit": "MJ",
+              "original_total_exchange_count": 1,
+              "allocation_percent": {
+                "disposal": 100,
+                "energy": 0
+              },
+              "basis": "Actual native allocated co-product, not a fabricated empty process or reimport exclusion."
+            }
+          }
+        ],
+        "existing_recipe_dependencies": {
+          "allocated-sewage-gas-1d89c1d0fcbab33d0a19": "7b99aca86adbdb2852bdec1e28572cc1832f6983ecd60a0089f06a4b19772834",
+          "allocated-sewage-gas-06b8b03b6149bbfd774a": "609c780c4a4a905a317e8c31e7ea1b50e7dd87b9ff865519f4c2806c8ce33130",
+          "allocated-sewage-gas-4675f057d40d071dc50e": "8c0d8ef9aaea4f4e88f407a7791843b0b87c1ea76ffd03579b48b16d2fc6b6f2"
+        }
+      },
+      "limitations": [
+        "Source treatment-name activity actually produces positive one kg secondary wrought-alloy stock from prepared post-consumer scrap at a remelter. Correct the previous primary/secondary wrought production-mix target to complete native old-scrap melting, alloying and casting to secondary aluminium billets. Both source and native cite EAA 2005/2008 data, but source prepared-scrap input is 1.0089799212995663 kg/kg metal versus native old-scrap input 1.118 kg/kg metal. Scrap preparation, quality/yield, alloy additions, furnace/energy, dross/salt-slag boundary, emissions, allocation, geography and age differ; exact alloy/route equivalence is not established. Preserve one kg metal output at factor +1 despite the treatment name, without a scrap/yield ratio, primary-metal input, avoided-virgin credit, extra recycling or source process emissions.",
+        "Only the independently inspected ecoinvent 3.9 cut-off profile is newly approved here. Preserve signed caller quantities, uncertainty, formulas and separately listed emissions/freight. Complete native functional proxies adopt native technology, allocation, geography, vintage and internal uncertainty; source process inventories and source market mixes are replaced, not reproduced or added again. Grade, feedstock, service boundary, emissions, biosphere exclusions and score differences remain explicit and unquantified. No inferred LHV, efficiency, COD, yield, purity or gas/sludge-volume multiplier, avoided-energy/virgin-metal credit, reverse or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4ce3ad7f88e384c370e720ef449e00c88b65576b19c8c11b3273f2507770e53d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-08e2003181e3e140",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_heat_recycling",
+      "review_path": "export/uvek_fuels_39_heat_recycling_review.json",
+      "review_sha256": "a4d9155e3b015bdd4fd7c8ec5ccba8c6ccb1431257fb0011e5da8f3d4a569d2d",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native functional screening proxies and allocation differences, with warnings and recorded decisions. No new physical omission or invented zero process.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "CH",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "43fdd17c2d27b352412d0cb4c8311e8266792520df449426f7a05dd31f95c877",
+          "metadata_sha256": "400815f4a24aa7e94e03518d0584901b9d7c055dd50ea1cf04d7c680be87f54e",
+          "nonproduction_counts": {
+            "technosphere": 1
+          },
+          "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+          "reference product": "heat, district or industrial, other than natural gas",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "9c5e9c1b9967e78c8772212f7c18c1b658e6415a1fd951bd71f83f83fee2bd11",
+            "metadata_sha256": "f44e1de9779db526c3b3bb16c36fb3406a5d0839181090f7fece61a52c2a4b7f",
+            "nonproduction_counts": {
+              "technosphere": 58
+            }
+          }
+        ],
+        "basis": "Use the actual native positive one-MJ municipal-waste-incineration heat co-product with its documented allocation: 100% of burdens to waste disposal, 0% to energy. The original native EcoSpold archive contains only the one positive production exchange, proving zero inventory is not an import-filter artifact. This is a native allocation/technology screening proxy, not a claim the source is empty. The 3.9 source heat-reuse market has 58 supplier entries: 55 have no active inventory, while three FAE suppliers carry active burdens (6.587691540191035% of the heat mix); an actual source LCI is nonzero. Those source allocation, residue/metal recovery, emission and ash-extraction burdens are replaced by the native allocation model and their score effect is unquantified. Retain one MJ and its caller sign/uncertainty; no arbitrary empty helper, omitted caller exchange, extra disposal charge, allocation rescaling, avoided-boiler or recovered-energy credit is invented. Waste treatment retains its native burdens on its own function; sensitivity/detail review is required when recovered-heat results are important.",
+        "conversion_factor": 1.0,
+        "resource_action": "replace",
+        "new_target": {
+          "name": "Heat from waste, at municipal waste incineration plant",
+          "reference product": "Heat from waste, at municipal waste incineration plant",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, at cogen with biogas engine, allocation exergy",
+              "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "73abe47a2c896293d5745815edd57f464356963db8cb9bde4d5ed17303c67eb2",
+            "inventory_sha256": "aee71f4c4778a20db0d5632936fa572540ad147e73888d40994457f3669715f3",
+            "comment_sha256": "99aa44173b94e2654f3f900e3ab29c6f3741596effc266864219e750de5ae33e"
+          },
+          {
+            "identity": {
+              "name": "Heat, from natural gas",
+              "reference product": "Heat, from natural gas",
+              "location": "ENTSO-E",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b693f0679dfcf9411c942ce178e1bfe6092ed62abe8a470851cac19f6d528bf8",
+            "inventory_sha256": "b4ead4ba296c4142726e562074618fde81b21991904dd9a5ac2e9fb35bd3a54c",
+            "comment_sha256": "85663a4a1d267ebdce2e6d1fc09c8773a6223067ecf1288433c8a14b0b287b12"
+          },
+          {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 135,
+            "metadata_sha256": "f28d14ca730a35c2b4f2eb2b8ab7311996172d725c55753e6e85e46590669b92",
+            "inventory_sha256": "b499d710008bda50196d822beac03dbfd6b7ccc5aeba977ecff61f9619e9d7c5",
+            "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9"
+          },
+          {
+            "identity": {
+              "name": "Aluminium, secondary, from old scrap, at plant",
+              "reference product": "Aluminium, secondary, from old scrap, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 29,
+            "metadata_sha256": "92505ac4ef8e5d7c2e6900952cc4928b6f50ffd4fbcc063ff028b73f0e19a7b7",
+            "inventory_sha256": "cf1a3bdd01d08bf5b0a956cc0ca9f0c7fb0318f85324356a50d24754dcf3d9e5",
+            "comment_sha256": "96df913bf8fe2779391e9554adc35fc22d70fd14072e22a33011feee3d90319b"
+          },
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 0,
+            "metadata_sha256": "a33378f7717de04ce2c5aed2314a4c1b5b2fa3ee48beaedc9aff0a67e206bc82",
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "comment_sha256": "18295bca469cfd82c4352ec08d018fe91617bfa470258f46680ff41e0d826329",
+            "allocation_basis": {
+              "native_original_xml_sha256": "d5adcaa5af335c7606a012d7b19dcf4f06abf01d739e671511589734ad12a8ee",
+              "native_original_uuid": "cc476d2d-20a3-3064-a77e-8d173cc5ac5e",
+              "original_reference_amount": 1,
+              "original_reference_unit": "MJ",
+              "original_total_exchange_count": 1,
+              "allocation_percent": {
+                "disposal": 100,
+                "energy": 0
+              },
+              "basis": "Actual native allocated co-product, not a fabricated empty process or reimport exclusion."
+            }
+          }
+        ],
+        "existing_recipe_dependencies": {
+          "allocated-sewage-gas-1d89c1d0fcbab33d0a19": "7b99aca86adbdb2852bdec1e28572cc1832f6983ecd60a0089f06a4b19772834",
+          "allocated-sewage-gas-06b8b03b6149bbfd774a": "609c780c4a4a905a317e8c31e7ea1b50e7dd87b9ff865519f4c2806c8ce33130",
+          "allocated-sewage-gas-4675f057d40d071dc50e": "8c0d8ef9aaea4f4e88f407a7791843b0b87c1ea76ffd03579b48b16d2fc6b6f2"
+        },
+        "waste_heat_source_market": {
+          "source": {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "9c5e9c1b9967e78c8772212f7c18c1b658e6415a1fd951bd71f83f83fee2bd11",
+            "metadata_sha256": "f44e1de9779db526c3b3bb16c36fb3406a5d0839181090f7fece61a52c2a4b7f",
+            "nonproduction_counts": {
+              "technosphere": 58
+            }
+          },
+          "supplier_rows": 58,
+          "empty_inventory_suppliers": 55,
+          "nonempty_suppliers": [
+            {
+              "identity": {
+                "name": "treatment of digester sludge, municipal incineration with fly ash extraction",
+                "reference product": "heat, for reuse in municipal waste incineration only",
+                "location": "CH",
+                "unit": "megajoule"
+              },
+              "market_quantity": 0.002938900876175946,
+              "reference_amount": 1,
+              "active_nonproduction_count": 119,
+              "inventory_sha256": "b6b949404177f1dfdb14b86f3ec6829318a3a71aa0d7c7126acd5af0d223d88a"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste packaging paper, municipal incineration with fly ash extraction",
+                "reference product": "heat, for reuse in municipal waste incineration only",
+                "location": "CH",
+                "unit": "megajoule"
+              },
+              "market_quantity": 0.0387208535340347,
+              "reference_amount": 1,
+              "active_nonproduction_count": 149,
+              "inventory_sha256": "97c32acd7a33d461b2bcc5e101f292273cbfe82a4e51a08ae84cfe53f62704d5"
+            },
+            {
+              "identity": {
+                "name": "treatment of waste newspaper, municipal incineration with fly ash extraction",
+                "reference product": "heat, for reuse in municipal waste incineration only",
+                "location": "CH",
+                "unit": "megajoule"
+              },
+              "market_quantity": 0.0242171609916997,
+              "reference_amount": 1,
+              "active_nonproduction_count": 122,
+              "inventory_sha256": "b4f9677ddb683afce9c37f600c6f624b00e8670354e2158a090f191245528b69"
+            }
+          ],
+          "nonempty_supplier_share": 0.06587691540191035,
+          "source_lci": {
+            "source_identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "amount": 1,
+            "unit": "megajoule",
+            "source_reference_amount": 1,
+            "supply_finite": true,
+            "inventory_finite": true,
+            "inventory_nonzero_entries": 304539,
+            "source_LCI_is_zero": false
+          },
+          "native_allocation_zero_does_not_imply_source_zero": true
+        }
+      },
+      "limitations": [
+        "Use the actual native positive one-MJ municipal-waste-incineration heat co-product with its documented allocation: 100% of burdens to waste disposal, 0% to energy. The original native EcoSpold archive contains only the one positive production exchange, proving zero inventory is not an import-filter artifact. This is a native allocation/technology screening proxy, not a claim the source is empty. The 3.9 source heat-reuse market has 58 supplier entries: 55 have no active inventory, while three FAE suppliers carry active burdens (6.587691540191035% of the heat mix); an actual source LCI is nonzero. Those source allocation, residue/metal recovery, emission and ash-extraction burdens are replaced by the native allocation model and their score effect is unquantified. Retain one MJ and its caller sign/uncertainty; no arbitrary empty helper, omitted caller exchange, extra disposal charge, allocation rescaling, avoided-boiler or recovered-energy credit is invented. Waste treatment retains its native burdens on its own function; sensitivity/detail review is required when recovered-heat results are important.",
+        "Only the independently inspected ecoinvent 3.9 cut-off profile is newly approved here. Preserve signed caller quantities, uncertainty, formulas and separately listed emissions/freight. Complete native functional proxies adopt native technology, allocation, geography, vintage and internal uncertainty; source process inventories and source market mixes are replaced, not reproduced or added again. Grade, feedstock, service boundary, emissions, biosphere exclusions and score differences remain explicit and unquantified. No inferred LHV, efficiency, COD, yield, purity or gas/sludge-volume multiplier, avoided-energy/virgin-metal credit, reverse or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "19ecae8d86cd39485f679cbbf995c13e9d8b3c7178707b8f9a55f310c4ed8bc8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-126729272c9c1747",
+      "operation": "replace",
+      "mapping_method": "reviewed_allocated_sewage_gas",
+      "review_path": "export/uvek_fuels_39_heat_recycling_review.json",
+      "review_sha256": "a4d9155e3b015bdd4fd7c8ec5ccba8c6ccb1431257fb0011e5da8f3d4a569d2d",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected native functional screening proxies and allocation differences, with warnings and recorded decisions. No new physical omission or invented zero process.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of sewage sludge by anaerobic digestion",
+            "reference product": "biogas",
+            "location": "CH",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "2e7a0906871fa0f7ecb44e2b1f836ece0b369d965e03b299355b825f8a842ffb",
+          "metadata_sha256": "d2981ae6d90782e6efc4aeaa493209d49d853936016aa0acd382d7b5245f8e03",
+          "nonproduction_counts": {},
+          "name": "treatment of sewage sludge by anaerobic digestion",
+          "reference product": "biogas",
+          "location": "CH",
+          "unit": "cubic meter"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Actual positive one-m3 3.9 sewage-gas stock contains only its production reference; the paired negative one-m3 sludge-treatment function shares the original activity identifier and retains four technosphere/two biosphere exchanges. Preserve this observed cut-off allocation with the existing exact-profile allocated-sewage-gas helper, which has no inputs. The rule and all its existing profiles/helper recipes remain unchanged. This is not actual digestion or sludge treatment made burden-free, not native gas-at-storage processing, and not an absent inventory guessed to be zero. Do not flip the positive gas product because the activity is named treatment, add a storage/WWTP burden, allocate another gas share, infer gas/sludge volume equivalence or extrapolate this new Premise approval to another version/model.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "recipe_ref": "allocated-sewage-gas-1d89c1d0fcbab33d0a19"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, at cogen with biogas engine, allocation exergy",
+              "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "73abe47a2c896293d5745815edd57f464356963db8cb9bde4d5ed17303c67eb2",
+            "inventory_sha256": "aee71f4c4778a20db0d5632936fa572540ad147e73888d40994457f3669715f3",
+            "comment_sha256": "99aa44173b94e2654f3f900e3ab29c6f3741596effc266864219e750de5ae33e"
+          },
+          {
+            "identity": {
+              "name": "Heat, from natural gas",
+              "reference product": "Heat, from natural gas",
+              "location": "ENTSO-E",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b693f0679dfcf9411c942ce178e1bfe6092ed62abe8a470851cac19f6d528bf8",
+            "inventory_sha256": "b4ead4ba296c4142726e562074618fde81b21991904dd9a5ac2e9fb35bd3a54c",
+            "comment_sha256": "85663a4a1d267ebdce2e6d1fc09c8773a6223067ecf1288433c8a14b0b287b12"
+          },
+          {
+            "identity": {
+              "name": "Treatment, sewage, to wastewater treatment, class 1",
+              "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 135,
+            "metadata_sha256": "f28d14ca730a35c2b4f2eb2b8ab7311996172d725c55753e6e85e46590669b92",
+            "inventory_sha256": "b499d710008bda50196d822beac03dbfd6b7ccc5aeba977ecff61f9619e9d7c5",
+            "comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9"
+          },
+          {
+            "identity": {
+              "name": "Aluminium, secondary, from old scrap, at plant",
+              "reference product": "Aluminium, secondary, from old scrap, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 29,
+            "metadata_sha256": "92505ac4ef8e5d7c2e6900952cc4928b6f50ffd4fbcc063ff028b73f0e19a7b7",
+            "inventory_sha256": "cf1a3bdd01d08bf5b0a956cc0ca9f0c7fb0318f85324356a50d24754dcf3d9e5",
+            "comment_sha256": "96df913bf8fe2779391e9554adc35fc22d70fd14072e22a33011feee3d90319b"
+          },
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 0,
+            "metadata_sha256": "a33378f7717de04ce2c5aed2314a4c1b5b2fa3ee48beaedc9aff0a67e206bc82",
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "comment_sha256": "18295bca469cfd82c4352ec08d018fe91617bfa470258f46680ff41e0d826329",
+            "allocation_basis": {
+              "native_original_xml_sha256": "d5adcaa5af335c7606a012d7b19dcf4f06abf01d739e671511589734ad12a8ee",
+              "native_original_uuid": "cc476d2d-20a3-3064-a77e-8d173cc5ac5e",
+              "original_reference_amount": 1,
+              "original_reference_unit": "MJ",
+              "original_total_exchange_count": 1,
+              "allocation_percent": {
+                "disposal": 100,
+                "energy": 0
+              },
+              "basis": "Actual native allocated co-product, not a fabricated empty process or reimport exclusion."
+            }
+          }
+        ],
+        "existing_recipe_dependencies": {
+          "allocated-sewage-gas-1d89c1d0fcbab33d0a19": "7b99aca86adbdb2852bdec1e28572cc1832f6983ecd60a0089f06a4b19772834",
+          "allocated-sewage-gas-06b8b03b6149bbfd774a": "609c780c4a4a905a317e8c31e7ea1b50e7dd87b9ff865519f4c2806c8ce33130",
+          "allocated-sewage-gas-4675f057d40d071dc50e": "8c0d8ef9aaea4f4e88f407a7791843b0b87c1ea76ffd03579b48b16d2fc6b6f2"
+        },
+        "counterpart_witness": {
+          "identity": {
+            "name": "treatment of sewage sludge by anaerobic digestion",
+            "reference product": "sewage sludge",
+            "location": "CH",
+            "unit": "cubic meter"
+          },
+          "reference_amount": -1,
+          "nonproduction_counts": {
+            "tech": 4,
+            "bio": 2
+          },
+          "shared_original_activity_uuid": "f0a919bd-a596-5acc-8b47-d3b781ebf231",
+          "inventory_sha256": "8a09103b41f0ab8c0000e6766899f0de32dea202260a1a515b685592bebdf8b1"
+        },
+        "existing_recipe_id": "allocated-sewage-gas-1d89c1d0fcbab33d0a19"
+      },
+      "limitations": [
+        "Actual positive one-m3 3.9 sewage-gas stock contains only its production reference; the paired negative one-m3 sludge-treatment function shares the original activity identifier and retains four technosphere/two biosphere exchanges. Preserve this observed cut-off allocation with the existing exact-profile allocated-sewage-gas helper, which has no inputs. The rule and all its existing profiles/helper recipes remain unchanged. This is not actual digestion or sludge treatment made burden-free, not native gas-at-storage processing, and not an absent inventory guessed to be zero. Do not flip the positive gas product because the activity is named treatment, add a storage/WWTP burden, allocate another gas share, infer gas/sludge volume equivalence or extrapolate this new Premise approval to another version/model.",
+        "Only the independently inspected ecoinvent 3.9 cut-off profile is newly approved here. Preserve signed caller quantities, uncertainty, formulas and separately listed emissions/freight. Complete native functional proxies adopt native technology, allocation, geography, vintage and internal uncertainty; source process inventories and source market mixes are replaced, not reproduced or added again. Grade, feedstock, service boundary, emissions, biosphere exclusions and score differences remain explicit and unquantified. No inferred LHV, efficiency, COD, yield, purity or gas/sludge-volume multiplier, avoided-energy/virgin-metal credit, reverse or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1d656eb3694d188dd707ee5a82b3cdb1c53e30dff8bbda61b0a93eeb1d0b2f0b"
+        }
+      ]
     }
   ],
   "superseded_operations": [

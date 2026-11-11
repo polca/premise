@@ -1083,3 +1083,39 @@ Next: silica-sand co-product allocation, KOH/ethanol/ether quantity bases, remai
 biogas/heat markets and wastewater/aluminium/waste-heat correspondences; further
 preparation cohorts, shared fuel transformation/linking and all remaining
 registered sectors still follow. The full integration goal remains active.
+
+
+### Heat and recycling preparation checkpoint — 11 November 2026
+
+Seven inspected source-3.9 cut-off approvals reduce the actual licensed fuel
+preparation cohort from **11 to 4**: silica sand, potassium hydroxide, ethanol
+and diethyl ether remain. Six direct Brightpath matches change; its existing
+allocated sewage-gas rule and every earlier Premise approval remain unchanged.
+Native old-scrap aluminium replaces a primary/secondary mix, ENTSO-E gas heat
+replaces Swiss-only candidates, and useful biogas heat and volume-based sewage
+treatment retain complete native inventories and explicit boundary warnings.
+
+Native waste heat is structurally empty because its documented allocation puts
+100% of burdens on disposal and none on energy. The source heat inventory is
+nonzero; this is explicitly an allocation/technology proxy with unquantified
+score effects. Six native matrix LCIs are finite. The empty native co-product
+produces solver residuals no larger than 1.24e-17, recorded separately from its
+exactly empty direct inventory; no production Python change was needed. The
+existing positive sewage-gas stock is independently empty at source, while its
+paired sludge treatment carries burdens. Neither case licenses generic empty
+suppliers or silent omissions.
+
+All **804 tests pass** (55 new Brightpath, 733 sign regressions, 16 Premise
+new/adjacent checks). Complete deterministic replay and wheel bytes match; the
+canonical biosphere is unchanged. The pushed Brightpath revision is installed
+from Git in the regular conda environment and all **613 scopes** validate.
+No runtime Python modules or notebook cells change. Requirements and colleague
+guides pin that revision. The public fuel guard remains closed; this diagnostic
+preparation run does not qualify fuel transformation or export. Source data
+still has 11,947 activities and its original modification timestamp. Verified
+obsolete replay/wheel files were removed; source evidence and active caches
+remain. See the [heat/recycling receipt](uvek-fuels-39-heat-recycling-preparation-verification.json).
+
+Next: resolve the four observed product-basis/allocation cases, then further
+preparation cohorts, the shared fuel update and export, and remaining registered
+sectors. The full integration goal remains active.
