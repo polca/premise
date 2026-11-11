@@ -255,6 +255,24 @@ natural gas:
       exact: true
       fltr:
         name:
+        - xx Natural gas, burned in Mini CHP plant
+        - xx Natural gas, burned in cogen 160kWe Jakobsberg
+        - xx Natural gas, burned in cogen 160kWe lambda=1
+        - xxx Natural gas, burned in cogen 500kWe lean burn
+        reference product:
+        - xx Natural gas, burned in Mini CHP plant
+        - xx Natural gas, burned in cogen 160kWe Jakobsberg
+        - xx Natural gas, burned in cogen 160kWe lambda=1
+        - xxx Natural gas, burned in cogen 500kWe lean burn
+        unit: megajoule
+    limitations:
+    - 'Reviewed native burner services only: retain recorded positive exhaust CO2 and update only fossil/non-fossil origin from the actual delivered IAM fuel. Preserve reference production, signed fuel demand, uncertainty, infrastructure, operating performance, non-CO2 emissions and waste treatment.'
+    - 'Fuel-dominant whole-exhaust screening proxy: some lubricant or urea-derived fossil carbon may be reclassified because its direct contribution is not separately identified. Retain all auxiliary and residue exchanges, add no guessed correction or avoided-emission credit, and report unquantified score effects.'
+    - Native source technology, capacity, allocation, reference-energy, composition, geography and vintage limitations remain; this is not a claim of LCIA equivalence or complete industrial fuel-carbon coverage.
+  - selector:
+      exact: true
+      fltr:
+        name:
         - Transport, freight, lorry, compressed gas, 18t gross weight, 2020, EURO-VI, long haul
         - Transport, freight, lorry, compressed gas, 18t gross weight, 2020, EURO-VI, regional delivery
         - Transport, freight, lorry, compressed gas, 18t gross weight, 2020, EURO-VI, urban delivery
@@ -722,6 +740,64 @@ diesel:
   - selector:
       exact: true
       fltr:
+        name:
+        - Diesel, burned in agricultural machine
+        - Diesel, burned in auxillary machines at concrete crusher
+        - Diesel, burned in auxillary machines at mixed rubble sorting
+        - Diesel, burned in hydraulic digger at building deconstruction
+        reference product:
+        - Diesel, burned in agricultural machine
+        - Diesel, burned in auxillary machines at concrete crusher
+        - Diesel, burned in auxillary machines at mixed rubble sorting
+        - Diesel, burned in hydraulic digger at building deconstruction
+        unit: kilogram
+    limitations:
+    - 'Reviewed native burner services only: retain recorded positive exhaust CO2 and update only fossil/non-fossil origin from the actual delivered IAM fuel. Preserve reference production, signed fuel demand, uncertainty, infrastructure, operating performance, non-CO2 emissions and waste treatment.'
+    - 'Fuel-dominant whole-exhaust screening proxy: some lubricant or urea-derived fossil carbon may be reclassified because its direct contribution is not separately identified. Retain all auxiliary and residue exchanges, add no guessed correction or avoided-emission credit, and report unquantified score effects.'
+    - Native source technology, capacity, allocation, reference-energy, composition, geography and vintage limitations remain; this is not a claim of LCIA equivalence or complete industrial fuel-carbon coverage.
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Diesel, burned in asphalt paver, average, with particle filter
+        - Diesel, burned in building machine, average
+        - Diesel, burned in building machine, with particle filter
+        - Diesel, burned in building machine, with particle filter, without building machine
+        - Diesel, burned in building machine, with particle filter, without building machine and lubricating oil
+        - Diesel, burned in building machine, without particle filter
+        - Diesel, burned in cogen 15kWth
+        - Diesel, burned in cogen 1MWth
+        - Diesel, burned in cogen 300kWth
+        - Diesel, burned in cogen 50kWth
+        - Diesel, burned in compaction roller, average, with particle filter
+        - Diesel, burned in diesel-electric generating set
+        - Diesel, burned in diesel-electric generating set, at extraction site
+        - Diesel, burned in dumper, average, with particle filter
+        - Diesel, burned in hydraulic digger, average, with particle filter
+        reference product:
+        - Diesel, burned in asphalt paver, average, with particle filter
+        - Diesel, burned in building machine, average
+        - Diesel, burned in building machine, with particle filter
+        - Diesel, burned in building machine, with particle filter, without building machine
+        - Diesel, burned in building machine, with particle filter, without building machine and lubricating oil
+        - Diesel, burned in building machine, without particle filter
+        - Diesel, burned in cogen 15kWth
+        - Diesel, burned in cogen 1MWth
+        - Diesel, burned in cogen 300kWth
+        - Diesel, burned in cogen 50kWth
+        - Diesel, burned in compaction roller, average, with particle filter
+        - Diesel, burned in diesel-electric generating set
+        - Diesel, burned in diesel-electric generating set, at extraction site
+        - Diesel, burned in dumper, average, with particle filter
+        - Diesel, burned in hydraulic digger, average, with particle filter
+        unit: megajoule
+    limitations:
+    - 'Reviewed native burner services only: retain recorded positive exhaust CO2 and update only fossil/non-fossil origin from the actual delivered IAM fuel. Preserve reference production, signed fuel demand, uncertainty, infrastructure, operating performance, non-CO2 emissions and waste treatment.'
+    - 'Fuel-dominant whole-exhaust screening proxy: some lubricant or urea-derived fossil carbon may be reclassified because its direct contribution is not separately identified. Retain all auxiliary and residue exchanges, add no guessed correction or avoided-emission credit, and report unquantified score effects.'
+    - Native source technology, capacity, allocation, reference-energy, composition, geography and vintage limitations remain; this is not a claim of LCIA equivalence or complete industrial fuel-carbon coverage.
+  - selector:
+      exact: true
+      fltr:
         unit: person kilometer
         name:
         - "Transport, high speed train"
@@ -882,6 +958,19 @@ diesel:
       - period
       - market
 gasoline:
+  uvek_recorded_exhaust_consumers:
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Petrol, burned in building machine, with particle filter
+        reference product:
+        - Petrol, burned in building machine, with particle filter
+        unit: megajoule
+    limitations:
+    - 'Reviewed native burner services only: retain recorded positive exhaust CO2 and update only fossil/non-fossil origin from the actual delivered IAM fuel. Preserve reference production, signed fuel demand, uncertainty, infrastructure, operating performance, non-CO2 emissions and waste treatment.'
+    - 'Fuel-dominant whole-exhaust screening proxy: some lubricant or urea-derived fossil carbon may be reclassified because its direct contribution is not separately identified. Retain all auxiliary and residue exchanges, add no guessed correction or avoided-emission credit, and report unquantified score effects.'
+    - Native source technology, capacity, allocation, reference-energy, composition, geography and vintage limitations remain; this is not a claim of LCIA equivalence or complete industrial fuel-carbon coverage.
   uvek_market_template:
     source:
       name: Petrol, at regional storage

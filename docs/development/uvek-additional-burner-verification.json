@@ -1,0 +1,339 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-194104",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-193124",
+  "export_activities": 14808,
+  "burner_records_verified": 25,
+  "distinct_names": 24,
+  "burner_checks": [
+    {
+      "name": "Diesel, burned in auxillary machines at mixed rubble sorting",
+      "location": "CH",
+      "unit": "kilogram",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in building machine, with particle filter",
+      "location": "GLO",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in dumper, average, with particle filter",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in building machine, with particle filter",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in building machine, average",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in hydraulic digger at building deconstruction",
+      "location": "CH",
+      "unit": "kilogram",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in cogen 50kWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Petrol, burned in building machine, with particle filter",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Petrol, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in cogen 15kWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in building machine, without particle filter",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in agricultural machine",
+      "location": "CH",
+      "unit": "kilogram",
+      "fuel_suppliers": [
+        "xxx Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in auxillary machines at concrete crusher",
+      "location": "CH",
+      "unit": "kilogram",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in diesel-electric generating set, at extraction site",
+      "location": "GLO",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in hydraulic digger, average, with particle filter",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in diesel-electric generating set",
+      "location": "GLO",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in cogen 300kWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in cogen 1MWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in building machine, with particle filter, without building machine",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Natural gas, burned in cogen 160kWe lambda=1",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Natural gas, burned in Mini CHP plant",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in asphalt paver, average, with particle filter",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Natural gas, burned in cogen 500kWe lean burn",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Natural gas, burned in cogen 160kWe Jakobsberg",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in compaction roller, average, with particle filter",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Diesel, burned in building machine, with particle filter, without building machine and lubricating oil",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    }
+  ],
+  "technosphere_links_internal": 141426,
+  "biosphere_links_in_requested_database": 311605,
+  "validation": {
+    "phases": 11,
+    "issues_by_severity": {
+      "warning": 14
+    }
+  },
+  "implementation": "Premise YAML selectors only; shared Python modules unchanged.",
+  "limitations": [
+    "Fuel-dominant whole-exhaust screening convention can reclassify minor lubricant or urea-derived fossil carbon. Source quantities are not separately resolved; effect unquantified.",
+    "Retain source reference units, engine performance, allocation, all signed inputs, uncertainty and non-CO2 emissions; do not infer a heating value, extra efficiency correction or avoided credit.",
+    "Gas-production loss flows, network/process emissions, mixed industrial carbon and other fuel/sector coverage remain unfinished."
+  ],
+  "public_fuels_supported": false,
+  "remaining_native_route_review_counts": {
+    "unreviewed process": 298,
+    "covered operating consumer": 864,
+    "delivery carrier": 64
+  },
+  "remaining_queue_interpretation": "Review candidates, not proof every direct emission must be reclassified; source-production gas, process/feedstock carbon and loss flows require separate boundary review.",
+  "focused_tests": {
+    "passed": 144,
+    "dependency_deprecation_warnings": 2
+  },
+  "mapping_sha256": "a97ab1b87f615031850422d0e88c185a33ea457b99f911d8a825b89ebddc5da0",
+  "ecoinvent_and_other_mapping_fields_unchanged": true,
+  "clean_checkout_rerun": false,
+  "verification_scope_note": "Real local diagnostic with pre-existing unrelated edits retained; the previous vehicle-blend clean checkout establishes the shared code path, not a separate clean verification of these new selectors."
+}
