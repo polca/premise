@@ -1,0 +1,95 @@
+{
+  "date": "2026-11-11",
+  "status": "Two exact 3.8 construction-waste services qualified; complete fuel transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "bc5127fb55322d909c82cc97de3095c7ba7b52d1",
+  "review_sha256": "d0212920721da706a3b1e6007c2d80b8e98db84d19643f1a2ef8e6a098d43f5e",
+  "forward_resource_sha256": "8bd91c98ea5869a4f803b93873484041a34b6cc10a5dd8a9453a07d13433eb43",
+  "migration_resource_unchanged": true,
+  "new_approval_scopes": 2,
+  "validated_approval_scopes": 682,
+  "all_prior_680_operations_and_fingerprints_preserved": true,
+  "tests": {
+    "brightpath": "10 passed; source negative/native positive reference signs, formula scaling, lognormal signs, reversed normal bounds and independent demand-fulfilment evidence",
+    "premise": "10 passed; strict fresh/cache signed statistics, exact warnings and individual approval removal",
+    "broader_baseline": "Earlier regression checkpoints remain historical; no post-change full repository suite claimed."
+  },
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-4d389c0e2269e7e9",
+      "native_demand": 1,
+      "native_activity_supply": 1.0000009701932822,
+      "net_fulfilled_demand": 1.0000000000000007,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-56f1f68f931b8c2a",
+      "native_demand": 1,
+      "native_activity_supply": 1.000068898070325,
+      "net_fulfilled_demand": 1.0,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_lci_checks": [
+    {
+      "rule_id": "bp-4d389c0e2269e7e9",
+      "source_demand": -1,
+      "source_activity_supply": 1.0000000243971054,
+      "net_fulfilled_demand": -0.9999999999999999,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-56f1f68f931b8c2a",
+      "source_demand": -1,
+      "source_activity_supply": 1.0000040352572106,
+      "net_fulfilled_demand": -1.0,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "licensed_source_database_unchanged": {
+    "name": "ecoinvent-3.8-cutoff",
+    "activity_count": 19565,
+    "modified": "2026-06-04T17:39:57.493795"
+  },
+  "reference_interpretation": "Source reference -1 and native +1 both require positive service activity. Matrix net demand is -1 and +1 respectively; supply-chain recursion can make total activity supply exceed one. No LCIA equality or category-score sign guarantee is claimed.",
+  "wheel": "Review/resource/manifest bytes match checkout.",
+  "runtime_python_changes": false,
+  "regular_environment": "Pushed Git revision installed; resource SHA and 682 scopes verified; regular BAFU project restored after licensed source checks.",
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 32,
+    "distinct_rule_identities": 31,
+    "only_removed_cases": [
+      [
+        "3.8",
+        "bp-4d389c0e2269e7e9"
+      ],
+      [
+        "3.8",
+        "bp-56f1f68f931b8c2a"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 41474237,
+  "limitations": [
+    [
+      "Use complete native building bulk-iron sorting service, excluding reinforcement, per source kg waste. Both describe 1 kg steel waste and demolition handling, dry sorting, sorting electricity and transport to dismantling facilities. This is not steel manufacture, a zero-burden recycling handover or a smelting/recovery-credit process. Native Swiss late-1990s technology is an explicit geographic/vintage screening proxy for Europe without Switzerland. Do not add recovered steel credits or a second sorting/demolition/transport operation.",
+      "The source reference is negative one kg waste; native reference is positive one kg treatment service. Factor -1 converts a negative waste input to a positive native service demand; a positive source coordinate becomes a negative native coordinate consistently. This is reference-coordinate conversion, not an avoided-product credit. Scale normal/lognormal uncertainty and signs consistently and preserve formulas with the factor; native internal inventory remains unchanged. Preserve declared kg without a waste-density or kg-to-m3 conversion. Separate caller operations, transport and emissions remain. Source/native machinery, utilities, emissions, allocation, internal uncertainty, background coverage and vintage differ; native upstream biosphere exclusions remain and score effects are unquantified. Only exact independently inspected ecoinvent 3.8 cut-off is added; no other release, inverse or cross-system-model approval is inferred."
+    ],
+    [
+      "Use complete native building reinforced-concrete final-disposal service per source kg waste. Both document 0.97 kg inert material and 0.03 kg steel per kg waste, dismantling/handling energy and dust, transport and final disposal. It is not ordinary unreinforced concrete or a recycling route. Do not split into new 97/3 caller exchanges, add steel-recovery credits or add a second demolition, transport or disposal service. Swiss technology is an explicit geographic/vintage proxy for Europe without Switzerland.",
+      "The source reference is negative one kg waste; native reference is positive one kg treatment service. Factor -1 converts a negative waste input to a positive native service demand; a positive source coordinate becomes a negative native coordinate consistently. This is reference-coordinate conversion, not an avoided-product credit. Scale normal/lognormal uncertainty and signs consistently and preserve formulas with the factor; native internal inventory remains unchanged. Preserve declared kg without a waste-density or kg-to-m3 conversion. Separate caller operations, transport and emissions remain. Source/native machinery, utilities, emissions, allocation, internal uncertainty, background coverage and vintage differ; native upstream biosphere exclusions remain and score effects are unquantified. Only exact independently inspected ecoinvent 3.8 cut-off is added; no other release, inverse or cross-system-model approval is inferred."
+    ]
+  ]
+}

@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "e549d16afe58c2e0550456ba37503bc5e67a021b",
-  "approval_ledger_sha256": "2c0943e094f40ede9d9e9011ef97044fb75466916f312f217e58ab7e4951ef75",
-  "validated_scopes": 680,
+  "brightpath_commit": "bc5127fb55322d909c82cc97de3095c7ba7b52d1",
+  "approval_ledger_sha256": "1f4d6f8e4e9020300c74fdb0f9de40c9c1d384ebad912901dcdfc43df40e5c10",
+  "validated_scopes": 682,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 34,
-  "distinct_unapproved_rule_identities": 33,
+  "unapproved_source_profile_cases": 32,
+  "distinct_unapproved_rule_identities": 31,
   "cohorts": [
     {
       "source": {
@@ -71,9 +71,9 @@
       },
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 6,
-      "refusal_audit_filename": "ccbeddc3afb92ea8f76daa995d61bb12db90400f32ab711ad2438915bfab436b.audit.json.gz",
-      "refusal_audit_sha256": "72270d83b4b49fdd58d81f70d4d2cb09a891322ad5afc990a1733f93831db028",
+      "unapproved_count": 4,
+      "refusal_audit_filename": "f2de7758c97ba6afa26948230283f983fd730a35c6f28cc6e2a1ec304c394c59.audit.json.gz",
+      "refusal_audit_sha256": "4f8b5ffb7abe324fa790ff412ccef3e3f8a69d61aa23a1ad6431687a2116dc9e",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -117,36 +117,6 @@
             "location": "CH",
             "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
             "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-4d389c0e2269e7e9",
-          "source": {
-            "location": "Europe without Switzerland",
-            "name": "treatment of waste bulk iron, excluding reinforcement, sorting plant",
-            "reference product": "waste bulk iron, excluding reinforcement",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
-            "reference product": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-56f1f68f931b8c2a",
-          "source": {
-            "location": "Europe without Switzerland",
-            "name": "treatment of waste reinforced concrete, collection for final disposal",
-            "reference product": "waste reinforced concrete",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Disposal, building, reinforced concrete, to final disposal",
-            "reference product": "Disposal, building, reinforced concrete, to final disposal",
             "unit": "kilogram"
           }
         },
@@ -201,8 +171,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 24,
-      "refusal_audit_filename": "455e393da511ecff0d9904f93a18ee911b624bef726186d75a7d1e5824ad891b.audit.json.gz",
-      "refusal_audit_sha256": "5a1c73d6002a665cd78b95c017fcd1888a565c5e1d0155d434a7e104011b0247",
+      "refusal_audit_filename": "7cd5564c73e5d0f2224931270f0a20670b564ddc1170ffab5b80416956a1eb0c.audit.json.gz",
+      "refusal_audit_sha256": "6aeb26b0e3aac91107943914935fd728037c89508811b5123c94d480c351ea2f",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -569,8 +539,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "f20329dee70e5f0cf785f56b7ff920e5905450953ddc2e9ef3bbf4e54d8139be.audit.json.gz",
-      "refusal_audit_sha256": "4fde4635f89d11e7c4278a2121c6800764b1adc1f528608afae4471ea3be3c4b",
+      "refusal_audit_filename": "09ad792cd55a0822fb412ba604df88fbffee978474aac35420b1178ed8af3174.audit.json.gz",
+      "refusal_audit_sha256": "d0de19ad43906c07f8f0076eb29f235a5ccf8a6d43177deaef07ced358998feb",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

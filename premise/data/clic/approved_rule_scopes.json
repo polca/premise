@@ -197098,6 +197098,158 @@
           "fingerprint": "241bb4050f4379d84a044799a0e0a1909035e8e85f8ec0363753c35a6fbc8067"
         }
       ]
+    },
+    {
+      "rule_id": "bp-4d389c0e2269e7e9",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_construction_waste_review.json",
+      "review_sha256": "d0212920721da706a3b1e6007c2d80b8e98db84d19643f1a2ef8e6a098d43f5e",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste bulk iron, excluding reinforcement, sorting plant",
+            "reference product": "waste bulk iron, excluding reinforcement",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "metadata_sha256": "8e8530e38b4337a8317a3e64ee1e21f5f80f0d3a95a66d21c27f36bc3c90c5b7",
+          "inventory_sha256": "e3ea099a43ccf63408c4d8842f32d6e5c9ef8f26fe54cbea0b0e9891456ecd1c",
+          "name": "treatment of waste bulk iron, excluding reinforcement, sorting plant",
+          "reference product": "waste bulk iron, excluding reinforcement",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Use complete native building bulk-iron sorting service, excluding reinforcement, per source kg waste. Both describe 1 kg steel waste and demolition handling, dry sorting, sorting electricity and transport to dismantling facilities. This is not steel manufacture, a zero-burden recycling handover or a smelting/recovery-credit process. Native Swiss late-1990s technology is an explicit geographic/vintage screening proxy for Europe without Switzerland. Do not add recovered steel credits or a second sorting/demolition/transport operation.",
+        "conversion_factor": -1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+          "reference product": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+              "reference product": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "a887fd7ebb925f3f4e42b87bd3a8493aebdbea7be09c0d06a38c241509c21ee1",
+            "enriched_inventory_sha256": "9a6d330da5aca4ae55b9b725defa2a9d0d3c737e2d0d6ded16f2aba35d1892d4"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native building bulk-iron sorting service, excluding reinforcement, per source kg waste. Both describe 1 kg steel waste and demolition handling, dry sorting, sorting electricity and transport to dismantling facilities. This is not steel manufacture, a zero-burden recycling handover or a smelting/recovery-credit process. Native Swiss late-1990s technology is an explicit geographic/vintage screening proxy for Europe without Switzerland. Do not add recovered steel credits or a second sorting/demolition/transport operation.",
+        "The source reference is negative one kg waste; native reference is positive one kg treatment service. Factor -1 converts a negative waste input to a positive native service demand; a positive source coordinate becomes a negative native coordinate consistently. This is reference-coordinate conversion, not an avoided-product credit. Scale normal/lognormal uncertainty and signs consistently and preserve formulas with the factor; native internal inventory remains unchanged. Preserve declared kg without a waste-density or kg-to-m3 conversion. Separate caller operations, transport and emissions remain. Source/native machinery, utilities, emissions, allocation, internal uncertainty, background coverage and vintage differ; native upstream biosphere exclusions remain and score effects are unquantified. Only exact independently inspected ecoinvent 3.8 cut-off is added; no other release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "807bedffe30fb8baa9c5b53c330e7b18caca0d9f04ecb5a7cffba3ef66d182dd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-56f1f68f931b8c2a",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_construction_waste_review.json",
+      "review_sha256": "d0212920721da706a3b1e6007c2d80b8e98db84d19643f1a2ef8e6a098d43f5e",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste reinforced concrete, collection for final disposal",
+            "reference product": "waste reinforced concrete",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "metadata_sha256": "a255056b307d153f6c36571519cc6dfced22386417e994fc532e8e2b17ad042f",
+          "inventory_sha256": "ff90241168e39bd533e066e829fa3dc9b5d1b1564dc5c1ee0fa8acd67cf14ef8",
+          "name": "treatment of waste reinforced concrete, collection for final disposal",
+          "reference product": "waste reinforced concrete",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [],
+        "basis": "Use complete native building reinforced-concrete final-disposal service per source kg waste. Both document 0.97 kg inert material and 0.03 kg steel per kg waste, dismantling/handling energy and dust, transport and final disposal. It is not ordinary unreinforced concrete or a recycling route. Do not split into new 97/3 caller exchanges, add steel-recovery credits or add a second demolition, transport or disposal service. Swiss technology is an explicit geographic/vintage proxy for Europe without Switzerland.",
+        "conversion_factor": -1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Disposal, building, reinforced concrete, to final disposal",
+          "reference product": "Disposal, building, reinforced concrete, to final disposal",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Disposal, building, reinforced concrete, to final disposal",
+              "reference product": "Disposal, building, reinforced concrete, to final disposal",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 7,
+            "metadata_sha256": "eeadb619da7831cceb3e73446262fa8beba0ae441148ea16585f20d190e311f9",
+            "enriched_inventory_sha256": "a8e49b8123b6fbfaabd57f6f47a9ee5dd415c2cc8d03c0b0bd9f256bffc63cb9"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native building reinforced-concrete final-disposal service per source kg waste. Both document 0.97 kg inert material and 0.03 kg steel per kg waste, dismantling/handling energy and dust, transport and final disposal. It is not ordinary unreinforced concrete or a recycling route. Do not split into new 97/3 caller exchanges, add steel-recovery credits or add a second demolition, transport or disposal service. Swiss technology is an explicit geographic/vintage proxy for Europe without Switzerland.",
+        "The source reference is negative one kg waste; native reference is positive one kg treatment service. Factor -1 converts a negative waste input to a positive native service demand; a positive source coordinate becomes a negative native coordinate consistently. This is reference-coordinate conversion, not an avoided-product credit. Scale normal/lognormal uncertainty and signs consistently and preserve formulas with the factor; native internal inventory remains unchanged. Preserve declared kg without a waste-density or kg-to-m3 conversion. Separate caller operations, transport and emissions remain. Source/native machinery, utilities, emissions, allocation, internal uncertainty, background coverage and vintage differ; native upstream biosphere exclusions remain and score effects are unquantified. Only exact independently inspected ecoinvent 3.8 cut-off is added; no other release, inverse or cross-system-model approval is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "af581d24ea25c1b8349f3f94536caa8799b85fa5041b1366123e61e156274d0e"
+        }
+      ]
     }
   ],
   "superseded_operations": [
