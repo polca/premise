@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "c519f07a8502c898df31c17cc883498469b30f0a",
-  "approval_ledger_sha256": "d999d0c9f409b6662466764d98bc766bce4c1d4a32163d602a829623e93aa32e",
-  "validated_scopes": 678,
+  "brightpath_commit": "e549d16afe58c2e0550456ba37503bc5e67a021b",
+  "approval_ledger_sha256": "2c0943e094f40ede9d9e9011ef97044fb75466916f312f217e58ab7e4951ef75",
+  "validated_scopes": 680,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 36,
-  "distinct_unapproved_rule_identities": 34,
+  "unapproved_source_profile_cases": 34,
+  "distinct_unapproved_rule_identities": 33,
   "cohorts": [
     {
       "source": {
@@ -71,9 +71,9 @@
       },
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 8,
-      "refusal_audit_filename": "872f05981ea0faed81204c94919f9ceb6210f05be6c75cfc406b9178b3af6cdf.audit.json.gz",
-      "refusal_audit_sha256": "9899d8c7f7bd317fe48ec1541f5b4638e4082c20dfa0902246670bf415381784",
+      "unapproved_count": 6,
+      "refusal_audit_filename": "ccbeddc3afb92ea8f76daa995d61bb12db90400f32ab711ad2438915bfab436b.audit.json.gz",
+      "refusal_audit_sha256": "72270d83b4b49fdd58d81f70d4d2cb09a891322ad5afc990a1733f93831db028",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -121,18 +121,6 @@
           }
         },
         {
-          "rule_id": "bp-9caeb1b3bd66b612",
-          "source": {
-            "location": "GLO",
-            "name": "market for steel, low-alloyed",
-            "reference product": "steel, low-alloyed",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "recipe_ref": "pilot-low-alloyed-cast-stock-cdb9c0d6155163d5d313"
-          }
-        },
-        {
           "rule_id": "bp-4d389c0e2269e7e9",
           "source": {
             "location": "Europe without Switzerland",
@@ -176,21 +164,6 @@
             "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
             "unit": "kilogram"
           }
-        },
-        {
-          "rule_id": "bp-4529f104ab14ba19",
-          "source": {
-            "location": "GLO",
-            "name": "market for steel, chromium steel 18/8",
-            "reference product": "steel, chromium steel 18/8",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Steel, electric, chromium steel 18/8, at plant",
-            "reference product": "Steel, electric, chromium steel 18/8, at plant",
-            "unit": "kilogram"
-          }
         }
       ]
     },
@@ -228,8 +201,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 24,
-      "refusal_audit_filename": "fafe173e9109efe6809fdc46bfb3c14858225f3f64a136280e2c28eb6a8e6d02.audit.json.gz",
-      "refusal_audit_sha256": "f99501f5d1e1bfcef420a0c68833e5c9e4c6383bb60dec029b4960182f0171a8",
+      "refusal_audit_filename": "455e393da511ecff0d9904f93a18ee911b624bef726186d75a7d1e5824ad891b.audit.json.gz",
+      "refusal_audit_sha256": "5a1c73d6002a665cd78b95c017fcd1888a565c5e1d0155d434a7e104011b0247",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -596,8 +569,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "732c0516bbfa73d719bd8c359deeadb526a74f413e33bcb6f7e91da791b92c5f.audit.json.gz",
-      "refusal_audit_sha256": "63a3cd141644cfcc4a8ae383cfba2b307229fe517838aa86a6777065d2214bfd",
+      "refusal_audit_filename": "f20329dee70e5f0cf785f56b7ff920e5905450953ddc2e9ef3bbf4e54d8139be.audit.json.gz",
+      "refusal_audit_sha256": "4fde4635f89d11e7c4278a2121c6800764b1adc1f528608afae4471ea3be3c4b",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

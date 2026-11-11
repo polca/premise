@@ -20385,7 +20385,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "cba5dd07be8a3c55788da77a7d91d08788b33c4a6a6bf3de8a04e94e810f99a4"
+          "fingerprint": "3a7fdc2a281ec7e4cccdd6c0eb6abb96d85b458f03b82815ef722f40ba9c42b5"
         }
       ],
       "fingerprint_migrations": [
@@ -22477,7 +22477,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "1f5e4bcd842847133d5313637ae9a28867d78cfedd57835ea55067a25c755321"
+          "fingerprint": "196a55c39da8164ee0370ffe2c803aa9109e24f2509b2484ecf8c63504af1a87"
         },
         {
           "source": {
@@ -22490,7 +22490,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "bba465857a60f2ed6762158a6e068df4d001f029e7159dd1e3abba6a1432808c"
+          "fingerprint": "239571b288200ba42aabe6b0e1a8de80396135b3f8676023545eff1564f9bcf0"
         },
         {
           "source": {
@@ -22503,7 +22503,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "e6df5e11c73f3f413f460026d48a985ee8e6d9041399f2c432db6f50482db100"
+          "fingerprint": "91bd94c4ae7e5411148adaf9664defac5c4e22728abc92e45ca2f3b27bf10c3a"
         }
       ]
     },
@@ -122650,7 +122650,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "d1aa298ade3ba5d76f29a116f2e2d0a56046da2cf7a5652a15dec1fc43ae19f4"
+          "fingerprint": "8ffb25f65cf73024472185edca000de632cd7addb330604489c6f4c3079c2bfd"
         }
       ]
     },
@@ -196646,6 +196646,456 @@
             "system_model": "cutoff"
           },
           "fingerprint": "631fcabb7c06734a1965f47fb037d8623fb80ffe1ee0a26464f23858a381e5d7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_low_alloyed_cast_stock",
+      "review_path": "export/uvek_fuels_38_cast_profiles_review.json",
+      "review_sha256": "3ce75513d30db79a2a31346f5feb3acdacca8e95f66f84f15f5b7908e0731b78",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for steel, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "063321e99a400d7f66030655d676c0df2a062016d5371f162c7db709d03d6a3a",
+          "inventory_sha256": "a6b1e0b844799a03bd4d9dff68143468783a4417822b885632f87eb820d53a4b",
+          "name": "market for steel, low-alloyed",
+          "reference product": "steel, low-alloyed",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "steel production, converter, low-alloyed",
+              "reference product": "steel, low-alloyed",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e5516d68eb894b08b9fb0268cacc2aa08f5fc54547b26bb0a9dbfc8aa885abf4",
+            "inventory_sha256": "ea9ac1ccd6971146edd39fa4e85ef11b8c5c33f5bbc583efb2942709c22196e7"
+          },
+          {
+            "identity": {
+              "name": "steel production, converter, low-alloyed",
+              "reference product": "steel, low-alloyed",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d5685e148eeeecc2516fd358f80535a87d747faea2dd8e8b213f4897b35b832c",
+            "inventory_sha256": "75d84d01f26fd5ba3f116549a06a53e5bf52b0047ef556a90b87b20ad37e44bf"
+          },
+          {
+            "identity": {
+              "name": "steel production, electric, low-alloyed",
+              "reference product": "steel, low-alloyed",
+              "location": "AT",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "90098e79ca2a04e11c924a91b5ae2ea81d42caed80cd736048cce9de321b8be4",
+            "inventory_sha256": "def69153095ce8cae29c8ab884faf74402d8cc9f892ccd3a38076f7389768418"
+          },
+          {
+            "identity": {
+              "name": "steel production, electric, low-alloyed",
+              "reference product": "steel, low-alloyed",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "366e96dca6eb4f61f4662a7af664fab84e13309ef6ab99d5d8ba64e58c499e7c",
+            "inventory_sha256": "823fef802e868deec338644a347fc26a2c96d570ec1e76f92faa0f8143cef344"
+          },
+          {
+            "identity": {
+              "name": "steel production, electric, low-alloyed",
+              "reference product": "steel, low-alloyed",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e1a6d47c245c83aa8d1fea9269ff5dab1537914222a71ebe9b54872b6b539c3b",
+            "inventory_sha256": "2c5010f7d3784c06dc2b573670c713c2928050af6bf280fdcb2899e83d709402"
+          },
+          {
+            "identity": {
+              "name": "steel production, electric, low-alloyed",
+              "reference product": "steel, low-alloyed",
+              "location": "Europe without Switzerland and Austria",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "70854aa14e0e886cb748cdea22a641fe09c266f7115e228f40eaafd05ff0f6a5",
+            "inventory_sha256": "322caac0efe7937171b6d952bfdd11b3ab2bf77fda21ac5ce4d8ce5958e5472f"
+          },
+          {
+            "identity": {
+              "name": "steel production, electric, low-alloyed",
+              "reference product": "steel, low-alloyed",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "88f9761d03118617917af3186ee14bffba65dd3a59dc27ea40107331323a7fb7",
+            "inventory_sha256": "0e0600b2d566c8a33d7ab396de92c4f323c97aff16cd9bceb8426bde2ab8f901"
+          },
+          {
+            "identity": {
+              "name": "steel production, converter, low-alloyed",
+              "reference product": "steel, low-alloyed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "923f7bda62b7045510a6bd01a2ddab4b095b55d5d543be995fb0a9ef9c0b6a16",
+            "inventory_sha256": "6610fe090833c5e0586026d3c3974864f36e34f0779433a5d712e05898a61cd3"
+          },
+          {
+            "identity": {
+              "name": "steel production, electric, low-alloyed",
+              "reference product": "steel, low-alloyed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "dc36f8863c47a087fb2bd375e9638f8590de822ff46d569e41e661d6126d1edc",
+            "inventory_sha256": "f86fc8c54f2372c58968e9879101fb35038206b1ceeeef20aba5951a7e344dbf"
+          }
+        ],
+        "basis": "Use the existing positive-kg low-alloyed cast-stock delivery helper. The inspected source has nine deterministic positive producer shares without formulas: three converter and six electric-furnace entries. Their route sums match the existing 0.7421076548969346 converter and 0.2578923451030648 electric coefficients within numerical precision, without renormalization. Existing four barge, road, dry-bulk-ocean and rail delivery quantities and marginal statistics also match. Individual country producer entries are aggregated into two route proxies: complete European converter stock and Swiss electric stock. Country-specific procurement, EAF scrap sourcing, furnace operation, emissions, allocation and internal uncertainty are not reconstructed. This is route-level conservation, not equality of the original nine inventories. Native converter and electric suppliers explicitly include casting and no direct rolling service; Swiss EAF documents economic slag allocation and newer industry data. Preserve signed caller kg, supported uncertainty, formulas and properties at factor +1. Keep complete native steelmaking/casting inventories, alloy/feedstock supplies, internal transport, allocation and emissions once. These references are cast stock, not hot-rolled products or rolling services. Do not add hot rolling, apply a density/alloy/scrap-content/yield factor, graft source energy or emissions onto native inventories, or add recovery credits. Geographic, technology, grade, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations; score differences are unquantified. Only independently inspected exact ecoinvent 3.8 cut-off is added; existing other-profile decisions and helper inventories stay unchanged.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.8 cast-stock sign profile; preserve every old selected decision and helper",
+        "new_target": {
+          "recipe_ref": "pilot-low-alloyed-cast-stock-cdb9c0d6155163d5d313"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Steel, converter, low-alloyed, at plant",
+              "reference product": "Steel, converter, low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 34,
+            "metadata_sha256": "ba32acee4d82ba77faafb1841df019d251b9ca7c58eb6f8c471b9cb4337da576",
+            "inventory_sha256": "4c2e799b359c38dd232c867c3775d0f8479cd4b0ff74676c2fb1789f524ae312",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Steel, electric, low-alloyed, at plant",
+              "reference product": "Steel, electric, low-alloyed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 52,
+            "metadata_sha256": "a2be0b763f5abc428b81970bbd786d70ddb5a40b6d6d288ec5e4da5fb869a46c",
+            "inventory_sha256": "87ec450daa6eb1efe2099d888288d1f8a42b757b6540b3a338fdc868298f8fe3",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "da947add813fcb34247cd5102fa337739c8bb8448455d833918e5356957e9be1",
+            "inventory_sha256": "2b23d573b7e05cd385a7fa8e6c943ba8cafcaa67f7f613a173ed94fd425948e3",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Steel, electric, chromium steel 18/8, at plant",
+              "reference product": "Steel, electric, chromium steel 18/8, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 38,
+            "metadata_sha256": "5b2f46b244190aba8cdd22e724811e89edff8b41d7a30e59803df79475253246",
+            "inventory_sha256": "6831551d45910879786887b1d75fe3dd24be1eb229ed419abf4abe997566683b",
+            "direct_rolling_services": []
+          }
+        ]
+      },
+      "limitations": [
+        "Use the existing positive-kg low-alloyed cast-stock delivery helper. The inspected source has nine deterministic positive producer shares without formulas: three converter and six electric-furnace entries. Their route sums match the existing 0.7421076548969346 converter and 0.2578923451030648 electric coefficients within numerical precision, without renormalization. Existing four barge, road, dry-bulk-ocean and rail delivery quantities and marginal statistics also match. Individual country producer entries are aggregated into two route proxies: complete European converter stock and Swiss electric stock. Country-specific procurement, EAF scrap sourcing, furnace operation, emissions, allocation and internal uncertainty are not reconstructed. This is route-level conservation, not equality of the original nine inventories. Native converter and electric suppliers explicitly include casting and no direct rolling service; Swiss EAF documents economic slag allocation and newer industry data. Preserve signed caller kg, supported uncertainty, formulas and properties at factor +1. Keep complete native steelmaking/casting inventories, alloy/feedstock supplies, internal transport, allocation and emissions once. These references are cast stock, not hot-rolled products or rolling services. Do not add hot rolling, apply a density/alloy/scrap-content/yield factor, graft source energy or emissions onto native inventories, or add recovery credits. Geographic, technology, grade, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations; score differences are unquantified. Only independently inspected exact ecoinvent 3.8 cut-off is added; existing other-profile decisions and helper inventories stay unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "12357289e216136224fd577cdbca76bd719eea04bee2c406e9485c082bbf0528"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4529f104ab14ba19",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_fuels_38_cast_profiles_review.json",
+      "review_sha256": "3ce75513d30db79a2a31346f5feb3acdacca8e95f66f84f15f5b7908e0731b78",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for steel, chromium steel 18/8",
+            "reference product": "steel, chromium steel 18/8",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "053789764e7c7921527dba62f13c6ab400825197e0ce0d2523132bc1d427489b",
+          "inventory_sha256": "d4500d21633aea29e1d6c11002f0afafaa2773334235612321a3e0e00a63dd4b",
+          "name": "market for steel, chromium steel 18/8",
+          "reference product": "steel, chromium steel 18/8",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "steel production, electric, chromium steel 18/8",
+              "reference product": "steel, chromium steel 18/8",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "802e8115f3da6532938a3dc0018ab5f8c656df78e825669034f4b15ee538caf3",
+            "inventory_sha256": "2cf259d8850e29e39953132d3a46e29a450b7ae914ece770168b31d8633c07ac"
+          },
+          {
+            "identity": {
+              "name": "steel production, electric, chromium steel 18/8",
+              "reference product": "steel, chromium steel 18/8",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "24b900fdd927882b2f516b7c5a3eb00fdaa9fde9e195b7eff80dacacce198cbb",
+            "inventory_sha256": "db5ebb828c9b5676db105bf702f3b40e925d5d3adb19f3e2484d93b9574bb9bb"
+          }
+        ],
+        "basis": "Use complete native European electric-furnace chromium 18/8 cast stock per signed kg as a global geographic and stock-grade screening proxy. Source RER/RoW producers and native describe electric steelmaking, alloying and casting, with scrap as iron-bearing input. Native is not the complete hot-rolled 18/8 mix, which separately includes rolling. Source global market producer shares and four final-freight legs are replaced, not reconstructed; native transport of scrap and other feedstocks is not final delivery. No specific alloy chemistry or mechanical equivalence is established by the average native steel stock. Separate caller transport remains unchanged; do not invent or duplicate freight. Preserve signed caller kg, supported uncertainty, formulas and properties at factor +1. Keep complete native steelmaking/casting inventories, alloy/feedstock supplies, internal transport, allocation and emissions once. These references are cast stock, not hot-rolled products or rolling services. Do not add hot rolling, apply a density/alloy/scrap-content/yield factor, graft source energy or emissions onto native inventories, or add recovery credits. Geographic, technology, grade, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations; score differences are unquantified. Only independently inspected exact ecoinvent 3.8 cut-off is added; existing other-profile decisions and helper inventories stay unchanged.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.8 cast-stock sign profile; preserve every old selected decision and helper",
+        "new_target": {
+          "location": "RER",
+          "name": "Steel, electric, chromium steel 18/8, at plant",
+          "reference product": "Steel, electric, chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Steel, converter, low-alloyed, at plant",
+              "reference product": "Steel, converter, low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 34,
+            "metadata_sha256": "ba32acee4d82ba77faafb1841df019d251b9ca7c58eb6f8c471b9cb4337da576",
+            "inventory_sha256": "4c2e799b359c38dd232c867c3775d0f8479cd4b0ff74676c2fb1789f524ae312",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Steel, electric, low-alloyed, at plant",
+              "reference product": "Steel, electric, low-alloyed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 52,
+            "metadata_sha256": "a2be0b763f5abc428b81970bbd786d70ddb5a40b6d6d288ec5e4da5fb869a46c",
+            "inventory_sha256": "87ec450daa6eb1efe2099d888288d1f8a42b757b6540b3a338fdc868298f8fe3",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "da947add813fcb34247cd5102fa337739c8bb8448455d833918e5356957e9be1",
+            "inventory_sha256": "2b23d573b7e05cd385a7fa8e6c943ba8cafcaa67f7f613a173ed94fd425948e3",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "direct_rolling_services": []
+          },
+          {
+            "identity": {
+              "name": "Steel, electric, chromium steel 18/8, at plant",
+              "reference product": "Steel, electric, chromium steel 18/8, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 38,
+            "metadata_sha256": "5b2f46b244190aba8cdd22e724811e89edff8b41d7a30e59803df79475253246",
+            "inventory_sha256": "6831551d45910879786887b1d75fe3dd24be1eb229ed419abf4abe997566683b",
+            "direct_rolling_services": []
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native European electric-furnace chromium 18/8 cast stock per signed kg as a global geographic and stock-grade screening proxy. Source RER/RoW producers and native describe electric steelmaking, alloying and casting, with scrap as iron-bearing input. Native is not the complete hot-rolled 18/8 mix, which separately includes rolling. Source global market producer shares and four final-freight legs are replaced, not reconstructed; native transport of scrap and other feedstocks is not final delivery. No specific alloy chemistry or mechanical equivalence is established by the average native steel stock. Separate caller transport remains unchanged; do not invent or duplicate freight. Preserve signed caller kg, supported uncertainty, formulas and properties at factor +1. Keep complete native steelmaking/casting inventories, alloy/feedstock supplies, internal transport, allocation and emissions once. These references are cast stock, not hot-rolled products or rolling services. Do not add hot rolling, apply a density/alloy/scrap-content/yield factor, graft source energy or emissions onto native inventories, or add recovery credits. Geographic, technology, grade, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations; score differences are unquantified. Only independently inspected exact ecoinvent 3.8 cut-off is added; existing other-profile decisions and helper inventories stay unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "241bb4050f4379d84a044799a0e0a1909035e8e85f8ec0363753c35a6fbc8067"
         }
       ]
     }
