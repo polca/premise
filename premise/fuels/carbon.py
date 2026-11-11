@@ -379,22 +379,32 @@ def replace_vehicle_fuel_co2(dataset, balance, biosphere_flows):
     dataset["exchanges"].extend(working["exchanges"][len(selected) :])
 
 
-def update_vehicle_fuel_co2(database, version, vehicle_type=None):
+def update_vehicle_fuel_co2(
+    database, version, vehicle_type=None, *, recorded_exhaust_filters=()
+):
     """Refresh CO2 from final linked fuels after regionalization and scaling.
 
-    Rail keeps its recorded exhaust total and only refreshes carbon origin.
+    Rail and explicitly mapped operating services keep their recorded exhaust
+    total and only refresh carbon origin. Additional selectors default to empty.
     Cars and trucks retain their existing full-oxidation accounting.
     """
     from ..inventory.inventory_imports import get_biosphere_code
+    from ..inventory.activity_maps import act_fltr
 
     providers = {activity_key(ds): ds for ds in database}
+    recorded = {
+        activity_key(ds)
+        for filters in recorded_exhaust_filters
+        for ds in act_fltr(database, **filters)
+    }
     flows = get_biosphere_code(version)
     for dataset in database:
-        if not is_vehicle_fuel_consumer(dataset, vehicle_type):
+        keep_total = activity_key(dataset) in recorded
+        if not keep_total and not is_vehicle_fuel_consumer(dataset, vehicle_type):
             continue
         balance = vehicle_fuel_carbon(dataset, providers)
         if balance is not None and balance["status"] == "resolved":
-            if is_vehicle_fuel_consumer(dataset, "train"):
+            if keep_total or is_vehicle_fuel_consumer(dataset, "train"):
                 potential = balance["fossil CO2 kg"] + balance["non-fossil CO2 kg"]
                 if potential <= 0:
                     continue
@@ -411,7 +421,7 @@ def update_vehicle_fuel_co2(database, version, vehicle_type=None):
                     **{
                         "fossil CO2 kg": total * (1 - fraction),
                         "non-fossil CO2 kg": total * fraction,
-                        "convention": "Recorded rail exhaust total; carbon origin from final linked fuel purchases",
+                        "convention": "Recorded exhaust total; carbon origin from final linked fuel purchases",
                     },
                 )
             replace_vehicle_fuel_co2(dataset, balance, flows)

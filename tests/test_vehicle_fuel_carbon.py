@@ -402,3 +402,50 @@ def test_rail_unknown_supplier_and_missing_exhaust_remain_unmodified():
     before = deepcopy(ds)
     update_vehicle_fuel_co2([fuel, ds], "3.12", "train")
     assert ds == before
+
+
+@pytest.mark.parametrize(
+    "name,unit",
+    [
+        ("Transport, freight, rail, electricity with shunting", "ton kilometer"),
+        ("Transport, passenger bus, illustrative diesel", "person kilometer"),
+    ],
+)
+def test_declared_operating_service_keeps_recorded_total_and_fuel_demand(name, unit):
+    fuel = supplier(share=0.25)
+    operating = vehicle(fuel)
+    operating["name"] = operating["reference product"] = name
+    operating["unit"] = unit
+    operating["exchanges"][0].update(name=name, product=name, unit=unit)
+    operating["exchanges"].append(emission("Carbon dioxide, non-fossil", 0.2))
+    operating["exchanges"].append(emission("Carbon dioxide, fossil", -0.01))
+    fuel_input = deepcopy(operating["exchanges"][1])
+    infrastructure = deepcopy(operating)
+    infrastructure["name"] += ", Infrastruktur"
+    infrastructure_before = deepcopy(infrastructure)
+    filters = [{"exact": True, "fltr": {"name": name, "unit": unit}}]
+    for _ in range(2):
+        update_vehicle_fuel_co2(
+            [fuel, operating, infrastructure],
+            "3.12",
+            recorded_exhaust_filters=filters,
+        )
+        totals = {
+            n: sum(
+                e["amount"]
+                for e in operating["exchanges"]
+                if e.get("type") == "biosphere"
+                and e.get("name") == n
+                and e["amount"] >= 0
+            )
+            for n in ["Carbon dioxide, fossil", "Carbon dioxide, non-fossil"]
+        }
+        assert totals == pytest.approx(
+            {
+                "Carbon dioxide, fossil": 0.375,
+                "Carbon dioxide, non-fossil": 0.125,
+            }
+        )
+        assert operating["exchanges"][1] == fuel_input
+        assert any(e.get("amount") == -0.01 for e in operating["exchanges"])
+        assert infrastructure == infrastructure_before

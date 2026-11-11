@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit verified biomass, electricity and heat, in dependency order by default. Other16standard sectors remain refused pending implementation and validation.",
+  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat and cement. Fuels have a successful diagnostic five-sector export but remain publicly gated pending end-use carbon and coverage checks; other sectors remain unfinished.",
   "sectors": [
     {
       "sector": "biomass",
@@ -217,7 +217,7 @@
     },
     {
       "sector": "cement",
-      "status": "audited_not_operational",
+      "status": "public_scope_enabled_with_four_and_five_sector_export_evidence_review_limitations_remain",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -297,7 +297,11 @@
           "cement.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
-      }
+      },
+      "latest_evidence": [
+        "docs/development/uvek-colleague-four-sector-regression.json",
+        "docs/development/uvek-five-sector-vehicle-fuel-verification.json"
+      ]
     },
     {
       "sector": "steel",
@@ -382,7 +386,7 @@
     },
     {
       "sector": "fuels",
-      "status": "audited_not_operational",
+      "status": "diagnostic_five_sector_export_verified_end_use_carbon_and_coverage_incomplete",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -532,7 +536,14 @@
           "fuels.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
-      }
+      },
+      "latest_evidence": [
+        "docs/development/uvek-five-sector-vehicle-fuel-verification.json",
+        "docs/development/uvek-vehicle-fuel-reference-verification.json",
+        "docs/development/uvek-recorded-transport-exhaust-verification.json",
+        "docs/development/uvek-fuel-carbon-remaining-coverage.json"
+      ],
+      "latest_coverage_note": "526 car/truck balances and a further 30 bus/15 rail recorded-total balances verified in written scenarios. Earlier 541-candidate audit remains a review queue, not a claim of 541 errors. Aviation, shipping, other rail/bus identities and industrial combustion remain unfinished. Public scope guard is unchanged."
     },
     {
       "sector": "renewable",

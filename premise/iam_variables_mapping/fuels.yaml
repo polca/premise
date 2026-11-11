@@ -520,6 +520,62 @@ diesel:
     limitations:
     - Replace the historical vehicle blend with the IAM blend; preserve its nominal reference energy using the actual signed ingredient quantities and shared fuel heating values, without changing downstream consumer demand or uncertainty.
     - Use the shared dry-ethanol and ester energy bases; source grade, allocation, vintage and heating-value uncertainty remain screening limitations. This is a nominal energy calibration, not uncertainty propagation of the historical blend.
+  uvek_recorded_exhaust_consumers:
+  - selector:
+      exact: true
+      fltr:
+        unit: person kilometer
+        name:
+        - "Transport, high speed train"
+        - "Transport, high speed train, Betrieb"
+        - "Transport, passenger bus, diesel hybrid, 13m double deck coach bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel hybrid, 13m double deck urban bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel hybrid, 13m single deck coach bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel hybrid, 13m single deck urban bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel hybrid, 18m articulated urban bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel hybrid, 9m midibus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel, 13m double deck coach bus, 2002, EURO-III"
+        - "Transport, passenger bus, diesel, 13m double deck coach bus, 2006, EURO-IV"
+        - "Transport, passenger bus, diesel, 13m double deck coach bus, 2010, EURO-V"
+        - "Transport, passenger bus, diesel, 13m double deck coach bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel, 13m double deck urban bus, 2002, EURO-III"
+        - "Transport, passenger bus, diesel, 13m double deck urban bus, 2006, EURO-IV"
+        - "Transport, passenger bus, diesel, 13m double deck urban bus, 2010, EURO-V"
+        - "Transport, passenger bus, diesel, 13m double deck urban bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel, 13m single deck coach bus, 2002, EURO-III"
+        - "Transport, passenger bus, diesel, 13m single deck coach bus, 2006, EURO-IV"
+        - "Transport, passenger bus, diesel, 13m single deck coach bus, 2010, EURO-V"
+        - "Transport, passenger bus, diesel, 13m single deck coach bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel, 13m single deck urban bus, 2002, EURO-III"
+        - "Transport, passenger bus, diesel, 13m single deck urban bus, 2006, EURO-IV"
+        - "Transport, passenger bus, diesel, 13m single deck urban bus, 2010, EURO-V"
+        - "Transport, passenger bus, diesel, 13m single deck urban bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel, 18m articulated urban bus, 2002, EURO-III"
+        - "Transport, passenger bus, diesel, 18m articulated urban bus, 2006, EURO-IV"
+        - "Transport, passenger bus, diesel, 18m articulated urban bus, 2010, EURO-V"
+        - "Transport, passenger bus, diesel, 18m articulated urban bus, 2020, EURO-VI"
+        - "Transport, passenger bus, diesel, 9m midibus, 2002, EURO-III"
+        - "Transport, passenger bus, diesel, 9m midibus, 2006, EURO-IV"
+        - "Transport, passenger bus, diesel, 9m midibus, 2010, EURO-V"
+        - "Transport, passenger bus, diesel, 9m midibus, 2020, EURO-VI"
+        - "Transport, regional train, SBB mix"
+        - "Transport, regional train, SBB mix, Betrieb"
+    limitations:
+    - Operating rail/bus service only; retain recorded positive exhaust CO2 and refresh carbon origin from final linked fuel. Mixed electric traction and diesel shunting are not reclassified as diesel-only technology.
+    - Preserve non-CO2 emissions, negative capture credits, fuel demand and uncertainty; historical combustion performance and source allocation remain limitations.
+  - selector:
+      exact: true
+      fltr:
+        unit: ton kilometer
+        name:
+        - "Transport, freight, rail"
+        - "Transport, freight, rail, diesel, with particle filter"
+        - "Transport, freight, rail, diesel, without particle filter"
+        - "Transport, freight, rail, electricity with shunting"
+        - "Transport, freight, rail, electricity with shunting, Betrieb"
+    limitations:
+    - Operating rail/bus service only; retain recorded positive exhaust CO2 and refresh carbon origin from final linked fuel. Mixed electric traction and diesel shunting are not reclassified as diesel-only technology.
+    - Preserve non-CO2 emissions, negative capture credits, fuel demand and uncertainty; historical combustion performance and source allocation remain limitations.
   uvek_aliases:
     market_suppliers:
       exact: true

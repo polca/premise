@@ -75,7 +75,9 @@ def test_fuel_update_uses_explicit_biosphere_for_vehicle_carbon(
     monkeypatch.setattr(
         module,
         "update_vehicle_fuel_co2",
-        lambda data, bio_version: carbon_versions.append(bio_version),
+        lambda data, bio_version, **kwargs: carbon_versions.append(
+            (bio_version, kwargs["recorded_exhaust_filters"])
+        ),
     )
     monkeypatch.setattr(module, "record_validation_phase", lambda *args: None)
     monkeypatch.setattr(
@@ -101,7 +103,8 @@ def test_fuel_update_uses_explicit_biosphere_for_vehicle_carbon(
     assert received["family"] == family
     assert received["biosphere_version"] == biosphere
     assert received["version"] == version
-    assert carbon_versions == [biosphere or version]
+    assert carbon_versions[0][0] == (biosphere or version)
+    assert bool(carbon_versions[0][1]) == (family == "uvek")
 
 
 @pytest.mark.parametrize("family", ["ecoinvent", "uvek"])

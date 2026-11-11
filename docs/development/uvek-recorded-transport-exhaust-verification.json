@@ -1,0 +1,87 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-165116",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-163643",
+  "counts": {
+    "selected": 46,
+    "bus_verified": 30,
+    "rail_verified": 15,
+    "no_supported_direct_fuel": 1
+  },
+  "examples": [
+    {
+      "name": "Transport, passenger bus, diesel, 18m articulated urban bus, 2002, EURO-III",
+      "location": "CH",
+      "exhaust_total_preserved": true,
+      "linked_non_fossil_fraction": 0.10842292576754846
+    },
+    {
+      "name": "Transport, passenger bus, diesel, 18m articulated urban bus, 2010, EURO-V",
+      "location": "CH",
+      "exhaust_total_preserved": true,
+      "linked_non_fossil_fraction": 0.10842292576754846
+    },
+    {
+      "name": "Transport, high speed train, Betrieb",
+      "location": "DE",
+      "exhaust_total_preserved": true,
+      "linked_non_fossil_fraction": 0.5654673613323472
+    },
+    {
+      "name": "Transport, passenger bus, diesel, 13m double deck urban bus, 2020, EURO-VI",
+      "location": "CH",
+      "exhaust_total_preserved": true,
+      "linked_non_fossil_fraction": 0.10842292576754846
+    },
+    {
+      "name": "Transport, passenger bus, diesel hybrid, 13m single deck coach bus, 2020, EURO-VI",
+      "location": "CH",
+      "exhaust_total_preserved": true,
+      "linked_non_fossil_fraction": 0.10842292576754847
+    },
+    {
+      "name": "Transport, passenger bus, diesel, 13m double deck coach bus, 2006, EURO-IV",
+      "location": "CH",
+      "exhaust_total_preserved": true,
+      "linked_non_fossil_fraction": 0.10842292576754844
+    }
+  ],
+  "lci_checks": [
+    {
+      "mode": "bus",
+      "name": "Transport, passenger bus, diesel, 18m articulated urban bus, 2002, EURO-III",
+      "location": "CH",
+      "unit": "person kilometer",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "mode": "rail",
+      "name": "Transport, high speed train, Betrieb",
+      "location": "DE",
+      "unit": "person kilometer",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    }
+  ],
+  "assertions": [
+    "Original positive direct exhaust total preserved.",
+    "Carbon origin agrees with final linked fuel properties.",
+    "All technosphere quantities, uncertainty and supplier identity fields unchanged against previous scenario, excluding exported database/code link tuples.",
+    "Negative capture credits and other emissions unchanged."
+  ],
+  "limitations": [
+    "Exact reviewed operating-service selectors only; other transport and industrial combustion remain unfinished.",
+    "Recorded exhaust convention retains historical engine performance and source allocation."
+  ],
+  "tests": {
+    "focused_passed": 237,
+    "warnings": 2
+  },
+  "pre_export_validation": {
+    "phase_count": 11,
+    "issues_by_severity": {
+      "warning": 119
+    }
+  }
+}

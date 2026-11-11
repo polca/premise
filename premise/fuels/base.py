@@ -14,7 +14,7 @@ from ..core.transformation import (
 )
 from ..validation.validation import FuelsValidation
 from ..validation.validation_framework import record_validation_phase
-from ..inventory.activity_maps import InventorySet
+from ..inventory.activity_maps import FUELS_TECHS, InventorySet, get_mapping
 from ..inventory.inventory_imports import get_biosphere_code
 from ..core.logger import create_logger
 from ..reporting.provenance import record_change_event
@@ -75,7 +75,14 @@ def _update_fuels(
         fuels.clear_validation_provenance()
         fuels.relink_datasets()
         annotate_cng_properties(fuels.database)
-        update_vehicle_fuel_co2(fuels.database, biosphere_version or version)
+        recorded = get_mapping(FUELS_TECHS, var=f"{family}_recorded_exhaust_consumers")
+        update_vehicle_fuel_co2(
+            fuels.database,
+            biosphere_version or version,
+            recorded_exhaust_filters=[
+                entry["selector"] for entries in recorded.values() for entry in entries
+            ],
+        )
         replace_scenario_inventory(scenario, fuels.database)
         scenario["cache"] = fuels.cache
         scenario["index"] = fuels.index
