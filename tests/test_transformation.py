@@ -1284,3 +1284,42 @@ def test_cached_supplier_rename_keeps_consumer_uncertainty(amount, uncertainty_t
     assert mapped["scale"] == exchange["scale"]
     assert bool(mapped.get("negative")) is (amount < 0)
     assert mapped["comment"] == exchange["comment"]
+
+
+@pytest.mark.parametrize(
+    "parameters,expected",
+    [
+        ({"uncertainty type": 2, "loc": 0.0, "scale": 0.2}, {"loc": 0.0, "scale": 0.2}),
+        ({"uncertainty type": 2, "loc": 0.0, "scale": 0.0}, {"loc": 0.0, "scale": 0.0}),
+        (
+            {"uncertainty type": 4, "minimum": 0.0, "maximum": 2.0},
+            {"minimum": 0.0, "maximum": 2.0},
+        ),
+    ],
+)
+def test_relink_keeps_zero_valued_uncertainty_parameters(
+    monkeypatch, parameters, expected
+):
+    transformation = object.__new__(BaseTransformation)
+    exchange = {
+        "name": "provider",
+        "product": "fuel",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": 1.0,
+        **parameters,
+    }
+    dataset = {"name": "consumer", "location": "CH", "exchanges": [exchange]}
+    monkeypatch.setattr(
+        transformation,
+        "find_candidates",
+        lambda dataset, **kwargs: [
+            transformation_module._relinked_exchange(exchange, "GLO")
+        ],
+    )
+    transformation.relink_technosphere_exchanges(dataset)
+    (mapped,) = dataset["exchanges"]
+    assert mapped["amount"] == 1.0
+    for field, value in expected.items():
+        assert mapped[field] == value

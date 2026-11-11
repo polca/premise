@@ -2139,16 +2139,16 @@ class BaseTransformation:
                             redefine_uncertainty_params(old_uncertainty[key], exc)
                         )
 
-                        if loc:
+                        if loc is not None:
                             exc["loc"] = float(loc)
 
-                        if scale:
+                        if scale is not None:
                             exc["scale"] = float(scale)
 
-                        if minimum:
+                        if minimum is not None:
                             exc["minimum"] = float(minimum)
 
-                        if maximum:
+                        if maximum is not None:
                             exc["maximum"] = float(maximum)
 
                         if negative:
@@ -3109,19 +3109,19 @@ class BaseTransformation:
                         redefine_uncertainty_params(old_uncertainty[key], exc)
                     )
 
-                    if loc:
+                    if loc is not None:
                         exc["loc"] = float(loc)
 
-                    if scale:
+                    if scale is not None:
                         exc["scale"] = float(scale)
 
                     if negative:
                         exc["negative"] = float(negative)
 
-                    if minimum:
+                    if minimum is not None:
                         exc["minimum"] = float(minimum)
 
-                    if maximum:
+                    if maximum is not None:
                         exc["maximum"] = float(maximum)
 
         dataset["exchanges"] = non_technosphere_exchanges + new_exchanges
