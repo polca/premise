@@ -1,0 +1,76 @@
+{
+  "date": "2026-11-11",
+  "status": "Four exact chemical-stock correspondences pass native target, strict CLIC and full fuel preflight review; full fuel transformation/export unfinished.",
+  "brightpath_commit": "f6dde1b7775a01547ae888decb526159413dccef",
+  "review_sha256": "1795c57e09fa69ea4a13ab00e97d6e964de95b78980d859ff1dfd8c240b6dbb6",
+  "migration_resource_sha256": "2f84a38aba4177889bb851e9acb479d2e54481c87dc9fa47a0a95641db1b8e85",
+  "migration_resource_modified": false,
+  "runtime_python_modified": false,
+  "new_approval_scopes": 4,
+  "validated_scopes": 652,
+  "all_prior_operations_and_fingerprints_preserved": true,
+  "native_lci_checks": [
+    {
+      "identity": {
+        "name": "Hydrochloric acid, 30% in H2O, at plant",
+        "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "identity": {
+        "name": "Methanol, at regional storage",
+        "reference product": "Methanol, at regional storage",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "identity": {
+        "name": "Hexane, at plant",
+        "reference product": "Hexane, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "tests": {
+    "brightpath_signed_quantity_uncertainty_and_existing_rule_tests": "17 passed",
+    "premise_fresh_cache_and_removed_approval_negative_controls": "20 passed",
+    "premise_exact_warning_text_check": "20 passed; repeated focused suite checks the exact approved limitation text in fresh and cached diagnostics, plus removal-of-approval refusals.",
+    "broader_approval_regressions": "Prior lime suite remains live; result not yet passing."
+  },
+  "wheel": "Review, resource and manifest match checkout bytes.",
+  "regular_conda_install": "Git direct_url commit, review hash and 652 exact scopes verified.",
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 53,
+    "distinct_rule_identities": 49,
+    "source_activities": 117,
+    "cohorts": 6,
+    "source_graph_unchanged": true,
+    "no_transformation_or_export": true
+  },
+  "obsolete_generated_wheel_removed_bytes": 41390488,
+  "excluded_case": "Sodium methoxide: native Brown-Schlesinger co-product process does not represent the source market majority direct-production route; separate review required.",
+  "limitations": [
+    "Use the complete native European HCl mixture per signed kg active HCl, not kg aqueous solution. Both source and native reference one kg active product; native synthesis reactants support that basis. Do not multiply by 0.30 or 1/0.30 or invent dilution. The native mixture has its own 50/50 synthesis/Mannheim split; source by-product suppliers, allocation, market shares, regional utilities, final delivery and internal uncertainty are replaced, not reproduced. Source RoW/RER markets and native European production differ geographically and in vintage. No source market freight is added on top of the complete native boundary. Score effects, including missing source final-market delivery, remain unquantified.",
+    "Use the complete native European HCl mixture per signed kg active HCl, not kg aqueous solution. Both source and native reference one kg active product; native synthesis reactants support that basis. Do not multiply by 0.30 or 1/0.30 or invent dilution. The native mixture has its own 50/50 synthesis/Mannheim split; source by-product suppliers, allocation, market shares, regional utilities, final delivery and internal uncertainty are replaced, not reproduced. Source RoW/RER markets and native European production differ geographically and in vintage. No source market freight is added on top of the complete native boundary. Score effects, including missing source final-market delivery, remain unquantified.",
+    "Use complete native Swiss regional-storage methanol per signed kg as a delivered-stock screening proxy. Native European/overseas production and transport to Switzerland, storage emissions and tank infrastructure replace the complete source global market. Source includes a 0.00367102654107643 coal Fischer-Tropsch co-product share, whereas native stock does not establish that branch: explicitly retain the technology and allocation difference rather than claim fuel-route equality. Original source producer shares, four modal freight quantities, geography, losses, internal uncertainty and vintage are not reproduced. Retain native transport once; add no source freight on top, density or heating-value scaling, avoided fuel credit or storage wrapper. Score differences remain unquantified.",
+    "Use complete native European hexane from molecular-sieve naphtha separation per signed kg. Source ordinary refinery suppliers use the same separation family, but native US-derived technology, feedstock, co-product mass allocation, process utilities and upstream feed transport replace source European/RoW production shares. This is an at-plant screening proxy for a delivered source market: the source final sea, rail, road, light-commercial and barge delivery group is not reproduced, and native feedstock transport is not equivalent to that final delivery. Preserve caller kg and uncertainty; do not invent a delivery credit, purity multiplier or density factor. Internal uncertainty, geography and vintage differ; the unquantified score effect includes final delivery."
+  ]
+}

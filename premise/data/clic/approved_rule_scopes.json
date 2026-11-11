@@ -192467,6 +192467,649 @@
           "fingerprint": "059bec84d4897f82b365a544dc6f131af546fa6a79e1523b73962fd359f34314"
         }
       ]
+    },
+    {
+      "rule_id": "bp-6f58476b963abe8c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_chemical_stocks_review.json",
+      "review_sha256": "1795c57e09fa69ea4a13ab00e97d6e964de95b78980d859ff1dfd8c240b6dbb6",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for hydrochloric acid, without water, in 30% solution state",
+            "reference product": "hydrochloric acid, without water, in 30% solution state",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "84bc7a38f9b6a7d09f31944f08703bc0efa434f327101dfa6533ae1dfe111d62",
+          "inventory_sha256": "251c0ddbd09661b1251f3da956a2458dae7415fd01cbba8c7936f0d8430ddd71",
+          "nonproduction_counts": {
+            "technosphere": 20,
+            "biosphere": 0
+          },
+          "name": "market for hydrochloric acid, without water, in 30% solution state",
+          "reference product": "hydrochloric acid, without water, in 30% solution state",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "titanium tetrachloride production",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d11925ff6263608064863bf558e6c9dff684826046bcf6e66a2550bde53f124d",
+            "inventory_sha256": "b76b145d37231a1629736fe72a43968041a551740121ddf769386342cc1b1f4f",
+            "nonproduction_counts": {
+              "technosphere": 12,
+              "biosphere": 2
+            }
+          },
+          {
+            "identity": {
+              "name": "titanium tetrachloride production",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "JP",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "21bab22aebb85d8654cb34b38b5a28e5851ec96632d178abf52ee6aa70efae2f",
+            "inventory_sha256": "704d28ff58510930e337db27d123be4c3b3287d1ca98515f7e33f2be6d1710fb",
+            "nonproduction_counts": {
+              "technosphere": 12,
+              "biosphere": 2
+            }
+          },
+          {
+            "identity": {
+              "name": "hydrochloric acid production, from the reaction of hydrogen with chlorine",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "0d86f62987d84255ab56ec81d246d97497cce65559812899235a7618f7fa6d47",
+            "inventory_sha256": "bf4b5ac6da0978a980837c55d96688e194137a0e7891dc3dcb869007732591a8",
+            "nonproduction_counts": {
+              "technosphere": 5,
+              "biosphere": 2
+            }
+          },
+          {
+            "identity": {
+              "name": "tetrafluoroethane production",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7228eb03de1b41872e31795ff79ed1fce1631964b23422c90c98de9264b7f066",
+            "inventory_sha256": "30f9d29857407d4fea51858a42d9def5472030eb557b59818c0e652a5121d820",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 3
+            }
+          },
+          {
+            "identity": {
+              "name": "titanium tetrachloride production",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "3c957dedb611ace74c3df280200a83a757dcdafebd4db1332fd4a58b096c3a3d",
+            "inventory_sha256": "be02f0138f346640169281651cf619573686b1f88e1e9b523259b61f05f078ed",
+            "nonproduction_counts": {
+              "technosphere": 65,
+              "biosphere": 2
+            }
+          },
+          {
+            "identity": {
+              "name": "allyl chloride production, reaction of propylene and chlorine",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "87c65af5c154bda4cf35de258866c2a71638d9add55a0645abc8965b2de12e59",
+            "inventory_sha256": "239ece842b890b7d21124d13633e8b55c475291812ff1846e32f5981cc2695a3",
+            "nonproduction_counts": {
+              "technosphere": 18,
+              "biosphere": 7
+            }
+          },
+          {
+            "identity": {
+              "name": "hydrochloric acid production, from the reaction of hydrogen with chlorine",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "0a95b15769154e15fc770aabcea76d6e795a84249289af487778268a25da0598",
+            "inventory_sha256": "34731b2d07870c606caa6df587f866f903649961cfc6ed0cebd11f51b573cab8",
+            "nonproduction_counts": {
+              "technosphere": 11,
+              "biosphere": 2
+            }
+          },
+          {
+            "identity": {
+              "name": "Mannheim process",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1856a3d27c3e187e0e15a491f8d00dbf8464cab023e4fd11895ef566b125a9fa",
+            "inventory_sha256": "91ccf4fce7064814fec32884c428043ae8288d59c29e0b85d4dcb7942a6b5a3f",
+            "nonproduction_counts": {
+              "technosphere": 13,
+              "biosphere": 8
+            }
+          },
+          {
+            "identity": {
+              "name": "tetrafluoroethylene production",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a8647dcd9264b87fe8c0dff805b226daa46bf07b592675ef41590f4e49b3e553",
+            "inventory_sha256": "9ba6a08a0b72be73c65c9ded9dd0005504b8bf162d07b8e6157016f322ef5d44",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 6
+            }
+          },
+          {
+            "identity": {
+              "name": "benzene chlorination",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a20857b7e48b77ad0a720336c64cd0f89fade77979160b4d52361f7297328a2d",
+            "inventory_sha256": "036a18b4349145ddad3a79e526f103a6e1f4d17de33024baaddcdeefb0c5cf88",
+            "nonproduction_counts": {
+              "technosphere": 15,
+              "biosphere": 12
+            }
+          }
+        ],
+        "basis": "Use the complete native European HCl mixture per signed kg active HCl, not kg aqueous solution. Both source and native reference one kg active product; native synthesis reactants support that basis. Do not multiply by 0.30 or 1/0.30 or invent dilution. The native mixture has its own 50/50 synthesis/Mannheim split; source by-product suppliers, allocation, market shares, regional utilities, final delivery and internal uncertainty are replaced, not reproduced. Source RoW/RER markets and native European production differ geographically and in vintage. No source market freight is added on top of the complete native boundary. Score effects, including missing source final-market delivery, remain unquantified.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Hydrochloric acid, 30% in H2O, at plant",
+          "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Hydrochloric acid, 30% in H2O, at plant",
+              "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "4e08435fa0bac2af907603596b3b00a82f0b092fbbc8fab52a5dc108bff27f7f",
+            "enriched_inventory_sha256": "c6256ca32f4e0957b4efa2af6f814c8c444a1339fc045d1409e20e3cdb583ba0"
+          }
+        ]
+      },
+      "limitations": [
+        "Use the complete native European HCl mixture per signed kg active HCl, not kg aqueous solution. Both source and native reference one kg active product; native synthesis reactants support that basis. Do not multiply by 0.30 or 1/0.30 or invent dilution. The native mixture has its own 50/50 synthesis/Mannheim split; source by-product suppliers, allocation, market shares, regional utilities, final delivery and internal uncertainty are replaced, not reproduced. Source RoW/RER markets and native European production differ geographically and in vintage. No source market freight is added on top of the complete native boundary. Score effects, including missing source final-market delivery, remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fc22786c782f883716c5f0eaf130cc6bebcf567384506b14211cd1dc2e63e353"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-91b9cff76b3562bb",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_chemical_stocks_review.json",
+      "review_sha256": "1795c57e09fa69ea4a13ab00e97d6e964de95b78980d859ff1dfd8c240b6dbb6",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for hydrochloric acid, without water, in 30% solution state",
+            "reference product": "hydrochloric acid, without water, in 30% solution state",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "182d316fb6cf76922dbb3e1f61bb866ce25a6ce7c7d1c15658ebb30160b65a9b",
+          "inventory_sha256": "b5c6e9ca50f5cb5f2e60999e8f7be1d8f688a67449a5e0f673e9de53abe7f194",
+          "nonproduction_counts": {
+            "technosphere": 8,
+            "biosphere": 0
+          },
+          "name": "market for hydrochloric acid, without water, in 30% solution state",
+          "reference product": "hydrochloric acid, without water, in 30% solution state",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "allyl chloride production, reaction of propylene and chlorine",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "2d9e788e7774f19e57c4643f4faa6797aa6a11021a022ce7fce19ba5c60b901e",
+            "inventory_sha256": "8c908bb84b979f2d0c2d9c224cc56f19c75f9887b0037293aad845195208e9f7",
+            "nonproduction_counts": {
+              "technosphere": 10,
+              "biosphere": 7
+            }
+          },
+          {
+            "identity": {
+              "name": "hydrochloric acid production, from the reaction of hydrogen with chlorine",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "fc6c948170935657a3361ebb0bccb85c8fbba6407a34f73ea2071a6a9e12cb6b",
+            "inventory_sha256": "aad4cde111a80eaed79d357172e52b8cfdc7afe43f62f088fd7363dcad9ec37a",
+            "nonproduction_counts": {
+              "technosphere": 5,
+              "biosphere": 2
+            }
+          },
+          {
+            "identity": {
+              "name": "Mannheim process",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f440c1cfd9668bb1c22db17f75a63b1e8a972293f9511881288d6f62ddd42240",
+            "inventory_sha256": "8a3d5b7bb7be7a3dfe218e027ed59c3bee9beb38537b5f8b0e8371884f3950b7",
+            "nonproduction_counts": {
+              "technosphere": 6,
+              "biosphere": 8
+            }
+          },
+          {
+            "identity": {
+              "name": "tetrafluoroethylene production",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "8e752ff86b0b2d9e8795d046db9716d641c282784f59391d96b41754fa694995",
+            "inventory_sha256": "cf6d7382246dbee3783204c894332eb64c7a49f9965928bebeebce1172498dd7",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 6
+            }
+          },
+          {
+            "identity": {
+              "name": "benzene chlorination",
+              "reference product": "hydrochloric acid, without water, in 30% solution state",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9dd84160d65a62ea9e068dae7c623262aac896524f7e64f62fec456eece07771",
+            "inventory_sha256": "4bc1bde6610f5972f3b4b8fdb20ff5f4a57515b30629c75c338c34a1a0804a24",
+            "nonproduction_counts": {
+              "technosphere": 9,
+              "biosphere": 12
+            }
+          }
+        ],
+        "basis": "Use the complete native European HCl mixture per signed kg active HCl, not kg aqueous solution. Both source and native reference one kg active product; native synthesis reactants support that basis. Do not multiply by 0.30 or 1/0.30 or invent dilution. The native mixture has its own 50/50 synthesis/Mannheim split; source by-product suppliers, allocation, market shares, regional utilities, final delivery and internal uncertainty are replaced, not reproduced. Source RoW/RER markets and native European production differ geographically and in vintage. No source market freight is added on top of the complete native boundary. Score effects, including missing source final-market delivery, remain unquantified.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Hydrochloric acid, 30% in H2O, at plant",
+          "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Hydrochloric acid, 30% in H2O, at plant",
+              "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "4e08435fa0bac2af907603596b3b00a82f0b092fbbc8fab52a5dc108bff27f7f",
+            "enriched_inventory_sha256": "c6256ca32f4e0957b4efa2af6f814c8c444a1339fc045d1409e20e3cdb583ba0"
+          }
+        ]
+      },
+      "limitations": [
+        "Use the complete native European HCl mixture per signed kg active HCl, not kg aqueous solution. Both source and native reference one kg active product; native synthesis reactants support that basis. Do not multiply by 0.30 or 1/0.30 or invent dilution. The native mixture has its own 50/50 synthesis/Mannheim split; source by-product suppliers, allocation, market shares, regional utilities, final delivery and internal uncertainty are replaced, not reproduced. Source RoW/RER markets and native European production differ geographically and in vintage. No source market freight is added on top of the complete native boundary. Score effects, including missing source final-market delivery, remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3e34887ca653510fc3bcac830fa409b63449d10c85687c789cca32eabfcde405"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cac4eeaf7215b33d",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_chemical_stocks_review.json",
+      "review_sha256": "1795c57e09fa69ea4a13ab00e97d6e964de95b78980d859ff1dfd8c240b6dbb6",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for methanol",
+            "reference product": "methanol",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "6651c347475b177569a8a465be0e486903cc9a5e8aa16273a5d02eb5e27c2b4e",
+          "inventory_sha256": "bdbf7383dc1d9cf1dae13641e1e838fc1daeb431f80e74019e46c87165b91232",
+          "nonproduction_counts": {
+            "technosphere": 6,
+            "biosphere": 0
+          },
+          "name": "market for methanol",
+          "reference product": "methanol",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "methanol production",
+              "reference product": "methanol",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9c4b8adfdfd6ca192f637561effd3cc9383876b870da42050a7d1b14241b9c3d",
+            "inventory_sha256": "83ec2c75283f06dc68fdd1e5fd9ef32b8b2cb8902b3b7a9cdc7da3bc64e123b4",
+            "nonproduction_counts": {
+              "technosphere": 13,
+              "biosphere": 18
+            }
+          },
+          {
+            "identity": {
+              "name": "synthetic fuel production, from coal, high temperature Fisher-Tropsch operations",
+              "reference product": "methanol",
+              "location": "ZA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "966d644129be6d819cf41beda5ad749e93f4101f2deb1a10d0473d80db7f73ee",
+            "inventory_sha256": "48d81f3717000abe576bb717c5dd1b30bba30434d46572dcef8ea209c442a83a",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 13
+            }
+          }
+        ],
+        "basis": "Use complete native Swiss regional-storage methanol per signed kg as a delivered-stock screening proxy. Native European/overseas production and transport to Switzerland, storage emissions and tank infrastructure replace the complete source global market. Source includes a 0.00367102654107643 coal Fischer-Tropsch co-product share, whereas native stock does not establish that branch: explicitly retain the technology and allocation difference rather than claim fuel-route equality. Original source producer shares, four modal freight quantities, geography, losses, internal uncertainty and vintage are not reproduced. Retain native transport once; add no source freight on top, density or heating-value scaling, avoided fuel credit or storage wrapper. Score differences remain unquantified.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Methanol, at regional storage",
+          "reference product": "Methanol, at regional storage",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Methanol, at regional storage",
+              "reference product": "Methanol, at regional storage",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 7,
+            "metadata_sha256": "75baee011e255cf21f95ab5e0557785d3ee5eaa484a376b3adcaa0a1f992ee20",
+            "enriched_inventory_sha256": "eb3a8ca9f97eb85d482f5df6194cf1da95c6238a2c4ba48c4d34d9cf43843ae4"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native Swiss regional-storage methanol per signed kg as a delivered-stock screening proxy. Native European/overseas production and transport to Switzerland, storage emissions and tank infrastructure replace the complete source global market. Source includes a 0.00367102654107643 coal Fischer-Tropsch co-product share, whereas native stock does not establish that branch: explicitly retain the technology and allocation difference rather than claim fuel-route equality. Original source producer shares, four modal freight quantities, geography, losses, internal uncertainty and vintage are not reproduced. Retain native transport once; add no source freight on top, density or heating-value scaling, avoided fuel credit or storage wrapper. Score differences remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f4afb26ab22ecf52e4da77fe0fbaa830f3f11db07d7e17f4874b30aba4d802cc"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fe0deefded6d83bc",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_chemical_stocks_review.json",
+      "review_sha256": "1795c57e09fa69ea4a13ab00e97d6e964de95b78980d859ff1dfd8c240b6dbb6",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for hexane",
+            "reference product": "hexane",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "5ec2c8d83f208398d3d0539e0843ad1b91d3b64abcee191bf979ec23ec18a8d1",
+          "inventory_sha256": "22f02a50bfc85f3cca6704ebf944f75fa420fe0d26faf7003c0ca14bf953d14a",
+          "nonproduction_counts": {
+            "technosphere": 7,
+            "biosphere": 0
+          },
+          "name": "market for hexane",
+          "reference product": "hexane",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "molecular sieve separation of naphtha",
+              "reference product": "hexane",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b4aaecac992514df7771f59a2703402ecaf2a6ed85ade3cb7c76cb48b8687649",
+            "inventory_sha256": "3680b8df757f3d1963944a047675e78beef279aa9bab60a3c6b8ba4add8dab47",
+            "nonproduction_counts": {
+              "technosphere": 5,
+              "biosphere": 12
+            }
+          },
+          {
+            "identity": {
+              "name": "molecular sieve separation of naphtha",
+              "reference product": "hexane",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "96c7e818c954a35e4e4260fad3355fb78d78351e8290394ee194ed90636fff53",
+            "inventory_sha256": "ce162a97b404b31643898e945cb91fa05e29b9d2d731707c43a2f414e7d1ea34",
+            "nonproduction_counts": {
+              "technosphere": 17,
+              "biosphere": 12
+            }
+          }
+        ],
+        "basis": "Use complete native European hexane from molecular-sieve naphtha separation per signed kg. Source ordinary refinery suppliers use the same separation family, but native US-derived technology, feedstock, co-product mass allocation, process utilities and upstream feed transport replace source European/RoW production shares. This is an at-plant screening proxy for a delivered source market: the source final sea, rail, road, light-commercial and barge delivery group is not reproduced, and native feedstock transport is not equivalent to that final delivery. Preserve caller kg and uncertainty; do not invent a delivery credit, purity multiplier or density factor. Internal uncertainty, geography and vintage differ; the unquantified score effect includes final delivery.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "RER",
+          "name": "Hexane, at plant",
+          "reference product": "Hexane, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Hexane, at plant",
+              "reference product": "Hexane, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 18,
+            "metadata_sha256": "cb89c8c80728ae1f7413b34040148820a1a0425c0bdac1e2f7963227ee8ff748",
+            "enriched_inventory_sha256": "57c3e7fe4b412fdfa3929b6cb6f74c25c89a685b06b827578830c30f49ee1d9d"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native European hexane from molecular-sieve naphtha separation per signed kg. Source ordinary refinery suppliers use the same separation family, but native US-derived technology, feedstock, co-product mass allocation, process utilities and upstream feed transport replace source European/RoW production shares. This is an at-plant screening proxy for a delivered source market: the source final sea, rail, road, light-commercial and barge delivery group is not reproduced, and native feedstock transport is not equivalent to that final delivery. Preserve caller kg and uncertainty; do not invent a delivery credit, purity multiplier or density factor. Internal uncertainty, geography and vintage differ; the unquantified score effect includes final delivery."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2caa21a8072e782380a512591c976e2e0b3b42b37a47639b17849a7ac403b166"
+        }
+      ]
     }
   ],
   "superseded_operations": [

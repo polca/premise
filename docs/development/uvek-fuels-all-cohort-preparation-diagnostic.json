@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "db351f745001919b59142371a92d5511aceafa2d",
-  "approval_ledger_sha256": "56c6b43b54bb34c5b2dfa79ab591c5f2eb75e138717b77eeab5052f0681a3ade",
-  "validated_scopes": 648,
+  "brightpath_commit": "f6dde1b7775a01547ae888decb526159413dccef",
+  "approval_ledger_sha256": "a9dac83e407dfb1cffab5200a90776a616b615e7c0058993cd6f2eeefa726e37",
+  "validated_scopes": 652,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 57,
-  "distinct_unapproved_rule_identities": 53,
+  "unapproved_source_profile_cases": 53,
+  "distinct_unapproved_rule_identities": 49,
   "cohorts": [
     {
       "source": {
@@ -71,9 +71,9 @@
       },
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 29,
-      "refusal_audit_filename": "5792e15754e5ecaa95939d22777140e3d69e3d12f33510991181eee8d04b313f.audit.json.gz",
-      "refusal_audit_sha256": "0b383f96a1cd4de04a9c02d661a2af2e15ca13587dc63c8b137895ae7ed758cf",
+      "unapproved_count": 25,
+      "refusal_audit_filename": "8a8d548a2b6d9da68458b1a7f049645c49a73471a1d1db51061afff9650da76b.audit.json.gz",
+      "refusal_audit_sha256": "a99b8075f81c2cc2a9e74832358879f8a7fce50a539800570d7a26b8bdec5ba0",
       "pending": [
         {
           "rule_id": "bp-05200779ee64a17f",
@@ -85,36 +85,6 @@
           },
           "candidate_target": {
             "recipe_ref": "chemical-heat-water-e3db9c084127df5b3402"
-          }
-        },
-        {
-          "rule_id": "bp-6f58476b963abe8c",
-          "source": {
-            "location": "RoW",
-            "name": "market for hydrochloric acid, without water, in 30% solution state",
-            "reference product": "hydrochloric acid, without water, in 30% solution state",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Hydrochloric acid, 30% in H2O, at plant",
-            "reference product": "Hydrochloric acid, 30% in H2O, at plant",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-cac4eeaf7215b33d",
-          "source": {
-            "location": "GLO",
-            "name": "market for methanol",
-            "reference product": "methanol",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Methanol, at regional storage",
-            "reference product": "Methanol, at regional storage",
-            "unit": "kilogram"
           }
         },
         {
@@ -145,21 +115,6 @@
             "name": "Ethanol fermentation plant",
             "reference product": "Ethanol fermentation plant",
             "unit": "unit"
-          }
-        },
-        {
-          "rule_id": "bp-fe0deefded6d83bc",
-          "source": {
-            "location": "GLO",
-            "name": "market for hexane",
-            "reference product": "hexane",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Hexane, at plant",
-            "reference product": "Hexane, at plant",
-            "unit": "kilogram"
           }
         },
         {
@@ -204,21 +159,6 @@
             "location": "GLO",
             "name": "Module packaging",
             "reference product": "Module packaging",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-91b9cff76b3562bb",
-          "source": {
-            "location": "RER",
-            "name": "market for hydrochloric acid, without water, in 30% solution state",
-            "reference product": "hydrochloric acid, without water, in 30% solution state",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Hydrochloric acid, 30% in H2O, at plant",
-            "reference product": "Hydrochloric acid, 30% in H2O, at plant",
             "unit": "kilogram"
           }
         },
@@ -540,8 +480,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 24,
-      "refusal_audit_filename": "292a1d07351ed371b1b5d065cb38a13c72eafc5e31c16974362b0129529896e4.audit.json.gz",
-      "refusal_audit_sha256": "1cf4c715ada48b950c3776af9ab8deb0d5c4d4bea464711e747c1cb8831d91dd",
+      "refusal_audit_filename": "011c1149ebe0e31ff89b60e16b1dc5811786e127fea6326b7c192d35931f8cfb.audit.json.gz",
+      "refusal_audit_sha256": "4217d6698aefba8c839cfcd1120e4a1eeaf46ce0e19168be41ad85a57ac1995b",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -908,8 +848,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "1a657b89fa27a26aaf24a7a11a5e8c5a0a1edf086dca906bc113975016f33ced.audit.json.gz",
-      "refusal_audit_sha256": "d53cfdf735f49007f46771475d5373eb5dba44779a60ed7605cd842bfe0cb627",
+      "refusal_audit_filename": "a41ae4a9bf544571d00c73c64fd7be6c3dc97288a98b158f3da3dfb43b2cad2e.audit.json.gz",
+      "refusal_audit_sha256": "e7ce8dc22e5dd1b525fb5c45ad7a14d1133091641cd8ae6ab8b33f2d451aa00a",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",
