@@ -548,9 +548,10 @@
         "docs/development/uvek-low-pressure-gas-property-verification.json",
         "docs/development/uvek-vehicle-station-verification.json",
         "docs/development/uvek-vehicle-blend-verification.json",
-        "docs/development/uvek-additional-burner-verification.json"
+        "docs/development/uvek-additional-burner-verification.json",
+        "docs/development/uvek-allocated-heat-carbon-verification.json"
       ],
-      "latest_coverage_note": "64 native low-pressure carriers and 137 delivered-gas combustion balances are verified, alongside the previously reviewed liquid-fuel and transport balances. Native vehicle gas now has 13 regional station copies and two historical blends forwarding to the final IAM gas mixture on an explicit common nominal CNG mass basis. All 86 generic gas-vehicle records preserve recorded CO2 totals and other exchanges; all 86 dedicated biomethane vehicle inventories remain unchanged. Network/process loss-flow origins, mixed industrial carbon, unreviewed fuel roles and other sector coverage remain unfinished; the public fuels guard stays unchanged. The static first-pass blockers above are historical findings, superseded only where the linked runtime evidence explicitly demonstrates a fix. A YAML-only extension verifies 25 additional native burner records (20 diesel, one petrol, four older gas CHP services), retaining recorded CO2 totals and other exchanges with finite LCIs. The broader native-route audit leaves 298 unreviewed process candidates and 64 delivery carriers; those counts are a review queue, not a list of confirmed errors."
+      "latest_coverage_note": "Verified fuel-carbon milestones include 64 native low-pressure carriers, delivered-gas combustion services, liquid-fuel and transport balances, 13 regional CNG stations, two mass-preserving generic gas-vehicle handovers and 86 generic gas vehicles with dedicated biomethane routes unchanged. YAML-only extensions verify 25 additional burner records and 51 allocated CHP, fuel-cell or gas-driven heat-pump operating records, preserving recorded CO2 totals and other exchanges with finite LCIs. The latest native-route audit leaves 247 unreviewed process candidates and 64 delivery carriers. These are review candidates, not confirmed errors. Network/process loss origins, mixed industrial carbon, remaining fuel roles and other registered sectors remain unfinished; public fuels support stays disabled. Static first-pass findings above are historical and superseded only where linked runtime evidence explicitly proves a fix."
     },
     {
       "sector": "renewable",
@@ -1223,7 +1224,11 @@
         "synthetic_MESSAGE_actual_native_graph_verified": true,
         "full_real_MESSAGE_run_verified": false,
         "tests_passed": 219
-      }
+      },
+      "latest_evidence": [
+        "docs/development/uvek-allocated-heat-carbon-verification.json"
+      ],
+      "latest_coverage_note": "The shared fuels update now refreshes final fuel-carbon origin in 51 additional native allocated operating inventories (30 heat-MJ and 21 electricity-kWh records), preserving source allocation, performance, quantities and recorded CO2 totals. This is an operating-inventory carbon fix, not an additional IAM heat-role binding. The eleven unqualified IAM heat roles and other documented heat limitations remain pending; public heat scope is not expanded by this change."
     },
     {
       "sector": "cdr",

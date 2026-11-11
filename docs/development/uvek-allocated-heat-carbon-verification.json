@@ -1,0 +1,661 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-194820",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-194104",
+  "export_activities": 14808,
+  "allocated_operating_records_verified": 51,
+  "distinct_names": 51,
+  "operating_checks": [
+    {
+      "name": "xx Heat, at Mini CHP plant, allocation energy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Electricity, at cogen 160kWe lambda=1, allocation exergy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at cogen 1MWe lean burn, allocation heat",
+      "location": "RER",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, high pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Electricity, at Mini CHP plant, allocation energy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Heat, natural gas, allocation exergy, at SOFC-GT fuel cell 180kWe, future",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 50kWe lean burn, allocation heat",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 200kWe diesel SCR, allocation energy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Electricity, at cogen 160kWe lambda=1, allocation energy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Electricity, at cogen 50kWe lean burn, allocation energy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 200kWe lean burn, allocation energy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Heat, natural gas, allocation exergy, at micro gas turbine 100kWe",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Electricity, at cogen 160kWe lambda=1, allocation price",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Electricity, at cogen 160kWe Jakobsberg, allocation electricity",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Electricity, at cogen 500kWe lean burn, allocation exergy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Electricity, at cogen 200kWe diesel SCR, allocation energy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 1MWe lean burn, allocation heat",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 1MWe lean burn, allocation energy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at cogen 160kWe Jakobsberg, allocation exergy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Electricity, at cogen 160kWe Jakobsberg, allocation price",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 500kWe lean burn, allocation heat",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Heat, natural gas, allocation exergy, at SOFC fuel cell 125kWe, future",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at cogen 160kWe Jakobsberg, allocation price",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Heat, at Mini CHP plant, allocation heat",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 200kWe diesel, allocation heat",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Diesel, at regional storage"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Electricity, at cogen 500kWe lean burn, allocation energy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at cogen 160kWe Jakobsberg, allocation heat",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at cogen 160kWe Jakobsberg, allocation energy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 500kWe lean burn, allocation energy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 50kWe lean burn, allocation energy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Heat, at cogen 160kWe lambda=1, allocation energy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Heat, at cogen 160kWe lambda=1, allocation heat",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 500kWe lean burn, allocation exergy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Electricity, at cogen 160kWe lambda=1, allocation electricity",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Electricity, at cogen 160kWe Jakobsberg, allocation exergy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Heat, at cogen 200kWe lean burn, allocation heat",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Electricity, at cogen 160kWe Jakobsberg, allocation energy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Electricity, at cogen 1MWe lean burn, allocation energy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Electricity, natural gas, allocation exergy, at PEM fuel cell 2kWe, future",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Heat, at cogen 1MWe lean burn, allocation energy",
+      "location": "RER",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, high pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Electricity, natural gas, allocation exergy, at SOFC fuel cell 125kWe, future",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, natural gas, allocation exergy, at PEM fuel cell 2kWe, future",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Heat, at cogen 160kWe lambda=1, allocation price",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at cogen 160kWe lambda=1, allocation exergy",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Electricity, at cogen 1MWe lean burn, allocation exergy",
+      "location": "RER",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, high pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, natural gas, at diffusion absorption heat pump 15kW",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Electricity, at cogen 1MWe lean burn, allocation energy",
+      "location": "RER",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, high pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Electricity, natural gas, allocation exergy, at micro gas turbine 100kWe",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xxx Electricity, at cogen 200kWe lean burn, allocation energy",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Heat, natural gas, at diffusion absorption heat pump 4kW, future",
+      "location": "CH",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "Heat, at cogen 1MWe lean burn, allocation exergy",
+      "location": "RER",
+      "unit": "megajoule",
+      "fuel_suppliers": [
+        "Natural gas, high pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    },
+    {
+      "name": "xx Electricity, natural gas, allocation exergy, at SOFC-GT fuel cell 180kWe, future",
+      "location": "CH",
+      "unit": "kilowatt hour",
+      "fuel_suppliers": [
+        "Natural gas, low pressure, at consumer"
+      ],
+      "positive_CO2_total_preserved": true,
+      "origin_verified": true,
+      "other_exchanges_preserved": true,
+      "finite_LCI": true
+    }
+  ],
+  "technosphere_links_internal": 141426,
+  "biosphere_links_in_requested_database": 311656,
+  "validation": {
+    "phases": 11,
+    "issues_by_severity": {
+      "warning": 14
+    }
+  },
+  "excluded_ignition_biogas_records_unchanged": 4,
+  "geothermal_records_with_geological_CO2_unchanged": 14,
+  "same_name_regional_copies_found": 0,
+  "implementation": "Premise YAML selectors only; shared Python modules unchanged.",
+  "limitations": [
+    "Fuel-dominant whole-exhaust screening convention can reclassify minor lubricant or urea-derived fossil carbon. Source quantities are not separately resolved; effect unquantified.",
+    "Retain source reference units, engine performance, allocation, all signed inputs, uncertainty and non-CO2 emissions; do not infer a heating value, extra efficiency correction or avoided credit.",
+    "Gas-production loss flows, network/process emissions, mixed industrial carbon and other fuel/sector coverage remain unfinished."
+  ],
+  "public_fuels_supported": false,
+  "remaining_native_route_review_counts": {
+    "covered operating consumer": 915,
+    "unreviewed process": 247,
+    "delivery carrier": 64
+  },
+  "focused_tests": {
+    "passed": 144,
+    "dependency_deprecation_warnings": 2
+  },
+  "mapping_sha256": "09e28f71ebbd57aef1536498f6bc91b6d1bbc88dba3555b97c6adff0564168c9",
+  "ecoinvent_and_other_mapping_fields_unchanged": true,
+  "clean_checkout_rerun": false,
+  "verification_scope_note": "Real local diagnostic with pre-existing unrelated edits retained; no new clean-checkout claim. Shared code is unchanged from the previously verified clean vehicle-blend build.",
+  "record_counts_by_fuel": {
+    "natural gas": 48,
+    "diesel": 3
+  },
+  "record_counts_by_reference_unit": {
+    "megajoule": 30,
+    "kilowatt hour": 21
+  }
+}

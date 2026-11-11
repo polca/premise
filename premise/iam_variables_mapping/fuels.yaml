@@ -255,6 +255,122 @@ natural gas:
       exact: true
       fltr:
         name:
+        - Electricity, at Mini CHP plant, allocation energy
+        - Electricity, at cogen 160kWe Jakobsberg, allocation electricity
+        - Electricity, at cogen 160kWe Jakobsberg, allocation energy
+        - Electricity, at cogen 160kWe Jakobsberg, allocation exergy
+        - Electricity, at cogen 160kWe Jakobsberg, allocation price
+        - Electricity, at cogen 1MWe lean burn, allocation exergy
+        - xx Electricity, at cogen 160kWe lambda=1, allocation electricity
+        - xx Electricity, at cogen 160kWe lambda=1, allocation energy
+        - xx Electricity, at cogen 160kWe lambda=1, allocation exergy
+        - xx Electricity, at cogen 160kWe lambda=1, allocation price
+        - xx Electricity, at cogen 1MWe lean burn, allocation energy
+        - xx Electricity, natural gas, allocation exergy, at PEM fuel cell 2kWe, future
+        - xx Electricity, natural gas, allocation exergy, at SOFC fuel cell 125kWe, future
+        - xx Electricity, natural gas, allocation exergy, at SOFC-GT fuel cell 180kWe, future
+        - xx Electricity, natural gas, allocation exergy, at micro gas turbine 100kWe
+        - xxx Electricity, at cogen 1MWe lean burn, allocation energy
+        - xxx Electricity, at cogen 200kWe lean burn, allocation energy
+        - xxx Electricity, at cogen 500kWe lean burn, allocation energy
+        - xxx Electricity, at cogen 500kWe lean burn, allocation exergy
+        - xxx Electricity, at cogen 50kWe lean burn, allocation energy
+        reference product:
+        - Electricity, at Mini CHP plant, allocation energy
+        - Electricity, at cogen 160kWe Jakobsberg, allocation electricity
+        - Electricity, at cogen 160kWe Jakobsberg, allocation energy
+        - Electricity, at cogen 160kWe Jakobsberg, allocation exergy
+        - Electricity, at cogen 160kWe Jakobsberg, allocation price
+        - Electricity, at cogen 1MWe lean burn, allocation exergy
+        - xx Electricity, at cogen 160kWe lambda=1, allocation electricity
+        - xx Electricity, at cogen 160kWe lambda=1, allocation energy
+        - xx Electricity, at cogen 160kWe lambda=1, allocation exergy
+        - xx Electricity, at cogen 160kWe lambda=1, allocation price
+        - xx Electricity, at cogen 1MWe lean burn, allocation energy
+        - xx Electricity, natural gas, allocation exergy, at PEM fuel cell 2kWe, future
+        - xx Electricity, natural gas, allocation exergy, at SOFC fuel cell 125kWe, future
+        - xx Electricity, natural gas, allocation exergy, at SOFC-GT fuel cell 180kWe, future
+        - xx Electricity, natural gas, allocation exergy, at micro gas turbine 100kWe
+        - xxx Electricity, at cogen 1MWe lean burn, allocation energy
+        - xxx Electricity, at cogen 200kWe lean burn, allocation energy
+        - xxx Electricity, at cogen 500kWe lean burn, allocation energy
+        - xxx Electricity, at cogen 500kWe lean burn, allocation exergy
+        - xxx Electricity, at cogen 50kWe lean burn, allocation energy
+        unit: kilowatt hour
+    limitations:
+    - Exact reviewed allocated CHP, fuel-cell or gas-driven heat-pump operating inventories only. Preserve source heat/electricity allocation, reference unit and production, fuel demand, performance, auxiliary inventory, signed exchanges, uncertainty and recorded positive CO2 total; update only its origin from actual delivered fuel properties.
+    - 'Fuel-dominant whole-exhaust screening proxy: minor lubricant or urea-derived fossil carbon may also be reclassified because its direct contribution is not separately identified. Retain all auxiliary and waste exchanges and add no guessed correction, avoided-emission credit, new efficiency or reallocation. Source capacity, composition, technology, geography and vintage limitations and unquantified score effects remain.'
+    - Ignition-biogas engines and geological/process emissions are outside these exact selectors; do not infer complete mixed-fuel or sector coverage.
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Heat, at cogen 160kWe Jakobsberg, allocation energy
+        - Heat, at cogen 160kWe Jakobsberg, allocation exergy
+        - Heat, at cogen 160kWe Jakobsberg, allocation heat
+        - Heat, at cogen 160kWe Jakobsberg, allocation price
+        - Heat, at cogen 160kWe lambda=1, allocation exergy
+        - Heat, at cogen 1MWe lean burn, allocation exergy
+        - Heat, at cogen 1MWe lean burn, allocation heat
+        - Heat, natural gas, allocation exergy, at PEM fuel cell 2kWe, future
+        - Heat, natural gas, at diffusion absorption heat pump 15kW
+        - xx Heat, at Mini CHP plant, allocation energy
+        - xx Heat, at Mini CHP plant, allocation heat
+        - xx Heat, at cogen 160kWe lambda=1, allocation energy
+        - xx Heat, at cogen 160kWe lambda=1, allocation heat
+        - xx Heat, at cogen 160kWe lambda=1, allocation price
+        - xx Heat, at cogen 1MWe lean burn, allocation energy
+        - xx Heat, natural gas, allocation exergy, at SOFC fuel cell 125kWe, future
+        - xx Heat, natural gas, allocation exergy, at SOFC-GT fuel cell 180kWe, future
+        - xx Heat, natural gas, allocation exergy, at micro gas turbine 100kWe
+        - xx Heat, natural gas, at diffusion absorption heat pump 4kW, future
+        - xxx Heat, at cogen 1MWe lean burn, allocation energy
+        - xxx Heat, at cogen 1MWe lean burn, allocation heat
+        - xxx Heat, at cogen 200kWe lean burn, allocation energy
+        - xxx Heat, at cogen 200kWe lean burn, allocation heat
+        - xxx Heat, at cogen 500kWe lean burn, allocation energy
+        - xxx Heat, at cogen 500kWe lean burn, allocation exergy
+        - xxx Heat, at cogen 500kWe lean burn, allocation heat
+        - xxx Heat, at cogen 50kWe lean burn, allocation energy
+        - xxx Heat, at cogen 50kWe lean burn, allocation heat
+        reference product:
+        - Heat, at cogen 160kWe Jakobsberg, allocation energy
+        - Heat, at cogen 160kWe Jakobsberg, allocation exergy
+        - Heat, at cogen 160kWe Jakobsberg, allocation heat
+        - Heat, at cogen 160kWe Jakobsberg, allocation price
+        - Heat, at cogen 160kWe lambda=1, allocation exergy
+        - Heat, at cogen 1MWe lean burn, allocation exergy
+        - Heat, at cogen 1MWe lean burn, allocation heat
+        - Heat, natural gas, allocation exergy, at PEM fuel cell 2kWe, future
+        - Heat, natural gas, at diffusion absorption heat pump 15kW
+        - xx Heat, at Mini CHP plant, allocation energy
+        - xx Heat, at Mini CHP plant, allocation heat
+        - xx Heat, at cogen 160kWe lambda=1, allocation energy
+        - xx Heat, at cogen 160kWe lambda=1, allocation heat
+        - xx Heat, at cogen 160kWe lambda=1, allocation price
+        - xx Heat, at cogen 1MWe lean burn, allocation energy
+        - xx Heat, natural gas, allocation exergy, at SOFC fuel cell 125kWe, future
+        - xx Heat, natural gas, allocation exergy, at SOFC-GT fuel cell 180kWe, future
+        - xx Heat, natural gas, allocation exergy, at micro gas turbine 100kWe
+        - xx Heat, natural gas, at diffusion absorption heat pump 4kW, future
+        - xxx Heat, at cogen 1MWe lean burn, allocation energy
+        - xxx Heat, at cogen 1MWe lean burn, allocation heat
+        - xxx Heat, at cogen 200kWe lean burn, allocation energy
+        - xxx Heat, at cogen 200kWe lean burn, allocation heat
+        - xxx Heat, at cogen 500kWe lean burn, allocation energy
+        - xxx Heat, at cogen 500kWe lean burn, allocation exergy
+        - xxx Heat, at cogen 500kWe lean burn, allocation heat
+        - xxx Heat, at cogen 50kWe lean burn, allocation energy
+        - xxx Heat, at cogen 50kWe lean burn, allocation heat
+        unit: megajoule
+    limitations:
+    - Exact reviewed allocated CHP, fuel-cell or gas-driven heat-pump operating inventories only. Preserve source heat/electricity allocation, reference unit and production, fuel demand, performance, auxiliary inventory, signed exchanges, uncertainty and recorded positive CO2 total; update only its origin from actual delivered fuel properties.
+    - 'Fuel-dominant whole-exhaust screening proxy: minor lubricant or urea-derived fossil carbon may also be reclassified because its direct contribution is not separately identified. Retain all auxiliary and waste exchanges and add no guessed correction, avoided-emission credit, new efficiency or reallocation. Source capacity, composition, technology, geography and vintage limitations and unquantified score effects remain.'
+    - Ignition-biogas engines and geological/process emissions are outside these exact selectors; do not infer complete mixed-fuel or sector coverage.
+  - selector:
+      exact: true
+      fltr:
+        name:
         - xx Natural gas, burned in Mini CHP plant
         - xx Natural gas, burned in cogen 160kWe Jakobsberg
         - xx Natural gas, burned in cogen 160kWe lambda=1
@@ -737,6 +853,32 @@ diesel:
     - Replace the historical vehicle blend with the IAM blend; preserve its nominal reference energy using the actual signed ingredient quantities and shared fuel heating values, without changing downstream consumer demand or uncertainty.
     - Use the shared dry-ethanol and ester energy bases; source grade, allocation, vintage and heating-value uncertainty remain screening limitations. This is a nominal energy calibration, not uncertainty propagation of the historical blend.
   uvek_recorded_exhaust_consumers:
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - xxx Electricity, at cogen 200kWe diesel SCR, allocation energy
+        reference product:
+        - xxx Electricity, at cogen 200kWe diesel SCR, allocation energy
+        unit: kilowatt hour
+    limitations:
+    - Exact reviewed allocated CHP, fuel-cell or gas-driven heat-pump operating inventories only. Preserve source heat/electricity allocation, reference unit and production, fuel demand, performance, auxiliary inventory, signed exchanges, uncertainty and recorded positive CO2 total; update only its origin from actual delivered fuel properties.
+    - 'Fuel-dominant whole-exhaust screening proxy: minor lubricant or urea-derived fossil carbon may also be reclassified because its direct contribution is not separately identified. Retain all auxiliary and waste exchanges and add no guessed correction, avoided-emission credit, new efficiency or reallocation. Source capacity, composition, technology, geography and vintage limitations and unquantified score effects remain.'
+    - Ignition-biogas engines and geological/process emissions are outside these exact selectors; do not infer complete mixed-fuel or sector coverage.
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - xxx Heat, at cogen 200kWe diesel SCR, allocation energy
+        - xxx Heat, at cogen 200kWe diesel, allocation heat
+        reference product:
+        - xxx Heat, at cogen 200kWe diesel SCR, allocation energy
+        - xxx Heat, at cogen 200kWe diesel, allocation heat
+        unit: megajoule
+    limitations:
+    - Exact reviewed allocated CHP, fuel-cell or gas-driven heat-pump operating inventories only. Preserve source heat/electricity allocation, reference unit and production, fuel demand, performance, auxiliary inventory, signed exchanges, uncertainty and recorded positive CO2 total; update only its origin from actual delivered fuel properties.
+    - 'Fuel-dominant whole-exhaust screening proxy: minor lubricant or urea-derived fossil carbon may also be reclassified because its direct contribution is not separately identified. Retain all auxiliary and waste exchanges and add no guessed correction, avoided-emission credit, new efficiency or reallocation. Source capacity, composition, technology, geography and vintage limitations and unquantified score effects remain.'
+    - Ignition-biogas engines and geological/process emissions are outside these exact selectors; do not infer complete mixed-fuel or sector coverage.
   - selector:
       exact: true
       fltr:
