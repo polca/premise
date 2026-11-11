@@ -69,3 +69,18 @@ these mappings do not certify a particular mechanical grade or strength class.
 The review retains the distinction between requested 3.7 and inspected 3.7.1.
 Focused checks cover signed quantities, uncertainty, formulas, fresh/cached
 harmonization and refusal when the exact review is withdrawn.
+
+Lubricant and helicopter-cycle checkpoint
+----------------------------------------
+
+The exact 3.7 profiles now use one kg of native liquid lubricant and one native
+landing/take-off cycle, respectively. No lubricant-yield, aircraft-mass,
+fuel-normalisation or cycles-per-hour multiplier is added. Native lubricant
+emissions are incomplete; the helicopter has a different fuel requirement and
+inconsistent aircraft descriptions. These remain explicit screening limitations.
+Four older selected profiles and every helper inventory are preserved.
+
+The verification receipt ``uvek-fuels-37-oils-lto-verification.json`` records
+25 focused tests, two finite native inventories, exact resource replay and wheel
+checks. Fuel preparation has 12 remaining mapping cases. Fuel transformation and
+export are still unfinished; this review does not approve the waste-oil market.

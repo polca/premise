@@ -110221,7 +110221,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "4634a5c1c8cafbcc5fecc7a9816768e8de07a5f594c978eb0307db4d5e6680b3"
+          "fingerprint": "36092879fa0c6054b7ec61cb6dabaea17cded81f9fb518f1e7f428508287bca9"
         }
       ]
     },
@@ -110586,7 +110586,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "1dcbb07d3cb6975558ac2d703cbcacae26ee7e3531fd6c03ff6ec2d48845946e"
+          "fingerprint": "e0b7747620754dd9b274058a0559fe1e7fc7e676f1b009de85cd2dedc9a51a4d"
         },
         {
           "source": {
@@ -110599,7 +110599,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "63932206f18d49c1d6e12908e6b7a917eeb8735292ff82eb52f3c33762eaf24b"
+          "fingerprint": "399b12f31a9a07c18e0a7439594d2ec0f06a4eec2c5f09ca53aecb2245dbc0a4"
         },
         {
           "source": {
@@ -110612,7 +110612,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "3f3ade4fbf735c732eaf6088b45907229381df02cc4532aa88ad97cf7e7783ff"
+          "fingerprint": "decaef66b5001e147ca97625832fcfd44f193eaa85e1873af5b52cead02a83a3"
         }
       ]
     },
@@ -199561,6 +199561,195 @@
             "system_model": "cutoff"
           },
           "fingerprint": "b39dc1eeb7acfe91899ac00d88c12385a9e43de5b729376cad842314b42f8125"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_fuels_37_oils_lto_review.json",
+      "review_sha256": "12f8b73f95990db74c27a6ac3bbcf6cd5eafe19bad60e43da62b6dc4b9b8cd3c",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "market for lubricating oil",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "7bf8a0a0f5fb9185f0426a65017c32cee2542f5863ce788bf3cf6eba02da7b98",
+          "metadata_sha256": "7ece9afb2c9bd7fff8964214f57a9c16ba815885d33c9a55545c7cce8d858b3e",
+          "inventory_sha256": "0b264dd3f7e2fa48448971e4189acd77387404a0a8a1a57c4b1885484aa12d62",
+          "identity": {
+            "location": "RER",
+            "name": "market for lubricating oil",
+            "reference product": "lubricating oil",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "065fc3f1-8347-48b3-b974-56204a233df7",
+          "inspected_activity_id": "4a7e6ffe-4185-4821-8354-dccbf126ca88",
+          "matching_product_id": "ea75b944-c676-4a13-85b8-2bea98f765a4",
+          "location": "RER",
+          "name": "market for lubricating oil",
+          "reference product": "lubricating oil",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "activity_name": "lubricating oil production",
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "ddd82cb755be06e352165df22226f3785dc97e4027f24376961ef1fd5740906a",
+            "metadata_sha256": "54d89fd79adcda8fc21cd718a27e6f6d7ff154a5e8ed57041e953e0a204608cd",
+            "inventory_sha256": "7b1f8c1caa4170c18cf7be2b67c1fcf83778c1baa039e952126fb08d21d873b7"
+          }
+        ],
+        "basis": "Complete native liquid lubricating oil per kg, not spent oil, lubricant application or a litre. Native hydrocracking/distillation/dewaxing is a theoretical screening model with 75 percent process yield already represented internally; no extra yield or density factor. Native production emissions are incomplete and solid wastes omitted. Native at-plant supply replaces the European delivered market, including its original road, rail and barge delivery rather than reconstructing them. Formulation, additives, route and delivery differences remain unquantified. Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed. Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.7 sign profile; preserve older selected decisions and all helpers",
+        "new_target": {
+          "location": "RER",
+          "name": "Lubricating oil, at plant",
+          "reference product": "Lubricating oil, at plant",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Lubricating oil, at plant",
+              "reference product": "Lubricating oil, at plant",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "0be433f1b03a7238b6d1ac3d83439e3e83e07264d82bccf1dbdd75ca0fc5de77",
+            "inventory_sha256": "654db62551cfb6cc0dfb806868c4e112f2103cb38ac5da0563484c54af1c9258"
+          }
+        ]
+      },
+      "limitations": [
+        "Complete native liquid lubricating oil per kg, not spent oil, lubricant application or a litre. Native hydrocracking/distillation/dewaxing is a theoretical screening model with 75 percent process yield already represented internally; no extra yield or density factor. Native production emissions are incomplete and solid wastes omitted. Native at-plant supply replaces the European delivered market, including its original road, rail and barge delivery rather than reconstructing them. Formulation, additives, route and delivery differences remain unquantified.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "050a0ad70e72de20a220e704e8409e50f58f3c8706561800f763a2c91bbeee0f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b62924eca33d09c2",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_legacy_components",
+      "review_path": "export/uvek_fuels_37_oils_lto_review.json",
+      "review_sha256": "12f8b73f95990db74c27a6ac3bbcf6cd5eafe19bad60e43da62b6dc4b9b8cd3c",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "activity_name": "transport, helicopter, LTO cycle",
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "f37fd04981bd3a180b41452d177f4a18e77c9803b21aaa028baa6c3e62e6328b",
+          "metadata_sha256": "8da4549f3817bb8a0d4b77bf90937c33c68bebff56c51fc22ba596f26e5e050f",
+          "inventory_sha256": "2fd727b6188a05abb3eec3258d50c0158e5b5dbd6f98da1a21e467ac179b3658",
+          "identity": {
+            "location": "GLO",
+            "name": "transport, helicopter, LTO cycle",
+            "reference product": "transport, helicopter, LTO cycle",
+            "unit": "unit"
+          },
+          "requested_catalog_activity_id": "0a29a6ac-5018-4f3f-abe2-7a30f9ce3b30",
+          "inspected_activity_id": "74f7f833-7db7-4bac-bd30-3454067b0f31",
+          "matching_product_id": "cc7e810b-79d2-4c9c-96e6-60a3c739952c",
+          "location": "GLO",
+          "name": "transport, helicopter, LTO cycle",
+          "reference product": "transport, helicopter, LTO cycle",
+          "unit": "unit"
+        },
+        "source_producer_witnesses": [],
+        "basis": "One complete native twin-engine helicopter landing/take-off cycle per generic source LTO cycle, not an hour, aircraft or tonne-km. Source kerosene totals 45.2 kg per cycle; native fuel is 41.2 kg. No fuel-normalisation, cycles-per-hour, payload or aircraft-mass factor; separate caller cruise and infrastructure remain unchanged. Native documentation inconsistently names EC135VIP and a 6500 kg freight helicopter: preserve that ambiguity. Fleet, mission, cycle envelope, emissions, geography and vintage differ. This is an explicit cycle-service screening proxy, not exact aircraft equivalence. Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed. Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.7 sign profile; preserve older selected decisions and all helpers",
+        "new_target": {
+          "location": "CH",
+          "name": "Transport, helicopter, twin-engine, LTO cycle",
+          "reference product": "Transport, helicopter, twin-engine, LTO cycle",
+          "unit": "unit"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "location": "CH",
+              "name": "Transport, helicopter, twin-engine, LTO cycle",
+              "reference product": "Transport, helicopter, twin-engine, LTO cycle",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 23,
+            "metadata_sha256": "d6d9d6676a5931e1e9ea674fb99aa123994bc32baa255fed09f77ad3c932d8c5",
+            "inventory_sha256": "5a56f097c8b5129928e4f07b6603db243956fcf9260db3a25e4daee55840736c"
+          }
+        ]
+      },
+      "limitations": [
+        "One complete native twin-engine helicopter landing/take-off cycle per generic source LTO cycle, not an hour, aircraft or tonne-km. Source kerosene totals 45.2 kg per cycle; native fuel is 41.2 kg. No fuel-normalisation, cycles-per-hour, payload or aircraft-mass factor; separate caller cruise and infrastructure remain unchanged. Native documentation inconsistently names EC135VIP and a 6500 kg freight helicopter: preserve that ambiguity. Fleet, mission, cycle envelope, emissions, geography and vintage differ. This is an explicit cycle-service screening proxy, not exact aircraft equivalence.",
+        "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+        "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a742f5191aa52ea3157402c758464e1a80e133b6b8ecc6d5ac70706522195f2d"
         }
       ]
     }

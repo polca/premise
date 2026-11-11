@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "7d734fb17a82624bdcbd6e398771f453b1933090",
-  "approval_ledger_sha256": "591807aaf62c0cf9c0de79434fcf79fc26cb7cdeb06c4496271c42ccbe3e42c6",
-  "validated_scopes": 700,
+  "brightpath_commit": "e09ecc47b2c261db52caeeb752aa7a2542f95e67",
+  "approval_ledger_sha256": "6c78651f15188eda6485415bc279012426ba2ef41aeced33189186ed5f1c15f7",
+  "validated_scopes": 702,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 14,
-  "distinct_unapproved_rule_identities": 14,
+  "unapproved_source_profile_cases": 12,
+  "distinct_unapproved_rule_identities": 12,
   "cohorts": [
     {
       "source": {
@@ -72,8 +72,8 @@
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 2,
-      "refusal_audit_filename": "8fc00b6439781684a0c96217604effbf46e0691080ac5bb805f6dbfba42b1b84.audit.json.gz",
-      "refusal_audit_sha256": "a9af3dce52ac81ab9df5693c181504f934df72b76868adc97e723c2d0f5e62e9",
+      "refusal_audit_filename": "9936ec76a5429a7e8279a1f85a6e2a77a24f776fbc874e850bd8516eeb729281.audit.json.gz",
+      "refusal_audit_sha256": "54f664e316b2271eeeb8058e328c42702a28a41c9eb10f2f2bca40ba586d4124",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -140,9 +140,9 @@
       },
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 8,
-      "refusal_audit_filename": "dd8ec310b7528e3382796ec40bf74c50789c3456029b0fbff6c0287407d10b6c.audit.json.gz",
-      "refusal_audit_sha256": "11362340102396a4923458f6777d1a064867fa3997be995899ef9af3b6e58a9a",
+      "unapproved_count": 6,
+      "refusal_audit_filename": "04a30e619525d97d4d5750e5f3130e66e076de6b598788beb7ef0278b125ad21.audit.json.gz",
+      "refusal_audit_sha256": "3b0bd09344df5c4c5171b1d6e8194b7aa833533581386250a2b57d5a1143b7cf",
       "pending": [
         {
           "rule_id": "bp-22c3a52062d0cb16",
@@ -168,21 +168,6 @@
             "location": "CH",
             "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
             "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-4f69327dbf9d3e42",
-          "source": {
-            "location": "RER",
-            "name": "market for lubricating oil",
-            "reference product": "lubricating oil",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "RER",
-            "name": "Lubricating oil, at plant",
-            "reference product": "Lubricating oil, at plant",
             "unit": "kilogram"
           }
         },
@@ -226,21 +211,6 @@
           }
         },
         {
-          "rule_id": "bp-b62924eca33d09c2",
-          "source": {
-            "location": "GLO",
-            "name": "transport, helicopter, LTO cycle",
-            "reference product": "transport, helicopter, LTO cycle",
-            "unit": "unit"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Transport, helicopter, twin-engine, LTO cycle",
-            "reference product": "Transport, helicopter, twin-engine, LTO cycle",
-            "unit": "unit"
-          }
-        },
-        {
           "rule_id": "bp-e172491d6da0b115",
           "source": {
             "location": "DE",
@@ -269,8 +239,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "18c32143ed55da9baa9197892469b9f048e48ae70ae8db1087185564ebc7a6d6.audit.json.gz",
-      "refusal_audit_sha256": "42647834ee0e290c6b11bad1fdd2226938a8709aa15a1c5895509860f68e4b8c",
+      "refusal_audit_filename": "db7d9f636b05d0be875330ddbe1fdf691f0c2c6df1594c0182b8a579985c74e3.audit.json.gz",
+      "refusal_audit_sha256": "3c3803199d249e30a57ff5e665927ac941a06dd8793a806278912ccba5ee0476",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

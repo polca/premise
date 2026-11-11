@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-11",
+  "status": "Two lubricant/cycle profiles qualified; full fuel transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "e09ecc47b2c261db52caeeb752aa7a2542f95e67",
+  "review_sha256": "12f8b73f95990db74c27a6ac3bbcf6cd5eafe19bad60e43da62b6dc4b9b8cd3c",
+  "new_approval_scopes": 2,
+  "validated_approval_scopes": 702,
+  "previous_validated_scopes": 700,
+  "previous_operation_objects": 607,
+  "previous_operation_semantics_preserved": true,
+  "older_fingerprints_refreshed_after_original_rule_proof": 4,
+  "tests": {
+    "brightpath": "11 passed: signs, uncertainty, formulas, source preservation and distinct patch evidence",
+    "premise": "14 passed: strict fresh/cache, exact warnings, individual approval withdrawal and four older profile checks"
+  },
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "identity": {
+        "location": "RER",
+        "name": "Lubricating oil, at plant",
+        "reference product": "Lubricating oil, at plant",
+        "unit": "kilogram"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    },
+    {
+      "rule_id": "bp-b62924eca33d09c2",
+      "identity": {
+        "location": "CH",
+        "name": "Transport, helicopter, twin-engine, LTO cycle",
+        "reference product": "Transport, helicopter, twin-engine, LTO cycle",
+        "unit": "unit"
+      },
+      "demand": 1,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "runtime_python_changes": false,
+  "migration_resource_changes": "Only two exact 3.7 profiles appended; helpers/shared reviews unchanged; full forward/canonical replay and wheel reviewed data byte-identical.",
+  "regular_environment": "Pushed Git revision installed and all 702 scopes validated.",
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 12,
+    "distinct_rule_identities": 12,
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "only_removed_cases": [
+      [
+        "3.7",
+        "bp-4f69327dbf9d3e42"
+      ],
+      [
+        "3.7",
+        "bp-b62924eca33d09c2"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "limitations": [
+    [
+      "Complete native liquid lubricating oil per kg, not spent oil, lubricant application or a litre. Native hydrocracking/distillation/dewaxing is a theoretical screening model with 75 percent process yield already represented internally; no extra yield or density factor. Native production emissions are incomplete and solid wastes omitted. Native at-plant supply replaces the European delivered market, including its original road, rail and barge delivery rather than reconstructing them. Formulation, additives, route and delivery differences remain unquantified.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ],
+    [
+      "One complete native twin-engine helicopter landing/take-off cycle per generic source LTO cycle, not an hour, aircraft or tonne-km. Source kerosene totals 45.2 kg per cycle; native fuel is 41.2 kg. No fuel-normalisation, cycles-per-hour, payload or aircraft-mass factor; separate caller cruise and infrastructure remain unchanged. Native documentation inconsistently names EC135VIP and a 6500 kg freight helicopter: preserve that ambiguity. Fleet, mission, cycle envelope, emissions, geography and vintage differ. This is an explicit cycle-service screening proxy, not exact aircraft equivalence.",
+      "Preserve signed caller quantities, uncertainty, formulas and properties at factor +1 in the declared unit. Keep complete native inventory once, including its existing internal approximations, allocation, transport and background. Source internal supplier shares, final-market logistics and internal uncertainty are replaced rather than reconstructed. Geography, technology, grade/design, allocation, vintage and native biosphere exclusions differ; score effects are unquantified and no inventory or LCIA equivalence is claimed.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference evidence was inspected in 3.7.1 for the exact matching name/product/location and product UUID, under the shared explicitly limited patch-evidence decision. This does not relabel the source, assert direct inspection of the unpatched inventory vector, or establish equality of upstream inventories, uncertainty or scores."
+    ]
+  ]
+}
