@@ -95,3 +95,15 @@ The next modelling step is an independently verified public-model calculation
 with the PE inputs and actual climate classes, preserving the emission and
 water compartments. Raw licensed source inventories are not a publishing
 shortcut. The HDPE stock/dependency work proceeds independently.
+
+#### Public-model execution check
+
+The native Excel automation probe has not produced a calculated PE inventory.
+The first probe timed out; an instrumented retry stopped before reading any
+model output because the opened central workbook could not be retrieved by
+name. Both POSIX and HFS filename forms were tried. This isolates the current
+failure to workbook opening/automation, rather than proving a numerical model
+failure. After the probes, Excel reported no open workbooks and its original
+`msoAutomationSecurityLow` setting was restored. No model output from these
+attempts is accepted as mapping evidence. The public workbook copies remain
+read-only; no new disposal mapping or omission was introduced.
