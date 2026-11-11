@@ -101,3 +101,23 @@ See ``uvek-fuels-311-remaining-verification.json`` for 42 focused passing checks
 four finite native inventories, unchanged licensed source stamps and exact
 resource/wheel verification. All 3.11 migration-preparation cases now pass, leaving
 eight cases in other cohorts; full fuel transformation/export is not qualified.
+
+Cast steel, scrap steel and mixed-plastic markets
+------------------------------------------------
+
+The inspected patch cast-steel market has approximately 24.1% converter and
+75.9% electric steel. Its new scoped recipe retains those shares, four freight
+quantities and their marginal uncertainty; it does not reuse the later releases'
+74.2%/25.8% split. Existing cast-steel recipes remain unchanged.
+
+The scrap market retains landfill/incineration shares and freight. A separate
+scoped recipe binds its recovered-iron handover to the existing verified 3.7
+positive-stock profile. The inspected patch stock has a positive kg reference
+and no nonzero exchanges or formulas; this is an allocated handover, not a claim
+that physical waste treatment is burden-free. The mixed-plastic market retains
+all three fates, including its reviewed open-burning proxy, at the inspected
+shares. The patch-evidence restriction applies to each requested 3.7 case.
+
+``uvek-fuels-37-market-profiles-verification.json`` records 35 focused passing
+checks, three finite weighted native inventories, exact regeneration and wheel
+checks. Five fuel mapping cases remain; full transformation/export is unfinished.

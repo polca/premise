@@ -22477,7 +22477,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "196a55c39da8164ee0370ffe2c803aa9109e24f2509b2484ecf8c63504af1a87"
+          "fingerprint": "6eae97c87cb7f50eb4e252eac4e1f2acb0ac4b63c8bdae14d6d2e7d0412ebf68"
         },
         {
           "source": {
@@ -22490,7 +22490,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "239571b288200ba42aabe6b0e1a8de80396135b3f8676023545eff1564f9bcf0"
+          "fingerprint": "8a740b64cd0b695ebfaedbdc5aadf695ed1d77d4ae7b780fc2356d4a7df593a2"
         },
         {
           "source": {
@@ -22503,7 +22503,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "91bd94c4ae7e5411148adaf9664defac5c4e22728abc92e45ca2f3b27bf10c3a"
+          "fingerprint": "b276671b8635e747902d70470b522720fc82ef05f7187367e232fcf9406219fc"
         }
       ]
     },
@@ -24080,7 +24080,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "46e789f0f7ca4093000e04f6142cec3093a4c30c5269deb7fa946bc43d29e40b"
+          "fingerprint": "0cebac5dea391c974e0670feabd09fde9f6b65145fc63eb562a7b01ff90759fb"
         }
       ]
     },
@@ -24327,7 +24327,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "96535ab25f6dd8e51eb6834e6f3d6ec8338cf6c7a4b3a2360ea73a5ddcb16859"
+          "fingerprint": "618feebfd4ef57ee3becb7d0d1c481bc5f82ba14a95ab7e5a41e071877a6d0fd"
         }
       ]
     },
@@ -196914,7 +196914,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "12357289e216136224fd577cdbca76bd719eea04bee2c406e9485c082bbf0528"
+          "fingerprint": "cf6851eb6d90307e872fccb405e69072d17bf210e7dbabf8154da65ccf56f623"
         }
       ]
     },
@@ -200492,6 +200492,575 @@
             "system_model": "cutoff"
           },
           "fingerprint": "0a00e1a8d11da3fb7c9c1f5ff84d879fcc4ba8bdd12d2e68cc7e8d5ecf1f623f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-22c3a52062d0cb16",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_european_scrap_steel",
+      "review_path": "export/uvek_fuels_37_market_profiles_review.json",
+      "review_sha256": "623453b9169bdb035d3a448507e73c5de6c1aa7e3436c0a7755859a9a6c3410b",
+      "authorization": "Standing auto-approval of independently inspected screening decisions with warnings under the full BAFU/UVEK integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "activity_name": "market for scrap steel",
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "source_file_sha256": "c76e4f77c902d3bd9cdd3666595bdf9d12070d4ea3e1afd094b44a0199924db7",
+          "metadata_sha256": "2ecba81bde63c2048159a3aea6ec3df453323f73f469cc4fb04d8cc695201728",
+          "inventory_sha256": "5f417e3aabb3b2ab9494b1da3d000a5affaa20f1da6609d2a934d17c71b1ceed",
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "market for scrap steel",
+            "reference product": "scrap steel",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "5a0422b9-0b00-43cb-a8b6-8a0ab37177f9",
+          "inspected_activity_id": "371185a4-bf73-4f3c-9cdc-c33cb41acfcb",
+          "matching_product_id": "d1a4a803-c563-4740-84cf-3c21a488bd74",
+          "location": "Europe without Switzerland",
+          "name": "market for scrap steel",
+          "reference product": "scrap steel",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "activity_name": "treatment of scrap steel, inert material landfill",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "source_file_sha256": "dd77f6381e2a44f1398ad982542541a11dc9535141a51b652073964240018cc4",
+            "metadata_sha256": "13d3987fffab84a9d203ef1aa31e69f9c1b11d49229d8a2a72e5bde8250a6dde",
+            "inventory_sha256": "d7cf6bc6247fc583e15d02eaa0193d56a786840e7e8467e9272e8da39593ee05"
+          },
+          {
+            "activity_name": "treatment of scrap steel, municipal incineration",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "source_file_sha256": "a9d6cec89bbf817f7de023ccd17ff1daa5db6f030a9873b3b5782214f417049f",
+            "metadata_sha256": "44158a8edf08712d9fdfbf20a19bd510cfb58a2c09c18e4c1e26d3b2e4ac4b88",
+            "inventory_sha256": "b037dc6d715cd405ca16b9203299285de4c300f8259b7723d96c8c61479d1ecd"
+          }
+        ],
+        "basis": "Preserve scrap-steel waste treatment, not secondary steel production. Reuse the reviewed European 99.3783409994508 percent inert-landfill and 0.621659000549189 percent municipal-incineration mix and its original 0.0112 rail/0.01932 road tonne-km per kg. Inspected patch market has those same shares. Retain landfill facility/operating burdens, complete native incineration and the existing allocated recovered-stock handover once. No extra recovered-steel production burden, invented metal substitution credit or renormalisation. Native waste-specific emissions, facility technology, disposal geography and internal uncertainty differ. This is the reviewed fixed-profile screening recipe, not a new assertion that real scrap recovery has zero burdens. Preserve signed caller quantities, supported uncertainty, formulas and properties. Source negative waste references use factor -1 into positive native treatment references; cast stock uses +1. Internal treatment and transport burdens remain positive. Keep all existing helper recipes unchanged; add only the inspected cast-route and scrap-handover profiles, using each inventory once, with no new omissions, renormalisation or co-output credits. Native inventory/biosphere exclusions and differences in background, uncertainty and allocation remain explicit; score effects are unquantified. Requested source remains ecoinvent 3.7 cut-off; exact functional-reference identities were inspected in 3.7.1 under the documented limited patch-evidence decision. Matching product UUID and unit support that inference; no bare-3.7 vectors or score equality are established. The patch market split is explicitly adopted as a screening-proxy assumption, not claimed as directly inspected unpatched data.",
+        "conversion_factor": -1,
+        "resource_action": "add exact 3.7 sign profile; preserve older selected decisions and all helpers",
+        "new_target": {
+          "recipe_ref": "fuels-37-european-scrap-steel"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "41e5de4abe9c89cbbe2b36a6b0a413e442bda00f05ef3b3a5fd15a888e3bb96b",
+            "inventory_sha256": "20c2a7782f0e907e73b6694b5fbde9e74ef4567277a324ec0930440ff990218f"
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e286eaac53d4befeee7b62184b35412b707cada9d2ec0713f748689a9c7b694a",
+            "inventory_sha256": "e8d9aa16fbefa0798809d520b3688df44ce95b83988d4f78c29519010e7b7781"
+          },
+          {
+            "identity": {
+              "name": "Disposal, steel, 0% water, to municipal incineration",
+              "reference product": "Disposal, steel, 0% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "7897e136b3504ba5a8d209fef524d5effd9e0f68fee4036e87c0f1f05ac76593",
+            "inventory_sha256": "47c8f8ba7f8521f2034be4cac7bb9db4089b195761ef04c22ba62eca30eaf433"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "c32e6cba57f29adf9340cbd3f7a84c30090f4cc9e6962bc7c57020092a71dbf5"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "ef456c8f3b40247e8389a15bfe9e713a4bb03c385ec1a36e1082d0979c8956e6"
+          }
+        ]
+      },
+      "limitations": [
+        "Preserve scrap-steel waste treatment, not secondary steel production. Reuse the reviewed European 99.3783409994508 percent inert-landfill and 0.621659000549189 percent municipal-incineration mix and its original 0.0112 rail/0.01932 road tonne-km per kg. Inspected patch market has those same shares. Retain landfill facility/operating burdens, complete native incineration and the existing allocated recovered-stock handover once. No extra recovered-steel production burden, invented metal substitution credit or renormalisation. Native waste-specific emissions, facility technology, disposal geography and internal uncertainty differ. This is the reviewed fixed-profile screening recipe, not a new assertion that real scrap recovery has zero burdens.",
+        "Preserve signed caller quantities, supported uncertainty, formulas and properties. Source negative waste references use factor -1 into positive native treatment references; cast stock uses +1. Internal treatment and transport burdens remain positive. Keep all existing helper recipes unchanged; add only the inspected cast-route and scrap-handover profiles, using each inventory once, with no new omissions, renormalisation or co-output credits. Native inventory/biosphere exclusions and differences in background, uncertainty and allocation remain explicit; score effects are unquantified.",
+        "Requested source remains ecoinvent 3.7 cut-off; exact functional-reference identities were inspected in 3.7.1 under the documented limited patch-evidence decision. Matching product UUID and unit support that inference; no bare-3.7 vectors or score equality are established. The patch market split is explicitly adopted as a screening-proxy assumption, not claimed as directly inspected unpatched data."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0a6ce20c3807f978b5d8bd010b439fafbc754d44e0fe39308b2e0b6ac93cc7ef"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_low_alloyed_cast_stock",
+      "review_path": "export/uvek_fuels_37_market_profiles_review.json",
+      "review_sha256": "623453b9169bdb035d3a448507e73c5de6c1aa7e3436c0a7755859a9a6c3410b",
+      "authorization": "Standing auto-approval of independently inspected screening decisions with warnings under the full BAFU/UVEK integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "activity_name": "market for steel, low-alloyed",
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "source_file_sha256": "f08cbdd1611bd1a10a2ec103896229d7a963be3a0182320b0f7a9001a5366f92",
+          "metadata_sha256": "dcd06119252ef367f62d04970dbb844c35025be5c3b5b217b85ca36b9d223937",
+          "inventory_sha256": "3d726622d4471c58b8a6c479a366fb2c40163e60b854b3e252bad716677ca40b",
+          "identity": {
+            "location": "GLO",
+            "name": "market for steel, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "47049d76-9bd8-4665-a612-7ba7c423cb5c",
+          "inspected_activity_id": "aef35e37-455f-4aa8-b1a5-478d1377d1c5",
+          "matching_product_id": "817c3650-4fed-4ef2-b9b6-404a198834e6",
+          "location": "GLO",
+          "name": "market for steel, low-alloyed",
+          "reference product": "steel, low-alloyed",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "activity_name": "steel production, electric, low-alloyed",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "4da7dda7500aa4e8d42afd8e90bdd17e2e6992766e327cb29c7641e346495f21",
+            "metadata_sha256": "ac50efa2df17b1dc3f4a8dde6b4c6d9913818f2750fe2688f79151f507ba965b",
+            "inventory_sha256": "a5e5b8d50417c0ac42fe36dcf3b250afa2ad0e1667835205ab28a0a51349e73c"
+          },
+          {
+            "activity_name": "steel production, electric, low-alloyed",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "2273f1a8a88b217d58bcb31557a09f1c63a9a660cc04f23275c0a3f3db7bf418",
+            "metadata_sha256": "7f3adbd66b0b49ce6daa584fb7f976a15adfdb4f891a35582ff5dac10cbe7d9a",
+            "inventory_sha256": "8897978b40e0140067722049dd7c9fbec5248276ff314d63aa27e3109cf8bc35"
+          },
+          {
+            "activity_name": "steel production, converter, low-alloyed",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "c56344eb8044b374a6b7831283b533b53de06d079e2e97b618c080b7d53b180a",
+            "metadata_sha256": "efdb7d205e036e2495b6262ac5791a80c8c09553d225bf0029954283957798c1",
+            "inventory_sha256": "aa5b5f38ffd245f831754fa39c60f8f48899ef13e084aa0f430e4332f8c8e923"
+          },
+          {
+            "activity_name": "steel production, converter, low-alloyed",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "71adae8e38d2f494e548f25294db3a8f573e3cddf5c9c77378bcff81fcf9593b",
+            "metadata_sha256": "3e1824b04358c6108052d07de94d421d500c07d5eef06a3b19ec3d2c0f48497a",
+            "inventory_sha256": "2d824cd412fc503fa08f2a54fe3d2baef0f3117731df90be59079b89bd947062"
+          },
+          {
+            "activity_name": "steel production, electric, low-alloyed",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "33e41b6473b11413a5a211a2d4f91b8c2a28edc613dd1b3dd33e0e291af23521",
+            "metadata_sha256": "0af3fdfa0207ecb14ca09c4fe3ddf10b329ce8929038bc80e7dc1acee30e4f54",
+            "inventory_sha256": "a164fe44c1d740b8eb39343a69ac12ce3140098c5420bd683d83429602a8d0f4"
+          },
+          {
+            "activity_name": "steel production, electric, low-alloyed",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "fc2ccda894f39bdf6b4830166831921869742929a53da8df4e3c5efb0fb519a7",
+            "metadata_sha256": "f50e6eb83075df1095ad01c78d596e40c7d34910b094f0576bac1a8ba214696c",
+            "inventory_sha256": "a8b7d2e95bed0ac0b57acdc523c50f2321630c8bf45c1f41907009a2218559b5"
+          },
+          {
+            "activity_name": "steel production, electric, low-alloyed",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "bdc9d898e5b99e43348d89226dc5898553529064fc8f039e243bb42dbb7b1502",
+            "metadata_sha256": "35a575ea411d296ca9512b03963546fd86f0e4686d32564d19d659ff6697dfe1",
+            "inventory_sha256": "f2ad5d65a1e41650dc4d5b3b520cc51717ada8af016591c2eb29c8499dceae53"
+          },
+          {
+            "activity_name": "steel production, electric, low-alloyed",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "a5100504ba494e0f1fdc2a478c58a28ccdcb7608891b53117c6f12102097a97a",
+            "metadata_sha256": "6f756df1b32c443bfa070a4f187fc92f491f3842b2b38ad6d7bd0c514361fc5a",
+            "inventory_sha256": "45a9d7f4db9842fc1b5febc97462105d95dc586f8c752f20b7b10c46fb0fb86a"
+          },
+          {
+            "activity_name": "steel production, converter, low-alloyed",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "source_file_sha256": "c842bfce5e2917f670aba81c078d277ab421432107674c8f2bdd0c8c3d0a78d5",
+            "metadata_sha256": "3e1824b04358c6108052d07de94d421d500c07d5eef06a3b19ec3d2c0f48497a",
+            "inventory_sha256": "d3993f516c482eddd50590d5fbd972490742e15206e5adcf1d2774794f09c63a"
+          }
+        ],
+        "basis": "Preserve unrolled cast low-alloyed steel supply per kg, not hot-rolled stock. Inspected patch nine producers aggregate to 0.241030009635716 converter and 0.7589699903642834 electric shares. A new exact-profile recipe preserves these shares without normalisation; original barge 0.0201, road 0.2065, dry-bulk sea 0.4409 and rail 0.1903 tonne-km are retained. Complete native converter/electric stocks include casting and exclude a separate rolling input. Native European/Swiss route proxies replace individual source countries, furnaces, alloy grades, allocation and internal uncertainty; no additional casting, rolling, yield or purity multiplier. Preserve signed caller quantities, supported uncertainty, formulas and properties. Source negative waste references use factor -1 into positive native treatment references; cast stock uses +1. Internal treatment and transport burdens remain positive. Keep all existing helper recipes unchanged; add only the inspected cast-route and scrap-handover profiles, using each inventory once, with no new omissions, renormalisation or co-output credits. Native inventory/biosphere exclusions and differences in background, uncertainty and allocation remain explicit; score effects are unquantified. Requested source remains ecoinvent 3.7 cut-off; exact functional-reference identities were inspected in 3.7.1 under the documented limited patch-evidence decision. Matching product UUID and unit support that inference; no bare-3.7 vectors or score equality are established. The patch market split is explicitly adopted as a screening-proxy assumption, not claimed as directly inspected unpatched data.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.7 sign profile; preserve older selected decisions and all helpers",
+        "new_target": {
+          "recipe_ref": "fuels-37-cast-steel-route-mix"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Steel, converter, low-alloyed, at plant",
+              "reference product": "Steel, converter, low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ba32acee4d82ba77faafb1841df019d251b9ca7c58eb6f8c471b9cb4337da576",
+            "inventory_sha256": "07965f2ec7d916b68981303f5774ceef13682840e60fc9a1725adda52adde704"
+          },
+          {
+            "identity": {
+              "name": "Steel, electric, low-alloyed, at plant",
+              "reference product": "Steel, electric, low-alloyed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "a2be0b763f5abc428b81970bbd786d70ddb5a40b6d6d288ec5e4da5fb869a46c",
+            "inventory_sha256": "baed306250270faef3401e16982d138e86cdd4cd3e2beb136f2680d86249e77a"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "7169c22474e6b9526eee74299287111bd66263ae00d78b7907c5e854f4c32e19"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "ef456c8f3b40247e8389a15bfe9e713a4bb03c385ec1a36e1082d0979c8956e6"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "da947add813fcb34247cd5102fa337739c8bb8448455d833918e5356957e9be1",
+            "inventory_sha256": "df0c6039097503c9e216f303e9345a08fabe69b8ac0c0ae93f79b4bdb567889b"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "c32e6cba57f29adf9340cbd3f7a84c30090f4cc9e6962bc7c57020092a71dbf5"
+          }
+        ]
+      },
+      "limitations": [
+        "Preserve unrolled cast low-alloyed steel supply per kg, not hot-rolled stock. Inspected patch nine producers aggregate to 0.241030009635716 converter and 0.7589699903642834 electric shares. A new exact-profile recipe preserves these shares without normalisation; original barge 0.0201, road 0.2065, dry-bulk sea 0.4409 and rail 0.1903 tonne-km are retained. Complete native converter/electric stocks include casting and exclude a separate rolling input. Native European/Swiss route proxies replace individual source countries, furnaces, alloy grades, allocation and internal uncertainty; no additional casting, rolling, yield or purity multiplier.",
+        "Preserve signed caller quantities, supported uncertainty, formulas and properties. Source negative waste references use factor -1 into positive native treatment references; cast stock uses +1. Internal treatment and transport burdens remain positive. Keep all existing helper recipes unchanged; add only the inspected cast-route and scrap-handover profiles, using each inventory once, with no new omissions, renormalisation or co-output credits. Native inventory/biosphere exclusions and differences in background, uncertainty and allocation remain explicit; score effects are unquantified.",
+        "Requested source remains ecoinvent 3.7 cut-off; exact functional-reference identities were inspected in 3.7.1 under the documented limited patch-evidence decision. Matching product UUID and unit support that inference; no bare-3.7 vectors or score equality are established. The patch market split is explicitly adopted as a screening-proxy assumption, not claimed as directly inspected unpatched data."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4d1258bf8a638fa013ee75c76454317736244ffc91c8753ab87a9689fae9e0cd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e172491d6da0b115",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_uncontrolled_market",
+      "review_path": "export/uvek_fuels_37_market_profiles_review.json",
+      "review_sha256": "623453b9169bdb035d3a448507e73c5de6c1aa7e3436c0a7755859a9a6c3410b",
+      "authorization": "Standing auto-approval of independently inspected screening decisions with warnings under the full BAFU/UVEK integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "activity_name": "market for waste plastic, mixture",
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "source_file_sha256": "950d81fd2f876f1108afb0626f01e031d6a3fbfc3f9a99d7120eec5eab745d20",
+          "metadata_sha256": "54ea636183f0cc7028b54ca249e845f58bf656bd602a4a291b313ac58e9a43d4",
+          "inventory_sha256": "255935467d6eb9ecdc60c33cac87656687554f78bf1cfe968ed7cb9533c1d000",
+          "identity": {
+            "location": "DE",
+            "name": "market for waste plastic, mixture",
+            "reference product": "waste plastic, mixture",
+            "unit": "kilogram"
+          },
+          "requested_catalog_activity_id": "dd454c1e-3cb3-4f4d-9c6b-8c12db0fc6bf",
+          "inspected_activity_id": "bd7df2f5-df80-46c2-91dd-27098ad9d590",
+          "matching_product_id": "88afd721-07ec-4910-a004-fa3fecb6bf70",
+          "location": "DE",
+          "name": "market for waste plastic, mixture",
+          "reference product": "waste plastic, mixture",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "activity_name": "treatment of waste plastic, mixture, municipal incineration",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "source_file_sha256": "ef9ef830b18bc704c71beb2334cfb8b3497dc3291987f5b055def6bbda96f85f",
+            "metadata_sha256": "9ca025f58a42e76c55c1cbf7d58c34fdef3e451c9fed367d93f37461d27329cf",
+            "inventory_sha256": "e905d12e1df1d8b158ca2cc3af94fa4daf4c8d56409464c61ce712f6ae8ec8ae"
+          },
+          {
+            "activity_name": "treatment of waste plastic, mixture, open burning",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "source_file_sha256": "2ef81006fe771f2ddbf396acd8ad973880058a0b640a4f21c3c4d9bbeab39a95",
+            "metadata_sha256": "1150d91658bc95a8cfc300d89bdafc1c320a275b5dcc08bdd642800df17627fb",
+            "inventory_sha256": "f42c5a961dc8969ef3ef3007f9998eb8b80501686b51aaa23cb0be0915b7fe16"
+          },
+          {
+            "activity_name": "treatment of waste plastic, mixture, sanitary landfill",
+            "inspected_profile": {
+              "family": "ecoinvent",
+              "version": "3.7.1",
+              "system_model": "cutoff"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "source_file_sha256": "b18943fb6087a6cd4f23fcc25ffa2d7787fe85a024594da70ba0f0a99c494ef0",
+            "metadata_sha256": "d2bb1a420472eb48b6f52ff6a8b296f6bf4ab9391407498b7027baad182613cf",
+            "inventory_sha256": "9014865747fbf9275b5b09975fcf8ac58c8d60bf85996b09ff0d183ea8fe55e6"
+          }
+        ],
+        "basis": "Preserve the German 15.3-percent-water mixed-plastic waste market and its distinct fates, not a PE-only waste or municipal-incineration-only service. Reuse the existing reviewed recipe with 0.993763892319091 municipal incineration, 0.0000636128446588608 open burning, 0.00617249483625004 sanitary landfill and 0.0683546083228227 road tonne-km per kg. These match the inspected patch market. Retain the reviewed complete mixed-plastic open-burning helper, including releases to air and soil; do not replace it with incineration or add a recovery credit. The old exact 3.9-derived treatment inventories are explicitly reused as same-fate screening proxies for this requested profile; internal emissions/uncertainty and source parameters are not asserted equal. Native Swiss incineration/landfill and fleet technology, geographic allocation and vintage differences remain unquantified. Preserve signed caller quantities, supported uncertainty, formulas and properties. Source negative waste references use factor -1 into positive native treatment references; cast stock uses +1. Internal treatment and transport burdens remain positive. Keep all existing helper recipes unchanged; add only the inspected cast-route and scrap-handover profiles, using each inventory once, with no new omissions, renormalisation or co-output credits. Native inventory/biosphere exclusions and differences in background, uncertainty and allocation remain explicit; score effects are unquantified. Requested source remains ecoinvent 3.7 cut-off; exact functional-reference identities were inspected in 3.7.1 under the documented limited patch-evidence decision. Matching product UUID and unit support that inference; no bare-3.7 vectors or score equality are established. The patch market split is explicitly adopted as a screening-proxy assumption, not claimed as directly inspected unpatched data.",
+        "conversion_factor": -1,
+        "resource_action": "add exact 3.7 sign profile; preserve older selected decisions and all helpers",
+        "new_target": {
+          "recipe_ref": "pilot-uncontrolled-market-a76500cd726acd27d9cf"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "ef456c8f3b40247e8389a15bfe9e713a4bb03c385ec1a36e1082d0979c8956e6"
+          },
+          {
+            "identity": {
+              "name": "Disposal, plastics, mixture, 15.3% water, to sanitary landfill",
+              "reference product": "Disposal, plastics, mixture, 15.3% water, to sanitary landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "54e2d1a4bfc056c9700b2f43ffcd78cb6a4202f5f2cd8da66dedb09fc3a4e232",
+            "inventory_sha256": "d8c79ad631dc0ab5330004718b0819b37d52e9b91aefecfee752cb6675a6f26b"
+          },
+          {
+            "identity": {
+              "name": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "reference product": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "60d7230f342850219a0e5092cffd4545acc09f95316f6c4b2cab53119d16a6d4",
+            "inventory_sha256": "9da46ba2bbd6c36a4d8423b9abdeb691f432210cb2dd216e2f6d9cac172b45e1"
+          }
+        ]
+      },
+      "limitations": [
+        "Preserve the German 15.3-percent-water mixed-plastic waste market and its distinct fates, not a PE-only waste or municipal-incineration-only service. Reuse the existing reviewed recipe with 0.993763892319091 municipal incineration, 0.0000636128446588608 open burning, 0.00617249483625004 sanitary landfill and 0.0683546083228227 road tonne-km per kg. These match the inspected patch market. Retain the reviewed complete mixed-plastic open-burning helper, including releases to air and soil; do not replace it with incineration or add a recovery credit. The old exact 3.9-derived treatment inventories are explicitly reused as same-fate screening proxies for this requested profile; internal emissions/uncertainty and source parameters are not asserted equal. Native Swiss incineration/landfill and fleet technology, geographic allocation and vintage differences remain unquantified.",
+        "Preserve signed caller quantities, supported uncertainty, formulas and properties. Source negative waste references use factor -1 into positive native treatment references; cast stock uses +1. Internal treatment and transport burdens remain positive. Keep all existing helper recipes unchanged; add only the inspected cast-route and scrap-handover profiles, using each inventory once, with no new omissions, renormalisation or co-output credits. Native inventory/biosphere exclusions and differences in background, uncertainty and allocation remain explicit; score effects are unquantified.",
+        "Requested source remains ecoinvent 3.7 cut-off; exact functional-reference identities were inspected in 3.7.1 under the documented limited patch-evidence decision. Matching product UUID and unit support that inference; no bare-3.7 vectors or score equality are established. The patch market split is explicitly adopted as a screening-proxy assumption, not claimed as directly inspected unpatched data."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "944d23e595bd99a9d159c075148d88fde211b86f208bcffba635f7eb8d3e6976"
         }
       ]
     }

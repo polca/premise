@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-11",
+  "status": "Three 3.7 market profiles qualified; full fuel transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "3f44b36cafd4234de8f6ba96d0c10e46d97908ce",
+  "review_sha256": "623453b9169bdb035d3a448507e73c5de6c1aa7e3436c0a7755859a9a6c3410b",
+  "new_approval_scopes": 3,
+  "validated_approval_scopes": 709,
+  "previous_validated_scopes": 706,
+  "previous_operation_objects": 613,
+  "previous_operation_semantics_preserved": true,
+  "older_fingerprints_refreshed_after_original_rule_proof": 6,
+  "tests": {
+    "brightpath": "14 passed: signs, uncertainty, formulas, source preservation and explicit limited patch evidence and corrected source-route split",
+    "premise": "21 passed: strict fresh/cache, exact warnings, individual approval withdrawal and six older profile checks"
+  },
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-22c3a52062d0cb16",
+      "positive_treatment_or_stock_demand": 1,
+      "native_supplier_count": 5,
+      "finite_supply": true,
+      "finite_inventory": true,
+      "finite_direct_recipe_emissions": true,
+      "direct_recipe_emission_coordinates": 0
+    },
+    {
+      "rule_id": "bp-9caeb1b3bd66b612",
+      "positive_treatment_or_stock_demand": 1,
+      "native_supplier_count": 6,
+      "finite_supply": true,
+      "finite_inventory": true,
+      "finite_direct_recipe_emissions": true,
+      "direct_recipe_emission_coordinates": 0
+    },
+    {
+      "rule_id": "bp-e172491d6da0b115",
+      "positive_treatment_or_stock_demand": 1,
+      "native_supplier_count": 3,
+      "finite_supply": true,
+      "finite_inventory": true,
+      "finite_direct_recipe_emissions": true,
+      "direct_recipe_emission_coordinates": 75
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "runtime_python_changes": false,
+  "migration_resource_changes": "Three exact 3.7 profiles; two new recipes for corrected cast split and exact 3.7 recovered-stock handover. All old helpers/shared reviews unchanged; full replay/wheel exact.",
+  "regular_environment": "Pushed Git revision installed and all 709 scopes validated.",
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 5,
+    "distinct_rule_identities": 5,
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "only_removed_cases": [
+      [
+        "3.7",
+        "bp-22c3a52062d0cb16"
+      ],
+      [
+        "3.7",
+        "bp-9caeb1b3bd66b612"
+      ],
+      [
+        "3.7",
+        "bp-e172491d6da0b115"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "limitations": [
+    [
+      "Preserve scrap-steel waste treatment, not secondary steel production. Reuse the reviewed European 99.3783409994508 percent inert-landfill and 0.621659000549189 percent municipal-incineration mix and its original 0.0112 rail/0.01932 road tonne-km per kg. Inspected patch market has those same shares. Retain landfill facility/operating burdens, complete native incineration and the existing allocated recovered-stock handover once. No extra recovered-steel production burden, invented metal substitution credit or renormalisation. Native waste-specific emissions, facility technology, disposal geography and internal uncertainty differ. This is the reviewed fixed-profile screening recipe, not a new assertion that real scrap recovery has zero burdens.",
+      "Preserve signed caller quantities, supported uncertainty, formulas and properties. Source negative waste references use factor -1 into positive native treatment references; cast stock uses +1. Internal treatment and transport burdens remain positive. Keep all existing helper recipes unchanged; add only the inspected cast-route and scrap-handover profiles, using each inventory once, with no new omissions, renormalisation or co-output credits. Native inventory/biosphere exclusions and differences in background, uncertainty and allocation remain explicit; score effects are unquantified.",
+      "Requested source remains ecoinvent 3.7 cut-off; exact functional-reference identities were inspected in 3.7.1 under the documented limited patch-evidence decision. Matching product UUID and unit support that inference; no bare-3.7 vectors or score equality are established. The patch market split is explicitly adopted as a screening-proxy assumption, not claimed as directly inspected unpatched data."
+    ],
+    [
+      "Preserve unrolled cast low-alloyed steel supply per kg, not hot-rolled stock. Inspected patch nine producers aggregate to 0.241030009635716 converter and 0.7589699903642834 electric shares. A new exact-profile recipe preserves these shares without normalisation; original barge 0.0201, road 0.2065, dry-bulk sea 0.4409 and rail 0.1903 tonne-km are retained. Complete native converter/electric stocks include casting and exclude a separate rolling input. Native European/Swiss route proxies replace individual source countries, furnaces, alloy grades, allocation and internal uncertainty; no additional casting, rolling, yield or purity multiplier.",
+      "Preserve signed caller quantities, supported uncertainty, formulas and properties. Source negative waste references use factor -1 into positive native treatment references; cast stock uses +1. Internal treatment and transport burdens remain positive. Keep all existing helper recipes unchanged; add only the inspected cast-route and scrap-handover profiles, using each inventory once, with no new omissions, renormalisation or co-output credits. Native inventory/biosphere exclusions and differences in background, uncertainty and allocation remain explicit; score effects are unquantified.",
+      "Requested source remains ecoinvent 3.7 cut-off; exact functional-reference identities were inspected in 3.7.1 under the documented limited patch-evidence decision. Matching product UUID and unit support that inference; no bare-3.7 vectors or score equality are established. The patch market split is explicitly adopted as a screening-proxy assumption, not claimed as directly inspected unpatched data."
+    ],
+    [
+      "Preserve the German 15.3-percent-water mixed-plastic waste market and its distinct fates, not a PE-only waste or municipal-incineration-only service. Reuse the existing reviewed recipe with 0.993763892319091 municipal incineration, 0.0000636128446588608 open burning, 0.00617249483625004 sanitary landfill and 0.0683546083228227 road tonne-km per kg. These match the inspected patch market. Retain the reviewed complete mixed-plastic open-burning helper, including releases to air and soil; do not replace it with incineration or add a recovery credit. The old exact 3.9-derived treatment inventories are explicitly reused as same-fate screening proxies for this requested profile; internal emissions/uncertainty and source parameters are not asserted equal. Native Swiss incineration/landfill and fleet technology, geographic allocation and vintage differences remain unquantified.",
+      "Preserve signed caller quantities, supported uncertainty, formulas and properties. Source negative waste references use factor -1 into positive native treatment references; cast stock uses +1. Internal treatment and transport burdens remain positive. Keep all existing helper recipes unchanged; add only the inspected cast-route and scrap-handover profiles, using each inventory once, with no new omissions, renormalisation or co-output credits. Native inventory/biosphere exclusions and differences in background, uncertainty and allocation remain explicit; score effects are unquantified.",
+      "Requested source remains ecoinvent 3.7 cut-off; exact functional-reference identities were inspected in 3.7.1 under the documented limited patch-evidence decision. Matching product UUID and unit support that inference; no bare-3.7 vectors or score equality are established. The patch market split is explicitly adopted as a screening-proxy assumption, not claimed as directly inspected unpatched data."
+    ]
+  ]
+}
