@@ -1569,7 +1569,14 @@ class NewDatabase:
             extra_nodes=self._clic_user_inputs.required_nodes,
             **({"family": family, "source_version": "3.12"} if target_kwargs else {}),
         )
-        roots = set(plan.clic_roots) | user_roots
+        from ..inventory.prepared_resources import (
+            inventory_resource_paths,
+            inventory_resource_roots,
+            prepare_inventory_resource,
+        )
+
+        resources = inventory_resource_paths(wanted, self.scenarios, family)
+        roots = set(plan.clic_roots) | user_roots | inventory_resource_roots(resources)
         records = provider.prepare(
             sorted(roots),
             base,
@@ -1645,19 +1652,6 @@ class NewDatabase:
         records.extend(additional)
         # Mapping-declared inventories are prepared before the shared sector
         # transforms; their absence cannot be fixed by a supplier-name alias.
-        from ..inventory.activity_maps import get_mapping
-        from ..inventory.prepared_resources import prepare_inventory_resource
-
-        resources = {
-            entry["inventory_resource"]
-            for sector in wanted
-            for mapping in registry()["sector_mappings"].get(sector, [])
-            for entry in get_mapping(
-                DATA_DIR.parent / "iam_variables_mapping" / mapping,
-                var=f"{family}_aliases",
-            ).values()
-            if entry.get("inventory_resource")
-        }
         resource_hashes = {}
         for resource in sorted(resources):
             resource_hashes[resource] = hashlib.sha256(
@@ -1667,6 +1661,7 @@ class NewDatabase:
                 [*base, *records],
                 DATA_DIR / resource,
                 target=provider.manifest["target"],
+                biosphere_name=self.biosphere_name,
             )
             for activity in additions:
                 activity["inventory provenance"] = {
