@@ -488,3 +488,75 @@ def test_kerosene_recorded_exhaust_uses_canonical_high_altitude_fallback():
     for e in bio:
         assert e["categories"] == ("air", "unspecified")
         assert e["input"][1] == flows[(e["name"], *e["categories"], "kilogram")]
+
+
+def test_mj_combustion_service_uses_linked_gas_origin_and_keeps_recorded_exhaust():
+    gas = supplier(share=1 / 3, total=0.06)
+    gas["name"] = gas["reference product"] = "Natural gas, high pressure, at consumer"
+    gas["unit"] = "megajoule"
+    gas["exchanges"][0].update(name=gas["name"], product=gas["name"], unit="megajoule")
+    gas[PROPERTIES_KEY]["reference unit"] = "megajoule"
+    gas["premise fuel market handover"] = {
+        "target": {
+            "name": "market for natural gas, high pressure",
+            "reference product": "natural gas, high pressure",
+            "unit": "cubic meter",
+        },
+        "conversion_factor": 1 / 36,
+    }
+    burner = vehicle(gas)
+    burner["name"] = burner["reference product"] = "illustrative gas-combustion service"
+    burner["unit"] = "megajoule"
+    burner["exchanges"][0].update(
+        name=burner["name"], product=burner["name"], unit="megajoule"
+    )
+    burner["exchanges"][1].update(
+        unit="megajoule", amount=1, **{"uncertainty type": 2, "loc": 0, "scale": 0.05}
+    )
+    next(
+        e
+        for e in burner["exchanges"]
+        if e.get("type") == "biosphere" and e.get("name") == "Carbon dioxide, fossil"
+    )["amount"] = 0.0564
+    burner["exchanges"].extend(
+        [
+            emission("Carbon dioxide, non-fossil", 0.003),
+            emission("Carbon dioxide, fossil", -0.004),
+            emission("Methane, fossil", 0.00003),
+        ]
+    )
+    unaffected = deepcopy(
+        [
+            e
+            for e in burner["exchanges"]
+            if e.get("type") != "biosphere"
+            or e["name"] == "Methane, fossil"
+            or e["amount"] < 0
+        ]
+    )
+    for _ in range(2):
+        update_vehicle_fuel_co2(
+            [gas, burner],
+            "3.10",
+            recorded_exhaust_filters=[
+                {"exact": True, "fltr": {"name": burner["name"], "unit": "megajoule"}}
+            ],
+        )
+        co2 = {
+            n: sum(
+                e["amount"]
+                for e in burner["exchanges"]
+                if e.get("name") == n and e["amount"] >= 0
+            )
+            for n in ["Carbon dioxide, fossil", "Carbon dioxide, non-fossil"]
+        }
+        assert co2 == pytest.approx(
+            {"Carbon dioxide, fossil": 0.0396, "Carbon dioxide, non-fossil": 0.0198}
+        )
+        assert [
+            e
+            for e in burner["exchanges"]
+            if e.get("type") != "biosphere"
+            or e["name"] == "Methane, fossil"
+            or e["amount"] < 0
+        ] == unaffected

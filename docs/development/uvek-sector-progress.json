@@ -543,9 +543,10 @@
         "docs/development/uvek-recorded-transport-exhaust-verification.json",
         "docs/development/uvek-fuel-carbon-remaining-coverage.json",
         "docs/development/uvek-extended-transport-exhaust-verification.json",
-        "docs/development/uvek-capture-carbon-metadata-verification.json"
+        "docs/development/uvek-capture-carbon-metadata-verification.json",
+        "docs/development/uvek-native-gas-exhaust-verification.json"
       ],
-      "latest_coverage_note": "526 car/truck balances plus 31 bus, 31 rail/locomotive, five shipping and 29 aviation recorded-total balances verified. Capture metadata interpretation resolves 105 origin warnings. The separately reproduced coal-role overlap is corrected and verified across hash seeds; industrial fuel carbon and unreviewed transport/sector coverage remain unfinished. Public fuels guard stays unchanged."
+      "latest_coverage_note": "526 car/truck, 96 other transport and 120 delivered-gas combustion balances verified; 14 production-specific raw-gas services deliberately unchanged. Captured-carbon metadata and coal role overlap are corrected. Low-pressure carrier properties, mixed industrial combustion and other unreviewed sector coverage remain unfinished; public fuels guard stays unchanged."
     },
     {
       "sector": "renewable",

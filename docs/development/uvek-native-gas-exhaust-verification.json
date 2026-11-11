@@ -1,0 +1,129 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-174813",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-172853",
+  "export_activities": 14795,
+  "counts": {
+    "selected_records": 134,
+    "recorded_exhaust_origin_verified": 120,
+    "records_with_changed_origin": 120,
+    "production_specific_raw_gas_records_unchanged": 14
+  },
+  "examples": [
+    {
+      "name": "Natural gas, burned in gas turbine",
+      "location": "BG",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 0.1765686810116637
+    },
+    {
+      "name": "Natural gas, burned in gas turbine",
+      "location": "OM",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 8.354371712998734e-07
+    },
+    {
+      "name": "Natural gas, burned in gas turbine",
+      "location": "AR",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 3.159104038080971e-06
+    },
+    {
+      "name": "Natural gas, burned in gas turbine",
+      "location": "NG",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 0.0003958444437026742
+    },
+    {
+      "name": "Natural gas, burned in power plant or heat plant",
+      "location": "FR",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 0.1765686810116637
+    }
+  ],
+  "lci_checks": [
+    {
+      "name": "Natural gas, burned in gas turbine",
+      "location": "BG",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in power plant or heat plant",
+      "location": "FR",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler modulating >100kW",
+      "location": "RER",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in power plant",
+      "location": "BE",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in gas motor, for storage",
+      "location": "GLO",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in cogen 1MWe lean burn",
+      "location": "RER",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in combined cycle plant, best technology",
+      "location": "RER",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in gas turbine, for compressor station",
+      "location": "UCTE",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    }
+  ],
+  "all_technosphere_links_internal": true,
+  "pre_export_validation": {
+    "phases": 11,
+    "issues_by_severity": {
+      "warning": 14
+    }
+  },
+  "tests": {
+    "focused_passed": 250,
+    "warnings": 2
+  },
+  "assertions": [
+    "Positive exhaust totals preserved; fossil/non-fossil split follows actual linked gas properties.",
+    "All other exchange metadata, quantities, uncertainty, negative credits and emissions unchanged, excluding exported database/code link tuples and row ordering.",
+    "Production-specific raw gas routes retain their entire original exchange records on the same normalized comparison basis."
+  ],
+  "scope": "Exact eight native MJ combustion-service names, including copies with the same qualified identity selectors. No industrial feedstock or mixed-process inventory is reclassified wholesale.",
+  "limitations": [
+    "This is a diagnostic five-sector build; the public fuels guard remains unchanged.",
+    "Native operating-performance, allocation, gas-property and reference-energy screening assumptions remain.",
+    "Low-pressure carrier propagation, mixed industrial combustion and other sector coverage remain unfinished."
+  ]
+}

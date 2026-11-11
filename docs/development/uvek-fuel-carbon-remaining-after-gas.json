@@ -1,0 +1,69 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-174813",
+  "scope": "Native positive-CO2 records buying a declared IAM fuel forwarder, excluding existing vehicle filters and all reviewed recorded-exhaust selectors. These are review candidates, not established errors.",
+  "candidate_counts": {
+    "other combustion/process": 325
+  },
+  "examples": {
+    "other combustion/process": [
+      {
+        "name": "Natural gas, low pressure, at consumer",
+        "location": "KR",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, production BE, at long-distance pipeline",
+        "location": "LBFAC32",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, production mix, at service station",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, low pressure, at consumer",
+        "location": "KZ",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Excavation, hydraulic digger, without particle filter, Betrieb",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Natural gas, low pressure, at consumer",
+        "location": "TT",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, low pressure, at consumer",
+        "location": "LY",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, low pressure, at consumer",
+        "location": "PK",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      }
+    ]
+  },
+  "classification_note": "The earlier rail substring classification included two trailer operations; these now remain in the general process review queue."
+}

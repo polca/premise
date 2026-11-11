@@ -209,6 +209,24 @@ natural gas:
     conversion_factor: 1
     limitations:
     - The original converted market wrapper forwards CLIC consumers to the IAM blend; its regional copies remain complete fossil supply components.
+  uvek_recorded_exhaust_consumers:
+  - selector:
+      exact: true
+      fltr:
+        unit: megajoule
+        name:
+        - "Natural gas, burned in boiler modulating >100kW"
+        - "Natural gas, burned in cogen 1MWe lean burn"
+        - "Natural gas, burned in combined cycle plant, best technology"
+        - "Natural gas, burned in gas motor, for storage"
+        - "Natural gas, burned in gas turbine"
+        - "Natural gas, burned in gas turbine, for compressor station"
+        - "Natural gas, burned in power plant"
+        - "Natural gas, burned in power plant or heat plant"
+    limitations:
+    - Native combustion service only; preserve recorded positive exhaust CO2 and refresh fossil/non-fossil origin from the actual delivered-gas forwarding supplier. Retain engine performance, allocation, signed credits, other emissions, auxiliary inputs and uncertainty.
+    - Explicit production-route gas has no delivered-market forwarding properties and retains its original composition and emissions; do not replace it with an IAM mix or infer biogenic origin.
+    - Nominal methane-based blend and source combustion-carbon conventions remain screening assumptions; this origin refinement does not change fuel demand or certify LCIA equivalence.
   uvek_aliases:
     market_suppliers:
       allow_generated_helpers: true
