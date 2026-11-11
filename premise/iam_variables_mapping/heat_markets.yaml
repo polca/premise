@@ -3,6 +3,23 @@
 # premise/data/heat/uvek2026_distribution_review.json.
 ecoinvent: {}
 uvek:
+  frozen_legacy_sources:
+    buildings_end_use:
+      name: heat supply, frozen legacy mix, native Swiss generation at plant
+      reference product: heat, frozen Swiss generation at plant
+      limitations:
+      - "The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix."
+      - "This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified."
+      - "Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates."
+      - "No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat."
+    secondary_supply:
+      name: heat supply, frozen legacy mix, native Swiss generation at plant
+      reference product: heat, frozen Swiss generation at plant
+      limitations:
+      - "The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix."
+      - "This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified."
+      - "Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates."
+      - "No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat."
   protected_consumer_units:
   - megajoule
   - kilowatt hour

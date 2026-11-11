@@ -676,6 +676,22 @@ class Heat(BaseTransformation):
             product = "heat, district or industrial"
             suffix = "district or industrial"
 
+        source_mapping = (
+            getattr(self, "market_mapping", {})
+            .get("frozen_legacy_sources", {})
+            .get(layer, {})
+        )
+        source_name = source_mapping.get("name", source_name)
+        source_product = source_mapping.get("reference product", source_product)
+        limitations = source_mapping.get("limitations", ())
+        if limitations:
+            warnings.warn(" ".join(limitations), UserWarning, stacklevel=2)
+        self.diagnostics.setdefault("frozen legacy sources", {})[layer] = {
+            "name": source_name,
+            "reference product": source_product,
+            "limitations": list(limitations),
+        }
+
         sources = list(
             ws.get_many(
                 self.database,

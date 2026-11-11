@@ -1,0 +1,4342 @@
+{
+  "schema_version": 1,
+  "target": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "supplier_checks": [
+    {
+      "identity": {
+        "name": "District heat, at consumer, swiss average, allocation exergy",
+        "reference product": "District heat, at consumer, swiss average, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heat, natural gas, at industrial furnace 1MW",
+            "unit": "megajoule",
+            "reference product": "Heat, natural gas, at industrial furnace 1MW",
+            "location": "CH"
+          },
+          "amount": 0.12532
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+            "unit": "megajoule",
+            "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+            "location": "CH"
+          },
+          "amount": 0.12532
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+            "unit": "megajoule",
+            "reference product": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+            "location": "CH"
+          },
+          "amount": 0.062049
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heat, light fuel oil, at industrial furnace 1MW",
+            "unit": "megajoule",
+            "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+            "location": "CH"
+          },
+          "amount": 0.02664
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+            "unit": "megajoule",
+            "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+            "location": "CH"
+          },
+          "amount": 0.081363
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heat, mixed chips from forest, at furnace 1000kW",
+            "unit": "megajoule",
+            "reference product": "Heat, mixed chips from forest, at furnace 1000kW",
+            "location": "CH"
+          },
+          "amount": 0.25574
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heat, at nuclear power plant, allocation exergy",
+            "unit": "megajoule",
+            "reference product": "Heat, at nuclear power plant, allocation exergy",
+            "location": "CH"
+          },
+          "amount": 0.076368
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heat from waste, at municipal waste incineration plant",
+            "unit": "megajoule",
+            "reference product": "Heat from waste, at municipal waste incineration plant",
+            "location": "CH"
+          },
+          "amount": 0.35698
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Transport, district heat, average",
+            "unit": "megajoule",
+            "reference product": "Transport, district heat, average",
+            "location": "CH"
+          },
+          "amount": 1.0
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at industrial furnace 1MW",
+        "reference product": "Heat, natural gas, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Natural gas, burned in industrial furnace 1MWth",
+            "unit": "megajoule",
+            "reference product": "Natural gas, burned in industrial furnace 1MWth",
+            "location": "CH"
+          },
+          "amount": 1.0526
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Natural gas, burned in cogen 1MWth",
+            "unit": "megajoule",
+            "reference product": "Natural gas, burned in cogen 1MWth",
+            "location": "CH"
+          },
+          "amount": 0.34973
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+        "reference product": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Trifluoromethane, at plant",
+            "unit": "kilogram",
+            "reference product": "Trifluoromethane, at plant",
+            "location": "GLO"
+          },
+          "amount": 2.5397e-07
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Borehole heat exchanger, 300m",
+            "unit": "unit",
+            "reference product": "Borehole heat exchanger, 300m",
+            "location": "CH"
+          },
+          "amount": 1.7637e-07
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heat pump, brine-water, 50kW",
+            "unit": "unit",
+            "reference product": "Heat pump, brine-water, 50kW",
+            "location": "RER"
+          },
+          "amount": 1.3228e-07
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "1,1-difluoroethane, HFC-152a, at plant",
+            "unit": "kilogram",
+            "reference product": "1,1-difluoroethane, HFC-152a, at plant",
+            "location": "US"
+          },
+          "amount": 2.5397e-07
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Electricity, low voltage, at grid",
+            "unit": "kilowatt hour",
+            "reference product": "Electricity, low voltage, at grid",
+            "location": "CH"
+          },
+          "amount": 0.050505
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Disposal, heat pump, brine-water, 50kW",
+            "unit": "unit",
+            "reference product": "Disposal, heat pump, brine-water, 50kW",
+            "location": "CH"
+          },
+          "amount": 1.3228e-07
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Energy, geothermal, converted",
+            "unit": "megajoule",
+            "categories": [
+              "natural resource",
+              "in ground"
+            ]
+          },
+          "amount": 0.81818
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Difluoromethane",
+            "unit": "kilogram",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ]
+          },
+          "amount": 2.5397e-07
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Heat, waste",
+            "unit": "megajoule",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ]
+          },
+          "amount": 0.18182
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Pentafluoroethane",
+            "unit": "kilogram",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ]
+          },
+          "amount": 2.5397e-07
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, light fuel oil, at industrial furnace 1MW",
+        "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+            "unit": "megajoule",
+            "reference product": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+            "location": "CH"
+          },
+          "amount": 1.0512
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Wood chips, burned in cogen 1MWth",
+            "unit": "megajoule",
+            "reference product": "Wood chips, burned in cogen 1MWth",
+            "location": "CH"
+          },
+          "amount": 0.398
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, mixed chips from forest, at furnace 1000kW",
+        "reference product": "Heat, mixed chips from forest, at furnace 1000kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Wood chips, from forest, mixed, burned in furnace 1000kW",
+            "unit": "megajoule",
+            "reference product": "Wood chips, from forest, mixed, burned in furnace 1000kW",
+            "location": "CH"
+          },
+          "amount": 1.1765
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, at nuclear power plant, allocation exergy",
+        "reference product": "Heat, at nuclear power plant, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Paper, woodfree, coated, at integrated mill",
+            "unit": "kilogram",
+            "reference product": "Paper, woodfree, coated, at integrated mill",
+            "location": "RER"
+          },
+          "amount": 6.8862e-10
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Steel, low-alloyed, at plant",
+            "unit": "kilogram",
+            "reference product": "Steel, low-alloyed, at plant",
+            "location": "RER"
+          },
+          "amount": 1.7135e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Hydrogen, liquid, at plant",
+            "unit": "kilogram",
+            "reference product": "Hydrogen, liquid, at plant",
+            "location": "RER"
+          },
+          "amount": 1.1031e-08
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Cast iron, at plant",
+            "unit": "kilogram",
+            "reference product": "Cast iron, at plant",
+            "location": "RER"
+          },
+          "amount": 1.3815e-10
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Nuclear spent fuel, in conditioning, at plant",
+            "unit": "kilogram",
+            "reference product": "Nuclear spent fuel, in conditioning, at plant",
+            "location": "CH"
+          },
+          "amount": 1.585e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Nitrogen, liquid, at plant",
+            "unit": "kilogram",
+            "reference product": "Nitrogen, liquid, at plant",
+            "location": "RER"
+          },
+          "amount": 6.6078e-08
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Bitumen, at refinery",
+            "unit": "kilogram",
+            "reference product": "Bitumen, at refinery",
+            "location": "CH"
+          },
+          "amount": 8.257e-10
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Chemicals inorganic, at plant",
+            "unit": "kilogram",
+            "reference product": "Chemicals inorganic, at plant",
+            "location": "GLO"
+          },
+          "amount": 2.506e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Concrete, normal, at plant",
+            "unit": "cubic meter",
+            "reference product": "Concrete, normal, at plant",
+            "location": "CH"
+          },
+          "amount": 1.0431e-11
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "U enriched 4.75%, in fuel element for LWR, at nuclear fuel fabrication plant",
+            "unit": "kilogram",
+            "reference product": "U enriched 4.75%, in fuel element for LWR, at nuclear fuel fabrication plant",
+            "location": "CH"
+          },
+          "amount": 2.324e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+            "unit": "kilogram",
+            "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+            "location": "CH"
+          },
+          "amount": 1.0388e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "unit": "kilogram",
+            "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "location": "CH"
+          },
+          "amount": 1.7456e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Lubricating oil, at plant",
+            "unit": "kilogram",
+            "reference product": "Lubricating oil, at plant",
+            "location": "RER"
+          },
+          "amount": 1.7349e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Disposal, separator sludge, 90% water, to hazardous waste incineration",
+            "unit": "kilogram",
+            "reference product": "Disposal, separator sludge, 90% water, to hazardous waste incineration",
+            "location": "CH"
+          },
+          "amount": 2.3454e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Anionic resin, at plant",
+            "unit": "kilogram",
+            "reference product": "Anionic resin, at plant",
+            "location": "CH"
+          },
+          "amount": 6.8862e-11
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Cationic resin, at plant",
+            "unit": "kilogram",
+            "reference product": "Cationic resin, at plant",
+            "location": "CH"
+          },
+          "amount": 6.8862e-11
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Water, decarbonised, at plant",
+            "unit": "kilogram",
+            "reference product": "Water, decarbonised, at plant",
+            "location": "RER"
+          },
+          "amount": 0.0028701
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Acetylene, at regional storehouse",
+            "unit": "kilogram",
+            "reference product": "Acetylene, at regional storehouse",
+            "location": "CH"
+          },
+          "amount": 3.8554e-11
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Radioactive waste, in final repository for nuclear waste LLW",
+            "unit": "cubic meter",
+            "reference product": "Radioactive waste, in final repository for nuclear waste LLW",
+            "location": "CH"
+          },
+          "amount": 3.0415e-11
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Nuclear spent fuel, in reprocessing, at plant",
+            "unit": "kilogram",
+            "reference product": "Nuclear spent fuel, in reprocessing, at plant",
+            "location": "RER"
+          },
+          "amount": 1.0538e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Reinforcing steel, at plant",
+            "unit": "kilogram",
+            "reference product": "Reinforcing steel, at plant",
+            "location": "RER"
+          },
+          "amount": 5.0335e-10
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Transport, freight, lorry, fleet average",
+            "unit": "ton kilometer",
+            "reference product": "Transport, freight, lorry, fleet average",
+            "location": "RER"
+          },
+          "amount": 8.2677e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+            "unit": "ton kilometer",
+            "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+            "location": "CH"
+          },
+          "amount": 2.7845e-08
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Sodium hypochlorite, 15% in H2O, at plant",
+            "unit": "kilogram",
+            "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+            "location": "RER"
+          },
+          "amount": 1.8527e-08
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Boric acid, anhydrous, powder, at plant",
+            "unit": "kilogram",
+            "reference product": "Boric acid, anhydrous, powder, at plant",
+            "location": "RER"
+          },
+          "amount": 6.8862e-11
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Oxygen, liquid, at plant",
+            "unit": "kilogram",
+            "reference product": "Oxygen, liquid, at plant",
+            "location": "RER"
+          },
+          "amount": 1.7885e-08
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Flat glass, coated, at plant",
+            "unit": "kilogram",
+            "reference product": "Flat glass, coated, at plant",
+            "location": "RER"
+          },
+          "amount": 4.6801e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Carbon dioxide liquid, at plant",
+            "unit": "kilogram",
+            "reference product": "Carbon dioxide liquid, at plant",
+            "location": "RER"
+          },
+          "amount": 1.7885e-10
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Diesel, burned in diesel-electric generating set",
+            "unit": "megajoule",
+            "reference product": "Diesel, burned in diesel-electric generating set",
+            "location": "GLO"
+          },
+          "amount": 3.9625e-07
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Radioactive waste, in interim storage conditioning",
+            "unit": "cubic meter",
+            "reference product": "Radioactive waste, in interim storage conditioning",
+            "location": "CH"
+          },
+          "amount": 4.6265e-14
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Cement, unspecified, at plant",
+            "unit": "kilogram",
+            "reference product": "Cement, unspecified, at plant",
+            "location": "CH"
+          },
+          "amount": 9.842e-10
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Nuclear power plant, pressure water reactor 1000MW",
+            "unit": "unit",
+            "reference product": "Nuclear power plant, pressure water reactor 1000MW",
+            "location": "CH"
+          },
+          "amount": 2.7631e-15
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Chemicals organic, at plant",
+            "unit": "kilogram",
+            "reference product": "Chemicals organic, at plant",
+            "location": "GLO"
+          },
+          "amount": 1.4779e-09
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Argon, liquid, at plant",
+            "unit": "kilogram",
+            "reference product": "Argon, liquid, at plant",
+            "location": "RER"
+          },
+          "amount": 2.7952e-08
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Radioactive waste, in interim storage, for final repository LLW",
+            "unit": "cubic meter",
+            "reference product": "Radioactive waste, in interim storage, for final repository LLW",
+            "location": "CH"
+          },
+          "amount": 1.8849e-12
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Caesium-134",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 4.0375e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Carbon-14",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 8.1821e-06
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Manganese-54",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 1.4029e-08
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Silver-110",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 4.7443e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Water, river",
+            "unit": "cubic meter",
+            "categories": [
+              "natural resource",
+              "in water"
+            ]
+          },
+          "amount": 6.158e-06
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Niobium-95",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 1.1995e-13
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Radioactive species, alpha emitters",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 3.2343e-11
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Lanthanum-140",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 5.3012e-10
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Iodine-133",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 1.9491e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Iodine-131",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 8.7925e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Krypton-85",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 1.057e-05
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Cerium-144",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 5.162e-10
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Aerosols, radioactive, unspecified",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 5.751e-12
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Caesium-137",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 1.0709e-07
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Barium-140",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 3.3949e-13
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Tritium",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 0.001992
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Heat, waste",
+            "unit": "megajoule",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 0.0081928
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Antimony-124",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 5.087e-13
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Antimony-125",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 2.506e-11
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Zinc-65",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 2.8166e-10
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Antimony-122",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 9.6814e-10
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Antimony-124",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 4.423e-08
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Chromium-51",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 8.0964e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Sodium-24",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 1.0688e-08
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Xenon-133",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 0.00064685
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Caesium-137",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 7.7965e-12
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Cobalt-60",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 4.2303e-07
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Zirconium-95",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 1.6064e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Tellurium-123m",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 1.6814e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Silver-110",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 3.3521e-12
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Tellurium-132",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 9.0174e-11
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Iodine-131",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 3.6198e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Radioactive species, other beta emitters",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 9.2851e-11
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Strontium-89",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 3.909e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Antimony-125",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 4.4659e-08
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Cobalt-57",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 9.5529e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Iodine-133",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 4.4552e-10
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Cerium-141",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 1.8849e-10
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Noble gases, radioactive, unspecified",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 0.00027738
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Cobalt-58",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 1.7564e-11
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Strontium-90",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 1.3922e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Niobium-95",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 3.2878e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Technetium-99m",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 3.0094e-09
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Molybdenum-99",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 6.4257e-12
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Cobalt-58",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 1.2209e-06
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Caesium-136",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 3.0094e-10
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Zirconium-95",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 6.1901e-11
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Iron-59",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 4.498e-10
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Xenon-135",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 0.00017778
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Ruthenium-103",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "water",
+              "surface water"
+            ]
+          },
+          "amount": 3.0522e-10
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Cobalt-60",
+            "unit": "kilo Becquerel",
+            "categories": [
+              "air",
+              "non-urban air or from high stacks"
+            ]
+          },
+          "amount": 8.1071e-11
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Water",
+            "unit": "cubic meter",
+            "categories": [
+              "water"
+            ]
+          },
+          "amount": 5.8501e-06
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat from waste, at municipal waste incineration plant",
+        "reference product": "Heat from waste, at municipal waste incineration plant",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "review": {
+    "authorization": "Active integration goal and standing autonomous screening-proxy approval, with all scientific limitations recorded for review.",
+    "source_inventory_sha256": "949b2612d432973040861a61aa2d60eda97d6ffcccf901019f8ec70ec0cd1b8a",
+    "basis": "Derived pre-delivery historical Swiss producer portfolio; preserve relative native producer weights and complete protected producer inventories.",
+    "limitations": [
+      "The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix.",
+      "This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified.",
+      "Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates.",
+      "No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat."
+    ]
+  },
+  "data_terms": {
+    "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+    "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+    "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+    "modified_data": true,
+    "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+    "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+  },
+  "activities": [
+    {
+      "name": "heat supply, frozen legacy mix, Heat, natural gas, at industrial furnace 1MW",
+      "reference product": "heat, frozen producer, Heat, natural gas, at industrial furnace 1MW",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-frozen-heat",
+      "code": "uvek-2026-frozen-swiss-producer-01",
+      "production amount": 1,
+      "type": "process",
+      "heat frozen proxy": true,
+      "premise heat": {
+        "kind": "fixed_native_heat_producer",
+        "source_identity": {
+          "name": "Heat, natural gas, at industrial furnace 1MW",
+          "reference product": "Heat, natural gas, at industrial furnace 1MW",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_code": "5aeaee22c31bde8c641cf08ced474eb7"
+      },
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      },
+      "comment": "Full activity name: Heat, natural gas, at industrial furnace 1MW\nInventory for 1 MJ heat from natural gas, burned in an industrial furnace with a capacity of 1 MW with 5000 operating hours.Efficiency depends on use patterns such as input and output temperature and is here estimated with efficiency 95 % (Hu);\nUUID: 2fcda415-e506-38d9-9c3e-8ce2c2e7c8f2\nIncluded are the natural gas burning in an industrial furnace (1 MW), which in turn includes fuel input, infrastructure (furnace), air and water emissions and electrictiy needed for operation. The inventory uses the average net efficiency for the type of boiler referring to the lower calorific value. The heat distribution ios not included\nLocation: Data apply to the combustion in Switzerland.\nTechnology: Industry data.\nTime period: Time of publications.\nProduction volume: na\nSampling: Data from literature \nExtrapolations: Some generic datasets from ecoinvent have been used.\nUncertainty adjustments: none\nBAFU mapped export: unsupported biosphere exchanges excluded; see audit/. Local UUIDs and generic activity classification are export conventions. Source: process_2fcda415-e506-38d9-9c3e-8ce2c2e7c8f2.xml\nGeography: Location: Data apply to the combustion in Switzerland.\nTechnology: Technology: Industry data.\nTime period: Time period: Time of publications. Fixed complete producer copy for historical composition. The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix. This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified. Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates. No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat.",
+      "exchanges": [
+        {
+          "flow": "9767990a-9593-5c33-b3d1-387e201b8775",
+          "type": "production",
+          "name": "heat supply, frozen legacy mix, Heat, natural gas, at industrial furnace 1MW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "a7122952-e1a2-56d2-ad26-cf3a0fb18d3b",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, natural gas, at industrial furnace 1MW\nSWITZERLAND\n\nBAFU mapping audit: {\"bafu source exchange index\": 0}",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "loc": 1.0,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-01"
+          ],
+          "reference product": "heat, frozen producer, Heat, natural gas, at industrial furnace 1MW",
+          "location": "CH"
+        },
+        {
+          "flow": "656ec459-fe12-5a09-873d-2a599d849efb",
+          "type": "technosphere",
+          "name": "Natural gas, burned in industrial furnace 1MWth",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "b57ead1e-915e-5838-8d1d-ec59dec32714",
+          "unit": "megajoule",
+          "comment": "Full flow name: Natural gas, burned in industrial furnace 1MWth\n(1,1,1,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 1}",
+          "amount": 1.0526,
+          "uncertainty type": 2,
+          "loc": 0.05126329393754151,
+          "scale": 0.09435886214959628,
+          "input": [
+            "BAFU:2026-reimported",
+            "b4380120406792378c5bc4410c71cc94"
+          ],
+          "negative": false,
+          "reference product": "Natural gas, burned in industrial furnace 1MWth",
+          "location": "CH"
+        }
+      ]
+    },
+    {
+      "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, natural gas, allocation exergy",
+      "reference product": "heat, frozen producer, Heat, at cogen 1MWth, natural gas, allocation exergy",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-frozen-heat",
+      "code": "uvek-2026-frozen-swiss-producer-02",
+      "production amount": 1,
+      "type": "process",
+      "heat frozen proxy": true,
+      "premise heat": {
+        "kind": "fixed_native_heat_producer",
+        "source_identity": {
+          "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+          "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_code": "031f48227265a7bedcbb9678eb9d2e59"
+      },
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      },
+      "comment": "Full activity name: Heat, at cogen 1MWth, natural gas, allocation exergy\nInventory for 1 MJ heat from natural gas, burned in a cogeneration unit with a capacity of 1 MWth. The multioutput process \"natural gas, burned in cogen 1MWth delivers the coproducts \"heat, at cogen 1MWth, natural gas, allocation exergy\" and \"electricity, at cogen 1MWth, natural gas, allocation exergy\". The energy efficiency is 41% for electricity and 47% for heat. The exergy factor is 1 for ectricity and 0.170 for heat. This leads to the allocation factor of 0.83 for electricity an 0.17 for heat.;\nUUID: af0e1a24-c693-364b-bf6e-b9f666f5a9ab\nIncluded are the natural gas burning in a 1 MWth cogen unit which in turn includes fuel input, infrastructure (boiler), air and water emissions and electrictiy needed for operation. The efficiency and allocation according to exergy is considered\nLocation: Data apply to the combustion in Switzerland.\nTechnology: efficiency of average technology available on the market\nTime period: Time of publications.\nProduction volume: na\nSampling: Data from literature \nExtrapolations: <null>\nUncertainty adjustments: none\nBAFU mapped export: unsupported biosphere exchanges excluded; see audit/. Local UUIDs and generic activity classification are export conventions. Source: process_af0e1a24-c693-364b-bf6e-b9f666f5a9ab.xml\nGeography: Location: Data apply to the combustion in Switzerland.\nTechnology: Technology: efficiency of average technology available on the market\nTime period: Time period: Time of publications. Fixed complete producer copy for historical composition. The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix. This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified. Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates. No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat.",
+      "exchanges": [
+        {
+          "flow": "fdac29e1-85c7-5c83-a12e-c9bf67d81998",
+          "type": "production",
+          "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, natural gas, allocation exergy",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "5c730f2f-18c5-5ffc-9fba-c9d6b264fb5f",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, at cogen 1MWth, natural gas, allocation exergy\nSWITZERLAND\n\nBAFU mapping audit: {\"bafu source exchange index\": 0}",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "loc": 1.0,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-02"
+          ],
+          "reference product": "heat, frozen producer, Heat, at cogen 1MWth, natural gas, allocation exergy",
+          "location": "CH"
+        },
+        {
+          "flow": "c772dd68-7f4b-54d6-9a14-a9eb4537d559",
+          "type": "technosphere",
+          "name": "Natural gas, burned in cogen 1MWth",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "a1954d36-477b-507e-9a53-ab8032827177",
+          "unit": "megajoule",
+          "comment": "Full flow name: Natural gas, burned in cogen 1MWth\n(1,1,1,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 1}",
+          "amount": 0.34973,
+          "uncertainty type": 2,
+          "loc": -1.0505938507742416,
+          "scale": 0.09435886214959628,
+          "input": [
+            "BAFU:2026-reimported",
+            "1460ea693b4f63df0c37831f3f689006"
+          ],
+          "negative": false,
+          "reference product": "Natural gas, burned in cogen 1MWth",
+          "location": "CH"
+        }
+      ]
+    },
+    {
+      "name": "heat supply, frozen legacy mix, Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+      "reference product": "heat, frozen producer, Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-frozen-heat",
+      "code": "uvek-2026-frozen-swiss-producer-03",
+      "production amount": 1,
+      "type": "process",
+      "heat frozen proxy": true,
+      "premise heat": {
+        "kind": "fixed_native_heat_producer",
+        "source_identity": {
+          "name": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+          "reference product": "Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_code": "c9605197c5049836eeaec3efbee2ec7e"
+      },
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      },
+      "comment": "Full activity name: Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building\nHeat from a brine-water heat pump, 50kW with heat source form borehole, 150m deep and Swiss electricity mix (CH). Lifetime of the heat pump is 20 years, the borehole 50years. SPF=5.5. Loss of coolant is 2% (of the total amount in the system) per year.;\nUUID: d745d499-4854-3661-8944-c94d64d55ed5\nIncluded are the share of the production of the brine-water heatpump with a lifetime of 20years scaled for 1MJ. Also the borehole with the geothermal proble with a lifetime of at least 50years is part of this process. \nLocation: Data apply to the supply in Switzerland.\nTechnology: undefined\nTime period: Time of publications.\nProduction volume: na\nSampling: heat efficieny based on literature \nExtrapolations: none\nUncertainty adjustments: none\nBAFU mapped export: unsupported biosphere exchanges excluded; see audit/. Local UUIDs and generic activity classification are export conventions. Source: process_d745d499-4854-3661-8944-c94d64d55ed5.xml\nGeography: Location: Data apply to the supply in Switzerland.\nTechnology: Technology: undefined\nTime period: Time period: Time of publications. Fixed complete producer copy for historical composition. The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix. This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified. Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates. No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat.",
+      "exchanges": [
+        {
+          "flow": "99a29006-ec1c-5810-b385-e518f4165800",
+          "type": "production",
+          "name": "heat supply, frozen legacy mix, Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "d8b730a1-b3d6-5563-8771-34cfd1aa8efe",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building\nSWITZERLAND\n\nBAFU mapping audit: {\"bafu source exchange index\": 0}",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "loc": 1.0,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-03"
+          ],
+          "reference product": "heat, frozen producer, Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+          "location": "CH"
+        },
+        {
+          "flow": "cd4f9e33-718a-53d1-a864-96efce5c7bec",
+          "type": "technosphere",
+          "name": "Trifluoromethane, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "c19ab21b-4855-55d0-945a-1938a66ddf8b",
+          "unit": "kilogram",
+          "comment": "Full flow name: Trifluoromethane, at plant\n(5,3,1,2,5,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 1}",
+          "amount": 2.5397e-07,
+          "uncertainty type": 2,
+          "loc": -15.186049687139658,
+          "scale": 0.4132048935323575,
+          "input": [
+            "BAFU:2026-reimported",
+            "e13bf33c4e12626bbd8a20fc0ed3ed63"
+          ],
+          "negative": false,
+          "reference product": "Trifluoromethane, at plant",
+          "location": "GLO"
+        },
+        {
+          "flow": "7b324543-7d63-5e27-af12-c179ea00310a",
+          "type": "technosphere",
+          "name": "Borehole heat exchanger, 300m",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "3be2f7e6-4f40-579a-8902-20b5e75c8633",
+          "unit": "unit",
+          "comment": "Full flow name: Borehole heat exchanger, 300m\n(2,1,1,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 2}",
+          "amount": 1.7637e-07,
+          "uncertainty type": 2,
+          "loc": -15.550681775864138,
+          "scale": 0.5573576351247537,
+          "input": [
+            "BAFU:2026-reimported",
+            "91073af8b93f2769b39822d60df23555"
+          ],
+          "negative": false,
+          "reference product": "Borehole heat exchanger, 300m",
+          "location": "CH"
+        },
+        {
+          "flow": "db6574e2-1bb9-5b4a-8f7e-d00ca295cdc4",
+          "type": "technosphere",
+          "name": "Heat pump, brine-water, 50kW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "9ba89c4e-fbce-5871-aa4d-b055358a4261",
+          "unit": "unit",
+          "comment": "Full flow name: Heat pump, brine-water, 50kW\n(2,1,1,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 4}",
+          "amount": 1.3228e-07,
+          "uncertainty type": 2,
+          "loc": -15.83834494883282,
+          "scale": 0.5573576351247537,
+          "input": [
+            "BAFU:2026-reimported",
+            "df3c10325e4156679ae94da0165acd83"
+          ],
+          "negative": false,
+          "reference product": "Heat pump, brine-water, 50kW",
+          "location": "RER"
+        },
+        {
+          "flow": "74af9bf1-7343-581d-898a-c1fb021bddd9",
+          "type": "technosphere",
+          "name": "1,1-difluoroethane, HFC-152a, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "c32f8cbb-35b9-559d-83b3-8f1832a3b561",
+          "unit": "kilogram",
+          "comment": "Full flow name: 1,1-difluoroethane, HFC-152a, at plant\n(5,3,1,2,5,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 5}",
+          "amount": 2.5397e-07,
+          "uncertainty type": 2,
+          "loc": -15.186049687139658,
+          "scale": 0.4132048935323575,
+          "input": [
+            "BAFU:2026-reimported",
+            "f225321b85456dd4b0aaeb74ecb3aeae"
+          ],
+          "negative": false,
+          "reference product": "1,1-difluoroethane, HFC-152a, at plant",
+          "location": "US"
+        },
+        {
+          "flow": "77eb694f-7dfa-5a7e-8152-53bed7445781",
+          "type": "technosphere",
+          "name": "Electricity, low voltage, at grid",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "6de0d104-e5c3-5bee-955b-6f6232c3fdc3",
+          "unit": "kilowatt hour",
+          "comment": "Full flow name: Electricity, low voltage, at grid\n(2,1,1,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 9}",
+          "amount": 0.050505,
+          "uncertainty type": 2,
+          "loc": -2.9856829377009895,
+          "scale": 0.09745433614971301,
+          "input": [
+            "BAFU:2026-reimported",
+            "459f46139a4c477c360734ed785e425f"
+          ],
+          "negative": false,
+          "reference product": "Electricity, low voltage, at grid",
+          "location": "CH"
+        },
+        {
+          "flow": "6d4c304e-4908-55d6-946c-db84e8c2de2d",
+          "type": "technosphere",
+          "name": "Disposal, heat pump, brine-water, 50kW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "2a1a8def-4630-569e-8266-a681f23ca407",
+          "unit": "unit",
+          "comment": "Full flow name: Disposal, heat pump, brine-water, 50kW\nnone \nBAFU mapping audit: {\"bafu source exchange index\": 10}",
+          "amount": 1.3228e-07,
+          "uncertainty type": 2,
+          "loc": -15.83834494883282,
+          "scale": 0.5573560938916897,
+          "input": [
+            "BAFU:2026-reimported",
+            "36cc9584074219d42639600db0d67256"
+          ],
+          "negative": false,
+          "reference product": "Disposal, heat pump, brine-water, 50kW",
+          "location": "CH"
+        },
+        {
+          "flow": "8bc09c04-2190-4ee2-9ee2-ae988ccd4e0c",
+          "type": "biosphere",
+          "name": "Energy, geothermal, converted",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "megajoule",
+          "comment": "Full flow name: Energy, geothermal, converted\n(2,1,1,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 3}",
+          "amount": 0.81818,
+          "uncertainty type": 2,
+          "loc": -0.2006729176868425,
+          "scale": 0.09745433614971301,
+          "input": [
+            "__biosphere__",
+            "8bc09c04-2190-4ee2-9ee2-ae988ccd4e0c"
+          ],
+          "negative": false,
+          "categories": [
+            "natural resource",
+            "in ground"
+          ]
+        },
+        {
+          "flow": "c9028b09-c12d-421b-9944-7d145e196ebc",
+          "type": "biosphere",
+          "name": "Difluoromethane",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilogram",
+          "comment": "Full flow name: Difluoromethane\n(1,1,1,1,1,5,BU:1.5); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 6}",
+          "amount": 2.5397e-07,
+          "uncertainty type": 2,
+          "loc": -15.186049687139658,
+          "scale": 0.22227880395713023,
+          "input": [
+            "__biosphere__",
+            "c9028b09-c12d-421b-9944-7d145e196ebc"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ]
+        },
+        {
+          "flow": "b411ec8b-c60a-4235-a3b2-8bf8443cbc55",
+          "type": "biosphere",
+          "name": "Heat, waste",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, waste\n(2,1,1,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 7}",
+          "amount": 0.18182,
+          "uncertainty type": 2,
+          "loc": -1.7047380922884248,
+          "scale": 0.09745433614971301,
+          "input": [
+            "__biosphere__",
+            "b411ec8b-c60a-4235-a3b2-8bf8443cbc55"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ]
+        },
+        {
+          "flow": "5d1701c5-c4ef-49c7-8a68-ce7c255eee9f",
+          "type": "biosphere",
+          "name": "Pentafluoroethane",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilogram",
+          "comment": "Full flow name: Pentafluoroethane\n(1,1,1,1,1,5,BU:1.5); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 8}",
+          "amount": 2.5397e-07,
+          "uncertainty type": 2,
+          "loc": -15.186049687139658,
+          "scale": 0.22227880395713023,
+          "input": [
+            "__biosphere__",
+            "5d1701c5-c4ef-49c7-8a68-ce7c255eee9f"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "heat supply, frozen legacy mix, Heat, light fuel oil, at industrial furnace 1MW",
+      "reference product": "heat, frozen producer, Heat, light fuel oil, at industrial furnace 1MW",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-frozen-heat",
+      "code": "uvek-2026-frozen-swiss-producer-04",
+      "production amount": 1,
+      "type": "process",
+      "heat frozen proxy": true,
+      "premise heat": {
+        "kind": "fixed_native_heat_producer",
+        "source_identity": {
+          "name": "Heat, light fuel oil, at industrial furnace 1MW",
+          "reference product": "Heat, light fuel oil, at industrial furnace 1MW",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_code": "7c4ef2610abc85cc5e0826578a26ead6"
+      },
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      },
+      "comment": "Full activity name: Heat, light fuel oil, at industrial furnace 1MW\nInventory for heat delivery. Efficiency depends on use patterns such as input and output temperature and is here estimated with (Hu) 0.951272727272727;\nUUID: 6c637b2c-5fc0-3116-809b-667e4ece6eec\nHeat delivered by the furnace not including losses during distribution in the factory.\nLocation: Assumption for operation in Switzerland.\nTechnology: Non-modulating furnace.\nTime period: Estimation for efficiency of furnaces used in 2016.\nProduction volume: na\nSampling: Data published in literature \nExtrapolations: none\nUncertainty adjustments: none\nBAFU mapped export: unsupported biosphere exchanges excluded; see audit/. Local UUIDs and generic activity classification are export conventions. Source: process_6c637b2c-5fc0-3116-809b-667e4ece6eec.xml\nGeography: Location: Assumption for operation in Switzerland.\nTechnology: Technology: Non-modulating furnace.\nTime period: Time period: Estimation for efficiency of furnaces used in 2016. Fixed complete producer copy for historical composition. The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix. This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified. Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates. No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat.",
+      "exchanges": [
+        {
+          "flow": "bbab6501-8a9f-5a37-b15c-c18211c4e55e",
+          "type": "production",
+          "name": "heat supply, frozen legacy mix, Heat, light fuel oil, at industrial furnace 1MW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "8da1c65c-1c25-5dab-bc8c-81a5981c0e29",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, light fuel oil, at industrial furnace 1MW\nSWITZERLAND\n\nBAFU mapping audit: {\"bafu source exchange index\": 0}",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "loc": 1.0,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-04"
+          ],
+          "reference product": "heat, frozen producer, Heat, light fuel oil, at industrial furnace 1MW",
+          "location": "CH"
+        },
+        {
+          "flow": "b2bb7b77-462c-5568-9a97-098b8b3979f1",
+          "type": "technosphere",
+          "name": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "de93fced-18e7-5b8d-a04f-36187e2d10a7",
+          "unit": "megajoule",
+          "comment": "Full flow name: Light fuel oil, burned in industrial furnace 1MW, non-modulating\n(3,3,2,1,1,na); Literature\n\nBAFU mapping audit: {\"bafu source exchange index\": 1}",
+          "amount": 1.0512,
+          "uncertainty type": 2,
+          "loc": 0.04993236874820893,
+          "scale": 0.060666142583762496,
+          "input": [
+            "BAFU:2026-reimported",
+            "c66a4f9f73c2449ed4637c27ddb39046"
+          ],
+          "negative": false,
+          "reference product": "Light fuel oil, burned in industrial furnace 1MW, non-modulating",
+          "location": "CH"
+        }
+      ]
+    },
+    {
+      "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, wood chips, allocation exergy",
+      "reference product": "heat, frozen producer, Heat, at cogen 1MWth, wood chips, allocation exergy",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-frozen-heat",
+      "code": "uvek-2026-frozen-swiss-producer-05",
+      "production amount": 1,
+      "type": "process",
+      "heat frozen proxy": true,
+      "premise heat": {
+        "kind": "fixed_native_heat_producer",
+        "source_identity": {
+          "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+          "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_code": "f947f2701bfa0ae831d29866f462cddb"
+      },
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      },
+      "comment": "Full activity name: Heat, at cogen 1MWth, wood chips, allocation exergy\nInventory for 1 MJ heat from wood chips, burned in a cogeneration unit with a capacity of 1MWth. The multioutput process \"wood chips, burned in cogen 1MWth\" delivers the coproducts \"heat, at cogen 1MWth, wood chips, allocation exergy\" and \"electricity, at cogen 1MWth, wood chips, allocation exergy\". The energy efficiency is 35% for electricity and 45% for heat. The exergy factor is 1 for ectricity and 0.170 for heat. This leads to the allocation factor of 0.84 for electricity an 0.16 for heat.\nIncluded are the wood chips burning in a 1MWth cogen unit which in turn includes fuel input, infrastructure (boiler), air and water emissions and electrictiy needed for operation. The efficiency and allocation according to exergy is considered\nLocation: Data apply to the combustion in Switzerland. \nTechnology: efficiency of average technology available on the market\nTime period: Time of publications.\nProduction volume: none\nSampling: Data from literature\nExtrapolations: \nUncertainty adjustments: none\nBAFU mapped export: unsupported biosphere exchanges excluded; see audit/. Local UUIDs and generic activity classification are export conventions. Source: process_f1be790e-5a70-397f-85d5-2eefe20ff2d6.xml\nGeography: Location: Data apply to the combustion in Switzerland. \nTechnology: Technology: efficiency of average technology available on the market\nTime period: Time period: Time of publications. Fixed complete producer copy for historical composition. The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix. This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified. Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates. No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat.",
+      "exchanges": [
+        {
+          "flow": "1bda5078-0d6e-52c8-858e-04ba322ba4d3",
+          "type": "production",
+          "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, wood chips, allocation exergy",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "f48241c6-c1ee-5c95-b8d8-09c640381ed1",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, at cogen 1MWth, wood chips, allocation exergy\n\nBAFU mapping audit: {\"bafu source exchange index\": 0}",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "loc": 1.0,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-05"
+          ],
+          "reference product": "heat, frozen producer, Heat, at cogen 1MWth, wood chips, allocation exergy",
+          "location": "CH"
+        },
+        {
+          "flow": "d261ccad-14a1-5ae2-9b9c-f46eaf65c2d2",
+          "type": "technosphere",
+          "name": "Wood chips, burned in cogen 1MWth",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "66fabe08-683e-5f98-afbb-8b67661f19ea",
+          "unit": "megajoule",
+          "comment": "Full flow name: Wood chips, burned in cogen 1MWth\n(1,1,1,1,1,5,BU:1.05); ; \nBAFU mapping audit: {\"bafu source exchange index\": 1}",
+          "amount": 0.398,
+          "uncertainty type": 2,
+          "loc": -0.9213032736976993,
+          "scale": 0.09435886214959628,
+          "input": [
+            "BAFU:2026-reimported",
+            "5f15e519e4915fb04770eda62fc44330"
+          ],
+          "negative": false,
+          "reference product": "Wood chips, burned in cogen 1MWth",
+          "location": "CH"
+        }
+      ]
+    },
+    {
+      "name": "heat supply, frozen legacy mix, Heat, mixed chips from forest, at furnace 1000kW",
+      "reference product": "heat, frozen producer, Heat, mixed chips from forest, at furnace 1000kW",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-frozen-heat",
+      "code": "uvek-2026-frozen-swiss-producer-06",
+      "production amount": 1,
+      "type": "process",
+      "heat frozen proxy": true,
+      "premise heat": {
+        "kind": "fixed_native_heat_producer",
+        "source_identity": {
+          "name": "Heat, mixed chips from forest, at furnace 1000kW",
+          "reference product": "Heat, mixed chips from forest, at furnace 1000kW",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_code": "6f1900ea504326a88280af5de624760b"
+      },
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      },
+      "comment": "Full activity name: Heat, mixed chips from forest, at furnace 1000kW\nInventory for 1 MJ heat from mixed chips, burned in a furnace with a capacity of 1 MW. Annual efficiency is estimated with 85 % (Hu).;\nSynonyms: In UVEK2018 enthalten; \nUUID: 4d188886-a3cb-3e45-92e6-8faf661d7a9d\nThis module provides heat for end uses.\nLocation: Could be used for central European conditions\nTechnology: Efficiency of boiler of average technology available on the market\nTime period: Time of publications.\nProduction volume: na\nSampling: <null>\nExtrapolations: none\nUncertainty adjustments: none\nBAFU mapped export: unsupported biosphere exchanges excluded; see audit/. Local UUIDs and generic activity classification are export conventions. Source: process_4d188886-a3cb-3e45-92e6-8faf661d7a9d.xml\nGeography: Location: Could be used for central European conditions\nTechnology: Technology: Efficiency of boiler of average technology available on the market\nTime period: Time period: Time of publications. Fixed complete producer copy for historical composition. The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix. This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified. Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates. No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat.",
+      "exchanges": [
+        {
+          "flow": "d0e30aaa-dfb6-5e19-998a-a890d52ded14",
+          "type": "production",
+          "name": "heat supply, frozen legacy mix, Heat, mixed chips from forest, at furnace 1000kW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "74f9ed0b-f1d8-53e9-9b81-df4626122bf5",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, mixed chips from forest, at furnace 1000kW\nSWITZERLAND\n\nBAFU mapping audit: {\"bafu source exchange index\": 0}",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "loc": 1.0,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-06"
+          ],
+          "reference product": "heat, frozen producer, Heat, mixed chips from forest, at furnace 1000kW",
+          "location": "CH"
+        },
+        {
+          "flow": "2d4a2209-1b92-5bc7-b9e6-7f7b9c7671a5",
+          "type": "technosphere",
+          "name": "Wood chips, from forest, mixed, burned in furnace 1000kW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "52ccc4fb-2713-54df-b76b-93b356943c28",
+          "unit": "megajoule",
+          "comment": "Full flow name: Wood chips, from forest, mixed, burned in furnace 1000kW\n(2,3,1,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 1}",
+          "amount": 1.1765,
+          "uncertainty type": 2,
+          "loc": 0.1625439291852802,
+          "scale": 0.10048986930624386,
+          "input": [
+            "BAFU:2026-reimported",
+            "cbe15d9747787115e5a3281d374474e8"
+          ],
+          "negative": false,
+          "reference product": "Wood chips, from forest, mixed, burned in furnace 1000kW",
+          "location": "CH"
+        }
+      ]
+    },
+    {
+      "name": "heat supply, frozen legacy mix, Heat, at nuclear power plant, allocation exergy",
+      "reference product": "heat, frozen producer, Heat, at nuclear power plant, allocation exergy",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-frozen-heat",
+      "code": "uvek-2026-frozen-swiss-producer-07",
+      "production amount": 1,
+      "type": "process",
+      "heat frozen proxy": true,
+      "premise heat": {
+        "kind": "fixed_native_heat_producer",
+        "source_identity": {
+          "name": "Heat, at nuclear power plant, allocation exergy",
+          "reference product": "Heat, at nuclear power plant, allocation exergy",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_code": "289cd3d3b714a6b8025e9970b558ff5a"
+      },
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      },
+      "comment": "Full activity name: Heat, at nuclear power plant, allocation exergy\nInventory for 1 MJ heat from nuclear power plant. In 2019, of the total energy produced were 97.8% as electricity and 2.2% as heat. The exergy factor is 1 for ectricity and 0.170 for heat. This leads to the allocation factor of 0.996 for electricity an 0.004 for heat.;\nUUID: b9f7599f-a119-343b-97a9-dd29a6999a80\nIncluded is the demnd of materials, energy, infrastructures and transports for the production of heat at a nuclear power plant\nLocation: Data apply to the supply in Switzerland.\nTechnology: average technology\nTime period: Time of publications.\nProduction volume: na\nSampling: literature \nExtrapolations: none\nUncertainty adjustments: none\nBAFU mapped export: unsupported biosphere exchanges excluded; see audit/. Local UUIDs and generic activity classification are export conventions. Source: process_b9f7599f-a119-343b-97a9-dd29a6999a80.xml\nGeography: Location: Data apply to the supply in Switzerland.\nTechnology: Technology: average technology\nTime period: Time period: Time of publications. Fixed complete producer copy for historical composition. The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix. This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified. Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates. No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat.",
+      "exchanges": [
+        {
+          "flow": "e30b5a12-638c-5f16-b9bc-f0010d5bb830",
+          "type": "production",
+          "name": "heat supply, frozen legacy mix, Heat, at nuclear power plant, allocation exergy",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "e2383d5a-589f-5e5e-8604-6a907b0ae447",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, at nuclear power plant, allocation exergy\nSWITZERLAND\n\nBAFU mapping audit: {\"bafu source exchange index\": 0}",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "loc": 1.0,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-07"
+          ],
+          "reference product": "heat, frozen producer, Heat, at nuclear power plant, allocation exergy",
+          "location": "CH"
+        },
+        {
+          "flow": "221b3dae-89c1-517c-a640-a142292257f6",
+          "type": "technosphere",
+          "name": "Paper, woodfree, coated, at integrated mill",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "4ecef63b-b8bc-5c68-bdc5-8ba8649efd39",
+          "unit": "kilogram",
+          "comment": "Full flow name: Paper, woodfree, coated, at integrated mill\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 2}",
+          "amount": 6.8862e-10,
+          "uncertainty type": 2,
+          "loc": -21.096331521007915,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "d03b43091aa7553029e9ed5804e7359c"
+          ],
+          "negative": false,
+          "reference product": "Paper, woodfree, coated, at integrated mill",
+          "location": "RER"
+        },
+        {
+          "flow": "055ffc0c-51bc-51e0-9cdc-cd89b6833064",
+          "type": "technosphere",
+          "name": "Steel, low-alloyed, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "aa24f37d-8723-59c0-a1d2-37d424caaccb",
+          "unit": "kilogram",
+          "comment": "Full flow name: Steel, low-alloyed, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 8}",
+          "amount": 1.7135e-09,
+          "uncertainty type": 2,
+          "loc": -20.184727774613886,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "e402fe96f7523f54ffdbf8b11f50eba3"
+          ],
+          "negative": false,
+          "reference product": "Steel, low-alloyed, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "0d9fbc45-56ee-51e1-b55b-997bc97d6f24",
+          "type": "technosphere",
+          "name": "Hydrogen, liquid, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "3c060c1b-c956-5cfe-b4ee-890917c76666",
+          "unit": "kilogram",
+          "comment": "Full flow name: Hydrogen, liquid, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 9}",
+          "amount": 1.1031e-08,
+          "uncertainty type": 2,
+          "loc": -18.322556345959168,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "dc0480e26789d162980d2c2399cf4555"
+          ],
+          "negative": false,
+          "reference product": "Hydrogen, liquid, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "1cb34307-b70f-5b58-807b-455aa5e7a90b",
+          "type": "technosphere",
+          "name": "Cast iron, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "3e96654f-7876-57f3-b7d1-5d99a40d56c7",
+          "unit": "kilogram",
+          "comment": "Full flow name: Cast iron, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 13}",
+          "amount": 1.3815e-10,
+          "uncertainty type": 2,
+          "loc": -22.702681064559123,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "a27fbae7619d9d3fdea32df011d1737c"
+          ],
+          "negative": false,
+          "reference product": "Cast iron, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "97c83bed-5d59-537a-aeeb-cd947269eead",
+          "type": "technosphere",
+          "name": "Nuclear spent fuel, in conditioning, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "2be482c9-3af7-5048-aa2f-d0e5f756fc13",
+          "unit": "kilogram",
+          "comment": "Full flow name: Nuclear spent fuel, in conditioning, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 14}",
+          "amount": 1.585e-09,
+          "uncertainty type": 2,
+          "loc": -20.262681429617167,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "448efbf2224918d75c7ff6e34cba9908"
+          ],
+          "negative": false,
+          "reference product": "Nuclear spent fuel, in conditioning, at plant",
+          "location": "CH"
+        },
+        {
+          "flow": "4cc2beb7-f5e8-5a00-ac15-f1dec38849d7",
+          "type": "technosphere",
+          "name": "Nitrogen, liquid, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "dc50e299-9e5b-5499-8464-a20b4c343c73",
+          "unit": "kilogram",
+          "comment": "Full flow name: Nitrogen, liquid, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 16}",
+          "amount": 6.6078e-08,
+          "uncertainty type": 2,
+          "loc": -16.53242997453555,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "f045080a8c4798733ca6da4ea5e1b77a"
+          ],
+          "negative": false,
+          "reference product": "Nitrogen, liquid, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "af99dcf4-1bd8-5a7a-b658-bd96bf84d911",
+          "type": "technosphere",
+          "name": "Bitumen, at refinery",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "cc2d7e33-78f0-5ddf-a59b-9ae53342fd0c",
+          "unit": "kilogram",
+          "comment": "Full flow name: Bitumen, at refinery\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 17}",
+          "amount": 8.257e-10,
+          "uncertainty type": 2,
+          "loc": -20.914789604505167,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "3cbaf3a0994ed458513679d7db926b38"
+          ],
+          "negative": false,
+          "reference product": "Bitumen, at refinery",
+          "location": "CH"
+        },
+        {
+          "flow": "9a830cbf-09ec-5584-91c8-d6cc97546184",
+          "type": "technosphere",
+          "name": "Chemicals inorganic, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "c50c02e3-81e2-54cf-838b-e5026616c5c5",
+          "unit": "kilogram",
+          "comment": "Full flow name: Chemicals inorganic, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 21}",
+          "amount": 2.506e-09,
+          "uncertainty type": 2,
+          "loc": -19.804577980472533,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "1a477e0c7b7856663eb012621a4299aa"
+          ],
+          "negative": false,
+          "reference product": "Chemicals inorganic, at plant",
+          "location": "GLO"
+        },
+        {
+          "flow": "a1c8e251-1a90-522f-8263-fd741090da92",
+          "type": "technosphere",
+          "name": "Concrete, normal, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "1afe5c21-3a7d-52b3-8b57-4b7b1b180c52",
+          "unit": "cubic meter",
+          "comment": "Full flow name: Concrete, normal, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 22}",
+          "amount": 1.0431e-11,
+          "uncertainty type": 2,
+          "loc": -25.286238974234713,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "cdb8a88c71baca8826bb2e8891b630a8"
+          ],
+          "negative": false,
+          "reference product": "Concrete, normal, at plant",
+          "location": "CH"
+        },
+        {
+          "flow": "eaf7ec7a-286c-5a8f-99b6-e15720e1cc8f",
+          "type": "technosphere",
+          "name": "U enriched 4.75%, in fuel element for LWR, at nuclear fuel fabrication plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "2188630c-3f3a-5e7e-8824-11bfeac27eb1",
+          "unit": "kilogram",
+          "comment": "Full flow name: U enriched 4.75%, in fuel element for LWR, at nuclear fuel fabrication plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 24}",
+          "amount": 2.324e-09,
+          "uncertainty type": 2,
+          "loc": -19.879975997956745,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "7878b91bcb911d04dda0bf9f01c4166f"
+          ],
+          "negative": false,
+          "reference product": "U enriched 4.75%, in fuel element for LWR, at nuclear fuel fabrication plant",
+          "location": "CH"
+        },
+        {
+          "flow": "bf319bf4-0600-5c27-9523-a62eadf42d66",
+          "type": "technosphere",
+          "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "9a95a140-c7c9-5ebc-80dc-3f0d049a464d",
+          "unit": "kilogram",
+          "comment": "Full flow name: Disposal, hazardous waste, 25% water, to hazardous waste incineration\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 26}",
+          "amount": 1.0388e-09,
+          "uncertainty type": 2,
+          "loc": -20.685199636139956,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "7e9c22bf937078d520d37bfce405c7a2"
+          ],
+          "negative": false,
+          "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+          "location": "CH"
+        },
+        {
+          "flow": "eeb568b0-c194-51b1-a1d2-44a8208da6b4",
+          "type": "technosphere",
+          "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "d2dd2d8e-8de4-51fb-a212-d3edc9414a7f",
+          "unit": "kilogram",
+          "comment": "Full flow name: Disposal, used mineral oil, 10% water, to hazardous waste incineration\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 30}",
+          "amount": 1.7456e-09,
+          "uncertainty type": 2,
+          "loc": -20.166167500849742,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "69cceebadb36e642d3b5859d71fd56e5"
+          ],
+          "negative": false,
+          "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+          "location": "CH"
+        },
+        {
+          "flow": "f81e4333-f82a-52a1-b70c-8148c932b8a6",
+          "type": "technosphere",
+          "name": "Lubricating oil, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "49588d58-7555-5fea-b6ad-0fe47003011c",
+          "unit": "kilogram",
+          "comment": "Full flow name: Lubricating oil, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 37}",
+          "amount": 1.7349e-09,
+          "uncertainty type": 2,
+          "loc": -20.172316062096264,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "0343bc4b94f7c29f00ded56645a6dd6f"
+          ],
+          "negative": false,
+          "reference product": "Lubricating oil, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "44bb2b3c-47ba-5b45-bf99-98a025ec189c",
+          "type": "technosphere",
+          "name": "Disposal, separator sludge, 90% water, to hazardous waste incineration",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "95791668-32e7-5b50-97bd-9517271bae69",
+          "unit": "kilogram",
+          "comment": "Full flow name: Disposal, separator sludge, 90% water, to hazardous waste incineration\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 38}",
+          "amount": 2.3454e-09,
+          "uncertainty type": 2,
+          "loc": -19.870809873901585,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "3db6ccdf61938aa745572114e3cd84d0"
+          ],
+          "negative": false,
+          "reference product": "Disposal, separator sludge, 90% water, to hazardous waste incineration",
+          "location": "CH"
+        },
+        {
+          "flow": "53ba2fad-dd06-53b1-9dfc-3fc7253d545c",
+          "type": "technosphere",
+          "name": "Anionic resin, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "9919e18b-b777-5190-902b-3625ec31507e",
+          "unit": "kilogram",
+          "comment": "Full flow name: Anionic resin, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 40}",
+          "amount": 6.8862e-11,
+          "uncertainty type": 2,
+          "loc": -23.398916614001962,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "bb83f2fa9eb3eb384219da2d7ad6dd71"
+          ],
+          "negative": false,
+          "reference product": "Anionic resin, at plant",
+          "location": "CH"
+        },
+        {
+          "flow": "4878089c-532b-5899-a904-3e7b58ba60f5",
+          "type": "technosphere",
+          "name": "Cationic resin, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "90402fc2-cb7f-5fe0-bb7c-14fb2a34aaa2",
+          "unit": "kilogram",
+          "comment": "Full flow name: Cationic resin, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 41}",
+          "amount": 6.8862e-11,
+          "uncertainty type": 2,
+          "loc": -23.398916614001962,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "a0ae9cdcd0d9752a7aab457fd3195326"
+          ],
+          "negative": false,
+          "reference product": "Cationic resin, at plant",
+          "location": "CH"
+        },
+        {
+          "flow": "373245f1-8e01-561e-98c1-ed844cabc9a0",
+          "type": "technosphere",
+          "name": "Water, decarbonised, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "66b61efe-347c-53b3-a440-c2f50c40f092",
+          "unit": "kilogram",
+          "comment": "Full flow name: Water, decarbonised, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 42}",
+          "amount": 0.0028701,
+          "uncertainty type": 2,
+          "loc": -5.853408406612043,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "f462f65251fecb753e521f9922eac5ef"
+          ],
+          "negative": false,
+          "reference product": "Water, decarbonised, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "d83596ba-5c5a-5605-9d5e-573dab9e0bb1",
+          "type": "technosphere",
+          "name": "Acetylene, at regional storehouse",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "669a3009-9a01-53ae-9cb6-8c98e51819ec",
+          "unit": "kilogram",
+          "comment": "Full flow name: Acetylene, at regional storehouse\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 46}",
+          "amount": 3.8554e-11,
+          "uncertainty type": 2,
+          "loc": -23.97896125995315,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "c30f89532ca267e458866cf282481a8a"
+          ],
+          "negative": false,
+          "reference product": "Acetylene, at regional storehouse",
+          "location": "CH"
+        },
+        {
+          "flow": "95666773-6445-5c27-81e3-707a49a33681",
+          "type": "technosphere",
+          "name": "Radioactive waste, in final repository for nuclear waste LLW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "cea83ff3-eadc-5977-bce6-cb14ee4f9662",
+          "unit": "cubic meter",
+          "comment": "Full flow name: Radioactive waste, in final repository for nuclear waste LLW\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 47}",
+          "amount": 3.0415e-11,
+          "uncertainty type": 2,
+          "loc": -24.216085208155878,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "f75941366743572141eec2190ba84a72"
+          ],
+          "negative": false,
+          "reference product": "Radioactive waste, in final repository for nuclear waste LLW",
+          "location": "CH"
+        },
+        {
+          "flow": "55aa3114-3469-5278-a75d-b02634534496",
+          "type": "technosphere",
+          "name": "Nuclear spent fuel, in reprocessing, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "bec72afb-3441-564b-8cdd-73211d2af92d",
+          "unit": "kilogram",
+          "comment": "Full flow name: Nuclear spent fuel, in reprocessing, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 48}",
+          "amount": 1.0538e-09,
+          "uncertainty type": 2,
+          "loc": -20.670863158153363,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "e21163ef6d80c3d3f8cffa43c10a202e"
+          ],
+          "negative": false,
+          "reference product": "Nuclear spent fuel, in reprocessing, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "f0fa1440-5267-599d-b566-21d2de4dc90f",
+          "type": "technosphere",
+          "name": "Reinforcing steel, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "ad031ee3-c87d-58b9-9106-095a44fbce13",
+          "unit": "kilogram",
+          "comment": "Full flow name: Reinforcing steel, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 49}",
+          "amount": 5.0335e-10,
+          "uncertainty type": 2,
+          "loc": -21.409735362753114,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "080f6f47305c708d0d269489342b1ba8"
+          ],
+          "negative": false,
+          "reference product": "Reinforcing steel, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "018cb8ee-2b42-551f-b0f7-043621dacea7",
+          "type": "technosphere",
+          "name": "Transport, freight, lorry, fleet average",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "e8d98f20-65eb-59b7-8a3c-0da1cb90eb4f",
+          "unit": "ton kilometer",
+          "comment": "Full flow name: Transport, freight, lorry, fleet average\n(2,2,2,1,1,5,BU:2); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 51}",
+          "amount": 8.2677e-09,
+          "uncertainty type": 2,
+          "loc": -18.610909480255433,
+          "scale": 0.35962671382221245,
+          "input": [
+            "BAFU:2026-reimported",
+            "b4960ba046de95553cb1c1bd5892ae32"
+          ],
+          "negative": false,
+          "reference product": "Transport, freight, lorry, fleet average",
+          "location": "RER"
+        },
+        {
+          "flow": "b4dfedb6-8c2c-5bab-8526-5c7265a484eb",
+          "type": "technosphere",
+          "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "f1a6f666-c9f0-545f-984c-e5c4d98c8645",
+          "unit": "ton kilometer",
+          "comment": "Full flow name: Transport, freight, lorry, 16t-32t gross weight, fleet average\n(2,2,2,1,1,5,BU:2); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 53}",
+          "amount": 2.7845e-08,
+          "uncertainty type": 2,
+          "loc": -17.39661241990478,
+          "scale": 0.35962671382221245,
+          "input": [
+            "BAFU:2026-reimported",
+            "f83183e5b3a278e542fec8d3040c221f"
+          ],
+          "negative": false,
+          "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+          "location": "CH"
+        },
+        {
+          "flow": "8c561cf0-cc57-5b62-9063-50c2548b10cd",
+          "type": "technosphere",
+          "name": "Sodium hypochlorite, 15% in H2O, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "e7f2b7f8-7169-59d0-aaec-af45cc006454",
+          "unit": "kilogram",
+          "comment": "Full flow name: Sodium hypochlorite, 15% in H2O, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 64}",
+          "amount": 1.8527e-08,
+          "uncertainty type": 2,
+          "loc": -17.804036709378536,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "a15fda363dec89ffc5920e6d4ca5b707"
+          ],
+          "negative": false,
+          "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "65c10483-bf5b-59d2-bb3c-3a6b996825cf",
+          "type": "technosphere",
+          "name": "Boric acid, anhydrous, powder, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "020c9216-894c-5389-9823-970b741eec5d",
+          "unit": "kilogram",
+          "comment": "Full flow name: Boric acid, anhydrous, powder, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 66}",
+          "amount": 6.8862e-11,
+          "uncertainty type": 2,
+          "loc": -23.398916614001962,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "d6e1dcbe5847049a3074914cb18e1fa7"
+          ],
+          "negative": false,
+          "reference product": "Boric acid, anhydrous, powder, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "bf12edd8-aae1-51f2-89e9-5b3cea307919",
+          "type": "technosphere",
+          "name": "Oxygen, liquid, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "993ab5cb-622a-5c90-9130-718ba9ae4659",
+          "unit": "kilogram",
+          "comment": "Full flow name: Oxygen, liquid, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 68}",
+          "amount": 1.7885e-08,
+          "uncertainty type": 2,
+          "loc": -17.83930346423543,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "f08735548fbecbcd1a8504ee808963ef"
+          ],
+          "negative": false,
+          "reference product": "Oxygen, liquid, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "f856b3ed-0dd0-511f-9dfc-6423609b4fb0",
+          "type": "technosphere",
+          "name": "Flat glass, coated, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "0c8ac8eb-1af9-537f-b3ba-e315497ace10",
+          "unit": "kilogram",
+          "comment": "Full flow name: Flat glass, coated, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 69}",
+          "amount": 4.6801e-09,
+          "uncertainty type": 2,
+          "loc": -19.179946359723772,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "750f88f2c0907569b8cc0e30f3b86546"
+          ],
+          "negative": false,
+          "reference product": "Flat glass, coated, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "ba0236d8-23fa-594b-9bcf-b50d783b385e",
+          "type": "technosphere",
+          "name": "Carbon dioxide liquid, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "5c64a578-0d5d-5d8d-800d-05f3c36b93c7",
+          "unit": "kilogram",
+          "comment": "Full flow name: Carbon dioxide liquid, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 71}",
+          "amount": 1.7885e-10,
+          "uncertainty type": 2,
+          "loc": -22.44447365022352,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "a3ca911802baf8275d8d58cba2df44bc"
+          ],
+          "negative": false,
+          "reference product": "Carbon dioxide liquid, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "24bfe697-3154-5590-8a93-75f420e19758",
+          "type": "technosphere",
+          "name": "Diesel, burned in diesel-electric generating set",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "9cc0208b-b23e-5606-8b80-4577dcf81ff5",
+          "unit": "megajoule",
+          "comment": "Full flow name: Diesel, burned in diesel-electric generating set\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 72}",
+          "amount": 3.9625e-07,
+          "uncertainty type": 2,
+          "loc": -14.741220511754921,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "97c26e58f6dba8cb109ff48ad5a3a552"
+          ],
+          "negative": false,
+          "reference product": "Diesel, burned in diesel-electric generating set",
+          "location": "GLO"
+        },
+        {
+          "flow": "d05ff088-3c2e-5b8b-82c5-29dd4963f8ce",
+          "type": "technosphere",
+          "name": "Radioactive waste, in interim storage conditioning",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "13624005-183a-546c-aad7-e5665a08e2b9",
+          "unit": "cubic meter",
+          "comment": "Full flow name: Radioactive waste, in interim storage conditioning\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 75}",
+          "amount": 4.6265e-14,
+          "uncertainty type": 2,
+          "loc": -30.704390659209693,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "2c58058e230028a0d23016e409db9fa7"
+          ],
+          "negative": false,
+          "reference product": "Radioactive waste, in interim storage conditioning",
+          "location": "CH"
+        },
+        {
+          "flow": "3257810b-9c51-52d6-aa89-3300fbd47d92",
+          "type": "technosphere",
+          "name": "Cement, unspecified, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "ad8800c7-d5ad-55c6-a936-54300e651a6f",
+          "unit": "kilogram",
+          "comment": "Full flow name: Cement, unspecified, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 76}",
+          "amount": 9.842e-10,
+          "uncertainty type": 2,
+          "loc": -20.73919198749667,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "39d00f374cc6aebd3e47bcc4efbc9f9f"
+          ],
+          "negative": false,
+          "reference product": "Cement, unspecified, at plant",
+          "location": "CH"
+        },
+        {
+          "flow": "e171e290-0915-56ce-ad9a-939857906e49",
+          "type": "technosphere",
+          "name": "Nuclear power plant, pressure water reactor 1000MW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "666d3cc7-fa12-58e8-9e8f-41fb93d833b8",
+          "unit": "unit",
+          "comment": "Full flow name: Nuclear power plant, pressure water reactor 1000MW\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 82}",
+          "amount": 2.7631e-15,
+          "uncertainty type": 2,
+          "loc": -33.522423157080006,
+          "scale": 0.5576363647806084,
+          "input": [
+            "BAFU:2026-reimported",
+            "faa62ba5663e78b2f41f8efaffbf4a31"
+          ],
+          "negative": false,
+          "reference product": "Nuclear power plant, pressure water reactor 1000MW",
+          "location": "CH"
+        },
+        {
+          "flow": "dfa1b85b-9280-5054-b982-510e713a29d0",
+          "type": "technosphere",
+          "name": "Chemicals organic, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "df244563-0578-5183-a1a2-3b082c86d8a6",
+          "unit": "kilogram",
+          "comment": "Full flow name: Chemicals organic, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 84}",
+          "amount": 1.4779e-09,
+          "uncertainty type": 2,
+          "loc": -20.33264367570802,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "11eecd0c7d3018f25e6840812d4e31cb"
+          ],
+          "negative": false,
+          "reference product": "Chemicals organic, at plant",
+          "location": "GLO"
+        },
+        {
+          "flow": "1326eff3-efc0-53f4-bf83-4c9ff3ce9dcc",
+          "type": "technosphere",
+          "name": "Argon, liquid, at plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "8eadb5c5-7acc-5d8b-8331-e7143e7da86c",
+          "unit": "kilogram",
+          "comment": "Full flow name: Argon, liquid, at plant\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 85}",
+          "amount": 2.7952e-08,
+          "uncertainty type": 2,
+          "loc": -17.39277708355471,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "77827bb788b7b72da0eb20b5c84a8a27"
+          ],
+          "negative": false,
+          "reference product": "Argon, liquid, at plant",
+          "location": "RER"
+        },
+        {
+          "flow": "16663f64-f6a8-5bee-b66b-d3bd2b2e4026",
+          "type": "technosphere",
+          "name": "Radioactive waste, in interim storage, for final repository LLW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "90ad6310-542d-5dfb-b1e5-9c52d97c7f2c",
+          "unit": "cubic meter",
+          "comment": "Full flow name: Radioactive waste, in interim storage, for final repository LLW\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 86}",
+          "amount": 1.8849e-12,
+          "uncertainty type": 2,
+          "loc": -26.997146346833674,
+          "scale": 0.09909745297512237,
+          "input": [
+            "BAFU:2026-reimported",
+            "fcc1d02d0c6dea67dbb4fe8c1cd228e5"
+          ],
+          "negative": false,
+          "reference product": "Radioactive waste, in interim storage, for final repository LLW",
+          "location": "CH"
+        },
+        {
+          "flow": "fe9552bd-49c9-4e37-8c13-eeee4ddb8e34",
+          "type": "biosphere",
+          "name": "Caesium-134",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Caesium-134\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 1}",
+          "amount": 4.0375e-09,
+          "uncertainty type": 2,
+          "loc": -19.327640148397638,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "fe9552bd-49c9-4e37-8c13-eeee4ddb8e34"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "19256c0f-bea8-4e61-9499-8cc2f84953f8",
+          "type": "biosphere",
+          "name": "Carbon-14",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Carbon-14\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 3}",
+          "amount": 8.1821e-06,
+          "uncertainty type": 2,
+          "loc": -11.71356171658113,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "19256c0f-bea8-4e61-9499-8cc2f84953f8"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "9a12a4c4-c03e-43fb-a448-4d911f539e64",
+          "type": "biosphere",
+          "name": "Manganese-54",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Manganese-54\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 4}",
+          "amount": 1.4029e-08,
+          "uncertainty type": 2,
+          "loc": -18.082139221209776,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "9a12a4c4-c03e-43fb-a448-4d911f539e64"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "9f826bcb-5efc-4977-93f2-8415e3f957df",
+          "type": "biosphere",
+          "name": "Silver-110",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Silver-110\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 5}",
+          "amount": 4.7443e-09,
+          "uncertainty type": 2,
+          "loc": -19.16632193947638,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "9f826bcb-5efc-4977-93f2-8415e3f957df"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "8c75e7ab-8ab8-41e4-b394-c166ff5b050d",
+          "type": "biosphere",
+          "name": "Water, river",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "cubic meter",
+          "comment": "Full flow name: Water, river\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 6}",
+          "amount": 6.158e-06,
+          "uncertainty type": 2,
+          "loc": -11.997758508461965,
+          "scale": 0.09909745297512237,
+          "input": [
+            "__biosphere__",
+            "8c75e7ab-8ab8-41e4-b394-c166ff5b050d"
+          ],
+          "negative": false,
+          "categories": [
+            "natural resource",
+            "in water"
+          ]
+        },
+        {
+          "flow": "6f1e995b-5915-4363-bd2c-d1e76ee446e0",
+          "type": "biosphere",
+          "name": "Niobium-95",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Niobium-95\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 7}",
+          "amount": 1.1995e-13,
+          "uncertainty type": 2,
+          "loc": -29.75170140562498,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "6f1e995b-5915-4363-bd2c-d1e76ee446e0"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "43b60c00-8156-49a1-9a9d-f68ccca0d000",
+          "type": "biosphere",
+          "name": "Radioactive species, alpha emitters",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Radioactive species, alpha emitters\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 10}",
+          "amount": 3.2343e-11,
+          "uncertainty type": 2,
+          "loc": -24.15462350170346,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "43b60c00-8156-49a1-9a9d-f68ccca0d000"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "90a39372-8b3f-4c99-acfd-6ea211791714",
+          "type": "biosphere",
+          "name": "Lanthanum-140",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Lanthanum-140\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 11}",
+          "amount": 5.3012e-10,
+          "uncertainty type": 2,
+          "loc": -21.35791771991607,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "90a39372-8b3f-4c99-acfd-6ea211791714"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "eadea134-34d3-4581-9b0b-a59533dfd526",
+          "type": "biosphere",
+          "name": "Iodine-133",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Iodine-133\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 12}",
+          "amount": 1.9491e-09,
+          "uncertainty type": 2,
+          "loc": -20.055898109373953,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "eadea134-34d3-4581-9b0b-a59533dfd526"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "ab9fef9d-1b47-4d79-a28a-0132dfa18020",
+          "type": "biosphere",
+          "name": "Iodine-131",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Iodine-131\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 15}",
+          "amount": 8.7925e-09,
+          "uncertainty type": 2,
+          "loc": -18.54936675158041,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "ab9fef9d-1b47-4d79-a28a-0132dfa18020"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "28be1d65-6b09-4ebd-8599-4366c3c2abab",
+          "type": "biosphere",
+          "name": "Krypton-85",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Krypton-85\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 18}",
+          "amount": 1.057e-05,
+          "uncertainty type": 2,
+          "loc": -11.457490758082129,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "28be1d65-6b09-4ebd-8599-4366c3c2abab"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "6f020607-b818-408d-a4b0-2c6465a6826d",
+          "type": "biosphere",
+          "name": "Cerium-144",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Cerium-144\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 19}",
+          "amount": 5.162e-10,
+          "uncertainty type": 2,
+          "loc": -21.384526828644034,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "6f020607-b818-408d-a4b0-2c6465a6826d"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "72958cbe-6609-46c2-bbfa-ee4ab826ca12",
+          "type": "biosphere",
+          "name": "Aerosols, radioactive, unspecified",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Aerosols, radioactive, unspecified\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 20}",
+          "amount": 5.751e-12,
+          "uncertainty type": 2,
+          "loc": -25.88164736319693,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "72958cbe-6609-46c2-bbfa-ee4ab826ca12"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "42901ad7-4be5-47d9-82cd-380ca34281c1",
+          "type": "biosphere",
+          "name": "Caesium-137",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Caesium-137\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 23}",
+          "amount": 1.0709e-07,
+          "uncertainty type": 2,
+          "loc": -16.049596234533627,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "42901ad7-4be5-47d9-82cd-380ca34281c1"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "3f206533-f017-4d74-8a2d-e563af85d417",
+          "type": "biosphere",
+          "name": "Barium-140",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Barium-140\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 25}",
+          "amount": 3.3949e-13,
+          "uncertainty type": 2,
+          "loc": -28.711331903426746,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "3f206533-f017-4d74-8a2d-e563af85d417"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "134ec0d7-3701-473c-a1a1-1982fd48ef4d",
+          "type": "biosphere",
+          "name": "Tritium",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Tritium\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 27}",
+          "amount": 0.001992,
+          "uncertainty type": 2,
+          "loc": -6.218616119819731,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "134ec0d7-3701-473c-a1a1-1982fd48ef4d"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "07f704a2-2746-4364-bcfd-606cefc30715",
+          "type": "biosphere",
+          "name": "Heat, waste",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, waste\n(2,2,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 28}",
+          "amount": 0.0081928,
+          "uncertainty type": 2,
+          "loc": -4.804499559203046,
+          "scale": 0.09909745297512237,
+          "input": [
+            "__biosphere__",
+            "07f704a2-2746-4364-bcfd-606cefc30715"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "7567e592-ecfa-467b-9f11-19f11786505b",
+          "type": "biosphere",
+          "name": "Antimony-124",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Antimony-124\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 29}",
+          "amount": 5.087e-13,
+          "uncertainty type": 2,
+          "loc": -28.306917943081967,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "7567e592-ecfa-467b-9f11-19f11786505b"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "51f80fcc-8eb0-4912-afbd-e9b9861e45a4",
+          "type": "biosphere",
+          "name": "Antimony-125",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Antimony-125\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 31}",
+          "amount": 2.506e-11,
+          "uncertainty type": 2,
+          "loc": -24.409748166460627,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "51f80fcc-8eb0-4912-afbd-e9b9861e45a4"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "6fb4d755-f17a-4d1e-a5ce-aad7829ef61f",
+          "type": "biosphere",
+          "name": "Zinc-65",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Zinc-65\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 32}",
+          "amount": 2.8166e-10,
+          "uncertainty type": 2,
+          "loc": -21.990320446158645,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "6fb4d755-f17a-4d1e-a5ce-aad7829ef61f"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "ad1ed615-e2cf-49e3-bd34-4589b4583222",
+          "type": "biosphere",
+          "name": "Antimony-122",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Antimony-122\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 33}",
+          "amount": 9.6814e-10,
+          "uncertainty type": 2,
+          "loc": -20.755644411010433,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "ad1ed615-e2cf-49e3-bd34-4589b4583222"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "077b92b0-0610-48ba-9ff8-55c13e98364b",
+          "type": "biosphere",
+          "name": "Antimony-124",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Antimony-124\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 34}",
+          "amount": 4.423e-08,
+          "uncertainty type": 2,
+          "loc": -16.933862545066177,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "077b92b0-0610-48ba-9ff8-55c13e98364b"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "7529a948-b5ac-4eb9-8349-2a3677b8fe14",
+          "type": "biosphere",
+          "name": "Chromium-51",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Chromium-51\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 35}",
+          "amount": 8.0964e-09,
+          "uncertainty type": 2,
+          "loc": -18.63184631850717,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "7529a948-b5ac-4eb9-8349-2a3677b8fe14"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "b696e904-e0a3-4e5a-bca7-500e6661e665",
+          "type": "biosphere",
+          "name": "Sodium-24",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Sodium-24\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 36}",
+          "amount": 1.0688e-08,
+          "uncertainty type": 2,
+          "loc": -18.354144220152122,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "b696e904-e0a3-4e5a-bca7-500e6661e665"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "f5f7c4c3-ce9d-47ec-8c97-62d70b286203",
+          "type": "biosphere",
+          "name": "Xenon-133",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Xenon-133\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 39}",
+          "amount": 0.00064685,
+          "uncertainty type": 2,
+          "loc": -7.343396129600363,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "f5f7c4c3-ce9d-47ec-8c97-62d70b286203"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "a9e65945-a4dd-42c2-89cf-81ad2eb6b0fd",
+          "type": "biosphere",
+          "name": "Caesium-137",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Caesium-137\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 43}",
+          "amount": 7.7965e-12,
+          "uncertainty type": 2,
+          "loc": -25.577346200885746,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "a9e65945-a4dd-42c2-89cf-81ad2eb6b0fd"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "0fc1db69-f50d-4a88-b9d8-1446e691063c",
+          "type": "biosphere",
+          "name": "Cobalt-60",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Cobalt-60\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 44}",
+          "amount": 4.2303e-07,
+          "uncertainty type": 2,
+          "loc": -14.675822738429163,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "0fc1db69-f50d-4a88-b9d8-1446e691063c"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "8db2694c-9a3f-4f8d-a915-cd8a380f5394",
+          "type": "biosphere",
+          "name": "Zirconium-95",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Zirconium-95\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 45}",
+          "amount": 1.6064e-09,
+          "uncertainty type": 2,
+          "loc": -20.249270186431136,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "8db2694c-9a3f-4f8d-a915-cd8a380f5394"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "2f36d881-55bd-44ed-a383-a97cd4c53b16",
+          "type": "biosphere",
+          "name": "Tellurium-123m",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Tellurium-123m\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 50}",
+          "amount": 1.6814e-09,
+          "uncertainty type": 2,
+          "loc": -20.203639057227353,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "2f36d881-55bd-44ed-a383-a97cd4c53b16"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "2c9e7fba-dd57-4294-8a5e-2aa489930f69",
+          "type": "biosphere",
+          "name": "Silver-110",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Silver-110\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 52}",
+          "amount": 3.3521e-12,
+          "uncertainty type": 2,
+          "loc": -26.421434100818143,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "2c9e7fba-dd57-4294-8a5e-2aa489930f69"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "6d3849fb-dbf1-40cf-905e-ba11be1ba9f4",
+          "type": "biosphere",
+          "name": "Tellurium-132",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Tellurium-132\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 54}",
+          "amount": 9.0174e-11,
+          "uncertainty type": 2,
+          "loc": -23.129279978748535,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "6d3849fb-dbf1-40cf-905e-ba11be1ba9f4"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "03e91172-fca0-47f3-9014-22ae3136251b",
+          "type": "biosphere",
+          "name": "Iodine-131",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Iodine-131\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 55}",
+          "amount": 3.6198e-09,
+          "uncertainty type": 2,
+          "loc": -19.436847061253776,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "03e91172-fca0-47f3-9014-22ae3136251b"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "ca828b6a-5c31-4cce-941e-cc7c1900e6fe",
+          "type": "biosphere",
+          "name": "Radioactive species, other beta emitters",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Radioactive species, other beta emitters\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 56}",
+          "amount": 9.2851e-11,
+          "uncertainty type": 2,
+          "loc": -23.100025058128594,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "ca828b6a-5c31-4cce-941e-cc7c1900e6fe"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "08b681c9-b5fc-46c8-beb5-5ee8bf31cef9",
+          "type": "biosphere",
+          "name": "Strontium-89",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Strontium-89\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 57}",
+          "amount": 3.909e-09,
+          "uncertainty type": 2,
+          "loc": -19.359984250135593,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "08b681c9-b5fc-46c8-beb5-5ee8bf31cef9"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "01f511e2-7030-45f0-abb7-c24a4fae698b",
+          "type": "biosphere",
+          "name": "Antimony-125",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Antimony-125\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 58}",
+          "amount": 4.4659e-08,
+          "uncertainty type": 2,
+          "loc": -16.92420998218679,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "01f511e2-7030-45f0-abb7-c24a4fae698b"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "de30c59a-c312-4a4e-8025-df5aa48c83e3",
+          "type": "biosphere",
+          "name": "Cobalt-57",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Cobalt-57\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 59}",
+          "amount": 9.5529e-09,
+          "uncertainty type": 2,
+          "loc": -18.466421063629166,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "de30c59a-c312-4a4e-8025-df5aa48c83e3"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "c708b024-c922-4c43-8a49-81c472c48f75",
+          "type": "biosphere",
+          "name": "Iodine-133",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Iodine-133\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 60}",
+          "amount": 4.4552e-10,
+          "uncertainty type": 2,
+          "loc": -21.531778976647136,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "c708b024-c922-4c43-8a49-81c472c48f75"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "af99ce19-4a31-4c6f-b050-491e2b6f1ad1",
+          "type": "biosphere",
+          "name": "Cerium-141",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Cerium-141\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 61}",
+          "amount": 1.8849e-10,
+          "uncertainty type": 2,
+          "loc": -22.391976160845584,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "af99ce19-4a31-4c6f-b050-491e2b6f1ad1"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "bd64a010-0115-47ca-942f-cbdac1d26b87",
+          "type": "biosphere",
+          "name": "Noble gases, radioactive, unspecified",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Noble gases, radioactive, unspecified\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 62}",
+          "amount": 0.00027738,
+          "uncertainty type": 2,
+          "loc": -8.190122150736086,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "bd64a010-0115-47ca-942f-cbdac1d26b87"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "033fb239-a6c7-4486-9f92-f5a80b346778",
+          "type": "biosphere",
+          "name": "Cobalt-58",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Cobalt-58\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 63}",
+          "amount": 1.7564e-11,
+          "uncertainty type": 2,
+          "loc": -24.76516976322908,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "033fb239-a6c7-4486-9f92-f5a80b346778"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "cebdf8ce-efe8-4218-a32c-612b14e352bb",
+          "type": "biosphere",
+          "name": "Strontium-90",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Strontium-90\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 65}",
+          "amount": 1.3922e-09,
+          "uncertainty type": 2,
+          "loc": -20.39238060719398,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "cebdf8ce-efe8-4218-a32c-612b14e352bb"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "dec2d31c-00b1-454a-9b2a-37875c0af04a",
+          "type": "biosphere",
+          "name": "Niobium-95",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Niobium-95\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 67}",
+          "amount": 3.2878e-09,
+          "uncertainty type": 2,
+          "loc": -19.53304718885314,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "dec2d31c-00b1-454a-9b2a-37875c0af04a"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "f09c1931-85fb-4f50-be9d-15d5c0f5e11e",
+          "type": "biosphere",
+          "name": "Technetium-99m",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Technetium-99m\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 70}",
+          "amount": 3.0094e-09,
+          "uncertainty type": 2,
+          "loc": -19.62152511360377,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "f09c1931-85fb-4f50-be9d-15d5c0f5e11e"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "a7ea85d9-b9d1-4054-ba58-4e6bf4d858d0",
+          "type": "biosphere",
+          "name": "Molybdenum-99",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Molybdenum-99\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 73}",
+          "amount": 6.4257e-12,
+          "uncertainty type": 2,
+          "loc": -25.770715541665478,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "a7ea85d9-b9d1-4054-ba58-4e6bf4d858d0"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "f7fc4f19-e01f-4909-aab5-f7612354e7a0",
+          "type": "biosphere",
+          "name": "Cobalt-58",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Cobalt-58\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 74}",
+          "amount": 1.2209e-06,
+          "uncertainty type": 2,
+          "loc": -13.615922266271602,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "f7fc4f19-e01f-4909-aab5-f7612354e7a0"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "fd000a8d-2e90-4042-b148-cfb6bdfbbff5",
+          "type": "biosphere",
+          "name": "Caesium-136",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Caesium-136\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 77}",
+          "amount": 3.0094e-10,
+          "uncertainty type": 2,
+          "loc": -21.924110206597817,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "fd000a8d-2e90-4042-b148-cfb6bdfbbff5"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "fa260f53-4850-4585-9b67-5cdbc603c5ef",
+          "type": "biosphere",
+          "name": "Zirconium-95",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Zirconium-95\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 78}",
+          "amount": 6.1901e-11,
+          "uncertainty type": 2,
+          "loc": -23.505484781279637,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "fa260f53-4850-4585-9b67-5cdbc603c5ef"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "e43640a9-526c-42bd-86e5-4425c9e239ed",
+          "type": "biosphere",
+          "name": "Iron-59",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Iron-59\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 79}",
+          "amount": 4.498e-10,
+          "uncertainty type": 2,
+          "loc": -21.522218076403334,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "e43640a9-526c-42bd-86e5-4425c9e239ed"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "14ca107c-315a-410b-af1b-35a886faebce",
+          "type": "biosphere",
+          "name": "Xenon-135",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Xenon-135\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 80}",
+          "amount": 0.00017778,
+          "uncertainty type": 2,
+          "loc": -8.634963727150746,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "14ca107c-315a-410b-af1b-35a886faebce"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "40d16700-3130-41da-8e94-e1b127741f59",
+          "type": "biosphere",
+          "name": "Ruthenium-103",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Ruthenium-103\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 81}",
+          "amount": 3.0522e-10,
+          "uncertainty type": 2,
+          "loc": -21.90998828786582,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "40d16700-3130-41da-8e94-e1b127741f59"
+          ],
+          "negative": false,
+          "categories": [
+            "water",
+            "surface water"
+          ]
+        },
+        {
+          "flow": "441ef9b3-0df0-461b-bd84-358973e0c2ca",
+          "type": "biosphere",
+          "name": "Cobalt-60",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "kilo Becquerel",
+          "comment": "Full flow name: Cobalt-60\n(2,2,2,1,1,5,BU:3); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 83}",
+          "amount": 8.1071e-11,
+          "uncertainty type": 2,
+          "loc": -23.235695801985887,
+          "scale": 0.5576363647806084,
+          "input": [
+            "__biosphere__",
+            "441ef9b3-0df0-461b-bd84-358973e0c2ca"
+          ],
+          "negative": false,
+          "categories": [
+            "air",
+            "non-urban air or from high stacks"
+          ]
+        },
+        {
+          "flow": "2404b41a-2eed-4e9d-8ab6-783946fdf5d6",
+          "type": "biosphere",
+          "name": "Water",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "unit": "cubic meter",
+          "comment": "Full flow name: Water\n(5,5,5,5,5,BU:1.05); All uncertainty-values set to 5.0 by default. Balance of input water\nBAFU mapping audit: {\"bafu source exchange index\": 87}",
+          "amount": 5.8501e-06,
+          "uncertainty type": 2,
+          "loc": -12.049051802849515,
+          "scale": 0.4620500793828185,
+          "input": [
+            "__biosphere__",
+            "2404b41a-2eed-4e9d-8ab6-783946fdf5d6"
+          ],
+          "negative": false,
+          "categories": [
+            "water"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "heat supply, frozen legacy mix, Heat from waste, at municipal waste incineration plant",
+      "reference product": "heat, frozen producer, Heat from waste, at municipal waste incineration plant",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-frozen-heat",
+      "code": "uvek-2026-frozen-swiss-producer-08",
+      "production amount": 1,
+      "type": "process",
+      "heat frozen proxy": true,
+      "premise heat": {
+        "kind": "fixed_native_heat_producer",
+        "source_identity": {
+          "name": "Heat from waste, at municipal waste incineration plant",
+          "reference product": "Heat from waste, at municipal waste incineration plant",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "source_code": "69ba3436b2c62227c8809e65580bbccc"
+      },
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      },
+      "comment": "Full activity name: Heat from waste, at municipal waste incineration plant\nThe multioutput-process 'municipal solid waste to municipal incineration' delivers the co-products 'disposal, municipal solid waste, 22.9% water, to municipal incineration' and 'electricity from waste, at municipal waste incineration plant' and 'heat from waste, at municipal waste incineration plant '. Default allocation 100% to disposal function, 0% to energy production. These allocation factors also apply to emissions of waste heat: i.e. neither electricity nor heat from waste at MSWI does contain any waste heat emissions. Inventoried waste contains 21% paper; 8% Mixed cardbord; 15% plastics; 3% laminated materials; 2% laminated packaging, e.g. tetra bricks; 3% combined goods: dipers; 3% glass; 2% textiles; 8% minerals; 9% natural products; 22% compostable material; 2.65% inert metals; 1% volatile metals; 0.0065% batteries; 0.34% electronic goods; . waste composition (wet, in ppm): upper heating value 13.27 MJ/kg; lower heating value 11.74 MJ/kg; H2O 228830; O 257060; H 48250; C 334230; S 1119; N 3123.8; P 893.79; B 7.1933; Cl 6866.2; Br 13.552; F 56.358; I 0.0121; Ag 0.714; As 0.62521; Ba 149.04; Cd 11.748; Co 1.3453; Cr 315.21; Cu 1212.8; Hg 1.4424; Mn 259.36; Mo 1.9551; Ni 107.38; Pb 502.43; Sb 22.564; Se 0.31969; Sn 73.44; V 9.2147; Zn 1311.2; Be n.a.; Sc n.a.; Sr n.a.; Ti n.a.; Tl n.a.; W n.a.; Si 48510; Fe 29996; Ca 14062; Al 12420; K 2059.7; Mg 3377.7; Na 5143.9; Share of carbon in waste that is biogenic 60.4%. Share of iron in waste that is metallic/recyclable 60%. Net energy produced in MSWI: 1.01MJ/kg waste electric energy and 2.16MJ/kg waste electric energy Allocation of energy production: no substitution or expansion. Total burden allocated to waste disposal function of MSWI. One kg of this waste produces 0.1888 kg of slag and 1 kg of residues, which are landfilled. ;; UUID: cc476d2d-20a3-3064-a77e-8d173cc5ac5e\nwaste-specific air and water emisions from incineration, auxiliary material consumption for flue gas cleaning. Short-term emissions to river water and long-term emisisons to ground water from slag compartment (from bottom slag) and residual material landfill (from solidified fly ashes and scrubber slugde). Process energy demands for MSWI.\nLocation: Specific to the technology mix encountered in Switzerland in 2000. Well applicable to modern incineration practices in Europe, North America or Japan.\nTechnology: average Swiss MSWI plants in 2000 with electrostatic precipitator for fly ash (ESP), wet flue gas scrubber and 29.4%,  SNCR 32.2%,  SCR-high dust 24.6%,  SCR-low dust  DeNOx facilities and 13.8% without Denox  (by burnt waste, according to Swiss average). Share of waste incinerated in plants with magnetic scrap separation from slag : 50%. Gross electric efficiency technology mix 12.997% and Gross thermal efficiency technology mix 25.57% \nTime period: Waste composition as given in literature reference, theoretical data or other source. Transfer coefficients for modern Swiss MSWI. Emission speciation based on early 90ies data.\nProduction volume: na\nSampling: waste-specific calculation based on literature data \nExtrapolations: Typical elemental transfer coefficients from current studies for modern MSWI, completed with data from coal power plants and estimates, adapted for inert/burnable waste.\nUncertainty adjustments: uncertainty of waste input composition data derived from generic formula GSD(c) = N*ln(c)+1\nBAFU mapped export: unsupported biosphere exchanges excluded; see audit/. Local UUIDs and generic activity classification are export conventions. Source: process_cc476d2d-20a3-3064-a77e-8d173cc5ac5e.xml\nGeography: Location: Specific to the technology mix encountered in Switzerland in 2000. Well applicable to modern incineration practices in Europe, North America or Japan.\nTechnology: Technology: average Swiss MSWI plants in 2000 with electrostatic precipitator for fly ash (ESP), wet flue gas scrubber and 29.4%,  SNCR 32.2%,  SCR-high dust 24.6%,  SCR-low dust  DeNOx facilities and 13.8% without Denox  (by burnt waste, according to Swiss average). Share of waste incinerated in plants with magnetic scrap separation from slag : 50%. Gross electric efficiency technology mix 12.997% and Gross thermal efficiency technology mix 25.57% \nTime period: Time period: Waste composition as given in literature reference, theoretical data or other source. Transfer coefficients for modern Swiss MSWI. Emission speciation based on early 90ies data. Fixed complete producer copy for historical composition. The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix. This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified. Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates. No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat.",
+      "exchanges": [
+        {
+          "flow": "13d1706f-5caa-53f5-b8c4-d41784437984",
+          "type": "production",
+          "name": "heat supply, frozen legacy mix, Heat from waste, at municipal waste incineration plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "fadc5ca8-ad60-599f-b892-c3dc579539ba",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat from waste, at municipal waste incineration plant\nSWITZERLAND\n\nBAFU mapping audit: {\"bafu source exchange index\": 0}",
+          "amount": 1.0,
+          "uncertainty type": 0,
+          "loc": 1.0,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-08"
+          ],
+          "reference product": "heat, frozen producer, Heat from waste, at municipal waste incineration plant",
+          "location": "CH"
+        }
+      ]
+    },
+    {
+      "name": "heat supply, frozen legacy mix, native Swiss generation at plant",
+      "reference product": "heat, frozen Swiss generation at plant",
+      "location": "GLO",
+      "unit": "megajoule",
+      "database": "premise-UVEK-frozen-heat",
+      "code": "uvek-2026-frozen-swiss-generation-at-plant",
+      "production amount": 1,
+      "type": "process",
+      "heat frozen proxy": true,
+      "premise heat": {
+        "kind": "frozen_native_generation_mix",
+        "native_heat_input_total_MJ": 1.10978,
+        "producer_count": 8,
+        "source_location": "CH"
+      },
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-frozen-historical-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      },
+      "comment": "The native Swiss exergy-allocated delivered district-heat mix supplies eight plant-heat contributions totalling 1.10978 MJ per delivered MJ and a separate one-MJ network service. This derived resource represents one MJ at plant: retain the relative producer contributions, divide their coefficients by the nominal total 1.10978 and leave network service and the delivered-heat loss boundary outside this pre-delivery reference. Standard Premise delivery adds its separately reviewed network model once; its loss convention can differ from the historical Swiss delivered mix. This globally applied historical Swiss generation portfolio is a screening proxy for unspecified heat or missing IAM supply detail, including building residual heat. It includes natural gas, CHP, heat pumps, oil, wood, nuclear and native zero-allocated waste heat. It is not a known future regional portfolio, a reconstruction of non-gas residual fuels, or a measured small-boiler mix. Heat grade, end-use technology, geography, allocation, vintage and score differences remain explicit and unquantified. Keep complete native producer inventories under distinct fixed identities, excluding them from heat-market relinking. Preserve their source inputs, emissions, allocation, signed quantities and supported uncertainty. The source weights are scaled by one fixed nominal basis conversion; their marginal uncertainty remains, without asserting correlated, sample-normalized portfolio shares. Preserve the native empty zero-allocated MSWI heat handover without adding incineration burdens or credits. Upstream electricity and fuel backgrounds may still respond to their own normal sector updates. No known IAM volume is removed, no additional residual energy is invented and no efficiency is inferred from allocated fuel draw. The fallback replaces only unspecified composition. A missing source or changed quantity guard remains an error; this does not authorize substituting a network-only service for heat.",
+      "exchanges": [
+        {
+          "name": "heat supply, frozen legacy mix, native Swiss generation at plant",
+          "reference product": "heat, frozen Swiss generation at plant",
+          "location": "GLO",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-generation-at-plant"
+          ]
+        },
+        {
+          "flow": "9767990a-9593-5c33-b3d1-387e201b8775",
+          "type": "technosphere",
+          "name": "heat supply, frozen legacy mix, Heat, natural gas, at industrial furnace 1MW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "a7122952-e1a2-56d2-ad26-cf3a0fb18d3b",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, natural gas, at industrial furnace 1MW\n(4,1,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 1}",
+          "amount": 0.11292328209194614,
+          "uncertainty type": 2,
+          "loc": -2.1810466103803323,
+          "scale": 0.13202757091031236,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-01"
+          ],
+          "negative": false,
+          "reference product": "heat, frozen producer, Heat, natural gas, at industrial furnace 1MW",
+          "location": "CH"
+        },
+        {
+          "flow": "fdac29e1-85c7-5c83-a12e-c9bf67d81998",
+          "type": "technosphere",
+          "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, natural gas, allocation exergy",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "5c730f2f-18c5-5ffc-9fba-c9d6b264fb5f",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, at cogen 1MWth, natural gas, allocation exergy\n(4,1,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 2}",
+          "amount": 0.11292328209194614,
+          "uncertainty type": 2,
+          "loc": -2.1810466103803323,
+          "scale": 0.13202757091031236,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-02"
+          ],
+          "negative": false,
+          "reference product": "heat, frozen producer, Heat, at cogen 1MWth, natural gas, allocation exergy",
+          "location": "CH"
+        },
+        {
+          "flow": "99a29006-ec1c-5810-b385-e518f4165800",
+          "type": "technosphere",
+          "name": "heat supply, frozen legacy mix, Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "d8b730a1-b3d6-5563-8771-34cfd1aa8efe",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building\n(4,2,2,1,3,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 3}",
+          "amount": 0.055911081475607784,
+          "uncertainty type": 2,
+          "loc": -2.8839926809790266,
+          "scale": 0.16075181046364584,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-03"
+          ],
+          "negative": false,
+          "reference product": "heat, frozen producer, Heat, at borehole heat pump, brine-water, 50kW, CH electricity, in new building",
+          "location": "CH"
+        },
+        {
+          "flow": "bbab6501-8a9f-5a37-b15c-c18211c4e55e",
+          "type": "technosphere",
+          "name": "heat supply, frozen legacy mix, Heat, light fuel oil, at industrial furnace 1MW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "8da1c65c-1c25-5dab-bc8c-81a5981c0e29",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, light fuel oil, at industrial furnace 1MW\n(2,1,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 4}",
+          "amount": 0.02400475769972427,
+          "uncertainty type": 2,
+          "loc": -3.7295032307921345,
+          "scale": 0.09860508464385259,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-04"
+          ],
+          "negative": false,
+          "reference product": "heat, frozen producer, Heat, light fuel oil, at industrial furnace 1MW",
+          "location": "CH"
+        },
+        {
+          "flow": "1bda5078-0d6e-52c8-858e-04ba322ba4d3",
+          "type": "technosphere",
+          "name": "heat supply, frozen legacy mix, Heat, at cogen 1MWth, wood chips, allocation exergy",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "f48241c6-c1ee-5c95-b8d8-09c640381ed1",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, at cogen 1MWth, wood chips, allocation exergy\n(4,1,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 5}",
+          "amount": 0.07331453080790788,
+          "uncertainty type": 2,
+          "loc": -2.6129964522474745,
+          "scale": 0.13202757091031236,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-05"
+          ],
+          "negative": false,
+          "reference product": "heat, frozen producer, Heat, at cogen 1MWth, wood chips, allocation exergy",
+          "location": "CH"
+        },
+        {
+          "flow": "d0e30aaa-dfb6-5e19-998a-a890d52ded14",
+          "type": "technosphere",
+          "name": "heat supply, frozen legacy mix, Heat, mixed chips from forest, at furnace 1000kW",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "74f9ed0b-f1d8-53e9-9b81-df4626122bf5",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, mixed chips from forest, at furnace 1000kW\n(4,1,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 6}",
+          "amount": 0.2304420695993801,
+          "uncertainty type": 2,
+          "loc": -1.4677557730813007,
+          "scale": 0.13202757091031236,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-06"
+          ],
+          "negative": false,
+          "reference product": "heat, frozen producer, Heat, mixed chips from forest, at furnace 1000kW",
+          "location": "CH"
+        },
+        {
+          "flow": "e30b5a12-638c-5f16-b9bc-f0010d5bb830",
+          "type": "technosphere",
+          "name": "heat supply, frozen legacy mix, Heat, at nuclear power plant, allocation exergy",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "e2383d5a-589f-5e5e-8604-6a907b0ae447",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat, at nuclear power plant, allocation exergy\n(4,1,2,1,4,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 7}",
+          "amount": 0.06881363873920958,
+          "uncertainty type": 2,
+          "loc": -2.676353316200782,
+          "scale": 0.2419532672073635,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-07"
+          ],
+          "negative": false,
+          "reference product": "heat, frozen producer, Heat, at nuclear power plant, allocation exergy",
+          "location": "CH"
+        },
+        {
+          "flow": "13d1706f-5caa-53f5-b8c4-d41784437984",
+          "type": "technosphere",
+          "name": "heat supply, frozen legacy mix, Heat from waste, at municipal waste incineration plant",
+          "classifications": {},
+          "production volume": 0.0,
+          "properties": {},
+          "activity": "fadc5ca8-ad60-599f-b892-c3dc579539ba",
+          "unit": "megajoule",
+          "comment": "Full flow name: Heat from waste, at municipal waste incineration plant\n(4,1,2,1,1,5,BU:1.05); ;\n\nBAFU mapping audit: {\"bafu source exchange index\": 8}",
+          "amount": 0.32166735749427816,
+          "uncertainty type": 2,
+          "loc": -1.1342373186629613,
+          "scale": 0.13202757091031236,
+          "input": [
+            "premise-UVEK-frozen-heat",
+            "uvek-2026-frozen-swiss-producer-08"
+          ],
+          "negative": false,
+          "reference product": "heat, frozen producer, Heat from waste, at municipal waste incineration plant",
+          "location": "CH"
+        }
+      ]
+    }
+  ]
+}

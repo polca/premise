@@ -102,5 +102,16 @@
     "finding": "Eight plant-heat inputs and one separately listed district transport service. A pre-delivery frozen producer composition needs a documented derivation and protection against heat-market relinking; delivered heat must not acquire a second delivery burden. Building-residual boundary remains to review.",
     "evidence_sha256": "949b2612d432973040861a61aa2d60eda97d6ffcccf901019f8ec70ec0cd1b8a",
     "qualified": false
+  },
+  "follow_up_frozen_and_industrial_solar": {
+    "status": "all_three_remaining_bindings_controlled_shared_workflow_qualified_full_real_scenario_unfinished",
+    "evidence": "docs/development/uvek-frozen-historical-heat-verification.json",
+    "remaining_unqualified_heat_roles": 0,
+    "full_heat_sector_qualified": false,
+    "full_real_IAM_scenario_verified": false,
+    "next_checks": [
+      "Electricity time-period market cycles reported by exhaustive graph validation.",
+      "Clinker zero-amount lognormal uncertainty reported by exhaustive graph validation."
+    ]
   }
 }

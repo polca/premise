@@ -9,7 +9,7 @@ from premise.inventory.clic_requirements import role_slugs
 
 @pytest.mark.parametrize(
     "role",
-    ["heat, secondary, from solar thermal"],
+    ["heat, industrial, from solar thermal", "heat, secondary, from solar thermal"],
 )
 def test_solar_heat_filter_does_not_match_electricity_or_native_hot_water(role):
     definition = get_mapping(VARIABLES_DIR / "heat.yaml", "uvek_aliases")[role]

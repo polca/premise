@@ -1232,9 +1232,10 @@
         "docs/development/uvek-native-coal-ccs-heat-verification.json",
         "docs/development/uvek-native-wood-ccs-heat-verification.json",
         "docs/development/uvek-native-oil-ccs-heat-verification.json",
-        "docs/development/uvek-secondary-solar-heat-verification.json"
+        "docs/development/uvek-secondary-solar-heat-verification.json",
+        "docs/development/uvek-frozen-historical-heat-verification.json"
       ],
-      "latest_coverage_note": "Geothermal, all five CCS bindings and REMIND secondary solar heat verified in controlled shared-workflow cases. Secondary solar retains the explicitly warned electrical-energy-normalized source convention; no useful-thermal performance equivalence is claimed. Its normal update, exhaustive validation and export produced 12,633 activities and 864 signed finite LCIs. Three bindings remain: industrial solar and two residual-heat bindings. Industrial solar is not admitted while missing native frozen heat fallback remains unresolved. Complete real IAM and combined-fuels qualification remain unfinished.",
+      "latest_coverage_note": "All individual heat role bindings have controlled shared-workflow coverage, including native frozen residual/fallback composition and industrial solar. Fixed native producer vectors and effective uncertainty, pre-delivery network boundary, full graphs and signed LCIs were inspected. Whole heat qualification remains unfinished: a real REMIND four-sector build fails exhaustive validation on electricity time-period cycles and zero-amount clinker lognormal uncertainty. Complete real IAM, combined fuels and remaining sector qualification are not claimed.",
       "geothermal_stage": {
         "status": "controlled_shared_callback_export_and_signed_LCI_verified",
         "verification": "docs/development/uvek-secondary-geothermal-heat-verification.json",
@@ -1278,6 +1279,11 @@
         "verification": "docs/development/uvek-secondary-solar-heat-verification.json",
         "thermal_delivery_performance_validated": false,
         "remaining_unqualified_heat_role_bindings": 3
+      },
+      "frozen_native_and_industrial_solar_stage": {
+        "verification": "docs/development/uvek-frozen-historical-heat-verification.json",
+        "remaining_unqualified_individual_heat_bindings": 0,
+        "full_real_IAM_qualification": false
       }
     },
     {

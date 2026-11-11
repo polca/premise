@@ -1,0 +1,144 @@
+{
+  "status": "all_three_remaining_bindings_controlled_shared_workflow_qualified_full_real_scenario_unfinished",
+  "controlled_cases": {
+    "industrial": {
+      "status": "controlled_shared_workflow_frozen_native_heat_export_and_signed_LCI_verified",
+      "case": "industrial",
+      "database": "BAFU:2026-controlled-MESSAGE-solar-heat-20261112-003407",
+      "export_activities": 12667,
+      "fixed_native_producers": 8,
+      "regional_frozen_suppliers": 12,
+      "heat_markets": 26,
+      "signed_finite_LCIs": 94,
+      "native_producer_vectors_and_uncertainty_preserved": true,
+      "frozen_regional_vectors_equal_historical_pre_delivery_mix": true,
+      "no_IAM_heat_market_inputs_in_frozen_suppliers": true,
+      "no_network_service_in_pre_delivery_mix": true,
+      "all_links_internal": true,
+      "biosphere_links_requested_database": true,
+      "exhaustive_graph_issues": 0,
+      "actual_IAM_scenario": false,
+      "full_real_IAM_scenario_verified": false,
+      "frozen_share_ranges": {
+        "market for heat, secondary, district or industrial": {
+          "minimum": 1.0,
+          "maximum": 1.0
+        }
+      }
+    },
+    "buildings": {
+      "status": "controlled_shared_workflow_frozen_native_heat_export_and_signed_LCI_verified",
+      "case": "buildings",
+      "database": "BAFU:2026-controlled-MESSAGE-buildings-residual-heat-20261112-003704",
+      "export_activities": 12260,
+      "fixed_native_producers": 8,
+      "regional_frozen_suppliers": 24,
+      "heat_markets": 26,
+      "signed_finite_LCIs": 118,
+      "native_producer_vectors_and_uncertainty_preserved": true,
+      "frozen_regional_vectors_equal_historical_pre_delivery_mix": true,
+      "no_IAM_heat_market_inputs_in_frozen_suppliers": true,
+      "no_network_service_in_pre_delivery_mix": true,
+      "all_links_internal": true,
+      "biosphere_links_requested_database": true,
+      "exhaustive_graph_issues": 0,
+      "actual_IAM_scenario": false,
+      "full_real_IAM_scenario_verified": false,
+      "frozen_share_ranges": {
+        "market for heat, for buildings": {
+          "minimum": 0.646203051144887,
+          "maximum": 0.646203051144887
+        },
+        "market for heat, secondary, district or industrial": {
+          "minimum": 1.0,
+          "maximum": 1.0
+        }
+      }
+    },
+    "secondary": {
+      "status": "controlled_shared_workflow_frozen_native_heat_export_and_signed_LCI_verified",
+      "case": "secondary",
+      "database": "BAFU:2026-controlled-IMAGE-secondary-residual-heat-20261112-003832",
+      "export_activities": 12375,
+      "fixed_native_producers": 8,
+      "regional_frozen_suppliers": 26,
+      "heat_markets": 27,
+      "signed_finite_LCIs": 124,
+      "native_producer_vectors_and_uncertainty_preserved": true,
+      "frozen_regional_vectors_equal_historical_pre_delivery_mix": true,
+      "no_IAM_heat_market_inputs_in_frozen_suppliers": true,
+      "no_network_service_in_pre_delivery_mix": true,
+      "all_links_internal": true,
+      "biosphere_links_requested_database": true,
+      "exhaustive_graph_issues": 0,
+      "actual_IAM_scenario": false,
+      "full_real_IAM_scenario_verified": false,
+      "frozen_share_ranges": {
+        "market for heat, secondary, district or industrial": {
+          "minimum": 0.6666666666666666,
+          "maximum": 0.6666666666666666
+        }
+      }
+    }
+  },
+  "tests": {
+    "frozen_shared_heat_transformation_geography": 161,
+    "solar_filter_tests_separate": 2
+  },
+  "remaining_unqualified_individual_heat_bindings": 0,
+  "full_heat_sector_qualification": false,
+  "full_real_IAM_scenario_verified": false,
+  "real_scenario_pending_failures": [
+    "Electricity time-period market cycles reported by exhaustive graph validation.",
+    "Clinker zero-amount lognormal uncertainty reported by exhaustive graph validation."
+  ],
+  "ecoinvent_regression": {
+    "source": "ecoinvent 3.12 cut-off",
+    "scenario": "REMIND SSP2-NPi 2050",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "fuels"
+    ],
+    "updated_activities": 31205,
+    "export_created": false
+  },
+  "runtime_adaptation": "Source identity override in the existing frozen-market method, with unchanged ecoinvent defaults and source-family warnings; no separate UVEK engine.",
+  "evidence_sha256": {
+    "controlled-industrial-solar-heat-frozen-verification.private.json": "676beb0c2185cb7778afc0ae70bcc773e73d18b9493e47250bb5fe5ca1093e5c",
+    "controlled-industrial-solar-heat-exhaustive-validation.private.json": "6aa222d2605bdc6db1fc601905ef2ab79199a6fd533b3f7b17428413c7912e85",
+    "controlled-buildings-residual-heat-frozen-verification.private.json": "7471623e0ce2a697b2c2c4969ce6d3ad22e84717d292d24d8c467de76598ded9",
+    "controlled-buildings-residual-heat-exhaustive-validation.private.json": "b630a7976c450ecbcdf2dad3bc3ee7f330ef2ec0d8fdfda6456457881e530584",
+    "controlled-secondary-residual-heat-frozen-verification.private.json": "e7b4868b88c78d10941987e49967e0fc9a510ed139d97507d55202d4be746747",
+    "controlled-secondary-residual-heat-exhaustive-validation.private.json": "98a7e6746d60adffcb7c4826f160d0b36d0df63a876f6fd39242b773e1f68b53",
+    "frozen-final-heat-regressions.log": "ad2363bafbb8fe9e7336db6e0805cd45d75509e64fea57d8aad363ba680fb898",
+    "frozen-industrial-solar-filter-tests.log": "5f3cbdd1f552b75923b1b4d045200e0b6c51643ce4159d6272eb720e72e42a32",
+    "frozen-heat-ecoinvent-312-regression.log": "a941892ca84084243f2781c17903791788cf0857d14a904e97419c56920463e6",
+    "native-swiss-frozen-heat-mix-primary.private.json": "949b2612d432973040861a61aa2d60eda97d6ffcccf901019f8ec70ec0cd1b8a",
+    "image-legacy-location-primary.private.json": "00577003adaf578abacf45cbbf595df86ef034317cc65bff827f9b45c7039a96"
+  },
+  "industrial_solar_audit": {
+    "status": "controlled_shared_workflow_solar_screening_update_export_and_signed_LCI_verified",
+    "model": "message",
+    "actual_IAM_scenario": false,
+    "layer": "industrial",
+    "database": "BAFU:2026-controlled-MESSAGE-solar-heat-20261112-003407",
+    "export_activities": 12667,
+    "regional_solar_suppliers": 12,
+    "heat_markets": 13,
+    "signed_finite_LCIs": 864,
+    "regional_solar_market_share": 0.7142857142857143,
+    "solar_inputs_preserved_by_signed_unit_vector": true,
+    "construction_and_negative_reference_decommissioning_signs_preserved": true,
+    "distinct_source_rubber_uncertainty_contributors_preserved": true,
+    "internal_technosphere_links": 117843,
+    "requested_biosphere_links": 294261,
+    "exhaustive_graph_issues": {},
+    "source_heat_is_electrical_energy_normalized_screening_proxy": true,
+    "useful_thermal_delivery_performance_validated": false,
+    "full_real_IAM_scenario_verified": false,
+    "CLIC_tagged_records_including_regional_clones": 419
+  }
+}
