@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-11",
+  "status": "Sand delivery and helicopter flight-hour profiles qualified; full fuel transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "695f2cceaf5a711d0ab1e961a32f05032cdd0be4",
+  "review_sha256": "b55346b1312a0e15b8d2a02bb9c44b7f7f412d3cd56a917a196edf76ea215d5f",
+  "new_approval_scopes": 2,
+  "validated_approval_scopes": 711,
+  "previous_validated_scopes": 709,
+  "previous_operation_objects": 616,
+  "previous_operation_semantics_preserved": true,
+  "older_fingerprints_refreshed_after_original_rule_proof": 2,
+  "tests": {
+    "brightpath": "12 passed: signs, uncertainty, formulas, source preservation and explicit limited patch evidence, freight uncertainty, hour basis and refusal of uninspected sand profiles",
+    "premise": "12 passed: strict fresh/cache, exact warnings, individual approval withdrawal and two older profile checks"
+  },
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-714b90acb435b476",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_supplier_count": 3
+    },
+    {
+      "rule_id": "bp-ab9eb6c9ccfd6290",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_supplier_count": 1
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "runtime_python_changes": false,
+  "migration_resource_changes": "Two exact 3.7 profiles; one sand delivery recipe and one shared review card. All old helpers/shared reviews preserved; prior 3.9 sand target/factor and 3.6 hourly helper preserved; full replay/wheel exact.",
+  "regular_environment": "Pushed Git revision installed and all 711 scopes validated.",
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 3,
+    "distinct_rule_identities": 3,
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "only_removed_cases": [
+      [
+        "3.7",
+        "bp-714b90acb435b476"
+      ],
+      [
+        "3.7",
+        "bp-ab9eb6c9ccfd6290"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "limitations": [
+    [
+      "One kg allocated Swiss sand from joint sand/round-gravel quarrying, not silica sand, crushed stone, pure gravel or an excavation-only service. Both definitions describe the 35 percent sand/65 percent round-gravel production mix; do not apply those percentages a second time or add a gravel credit. Retain complete native extraction, internal logistics, machinery, land and recultivation once. New 3.7 delivery helper retains source patch 0.00372 rail and 0.02026 road tonne-km per kg, with marginal uncertainty. Native RER rail and generic road fleet replace source fleets; no additional density, distance or payload factor. Native administration/dust/wastewater exclusions and historical quarry/background differences remain explicit. The previously approved 3.9 at-mine target remains unchanged; that older profile does not inherit this new delivery recipe.",
+      "Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in their declared kg/hour units. Native inventories and source internal uncertainty/background differ; no inventory or score equivalence is asserted. Only exact reviewed cut-off profiles are qualified; no reverse or cross-system-model route is implied.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference witnesses were inspected in 3.7.1 under the documented limited patch-evidence decision; no bare-3.7 vector was directly inspected and no upstream/score equality is claimed. The inspected patch delivery quantities are adopted as screening assumptions rather than relabelling the requested source."
+    ],
+    [
+      "One source helicopter flight hour becomes one complete reviewed native single-engine flight hour without LTO, preserving the functional hour rather than normalising by fuel. Inspected source patch kerosene totals 26.4 kg/hour; complete native proxy consumes 182.6 kg/hour. The same large discrepancy was explicitly reviewed for 3.6; its screening assumption is separately extended to this inspected requested profile. No fuel-ratio, 8760/year, aircraft-mass, passenger-km or cycles-per-hour multiplier. Native ECureuil AS350B3/1200 kg fleet and medium-haul-aircraft manufacturing proxy replace a generic source helicopter; flight envelope, infrastructure, allocation and emissions differ substantially and score effects remain unquantified. Native description mentions 20-minute flights/3 LTO per hour, but the without-LTO inventory has no explicit LTO supplier; do not add assumed cycles or duplicate separately listed caller LTO. Preserve the existing exact native2026 hourly-copy helper, which avoids an inconsistent year label in the staging2025 catalog. This does not correct or certify the source fuel demand.",
+      "Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in their declared kg/hour units. Native inventories and source internal uncertainty/background differ; no inventory or score equivalence is asserted. Only exact reviewed cut-off profiles are qualified; no reverse or cross-system-model route is implied.",
+      "Requested source remains ecoinvent 3.7 cut-off. Functional-reference witnesses were inspected in 3.7.1 under the documented limited patch-evidence decision; no bare-3.7 vector was directly inspected and no upstream/score equality is claimed. The inspected patch delivery quantities are adopted as screening assumptions rather than relabelling the requested source."
+    ]
+  ]
+}

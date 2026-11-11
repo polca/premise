@@ -121,3 +121,22 @@ shares. The patch-evidence restriction applies to each requested 3.7 case.
 ``uvek-fuels-37-market-profiles-verification.json`` records 35 focused passing
 checks, three finite weighted native inventories, exact regeneration and wheel
 checks. Five fuel mapping cases remain; full transformation/export is unfinished.
+
+Swiss sand delivery and helicopter hours
+---------------------------------------
+
+The 3.7 sand helper retains one kg of allocated Swiss sand and the inspected
+0.00372 rail/0.02026 road tonne-km delivery legs with their marginal uncertainty.
+The earlier approved 3.9 at-mine supplier and factor remain unchanged. Its prior
+physical inspection is pinned; other uninspected sand versions are refused.
+
+The flight-hour case extends the explicitly reviewed native single-engine
+without-LTO proxy, retaining one hour rather than scaling by fuel. Source patch
+fuel is 26.4 kg/hour and native fuel 182.6 kg/hour; the earlier 3.6 review documents
+the same discrepancy. Fleet, purpose and documentation limitations stay explicit.
+No LTO, fuel-ratio or year/hour multiplier is added, and the existing helper is
+unchanged. Requested 3.7 and inspected 3.7.1 evidence remain distinct.
+
+``uvek-fuels-37-sand-hour-verification.json`` records 24 focused passing checks,
+two finite native inventories and exact regeneration/wheel checks. Three fuel
+mapping cases remain; full fuel transformation/export is still unfinished.
