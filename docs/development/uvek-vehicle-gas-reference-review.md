@@ -1,6 +1,7 @@
 # Native vehicle-gas reference review
 
-Status: inspected, not yet implemented or qualified for public fuels updates.
+Status: native station routing implemented and verified; historical vehicle
+blend replacement remains unfinished. Not qualified for public fuels updates.
 
 ## Evidence
 
@@ -49,8 +50,8 @@ silently normalized away or added on top of a future IAM fuel mix.
 
 ## Reproduced mapping limitations
 
-The existing shared CNG regionalization selects ecoinvent's vehicle-grade
-product and production/market names exactly. It does not select the native
+Before this adaptation, shared CNG regionalization selected ecoinvent's vehicle-grade
+product and production/market names exactly. It did not select the native
 BAFU station or blend. Adding a BAFU station to the fossil-gas ingredient map
 would incorrectly turn a delivered kilogram product into a gas-market
 ingredient whose canonical reference is cubic metres.
@@ -61,6 +62,46 @@ native station supplies kilograms. A YAML alias alone cannot establish the
 missing delivered heating value. Any shared-code adaptation needs focused
 regressions for the unchanged ecoinvent CNG path and must expose the adopted
 reference assumption in provenance.
+
+## Verified station routing
+
+`uvek_vehicle_gas_suppliers` now declares the exact native station identity and
+its upstream supply conversion. The existing shared CNG regionalization reads
+these declarations alongside its unchanged canonical ecoinvent identities.
+This preserves converted helpers that retain those identities in a UVEK build.
+There is no additional transformation engine or constructor argument.
+
+The existing regional-copy callback replaces only the declared gas purchase,
+using the already-reviewed 36 MJ/m3 supply basis. Source quantities must be
+positive and finite, and the destination regional market must exist. Geographic
+relinking can split a purchase across several suppliers; each resulting input
+is converted with its uncertainty, rather than assuming exactly one input or
+collapsing their distributions. Original station records forward one kg to
+their normal IAM region. Repeated updates do not duplicate regional stations.
+
+This small Python adaptation is necessary because the former exact-name loop
+could not be extended through YAML. The physical identities, conversion and
+limitations remain in the mapping file. Station provenance stores the selected
+declaration and its limitations.
+
+The real five-sector diagnostic exported 14,808 activities to
+`BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-192239`.
+All 13 regional station copies have finite LCIs. Compared with the preceding
+export, their gas-energy demand, station electricity, non-CO2 biosphere
+exchanges and total CO2 are retained. The normal shared gas update reclassifies
+the fossil/non-fossil CO2 split; it does not add an oxidation emission to the
+station. Methane and other non-CO2 loss-flow origins remain unchanged, a
+remaining screening limitation.
+
+Validation: 127 focused fuel tests pass; changed Python files pass Black and
+Ruff. Generated documentation references are current. The real ecoinvent 3.12
+five-sector regression also completes with 31,205 activities and no validation
+errors. It is an update regression, not an additional Brightway export.
+
+This is a supply-routing milestone only. The generic vehicle blend still
+contains its historical biomethane ingredient; replacing that blend, choosing
+and documenting its reference basis, and verifying final vehicle exhaust
+remain required before public fuels support can be enabled.
 
 ## Next verification
 

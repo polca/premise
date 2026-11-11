@@ -3,8 +3,11 @@ from .properties import CNG_ENERGY_MJ_PER_KG
 from .utils import fetch_mapping
 from .config import METHANE_SOURCES
 from ..core.transformation import ws
+from ..core.utils import rescale_exchange
+from ..inventory.activity_maps import FUELS_TECHS, get_mapping
 
 from collections import defaultdict
+import math
 
 
 class BiogasMixin:
@@ -101,25 +104,95 @@ class BiogasMixin:
         demand, infrastructure and losses. Regionalize that provider before
         its kg-based market, without changing these physical coefficients.
         """
-        product = "natural gas, medium pressure, vehicle grade"
-        for name in (
-            "natural gas production, medium pressure, vehicle grade",
-            "market for natural gas, medium pressure, vehicle grade",
-        ):
+        declarations = get_mapping(
+            FUELS_TECHS,
+            var=f"{getattr(self, 'family', 'ecoinvent')}_vehicle_gas_suppliers",
+        )
+        # Converted helpers can retain these identities in any background.
+        entries = [
+            {
+                "name": name,
+                "reference product": "natural gas, medium pressure, vehicle grade",
+                "unit": "kilogram",
+            }
+            for name in (
+                "natural gas production, medium pressure, vehicle grade",
+                "market for natural gas, medium pressure, vehicle grade",
+            )
+        ] + [entry for rows in declarations.values() for entry in rows]
+        for entry in entries:
+            name, product, unit = (
+                entry[field] for field in ("name", "reference product", "unit")
+            )
             activities = list(
                 ws.get_many(
                     self.database,
                     ws.equals("name", name),
                     ws.equals("reference product", product),
-                    ws.equals("unit", "kilogram"),
+                    ws.equals("unit", unit),
                 )
             )
             if not activities:
                 continue
 
-            self.process_and_add_activities(
-                mapping={"vehicle-grade natural gas": activities}
-            )
+            replacement = entry.get("upstream replacement")
+
+            def replace_upstream(dataset, technology):
+                if not replacement:
+                    return
+                source, target = replacement["source"], replacement["target"]
+                factor = float(replacement["conversion_factor"])
+                matches = [
+                    e
+                    for e in ws.technosphere(dataset)
+                    if all(e.get(k) == v for k, v in source.items())
+                ]
+                if (
+                    not matches
+                    or not math.isfinite(factor)
+                    or factor <= 0
+                    or any(
+                        not math.isfinite(e["amount"]) or e["amount"] <= 0
+                        for e in matches
+                    )
+                    or not self.is_in_index(target, dataset["location"])
+                ):
+                    raise ValueError(
+                        f"Missing or invalid reviewed vehicle-gas upstream replacement: {name!r}, {dataset['location']!r}; "
+                        f"matched inputs={len(matches)}, target installed={self.is_in_index(target, dataset['location'])}."
+                    )
+                for exchange in matches:
+                    rescale_exchange(exchange, factor, remove_uncertainty=False)
+                    exchange.update(target)
+                    exchange["location"] = dataset["location"]
+                    exchange.pop("input", None)
+                dataset["premise vehicle gas delivery"] = {
+                    "upstream replacement": replacement,
+                    "limitations": entry["limitations"],
+                }
+
+            kwargs = {"mapping": {"vehicle-grade natural gas": activities}}
+            if replacement:
+                # Validate native coefficients before the shared geographic
+                # relinker runs (which requires finite input quantities).
+                for dataset in activities:
+                    if not dataset.get("regionalized") and not dataset.get("emptied"):
+                        replace_upstream_input = [
+                            e
+                            for e in ws.technosphere(dataset)
+                            if all(
+                                e.get(k) == v for k, v in replacement["source"].items()
+                            )
+                        ]
+                        if not replace_upstream_input or any(
+                            not math.isfinite(e["amount"]) or e["amount"] <= 0
+                            for e in replace_upstream_input
+                        ):
+                            raise ValueError(
+                                f"Missing or invalid reviewed vehicle-gas upstream replacement: {name!r}"
+                            )
+                kwargs["efficiency_adjustment_fn"] = replace_upstream
+            self.process_and_add_activities(**kwargs)
 
             # Original geographic activities only forward the same product.
             # Use one kg from their IAM replacement, including World. The
@@ -137,7 +210,7 @@ class BiogasMixin:
                             "name": name,
                             "product": product,
                             "location": location,
-                            "unit": "kilogram",
+                            "unit": unit,
                             "type": "technosphere",
                             "amount": 1.0,
                             "uncertainty type": 0,

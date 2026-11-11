@@ -170,7 +170,7 @@ def test_gas_update_regionalizes_compression_before_the_market(fuels, monkeypatc
     """Exercise the public update, not just the new regionalization helper."""
     fuel_map = {"natural gas": []}
     fuels.fuel_map = fuel_map
-    fuels.mapping = SimpleNamespace(generate_fuel_map=lambda: fuel_map)
+    fuels.mapping = SimpleNamespace(generate_fuel_map=lambda **kwargs: fuel_map)
     fuels.iam_data.production_volumes = None
     fuels.iam_data.natural_gas_blend = xr.DataArray(
         [1.0], dims="variables", coords={"variables": ["natural gas"]}
@@ -217,6 +217,89 @@ def test_gas_update_regionalizes_compression_before_the_market(fuels, monkeypatc
 def test_absent_vehicle_grade_inventories_are_optional(fuels):
     fuels.database[:] = [
         ds for ds in fuels.database if ds["reference product"] != PRODUCT
+    ]
+    before = deepcopy(fuels.database)
+    fuels.regionalize_vehicle_grade_gas()
+    assert fuels.database == before
+
+
+@pytest.mark.parametrize("fuels", [2050], indirect=True)
+@pytest.mark.parametrize("gas_amount", [48.0, 0.0, -1.0, float("nan")])
+def test_declared_native_station_uses_same_regionalization_and_retains_losses(
+    fuels, gas_amount
+):
+    from premise.inventory.activity_maps import FUELS_TECHS, get_mapping
+
+    entry = get_mapping(FUELS_TECHS, "uvek_vehicle_gas_suppliers")["natural gas"][0]
+    source = entry["upstream replacement"]["source"]
+    gas = purchase(source["name"], source["product"], "CH", source["unit"], gas_amount)
+    gas.update({"uncertainty type": 3, "loc": 48.0, "scale": 3.6})
+    inputs = [
+        gas,
+        purchase(
+            ELECTRICITY, "electricity, medium voltage", "World", "kilowatt hour", 0.2
+        ),
+        {
+            "name": "Methane, fossil",
+            "categories": ("air",),
+            "unit": "kilogram",
+            "type": "biosphere",
+            "amount": 0.001,
+        },
+    ]
+    native = activity(
+        entry["name"], entry["reference product"], "CH", "kilogram", inputs
+    )
+    fossil = activity(source["name"], source["product"], "CH", source["unit"])
+    dedicated = activity(
+        "Dedicated biomethane station", "biomethane", "CH", "kilogram", inputs
+    )
+    fuels.database.extend([native, fossil, dedicated])
+    fuels.add_to_index([native, fossil, dedicated])
+    fuels.family = "uvek"
+    before_dedicated = deepcopy(dedicated)
+    before_fossil = deepcopy(fossil)
+
+    if not gas_amount > 0:
+        with pytest.raises(
+            ValueError, match="reviewed vehicle-gas upstream replacement"
+        ):
+            fuels.regionalize_vehicle_grade_gas()
+        assert not native.get("emptied")
+        assert dedicated == before_dedicated
+        assert fossil == before_fossil
+        return
+
+    fuels.regionalize_vehicle_grade_gas()
+
+    for region in REGIONS:
+        copy = next(
+            d
+            for d in fuels.database
+            if d["name"] == entry["name"] and d["location"] == region
+        )
+        exchanges = {e["name"]: e for e in copy["exchanges"]}
+        assert exchanges[GAS]["amount"] == pytest.approx(48 / 36)
+        assert exchanges[GAS]["loc"] == pytest.approx(48 / 36)
+        assert exchanges[GAS]["scale"] == pytest.approx(3.6 / 36)
+        assert exchanges[GAS]["uncertainty type"] == 3
+        assert exchanges[GAS]["location"] == region
+        assert exchanges[GAS]["unit"] == "cubic meter"
+        assert exchanges[ELECTRICITY]["amount"] == 0.2
+        assert exchanges[ELECTRICITY]["location"] == region
+        assert exchanges["Methane, fossil"]["amount"] == 0.001
+        assert (
+            copy["premise vehicle gas delivery"]["limitations"] == entry["limitations"]
+        )
+    assert dedicated == before_dedicated
+    assert fossil == before_fossil
+    assert list(e for e in native["exchanges"] if e["type"] == "technosphere") == [
+        {
+            **purchase(
+                entry["name"], entry["reference product"], "NEU", "kilogram", 1.0
+            ),
+            "uncertainty type": 0,
+        }
     ]
     before = deepcopy(fuels.database)
     fuels.regionalize_vehicle_grade_gas()

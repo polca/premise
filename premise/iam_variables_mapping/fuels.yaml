@@ -168,6 +168,23 @@ wood chips:
     - market for biomass, used as fuel
     - market for lignocellulosic biomass, used as fuel
 natural gas:
+  uvek_vehicle_gas_suppliers:
+  - name: Natural gas, from high pressure network (1-5 bar), at service station
+    reference product: Natural gas, from high pressure network (1-5 bar), at service station
+    unit: kilogram
+    upstream replacement:
+      source:
+        name: Natural gas, high pressure, at consumer
+        product: Natural gas, high pressure, at consumer
+        unit: megajoule
+      target:
+        name: market for natural gas, high pressure
+        product: natural gas, high pressure
+        unit: cubic meter
+      conversion_factor: 0.027777777777777776
+    limitations:
+    - Regional copies retain the complete native service-station electricity, infrastructure and loss-related inventory; only the gas purchase follows the IAM mix using the reviewed 36 MJ/m3 supply basis.
+    - Incoming gas demand does not establish the delivered kg heating value. Native pressure, composition, geography, vintage and methane-loss conventions remain screening limitations with unquantified score effects.
   uvek_market_handovers:
   - source:
       name: Natural gas, at consumer

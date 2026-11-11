@@ -1,0 +1,133 @@
+{
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-192239",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-181632",
+  "regional_station_count": 13,
+  "regional_checks": [
+    {
+      "location": "CAZ",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "MEA",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "JPN",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "IND",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "NEU",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "World",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "SSA",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "REF",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "EUR",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "OAS",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "USA",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "CHA",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    },
+    {
+      "location": "LAM",
+      "gas_energy_preserved": true,
+      "station_electricity_preserved": true,
+      "non_CO2_biosphere_preserved": true,
+      "total_CO2_preserved": true
+    }
+  ],
+  "finite_lci_regions": [
+    "CAZ",
+    "MEA",
+    "JPN",
+    "IND",
+    "NEU",
+    "World",
+    "SSA",
+    "REF",
+    "EUR",
+    "OAS",
+    "USA",
+    "CHA",
+    "LAM"
+  ],
+  "historical_vehicle_blend_replacement_complete": false,
+  "public_fuels_supported": false,
+  "export_activities": 14808,
+  "technosphere_links_internal": 141428,
+  "biosphere_links_in_requested_database": 311580,
+  "dedicated_biomethane_transport_inventories_unchanged": 86,
+  "validation": {
+    "phases": 11,
+    "issues_by_severity": {
+      "warning": 14
+    }
+  },
+  "ecoinvent_3_12_regression": {
+    "activities": 31205,
+    "validation_phases": 11,
+    "issues_by_severity": {
+      "warning": 85
+    },
+    "export_created": false
+  }
+}
