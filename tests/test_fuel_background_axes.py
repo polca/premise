@@ -55,6 +55,8 @@ def test_fuel_update_uses_explicit_biosphere_for_vehicle_carbon(
     received = {}
     database = []
     fake = SimpleNamespace(database=database, fuel_map={}, cache={}, index={})
+    handover_calls = []
+    fake._handover_fuel_market_aliases = lambda target: handover_calls.append(target)
     for name in (
         "generate_hydrogen_activities",
         "generate_synthetic_fuel_activities",
@@ -113,6 +115,7 @@ def test_fuel_update_uses_explicit_biosphere_for_vehicle_carbon(
     assert bool(carbon_versions[0][1]) == (family == "uvek")
 
     assert bool(carrier_calls[0]) == (family == "uvek" and gas is not None and gas > 0)
+    assert bool(handover_calls) == (family == "uvek" and gas is not None and gas > 0)
 
 
 @pytest.mark.parametrize("family", ["ecoinvent", "uvek"])

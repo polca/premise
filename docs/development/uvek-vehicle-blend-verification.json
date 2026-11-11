@@ -1,0 +1,101 @@
+{
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-193124",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-192239",
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "export_activities": 14808,
+  "source_blends": [
+    {
+      "location": "CH",
+      "target_region": "NEU",
+      "source_total_station_gas_mass_preserved": true,
+      "historical_biogas_branch_removed": true
+    },
+    {
+      "location": "RER",
+      "target_region": "EUR",
+      "source_total_station_gas_mass_preserved": true,
+      "historical_biogas_branch_removed": true
+    }
+  ],
+  "generic_vehicle_records_verified": 86,
+  "generic_vehicle_distinct_names": 58,
+  "recorded_positive_CO2_totals_preserved": true,
+  "final_gas_origin_verified": true,
+  "other_vehicle_inventory_exchanges_preserved": true,
+  "dedicated_biomethane_transport_inventories_unchanged": 86,
+  "finite_vehicle_LCIs": 86,
+  "technosphere_links_internal": 141426,
+  "biosphere_links_in_requested_database": 311580,
+  "validation": {
+    "phases": 11,
+    "issues_by_severity": {
+      "warning": 14
+    }
+  },
+  "public_fuels_supported": false,
+  "reference_assumption": "Common nominal Premise CNG 46.5 MJ/kg for both historical ingredients and target preserves total station-gas mass, not measured delivered LHV or historical upstream gas-energy demand.",
+  "clean_staged_checkout_verification": {
+    "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-clean-vehicle-blend-review-20261111-193404",
+    "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-192239",
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "export_activities": 14808,
+    "source_blends": [
+      {
+        "location": "CH",
+        "target_region": "NEU",
+        "source_total_station_gas_mass_preserved": true,
+        "historical_biogas_branch_removed": true
+      },
+      {
+        "location": "RER",
+        "target_region": "EUR",
+        "source_total_station_gas_mass_preserved": true,
+        "historical_biogas_branch_removed": true
+      }
+    ],
+    "generic_vehicle_records_verified": 86,
+    "generic_vehicle_distinct_names": 58,
+    "recorded_positive_CO2_totals_preserved": true,
+    "final_gas_origin_verified": true,
+    "other_vehicle_inventory_exchanges_preserved": true,
+    "dedicated_biomethane_transport_inventories_unchanged": 86,
+    "finite_vehicle_LCIs": 86,
+    "technosphere_links_internal": 141426,
+    "biosphere_links_in_requested_database": 311580,
+    "validation": {
+      "phases": 11,
+      "issues_by_severity": {
+        "warning": 14
+      }
+    },
+    "public_fuels_supported": false,
+    "reference_assumption": "Common nominal Premise CNG 46.5 MJ/kg for both historical ingredients and target preserves total station-gas mass, not measured delivered LHV or historical upstream gas-energy demand.",
+    "runtime_file_sha256": {
+      "premise/fuels/base.py": "ade6d2c8d07e5670498e04b8cf843878a1cd57909af39a947c23e3e43be88d3e",
+      "premise/fuels/carbon.py": "9a47dd2e12df667c40df3a729e3aa2c375ef81f364684169bc705b09d793c57e",
+      "premise/fuels/markets.py": "155bcdab681ccb2d39010fc85628fb79228e8db5041234bcdd98333460856c9f",
+      "premise/fuels/properties.py": "9472b118adae049c533d207d254af2817f308c7ff2d2a637be1ff159f58c3895",
+      "premise/iam_variables_mapping/fuels.yaml": "a8dc56b7a48f4941c296bdfda112b85d473a7ec2a0ed7313c7a063eb6692b7c0"
+    },
+    "unrelated_local_GAINS_edits_excluded": true,
+    "temporary_checkout_removed": true,
+    "temporary_checkout_bytes_removed": 125124878
+  },
+  "focused_tests": {
+    "passed": 133,
+    "dependency_deprecation_warnings": 2
+  },
+  "ecoinvent_3_12_regression": {
+    "activities": 31205,
+    "validation_phases": 11,
+    "issues_by_severity": {
+      "warning": 85
+    },
+    "export_created": false
+  },
+  "remaining_work": [
+    "Network/process loss-flow origins and mixed industrial carbon.",
+    "Unreviewed fuel roles, remaining electricity/heat coverage and other registered sectors.",
+    "Public fuels scope remains unchanged."
+  ]
+}

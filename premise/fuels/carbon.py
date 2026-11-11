@@ -199,8 +199,8 @@ def vehicle_fuel_carbon(dataset, providers):
             if provider is not None
             else None
         )
-        name = handover.get("target", {}).get(
-            "name", carrier_market or exchange.get("name", "")
+        name = carrier_market or handover.get("target", {}).get(
+            "name", exchange.get("name", "")
         )
         if not name.startswith(("market for ", "market group for ")):
             continue

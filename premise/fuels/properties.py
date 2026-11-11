@@ -77,7 +77,12 @@ def annotate_cng_properties(database, *, carrier_specs=()):
                     for ancillary in spec.get("ancillary inputs", [])
                 ):
                     continue
-                if not all(exchange.get(k) == v for k, v in spec["gas input"].items()):
+                gas_inputs = spec.get("gas inputs") or [spec.get("gas input", {})]
+                if not any(
+                    candidate
+                    and all(exchange.get(k) == v for k, v in candidate.items())
+                    for candidate in gas_inputs
+                ):
                     raise ValueError(
                         f"Unreviewed gas-property carrier input: {exchange.get('name')!r} in {key}"
                     )

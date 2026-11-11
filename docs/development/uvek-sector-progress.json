@@ -545,9 +545,11 @@
         "docs/development/uvek-extended-transport-exhaust-verification.json",
         "docs/development/uvek-capture-carbon-metadata-verification.json",
         "docs/development/uvek-native-gas-exhaust-verification.json",
-        "docs/development/uvek-low-pressure-gas-property-verification.json"
+        "docs/development/uvek-low-pressure-gas-property-verification.json",
+        "docs/development/uvek-vehicle-station-verification.json",
+        "docs/development/uvek-vehicle-blend-verification.json"
       ],
-      "latest_coverage_note": "64 existing low-pressure delivery records carry verified outgoing-MJ gas properties with 607 exchange rows unchanged. 137 delivered-gas combustion balances are verified (17 added downstream services), alongside 526 car/truck and 96 other transport balances. Native vehicle-gas kg reference/blends, network/process emissions and mixed industrial coverage remain unfinished; public fuels guard stays unchanged."
+      "latest_coverage_note": "64 native low-pressure carriers and 137 delivered-gas combustion balances are verified, alongside the previously reviewed liquid-fuel and transport balances. Native vehicle gas now has 13 regional station copies and two historical blends forwarding to the final IAM gas mixture on an explicit common nominal CNG mass basis. All 86 generic gas-vehicle records preserve recorded CO2 totals and other exchanges; all 86 dedicated biomethane vehicle inventories remain unchanged. Network/process loss-flow origins, mixed industrial carbon, unreviewed fuel roles and other sector coverage remain unfinished; the public fuels guard stays unchanged. The static first-pass blockers above are historical findings, superseded only where the linked runtime evidence explicitly demonstrates a fix."
     },
     {
       "sector": "renewable",

@@ -383,9 +383,16 @@ class FuelMarketsMixin:
                                 source_energy += (
                                     exchange["amount"] * spec["MJ per unit"]
                                 )
-                        factor = source_energy / energy_per_unit(
-                            fuel, target["unit"], get_fuel_properties()
-                        )
+                        target_energy = entry.get("reference energy MJ per target unit")
+                        if target_energy is None:
+                            target_energy = energy_per_unit(
+                                fuel, target["unit"], get_fuel_properties()
+                            )
+                        if not math.isfinite(target_energy) or target_energy <= 0:
+                            raise ValueError(
+                                "Fuel handover needs a positive finite target reference energy."
+                            )
+                        factor = source_energy / target_energy
                     else:
                         factor = float(entry["conversion_factor"])
                     if not math.isfinite(factor) or factor <= 0:
@@ -413,10 +420,18 @@ class FuelMarketsMixin:
                         alias["premise fuel market handover"][
                             "source reference energy MJ"
                         ] = source_energy
+                    if entry.get("energy basis"):
+                        alias["premise fuel market handover"]["energy basis"] = entry[
+                            "energy basis"
+                        ]
                     purchase = next(ws.technosphere(alias))
                     properties = providers.get(activity_key(purchase), {}).get(
                         PROPERTIES_KEY
                     )
+                    if entry.get("after_gas_annotation") and not properties:
+                        raise ValueError(
+                            f"Missing annotated delivery properties for fuel handover: {activity_key(purchase)!r}"
+                        )
                     if properties:
                         alias[PROPERTIES_KEY] = {
                             **{
@@ -449,6 +464,10 @@ class FuelMarketsMixin:
                             ],
                             "carbon convention": "Final linked fuel properties on the retained source reference basis",
                         }
+                        if properties.get("canonical market name"):
+                            alias[PROPERTIES_KEY]["canonical market name"] = properties[
+                                "canonical market name"
+                            ]
                 # Keep these source identities visible: consumers retain their
                 # original product/unit and uncertainty through the forwarding node.
                 self.add_to_index(aliases)

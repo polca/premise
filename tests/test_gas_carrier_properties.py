@@ -188,3 +188,33 @@ def test_carrier_limitations_are_warned_once_per_declaration_not_per_country():
     assert len(captured) == 1
     assert low[PROPERTIES_KEY]["carrier limitations"] == spec["limitations"]
     assert other[PROPERTIES_KEY]["carrier limitations"] == spec["limitations"]
+
+
+def test_native_station_and_kg_forwarder_share_final_gas_origin_without_inventory_changes():
+    spec = deepcopy(
+        get_mapping(FUELS_TECHS, "uvek_gas_property_carriers")["natural gas"][1]
+    )
+    upstream = activity("market for natural gas, high pressure", "cubic meter")
+    upstream["reference product"] = "natural gas, high pressure"
+    upstream[PROPERTIES_KEY] = {
+        "reference unit": "cubic meter",
+        "energy MJ per unit": 36,
+        "fossil CO2 kg per unit": 1.44,
+        "non-fossil CO2 kg per unit": 0.72,
+        "unresolved CO2 kg per unit": 0,
+    }
+    station = activity(
+        spec["selector"]["fltr"]["name"], "kilogram", [purchase(upstream, 1.4)]
+    )
+    station["location"] = "NEU"
+    station["exchanges"][0]["location"] = "NEU"
+    forwarder = activity(station["name"], "kilogram", [purchase(station, 1)])
+    original = deepcopy([station["exchanges"], forwarder["exchanges"]])
+    with pytest.warns(UserWarning, match="nominal"):
+        annotate_cng_properties([upstream, station, forwarder], carrier_specs=[spec])
+    assert [station["exchanges"], forwarder["exchanges"]] == original
+    for supplier in [station, forwarder]:
+        props = supplier[PROPERTIES_KEY]
+        assert props["energy MJ per unit"] == 46.5
+        assert props["fossil CO2 kg per unit"] == pytest.approx(46.5 * 0.04)
+        assert props["non-fossil CO2 kg per unit"] == pytest.approx(46.5 * 0.02)

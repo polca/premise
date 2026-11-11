@@ -1,7 +1,8 @@
 # Native vehicle-gas reference review
 
-Status: native station routing implemented and verified; historical vehicle
-blend replacement remains unfinished. Not qualified for public fuels updates.
+Status: native station routing and generic vehicle-blend replacement implemented
+and verified in diagnostic builds. Not qualified for public fuels updates;
+other fuel and sector coverage remains unfinished.
 
 ## Evidence
 
@@ -98,18 +99,86 @@ Ruff. Generated documentation references are current. The real ecoinvent 3.12
 five-sector regression also completes with 31,205 activities and no validation
 errors. It is an update regression, not an additional Brightway export.
 
-This is a supply-routing milestone only. The generic vehicle blend still
-contains its historical biomethane ingredient; replacing that blend, choosing
-and documenting its reference basis, and verifying final vehicle exhaust
-remain required before public fuels support can be enabled.
+## Generic blend replacement and reference decision
 
-## Next verification
+The follow-up consumer audit found no additional petrol or diesel inputs in
+either the 86 generic gas vehicles or the 86 dedicated biomethane vehicles.
+The exact 58 generic vehicle names are now declared as recorded-exhaust
+consumers. Dedicated biomethane identities are excluded.
 
-Use exact source-family declarations with the existing regionalization and
-handover machinery. Verify source quantities and uncertainty, station losses,
-generic versus dedicated-biomethane routing, final exhaust carbon origins,
-absence of supply loops, successful export and finite LCIs. Keep the public
-fuels gate unchanged until this and the other documented fuels gaps pass.
+The adopted screening proxy gives both historical station-gas ingredients and
+the destination the same nominal Premise CNG reference, 46.5 MJ/kg. Consequently
+the handover preserves the sum of historical station-gas masses. It does not
+normalize those masses to one, preserve historical upstream gas-energy demand,
+or claim a measured BAFU delivered heating value. The nominal reference cancels
+from that mass-based handover and from the vehicle exhaust-origin ratio.
+
+Replacing the generic historical blend with the complete regional station
+removes its fixed historical biomethane contribution. The IAM mix now determines
+gas origin. This also replaces the old mixture of two compression services with
+the complete native natural-gas station: compression, composition, pressure,
+upstream gas demand and loss-model differences are explicit screening
+limitations, with unquantified score effects. The separate dedicated biomethane
+supplier and its vehicle inventories are retained.
+
+Vehicle fuel demands and uncertainty remain on their original kg basis.
+Recorded positive CO2 totals are retained; only their fossil/non-fossil split
+changes. The gas-dominant whole-exhaust convention can also reclassify minor
+other fossil carbon. No measured heating value, lubricant correction, extra
+generator, avoided emission or recovery credit is inferred.
+
+This decision uses the standing approval for analogous screening proxies with
+warnings. The common reference, changed compression boundary and whole-exhaust
+limitations are declared in YAML, retained in handover/carrier provenance and
+reported by the carrier warning.
+
+## Why the small shared-code changes are needed
+
+The normal handover runs while fuel markets are created. A complete CNG station
+only has final properties after regionalization and carrier annotation, so the
+shared update now permits a declared handover at that later point. It still
+uses the existing handover and forwarding routine. Missing destination
+properties fail explicitly.
+
+The handover accepts an explicit reference energy instead of applying the
+natural-gas cubic-metre reference implicitly to a kilogram station. The carrier
+reader accepts an explicit list of gas-input identities, covering both regional
+station recipes and original kg forwarders. Finally, native handovers retain
+their carrier's canonical fuel meaning without renaming source products; the
+carbon reader uses that meaning. No alternative UVEK transformation engine or
+new user-facing argument is introduced.
+
+The diagnostic export
+`BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-193124`
+contains 14,808 activities. Both historical blend records preserve their total
+station-gas mass. All 86 generic gas vehicles retain their recorded CO2 totals
+and other exchanges, have the final linked gas-origin split, and give finite
+LCIs. All 86 dedicated biomethane vehicle inventories are unchanged. Every
+technosphere link is internal and all biosphere links use the requested
+ecoinvent 3.10 database. Eleven validation phases report no errors and 14
+warnings. The focused fuel suite passes 133 tests. The real ecoinvent 3.12
+five-sector update regression completes with 31,205 activities and no errors.
+
+An isolated staged checkout, excluding the four unrelated local GAINS edits,
+also exported 14,808 activities to
+`BAFU:2026-remind-SSP2-NPi-2050-five-sector-clean-vehicle-blend-review-20261111-193404`.
+The same 86 vehicle LCIs and inventory/origin checks pass, with no validation
+errors. Runtime module/YAML hashes match the staged change. Evidence is in
+`uvek-vehicle-blend-verification.json`. Private export artifacts and receipts
+were retained; the temporary checkout was removed (125,124,878 bytes).
+
+Black and the generated-reference check pass. Ruff introduces no new findings;
+the six unused-import findings in `markets.py` are also present in the preceding
+commit and are not changed by this work. Other reviewed files pass Ruff.
+
+## Remaining work
+
+Keep the public fuels gate unchanged. Network/process loss-flow origins,
+mixed industrial fuel-carbon coverage and the other documented fuel roles
+still need review. Other registered sectors and the remaining electricity and
+heat coverage also remain part of the active integration goal. Passing this
+vehicle-gas check does not certify full fuel or sector coverage or LCIA
+equivalence.
 
 The full exchange-level inspection remains private; this document contains
 identity-level findings and aggregate counts only. No source inventory vector

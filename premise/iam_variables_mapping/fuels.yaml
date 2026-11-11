@@ -186,6 +186,30 @@ natural gas:
     - Regional copies retain the complete native service-station electricity, infrastructure and loss-related inventory; only the gas purchase follows the IAM mix using the reviewed 36 MJ/m3 supply basis.
     - Incoming gas demand does not establish the delivered kg heating value. Native pressure, composition, geography, vintage and methane-loss conventions remain screening limitations with unquantified score effects.
   uvek_market_handovers:
+  - after_gas_annotation: true
+    requires_iam_array: natural_gas_blend
+    source:
+      name: Fuel supply for gas vehicles
+      reference product: Fuel supply for gas vehicles
+      unit: kilogram
+    target:
+      name: Natural gas, from high pressure network (1-5 bar), at service station
+      reference product: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    replace_original_supply: true
+    energy_inputs:
+      Natural gas, from high pressure network (1-5 bar), at service station:
+        unit: kilogram
+        MJ per unit: 46.5
+      xx Methane, 96 vol-%, from biogas, from medium pressure network, at service station:
+        unit: kilogram
+        MJ per unit: 46.5
+    reference energy MJ per target unit: 46.5
+    energy basis: Common nominal Premise CNG reference for both historical gas ingredients and the destination; preserves total station-gas mass, not measured delivered heating value or historical upstream gas-energy demand.
+    limitations:
+    - Replace only the generic historical vehicle-gas blend with the regional complete native station supplied by the IAM gas mix. Retain the original sum of gas-ingredient masses without renormalizing; consumer kg demands and uncertainty remain unchanged. Dedicated biomethane vehicles retain their separate supplier.
+    - Common nominal 46.5 MJ/kg is an explicit CNG screening reference, not a measured BAFU calorific value or density conversion. Replacing the historical biomethane station branch changes compression and upstream gas demand to the complete native natural-gas station model; these performance, composition, geography, vintage and loss differences have unquantified score effects.
+    - Exact generic gas-vehicle selectors retain recorded positive exhaust CO2 totals and refresh only their origin. This gas-dominant whole-exhaust screening convention can reclassify minor other fossil carbon; no guessed lubricant correction or avoided-emission credit is added.
   - source:
       name: Natural gas, at consumer
       reference product: Natural gas, at consumer
@@ -227,6 +251,71 @@ natural gas:
     limitations:
     - The original converted market wrapper forwards CLIC consumers to the IAM blend; its regional copies remain complete fossil supply components.
   uvek_recorded_exhaust_consumers:
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Transport, freight, lorry, compressed gas, 18t gross weight, 2020, EURO-VI, long haul
+        - Transport, freight, lorry, compressed gas, 18t gross weight, 2020, EURO-VI, regional delivery
+        - Transport, freight, lorry, compressed gas, 18t gross weight, 2020, EURO-VI, urban delivery
+        - Transport, freight, lorry, compressed gas, 26t gross weight, 2020, EURO-VI, long haul
+        - Transport, freight, lorry, compressed gas, 26t gross weight, 2020, EURO-VI, regional delivery
+        - Transport, freight, lorry, compressed gas, 26t gross weight, 2020, EURO-VI, urban delivery
+        - Transport, freight, lorry, compressed gas, 3.5t gross weight, 2020, EURO-VI, long haul
+        - Transport, freight, lorry, compressed gas, 3.5t gross weight, 2020, EURO-VI, regional delivery
+        - Transport, freight, lorry, compressed gas, 3.5t gross weight, 2020, EURO-VI, urban delivery
+        - Transport, freight, lorry, compressed gas, 32t gross weight, 2020, EURO-VI, long haul
+        - Transport, freight, lorry, compressed gas, 32t gross weight, 2020, EURO-VI, regional delivery
+        - Transport, freight, lorry, compressed gas, 32t gross weight, 2020, EURO-VI, urban delivery
+        - Transport, freight, lorry, compressed gas, 40t gross weight, 2020, EURO-VI, long haul
+        - Transport, freight, lorry, compressed gas, 40t gross weight, 2020, EURO-VI, regional delivery
+        - Transport, freight, lorry, compressed gas, 40t gross weight, 2020, EURO-VI, urban delivery
+        - Transport, freight, lorry, compressed gas, 7.5t gross weight, 2020, EURO-VI, long haul
+        - Transport, freight, lorry, compressed gas, 7.5t gross weight, 2020, EURO-VI, regional delivery
+        - Transport, freight, lorry, compressed gas, 7.5t gross weight, 2020, EURO-VI, urban delivery
+        - Transport, passenger bus, compressed gas, 13m double deck coach bus, 2010, EURO-V
+        - Transport, passenger bus, compressed gas, 13m double deck coach bus, 2020, EURO-VI
+        - Transport, passenger bus, compressed gas, 13m double deck urban bus, 2010, EURO-V
+        - Transport, passenger bus, compressed gas, 13m double deck urban bus, 2020, EURO-VI
+        - Transport, passenger bus, compressed gas, 13m single deck coach bus, 2010, EURO-V
+        - Transport, passenger bus, compressed gas, 13m single deck coach bus, 2020, EURO-VI
+        - Transport, passenger bus, compressed gas, 13m single deck urban bus, 2010, EURO-V
+        - Transport, passenger bus, compressed gas, 13m single deck urban bus, 2020, EURO-VI
+        - Transport, passenger bus, compressed gas, 18m articulated urban bus, 2010, EURO-V
+        - Transport, passenger bus, compressed gas, 18m articulated urban bus, 2020, EURO-VI
+        - Transport, passenger bus, compressed gas, 9m midibus, 2010, EURO-V
+        - Transport, passenger bus, compressed gas, 9m midibus, 2020, EURO-VI
+        - Transport, passenger car, compressed gas, Compact, 2003, EURO-3
+        - Transport, passenger car, compressed gas, Compact, 2008, EURO-4
+        - Transport, passenger car, compressed gas, Compact, 2013, EURO-5
+        - Transport, passenger car, compressed gas, Compact, 2016, EURO-6ab
+        - Transport, passenger car, compressed gas, Compact, 2018, EURO-6c
+        - Transport, passenger car, compressed gas, Compact, 2019, EURO-6d-TEMP
+        - Transport, passenger car, compressed gas, Compact, 2021, EURO-6d
+        - Transport, passenger car, compressed gas, Large SUV, 2003, EURO-3
+        - Transport, passenger car, compressed gas, Large SUV, 2008, EURO-4
+        - Transport, passenger car, compressed gas, Large SUV, 2013, EURO-5
+        - Transport, passenger car, compressed gas, Large SUV, 2016, EURO-6ab
+        - Transport, passenger car, compressed gas, Large SUV, 2018, EURO-6c
+        - Transport, passenger car, compressed gas, Large SUV, 2019, EURO-6d-TEMP
+        - Transport, passenger car, compressed gas, Large SUV, 2021, EURO-6d
+        - Transport, passenger car, compressed gas, Large, 2003, EURO-3
+        - Transport, passenger car, compressed gas, Large, 2008, EURO-4
+        - Transport, passenger car, compressed gas, Large, 2013, EURO-5
+        - Transport, passenger car, compressed gas, Large, 2016, EURO-6ab
+        - Transport, passenger car, compressed gas, Large, 2018, EURO-6c
+        - Transport, passenger car, compressed gas, Large, 2019, EURO-6d-TEMP
+        - Transport, passenger car, compressed gas, Large, 2021, EURO-6d
+        - Transport, passenger car, compressed gas, Medium, 2003, EURO-3
+        - Transport, passenger car, compressed gas, Medium, 2008, EURO-4
+        - Transport, passenger car, compressed gas, Medium, 2013, EURO-5
+        - Transport, passenger car, compressed gas, Medium, 2016, EURO-6ab
+        - Transport, passenger car, compressed gas, Medium, 2018, EURO-6c
+        - Transport, passenger car, compressed gas, Medium, 2019, EURO-6d-TEMP
+        - Transport, passenger car, compressed gas, Medium, 2021, EURO-6d
+    limitations:
+    - 'Exact inspected generic gas-vehicle identities only: retain recorded positive exhaust CO2 and refresh origin from the final linked IAM gas blend. Dedicated 100% biomethane identities are excluded.'
+    - Gas-dominant whole-exhaust screening convention; retain all other emissions and inputs, signed quantities and uncertainty. No delivered heating value or lubricant correction is inferred.
   - selector:
       exact: true
       fltr:
@@ -287,6 +376,37 @@ natural gas:
     - Carry only the delivered gas composition, excluding the separate turbine operating service from the physical outgoing fuel. Preserve the complete native network, all input ratios, signed exchanges, emissions and uncertainty.
     - Normalize incoming gas-carbon properties to the documented outgoing 1 MJ reference, without a kg/m3 density assumption or an inferred measured-loss correction. Gas composition, reference-energy, allocation, geography and vintage screening limitations remain.
     - Downstream lubricated CHP services use the reviewed gas-dominant whole-exhaust origin convention. Some fossil lubricant CO2 may also be reclassified because its direct contribution is not separately identified; score effects are unquantified. Retain oil and waste inventories and add no guessed correction or credit.
+  - requires_iam_array: natural_gas_blend
+    selector:
+      exact: true
+      fltr:
+        name: Natural gas, from high pressure network (1-5 bar), at service station
+        reference product: Natural gas, from high pressure network (1-5 bar), at service station
+        unit: kilogram
+    gas inputs:
+    - name: market for natural gas, high pressure
+      product: natural gas, high pressure
+      unit: cubic meter
+    - name: Natural gas, from high pressure network (1-5 bar), at service station
+      product: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    ancillary inputs:
+    - name: market group for electricity, medium voltage
+      product: electricity, medium voltage
+      unit: kilowatt hour
+    - name: market for electricity, medium voltage
+      product: electricity, medium voltage
+      unit: kilowatt hour
+    - name: Natural gas service station
+      product: Natural gas service station
+      unit: unit
+    reference energy MJ per unit: 46.5
+    canonical market name: market for natural gas, medium pressure, vehicle grade
+    energy source: Common nominal Premise CNG reference, not a measured native delivered heating value. Only the gas-carbon origin ratio is used for the explicitly mapped native vehicle exhaust.
+    limitations:
+    - Retain the native complete station and original forwarding nodes. The nominal 46.5 MJ/kg reference does not establish source gas purity, delivered heating value, density or measured losses; upstream gas demand and station inventory remain separate.
+    - Generic vehicle-blend replacement preserves the sum of historical station-gas masses, not their historical upstream energy or compression mixture. Recorded vehicle CO2 totals are retained; absolute oxidation factors remain a screening convention.
+    - Station methane and other non-CO2 loss-flow origins remain native. Source pressure, composition, geography, vintage, allocation and loss differences, including minor other carbon in whole vehicle exhaust, have unquantified score effects.
   uvek_aliases:
     market_suppliers:
       allow_generated_helpers: true

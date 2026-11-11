@@ -89,6 +89,21 @@ def _update_fuels(
             annotate_cng_properties(fuels.database, carrier_specs=carriers)
         else:
             annotate_cng_properties(fuels.database)
+        # Complete delivery recipes acquire properties only after regional
+        # markets and carrier annotation. Reuse the normal handover once those
+        # properties exist, rather than freezing their historical fuel blend.
+        handovers = get_mapping(FUELS_TECHS, var=f"{family}_market_handovers")
+        for entries in handovers.values():
+            for entry in entries:
+                if entry.get("after_gas_annotation") and carriers:
+                    target = entry["target"]
+                    fuels._handover_fuel_market_aliases(
+                        {
+                            "name": target["name"],
+                            "reference_product": target["reference product"],
+                            "unit": target["unit"],
+                        }
+                    )
         recorded = get_mapping(FUELS_TECHS, var=f"{family}_recorded_exhaust_consumers")
         update_vehicle_fuel_co2(
             fuels.database,
