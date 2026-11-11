@@ -205654,6 +205654,127 @@
           "fingerprint": "c1abbecb59b5261bd4a7e55a4ad2cdae3cca5057c91390cfd12c1ce8fa5944dc"
         }
       ]
+    },
+    {
+      "rule_id": "bp-4be6319700d5ef19",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_ccs_coal_plant_36_review.json",
+      "review_sha256": "373b8b96e9a870123d3aa434607d4519ada491ff7058e8f8a027ded29d8f9570",
+      "authorization": "Active BAFU integration goal and standing autonomous approval of documented screening proxies, with modelling decisions logged for review.",
+      "inspection": {
+        "rule_id": "bp-4be6319700d5ef19",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for hard coal power plant",
+          "reference product": "hard coal power plant",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Hard coal power plant",
+          "reference product": "Hard coal power plant",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for hard coal power plant",
+            "product": "hard coal power plant",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "nonproduction_count": 2,
+          "inventory_sha256": "d7dacbedba77ffd4723385e4a1dfcf8196a19a2e42ed9812ff0d67ba60725102",
+          "comment_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "hard coal power plant construction, 100MW",
+              "product": "hard coal power plant",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 27,
+            "inventory_sha256": "e7d8b096ef9209287539cd2c5f61824f8c0f7166994a6c601b906a953d9ffb44",
+            "comment_sha256": "f04fe7bb2bc8000a545cf2e5b6bb9072ea1c6433ee981245201978940092c5be"
+          },
+          {
+            "identity": {
+              "name": "hard coal power plant construction, 500MW",
+              "product": "hard coal power plant",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 27,
+            "inventory_sha256": "7032bd050db356f512b3237c0530cb41ff8e5f244b034609ed8637f08e641ab1",
+            "comment_sha256": "62d01d4830a089957fcfdd02f15d065e0e44a3b3514ddba28779138532cac7b4"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Hard coal power plant",
+              "product": "Hard coal power plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 25,
+            "inventory_sha256": "82836ce381538bd0d38d9c12d308805870ad11543494e8fb8e5818eaf0b479c6",
+            "comment_sha256": "9d1464ec703745ba286d11293f04ce644b2502dd075043e4a4e277887f9a0608"
+          },
+          "2026": {
+            "identity": {
+              "name": "Hard coal power plant",
+              "product": "Hard coal power plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 25,
+            "inventory_sha256": "11ba70526ca9c6894bbe92f2d2d52b53b80bf7fa8e27e6c2bd710d5343c98c39",
+            "comment_sha256": "edb4b4850a0863e93f5d76778e0fb077eb8131f1e5fe9e93cd38acb0c98af912"
+          }
+        },
+        "conversion_factor": 1,
+        "rule_sha256": "0b6a7414d1ef098a9f5801bc09e0ebb6bfe2e26ab611092559007518ec2fd79a",
+        "limitations": [
+          "Complete native RER hard-coal power-plant construction and dismantling replaces the global source market per signed plant unit, factor +1. Preserve caller quantity, uncertainty, formula and separately listed infrastructure, operating energy and emissions; add no lifetime or capacity multiplier.",
+          "Source market shares are 27.559055% 100 MW and 72.440945% 500 MW plants; native documentation specifies 10% and 90%. The resulting fleet capacity and abatement-equipment mix differ. A unit-labelled whole-plant proxy is not capacity-equivalent or a reconstruction of the source portfolio. Score effects are unquantified.",
+          "Both source producers include construction materials, efforts, land and dismantling/disposal, based on German/US 1980s data. Native RER geography, electricity and upstream background differ from source global delivery. Retain the complete native boundary; do not omit disposal or add a second dismantling burden.",
+          "Exact inspected ecoinvent 3.6 cut-off scope only. No consequential, reverse or other-version approval. This construction approval alone does not qualify a capture chain or heat CCS role."
+        ]
+      },
+      "limitations": [
+        "Complete native RER hard-coal power-plant construction and dismantling replaces the global source market per signed plant unit, factor +1. Preserve caller quantity, uncertainty, formula and separately listed infrastructure, operating energy and emissions; add no lifetime or capacity multiplier.",
+        "Source market shares are 27.559055% 100 MW and 72.440945% 500 MW plants; native documentation specifies 10% and 90%. The resulting fleet capacity and abatement-equipment mix differ. A unit-labelled whole-plant proxy is not capacity-equivalent or a reconstruction of the source portfolio. Score effects are unquantified.",
+        "Both source producers include construction materials, efforts, land and dismantling/disposal, based on German/US 1980s data. Native RER geography, electricity and upstream background differ from source global delivery. Retain the complete native boundary; do not omit disposal or add a second dismantling burden.",
+        "Exact inspected ecoinvent 3.6 cut-off scope only. No consequential, reverse or other-version approval. This construction approval alone does not qualify a capture chain or heat CCS role."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "799e51a1124dfbbb549b299e1ec23f09b2fa9f4f9d9121559c002985fcc23faf"
+        }
+      ]
     }
   ],
   "superseded_operations": [

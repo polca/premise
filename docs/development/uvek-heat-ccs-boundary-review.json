@@ -71,7 +71,7 @@
     "unchanged_workbook_credit_realized_fraction": 0.6066228084741515,
     "decision": "Use the available post-combustion capture service for a post-combustion-labelled coal model, not the oxy-fuel service in the old workbook. Do not activate a heat alias before capture-chain dependencies and controlled export pass. Coke retains the existing shared coal-proxy convention with explicit fuel warnings.",
     "correct_capture_service": "carbon-dioxide-captured-from-hard-coal-fired-power-plant-post-pipeline-200km-storage-1000m",
-    "normal_preparation_result": "Stopped at unreviewed compatibility rule bp-4be6319700d5ef19; no bypass or new approval granted.",
+    "normal_preparation_result": "Coal-only and combined coal/wood preparation progressed past the reviewed coal-plant proxy, then stopped at unreviewed softened-water correspondence bp-a09df15b743513da. Full capture-chain and heat-role qualification remain incomplete.",
     "next_dependency_review": {
       "source": "market for hard coal power plant / hard coal power plant / GLO / unit",
       "target": "Hard coal power plant / Hard coal power plant / RER / unit",
@@ -83,7 +83,11 @@
         0.1,
         0.9
       ],
-      "decision": "Review the complete construction, dismantling, capacity basis, geographic portfolio and vintage before accepting a whole-plant screening proxy. A matching unit label alone does not establish equivalence."
+      "decision": "Review the complete construction, dismantling, capacity basis, geographic portfolio and vintage before accepting a whole-plant screening proxy. A matching unit label alone does not establish equivalence.",
+      "status": "Independently inspected and admitted only for ecoinvent 3.6 cut-off, with complete native boundary, factor +1 and explicit capacity-portfolio limitations.",
+      "review": "Brightpath export/uvek_heat_ccs_coal_plant_36_review.json",
+      "tests_passed": 3,
+      "brightpath_commit": "b53084a"
     },
     "evidence_sha256": {
       "remaining-ccs-capture-services.private.json": "7de0d0608a391fee7d2b2b0066a620bd913a527e4180f72fde12dc1cee6d1081",
@@ -91,6 +95,12 @@
       "coal-power-plant-correspondence.private.json": "1c9b13087579097b8aead09bbb3755cd343400b2067ac6cf1034e0ef1a7dd955",
       "coal-wood-ccs-capture-chains-probe.log": "7b77152bdbdeb1670130cc560754d65a4edd0a95e90c7af08afc2c64bf528689"
     },
-    "new_runtime_roles_admitted": 0
+    "new_runtime_roles_admitted": 0,
+    "next_unreviewed_dependency": {
+      "rule_id": "bp-a09df15b743513da",
+      "source": "market for water, completely softened / RoW / kilogram",
+      "target": "Water, completely softened, at plant / RER / kilogram",
+      "status": "Needs source-treatment, delivery and native-reference review before approval."
+    }
   }
 }
