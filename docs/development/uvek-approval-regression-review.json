@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "status": "Targeted approval-removal controls pass; fresh full approval regression is running against the repaired tests plus lime/chemical cases.",
+  "status": "Fresh full approval regression passed against the pre-compost migration resource; subsequent compost work has separate qualification.",
   "production_code_changed": false,
   "approval_policy_or_ledger_changed_by_test_repair": false,
   "cause": "Twenty-eight historical negative controls expected refusal after separate independently reviewed exact-profile approvals had been added. Reproduced failures are assertion/no-exception failures, not new migration errors.",
@@ -25,11 +25,11 @@
     "remaining_groups": "18 passed; two temporary undefined-name failures corrected; both corrected cases plus adjacent genuine refusal passed in a three-case rerun.",
     "distinct_repaired_group_cases_covered": 143,
     "lint_format": "Passed.",
-    "full_suite_clean_result": "Fresh run started; result pending."
+    "full_suite_clean_result": "854 passed, 1 third-party pythonjsonlogger deprecation warning, 1317.28 seconds."
   },
   "limitations": [
-    "The ongoing original broad run loaded the previous test functions; edits do not retroactively fix that run.",
-    "No full fuel-sector update/export or all-sector completion is claimed."
+    "Subsequent compost resource changes require their own regression evidence.",
+    "No complete fuel-sector export or all-sector completion is claimed."
   ],
   "original_full_run": {
     "failed": 28,
@@ -37,5 +37,14 @@
     "warnings": 1,
     "seconds": 1298.06,
     "failure_scope": "Historical test functions asserting absence of subsequently reviewed approvals."
+  },
+  "fresh_full_run": {
+    "passed": 854,
+    "warnings": 1,
+    "seconds": 1317.28,
+    "migration_resource_sha256": "2f84a38aba4177889bb851e9acb479d2e54481c87dc9fa47a0a95641db1b8e85",
+    "collected_chemical_profiles": 4,
+    "later_focused_chemical_profiles": 7,
+    "coverage_note": "The full run collected the four initial chemical-stock cases. The subsequent focused 35-case suite verifies all seven chemical stocks. No post-compost full-suite pass is claimed."
   }
 }

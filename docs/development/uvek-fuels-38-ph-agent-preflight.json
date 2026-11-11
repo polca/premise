@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-11",
+  "status": "Pending mapping and parameter/allocation review; not a qualified conversion.",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.8",
+    "system_model": "cutoff"
+  },
+  "rule_id": "bp-ffcd093245457004",
+  "source": {
+    "name": "market for soil pH raising agent, as CaCO3",
+    "reference product": "soil pH raising agent, as CaCO3",
+    "location": "GLO",
+    "unit": "kilogram"
+  },
+  "supplier_witnesses": [
+    {
+      "identity": {
+        "name": "treatment, sludge from pulp and paper production, landfarming",
+        "reference product": "soil pH raising agent, as CaCO3",
+        "location": "CA-QC",
+        "unit": "kilogram"
+      },
+      "source_reference_amounts": [
+        1.0
+      ],
+      "inventory_sha256": "bd79de4c871fda1ef9be2e16ed2a3b04cbdd44bf604131106aff534f6f1ce4f5",
+      "nonproduction_rows": 25,
+      "nonzero_nominal_rows": 0,
+      "nonzero_uncertainty_type_rows": 0,
+      "retained_formula_rows": 25,
+      "negative_treatment_reference": [
+        -1.0
+      ],
+      "negative_treatment_nonzero_exchange_count": 26,
+      "negative_treatment_inventory_sha256": "89af50afc351eb64d1cf0e59f17a598bad0094ccfcbd6cb37debb7efa1080bd0"
+    },
+    {
+      "identity": {
+        "name": "treatment, sludge from pulp and paper production, landfarming",
+        "reference product": "soil pH raising agent, as CaCO3",
+        "location": "Europe without Switzerland",
+        "unit": "kilogram"
+      },
+      "source_reference_amounts": [
+        1.0
+      ],
+      "inventory_sha256": "bde4725279a68deaee8394cbe67a0a8d28c997f04c8bdcce09b613b6cf62b1ad",
+      "nonproduction_rows": 25,
+      "nonzero_nominal_rows": 0,
+      "nonzero_uncertainty_type_rows": 0,
+      "retained_formula_rows": 0,
+      "negative_treatment_reference": [
+        -1.0
+      ],
+      "negative_treatment_nonzero_exchange_count": 26,
+      "negative_treatment_inventory_sha256": "d37a9d9fd882e824dbbbb80c2245973d1b85af5e347005d3d818135289e43392"
+    },
+    {
+      "identity": {
+        "name": "treatment, sludge from pulp and paper production, landfarming",
+        "reference product": "soil pH raising agent, as CaCO3",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "source_reference_amounts": [
+        1.0
+      ],
+      "inventory_sha256": "effd8d90a7724703861510a5bd0821af8679c6092452c728c85606cf1ac188c0",
+      "nonproduction_rows": 25,
+      "nonzero_nominal_rows": 0,
+      "nonzero_uncertainty_type_rows": 0,
+      "retained_formula_rows": 25,
+      "negative_treatment_reference": [
+        -1.0
+      ],
+      "negative_treatment_nonzero_exchange_count": 26,
+      "negative_treatment_inventory_sha256": "4a9de253779625556adc2c9b373af25147a3d0a3ec32b063d6d65c29941e4352"
+    }
+  ],
+  "lime_delivery_markets": [
+    {
+      "identity": {
+        "name": "market for lime",
+        "reference product": "lime",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "reference_amounts": [
+        1.0
+      ],
+      "inventory_sha256": "ae5e0b003d7389dfe5fd10fdc41864e6af1614ec367c9676e405f14b116be4cf",
+      "producer_count": 3
+    },
+    {
+      "identity": {
+        "name": "market for lime",
+        "reference product": "lime",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "reference_amounts": [
+        1.0
+      ],
+      "inventory_sha256": "2783d792e02d45c9e34751d8f35797c038dff8f452fb2670377b6dcb8d5d905a",
+      "producer_count": 3
+    }
+  ],
+  "next_checks": [
+    "Preserve source CaCO3-equivalent functional quantity rather than infer CaO chemistry from legacy lime names.",
+    "Trace both source RER/RoW lime delivery markets; reuse independently qualified milling and allocated-mining suppliers where exact identities match.",
+    "Review inherited formulas on CA-QC/RoW nominal-zero recovered-product rows before representing them as fixed allocated stocks; do not silently discard formula semantics or generalize the deterministic compost decision.",
+    "Retain every source material share and final freight entry without renormalization."
+  ],
+  "mapping_rules_modified": false,
+  "full_licensed_vectors_published": false
+}

@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "4a716459902f2ce1f469887605716e680e848ef4",
-  "approval_ledger_sha256": "b4d6f1bb14f3d49ed4c7db96b829049fb86d1346c0ee9e4f368cd4949e99f995",
-  "validated_scopes": 655,
+  "brightpath_commit": "8ff9a05d0e669551dd52a0cdeae833bddd5c4ff1",
+  "approval_ledger_sha256": "eea4cbc7bea92d0ad47e7a2d3b3c3674efe1835253a7db2a36e3f6b3a1ed4537",
+  "validated_scopes": 662,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 50,
-  "distinct_unapproved_rule_identities": 46,
+  "unapproved_source_profile_cases": 49,
+  "distinct_unapproved_rule_identities": 45,
   "cohorts": [
     {
       "source": {
@@ -71,9 +71,9 @@
       },
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 22,
-      "refusal_audit_filename": "23a7759b5087f0ab00d8a73be52b08205f2d3136e8abcddafe6b283264a80f6d.audit.json.gz",
-      "refusal_audit_sha256": "d376dfc4a5dc16d515db63041ec69ae15ab2195ff881c6480a8471f6ecb1cf84",
+      "unapproved_count": 21,
+      "refusal_audit_filename": "6e637fa91996c9f07c806f13ec1778485a70d07597931d904570b82123b39aca.audit.json.gz",
+      "refusal_audit_sha256": "2709527c83e1ec16be85eb38b697745c5170e8d77073a6a5dda34ec0456e8405",
       "pending": [
         {
           "rule_id": "bp-05200779ee64a17f",
@@ -100,21 +100,6 @@
             "name": "Ethanol fermentation plant",
             "reference product": "Ethanol fermentation plant",
             "unit": "unit"
-          }
-        },
-        {
-          "rule_id": "bp-ae632332ea38e930",
-          "source": {
-            "location": "GLO",
-            "name": "market for compost",
-            "reference product": "compost",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "xx Compost, at plant",
-            "reference product": "xx Compost, at plant",
-            "unit": "kilogram"
           }
         },
         {
@@ -435,8 +420,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 24,
-      "refusal_audit_filename": "570f05dfa78798ee261a361c31a49df431c07791b9e13e7f8791d517df9da94e.audit.json.gz",
-      "refusal_audit_sha256": "03111e5df75e5a3843eef801112840184f5ca4500463339c292f2d0b1fa5f43d",
+      "refusal_audit_filename": "f885008eabb537bfdd8c43a0cbb01ed2f6abfb73f334a8fffbb0287f8d0a95a0.audit.json.gz",
+      "refusal_audit_sha256": "4d2c8148e8377a8bd29d45652e86cb0dc1f3da0e85059b4ed4766b42c5476263",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -803,8 +788,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "09513d2e2a9c41f17b7d59c81a06adee7a50f250a368458307faad675be5c412.audit.json.gz",
-      "refusal_audit_sha256": "cc9e1e3986aeee895b16280503d30369a1a052e545d89833d2783b848f033528",
+      "refusal_audit_filename": "4cfd1a380ad1f16e6893db6b44f215b45b240b1edac46539e0d4ce1f06fcdac0.audit.json.gz",
+      "refusal_audit_sha256": "f3bd2af2673d7eafd896596471fed191a94ee70d83e48089d6bea4f9d6df50f7",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",

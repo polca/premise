@@ -57,7 +57,7 @@
   "tests": {
     "brightpath_all_seven_chemical_stocks": "29 passed",
     "premise_all_seven_chemical_stocks": "35 passed; signed dose, uncertainty, exact warnings, fresh/cache and individual approval removal.",
-    "full_approval_suite": "Fresh repaired-suite run remains live; not yet counted as passing."
+    "full_approval_suite": "Fresh pre-compost approval suite: 854 passed, one third-party deprecation warning. See uvek-approval-regression-review.json for exact collection/resource scope."
   },
   "wheel": "New review, unchanged migration resource and manifest match checkout bytes.",
   "regular_conda_install": "Git direct_url commit, review hash and 655 exact scopes verified.",

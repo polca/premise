@@ -58,7 +58,7 @@
     "regular_environment": "Git-installed site-packages resource hash and direct_url commit verified; all 648 scopes validate.",
     "lint_format_whitespace": "Passed for new scripts and tests.",
     "broader_sign_regression": "733 passed",
-    "broader_approval_regression": "Original run: 805 passed, 28 stale refusal assertions failed. Targeted repaired controls pass; fresh full run pending. See uvek-approval-regression-review.json."
+    "broader_approval_regression": "Fresh pre-compost approval suite: 854 passed, one third-party deprecation warning. See uvek-approval-regression-review.json for exact collection/resource scope."
   },
   "runtime_python_changes": false,
   "limitations": [

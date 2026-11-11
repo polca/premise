@@ -1,0 +1,197 @@
+{
+  "date": "2026-11-11",
+  "status": "Exact 3.8 compost market and six recovered-product suppliers qualified. Complete fuel update and all-sector export remain unfinished.",
+  "brightpath_mapping_and_regular_install_commit": "8ff9a05d0e669551dd52a0cdeae833bddd5c4ff1",
+  "brightpath_test_only_followup_commit": "9f27831ca553d0db67abd79ee480cb9c08362e44",
+  "review_sha256": "fea6033df8a91f20e7f4cbcc99c0d8620938a136f4d51b45d1e80dd5119ef793",
+  "forward_resource_sha256": "eab2d4b288d97dc43cdd4a9640491dde2a8afa7505e1cc2c06ac4a0ae4e5fcff",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_approval_scopes": 7,
+  "validated_approval_scopes": 662,
+  "all_prior_655_operations_and_fingerprints_preserved": true,
+  "mapping_change": "Only seven inspected compost parents changed; two helpers added; all prior recipes and shared reviews preserved.",
+  "source_allocation": {
+    "producer_count": 6,
+    "biosphere_rows": 44,
+    "amount": 0,
+    "loc": 0,
+    "uncertainty_type": 0,
+    "nonzero_uncertainty_or_formula_rows": 0,
+    "negative_nonempty_treatment_pairs": 6
+  },
+  "source_allocation_witnesses": [
+    {
+      "compost_identity": {
+        "name": "treatment of garden biowaste, home composting in heaps",
+        "reference product": "compost",
+        "location": "FR",
+        "unit": "kilogram"
+      },
+      "publisher_activity": "3453dbba-91ef-4399-a35d-3623a95079b2",
+      "source_compost_inventory_sha256": "f46f8e57df694a1bb31e1db71cb37cab924ba738dffbbc7ef8dd1887cd65937d",
+      "literal_deterministic_zero_rows": 8,
+      "waste_service_identity": {
+        "name": "treatment of garden biowaste, home composting in heaps",
+        "reference product": "biowaste, garden waste",
+        "location": "FR",
+        "unit": "kilogram"
+      },
+      "waste_reference_amounts": [
+        -1.0
+      ],
+      "waste_nonzero_exchange_count": 8,
+      "waste_inventory_sha256": "c57e7be541d4991a3b99457ea2a14867f8e64318deff1f0c7e6cbd3194226d38",
+      "waste_metadata_sha256": "d649ded8fb3aa692b96841e043df83b34a9d1360bf6ee2fce2303a3d2bb4f431"
+    },
+    {
+      "compost_identity": {
+        "name": "treatment of biowaste, industrial composting",
+        "reference product": "compost",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "publisher_activity": "ae55af9d-890b-405d-9698-c34f7136bd65",
+      "source_compost_inventory_sha256": "5a0f2bf3471f5e1f1d34a37b97a38e52cbc99a0c36d268bbd27b2258af5122e1",
+      "literal_deterministic_zero_rows": 6,
+      "waste_service_identity": {
+        "name": "treatment of biowaste, industrial composting",
+        "reference product": "biowaste",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "waste_reference_amounts": [
+        -1.0
+      ],
+      "waste_nonzero_exchange_count": 11,
+      "waste_inventory_sha256": "6639d249421bd9e23eb280bef678c8805011e8a976cd076f077eb8ec25ac64ac",
+      "waste_metadata_sha256": "04872e14cdacb355f81be8fa6501b71a7564d6a72cd6cf471f1cac6d1ae88fae"
+    },
+    {
+      "compost_identity": {
+        "name": "treatment of kitchen and garden biowaste, home composting in heaps and containers",
+        "reference product": "compost",
+        "location": "FR",
+        "unit": "kilogram"
+      },
+      "publisher_activity": "cc435fd5-895a-4431-8130-417193b5e11c",
+      "source_compost_inventory_sha256": "d5d457084b253164c88b3a70fae4149fc4cf8175e6532c040b6f358b7eed3f09",
+      "literal_deterministic_zero_rows": 8,
+      "waste_service_identity": {
+        "name": "treatment of kitchen and garden biowaste, home composting in heaps and containers",
+        "reference product": "biowaste, kitchen and garden waste",
+        "location": "FR",
+        "unit": "kilogram"
+      },
+      "waste_reference_amounts": [
+        -1.0
+      ],
+      "waste_nonzero_exchange_count": 10,
+      "waste_inventory_sha256": "42e1d812ed3386b284002d2ab67bd761d040694812d107aa0b138ae93423562b",
+      "waste_metadata_sha256": "f529b5557b4d5eea61cb346a1cc8f268125dc7c8132e49755d810c258965c302"
+    },
+    {
+      "compost_identity": {
+        "name": "treatment of garden biowaste, home composting in heaps",
+        "reference product": "compost",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "publisher_activity": "0d931d02-c47f-4a1e-b15a-388a460a7f6c",
+      "source_compost_inventory_sha256": "87791e0bd5dc536d5292224089f639f5e714988ca6c1d894dceaabc1ef1309c2",
+      "literal_deterministic_zero_rows": 8,
+      "waste_service_identity": {
+        "name": "treatment of garden biowaste, home composting in heaps",
+        "reference product": "biowaste, garden waste",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "waste_reference_amounts": [
+        -1.0
+      ],
+      "waste_nonzero_exchange_count": 8,
+      "waste_inventory_sha256": "aaaf66e003e1353fe0244528026b31f822727451b64c2a2a40c8ff354503d63c",
+      "waste_metadata_sha256": "977b5bffe2ce1076c8b5c59c5ab3aabe4d7606dcd1cc1822df424cf590a12910"
+    },
+    {
+      "compost_identity": {
+        "name": "treatment of biowaste, industrial composting",
+        "reference product": "compost",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "publisher_activity": "8fbe6faf-f7c4-431f-822c-ae14f37bae71",
+      "source_compost_inventory_sha256": "b67fa95f66549bfafbcc502893d1dd72afa5ea202d4b36d4053456fd8e9370fd",
+      "literal_deterministic_zero_rows": 6,
+      "waste_service_identity": {
+        "name": "treatment of biowaste, industrial composting",
+        "reference product": "biowaste",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "waste_reference_amounts": [
+        -1.0
+      ],
+      "waste_nonzero_exchange_count": 23,
+      "waste_inventory_sha256": "098ebd60b849a4b6da0cdacfbcca27429044ab42ee103f88cf337787663854bc",
+      "waste_metadata_sha256": "d48891c04de5d5b41bbb612f40bf1aef9341ed107fcd834160cc5654c66a8050"
+    },
+    {
+      "compost_identity": {
+        "name": "treatment of kitchen and garden biowaste, home composting in heaps and containers",
+        "reference product": "compost",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "publisher_activity": "bcf77ab0-cf3a-49ba-b995-9d4e100bbaa7",
+      "source_compost_inventory_sha256": "28e47e13036d389b37ad8ae743ffd7e2513cf422d0d33217f767db7f86a90b62",
+      "literal_deterministic_zero_rows": 8,
+      "waste_service_identity": {
+        "name": "treatment of kitchen and garden biowaste, home composting in heaps and containers",
+        "reference product": "biowaste, kitchen and garden waste",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "waste_reference_amounts": [
+        -1.0
+      ],
+      "waste_nonzero_exchange_count": 51,
+      "waste_inventory_sha256": "0a5e8da4a771696e2f92c311835f836f25d6ced9780ccb4d3ab9f846cc969282",
+      "waste_metadata_sha256": "3d6399f78ea241ee585faf0c9e1254cebd0af713e5e08bc535d62a277b181d42"
+    }
+  ],
+  "native_delivery_lci": {
+    "status": "Finite flattened LCI of exact retained freight; allocated recovered-compost stock has zero upstream inputs, not zero actual treatment burden. No Brightway write.",
+    "external_demand_rows": 2,
+    "finite_supply": true,
+    "finite_inventory": true,
+    "source_database": "BAFU:2026-reimported",
+    "source_activity_count": 11947,
+    "source_modified": "2026-09-22T10:55:01.512934",
+    "source_unchanged": true
+  },
+  "tests": {
+    "new_brightpath_compost_cases": "44 passed",
+    "new_premise_compost_cases": "21 passed",
+    "sign_and_cutoff_regression_initial_run": "813 passed, one historical coal-ash pending-profile assertion failed. All 733 sign checks passed.",
+    "cutoff_allocation_suite_after_test_only_correction": "81 passed, two third-party deprecation warnings; the previously pending 3.9 ash profile is independently bound to its frozen carbon review. Other pending profiles remain refused.",
+    "pre_compost_full_premise_suite": "854 passed, one third-party deprecation warning against resource 2f84a38a; not claimed as a post-compost full-suite result."
+  },
+  "generator_replay": "Forward and canonical biosphere bytes match checkout.",
+  "wheel": "Review, resource and manifest bytes match checkout.",
+  "regular_environment": "Git direct_url, resource SHA and all 662 exact scopes verified; uses mapping commit 8ff9a05. Follow-up 9f27831 changes one test only.",
+  "runtime_python_changes": false,
+  "authoring_changes": "One frozen-review replay utility and its generator hook; no runtime adaptation.",
+  "source_background_inventories_changed": false,
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 49,
+    "distinct_rule_identities": 45,
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123263358,
+  "limitations": [
+    "Only exact inspected ecoinvent 3.8 cut-off profiles qualify. All six source compost co-products have positive one-kg fresh-compost references and exactly 44 deterministic zero biosphere rows in total (amount=loc=0, uncertainty type 0, no nonzero dispersion, bounds or formula). Each shares its original publisher activity with a separately inspected negative-one-kg waste-treatment branch carrying nonzero exchanges. Preserve this observed source allocation: compost handover receives no upstream treatment burdens, but actual composting and its waste service are not burden-free. Never infer zero from a missing or merely small inventory. Native UVEK xx Compost at plant is nonempty and carries operating energy, collection, emissions and infrastructure, so it is not the correct cut-off stock boundary here. The generated positive stock represents one kg fresh compost only, with no invented treatment, recovery credit, soil carbon credit, nutrient-equivalence, moisture or dry-mass conversion. Source consumer properties and separately listed application, treatment and emissions remain unchanged. Original literal zero background records are represented by a structurally empty allocated-stock helper, not copied raw inventories. Retain six original producer-share entries and both final-delivery freight rows separately with exact signed quantities, uncertainty and source order, without aggregation or renormalization. Native European rail and generic lorry fleets are geographic/technology screening proxies at original tonne-km. This is not proof of real compost being impact-free; score differences from freight, biosphere conventions and source boundaries remain unquantified. No other profile, waste-treatment reference or nonzero stock is approved."
+  ]
+}
