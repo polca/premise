@@ -1119,3 +1119,54 @@ remain. See the [heat/recycling receipt](uvek-fuels-39-heat-recycling-preparatio
 Next: resolve the four observed product-basis/allocation cases, then further
 preparation cohorts, the shared fuel update and export, and remaining registered
 sectors. The full integration goal remains active.
+
+
+### Four remaining 3.9 markets resolved — 11 November 2026
+
+All four previously observed 3.9 approvals now pass actual licensed preparation.
+Four derived market helpers retain **35 source rows**: eighteen producer entries
+and seventeen freight entries, with signs, uncertainty, formulas and order,
+without omissions or renormalization. No runtime Python modules change.
+
+Silica sand retains both dried-sand producers and the chemical co-product. All
+twelve nonproduction flows of that co-product equal 0.0312 times the paired
+cryolite inventory. Only that allocated burden is proxied by complete native
+cryolite at 0.0312 kg/kg; native hydrogen-fluoride versus source fluosilicic-acid
+chemistry is explicitly warned. This is not physical cryolite consumption,
+ordinary quarry sand or a recovery credit. All five market freight rows remain.
+
+KOH, ethanol and ether use active substance kg. The old ecoinvent usage guide
+section 5.1.11 documents that convention for dissolved chemicals and solvents;
+concentration names alone do not imply a wet-mass factor. Original native
+ethanol records explicitly state dry basis for CN/US/RER, and the CH source and
+native shares/utilities independently agree. KOH's source documentation
+describes rescaling its older production basis. No 1/0.856, 1/0.997 or 1/0.9995
+multiplier is introduced. Complete native processes replace source technology
+and allocation with warnings: eleven ethanol branches preserve country matches
+where available and explicitly use RER/BR geographic proxies elsewhere; native
+ether hydration also proxies the source ethanol-based route. Native precursor
+and upstream transport boundaries remain part of the complete stock inventory.
+
+All **768 checks pass**: 31 new Brightpath, 733 reference-sign regressions and
+four strict fresh/cache Premise checks. Independent licensed comparison verifies
+all 35 source rows field by field, and four actual weighted native-market LCIs
+are finite. Complete replay and wheel bytes match; canonical biosphere is
+unchanged. Four exact source-profile approvals preserve all previous operations,
+with 617 validated scopes. No other release or system model is inferred.
+Requirements and colleague guides pin the pushed Brightpath revision; the
+notebook remains unchanged. Verified obsolete replay/wheel artifacts were removed.
+
+Preparation now reaches a **3.8 cohort with 58 unapproved correspondences**; it
+has not succeeded overall. All 58 roots and their same-product suppliers (262
+activities) were inspected. Twenty-five root vectors match 3.9 exactly, which
+does not establish matching supplier closure or target behavior. Comparing their
+direct same-product supplier vectors found no fully identical root-plus-supplier
+set (including uncertainty/formulas). No approval is inferred from root equality
+alone. Triage groups contain ten energy/combustion,
+eleven transport/water, seven chemical/process, eleven material/infrastructure
+and nineteen agriculture/biomass cases. These are planning groups, not waived
+requirements. The public fuel guard remains closed; transformation/export and
+other sectors remain unfinished. The full goal stays active.
+
+See the [four-market receipt](uvek-fuels-39-final-markets-preparation-verification.json)
+and [grouped 3.8 triage](uvek-fuels-38-preparation-triage.json).

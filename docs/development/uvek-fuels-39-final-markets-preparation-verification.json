@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-11",
+  "status": "All four previously observed 3.9 correspondences accepted; licensed preparation advances to a 3.8 cohort with 58 unapproved correspondences. Fuel update/export remain unfinished.",
+  "brightpath_commit": "6150ec80bbaf8a4a07650ffbb91231b02a24f98e",
+  "review_sha256": "3202607466b7966e8d2366cc544e03a7ad7403bc4f86b4933b14b823885c0cc1",
+  "resource_sha256": "38d63d9730f39c66f50d78bd21175d04d4e9f185833c8d413d66bd8362a9d11c",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_exact_39_cutoff_operations": 4,
+  "validated_scopes": 617,
+  "new_helpers": 4,
+  "source_market_rows_retained": 35,
+  "source_producer_rows_retained": 18,
+  "source_freight_rows_retained": 17,
+  "new_source_omissions": 0,
+  "new_runtime_python_changes": 0,
+  "tests": {
+    "new_brightpath": 31,
+    "reference_sign_regressions": 733,
+    "new_premise": 4,
+    "total": 768
+  },
+  "complete_replay_byte_identical": true,
+  "wheel_review_resource_manifest_exact": true,
+  "native_checks": {
+    "date": "2026-11-11",
+    "source_database": "BAFU:2026-reimported",
+    "source_activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "market_matrix_solves": 4,
+    "retained_rows_independently_verified": 35,
+    "method": "Aggregate the derived helper native supplier demands, retaining each signed quantity in the recipe; solve the actual installed native technosphere for one kg helper output. No database write. This is not prospective fuel transformation/export.",
+    "results": [
+      {
+        "rule_id": "bp-dbd744f486420f56",
+        "functional_amount": 1,
+        "unit": "kilogram",
+        "nonproduction_rows_verified": 8,
+        "distinct_native_demand_suppliers": 7,
+        "native_weighted_market_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 2.4539523135102574
+      },
+      {
+        "rule_id": "bp-d262805ddd8a5f1e",
+        "functional_amount": 1,
+        "unit": "kilogram",
+        "nonproduction_rows_verified": 11,
+        "distinct_native_demand_suppliers": 4,
+        "native_weighted_market_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 60.16586624940323
+      },
+      {
+        "rule_id": "bp-30a2d390a7132058",
+        "functional_amount": 1,
+        "unit": "kilogram",
+        "nonproduction_rows_verified": 10,
+        "distinct_native_demand_suppliers": 5,
+        "native_weighted_market_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 309.63818813090876
+      },
+      {
+        "rule_id": "bp-51fc380f01708bab",
+        "functional_amount": 1,
+        "unit": "kilogram",
+        "nonproduction_rows_verified": 6,
+        "distinct_native_demand_suppliers": 5,
+        "native_weighted_market_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 508.2570168719735
+      }
+    ]
+  },
+  "silica_allocation": {
+    "all_nonproduction_rows_compared": 12,
+    "source_coproduct_to_cryolite_inventory_ratio": 0.0312,
+    "native_chemistry_difference_warned": true
+  },
+  "active_basis_reference": {
+    "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/code%20of%20practice_ecoinvent%20version%202.pdf?hsLang=en",
+    "section": "5.1.11",
+    "page": 17,
+    "finding": "Dissolved chemicals and solvents reference active kg; solution transport uses solution mass. No generic concentration multiplier."
+  },
+  "licensed_preparation": {
+    "diagnostic_only_public_guard_bypassed": true,
+    "previous_39_unapproved": 4,
+    "all_four_accepted": true,
+    "next_cohort_source_version": "3.8",
+    "next_cohort_unapproved": 58,
+    "audit_filename": "92828a190f6374fd921cfad4f5ed9aa14dd92fb5e924fa8cdd529284a8ec3d43.audit.json.gz",
+    "audit_sha256": "4a859091679605585190a75b0c4396fdbc1e1bf3f7cd1df790d4244c235a7b2f",
+    "unit_planning_diagnostic_retained": true,
+    "fuel_transformation_run": false,
+    "fuel_database_exported": false
+  },
+  "next_cohort_inspection": {
+    "source_roots_inspected": 58,
+    "roots_and_same_product_suppliers_inspected": 262,
+    "root_vectors_identical_to_39": 25,
+    "automatic_approval_from_identity_or_root_equality": false,
+    "triage_file": "uvek-fuels-38-preparation-triage.json",
+    "roots_and_direct_same_product_supplier_vectors_identical_to_39": 0
+  },
+  "regular_conda_git_install_verified": true,
+  "limitations": [
+    "Source production routes, allocation, geography and vintage are replaced by documented native screening proxies; score differences remain unquantified.",
+    "A root vector matching another release is not proof of matching producer closure or target behavior.",
+    "Preparation acceptance, mapping tests and finite native LCIs do not qualify prospective transformation/export or other registered sectors."
+  ],
+  "obsolete_verified_replay_wheel_bytes_removed": 123092374,
+  "earlier_operations_unchanged": true,
+  "previous_validated_scopes": 613,
+  "regular_conda_validated_scopes": 617
+}

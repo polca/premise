@@ -183234,6 +183234,1485 @@
           "fingerprint": "1d656eb3694d188dd707ee5a82b3cdb1c53e30dff8bbda61b0a93eeb1d0b2f0b"
         }
       ]
+    },
+    {
+      "rule_id": "bp-dbd744f486420f56",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_final_market",
+      "review_path": "export/uvek_fuels_39_final_markets_review.json",
+      "review_sha256": "3202607466b7966e8d2366cc544e03a7ad7403bc4f86b4933b14b823885c0cc1",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected functional screening proxies with warnings. No source-input omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for silica sand",
+            "reference product": "silica sand",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "c38452e158e7d9095df7f3d569f988c4bd8d8aa5fcc0176630dfa5b7f095d74d",
+          "metadata_sha256": "90c7a590e2f6b2a005caa6c758af55aafe0870459e05912367aaf3e745709d6d",
+          "nonproduction_counts": {
+            "technosphere": 8
+          },
+          "name": "market for silica sand",
+          "reference product": "silica sand",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "cryolite production, from fluosilicic acid",
+              "reference product": "silica sand",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "a6a2effaa7bc1c53d05cc8dec1d2fa40abebf73fbdff58507c7cb682a939cc46",
+            "metadata_sha256": "da2c1a4cdae736f7c0026add7cac82270fed1e42dd93f29de97f328ad58f17fa",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "silica sand production",
+              "reference product": "silica sand",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "f912844ae975d213ccb30b5204883561aed9813e0b3a6c5070dfc735205269c1",
+            "metadata_sha256": "54356b145f2a4828b47983388abe7d8292e1476b733d7219f821064ba97edb0e",
+            "nonproduction_counts": {
+              "technosphere": 7
+            }
+          },
+          {
+            "identity": {
+              "name": "silica sand production",
+              "reference product": "silica sand",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "78e882d1d112e69369b4784abc288b3ac144f51dc407acb00f5fcf4725ccd9af",
+            "metadata_sha256": "fb909a44d3df1844628052096f421cad6ddf2aa29caba685daeddb0517d22018",
+            "nonproduction_counts": {
+              "technosphere": 2
+            }
+          }
+        ],
+        "basis": "Retain two ordinary dried-silica producers with complete native dried silica sand, not unprocessed mine sand. The chemical co-product has every one of twelve nonproduction flows exactly 0.0312 times its paired cryolite product. Represent only its allocated chemical-production burden with 0.0312 kg complete native cryolite per kg co-product sand; this is an allocated-burden screening proxy, not physical cryolite consumption. Native uses hydrogen fluoride whereas source uses fluosilicic acid: chemistry, allocation, feedstocks, recovery, emissions and geography differ. No ordinary quarry burden or sand-recovery credit is added to this co-product. Keep source producer shares and five freight rows.",
+        "conversion_factor": 1,
+        "new_recipe_id": "fuels-39-final-market-5135e054986e0de8eda4",
+        "retention": {
+          "source_nonproduction_rows": 8,
+          "source_producer_rows": 3,
+          "source_freight_rows": 5,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Cryolite, at plant",
+              "reference product": "Cryolite, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 16,
+            "metadata_sha256": "4524a28784ef8299b47d550b37930e22ddaf52f469e04ab40ae77555cc8ef188",
+            "inventory_sha256": "28847b1a733437d53680621134f2fa3046bee7cc9c5f4ddbd6b72b55697d6e4a",
+            "comment_sha256": "7dcfbc1dfbc9cca1f1e66b8e02fc881be7c69b6e895388685b059810c561a3dc"
+          },
+          {
+            "identity": {
+              "name": "Silica sand, at plant",
+              "reference product": "Silica sand, at plant",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b4f713bdfb39fcd5ca849429d3db96e49830048ca74ef5e6d555d25f0acf3c0e",
+            "inventory_sha256": "2a27de16300fc9c14a81008e837cb11185bb3ad4e58f9d1503c737d4872c0fdc",
+            "comment_sha256": "eaefb00580a32a7ee2baef6dd1ceac3a972395a2af75b8f33bb3da12e26d7924"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 22,
+            "metadata_sha256": "d1d0291c90985a7b559ee50e68ac454546323774d40baac3af8c578a9e24da05",
+            "inventory_sha256": "77d20ff116c97af1ee71dd90fc1effac03d729c154c534121ad08723a5519e09",
+            "comment_sha256": "fc2d2788b18547ce147748220daeb50efd6d27f56f43549247c88902e22d3f44"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "da947add813fcb34247cd5102fa337739c8bb8448455d833918e5356957e9be1",
+            "inventory_sha256": "2b23d573b7e05cd385a7fa8e6c943ba8cafcaa67f7f613a173ed94fd425948e3",
+            "comment_sha256": "ca255165941b37f4748e890bff4eb8d572db44b38cb9466c7ff9fb7f5c1d0463"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "70a686b9dbaa9ff72de20df52af326e6d1c42cd216cd8fc43c3c2991fde89d5c",
+            "inventory_sha256": "77228fc064c494793fcd045a1299e8add40671a35195a5cd6de93205e326e7b9",
+            "comment_sha256": "05fbffe5d405864bb5540790abbd6f59d857e39616c2a386053596c9bd4c1d6c"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e6f8799fcac4109fe75f2642743e4e6845fbbcaf62f5c79155673f703008e8ff",
+            "inventory_sha256": "0b7ed9b81689b6b4a7337f17c19623dac3b0a15043be2e1781724033dcb6ec62",
+            "comment_sha256": "0a9dc906634723bb62b87313b27867873a32f1e73e41de61e2629928412df128"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "c1a930b36c4cd8aa1d775cc27e41f8dae7530d8b35d0f6e9bb113f5776f778d7",
+            "inventory_sha256": "2b733c6930a3bdd7551e9f77b601b69d44b160b2de8ce4b1c83d850824691966",
+            "comment_sha256": "dcf6b9e7e2bba7b0f709d97e00e4039c491e301f9eb73e422c2031cfb76ed14c"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "metadata_sha256": "89c31fe8b6b12c11ab586603ccd23264dcf45c84b6be81c4fd49391a4b991954",
+            "inventory_sha256": "e14e9464bb7ee2d052a7c76d76971f715b7fbcd9f7360464dfa574a9267b7487",
+            "comment_sha256": "b5eb4b2cda095a9a37e2604f1ff87f471b8692fb13358456dfe16dc0668c97a5"
+          },
+          {
+            "identity": {
+              "name": "Diethyl ether, at plant",
+              "reference product": "Diethyl ether, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "metadata_sha256": "ea04335b8f9a1d0dccda07b5a1d21aeedaf3d3948cd40330d79095f519fdc09d",
+            "inventory_sha256": "6773c24713b3525dbb05b3cec24094dd479819daca264673f1dd250f245a8b0b",
+            "comment_sha256": "a90bd2a2e5aee726323b2aa8d80e27d89ff861f0e48c1ae52c5bf38bbb0bf574"
+          },
+          {
+            "identity": {
+              "name": "Transport, coal freight, rail",
+              "reference product": "Transport, coal freight, rail",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "metadata_sha256": "ee81df054f69c168629f540eda90c9b87e3d97e2092d2dc9b356a4f62f5f1e54",
+            "inventory_sha256": "ea2e7a6e3e46399dfdb5a2164164c44947270a827a4f8813501def912008ccf1",
+            "comment_sha256": "23e2eec9527ad774d8bb988d74bc041d8f50069767a77cc3d6d2dd69693fb761"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail, diesel",
+              "reference product": "Transport, freight, rail, diesel",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "metadata_sha256": "c7f3b5e0197302c2ac44cc877c428d1addf274c50b437f5e92f5e82a804d5c43",
+            "inventory_sha256": "52e7e4e9bf48ab932193de65a0f532b05cf1030b8a35682b35eb2666344088a3",
+            "comment_sha256": "ec11c0deeaebeb7067e39d26a5860d031689ca781a1f4d9987bb0db4268dc900"
+          },
+          {
+            "identity": {
+              "name": "Potassium hydroxide, at regional storage",
+              "reference product": "Potassium hydroxide, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "f6f6ba4a254f754462a579f3912cda1fbd03e77c53b949159602a313781e0a1d",
+            "inventory_sha256": "a4263a47348a703a0ec78ace33dd62f8365e47dc467731a5606e07b54e030e96",
+            "comment_sha256": "8a887287b0bfc25ba9b930af8c848168e4daddaac4b0d2e4823fbe4436f6fd3d"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          }
+        ],
+        "existing_recipe_dependencies": {},
+        "active_basis_reference": {
+          "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/code%20of%20practice_ecoinvent%20version%202.pdf?hsLang=en",
+          "section": "5.1.11",
+          "page": 17,
+          "finding": "Dissolved chemicals and solvents reference active kg; solution transport uses solution mass. No generic concentration multiplier."
+        },
+        "silica_allocation_comparison": {
+          "co_product": {
+            "identity": {
+              "name": "cryolite production, from fluosilicic acid",
+              "reference product": "silica sand",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "a6a2effaa7bc1c53d05cc8dec1d2fa40abebf73fbdff58507c7cb682a939cc46",
+            "metadata_sha256": "da2c1a4cdae736f7c0026add7cac82270fed1e42dd93f29de97f328ad58f17fa",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 5
+            }
+          },
+          "parent": {
+            "identity": {
+              "name": "cryolite production, from fluosilicic acid",
+              "reference product": "cryolite",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "c1a14609b022e328c49bf02816305e9b483eb937caee349723619c23bc598dac",
+            "metadata_sha256": "865c44b82d9c8b124254c4641f18a26d308c647b634cd3ae623eaaf6b724432a",
+            "nonproduction_counts": {
+              "technosphere": 7,
+              "biosphere": 5
+            }
+          },
+          "nonproduction_vectors_same_keys": true,
+          "all_nonproduction_rows": 12,
+          "all_nonproduction_ratio": 0.0312,
+          "comparison_relative_tolerance": 1e-12
+        }
+      },
+      "limitations": [
+        "Retain two ordinary dried-silica producers with complete native dried silica sand, not unprocessed mine sand. The chemical co-product has every one of twelve nonproduction flows exactly 0.0312 times its paired cryolite product. Represent only its allocated chemical-production burden with 0.0312 kg complete native cryolite per kg co-product sand; this is an allocated-burden screening proxy, not physical cryolite consumption. Native uses hydrogen fluoride whereas source uses fluosilicic acid: chemistry, allocation, feedstocks, recovery, emissions and geography differ. No ordinary quarry burden or sand-recovery credit is added to this co-product. Keep source producer shares and five freight rows.",
+        "Exact inspected ecoinvent 3.9 cut-off only. Preserve all original producer shares and freight rows, signed caller amounts, formulas and uncertainty without renormalization. Complete native inventories replace production technology, allocation, geography, vintage and internal uncertainty, with unquantified score effects. No omitted source rows, invented recovery credit, concentration, yield or density correction. Native internal upstream transport remains part of its complete production boundary; retained source market delivery is separate and boundary differences must be reviewed if transport dominates."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "93d8494460aeafa50806c61e838f38a8bff49864555cbdf5cacc6b57e665ae2a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d262805ddd8a5f1e",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_final_market",
+      "review_path": "export/uvek_fuels_39_final_markets_review.json",
+      "review_sha256": "3202607466b7966e8d2366cc544e03a7ad7403bc4f86b4933b14b823885c0cc1",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected functional screening proxies with warnings. No source-input omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for ethanol, without water, in 99.7% solution state, from fermentation",
+            "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "70483e4c9c4fd12f25bff2eaa7fe37123679d39dae72cc6f2262d9d6b667c229",
+          "metadata_sha256": "24482443a97b08cf51669de6fd7974e1d6dc7378fd007bfe61ce574584aaef92",
+          "nonproduction_counts": {
+            "technosphere": 11
+          },
+          "name": "market for ethanol, without water, in 99.7% solution state, from fermentation",
+          "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "dewatering of ethanol from biomass, from 95% to 99.7% solution state",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "48178abb85d1799487a3ca7a69ade37897c76290b0c583967694f0aa2be891df",
+            "metadata_sha256": "c78fc4fe293d91bcf63293685f7e49c357b5096b91d32371b8c76343217874ae",
+            "nonproduction_counts": {
+              "technosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "sugarcane processing, modern annexed plant",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "72555aa84164349a84d9ca7c0da81a48c446d1eca5cf404b09a6230b7dc1219f",
+            "metadata_sha256": "2f9ec6715d42f72e6c98c6eb54d4eabce8c860af0a99d8425d99680a3738e28f",
+            "nonproduction_counts": {
+              "technosphere": 34,
+              "biosphere": 16
+            }
+          },
+          {
+            "identity": {
+              "name": "sugarcane processing, modern autonomous plant",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "426c5acec8f434465c8199ced47a01aa7d31620af1de3c0c5711d9c4dbe2b767",
+            "metadata_sha256": "bc28e2173468bcd8c1c8c4a0a7321fc4aabcd2dd6118acd5353d2487ada0caed",
+            "nonproduction_counts": {
+              "technosphere": 34,
+              "biosphere": 14
+            }
+          },
+          {
+            "identity": {
+              "name": "sugarcane processing, traditional annexed plant",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "8e6d1911c26d74791f4842e6e8bf892b4769cdc0e39b86f2afb0609dc1c07952",
+            "metadata_sha256": "1d2ec367d107423551ba5a62456064e0a5f7c43709f555f32a265cf3608df6f6",
+            "nonproduction_counts": {
+              "technosphere": 34,
+              "biosphere": 16
+            }
+          },
+          {
+            "identity": {
+              "name": "dewatering of ethanol from biomass, from 95% to 99.7% solution state",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "b5e952c4e15e4b2dcc111c5774bba38e87795df46dc0a664a399945b56ba3f49",
+            "metadata_sha256": "a2bda03a9571afc0252573058e2a9c07863d4f316ed680425511229460e71010",
+            "nonproduction_counts": {
+              "technosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "dewatering of ethanol from biomass, from 95% to 99.7% solution state",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "a56025a9fe7366071dc4d7e683581a9f38932f4bff9e66e40792bcd71ef7795c",
+            "metadata_sha256": "bb683e179854056a0122fba1d43b7e2e7d4ddc6fe4eed20a4dc6afd297a2d822",
+            "nonproduction_counts": {
+              "technosphere": 2
+            }
+          },
+          {
+            "identity": {
+              "name": "sugarcane processing, traditional autonomous plant",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "7330770e4fdc24dca724241bf4f3250a388d084df3b321c446ba29f4678aaa0f",
+            "metadata_sha256": "032b52a05f2889c37b2f0e3bb282efcab58418cd93fe5aaecc98c183a019760d",
+            "nonproduction_counts": {
+              "technosphere": 34,
+              "biosphere": 14
+            }
+          },
+          {
+            "identity": {
+              "name": "sugarcane processing, traditional annexed plant",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "ca1bb32f3bb22cbdf79361a8f4b2fec9c506a37c5b2466182c2701c455ff92d1",
+            "metadata_sha256": "f90216409154250777b62d0d63c9eddf6ce0d38b43188c6a7f3ed209076a348e",
+            "nonproduction_counts": {
+              "technosphere": 51,
+              "biosphere": 16
+            }
+          },
+          {
+            "identity": {
+              "name": "dewatering of ethanol from biomass, from 95% to 99.7% solution state",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "025a2fa12c821c9d562615c143435d67dd16c402c87cde5144e2335b8d744dfe",
+            "metadata_sha256": "6882f5da0f91b69b6e840900e193790170df5421ce561d8a910bcb426da5f01a",
+            "nonproduction_counts": {
+              "technosphere": 138
+            }
+          },
+          {
+            "identity": {
+              "name": "dewatering of ethanol from biomass, from 95% to 99.7% solution state",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "afbacb338cd9780333518203d7d6ec4f0b4c43712fe6dfc8169b9ca59353aa67",
+            "metadata_sha256": "5285169cd655220bd8ab40a4e16b332f17a54b0c84639294643ef9b43c231dac",
+            "nonproduction_counts": {
+              "technosphere": 5
+            }
+          },
+          {
+            "identity": {
+              "name": "sugarcane processing, traditional annexed plant",
+              "reference product": "ethanol, without water, in 99.7% solution state, from fermentation",
+              "location": "CO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "be37dfa2621d2d0ca4bbd59a8d25a3081da85290f3760a6220094ceee4021a65",
+            "metadata_sha256": "fe17b3e1d9d8652337410d3cf2f8ea848641d25eacb4f5bcbbda2e4ddbf3f0c2",
+            "nonproduction_counts": {
+              "technosphere": 34,
+              "biosphere": 16
+            }
+          }
+        ],
+        "basis": "Retain all eleven ethanol supplier entries. Use complete native fermentation/dehydration ethanol on the active dry-kg basis, not wet solution kg. Original CN/US/RER native documentation explicitly states dry basis; CH source and native match grass/beet/whey shares and useful-heat/electricity quantities; BR source and native dewatering conventions consume one kg active hydrated ethanol per kg active anhydrous output. Use native CH/US/BR by matching country, native RER for European and otherwise unlocated dewatering, and BR sugarcane/mollasses production for Brazilian, Colombian and RoW sugarcane branches. These complete native proxies replace modern/traditional, annexed/autonomous plant technology and sugar/electricity co-product allocation; they do not reproduce those source production routes. Geographic, feedstock, water, dehydration, energy, allocation, emissions and vintage differences remain explicit. No 1/0.997 multiplier or solvent addition is introduced.",
+        "conversion_factor": 1,
+        "new_recipe_id": "fuels-39-final-market-59cc8dcff2cce6ee4885",
+        "retention": {
+          "source_nonproduction_rows": 11,
+          "source_producer_rows": 11,
+          "source_freight_rows": 0,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Cryolite, at plant",
+              "reference product": "Cryolite, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 16,
+            "metadata_sha256": "4524a28784ef8299b47d550b37930e22ddaf52f469e04ab40ae77555cc8ef188",
+            "inventory_sha256": "28847b1a733437d53680621134f2fa3046bee7cc9c5f4ddbd6b72b55697d6e4a",
+            "comment_sha256": "7dcfbc1dfbc9cca1f1e66b8e02fc881be7c69b6e895388685b059810c561a3dc"
+          },
+          {
+            "identity": {
+              "name": "Silica sand, at plant",
+              "reference product": "Silica sand, at plant",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b4f713bdfb39fcd5ca849429d3db96e49830048ca74ef5e6d555d25f0acf3c0e",
+            "inventory_sha256": "2a27de16300fc9c14a81008e837cb11185bb3ad4e58f9d1503c737d4872c0fdc",
+            "comment_sha256": "eaefb00580a32a7ee2baef6dd1ceac3a972395a2af75b8f33bb3da12e26d7924"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 22,
+            "metadata_sha256": "d1d0291c90985a7b559ee50e68ac454546323774d40baac3af8c578a9e24da05",
+            "inventory_sha256": "77d20ff116c97af1ee71dd90fc1effac03d729c154c534121ad08723a5519e09",
+            "comment_sha256": "fc2d2788b18547ce147748220daeb50efd6d27f56f43549247c88902e22d3f44"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "da947add813fcb34247cd5102fa337739c8bb8448455d833918e5356957e9be1",
+            "inventory_sha256": "2b23d573b7e05cd385a7fa8e6c943ba8cafcaa67f7f613a173ed94fd425948e3",
+            "comment_sha256": "ca255165941b37f4748e890bff4eb8d572db44b38cb9466c7ff9fb7f5c1d0463"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "70a686b9dbaa9ff72de20df52af326e6d1c42cd216cd8fc43c3c2991fde89d5c",
+            "inventory_sha256": "77228fc064c494793fcd045a1299e8add40671a35195a5cd6de93205e326e7b9",
+            "comment_sha256": "05fbffe5d405864bb5540790abbd6f59d857e39616c2a386053596c9bd4c1d6c"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e6f8799fcac4109fe75f2642743e4e6845fbbcaf62f5c79155673f703008e8ff",
+            "inventory_sha256": "0b7ed9b81689b6b4a7337f17c19623dac3b0a15043be2e1781724033dcb6ec62",
+            "comment_sha256": "0a9dc906634723bb62b87313b27867873a32f1e73e41de61e2629928412df128"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "c1a930b36c4cd8aa1d775cc27e41f8dae7530d8b35d0f6e9bb113f5776f778d7",
+            "inventory_sha256": "2b733c6930a3bdd7551e9f77b601b69d44b160b2de8ce4b1c83d850824691966",
+            "comment_sha256": "dcf6b9e7e2bba7b0f709d97e00e4039c491e301f9eb73e422c2031cfb76ed14c"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "metadata_sha256": "89c31fe8b6b12c11ab586603ccd23264dcf45c84b6be81c4fd49391a4b991954",
+            "inventory_sha256": "e14e9464bb7ee2d052a7c76d76971f715b7fbcd9f7360464dfa574a9267b7487",
+            "comment_sha256": "b5eb4b2cda095a9a37e2604f1ff87f471b8692fb13358456dfe16dc0668c97a5"
+          },
+          {
+            "identity": {
+              "name": "Diethyl ether, at plant",
+              "reference product": "Diethyl ether, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "metadata_sha256": "ea04335b8f9a1d0dccda07b5a1d21aeedaf3d3948cd40330d79095f519fdc09d",
+            "inventory_sha256": "6773c24713b3525dbb05b3cec24094dd479819daca264673f1dd250f245a8b0b",
+            "comment_sha256": "a90bd2a2e5aee726323b2aa8d80e27d89ff861f0e48c1ae52c5bf38bbb0bf574"
+          },
+          {
+            "identity": {
+              "name": "Transport, coal freight, rail",
+              "reference product": "Transport, coal freight, rail",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "metadata_sha256": "ee81df054f69c168629f540eda90c9b87e3d97e2092d2dc9b356a4f62f5f1e54",
+            "inventory_sha256": "ea2e7a6e3e46399dfdb5a2164164c44947270a827a4f8813501def912008ccf1",
+            "comment_sha256": "23e2eec9527ad774d8bb988d74bc041d8f50069767a77cc3d6d2dd69693fb761"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail, diesel",
+              "reference product": "Transport, freight, rail, diesel",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "metadata_sha256": "c7f3b5e0197302c2ac44cc877c428d1addf274c50b437f5e92f5e82a804d5c43",
+            "inventory_sha256": "52e7e4e9bf48ab932193de65a0f532b05cf1030b8a35682b35eb2666344088a3",
+            "comment_sha256": "ec11c0deeaebeb7067e39d26a5860d031689ca781a1f4d9987bb0db4268dc900"
+          },
+          {
+            "identity": {
+              "name": "Potassium hydroxide, at regional storage",
+              "reference product": "Potassium hydroxide, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "f6f6ba4a254f754462a579f3912cda1fbd03e77c53b949159602a313781e0a1d",
+            "inventory_sha256": "a4263a47348a703a0ec78ace33dd62f8365e47dc467731a5606e07b54e030e96",
+            "comment_sha256": "8a887287b0bfc25ba9b930af8c848168e4daddaac4b0d2e4823fbe4436f6fd3d"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          }
+        ],
+        "existing_recipe_dependencies": {},
+        "active_basis_reference": {
+          "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/code%20of%20practice_ecoinvent%20version%202.pdf?hsLang=en",
+          "section": "5.1.11",
+          "page": 17,
+          "finding": "Dissolved chemicals and solvents reference active kg; solution transport uses solution mass. No generic concentration multiplier."
+        }
+      },
+      "limitations": [
+        "Retain all eleven ethanol supplier entries. Use complete native fermentation/dehydration ethanol on the active dry-kg basis, not wet solution kg. Original CN/US/RER native documentation explicitly states dry basis; CH source and native match grass/beet/whey shares and useful-heat/electricity quantities; BR source and native dewatering conventions consume one kg active hydrated ethanol per kg active anhydrous output. Use native CH/US/BR by matching country, native RER for European and otherwise unlocated dewatering, and BR sugarcane/mollasses production for Brazilian, Colombian and RoW sugarcane branches. These complete native proxies replace modern/traditional, annexed/autonomous plant technology and sugar/electricity co-product allocation; they do not reproduce those source production routes. Geographic, feedstock, water, dehydration, energy, allocation, emissions and vintage differences remain explicit. No 1/0.997 multiplier or solvent addition is introduced.",
+        "Exact inspected ecoinvent 3.9 cut-off only. Preserve all original producer shares and freight rows, signed caller amounts, formulas and uncertainty without renormalization. Complete native inventories replace production technology, allocation, geography, vintage and internal uncertainty, with unquantified score effects. No omitted source rows, invented recovery credit, concentration, yield or density correction. Native internal upstream transport remains part of its complete production boundary; retained source market delivery is separate and boundary differences must be reviewed if transport dominates."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "abd4904998ba1d1636dda31117e8e688bb7fe401d32f910468c47d979ed97e74"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-30a2d390a7132058",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_final_market",
+      "review_path": "export/uvek_fuels_39_final_markets_review.json",
+      "review_sha256": "3202607466b7966e8d2366cc544e03a7ad7403bc4f86b4933b14b823885c0cc1",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected functional screening proxies with warnings. No source-input omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for diethyl ether, without water, in 99.95% solution state",
+            "reference product": "diethyl ether, without water, in 99.95% solution state",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "55b48331f22a51d717f8a2089147e71a9e35a575b136c0997bb11703ff184df7",
+          "metadata_sha256": "a648f51a9bc7fa293efed3ef0d69b705b399688566e4bfdbbd2ea7878db5b8f2",
+          "nonproduction_counts": {
+            "technosphere": 10
+          },
+          "name": "market for diethyl ether, without water, in 99.95% solution state",
+          "reference product": "diethyl ether, without water, in 99.95% solution state",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ethylene hydration",
+              "reference product": "diethyl ether, without water, in 99.95% solution state",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "f130b56bdc2315bbf5967d454a7804847f555a82df9267ee636ad250b8d604db",
+            "metadata_sha256": "0250960594242201064da079838f79fa2f9bde0ae9c98b148a85f4a7fc4b09ae",
+            "nonproduction_counts": {
+              "technosphere": 19,
+              "biosphere": 7
+            }
+          },
+          {
+            "identity": {
+              "name": "diethyl ether production",
+              "reference product": "diethyl ether, without water, in 99.95% solution state",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "f2bf7eaf95a7356c8e9b85622ff017aca241bd577f0e07f9619b6674d085db17",
+            "metadata_sha256": "760ba9c6818aef95afc6de84b352d7131aec74eecafc622953c43bbee56906ea",
+            "nonproduction_counts": {
+              "technosphere": 8,
+              "biosphere": 12
+            }
+          }
+        ],
+        "basis": "Retain both ether production shares and eight original rail/lorry freight rows. Complete native diethyl ether is an ethylene-hydration mass-allocated co-product; old code-of-practice active-substance convention and positive one-kg reference establish the active basis despite its documented 99.95% concentration. Source explicitly references pure ether. Use factor +1, not 1/0.9995. Native hydration proxies both the source hydration and ethanol-dehydration production branches; the latter is a route substitution, not an exact reagent relinking. Warn about chemistry, catalyst, co-product allocation, energy, emissions, water/solvent boundary, geography and vintage. No ethanol credit or additional source utility/emission rows are added.",
+        "conversion_factor": 1,
+        "new_recipe_id": "fuels-39-final-market-94c5f8a0153b7c3ad455",
+        "retention": {
+          "source_nonproduction_rows": 10,
+          "source_producer_rows": 2,
+          "source_freight_rows": 8,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Cryolite, at plant",
+              "reference product": "Cryolite, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 16,
+            "metadata_sha256": "4524a28784ef8299b47d550b37930e22ddaf52f469e04ab40ae77555cc8ef188",
+            "inventory_sha256": "28847b1a733437d53680621134f2fa3046bee7cc9c5f4ddbd6b72b55697d6e4a",
+            "comment_sha256": "7dcfbc1dfbc9cca1f1e66b8e02fc881be7c69b6e895388685b059810c561a3dc"
+          },
+          {
+            "identity": {
+              "name": "Silica sand, at plant",
+              "reference product": "Silica sand, at plant",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b4f713bdfb39fcd5ca849429d3db96e49830048ca74ef5e6d555d25f0acf3c0e",
+            "inventory_sha256": "2a27de16300fc9c14a81008e837cb11185bb3ad4e58f9d1503c737d4872c0fdc",
+            "comment_sha256": "eaefb00580a32a7ee2baef6dd1ceac3a972395a2af75b8f33bb3da12e26d7924"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 22,
+            "metadata_sha256": "d1d0291c90985a7b559ee50e68ac454546323774d40baac3af8c578a9e24da05",
+            "inventory_sha256": "77d20ff116c97af1ee71dd90fc1effac03d729c154c534121ad08723a5519e09",
+            "comment_sha256": "fc2d2788b18547ce147748220daeb50efd6d27f56f43549247c88902e22d3f44"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "da947add813fcb34247cd5102fa337739c8bb8448455d833918e5356957e9be1",
+            "inventory_sha256": "2b23d573b7e05cd385a7fa8e6c943ba8cafcaa67f7f613a173ed94fd425948e3",
+            "comment_sha256": "ca255165941b37f4748e890bff4eb8d572db44b38cb9466c7ff9fb7f5c1d0463"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "70a686b9dbaa9ff72de20df52af326e6d1c42cd216cd8fc43c3c2991fde89d5c",
+            "inventory_sha256": "77228fc064c494793fcd045a1299e8add40671a35195a5cd6de93205e326e7b9",
+            "comment_sha256": "05fbffe5d405864bb5540790abbd6f59d857e39616c2a386053596c9bd4c1d6c"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e6f8799fcac4109fe75f2642743e4e6845fbbcaf62f5c79155673f703008e8ff",
+            "inventory_sha256": "0b7ed9b81689b6b4a7337f17c19623dac3b0a15043be2e1781724033dcb6ec62",
+            "comment_sha256": "0a9dc906634723bb62b87313b27867873a32f1e73e41de61e2629928412df128"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "c1a930b36c4cd8aa1d775cc27e41f8dae7530d8b35d0f6e9bb113f5776f778d7",
+            "inventory_sha256": "2b733c6930a3bdd7551e9f77b601b69d44b160b2de8ce4b1c83d850824691966",
+            "comment_sha256": "dcf6b9e7e2bba7b0f709d97e00e4039c491e301f9eb73e422c2031cfb76ed14c"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "metadata_sha256": "89c31fe8b6b12c11ab586603ccd23264dcf45c84b6be81c4fd49391a4b991954",
+            "inventory_sha256": "e14e9464bb7ee2d052a7c76d76971f715b7fbcd9f7360464dfa574a9267b7487",
+            "comment_sha256": "b5eb4b2cda095a9a37e2604f1ff87f471b8692fb13358456dfe16dc0668c97a5"
+          },
+          {
+            "identity": {
+              "name": "Diethyl ether, at plant",
+              "reference product": "Diethyl ether, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "metadata_sha256": "ea04335b8f9a1d0dccda07b5a1d21aeedaf3d3948cd40330d79095f519fdc09d",
+            "inventory_sha256": "6773c24713b3525dbb05b3cec24094dd479819daca264673f1dd250f245a8b0b",
+            "comment_sha256": "a90bd2a2e5aee726323b2aa8d80e27d89ff861f0e48c1ae52c5bf38bbb0bf574"
+          },
+          {
+            "identity": {
+              "name": "Transport, coal freight, rail",
+              "reference product": "Transport, coal freight, rail",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "metadata_sha256": "ee81df054f69c168629f540eda90c9b87e3d97e2092d2dc9b356a4f62f5f1e54",
+            "inventory_sha256": "ea2e7a6e3e46399dfdb5a2164164c44947270a827a4f8813501def912008ccf1",
+            "comment_sha256": "23e2eec9527ad774d8bb988d74bc041d8f50069767a77cc3d6d2dd69693fb761"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail, diesel",
+              "reference product": "Transport, freight, rail, diesel",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "metadata_sha256": "c7f3b5e0197302c2ac44cc877c428d1addf274c50b437f5e92f5e82a804d5c43",
+            "inventory_sha256": "52e7e4e9bf48ab932193de65a0f532b05cf1030b8a35682b35eb2666344088a3",
+            "comment_sha256": "ec11c0deeaebeb7067e39d26a5860d031689ca781a1f4d9987bb0db4268dc900"
+          },
+          {
+            "identity": {
+              "name": "Potassium hydroxide, at regional storage",
+              "reference product": "Potassium hydroxide, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "f6f6ba4a254f754462a579f3912cda1fbd03e77c53b949159602a313781e0a1d",
+            "inventory_sha256": "a4263a47348a703a0ec78ace33dd62f8365e47dc467731a5606e07b54e030e96",
+            "comment_sha256": "8a887287b0bfc25ba9b930af8c848168e4daddaac4b0d2e4823fbe4436f6fd3d"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          }
+        ],
+        "existing_recipe_dependencies": {},
+        "active_basis_reference": {
+          "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/code%20of%20practice_ecoinvent%20version%202.pdf?hsLang=en",
+          "section": "5.1.11",
+          "page": 17,
+          "finding": "Dissolved chemicals and solvents reference active kg; solution transport uses solution mass. No generic concentration multiplier."
+        }
+      },
+      "limitations": [
+        "Retain both ether production shares and eight original rail/lorry freight rows. Complete native diethyl ether is an ethylene-hydration mass-allocated co-product; old code-of-practice active-substance convention and positive one-kg reference establish the active basis despite its documented 99.95% concentration. Source explicitly references pure ether. Use factor +1, not 1/0.9995. Native hydration proxies both the source hydration and ethanol-dehydration production branches; the latter is a route substitution, not an exact reagent relinking. Warn about chemistry, catalyst, co-product allocation, energy, emissions, water/solvent boundary, geography and vintage. No ethanol credit or additional source utility/emission rows are added.",
+        "Exact inspected ecoinvent 3.9 cut-off only. Preserve all original producer shares and freight rows, signed caller amounts, formulas and uncertainty without renormalization. Complete native inventories replace production technology, allocation, geography, vintage and internal uncertainty, with unquantified score effects. No omitted source rows, invented recovery credit, concentration, yield or density correction. Native internal upstream transport remains part of its complete production boundary; retained source market delivery is separate and boundary differences must be reviewed if transport dominates."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "aa8682c0c413b1ec17a0539427fbc1bcaecf166501471e533174ddfde7f9734a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-51fc380f01708bab",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_final_market",
+      "review_path": "export/uvek_fuels_39_final_markets_review.json",
+      "review_sha256": "3202607466b7966e8d2366cc544e03a7ad7403bc4f86b4933b14b823885c0cc1",
+      "authorization": "Active all-sector shared-Premise goal and standing auto-approval for independently inspected functional screening proxies with warnings. No source-input omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for potassium hydroxide",
+            "reference product": "potassium hydroxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "enriched_inventory_sha256": "5142baec9138c72ddaa8ab95563edc5da9cfae00e7945053caf42cefe3bd919b",
+          "metadata_sha256": "85bf15a0c879608f26a742904a2f816e76afc46fbb8b09e26b580cb52f1de599",
+          "nonproduction_counts": {
+            "technosphere": 6
+          },
+          "name": "market for potassium hydroxide",
+          "reference product": "potassium hydroxide",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "potassium hydroxide production",
+              "reference product": "potassium hydroxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "b50f5fefb84cc8cce644fc8838500c2b7b9f145fd1ff5b9a2a31693d34f6f296",
+            "metadata_sha256": "a876c3bad5381b8e4d05d38b9697838f4644dfcdee997405d96b924b2ff32bcd",
+            "nonproduction_counts": {
+              "technosphere": 17,
+              "biosphere": 3
+            }
+          },
+          {
+            "identity": {
+              "name": "potassium hydroxide production",
+              "reference product": "potassium hydroxide",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "enriched_inventory_sha256": "0d8dac617f0637be0824a3526f66eeffb4ddabc6b126e8b6a7352312f58a5a94",
+            "metadata_sha256": "22af4a542fe0228556e5924b0c9b82fdf43173abcb53ffa7f714e027b9f26b04",
+            "nonproduction_counts": {
+              "technosphere": 9,
+              "biosphere": 3
+            }
+          }
+        ],
+        "basis": "Retain both pure-KOH producer shares using complete native KOH per kg active substance and all four original market freight rows. The old ecoinvent code of practice section 5.1.11 reports dissolved chemicals per active kg; native reference is one kg KOH, with no concentration-specific wet-mixture reference. Source explicitly states pure KOH, and its cited original 85.6% production report was subsequently rescaled. Treat native KOH as the documented active-reference screening proxy; do not multiply by 1/0.856, infer concentration from its salt input, or convert K2O-labelled precursor kg as if it were ordinary KCl. Source/native precursor, chlorine/hydrogen allocation, electricity/heat, concentration/drying, upstream transport, geography and vintage differ. Exact reconstruction of source KOH burdens is not claimed.",
+        "conversion_factor": 1,
+        "new_recipe_id": "fuels-39-final-market-7c74b46d3faf59a8e060",
+        "retention": {
+          "source_nonproduction_rows": 6,
+          "source_producer_rows": 2,
+          "source_freight_rows": 4,
+          "source_order_preserved": true,
+          "no_omissions": true,
+          "no_renormalization": true
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Cryolite, at plant",
+              "reference product": "Cryolite, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 16,
+            "metadata_sha256": "4524a28784ef8299b47d550b37930e22ddaf52f469e04ab40ae77555cc8ef188",
+            "inventory_sha256": "28847b1a733437d53680621134f2fa3046bee7cc9c5f4ddbd6b72b55697d6e4a",
+            "comment_sha256": "7dcfbc1dfbc9cca1f1e66b8e02fc881be7c69b6e895388685b059810c561a3dc"
+          },
+          {
+            "identity": {
+              "name": "Silica sand, at plant",
+              "reference product": "Silica sand, at plant",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "b4f713bdfb39fcd5ca849429d3db96e49830048ca74ef5e6d555d25f0acf3c0e",
+            "inventory_sha256": "2a27de16300fc9c14a81008e837cb11185bb3ad4e58f9d1503c737d4872c0fdc",
+            "comment_sha256": "eaefb00580a32a7ee2baef6dd1ceac3a972395a2af75b8f33bb3da12e26d7924"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "comment_sha256": "58658e919fef368c9d5fce181878b4f23da633ba13b04226cebd77ee7a6377e0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 22,
+            "metadata_sha256": "d1d0291c90985a7b559ee50e68ac454546323774d40baac3af8c578a9e24da05",
+            "inventory_sha256": "77d20ff116c97af1ee71dd90fc1effac03d729c154c534121ad08723a5519e09",
+            "comment_sha256": "fc2d2788b18547ce147748220daeb50efd6d27f56f43549247c88902e22d3f44"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "da947add813fcb34247cd5102fa337739c8bb8448455d833918e5356957e9be1",
+            "inventory_sha256": "2b23d573b7e05cd385a7fa8e6c943ba8cafcaa67f7f613a173ed94fd425948e3",
+            "comment_sha256": "ca255165941b37f4748e890bff4eb8d572db44b38cb9466c7ff9fb7f5c1d0463"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "70a686b9dbaa9ff72de20df52af326e6d1c42cd216cd8fc43c3c2991fde89d5c",
+            "inventory_sha256": "77228fc064c494793fcd045a1299e8add40671a35195a5cd6de93205e326e7b9",
+            "comment_sha256": "05fbffe5d405864bb5540790abbd6f59d857e39616c2a386053596c9bd4c1d6c"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e6f8799fcac4109fe75f2642743e4e6845fbbcaf62f5c79155673f703008e8ff",
+            "inventory_sha256": "0b7ed9b81689b6b4a7337f17c19623dac3b0a15043be2e1781724033dcb6ec62",
+            "comment_sha256": "0a9dc906634723bb62b87313b27867873a32f1e73e41de61e2629928412df128"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "c1a930b36c4cd8aa1d775cc27e41f8dae7530d8b35d0f6e9bb113f5776f778d7",
+            "inventory_sha256": "2b733c6930a3bdd7551e9f77b601b69d44b160b2de8ce4b1c83d850824691966",
+            "comment_sha256": "dcf6b9e7e2bba7b0f709d97e00e4039c491e301f9eb73e422c2031cfb76ed14c"
+          },
+          {
+            "identity": {
+              "name": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "reference product": "Ethanol, 99.7% in H2O, from biomass, at distillation",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "metadata_sha256": "89c31fe8b6b12c11ab586603ccd23264dcf45c84b6be81c4fd49391a4b991954",
+            "inventory_sha256": "e14e9464bb7ee2d052a7c76d76971f715b7fbcd9f7360464dfa574a9267b7487",
+            "comment_sha256": "b5eb4b2cda095a9a37e2604f1ff87f471b8692fb13358456dfe16dc0668c97a5"
+          },
+          {
+            "identity": {
+              "name": "Diethyl ether, at plant",
+              "reference product": "Diethyl ether, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 20,
+            "metadata_sha256": "ea04335b8f9a1d0dccda07b5a1d21aeedaf3d3948cd40330d79095f519fdc09d",
+            "inventory_sha256": "6773c24713b3525dbb05b3cec24094dd479819daca264673f1dd250f245a8b0b",
+            "comment_sha256": "a90bd2a2e5aee726323b2aa8d80e27d89ff861f0e48c1ae52c5bf38bbb0bf574"
+          },
+          {
+            "identity": {
+              "name": "Transport, coal freight, rail",
+              "reference product": "Transport, coal freight, rail",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 11,
+            "metadata_sha256": "ee81df054f69c168629f540eda90c9b87e3d97e2092d2dc9b356a4f62f5f1e54",
+            "inventory_sha256": "ea2e7a6e3e46399dfdb5a2164164c44947270a827a4f8813501def912008ccf1",
+            "comment_sha256": "23e2eec9527ad774d8bb988d74bc041d8f50069767a77cc3d6d2dd69693fb761"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail, diesel",
+              "reference product": "Transport, freight, rail, diesel",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 9,
+            "metadata_sha256": "c7f3b5e0197302c2ac44cc877c428d1addf274c50b437f5e92f5e82a804d5c43",
+            "inventory_sha256": "52e7e4e9bf48ab932193de65a0f532b05cf1030b8a35682b35eb2666344088a3",
+            "comment_sha256": "ec11c0deeaebeb7067e39d26a5860d031689ca781a1f4d9987bb0db4268dc900"
+          },
+          {
+            "identity": {
+              "name": "Potassium hydroxide, at regional storage",
+              "reference product": "Potassium hydroxide, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 14,
+            "metadata_sha256": "f6f6ba4a254f754462a579f3912cda1fbd03e77c53b949159602a313781e0a1d",
+            "inventory_sha256": "a4263a47348a703a0ec78ace33dd62f8365e47dc467731a5606e07b54e030e96",
+            "comment_sha256": "8a887287b0bfc25ba9b930af8c848168e4daddaac4b0d2e4823fbe4436f6fd3d"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40",
+            "comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e"
+          }
+        ],
+        "existing_recipe_dependencies": {},
+        "active_basis_reference": {
+          "url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/code%20of%20practice_ecoinvent%20version%202.pdf?hsLang=en",
+          "section": "5.1.11",
+          "page": 17,
+          "finding": "Dissolved chemicals and solvents reference active kg; solution transport uses solution mass. No generic concentration multiplier."
+        }
+      },
+      "limitations": [
+        "Retain both pure-KOH producer shares using complete native KOH per kg active substance and all four original market freight rows. The old ecoinvent code of practice section 5.1.11 reports dissolved chemicals per active kg; native reference is one kg KOH, with no concentration-specific wet-mixture reference. Source explicitly states pure KOH, and its cited original 85.6% production report was subsequently rescaled. Treat native KOH as the documented active-reference screening proxy; do not multiply by 1/0.856, infer concentration from its salt input, or convert K2O-labelled precursor kg as if it were ordinary KCl. Source/native precursor, chlorine/hydrogen allocation, electricity/heat, concentration/drying, upstream transport, geography and vintage differ. Exact reconstruction of source KOH burdens is not claimed.",
+        "Exact inspected ecoinvent 3.9 cut-off only. Preserve all original producer shares and freight rows, signed caller amounts, formulas and uncertainty without renormalization. Complete native inventories replace production technology, allocation, geography, vintage and internal uncertainty, with unquantified score effects. No omitted source rows, invented recovery credit, concentration, yield or density correction. Native internal upstream transport remains part of its complete production boundary; retained source market delivery is separate and boundary differences must be reviewed if transport dominates."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ecfffb7fb5ab40798b894c665fb9080c7b8ab67d1593f971370fdea0178ddcb2"
+        }
+      ]
     }
   ],
   "superseded_operations": [

@@ -1,0 +1,664 @@
+{
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.8",
+    "system_model": "cutoff"
+  },
+  "unapproved_count": 58,
+  "inspected_roots": 58,
+  "inspected_roots_and_same_product_suppliers": 262,
+  "roots_with_identical_39_vectors": 25,
+  "groups": {
+    "Energy and combustion": [
+      {
+        "rule_id": "bp-fc9e4184d070b645",
+        "source": {
+          "name": "market for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "location": "ID",
+          "unit": "kilowatt hour"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-05200779ee64a17f",
+        "source": {
+          "name": "market for heat, from steam, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "location": "RoW",
+          "unit": "megajoule"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-155787c4bf1ee018",
+        "source": {
+          "name": "market for diesel, burned in building machine",
+          "reference product": "diesel, burned in building machine",
+          "location": "GLO",
+          "unit": "megajoule"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-7881a1c501dadd9f",
+        "source": {
+          "name": "market group for light fuel oil",
+          "reference product": "light fuel oil",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-745c517f85a78ba7",
+        "source": {
+          "name": "market for natural gas, medium pressure, vehicle grade",
+          "reference product": "natural gas, medium pressure, vehicle grade",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-f5c20db2989094da",
+        "source": {
+          "name": "petrol, unleaded, burned in machinery",
+          "reference product": "petrol, unleaded, burned in machinery",
+          "location": "GLO",
+          "unit": "megajoule"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-dc0174f7c0a93cdd",
+        "source": {
+          "name": "market for natural gas, burned in gas motor, for storage",
+          "reference product": "natural gas, burned in gas motor, for storage",
+          "location": "GLO",
+          "unit": "megajoule"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-8ad41ac985efe967",
+        "source": {
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "location": "US",
+          "unit": "kilowatt hour"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-3f19534eb7d97f64",
+        "source": {
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "location": "ENTSO-E",
+          "unit": "kilowatt hour"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-ab9ef0df411ba0fe",
+        "source": {
+          "name": "market for diesel, burned in agricultural machinery",
+          "reference product": "diesel, burned in agricultural machinery",
+          "location": "GLO",
+          "unit": "megajoule"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      }
+    ],
+    "Transport and water services": [
+      {
+        "rule_id": "bp-6f58476b963abe8c",
+        "source": {
+          "name": "market for hydrochloric acid, without water, in 30% solution state",
+          "reference product": "hydrochloric acid, without water, in 30% solution state",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-aa3f7acdc2cf5750",
+        "source": {
+          "name": "market for transport, freight, inland waterways, barge",
+          "reference product": "transport, freight, inland waterways, barge",
+          "location": "RoW",
+          "unit": "ton kilometer"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-182cd513cb8969f1",
+        "source": {
+          "name": "market for tap water",
+          "reference product": "tap water",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-afd07e4d1223d368",
+        "source": {
+          "name": "market for irrigation",
+          "reference product": "irrigation",
+          "location": "RoW",
+          "unit": "cubic meter"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-28ca31beb771b312",
+        "source": {
+          "name": "market for transport, pipeline, onshore, petroleum",
+          "reference product": "transport, pipeline, onshore, petroleum",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-91b9cff76b3562bb",
+        "source": {
+          "name": "market for hydrochloric acid, without water, in 30% solution state",
+          "reference product": "hydrochloric acid, without water, in 30% solution state",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-a3a951644bd5ed9c",
+        "source": {
+          "name": "market for transport, freight train",
+          "reference product": "transport, freight train",
+          "location": "Europe without Switzerland",
+          "unit": "ton kilometer"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-25557ccca7d5a61f",
+        "source": {
+          "name": "market for transport, freight, inland waterways, barge",
+          "reference product": "transport, freight, inland waterways, barge",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-7af323921dc1714c",
+        "source": {
+          "name": "market for irrigation",
+          "reference product": "irrigation",
+          "location": "FR",
+          "unit": "cubic meter"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-d0e6ca1d19a58c1d",
+        "source": {
+          "name": "market for irrigation",
+          "reference product": "irrigation",
+          "location": "US",
+          "unit": "cubic meter"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-f1bc637c4fcf6060",
+        "source": {
+          "name": "market for water, deionised",
+          "reference product": "water, deionised",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      }
+    ],
+    "Chemicals and process inputs": [
+      {
+        "rule_id": "bp-cac4eeaf7215b33d",
+        "source": {
+          "name": "market for methanol",
+          "reference product": "methanol",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-6fb142ff07a96aed",
+        "source": {
+          "name": "market for sodium methoxide",
+          "reference product": "sodium methoxide",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-42ca176032e4b754",
+        "source": {
+          "name": "market for lime",
+          "reference product": "lime",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-fe0deefded6d83bc",
+        "source": {
+          "name": "market for hexane",
+          "reference product": "hexane",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-8bbb01130472bd02",
+        "source": {
+          "name": "market for zeolite, powder",
+          "reference product": "zeolite, powder",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-14199ba2d41a9688",
+        "source": {
+          "name": "market for nitrogen, liquid",
+          "reference product": "nitrogen, liquid",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-48df3f130afafd5c",
+        "source": {
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      }
+    ],
+    "Materials and infrastructure": [
+      {
+        "rule_id": "bp-4c51b8491a9aebe9",
+        "source": {
+          "name": "market for ethanol fermentation plant",
+          "reference product": "ethanol fermentation plant",
+          "location": "GLO",
+          "unit": "unit"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-1b65914b2f33ba7b",
+        "source": {
+          "name": "market for packaging film, low density polyethylene",
+          "reference product": "packaging film, low density polyethylene",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-9caeb1b3bd66b612",
+        "source": {
+          "name": "market for steel, low-alloyed",
+          "reference product": "steel, low-alloyed",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-4d389c0e2269e7e9",
+        "source": {
+          "name": "treatment of waste bulk iron, excluding reinforcement, sorting plant",
+          "reference product": "waste bulk iron, excluding reinforcement",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-263c185cdbca7a8c",
+        "source": {
+          "name": "market for steel, chromium steel 18/8, hot rolled",
+          "reference product": "steel, chromium steel 18/8, hot rolled",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-6b60ae27d55196e6",
+        "source": {
+          "name": "market for concrete, sole plate and foundation",
+          "reference product": "concrete, sole plate and foundation",
+          "location": "CH",
+          "unit": "cubic meter"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-7ca3587cbfe4ce9b",
+        "source": {
+          "name": "market for reinforcing steel",
+          "reference product": "reinforcing steel",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-56f1f68f931b8c2a",
+        "source": {
+          "name": "treatment of waste reinforced concrete, collection for final disposal",
+          "reference product": "waste reinforced concrete",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-c291034cfcb83f1c",
+        "source": {
+          "name": "market for liquid storage tank, chemicals, organics",
+          "reference product": "liquid storage tank, chemicals, organics",
+          "location": "GLO",
+          "unit": "unit"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-23f6df653910092e",
+        "source": {
+          "name": "synthetic gas factory construction",
+          "reference product": "synthetic gas factory",
+          "location": "RoW",
+          "unit": "unit"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-4529f104ab14ba19",
+        "source": {
+          "name": "market for steel, chromium steel 18/8",
+          "reference product": "steel, chromium steel 18/8",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      }
+    ],
+    "Agriculture and biomass inputs": [
+      {
+        "rule_id": "bp-ae632332ea38e930",
+        "source": {
+          "name": "market for compost",
+          "reference product": "compost",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-ab4e383b592be518",
+        "source": {
+          "name": "market for inorganic nitrogen fertiliser, as N",
+          "reference product": "inorganic nitrogen fertiliser, as N",
+          "location": "ID",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-1e5665194f1a7a40",
+        "source": {
+          "name": "market for pesticide, unspecified",
+          "reference product": "pesticide, unspecified",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-342b0acc67aa560e",
+        "source": {
+          "name": "market for inorganic phosphorus fertiliser, as P2O5",
+          "reference product": "inorganic phosphorus fertiliser, as P2O5",
+          "location": "ID",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-498d9c2e6fa6b060",
+        "source": {
+          "name": "market for inorganic potassium fertiliser, as K2O",
+          "reference product": "inorganic potassium fertiliser, as K2O",
+          "location": "ID",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-cf2ed054ced71820",
+        "source": {
+          "name": "market for packaging, for fertilisers",
+          "reference product": "packaging, for fertilisers",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-6073dd107b7b9ea8",
+        "source": {
+          "name": "market for packaging, for pesticides",
+          "reference product": "packaging, for pesticides",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-a7832124e7202895",
+        "source": {
+          "name": "market for bipyridylium-compound",
+          "reference product": "bipyridylium-compound",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-debda812c6313c05",
+        "source": {
+          "name": "market for inorganic nitrogen fertiliser, as N",
+          "reference product": "inorganic nitrogen fertiliser, as N",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-9bcfc79d3362fe6f",
+        "source": {
+          "name": "market for inorganic phosphorus fertiliser, as P2O5",
+          "reference product": "inorganic phosphorus fertiliser, as P2O5",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-4d440a5ab156b17c",
+        "source": {
+          "name": "market for inorganic potassium fertiliser, as K2O",
+          "reference product": "inorganic potassium fertiliser, as K2O",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-124e5ce8d75168cc",
+        "source": {
+          "name": "market for rape seed",
+          "reference product": "rape seed",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-ffcd093245457004",
+        "source": {
+          "name": "market for soil pH raising agent, as CaCO3",
+          "reference product": "soil pH raising agent, as CaCO3",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-a0a4f5a8616f11e2",
+        "source": {
+          "name": "market for sugar beet seed, for sowing",
+          "reference product": "sugar beet seed, for sowing",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-89125291fb94d47e",
+        "source": {
+          "name": "market for pyrethroid-compound",
+          "reference product": "pyrethroid-compound",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-bd7ba1d16a722d39",
+        "source": {
+          "name": "market for inorganic nitrogen fertiliser, as N",
+          "reference product": "inorganic nitrogen fertiliser, as N",
+          "location": "US",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-0cb5cbfb2134d167",
+        "source": {
+          "name": "market for inorganic phosphorus fertiliser, as P2O5",
+          "reference product": "inorganic phosphorus fertiliser, as P2O5",
+          "location": "US",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-41b83536c4b66e37",
+        "source": {
+          "name": "market for inorganic potassium fertiliser, as K2O",
+          "reference product": "inorganic potassium fertiliser, as K2O",
+          "location": "US",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": true,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      },
+      {
+        "rule_id": "bp-84bd9cf473cdeee9",
+        "source": {
+          "name": "market for wood chips, wet, measured as dry mass",
+          "reference product": "wood chips, wet, measured as dry mass",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "same_root_inventory_as_39": false,
+        "review_status": "pending; identical root alone does not establish supplier closure or target equivalence"
+      }
+    ]
+  },
+  "limitations": "Triage only. No approval inferred from identity or root-vector equality; supplier inventories, functional bases, native target and existing scoped behavior must also be checked.",
+  "roots_and_direct_same_product_supplier_vectors_identical_to_39": 0,
+  "comparison_scope": "Root and direct same-product supplier vectors, including uncertainty and formulas. This does not compare complete upstream closure or qualify target mappings."
+}
