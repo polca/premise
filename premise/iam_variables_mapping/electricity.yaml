@@ -391,6 +391,8 @@ Coal CF 80-20:
   max_efficiency: 0.5
 Coal CHP:
   uvek_aliases:
+    efficiency_requires_fuel_input: true
+    technology_copy_suffix: " [Premise Coal CHP co-generation proxy]"
     exact: true
     fltr:
       name:
@@ -576,6 +578,7 @@ Coal IGCC CCS:
 
 Coal PC:
   uvek_aliases:
+    efficiency_requires_fuel_input: true
     exact: true
     fltr:
       name:

@@ -202,6 +202,10 @@ The database names above are examples; no custom Brightway background labels are
 required. UVEK uses the shared sector transformations. Electricity updates create
 high-, medium- and low-voltage IAM-region markets, including REMIND EUR and NEU,
 and connect consumers directly or through the usual country-market handovers.
+Coal CHP proxies have separate inventory copies, identified by
+``[Premise Coal CHP co-generation proxy]``, so their efficiency updates do not
+alter Coal PC suppliers. Native coal-electricity portfolios keep their original
+electricity coefficients; generator efficiencies apply to fuelled records.
 
 This four-sector REMIND workflow has been checked through export and LCI.
 Cement uses the shared clinker efficiency, CCS, market and producer transformations,

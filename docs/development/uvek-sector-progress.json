@@ -545,7 +545,7 @@
         "docs/development/uvek-extended-transport-exhaust-verification.json",
         "docs/development/uvek-capture-carbon-metadata-verification.json"
       ],
-      "latest_coverage_note": "526 car/truck balances plus 31 bus, 31 rail/locomotive, five shipping and 29 aviation recorded-total balances verified. Capture metadata capitalization fix resolves 105 origin warnings without changing 467354 normalized exchange rows in a controlled comparison. Industrial combustion, other unreviewed transport and the independently reproduced electricity role overlap remain unfinished. Public fuels guard stays unchanged."
+      "latest_coverage_note": "526 car/truck balances plus 31 bus, 31 rail/locomotive, five shipping and 29 aviation recorded-total balances verified. Capture metadata interpretation resolves 105 origin warnings. The separately reproduced coal-role overlap is corrected and verified across hash seeds; industrial fuel carbon and unreviewed transport/sector coverage remain unfinished. Public fuels guard stays unchanged."
     },
     {
       "sector": "renewable",
@@ -2615,5 +2615,6 @@
       "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
     }
   ],
-  "reproduced_electricity_role_overlap": "docs/development/uvek-electricity-role-overlap-evidence.json"
+  "reproduced_electricity_role_overlap": "docs/development/uvek-electricity-role-overlap-evidence.json",
+  "coal_role_copy_verification": "docs/development/uvek-coal-role-copy-verification.json"
 }

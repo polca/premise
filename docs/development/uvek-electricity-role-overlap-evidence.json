@@ -1,5 +1,5 @@
 {
-  "status": "reproduced_unresolved",
+  "status": "resolved_for_reviewed_coal_roles",
   "native_alias_overlap": [
     "Coal PC",
     "Coal CHP"
@@ -58,5 +58,7 @@
   ],
   "cause": "Shared aliases select one mutable record for two IAM roles with efficiency caps 0.4 and 0.45. update_electricity_efficiency builds an unordered technology intersection and skips later adjustment after the first role. An aggregate electricity portfolio also falls back to kWh input energy and is treated as a generator.",
   "required_resolution": "Separate role-specific physical generator copies and audit aggregate portfolios before efficiency updates, preserving shared transformation logic. Verify different hash seeds without requiring a fixed seed in the public workflow.",
-  "scope_note": "Fixed-seed comparison isolates the independent capture-metadata fix; it does not resolve or certify this role overlap."
+  "scope_note": "The preceding fixed-seed diagnostic isolated the independent capture-metadata fix. The coal correction itself has now been verified with different hash seeds and complete exported coal-inventory signatures.",
+  "resolution": "The existing missing-powerplant stage creates complete role-specific inventory copies from an optional source-family YAML suffix. Portfolio inputs stay within their own role. Both historical coal and IAM efficiency updates require a declared fuel; electricity-only portfolios remain unscaled and missing fuel aliases fail explicitly.",
+  "verification": "docs/development/uvek-coal-role-copy-verification.json"
 }

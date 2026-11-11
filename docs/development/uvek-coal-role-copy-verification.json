@@ -1,0 +1,203 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement",
+    "fuels"
+  ],
+  "public_fuels_guard_bypassed_for_diagnostic": true,
+  "hash_seeds": [
+    1,
+    2
+  ],
+  "runs": [
+    {
+      "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-172853",
+      "export_activities": 14795,
+      "chp_role_copies": 45,
+      "physical_generators_per_role": 39,
+      "unscaled_portfolios_per_role": 6,
+      "portfolio_trade_rows_checked_both_roles": 88,
+      "portfolio_uncertainty_fields_checked": 352,
+      "internal_technosphere_links_resolved": true,
+      "coal_exchange_signature": "c089fa871ed44bac293dfafd24ad0ffd2a67887e838205e651d187427d679fbe",
+      "coal_exchange_rows": 256
+    },
+    {
+      "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-172704",
+      "export_activities": 14795,
+      "chp_role_copies": 45,
+      "physical_generators_per_role": 39,
+      "unscaled_portfolios_per_role": 6,
+      "portfolio_trade_rows_checked_both_roles": 88,
+      "portfolio_uncertainty_fields_checked": 352,
+      "internal_technosphere_links_resolved": true,
+      "coal_exchange_signature": "c089fa871ed44bac293dfafd24ad0ffd2a67887e838205e651d187427d679fbe",
+      "coal_exchange_rows": 256
+    }
+  ],
+  "coal_results_identical_across_hash_seeds": true,
+  "representative_lci_checks": [
+    {
+      "name": "Electricity, lignite, at power plant [Premise Coal CHP co-generation proxy]",
+      "location": "DE",
+      "unit": "kilowatt hour",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "market group for electricity, high voltage",
+      "location": "EUR",
+      "unit": "kilowatt hour",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "market group for electricity, high voltage",
+      "location": "World",
+      "unit": "kilowatt hour",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Electricity, hard coal, at power plant [Premise Coal CHP co-generation proxy]",
+      "location": "DE",
+      "unit": "kilowatt hour",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Electricity, lignite, at power plant",
+      "location": "DE",
+      "unit": "kilowatt hour",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Electricity, hard coal, at power plant",
+      "location": "DE",
+      "unit": "kilowatt hour",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    }
+  ],
+  "pre_export_validation": {
+    "phases": 11,
+    "errors": 0,
+    "issues_by_rule": {
+      "LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT": 14
+    }
+  },
+  "offline_tests": {
+    "passed": 141,
+    "skipped": 2,
+    "skipped_reason": "Two legacy ecoinvent 3.5 fixtures require their external decryption-key setup. The separate real ecoinvent 3.12 update was executed successfully."
+  },
+  "limitations": [
+    "Only reviewed Coal PC/CHP aliases opt into role copying and strict combustion-input selection.",
+    "Independent efficiency records preserve native inventory, allocation and regional screening limitations; no separate heat credit is added.",
+    "This does not prove all remaining electricity technologies, native end-use fuel carbon, heat roles or other sectors complete."
+  ],
+  "ecoinvent_3_12_regression": {
+    "source": "ecoinvent-3.12-cutoff",
+    "biosphere": "ecoinvent-3.12-biosphere",
+    "scenario": {
+      "model": "remind",
+      "pathway": "SSP2-NPi",
+      "year": 2050
+    },
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat"
+    ],
+    "activities": 29640,
+    "validation_phases": 7,
+    "issues_by_severity": {
+      "warning": 85
+    },
+    "export_created": false
+  },
+  "lint": {
+    "before_findings": 5,
+    "after_findings": 5,
+    "new_findings": 0,
+    "temporary_baseline_removed": true
+  },
+  "documentation_reference_check": "passed; generated references unchanged",
+  "public_four_sector_verification": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "database": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-coal-copy-review-20261111-173543",
+    "source": "BAFU:2026-reimported",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement"
+    ],
+    "normal_public_scope_guard": true,
+    "export_activities": 13882,
+    "intentional_coal_CHP_copies": 45,
+    "all_technosphere_links_internal": true,
+    "validation_phases": 9,
+    "issues_by_severity": {
+      "warning": 14
+    },
+    "lci_checks": [
+      {
+        "name": "market group for electricity, high voltage",
+        "location": "NEU",
+        "unit": "kilowatt hour",
+        "amount": 1,
+        "supply_and_inventory_finite": true
+      },
+      {
+        "name": "market group for electricity, medium voltage",
+        "location": "EUR",
+        "unit": "kilowatt hour",
+        "amount": 1,
+        "supply_and_inventory_finite": true
+      },
+      {
+        "name": "Electricity, hard coal, at power plant [Premise Coal CHP co-generation proxy]",
+        "location": "DE",
+        "unit": "kilowatt hour",
+        "amount": 1,
+        "supply_and_inventory_finite": true
+      },
+      {
+        "name": "market group for electricity, high voltage",
+        "location": "World",
+        "unit": "kilowatt hour",
+        "amount": 1,
+        "supply_and_inventory_finite": true
+      },
+      {
+        "name": "market group for electricity, low voltage",
+        "location": "EUR",
+        "unit": "kilowatt hour",
+        "amount": 1,
+        "supply_and_inventory_finite": true
+      },
+      {
+        "name": "market group for electricity, high voltage",
+        "location": "EUR",
+        "unit": "kilowatt hour",
+        "amount": 1,
+        "supply_and_inventory_finite": true
+      }
+    ],
+    "limitations": [
+      "Existing electricity CO2 and source-proxy limitations remain.",
+      "This public four-sector check does not enable fuels or qualify other remaining sectors."
+    ]
+  }
+}

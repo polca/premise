@@ -442,6 +442,37 @@ class InventorySet:
         """
         filters = self._get_aliases(filepath=POWERPLANT_TECHS, model=self.model)
         result = self.generate_sets_from_filters(filters)
+        # Native templates remain available before proxy creation. Afterwards,
+        # bind the role's independent copies without dropping new templates.
+        for technology, definition in filters.items():
+            suffix = definition.get("technology_copy_suffix")
+            if not suffix:
+                continue
+            sources = {
+                (a["name"], a["reference product"], a["location"], a["unit"])
+                for a in result[technology]
+            }
+            copies = [
+                a
+                for a in self.database
+                if a.get("premise powerplant role copy", {}).get("role") == technology
+                and tuple(a["premise powerplant role copy"]["source"]) in sources
+            ]
+            for activity in copies:
+                source = activity["premise powerplant role copy"]["source"]
+                if activity["name"] != source[0] + suffix:
+                    raise ValueError(
+                        "Powerplant copy mapping changed; rebuild the scenario."
+                    )
+            copied = {
+                tuple(a["premise powerplant role copy"]["source"]) for a in copies
+            }
+            result[technology] = copies + [
+                a
+                for a in result[technology]
+                if (a["name"], a["reference product"], a["location"], a["unit"])
+                not in copied
+            ]
         if self.family != "uvek" or self.model is None:
             return result
         for technology, definition in filters.items():

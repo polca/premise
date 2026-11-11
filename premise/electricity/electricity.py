@@ -52,6 +52,26 @@ POWERPLANT_TECHS = VARIABLES_DIR / "electricity.yaml"
 logger = create_logger("electricity")
 
 
+def _has_combustion_fuel(dataset, fuel_filters, portfolio_names):
+    """Separate fuelled plants from portfolios without hiding missing aliases."""
+    inputs = [
+        e
+        for e in dataset["exchanges"]
+        if e.get("type") == "technosphere" and e.get("amount", 0) != 0
+    ]
+    if any(e["amount"] > 0 and fuel_filters.matches(e["name"]) for e in inputs):
+        return True
+    if inputs and all(
+        e.get("unit") == "kilowatt hour" and e["name"] in portfolio_names
+        for e in inputs
+    ):
+        return False
+    raise ValueError(
+        f"Missing declared combustion fuel for {dataset['name']!r} "
+        f"in {dataset['location']!r}; check the source-family fuel aliases."
+    )
+
+
 class _CoalPowerPlantData:
     """Cache scalar selections and emission factors from coal-plant IAM data."""
 
@@ -2023,6 +2043,7 @@ class Electricity(BaseTransformation):
             technologies=list(set(eff_labels).intersection(all_techs)),
         )
         efficiency_change_cache = {}
+        definitions = load_electricity_variables()
 
         def get_efficiency_change(technology, iam_location):
             key = technology, iam_location
@@ -2040,6 +2061,16 @@ class Electricity(BaseTransformation):
 
             for dataset in self.powerplant_map[technology]:
                 if not self.is_in_index(dataset):
+                    continue
+                if definitions.get(technology, {}).get(
+                    f"{getattr(self, 'family', 'ecoinvent')}_aliases", {}
+                ).get(
+                    "efficiency_requires_fuel_input", False
+                ) and not _has_combustion_fuel(
+                    dataset,
+                    fuel_filter_index,
+                    {a["name"] for a in self.powerplant_map[technology]},
+                ):
                     continue
 
                 # Find current efficiency
@@ -2138,6 +2169,7 @@ class Electricity(BaseTransformation):
             ("PM > 10", "Particulate Matter, > 10 um"),
         ]
         coal_power_plant_data = _CoalPowerPlantData(self.iam_data.coal_power_plants)
+        definitions = load_electricity_variables()
 
         for tech in coal_techs:
             if tech in self.powerplant_map:
@@ -2146,6 +2178,16 @@ class Electricity(BaseTransformation):
                     self.powerplant_fuels_map[tech]
                 )
                 for dataset in datasets:
+                    if definitions.get(tech, {}).get(
+                        f"{getattr(self, 'family', 'ecoinvent')}_aliases", {}
+                    ).get(
+                        "efficiency_requires_fuel_input", False
+                    ) and not _has_combustion_fuel(
+                        dataset,
+                        fuel_filter_index,
+                        {a["name"] for a in datasets},
+                    ):
+                        continue
                     loc = dataset["location"][:2]
                     if coal_power_plant_data.contains_country(loc):
                         fuel = (
@@ -2271,7 +2313,61 @@ class Electricity(BaseTransformation):
         We use proxy datasets, copy them and rename them.
         """
 
-        for tech, variable in load_electricity_variables().items():
+        definitions = load_electricity_variables()
+        # Optional mappings isolate shared templates before the normal updates.
+        for tech, variable in definitions.items():
+            aliases = variable.get(f"{self.family}_aliases", {})
+            suffix = aliases.get("technology_copy_suffix")
+            if not suffix:
+                continue
+            if not isinstance(suffix, str) or not suffix.strip():
+                raise ValueError(f"Invalid powerplant copy suffix for {tech!r}.")
+            copies = []
+            for source in self.powerplant_map.get(tech, []):
+                if source.get("premise powerplant role copy", {}).get("role") == tech:
+                    continue
+                copied = copy.deepcopy(source)
+                copied["code"] = uuid.uuid4().hex
+                copied["name"] = source["name"] + suffix
+                copied["premise powerplant role copy"] = {
+                    "role": tech,
+                    "source": [
+                        source[k]
+                        for k in ("name", "reference product", "location", "unit")
+                    ],
+                    "limitations": list(aliases.get("native_limitations", [])),
+                }
+                for exchange in ws.production(copied):
+                    exchange["name"] = copied["name"]
+                    exchange.pop("input", None)
+                key = source["name"], source["location"]
+                if key in self.production_per_tech:
+                    self.production_per_tech[copied["name"], copied["location"]] = (
+                        self.production_per_tech[key]
+                    )
+                copies.append(copied)
+            self.database.extend(copies)
+            owned = [
+                a
+                for a in self.database
+                if a.get("premise powerplant role copy", {}).get("role") == tech
+            ]
+            suppliers = {
+                tuple(a["premise powerplant role copy"]["source"]): a
+                for a in owned
+                if a["location"] == a["premise powerplant role copy"]["source"][2]
+            }
+            for copied in copies:
+                for exchange in ws.technosphere(copied):
+                    key = tuple(
+                        exchange.get(k) for k in ("name", "product", "location", "unit")
+                    )
+                    if key in suppliers:
+                        exchange["name"] = suppliers[key]["name"]
+                        exchange.pop("input", None)
+            self.add_to_index(copies)
+
+        for tech, variable in definitions.items():
             if not variable.get("exists in database", True):
                 try:
                     original = list(
