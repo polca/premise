@@ -1250,7 +1250,7 @@ def trim_exchanges(exc: Dict[str, Any]) -> Dict[str, Any]:
             "categories",
             "comment",
         ]
-        and pd.notna(v)
+        and (not pd.api.types.is_scalar(v) or pd.notna(v))
     }
 
 
