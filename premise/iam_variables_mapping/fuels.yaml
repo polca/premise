@@ -461,6 +461,16 @@ diesel:
       - period
       - market
 gasoline:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Petrol, at refinery
+      reference product: Petrol, at refinery
+      unit: kilogram
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native CH/RER refinery petrol; excludes ETBE, ethanol blends, two-stroke fuel and pyrolysis gasoline.
+    - Regional copies retain the native refinery boundary and represent geographic and vintage proxies outside their source coverage.
   lhv:
     unit: megajoule
     value: 42.6
@@ -1096,6 +1106,16 @@ hydrogen:
   co2: 0
   biogenic_share: 1
 biodiesel, from oil crops:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Soybean methyl ester, at esterification plant
+      reference product: Soybean methyl ester, at esterification plant
+      unit: kilogram
+    native_reference_amount: 1
+    native_limitations:
+    - Native US/BR soybean methyl ester includes transesterification, intermediate storage and wastewater treatment, per kg final ester; glycerine is a separate co-product.
+    - Retain native economic allocation and carbon-balanced CO2 allocation; geography, agricultural supply, technology and vintage are screening proxies outside source coverage, with unquantified score differences.
   lhv:
     unit: megajoule
     value: 38
@@ -1154,6 +1174,16 @@ biodiesel, from used cooking oil, with CCS:
       - economic
       - station
 bioethanol, from wood:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Ethanol, 95% in H2O, from wood, at distillery
+      reference product: Ethanol, 95% in H2O, from wood, at distillery
+      unit: kilogram
+    native_reference_amount: 1
+    native_limitations:
+    - Native Swedish wood fermentation/distillery ethanol is documented per kg dry ethanol in 95% solution, matching the shared dry-ethanol reference basis; dehydration is excluded.
+    - Regional copies retain the native allocation and inventory as feedstock, technology, geography and vintage screening proxies; retain 26.5 MJ per kg dry ethanol, with unquantified score differences.
   lhv:
     unit: megajoule
     value: 26.5
@@ -1839,6 +1869,16 @@ Carbon monoxide, from RWGS:
     unit: megajoule
     value: 10.83
 kerosene:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Kerosene, at refinery
+      reference product: Kerosene, at refinery
+      unit: kilogram
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native CH/RER refinery kerosene per kg final product; retain native allocation and refinery boundary.
+    - Regional copies are geographic, technology and vintage screening proxies outside source coverage, with unquantified score differences.
   lhv:
     unit: megajoule
     value: 43

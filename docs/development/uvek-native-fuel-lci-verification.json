@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-11",
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "source_database": "BAFU:2026-reimported",
+  "activity_count": 11947,
+  "source_metadata_unchanged": true,
+  "checks": [
+    {
+      "name": "Diesel, at refinery",
+      "reference_product": "Diesel, at refinery",
+      "location": "CH",
+      "unit": "kilogram",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "Diesel, at refinery",
+      "reference_product": "Diesel, at refinery",
+      "location": "RER",
+      "unit": "kilogram",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "Ethanol, 95% in H2O, from wood, at distillery",
+      "reference_product": "Ethanol, 95% in H2O, from wood, at distillery",
+      "location": "SE",
+      "unit": "kilogram",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "Kerosene, at refinery",
+      "reference_product": "Kerosene, at refinery",
+      "location": "CH",
+      "unit": "kilogram",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "Kerosene, at refinery",
+      "reference_product": "Kerosene, at refinery",
+      "location": "RER",
+      "unit": "kilogram",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "Petrol, at refinery",
+      "reference_product": "Petrol, at refinery",
+      "location": "CH",
+      "unit": "kilogram",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "Petrol, at refinery",
+      "reference_product": "Petrol, at refinery",
+      "location": "RER",
+      "unit": "kilogram",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "Soybean methyl ester, at esterification plant",
+      "reference_product": "Soybean methyl ester, at esterification plant",
+      "location": "BR",
+      "unit": "kilogram",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    },
+    {
+      "name": "Soybean methyl ester, at esterification plant",
+      "reference_product": "Soybean methyl ester, at esterification plant",
+      "location": "US",
+      "unit": "kilogram",
+      "amount": 1,
+      "supply_finite": true,
+      "inventory_finite": true
+    }
+  ],
+  "qualification": "Native supplier LCIs only; fuel update/export and consumer relinking remain unfinished."
+}

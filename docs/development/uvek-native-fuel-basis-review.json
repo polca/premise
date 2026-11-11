@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-11",
+  "source_database": "BAFU:2026-reimported",
+  "source_activity_count": 11947,
+  "native_witnesses": [
+    {
+      "name": "Kerosene, at refinery",
+      "reference_product": "Kerosene, at refinery",
+      "location": "CH",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "comment_sha256": "c7c7a58825ec3ed1475e054efe928c681d88f6b39a795b89a6fc06cf7c35b6a1",
+      "basis": "allocated refinery output"
+    },
+    {
+      "name": "Petrol, at refinery",
+      "reference_product": "Petrol, at refinery",
+      "location": "RER",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "comment_sha256": "784029792cfbac148d35465799647b73fb121e754cd598f334cfec9af603712a",
+      "basis": "allocated refinery output"
+    },
+    {
+      "name": "Soybean methyl ester, at esterification plant",
+      "reference_product": "Soybean methyl ester, at esterification plant",
+      "location": "US",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "comment_sha256": "d47dd50cdc4b3a5a40b2c9cfe63d6c28a8e3b0d06ddc7e182e5629afc1e07f6b",
+      "basis": "allocated soybean methyl ester output, separate glycerine co-product"
+    },
+    {
+      "name": "Diesel, at refinery",
+      "reference_product": "Diesel, at refinery",
+      "location": "CH",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "comment_sha256": "81eba0f156fc53cb443877d574701cff39fb6817ef476cdbfbd40f2bcddd65f8",
+      "basis": "allocated refinery output"
+    },
+    {
+      "name": "Ethanol, 95% in H2O, from wood, at distillery",
+      "reference_product": "Ethanol, 95% in H2O, from wood, at distillery",
+      "location": "SE",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "comment_sha256": "fc98317058de1712a2d11796d2bcc5ab9460ead79477e216809c0c982ef47cb9",
+      "basis": "dry ethanol in 95% aqueous solution; dehydration excluded"
+    },
+    {
+      "name": "Diesel, at refinery",
+      "reference_product": "Diesel, at refinery",
+      "location": "RER",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "comment_sha256": "3bb9b39dd1470279f9428ca026fcf47b8d1279a8234e1ec0117e7eed1e516194",
+      "basis": "allocated refinery output"
+    },
+    {
+      "name": "Petrol, at refinery",
+      "reference_product": "Petrol, at refinery",
+      "location": "CH",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "comment_sha256": "a98d68b620db267f3158853670628ced3d6f2384401b0b35c381c75e381c3868",
+      "basis": "allocated refinery output"
+    },
+    {
+      "name": "Kerosene, at refinery",
+      "reference_product": "Kerosene, at refinery",
+      "location": "RER",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "comment_sha256": "f343902d35f6529c1287eee298191802acb7a045ff1f52d0ab2b95e8dbb89196",
+      "basis": "allocated refinery output"
+    },
+    {
+      "name": "Soybean methyl ester, at esterification plant",
+      "reference_product": "Soybean methyl ester, at esterification plant",
+      "location": "BR",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "comment_sha256": "0711694457d00422d89d04ea1a5d95384c36c17f7f4dbe9a9023074afbd87caa",
+      "basis": "allocated soybean methyl ester output, separate glycerine co-product"
+    }
+  ],
+  "original_ecoinvent_3_12_witnesses": [
+    {
+      "name": "ethanol production from wood",
+      "reference_product": "ethanol, without water, in 95% solution state, from fermentation",
+      "location": "RoW",
+      "unit": "kilogram",
+      "comment_sha256": "9a206c3a295745a6febcbba9d71bc275ffef8526d220b710f223ac5d85d4bb79",
+      "basis": "dry ethanol in 95% aqueous solution; dehydration excluded"
+    },
+    {
+      "name": "ethanol production from wood",
+      "reference_product": "ethanol, without water, in 95% solution state, from fermentation",
+      "location": "CH",
+      "unit": "kilogram",
+      "comment_sha256": "9a206c3a295745a6febcbba9d71bc275ffef8526d220b710f223ac5d85d4bb79",
+      "basis": "dry ethanol in 95% aqueous solution; dehydration excluded"
+    },
+    {
+      "name": "ethanol production from wood",
+      "reference_product": "ethanol, without water, in 95% solution state, from fermentation",
+      "location": "SE",
+      "unit": "kilogram",
+      "comment_sha256": "37bde059d037165b916b8654ead422d4384386156b552ab776a9b699d1c03a84",
+      "basis": "dry ethanol in 95% aqueous solution; dehydration excluded"
+    }
+  ],
+  "decisions": [
+    "Petrol and diesel regionalization uses native complete allocated refinery outputs, not storage/blend/combustion inventories. Shared regional proxy selection and relinking remain unchanged.",
+    "Wood ethanol uses the native 95% dry-basis reference, matching the original shared ethanol-production boundary and 26.5 MJ per kg dry ethanol. No concentration multiplier or added dehydration stage.",
+    "Swedish wood ethanol and CH/RER petrol are screening geographic, technology and vintage proxies outside source coverage; no LCIA equivalence is claimed. Native inventories, signs and uncertainty stay under the normal shared transformation."
+  ],
+  "public_support_qualified": false
+}

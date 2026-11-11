@@ -12,6 +12,7 @@ oil:
     - biodiesel production, via transesterification, from palm oil, energy allocation
     - biodiesel, from palm oil, at fuelling station
   soybean:
+    - Soybean methyl ester, at esterification plant
     - esterification of soybean oil
   used cooking oil:
     - supply and refining of waste cooking oil
@@ -56,6 +57,8 @@ wood:
     - ethanol production, via fermentation, from willow, economic allocation
     - ethanol production, via fermentation, from willow, energy allocation
   forest residues:
+    # Native dry-basis wood ethanol follows the shared all-region wood-fuel stage.
+    - Ethanol, 95% in H2O, from wood, at distillery
     - supply of forest residue
     - ethanol production, via fermentation, from forest residue, economic allocation
     - ethanol production, via fermentation, from forest residue, energy allocation

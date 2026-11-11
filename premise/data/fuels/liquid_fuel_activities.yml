@@ -42,3 +42,26 @@ methanol-to-liquids:
       - kerosene production, synthetic, from methanol, market-average hydrogen, CO2 from DAC
       - liquefied petroleum gas production, from methanol, market-average hydrogen, CO2 from DAC
       - liquefied petroleum gas production, synthetic, from methanol, market-average hydrogen, CO2 from DAC
+
+# Native refinery petrol enters the same regional-copy stage as other liquids.
+# Exact product/unit checks exclude blends, delivery markets and fuel combustion.
+uvek refinery petrol:
+  exact: true
+  fltr:
+    name: Petrol, at refinery
+    reference product: Petrol, at refinery
+    unit: kilogram
+
+uvek refinery diesel:
+  exact: true
+  fltr:
+    name: Diesel, at refinery
+    reference product: Diesel, at refinery
+    unit: kilogram
+
+uvek refinery kerosene:
+  exact: true
+  fltr:
+    name: Kerosene, at refinery
+    reference product: Kerosene, at refinery
+    unit: kilogram
