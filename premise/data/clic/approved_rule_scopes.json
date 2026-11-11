@@ -20264,7 +20264,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "a9856582d8961f5f3692812f24c192ab87afedc869f911487701199e29742892"
+          "fingerprint": "e08e9e5404d99bc3ac88bbcd46af6d40713bf3cb3ed0fc6ce88d4979bc4f08fa"
         },
         {
           "source": {
@@ -20277,7 +20277,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "89c50cafaea9caa6c11bf86f9e3d82fbc586ef46f8710e209f6ef3213cfa6426"
+          "fingerprint": "7e336c46a5b8ff0536b8363516a3d1a69c58ae29deb43c45511f92fd704b723b"
         }
       ]
     },
@@ -121543,7 +121543,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "be1e4af581652dc2a81a82d992cb7b8b330acb0a2a4d3626f2d98abded9f3d0d"
+          "fingerprint": "26540bf92852f7516b0d7b7b4af087f806b046a7278798dfc560c5eec6694bdc"
         }
       ]
     },
@@ -197248,6 +197248,346 @@
             "system_model": "cutoff"
           },
           "fingerprint": "af581d24ea25c1b8349f3f94536caa8799b85fa5041b1366123e61e156274d0e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-745c517f85a78ba7",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_vehicle_gas_proxy",
+      "review_path": "export/uvek_fuels_38_gas_wood_review.json",
+      "review_sha256": "03916903d0d6b26384820e09713218bb8aa226eac6e4d92f1c503b543963ac1d",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for natural gas, medium pressure, vehicle grade",
+            "reference product": "natural gas, medium pressure, vehicle grade",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "a80df8f354499d17f2fd6d6307ae683ef090613c40a0355a5841b371cbd1e853",
+          "inventory_sha256": "3691cec23d67f6eca3fd2d5587b993d51ddd6f8055be64864c577bb2bea78ca0",
+          "name": "market for natural gas, medium pressure, vehicle grade",
+          "reference product": "natural gas, medium pressure, vehicle grade",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "natural gas production, medium pressure, vehicle grade",
+              "reference product": "natural gas, medium pressure, vehicle grade",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b4fb70e7d96266e0a5e7061ed17fa7349b6b6c728fbfc071589c704b59ee5985",
+            "inventory_sha256": "e08a1e4c9687e298631e76c699e8c6c4f86d5198eedfa72924a6b0cf22cecc3d"
+          },
+          {
+            "identity": {
+              "name": "natural gas production, medium pressure, vehicle grade",
+              "reference product": "natural gas, medium pressure, vehicle grade",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9fc7f466be1c37da444f5d0fa2377b68cf461a74488afb335aa2b22db8aaec5e",
+            "inventory_sha256": "5005baf5669ae8f979750884650ea39e2ef5a2fc3497c6ac2a46dcb398257589"
+          }
+        ],
+        "basis": "Use complete native Swiss medium-inlet-pressure vehicle-gas service station per kg gas. Source and native station documentation identify inlet pressure 0.1-1 bar; that does not establish final vehicle delivery pressure. Both reference positive one kg gas, not an MJ or cubic metre. Do not add compression, service-station infrastructure, electricity or losses again, infer final pressure, or apply heating-value/density factors. Native includes service-station electricity, gas-loss emissions and upstream gas supply once. Source global CH/RoW supply is replaced by a Swiss geographic screening proxy. Source gas heating-value metadata and native MJ-based upstream gas input differ and do not justify a caller mass conversion. Source market has no separate final freight or loss addition. Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared kg reference. Retain complete native producer inventory once; source country sourcing, production, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations, with unquantified score effects. Separate caller transport, processing and emissions remain unchanged. No inventory or LCIA equivalence is claimed. Only exact independently inspected ecoinvent 3.8 cut-off is added; older selected decisions remain unchanged and other releases cannot borrow this inspection.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.8 gas/wood profile with wood delivery helper; preserve old selected decisions and helpers",
+        "new_target": {
+          "location": "CH",
+          "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+          "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+              "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "metadata_sha256": "25b67b93b4254bbfc4a700e9a55f29ab587d49ad95ffea81841671319df3a09d",
+            "inventory_sha256": "f0a99094f6ee41836a6c1775cbd107211831fe6759851afc4f2a92e8b17a280a"
+          },
+          {
+            "identity": {
+              "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+              "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "metadata_sha256": "909121b996b9da95ca54b2c13ece8beab19042adc711e89408c1b4f7bd900522",
+            "inventory_sha256": "61924eb66bedebc5caf28d2d5e3bf1d5858184f7b3059abb3bc678f28a1996fb"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native Swiss medium-inlet-pressure vehicle-gas service station per kg gas. Source and native station documentation identify inlet pressure 0.1-1 bar; that does not establish final vehicle delivery pressure. Both reference positive one kg gas, not an MJ or cubic metre. Do not add compression, service-station infrastructure, electricity or losses again, infer final pressure, or apply heating-value/density factors. Native includes service-station electricity, gas-loss emissions and upstream gas supply once. Source global CH/RoW supply is replaced by a Swiss geographic screening proxy. Source gas heating-value metadata and native MJ-based upstream gas input differ and do not justify a caller mass conversion. Source market has no separate final freight or loss addition. Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared kg reference. Retain complete native producer inventory once; source country sourcing, production, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations, with unquantified score effects. Separate caller transport, processing and emissions remain unchanged. No inventory or LCIA equivalence is claimed. Only exact independently inspected ecoinvent 3.8 cut-off is added; older selected decisions remain unchanged and other releases cannot borrow this inspection."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "58c2db33133c182da8fdf313d49aa0344d65d456083f5ada9c65d640ce6b4796"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-84bd9cf473cdeee9",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_fuels_38_gas_wood_review.json",
+      "review_sha256": "03916903d0d6b26384820e09713218bb8aa226eac6e4d92f1c503b543963ac1d",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with explicit warnings under the active BAFU/UVEK shared-Premise integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for wood chips, wet, measured as dry mass",
+            "reference product": "wood chips, wet, measured as dry mass",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "cafe7bee7cbb32556dc69a490c5df1990efca6c339d50d24e36265fcb1d6c209",
+          "inventory_sha256": "1dfc11462b1f403f93694a48ff21b3c2aa942de44f774e5cb331bc2b57c5e19c",
+          "name": "market for wood chips, wet, measured as dry mass",
+          "reference product": "wood chips, wet, measured as dry mass",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "wood chips production, hardwood, at sawmill",
+              "reference product": "wood chips, wet, measured as dry mass",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "08e02f8921445b54d43f338c25e780be762b81a29df050eb45e4b64b97eb8fe3",
+            "inventory_sha256": "80f8b7ecc823b1fe1812f0ec037f627cb3ca9b75451b743e3ce4d15bdd34a039"
+          },
+          {
+            "identity": {
+              "name": "wood chips production, softwood, at sawmill",
+              "reference product": "wood chips, wet, measured as dry mass",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f41c8f7ada210c43f97e694148aedceafdb03d2f3bcaccac7f271fe81129b39a",
+            "inventory_sha256": "f051c4fc4642c5fe16a350f20174f4027b7acfd82deaec3b74c5d0f5b8c27887"
+          },
+          {
+            "identity": {
+              "name": "hardwood forestry, beech, sustainable forest management",
+              "reference product": "wood chips, wet, measured as dry mass",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "51298a96db1343b9a9ebb6aa8233656f4727d2739faba00e6e5375a517d613e7",
+            "inventory_sha256": "3dee37fecfd181dc8a7050f258547ab207b094e5b9a5502859bd36d6694976a2"
+          },
+          {
+            "identity": {
+              "name": "hardwood forestry, birch, sustainable forest management",
+              "reference product": "wood chips, wet, measured as dry mass",
+              "location": "SE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "24210a97c6208a4c8c68c539d9ec0ebd3f6b802f00cd6d2de166ce1a01de636c",
+            "inventory_sha256": "19ad585b604c30ee8335c0bc7bfabb8d85dc42352c0f1a1634e2c0e358aebb25"
+          },
+          {
+            "identity": {
+              "name": "hardwood forestry, oak, sustainable forest management",
+              "reference product": "wood chips, wet, measured as dry mass",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "3a4853f70a85d9acc69db5230d55e864229c1ef1d8f165feb9b1e20d7f953c02",
+            "inventory_sha256": "5c418a3a912ebdd01aafd10dc943844c08320f99274386fc627985159115ec01"
+          },
+          {
+            "identity": {
+              "name": "softwood forestry, pine, sustainable forest management",
+              "reference product": "wood chips, wet, measured as dry mass",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "22e0325e79ee6e660245a0403cdad3f8bcd7c2dfb589b4ce403cbd216f9ad0e0",
+            "inventory_sha256": "846f37015b6a30f9446a5a97465962be8a4f44c21118ea0b39467092d454c04a"
+          },
+          {
+            "identity": {
+              "name": "softwood forestry, pine, sustainable forest management",
+              "reference product": "wood chips, wet, measured as dry mass",
+              "location": "SE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9b7e2dc9bb6b71824c18ef05a1b13048613fa41d7b7e91a591359e5cca19ab28",
+            "inventory_sha256": "c337b5826c32effdd5b5938e8432aa46f7f1d262a70fb13150dd71e57b3166e5"
+          },
+          {
+            "identity": {
+              "name": "softwood forestry, spruce, sustainable forest management",
+              "reference product": "wood chips, wet, measured as dry mass",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ab74e9d74e9166c8dc02244514e02a96e1a64973eabd4bd0b7dc1b266184f78a",
+            "inventory_sha256": "8e549753afb1beaf0d13da203b66a9318aa49fa4138fbf7e12634b74b221f6a6"
+          },
+          {
+            "identity": {
+              "name": "softwood forestry, spruce, sustainable forest management",
+              "reference product": "wood chips, wet, measured as dry mass",
+              "location": "SE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "6e287b1bb32319012d7adad4929981ce02ca4864e74ceae5cc073a116451a9b5",
+            "inventory_sha256": "76d9f2bd74579edad434f6eb07e2bd4652f99d40d107d2a560ec9a6f67b6654c"
+          }
+        ],
+        "basis": "Use complete native European wet-wood-chip production mix per kg dry matter, plus the inspected source final road delivery. The wet product label does not change the dry-mass reference: do not apply moisture, density, drying, wood-yield or heating-value multipliers or add another forestry, sawmill, chipping, drying or combustion process. Native forest/species/sawmill weights replace the nine source producer shares; their allocation, geographic sourcing, land-use, upstream emissions, moisture and internal uncertainty are not reconstructed. Retain original native coefficients without normalization. Native mixture has zero-valued direct delivery; add only the original 0.105 tonne-km final road leg, with its nominal amount and marginal uncertainty unchanged, using native European generic road freight as a fleet proxy. Preserve the source freight coefficient as already calculated per kg dry wood; do not recalculate payload from native moisture or invent a wet-payload mass-balance correction. Source background freight formula/parameter context and correlations are not reconstructed or transplanted; its hash is retained for audit. Caller formulas remain preserved. Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared kg reference. Retain complete native producer inventory once; source country sourcing, production, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations, with unquantified score effects. Separate caller transport, processing and emissions remain unchanged. No inventory or LCIA equivalence is claimed. Only exact independently inspected ecoinvent 3.8 cut-off is added; older selected decisions remain unchanged and other releases cannot borrow this inspection.",
+        "conversion_factor": 1,
+        "resource_action": "add exact 3.8 gas/wood profile with wood delivery helper; preserve old selected decisions and helpers",
+        "new_target": {
+          "recipe_ref": "fuels-38-wet-wood-dry-mass-delivery"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+              "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 10,
+            "metadata_sha256": "25b67b93b4254bbfc4a700e9a55f29ab587d49ad95ffea81841671319df3a09d",
+            "inventory_sha256": "f0a99094f6ee41836a6c1775cbd107211831fe6759851afc4f2a92e8b17a280a"
+          },
+          {
+            "identity": {
+              "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+              "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "metadata_sha256": "909121b996b9da95ca54b2c13ece8beab19042adc711e89408c1b4f7bd900522",
+            "inventory_sha256": "61924eb66bedebc5caf28d2d5e3bf1d5858184f7b3059abb3bc678f28a1996fb"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          }
+        ]
+      },
+      "limitations": [
+        "Use complete native European wet-wood-chip production mix per kg dry matter, plus the inspected source final road delivery. The wet product label does not change the dry-mass reference: do not apply moisture, density, drying, wood-yield or heating-value multipliers or add another forestry, sawmill, chipping, drying or combustion process. Native forest/species/sawmill weights replace the nine source producer shares; their allocation, geographic sourcing, land-use, upstream emissions, moisture and internal uncertainty are not reconstructed. Retain original native coefficients without normalization. Native mixture has zero-valued direct delivery; add only the original 0.105 tonne-km final road leg, with its nominal amount and marginal uncertainty unchanged, using native European generic road freight as a fleet proxy. Preserve the source freight coefficient as already calculated per kg dry wood; do not recalculate payload from native moisture or invent a wet-payload mass-balance correction. Source background freight formula/parameter context and correlations are not reconstructed or transplanted; its hash is retained for audit. Caller formulas remain preserved. Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared kg reference. Retain complete native producer inventory once; source country sourcing, production, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations, with unquantified score effects. Separate caller transport, processing and emissions remain unchanged. No inventory or LCIA equivalence is claimed. Only exact independently inspected ecoinvent 3.8 cut-off is added; older selected decisions remain unchanged and other releases cannot borrow this inspection."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "53e1a107fcbd7fcf26147c8522a7dd3aa03556fdc2520775b7c6a34e56f62d9d"
         }
       ]
     }

@@ -1,0 +1,132 @@
+{
+  "date": "2026-11-11",
+  "status": "Two exact 3.8 gas/wood profiles qualified; complete fuel transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "3b4252e4efaf552447f9346fcbcc05202c3e329a",
+  "review_sha256": "03916903d0d6b26384820e09713218bb8aa226eac6e4d92f1c503b543963ac1d",
+  "forward_resource_sha256": "ef574711549ac2e54a01853396920fca9e9d5e671c95a2ba23fcc7bd8f897037",
+  "new_approval_scopes": 2,
+  "validated_approval_scopes": 684,
+  "old_fingerprint_refreshes": {
+    "vehicle_gas": [
+      "3.9"
+    ],
+    "wood_chips": [
+      "3.6",
+      "3.9"
+    ]
+  },
+  "refresh_proof": "Every old fingerprint reproduced against frozen original rule before refresh; all previous selected profiles and older helper/shared-review contents unchanged. All other old operations unchanged.",
+  "tests": {
+    "brightpath": "12 passed; signed statistics, exact two-row wood helper, uninspected-profile refusals, old selected rules, replay guard and background-formula boundary",
+    "premise": "13 passed; strict fresh/cache statistics, exact limitations, individual approval removal and all three older approved profiles",
+    "broader_baseline": "Earlier regression checkpoints remain historical; no post-change full repository suite claimed."
+  },
+  "native_lci_checks": [
+    {
+      "rule_id": "bp-745c517f85a78ba7",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_demands": [
+        {
+          "identity": {
+            "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-84bd9cf473cdeee9",
+      "finite_supply": true,
+      "finite_inventory": true,
+      "native_demands": [
+        {
+          "identity": {
+            "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+            "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "amount": 1
+        },
+        {
+          "identity": {
+            "name": "Transport, freight, lorry, fleet average",
+            "reference product": "Transport, freight, lorry, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "amount": 0.105
+        }
+      ]
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "wood_delivery_proof": {
+    "statistics": {
+      "amount": 0.105,
+      "uncertainty type": 2,
+      "loc": -2.2537949288246137,
+      "scale": 0.3847076812334269,
+      "pedigree": {
+        "reliability": 4,
+        "completeness": 4,
+        "temporal correlation": 4,
+        "geographical correlation": 5,
+        "further technological correlation": 3
+      },
+      "scale without pedigree": 0.34641016151377546
+    },
+    "target": {
+      "name": "Transport, freight, lorry, fleet average",
+      "reference product": "Transport, freight, lorry, fleet average",
+      "location": "RER",
+      "unit": "ton kilometer"
+    },
+    "source_formula_present": true,
+    "source_formula_sha256": "0e87d343f40150a75aae2aa91fa00755be8b3725bf743fe354b1358b114423d3",
+    "source_formula_transplanted": false,
+    "native_direct_delivery_amounts": [
+      0.0
+    ],
+    "native_species_coefficients_unchanged": true
+  },
+  "mapping_preservation": "Only two parents changed; one new wood-delivery helper; every older helper and shared review unchanged.",
+  "replay_and_wheel": "Forward/canonical replay and packaged review/resource/manifest match checkout.",
+  "runtime_python_changes": false,
+  "regular_environment": "Pushed Git revision installed; exact resource SHA and 684 scopes verified.",
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 30,
+    "distinct_rule_identities": 29,
+    "only_removed_cases": [
+      [
+        "3.8",
+        "bp-745c517f85a78ba7"
+      ],
+      [
+        "3.8",
+        "bp-84bd9cf473cdeee9"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123440327,
+  "limitations": [
+    [
+      "Use complete native Swiss medium-inlet-pressure vehicle-gas service station per kg gas. Source and native station documentation identify inlet pressure 0.1-1 bar; that does not establish final vehicle delivery pressure. Both reference positive one kg gas, not an MJ or cubic metre. Do not add compression, service-station infrastructure, electricity or losses again, infer final pressure, or apply heating-value/density factors. Native includes service-station electricity, gas-loss emissions and upstream gas supply once. Source global CH/RoW supply is replaced by a Swiss geographic screening proxy. Source gas heating-value metadata and native MJ-based upstream gas input differ and do not justify a caller mass conversion. Source market has no separate final freight or loss addition. Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared kg reference. Retain complete native producer inventory once; source country sourcing, production, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations, with unquantified score effects. Separate caller transport, processing and emissions remain unchanged. No inventory or LCIA equivalence is claimed. Only exact independently inspected ecoinvent 3.8 cut-off is added; older selected decisions remain unchanged and other releases cannot borrow this inspection."
+    ],
+    [
+      "Use complete native European wet-wood-chip production mix per kg dry matter, plus the inspected source final road delivery. The wet product label does not change the dry-mass reference: do not apply moisture, density, drying, wood-yield or heating-value multipliers or add another forestry, sawmill, chipping, drying or combustion process. Native forest/species/sawmill weights replace the nine source producer shares; their allocation, geographic sourcing, land-use, upstream emissions, moisture and internal uncertainty are not reconstructed. Retain original native coefficients without normalization. Native mixture has zero-valued direct delivery; add only the original 0.105 tonne-km final road leg, with its nominal amount and marginal uncertainty unchanged, using native European generic road freight as a fleet proxy. Preserve the source freight coefficient as already calculated per kg dry wood; do not recalculate payload from native moisture or invent a wet-payload mass-balance correction. Source background freight formula/parameter context and correlations are not reconstructed or transplanted; its hash is retained for audit. Caller formulas remain preserved. Preserve signed caller quantities, supported uncertainty, formulas and properties at factor +1 in the declared kg reference. Retain complete native producer inventory once; source country sourcing, production, allocation, internal uncertainty, vintage and native upstream biosphere exclusions remain limitations, with unquantified score effects. Separate caller transport, processing and emissions remain unchanged. No inventory or LCIA equivalence is claimed. Only exact independently inspected ecoinvent 3.8 cut-off is added; older selected decisions remain unchanged and other releases cannot borrow this inspection."
+    ]
+  ]
+}
