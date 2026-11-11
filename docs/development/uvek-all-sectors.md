@@ -1278,3 +1278,33 @@ The public fuel guard remains closed. Shared fuel transformation, relinking,
 validation/export, later source cohorts and other registered sectors remain
 unfinished; the full goal stays active. See the
 [nutrient/pesticide receipt](uvek-fuels-38-nutrients-preparation-verification.json).
+
+
+### Whole fuel graph cohort diagnosis — 11 November 2026
+
+The regular conda Git installation was used to inspect every currently selected
+fuel source cohort, rather than stopping after the first 3.8 refusal. The graph
+contains 117 source activities in six cohorts: 3.12 (14), 3.9 (29), 3.8 (50),
+3.6 (six), 3.7 (eleven) and 3.11 (seven). The diagnostic reorders only whole
+cohort groups in the full unchanged graph, retaining all datasets, exchanges,
+version rows and foreign foreground targets. It calls the unchanged standard
+harmonizer with normal policy and validation; source non-mutation is checked
+after each call. Only the public fuel-sector guard is bypassed in the private
+diagnostic; there is no transformation, export or source-database write.
+
+The 3.12, 3.9 and 3.6 cohorts pass their migration stage before a later cohort
+fails. Three cohorts expose **59 exact approval refusals across 55 distinct
+correspondences**: thirty in 3.8, twenty-four in 3.7 and five in 3.11. The latter
+five concern hydrogen, aluminium alloy, nickel, stainless steel and HDPE. The
+3.7 cohort includes metalworking/construction/pipeline dependencies, material
+supply, auxiliary services and waste routes. Shared identities can now be
+reviewed together across versions with independently inspected reference bases.
+No approval is inferred merely from a shared name or prior-version evidence.
+
+These are current preflight refusals, not a guarantee that no later missing
+links, role-binding or validation errors will appear. Candidate targets are
+not qualified proxies; physically wrong candidates still need correction.
+The scan covers the current fuel graph, not all remaining registered sectors.
+It provides an explicit work queue without treating the thirty 3.8 cases as
+the total remaining task. The full goal remains active. See the
+[all-cohort diagnostic](uvek-fuels-all-cohort-preparation-diagnostic.json).

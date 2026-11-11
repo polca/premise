@@ -1,0 +1,1011 @@
+{
+  "date": "2026-11-11",
+  "status": "Diagnostic only; fuel transformation and export remain unfinished. These are current preflight approval refusals, not a guarantee that no later linking/validation failures will appear.",
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "source_database": "BAFU:2026-reimported",
+  "source_project": "bafu-2026-ecospold2-biosphere-310",
+  "target_biosphere": "ecoinvent-3.10-biosphere",
+  "brightpath_commit": "be57cb167fc0918feb91612883d1d7b83d68a237",
+  "premise_commit": "67c089f60bc8e4f9c617e7cbb1699225b5cac7d2",
+  "approval_ledger_sha256": "97931a069ab52a47496835aed90ae65db0096bd6e06225a4c8653572cdeeeb91",
+  "validated_scopes": 645,
+  "resolved_source_activities": 117,
+  "source_cohorts": 6,
+  "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
+  "graph_non_mutation_checks_passed": true,
+  "unapproved_source_profile_cases": 59,
+  "distinct_unapproved_rule_identities": 55,
+  "cohorts": [
+    {
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.12"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.12"
+        }
+      },
+      "source_activities": 14,
+      "migration_stage_status": "passed before another cohort failed",
+      "unapproved_count": 0,
+      "refusal_audit_filename": null,
+      "refusal_audit_sha256": null,
+      "pending": []
+    },
+    {
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9"
+        }
+      },
+      "source_activities": 29,
+      "migration_stage_status": "passed before another cohort failed",
+      "unapproved_count": 0,
+      "refusal_audit_filename": null,
+      "refusal_audit_sha256": null,
+      "pending": []
+    },
+    {
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.8"
+        }
+      },
+      "source_activities": 50,
+      "migration_stage_status": "blocked by exact approval refusals",
+      "unapproved_count": 30,
+      "refusal_audit_filename": "2879591d7a309b45a27692173328a8bde9e15af95e847570811a5c5734fff404.audit.json.gz",
+      "refusal_audit_sha256": "b94a710cd56ca014b1593180d6f17318007e832d15816b320ad206f28abb88d8",
+      "pending": [
+        {
+          "rule_id": "bp-05200779ee64a17f",
+          "source": {
+            "location": "RoW",
+            "name": "market for heat, from steam, in chemical industry",
+            "reference product": "heat, from steam, in chemical industry",
+            "unit": "megajoule"
+          },
+          "candidate_target": {
+            "recipe_ref": "chemical-heat-water-e3db9c084127df5b3402"
+          }
+        },
+        {
+          "rule_id": "bp-6f58476b963abe8c",
+          "source": {
+            "location": "RoW",
+            "name": "market for hydrochloric acid, without water, in 30% solution state",
+            "reference product": "hydrochloric acid, without water, in 30% solution state",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Hydrochloric acid, 30% in H2O, at plant",
+            "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-cac4eeaf7215b33d",
+          "source": {
+            "location": "GLO",
+            "name": "market for methanol",
+            "reference product": "methanol",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Methanol, at regional storage",
+            "reference product": "Methanol, at regional storage",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-6fb142ff07a96aed",
+          "source": {
+            "location": "GLO",
+            "name": "market for sodium methoxide",
+            "reference product": "sodium methoxide",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "GLO",
+            "name": "Sodium methoxide, at plant",
+            "reference product": "Sodium methoxide, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-42ca176032e4b754",
+          "source": {
+            "location": "RoW",
+            "name": "market for lime",
+            "reference product": "lime",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Lime, hydraulic, at plant",
+            "reference product": "Lime, hydraulic, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-4c51b8491a9aebe9",
+          "source": {
+            "location": "GLO",
+            "name": "market for ethanol fermentation plant",
+            "reference product": "ethanol fermentation plant",
+            "unit": "unit"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Ethanol fermentation plant",
+            "reference product": "Ethanol fermentation plant",
+            "unit": "unit"
+          }
+        },
+        {
+          "rule_id": "bp-fe0deefded6d83bc",
+          "source": {
+            "location": "GLO",
+            "name": "market for hexane",
+            "reference product": "hexane",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Hexane, at plant",
+            "reference product": "Hexane, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-ae632332ea38e930",
+          "source": {
+            "location": "GLO",
+            "name": "market for compost",
+            "reference product": "compost",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "xx Compost, at plant",
+            "reference product": "xx Compost, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-cf2ed054ced71820",
+          "source": {
+            "location": "GLO",
+            "name": "market for packaging, for fertilisers",
+            "reference product": "packaging, for fertilisers",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "GLO",
+            "name": "Module packaging",
+            "reference product": "Module packaging",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-6073dd107b7b9ea8",
+          "source": {
+            "location": "GLO",
+            "name": "market for packaging, for pesticides",
+            "reference product": "packaging, for pesticides",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "GLO",
+            "name": "Module packaging",
+            "reference product": "Module packaging",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-91b9cff76b3562bb",
+          "source": {
+            "location": "RER",
+            "name": "market for hydrochloric acid, without water, in 30% solution state",
+            "reference product": "hydrochloric acid, without water, in 30% solution state",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Hydrochloric acid, 30% in H2O, at plant",
+            "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-745c517f85a78ba7",
+          "source": {
+            "location": "GLO",
+            "name": "market for natural gas, medium pressure, vehicle grade",
+            "reference product": "natural gas, medium pressure, vehicle grade",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "reference product": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-124e5ce8d75168cc",
+          "source": {
+            "location": "GLO",
+            "name": "market for rape seed",
+            "reference product": "rape seed",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "US",
+            "name": "Rape seed, at farm",
+            "reference product": "Rape seed, at farm",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-ffcd093245457004",
+          "source": {
+            "location": "GLO",
+            "name": "market for soil pH raising agent, as CaCO3",
+            "reference product": "soil pH raising agent, as CaCO3",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Limestone, at mine",
+            "reference product": "Limestone, at mine",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-a0a4f5a8616f11e2",
+          "source": {
+            "location": "GLO",
+            "name": "market for sugar beet seed, for sowing",
+            "reference product": "sugar beet seed, for sowing",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Sugar beet seed IP, at regional storehouse",
+            "reference product": "Sugar beet seed IP, at regional storehouse",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-1b65914b2f33ba7b",
+          "source": {
+            "location": "GLO",
+            "name": "market for packaging film, low density polyethylene",
+            "reference product": "packaging film, low density polyethylene",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Packaging film, LDPE, at plant",
+            "reference product": "Packaging film, LDPE, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-9caeb1b3bd66b612",
+          "source": {
+            "location": "GLO",
+            "name": "market for steel, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "recipe_ref": "pilot-low-alloyed-cast-stock-cdb9c0d6155163d5d313"
+          }
+        },
+        {
+          "rule_id": "bp-4d389c0e2269e7e9",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of waste bulk iron, excluding reinforcement, sorting plant",
+            "reference product": "waste bulk iron, excluding reinforcement",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+            "reference product": "Disposal, building, bulk iron (excluding reinforcement), to sorting plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-263c185cdbca7a8c",
+          "source": {
+            "location": "GLO",
+            "name": "market for steel, chromium steel 18/8, hot rolled",
+            "reference product": "steel, chromium steel 18/8, hot rolled",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Chromium steel 18/8, at plant",
+            "reference product": "Chromium steel 18/8, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-8bbb01130472bd02",
+          "source": {
+            "location": "GLO",
+            "name": "market for zeolite, powder",
+            "reference product": "zeolite, powder",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Zeolite, powder, at plant",
+            "reference product": "Zeolite, powder, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-6b60ae27d55196e6",
+          "source": {
+            "location": "CH",
+            "name": "market for concrete, sole plate and foundation",
+            "reference product": "concrete, sole plate and foundation",
+            "unit": "cubic meter"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Concrete, sole plate and foundation, at plant",
+            "reference product": "Concrete, sole plate and foundation, at plant",
+            "unit": "cubic meter"
+          }
+        },
+        {
+          "rule_id": "bp-7ca3587cbfe4ce9b",
+          "source": {
+            "location": "GLO",
+            "name": "market for reinforcing steel",
+            "reference product": "reinforcing steel",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Reinforcing steel, at plant",
+            "reference product": "Reinforcing steel, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-56f1f68f931b8c2a",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of waste reinforced concrete, collection for final disposal",
+            "reference product": "waste reinforced concrete",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Disposal, building, reinforced concrete, to final disposal",
+            "reference product": "Disposal, building, reinforced concrete, to final disposal",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-14199ba2d41a9688",
+          "source": {
+            "location": "RoW",
+            "name": "market for nitrogen, liquid",
+            "reference product": "nitrogen, liquid",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Nitrogen, liquid, at plant",
+            "reference product": "Nitrogen, liquid, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-48df3f130afafd5c",
+          "source": {
+            "location": "RoW",
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Ammonia, liquid, at regional storehouse",
+            "reference product": "Ammonia, liquid, at regional storehouse",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-c291034cfcb83f1c",
+          "source": {
+            "location": "GLO",
+            "name": "market for liquid storage tank, chemicals, organics",
+            "reference product": "liquid storage tank, chemicals, organics",
+            "unit": "unit"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Liquid storage tank, chemicals, organics",
+            "reference product": "Liquid storage tank, chemicals, organics",
+            "unit": "unit"
+          }
+        },
+        {
+          "rule_id": "bp-f1bc637c4fcf6060",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for water, deionised",
+            "reference product": "water, deionised",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Water, deionised, at plant",
+            "reference product": "Water, deionised, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-84bd9cf473cdeee9",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for wood chips, wet, measured as dry mass",
+            "reference product": "wood chips, wet, measured as dry mass",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+            "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-23f6df653910092e",
+          "source": {
+            "location": "RoW",
+            "name": "synthetic gas factory construction",
+            "reference product": "synthetic gas factory",
+            "unit": "unit"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Synthetic gas plant",
+            "reference product": "Synthetic gas plant",
+            "unit": "unit"
+          }
+        },
+        {
+          "rule_id": "bp-4529f104ab14ba19",
+          "source": {
+            "location": "GLO",
+            "name": "market for steel, chromium steel 18/8",
+            "reference product": "steel, chromium steel 18/8",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Steel, electric, chromium steel 18/8, at plant",
+            "reference product": "Steel, electric, chromium steel 18/8, at plant",
+            "unit": "kilogram"
+          }
+        }
+      ]
+    },
+    {
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.6"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.6"
+        }
+      },
+      "source_activities": 6,
+      "migration_stage_status": "passed before another cohort failed",
+      "unapproved_count": 0,
+      "refusal_audit_filename": null,
+      "refusal_audit_sha256": null,
+      "pending": []
+    },
+    {
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.7"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.7"
+        }
+      },
+      "source_activities": 11,
+      "migration_stage_status": "blocked by exact approval refusals",
+      "unapproved_count": 24,
+      "refusal_audit_filename": "9180ccbd149a9cc8a90a356b9a2bb21bd920239b733381a1c7f95e6f863eb220.audit.json.gz",
+      "refusal_audit_sha256": "9a0ef29820dd2d067e77e156c99ff78fbd8435906eec5c0bb155a6ce03d579fd",
+      "pending": [
+        {
+          "rule_id": "bp-263c185cdbca7a8c",
+          "source": {
+            "location": "GLO",
+            "name": "market for steel, chromium steel 18/8, hot rolled",
+            "reference product": "steel, chromium steel 18/8, hot rolled",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Chromium steel 18/8, at plant",
+            "reference product": "Chromium steel 18/8, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-82cb48b8f46820d5",
+          "source": {
+            "location": "GLO",
+            "name": "market for synthetic rubber",
+            "reference product": "synthetic rubber",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Synthetic rubber, at plant",
+            "reference product": "Synthetic rubber, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-a3a951644bd5ed9c",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "unit": "ton kilometer"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Transport, freight, rail",
+            "reference product": "Transport, freight, rail",
+            "unit": "ton kilometer"
+          }
+        },
+        {
+          "rule_id": "bp-22c3a52062d0cb16",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for scrap steel",
+            "reference product": "scrap steel",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "recipe_ref": "pilot-european-scrap-steel-9ae2a990f2a9f2038fbd"
+          }
+        },
+        {
+          "rule_id": "bp-2149df101fadeeb2",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for waste mineral oil",
+            "reference product": "waste mineral oil",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-24eb26e899c2f905",
+          "source": {
+            "location": "CH",
+            "name": "building construction, hall, steel construction",
+            "reference product": "building, hall, steel construction",
+            "unit": "square meter"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Building, hall, steel construction",
+            "reference product": "Building, hall, steel construction",
+            "unit": "square meter"
+          }
+        },
+        {
+          "rule_id": "bp-ad43c87e102ce339",
+          "source": {
+            "location": "RER",
+            "name": "market for compressed air, 700 kPa gauge",
+            "reference product": "compressed air, 700 kPa gauge",
+            "unit": "cubic meter"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Compressed air, best generation, >30kW, 7 bar gauge, at compressor",
+            "reference product": "Compressed air, best generation, >30kW, 7 bar gauge, at compressor",
+            "unit": "cubic meter"
+          }
+        },
+        {
+          "rule_id": "bp-3c662478c0f234c1",
+          "source": {
+            "location": "RER",
+            "name": "market for energy and auxilliary inputs, metal working factory",
+            "reference product": "energy and auxilliary inputs, metal working factory",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Metal working factory operation, average heat energy",
+            "reference product": "Metal working factory operation, average heat energy",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-4f69327dbf9d3e42",
+          "source": {
+            "location": "RER",
+            "name": "market for lubricating oil",
+            "reference product": "lubricating oil",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Lubricating oil, at plant",
+            "reference product": "Lubricating oil, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-270bf2428cce37a2",
+          "source": {
+            "location": "RER",
+            "name": "metal working factory construction",
+            "reference product": "metal working factory",
+            "unit": "unit"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Metal working factory",
+            "reference product": "Metal working factory",
+            "unit": "unit"
+          }
+        },
+        {
+          "rule_id": "bp-ab9453aea35efe0a",
+          "source": {
+            "location": "RER",
+            "name": "market for metal working machine, unspecified",
+            "reference product": "metal working machine, unspecified",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Metal working machine, unspecified, at plant",
+            "reference product": "Metal working machine, unspecified, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-8cd221dfdd41d478",
+          "source": {
+            "location": "RER",
+            "name": "steel production, low-alloyed, hot rolled",
+            "reference product": "steel, low-alloyed, hot rolled",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Steel, low-alloyed, at plant",
+            "reference product": "Steel, low-alloyed, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-7ca3587cbfe4ce9b",
+          "source": {
+            "location": "GLO",
+            "name": "market for reinforcing steel",
+            "reference product": "reinforcing steel",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Reinforcing steel, at plant",
+            "reference product": "Reinforcing steel, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-1fb529c7535e435f",
+          "source": {
+            "location": "RER",
+            "name": "building construction, multi-storey",
+            "reference product": "building, multi-storey",
+            "unit": "cubic meter"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Building, multi-storey",
+            "reference product": "Building, multi-storey",
+            "unit": "cubic meter"
+          }
+        },
+        {
+          "rule_id": "bp-1d72298e464032e1",
+          "source": {
+            "location": "GLO",
+            "name": "market for drawing of pipe, steel",
+            "reference product": "drawing of pipe, steel",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Drawing of pipes, steel",
+            "reference product": "Drawing of pipes, steel",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-4a11a8b2d48ed311",
+          "source": {
+            "location": "RER",
+            "name": "powder coating, steel",
+            "reference product": "powder coat, steel",
+            "unit": "square meter"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Powder coating, steel",
+            "reference product": "Powder coating, steel",
+            "unit": "square meter"
+          }
+        },
+        {
+          "rule_id": "bp-9caeb1b3bd66b612",
+          "source": {
+            "location": "GLO",
+            "name": "market for steel, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "recipe_ref": "pilot-low-alloyed-cast-stock-cdb9c0d6155163d5d313"
+          }
+        },
+        {
+          "rule_id": "bp-7107efa3d84d4a67",
+          "source": {
+            "location": "RER",
+            "name": "excavation, hydraulic digger",
+            "reference product": "excavation, hydraulic digger",
+            "unit": "cubic meter"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Excavation, hydraulic digger (proj. 500)",
+            "reference product": "Excavation, hydraulic digger (proj. 500)",
+            "unit": "cubic meter"
+          }
+        },
+        {
+          "rule_id": "bp-a94f92c29206ca62",
+          "source": {
+            "location": "RER",
+            "name": "excavation, skid-steer loader",
+            "reference product": "excavation, skid-steer loader",
+            "unit": "cubic meter"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Excavation, skid-steer loader",
+            "reference product": "Excavation, skid-steer loader",
+            "unit": "cubic meter"
+          }
+        },
+        {
+          "rule_id": "bp-714b90acb435b476",
+          "source": {
+            "location": "CH",
+            "name": "market for sand",
+            "reference product": "sand",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Sand, at mine",
+            "reference product": "Sand, at mine",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-ab9eb6c9ccfd6290",
+          "source": {
+            "location": "GLO",
+            "name": "transport, helicopter",
+            "reference product": "transport, helicopter",
+            "unit": "hour"
+          },
+          "candidate_target": {
+            "recipe_ref": "pilot-legacy-hour-bddff022fdd02aaa1ff6"
+          }
+        },
+        {
+          "rule_id": "bp-b62924eca33d09c2",
+          "source": {
+            "location": "GLO",
+            "name": "transport, helicopter, LTO cycle",
+            "reference product": "transport, helicopter, LTO cycle",
+            "unit": "unit"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Transport, helicopter, twin-engine, LTO cycle",
+            "reference product": "Transport, helicopter, twin-engine, LTO cycle",
+            "unit": "unit"
+          }
+        },
+        {
+          "rule_id": "bp-db4b32ed567bed93",
+          "source": {
+            "location": "CH",
+            "name": "treatment of decommissioned pipeline, natural gas, inert material landfill",
+            "reference product": "decommissioned pipeline, natural gas",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Disposal, natural gas pipeline, 0% water, to construction waste landfill",
+            "reference product": "Disposal, natural gas pipeline, 0% water, to construction waste landfill",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-e172491d6da0b115",
+          "source": {
+            "location": "DE",
+            "name": "market for waste plastic, mixture",
+            "reference product": "waste plastic, mixture",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "recipe_ref": "pilot-uncontrolled-market-a76500cd726acd27d9cf"
+          }
+        }
+      ]
+    },
+    {
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.11"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.11"
+        }
+      },
+      "source_activities": 7,
+      "migration_stage_status": "blocked by exact approval refusals",
+      "unapproved_count": 5,
+      "refusal_audit_filename": "a57084922fd7ba841a13f4f665afa47f51ba35a1fa46ed156cef1f875dfb3014.audit.json.gz",
+      "refusal_audit_sha256": "ead62ca494b9c64c3de32b1769ad45a90eae212597719887679e8432eeccba57",
+      "pending": [
+        {
+          "rule_id": "bp-cf83bb724223e5b7",
+          "source": {
+            "location": "RER",
+            "name": "market for hydrogen, gaseous, low pressure",
+            "reference product": "hydrogen, gaseous, low pressure",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "CH",
+            "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "reference product": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-2ff13efabe033fe6",
+          "source": {
+            "location": "GLO",
+            "name": "market for aluminium alloy, AlMg3",
+            "reference product": "aluminium alloy, AlMg3",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Aluminium alloy, AlMg3, at plant",
+            "reference product": "Aluminium alloy, AlMg3, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-1104956dff1c701e",
+          "source": {
+            "location": "GLO",
+            "name": "market for nickel, class 1",
+            "reference product": "nickel, class 1",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "GLO",
+            "name": "Nickel, 99.5%, at plant",
+            "reference product": "Nickel, 99.5%, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-263c185cdbca7a8c",
+          "source": {
+            "location": "GLO",
+            "name": "market for steel, chromium steel 18/8, hot rolled",
+            "reference product": "steel, chromium steel 18/8, hot rolled",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "location": "RER",
+            "name": "Chromium steel 18/8, at plant",
+            "reference product": "Chromium steel 18/8, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "rule_id": "bp-eae66c60e7256051",
+          "source": {
+            "location": "GLO",
+            "name": "market for polyethylene, high density, granulate",
+            "reference product": "polyethylene, high density, granulate",
+            "unit": "kilogram"
+          },
+          "candidate_target": {
+            "recipe_ref": "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69"
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "A passed cohort migration stage does not validate later cross-cohort role binding or scenario transformation/export.",
+    "A refused correspondence is not a scientifically approved candidate target. Several candidates remain physically wrong and need correction.",
+    "This inspects the currently selected fuel graph only; remaining registered sectors require their own preparation/filter/transformation/export evidence.",
+    "All source and target validation and documented-proxy scope checks remain mandatory."
+  ]
+}
