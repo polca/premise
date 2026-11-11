@@ -865,6 +865,24 @@ heat, secondary, from biomass residual:
           coefficient: -1
 
 heat, secondary, from biomass with CCS:
+  uvek_aliases:
+    inventory_resource: heat/uvek2026_wood_ccs_heat_inventory.json
+    inventory_requires_active_role: true
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat production, at co-generation wood-fired power plant, post, native UVEK stack basis
+      reference product:
+      - heat, district or industrial, other than natural gas
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native Swiss 1 MWth wood CHP heat with exergy allocation proxies the source 6,667 kW CHP heat. Preserve its actual 0.398 MJ combustion-service draw per MJ heat, complete chips supply, auxiliary electricity, infrastructure, ash disposal, emissions and allocation. Geography, scale, cycle, vintage and score differences remain explicit and unquantified.
+    - Retain the original useful-heat CCS model 10% heat penalty and capture 90% of native allocated biogenic stack CO2. Native combustion reports 0.092 kg non-fossil CO2 per MJ combustion service. After 1.1 MJ allocated heat input the stack is 0.0402776 kg/MJ; capture demand and paired negative non-fossil stack correction are both 0.03624984 kg/MJ. Do not transfer the source 0.07124238 kg credit, infer physical efficiency by inverting allocated fuel draw, or add an electricity coproduct credit.
+    - Use the complete CLIC wood post-combustion capture service, 200 km pipeline and storage at 1000 m, retaining its energy demand, capture plant scale, transport, infrastructure, storage leakage and upstream emissions. Keep original upstream biomass uptake and separately listed caller emissions; do not add a second carbon-removal or avoided-heat credit.
+    - A unique fixed-reference bridge retains the reviewed Swiss allocation during standard IAM regional relinking. The native heat text states 35% electricity and 45% heat efficiencies and approximately 16% heat allocation, while the actual coefficient is 0.398; preserve the coefficient without correcting it from rounded prose. A native combustion text mentions natural gas although the process identity, actual wood-chip input and non-fossil emission identify wood combustion. Retain these documentation limitations explicitly.
+    - The original shared heat and fuel-origin conventions remain unchanged. Controlled heat qualification does not establish a complete real TIAM or combined-fuels scenario.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none

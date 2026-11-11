@@ -1229,9 +1229,10 @@
         "docs/development/uvek-secondary-geothermal-heat-verification.json",
         "docs/development/uvek-heat-ccs-boundary-review.json",
         "docs/development/uvek-native-ng-ccs-heat-verification.json",
-        "docs/development/uvek-native-coal-ccs-heat-verification.json"
+        "docs/development/uvek-native-coal-ccs-heat-verification.json",
+        "docs/development/uvek-native-wood-ccs-heat-verification.json"
       ],
-      "latest_coverage_note": "Geothermal and natural-gas, coal and coke-proxy CCS heat verified in controlled shared-workflow cases through normal update, exhaustive graph validation and Brightway export. Coal and coke-proxy cases each produced 12,074 activities and 90 signed finite LCIs. Six role bindings remain unqualified: biomass CCS, oil CCS, two solar and two residual bindings. Complete real TIAM/MESSAGE and combined fuels qualification remain unfinished.",
+      "latest_coverage_note": "Geothermal and natural-gas, coal, coke-proxy and wood CCS heat verified in controlled shared-workflow cases through normal updates, exhaustive graph validation and Brightway export. Wood CCS produced 12,075 activities and 92 signed finite LCIs; complete native CHP/wood combustion provider identities and exchange quantities were preserved exactly. Five bindings remain unqualified: oil CCS, two solar and two residual bindings. Complete real TIAM/MESSAGE and combined fuels qualification remain unfinished.",
       "geothermal_stage": {
         "status": "controlled_shared_callback_export_and_signed_LCI_verified",
         "verification": "docs/development/uvek-secondary-geothermal-heat-verification.json",
@@ -1257,6 +1258,12 @@
         "verification": "docs/development/uvek-native-coal-ccs-heat-verification.json",
         "full_real_IAM_scenario_verified": false,
         "remaining_unqualified_heat_role_bindings": 6
+      },
+      "native_wood_CCS_stage": {
+        "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+        "verification": "docs/development/uvek-native-wood-ccs-heat-verification.json",
+        "full_real_IAM_scenario_verified": false,
+        "remaining_unqualified_heat_role_bindings": 5
       }
     },
     {

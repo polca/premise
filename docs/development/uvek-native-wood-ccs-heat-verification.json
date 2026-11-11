@@ -1,0 +1,66 @@
+{
+  "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+  "actual_IAM_scenario": false,
+  "database": "BAFU:2026-controlled-TIAM-native-wood-CCS-20261111-235332",
+  "export_activities": 12075,
+  "regional_CCS_heat_suppliers": 16,
+  "secondary_heat_markets": 17,
+  "CLIC_capture_chain_records": 11,
+  "CLIC_provenance_preserved": true,
+  "capture_fraction": 0.9,
+  "captured_per_MJ_heat_kg": 0.03624984,
+  "source_incompatible_capture_per_MJ_heat_kg": 0.07124238,
+  "capture_credits_equal_capture_service_demand": true,
+  "technosphere_links_internal": 114648,
+  "biosphere_links_requested_database": 290873,
+  "signed_finite_LCIs": 92,
+  "shared_carbon_origin_checks": 16,
+  "shared_carbon_origin_convention": "Recorded positive stack total and original negative counter-exchange convention retained; separate capture-chain burdens excluded from the base-stack subtraction. Full combined fuels scenario remains unqualified.",
+  "validation_phases": 2,
+  "phase_issue_counts": {},
+  "mapping_declared_CLIC_dependencies_prepared_normally": true,
+  "unqualified_heat_roles_after_controlled_case": 5,
+  "full_real_TIAM_scenario_verified": false,
+  "exhaustive_validation": {
+    "ruleset_version": 8,
+    "issue_count": 0,
+    "feedback_evidence": {
+      "declared_productive_feedback": [
+        {
+          "absolute_convergence_upper_bound": 0.9710150617846056,
+          "activity_count": 4219
+        }
+      ],
+      "issue_count": 0
+    }
+  },
+  "native_boundary_comparison": [
+    {
+      "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+      "location": "CH",
+      "native_nonproduction_inputs_preserved_exactly": true,
+      "exchanges_checked": 1
+    },
+    {
+      "name": "Wood chips, burned in cogen 1MWth",
+      "location": "CH",
+      "native_nonproduction_inputs_preserved_exactly": true,
+      "exchanges_checked": 57
+    }
+  ],
+  "shared_heat_mapping_tests_passed": 107,
+  "biogenic_carbon_scope": "Native wood stack and its counter-exchange are non-fossil. Sixteen diagnostics retain native biogenic fraction one; future fuel portfolio substitutions and the complete combined fuels scenario are not qualified.",
+  "remaining_unqualified_roles": [
+    "oil CCS",
+    "industrial solar thermal",
+    "secondary solar thermal",
+    "two residual heat bindings"
+  ],
+  "evidence_sha256": {
+    "controlled-wood-ccs-heat-verification.private.json": "ed0b79822b14c4425e5e28b45ff51059aa3b0af5d1c1933433689f1044121751",
+    "controlled-wood-ccs-heat-exhaustive-validation.private.json": "7c7f6e176dd8ba9aab53019361a9bd348db713626fd51fc151d72b3996392e2d",
+    "wood-ccs-native-boundary-verification.json": "2eb8db4cd31977b51a222ffb079b80e9397e65c445bb08dc465da49a8b3d65fc",
+    "wood-ccs-shared-heat-regressions.log": "ae7544a5c6ad53928254257278a2c487406ba5859d4c82a52975b49ad37c075a",
+    "wood-ccs-capture-chain-prepared.private.json": "3057673184013260a87e2fd79ca7be9b1706fdc466f8db20e4ebfcf765f11847"
+  }
+}

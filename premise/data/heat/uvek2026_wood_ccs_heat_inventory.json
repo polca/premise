@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "target": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "clic_roots": [
+    "carbon-dioxide-captured-at-wood-burning-power-plant-20-mw-post-pipeline-200km-storage-1000m"
+  ],
+  "supplier_checks": [
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Wood chips, burned in cogen 1MWth",
+            "unit": "megajoule",
+            "reference product": "Wood chips, burned in cogen 1MWth",
+            "location": "CH"
+          },
+          "amount": 0.398
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Wood chips, burned in cogen 1MWth",
+        "reference product": "Wood chips, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Wood chips, burned in cogen 1MWth",
+        "reference product": "Wood chips, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Carbon dioxide, non-fossil",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram"
+          },
+          "amount": 0.092
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "carbon dioxide, captured at wood burning power plant 20 MW post, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured at wood burning power plant 20 MW post, pipeline 200km, storage 1000m",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "review": {
+    "authorization": "Active goal and standing autonomous approval for documented native screening reconstructions.",
+    "basis": "Useful heat, original 10% penalty and 90% capture of inspected native allocated biogenic stack; no deallocation or extra electricity credit.",
+    "source_workbook": "lci-combined-heat-power-plant-CCS.xlsx",
+    "source_workbook_sha256": "794ae4c0fb686a141f8be82793d4f25b88bee017d9931548c45481fd53aeaac5",
+    "limitations": [
+      "Complete native Swiss 1 MWth wood CHP heat with exergy allocation proxies the source 6,667 kW CHP heat. Preserve its actual 0.398 MJ combustion-service draw per MJ heat, complete chips supply, auxiliary electricity, infrastructure, ash disposal, emissions and allocation. Geography, scale, cycle, vintage and score differences remain explicit and unquantified.",
+      "Retain the original useful-heat CCS model 10% heat penalty and capture 90% of native allocated biogenic stack CO2. Native combustion reports 0.092 kg non-fossil CO2 per MJ combustion service. After 1.1 MJ allocated heat input the stack is 0.0402776 kg/MJ; capture demand and paired negative non-fossil stack correction are both 0.03624984 kg/MJ. Do not transfer the source 0.07124238 kg credit, infer physical efficiency by inverting allocated fuel draw, or add an electricity coproduct credit.",
+      "Use the complete CLIC wood post-combustion capture service, 200 km pipeline and storage at 1000 m, retaining its energy demand, capture plant scale, transport, infrastructure, storage leakage and upstream emissions. Keep original upstream biomass uptake and separately listed caller emissions; do not add a second carbon-removal or avoided-heat credit.",
+      "A unique fixed-reference bridge retains the reviewed Swiss allocation during standard IAM regional relinking. The native heat text states 35% electricity and 45% heat efficiencies and approximately 16% heat allocation, while the actual coefficient is 0.398; preserve the coefficient without correcting it from rounded prose. A native combustion text mentions natural gas although the process identity, actual wood-chip input and non-fossil emission identify wood combustion. Retain these documentation limitations explicitly.",
+      "The original shared heat and fuel-origin conventions remain unchanged. Controlled heat qualification does not establish a complete real TIAM or combined-fuels scenario."
+    ],
+    "native_basis_evidence_sha256": "3dee77a330a6901214238e5cf192d4c002746f0922ca44f8fdad76648fb73695"
+  },
+  "activities": [
+    {
+      "name": "fixed Swiss wood CHP heat reference for CCS",
+      "reference product": "heat, fixed Swiss wood CHP reference for CCS",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-heat",
+      "code": "uvek-2026-fixed-swiss-wood-chp-heat-CCS-basis",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Complete native Swiss 1 MWth wood CHP heat with exergy allocation proxies the source 6,667 kW CHP heat. Preserve its actual 0.398 MJ combustion-service draw per MJ heat, complete chips supply, auxiliary electricity, infrastructure, ash disposal, emissions and allocation. Geography, scale, cycle, vintage and score differences remain explicit and unquantified. Retain the original useful-heat CCS model 10% heat penalty and capture 90% of native allocated biogenic stack CO2. Native combustion reports 0.092 kg non-fossil CO2 per MJ combustion service. After 1.1 MJ allocated heat input the stack is 0.0402776 kg/MJ; capture demand and paired negative non-fossil stack correction are both 0.03624984 kg/MJ. Do not transfer the source 0.07124238 kg credit, infer physical efficiency by inverting allocated fuel draw, or add an electricity coproduct credit. Use the complete CLIC wood post-combustion capture service, 200 km pipeline and storage at 1000 m, retaining its energy demand, capture plant scale, transport, infrastructure, storage leakage and upstream emissions. Keep original upstream biomass uptake and separately listed caller emissions; do not add a second carbon-removal or avoided-heat credit. A unique fixed-reference bridge retains the reviewed Swiss allocation during standard IAM regional relinking. The native heat text states 35% electricity and 45% heat efficiencies and approximately 16% heat allocation, while the actual coefficient is 0.398; preserve the coefficient without correcting it from rounded prose. A native combustion text mentions natural gas although the process identity, actual wood-chip input and non-fossil emission identify wood combustion. Retain these documentation limitations explicitly. The original shared heat and fuel-origin conventions remain unchanged. Controlled heat qualification does not establish a complete real TIAM or combined-fuels scenario. Modified screening model. Source: \u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026. Modification record: https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-wood-ccs-heat.md",
+      "premise heat": {
+        "kind": "fixed_reference_provider",
+        "purpose": "Keep native stack and capture demand on the same reviewed allocation/geography basis."
+      },
+      "exchanges": [
+        {
+          "name": "fixed Swiss wood CHP heat reference for CCS",
+          "reference product": "heat, fixed Swiss wood CHP reference for CCS",
+          "location": "CH",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-fixed-swiss-wood-chp-heat-CCS-basis"
+          ]
+        },
+        {
+          "name": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+          "reference product": "Heat, at cogen 1MWth, wood chips, allocation exergy",
+          "location": "CH",
+          "unit": "megajoule",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ],
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-wood-ccs-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      }
+    },
+    {
+      "name": "heat production, at co-generation wood-fired power plant, post, native UVEK stack basis",
+      "reference product": "heat, district or industrial, other than natural gas",
+      "location": "CH",
+      "unit": "megajoule",
+      "database": "premise-UVEK-heat",
+      "code": "uvek-2026-wood-chp-ccs-native-stack-90pct",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Complete native Swiss 1 MWth wood CHP heat with exergy allocation proxies the source 6,667 kW CHP heat. Preserve its actual 0.398 MJ combustion-service draw per MJ heat, complete chips supply, auxiliary electricity, infrastructure, ash disposal, emissions and allocation. Geography, scale, cycle, vintage and score differences remain explicit and unquantified. Retain the original useful-heat CCS model 10% heat penalty and capture 90% of native allocated biogenic stack CO2. Native combustion reports 0.092 kg non-fossil CO2 per MJ combustion service. After 1.1 MJ allocated heat input the stack is 0.0402776 kg/MJ; capture demand and paired negative non-fossil stack correction are both 0.03624984 kg/MJ. Do not transfer the source 0.07124238 kg credit, infer physical efficiency by inverting allocated fuel draw, or add an electricity coproduct credit. Use the complete CLIC wood post-combustion capture service, 200 km pipeline and storage at 1000 m, retaining its energy demand, capture plant scale, transport, infrastructure, storage leakage and upstream emissions. Keep original upstream biomass uptake and separately listed caller emissions; do not add a second carbon-removal or avoided-heat credit. A unique fixed-reference bridge retains the reviewed Swiss allocation during standard IAM regional relinking. The native heat text states 35% electricity and 45% heat efficiencies and approximately 16% heat allocation, while the actual coefficient is 0.398; preserve the coefficient without correcting it from rounded prose. A native combustion text mentions natural gas although the process identity, actual wood-chip input and non-fossil emission identify wood combustion. Retain these documentation limitations explicitly. The original shared heat and fuel-origin conventions remain unchanged. Controlled heat qualification does not establish a complete real TIAM or combined-fuels scenario. Modified screening model. Source: \u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026. Modification record: https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-wood-ccs-heat.md",
+      "premise heat": {
+        "kind": "native_stack_CCS_screening",
+        "capture_fraction": 0.9,
+        "native_heat_input_MJ": 1.1,
+        "allocated_stack_CO2_before_capture_kg": 0.0402776,
+        "captured_CO2_kg": 0.03624984,
+        "limitations": [
+          "Complete native Swiss 1 MWth wood CHP heat with exergy allocation proxies the source 6,667 kW CHP heat. Preserve its actual 0.398 MJ combustion-service draw per MJ heat, complete chips supply, auxiliary electricity, infrastructure, ash disposal, emissions and allocation. Geography, scale, cycle, vintage and score differences remain explicit and unquantified.",
+          "Retain the original useful-heat CCS model 10% heat penalty and capture 90% of native allocated biogenic stack CO2. Native combustion reports 0.092 kg non-fossil CO2 per MJ combustion service. After 1.1 MJ allocated heat input the stack is 0.0402776 kg/MJ; capture demand and paired negative non-fossil stack correction are both 0.03624984 kg/MJ. Do not transfer the source 0.07124238 kg credit, infer physical efficiency by inverting allocated fuel draw, or add an electricity coproduct credit.",
+          "Use the complete CLIC wood post-combustion capture service, 200 km pipeline and storage at 1000 m, retaining its energy demand, capture plant scale, transport, infrastructure, storage leakage and upstream emissions. Keep original upstream biomass uptake and separately listed caller emissions; do not add a second carbon-removal or avoided-heat credit.",
+          "A unique fixed-reference bridge retains the reviewed Swiss allocation during standard IAM regional relinking. The native heat text states 35% electricity and 45% heat efficiencies and approximately 16% heat allocation, while the actual coefficient is 0.398; preserve the coefficient without correcting it from rounded prose. A native combustion text mentions natural gas although the process identity, actual wood-chip input and non-fossil emission identify wood combustion. Retain these documentation limitations explicitly.",
+          "The original shared heat and fuel-origin conventions remain unchanged. Controlled heat qualification does not establish a complete real TIAM or combined-fuels scenario."
+        ]
+      },
+      "exchanges": [
+        {
+          "name": "heat production, at co-generation wood-fired power plant, post, native UVEK stack basis",
+          "reference product": "heat, district or industrial, other than natural gas",
+          "location": "CH",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-wood-chp-ccs-native-stack-90pct"
+          ]
+        },
+        {
+          "name": "fixed Swiss wood CHP heat reference for CCS",
+          "reference product": "heat, fixed Swiss wood CHP reference for CCS",
+          "location": "CH",
+          "unit": "megajoule",
+          "type": "technosphere",
+          "amount": 1.1,
+          "uncertainty type": 0,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-fixed-swiss-wood-chp-heat-CCS-basis"
+          ]
+        },
+        {
+          "name": "carbon dioxide, captured at wood burning power plant 20 MW post, pipeline 200km, storage 1000m",
+          "reference product": "carbon dioxide, captured at wood burning power plant 20 MW post, pipeline 200km, storage 1000m",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.03624984,
+          "uncertainty type": 0
+        },
+        {
+          "name": "Carbon dioxide, non-fossil",
+          "unit": "kilogram",
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "input": [
+            "__biosphere__",
+            "73ed05cc-9727-4abf-9516-4b5c0fe54a16"
+          ],
+          "type": "biosphere",
+          "amount": -0.03624984,
+          "uncertainty type": 0,
+          "loc": -0.03624984
+        }
+      ],
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-wood-ccs-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      }
+    }
+  ],
+  "data_terms": {
+    "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+    "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+    "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+    "modified_data": true,
+    "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-wood-ccs-heat.md",
+    "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+  }
+}
