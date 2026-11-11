@@ -50,5 +50,13 @@
     "location": "private task workspace"
   },
   "licensed_inventory_coefficients_published": false,
-  "runtime_roles_newly_admitted": 0
+  "runtime_roles_newly_admitted": 0,
+  "follow_up_geothermal_prerequisites": {
+    "retained_workbook": "lci-geothermal.xlsx",
+    "selected_records": 48,
+    "reviewed_grid_correspondences": 24,
+    "remaining_non_electricity_correspondences": 11,
+    "runtime_role_qualified": false,
+    "evidence": "docs/development/uvek-geothermal-grid-verification.json"
+  }
 }

@@ -1,0 +1,200 @@
+{
+  "checks": [
+    {
+      "signed_amount": -2.0,
+      "grid_coordinates": 24,
+      "signed_kWh_and_uncertainty_and_formula_preserved": true,
+      "caller_unchanged": true,
+      "all_proxy_limitations_reported": true
+    },
+    {
+      "signed_amount": 2.0,
+      "grid_coordinates": 24,
+      "signed_kWh_and_uncertainty_and_formula_preserved": true,
+      "caller_unchanged": true,
+      "all_proxy_limitations_reported": true
+    }
+  ],
+  "compatibility_rule_count": 24,
+  "native_reference_witness_count": 48,
+  "prior_approval_scopes_unchanged": 713,
+  "prior_scopes_rebound_without_selected_behavior_change": 1,
+  "total_approved_scope_count": 738,
+  "cross_system_target_refused": true,
+  "full_geothermal_preparation_qualified": false,
+  "brightpath_commit": "24a72d3e35438b02095711c6135a5cf6fe4cace8",
+  "focused_brightpath_tests_passed": 173,
+  "packaged_wheel_review_bytes_verified": true,
+  "retained_workbook_selected_nodes": 48,
+  "approved_correspondences_during_preparation": 28,
+  "newly_reviewed_grid_correspondences": 24,
+  "remaining_unapproved_correspondences": [
+    {
+      "rule_id": "bp-2c0ad0e73aed9ee7",
+      "source": {
+        "location": "GLO",
+        "name": "market for benzene",
+        "reference product": "benzene",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Benzene, at plant",
+        "reference product": "Benzene, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-8be1ae15c0ed8dc7",
+      "source": {
+        "location": "CH",
+        "name": "market for inert waste, for final disposal",
+        "reference product": "inert waste, for final disposal",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, construction waste, to final disposal type B",
+        "reference product": "Disposal, construction waste, to final disposal type B",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-72e073827ada5981",
+      "source": {
+        "location": "GLO",
+        "name": "market for diesel, burned in diesel-electric generating set, 10MW",
+        "reference product": "diesel, burned in diesel-electric generating set, 10MW",
+        "unit": "megajoule"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Diesel, burned in diesel-electric generating set",
+        "reference product": "Diesel, burned in diesel-electric generating set",
+        "unit": "megajoule"
+      }
+    },
+    {
+      "rule_id": "bp-0e06c5c52d7be464",
+      "source": {
+        "location": "RoW",
+        "name": "market for drilling waste",
+        "reference product": "drilling waste",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, drilling waste, 71.5% water, to landfarming",
+        "reference product": "Disposal, drilling waste, 71.5% water, to landfarming",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-c8730cd3ecd20245",
+      "source": {
+        "location": "GLO",
+        "name": "market for potassium carbonate",
+        "reference product": "potassium carbonate",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Potassium carbonate, at plant",
+        "reference product": "Potassium carbonate, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-0cdecef35c6741e6",
+      "source": {
+        "location": "GLO",
+        "name": "market for sodium chloride, powder",
+        "reference product": "sodium chloride, powder",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Sodium chloride, powder, at plant",
+        "reference product": "Sodium chloride, powder, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-1338a8724acf99de",
+      "source": {
+        "location": "CH",
+        "name": "market for wastewater, average",
+        "reference product": "wastewater, average",
+        "unit": "cubic meter"
+      },
+      "target": {
+        "recipe_ref": "pilot-wastewater-routes-eff76270716fb3e521c0"
+      }
+    },
+    {
+      "rule_id": "bp-bf25b1ee28b51441",
+      "source": {
+        "location": "GLO",
+        "name": "market for barite",
+        "reference product": "barite",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Barite, at plant",
+        "reference product": "Barite, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-5ceacf15388a9200",
+      "source": {
+        "location": "GLO",
+        "name": "market for bentonite",
+        "reference product": "bentonite",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "DE",
+        "name": "Bentonite, at mine",
+        "reference product": "Bentonite, at mine",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-c49d1202d59c6375",
+      "source": {
+        "location": "GLO",
+        "name": "market for cellulose fibre, inclusive blowing in",
+        "reference product": "cellulose fibre, inclusive blowing in",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "xx Cellulose fibre, inclusive blowing in, at plant",
+        "reference product": "xx Cellulose fibre, inclusive blowing in, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-1fb80e50b9bf1b78",
+      "source": {
+        "location": "CH",
+        "name": "market for cement, Portland",
+        "reference product": "cement, Portland",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Portland slag sand cement, at plant",
+        "reference product": "Portland slag sand cement, at plant",
+        "unit": "kilogram"
+      }
+    }
+  ],
+  "premise_runtime_python_changes": false,
+  "brightpath_runtime_python_changes": false,
+  "regular_conda_git_install_verified": true,
+  "regular_conda_actual_retained_preparation_reproduced": true,
+  "premise_approval_regression_status": "running"
+}

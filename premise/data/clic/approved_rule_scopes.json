@@ -181763,7 +181763,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "706bc41c9babbb137418cdf9dd74a206d4a1c39ab842f2a596ff6f931a07e8d8"
+          "fingerprint": "84a7fd6cf575ef9ea7df154d75d9fcd3682dacd250380c83f1785c45997e1158"
         }
       ]
     },
@@ -202289,6 +202289,1950 @@
             "system_model": "cutoff"
           },
           "fingerprint": "750886981c93a6d7bec7d6fc784e8188b82f1b5529d6a817a702bc437907f40a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-42634b9d047c55a5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-42634b9d047c55a5",
+        "source": {
+          "location": "RAF",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RAF",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "ba09a5e0af94a4d4354d8861b89f3a286e6e285afd5a035f2c210dbc32c69c2f",
+        "source_inventory_sha256": "36d52c54403beb998c0f31ab209a4db9fdc6eaf0ead6d848fd9234dd94df36ee",
+        "source_technosphere_exchange_count": 30,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RAF",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "87e8fee6cf03d40dff29171581cb5803ae788f36081ff6370566ac68eb02f851",
+            "inventory_sha256": "06418c1ef4f622859bb690aa153e1f544b075d41d751afc072facf47eca31341",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RAF",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b1825653bf5f5d191e747266759ae112695aa73b16e92438f4a2d8c53b25ef1c",
+            "inventory_sha256": "75cd4445c14ef1a4b1d3ad246ab66c8dd7f901fd217a7d434b4fb4123f4dc368",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "1e52e3ae5eaecba0f999246163bb8af753a829a5f1244a88dc142489690a133b"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b96055bb030cb0cf5ddf7a3900a008400e477fbe3516d2e851f7105be89b9770"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c87d2c64f3d8d973",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-c87d2c64f3d8d973",
+        "source": {
+          "location": "RAF",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RAF",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "d77ddecf03223d4984fcb5bef63bc92efae52dd0803f54b5b38fc3332b0c9379",
+        "source_inventory_sha256": "6cad7eca2a4b5135f7cd77f32f10016b773545a0a6a25245291c54c808519c8a",
+        "source_technosphere_exchange_count": 30,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RAF",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4f6d57fcd35ea5bc04d557418cf6112973e2242b9d0636fc454dcf4199ba4f1f",
+            "inventory_sha256": "61c2953ed0826fd091e68def30f5960be52ea123bff2740192eb4bd6e33714da",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RAF",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "fd63defa975892df78e6db3d265c4edc108690c96ade5208886f3b1ed99be008",
+            "inventory_sha256": "b0dc50800a99eb40438d2bdd85b4597ceec6b3ea4ea5ddde066584d49bc16dab",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "00af9ef0b061deb2c24c23436823a096e00cc2ad28fad0cd880c6533291fa971"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e8857a83de010f696f807acce7b0d9411e5646d681bda1ab729397e656e6c1db"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fc1161e4ba4b579c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-fc1161e4ba4b579c",
+        "source": {
+          "location": "RME",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RME",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "370e40ad42f8024254477ab04f1512388f4fdd8479fb29176eea3fcbef991a5f",
+        "source_inventory_sha256": "ab2b3225ab95d40c6ca92741a3a1dc6394b427ac19b7a35b7d9459c81854f400",
+        "source_technosphere_exchange_count": 5,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RME",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "1c470c8b55c45b750fc241f3af2f70198712d5fac25334730428ec447e97f50d",
+            "inventory_sha256": "d00ac636290480d28f30febf2f693aece39ea6fa683f6c1c80784ed2998aad7a",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RME",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "1398bdd113ad2b3465fbc94a8285edd495909027fc98ea18df9d6957c99c18d4",
+            "inventory_sha256": "3e3d4a0a50e10477d3a360d7c7e83e2d235818a3f1f1ac8f01e7fa50d2c4800b",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "eb1eea376c2ac97ab21cd45980db00886d0b4e48b90bb7dfe0fa24db8238f3f0"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bd8c8680b425d4382fc411d5e132d978c3ca3c91ec688179c3465673ba44c5f5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-82ad62164fbd3e18",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-82ad62164fbd3e18",
+        "source": {
+          "location": "RME",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RME",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "9e9412b6d988476b6328d4a8d4d4778ea4b6f50881edd28615667c1516dd522f",
+        "source_inventory_sha256": "01c59d62d755a1533b12fa23134557ca359f373b18e5f288217f63acb150a9a0",
+        "source_technosphere_exchange_count": 5,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RME",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5d647bbf8e06195c24d3145d1f56a14ed5f212c387c6dbdb2cb2194b68c89dc7",
+            "inventory_sha256": "0a8709f17392d43f3bb113144e480bee6f6f8fa557d5d9a6b80a5716dd9ca9de",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RME",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "de93799fe9a0d83731215e679c60a7951a287e3ec455119f71fbf41381e40c31",
+            "inventory_sha256": "da89085289c28210e77297a2ec5000c2e379df17ccc2e387a26e5bde73237b96",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "0ea9e9f0ae5a84f7701556c82603f71c6286b0dfea7028f187cecac8622a9b67"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1ea95c0c7b7dcf8f8bbcaf84f020cf3a9e0fdb9eacea6cb9437097d0b59fff04"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1181642673ac28f2",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-1181642673ac28f2",
+        "source": {
+          "location": "RLA",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RLA",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "a53ad1d49d50f97691f5f56f57926d07a21f2082abedebb48d25368223dbb275",
+        "source_inventory_sha256": "1e14ddee9a28c473763dce84d229468746e6befb920d6069a7cd9d929182cfb1",
+        "source_technosphere_exchange_count": 23,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RLA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "14e450399f1197ae48e1c14208dc3016e562113b75f9ffb9eb8c1029c477da14",
+            "inventory_sha256": "51c2ca9e85415bed879deb4f9bf414a64332263f6fa73bcb95816e10ee8e768e",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RLA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "969a8ab5d29ee959c0d28b6ce593e4298f3d569c259334b7206f9aad8381e26f",
+            "inventory_sha256": "d861e41fb381360d08a29ab4fa335a4927a246088467b9a3454e5ee3c6d20a8f",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "6c20e8843ee0b8d47d478590a4a66efdbb9b3a9d87f60ae014baaf644e8a740b"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "256c623f8a4bf38bcaec2ee9bd3b0c669321cf6ec086352aa2d83b11f14aa434"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9d30b98cb51ab151",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-9d30b98cb51ab151",
+        "source": {
+          "location": "RLA",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RLA",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "36344f9042dbdea243ebfb382d6cb6944159c74f693fe79281a97d62e2fff3f0",
+        "source_inventory_sha256": "f24fd058ced70fc6112c451e0c2e65786962668f0215381cc7936add100de714",
+        "source_technosphere_exchange_count": 23,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RLA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "1842a03c65cef3ec6ff150f8a2184f60ab3d5cbdcd61c5eedd66615f5fabb3ee",
+            "inventory_sha256": "dc8dfb0664f51337079b3f2a12fae0e96ab72e6df6aaa8dab2a7820daabc11c7",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RLA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "f80ba09368f66fec96ee9d55cbd0849392d3ea1aae9d24309426daf39ed2ea0b",
+            "inventory_sha256": "4885211930cac973a8bff6c63090dd783b802e58851782307f49ba0fd3795ad6",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "8e534774a5334c806bdf1beac17206245ecf8be4a062977edf1de1674ab6134a"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2fe3b8b4deb50476ea8d9ae35c6b765a38d20d0ee4470f98dc9b2a08b98ccd98"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f39edf38e5d478c0",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-f39edf38e5d478c0",
+        "source": {
+          "location": "RU",
+          "name": "market for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RU",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "b7ef24badd8d6dc095d9d8613a3971d94b801d3ff1158c2b2489400b0995dfd8",
+        "source_inventory_sha256": "fa197916db27b0685a5b82ea13302e5bffb423304b3986529eb8403e2ba14707",
+        "source_technosphere_exchange_count": 18,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RU",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "1482d402ec11000b30a9605f5c2559f6e4f579d9e851326ad02a339589c80d64",
+            "inventory_sha256": "cf1fc28c77a4b6d232cd01f3015f8474f82894972a09e5ad810ed0c1fbf58ac2",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RU",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "d1df789eb0caba6b4cb12c8fa3c050c46923a0c29a707908552190b2b28e1150",
+            "inventory_sha256": "fc5847fe196efd9a9f76f21e8c01a701758ec4be020933aeb0d247730750e4c6",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "8a9b6badbefc345db7ee514b2d3f007261a634c16a808f18e33bdab9458c6a9d"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f1efc65452988d54e6f1e86c40468f3f12029edb473e3b8181b4b7cb3eb88b50"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1237581aa7459b6a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-1237581aa7459b6a",
+        "source": {
+          "location": "RU",
+          "name": "market for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RU",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "f875c6caa6c5f09970cc1b5cb2735ee96bb023c27d16b66aa73caee3ea5ca981",
+        "source_inventory_sha256": "357150bc4d36701ddb54d2f0e4cc65029cbd7dffb53438b90157fdeb3331f0f6",
+        "source_technosphere_exchange_count": 4,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RU",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5af48ed871ab05fcaa884b28f8172df6e53d4d3c6d72fc7a2a698debf65e7cc5",
+            "inventory_sha256": "b5fc00acc5ad92bfcdf765b20fb33121d5447be1fc7f4842d1d5940a1bec685d",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RU",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ee27da08929629690083df9cf9236ecd6421c22817e976ce05b7c960bbcb2fea",
+            "inventory_sha256": "bc1f2c782421effb8508f594f912ec13fcb6386652a97b56e62d92ed37c14b01",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "5f0a451892d95308f82febbed2290e91f6490c0b1d9ffb2e2f7c69600fcc2f7d"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a0a52c456c83e831f8c199e15723d432d8bf7691cb4158608438d73a73867373"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-28700ae7d1b16bc5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-28700ae7d1b16bc5",
+        "source": {
+          "location": "CA",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "CA",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "435ccb6b49fdc8821b6da055556e0e0a6477164a172bde8e3fe34c476fa80d26",
+        "source_inventory_sha256": "1de3b46207a3eae7f5b033b9f9c9d37d2527c3922e4acea13197c5ab31c5ed34",
+        "source_technosphere_exchange_count": 2,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "CA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "0a8f0e4749df451be94eeda68b1e9ad9dc5404d894f414bdc08815b8fa4a8029",
+            "inventory_sha256": "f25683733419e5ed38c5047b80db1fd069ab7fdf000f8ace159793181ac10249",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "CA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "57d295c5be3c24cd2872ed97278dd905de4ce83f1883738046c586ce411dab6f",
+            "inventory_sha256": "e7d1f051c099a402e9544a6cad7d23f94c2ca5934d4149752a06cf09a0b8dcae",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "0a8b4fee9b0973a5b21fdb1ee3a930a96f1c809d9172ec14738fdf81c40d3875"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "573f9bf9b47ce33312b96caac3e0b1bf19038e4a5c18400f6971c04856e96dd5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c5628d85378a7e76",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-c5628d85378a7e76",
+        "source": {
+          "location": "CA",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "CA",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "7685fbf3245efdb5a7c961ebd0b0b73c81eb2d5421963a06b869c44b80d13d57",
+        "source_inventory_sha256": "c32d6861ac6e42bf98993914633f4a3032c243be1f88d5ba4cccc2d081566d3d",
+        "source_technosphere_exchange_count": 2,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "86f55af6c6e55d73ecb60cf54c86e985555cadf3c45d0a0f0b1a8218d596390d",
+            "inventory_sha256": "30d3fe9629151b1fb1c3961728a1bd6ddf453d73b8a0d78a8d48ea86c95bd74a",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "baa8e3d2665ef74d3415cc52a4091aebdd10a8ac08b2bfcb8ba03a40e6bcc2da",
+            "inventory_sha256": "af0f7758494090edee5a8955fd35512a73f2c64828018d8c54772bd22b3ae841",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "23254ac8a0866722c7e4fd83c586797734cf2fc48b9381e7f134de689d22460b"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5b9707003bf37ab860a7587b4a6ed7ec4d04b411e0f146c2dba2a9f3a9034d9f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-17e12c41e1ef7056",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-17e12c41e1ef7056",
+        "source": {
+          "location": "RAS",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RAS",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "ea16b2293bf281b7b99ac76af041aab14b5e4b290bb8481e54304ebb27ebfd6d",
+        "source_inventory_sha256": "6b08c9ebdde9ccad46a948c57ecf4955d19cce3f8462d88b4314495414b9e9f5",
+        "source_technosphere_exchange_count": 40,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RAS",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "df7234732f9a33add8c95ad50178601faf5c3d6d025aa37d6adae2e055f86409",
+            "inventory_sha256": "10b6041196ba3e7c073e84698b40a56b48800b42965b67aa8d5ee3e9d0c87bde",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RAS",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e660777edaa3a06fb06d9f207d25da123b2dc6a6f76ebdef1d45af00455815de",
+            "inventory_sha256": "30ac112ba3b4cab2c30852caa8c383cfd4d4cc20315b7a509e9c1880fb54dcc3",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "6f6a515ec8afedeb59ebc07ea2191365b17218aa10ed703aa02628c80f9632f0"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b0e987fe731ea8f2d524d703cfd8353f0a53c2b1a61f524b9a70f635661704e5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-851d45e0070da17a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-851d45e0070da17a",
+        "source": {
+          "location": "JP",
+          "name": "market for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "JP",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "c879cb06cf499d21a880732868c10f6b4a4c36c6f3d43d4f1e4a2835e99e05e0",
+        "source_inventory_sha256": "51f720e5b896fb9f893e7e0586ce5b928c67eb3dcedb31dbd17dc9cf12e04611",
+        "source_technosphere_exchange_count": 21,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "JP",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "0898e9b3d2dbbf5d968bc2988ca42304d4360d5df7bc06e75eb75257124d270d",
+            "inventory_sha256": "7b0b56dcd2fb5127f241a46494e1a870d45a5bfbaec80a76290a1c0f7df0aaf5",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "JP",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "78bb8b39035a71ba4ddbcb74668a003205c4aab9d8533f15f2838744e6dc6c9d",
+            "inventory_sha256": "bc18a3f31db30ad4b9e58510f5176a6805aed60150ca1fb7789f8a7170b62209",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "3eeb828437f91cec24bbf645d1906f72798f84769aa5e88a2556b30e97cc5ab8"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c2c1f8de04e077d26f140e6c49234627039022c06e8f1e2243561a074d2e0d1a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-aa17a8203063bba2",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-aa17a8203063bba2",
+        "source": {
+          "location": "JP",
+          "name": "market for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "JP",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "5bf0794b01731b85323721c51b9dafde03b44f2b46f98eebf0b3e06ef39e23df",
+        "source_inventory_sha256": "d3e5da261be9b3093dc5a5c2548776af8517e8781b247441584e9668519654ab",
+        "source_technosphere_exchange_count": 5,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "JP",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "aa1badde9c6f976a602423ce25be18c95c058dc21cca65164e0014d7bdf923fc",
+            "inventory_sha256": "32d5bba39df4eaedd613e6523c5648dbe053494ea648fc2ff4068eea64e07d7a",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "JP",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "9dd0c9991c247cdf7b139fe8e0172bd0812a97235d4f86c3c7924199b27f526b",
+            "inventory_sha256": "8713b74b69437cceb2ec0f63e79cb01cd327632a4f9f777dcb2caccd1539104b",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "1f9ff215532bce2c86b15eeb852b045f00a19bcabcf74d30e0298ed7dd75b3e9"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f56f0512cda0a8040c5b0d5c2c146bd4fc11e835cd3a9936ab1b40a6fa941007"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a7d27487f35cbee7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-a7d27487f35cbee7",
+        "source": {
+          "location": "US",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "US",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "f69b64ec72dead045a30386af032890d3b0b28cc57003a2c7a6d6a33d82b1558",
+        "source_inventory_sha256": "8bce5ce9e05e126456bdcceb8c28d7d2d6593818f0bd01accc04ac79c9f85dfe",
+        "source_technosphere_exchange_count": 10,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "US",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "6a8dfa81658902a19ea41bfd25888fdd61d6e2c3fd956d4d1be504b2c5e5d430",
+            "inventory_sha256": "d985006c2e09af41948db8e73ca8a7d99f4b186e41d0918cb51216a50f546643",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "US",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "a6181baf6d2be18634d71bd747d391d457fa12f14a40904809db93696634dd1a",
+            "inventory_sha256": "a5799e97fd3ccc515edf3fc0c1cbcfdb342baac628c3f24af37d7bc2444cc5aa",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "45e355026c3722fc0c1f67b554fbe8ca9d2cc55ef84233623d81cbd965537e0a"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "090f14a0892b5d588b506bda2e501a645790f30563ef320a47843b4246fc9d41"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8b6f956c6e679217",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-8b6f956c6e679217",
+        "source": {
+          "location": "US",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "US",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "b32b46674b0172a859dfe509f6dfdf3498c87ceb7eb084c1f70ac3fd95b07166",
+        "source_inventory_sha256": "a77d205bfc8e65a2cd72e168131197b5b173587892ec009c51a89524212e5f99",
+        "source_technosphere_exchange_count": 10,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "US",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "075102b9f24302f7e8bda36095f341714b02a5b4194df2f81f9c5aad309b7204",
+            "inventory_sha256": "c6f4febbed2d2e32074cc7e7c91814561f1a9549e108d11fa5c7e0cf7324a5b5",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "US",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "2f43ffafcacd863c8725f475d16c42b92dc4e1e46096ae131168bf2265b27c7b",
+            "inventory_sha256": "38affc631e45736015c2808065555f3828bb6605f35faea30458ed15aa912173",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "930f043eb4c97bd23745235eed6b5e7cba5ae9c877813b8ef286f475c19042c8"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0a1dcabea1090080616af1da637d5f17719330848b1be80d20eadc1df2bbc481"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3e64a25769f6b226",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-3e64a25769f6b226",
+        "source": {
+          "location": "IN",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "IN",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "348834e83bbbd1ffec932662f42b6921f395ee6746c1f7b5033f8817561f17ab",
+        "source_inventory_sha256": "f197dd086e35fd3e4be45c05ae8588063438348c358158603603d6c84e69f470",
+        "source_technosphere_exchange_count": 5,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "IN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "dea4046773727359ccebe317e99f3240d2c4452a15da14c8564e6032d427864c",
+            "inventory_sha256": "ab649170ef6ac6e0ad7bef6c14155fcd416a6476cf83e57672f97948c3f2b27d",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "IN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "a0e3f959e6c345dc4e8116b70674f0ce18695e03115f5fca1cddd841bec5daf3",
+            "inventory_sha256": "5fa07ea8ed7e806b0acc28e82b768264aff299735003e9cb29714babf68ecd83",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "5ba57f3a0d1bffcf2d17a6b81642fb357ac651ac10dedbc9a47d68fd72e36153"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7769711da1c6955432d7d4d525c30a0709f67de47317ed1b3ac6c8d74d83baee"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-39c5b9d331541f84",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-39c5b9d331541f84",
+        "source": {
+          "location": "IN",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "IN",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "ab037f1fbd50cf13d9e9b38498b6a8426a7a7d4229030db2b14f5d3cf0f365d0",
+        "source_inventory_sha256": "c99eadd147d777a55e357f8ee233248d48b3e2fda98bedf89cefe9d58319b4d4",
+        "source_technosphere_exchange_count": 5,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "IN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "fc6860274b233d3cbd8a7820c1182a2dec9134510d97781b32d665ae8c044247",
+            "inventory_sha256": "eee0ebf6ec7b5974b9efda5c5c75e2513f4b5f99f0b4a5a6572eeb64014bfde6",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "IN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "f7492d019d417ec31ebd5cc7843bbab6271ac440d7d3b5e979cc6297cc6a17a6",
+            "inventory_sha256": "bb5ea1f24b404269b3a62e5442e98449d161c4940815a4e9d12cd54e91594bf8",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "da73c3b928530decfcafcaf5b38b2fba1e0416b8dec8cc91b664e7bcd1d1d3da"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "986257b3ee874ba1c4375ec90fb8517aa6e2c3389e54ee203743f84299967f44"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-78fcb88821f30a79",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-78fcb88821f30a79",
+        "source": {
+          "location": "RAS",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RAS",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "23a928948242530624ee37c28b733734311cc8c701c6b29b77e5c2965aa75e56",
+        "source_inventory_sha256": "7557e27bd6363823cb2f713c94734a57145a5640087e475c2b58c7b3f7d8610c",
+        "source_technosphere_exchange_count": 40,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RAS",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "a0dd0b0c5608a6f283d10b6eedcb5eeb46c7d3e844b5e202f8e12eb1eaceb3bb",
+            "inventory_sha256": "629fe3f8718c8de8c58acc7c0647950824db072ba5f5f937bee1b842f2cff37c",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RAS",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "9ceea0e923a8c28546e066682903bc969cf1ccf089bca16b37726701a1ac9cce",
+            "inventory_sha256": "08641f88c4b8bf4885243d00951d61b8866e15a3683c92d74d8afffc4af79dc2",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "2a6805f4d5f418405f4ee5dcaa6f0b57114635bb72d78da9e4f705b5ff399b03"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9b5ea079655b2f1bf9c2b86fa4e3c1748618e4fb99ccc6f2b0b11e4e62a364a3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-740fb596590b99e4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-740fb596590b99e4",
+        "source": {
+          "location": "CN",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "CN",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "f2c35cffb58711a47bd4cd83acde89a7e7b3dd18a3a0d0d48127b38e8e11caf9",
+        "source_inventory_sha256": "5d32adcc052938cf334c3348c97df232937880fe5b53c858e88a704ef8e9eab6",
+        "source_technosphere_exchange_count": 2,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "ee0f59e80d23d0f884b3023feeefe87aa907e8d265cfa224dcab9e252f29fedb",
+            "inventory_sha256": "e11aaf90da92b440917a82b20eaa87e17c81f532c4cbebfa6edc280bbc674a3f",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "c731b6d75a474e6e01fcbd53d9c0d0a4e4479a393781f4144650ab856fd02f61",
+            "inventory_sha256": "1100ea46f37f0a92f63e97828aa84e3a186b7ae98aa6d815ee7a3d87e988ae4b",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "a60d24492f9a67e116df06e07e65be9f85aad021e380ccbdf02e4ced5a68891d"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "71be3c8a3c5e3d3d1b985820060653b4e833b17b77b387fbfb76bac2ad2485ab"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-296624bc97644b88",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-296624bc97644b88",
+        "source": {
+          "location": "CN",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "CN",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "079b7b769b3374f76881fb5df67e37b0af582504a1677d99074b2e9204a9af52",
+        "source_inventory_sha256": "4624fff146ef0641a80e1e4990419d115653d4e4103d563856a440683564ca63",
+        "source_technosphere_exchange_count": 2,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "1ff8dfc09c0d6e3339fca5177694c05b992f8e27708fadd3db01f6a9db31e788",
+            "inventory_sha256": "dffde9064ac4b5117818ef879f000940ace2c8707d3b84d9e84582eaf2b15b2d",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "95905be7195e6d364aefce0fdfc70665d5c47699ec18bfc4c839909b6b805cc2",
+            "inventory_sha256": "88a1ed84501128e00ab5fd80873be052df01eef71ec7aebabf166c399028e88c",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "d4e71696e341986b8e52efff32072c34a8e9885b9a1d6d278de7f650d447d232"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7d8455f9bc71c0519383440711030ee4c4df1b0d712fae04b2cd697cb1e156d1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-aa17e516d5f814ea",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_oxide_services",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-aa17e516d5f814ea",
+        "source": {
+          "location": "RER",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "7650dbe63a49e375bb003c6e76b5d0778dfa0cd4c8c768d8b5579e55911603a7",
+        "source_inventory_sha256": "3bcccd62e92766310a94a24326c6d3ef522b532f2b109dca36ce53bbcbff33c6",
+        "source_technosphere_exchange_count": 2,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "509711f7bc56bc92f708c6198e7af25c8683cf1934678cc48e12cd29840dbcd8",
+            "inventory_sha256": "12a877228e309c047652113c4e3381af5bd005d521324c23028b55a66af11a76",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "c8a202518057687d0ab3bc469c56fba430002d964a15597e0f0d4efbbb1a2c41",
+            "inventory_sha256": "fb7320830b45788fe6a2960caad93f0e1887b017604059652a9ab23cbfd5342c",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "append_exact_profile",
+        "previous_rule_sha256": "8163e6e41229b164905af7c9d7309e7a11e8143d41bc0bfa044db9a0668dd44f"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9ceb1e9f405eac46b9f406993baa3932d799e21c621cdacca9891c78432c591d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-49b843b95c0c6223",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-49b843b95c0c6223",
+        "source": {
+          "location": "RER",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "bd23e897e0c46caee5821675c2197e0e0c68838fec67ab833e0fee6dff30a80d",
+        "source_inventory_sha256": "d598853b177630e31c0e483243f6bfde80e0d0379aa536a9429d9fe69ba826a0",
+        "source_technosphere_exchange_count": 2,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "3cfa9103dd760ab46f5cfdd7757c85a538d5d4fad44d56303658aed502182a10",
+            "inventory_sha256": "e11df2cefe71f5f80c39479ef61a7603792fb24e2e48dd699560be5d5da3b4f1",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "050363bf7eb053229279a9e43d55dcd49f4f89f31fc2627935602632569dae35",
+            "inventory_sha256": "e68092555e6127a442fb124fe3847f156ae08846f49a325a8af15e86a0aee0a2",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "60c687f2166490b03261e9d88cf1ce08758f9b9f533a1f94b67b7ab9ad632d4b"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "08a62a17b18bd7e6e64ae22df3ff256629d5fda94c37136a5ac762a3cb0179be"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2f9c80eaacf32839",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-2f9c80eaacf32839",
+        "source": {
+          "location": "GLO",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Electricity, high voltage, at grid",
+          "reference product": "Electricity, high voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "88f608583f09c483318c8239a66eae740d16ae38966508e06a95998ab9ecc242",
+        "source_inventory_sha256": "407d10788adc9e5bde3527c670ed115e6b9234acabb175055f5dfb1f9c7cd141",
+        "source_technosphere_exchange_count": 8,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "0742423680e334760253aac7a5d5d0afac7c6dbaeb8eac5b3b0017cf45058309",
+            "inventory_sha256": "3ef655ffaa66d01bf342bd5f1bbb873a4eda541c3604c821c0c5c62a6f88cc8d",
+            "technosphere_exchange_count": 2
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "a2cf0d3ca5bd1068981bb75ef458ae1deaa9c6250a4cc82048ce004b9abe4001",
+            "inventory_sha256": "10ceeb320801ea5c3d2ca2eef1d4f880f1862d88a6c55a9e03ab08f4a1d98948",
+            "technosphere_exchange_count": 2
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "8ad4e284f59c224eff4f6e0ec467c245b4fdc67bb6b25a8d350092575392b0e6"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "182d9a3b9fec32a10c705d8bdb39e2f0e05442e9c473c0323ed4f61147dbb2b5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-61babdae6914f05a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_geothermal_36_grid_reference_review.json",
+      "review_sha256": "9f14014f072292500d116832d5c66defc5be5f48ec99eb81fb6c439abbea6348",
+      "authorization": "Active BAFU/Premise integration goal and standing auto-approval for analogous same-function, same-unit and declared-geography screening proxies with logged limitations.",
+      "inspection": {
+        "rule_id": "bp-61babdae6914f05a",
+        "source": {
+          "location": "GLO",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Electricity, medium voltage, at grid",
+          "reference product": "Electricity, medium voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_metadata_sha256": "335898541a783d709f7efc3429a6e80c26cff7390fd2d1a40168bd141913bae9",
+        "source_inventory_sha256": "8eb99bc4c1b4ed42dab8f66d34d411266d0e5a7f1ac62371fa211a906fa03b63",
+        "source_technosphere_exchange_count": 8,
+        "conversion_factor": 1,
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "7bd6e6813b0a454dafcdaaf9931a167f3cc900b98754c6fa4d481c4b6c427ca9",
+            "inventory_sha256": "da99c97748b764ad945c2f0fbf52fcb828210b786c796ea01ad6c620d9b09b9f",
+            "technosphere_exchange_count": 3
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b19893105ce7b964542e43f884930430a02edaa40098334e17625fe1072cbfe5",
+            "inventory_sha256": "f63c3dc89db57f50c6b5ed0aa389a8e238a61b30369651eb0e9da913de3d1906",
+            "technosphere_exchange_count": 3
+          }
+        },
+        "resource_action": "unchanged_rule",
+        "previous_rule_sha256": "6f2794d3aab02a87f6e95eea75f1c934fee89e2078e74d9d12b38822b7b33faa"
+      },
+      "limitations": [
+        "Same declared region and voltage, positive delivered-kWh reference in the actual ecoinvent 3.6 cut-off source and both native UVEK releases. Use the complete native grid as a screening proxy; retain each signed caller kWh, formula, uncertainty and separately listed inventories. No voltage conversion, extra loss multiplier or new generation-share weighting is introduced.",
+        "Native generation/import mixes, grid losses, infrastructure, operating model, allocation and vintage replace the source market model. Legacy aggregate territory labels do not establish identical country boundaries. These composition, geographic and delivery-boundary differences have unquantified score effects; no LCIA equivalence is claimed.",
+        "Only the exact inspected ecoinvent 3.6 cut-off profile and the enumerated rules are reviewed. Other source versions, consequential conversions, different-voltage or different-geography fallbacks and non-electricity geothermal dependencies are outside this decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1602cc8333ff551d759e1b3fbfc3d26423b1bd5a7c4a60f4f829c2be2bc21893"
         }
       ]
     }
