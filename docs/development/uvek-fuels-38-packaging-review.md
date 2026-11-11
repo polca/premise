@@ -112,8 +112,9 @@ read-only; no new disposal mapping or omission was introduced.
 
 Inspection of the pending 3.8 RoW lime market (`bp-42ca176032e4b754`)
 found three distinct supplier branches plus three road-freight entries. The
-market describes quicklime, but the Quebec producer documentation describes
-pulverized limestone; another branch is an allocated zinc-mining co-product.
+market describes quicklime, but both inspected milling branches consume crushed
+limestone without a calcination step; Quebec documentation explicitly describes
+pulverized limestone. Another branch is an allocated zinc-mining co-product.
 The current hydraulic-lime candidate therefore cannot be approved simply by
 changing its name to quicklime. A reviewed delivery helper must preserve the
 three branches and freight separately, establish the actual material basis for
@@ -127,3 +128,16 @@ then returned errors for the settings query itself, and computer-use inspection
 found no accessible Excel window. Consequently the post-attempt automation
 setting could not be verified; the previously verified restoration above applies
 only to the earlier probes. No restart or termination of Excel was attempted.
+
+Independent native-feasibility calculations now pass for complete Swiss milled
+limestone and the Swedish contained-zinc beneficiation process. The source lime
+co-product's 263 nonproduction coordinates equal the source zinc concentrate
+coordinates scaled by the frozen price ratio 0.117/0.38; 262 lognormal coordinates
+also preserve scale/pedigree and shift loc by the logarithm of that ratio.
+With the documented 59% zinc content, the preliminary native mining demand is
+0.1816578947368421 kg contained-Zn burden per kg co-product. This is an allocation
+proxy, not a chemical conversion or an added metal credit. Both native demands
+produce finite supply and biosphere inventory arrays. The summary and explicit
+limitations are in `uvek-fuels-38-lime-feasibility.json`; full source inventories
+remain private. Market-rule implementation and full fuel qualification remain
+unfinished.

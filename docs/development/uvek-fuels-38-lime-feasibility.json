@@ -1,0 +1,62 @@
+{
+  "status": "Preliminary native-supplier feasibility only, not approval of the market mapping or full fuel update",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.8",
+    "system_model": "cutoff"
+  },
+  "zinc_allocation": {
+    "compared_nonproduction_coordinates": 263,
+    "mean_mismatches": 0,
+    "relative_tolerance": 1e-12,
+    "absolute_tolerance": 1e-30,
+    "lime_price": 0.117,
+    "zinc_concentrate_price": 0.38,
+    "ratio": 0.3078947368421053,
+    "zinc_mass_fraction": 0.59,
+    "native_contained_zinc_amount": 0.1816578947368421,
+    "uncertainty_equivalence_verified": false,
+    "source_log_normal_scaling_check": {
+      "lognormal_coordinates": 262,
+      "deterministic_coordinates": 1,
+      "mismatches": 0,
+      "checks": [
+        "same uncertainty type",
+        "same scale, shape, negative flag and pedigree",
+        "lognormal loc shifted by log(0.117/0.38), tolerance 1e-12"
+      ],
+      "scope": "Source lime versus source zinc concentrate only; not equality to native UVEK uncertainty."
+    }
+  },
+  "native_2026_checks": [
+    {
+      "name": "Limestone, milled, loose, at plant",
+      "location": "CH",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "demand": 1.0,
+      "finite_supply": true,
+      "finite_inventory": true,
+      "nonproduction_exchanges": 7
+    },
+    {
+      "name": "Zinc, from combined metal production, at beneficiation",
+      "location": "SE",
+      "unit": "kilogram",
+      "reference_amount": 1,
+      "demand": 0.1816578947368421,
+      "finite_supply": true,
+      "finite_inventory": true,
+      "nonproduction_exchanges": 25
+    }
+  ],
+  "limitations": [
+    "Source market description conflicts with inspected uncalcined grinding inventories.",
+    "Native complete Swiss milling is a geographic, upstream-energy and technology proxy, not exact inventory equivalence.",
+    "Native zinc beneficiation is a screening substitute for allocated global multi-output mining; no additional metal recovery credit.",
+    "Source-market producer shares, freight and uncertainty must remain separate in any eventual delivery recipe.",
+    "No mapping rule, approval scope or runtime code changed by this feasibility check."
+  ],
+  "private_allocation_witness_sha256": "818ace3181f46c59f270cc44b1749b97943463180f60799d934ccd1c811c13f0",
+  "date": "2026-11-11"
+}
