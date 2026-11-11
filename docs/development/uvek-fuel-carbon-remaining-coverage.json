@@ -1,0 +1,283 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-163643",
+  "scope": "Native positive-CO2 datasets buying a declared IAM fuel forwarder, outside current vehicle classification. Review candidates, not proof every emission requires replacement.",
+  "candidate_counts": {
+    "other combustion/process": 443,
+    "aviation": 29,
+    "rail": 33,
+    "bus": 31,
+    "shipping": 5
+  },
+  "examples": {
+    "other combustion/process": [
+      {
+        "name": "Natural gas, burned in gas turbine",
+        "location": "FR",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "location": "RME",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, burned in power plant",
+        "location": "CENTREL",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, burned in gas turbine",
+        "location": "GR",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Irrigating",
+        "location": "US",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Natural gas, burned in gas turbine",
+        "location": "MX",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, burned in gas turbine",
+        "location": "TW",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      },
+      {
+        "name": "Natural gas, low pressure, at consumer",
+        "location": "BR",
+        "fuel_suppliers": [
+          "Natural gas, high pressure, at consumer"
+        ]
+      }
+    ],
+    "aviation": [
+      {
+        "name": "xxx Operation, aircraft, freight",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Kerosene, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, aircraft, passenger, long-haul, economy",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Kerosene, at regional storage"
+        ]
+      },
+      {
+        "name": "xxx Operation, aircraft, passenger, intercontinental",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Kerosene, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, aircraft, passenger, medium-haul, business",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Kerosene, at regional storage"
+        ]
+      },
+      {
+        "name": "xxx Operation, aircraft, passenger, Europe",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Kerosene, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, aircraft, freight",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Kerosene, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, aircraft, freight, medium-haul, Betrieb",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Kerosene, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, aircraft, passenger, long-haul, first",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Kerosene, at regional storage"
+        ]
+      }
+    ],
+    "rail": [
+      {
+        "name": "Transport, high speed train",
+        "location": "FR",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, freight, rail",
+        "location": "IT",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, freight, rail, diesel, without particle filter",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, freight, rail",
+        "location": "AT",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, average train",
+        "location": "DE",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, average train",
+        "location": "FR",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, average train",
+        "location": "IT",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, high speed train",
+        "location": "DE",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      }
+    ],
+    "bus": [
+      {
+        "name": "Transport, passenger bus, diesel, 13m double deck coach bus, 2006, EURO-IV",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Fuel supply for diesel vehicles"
+        ]
+      },
+      {
+        "name": "Transport, passenger bus, diesel, 13m single deck urban bus, 2010, EURO-V",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Fuel supply for diesel vehicles"
+        ]
+      },
+      {
+        "name": "Transport, passenger bus, diesel hybrid, 13m single deck urban bus, 2020, EURO-VI",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Fuel supply for diesel vehicles"
+        ]
+      },
+      {
+        "name": "Transport, passenger bus, diesel, 13m single deck urban bus, 2002, EURO-III",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Fuel supply for diesel vehicles"
+        ]
+      },
+      {
+        "name": "xxx Operation, coach",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, passenger bus, diesel, 9m midibus, 2020, EURO-VI",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Fuel supply for diesel vehicles"
+        ]
+      },
+      {
+        "name": "Transport, passenger bus, diesel, 13m double deck urban bus, 2002, EURO-III",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Fuel supply for diesel vehicles"
+        ]
+      },
+      {
+        "name": "Transport, passenger bus, diesel, 9m midibus, 2010, EURO-V",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Fuel supply for diesel vehicles"
+        ]
+      }
+    ],
+    "shipping": [
+      {
+        "name": "Transport, passenger ship",
+        "location": "CH",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, barge, Betrieb",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, barge tanker",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "xxx Operation, barge",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      },
+      {
+        "name": "Transport, barge",
+        "location": "RER",
+        "fuel_suppliers": [
+          "Diesel, at regional storage"
+        ]
+      }
+    ]
+  }
+}
