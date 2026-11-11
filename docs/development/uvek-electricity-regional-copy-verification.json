@@ -1,0 +1,205 @@
+{
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261111-121807",
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "public_scope_guard_bypassed": false,
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement"
+  ],
+  "activities": 13837,
+  "new_regional_copies": 143,
+  "copy_groups": [
+    {
+      "technology": "Biomass CHP",
+      "native_functional_groups": 1,
+      "regional_copies": 13,
+      "regional_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA",
+        "World"
+      ],
+      "market_supplier_edges": 12,
+      "noncombustion_biosphere_vectors_retained": 0
+    },
+    {
+      "technology": "Gas CC",
+      "native_functional_groups": 1,
+      "regional_copies": 13,
+      "regional_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA",
+        "World"
+      ],
+      "market_supplier_edges": 12,
+      "noncombustion_biosphere_vectors_retained": 0
+    },
+    {
+      "technology": "Geothermal",
+      "native_functional_groups": 1,
+      "regional_copies": 13,
+      "regional_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA",
+        "World"
+      ],
+      "market_supplier_edges": 12,
+      "noncombustion_biosphere_vectors_retained": 13
+    },
+    {
+      "technology": "Solar CSP",
+      "native_functional_groups": 1,
+      "regional_copies": 13,
+      "regional_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA",
+        "World"
+      ],
+      "market_supplier_edges": 12,
+      "noncombustion_biosphere_vectors_retained": 13
+    },
+    {
+      "technology": "Wind Offshore",
+      "native_functional_groups": 3,
+      "regional_copies": 39,
+      "regional_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA",
+        "World"
+      ],
+      "market_supplier_edges": 36,
+      "noncombustion_biosphere_vectors_retained": 39
+    },
+    {
+      "technology": "Wind Onshore",
+      "native_functional_groups": 4,
+      "regional_copies": 52,
+      "regional_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA",
+        "World"
+      ],
+      "market_supplier_edges": 48,
+      "noncombustion_biosphere_vectors_retained": 52
+    }
+  ],
+  "duplicate_functional_identities": 0,
+  "technosphere_links_internal": true,
+  "finite_lci_checks": [
+    {
+      "technology": "Biomass CHP",
+      "location": "USA",
+      "finite": true
+    },
+    {
+      "technology": "Gas CC",
+      "location": "USA",
+      "finite": true
+    },
+    {
+      "technology": "Geothermal",
+      "location": "USA",
+      "finite": true
+    },
+    {
+      "technology": "Solar CSP",
+      "location": "USA",
+      "finite": true
+    },
+    {
+      "technology": "Wind Offshore",
+      "location": "USA",
+      "finite": true
+    },
+    {
+      "technology": "Wind Onshore",
+      "location": "USA",
+      "finite": true
+    },
+    {
+      "name": "market group for electricity, high voltage",
+      "location": "USA",
+      "finite": true
+    },
+    {
+      "name": "market for heat, for buildings",
+      "location": "EUR",
+      "finite": true
+    },
+    {
+      "name": "market for clinker",
+      "location": "EUR",
+      "finite": true
+    }
+  ],
+  "validation_issues_by_severity": {
+    "warning": 14
+  },
+  "ecoinvent_opt_ins": 0,
+  "scope": "Six single-geography roles only. Multi-geography hydro, nuclear, solar PV and conventional combustion roles require separate prototype/weight review; other sector updates remain unfinished. Loss formulae and zero self-inputs are unchanged."
+}

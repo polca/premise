@@ -1899,6 +1899,12 @@ class Electricity(BaseTransformation):
             "Storage, Hydrogen",
         ]
 
+        techs.extend(
+            technology
+            for technology, definition in load_electricity_variables().items()
+            if definition.get(f"{self.family}_aliases", {}).get("regionalize", False)
+        )
+
         datasets_to_duplicate = [
             dataset
             for technology, datasets in self.powerplant_map.items()

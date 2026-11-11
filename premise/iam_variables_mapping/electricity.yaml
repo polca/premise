@@ -29,6 +29,7 @@ Biogas CHP:
   max_efficiency: 0.6
 Biomass CHP:
   uvek_aliases:
+    regionalize: true
     exact: true
     fltr:
       name: Electricity, at cogen ORC 1400kWth, wood, allocation exergy
@@ -877,6 +878,10 @@ Foil ST:
   max_efficiency: 0.5
 Gas CC:
   uvek_aliases:
+    regionalize: true
+    native_reference_amount: 1
+    native_limitations:
+    - "Regional copies use the complete reviewed RER combined-cycle gas generator through the standard Premise proxy/relinking workflow. The regional label does not establish local resource conditions, capacity factors, infrastructure, water or land use. Source physical inventory and allocation remain the screening basis; regional differences without independent data and score effects remain unquantified. No additional generator, loss or credit is introduced."
     exact: true
     fltr:
       name:
@@ -1252,6 +1257,7 @@ Gas ST:
     reference product: electricity, high voltage
 Geothermal:
   uvek_aliases:
+    regionalize: true
     inventory_resource: clic/uvek_2026_geothermal_screening.json
     exact: true
     fltr:
@@ -1584,6 +1590,7 @@ Oil ST:
   max_efficiency: 0.5
 Solar CSP:
   uvek_aliases:
+    regionalize: true
     clic_slugs:
     - electricity-production-at-110-mw-concentrating-solar-power-plant-with-thermal-energy-storage
     clic_unit: kilowatt hour
@@ -1752,6 +1759,10 @@ Wave:
     tiam-ucl: Secondary Energy|Electricity|Tidal
 Wind Offshore:
   uvek_aliases:
+    regionalize: true
+    native_reference_amount: 1
+    native_limitations:
+    - "Regional copies use the complete reviewed RER wind generators through the standard Premise proxy/relinking workflow. The regional label does not establish local resource conditions, capacity factors, infrastructure, water or land use. Source physical inventory and allocation remain the screening basis; regional differences without independent data and score effects remain unquantified. No additional generator, loss or credit is introduced."
     exact: true
     fltr:
       name:
@@ -1780,6 +1791,10 @@ Wind Offshore:
     witch: Secondary Energy|Electricity|Wind|Offshore
 Wind Onshore:
   uvek_aliases:
+    regionalize: true
+    native_reference_amount: 1
+    native_limitations:
+    - "Regional copies use the complete reviewed RER wind generators through the standard Premise proxy/relinking workflow. The regional label does not establish local resource conditions, capacity factors, infrastructure, water or land use. Source physical inventory and allocation remain the screening basis; regional differences without independent data and score effects remain unquantified. No additional generator, loss or credit is introduced."
     exact: true
     fltr:
       name:
