@@ -205775,6 +205775,446 @@
           "fingerprint": "799e51a1124dfbbb549b299e1ec23f09b2fa9f4f9d9121559c002985fcc23faf"
         }
       ]
+    },
+    {
+      "rule_id": "bp-a09df15b743513da",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_ccs_water_oil_36_review.json",
+      "review_sha256": "22ea0137bb135d894b1d97a2c5843edd3fccb496a06cc8a9ab89b0190464468b",
+      "authorization": "Active BAFU integration goal and standing autonomous approval of independently inspected screening proxies with recorded limitations.",
+      "inspection": {
+        "rule_id": "bp-a09df15b743513da",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for water, completely softened",
+          "reference product": "water, completely softened",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, completely softened, at plant",
+          "reference product": "Water, completely softened, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, completely softened",
+            "product": "water, completely softened",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "b79bb92be9998375d21c6df35b621d471cd2c446b13b979ed9920cd430f19991",
+          "comment_sha256": "3b7246fb0db03c844d18f8562222b4e55233f34f1a0b75a4c81316e1bd0e6590",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "water production, completely softened",
+              "product": "water, completely softened",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "24ec316273a429ea183ae667b187c07c7c507fe009db640f83da9b07c06790e9",
+            "comment_sha256": "64b6659856e69a8c0a502435de8ba0b67df220fa0cd92ae9d0ee0741783bb95a",
+            "nonproduction_count": 15
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Water, completely softened, at plant",
+              "product": "Water, completely softened, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "9f9f0778d5ef82963ee619bbc02317c1b98dba2f64200cd3bb587fd195f7b4d7",
+            "comment_sha256": "535f8ce5e2a7382cb8a354ea85e7ff4b8d96361d78c82df917e5e04c3b4f038b",
+            "nonproduction_count": 8
+          },
+          "2026": {
+            "identity": {
+              "name": "Water, completely softened, at plant",
+              "product": "Water, completely softened, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "906f99651e93f97a85235c416b7880cd8c455f85c92060010e74483a00ae40c7",
+            "comment_sha256": "70d89ab52f312d0c9048cb7f8543e585d483ce7b11544042f49687992bb914d4",
+            "nonproduction_count": 9
+          }
+        },
+        "conversion_factor": 1,
+        "rule_sha256": "5e534fdeccfb3bbf577874c4fb3fbab6b923b5caf32835f265ad606486ded5df",
+        "limitations": [
+          "Use complete native European ion-exchange softened water per signed kg of source softened water. Source regional markets supply one kg of local ion-exchange production with no delivery losses or transport. Native process includes decarbonised feedwater (1.05 kg/kg), chemicals, internal freight and wastewater. These internal quantities replace the source treatment model; do not apply an extra water-loss, density, solution or delivery multiplier.",
+          "Source includes regeneration chemicals, electricity, treatment infrastructure and wastewater. Native estimated power-plant cooling-water treatment uses different chemicals, feedwater, wastewater, emissions, technology detail, regional background and vintage. Complete native upstream inputs and treatment remain; no omitted caller emissions or invented water-balance correction. Score effects are unquantified.",
+          "Preserve signed caller kg, formulas, uncertainty and exchange ownership. This approval covers only the inspected ecoinvent 3.6 cut-off source profile; no consequential, reverse or other-version approval and no whole capture-chain or heat-role qualification."
+        ]
+      },
+      "limitations": [
+        "Use complete native European ion-exchange softened water per signed kg of source softened water. Source regional markets supply one kg of local ion-exchange production with no delivery losses or transport. Native process includes decarbonised feedwater (1.05 kg/kg), chemicals, internal freight and wastewater. These internal quantities replace the source treatment model; do not apply an extra water-loss, density, solution or delivery multiplier.",
+        "Source includes regeneration chemicals, electricity, treatment infrastructure and wastewater. Native estimated power-plant cooling-water treatment uses different chemicals, feedwater, wastewater, emissions, technology detail, regional background and vintage. Complete native upstream inputs and treatment remain; no omitted caller emissions or invented water-balance correction. Score effects are unquantified.",
+        "Preserve signed caller kg, formulas, uncertainty and exchange ownership. This approval covers only the inspected ecoinvent 3.6 cut-off source profile; no consequential, reverse or other-version approval and no whole capture-chain or heat-role qualification."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fc8465a7b85348127316726c6a3fa60955978b9846482a5a81e8492dce2f9130"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c12ed74793eebfcf",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_ccs_water_oil_36_review.json",
+      "review_sha256": "22ea0137bb135d894b1d97a2c5843edd3fccb496a06cc8a9ab89b0190464468b",
+      "authorization": "Active BAFU integration goal and standing autonomous approval of independently inspected screening proxies with recorded limitations.",
+      "inspection": {
+        "rule_id": "bp-c12ed74793eebfcf",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for water, completely softened",
+          "reference product": "water, completely softened",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, completely softened, at plant",
+          "reference product": "Water, completely softened, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, completely softened",
+            "product": "water, completely softened",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "cc58d5e50a98336a6056cc29f01ed3bc7c7a013efc412a7c003e065d1fcc7493",
+          "comment_sha256": "3b7246fb0db03c844d18f8562222b4e55233f34f1a0b75a4c81316e1bd0e6590",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "water production, completely softened",
+              "product": "water, completely softened",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "c8e6e11b3da21239942bdc307a5c418e4d900479bc04c3457558f073d17032c3",
+            "comment_sha256": "d4c10e95a211859ab89616342ae34f4259ed06deec9b0cb7f4ef6429dfcdd5c9",
+            "nonproduction_count": 11
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Water, completely softened, at plant",
+              "product": "Water, completely softened, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "9f9f0778d5ef82963ee619bbc02317c1b98dba2f64200cd3bb587fd195f7b4d7",
+            "comment_sha256": "535f8ce5e2a7382cb8a354ea85e7ff4b8d96361d78c82df917e5e04c3b4f038b",
+            "nonproduction_count": 8
+          },
+          "2026": {
+            "identity": {
+              "name": "Water, completely softened, at plant",
+              "product": "Water, completely softened, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "906f99651e93f97a85235c416b7880cd8c455f85c92060010e74483a00ae40c7",
+            "comment_sha256": "70d89ab52f312d0c9048cb7f8543e585d483ce7b11544042f49687992bb914d4",
+            "nonproduction_count": 9
+          }
+        },
+        "conversion_factor": 1,
+        "rule_sha256": "95579574f54b81dad8eb4630f2ae59c2b8a9822b814295fdf1d4fb26278780fd",
+        "limitations": [
+          "Use complete native European ion-exchange softened water per signed kg of source softened water. Source regional markets supply one kg of local ion-exchange production with no delivery losses or transport. Native process includes decarbonised feedwater (1.05 kg/kg), chemicals, internal freight and wastewater. These internal quantities replace the source treatment model; do not apply an extra water-loss, density, solution or delivery multiplier.",
+          "Source includes regeneration chemicals, electricity, treatment infrastructure and wastewater. Native estimated power-plant cooling-water treatment uses different chemicals, feedwater, wastewater, emissions, technology detail, regional background and vintage. Complete native upstream inputs and treatment remain; no omitted caller emissions or invented water-balance correction. Score effects are unquantified.",
+          "Preserve signed caller kg, formulas, uncertainty and exchange ownership. This approval covers only the inspected ecoinvent 3.6 cut-off source profile; no consequential, reverse or other-version approval and no whole capture-chain or heat-role qualification."
+        ]
+      },
+      "limitations": [
+        "Use complete native European ion-exchange softened water per signed kg of source softened water. Source regional markets supply one kg of local ion-exchange production with no delivery losses or transport. Native process includes decarbonised feedwater (1.05 kg/kg), chemicals, internal freight and wastewater. These internal quantities replace the source treatment model; do not apply an extra water-loss, density, solution or delivery multiplier.",
+        "Source includes regeneration chemicals, electricity, treatment infrastructure and wastewater. Native estimated power-plant cooling-water treatment uses different chemicals, feedwater, wastewater, emissions, technology detail, regional background and vintage. Complete native upstream inputs and treatment remain; no omitted caller emissions or invented water-balance correction. Score effects are unquantified.",
+        "Preserve signed caller kg, formulas, uncertainty and exchange ownership. This approval covers only the inspected ecoinvent 3.6 cut-off source profile; no consequential, reverse or other-version approval and no whole capture-chain or heat-role qualification."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "960e9ac5bd4cb5d56461649fa460eb07be806f63e022cd08610922a9ab29c35d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1c048210dbd718b0",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_heat_ccs_water_oil_36_review.json",
+      "review_sha256": "22ea0137bb135d894b1d97a2c5843edd3fccb496a06cc8a9ab89b0190464468b",
+      "authorization": "Active BAFU integration goal and standing autonomous approval of independently inspected screening proxies with recorded limitations.",
+      "inspection": {
+        "rule_id": "bp-1c048210dbd718b0",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "US",
+          "name": "market for water, completely softened",
+          "reference product": "water, completely softened",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Water, completely softened, at plant",
+          "reference product": "Water, completely softened, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, completely softened",
+            "product": "water, completely softened",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "3ec13a99c90b2b4f81889533f3385aaa0e1b662f31b5cadbee8e61823ef675ab",
+          "comment_sha256": "3b7246fb0db03c844d18f8562222b4e55233f34f1a0b75a4c81316e1bd0e6590",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "water production, completely softened",
+              "product": "water, completely softened",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "0c13018548c493c1c2cf2bd7afcf51305d790995efaee56de4625ed48b827e90",
+            "comment_sha256": "1385e5c6b41954b5f0539403cbd0f9d580d36f0df15505297dd9b2e0363e10df",
+            "nonproduction_count": 11
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Water, completely softened, at plant",
+              "product": "Water, completely softened, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "9f9f0778d5ef82963ee619bbc02317c1b98dba2f64200cd3bb587fd195f7b4d7",
+            "comment_sha256": "535f8ce5e2a7382cb8a354ea85e7ff4b8d96361d78c82df917e5e04c3b4f038b",
+            "nonproduction_count": 8
+          },
+          "2026": {
+            "identity": {
+              "name": "Water, completely softened, at plant",
+              "product": "Water, completely softened, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "906f99651e93f97a85235c416b7880cd8c455f85c92060010e74483a00ae40c7",
+            "comment_sha256": "70d89ab52f312d0c9048cb7f8543e585d483ce7b11544042f49687992bb914d4",
+            "nonproduction_count": 9
+          }
+        },
+        "conversion_factor": 1,
+        "rule_sha256": "f20c4bf20dea1af18a2881801bfbb8de8b2203acbc4049c1f2949978b92f5e97",
+        "limitations": [
+          "Use complete native European ion-exchange softened water per signed kg of source softened water. Source regional markets supply one kg of local ion-exchange production with no delivery losses or transport. Native process includes decarbonised feedwater (1.05 kg/kg), chemicals, internal freight and wastewater. These internal quantities replace the source treatment model; do not apply an extra water-loss, density, solution or delivery multiplier.",
+          "Source includes regeneration chemicals, electricity, treatment infrastructure and wastewater. Native estimated power-plant cooling-water treatment uses different chemicals, feedwater, wastewater, emissions, technology detail, regional background and vintage. Complete native upstream inputs and treatment remain; no omitted caller emissions or invented water-balance correction. Score effects are unquantified.",
+          "Preserve signed caller kg, formulas, uncertainty and exchange ownership. This approval covers only the inspected ecoinvent 3.6 cut-off source profile; no consequential, reverse or other-version approval and no whole capture-chain or heat-role qualification."
+        ]
+      },
+      "limitations": [
+        "Use complete native European ion-exchange softened water per signed kg of source softened water. Source regional markets supply one kg of local ion-exchange production with no delivery losses or transport. Native process includes decarbonised feedwater (1.05 kg/kg), chemicals, internal freight and wastewater. These internal quantities replace the source treatment model; do not apply an extra water-loss, density, solution or delivery multiplier.",
+        "Source includes regeneration chemicals, electricity, treatment infrastructure and wastewater. Native estimated power-plant cooling-water treatment uses different chemicals, feedwater, wastewater, emissions, technology detail, regional background and vintage. Complete native upstream inputs and treatment remain; no omitted caller emissions or invented water-balance correction. Score effects are unquantified.",
+        "Preserve signed caller kg, formulas, uncertainty and exchange ownership. This approval covers only the inspected ecoinvent 3.6 cut-off source profile; no consequential, reverse or other-version approval and no whole capture-chain or heat-role qualification."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c1d7babd67b3d0ae432a0af39f9c887b85ada5743ef5dd071775a4d1476ff301"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7881a1c501dadd9f",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_ccs_water_oil_36_review.json",
+      "review_sha256": "22ea0137bb135d894b1d97a2c5843edd3fccb496a06cc8a9ab89b0190464468b",
+      "authorization": "Active BAFU integration goal and standing autonomous approval of independently inspected screening proxies with recorded limitations.",
+      "inspection": {
+        "rule_id": "bp-7881a1c501dadd9f",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market group for light fuel oil",
+          "reference product": "light fuel oil",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Light fuel oil, at regional storage",
+          "reference product": "Light fuel oil, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for light fuel oil",
+            "product": "light fuel oil",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "cc74a9f61bc155a3b6110943d4ec4716f7ce21d291c770cf07c75e7acccf31be",
+          "comment_sha256": "2b81171b2f151860bc4841cf5d63286451557b5361e955cc9ce8be8db3432b88",
+          "nonproduction_count": 2
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "market for light fuel oil",
+              "product": "light fuel oil",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "33a7bc12abd26070719c2494d07205c265be12d749d561c9136abb748baf4c31",
+            "comment_sha256": "36290ed0474907eced4b38cb2273174840604ec376b21f3706f6b023a71bf712",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "market for light fuel oil",
+              "product": "light fuel oil",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e6ceb916dbc8597d02d252cb00c0dd5853cbabc5315ffdf3d5500be82ee1c187",
+            "comment_sha256": "e005cf948482bc0be02d50002d0c962ddde555e25c1eebc9dec4e59512a92c35",
+            "nonproduction_count": 16
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Light fuel oil, at regional storage",
+              "product": "Light fuel oil, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "d71236cc0e77b7d25d4e098781af77e59d46e28ff5508e6d7912fb244a66273a",
+            "comment_sha256": "b55da174b304c5c574f86c8883c045c76300606666d760c9aee22262bbf5a4e1",
+            "nonproduction_count": 14
+          },
+          "2026": {
+            "identity": {
+              "name": "Light fuel oil, at regional storage",
+              "product": "Light fuel oil, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "a1916c2022bb2cea2d0f655ec2afe149ca8631b504e998a62feb7358bd72566b",
+            "comment_sha256": "0fb60dc8f8c96ef14cdb4e23804a3508984f905d281ffc2e2dfbf3bd2ad1a310",
+            "nonproduction_count": 14
+          }
+        },
+        "conversion_factor": 1,
+        "rule_sha256": "b8292e4f2ddc50162fa667eee6f86ad20c4d0c6f37884f68274180d1ba5a542e",
+        "limitations": [
+          "Use complete native European light-fuel-oil distribution at regional storage per signed kg of source European delivered fuel, factor +1. Source market group contains CH and Europe-without-Switzerland delivery markets at shares 0.0618560532327723 and 0.938143946767228. The native refinery mix, delivery transport, tank infrastructure, evaporation and effluent/disposal model replace those markets, including source imported/recycled fuel shares and allocation.",
+          "Both cover refinery-to-user distribution, not combustion. Keep complete native fuel production, storage and delivery once. Retain separately listed caller transport, operating fuel and emissions. No extra freight, refinery burden, tank, energy/LHV or density multiplier. Geography, technology, fuel properties, vintage, uncertainty and score effects differ and remain unquantified.",
+          "Preserve signed caller kg, formulas, uncertainty and exchange ownership. This approval covers only the inspected ecoinvent 3.6 cut-off source profile; no consequential, reverse or other-version approval and no whole capture-chain or heat-role qualification."
+        ]
+      },
+      "limitations": [
+        "Use complete native European light-fuel-oil distribution at regional storage per signed kg of source European delivered fuel, factor +1. Source market group contains CH and Europe-without-Switzerland delivery markets at shares 0.0618560532327723 and 0.938143946767228. The native refinery mix, delivery transport, tank infrastructure, evaporation and effluent/disposal model replace those markets, including source imported/recycled fuel shares and allocation.",
+        "Both cover refinery-to-user distribution, not combustion. Keep complete native fuel production, storage and delivery once. Retain separately listed caller transport, operating fuel and emissions. No extra freight, refinery burden, tank, energy/LHV or density multiplier. Geography, technology, fuel properties, vintage, uncertainty and score effects differ and remain unquantified.",
+        "Preserve signed caller kg, formulas, uncertainty and exchange ownership. This approval covers only the inspected ecoinvent 3.6 cut-off source profile; no consequential, reverse or other-version approval and no whole capture-chain or heat-role qualification."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "bf3b6696d46d0df7b02d91f3445ef660f5f82adaaa3ec06bb2e45c5f7911570c"
+        }
+      ]
     }
   ],
   "superseded_operations": [

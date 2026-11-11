@@ -9,13 +9,22 @@ from premise.inventory.clic_harmonize import ClicHarmonizer
 from test_clic_rule_approvals import graph
 
 
+@pytest.mark.parametrize(
+    "review_file,index",
+    [
+        ("uvek_heat_ccs_coal_plant_36_review.json", 0),
+        *[("uvek_heat_ccs_water_oil_36_review.json", i) for i in range(4)],
+    ],
+)
 @pytest.mark.parametrize("amount", [-2.0, 2.0])
-def test_coal_plant_proxy_preserves_signed_demand_and_uncertainty(tmp_path, amount):
+def test_coal_plant_proxy_preserves_signed_demand_and_uncertainty(
+    tmp_path, amount, review_file, index
+):
     from brightpath import DATA_DIR
 
-    review = json.loads(
-        (DATA_DIR / "export/uvek_heat_ccs_coal_plant_36_review.json").read_text()
-    )["records"][0]
+    review = json.loads((DATA_DIR / "export" / review_file).read_text())["records"][
+        index
+    ]
     resolved = graph(review["source"], version="3.6")
     exchange = resolved.activities[0]["exchanges"][1]
     exchange.update(
