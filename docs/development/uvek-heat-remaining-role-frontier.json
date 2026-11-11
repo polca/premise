@@ -52,11 +52,12 @@
   "licensed_inventory_coefficients_published": false,
   "runtime_roles_newly_admitted": 0,
   "follow_up_geothermal_prerequisites": {
-    "status": "retained_preparation_passed_regional_heat_role_still_unqualified",
+    "status": "controlled_shared_heat_callback_export_and_signed_LCI_verified",
     "selected_records": 48,
     "prepared_records": 53,
     "remaining_unapproved_correspondences": 0,
-    "evidence": "docs/development/uvek-geothermal-market-verification.json",
-    "heat_role_qualified": false
+    "evidence": "docs/development/uvek-secondary-geothermal-heat-verification.json",
+    "heat_role_qualified": "controlled_shared_case_only",
+    "remaining_unqualified_heat_roles": 9
   }
 }

@@ -1,0 +1,17 @@
+# Shared geothermal heat qualification
+
+The `heat, secondary, from geothermal` UVEK alias selects the reviewed retained `heat production, deep geothermal` records, with reference product `heat, deep geothermal`, per MJ. `use_legacy_templates: true` retains the normal declared-workbook preparation path; this is not a fallback after a failed CLIC download. The converted ecoinvent 3.6 cut-off inventory is additional inventory, not a native UVEK heat pump. Its full dependency preparation is documented in [the mapping review](uvek-geothermal-market-review.md).
+
+This is a useful-heat-output IAM role. The source already includes delivery efficiency through its original geothermal-resource demand. No second 0.8 multiplier, electrical-efficiency conversion, extra electricity credit or invented heat allocation is applied. Technology, geography, vintage, construction, treatment and allocation proxies retain their explicit warnings and unquantified score effects.
+
+A controlled test uses positive coal:geothermal useful-heat volumes of 1:2 in every physical TIAM-UCL region, through the shared `_update_heat` callback. It produces 16 regional geothermal suppliers and 17 secondary heat markets, including World. Raw and delivered volumes agree, conversion factors equal one and geothermal market shares equal two-thirds. The original 12 geographical heat records forward to the appropriate IAM-region records, following normal Premise behaviour.
+
+Regionalization may split construction demand among source suppliers. The audit verifies the original totals by input, scales uncertainty consistently, and retains geothermal resource demand and benzene flows. Deterministic export `loc` completion and equivalent integer/float representations are treated as representations, not changed probability distributions. The other retained inventories and helpers preserve quantities and random uncertainty.
+
+The normal exporter writes a 12,114-activity Brightway database with full validation and zero errors. All 114,840 technosphere links are internal; all 290,896 biosphere links address ecoinvent 3.10. All 172 positive/negative LCI calculations are finite and invert exactly with demand sign. The test covers 53 retained records/helpers, 16 regional geothermal suppliers and 17 markets.
+
+Validation retains 13,938 warnings: 10,087 positive-waste, 3,849 orphan and two circular-reference warnings. The previously measured native baseline has 10,087, 3,734 and two respectively. The controlled graph therefore has 115 more orphan warnings; no warning rule is suppressed. Every regional geothermal supplier is consumed by its regional heat market. This is a controlled scenario, not proof that a full real TIAM-UCL scenario works.
+
+Relevant heat/basis/data/consumer tests pass (62), as do UVEK alias and retained-hybrid tests (31). No runtime Python files change. The real ecoinvent 3.12 five-sector regression also passes: 31,205 activities, 11 validation phases, zero errors and 85 retained warnings; this regression creates no export. The full frozen-commit approval regression remains running and is tracked separately in the verification receipt.
+
+Nine heat roles still lack qualification: two solar-thermal roles, five CCS roles and two residual-heat roles. Full real TIAM/MESSAGE builds and the remaining sectors remain unfinished. See [verification receipt](uvek-secondary-geothermal-heat-verification.json).

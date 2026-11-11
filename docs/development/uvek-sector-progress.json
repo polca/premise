@@ -821,14 +821,13 @@
         {
           "code": "unqualified_IAM_heat_roles",
           "path": "premise/iam_variables_mapping/heat.yaml",
-          "finding": "Reviewed REMIND2050 positive roles remain qualified; two MESSAGE fuel-cell roles have controlled conversion checks. The TIAM-UCL coke role now retains the existing hard-coal industrial-furnace proxy and has a controlled shared-callback/export test in all 16 physical TIAM regions. Ten other roles still lack reviewed bindings and fail explicitly; full real TIAM/MESSAGE builds remain unverified.",
+          "finding": "Reviewed REMIND positive roles remain qualified. Controlled MESSAGE fuel-cell conversion and TIAM-UCL coke/geothermal shared-callback/export checks are recorded. Nine roles still lack reviewed bindings and fail explicitly; full real TIAM/MESSAGE builds remain unverified.",
           "roles": [
             "heat, buildings, residual",
             "heat, industrial, from solar thermal",
             "heat, secondary, from biomass with CCS",
             "heat, secondary, from coal with CCS",
             "heat, secondary, from coke with CCS",
-            "heat, secondary, from geothermal",
             "heat, secondary, from natural gas with CCS",
             "heat, secondary, from oil with CCS",
             "heat, secondary, from solar thermal",
@@ -1226,9 +1225,15 @@
       },
       "latest_evidence": [
         "docs/development/uvek-allocated-heat-carbon-verification.json",
-        "docs/development/uvek-secondary-coke-heat-verification.json"
+        "docs/development/uvek-secondary-coke-heat-verification.json",
+        "docs/development/uvek-secondary-geothermal-heat-verification.json"
       ],
-      "latest_coverage_note": "The shared fuels update now refreshes final fuel-carbon origin in 51 additional native allocated operating inventories (30 heat-MJ and 21 electricity-kWh records), preserving source allocation, performance, quantities and recorded CO2 totals. This is an operating-inventory carbon fix, not an additional IAM heat-role binding. The eleven unqualified IAM heat roles and other documented heat limitations remain pending; public heat scope is not expanded by this change. One additional TIAM-UCL useful-heat role (coke) now has the original Premise hard-coal proxy convention, three required geography YAML aliases, 17 controlled regional/World markets and 66 signed finite LCIs with full export validation. Ten unqualified heat roles remain; this does not establish a full real TIAM scenario."
+      "latest_coverage_note": "Deep-geothermal heat now uses the retained converted inventory through the shared Premise heat workflow: 16 regional suppliers, 17 regional/World markets, full 12,114-activity export and 172 signed finite LCIs in a controlled TIAM coal/geothermal case. Heat-output conversion is one; original geographical records forward normally and construction relinking preserves input totals and scales uncertainty consistently. Nine unqualified heat roles remain; full real TIAM/MESSAGE scenarios are not qualified.",
+      "geothermal_stage": {
+        "status": "controlled_shared_callback_export_and_signed_LCI_verified",
+        "verification": "docs/development/uvek-secondary-geothermal-heat-verification.json",
+        "full_real_IAM_scenario_verified": false
+      }
     },
     {
       "sector": "cdr",
@@ -2633,6 +2638,6 @@
     "prepared_records": 53,
     "remaining_unapproved_correspondences": 0,
     "evidence": "docs/development/uvek-geothermal-market-verification.json",
-    "heat_role_qualified": false
+    "heat_role_qualified": "controlled_shared_case_only"
   }
 }

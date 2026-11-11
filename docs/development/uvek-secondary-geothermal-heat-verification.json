@@ -1,0 +1,1100 @@
+{
+  "status": "controlled_shared_TIAM_geothermal_heat_export_and_signed_LCI_verified",
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-controlled-TIAM-coal-geothermal-heat-20261111-220140",
+  "actual_IAM_scenario": false,
+  "IAM_volumes": "Controlled useful heat: coal 1 and geothermal 2 in each TIAM-UCL physical region; no unencrypted IAM fallback.",
+  "export_activities": 12114,
+  "regional_geothermal_suppliers": 16,
+  "secondary_markets": 17,
+  "retained_originals_and_helpers_verified": 53,
+  "original_heat_records_forward_to_IAM_regions": 12,
+  "regional_heat_input_totals_and_scaled_uncertainty_verified": 16,
+  "raw_and_delivered_volume_rows_verified": 32,
+  "geothermal_share": 0.6666666666666666,
+  "heat_output_conversion_factor": 1,
+  "signed_finite_LCIs": 172,
+  "technosphere_links_internal": 114840,
+  "biosphere_links_in_requested_database": 290896,
+  "validation": {
+    "sector_phases": 1,
+    "full_export_validation": true,
+    "issues_by_severity": {
+      "warning": 13938
+    }
+  },
+  "runtime_Python_changes": false,
+  "remaining_unqualified_heat_roles_after_this_controlled_case": 9,
+  "full_real_IAM_scenario_verified": false,
+  "checks": [
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "World",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "World",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CSA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CSA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "FSU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "FSU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AUS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AUS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEX",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEX",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "EEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "EEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AFR",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AFR",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "JPN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "JPN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CHI",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CHI",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "UK",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "UK",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CAN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CAN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "USA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "USA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "WEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "WEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "ODA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "ODA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "SKO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "SKO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "IND",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "IND",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "WEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "WEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "UK",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "UK",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "AFR",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "AFR",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CSA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CSA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "AUS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "AUS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "JPN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "JPN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "EEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "EEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CHI",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CHI",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "SKO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "SKO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "MEX",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "MEX",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "MEA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "MEA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "ODA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "ODA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CAN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CAN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "IND",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "IND",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "USA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "USA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "FSU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "FSU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RAS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RAS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RAS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RAS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RAS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RAS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RAS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RAS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "GLO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "GLO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "GLO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "GLO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "GLO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "GLO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "GLO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "GLO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RAF",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RAF",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RAF",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RAF",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RAF",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RAF",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RAF",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RAF",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RME",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RME",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RME",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RME",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RME",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RME",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RME",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RME",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RLA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RLA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RLA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RLA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RLA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RLA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RLA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RLA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "CA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "CA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "CA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "CA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "CA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "CA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "JP",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "JP",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "JP",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "JP",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "JP",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "JP",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "JP",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "JP",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "US",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "US",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "US",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "US",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "US",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "US",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "US",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "US",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "IN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "IN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "IN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "IN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "IN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "IN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "IN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "IN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "CN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "CN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "CN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "CN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "CN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "CN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "CN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, deep geothermal",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "geothermal heat plant construction",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "stimulation of deep weel, for geothermal heat",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "deep well drilling, for deep geothermal heat",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Reviewed geothermal dependency, drilling-waste [BrightPath UVEK conversion 24f9889c] [CLIC brightpath-uvek-import-24f9889c011a08859e636de1]",
+      "location": "RoW",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Reviewed geothermal dependency, drilling-waste [BrightPath UVEK conversion 24f9889c] [CLIC brightpath-uvek-import-24f9889c011a08859e636de1]",
+      "location": "RoW",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for steel, low-alloyed, composed from resolved suppliers, GLO [BrightPath UVEK conversion 7dc4beca] [CLIC brightpath-uvek-import-7dc4beca8a944f2fb534d975]",
+      "location": "GLO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for steel, low-alloyed, composed from resolved suppliers, GLO [BrightPath UVEK conversion 7dc4beca] [CLIC brightpath-uvek-import-7dc4beca8a944f2fb534d975]",
+      "location": "GLO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Complete Swiss freight rail market, inspected PF diesel and electric shares [BrightPath UVEK conversion 80c3f0d8] [CLIC brightpath-uvek-import-80c3f0d8f88ff81447859d43]",
+      "location": "CH",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Complete Swiss freight rail market, inspected PF diesel and electric shares [BrightPath UVEK conversion 80c3f0d8] [CLIC brightpath-uvek-import-80c3f0d8f88ff81447859d43]",
+      "location": "CH",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Reviewed geothermal dependency, portland-cement [BrightPath UVEK conversion a42b1b0f] [CLIC brightpath-uvek-import-a42b1b0ff03cfab258efc4a6]",
+      "location": "CH",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Reviewed geothermal dependency, portland-cement [BrightPath UVEK conversion a42b1b0f] [CLIC brightpath-uvek-import-a42b1b0ff03cfab258efc4a6]",
+      "location": "CH",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Reviewed geothermal dependency, wastewater [BrightPath UVEK conversion b8bfa6bb] [CLIC brightpath-uvek-import-b8bfa6bb8df44c8a5f47d3f6]",
+      "location": "CH",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "Reviewed geothermal dependency, wastewater [BrightPath UVEK conversion b8bfa6bb] [CLIC brightpath-uvek-import-b8bfa6bb8df44c8a5f47d3f6]",
+      "location": "CH",
+      "demand": -1,
+      "finite_LCI": true
+    }
+  ],
+  "relevant_heat_tests_passed": 62,
+  "uvek_alias_and_hybrid_tests_passed": 31,
+  "mapping": "premise/iam_variables_mapping/heat.yaml#heat, secondary, from geothermal",
+  "full_frozen_approval_regression": "running",
+  "real_ecoinvent_312_five_sector_regression": {
+    "activity_count": 31205,
+    "validation_phases": 11,
+    "validation_errors": 0,
+    "validation_warnings": 85,
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "fuels"
+    ],
+    "export_created": false
+  },
+  "heat_stage": "controlled_geothermal_role_qualified_full_real_IAM_scenario_not_qualified",
+  "mapping_coverage": {
+    "declarations_without_uvek_alias": 11,
+    "internally_generated_district_delivery_roles": [
+      "heat, buildings, from district heating",
+      "heat, industrial, from district heating"
+    ],
+    "remaining_unqualified_roles": [
+      "heat, buildings, residual",
+      "heat, industrial, from solar thermal",
+      "heat, secondary, from biomass with CCS",
+      "heat, secondary, from coal with CCS",
+      "heat, secondary, from coke with CCS",
+      "heat, secondary, from natural gas with CCS",
+      "heat, secondary, from oil with CCS",
+      "heat, secondary, from solar thermal",
+      "heat, secondary, residual"
+    ]
+  }
+}

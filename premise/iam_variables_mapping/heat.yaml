@@ -1179,6 +1179,20 @@ heat, secondary, from heat pump:
   assumption: REMIND's equal geothermal bookkeeping alias is intentionally not added a second time.
 
 heat, secondary, from geothermal:
+  uvek_aliases:
+    use_legacy_templates: true
+    exact: true
+    fltr:
+      name:
+      - heat production, deep geothermal
+      reference product:
+      - heat, deep geothermal
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Use the reviewed retained deep-geothermal heat inventory converted from ecoinvent 3.6 cut-off to UVEK 2026 with the ecoinvent 3.10 biosphere. This is a converted additional inventory, not an ambient-source heat pump or native UVEK production process.
+    - Retain the complete delivered useful-heat inventory and its original delivery efficiency. The IAM role already measures heat output; add no second 0.8 multiplier, electrical efficiency conversion or electricity credit.
+    - Reviewed native screening proxies and composition-preserving helpers retain signed quantities and uncertainty with explicit technology, geography, allocation, vintage and unquantified-score warnings. Use standard Premise regionalization and relinking.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
