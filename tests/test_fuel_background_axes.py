@@ -46,8 +46,9 @@ def test_shared_fuels_uses_selected_family_and_biosphere(family, version, biosph
     "family,version,biosphere",
     [("ecoinvent", "3.12", None), ("uvek", "2026", "3.10")],
 )
+@pytest.mark.parametrize("gas", [None, 0, 1])
 def test_fuel_update_uses_explicit_biosphere_for_vehicle_carbon(
-    monkeypatch, family, version, biosphere
+    monkeypatch, family, version, biosphere, gas
 ):
     import premise.fuels.base as module
 
@@ -68,10 +69,15 @@ def test_fuel_update_uses_explicit_biosphere_for_vehicle_carbon(
         return fake
 
     carbon_versions = []
+    carrier_calls = []
     monkeypatch.setattr(module, "Fuels", construct)
     monkeypatch.setattr(module, "get_scenario_inventory", lambda scenario: database)
     monkeypatch.setattr(module, "replace_scenario_inventory", lambda *args: None)
-    monkeypatch.setattr(module, "annotate_cng_properties", lambda data: None)
+    monkeypatch.setattr(
+        module,
+        "annotate_cng_properties",
+        lambda data, **kwargs: carrier_calls.append(kwargs.get("carrier_specs", [])),
+    )
     monkeypatch.setattr(
         module,
         "update_vehicle_fuel_co2",
@@ -89,7 +95,7 @@ def test_fuel_update_uses_explicit_biosphere_for_vehicle_carbon(
         "iam data": SimpleNamespace(
             petrol_blend=1,
             diesel_blend=None,
-            natural_gas_blend=None,
+            natural_gas_blend=xr.DataArray(gas) if gas is not None else None,
             hydrogen_blend=None,
             regions=["EUR"],
         ),
@@ -105,6 +111,8 @@ def test_fuel_update_uses_explicit_biosphere_for_vehicle_carbon(
     assert received["version"] == version
     assert carbon_versions[0][0] == (biosphere or version)
     assert bool(carbon_versions[0][1]) == (family == "uvek")
+
+    assert bool(carrier_calls[0]) == (family == "uvek" and gas is not None and gas > 0)
 
 
 @pytest.mark.parametrize("family", ["ecoinvent", "uvek"])

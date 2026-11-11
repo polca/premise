@@ -544,9 +544,10 @@
         "docs/development/uvek-fuel-carbon-remaining-coverage.json",
         "docs/development/uvek-extended-transport-exhaust-verification.json",
         "docs/development/uvek-capture-carbon-metadata-verification.json",
-        "docs/development/uvek-native-gas-exhaust-verification.json"
+        "docs/development/uvek-native-gas-exhaust-verification.json",
+        "docs/development/uvek-low-pressure-gas-property-verification.json"
       ],
-      "latest_coverage_note": "526 car/truck, 96 other transport and 120 delivered-gas combustion balances verified; 14 production-specific raw-gas services deliberately unchanged. Captured-carbon metadata and coal role overlap are corrected. Low-pressure carrier properties, mixed industrial combustion and other unreviewed sector coverage remain unfinished; public fuels guard stays unchanged."
+      "latest_coverage_note": "64 existing low-pressure delivery records carry verified outgoing-MJ gas properties with 607 exchange rows unchanged. 137 delivered-gas combustion balances are verified (17 added downstream services), alongside 526 car/truck and 96 other transport balances. Native vehicle-gas kg reference/blends, network/process emissions and mixed industrial coverage remain unfinished; public fuels guard stays unchanged."
     },
     {
       "sector": "renewable",

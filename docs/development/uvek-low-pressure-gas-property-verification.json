@@ -1,0 +1,329 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-181632",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-174813",
+  "export_activities": 14795,
+  "counts": {
+    "selected_records": 151,
+    "recorded_exhaust_origin_verified": 137,
+    "records_with_changed_origin": 17,
+    "production_specific_raw_gas_records_unchanged": 14
+  },
+  "carrier_checks": {
+    "records": 64,
+    "unchanged_exchange_rows": 607,
+    "all_outgoing_reference_energies_MJ": 1,
+    "upstream_energy_range_MJ": [
+      1.0024999999999993,
+      1.0025000000000004
+    ],
+    "examples": [
+      {
+        "name": "Natural gas, low pressure, at consumer",
+        "location": "DE",
+        "unit": "megajoule",
+        "reference_energy_MJ": 1,
+        "inventory_unchanged": true,
+        "carbon_energy_basis_verified": true
+      },
+      {
+        "name": "Natural gas, low pressure, at consumer",
+        "location": "CH",
+        "unit": "megajoule",
+        "reference_energy_MJ": 1,
+        "inventory_unchanged": true,
+        "carbon_energy_basis_verified": true
+      },
+      {
+        "name": "Natural gas, low pressure, at consumer",
+        "location": "RER",
+        "unit": "megajoule",
+        "reference_energy_MJ": 1,
+        "inventory_unchanged": true,
+        "carbon_energy_basis_verified": true
+      }
+    ]
+  },
+  "examples": [
+    {
+      "name": "Natural gas, burned in boiler condensing modulating 300kW",
+      "location": "CH",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 0.00015867785574174287
+    },
+    {
+      "name": "Natural gas, burned in boiler atmospheric low-NOx non-modulating <100kW",
+      "location": "RER",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 0.00015867785574174287
+    },
+    {
+      "name": "Natural gas, burned in cogen 300kWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 0.00015867785574174287
+    },
+    {
+      "name": "Natural gas, burned in boiler fan burner non-modulating <100kW",
+      "location": "RER",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 0.00015867785574174287
+    },
+    {
+      "name": "Natural gas, burned in cogen 1MWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "positive_exhaust_total_preserved": true,
+      "non_fossil_fraction": 0.00015867785574174287
+    }
+  ],
+  "lci_checks": [
+    {
+      "name": "Natural gas, burned in boiler condensing modulating 300kW",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler atmospheric low-NOx non-modulating <100kW",
+      "location": "RER",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in cogen 300kWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler fan burner non-modulating <100kW",
+      "location": "RER",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in cogen 1MWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in cogen 15kWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in industrial furnace, for asphalt production, 1MWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler modulating <100kW",
+      "location": "RER",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler fan burner low-NOx non-modulating <100kW",
+      "location": "RER",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler condensing modulating 50kW",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler condensing modulating 50kW (proj. 388)",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in industrial furnace 1MWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler atmospheric burner non-modulating <100kW",
+      "location": "RER",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler atm. low-NOx condensing non-modulating <100kW",
+      "location": "RER",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in cogen 50kWth",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in industrial furnace 1MW",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "Natural gas, burned in boiler condensing modulating 15kW",
+      "location": "CH",
+      "unit": "megajoule",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    }
+  ],
+  "all_technosphere_links_internal": true,
+  "pre_export_validation": {
+    "phases": 11,
+    "issues_by_severity": {
+      "warning": 14
+    }
+  },
+  "tests": {
+    "focused_passed": 262,
+    "warnings": 2
+  },
+  "assertions": [
+    "Positive exhaust totals preserved; fossil/non-fossil split follows actual linked gas properties.",
+    "All other exchange metadata, quantities, uncertainty, negative credits and emissions unchanged, excluding exported database/code link tuples and row ordering.",
+    "Production-specific raw gas routes retain their entire original exchange records on the same normalized comparison basis."
+  ],
+  "scope": "Exact 25 native MJ combustion-service names (eight reviewed earlier and 17 downstream low-pressure services). No industrial feedstock or mixed-process inventory is reclassified wholesale.",
+  "limitations": [
+    "This is a diagnostic five-sector build; the public fuels guard remains unchanged.",
+    "Native operating-performance, allocation, gas-property and reference-energy screening assumptions remain.",
+    "Low-pressure network/process emissions, mixed industrial combustion and other sector coverage remain unfinished. The four lubricated CHP services retain an explicit gas-dominant whole-exhaust proxy limitation."
+  ],
+  "ecoinvent_3_12_regression": {
+    "source": "ecoinvent-3.12-cutoff",
+    "biosphere": "ecoinvent-3.12-biosphere",
+    "scenario": {
+      "model": "remind",
+      "pathway": "SSP2-NPi",
+      "year": 2050
+    },
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "fuels"
+    ],
+    "activities": 31205,
+    "validation_phases": 11,
+    "issues_by_severity": {
+      "warning": 85
+    },
+    "export_created": false
+  },
+  "decisions": [
+    {
+      "decision": "Propagate actual upstream oxidation-carbon properties per outgoing reference energy through the existing native network. No additional loss multiplier, density conversion or inventory replacement.",
+      "authorization": "Standing autonomous approval; source MJ reference and complete carrier inputs inspected."
+    },
+    {
+      "decision": "Extend the existing recorded-exhaust-origin convention to 17 exact downstream combustion services. Four lubricated CHP services retain a gas-dominant whole-exhaust screening limitation; retain oil/waste inputs and do not invent a lubricant CO2 correction.",
+      "authorization": "Standing approval for similar screening cases with warnings; limitation stored in carrier metadata, emitted once per declaration and logged here."
+    }
+  ],
+  "runtime_warning": "One per activated carrier declaration, rather than per country; includes native basis and lubricant-origin limitations.",
+  "remaining_work": [
+    "Native vehicle-gas kg reference/blend handling.",
+    "Low-pressure network/process emissions and mixed industrial carbon.",
+    "Other unreviewed electricity/heat roles and remaining registered sectors; public fuels gate remains unchanged."
+  ],
+  "clean_staged_checkout_verification": {
+    "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-clean-low-pressure-review-20261111-184429",
+    "export_activities": 14795,
+    "counts": {
+      "selected_records": 151,
+      "recorded_exhaust_origin_verified": 137,
+      "records_with_changed_origin": 17,
+      "production_specific_raw_gas_records_unchanged": 14
+    },
+    "carrier_checks": {
+      "records": 64,
+      "unchanged_exchange_rows": 607,
+      "all_outgoing_reference_energies_MJ": 1,
+      "upstream_energy_range_MJ": [
+        1.0024999999999993,
+        1.0025000000000004
+      ],
+      "examples": [
+        {
+          "name": "Natural gas, low pressure, at consumer",
+          "location": "DE",
+          "unit": "megajoule",
+          "reference_energy_MJ": 1,
+          "inventory_unchanged": true,
+          "carbon_energy_basis_verified": true
+        },
+        {
+          "name": "Natural gas, low pressure, at consumer",
+          "location": "CH",
+          "unit": "megajoule",
+          "reference_energy_MJ": 1,
+          "inventory_unchanged": true,
+          "carbon_energy_basis_verified": true
+        },
+        {
+          "name": "Natural gas, low pressure, at consumer",
+          "location": "RER",
+          "unit": "megajoule",
+          "reference_energy_MJ": 1,
+          "inventory_unchanged": true,
+          "carbon_energy_basis_verified": true
+        }
+      ]
+    },
+    "all_technosphere_links_internal": true,
+    "all_biosphere_links_in_requested_3_10_database": true,
+    "biosphere_rows_checked": 311483,
+    "finite_LCIs": 17,
+    "validation": {
+      "phases": 11,
+      "issues_by_severity": {
+        "warning": 14
+      }
+    },
+    "staged_runtime_file_sha256": {
+      "premise/fuels/properties.py": "590b970342dbcc95078e2e81088efd1652f1d0968ad6d4275bd6e30f9e0fe705",
+      "premise/fuels/base.py": "4e6ba30263c7ed34397c40425f06a864a9f66331b74db14a69c816d3017bcfab",
+      "premise/fuels/carbon.py": "374f15a75912259236953a1b97dac712888256c9b858f07590846fd662215c1c",
+      "premise/iam_variables_mapping/fuels.yaml": "2c2fd72ba5731c0c8ddd0541fb989503c86f9e0feca6766d368419420e69dffd"
+    },
+    "pre_existing_dirty_GAINS_resources_excluded": true,
+    "temporary_checkout_removed": true,
+    "temporary_checkout_bytes_removed": 86894371
+  }
+}

@@ -223,10 +223,53 @@ natural gas:
         - "Natural gas, burned in gas turbine, for compressor station"
         - "Natural gas, burned in power plant"
         - "Natural gas, burned in power plant or heat plant"
+        - "Natural gas, burned in boiler atm. low-NOx condensing non-modulating <100kW"
+        - "Natural gas, burned in boiler atmospheric burner non-modulating <100kW"
+        - "Natural gas, burned in boiler atmospheric low-NOx non-modulating <100kW"
+        - "Natural gas, burned in boiler condensing modulating 15kW"
+        - "Natural gas, burned in boiler condensing modulating 300kW"
+        - "Natural gas, burned in boiler condensing modulating 50kW"
+        - "Natural gas, burned in boiler condensing modulating 50kW (proj. 388)"
+        - "Natural gas, burned in boiler fan burner low-NOx non-modulating <100kW"
+        - "Natural gas, burned in boiler fan burner non-modulating <100kW"
+        - "Natural gas, burned in boiler modulating <100kW"
+        - "Natural gas, burned in cogen 15kWth"
+        - "Natural gas, burned in cogen 1MWth"
+        - "Natural gas, burned in cogen 300kWth"
+        - "Natural gas, burned in cogen 50kWth"
+        - "Natural gas, burned in industrial furnace 1MW"
+        - "Natural gas, burned in industrial furnace 1MWth"
+        - "Natural gas, burned in industrial furnace, for asphalt production, 1MWth"
     limitations:
     - Native combustion service only; preserve recorded positive exhaust CO2 and refresh fossil/non-fossil origin from the actual delivered-gas forwarding supplier. Retain engine performance, allocation, signed credits, other emissions, auxiliary inputs and uncertainty.
     - Explicit production-route gas has no delivered-market forwarding properties and retains its original composition and emissions; do not replace it with an IAM mix or infer biogenic origin.
     - Nominal methane-based blend and source combustion-carbon conventions remain screening assumptions; this origin refinement does not change fuel demand or certify LCIA equivalence.
+  uvek_gas_property_carriers:
+  - requires_iam_array: natural_gas_blend
+    selector:
+      exact: true
+      fltr:
+        name: Natural gas, low pressure, at consumer
+        reference product: Natural gas, low pressure, at consumer
+        unit: megajoule
+    gas input:
+      name: Natural gas, high pressure, at consumer
+      product: Natural gas, high pressure, at consumer
+      unit: megajoule
+    ancillary inputs:
+    - name: Pipeline, natural gas, low pressure distribution network
+      product: Pipeline, natural gas, low pressure distribution network
+      unit: kilometer
+    - name: Natural gas, burned in gas turbine
+      product: Natural gas, burned in gas turbine
+      unit: megajoule
+    reference energy MJ per unit: 1
+    canonical market name: market for natural gas, low pressure
+    energy source: Native positive unit MJ reference; incoming delivered-gas energy and oxidation-carbon properties determine composition per outgoing MJ.
+    limitations:
+    - Carry only the delivered gas composition, excluding the separate turbine operating service from the physical outgoing fuel. Preserve the complete native network, all input ratios, signed exchanges, emissions and uncertainty.
+    - Normalize incoming gas-carbon properties to the documented outgoing 1 MJ reference, without a kg/m3 density assumption or an inferred measured-loss correction. Gas composition, reference-energy, allocation, geography and vintage screening limitations remain.
+    - Downstream lubricated CHP services use the reviewed gas-dominant whole-exhaust origin convention. Some fossil lubricant CO2 may also be reclassified because its direct contribution is not separately identified; score effects are unquantified. Retain oil and waste inventories and add no guessed correction or credit.
   uvek_aliases:
     market_suppliers:
       allow_generated_helpers: true

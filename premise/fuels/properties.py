@@ -6,13 +6,14 @@ credits are not subtracted here. Compression electricity is not fuel energy.
 """
 
 import math
+import warnings
 
 PROPERTIES_KEY = "premise fuel properties"
 CNG_ENERGY_MJ_PER_KG = 46.5
 
 
-def annotate_cng_properties(database):
-    """Carry gas carbon origins through the unchanged compression recipe.
+def annotate_cng_properties(database, *, carrier_specs=()):
+    """Carry gas carbon origins through unchanged delivery/compression recipes.
 
     The documented delivered calorific value is independent of upstream gas
     input energy. Record that boundary difference, without explaining it away
@@ -20,12 +21,42 @@ def annotate_cng_properties(database):
     """
     product = "natural gas, medium pressure, vehicle grade"
     index = {activity_key(ds): ds for ds in database}
+    from ..inventory.activity_maps import act_fltr
+
+    carriers = {}
+    for spec in carrier_specs:
+        for dataset in act_fltr(database, **spec["selector"]):
+            key = activity_key(dataset)
+            if key in carriers:
+                raise ValueError(f"Ambiguous gas-property carrier declaration: {key}")
+            carriers[key] = spec
     completed = set()
 
     def annotate(dataset, seen=frozenset()):
         key = activity_key(dataset)
+        spec = carriers.get(key)
+        if spec and key in seen:
+            raise ValueError(f"Cyclic gas-property carrier: {key}")
         if key in completed or key in seen:
             return
+        reference_energy = (
+            spec["reference energy MJ per unit"] if spec else CNG_ENERGY_MJ_PER_KG
+        )
+        reference_unit = dataset["unit"] if spec else "kilogram"
+        if spec:
+            production = [
+                e for e in dataset["exchanges"] if e.get("type") == "production"
+            ]
+            if (
+                len(production) != 1
+                or production[0]["amount"] != 1
+                or not math.isfinite(reference_energy)
+                or reference_energy <= 0
+            ):
+                raise ValueError(
+                    f"Gas-property carrier requires a positive unit energy reference: {key}"
+                )
+            dataset.pop(PROPERTIES_KEY, None)
         components = []
         carbon = {
             name: 0.0
@@ -38,9 +69,29 @@ def annotate_cng_properties(database):
         input_energy = 0.0
         compression = False
         for exchange in dataset["exchanges"]:
-            if exchange.get("type") != "technosphere" or exchange["amount"] <= 0:
+            if exchange.get("type") != "technosphere" or exchange["amount"] == 0:
                 continue
-            if exchange.get("product") == product:
+            if spec:
+                if any(
+                    all(exchange.get(k) == v for k, v in ancillary.items())
+                    for ancillary in spec.get("ancillary inputs", [])
+                ):
+                    continue
+                if not all(exchange.get(k) == v for k, v in spec["gas input"].items()):
+                    raise ValueError(
+                        f"Unreviewed gas-property carrier input: {exchange.get('name')!r} in {key}"
+                    )
+                if not math.isfinite(exchange["amount"]) or exchange["amount"] < 0:
+                    raise ValueError(
+                        f"Gas-property carrier needs nonnegative finite gas inputs: {key}"
+                    )
+                provider = index.get(activity_key(exchange))
+                if provider is not None and activity_key(provider) in carriers:
+                    annotate(provider, seen | {key})
+                compression = True
+            elif exchange["amount"] <= 0:
+                continue
+            elif exchange.get("product") == product:
                 provider = index.get(activity_key(exchange))
                 if provider is None:
                     return
@@ -54,8 +105,23 @@ def annotate_cng_properties(database):
             else:
                 continue
             if provider is None or PROPERTIES_KEY not in provider:
+                if spec:
+                    raise ValueError(
+                        f"Missing upstream gas properties for {key}: {activity_key(exchange)}"
+                    )
                 return  # Optional legacy supply: do not invent an origin.
             properties = provider[PROPERTIES_KEY]
+            if spec and properties["reference unit"] != exchange["unit"]:
+                raise ValueError(f"Upstream gas-property unit mismatch for {key}")
+            if spec and (
+                not math.isfinite(properties["energy MJ per unit"])
+                or properties["energy MJ per unit"] <= 0
+                or any(
+                    not math.isfinite(properties[name]) or properties[name] < 0
+                    for name in carbon
+                )
+            ):
+                raise ValueError(f"Invalid upstream gas properties for {key}")
             input_energy += exchange["amount"] * properties["energy MJ per unit"]
             for name in carbon:
                 carbon[name] += exchange["amount"] * properties[name]
@@ -69,11 +135,28 @@ def annotate_cng_properties(database):
                 }
             )
         if not components:
+            if spec:
+                raise ValueError(
+                    f"Missing positive gas supply for declared carrier: {key}"
+                )
             return
         total = sum(carbon.values())
-        if total <= 0:
+        if spec:
+            if (
+                not math.isfinite(input_energy)
+                or input_energy <= 0
+                or any(not math.isfinite(v) or v < 0 for v in carbon.values())
+            ):
+                raise ValueError(
+                    f"Invalid upstream gas energy or carbon properties for {key}"
+                )
+            carbon = {
+                name: value / input_energy * reference_energy
+                for name, value in carbon.items()
+            }
+        elif total <= 0:
             return
-        if compression:
+        elif compression:
             # Compression changes neither the origin nor relative amounts of
             # fossil/non-fossil carbon. Scale oxidation potential to the
             # documented delivered fuel, not the larger upstream energy input.
@@ -82,20 +165,31 @@ def annotate_cng_properties(database):
                 for name, value in carbon.items()
             }
         properties = {
-            "reference unit": "kilogram",
-            "reference energy MJ per unit": CNG_ENERGY_MJ_PER_KG,
-            "energy MJ per unit": CNG_ENERGY_MJ_PER_KG,
+            "reference unit": reference_unit,
+            "reference energy MJ per unit": reference_energy,
+            "energy MJ per unit": reference_energy,
             **carbon,
             "components": components,
-            "carbon convention": "Full oxidation; gas-supply carbon origins preserved through compression",
-            "energy source": "ecoinvent vehicle-grade natural gas market comment: 46.5 MJ/kg",
+            "carbon convention": (
+                "Full oxidation potential per outgoing reference energy; gas origin preserved through the native delivery stage"
+                if spec
+                else "Full oxidation; gas-supply carbon origins preserved through compression"
+            ),
+            "energy source": (
+                spec["energy source"]
+                if spec
+                else "ecoinvent vehicle-grade natural gas market comment: 46.5 MJ/kg"
+            ),
         }
+        if spec:
+            properties["canonical market name"] = spec["canonical market name"]
+            properties["carrier limitations"] = list(spec["limitations"])
         if compression:
             properties.update(
                 {
                     "upstream fuel energy MJ per unit": input_energy,
                     "upstream minus delivered energy MJ per unit": input_energy
-                    - CNG_ENERGY_MJ_PER_KG,
+                    - reference_energy,
                     "energy boundary note": "Inherited source recipe preserved. This boundary difference is not attributed entirely to measured methane losses.",
                 }
             )
@@ -104,10 +198,14 @@ def annotate_cng_properties(database):
 
     for dataset in database:
         if (
-            dataset.get("reference product") == product
+            activity_key(dataset) in carriers
+            or dataset.get("reference product") == product
             and dataset["unit"] == "kilogram"
         ):
             annotate(dataset)
+    for spec in carrier_specs:
+        if any(carriers.get(key) is spec for key in completed):
+            warnings.warn(" ".join(spec["limitations"]), UserWarning, stacklevel=2)
 
 
 def energy_per_unit(technology, unit, specifications):

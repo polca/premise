@@ -194,7 +194,14 @@ def vehicle_fuel_carbon(dataset, providers):
             if provider is not None
             else {}
         )
-        name = handover.get("target", {}).get("name", exchange.get("name", ""))
+        carrier_market = (
+            provider.get(PROPERTIES_KEY, {}).get("canonical market name")
+            if provider is not None
+            else None
+        )
+        name = handover.get("target", {}).get(
+            "name", carrier_market or exchange.get("name", "")
+        )
         if not name.startswith(("market for ", "market group for ")):
             continue
         stem = name.removeprefix("market for ").removeprefix("market group for ")

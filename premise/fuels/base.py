@@ -74,7 +74,21 @@ def _update_fuels(
             )
         fuels.clear_validation_provenance()
         fuels.relink_datasets()
-        annotate_cng_properties(fuels.database)
+        declarations = get_mapping(FUELS_TECHS, var=f"{family}_gas_property_carriers")
+        carriers = []
+        for entries in declarations.values():
+            for entry in entries:
+                required = entry.get("requires_iam_array")
+                array = (
+                    getattr(scenario["iam data"], required, None) if required else None
+                )
+                if required and (array is None or float(array.sum()) <= 0):
+                    continue
+                carriers.append(entry)
+        if carriers:
+            annotate_cng_properties(fuels.database, carrier_specs=carriers)
+        else:
+            annotate_cng_properties(fuels.database)
         recorded = get_mapping(FUELS_TECHS, var=f"{family}_recorded_exhaust_consumers")
         update_vehicle_fuel_co2(
             fuels.database,
