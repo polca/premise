@@ -199,7 +199,14 @@ def vehicle_fuel_carbon(dataset, providers):
             continue
         stem = name.removeprefix("market for ").removeprefix("market group for ")
         if not stem.startswith(
-            ("petrol", "gasoline", "diesel", "natural gas", "liquefied petroleum gas")
+            (
+                "petrol",
+                "gasoline",
+                "diesel",
+                "kerosene",
+                "natural gas",
+                "liquefied petroleum gas",
+            )
         ):
             continue
         key = activity_key(exchange)

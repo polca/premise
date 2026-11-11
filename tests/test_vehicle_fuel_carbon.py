@@ -405,14 +405,26 @@ def test_rail_unknown_supplier_and_missing_exhaust_remain_unmodified():
 
 
 @pytest.mark.parametrize(
-    "name,unit",
+    "name,unit,fuel_name",
     [
-        ("Transport, freight, rail, electricity with shunting", "ton kilometer"),
-        ("Transport, passenger bus, illustrative diesel", "person kilometer"),
+        (
+            "Transport, freight, rail, electricity with shunting",
+            "ton kilometer",
+            "market for diesel",
+        ),
+        (
+            "Transport, passenger bus, illustrative diesel",
+            "person kilometer",
+            "market for diesel",
+        ),
+        ("Transport, aircraft, passenger", "person kilometer", "market for kerosene"),
+        ("Transport, barge", "ton kilometer", "market for diesel"),
     ],
 )
-def test_declared_operating_service_keeps_recorded_total_and_fuel_demand(name, unit):
-    fuel = supplier(share=0.25)
+def test_declared_operating_service_keeps_recorded_total_and_fuel_demand(
+    name, unit, fuel_name
+):
+    fuel = supplier(share=0.25, name=fuel_name)
     operating = vehicle(fuel)
     operating["name"] = operating["reference product"] = name
     operating["unit"] = unit
@@ -449,3 +461,30 @@ def test_declared_operating_service_keeps_recorded_total_and_fuel_demand(name, u
         assert operating["exchanges"][1] == fuel_input
         assert any(e.get("amount") == -0.01 for e in operating["exchanges"])
         assert infrastructure == infrastructure_before
+
+
+def test_kerosene_recorded_exhaust_uses_canonical_high_altitude_fallback():
+    fuel = supplier(share=0.5, name="market for kerosene")
+    aircraft = vehicle(fuel)
+    aircraft["name"] = "illustrative aircraft operating service"
+    aircraft["exchanges"][-1]["categories"] = (
+        "air",
+        "lower stratosphere + upper troposphere",
+    )
+    update_vehicle_fuel_co2(
+        [fuel, aircraft],
+        "3.10",
+        recorded_exhaust_filters=[
+            {"exact": True, "fltr": {"name": aircraft["name"], "unit": "kilometer"}}
+        ],
+    )
+    bio = [
+        e
+        for e in aircraft["exchanges"]
+        if e.get("name") == "Carbon dioxide, non-fossil"
+    ]
+    assert sum(e["amount"] for e in bio) == pytest.approx(0.15)
+    flows = get_biosphere_code("3.10")
+    for e in bio:
+        assert e["categories"] == ("air", "unspecified")
+        assert e["input"][1] == flows[(e["name"], *e["categories"], "kilogram")]

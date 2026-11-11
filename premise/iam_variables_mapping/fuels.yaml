@@ -576,6 +576,57 @@ diesel:
     limitations:
     - Operating rail/bus service only; retain recorded positive exhaust CO2 and refresh carbon origin from final linked fuel. Mixed electric traction and diesel shunting are not reclassified as diesel-only technology.
     - Preserve non-CO2 emissions, negative capture credits, fuel demand and uncertainty; historical combustion performance and source allocation remain limitations.
+  - selector:
+      exact: true
+      fltr:
+        unit: kilometer
+        name:
+        - "xxx Operation, coach"
+    limitations:
+    - Reviewed operating transport or locomotive combustion only; preserve recorded positive exhaust CO2 and refresh its origin from final linked fuels. No new full-oxidation, engine-efficiency or avoided-emission assumption.
+    - Preserve signed credits, non-CO2 emissions, fuel demand and uncertainty; original technology, operating conditions, geography, allocation and vintage remain screening limitations.
+  - selector:
+      exact: true
+      fltr:
+        unit: person kilometer
+        name:
+        - "Operation, average train"
+        - "Transport, average train"
+        - "Transport, average train, SBB mix"
+        - "Transport, long-distance train, SBB mix"
+        - "Transport, long-distance train, SBB mix, Betrieb"
+        - "Transport, metropolitan train, SBB mix"
+        - "Transport, passenger ship"
+    limitations:
+    - Reviewed operating transport or locomotive combustion only; preserve recorded positive exhaust CO2 and refresh its origin from final linked fuels. No new full-oxidation, engine-efficiency or avoided-emission assumption.
+    - Preserve signed credits, non-CO2 emissions, fuel demand and uncertainty; original technology, operating conditions, geography, allocation and vintage remain screening limitations.
+  - selector:
+      exact: true
+      fltr:
+        unit: ton kilometer
+        name:
+        - "Operation, coal freight train, diesel"
+        - "Operation, coal freight train, electricity"
+        - "Operation, freight train"
+        - "Operation, freight train, diesel"
+        - "Transport, barge"
+        - "Transport, barge tanker"
+        - "Transport, barge, Betrieb"
+        - "xxx Operation, barge"
+        - "xxx Operation, freight train"
+    limitations:
+    - Reviewed operating transport or locomotive combustion only; preserve recorded positive exhaust CO2 and refresh its origin from final linked fuels. No new full-oxidation, engine-efficiency or avoided-emission assumption.
+    - Preserve signed credits, non-CO2 emissions, fuel demand and uncertainty; original technology, operating conditions, geography, allocation and vintage remain screening limitations.
+  - selector:
+      exact: true
+      fltr:
+        unit: unit
+        name:
+        - "Burning of 1 g diesel in locomotive with particle filter (93%)"
+        - "Burning of 1 g diesel in locomotive without particle filter"
+    limitations:
+    - Reviewed operating transport or locomotive combustion only; preserve recorded positive exhaust CO2 and refresh its origin from final linked fuels. No new full-oxidation, engine-efficiency or avoided-emission assumption.
+    - Preserve signed credits, non-CO2 emissions, fuel demand and uncertainty; original technology, operating conditions, geography, allocation and vintage remain screening limitations.
   uvek_aliases:
     market_suppliers:
       exact: true
@@ -2120,6 +2171,52 @@ kerosene:
     limitations:
     - Delivered-fuel market replacement; producer-specific refinery and explicitly fossil-only supplies remain separate and retain their physical product boundary.
     - Native delivery auxiliaries are retained in the IAM market using the reviewed template. Grade and vintage differences remain unquantified; downstream vehicle-blend and combustion-carbon checks are unfinished.
+  uvek_recorded_exhaust_consumers:
+  - selector:
+      exact: true
+      fltr:
+        unit: person kilometer
+        name:
+        - "Transport, aircraft, passenger"
+        - "Transport, aircraft, passenger, Betrieb"
+        - "Transport, aircraft, passenger, long-haul"
+        - "Transport, aircraft, passenger, long-haul, Betrieb"
+        - "Transport, aircraft, passenger, long-haul, business"
+        - "Transport, aircraft, passenger, long-haul, economy"
+        - "Transport, aircraft, passenger, long-haul, first"
+        - "Transport, aircraft, passenger, medium-haul"
+        - "Transport, aircraft, passenger, medium-haul, Betrieb"
+        - "Transport, aircraft, passenger, medium-haul, business"
+        - "Transport, aircraft, passenger, medium-haul, economy"
+        - "Transport, aircraft, passenger, short-haul"
+        - "Transport, aircraft, passenger, short-haul, Betrieb"
+        - "Transport, aircraft, passenger, short-haul, business"
+        - "Transport, aircraft, passenger, short-haul, economy"
+        - "xxx Operation, aircraft, passenger"
+        - "xxx Operation, aircraft, passenger, Europe"
+        - "xxx Operation, aircraft, passenger, intercontinental"
+    limitations:
+    - Reviewed operating transport or locomotive combustion only; preserve recorded positive exhaust CO2 and refresh its origin from final linked fuels. No new full-oxidation, engine-efficiency or avoided-emission assumption.
+    - Preserve signed credits, non-CO2 emissions, fuel demand and uncertainty; original technology, operating conditions, geography, allocation and vintage remain screening limitations.
+  - selector:
+      exact: true
+      fltr:
+        unit: ton kilometer
+        name:
+        - "Transport, aircraft, freight"
+        - "Transport, aircraft, freight, Betrieb"
+        - "Transport, aircraft, freight, long-haul"
+        - "Transport, aircraft, freight, long-haul, Betrieb"
+        - "Transport, aircraft, freight, medium-haul"
+        - "Transport, aircraft, freight, medium-haul, Betrieb"
+        - "Transport, aircraft, freight, short-haul"
+        - "Transport, aircraft, freight, short-haul, Betrieb"
+        - "xxx Operation, aircraft, freight"
+        - "xxx Operation, aircraft, freight, Europe"
+        - "xxx Operation, aircraft, freight, intercontinental"
+    limitations:
+    - Reviewed operating transport or locomotive combustion only; preserve recorded positive exhaust CO2 and refresh its origin from final linked fuels. No new full-oxidation, engine-efficiency or avoided-emission assumption.
+    - Preserve signed credits, non-CO2 emissions, fuel demand and uncertainty; original technology, operating conditions, geography, allocation and vintage remain screening limitations.
   uvek_aliases:
     exact: true
     fltr:
