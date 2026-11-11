@@ -1,0 +1,126 @@
+{
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261111-113907",
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "public_scope_guard_bypassed": false,
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement"
+  ],
+  "activities": 13695,
+  "clinker_markets": 13,
+  "regional_clinker_producers": 24,
+  "regional_cement_plants": 182,
+  "cement_grades": 14,
+  "grade_clinker_quantities_and_uncertainty_retained": true,
+  "other_recipe_aggregate_signed_quantities_and_scaled_uncertainty_retained": true,
+  "geographic_split_limitations": "Ordinary Premise relinking can split one original supplier across regional suppliers. Aggregate quantities and scaled distribution parameters are checked; a new statistical correlation model is not introduced.",
+  "technosphere_links_internal": true,
+  "clinker_energy_check_count": 24,
+  "finite_lcis": [
+    {
+      "name": "market for clinker",
+      "product": "clinker",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 103980
+    },
+    {
+      "name": "market group for electricity, high voltage",
+      "product": "electricity, high voltage",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 103980
+    },
+    {
+      "name": "market for heat, for buildings",
+      "product": "heat, central or small-scale",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 103980
+    },
+    {
+      "name": "heat supply, district delivery",
+      "product": "heat, district or industrial, at consumer",
+      "location": "NEU",
+      "finite": true,
+      "inventory_nonzero": 104022
+    },
+    {
+      "name": "CEM I cement, at plant",
+      "product": "CEM I cement, at plant",
+      "location": "NEU",
+      "finite": true,
+      "inventory_nonzero": 103984
+    },
+    {
+      "name": "clinker production, dry feed rotary kiln, efficient, with MEA CCS",
+      "product": "Clinker, at plant",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 104025
+    },
+    {
+      "name": "carbon dioxide, captured, at cement production plant, using monoethanolamine",
+      "product": "carbon dioxide, captured",
+      "location": "EUR",
+      "finite": true,
+      "inventory_nonzero": 103983
+    }
+  ],
+  "limitation": "Qualified only for the stated four-sector REMIND scenario; remaining sectors and other IAM models remain pending.",
+  "electricity_markets": 39,
+  "validation_issues_by_severity": {
+    "warning": 14
+  },
+  "heat_consumer_checks": {
+    "industrial_end_use": 870,
+    "uncertainty_rows_retained": 940,
+    "buildings_end_use": 100,
+    "consumers": 746
+  },
+  "additional_heat_consumer_lcis": [
+    {
+      "name": "market for heat, for buildings",
+      "location": "EUR",
+      "amount": 1,
+      "unit": "megajoule",
+      "finite": true
+    },
+    {
+      "name": "market for heat, district or industrial",
+      "location": "EUR",
+      "amount": 1,
+      "unit": "megajoule",
+      "finite": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "EUR",
+      "amount": 1,
+      "unit": "megajoule",
+      "finite": true
+    },
+    {
+      "name": "Battery cell, NCA",
+      "location": "GLO",
+      "amount": 1,
+      "unit": "kilogram",
+      "finite": true
+    },
+    {
+      "name": "Viscose fibres, at plant",
+      "location": "GLO",
+      "amount": 1,
+      "unit": "kilogram",
+      "finite": true
+    }
+  ],
+  "premise_revision": "29612f65",
+  "brightpath_revision": "d4968e1f6611fa50c8252fed58cdb1472c3e5ee7"
+}

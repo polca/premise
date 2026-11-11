@@ -90,3 +90,17 @@ REMIND SSP2-NPi 2050 with 29,640 activities. See
 `uvek-colleague-ecoinvent-312-regression.json` for validation counts and limits.
 The run used the current inventory resolution, not a replay of the colleague's
 older archive, so activity-count equality is not asserted.
+
+The corrected branch also completed the real UVEK four-sector standard workflow
+and Brightway export. `uvek-colleague-four-sector-regression.json` records
+13,695 activities, 39 regional electricity markets, internal technosphere links,
+14 warnings and no validation errors, seven finite representative LCIs and
+five further heat/consumer LCIs. Independent heat-consumer checks retained 970
+source heat exchanges and 940 uncertainty rows across 746 consumers. This is a
+four-sector regression, not completion of the remaining sector goal.
+
+User follow-up: retain the special Swiss electricity mixes as they are. Review
+replacing the wool-specific grid helper with the complete native European grid
+through mappings, and audit standard regional power-plant duplication before
+adding any UVEK-specific behavior. These follow-ups are not implemented by the
+two source-failure fixes above.
