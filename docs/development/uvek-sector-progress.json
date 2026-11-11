@@ -1227,9 +1227,10 @@
         "docs/development/uvek-allocated-heat-carbon-verification.json",
         "docs/development/uvek-secondary-coke-heat-verification.json",
         "docs/development/uvek-secondary-geothermal-heat-verification.json",
-        "docs/development/uvek-heat-ccs-boundary-review.json"
+        "docs/development/uvek-heat-ccs-boundary-review.json",
+        "docs/development/uvek-native-ng-ccs-heat-verification.json"
       ],
-      "latest_coverage_note": "Deep-geothermal heat now uses the retained converted inventory through the shared Premise heat workflow: 16 regional suppliers, 17 regional/World markets, full 12,114-activity export and 172 signed finite LCIs in a controlled TIAM coal/geothermal case. Heat-output conversion is one; original geographical records forward normally and construction relinking preserves input totals and scales uncertainty consistently. Nine unqualified heat roles remain; full real TIAM/MESSAGE scenarios are not qualified.",
+      "latest_coverage_note": "Geothermal and native natural-gas CCS heat verified in controlled shared-workflow cases through normal update and Brightway export. Natural-gas CCS: 16 regional suppliers, 17 markets, 12,075 exported activities, exhaustive graph validation and 92 signed finite LCIs. Eight role bindings remain unqualified (four CCS, two solar, two residual); complete real TIAM/MESSAGE and combined fuels qualification remain unfinished.",
       "geothermal_stage": {
         "status": "controlled_shared_callback_export_and_signed_LCI_verified",
         "verification": "docs/development/uvek-secondary-geothermal-heat-verification.json",
@@ -1244,6 +1245,11 @@
         "passed": 832,
         "failed": 0,
         "committed_sources_frozen": true
+      },
+      "native_ng_CCS_stage": {
+        "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+        "verification": "docs/development/uvek-native-ng-ccs-heat-verification.json",
+        "full_real_IAM_scenario_verified": false
       }
     },
     {

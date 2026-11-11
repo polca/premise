@@ -1,0 +1,603 @@
+{
+  "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+  "actual_IAM_scenario": false,
+  "database": "BAFU:2026-controlled-TIAM-native-NG-CCS-20261111-233032",
+  "export_activities": 12075,
+  "regional_CCS_heat_suppliers": 16,
+  "secondary_heat_markets": 17,
+  "CLIC_capture_chain_records": 11,
+  "CLIC_provenance_preserved": true,
+  "capture_fraction": 0.9,
+  "captured_per_MJ_heat_kg": 0.034898688,
+  "source_incompatible_capture_per_MJ_heat_kg": 0.021910824,
+  "capture_credits_equal_capture_service_demand": true,
+  "technosphere_links_internal": 114637,
+  "biosphere_links_requested_database": 290854,
+  "signed_finite_LCIs": 92,
+  "shared_carbon_origin_checks": 48,
+  "shared_carbon_origin_convention": "Recorded positive stack total and original negative counter-exchange convention retained; separate capture-chain burdens excluded from the base-stack subtraction. Full combined fuels scenario remains unqualified.",
+  "validation_phases": 2,
+  "phase_issue_counts": {},
+  "mapping_declared_CLIC_dependencies_prepared_normally": true,
+  "unqualified_heat_roles_after_controlled_case": 8,
+  "full_real_TIAM_scenario_verified": false,
+  "LCI_checks": [
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "AFR",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "AFR",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "IND",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "IND",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "CSA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "CSA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "SKO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "SKO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "AUS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "AUS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "CAN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "CAN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "UK",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "UK",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "EEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "EEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "FSU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "FSU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "MEX",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "MEX",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "WEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "WEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "CHI",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "CHI",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "USA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "USA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "JPN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "JPN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "MEA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "MEA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "ODA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "ODA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AUS",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AUS",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "FSU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "FSU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CHI",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CHI",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CSA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CSA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "EEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "EEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "JPN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "JPN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "SKO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "SKO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "USA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "USA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "World",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "World",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CAN",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "CAN",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "IND",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "IND",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AFR",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "AFR",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "UK",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "UK",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "WEU",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "WEU",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEX",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "MEX",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "ODA",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for heat, secondary, district or industrial",
+      "location": "ODA",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "carbon dioxide storage from natural gas, post, 200km pipeline, storage 1000m",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "carbon dioxide storage from natural gas, post, 200km pipeline, storage 1000m",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "carbon dioxide, captured from natural gas, post, 200km pipeline, storage 1000m",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "carbon dioxide, captured from natural gas, post, 200km pipeline, storage 1000m",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "pipeline, supercritical carbon dioxide",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "pipeline, supercritical carbon dioxide",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "drilling, deep borehole [CLIC drilling-deep-borehole]",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "drilling, deep borehole [CLIC drilling-deep-borehole]",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "transport, pipeline, supercritical carbon dioxide, 200km without recompression",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "transport, pipeline, supercritical carbon dioxide, 200km without recompression",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for steel, low-alloyed, composed from resolved suppliers, GLO [BrightPath UVEK conversion 7dc4beca] [CLIC brightpath-uvek-import-7dc4beca8a944f2fb534d975]",
+      "location": "GLO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for steel, low-alloyed, composed from resolved suppliers, GLO [BrightPath UVEK conversion 7dc4beca] [CLIC brightpath-uvek-import-7dc4beca8a944f2fb534d975]",
+      "location": "GLO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "transport, helicopter, composed from resolved suppliers, GLO [BrightPath UVEK conversion b5819f90] [CLIC brightpath-uvek-import-b5819f90b8b3cf3cb8bcbdaa]",
+      "location": "GLO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "transport, helicopter, composed from resolved suppliers, GLO [BrightPath UVEK conversion b5819f90] [CLIC brightpath-uvek-import-b5819f90b8b3cf3cb8bcbdaa]",
+      "location": "GLO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market group for natural gas, high pressure, composed from resolved suppliers, Europe without Switzerland [BrightPath UVEK conversion c50fd0a3] [CLIC brightpath-uvek-import-c50fd0a3a2d069b57516828f]",
+      "location": "Europe without Switzerland",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market group for natural gas, high pressure, composed from resolved suppliers, Europe without Switzerland [BrightPath UVEK conversion c50fd0a3] [CLIC brightpath-uvek-import-c50fd0a3a2d069b57516828f]",
+      "location": "Europe without Switzerland",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for stone wool, packed, composed from resolved suppliers, GLO [BrightPath UVEK conversion a6dfbfb2] [CLIC brightpath-uvek-import-a6dfbfb25872d9826bd055ad]",
+      "location": "GLO",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "market for stone wool, packed, composed from resolved suppliers, GLO [BrightPath UVEK conversion a6dfbfb2] [CLIC brightpath-uvek-import-a6dfbfb25872d9826bd055ad]",
+      "location": "GLO",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "electricity production, at natural gas-fired combined cycle power plant, post, pipeline 200km, storage 1000m",
+      "location": "RER",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "electricity production, at natural gas-fired combined cycle power plant, post, pipeline 200km, storage 1000m",
+      "location": "RER",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "treatment of scrap steel, inert material landfill, composed from resolved suppliers, CH [BrightPath UVEK conversion 37aa4d5a] [CLIC brightpath-uvek-import-37aa4d5a52fb89b227bd31b7]",
+      "location": "CH",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "treatment of scrap steel, inert material landfill, composed from resolved suppliers, CH [BrightPath UVEK conversion 37aa4d5a] [CLIC brightpath-uvek-import-37aa4d5a52fb89b227bd31b7]",
+      "location": "CH",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "fixed German CHP heat reference for CCS",
+      "location": "DE",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "fixed German CHP heat reference for CCS",
+      "location": "DE",
+      "demand": -1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "DE",
+      "demand": 1,
+      "finite_LCI": true
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "location": "DE",
+      "demand": -1,
+      "finite_LCI": true
+    }
+  ],
+  "exhaustive_validation": {
+    "ruleset_version": 8,
+    "issues": 0,
+    "feedback_evidence": {
+      "declared_productive_feedback": [
+        {
+          "absolute_convergence_upper_bound": 0.978119331593451,
+          "activity_count": 4220
+        }
+      ],
+      "issue_count": 0
+    }
+  },
+  "focused_regression_tests": 98,
+  "evidence_sha256": {
+    "controlled-ng-ccs-heat-verification.private.json": "5163cbcfce340d0ec66bbe7874542d0dc51b944f9ff267fff3de8812bd12fa68",
+    "controlled-ng-ccs-heat-exhaustive-validation.private.json": "8e2942e60cff6138c6f7407cc80db944e26b36d8a425f2ce82d8a989ce21a341",
+    "ng-ccs-final-regression.log": "87ee4f827f1965274670ff8e17c0c4c3f3cb37f4c9f03e8f802859e5dc66fd05"
+  },
+  "limitations": [
+    "Controlled IAM-shaped heat inputs, not complete real TIAM qualification.",
+    "Four CCS, two solar and two residual-heat roles remain unqualified.",
+    "Shared carbon-origin checks do not qualify combined fuels update.",
+    "Historical German CHP allocation and complete CLIC capture-chain screening assumptions retained."
+  ]
+}

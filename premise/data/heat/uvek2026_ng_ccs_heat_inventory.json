@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "target": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "clic_roots": [
+    "carbon-dioxide-captured-from-natural-gas-post-200km-pipeline-storage-1000m"
+  ],
+  "supplier_checks": [
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Heat, natural gas, at CHP power plant",
+        "reference product": "Heat, natural gas, at CHP power plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Natural gas, burned in power plant or heat plant",
+            "unit": "megajoule",
+            "reference product": "Natural gas, burned in power plant or heat plant",
+            "location": "DE"
+          },
+          "amount": 0.64
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "Natural gas, burned in power plant or heat plant",
+        "reference product": "Natural gas, burned in power plant or heat plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Carbon dioxide, fossil",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram"
+          },
+          "amount": 0.0561
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "carbon dioxide, captured from natural gas, post, 200km pipeline, storage 1000m",
+        "reference product": "carbon dioxide, captured from natural gas, post, 200km pipeline, storage 1000m",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "review": {
+    "authorization": "Active goal and standing autonomous approval for documented native screening reconstructions.",
+    "basis": "Original heat-CCS useful-heat/90%-capture/8%-penalty model, reconciled to the inspected native allocated stack.",
+    "source_workbook": "lci-combined-heat-power-plant-CCS.xlsx",
+    "source_workbook_sha256": "794ae4c0fb686a141f8be82793d4f25b88bee017d9931548c45481fd53aeaac5",
+    "native_supplier_inventory_sha256": {
+      "Heat, natural gas, at CHP power plant": "c1604e9c0ae7421d8fd027b78f0f2419cdd099affaf3839c2b79aa721261c5ef",
+      "Natural gas, burned in power plant or heat plant": "82f62ccd6f464d100db15f45976fb36d14772dde36b56bc94cc30411e95d6d59"
+    },
+    "limitations": [
+      "Reconstruct a 1 MJ useful-heat screening service on complete native German natural-gas CHP heat plus the normal CLIC post-combustion capture, 200 km pipeline and 1000 m storage chain. Native allocation, technology, geography, vintage, capture energy and storage assumptions differ; score effects are unquantified.",
+      "Retain the original heat-CCS model\u2019s 8% heat-input penalty and 90% capture of attributable allocated combustion CO2. Native heat draws 0.64 MJ of burned-gas service per MJ; that service reports 0.0561 kg fossil CO2/MJ. Apply 1.08 MJ native heat and 0.034898688 kg captured service and subtract the same CO2 once. This replaces the source 0.021910824 kg capture quantity, which would yield only 56.5057% capture on this native heat basis. Do not infer physical heat efficiency by inverting the allocated fuel input.",
+      "Capture-chain energy, transport, storage leakage and infrastructure remain complete. The negative stack correction excludes those upstream burdens; no extra heat/electricity credit or second avoided-emission credit is added. Preserve the shared fuels update\u2019s recorded-total/carbon-origin conventions and explicitly check the combined update before qualifying it.",
+      "The complete German CHP heat supplier is held through a fixed-reference bridge so standard regional relinking cannot substitute a different allocated stack while retaining a fixed capture quantity. This is an explicit German technology/geography proxy in all IAM regions. The bridge adds no physical burden, credit or second loss factor."
+    ]
+  },
+  "activities": [
+    {
+      "name": "fixed German CHP heat reference for CCS",
+      "reference product": "heat, fixed German CHP reference for CCS",
+      "location": "DE",
+      "unit": "megajoule",
+      "database": "premise-UVEK-heat",
+      "code": "uvek-2026-fixed-german-chp-heat-CCS-basis",
+      "production amount": 1,
+      "type": "process",
+      "comment": "The complete German CHP heat supplier is held through a fixed-reference bridge so standard regional relinking cannot substitute a different allocated stack while retaining a fixed capture quantity. This is an explicit German technology/geography proxy in all IAM regions. The bridge adds no physical burden, credit or second loss factor. Modified screening model; source: \u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026. Modification record: https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-ng-ccs-heat.md",
+      "premise heat": {
+        "kind": "fixed_reference_provider",
+        "purpose": "Keep native stack and capture demand on the same reviewed allocation/geography basis."
+      },
+      "exchanges": [
+        {
+          "name": "fixed German CHP heat reference for CCS",
+          "reference product": "heat, fixed German CHP reference for CCS",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-fixed-german-chp-heat-CCS-basis"
+          ]
+        },
+        {
+          "name": "Heat, natural gas, at CHP power plant",
+          "reference product": "Heat, natural gas, at CHP power plant",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "technosphere",
+          "amount": 1,
+          "uncertainty type": 0
+        }
+      ],
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-ng-ccs-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      }
+    },
+    {
+      "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+      "reference product": "heat, district or industrial, natural gas",
+      "location": "DE",
+      "unit": "megajoule",
+      "database": "premise-UVEK-heat",
+      "code": "uvek-2026-ng-chp-ccs-native-stack-90pct",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Reconstruct a 1 MJ useful-heat screening service on complete native German natural-gas CHP heat plus the normal CLIC post-combustion capture, 200 km pipeline and 1000 m storage chain. Native allocation, technology, geography, vintage, capture energy and storage assumptions differ; score effects are unquantified. Retain the original heat-CCS model\u2019s 8% heat-input penalty and 90% capture of attributable allocated combustion CO2. Native heat draws 0.64 MJ of burned-gas service per MJ; that service reports 0.0561 kg fossil CO2/MJ. Apply 1.08 MJ native heat and 0.034898688 kg captured service and subtract the same CO2 once. This replaces the source 0.021910824 kg capture quantity, which would yield only 56.5057% capture on this native heat basis. Do not infer physical heat efficiency by inverting the allocated fuel input. Capture-chain energy, transport, storage leakage and infrastructure remain complete. The negative stack correction excludes those upstream burdens; no extra heat/electricity credit or second avoided-emission credit is added. Preserve the shared fuels update\u2019s recorded-total/carbon-origin conventions and explicitly check the combined update before qualifying it. The complete German CHP heat supplier is held through a fixed-reference bridge so standard regional relinking cannot substitute a different allocated stack while retaining a fixed capture quantity. This is an explicit German technology/geography proxy in all IAM regions. The bridge adds no physical burden, credit or second loss factor. Modified screening model; source: \u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026. Modification record: https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-ng-ccs-heat.md",
+      "premise heat": {
+        "kind": "native_stack_CCS_screening",
+        "capture_fraction": 0.9,
+        "native_heat_input_MJ": 1.08,
+        "allocated_stack_CO2_before_capture_kg": 0.03877632,
+        "captured_CO2_kg": 0.034898688000000004,
+        "limitations": [
+          "Reconstruct a 1 MJ useful-heat screening service on complete native German natural-gas CHP heat plus the normal CLIC post-combustion capture, 200 km pipeline and 1000 m storage chain. Native allocation, technology, geography, vintage, capture energy and storage assumptions differ; score effects are unquantified.",
+          "Retain the original heat-CCS model\u2019s 8% heat-input penalty and 90% capture of attributable allocated combustion CO2. Native heat draws 0.64 MJ of burned-gas service per MJ; that service reports 0.0561 kg fossil CO2/MJ. Apply 1.08 MJ native heat and 0.034898688 kg captured service and subtract the same CO2 once. This replaces the source 0.021910824 kg capture quantity, which would yield only 56.5057% capture on this native heat basis. Do not infer physical heat efficiency by inverting the allocated fuel input.",
+          "Capture-chain energy, transport, storage leakage and infrastructure remain complete. The negative stack correction excludes those upstream burdens; no extra heat/electricity credit or second avoided-emission credit is added. Preserve the shared fuels update\u2019s recorded-total/carbon-origin conventions and explicitly check the combined update before qualifying it.",
+          "The complete German CHP heat supplier is held through a fixed-reference bridge so standard regional relinking cannot substitute a different allocated stack while retaining a fixed capture quantity. This is an explicit German technology/geography proxy in all IAM regions. The bridge adds no physical burden, credit or second loss factor."
+        ]
+      },
+      "exchanges": [
+        {
+          "name": "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis",
+          "reference product": "heat, district or industrial, natural gas",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-ng-chp-ccs-native-stack-90pct"
+          ]
+        },
+        {
+          "name": "fixed German CHP heat reference for CCS",
+          "reference product": "heat, fixed German CHP reference for CCS",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "technosphere",
+          "amount": 1.08,
+          "uncertainty type": 0,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-fixed-german-chp-heat-CCS-basis"
+          ]
+        },
+        {
+          "name": "carbon dioxide, captured from natural gas, post, 200km pipeline, storage 1000m",
+          "reference product": "carbon dioxide, captured from natural gas, post, 200km pipeline, storage 1000m",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.034898688000000004,
+          "uncertainty type": 0
+        },
+        {
+          "name": "Carbon dioxide, fossil",
+          "unit": "kilogram",
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "input": [
+            "__biosphere__",
+            "f9749677-9c9f-4678-ab55-c607dfdc2cb9"
+          ],
+          "type": "biosphere",
+          "amount": -0.034898688000000004,
+          "uncertainty type": 0,
+          "loc": -0.034898688000000004
+        }
+      ],
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-ng-ccs-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      }
+    }
+  ],
+  "data_terms": {
+    "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+    "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+    "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+    "modified_data": true,
+    "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-ng-ccs-heat.md",
+    "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+  }
+}

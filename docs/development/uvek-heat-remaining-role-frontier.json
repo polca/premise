@@ -59,5 +59,12 @@
     "evidence": "docs/development/uvek-secondary-geothermal-heat-verification.json",
     "heat_role_qualified": "controlled_shared_case_only",
     "remaining_unqualified_heat_roles": 9
+  },
+  "follow_up_native_ng_CCS": {
+    "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+    "evidence": "docs/development/uvek-native-ng-ccs-heat-verification.json",
+    "remaining_unqualified_heat_roles": 8,
+    "remaining_CCS_roles": 4,
+    "full_real_TIAM_scenario_verified": false
   }
 }

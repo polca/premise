@@ -1086,6 +1086,23 @@ heat, secondary, from natural gas residual:
           coefficient: -1
 
 heat, secondary, from natural gas with CCS:
+  uvek_aliases:
+    inventory_resource: heat/uvek2026_ng_ccs_heat_inventory.json
+    inventory_requires_active_role: true
+    use_legacy_templates: false
+    exact: true
+    fltr:
+      name:
+      - heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis
+      reference product:
+      - heat, district or industrial, natural gas
+      unit: megajoule
+    native_reference_amount: 1
+    native_limitations:
+    - Reconstruct the source useful-heat CCS model using complete native German CHP heat, the original 8% heat-input penalty, and 90% capture of the native allocated combustion CO2. Capture demand and the matching negative stack correction are both 0.034898688 kg per MJ heat, rather than transferring the incompatible source 0.021910824 kg quantity.
+    - Use the normal CLIC post-combustion capture, 200 km pipeline and 1000 m storage chain with complete energy, transport, leakage and infrastructure burdens. Allocation, capture energy, technology, geography, vintage and score differences remain explicit screening limitations. No extra heat/electricity credit or second CO2 credit is added.
+    - A fixed-reference inventory link preserves the reviewed German CHP allocation and stack during standard regional relinking. This is an explicit German technology/geography proxy in all IAM regions; the link adds no physical burden or extra credit.
+    - Supplier quantity guards enforce the reviewed native stack basis. Preserve the existing shared heat and fuels conventions; combined fuel-origin behavior still requires verification before the complete heat sector is qualified.
   layer: secondary_supply
   energy_basis: heat_output
   conversion: none
