@@ -75,8 +75,9 @@ The Windows environment failure has not been reproduced. Notebook interpreter,
 import location and installed artifact must be checked together before assigning
 its cause; changing or bypassing the approval policy is not warranted.
 
-The currently pinned Brightpath revision `d4968e1f6611fa50c8252fed58cdb1472c3e5ee7`
-passes all 712 approval-scope checks in the regular conda environment.
+At the initial investigation checkpoint, Brightpath revision
+`d4968e1f6611fa50c8252fed58cdb1472c3e5ee7` passed all 712 approval-scope checks
+in the regular conda environment. The wool follow-up below supersedes that pin.
 
 ## Verification scope
 
@@ -104,3 +105,66 @@ replacing the wool-specific grid helper with the complete native European grid
 through mappings, and audit standard regional power-plant duplication before
 adding any UVEK-specific behavior. These follow-ups are not implemented by the
 two source-failure fixes above.
+
+## Regional electricity technology copies: agreed direction
+
+The shared `create_region_specific_power_plants` mechanism already calls
+`fetch_proxies` for a selected technology list, especially newer thermal/CCS
+and storage technologies. It does not blanket-copy hydro, nuclear, wind and
+solar generators. Consequently a regional IAM market may legitimately still
+point directly to a European supplier, even though its technology shares are
+regional.
+
+The follow-up is to audit each mapped technology and create missing regional
+copies through that existing shared mechanism, with mappings/configuration as
+the first choice. Regional copies must retain the complete source inventory,
+relink upstream suppliers through the normal Premise workflow, and use existing
+IAM efficiency/emission updates where applicable. Any code adaptation must be
+a minimal generic way to select additional technologies through configuration,
+not a separate UVEK transformation.
+
+A regional label alone does not establish regional water or land use. Where
+independent regional factors are available, use the established correction
+logic and document the source. Otherwise retain the source values and explicit
+geographic-proxy limitations. Do not invent local hydrology, reservoir land,
+capacity factors or emissions merely to make a regional copy appear local.
+Check regional market supplier selection, links, validation and finite LCIs.
+This plan is not yet implemented or a claim of regional inventory equivalence.
+
+## Implemented direct European wool grid
+
+Brightpath `778f9e443a67f7254ed63483828bbd0c275198ec` replaces the sole
+country-grid recipe edge in European wool sorting with the complete native RER
+low-voltage grid. The signed 0.0022-kWh input and all its uncertainty fields are
+retained, as are every other treatment input and previous source-omission
+boundary. The redundant country-grid helper is retired. This is an explicit
+European composition/geography proxy before scenario updating; it does not
+claim equivalence to the earlier 39-country historical mixture. Standard
+Premise electricity updating subsequently relinks it to EUR without an extra
+loss factor or an extra alias dataset.
+
+Only the wool and dependent nitrate-salt parent approval operations are
+refreshed after verifying their old fingerprints. Every other approval operation
+is unchanged. The installed Git revision passes all 712 scopes. Requirements
+and the colleague installation guides pin this revision together.
+
+Verification: 55 Brightpath tests and five focused Premise approval/cache tests
+pass. Full authoring regeneration reproduces both resource files byte for byte;
+the canonical ecoinvent-3.10 biosphere resource is unchanged. A fresh wheel
+contains every Premise approval review with its exact recorded SHA-256, plus the
+matching migration resource and manifest. Historical replay tests now exercise
+their actual generation stages: later independently reviewed leaf changes must
+not be mistaken for the inputs to an earlier authoring stage. Their strict
+change-detection behavior remains tested.
+
+A fresh four-sector export contains 13,694 activities, exactly one fewer than
+before. `uvek-wool-direct-grid-verification.json` records the missing retired
+helper, the existing RER grid's deterministic one-kWh redirect to EUR, preserved
+0.0022-kWh demand/uncertainty, and internal technosphere links. Comparing all
+remaining exchange graphs by functional/recipe identity and following only that
+unit redirect finds differences no larger than 1.2e-15 relative roundoff.
+Before/after wool-treatment LCIs are finite and agree within recorded numerical
+tolerances (relative L2 difference 4.5e-12). The full update reports 14 warnings
+and no validation errors. No Premise runtime Python is changed for this mapping
+simplification; the only production Python changes in this follow-up are the
+two separately reproduced source-cache/biomass fixes.

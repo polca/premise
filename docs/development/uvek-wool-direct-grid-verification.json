@@ -1,0 +1,47 @@
+{
+  "before_database": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261111-113907",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261111-115842",
+  "activities_before": 13695,
+  "activities_after": 13694,
+  "retired_helper_absent": true,
+  "exchange_graphs_and_uncertainty_equal_after_existing_unit_redirect": true,
+  "comparison_normalization": "Match generated helpers by stable recipe identity and follow only the existing native RER low-voltage grid sole deterministic 1-kWh redirect to EUR.",
+  "numeric_comparison_relative_tolerance": 1e-12,
+  "numeric_comparison_absolute_tolerance": 0,
+  "floating_point_roundoff": {
+    "different_values": 6654,
+    "largest_relative_difference": 1.1806959477750718e-15
+  },
+  "technosphere_links_internal": true,
+  "wool_sorting_electricity_supplier": {
+    "name": "Electricity, low voltage, at grid",
+    "location": "RER",
+    "redirect_to": {
+      "name": "market group for electricity, low voltage",
+      "location": "EUR",
+      "amount": 1
+    },
+    "amount": 0.0022,
+    "unit": "kilowatt hour"
+  },
+  "wool_treatment_lci_finite": true,
+  "wool_treatment_biosphere_totals_equal_within_tolerance": true,
+  "lci_relative_tolerance": 1e-08,
+  "lci_absolute_tolerance": 1e-15,
+  "lci_relative_l2_difference": 4.4535209946563785e-12,
+  "largest_absolute_biosphere_total_difference": 1.0683121054455569e-12,
+  "scope": "Real four-sector REMIND SSP2-NPi 2050 export; graph comparison covers all remaining activities by functional identities and every exchange coefficient/uncertainty field. Regional technology copies and other sector updates remain unfinished.",
+  "brightpath_revision": "778f9e443a67f7254ed63483828bbd0c275198ec",
+  "approval_scope_count": 712,
+  "approval_operations_refreshed": [
+    "bp-c9b874c8b5ebebe0",
+    "bp-cfcab3636e7a220d"
+  ],
+  "brightpath_tests_passed": 55,
+  "premise_focused_tests_passed": 5,
+  "full_resource_regeneration_matches": true,
+  "all_packaged_approval_review_hashes_verified": true,
+  "validation_issues_by_severity": {
+    "warning": 14
+  }
+}
