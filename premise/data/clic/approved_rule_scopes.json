@@ -194374,6 +194374,676 @@
           "fingerprint": "c8313cad5622e0347169e7ffb667ae9356d7794ba133d0967f483c413d01189a"
         }
       ]
+    },
+    {
+      "rule_id": "bp-ffcd093245457004",
+      "operation": "replace",
+      "mapping_method": "reviewed_allocated_ph_agent_delivery",
+      "review_path": "export/uvek_fuels_38_ph_agent_review.json",
+      "review_sha256": "916b0b5c5eeec42c02c595bfe87e988171872e93d15b1eeed434c249804c1a31",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active shared-Premise BAFU/UVEK integration goal. Preserve observed fixed cut-off allocation and quantities; do not transfer waste-treatment formulas into recovered-stock burdens.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for soil pH raising agent, as CaCO3",
+            "reference product": "soil pH raising agent, as CaCO3",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "2ea2c51c59edf45d690a2d544d3e104c96a7540758abf45771ea6d7ad4750d00",
+          "inventory_sha256": "021edf9d3aea235a3108e73ab566f921c528bc673161cdc1774c0014cfdfa6db",
+          "name": "market for soil pH raising agent, as CaCO3",
+          "reference product": "soil pH raising agent, as CaCO3",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "basis": "Exact inspected ecoinvent 3.8 cut-off only. Preserve one kg of source CaCO3-equivalent soil-pH-raising function and signed caller quantity, uncertainty, formulas and properties. Do not infer CaO, Ca(OH)2, purity, nutrient, moisture or molecular-mass factors from legacy lime names. The actual lime supplier inventories mill uncalcined limestone. Retain the global market material shares and all four freight rows, the original RER/RoW lime split, every RER lime producer/freight entry and the previously reviewed RoW lime delivery helper without renormalization. Use complete native milled limestone, the matching native algal-lime regional-storage process and the separately reviewed allocated zinc-mining co-product burden, with quarry, energy, infrastructure, ore, allocation, geography, vintage and internal-uncertainty limitations. All three recovered sludge-derived pH products have positive one-kg references and 75 nominal-zero deterministic biosphere rows in total; paired negative-one-kg waste-treatment branches are nonempty. CA-QC/RoW retain 50 background formulas identical to the waste branch. Read-only evaluation reproduces all 50 nonzero waste values, including four expressions requiring one case-only alias clarification; those expressions do not describe the zero-allocated recovered product. Preserve the observed fixed-profile product allocation with an explicit empty recovered-stock handover. Do not transplant unallocated treatment formulas as recovered-product emissions. Background parameter recalculation equivalence is not claimed. This does not clear waste treatment or separately listed caller field emissions and does not omit caller formulas. No real landfarming process is asserted impact-free, and no recovery/soil-carbon credit is added. The source RER algal branch and native algal process both document marine collection, drying from 25% to 2.5% water and milling; preserve its original kg share with the complete native inventory once, no drying or moisture multiplier. Its FR-production/CH-delivery label, infrastructure, allocation, upstream supply, internal uncertainty and vintage differ. Native European rail, generic road, barge and oceanic container freight replace source fleets at original tonne-km, with geographic/technology warnings and unquantified score differences. Other profiles, waste references, or changed source allocations require independent review.",
+        "conversion_factor": 1,
+        "resource_action": "delivered_ph_agent_market",
+        "new_target": {
+          "recipe_ref": "fuels-38-ph-delivery-f61054fdf5b40290284e"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "xx Lime, algae, at regional storehouse",
+              "reference product": "xx Lime, algae, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "6d877e13906f22fc7837342930438a2f36eaf2c5a7422244a9e34cdeeec89e00",
+            "inventory_sha256": "50911ec50a329b5a429f474e6f40f342139a1c309464415f486ca9b4b28486af"
+          },
+          {
+            "identity": {
+              "name": "Limestone, milled, loose, at plant",
+              "reference product": "Limestone, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 7,
+            "metadata_sha256": "bde603c97bb684f4e123852abf4f5adcddb47b7add726a9f7f8ea5cb8c210cd7",
+            "inventory_sha256": "3dcfcf56dfceb6a2a6c8d8b525c63c66592add5783db969de5cd9db21cd572c8"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+          }
+        ],
+        "source_allocation_summary": {
+          "positive_product_suppliers": 3,
+          "nominal_zero_deterministic_biosphere_rows": 75,
+          "inherited_background_formula_rows": 50,
+          "formulas_identical_to_negative_treatment": 50,
+          "read_only_formula_matches_waste_values": 50,
+          "case_alias_clarifications": 4,
+          "source_inventory_or_parameters_modified": false
+        },
+        "cutoff_allocation_pairs": [
+          {
+            "product_identity": {
+              "name": "treatment, sludge from pulp and paper production, landfarming",
+              "reference product": "soil pH raising agent, as CaCO3",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "publisher_activity": "085f9d86-4b08-448b-bb0f-9aac89d71136",
+            "waste_reference_amounts": [
+              -1.0
+            ],
+            "waste_inventory_sha256": "89af50afc351eb64d1cf0e59f17a598bad0094ccfcbd6cb37debb7efa1080bd0",
+            "waste_nonzero_exchange_count": 26,
+            "nominal_zero_rows": 25,
+            "inherited_formula_rows": 25,
+            "formulas_identical_to_waste": 25,
+            "read_only_formula_matches_waste_values": 25
+          },
+          {
+            "product_identity": {
+              "name": "treatment, sludge from pulp and paper production, landfarming",
+              "reference product": "soil pH raising agent, as CaCO3",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "publisher_activity": "64a0a7ba-1dd0-4d09-a838-75c6ca75e09b",
+            "waste_reference_amounts": [
+              -1.0
+            ],
+            "waste_inventory_sha256": "d37a9d9fd882e824dbbbb80c2245973d1b85af5e347005d3d818135289e43392",
+            "waste_nonzero_exchange_count": 26,
+            "nominal_zero_rows": 25,
+            "inherited_formula_rows": 0,
+            "formulas_identical_to_waste": 0,
+            "read_only_formula_matches_waste_values": 0
+          },
+          {
+            "product_identity": {
+              "name": "treatment, sludge from pulp and paper production, landfarming",
+              "reference product": "soil pH raising agent, as CaCO3",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "publisher_activity": "2581601b-b6b0-41e9-b7d9-9acc2fb3e22f",
+            "waste_reference_amounts": [
+              -1.0
+            ],
+            "waste_inventory_sha256": "4a9de253779625556adc2c9b373af25147a3d0a3ec32b063d6d65c29941e4352",
+            "waste_nonzero_exchange_count": 26,
+            "nominal_zero_rows": 25,
+            "inherited_formula_rows": 25,
+            "formulas_identical_to_waste": 25,
+            "read_only_formula_matches_waste_values": 25
+          }
+        ]
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off only. Preserve one kg of source CaCO3-equivalent soil-pH-raising function and signed caller quantity, uncertainty, formulas and properties. Do not infer CaO, Ca(OH)2, purity, nutrient, moisture or molecular-mass factors from legacy lime names. The actual lime supplier inventories mill uncalcined limestone. Retain the global market material shares and all four freight rows, the original RER/RoW lime split, every RER lime producer/freight entry and the previously reviewed RoW lime delivery helper without renormalization. Use complete native milled limestone, the matching native algal-lime regional-storage process and the separately reviewed allocated zinc-mining co-product burden, with quarry, energy, infrastructure, ore, allocation, geography, vintage and internal-uncertainty limitations. All three recovered sludge-derived pH products have positive one-kg references and 75 nominal-zero deterministic biosphere rows in total; paired negative-one-kg waste-treatment branches are nonempty. CA-QC/RoW retain 50 background formulas identical to the waste branch. Read-only evaluation reproduces all 50 nonzero waste values, including four expressions requiring one case-only alias clarification; those expressions do not describe the zero-allocated recovered product. Preserve the observed fixed-profile product allocation with an explicit empty recovered-stock handover. Do not transplant unallocated treatment formulas as recovered-product emissions. Background parameter recalculation equivalence is not claimed. This does not clear waste treatment or separately listed caller field emissions and does not omit caller formulas. No real landfarming process is asserted impact-free, and no recovery/soil-carbon credit is added. The source RER algal branch and native algal process both document marine collection, drying from 25% to 2.5% water and milling; preserve its original kg share with the complete native inventory once, no drying or moisture multiplier. Its FR-production/CH-delivery label, infrastructure, allocation, upstream supply, internal uncertainty and vintage differ. Native European rail, generic road, barge and oceanic container freight replace source fleets at original tonne-km, with geographic/technology warnings and unquantified score differences. Other profiles, waste references, or changed source allocations require independent review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0037ec0a33a4bcaeecd1b7a767fc078d3bfd65e1fc57942418aee9d74fafb874"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cda709081179619d",
+      "operation": "replace",
+      "mapping_method": "reviewed_allocated_ph_agent_delivery",
+      "review_path": "export/uvek_fuels_38_ph_agent_review.json",
+      "review_sha256": "916b0b5c5eeec42c02c595bfe87e988171872e93d15b1eeed434c249804c1a31",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active shared-Premise BAFU/UVEK integration goal. Preserve observed fixed cut-off allocation and quantities; do not transfer waste-treatment formulas into recovered-stock burdens.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment, sludge from pulp and paper production, landfarming",
+            "reference product": "soil pH raising agent, as CaCO3",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "2e053206db384600701a0da39c65d366f10ebcaded0fcf98779a83cba567eb28",
+          "inventory_sha256": "bd79de4c871fda1ef9be2e16ed2a3b04cbdd44bf604131106aff534f6f1ce4f5",
+          "name": "treatment, sludge from pulp and paper production, landfarming",
+          "reference product": "soil pH raising agent, as CaCO3",
+          "location": "CA-QC",
+          "unit": "kilogram"
+        },
+        "basis": "Exact inspected ecoinvent 3.8 cut-off only. Preserve one kg of source CaCO3-equivalent soil-pH-raising function and signed caller quantity, uncertainty, formulas and properties. Do not infer CaO, Ca(OH)2, purity, nutrient, moisture or molecular-mass factors from legacy lime names. The actual lime supplier inventories mill uncalcined limestone. Retain the global market material shares and all four freight rows, the original RER/RoW lime split, every RER lime producer/freight entry and the previously reviewed RoW lime delivery helper without renormalization. Use complete native milled limestone, the matching native algal-lime regional-storage process and the separately reviewed allocated zinc-mining co-product burden, with quarry, energy, infrastructure, ore, allocation, geography, vintage and internal-uncertainty limitations. All three recovered sludge-derived pH products have positive one-kg references and 75 nominal-zero deterministic biosphere rows in total; paired negative-one-kg waste-treatment branches are nonempty. CA-QC/RoW retain 50 background formulas identical to the waste branch. Read-only evaluation reproduces all 50 nonzero waste values, including four expressions requiring one case-only alias clarification; those expressions do not describe the zero-allocated recovered product. Preserve the observed fixed-profile product allocation with an explicit empty recovered-stock handover. Do not transplant unallocated treatment formulas as recovered-product emissions. Background parameter recalculation equivalence is not claimed. This does not clear waste treatment or separately listed caller field emissions and does not omit caller formulas. No real landfarming process is asserted impact-free, and no recovery/soil-carbon credit is added. The source RER algal branch and native algal process both document marine collection, drying from 25% to 2.5% water and milling; preserve its original kg share with the complete native inventory once, no drying or moisture multiplier. Its FR-production/CH-delivery label, infrastructure, allocation, upstream supply, internal uncertainty and vintage differ. Native European rail, generic road, barge and oceanic container freight replace source fleets at original tonne-km, with geographic/technology warnings and unquantified score differences. Other profiles, waste references, or changed source allocations require independent review.",
+        "conversion_factor": 1,
+        "resource_action": "allocated_ph_agent_stock",
+        "new_target": {
+          "recipe_ref": "fuels-38-ph-stock-bea8608e3b2c66800b6f"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "xx Lime, algae, at regional storehouse",
+              "reference product": "xx Lime, algae, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "6d877e13906f22fc7837342930438a2f36eaf2c5a7422244a9e34cdeeec89e00",
+            "inventory_sha256": "50911ec50a329b5a429f474e6f40f342139a1c309464415f486ca9b4b28486af"
+          },
+          {
+            "identity": {
+              "name": "Limestone, milled, loose, at plant",
+              "reference product": "Limestone, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 7,
+            "metadata_sha256": "bde603c97bb684f4e123852abf4f5adcddb47b7add726a9f7f8ea5cb8c210cd7",
+            "inventory_sha256": "3dcfcf56dfceb6a2a6c8d8b525c63c66592add5783db969de5cd9db21cd572c8"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+          }
+        ],
+        "source_allocation_summary": {
+          "positive_product_suppliers": 3,
+          "nominal_zero_deterministic_biosphere_rows": 75,
+          "inherited_background_formula_rows": 50,
+          "formulas_identical_to_negative_treatment": 50,
+          "read_only_formula_matches_waste_values": 50,
+          "case_alias_clarifications": 4,
+          "source_inventory_or_parameters_modified": false
+        },
+        "cutoff_pair_witness": {
+          "product_identity": {
+            "name": "treatment, sludge from pulp and paper production, landfarming",
+            "reference product": "soil pH raising agent, as CaCO3",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "publisher_activity": "085f9d86-4b08-448b-bb0f-9aac89d71136",
+          "waste_reference_amounts": [
+            -1.0
+          ],
+          "waste_inventory_sha256": "89af50afc351eb64d1cf0e59f17a598bad0094ccfcbd6cb37debb7efa1080bd0",
+          "waste_nonzero_exchange_count": 26,
+          "nominal_zero_rows": 25,
+          "inherited_formula_rows": 25,
+          "formulas_identical_to_waste": 25,
+          "read_only_formula_matches_waste_values": 25
+        }
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off only. Preserve one kg of source CaCO3-equivalent soil-pH-raising function and signed caller quantity, uncertainty, formulas and properties. Do not infer CaO, Ca(OH)2, purity, nutrient, moisture or molecular-mass factors from legacy lime names. The actual lime supplier inventories mill uncalcined limestone. Retain the global market material shares and all four freight rows, the original RER/RoW lime split, every RER lime producer/freight entry and the previously reviewed RoW lime delivery helper without renormalization. Use complete native milled limestone, the matching native algal-lime regional-storage process and the separately reviewed allocated zinc-mining co-product burden, with quarry, energy, infrastructure, ore, allocation, geography, vintage and internal-uncertainty limitations. All three recovered sludge-derived pH products have positive one-kg references and 75 nominal-zero deterministic biosphere rows in total; paired negative-one-kg waste-treatment branches are nonempty. CA-QC/RoW retain 50 background formulas identical to the waste branch. Read-only evaluation reproduces all 50 nonzero waste values, including four expressions requiring one case-only alias clarification; those expressions do not describe the zero-allocated recovered product. Preserve the observed fixed-profile product allocation with an explicit empty recovered-stock handover. Do not transplant unallocated treatment formulas as recovered-product emissions. Background parameter recalculation equivalence is not claimed. This does not clear waste treatment or separately listed caller field emissions and does not omit caller formulas. No real landfarming process is asserted impact-free, and no recovery/soil-carbon credit is added. The source RER algal branch and native algal process both document marine collection, drying from 25% to 2.5% water and milling; preserve its original kg share with the complete native inventory once, no drying or moisture multiplier. Its FR-production/CH-delivery label, infrastructure, allocation, upstream supply, internal uncertainty and vintage differ. Native European rail, generic road, barge and oceanic container freight replace source fleets at original tonne-km, with geographic/technology warnings and unquantified score differences. Other profiles, waste references, or changed source allocations require independent review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "97e3f0a182af2c4b6e2066b59c8846c756dc1418603bdbf7edd7568aafe8c694"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ee914ea824006535",
+      "operation": "replace",
+      "mapping_method": "reviewed_allocated_ph_agent_delivery",
+      "review_path": "export/uvek_fuels_38_ph_agent_review.json",
+      "review_sha256": "916b0b5c5eeec42c02c595bfe87e988171872e93d15b1eeed434c249804c1a31",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active shared-Premise BAFU/UVEK integration goal. Preserve observed fixed cut-off allocation and quantities; do not transfer waste-treatment formulas into recovered-stock burdens.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment, sludge from pulp and paper production, landfarming",
+            "reference product": "soil pH raising agent, as CaCO3",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "8d943def2c0c4a356af64569bdc03483f1245cbbf28cf4830857840cbeb21450",
+          "inventory_sha256": "bde4725279a68deaee8394cbe67a0a8d28c997f04c8bdcce09b613b6cf62b1ad",
+          "name": "treatment, sludge from pulp and paper production, landfarming",
+          "reference product": "soil pH raising agent, as CaCO3",
+          "location": "Europe without Switzerland",
+          "unit": "kilogram"
+        },
+        "basis": "Exact inspected ecoinvent 3.8 cut-off only. Preserve one kg of source CaCO3-equivalent soil-pH-raising function and signed caller quantity, uncertainty, formulas and properties. Do not infer CaO, Ca(OH)2, purity, nutrient, moisture or molecular-mass factors from legacy lime names. The actual lime supplier inventories mill uncalcined limestone. Retain the global market material shares and all four freight rows, the original RER/RoW lime split, every RER lime producer/freight entry and the previously reviewed RoW lime delivery helper without renormalization. Use complete native milled limestone, the matching native algal-lime regional-storage process and the separately reviewed allocated zinc-mining co-product burden, with quarry, energy, infrastructure, ore, allocation, geography, vintage and internal-uncertainty limitations. All three recovered sludge-derived pH products have positive one-kg references and 75 nominal-zero deterministic biosphere rows in total; paired negative-one-kg waste-treatment branches are nonempty. CA-QC/RoW retain 50 background formulas identical to the waste branch. Read-only evaluation reproduces all 50 nonzero waste values, including four expressions requiring one case-only alias clarification; those expressions do not describe the zero-allocated recovered product. Preserve the observed fixed-profile product allocation with an explicit empty recovered-stock handover. Do not transplant unallocated treatment formulas as recovered-product emissions. Background parameter recalculation equivalence is not claimed. This does not clear waste treatment or separately listed caller field emissions and does not omit caller formulas. No real landfarming process is asserted impact-free, and no recovery/soil-carbon credit is added. The source RER algal branch and native algal process both document marine collection, drying from 25% to 2.5% water and milling; preserve its original kg share with the complete native inventory once, no drying or moisture multiplier. Its FR-production/CH-delivery label, infrastructure, allocation, upstream supply, internal uncertainty and vintage differ. Native European rail, generic road, barge and oceanic container freight replace source fleets at original tonne-km, with geographic/technology warnings and unquantified score differences. Other profiles, waste references, or changed source allocations require independent review.",
+        "conversion_factor": 1,
+        "resource_action": "allocated_ph_agent_stock",
+        "new_target": {
+          "recipe_ref": "fuels-38-ph-stock-bea8608e3b2c66800b6f"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "xx Lime, algae, at regional storehouse",
+              "reference product": "xx Lime, algae, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "6d877e13906f22fc7837342930438a2f36eaf2c5a7422244a9e34cdeeec89e00",
+            "inventory_sha256": "50911ec50a329b5a429f474e6f40f342139a1c309464415f486ca9b4b28486af"
+          },
+          {
+            "identity": {
+              "name": "Limestone, milled, loose, at plant",
+              "reference product": "Limestone, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 7,
+            "metadata_sha256": "bde603c97bb684f4e123852abf4f5adcddb47b7add726a9f7f8ea5cb8c210cd7",
+            "inventory_sha256": "3dcfcf56dfceb6a2a6c8d8b525c63c66592add5783db969de5cd9db21cd572c8"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+          }
+        ],
+        "source_allocation_summary": {
+          "positive_product_suppliers": 3,
+          "nominal_zero_deterministic_biosphere_rows": 75,
+          "inherited_background_formula_rows": 50,
+          "formulas_identical_to_negative_treatment": 50,
+          "read_only_formula_matches_waste_values": 50,
+          "case_alias_clarifications": 4,
+          "source_inventory_or_parameters_modified": false
+        },
+        "cutoff_pair_witness": {
+          "product_identity": {
+            "name": "treatment, sludge from pulp and paper production, landfarming",
+            "reference product": "soil pH raising agent, as CaCO3",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "publisher_activity": "64a0a7ba-1dd0-4d09-a838-75c6ca75e09b",
+          "waste_reference_amounts": [
+            -1.0
+          ],
+          "waste_inventory_sha256": "d37a9d9fd882e824dbbbb80c2245973d1b85af5e347005d3d818135289e43392",
+          "waste_nonzero_exchange_count": 26,
+          "nominal_zero_rows": 25,
+          "inherited_formula_rows": 0,
+          "formulas_identical_to_waste": 0,
+          "read_only_formula_matches_waste_values": 0
+        }
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off only. Preserve one kg of source CaCO3-equivalent soil-pH-raising function and signed caller quantity, uncertainty, formulas and properties. Do not infer CaO, Ca(OH)2, purity, nutrient, moisture or molecular-mass factors from legacy lime names. The actual lime supplier inventories mill uncalcined limestone. Retain the global market material shares and all four freight rows, the original RER/RoW lime split, every RER lime producer/freight entry and the previously reviewed RoW lime delivery helper without renormalization. Use complete native milled limestone, the matching native algal-lime regional-storage process and the separately reviewed allocated zinc-mining co-product burden, with quarry, energy, infrastructure, ore, allocation, geography, vintage and internal-uncertainty limitations. All three recovered sludge-derived pH products have positive one-kg references and 75 nominal-zero deterministic biosphere rows in total; paired negative-one-kg waste-treatment branches are nonempty. CA-QC/RoW retain 50 background formulas identical to the waste branch. Read-only evaluation reproduces all 50 nonzero waste values, including four expressions requiring one case-only alias clarification; those expressions do not describe the zero-allocated recovered product. Preserve the observed fixed-profile product allocation with an explicit empty recovered-stock handover. Do not transplant unallocated treatment formulas as recovered-product emissions. Background parameter recalculation equivalence is not claimed. This does not clear waste treatment or separately listed caller field emissions and does not omit caller formulas. No real landfarming process is asserted impact-free, and no recovery/soil-carbon credit is added. The source RER algal branch and native algal process both document marine collection, drying from 25% to 2.5% water and milling; preserve its original kg share with the complete native inventory once, no drying or moisture multiplier. Its FR-production/CH-delivery label, infrastructure, allocation, upstream supply, internal uncertainty and vintage differ. Native European rail, generic road, barge and oceanic container freight replace source fleets at original tonne-km, with geographic/technology warnings and unquantified score differences. Other profiles, waste references, or changed source allocations require independent review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "63aa71c0d2b5fb145b57cb9e6ff70e8163180e9562e1c04981a30c30e05b2fd1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-11c7557d8ba1026e",
+      "operation": "replace",
+      "mapping_method": "reviewed_allocated_ph_agent_delivery",
+      "review_path": "export/uvek_fuels_38_ph_agent_review.json",
+      "review_sha256": "916b0b5c5eeec42c02c595bfe87e988171872e93d15b1eeed434c249804c1a31",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active shared-Premise BAFU/UVEK integration goal. Preserve observed fixed cut-off allocation and quantities; do not transfer waste-treatment formulas into recovered-stock burdens.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment, sludge from pulp and paper production, landfarming",
+            "reference product": "soil pH raising agent, as CaCO3",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "69dd47992f061d9ca728f86927971e7903d9e8fe5d24212999b2e03c88546817",
+          "inventory_sha256": "effd8d90a7724703861510a5bd0821af8679c6092452c728c85606cf1ac188c0",
+          "name": "treatment, sludge from pulp and paper production, landfarming",
+          "reference product": "soil pH raising agent, as CaCO3",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "basis": "Exact inspected ecoinvent 3.8 cut-off only. Preserve one kg of source CaCO3-equivalent soil-pH-raising function and signed caller quantity, uncertainty, formulas and properties. Do not infer CaO, Ca(OH)2, purity, nutrient, moisture or molecular-mass factors from legacy lime names. The actual lime supplier inventories mill uncalcined limestone. Retain the global market material shares and all four freight rows, the original RER/RoW lime split, every RER lime producer/freight entry and the previously reviewed RoW lime delivery helper without renormalization. Use complete native milled limestone, the matching native algal-lime regional-storage process and the separately reviewed allocated zinc-mining co-product burden, with quarry, energy, infrastructure, ore, allocation, geography, vintage and internal-uncertainty limitations. All three recovered sludge-derived pH products have positive one-kg references and 75 nominal-zero deterministic biosphere rows in total; paired negative-one-kg waste-treatment branches are nonempty. CA-QC/RoW retain 50 background formulas identical to the waste branch. Read-only evaluation reproduces all 50 nonzero waste values, including four expressions requiring one case-only alias clarification; those expressions do not describe the zero-allocated recovered product. Preserve the observed fixed-profile product allocation with an explicit empty recovered-stock handover. Do not transplant unallocated treatment formulas as recovered-product emissions. Background parameter recalculation equivalence is not claimed. This does not clear waste treatment or separately listed caller field emissions and does not omit caller formulas. No real landfarming process is asserted impact-free, and no recovery/soil-carbon credit is added. The source RER algal branch and native algal process both document marine collection, drying from 25% to 2.5% water and milling; preserve its original kg share with the complete native inventory once, no drying or moisture multiplier. Its FR-production/CH-delivery label, infrastructure, allocation, upstream supply, internal uncertainty and vintage differ. Native European rail, generic road, barge and oceanic container freight replace source fleets at original tonne-km, with geographic/technology warnings and unquantified score differences. Other profiles, waste references, or changed source allocations require independent review.",
+        "conversion_factor": 1,
+        "resource_action": "allocated_ph_agent_stock",
+        "new_target": {
+          "recipe_ref": "fuels-38-ph-stock-bea8608e3b2c66800b6f"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "xx Lime, algae, at regional storehouse",
+              "reference product": "xx Lime, algae, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 8,
+            "metadata_sha256": "6d877e13906f22fc7837342930438a2f36eaf2c5a7422244a9e34cdeeec89e00",
+            "inventory_sha256": "50911ec50a329b5a429f474e6f40f342139a1c309464415f486ca9b4b28486af"
+          },
+          {
+            "identity": {
+              "name": "Limestone, milled, loose, at plant",
+              "reference product": "Limestone, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 7,
+            "metadata_sha256": "bde603c97bb684f4e123852abf4f5adcddb47b7add726a9f7f8ea5cb8c210cd7",
+            "inventory_sha256": "3dcfcf56dfceb6a2a6c8d8b525c63c66592add5783db969de5cd9db21cd572c8"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+          }
+        ],
+        "source_allocation_summary": {
+          "positive_product_suppliers": 3,
+          "nominal_zero_deterministic_biosphere_rows": 75,
+          "inherited_background_formula_rows": 50,
+          "formulas_identical_to_negative_treatment": 50,
+          "read_only_formula_matches_waste_values": 50,
+          "case_alias_clarifications": 4,
+          "source_inventory_or_parameters_modified": false
+        },
+        "cutoff_pair_witness": {
+          "product_identity": {
+            "name": "treatment, sludge from pulp and paper production, landfarming",
+            "reference product": "soil pH raising agent, as CaCO3",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "publisher_activity": "2581601b-b6b0-41e9-b7d9-9acc2fb3e22f",
+          "waste_reference_amounts": [
+            -1.0
+          ],
+          "waste_inventory_sha256": "4a9de253779625556adc2c9b373af25147a3d0a3ec32b063d6d65c29941e4352",
+          "waste_nonzero_exchange_count": 26,
+          "nominal_zero_rows": 25,
+          "inherited_formula_rows": 25,
+          "formulas_identical_to_waste": 25,
+          "read_only_formula_matches_waste_values": 25
+        }
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off only. Preserve one kg of source CaCO3-equivalent soil-pH-raising function and signed caller quantity, uncertainty, formulas and properties. Do not infer CaO, Ca(OH)2, purity, nutrient, moisture or molecular-mass factors from legacy lime names. The actual lime supplier inventories mill uncalcined limestone. Retain the global market material shares and all four freight rows, the original RER/RoW lime split, every RER lime producer/freight entry and the previously reviewed RoW lime delivery helper without renormalization. Use complete native milled limestone, the matching native algal-lime regional-storage process and the separately reviewed allocated zinc-mining co-product burden, with quarry, energy, infrastructure, ore, allocation, geography, vintage and internal-uncertainty limitations. All three recovered sludge-derived pH products have positive one-kg references and 75 nominal-zero deterministic biosphere rows in total; paired negative-one-kg waste-treatment branches are nonempty. CA-QC/RoW retain 50 background formulas identical to the waste branch. Read-only evaluation reproduces all 50 nonzero waste values, including four expressions requiring one case-only alias clarification; those expressions do not describe the zero-allocated recovered product. Preserve the observed fixed-profile product allocation with an explicit empty recovered-stock handover. Do not transplant unallocated treatment formulas as recovered-product emissions. Background parameter recalculation equivalence is not claimed. This does not clear waste treatment or separately listed caller field emissions and does not omit caller formulas. No real landfarming process is asserted impact-free, and no recovery/soil-carbon credit is added. The source RER algal branch and native algal process both document marine collection, drying from 25% to 2.5% water and milling; preserve its original kg share with the complete native inventory once, no drying or moisture multiplier. Its FR-production/CH-delivery label, infrastructure, allocation, upstream supply, internal uncertainty and vintage differ. Native European rail, generic road, barge and oceanic container freight replace source fleets at original tonne-km, with geographic/technology warnings and unquantified score differences. Other profiles, waste references, or changed source allocations require independent review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "35e6db810637349ceedcde6cc01291428ee833a02a01cbd933eff5023a1217a8"
+        }
+      ]
     }
   ],
   "superseded_operations": [

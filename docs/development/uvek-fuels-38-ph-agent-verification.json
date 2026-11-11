@@ -1,0 +1,123 @@
+{
+  "date": "2026-11-11",
+  "status": "Exact 3.8 pH-agent market and three recovered-product stock correspondences qualified. Complete fuel update/export and other registered sectors remain unfinished.",
+  "brightpath_commit": "598936e2a562894b4e3d7d6f3e849d9def3dace1",
+  "review_sha256": "916b0b5c5eeec42c02c595bfe87e988171872e93d15b1eeed434c249804c1a31",
+  "forward_resource_sha256": "5456b83618e8806e1d3373c5788effdafa9543866689df510c19ff94dae8969e",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_approval_scopes": 4,
+  "validated_approval_scopes": 666,
+  "all_prior_662_operations_and_fingerprints_preserved": true,
+  "mapping_change": "Only four inspected pH-agent parents changed; four on-demand helpers added. All previous helper/review contents preserved; prior lime delivery/mining helpers are fingerprint-bound dependencies.",
+  "source_allocation": {
+    "positive_product_suppliers": 3,
+    "nominal_zero_deterministic_biosphere_rows": 75,
+    "inherited_background_formula_rows": 50,
+    "formulas_identical_to_negative_treatment": 50,
+    "read_only_formula_matches_waste_values": 50,
+    "case_alias_clarifications": 4,
+    "source_inventory_or_parameters_modified": false
+  },
+  "native_lci": {
+    "status": "Finite flattened complete CaCO3-equivalent supply market LCI, including lime split, RER market, inherited RoW market/mining and all final freight. Recovered handover stock has no upstream inputs under observed source allocation. No database write.",
+    "native_demands": [
+      {
+        "identity": {
+          "name": "Transport, barge",
+          "reference product": "Transport, barge",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "amount": 0.0058
+      },
+      {
+        "identity": {
+          "name": "Transport, freight, lorry, fleet average",
+          "reference product": "Transport, freight, lorry, fleet average",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "amount": 0.04839854575213447
+      },
+      {
+        "identity": {
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "amount": 0.0259
+      },
+      {
+        "identity": {
+          "name": "Transport, transoceanic container ship",
+          "reference product": "Transport, transoceanic container ship",
+          "location": "OCE",
+          "unit": "ton kilometer"
+        },
+        "amount": 4.6121
+      },
+      {
+        "identity": {
+          "name": "xx Lime, algae, at regional storehouse",
+          "reference product": "xx Lime, algae, at regional storehouse",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "amount": 9.001870997026387e-05
+      },
+      {
+        "identity": {
+          "name": "Limestone, milled, loose, at plant",
+          "reference product": "Limestone, milled, loose, at plant",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "amount": 0.9331848463107609
+      },
+      {
+        "identity": {
+          "name": "Zinc, from combined metal production, at beneficiation",
+          "reference product": "Zinc, from combined metal production, at beneficiation",
+          "location": "SE",
+          "unit": "kilogram"
+        },
+        "amount": 0.0021167545555557717
+      }
+    ],
+    "finite_supply": true,
+    "finite_inventory": true,
+    "source_database": "BAFU:2026-reimported",
+    "source_activity_count": 11947,
+    "source_modified": "2026-09-22T10:55:01.512934",
+    "source_unchanged": true
+  },
+  "tests": {
+    "brightpath_new_and_adjacent": "76 passed in initial 78-case run; two negative-control setup assertions corrected and both passed in focused rerun. All 26 pH plus 52 adjacent compost/lime cases covered.",
+    "premise_new_ph_cases": "12 passed; signed quantity/uncertainty, exact warnings, fresh/cache, stock allocation/delivery and individual approval removal.",
+    "broader_baseline": "Earlier sign/allocation and full approval results are documented in uvek-fuels-38-compost-verification.json. No post-pH full-suite pass is claimed."
+  },
+  "generator_replay": "Forward and canonical biosphere bytes match checkout.",
+  "wheel": "New review, resource and manifest bytes match checkout.",
+  "regular_environment": "Installed Git commit, exact resource SHA and all 666 approval scopes verified.",
+  "runtime_python_changes": false,
+  "authoring_changes": "Frozen pH review replay utility and generator hook only.",
+  "source_background_inventories_or_parameters_changed": false,
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 48,
+    "distinct_rule_identities": 44,
+    "exact_case_removed": [
+      "3.8",
+      "bp-ffcd093245457004"
+    ],
+    "all_other_pending_cases_preserved": true,
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123321565,
+  "limitations": [
+    "Exact inspected ecoinvent 3.8 cut-off only. Preserve one kg of source CaCO3-equivalent soil-pH-raising function and signed caller quantity, uncertainty, formulas and properties. Do not infer CaO, Ca(OH)2, purity, nutrient, moisture or molecular-mass factors from legacy lime names. The actual lime supplier inventories mill uncalcined limestone. Retain the global market material shares and all four freight rows, the original RER/RoW lime split, every RER lime producer/freight entry and the previously reviewed RoW lime delivery helper without renormalization. Use complete native milled limestone, the matching native algal-lime regional-storage process and the separately reviewed allocated zinc-mining co-product burden, with quarry, energy, infrastructure, ore, allocation, geography, vintage and internal-uncertainty limitations. All three recovered sludge-derived pH products have positive one-kg references and 75 nominal-zero deterministic biosphere rows in total; paired negative-one-kg waste-treatment branches are nonempty. CA-QC/RoW retain 50 background formulas identical to the waste branch. Read-only evaluation reproduces all 50 nonzero waste values, including four expressions requiring one case-only alias clarification; those expressions do not describe the zero-allocated recovered product. Preserve the observed fixed-profile product allocation with an explicit empty recovered-stock handover. Do not transplant unallocated treatment formulas as recovered-product emissions. Background parameter recalculation equivalence is not claimed. This does not clear waste treatment or separately listed caller field emissions and does not omit caller formulas. No real landfarming process is asserted impact-free, and no recovery/soil-carbon credit is added. The source RER algal branch and native algal process both document marine collection, drying from 25% to 2.5% water and milling; preserve its original kg share with the complete native inventory once, no drying or moisture multiplier. Its FR-production/CH-delivery label, infrastructure, allocation, upstream supply, internal uncertainty and vintage differ. Native European rail, generic road, barge and oceanic container freight replace source fleets at original tonne-km, with geographic/technology warnings and unquantified score differences. Other profiles, waste references, or changed source allocations require independent review."
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "date": "2026-11-11",
-  "status": "Pending mapping and parameter/allocation review; not a qualified conversion.",
+  "status": "Investigation completed; exact fixed-profile stock allocation and full market mapping are qualified in uvek-fuels-38-ph-agent-verification.json.",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.8",
@@ -107,11 +107,16 @@
     }
   ],
   "next_checks": [
-    "Preserve source CaCO3-equivalent functional quantity rather than infer CaO chemistry from legacy lime names.",
-    "Trace both source RER/RoW lime delivery markets; reuse independently qualified milling and allocated-mining suppliers where exact identities match.",
-    "Review inherited formulas on CA-QC/RoW nominal-zero recovered-product rows before representing them as fixed allocated stocks; do not silently discard formula semantics or generalize the deterministic compost decision.",
-    "Retain every source material share and final freight entry without renormalization."
+    "Complete the other remaining fuel correspondences, then run the standard full fuel update, supplier-link validation and Brightway export."
   ],
-  "mapping_rules_modified": false,
-  "full_licensed_vectors_published": false
+  "mapping_rules_modified": true,
+  "full_licensed_vectors_published": false,
+  "formula_trace": {
+    "inherited_formula_rows": 50,
+    "identical_to_paired_waste_formulas": 50,
+    "read_only_reproduced_nonzero_waste_values": 50,
+    "expressions_using_one_case_only_alias_clarification": 4,
+    "source_inventory_or_parameter_changes": false,
+    "interpretation": "The inherited expressions use the unallocated treatment frame; do not transplant them into the fixed zero-allocated recovered-product stock. Background parametric equivalence is not claimed."
+  }
 }

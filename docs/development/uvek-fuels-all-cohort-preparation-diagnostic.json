@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "8ff9a05d0e669551dd52a0cdeae833bddd5c4ff1",
-  "approval_ledger_sha256": "eea4cbc7bea92d0ad47e7a2d3b3c3674efe1835253a7db2a36e3f6b3a1ed4537",
-  "validated_scopes": 662,
+  "brightpath_commit": "598936e2a562894b4e3d7d6f3e849d9def3dace1",
+  "approval_ledger_sha256": "6d78058890fe4b12b615994197d68e7b0179fb05c5a8ba3ce4b7e53cf05d3d9e",
+  "validated_scopes": 666,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 49,
-  "distinct_unapproved_rule_identities": 45,
+  "unapproved_source_profile_cases": 48,
+  "distinct_unapproved_rule_identities": 44,
   "cohorts": [
     {
       "source": {
@@ -71,9 +71,9 @@
       },
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 21,
-      "refusal_audit_filename": "6e637fa91996c9f07c806f13ec1778485a70d07597931d904570b82123b39aca.audit.json.gz",
-      "refusal_audit_sha256": "2709527c83e1ec16be85eb38b697745c5170e8d77073a6a5dda34ec0456e8405",
+      "unapproved_count": 20,
+      "refusal_audit_filename": "a01ec359442b2a9d264c34381263fe3950358f61040fbe18d6233e7958f5fd1a.audit.json.gz",
+      "refusal_audit_sha256": "f59696e509f1d9fb4a20bd311be2dab7b0f0d23e6c9260fc4bdd172c8ff7c78e",
       "pending": [
         {
           "rule_id": "bp-05200779ee64a17f",
@@ -159,21 +159,6 @@
             "location": "US",
             "name": "Rape seed, at farm",
             "reference product": "Rape seed, at farm",
-            "unit": "kilogram"
-          }
-        },
-        {
-          "rule_id": "bp-ffcd093245457004",
-          "source": {
-            "location": "GLO",
-            "name": "market for soil pH raising agent, as CaCO3",
-            "reference product": "soil pH raising agent, as CaCO3",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Limestone, at mine",
-            "reference product": "Limestone, at mine",
             "unit": "kilogram"
           }
         },
@@ -420,8 +405,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 24,
-      "refusal_audit_filename": "f885008eabb537bfdd8c43a0cbb01ed2f6abfb73f334a8fffbb0287f8d0a95a0.audit.json.gz",
-      "refusal_audit_sha256": "4d2c8148e8377a8bd29d45652e86cb0dc1f3da0e85059b4ed4766b42c5476263",
+      "refusal_audit_filename": "e93a03014e1cb4576172cb8a47c2eb236bb45505855748a9ff8bb58c9d7c9b35.audit.json.gz",
+      "refusal_audit_sha256": "f34fc37d49d08934e35cc8397e9b03b88f297905dfe2a1480948e717b99175bb",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -788,8 +773,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "4cfd1a380ad1f16e6893db6b44f215b45b240b1edac46539e0d4ce1f06fcdac0.audit.json.gz",
-      "refusal_audit_sha256": "f3bd2af2673d7eafd896596471fed191a94ee70d83e48089d6bea4f9d6df50f7",
+      "refusal_audit_filename": "bb048d86bd6c5c07ac5667c351b3d21a5f01ca65f3aa9d50d5c02414767c7676.audit.json.gz",
+      "refusal_audit_sha256": "53d7f07f633019319b595f4d4b1a08a843d2978971b7e248330208a6648701ee",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",
