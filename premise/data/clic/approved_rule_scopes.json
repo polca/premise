@@ -201491,6 +201491,806 @@
           "fingerprint": "eac3ec3fc6bf666bf8fd4afa89d3e434a279ea3f138dcf40c417c871c021a5e0"
         }
       ]
+    },
+    {
+      "rule_id": "bp-cf2ed054ced71820",
+      "operation": "replace",
+      "mapping_method": "reviewed_packaging_38_complete_service",
+      "review_path": "export/uvek_packaging_38_complete_review.json",
+      "review_sha256": "c233e5758bd860400e36c8247cd9bd15129c69c18b3c4f69f47f1d49cec927de",
+      "authorization": "Active full shared-Premise integration goal and standing user auto-approval of inspected modelling decisions with explicit warnings; root services and all dependencies independently inspected. No new physical omission beyond previously approved exact 3.8 HDPE literals.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for packaging, for fertilisers",
+            "reference product": "packaging, for fertilisers",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0154925058c7b91aebf9723d10cbfd4efc6aa3758e90c5ccde94cece882c1cda",
+          "inventory_sha256": "416141958e2875d8751430d5b989e264a7e6315b8103989767cfd878d2d14c6d",
+          "nonproduction_counts": {
+            "technosphere": 4
+          },
+          "location": "GLO",
+          "name": "market for packaging, for fertilisers",
+          "reference product": "packaging, for fertilisers",
+          "unit": "kilogram"
+        },
+        "production_service_witness": {
+          "identity": {
+            "name": "packaging production for fertiliser, per kilogram of packed product",
+            "reference product": "packaging, for fertilisers",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "404b1f051e2675b39c2c6058fc0a68351aeb4932e0c4b4bb87206755078446e7",
+          "inventory_sha256": "7129af9a525eef23363158ce2a5a7178e34078adfab0774df853a856353ca058",
+          "nonproduction_counts": {
+            "technosphere": 10
+          }
+        },
+        "basis": "Exact inspected ecoinvent 3.8 cut-off packaging service per kg PACKED PRODUCT, not per kg plastic or battery enclosure. Preserve original HDPE and forming quantities, eight signed waste-market entries per factory, all country/climate/fate shares, all waste collection freight and all three delivery freight entries per market. Never scale delivery freight by the small packaging-plastic mass or invent shipment-boundary equivalence. Open burning and five separate open-dump climates use independent public Doka 2017 calculations calibrated against every inspected nonzero mean and marginal lognormal statistic. Keep negative-infiltration upward-leachate/evaporite behavior. Retain exact canonical units and receiving compartments; the existing same-CAS Nickel-ion to Nickel-II synonym is not a new chemical proxy. No uncontrolled fate becomes incineration, controlled landfill or an empty handover. Five unsanitary-landfill climates reuse their existing exact 3.8 complete-source helper recipes and native operating-service approximations, unchanged and content-bound. Their machinery, geographic, vintage and background limitations remain. Municipal incineration and sanitary landfill use the complete named native CH PE/PP incinerator and 0.4%-water PE landfill at one signed kg. Source moisture, trace composition, emissions, allocation and geography can differ. The native incinerator does not reproduce source fly-ash extraction/recovered-metal boundaries; retain that as a screening technology difference and add no separate recovery or avoided-energy credit. Score effects remain unquantified. Complete native RER stretch-blow and injection-moulding auxiliaries/energy services exclude the main polymer input, which is retained separately as HDPE. Source and native process bases both correspond to 0.978 kg stretch-blown or 0.994 kg injection-moulded output per process kg; factor one preserves the processing-input basis, without a new yield multiplier. Native auxiliaries, allocation, internal uncertainty, delivery mix, geography and vintage replace the source services as screening proxies. Road, rail and container-ship freight keep their original separate quantities, units, signs and marginal uncertainty. Use the same complete native RER fleet-average lorry/RER rail/OCE container-ship services already reviewed for the 3.8 HDPE market. Country fleet, energy, technology, service-versus-delivery, vintage and allocation differences remain explicit; no freight mode is swapped or multiplied by packaging mass. HDPE reuses the existing exact 3.8 market helper including both virgin shares, three freight entries and exactly four previously approved tiny recycled-supply omissions, without renormalization. This composition authorizes no additional physical omission. All source and native inventories remain unchanged; no inverse, consequential route or uninspected-release qualification is inferred. Six source delivery-freight formulas contain only constant arithmetic, no free symbols or activity parameters. Independently emitted constant formulas preserve their evaluated quantities; original expression hashes retain traceability without publishing raw licensed formula strings. Caller formulas and supported marginal uncertainty remain preserved. No dependence on a source parameter is removed.",
+        "conversion_factor": 1,
+        "resource_action": "Exact 3.8 packed-product recipe with complete country/fate/climate closure, public PE model emissions, existing exact unsanitary services and explicitly reviewed complete native screening proxies.",
+        "new_target": {
+          "recipe_ref": "packaging-38-delivery-d96e91105bdebf84f666"
+        },
+        "retention": {
+          "market_freight_rows": 3,
+          "production_service_rows": 1,
+          "factory_hdpe_rows": 1,
+          "factory_forming_rows": 1,
+          "factory_waste_rows": 8,
+          "source_market_order_retained": true,
+          "source_factory_order_retained": true,
+          "packed_product_reference_kg": 1,
+          "physical_inputs_newly_omitted": 0
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polyethylene, 0.4% water, to sanitary landfill",
+              "reference product": "Disposal, polyethylene, 0.4% water, to sanitary landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e6bdf9f3c94bb3db3e81cbf89fecf5429aea099dad16c841ea9d00ee3ac2863b",
+            "inventory_sha256": "38f037183d2a7ec9bcbf6b842e42792e238fa931c383c174e48ecb00c769ed25"
+          },
+          {
+            "identity": {
+              "name": "Stretch blow moulding",
+              "reference product": "Stretch blow moulding",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "6ffbfce3b8822f675685c5c0ba824843b46cc9a54a07218e362436856002515d",
+            "inventory_sha256": "ba109027c5975a34bd7194b2350f4eef4a79cc72792f89e2a101d907c9f29bd5"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+              "reference product": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d5fea203c959e60a483792749ac199e230d671dafb668c9a025649f9035498a8",
+            "inventory_sha256": "8246c98cde1b7fb368c1bf6cd124b1a56b665d9d4b92aace74a60a4eac29b13a"
+          },
+          {
+            "identity": {
+              "name": "Injection moulding",
+              "reference product": "Injection moulding",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "4fc67fdeb9b35bde52f0e7ae91d7b36fd38fb825a0c96b2a24beca90063d2f92",
+            "inventory_sha256": "659a41e1b64245682c643054c3de383ba67f584cb84ccc21a3e7d3f7db49ceb2"
+          }
+        ],
+        "approved_recipe_source_omissions": {
+          "packaging-hdpe-015c128d7978ed807056": [
+            {
+              "original_index": 5,
+              "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: 871a26ff5e2e3c23c2beabc633adbf0bf416857a3dfd5b1875e734e0b0d48d97",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "CH",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.8"
+              }
+            },
+            {
+              "original_index": 6,
+              "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: d55140bbf3ce64201e7a8abe4774fd0a0f82f73a2b7c4269824da04bb39e1b8a",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "Europe without Switzerland",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.8"
+              }
+            },
+            {
+              "original_index": 7,
+              "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: b23e10ef21492934fbb8466ddd5d1ca618453a119d55af186511a3d2aeac14f5",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "US",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.8"
+              }
+            },
+            {
+              "original_index": 9,
+              "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: 51142ca4d8eee516c25b5c980dcba08cf2b668bc081c412972814a0083143ae6",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "RoW",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.8"
+              }
+            }
+          ]
+        },
+        "constant_formula_proofs": [
+          {
+            "source": {
+              "name": "market for packaging, for fertilisers",
+              "reference product": "packaging, for fertilisers",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 0,
+            "source_formula_sha256": "88d406d3c38a1480ea46a7d9ac32c5a4504eff670da7f0a4a99e8aa37e5e55ef",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.289"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for fertilisers",
+              "reference product": "packaging, for fertilisers",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 1,
+            "source_formula_sha256": "41cd33e334e6aa0d59b5999f34352319b23b86d4ee8009be8bf00a38ab0488d8",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.525"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for fertilisers",
+              "reference product": "packaging, for fertilisers",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 2,
+            "source_formula_sha256": "71204dfff4dfa4259358e6289140924f4ba9a776977f4fb690f6882ba9d3c335",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.598"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for pesticides",
+              "reference product": "packaging, for pesticides",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 0,
+            "source_formula_sha256": "41cd33e334e6aa0d59b5999f34352319b23b86d4ee8009be8bf00a38ab0488d8",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.525"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for pesticides",
+              "reference product": "packaging, for pesticides",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 1,
+            "source_formula_sha256": "71204dfff4dfa4259358e6289140924f4ba9a776977f4fb690f6882ba9d3c335",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.598"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for pesticides",
+              "reference product": "packaging, for pesticides",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 2,
+            "source_formula_sha256": "88d406d3c38a1480ea46a7d9ac32c5a4504eff670da7f0a4a99e8aa37e5e55ef",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.289"
+          }
+        ],
+        "public_models": [
+          {
+            "path": "brightpath/data/export/uvek_pe_public_open_burning_calculation.json",
+            "sha256": "d19a6dff5e8075cc7b78c2a1a498644b46ff5a81cb5a8f6f3bd3a2e8e6564958"
+          },
+          {
+            "path": "brightpath/data/export/uvek_pe_public_open_dump_calculation.json",
+            "sha256": "d7d10e85c31caacb00c24611992597e3220bcb201793e5ad0906909444c50e03"
+          }
+        ],
+        "closure_counts": {
+          "owned_recipes": 55,
+          "source_waste_markets": 45,
+          "source_terminal_fates": 14,
+          "independent_public_model_fates": 6,
+          "public_nonzero_biosphere_coordinates": 612,
+          "reused_exact_source_unsanitary_climates": 5,
+          "native_complete_incineration_or_sanitary_proxy_identities": 3,
+          "new_physical_omissions": 0
+        }
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off packaging service per kg PACKED PRODUCT, not per kg plastic or battery enclosure. Preserve original HDPE and forming quantities, eight signed waste-market entries per factory, all country/climate/fate shares, all waste collection freight and all three delivery freight entries per market. Never scale delivery freight by the small packaging-plastic mass or invent shipment-boundary equivalence.",
+        "Open burning and five separate open-dump climates use independent public Doka 2017 calculations calibrated against every inspected nonzero mean and marginal lognormal statistic. Keep negative-infiltration upward-leachate/evaporite behavior. Retain exact canonical units and receiving compartments; the existing same-CAS Nickel-ion to Nickel-II synonym is not a new chemical proxy. No uncontrolled fate becomes incineration, controlled landfill or an empty handover.",
+        "Five unsanitary-landfill climates reuse their existing exact 3.8 complete-source helper recipes and native operating-service approximations, unchanged and content-bound. Their machinery, geographic, vintage and background limitations remain. Municipal incineration and sanitary landfill use the complete named native CH PE/PP incinerator and 0.4%-water PE landfill at one signed kg. Source moisture, trace composition, emissions, allocation and geography can differ. The native incinerator does not reproduce source fly-ash extraction/recovered-metal boundaries; retain that as a screening technology difference and add no separate recovery or avoided-energy credit. Score effects remain unquantified.",
+        "Complete native RER stretch-blow and injection-moulding auxiliaries/energy services exclude the main polymer input, which is retained separately as HDPE. Source and native process bases both correspond to 0.978 kg stretch-blown or 0.994 kg injection-moulded output per process kg; factor one preserves the processing-input basis, without a new yield multiplier. Native auxiliaries, allocation, internal uncertainty, delivery mix, geography and vintage replace the source services as screening proxies.",
+        "Road, rail and container-ship freight keep their original separate quantities, units, signs and marginal uncertainty. Use the same complete native RER fleet-average lorry/RER rail/OCE container-ship services already reviewed for the 3.8 HDPE market. Country fleet, energy, technology, service-versus-delivery, vintage and allocation differences remain explicit; no freight mode is swapped or multiplied by packaging mass.",
+        "HDPE reuses the existing exact 3.8 market helper including both virgin shares, three freight entries and exactly four previously approved tiny recycled-supply omissions, without renormalization. This composition authorizes no additional physical omission. All source and native inventories remain unchanged; no inverse, consequential route or uninspected-release qualification is inferred.",
+        "Six source delivery-freight formulas contain only constant arithmetic, no free symbols or activity parameters. Independently emitted constant formulas preserve their evaluated quantities; original expression hashes retain traceability without publishing raw licensed formula strings. Caller formulas and supported marginal uncertainty remain preserved. No dependence on a source parameter is removed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1ef4127a0e6f9971ce749475f547eac1eedf95f9a23d6c96ce06f6a13d2e913a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6073dd107b7b9ea8",
+      "operation": "replace",
+      "mapping_method": "reviewed_packaging_38_complete_service",
+      "review_path": "export/uvek_packaging_38_complete_review.json",
+      "review_sha256": "c233e5758bd860400e36c8247cd9bd15129c69c18b3c4f69f47f1d49cec927de",
+      "authorization": "Active full shared-Premise integration goal and standing user auto-approval of inspected modelling decisions with explicit warnings; root services and all dependencies independently inspected. No new physical omission beyond previously approved exact 3.8 HDPE literals.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for packaging, for pesticides",
+            "reference product": "packaging, for pesticides",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "180f941d82028c940d2965133c0d7a59f0599e2c98b5a411bcff280e0ad69192",
+          "inventory_sha256": "b4d45a64e5ab161d1a58b32635943c41ed4cc3dd6482dcb02b6224c2f4722ca6",
+          "nonproduction_counts": {
+            "technosphere": 4
+          },
+          "location": "GLO",
+          "name": "market for packaging, for pesticides",
+          "reference product": "packaging, for pesticides",
+          "unit": "kilogram"
+        },
+        "production_service_witness": {
+          "identity": {
+            "name": "packaging production for pesticide, per kilogram of packed product",
+            "reference product": "packaging, for pesticides",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "e1b053ec13028e1b8386aa8bb1beb33f17be18c7c9375aad82fd29c63d253bd8",
+          "inventory_sha256": "cb13a4b1785e9dea95598a9474f839b78e149599af53ddc7135b02411a73f9d3",
+          "nonproduction_counts": {
+            "technosphere": 10
+          }
+        },
+        "basis": "Exact inspected ecoinvent 3.8 cut-off packaging service per kg PACKED PRODUCT, not per kg plastic or battery enclosure. Preserve original HDPE and forming quantities, eight signed waste-market entries per factory, all country/climate/fate shares, all waste collection freight and all three delivery freight entries per market. Never scale delivery freight by the small packaging-plastic mass or invent shipment-boundary equivalence. Open burning and five separate open-dump climates use independent public Doka 2017 calculations calibrated against every inspected nonzero mean and marginal lognormal statistic. Keep negative-infiltration upward-leachate/evaporite behavior. Retain exact canonical units and receiving compartments; the existing same-CAS Nickel-ion to Nickel-II synonym is not a new chemical proxy. No uncontrolled fate becomes incineration, controlled landfill or an empty handover. Five unsanitary-landfill climates reuse their existing exact 3.8 complete-source helper recipes and native operating-service approximations, unchanged and content-bound. Their machinery, geographic, vintage and background limitations remain. Municipal incineration and sanitary landfill use the complete named native CH PE/PP incinerator and 0.4%-water PE landfill at one signed kg. Source moisture, trace composition, emissions, allocation and geography can differ. The native incinerator does not reproduce source fly-ash extraction/recovered-metal boundaries; retain that as a screening technology difference and add no separate recovery or avoided-energy credit. Score effects remain unquantified. Complete native RER stretch-blow and injection-moulding auxiliaries/energy services exclude the main polymer input, which is retained separately as HDPE. Source and native process bases both correspond to 0.978 kg stretch-blown or 0.994 kg injection-moulded output per process kg; factor one preserves the processing-input basis, without a new yield multiplier. Native auxiliaries, allocation, internal uncertainty, delivery mix, geography and vintage replace the source services as screening proxies. Road, rail and container-ship freight keep their original separate quantities, units, signs and marginal uncertainty. Use the same complete native RER fleet-average lorry/RER rail/OCE container-ship services already reviewed for the 3.8 HDPE market. Country fleet, energy, technology, service-versus-delivery, vintage and allocation differences remain explicit; no freight mode is swapped or multiplied by packaging mass. HDPE reuses the existing exact 3.8 market helper including both virgin shares, three freight entries and exactly four previously approved tiny recycled-supply omissions, without renormalization. This composition authorizes no additional physical omission. All source and native inventories remain unchanged; no inverse, consequential route or uninspected-release qualification is inferred. Six source delivery-freight formulas contain only constant arithmetic, no free symbols or activity parameters. Independently emitted constant formulas preserve their evaluated quantities; original expression hashes retain traceability without publishing raw licensed formula strings. Caller formulas and supported marginal uncertainty remain preserved. No dependence on a source parameter is removed.",
+        "conversion_factor": 1,
+        "resource_action": "Exact 3.8 packed-product recipe with complete country/fate/climate closure, public PE model emissions, existing exact unsanitary services and explicitly reviewed complete native screening proxies.",
+        "new_target": {
+          "recipe_ref": "packaging-38-delivery-c798d9eddb536679d096"
+        },
+        "retention": {
+          "market_freight_rows": 3,
+          "production_service_rows": 1,
+          "factory_hdpe_rows": 1,
+          "factory_forming_rows": 1,
+          "factory_waste_rows": 8,
+          "source_market_order_retained": true,
+          "source_factory_order_retained": true,
+          "packed_product_reference_kg": 1,
+          "physical_inputs_newly_omitted": 0
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polyethylene, 0.4% water, to sanitary landfill",
+              "reference product": "Disposal, polyethylene, 0.4% water, to sanitary landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e6bdf9f3c94bb3db3e81cbf89fecf5429aea099dad16c841ea9d00ee3ac2863b",
+            "inventory_sha256": "38f037183d2a7ec9bcbf6b842e42792e238fa931c383c174e48ecb00c769ed25"
+          },
+          {
+            "identity": {
+              "name": "Stretch blow moulding",
+              "reference product": "Stretch blow moulding",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "6ffbfce3b8822f675685c5c0ba824843b46cc9a54a07218e362436856002515d",
+            "inventory_sha256": "ba109027c5975a34bd7194b2350f4eef4a79cc72792f89e2a101d907c9f29bd5"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e3ba0f529db131a1bc46152a079f2710a08e69f4504df47d56e266da750b7851",
+            "inventory_sha256": "de85ab0bf0b815c15668f74a61930feb51f8813254feb55cf0ac262831023a40"
+          },
+          {
+            "identity": {
+              "name": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+              "reference product": "Disposal, polyethylene/polypropylene products, to municipal waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d5fea203c959e60a483792749ac199e230d671dafb668c9a025649f9035498a8",
+            "inventory_sha256": "8246c98cde1b7fb368c1bf6cd124b1a56b665d9d4b92aace74a60a4eac29b13a"
+          },
+          {
+            "identity": {
+              "name": "Injection moulding",
+              "reference product": "Injection moulding",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "4fc67fdeb9b35bde52f0e7ae91d7b36fd38fb825a0c96b2a24beca90063d2f92",
+            "inventory_sha256": "659a41e1b64245682c643054c3de383ba67f584cb84ccc21a3e7d3f7db49ceb2"
+          }
+        ],
+        "approved_recipe_source_omissions": {
+          "packaging-hdpe-015c128d7978ed807056": [
+            {
+              "original_index": 5,
+              "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: 871a26ff5e2e3c23c2beabc633adbf0bf416857a3dfd5b1875e734e0b0d48d97",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "CH",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.8"
+              }
+            },
+            {
+              "original_index": 6,
+              "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: d55140bbf3ce64201e7a8abe4774fd0a0f82f73a2b7c4269824da04bb39e1b8a",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "Europe without Switzerland",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.8"
+              }
+            },
+            {
+              "original_index": 7,
+              "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: b23e10ef21492934fbb8466ddd5d1ca618453a119d55af186511a3d2aeac14f5",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "US",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.8"
+              }
+            },
+            {
+              "original_index": 9,
+              "rationale": "Scoped same-kind auto-approved omission: positive nonempty recycled-to-generic HDPE stock at 2.93285310007683e-14 kg/kg. Not an empty cut-off supplier. Preserve source position and signed uncertainty; do not renormalize. Receiver inventory SHA256: 51142ca4d8eee516c25b5c980dcba08cf2b668bc081c412972814a0083143ae6",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "RoW",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "8f9fc27cf123453edb2a612331546296065d931f3f2665602309bded9ae2bb75",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.8"
+              }
+            }
+          ]
+        },
+        "constant_formula_proofs": [
+          {
+            "source": {
+              "name": "market for packaging, for fertilisers",
+              "reference product": "packaging, for fertilisers",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 0,
+            "source_formula_sha256": "88d406d3c38a1480ea46a7d9ac32c5a4504eff670da7f0a4a99e8aa37e5e55ef",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.289"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for fertilisers",
+              "reference product": "packaging, for fertilisers",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 1,
+            "source_formula_sha256": "41cd33e334e6aa0d59b5999f34352319b23b86d4ee8009be8bf00a38ab0488d8",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.525"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for fertilisers",
+              "reference product": "packaging, for fertilisers",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 2,
+            "source_formula_sha256": "71204dfff4dfa4259358e6289140924f4ba9a776977f4fb690f6882ba9d3c335",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.598"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for pesticides",
+              "reference product": "packaging, for pesticides",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 0,
+            "source_formula_sha256": "41cd33e334e6aa0d59b5999f34352319b23b86d4ee8009be8bf00a38ab0488d8",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.525"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for pesticides",
+              "reference product": "packaging, for pesticides",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 1,
+            "source_formula_sha256": "71204dfff4dfa4259358e6289140924f4ba9a776977f4fb690f6882ba9d3c335",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.598"
+          },
+          {
+            "source": {
+              "name": "market for packaging, for pesticides",
+              "reference product": "packaging, for pesticides",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "original_index": 2,
+            "source_formula_sha256": "88d406d3c38a1480ea46a7d9ac32c5a4504eff670da7f0a4a99e8aa37e5e55ef",
+            "free_symbols": [],
+            "source_activity_parameter_count": 0,
+            "constant_arithmetic_matches_amount": true,
+            "canonical_formula": "0.289"
+          }
+        ],
+        "public_models": [
+          {
+            "path": "brightpath/data/export/uvek_pe_public_open_burning_calculation.json",
+            "sha256": "d19a6dff5e8075cc7b78c2a1a498644b46ff5a81cb5a8f6f3bd3a2e8e6564958"
+          },
+          {
+            "path": "brightpath/data/export/uvek_pe_public_open_dump_calculation.json",
+            "sha256": "d7d10e85c31caacb00c24611992597e3220bcb201793e5ad0906909444c50e03"
+          }
+        ],
+        "closure_counts": {
+          "owned_recipes": 55,
+          "source_waste_markets": 45,
+          "source_terminal_fates": 14,
+          "independent_public_model_fates": 6,
+          "public_nonzero_biosphere_coordinates": 612,
+          "reused_exact_source_unsanitary_climates": 5,
+          "native_complete_incineration_or_sanitary_proxy_identities": 3,
+          "new_physical_omissions": 0
+        }
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off packaging service per kg PACKED PRODUCT, not per kg plastic or battery enclosure. Preserve original HDPE and forming quantities, eight signed waste-market entries per factory, all country/climate/fate shares, all waste collection freight and all three delivery freight entries per market. Never scale delivery freight by the small packaging-plastic mass or invent shipment-boundary equivalence.",
+        "Open burning and five separate open-dump climates use independent public Doka 2017 calculations calibrated against every inspected nonzero mean and marginal lognormal statistic. Keep negative-infiltration upward-leachate/evaporite behavior. Retain exact canonical units and receiving compartments; the existing same-CAS Nickel-ion to Nickel-II synonym is not a new chemical proxy. No uncontrolled fate becomes incineration, controlled landfill or an empty handover.",
+        "Five unsanitary-landfill climates reuse their existing exact 3.8 complete-source helper recipes and native operating-service approximations, unchanged and content-bound. Their machinery, geographic, vintage and background limitations remain. Municipal incineration and sanitary landfill use the complete named native CH PE/PP incinerator and 0.4%-water PE landfill at one signed kg. Source moisture, trace composition, emissions, allocation and geography can differ. The native incinerator does not reproduce source fly-ash extraction/recovered-metal boundaries; retain that as a screening technology difference and add no separate recovery or avoided-energy credit. Score effects remain unquantified.",
+        "Complete native RER stretch-blow and injection-moulding auxiliaries/energy services exclude the main polymer input, which is retained separately as HDPE. Source and native process bases both correspond to 0.978 kg stretch-blown or 0.994 kg injection-moulded output per process kg; factor one preserves the processing-input basis, without a new yield multiplier. Native auxiliaries, allocation, internal uncertainty, delivery mix, geography and vintage replace the source services as screening proxies.",
+        "Road, rail and container-ship freight keep their original separate quantities, units, signs and marginal uncertainty. Use the same complete native RER fleet-average lorry/RER rail/OCE container-ship services already reviewed for the 3.8 HDPE market. Country fleet, energy, technology, service-versus-delivery, vintage and allocation differences remain explicit; no freight mode is swapped or multiplied by packaging mass.",
+        "HDPE reuses the existing exact 3.8 market helper including both virgin shares, three freight entries and exactly four previously approved tiny recycled-supply omissions, without renormalization. This composition authorizes no additional physical omission. All source and native inventories remain unchanged; no inverse, consequential route or uninspected-release qualification is inferred.",
+        "Six source delivery-freight formulas contain only constant arithmetic, no free symbols or activity parameters. Independently emitted constant formulas preserve their evaluated quantities; original expression hashes retain traceability without publishing raw licensed formula strings. Caller formulas and supported marginal uncertainty remain preserved. No dependence on a source parameter is removed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "750886981c93a6d7bec7d6fc784e8188b82f1b5529d6a817a702bc437907f40a"
+        }
+      ]
     }
   ],
   "superseded_operations": [

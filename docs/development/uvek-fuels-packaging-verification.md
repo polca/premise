@@ -1,0 +1,11 @@
+# Fuel preparation: packaging and chemical identity
+
+On 11 November 2026, Brightpath commits 4414732, 7cdf57d and 6a7328c resolved the two previously refused ecoinvent 3.8 packaging services and one exact-profile biosphere rename. Premise adds only the two reviewed packaging operation scopes; all existing approval fingerprints remain unchanged. The colleague installation and requirement pin select the same published Git revision.
+
+Packaging is measured per kg of packed product, not per kg of plastic. Helpers preserve the source polymer/forming quantities, separate delivery rows and signed waste routing. They use the reviewed native forming services, existing HDPE helpers and independently calculated public PE open-burning and five climate-specific dump models. Incineration and sanitary landfill use complete native Swiss screening proxies, with explicit technology, recovery, allocation, moisture and geography limitations. The four previously approved negligible HDPE recycled-supply omissions remain unchanged; no new literal exchange omissions were added.
+
+Validation: 40 focused Brightpath packaging/model tests, two Premise cold/warm approval tests and both nominal packaging LCIs passed. Canonical biosphere identity tests then passed (72 tests, followed by six focused retention tests). Complete resource generation reproduced the technosphere, immutable canonical baseline and active canonical successor byte for byte. Source database activity count and modification timestamp were unchanged by packaging LCI checks.
+
+The real REMIND SSP2-NPi 2050 run prepared 484 additional CLIC records against BAFU:2026-reimported and ecoinvent-3.10-biosphere. This preparation used a diagnostic bypass of the public sector support guard. The subsequent standard fuel transformation failed because the gasoline supplier filter was empty in CAZ. Fuel update/export remain unfinished and the public guard remains unchanged. This supersedes the earlier packaging-blocked preparation diagnostic; it does not qualify fuel support.
+
+Remaining work includes physical fuel supplier filters and geographic coverage, full standard fuel callback/validation/export/LCIs, additional registered sectors and multi-geography electricity technology regionalization.
