@@ -107,3 +107,23 @@ failure. After the probes, Excel reported no open workbooks and its original
 `msoAutomationSecurityLow` setting was restored. No model output from these
 attempts is accepted as mapping evidence. The public workbook copies remain
 read-only; no new disposal mapping or omission was introduced.
+
+#### Independent queue review: lime is not a single-product shortcut
+
+Inspection of the pending 3.8 RoW lime market (`bp-42ca176032e4b754`)
+found three distinct supplier branches plus three road-freight entries. The
+market describes quicklime, but the Quebec producer documentation describes
+pulverized limestone; another branch is an allocated zinc-mining co-product.
+The current hydraulic-lime candidate therefore cannot be approved simply by
+changing its name to quicklime. A reviewed delivery helper must preserve the
+three branches and freight separately, establish the actual material basis for
+each producer, and retain allocation and source-documentation ambiguity in its
+warnings. No limestone-to-CaO mass multiplier or generic quicklime substitution
+has been authorized by this inspection. This is independent of the packaging
+disposal-model calculation and can be resolved in parallel with that work.
+
+A further attempt using Excel's standard file-open command also failed. Excel
+then returned errors for the settings query itself, and computer-use inspection
+found no accessible Excel window. Consequently the post-attempt automation
+setting could not be verified; the previously verified restoration above applies
+only to the earlier probes. No restart or termination of Excel was attempted.
