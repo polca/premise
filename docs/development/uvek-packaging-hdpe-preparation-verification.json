@@ -1,0 +1,214 @@
+{
+  "date": "2026-11-11",
+  "status": "HDPE 3.8 and 3.11 profiles qualified at mapping/preparation stage. The 3.11 refusal is cleared; agricultural packaging waste closure, fuel transformation/export and other sectors remain unfinished.",
+  "brightpath_commit": "bebddd2fd892e1b07e9aa06651e1860cba10102a",
+  "test_isolation_commit": "26277db",
+  "review_sha256": "dfc0dda86956a7b7c65dcc374a22a1417ab2f232181c1a9385f5976e75dc5b3a",
+  "resource_sha256": "25b0c0e561e7e7c71c75c80ca79dd42f0c10fea3c3e22f5804e76f96bc276eb0",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_source_profiles": [
+    {
+      "family": "ecoinvent",
+      "version": "3.8",
+      "system_model": "cutoff"
+    },
+    {
+      "family": "ecoinvent",
+      "version": "3.11",
+      "system_model": "cutoff"
+    }
+  ],
+  "new_helpers": 2,
+  "old_selected_profiles_preserved": [
+    {
+      "source_profile": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.9"
+      },
+      "selected_rule_sha256": "4e536256c1fde19f9d1fda01081db22ea401749fca83e694de2cb0ed1e388776",
+      "shared_review_sha256": "f01511f91b6da290c634ec7dd7b2690a284ebff6f9ab7552d765cd2e6b08f978",
+      "selected_target": {
+        "recipe_ref": "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69"
+      }
+    },
+    {
+      "source_profile": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.10"
+      },
+      "selected_rule_sha256": "52413f86f0fdad6b1a2dab7ab69986d36bb940bd3976965e080034356829a42c",
+      "shared_review_sha256": "f01511f91b6da290c634ec7dd7b2690a284ebff6f9ab7552d765cd2e6b08f978",
+      "selected_target": {
+        "recipe_ref": "heat-310-waste-57bf3348f28eb377601d"
+      }
+    }
+  ],
+  "old_helper_closures_unchanged": {
+    "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69": "77224a164615264bf1cf7e8888d83ed6c3ea881e0140f6a3dfe5d919731cc47d",
+    "heat-310-waste-57bf3348f28eb377601d": "57bf3348f28eb377601d08010a1e367c8423ad21799f9e25f1ed5225ed3c1351"
+  },
+  "old_scope_fingerprint_refreshes": [
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "old_fingerprint": "ff6564de28030b04514e9c6d3636945820316d8f6ddc652c4f498c7a7d21d4e8",
+      "new_fingerprint": "254c9ae04bbe1da7ab802538f6d6c92b3d0913e0da6e807a4ef63e04d1cafc41",
+      "selected_rule_shared_review_and_old_recipe_closure_unchanged": true,
+      "reason": "Only exact 3.8 and 3.11 target profiles/helpers are added to the fingerprinted full rule; prior selected rule, target, factor, warnings, reviews and old helpers are identical."
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "old_fingerprint": "f0f83ed9e93de81f7e96fd037a9cd3554b8f521a5f420976f55d148eeaf18fc0",
+      "new_fingerprint": "5057aac49dacc75ce822d4825fdff9de84ce91ec56889e05cdfe6fcf3ad838fd",
+      "selected_rule_shared_review_and_old_recipe_closure_unchanged": true,
+      "reason": "Only exact 3.8 and 3.11 target profiles/helpers are added to the fingerprinted full rule; prior selected rule, target, factor, warnings, reviews and old helpers are identical."
+    }
+  ],
+  "all_other_previous_operations_unchanged": true,
+  "previous_validated_scopes": 645,
+  "validated_scopes": 647,
+  "omitted_source_rows_by_profile": {
+    "3.8": 4,
+    "3.11": 0
+  },
+  "source_38_positive_stock_omission_kg_per_kg": 1.173141240030732e-13,
+  "stock_delivery_renormalized": false,
+  "tests": {
+    "brightpath_new_and_adjacent_including_shared_cache_isolation": 239,
+    "reference_sign_regressions": 733,
+    "premise_fresh_cache_and_missing_omission_approval_control": 3,
+    "total": 975
+  },
+  "native_checks": {
+    "date": "2026-11-11",
+    "source_database": "BAFU:2026-reimported",
+    "source_activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "market_matrix_solves": 2,
+    "results": [
+      {
+        "source_version": "3.8",
+        "functional_output_kg": 1,
+        "retained_rows_compared_field_by_field": 5,
+        "omitted_recycled_rows": 4,
+        "omitted_positive_stock_kg_per_kg": 1.173141240030732e-13,
+        "native_weighted_market_lci_finite": true,
+        "supply_finite": true,
+        "native_demand_suppliers": 4
+      },
+      {
+        "source_version": "3.11",
+        "functional_output_kg": 1,
+        "retained_rows_compared_field_by_field": 5,
+        "omitted_recycled_rows": 0,
+        "omitted_positive_stock_kg_per_kg": 0,
+        "native_weighted_market_lci_finite": true,
+        "supply_finite": true,
+        "native_demand_suppliers": 4
+      }
+    ],
+    "database_written": false,
+    "scope": "Weighted native HDPE stock plus source freight demands; not packaging waste closure, prospective fuel transformation or export."
+  },
+  "complete_replay_byte_identical": true,
+  "wheel_review_resource_manifest_exact": true,
+  "runtime_python_changes": 0,
+  "regular_conda_git_install_verified": true,
+  "licensed_whole_fuel_graph_probe": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "graph_non_mutation_checks_passed": true,
+    "cohorts_with_passing_migration_stage": [
+      "3.12",
+      "3.9",
+      "3.6"
+    ],
+    "unapproved_profile_cases_before": 59,
+    "unapproved_profile_cases_after": 58,
+    "distinct_unapproved_rule_identities": 54,
+    "unapproved_by_source_version": {
+      "3.8": 30,
+      "3.7": 24,
+      "3.11": 4
+    },
+    "refusal_audits": [
+      {
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.8"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.8"
+          }
+        },
+        "filename": "435c98ab160fc94772e5e9c2cc175fea6ce1bcc5a041e23c3f2516e4b7d88945.audit.json.gz",
+        "sha256": "e0dac6d3df2aa91c9e37e566b0be51828a7fb0d784b75708023b63e4c8deb68c"
+      },
+      {
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.7"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.7"
+          }
+        },
+        "filename": "e3fd9bb82294ef993d9042b6dad270138eb53261e4a612edc2aca714e855d043.audit.json.gz",
+        "sha256": "42d3f107de4df4cc0ff24abc3c75372852bd1c76f9cd88e3329243238e8baa99"
+      },
+      {
+        "source": {
+          "biosphere": {
+            "family": "ecoinvent",
+            "version": "3.11"
+          },
+          "technosphere": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.11"
+          }
+        },
+        "filename": "816b37ba7def35f944bf03b5d9b39af95495b03d0a14635c8c11d3d583cc5436.audit.json.gz",
+        "sha256": "af4da3b489fa09ac48b194bbf439b976a1ce61b9a3150a66d4fb25a948142a02"
+      }
+    ],
+    "sector_transformation_or_export_run": false
+  },
+  "packaging_followup": {
+    "status": "unfinished; no municipal-incineration substitution for open burning/dumping is newly qualified",
+    "source38_waste_markets_inspected": 45,
+    "terminal_disposal_classes_inspected": 14,
+    "public_model_source": "https://www.doka.ch/publications.htm",
+    "public_model_archive": "https://www.doka.ch/WasteTools2017.zip",
+    "public_model_archive_sha256": "df88e2839749de62777fd664333b0d91922c688e0ece6656509d70e3c23041fd",
+    "public_tools_inspected_read_only": true,
+    "public_model_recalculation_verified": false,
+    "macros_executed": false
+  },
+  "limitations": [
+    "Native stock and freight inventories are screening proxies with unquantified score differences.",
+    "Historical 3.9 global omission text concerns only 3.9; new profile recipe audits distinguish the four 3.8 omissions from intact 3.11 supply.",
+    "Existing PE open-burning/open-dump endpoints that use incineration remain a modelling issue requiring correction, including dependent older parent helpers; migration-stage success does not establish fate equivalence.",
+    "Current approval-refusal counts are not proof that no later role-binding, unit, target-link or validation failures will occur.",
+    "The current fuel graph is not all remaining registered sectors."
+  ],
+  "obsolete_verified_replay_wheel_bytes_removed": 123179064,
+  "regular_conda_validated_scopes": 647,
+  "regular_conda_module_loaded_from_site_packages": true
+}

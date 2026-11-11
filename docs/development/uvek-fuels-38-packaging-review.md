@@ -38,12 +38,14 @@ wet open dump has 108; an unsanitary landfill also has technosphere inputs.
 They are not empty recycling handovers or a common interchangeable incinerator.
 
 The source HDPE market has two virgin-production shares, three freight entries
-and four positive recycled-supply entries, each 2.93285310007683e-14 kg/kg. Earlier
-3.9 approval does not itself cover a different 3.8 inventory. If a new scoped
-omission is used, all four entries need exact source/context evidence and an
-explicit omission audit, with no renormalization, empty handover substitution or
-claim of quantified score effects. Standing auto-approval covers a scientifically
-supported similar decision; it does not eliminate evidence or validation.
+and four positive recycled-supply entries, each 2.93285310007683e-14 kg/kg. The HDPE dependency now has independently inspected 3.8 and 3.11 delivery
+profiles. The 3.8 profile omits exactly these four nonempty recycled entries with
+source-specific audits and warnings, without renormalization or an empty
+handover substitute. The inspected 3.11 market contains only two virgin
+producers and three freight entries and has no omission. Older 3.9/3.10 selected
+behavior and helper closures are preserved. See the
+[HDPE dependency receipt](uvek-packaging-hdpe-preparation-verification.json).
+This does not qualify either packaging service or its waste closure.
 
 ## Implementation and verification
 
@@ -63,3 +65,33 @@ packed-product basis, disposal signs, retained shares/freight, native/biosphere
 links, cached conversion and scope refusals. Compare the helpers' functional
 LCIs and rerun actual licensed preparation. Missing dependencies remain
 unfinished work; they do not justify omitting these packaging services.
+
+
+## Newly identified endpoint mismatch
+
+The selected existing 3.9 rules for polyethylene open burning and all five
+open-dump climate classes still use municipal incineration. Their reference
+signs were reviewed, but that does not establish the disposal technology. These
+endpoints must not be reused as if they preserve uncontrolled disposal. The
+issue also requires review of existing parent waste-market helpers that embed
+those endpoints; a passed migration stage alone does not establish scientific
+qualification of their fate representation.
+
+Read-only comparison of complete 3.8 source vectors found that the reviewed
+polypropylene open-burning and wet-open-dump inventories are not identical to
+polyethylene: their moisture is 15.9% versus 0.4%, and numerous emission means
+and uncertainty values differ. Same-climate unsanitary-landfill inventories
+also differ from open dumping, including carbon emissions, dust and land use.
+Neither can be silently relabelled as exact polyethylene open disposal.
+
+Doka's [public original calculation tools](https://www.doka.ch/publications.htm)
+provide the original open-burning and climate-specific dump models. The 2017
+archive was downloaded and inspected read-only. It includes the PE/PP waste
+composition library and separate burning/landfill formula workbooks. The cached
+example outputs concern test PVC and mixed municipal waste, so they do not prove
+a calculated PE inventory. No macros were run, no workbook or Brightway data was
+modified, and no new PE environmental recipe is qualified from these examples.
+The next modelling step is an independently verified public-model calculation
+with the PE inputs and actual climate classes, preserving the emission and
+water compartments. Raw licensed source inventories are not a publishing
+shortcut. The HDPE stock/dependency work proceeds independently.

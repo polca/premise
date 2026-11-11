@@ -1308,3 +1308,71 @@ The scan covers the current fuel graph, not all remaining registered sectors.
 It provides an explicit work queue without treating the thirty 3.8 cases as
 the total remaining task. The full goal remains active. See the
 [all-cohort diagnostic](uvek-fuels-all-cohort-preparation-diagnostic.json).
+
+
+### HDPE dependency profiles and disposal follow-up — 11 November 2026
+
+Independent source-3.8 and source-3.11 HDPE stock helpers retain both separate
+virgin-production shares and all three original freight rows, with quantities,
+uncertainty and formulas, without normalization. Complete native European HDPE
+and generic rail/road/container shipping provide documented stock/geographic/
+fleet proxies. Exactly four positive nonempty recycled-to-generic 3.8 supplies
+(1.173141240030732e-13 kg/kg total) are omitted under standing same-kind
+auto-approval, with exact signed source statistics and portable audits. The
+inspected 3.11 market has no such entries and has no omission. No empty recycling
+handover, virgin substitution, generic trace threshold or avoided-product credit
+is introduced. Historical global 3.9 omission text is retained for that original
+profile; the current-profile recipe and approval audits distinguish these cases.
+
+The previously selected 3.9 and 3.10 rules, factors, warnings, shared reviews
+and two old helper closures remain identical. Only two prior full-rule
+fingerprints are refreshed, after proving those invariants, because the full
+rule now includes two additional target profiles. Every other previous approval
+operation is unchanged. Two new exact scopes give **647 validated scopes**.
+No runtime Python module changes; requirements and colleague guides pin the
+pushed Brightpath revision, and the notebook remains unchanged.
+
+All **975 checks pass**: 239 new/adjacent Brightpath regressions, 733 reference
+sign regressions and three strict fresh/cache/separate-omission-approval Premise
+checks. Two weighted native market LCIs are finite; ten retained source rows
+are independently compared field by field. Source count and modification time
+remain unchanged. Complete replay and wheel data bytes match; canonical
+biosphere is unchanged. Removed 117.5 MiB of verified obsolete generated
+replay/wheel artifacts, retaining source evidence and the public calculation tools.
+
+The combined regression run exposed mutation of the shared cached mapping in
+three recent replay tests and the new HDPE replay test. Those tests now mutate
+deep copies. Older authoring fixtures restore their historical HDPE stage only
+after proving the new resource preserves old selected behavior and closure;
+current new-profile tests and full frozen replay independently cover the
+extension. Newly approved 3.11 acceptance is tested, while 3.7/3.12 remain
+refusal cases for the older-profile test. No validation gate is relaxed.
+
+Whole-graph licensed diagnosis confirms the 3.11 HDPE refusal is cleared:
+current fuel preflight has **58 profile-specific refusals across 54 identities**
+(3.8: thirty; 3.7: twenty-four; 3.11: four). The 3.12, 3.9 and 3.6 migration
+stages still pass. This is one cleared current refusal plus a necessary 3.8
+packaging dependency, not two completed packaging services. Role binding, fuel
+transformation/export and other registered sectors remain unfinished.
+
+Packaging inspection now covers 45 source-3.8 waste markets and fourteen
+terminal disposal classes, with corresponding 3.9 source witnesses. Existing
+selected PE open-burning/open-dump rules still point to incineration: reference
+sign validation alone does not qualify that technology. Their dependent older
+waste-market helpers also require scientific review. PP open disposal and
+same-climate PE unsanitary landfill are not exact substitutions: full vectors,
+moisture, carbon/methane, dust, uncertainty and land-use differ. They are not
+silently relabelled as equivalent PE open disposal. No new packaging waste
+closure or disposal proxy is qualified by this HDPE change.
+
+Doka's [public original calculation tools](https://www.doka.ch/publications.htm)
+were downloaded and inspected read-only as a route to proper burning and
+climate-specific dump models. Cached examples are PVC/mixed waste, not verified
+PE calculations. No macros, workbook edits or new environmental recipes were
+executed. The source tool archive and workbook hashes are retained privately;
+raw licensed inventories are not committed. Next: independently calculate and
+verify PE open disposal from the public model, close the packaging waste chain,
+and continue the broader mapping/sector work. The full goal remains active.
+See the [HDPE receipt](uvek-packaging-hdpe-preparation-verification.json),
+[packaging review](uvek-fuels-38-packaging-review.md) and updated
+[whole-cohort queue](uvek-fuels-all-cohort-preparation-diagnostic.json).
