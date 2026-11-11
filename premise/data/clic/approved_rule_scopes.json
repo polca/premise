@@ -189138,6 +189138,2616 @@
           "fingerprint": "3e2daa335bfa8529df81212214f388c7fe5b5993c56605ceaec5b76d94033dfd"
         }
       ]
+    },
+    {
+      "rule_id": "bp-ab4e383b592be518",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inorganic nitrogen fertiliser, as N",
+            "reference product": "inorganic nitrogen fertiliser, as N",
+            "location": "ID",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "1ab7cb4a38aeeb95d84fb3450405ae563a800686279b3fd679c0c5cd397180ee",
+          "enriched_inventory_sha256": "137db91860c638d8f27cb8c41b933e081c9c1f4359eb4d4b578655a9caab7c4c",
+          "nonproduction_counts": {
+            "technosphere": 4
+          },
+          "name": "market for inorganic nitrogen fertiliser, as N",
+          "reference product": "inorganic nitrogen fertiliser, as N",
+          "location": "ID",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nutrient supply from NPK (15-15-15) fertiliser",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "93b2fe61767823de2cde6fd073aadc3f88fc7709d88cf3c17edc1ddf3b2c5032",
+            "enriched_inventory_sha256": "b2d3a0de413232d57317b7f5bd655c2137bceed30999c4daf76cd73f2dc2d28b",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonium sulfate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "0821d30662e4fab08c0b97aaed7af90b093c1b54e84d2296e59178628bb52bd0",
+            "enriched_inventory_sha256": "12997ec6f086dda9661925615aba35a3f40d3c7040aa05bb2b0c2a90017eba2b",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from monoammonium phosphate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b08c1c60de5a076c1196f1209c613f4c4140f2c4454ceb0129586e3d894da234",
+            "enriched_inventory_sha256": "a4a5e36c4edd61a40dae51453c9b598421c5c04d257f8ba53dfed82dbbe95deb",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from urea",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e3687f76b0cca18f416e800f3a1a3e5697f07f6fa88cb8e9a4ecb62d68151450",
+            "enriched_inventory_sha256": "873a10f677d7ecdc93ab90dcca4fe129e3842270c178033a0792b6a360e619a6",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          }
+        ],
+        "basis": "Source ID explicitly references one kg N nutrient equivalent; native description also declares one kg N fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 0.973 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "name": "Average mineral fertiliser, as N, at regional storehouse",
+          "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Source ID explicitly references one kg N nutrient equivalent; native description also declares one kg N fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 0.973 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9499cdbcac296395f7d4547f8f62cee95f8c52f19359e27de60c6765612ea402"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1e5665194f1a7a40",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for pesticide, unspecified",
+            "reference product": "pesticide, unspecified",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "ee419cec0839cbcee03e011488f597c42f76739e71e1220ee5959f4c5c382aeb",
+          "enriched_inventory_sha256": "5916f325dd9f372478f08514cdf4c1d3eb8c3ea13a30f91d7a1a37a159185aca",
+          "nonproduction_counts": {
+            "technosphere": 7
+          },
+          "name": "market for pesticide, unspecified",
+          "reference product": "pesticide, unspecified",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "dichloropropene to generic market for pesticide, unspecified",
+              "reference product": "pesticide, unspecified",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "88a6df8aef76ecc916651afb0a2d68899e22f5235b65875898c3246cde89459e",
+            "enriched_inventory_sha256": "3c3b2ad1d82940a7f9bf0d934130267ad34015ad69647fbd92e33450a2525522",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "pesticide production, unspecified",
+              "reference product": "pesticide, unspecified",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "8199e20e760e2cfe794eab8b41da334d8e4e8858c2aa25694fb354b2ea3f695e",
+            "enriched_inventory_sha256": "00964fd945a186c4ca7e6844a5caa28aead75efaaf6a735209f607e77b8b21af",
+            "nonproduction_counts": {
+              "technosphere": 106,
+              "biosphere": 153
+            }
+          },
+          {
+            "identity": {
+              "name": "pesticide production, unspecified",
+              "reference product": "pesticide, unspecified",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "6a166ce324a7ea6d69b475d0d3e4471978e2a543b04ff52e2060a1b849b9ed40",
+            "enriched_inventory_sha256": "0b8c9f3169bcf8671ff9c7fbe3d335d0e161bc53cb75e527fe48facc6212839c",
+            "nonproduction_counts": {
+              "technosphere": 146,
+              "biosphere": 153
+            }
+          }
+        ],
+        "basis": "Use complete native Swiss unspecified-pesticide production at regional storage per kg active stock for the source global generic-pesticide market. Native production mixture, material/energy/process emissions, plant, delivery and vintage replace the source mix. The Swiss/global geographic difference is explicit. Do not interpret one kg active production stock as one kg commercial formulation or equivalent pesticide effectiveness. Separate application releases retain their source identities/amounts; no toxicity, dilution, application or pest-control multiplier is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Pesticide unspecified, at regional storehouse",
+          "reference product": "Pesticide unspecified, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Use complete native Swiss unspecified-pesticide production at regional storage per kg active stock for the source global generic-pesticide market. Native production mixture, material/energy/process emissions, plant, delivery and vintage replace the source mix. The Swiss/global geographic difference is explicit. Do not interpret one kg active production stock as one kg commercial formulation or equivalent pesticide effectiveness. Separate application releases retain their source identities/amounts; no toxicity, dilution, application or pest-control multiplier is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1287ccca8e9cf5641cbe8eef6dff9dabf28385b09a8b6c510f2a5add0a947cb0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-342b0acc67aa560e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inorganic phosphorus fertiliser, as P2O5",
+            "reference product": "inorganic phosphorus fertiliser, as P2O5",
+            "location": "ID",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "607128fb6360ebab0552e10f2998b9d98b3a503fd90136883a75102877e6a8d1",
+          "enriched_inventory_sha256": "fb2fdec189dd36442d45014b36b307636f692c7accb26f024320af10965d9ff5",
+          "nonproduction_counts": {
+            "technosphere": 4
+          },
+          "name": "market for inorganic phosphorus fertiliser, as P2O5",
+          "reference product": "inorganic phosphorus fertiliser, as P2O5",
+          "location": "ID",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nutrient supply from NPK (15-15-15) fertiliser",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1dfcd02022ddf4f1910ca73e4f39efb32ded80f06bf2d90855e7702920dbfae2",
+            "enriched_inventory_sha256": "fa3405fbe0c808547abcfc2ae4a45d4ca2f230f10b650bb75f88ce188918a0b5",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from monoammonium phosphate",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "8e1429a50c394ec947194979895e1275b937b12a0dc4ab5938d726ccf6a59856",
+            "enriched_inventory_sha256": "c67fa0d65d95ba72efdf917cb05a2fa41d5ff0207b23a0c5645b791a0100a1a5",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from phosphate rock, beneficiated",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b488b9ddb849ef1fb4d24ea92d2e0e45387698a8e15c0451c864f3ee23898743",
+            "enriched_inventory_sha256": "5869c7b99b742663b2f9b02de168037672f1fd19920bd3a58007bdf3e1dc66f6",
+            "nonproduction_counts": {
+              "technosphere": 3
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from triple superphosphate",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "973f801160b288fe63c0c9dc8544b6556ba59b42c32d8a435dd70db50c770290",
+            "enriched_inventory_sha256": "a6e0f25ab9627c201322fb86fe08585edf5b0568c71b56f39c5a68842e38a7f0",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          }
+        ],
+        "basis": "Source ID explicitly references one kg P2O5 nutrient equivalent; native description also declares one kg P2O5 fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.223 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+          "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Source ID explicitly references one kg P2O5 nutrient equivalent; native description also declares one kg P2O5 fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.223 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "517c9115ef039aa60378dbd95fa4f931212bb591c3b66518d076d4f739fec6d0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-498d9c2e6fa6b060",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inorganic potassium fertiliser, as K2O",
+            "reference product": "inorganic potassium fertiliser, as K2O",
+            "location": "ID",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0a1645f333d9f26e70f70474a02bb0e2309cfbf18a9b47206bcfb141f6d4eec9",
+          "enriched_inventory_sha256": "d679ba17d45a26d75bb034f8163474f50702bdf252bc6ecaff87fba8778c0dfa",
+          "nonproduction_counts": {
+            "technosphere": 4
+          },
+          "name": "market for inorganic potassium fertiliser, as K2O",
+          "reference product": "inorganic potassium fertiliser, as K2O",
+          "location": "ID",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nutrient supply from NPK (15-15-15) fertiliser",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "26c16ecb30b05d20dcb04fe00fb42c1e8bd080141afec0274c9e7e7725fe0fe4",
+            "enriched_inventory_sha256": "64e85b6b7b6bce9ded5caff38f7145076a28b0b8950b331f404f38c7b22b5a6f",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potash salt",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "487f2253b269b65acd7b681038923f4f7a44234341b5f4cabce32914196cabe6",
+            "enriched_inventory_sha256": "56f9bda07990d3f416b4e15ce4e7c33cffa40af6a98fa219adc706f891258803",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium chloride",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "bf3a52c44beb52040a52e98080c5b94bb09f9352c68e9ae809f16459bc51a38a",
+            "enriched_inventory_sha256": "a8d2ac9802346502043acd8f01256abe4e7e591828e2f14a915ac1912fce73f2",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium sulfate",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "cc2349d4f054aad1f6fdd88251025323b1c1ba77bc05aff44ff5f6ce4ba7c7ea",
+            "enriched_inventory_sha256": "dae114307ca46714342dbdd9d4c7aad44902e64aaf440566451b1d081f977ee3",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          }
+        ],
+        "basis": "Source ID explicitly references one kg K2O nutrient equivalent; native description also declares one kg K2O fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.0013 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+          "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Source ID explicitly references one kg K2O nutrient equivalent; native description also declares one kg K2O fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.0013 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c82e49ce22f2bd9e0043b87dbb1ae0bc6300f132359f5aca6cdc57764cf20510"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a7832124e7202895",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for bipyridylium-compound",
+            "reference product": "bipyridylium-compound",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0cf9a3cde7dfbf864cf6e766e0355c68a380180bb6a36f9da7b744d48cf690bd",
+          "enriched_inventory_sha256": "90e41a36fd6bdeff0031102e4d83d94991f9271e528aec0fb518838358cdc85d",
+          "nonproduction_counts": {
+            "technosphere": 6
+          },
+          "name": "market for bipyridylium-compound",
+          "reference product": "bipyridylium-compound",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "bipyridylium-compound production",
+              "reference product": "bipyridylium-compound",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "566909caab244abb4d044ba2ed1334e4721469c1a2e4bcea10420bc9c2440465",
+            "enriched_inventory_sha256": "b0a721478e0421c2fcfafce68585ad203ddbee270e3e79e17a132db59daa062c",
+            "nonproduction_counts": {
+              "technosphere": 78,
+              "biosphere": 115
+            }
+          },
+          {
+            "identity": {
+              "name": "bipyridylium-compound production",
+              "reference product": "bipyridylium-compound",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ae5aa413073e33f58d9be868a2d4aea26842477eb37a94cc01601ad5763b25fd",
+            "enriched_inventory_sha256": "aa967085787a082e0cb357023a48c5084fb722eda29926993e360c71052b9d23",
+            "nonproduction_counts": {
+              "technosphere": 112,
+              "biosphere": 115
+            }
+          }
+        ],
+        "basis": "Use complete native Swiss bipyridylium-compound production per kg active stock for the source global class market. Native documentation itself estimates production from herbicide production: it is a generic class-production screening proxy, not ingredient-specific chemistry or toxicity equivalence. Native recipe, emissions, production/delivery boundary, geography and vintage replace the source mix. Preserve source separately listed application releases and chemical identities. No dose, field-toxicity, carrier/solvent or herbicidal-effectiveness correction is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Bipyridylium-compounds, at regional storehouse",
+          "reference product": "Bipyridylium-compounds, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Use complete native Swiss bipyridylium-compound production per kg active stock for the source global class market. Native documentation itself estimates production from herbicide production: it is a generic class-production screening proxy, not ingredient-specific chemistry or toxicity equivalence. Native recipe, emissions, production/delivery boundary, geography and vintage replace the source mix. Preserve source separately listed application releases and chemical identities. No dose, field-toxicity, carrier/solvent or herbicidal-effectiveness correction is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8b0458e1f684ac12b60e07ca10b1ce9e0ccf28bd9fddff1e953e9dc9d736ebf5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-debda812c6313c05",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_38_nutrient_pesticide",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inorganic nitrogen fertiliser, as N",
+            "reference product": "inorganic nitrogen fertiliser, as N",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "30041e01e7952971a9bc4a4e4e465391217cafc0046853a230bdce901b03e0f3",
+          "enriched_inventory_sha256": "b5f939783fa8fbb7a389c71008775c902e913fc4e2af71fed38230e0f2ee63de",
+          "nonproduction_counts": {
+            "technosphere": 9
+          },
+          "name": "market for inorganic nitrogen fertiliser, as N",
+          "reference product": "inorganic nitrogen fertiliser, as N",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nutrient supply from NPK (15-15-15) fertiliser",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "67843b984e129f8e486043e2fa6f4dce39e6268ce7bafd143568c0e75460d173",
+            "enriched_inventory_sha256": "840435488b2cdbaa3979b6afc1fa8169f19a85cfe07f92e818ea9bcc250e00b7",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonium nitrate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "376c70659ddee38f1dac854868e306bf05e15636081399aac22ec0bb83b50e34",
+            "enriched_inventory_sha256": "2be7038117d080982d409b73d7f60c99360823a18d754b3ce55085a1d213db3e",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonium nitrate phosphate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7b77b14cb904f9e5bdad72e24f3f7466d7b4c05841ecc28c5f266fa46593e12f",
+            "enriched_inventory_sha256": "b87f4844f552335af3718b8b3f496504b37911cbe0183d0caaf4fa3cbf8ff8a6",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonium sulfate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7b2161d1a13f87734babb69da199810d9d450e87b8956085f6a0a4dd261bd3b8",
+            "enriched_inventory_sha256": "dd94bf6a6e46af1519632d2f31133d4ed8003e8d99d8b355614379a86aae799c",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from calcium ammonium nitrate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "2e409218f02dbf0c7f33f7be53ee1356815217f3e2e54482f069adcc820f2c2c",
+            "enriched_inventory_sha256": "b26ed7f8bf466746b6eb02db0f4f6ce6b73aded50994621d0f0cf35dbfedf016",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from diammonium phosphate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "bb1d540ad4db4d309998fe58d8e028938fee0d95863935024c8f8005731e26af",
+            "enriched_inventory_sha256": "8341cc11fdba0faa5f83a2c6569abbda9e52fe950f0e9dfb0ff3b2f3a311bd21",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from monoammonium phosphate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "125d1332936a30cedabc5d91e36820104c71fb9e973f4a3f03da6ee63e26eb22",
+            "enriched_inventory_sha256": "10f0f072421f8f18aca351c290c8dcc3d06c8f0f59d086812324093d6109295a",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium nitrate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1d66bfc1182b7932d85eafb11266613c0ffebf26597cb6a54dc9e5f676aeebfc",
+            "enriched_inventory_sha256": "af06e7f40e7f584aad91c621217a8ca6649545044b0201987ad094e6a71cd3d3",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from urea ammonium nitrate mix",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e29154e868e3fa88f48417ca1c330f399a450c6be2ff465da216c28833f2dd1d",
+            "enriched_inventory_sha256": "3be1b7c2a27f3ff47b2498a63963102f50ed7e33818007a316cd72f9cd3e8850",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          }
+        ],
+        "basis": "Source CH explicitly references one kg N nutrient equivalent; native description also declares one kg N fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 0.973 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "replace",
+        "new_target": {
+          "name": "Average mineral fertiliser, as N, at regional storehouse",
+          "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Source CH explicitly references one kg N nutrient equivalent; native description also declares one kg N fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 0.973 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5dfb421b171c1e890be25ced5ae7465f9d64ac2f6a208fa03c11aa0290a06aaf"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9bcfc79d3362fe6f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inorganic phosphorus fertiliser, as P2O5",
+            "reference product": "inorganic phosphorus fertiliser, as P2O5",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "ba0de1865564933063792e2f20f98871ac636e1c08b0e9744b28aa3dcff6634a",
+          "enriched_inventory_sha256": "9e423afa1c75e18e55bf295e50f623dc52e7f7ecebc5fe01be2b7832f8ac7619",
+          "nonproduction_counts": {
+            "technosphere": 4
+          },
+          "name": "market for inorganic phosphorus fertiliser, as P2O5",
+          "reference product": "inorganic phosphorus fertiliser, as P2O5",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nutrient supply from NPK (15-15-15) fertiliser",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "576b2a28a57ec5b38b32aa496534103b06b2be62d08e510d48b829aa5c0ebafc",
+            "enriched_inventory_sha256": "1be1c991f3b848da34e1c5c69b2ecaaa0be062156db3f5b29c374a1a1183eaa2",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonium nitrate phosphate",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "5cd2d0224fce4a21816ec928389d3ab1067fbca623941516e2e30d5cdeeb1cd6",
+            "enriched_inventory_sha256": "692e1fb833de52f95525faab8f24668eabd369d9b76c53b3d9b626485bad7f2f",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from diammonium phosphate",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9555394c23e62702a691b332bc6305a9dc65423a8399bab5aed200ce4a66d24a",
+            "enriched_inventory_sha256": "38166fa2ce0b92193b9245d37f06089f8e7f87999b063be1a589b59fa3200209",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from monoammonium phosphate",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "fb8a6578852b5c345b6ccc605fd87aca7c8927b3b53ba68d1aef47d6a2b3feb3",
+            "enriched_inventory_sha256": "a9fdb4e49970e96c98ed29537d81cb6829779490d7e4dfc3b6a479aa59946fd9",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          }
+        ],
+        "basis": "Source CH explicitly references one kg P2O5 nutrient equivalent; native description also declares one kg P2O5 fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.223 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+          "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Source CH explicitly references one kg P2O5 nutrient equivalent; native description also declares one kg P2O5 fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.223 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b7b2c1713593e858e3183ef0547fc1dd9208b3b48d2eb8abf36e62ae98a5b06e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4d440a5ab156b17c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inorganic potassium fertiliser, as K2O",
+            "reference product": "inorganic potassium fertiliser, as K2O",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "2d679b944ef6e75bb262af7e97c67fbd65e76802c4752e778d91c74f50dd37de",
+          "enriched_inventory_sha256": "8515f4f32b8d2045f9864280e2437a1baf59e31d698ccfb7048f7130ff311c4b",
+          "nonproduction_counts": {
+            "technosphere": 5
+          },
+          "name": "market for inorganic potassium fertiliser, as K2O",
+          "reference product": "inorganic potassium fertiliser, as K2O",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nutrient supply from NPK (15-15-15) fertiliser",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "20f7f481abd9953335f7517e83d2aef1da6da40c4cdc89b3ccacca5a98f5aaac",
+            "enriched_inventory_sha256": "59aa45d43542d5d5b270545c3f025baeb47f408329a1dd946089323256b731ec",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potash salt",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ff023d255d0a54c2826b7e3f41aa22ca9e2ab4beb7f4171ca4677c564415b04c",
+            "enriched_inventory_sha256": "1723e68e5afc69542fa7008b8dc1b729437d3be659e5b253df2cf32fcb213318",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium chloride",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "0a53c8788272c7256e872692b06c2bdeb103e31f4bd305dbfa19fd5bd27105ff",
+            "enriched_inventory_sha256": "ece1d17a3c49b8a4ac0606d84baec7e843bcc87e25ec7ee46aafd67d4532a0bf",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium nitrate",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f6e577b82354b323873e2a37e60c140b7b13962ceaf8c963e9bd7a05a17c784b",
+            "enriched_inventory_sha256": "9e9ead9f593681448c49c19a1db96f1619b08388eb49c15e30e7c80ced8ddd42",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium sulfate",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7c770c94e1ee47eaf0a1329853df17f8291a126263e8d46bf06ad0500c0e05c6",
+            "enriched_inventory_sha256": "7360d65614128ab30b12bedcb6d70e90a3756ceeee3538f6fdd2f52ca4dfd91c",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          }
+        ],
+        "basis": "Source CH explicitly references one kg K2O nutrient equivalent; native description also declares one kg K2O fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.0013 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+          "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Source CH explicitly references one kg K2O nutrient equivalent; native description also declares one kg K2O fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.0013 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a6ba8e6b9c4feddeaf1d5892aea05ae375bb36e7399a1833355ce6908b01cc23"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-89125291fb94d47e",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_38_nutrient_pesticide",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for pyrethroid-compound",
+            "reference product": "pyrethroid-compound",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "2a2d94b678b21b20a07ab7c090e5348051e28a418220f0e2646c473672579a22",
+          "enriched_inventory_sha256": "1c140e7fae251be279b6421be10421263284e848a2c5056548daf8b973944486",
+          "nonproduction_counts": {
+            "technosphere": 6
+          },
+          "name": "market for pyrethroid-compound",
+          "reference product": "pyrethroid-compound",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "pyrethroid-compound production",
+              "reference product": "pyrethroid-compound",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b82acfbbf415b693d18b9b9a24402580e7094d359b914e3b436dbdb7ed2010c3",
+            "enriched_inventory_sha256": "e9545749b043f34dff11c9ec9b4f9421f3d5a4625300311652f58b7aa1db11b6",
+            "nonproduction_counts": {
+              "technosphere": 22,
+              "biosphere": 23
+            }
+          },
+          {
+            "identity": {
+              "name": "pyrethroid-compound production",
+              "reference product": "pyrethroid-compound",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "10bda15ffc2c1356799afb87db4b4d9cdf210d0548c6209ff3d73844ce59a07c",
+            "enriched_inventory_sha256": "505d93a64d2eee72e3595af23f6c2293fe8d9ce6367a9849408cc0b77ab11767",
+            "nonproduction_counts": {
+              "technosphere": 38,
+              "biosphere": 23
+            }
+          }
+        ],
+        "basis": "Replace the unrelated polysulphide sealing-compound match with complete native European generic insecticide production per kg active stock as an explicitly broader-class screening proxy for pyrethroid production. Native UVEK has no pyrethroid-specific production supplier. The source is an arithmetic mean of representative pyrethroids; the native insecticide mixture is not that ingredient class, chemistry, manufacturing route or toxicity inventory. This is a production-burden proxy only, with unquantified score effects and a requirement for ingredient-specific sensitivity/detail review when pyrethroid production matters. It is not a claim of equal pest-control efficacy, dose, field persistence or toxicity. Keep separately listed application releases and their original chemical identities; no release factor, pesticide-effectiveness ratio, solvent, field emission or avoided-pest credit is added.",
+        "conversion_factor": 1.0,
+        "resource_action": "replace",
+        "new_target": {
+          "name": "xx Insecticides, at regional storehouse",
+          "reference product": "xx Insecticides, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Replace the unrelated polysulphide sealing-compound match with complete native European generic insecticide production per kg active stock as an explicitly broader-class screening proxy for pyrethroid production. Native UVEK has no pyrethroid-specific production supplier. The source is an arithmetic mean of representative pyrethroids; the native insecticide mixture is not that ingredient class, chemistry, manufacturing route or toxicity inventory. This is a production-burden proxy only, with unquantified score effects and a requirement for ingredient-specific sensitivity/detail review when pyrethroid production matters. It is not a claim of equal pest-control efficacy, dose, field persistence or toxicity. Keep separately listed application releases and their original chemical identities; no release factor, pesticide-effectiveness ratio, solvent, field emission or avoided-pest credit is added.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5db7298e7340545b549d28f3f521854b7adbb8e45f61830d181f25c8bb720093"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bd7ba1d16a722d39",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_38_nutrient_pesticide",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inorganic nitrogen fertiliser, as N",
+            "reference product": "inorganic nitrogen fertiliser, as N",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "8932a098ec65babe8b0e25f2b6065f2425c21d2e0dd553c30ce726fae7aa5440",
+          "enriched_inventory_sha256": "776b72dab62730e04fe5c1f46be6a6cf15f17d305df2a867a5dbb2d9429feb1b",
+          "nonproduction_counts": {
+            "technosphere": 10
+          },
+          "name": "market for inorganic nitrogen fertiliser, as N",
+          "reference product": "inorganic nitrogen fertiliser, as N",
+          "location": "US",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nutrient supply from NPK (15-15-15) fertiliser",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "4b1ae91b2bbafd8381a73e1519728f1db7a88f2181135593fa5774f6a3f83c34",
+            "enriched_inventory_sha256": "600b12a1404c3546377e7ce44126ec97fcfa34af4cfc32edf78e9e3ec2d20fee",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonia, anhydrous, liquid",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "56ebf2fd0cea51ce78f86accbe5446f339e6ef79d389be75b988eaa96280f50a",
+            "enriched_inventory_sha256": "e979f3d01035849841dca895f4de70cf5a9b1d28f3ca52d32afa21949b924563",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonium nitrate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "df0e038f0f33dbc3019043670a4430ea98f0c5598721b5bfcf0bb08ec461f12a",
+            "enriched_inventory_sha256": "49210a0632d278104949f7707dbd9260e6492d966be95e7618f5d0d18c991308",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonium nitrate phosphate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "54cd2ace89f0d44c6363afa0eae593f33d6619e2f31e30c79d6142218dad3152",
+            "enriched_inventory_sha256": "0be64722c22d685eb475b39eaaf64bce25731d13ad4aa7f20e2fc56df0a4ffda",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonium sulfate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "0821d30662e4fab08c0b97aaed7af90b093c1b54e84d2296e59178628bb52bd0",
+            "enriched_inventory_sha256": "12997ec6f086dda9661925615aba35a3f40d3c7040aa05bb2b0c2a90017eba2b",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from diammonium phosphate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7e7f48a33739c25a3548c69c908727abc42a9dc31f762c27026796ff669d84d9",
+            "enriched_inventory_sha256": "6f85ba30a083f9052e06254bd3223f1cb0ead64e3f74f418736f64ad2be97b76",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from monoammonium phosphate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e912d9baad7e72be2133321319080cd8a3520fc703b2286cd456c36059cfc3fd",
+            "enriched_inventory_sha256": "e71cdecf4843de493f27f2bc5b26545211a0329f8c0774adaaae663f25ea9458",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium nitrate",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "86d584bcc3a83f0f33ef0b90df7c1fdc516187930f67f74a40888f12b8400f32",
+            "enriched_inventory_sha256": "3a67d82d48b362130d5236d9eeb5a6806092550357dbce8703ca9e0232f059ec",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from urea",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "d7ac84b956de60d4bbf7fa1b066d03ed1af2155731ed3fce5b506e89360734ad",
+            "enriched_inventory_sha256": "7f22e529f14e7daf04319043333ab20345ce34124b7bbdd0a875c46cb9198391",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from urea ammonium nitrate mix",
+              "reference product": "inorganic nitrogen fertiliser, as N",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ba89ec88e1d8b801a4707c3da6fa56a50a5bb616e46f6dc883d3717888939a2d",
+            "enriched_inventory_sha256": "bbb58d64b74ae36847d1a461cf0f1f354dfa74f5b5ad5bf0fe2335d3c800e725",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          }
+        ],
+        "basis": "Source US explicitly references one kg N nutrient equivalent; native description also declares one kg N fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 0.973 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "replace",
+        "new_target": {
+          "name": "Average mineral fertiliser, as N, at regional storehouse",
+          "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Source US explicitly references one kg N nutrient equivalent; native description also declares one kg N fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 0.973 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "219ba584ca88d664f89a81f92aea08ab3df08d36d42ca87f0ba740dbb2ec7699"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0cb5cbfb2134d167",
+      "operation": "replace",
+      "mapping_method": "pairwise_review",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inorganic phosphorus fertiliser, as P2O5",
+            "reference product": "inorganic phosphorus fertiliser, as P2O5",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0809c0133d5f1c337cec2944d26a0eece9f816756b3d98ae103b5cbbf51bdece",
+          "enriched_inventory_sha256": "33f38ba0f8c0290f12b1ed36a83dd62d3940bd1be9c52ea2e43ba7a5dec45eea",
+          "nonproduction_counts": {
+            "technosphere": 5
+          },
+          "name": "market for inorganic phosphorus fertiliser, as P2O5",
+          "reference product": "inorganic phosphorus fertiliser, as P2O5",
+          "location": "US",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nutrient supply from NPK (15-15-15) fertiliser",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e69aa748200867eb3b3076b85ddcee833e0c2b9868a5d73240b7456b60adc1d8",
+            "enriched_inventory_sha256": "f95087854a46f73b66f227dd097a6a428b6a4a41eaf66dd85daa6e3da7c48631",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from ammonium nitrate phosphate",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c4bac8e0f486e3043bbec2a2bae9fc4655f63240449913137904944c02219fc7",
+            "enriched_inventory_sha256": "e2a89ad604d681de5c50e30415736f6faa632fd97e372f54013fe3ec6573f090",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from diammonium phosphate",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "4d1f5ddd4647ddfae6b4278e94d8ec92d9fe5e0ac95ccb9bc59580f0bac983ed",
+            "enriched_inventory_sha256": "ce3d1d53c449abe0b9f8618fef8805a30f17728d6437ea7c56b239ede9a16edf",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from monoammonium phosphate",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "8181136fcb8a3b4ea8c1da3dbf08d91ef17c7e425eb4955ddd4bd4040e0088fe",
+            "enriched_inventory_sha256": "dd3737256e3ae2e9cc58fa78f15c09fa9235ecf4872005d1f3106bccd19e6681",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from triple superphosphate",
+              "reference product": "inorganic phosphorus fertiliser, as P2O5",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "973f801160b288fe63c0c9dc8544b6556ba59b42c32d8a435dd70db50c770290",
+            "enriched_inventory_sha256": "a6e0f25ab9627c201322fb86fe08585edf5b0568c71b56f39c5a68842e38a7f0",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          }
+        ],
+        "basis": "Source US explicitly references one kg P2O5 nutrient equivalent; native description also declares one kg P2O5 fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.223 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+          "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Source US explicitly references one kg P2O5 nutrient equivalent; native description also declares one kg P2O5 fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.223 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3c22c687ee9f269c546e39957e9a02c7ac18f33e40bc62bacfb20e6bef4d9dbe"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-41b83536c4b66e37",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_nutrients_review.json",
+      "review_sha256": "3de8d7721b56c0acf9fba8f0753323ae63eb4d5d6f271dad12b3bdca780c45c6",
+      "authorization": "Active shared-Premise all-sector goal and standing auto-approval for independently inspected functional screening proxies and corrections with explicit warnings. No new source omission.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inorganic potassium fertiliser, as K2O",
+            "reference product": "inorganic potassium fertiliser, as K2O",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "6d9acdc2d956f0e055f799ca622f43dd0dd83c31aef9054302c349d845d7b41f",
+          "enriched_inventory_sha256": "3a43a3b8622c01b324ca89c273a0c49c6405b6aa9a1e94a55ee38efac964fd01",
+          "nonproduction_counts": {
+            "technosphere": 5
+          },
+          "name": "market for inorganic potassium fertiliser, as K2O",
+          "reference product": "inorganic potassium fertiliser, as K2O",
+          "location": "US",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nutrient supply from NPK (15-15-15) fertiliser",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "b277900965565bf839a1ff84dfab2b845fbd319fb282ab33b55671db1608b4aa",
+            "enriched_inventory_sha256": "124a7f2487a460dbae9ce0f3e171a9467c36522c99fc6e3beb4c10d6f2d6d389",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potash salt",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "487f2253b269b65acd7b681038923f4f7a44234341b5f4cabce32914196cabe6",
+            "enriched_inventory_sha256": "56f9bda07990d3f416b4e15ce4e7c33cffa40af6a98fa219adc706f891258803",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium chloride",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "bf3a52c44beb52040a52e98080c5b94bb09f9352c68e9ae809f16459bc51a38a",
+            "enriched_inventory_sha256": "a8d2ac9802346502043acd8f01256abe4e7e591828e2f14a915ac1912fce73f2",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium nitrate",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RNA",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "01ea007e1ad3e0dda77c1714182a07aece8eefc2b8f8d95543972869552c3951",
+            "enriched_inventory_sha256": "eee2c65423d76cd328828e985d38add3a58cc2d32498ad85492536d3dea04e6e",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          },
+          {
+            "identity": {
+              "name": "nutrient supply from potassium sulfate",
+              "reference product": "inorganic potassium fertiliser, as K2O",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "cc2349d4f054aad1f6fdd88251025323b1c1ba77bc05aff44ff5f6ce4ba7c7ea",
+            "enriched_inventory_sha256": "dae114307ca46714342dbdd9d4c7aad44902e64aaf440566451b1d081f977ee3",
+            "nonproduction_counts": {
+              "technosphere": 1
+            }
+          }
+        ],
+        "basis": "Source US explicitly references one kg K2O nutrient equivalent; native description also declares one kg K2O fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.0013 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "conversion_factor": 1.0,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+          "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as N, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as N, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 5,
+            "metadata_sha256": "fb29ebb501d896df3475fac861c935d713634fa00364ba860fb74ee1e88efb03",
+            "enriched_inventory_sha256": "e7d39f4dbac6c698f76569a21fea48c9ad31ef7e0f5ea819d96a02cc238258a7"
+          },
+          {
+            "identity": {
+              "name": "Pesticide unspecified, at regional storehouse",
+              "reference product": "Pesticide unspecified, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 254,
+            "metadata_sha256": "249af3345ea819b7827cbd4b86ffe747d5e6a8fa52dfb5fdf8c38c30cce49ae5",
+            "enriched_inventory_sha256": "4f429ef6e9488d2234e16f91183365f56cc524cae79cdf62bc21dbe93cd0c9b9"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as P2O5, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 6,
+            "metadata_sha256": "4fcc4a87161245ceb407ef2b1c0939bc894b68ade7296afa9a2fcdc82e257aa5",
+            "enriched_inventory_sha256": "52adf7eeae1b556e0f25a7bfac28bc66b17b7f552c7af06e43245a1d3b128024"
+          },
+          {
+            "identity": {
+              "name": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "reference product": "Average mineral fertiliser, as K2O, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "metadata_sha256": "80bcdadbfa256e850da521187eec9b9fbc18fae485b7a635aa4b94b6b978737f",
+            "enriched_inventory_sha256": "5ea6d9197a4d60afdd4d9be565352536ef1cac44bc0f631c1cf3516119ad870a"
+          },
+          {
+            "identity": {
+              "name": "Bipyridylium-compounds, at regional storehouse",
+              "reference product": "Bipyridylium-compounds, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 188,
+            "metadata_sha256": "028981e3a6a7ea1f4229f9a1ae14948ffd73f935f63bdc5bfe284a0fbd55546e",
+            "enriched_inventory_sha256": "ec558b4791b09a1b9b690e0aa0ffdf206a9cbdfb3eca7531c0504c28c6e1274e"
+          },
+          {
+            "identity": {
+              "name": "xx Insecticides, at regional storehouse",
+              "reference product": "xx Insecticides, at regional storehouse",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 91,
+            "metadata_sha256": "44d58b3723a8fe874d3fadf9c19e4b5b8b4f78a304a8386b00432fefb586f2bb",
+            "enriched_inventory_sha256": "f645cbfb6f1af07a663d5875fc978edfdf364246db2b55b280300f16fcf23e6e"
+          }
+        ],
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Source US explicitly references one kg K2O nutrient equivalent; native description also declares one kg K2O fertiliser. Use complete native RER average nutrient supply at factor +1, not one kg of commercial product, elemental-P/K mass or another nutrient. Source country-specific carrier mix and NPK co-product allocation are replaced by the native historical European mix. Native carrier coefficients sum to 1.0013 per declared kg output; retain this original-database consistency limitation, without renormalization or claiming a verified nutrient mass balance. Geography, carrier grades, nutrient co-allocation, availability, manufacturing technology, freight and vintage differ. Crop nutrient demand, application rates, yields, uptake and field emissions remain unchanged. No N/P/K molecular-weight conversion, nutrient efficiency or avoided co-nutrient credit is introduced.",
+        "Only the independently inspected ecoinvent 3.8 cut-off context is newly approved. Preserve signed caller amounts, formulas and uncertainty, separate crop/application emissions, nutrient inputs, water flows and foreground freight. Complete native production or nutrient-supply inventories replace source internal market mixes, chemistry, process emissions, allocation, infrastructure, delivery, uncertainty, geography and vintage with unquantified score effects. No application emission, dose, nutrient effectiveness, agronomic substitution, yield, uptake, mineralisation, solvent, recovery credit or avoided-fertiliser burden is inferred. Native reference quantities are retained without silently renormalizing original database inventories. Shared Premise logic remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fcf18675f44a5df8a8b03826d112eb3f63e2b4fb03e1de5e753081735588a5d1"
+        }
+      ]
     }
   ],
   "superseded_operations": [

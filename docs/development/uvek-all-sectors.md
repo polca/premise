@@ -1224,3 +1224,57 @@ services, agricultural nutrient/packaging inputs (including wrong N-fertiliser
 and pyrethroid matches), then remaining materials and feedstock boundaries.
 The full integration goal remains active. See the
 [native-service receipt](uvek-fuels-38-services-preparation-verification.json).
+
+
+### Twelve nutrient and pesticide cases reviewed — 11 November 2026
+
+Actual licensed preparation accepts twelve additional source-3.8 cut-off cases,
+reducing this cohort from **42 to 30** unapproved correspondences. Nine existing
+Brightpath rules remain byte-identical. Two nitrogen-fertiliser targets change
+from plastic disposal and phosphoric acid to native average nitrogen supply;
+pyrethroid production changes from polysulphide sealant to an explicitly broader
+generic-insecticide production-burden screening proxy. No runtime Python, helper,
+source-input omission, field-emission factor or alternative Premise engine is added.
+
+Nine nutrient markets in ID/CH/US preserve their declared kg N, P2O5 and K2O
+references at factor +1. Complete native historical RER nutrient supply replaces
+the country-specific carrier mix and co-nutrient allocation, with geography,
+manufacture, delivery and vintage warnings. No commercial-product, elemental-P/K,
+crop-uptake, effectiveness, yield or avoided-nutrient multiplier is introduced.
+The original native carrier sums (N 0.973; P2O5 1.223; K2O 1.0013) are explicit
+consistency limitations, retained without silent normalization or a claim of
+verified nutrient mass balance.
+
+Unspecified pesticide and bipyridylium class retain complete native Swiss
+production proxies. Native bipyridylium is itself estimated from generic
+herbicide production. No native pyrethroid-specific supplier was found: the
+selected European generic-insecticide inventory is not equivalent pyrethroid
+chemistry, manufacture or toxicity. Its score effects remain unquantified and
+important pyrethroid-production contributions require ingredient-specific
+sensitivity/detail review. Separately listed application releases keep their
+chemical identities and amounts; tests explicitly preserve Cypermethrin release.
+No dose, pest-control efficacy or field-toxicity correction is inferred.
+
+All **817 checks pass**: 72 Brightpath targeted, 733 reference-sign regressions
+and twelve strict fresh/cache Premise checks. Twelve actual native functional
+LCIs are finite; source count and modification timestamp remain unchanged.
+Complete generation and wheel review/resource/manifest bytes match; canonical
+biosphere is unchanged. Twelve exact scopes preserve every earlier operation,
+yielding **645 validated scopes**. Requirements and colleague guides pin the
+pushed Brightpath revision; the notebook is unchanged. Removed 117.4 MiB of
+verified obsolete replay/wheel files, retaining source evidence and active caches.
+
+Further inspection found that both agricultural packaging references are per kg
+packed product, not kg plastic. Their battery-module target is wrong. Eighteen
+HDPE/waste dependency roots and 94 root/supplier witnesses were inspected across
+3.8 and 3.9; none of the root vectors is identical. Eight nonempty waste routes
+include open burning, climate-specific dumping/unsanitary landfill and
+incineration. These must not become empty recycling handovers or one common
+incinerator. An explicit [pending packaging review](uvek-fuels-38-packaging-review.md)
+records the required packed-product basis, plastic/forming masses, disposal
+signs, freight and dependency qualification. It is not a completed mapping.
+
+The public fuel guard remains closed. Shared fuel transformation, relinking,
+validation/export, later source cohorts and other registered sectors remain
+unfinished; the full goal stays active. See the
+[nutrient/pesticide receipt](uvek-fuels-38-nutrients-preparation-verification.json).
