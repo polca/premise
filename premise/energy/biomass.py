@@ -268,6 +268,9 @@ class Biomass(BaseTransformation):
         }
         self.biomass_consumers = set()
         for dataset in self.database:
+            # Legacy source caches omit identifiers needed by consumer validation.
+            if not dataset.get("code"):
+                dataset["code"] = uuid.uuid4().hex
             name = dataset["name"].lower()
             if (
                 dataset["unit"]

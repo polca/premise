@@ -1,0 +1,22 @@
+{
+  "source": "ecoinvent-3.12-cutoff",
+  "biosphere": "ecoinvent-3.12-biosphere",
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat"
+  ],
+  "activity_count": 29640,
+  "export_created": false,
+  "validation_phase_count": 7,
+  "validation_issues_by_severity": {
+    "warning": 85
+  },
+  "platform": "macOS; regular premise conda environment, Python 3.13",
+  "qualification": "Real standard update; no guard bypass and no export. Does not reproduce Windows environment or qualify all sectors."
+}

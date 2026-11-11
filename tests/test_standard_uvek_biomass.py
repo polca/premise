@@ -13,8 +13,14 @@ from premise.validation.validation import BiomassValidation
 
 
 @pytest.mark.parametrize("amount", [-2.0, 2.0])
-def test_standard_biomass_relinks_native_dry_fuel_without_rescaling(amount):
+@pytest.mark.parametrize("cached", [False, True])
+@pytest.mark.parametrize("family", ["uvek", "ecoinvent"])
+def test_standard_biomass_relinks_native_dry_fuel_without_rescaling(
+    amount, cached, family, tmp_path
+):
     name = "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill"
+    if family == "ecoinvent":
+        name = "market for wood chips, dry"
     supplier = {
         "name": name,
         "reference product": name,
@@ -49,10 +55,17 @@ def test_standard_biomass_relinks_native_dry_fuel_without_rescaling(amount):
         "unit": "kilogram",
         "code": "material",
     }
+    database = [supplier, boiler, material]
+    if cached:
+        from premise.core.utils import create_cache
+
+        create_cache(database, tmp_path / "source.pickle")
+        assert all("code" not in dataset for dataset in database)
+        fuel = deepcopy(boiler["exchanges"][0])
     owner = object.__new__(Biomass)
-    owner.database = [supplier, boiler, material]
-    owner.family = "uvek"
-    owner.mapping = InventorySet(owner.database, family="uvek")
+    owner.database = database
+    owner.family = family
+    owner.mapping = InventorySet(owner.database, family=family)
     owner.regions = ["EUR"]
     owner.ecoinvent_to_iam_loc = {"CH": "EUR"}
     owner.is_in_index = Mock(return_value=True)
@@ -64,9 +77,13 @@ def test_standard_biomass_relinks_native_dry_fuel_without_rescaling(amount):
     assert updated["location"] == "EUR"
     assert "input" not in updated
     for key in ("amount", "formula", "uncertainty type", "scale"):
-        assert updated[key] == fuel[key]
+        if key in fuel:
+            assert updated[key] == fuel[key]
     assert material["exchanges"] == [fuel]
-    assert owner.biomass_consumers == {"boiler"}
+    assert owner.biomass_consumers == {boiler["code"]}
+    assert len({dataset["code"] for dataset in database}) == 3
+    if not cached:
+        assert boiler["code"] == "boiler"
 
 
 def validator(database):
