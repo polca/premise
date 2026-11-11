@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-11",
+  "status": "Exact 3.8 chemical-heat water uncertainty qualified; fuels transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "52d9a69979f5f8e6959f9ec8b7653573754aea73",
+  "review_sha256": "ddaa829f9342dcdedd4b4e18cd1a0be7bcae8f800209f55d53104b4025c79694",
+  "forward_resource_sha256": "a771b37a28fe876b6830dfe3ca1b0f689268ade1b9a87339905e38c9272192c8",
+  "validated_approval_scopes": 669,
+  "new_approval_scopes": 1,
+  "all_prior_668_approval_operations_preserved": true,
+  "tests": {
+    "brightpath": "7 passed",
+    "premise": "5 passed"
+  },
+  "brightway": {
+    "status": "Actual temporary Brightway foreground write, link and LCI passed; helper removed afterward.",
+    "heat_reference_mj": 1,
+    "heat_supplier_count": 1,
+    "separate_makeup_water_exchanges": 7,
+    "direct_physical_water_exchanges": 2,
+    "all_nine_marginal_uncertainty_records_preserved": true,
+    "both_water_flow_ids_present_in_actual_310_database": true,
+    "finite_supply": true,
+    "finite_inventory": true,
+    "source_database": "BAFU:2026-reimported",
+    "source_activity_count": 11947,
+    "source_modified": "2026-09-22T10:55:01.512934",
+    "source_inventory_unchanged": true,
+    "temporary_database_removed": true
+  },
+  "generator_replay": "Forward and canonical biosphere bytes match checkout.",
+  "wheel": "Review, resource and manifest bytes match checkout.",
+  "regular_environment": "Git commit, resource SHA and 669 scopes verified.",
+  "mapping_preservation": "Eight other profile selections, all old helpers and shared reviews unchanged; one new helper.",
+  "runtime_python_changes": false,
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 45,
+    "distinct_rule_identities": 41,
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "only_removed_case": [
+      "3.8",
+      "bp-05200779ee64a17f"
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123360917,
+  "limitations": [
+    "Heat basis is MJ, not kg steam.",
+    "Nine marginal water uncertainty records retained; background formula parameter contexts and correlations are not reconstructed. Caller formulas preserved.",
+    "Native energy and Swiss water geographic proxies remain approximations; no score equivalence claimed.",
+    "No post-change full-suite pass claimed."
+  ]
+}

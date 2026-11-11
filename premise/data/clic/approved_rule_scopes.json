@@ -195500,6 +195500,96 @@
           "fingerprint": "faf5806899390f670118b74effc617f8a133330ab5831efeac045c49256603f3"
         }
       ]
+    },
+    {
+      "rule_id": "bp-05200779ee64a17f",
+      "operation": "replace",
+      "mapping_method": "reviewed_chemical_heat_with_retained_water",
+      "review_path": "export/uvek_fuels_38_chemical_heat_review.json",
+      "review_sha256": "ddaa829f9342dcdedd4b4e18cd1a0be7bcae8f800209f55d53104b4025c79694",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active shared-Premise BAFU/UVEK integration goal. Preserve supported water uncertainty for this exact source profile.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for heat, from steam, in chemical industry",
+            "reference product": "heat, from steam, in chemical industry",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "487203fd116a6a547fb2f7988bdd3b808d657572348abd27a9e73b681708e76c",
+          "inventory_sha256": "bd3bed3177ed6b99f373425927aa97a718c1dbeb4923ba7f4c78507db4b9467b",
+          "name": "market for heat, from steam, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "location": "RoW",
+          "unit": "megajoule"
+        },
+        "source_producer_witness": {
+          "identity": {
+            "name": "steam production, as energy carrier, in chemical industry",
+            "reference product": "heat, from steam, in chemical industry",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "602f003222580295f3ab986b7006c55960b92077f65b3dd4ca7581e36dbb0906",
+          "inventory_sha256": "1e2bc09d13c2b1e400495fb57870378b0703ff0dcfbac43806353012a9b70db7"
+        },
+        "basis": "Exact inspected ecoinvent 3.8 cut-off RoW chemical-steam heat market only. Both source references are positive one MJ of thermal energy, not kg fresh steam. Flatten only its original unit supplier share. The original native XML defines one MJ chemical-process heat and excludes water for closed steam systems. Retain that complete native positive-MJ heat service once, all seven separate source make-up-water shares and both physical water releases. This scoped refinement preserves original lognormal amount/loc/scale, pedigree and supported statistics on all nine retained water exchanges; no renormalization, omission or water-density/steam-mass factor is added. Use complete native Swiss tap water as the existing geographic/vintage screening proxy, with original source-provider quantities and uncertainty retained separately. Keep exact canonical water name, compartment, m3 and sign. Do not add source fuel/electricity inputs to complete native heat, use the old rounded 0.36 kg/MJ factor, or duplicate water supply. Two original background water-release formulas reference the original producer parameter context; they are not published or transplanted into the native helper. Preserve caller formulas and uncertainty; background parameterization/correlations and source energy-system uncertainty are not reconstructed. The inherited global review describes older helpers; this exact 3.8 recipe additionally retains water marginal uncertainty. Native regional fuel/electricity mixes, combustion efficiency, technology, infrastructure, allocation, geography, vintage and internal uncertainty differ, with unquantified score effects. Physical kg-steam, co-product steam and other uninspected profiles cannot inherit this correspondence.",
+        "conversion_factor": 1,
+        "resource_action": "scoped_water_uncertainty_refinement",
+        "new_target": {
+          "recipe_ref": "fuels-38-chemical-heat-uq-b79ce56ce460b47414a9"
+        },
+        "retained_stochastic_water_rows": 9,
+        "native_heat_water_boundary": {
+          "path": "export/uvek_chemical_heat_review.json",
+          "sha256": "3c2b46a01a45020f2c5c02c3496610b7a9319fcd7327994f8c0aab98c961a6af",
+          "native_archive_sha256": "ebaab56717a6227b5eb271fcb4c86fb9db206115eb937fb0ec0b10d7accf26c7",
+          "native_xml_definitions": [
+            {
+              "path": "ecoSpold files/process_af5e1165-acae-352e-a391-322c00c8a054.xml",
+              "sha256": "e0ce3aacd99917c1b8bf45ebdbf532bb586ff9379a8bb54b7c0ff1b435114682",
+              "name": "Heat, unspecific, in chemical plant",
+              "unit": "MJ"
+            },
+            {
+              "path": "ecoSpold files/process_ca51da0f-d926-3dbe-bc07-e0449bb7dcab.xml",
+              "sha256": "6eced167e8d4a7e8071ddcc8250294b3c910ac52b7e24ea2fbbbbcbb6d007d34",
+              "name": "Steam, for chemical processes, at plant",
+              "unit": "kg"
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off RoW chemical-steam heat market only. Both source references are positive one MJ of thermal energy, not kg fresh steam. Flatten only its original unit supplier share. The original native XML defines one MJ chemical-process heat and excludes water for closed steam systems. Retain that complete native positive-MJ heat service once, all seven separate source make-up-water shares and both physical water releases. This scoped refinement preserves original lognormal amount/loc/scale, pedigree and supported statistics on all nine retained water exchanges; no renormalization, omission or water-density/steam-mass factor is added. Use complete native Swiss tap water as the existing geographic/vintage screening proxy, with original source-provider quantities and uncertainty retained separately. Keep exact canonical water name, compartment, m3 and sign. Do not add source fuel/electricity inputs to complete native heat, use the old rounded 0.36 kg/MJ factor, or duplicate water supply. Two original background water-release formulas reference the original producer parameter context; they are not published or transplanted into the native helper. Preserve caller formulas and uncertainty; background parameterization/correlations and source energy-system uncertainty are not reconstructed. The inherited global review describes older helpers; this exact 3.8 recipe additionally retains water marginal uncertainty. Native regional fuel/electricity mixes, combustion efficiency, technology, infrastructure, allocation, geography, vintage and internal uncertainty differ, with unquantified score effects. Physical kg-steam, co-product steam and other uninspected profiles cannot inherit this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "67f06788d5766401678ed96afcd1882e16ac13ceee445126e18d99a9c7f84819"
+        }
+      ]
     }
   ],
   "superseded_operations": [

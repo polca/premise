@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "fcdba89cbda42de49f05090538d0fa5dffbd83e5",
-  "approval_ledger_sha256": "4430160087c55a8f17695cc9ada7abe9fbdbd6b075372c695d89d2dec89b4b8b",
-  "validated_scopes": 668,
+  "brightpath_commit": "52d9a69979f5f8e6959f9ec8b7653573754aea73",
+  "approval_ledger_sha256": "ce2a175012070cc931ba2b46cd6b347c1f4fc484c00dd7e15e96bb770c973197",
+  "validated_scopes": 669,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 46,
-  "distinct_unapproved_rule_identities": 42,
+  "unapproved_source_profile_cases": 45,
+  "distinct_unapproved_rule_identities": 41,
   "cohorts": [
     {
       "source": {
@@ -71,22 +71,10 @@
       },
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 18,
-      "refusal_audit_filename": "41981121ebbf4ffb9a32850f85e544e976e4081c57239bf182b43bd68a430ce4.audit.json.gz",
-      "refusal_audit_sha256": "ca18abbe4efb9b3b28d4d5e9347a6943fe31b886ad47688db8a4c9c55e58be0f",
+      "unapproved_count": 17,
+      "refusal_audit_filename": "8ab7df92c9f55ae14ab5781c11e332be2a939bd6dc689440a5c039176da0ff04.audit.json.gz",
+      "refusal_audit_sha256": "c8b99472451d6aa4ccc205c1cdc9a2c71cbed323d649567a1ab91d89240a531a",
       "pending": [
-        {
-          "rule_id": "bp-05200779ee64a17f",
-          "source": {
-            "location": "RoW",
-            "name": "market for heat, from steam, in chemical industry",
-            "reference product": "heat, from steam, in chemical industry",
-            "unit": "megajoule"
-          },
-          "candidate_target": {
-            "recipe_ref": "chemical-heat-water-e3db9c084127df5b3402"
-          }
-        },
         {
           "rule_id": "bp-4c51b8491a9aebe9",
           "source": {
@@ -375,8 +363,8 @@
       "source_activities": 11,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 24,
-      "refusal_audit_filename": "36260111af4142dd9007985bca76d262fc4c64497b3c06d4c1dd5bd303821b7d.audit.json.gz",
-      "refusal_audit_sha256": "dab2b3de3415ba862279c5334a5dbb3b94b58b9bfe94469c54ae58175dc5e60e",
+      "refusal_audit_filename": "e2ec35cba88a46a4cb51c71c98e2c4af01db533c8ec02b988cfb24d6f0d6df78.audit.json.gz",
+      "refusal_audit_sha256": "525389ce37b2bc7fbaebc7d220b4a1e629cf88ccc8a4fe158946d81d74b6493c",
       "pending": [
         {
           "rule_id": "bp-263c185cdbca7a8c",
@@ -743,8 +731,8 @@
       "source_activities": 7,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 4,
-      "refusal_audit_filename": "708fdf725e9f4cb116bfc474db3e77ff4e3b0f093a53342bc793fb684a441da2.audit.json.gz",
-      "refusal_audit_sha256": "a0243db86ef83b9f4b5a1bbb2302b450239fe17154bf2749e83db85d4bbee059",
+      "refusal_audit_filename": "ba0717a1cd25963eb16855a7bdc33c95b42be0a074f4e66c1c72b235a85fb581.audit.json.gz",
+      "refusal_audit_sha256": "10996fc0d59430cdc19e5f852d663ed0f51fb96373aed9021371efc16b97756b",
       "pending": [
         {
           "rule_id": "bp-cf83bb724223e5b7",
