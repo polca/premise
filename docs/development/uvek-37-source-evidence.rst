@@ -140,3 +140,25 @@ unchanged. Requested 3.7 and inspected 3.7.1 evidence remain distinct.
 ``uvek-fuels-37-sand-hour-verification.json`` records 24 focused passing checks,
 two finite native inventories and exact regeneration/wheel checks. Three fuel
 mapping cases remain; full fuel transformation/export is still unfinished.
+
+Allocated waste-oil market
+-------------------------
+
+The inspected kiln-receipt branch has 57 zero nominal nonreference exchanges,
+all with zero uncertainty bounds. Its inherited formulas also occur in the
+nonzero clinker activity; they are not transferred into this allocated waste
+receipt. A literal source-input omission now records the 0.204833837097889 kg
+branch, its sign, index and inspected patch witness. This is a fixed-allocation
+screening boundary, not a claim that physical kiln emissions vanish. The source
+context remains 3.7; the witness hash identifies inspected 3.7.1 evidence only.
+
+Both incineration shares and all road/rail freight remain separate and unchanged,
+without renormalisation or invented energy credits. Factor -1 converts the
+negative waste reference into a positive treatment-service reference. The exact
+omission requires its own authorization inside the matched rule review: removing
+or altering that authorization is refused even after priming the cache.
+
+``uvek-fuels-37-waste-oil-verification.json`` records 16 focused passing checks,
+a finite weighted native inventory and exact resource/wheel checks. The complete
+fuel preflight now has only two packaging-market mapping cases. Bare-3.7 source
+vectors were not inspected; full fuel transformation/export remains unfinished.

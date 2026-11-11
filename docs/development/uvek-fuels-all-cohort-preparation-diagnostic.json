@@ -9,15 +9,15 @@
   "source_database": "BAFU:2026-reimported",
   "source_project": "bafu-2026-ecospold2-biosphere-310",
   "target_biosphere": "ecoinvent-3.10-biosphere",
-  "brightpath_commit": "695f2cceaf5a711d0ab1e961a32f05032cdd0be4",
-  "approval_ledger_sha256": "9b6ebbe6254bde5a0c65f6d9780cc149b72266591269a2f20f31c59a913bdf23",
-  "validated_scopes": 711,
+  "brightpath_commit": "d4968e1f6611fa50c8252fed58cdb1472c3e5ee7",
+  "approval_ledger_sha256": "2a6283b93f6009d19f1a4d480c990d95f895c937e0f6dbeb81a2d4118ae53ad8",
+  "validated_scopes": 712,
   "resolved_source_activities": 117,
   "source_cohorts": 6,
   "method": "Reorder whole source-cohort groups in the complete resolved graph, retaining every dataset, exchange, version and foreign-foreground identity. Call the unchanged standard harmonizer and policy with each cohort first; retain normal exceptions/audits and verify source graph non-mutation after each call. Bypass only the public fuel-sector guard in the private diagnostic. No Python module modification, sector transformation or Brightway write.",
   "graph_non_mutation_checks_passed": true,
-  "unapproved_source_profile_cases": 3,
-  "distinct_unapproved_rule_identities": 3,
+  "unapproved_source_profile_cases": 2,
+  "distinct_unapproved_rule_identities": 2,
   "cohorts": [
     {
       "source": {
@@ -72,8 +72,8 @@
       "source_activities": 50,
       "migration_stage_status": "blocked by exact approval refusals",
       "unapproved_count": 2,
-      "refusal_audit_filename": "9dd593f28b349837f075e1dec6c2a494d4bc016436abb9f917eec96470107472.audit.json.gz",
-      "refusal_audit_sha256": "ce3c18735bad7860bf4a8aad75813f53a0530767ec55479d11ee65b2b66b4c7e",
+      "refusal_audit_filename": "6462132933b7896c9a9a4253ab212dc65169086ba4e1caeb4008e96aadd4cdf8.audit.json.gz",
+      "refusal_audit_sha256": "c248591484d6d4dd7f8c41f574ceda19015e84184391d0e4ac8d4ff0a2c85db6",
       "pending": [
         {
           "rule_id": "bp-cf2ed054ced71820",
@@ -139,27 +139,11 @@
         }
       },
       "source_activities": 11,
-      "migration_stage_status": "blocked by exact approval refusals",
-      "unapproved_count": 1,
-      "refusal_audit_filename": "2d45ddb6c49078597907076b66a7da93e23b2c4158c4865872b8eaf53321324b.audit.json.gz",
-      "refusal_audit_sha256": "92967266b1f72d2373c0130d4ce9dd4e1b4f8903b0cccca4c83150f4dfc21602",
-      "pending": [
-        {
-          "rule_id": "bp-2149df101fadeeb2",
-          "source": {
-            "location": "Europe without Switzerland",
-            "name": "market for waste mineral oil",
-            "reference product": "waste mineral oil",
-            "unit": "kilogram"
-          },
-          "candidate_target": {
-            "location": "CH",
-            "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
-            "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
-            "unit": "kilogram"
-          }
-        }
-      ]
+      "migration_stage_status": "passed before another cohort failed",
+      "unapproved_count": 0,
+      "refusal_audit_filename": null,
+      "refusal_audit_sha256": null,
+      "pending": []
     },
     {
       "source": {

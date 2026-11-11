@@ -201265,6 +201265,204 @@
           "fingerprint": "953077dba12b731ced2747ec9efba6b9b563db46d1a531bac695dfa7fba64682"
         }
       ]
+    },
+    {
+      "rule_id": "bp-2149df101fadeeb2",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_37_waste_oil_review.json",
+      "review_sha256": "d9a38553d8c54b1411f99f7839f2fdb4c75d42d18de1169f77972468dffffa1d",
+      "authorization": "Standing auto-approval of independently inspected decisions and scoped omissions with warnings under the full BAFU/UVEK integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.7",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "location": "Europe without Switzerland",
+            "name": "market for waste mineral oil",
+            "reference product": "waste mineral oil",
+            "unit": "kilogram"
+          },
+          "requested_profile": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "inspected_profile": {
+            "family": "ecoinvent",
+            "version": "3.7.1",
+            "system_model": "cutoff"
+          },
+          "reference_amounts": [
+            -1
+          ],
+          "source_file_sha256": "3ed2a1ca1fe1e99297cee7d196a3dfe8bde0b79ebc1fc59e98bf084729676b4c",
+          "inventory_sha256": "e9eba52df12828f2205e0f33fae63a56b76d1655411fc71ab4c07cf3fc0439e6",
+          "location": "Europe without Switzerland",
+          "name": "market for waste mineral oil",
+          "reference product": "waste mineral oil",
+          "unit": "kilogram"
+        },
+        "source_supplier_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+              "reference product": "waste mineral oil",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inspected_version": "3.7.1",
+            "reference_amount": -1,
+            "source_file_sha256": "a992bb55becda862ec925310b5d628a463bf3457122500fd36b522355be01b1a"
+          },
+          {
+            "identity": {
+              "name": "treatment of waste mineral oil, hazardous waste incineration",
+              "reference product": "waste mineral oil",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inspected_version": "3.7.1",
+            "reference_amount": -1,
+            "source_file_sha256": "267507627e8c1a0d6acfb39a99381d43e0c9562923ba065b25af48280243f00e"
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "waste mineral oil",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inspected_version": "3.7.1",
+            "reference_amount": -1,
+            "source_file_sha256": "9bee85aa708bdc8e7a55b1cb48c60940ade0486b356907516faf5cf8212212db"
+          }
+        ],
+        "basis": "Exact requested 3.7 cut-off only, using explicitly limited 3.7.1 functional-reference and fixed-allocation proxy evidence. Preserve one kg wet waste-oil treatment service: both inspected incinerators and native hazardous-waste incineration describe 10 percent water. Keep two separate native treatment shares 0.397600148816246 and 0.397566014085865, original road 0.01932 and rail 0.0112 tonne-km and their marginal uncertainty. Do not renormalise to one kg of incineration, divide by dry matter or add fuel/energy/recovery credits. The remaining 0.204833837097889 kg is a clinker-kiln waste receipt with 57 zero allocated nominal exchanges and zero uncertainty bounds; all inherited formulas also occur in the nonzero clinker activity. Explicitly omit that allocated-zero receipt from the target supplier graph and retain its signed quantity and evidence in the omission audit. This is not a claim that physical co-processing or kiln emissions are zero; parameter recalculation and other allocations are not represented. Source negative waste reference becomes positive target treatment reference at factor -1; keep internal treatment/transport burdens positive. Native Swiss incineration replaces European with/without-energy-recovery variants using its complete disposal inventory, residues and allocation once. Geography, vintage, technology, uncertainty, fleet and native biosphere exclusions differ and score effects are unquantified. Requested source is not relabelled: it remains ecoinvent 3.7 cut-off. Inspected inventories are 3.7.1, not bare 3.7. Exact matching functional names, products, locations and product UUID support the previously documented limited patch-reference inference. Source quantities, allocation and omission are adopted as screening assumptions. Omission hash and original index identify the inspected patch proxy witness only, not a directly inspected bare-3.7 vector; no cross-version inventory or score equality is asserted.",
+        "conversion_factor": -1,
+        "resource_action": "Scoped fixed-allocation treatment recipe; omission explicitly authorized separately; other releases unresolved",
+        "new_target": {
+          "recipe_ref": "fuels-37-allocated-waste-mineral-oil"
+        },
+        "approved_recipe_source_omissions": {
+          "fuels-37-allocated-waste-mineral-oil": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.7",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "location": "Europe without Switzerland",
+                "name": "market for waste mineral oil",
+                "reference product": "waste mineral oil",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e9eba52df12828f2205e0f33fae63a56b76d1655411fc71ab4c07cf3fc0439e6",
+              "original_index": 5,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "waste mineral oil",
+                "location": "Europe without Switzerland",
+                "unit": "kilogram",
+                "amount": -0.204833837097889,
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "loc": -0.204833837097889
+              },
+              "rationale": "Fixed-profile allocated-zero kiln receipt omitted with explicit warning, not incinerated or credited. All 57 inspected nonreference nominal values and uncertainty bounds are zero; inherited formulas describe the nonzero clinker activity and are not transplanted. Negative source kg denotes waste service, not avoided burden. Requested source is not relabelled: it remains ecoinvent 3.7 cut-off. Inspected inventories are 3.7.1, not bare 3.7. Exact matching functional names, products, locations and product UUID support the previously documented limited patch-reference inference. Source quantities, allocation and omission are adopted as screening assumptions. Omission hash and original index identify the inspected patch proxy witness only, not a directly inspected bare-3.7 vector; no cross-version inventory or score equality is asserted."
+            }
+          ]
+        },
+        "allocation_evidence": {
+          "date": "2026-11-11",
+          "status": "Inspection only; not an omission approval or new mapping",
+          "requested_profile": "ecoinvent 3.7 cutoff",
+          "inspected_profile": "ecoinvent 3.7.1 cutoff",
+          "source_file_sha256": "9bee85aa708bdc8e7a55b1cb48c60940ade0486b356907516faf5cf8212212db",
+          "paired_clinker_file_sha256": "7c444dea39beb13812d76e4c510ee158915d076168cbfb13f66af03e8c6c9789",
+          "waste_reference": -1,
+          "nonreference_coordinates": 57,
+          "zero_nominal_waste_coordinates": 57,
+          "common_formula_strings_as_positive_clinker": 57,
+          "exact_linked_coordinate_matches": 32,
+          "positive_clinker_nonzero_coordinates": 57,
+          "uncertainty_mean_values_recorded": 0,
+          "nonzero_uncertainty_mean_values": 0,
+          "source_parameters_modified": false,
+          "interpretation": "Zero nominal allocated waste-treatment branch has inherited formula/uncertainty definitions. Only fixed allocated nominal values have been inspected; no claim of zero physical kiln emissions, parametric invariance or stochastic equality. Consider an explicitly audited omission of that zero-allocated branch rather than replacing it with incineration; preserve the incineration shares and freight without renormalisation.",
+          "zero_bounded_uncertainty_rows": 57
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+              "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "99936ae4e9efe17c8180adc83af59b15b2bea996a114c47eee47f4c7948555b9",
+            "inventory_sha256": "064349a0ba8f43d2be25927725e07c84613706072bc308aad39c7feb9e3d3ba7"
+          },
+          {
+            "identity": {
+              "name": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+              "reference product": "Disposal, used mineral oil, 10% water, to hazardous waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "99936ae4e9efe17c8180adc83af59b15b2bea996a114c47eee47f4c7948555b9",
+            "inventory_sha256": "064349a0ba8f43d2be25927725e07c84613706072bc308aad39c7feb9e3d3ba7"
+          }
+        ]
+      },
+      "limitations": [
+        "Exact requested 3.7 cut-off only, using explicitly limited 3.7.1 functional-reference and fixed-allocation proxy evidence. Preserve one kg wet waste-oil treatment service: both inspected incinerators and native hazardous-waste incineration describe 10 percent water. Keep two separate native treatment shares 0.397600148816246 and 0.397566014085865, original road 0.01932 and rail 0.0112 tonne-km and their marginal uncertainty. Do not renormalise to one kg of incineration, divide by dry matter or add fuel/energy/recovery credits. The remaining 0.204833837097889 kg is a clinker-kiln waste receipt with 57 zero allocated nominal exchanges and zero uncertainty bounds; all inherited formulas also occur in the nonzero clinker activity. Explicitly omit that allocated-zero receipt from the target supplier graph and retain its signed quantity and evidence in the omission audit. This is not a claim that physical co-processing or kiln emissions are zero; parameter recalculation and other allocations are not represented. Source negative waste reference becomes positive target treatment reference at factor -1; keep internal treatment/transport burdens positive. Native Swiss incineration replaces European with/without-energy-recovery variants using its complete disposal inventory, residues and allocation once. Geography, vintage, technology, uncertainty, fleet and native biosphere exclusions differ and score effects are unquantified.",
+        "Requested source is not relabelled: it remains ecoinvent 3.7 cut-off. Inspected inventories are 3.7.1, not bare 3.7. Exact matching functional names, products, locations and product UUID support the previously documented limited patch-reference inference. Source quantities, allocation and omission are adopted as screening assumptions. Omission hash and original index identify the inspected patch proxy witness only, not a directly inspected bare-3.7 vector; no cross-version inventory or score equality is asserted."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "eac3ec3fc6bf666bf8fd4afa89d3e434a279ea3f138dcf40c417c871c021a5e0"
+        }
+      ]
     }
   ],
   "superseded_operations": [

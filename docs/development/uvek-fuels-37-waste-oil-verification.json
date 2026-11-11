@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-11",
+  "status": "Fixed-allocation waste-oil treatment qualified with one literal source omission; full fuel transformation/export and remaining sectors unfinished.",
+  "brightpath_commit": "d4968e1f6611fa50c8252fed58cdb1472c3e5ee7",
+  "review_sha256": "d9a38553d8c54b1411f99f7839f2fdb4c75d42d18de1169f77972468dffffa1d",
+  "new_approval_scopes": 1,
+  "validated_approval_scopes": 712,
+  "previous_validated_scopes": 711,
+  "previous_operation_objects": 618,
+  "previous_operation_semantics_preserved": true,
+  "older_fingerprints_refreshed_after_original_rule_proof": 0,
+  "tests": {
+    "brightpath": "9 passed: signs, statistics, source preservation, literal omission, allocation evidence and refused uninspected profiles",
+    "premise": "7 passed: strict fresh/cache, exact warnings, rule withdrawal and omission approval withdrawal/alteration after cache priming"
+  },
+  "native_lci_checks": [
+    {
+      "native_supplier_count": 3,
+      "finite_supply": true,
+      "finite_inventory": true
+    }
+  ],
+  "source_database_unchanged": {
+    "name": "BAFU:2026-reimported",
+    "activity_count": 11947,
+    "modified": "2026-09-22T10:55:01.512934"
+  },
+  "runtime_python_changes": false,
+  "migration_resource_changes": "One exact 3.7 profile; one treatment recipe and shared review card. One source omission explicitly approved separately; no zero-stock helper or validation bypass; all old helpers/shared reviews preserved; full replay/wheel exact.",
+  "regular_environment": "Pushed Git revision installed and all 712 scopes validated.",
+  "fuel_preparation_queue": {
+    "profile_specific_refusals": 2,
+    "distinct_rule_identities": 2,
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "only_removed_cases": [
+      [
+        "3.7",
+        "bp-2149df101fadeeb2"
+      ]
+    ],
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "limitations": [
+    "Exact requested 3.7 cut-off only, using explicitly limited 3.7.1 functional-reference and fixed-allocation proxy evidence. Preserve one kg wet waste-oil treatment service: both inspected incinerators and native hazardous-waste incineration describe 10 percent water. Keep two separate native treatment shares 0.397600148816246 and 0.397566014085865, original road 0.01932 and rail 0.0112 tonne-km and their marginal uncertainty. Do not renormalise to one kg of incineration, divide by dry matter or add fuel/energy/recovery credits. The remaining 0.204833837097889 kg is a clinker-kiln waste receipt with 57 zero allocated nominal exchanges and zero uncertainty bounds; all inherited formulas also occur in the nonzero clinker activity. Explicitly omit that allocated-zero receipt from the target supplier graph and retain its signed quantity and evidence in the omission audit. This is not a claim that physical co-processing or kiln emissions are zero; parameter recalculation and other allocations are not represented. Source negative waste reference becomes positive target treatment reference at factor -1; keep internal treatment/transport burdens positive. Native Swiss incineration replaces European with/without-energy-recovery variants using its complete disposal inventory, residues and allocation once. Geography, vintage, technology, uncertainty, fleet and native biosphere exclusions differ and score effects are unquantified.",
+    "Requested source is not relabelled: it remains ecoinvent 3.7 cut-off. Inspected inventories are 3.7.1, not bare 3.7. Exact matching functional names, products, locations and product UUID support the previously documented limited patch-reference inference. Source quantities, allocation and omission are adopted as screening assumptions. Omission hash and original index identify the inspected patch proxy witness only, not a directly inspected bare-3.7 vector; no cross-version inventory or score equality is asserted."
+  ],
+  "allocation_evidence": {
+    "date": "2026-11-11",
+    "status": "Inspection only; not an omission approval or new mapping",
+    "requested_profile": "ecoinvent 3.7 cutoff",
+    "inspected_profile": "ecoinvent 3.7.1 cutoff",
+    "source_file_sha256": "9bee85aa708bdc8e7a55b1cb48c60940ade0486b356907516faf5cf8212212db",
+    "paired_clinker_file_sha256": "7c444dea39beb13812d76e4c510ee158915d076168cbfb13f66af03e8c6c9789",
+    "waste_reference": -1,
+    "nonreference_coordinates": 57,
+    "zero_nominal_waste_coordinates": 57,
+    "common_formula_strings_as_positive_clinker": 57,
+    "exact_linked_coordinate_matches": 32,
+    "positive_clinker_nonzero_coordinates": 57,
+    "uncertainty_mean_values_recorded": 0,
+    "nonzero_uncertainty_mean_values": 0,
+    "source_parameters_modified": false,
+    "interpretation": "Zero nominal allocated waste-treatment branch has inherited formula/uncertainty definitions. Only fixed allocated nominal values have been inspected; no claim of zero physical kiln emissions, parametric invariance or stochastic equality. Consider an explicitly audited omission of that zero-allocated branch rather than replacing it with incineration; preserve the incineration shares and freight without renormalisation.",
+    "zero_bounded_uncertainty_rows": 57
+  },
+  "source_omissions": [
+    {
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "source_activity": {
+        "location": "Europe without Switzerland",
+        "name": "market for waste mineral oil",
+        "reference product": "waste mineral oil",
+        "unit": "kilogram"
+      },
+      "source_inventory_sha256": "e9eba52df12828f2205e0f33fae63a56b76d1655411fc71ab4c07cf3fc0439e6",
+      "original_index": 5,
+      "source_exchange": {
+        "name": "clinker production",
+        "reference product": "waste mineral oil",
+        "location": "Europe without Switzerland",
+        "unit": "kilogram",
+        "amount": -0.204833837097889,
+        "type": "technosphere",
+        "uncertainty type": 0,
+        "loc": -0.204833837097889
+      },
+      "rationale": "Fixed-profile allocated-zero kiln receipt omitted with explicit warning, not incinerated or credited. All 57 inspected nonreference nominal values and uncertainty bounds are zero; inherited formulas describe the nonzero clinker activity and are not transplanted. Negative source kg denotes waste service, not avoided burden. Requested source is not relabelled: it remains ecoinvent 3.7 cut-off. Inspected inventories are 3.7.1, not bare 3.7. Exact matching functional names, products, locations and product UUID support the previously documented limited patch-reference inference. Source quantities, allocation and omission are adopted as screening assumptions. Omission hash and original index identify the inspected patch proxy witness only, not a directly inspected bare-3.7 vector; no cross-version inventory or score equality is asserted."
+    }
+  ]
+}
