@@ -1,0 +1,70 @@
+{
+  "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+  "actual_IAM_scenario": false,
+  "database": "BAFU:2026-controlled-TIAM-native-oil-CCS-20261111-235917",
+  "export_activities": 12074,
+  "regional_CCS_heat_suppliers": 16,
+  "secondary_heat_markets": 17,
+  "CLIC_capture_chain_records": 10,
+  "CLIC_provenance_preserved": true,
+  "capture_fraction": 0.9,
+  "captured_per_MJ_heat_kg": 0.02930278387157407,
+  "source_incompatible_capture_per_MJ_heat_kg": 0.029302470000000004,
+  "capture_credits_equal_capture_service_demand": true,
+  "technosphere_links_internal": 114642,
+  "biosphere_links_requested_database": 290889,
+  "signed_finite_LCIs": 90,
+  "shared_carbon_origin_checks": 0,
+  "shared_carbon_origin_convention": "No combined fuel-origin substitutions qualified in this controlled heat-only case.",
+  "validation_phases": 2,
+  "phase_issue_counts": {},
+  "mapping_declared_CLIC_dependencies_prepared_normally": true,
+  "unqualified_heat_roles_after_controlled_case": 4,
+  "full_real_TIAM_scenario_verified": false,
+  "exhaustive_validation": {
+    "ruleset_version": 8,
+    "issue_count": 0,
+    "feedback_evidence": {
+      "declared_productive_feedback": [
+        {
+          "absolute_convergence_upper_bound": 0.9683442963631811,
+          "activity_count": 4217
+        }
+      ],
+      "issue_count": 0
+    }
+  },
+  "native_boundary_comparison": [
+    {
+      "name": "Heavy fuel oil, burned in power plant",
+      "location": "DE",
+      "native_nonproduction_inputs_preserved_exactly": true,
+      "exchanges_checked": 86
+    }
+  ],
+  "source_allocation_comparison": {
+    "allocated_source_oil_mass_preserved": true,
+    "source_combustion_CO2_reproduced": true,
+    "source_limestone_CO2_reproduced": true,
+    "source_profile": "ecoinvent 3.6 cut-off",
+    "source_heat_location": "DE",
+    "comparison_relative_tolerance": 1e-12,
+    "full_inventory_or_LCIA_equivalence_claimed": false
+  },
+  "capture_fraction_basis": "Combustion CO2 only; separate limestone-treatment CO2 and upstream capture-chain emissions remain uncaptured.",
+  "uncaptured_limestone_CO2_kg_per_MJ_heat": 0.0002579271108559022,
+  "shared_heat_mapping_tests_passed": 108,
+  "remaining_unqualified_roles": [
+    "industrial solar thermal",
+    "secondary solar thermal",
+    "two residual heat bindings"
+  ],
+  "evidence_sha256": {
+    "controlled-oil-ccs-heat-verification.private.json": "988eef27c5c41e77e54b9889117b795e22c0b1bef7032752c3cee0430130e172",
+    "controlled-oil-ccs-heat-exhaustive-validation.private.json": "376edfd79d352c03a4097caab865f8c996043cb77b58b455c602b47278a6a829",
+    "oil-ccs-native-boundary-verification.json": "e102b70a8d826d8c17e1848518a2e253e010d313ea899ddf592e020127ef782f",
+    "oil-ccs-source-allocation-verification.json": "334589600b5e5d566e7f01f7165be693171c70072b99183d16982dcc44894d44",
+    "oil-ccs-shared-heat-regressions.log": "43694fa81f93a9f3b0cad73990ebfe78c4b9db37cb947fe39725f5f3c6a6536a",
+    "oil-chp-allocation-primary.private.json": "b7873ca4df1b67564cc4b516e37a51849798bfd212ab59b0f9be7dfb8aba6a24"
+  }
+}

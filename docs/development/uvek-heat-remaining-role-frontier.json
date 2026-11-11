@@ -80,5 +80,12 @@
     "remaining_unqualified_heat_roles": 5,
     "remaining_CCS_roles": 1,
     "full_real_TIAM_scenario_verified": false
+  },
+  "follow_up_oil_CCS": {
+    "status": "normal_NewDatabase_controlled_heat_update_export_and_native_CCS_balance_verified",
+    "evidence": "docs/development/uvek-native-oil-ccs-heat-verification.json",
+    "remaining_unqualified_heat_roles": 4,
+    "remaining_CCS_roles": 0,
+    "full_real_TIAM_scenario_verified": false
   }
 }

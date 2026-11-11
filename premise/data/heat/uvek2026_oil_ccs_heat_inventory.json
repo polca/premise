@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "target": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "clic_roots": [
+    "carbon-dioxide-captured-from-hard-coal-fired-power-plant-post-pipeline-200km-storage-1000m"
+  ],
+  "supplier_checks": [
+    {
+      "identity": {
+        "name": "Heavy fuel oil, burned in power plant",
+        "reference product": "Heavy fuel oil, burned in power plant",
+        "location": "DE",
+        "unit": "megajoule"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        },
+        {
+          "selector": {
+            "type": "technosphere",
+            "name": "Heavy fuel oil, at regional storage",
+            "reference product": "Heavy fuel oil, at regional storage",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "amount": 0.024272
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Carbon dioxide, fossil",
+            "categories": [
+              "air",
+              "urban air close to ground"
+            ],
+            "unit": "kilogram"
+          },
+          "amount": 0.078
+        },
+        {
+          "selector": {
+            "type": "biosphere",
+            "name": "Carbon dioxide, fossil",
+            "categories": [
+              "air"
+            ],
+            "unit": "kilogram"
+          },
+          "amount": 0.00061791
+        }
+      ]
+    },
+    {
+      "identity": {
+        "name": "carbon dioxide, captured from hard coal-fired power plant, post, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured from hard coal-fired power plant, post, pipeline 200km, storage 1000m",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "exchanges": [
+        {
+          "selector": {
+            "type": "production"
+          },
+          "amount": 1
+        }
+      ]
+    }
+  ],
+  "review": {
+    "authorization": "Active goal and standing autonomous approval for documented native screening reconstructions.",
+    "basis": "Allocated source oil mass reconstructed on complete native oil power-plant service, original 9% penalty and 90% combustion-only capture. Limestone-treatment CO2 remains uncaptured.",
+    "source_workbook": "lci-combined-heat-power-plant-CCS.xlsx",
+    "source_workbook_sha256": "794ae4c0fb686a141f8be82793d4f25b88bee017d9931548c45481fd53aeaac5",
+    "limitations": [
+      "Reconstruct allocated useful oil CHP heat on complete native German heavy-fuel-oil power-plant combustion. UVEK lacks a direct oil CHP heat supplier. The derived 0.3829528198799506 MJ combustion-service input per MJ heat preserves the inspected ecoinvent 3.6 cut-off oil CHP heat allocated fuel mass. It reproduces both separately recorded source fossil CO2 components. This is an allocation reconstruction, not an inferred physical efficiency, unallocated furnace substitution or an added electricity coproduct credit.",
+      "Retain the source heat CCS 9% input penalty and 90% capture of combustion CO2 only. Native combustion emits 0.078 kg/MJ in urban air and separately 0.00061791 kg/MJ from limestone flue-gas treatment in unspecified air. The limestone CO2 remains unchanged and uncaptured, matching the original heat CCS convention. Capture demand and the paired negative urban-air fossil CO2 exchange are both 0.02930278387157407 kg/MJ useful heat.",
+      "Use the complete CLIC hard-coal post-combustion capture, 200 km pipeline and storage at 1000 m as the existing oil CCS model\u2019s screening proxy. Oil-specific flue-gas composition, reagent demand, energy requirement, capture-plant scale, emissions and score differences are not established. Preserve the complete capture chain and native power-plant fuel, infrastructure, flue-gas treatment, emissions and residue inventory once. No new oil-specific performance correction or recovery credit is invented.",
+      "A fixed German allocated-heat reference prevents regional substitution of a different combustion or allocation basis while keeping the capture credit fixed. Geography, historical plant fleet, source allocation, technology, vintage and upstream background differ. The original 3.5 workbook credit is not used as a quantity witness for the inspected 3.6 heat allocation. Full real TIAM and combined-fuels qualification remain pending."
+    ],
+    "native_basis_evidence_sha256": "b7873ca4df1b67564cc4b516e37a51849798bfd212ab59b0f9be7dfb8aba6a24",
+    "source_heat_profile": {
+      "family": "ecoinvent",
+      "version": "3.6",
+      "system_model": "cutoff"
+    },
+    "source_heat_identity": {
+      "name": "heat and power co-generation, oil",
+      "reference product": "heat, district or industrial, other than natural gas",
+      "location": "DE",
+      "unit": "megajoule"
+    }
+  },
+  "activities": [
+    {
+      "name": "fixed German oil CHP heat reference for CCS",
+      "reference product": "heat, fixed German oil CHP reference for CCS",
+      "location": "DE",
+      "unit": "megajoule",
+      "database": "premise-UVEK-heat",
+      "code": "uvek-2026-fixed-german-oil-chp-heat-CCS-basis",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Reconstruct allocated useful oil CHP heat on complete native German heavy-fuel-oil power-plant combustion. UVEK lacks a direct oil CHP heat supplier. The derived 0.3829528198799506 MJ combustion-service input per MJ heat preserves the inspected ecoinvent 3.6 cut-off oil CHP heat allocated fuel mass. It reproduces both separately recorded source fossil CO2 components. This is an allocation reconstruction, not an inferred physical efficiency, unallocated furnace substitution or an added electricity coproduct credit. Retain the source heat CCS 9% input penalty and 90% capture of combustion CO2 only. Native combustion emits 0.078 kg/MJ in urban air and separately 0.00061791 kg/MJ from limestone flue-gas treatment in unspecified air. The limestone CO2 remains unchanged and uncaptured, matching the original heat CCS convention. Capture demand and the paired negative urban-air fossil CO2 exchange are both 0.02930278387157407 kg/MJ useful heat. Use the complete CLIC hard-coal post-combustion capture, 200 km pipeline and storage at 1000 m as the existing oil CCS model\u2019s screening proxy. Oil-specific flue-gas composition, reagent demand, energy requirement, capture-plant scale, emissions and score differences are not established. Preserve the complete capture chain and native power-plant fuel, infrastructure, flue-gas treatment, emissions and residue inventory once. No new oil-specific performance correction or recovery credit is invented. A fixed German allocated-heat reference prevents regional substitution of a different combustion or allocation basis while keeping the capture credit fixed. Geography, historical plant fleet, source allocation, technology, vintage and upstream background differ. The original 3.5 workbook credit is not used as a quantity witness for the inspected 3.6 heat allocation. Full real TIAM and combined-fuels qualification remain pending. Modified screening model. Source: \u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026. Modification record: https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-oil-ccs-heat.md",
+      "premise heat": {
+        "kind": "fixed_reference_provider",
+        "purpose": "Reconstruct source allocated useful oil CHP heat on complete native oil combustion, preserving the inspected source oil draw without inferring physical efficiency.",
+        "allocated_combustion_service_MJ_per_MJ_heat": 0.3829528198799506
+      },
+      "exchanges": [
+        {
+          "name": "fixed German oil CHP heat reference for CCS",
+          "reference product": "heat, fixed German oil CHP reference for CCS",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-fixed-german-oil-chp-heat-CCS-basis"
+          ]
+        },
+        {
+          "name": "Heavy fuel oil, burned in power plant",
+          "reference product": "Heavy fuel oil, burned in power plant",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "technosphere",
+          "amount": 0.3829528198799506,
+          "uncertainty type": 0
+        }
+      ],
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-oil-ccs-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      }
+    },
+    {
+      "name": "heat production, at co-generation oil-fired power plant, post, native UVEK stack basis",
+      "reference product": "heat, district or industrial, other than natural gas",
+      "location": "DE",
+      "unit": "megajoule",
+      "database": "premise-UVEK-heat",
+      "code": "uvek-2026-oil-chp-ccs-native-stack-90pct",
+      "production amount": 1,
+      "type": "process",
+      "comment": "Reconstruct allocated useful oil CHP heat on complete native German heavy-fuel-oil power-plant combustion. UVEK lacks a direct oil CHP heat supplier. The derived 0.3829528198799506 MJ combustion-service input per MJ heat preserves the inspected ecoinvent 3.6 cut-off oil CHP heat allocated fuel mass. It reproduces both separately recorded source fossil CO2 components. This is an allocation reconstruction, not an inferred physical efficiency, unallocated furnace substitution or an added electricity coproduct credit. Retain the source heat CCS 9% input penalty and 90% capture of combustion CO2 only. Native combustion emits 0.078 kg/MJ in urban air and separately 0.00061791 kg/MJ from limestone flue-gas treatment in unspecified air. The limestone CO2 remains unchanged and uncaptured, matching the original heat CCS convention. Capture demand and the paired negative urban-air fossil CO2 exchange are both 0.02930278387157407 kg/MJ useful heat. Use the complete CLIC hard-coal post-combustion capture, 200 km pipeline and storage at 1000 m as the existing oil CCS model\u2019s screening proxy. Oil-specific flue-gas composition, reagent demand, energy requirement, capture-plant scale, emissions and score differences are not established. Preserve the complete capture chain and native power-plant fuel, infrastructure, flue-gas treatment, emissions and residue inventory once. No new oil-specific performance correction or recovery credit is invented. A fixed German allocated-heat reference prevents regional substitution of a different combustion or allocation basis while keeping the capture credit fixed. Geography, historical plant fleet, source allocation, technology, vintage and upstream background differ. The original 3.5 workbook credit is not used as a quantity witness for the inspected 3.6 heat allocation. Full real TIAM and combined-fuels qualification remain pending. Modified screening model. Source: \u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026. Modification record: https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-oil-ccs-heat.md",
+      "premise heat": {
+        "kind": "native_stack_CCS_screening",
+        "capture_fraction": 0.9,
+        "native_heat_input_MJ": 1.09,
+        "allocated_stack_CO2_before_capture_kg": 0.03255864874619341,
+        "captured_CO2_kg": 0.02930278387157407,
+        "limitations": [
+          "Reconstruct allocated useful oil CHP heat on complete native German heavy-fuel-oil power-plant combustion. UVEK lacks a direct oil CHP heat supplier. The derived 0.3829528198799506 MJ combustion-service input per MJ heat preserves the inspected ecoinvent 3.6 cut-off oil CHP heat allocated fuel mass. It reproduces both separately recorded source fossil CO2 components. This is an allocation reconstruction, not an inferred physical efficiency, unallocated furnace substitution or an added electricity coproduct credit.",
+          "Retain the source heat CCS 9% input penalty and 90% capture of combustion CO2 only. Native combustion emits 0.078 kg/MJ in urban air and separately 0.00061791 kg/MJ from limestone flue-gas treatment in unspecified air. The limestone CO2 remains unchanged and uncaptured, matching the original heat CCS convention. Capture demand and the paired negative urban-air fossil CO2 exchange are both 0.02930278387157407 kg/MJ useful heat.",
+          "Use the complete CLIC hard-coal post-combustion capture, 200 km pipeline and storage at 1000 m as the existing oil CCS model\u2019s screening proxy. Oil-specific flue-gas composition, reagent demand, energy requirement, capture-plant scale, emissions and score differences are not established. Preserve the complete capture chain and native power-plant fuel, infrastructure, flue-gas treatment, emissions and residue inventory once. No new oil-specific performance correction or recovery credit is invented.",
+          "A fixed German allocated-heat reference prevents regional substitution of a different combustion or allocation basis while keeping the capture credit fixed. Geography, historical plant fleet, source allocation, technology, vintage and upstream background differ. The original 3.5 workbook credit is not used as a quantity witness for the inspected 3.6 heat allocation. Full real TIAM and combined-fuels qualification remain pending."
+        ],
+        "uncaptured_limestone_CO2_kg": 0.0002579271108559022
+      },
+      "exchanges": [
+        {
+          "name": "heat production, at co-generation oil-fired power plant, post, native UVEK stack basis",
+          "reference product": "heat, district or industrial, other than natural gas",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "production",
+          "amount": 1,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-oil-chp-ccs-native-stack-90pct"
+          ]
+        },
+        {
+          "name": "fixed German oil CHP heat reference for CCS",
+          "reference product": "heat, fixed German oil CHP reference for CCS",
+          "location": "DE",
+          "unit": "megajoule",
+          "type": "technosphere",
+          "amount": 1.09,
+          "uncertainty type": 0,
+          "input": [
+            "premise-UVEK-heat",
+            "uvek-2026-fixed-german-oil-chp-heat-CCS-basis"
+          ]
+        },
+        {
+          "name": "carbon dioxide, captured from hard coal-fired power plant, post, pipeline 200km, storage 1000m",
+          "reference product": "carbon dioxide, captured from hard coal-fired power plant, post, pipeline 200km, storage 1000m",
+          "location": "RER",
+          "unit": "kilogram",
+          "type": "technosphere",
+          "amount": 0.02930278387157407,
+          "uncertainty type": 0
+        },
+        {
+          "name": "Carbon dioxide, fossil",
+          "unit": "kilogram",
+          "categories": [
+            "air",
+            "urban air close to ground"
+          ],
+          "input": [
+            "__biosphere__",
+            "f9749677-9c9f-4678-ab55-c607dfdc2cb9"
+          ],
+          "type": "biosphere",
+          "amount": -0.02930278387157407,
+          "uncertainty type": 0,
+          "loc": -0.02930278387157407
+        }
+      ],
+      "source": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+      "data terms": {
+        "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+        "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+        "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+        "modified_data": true,
+        "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-oil-ccs-heat.md",
+        "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+      }
+    }
+  ],
+  "data_terms": {
+    "source_attribution": "\u00d6kobilanz Datenbank der Schweizerischen Bundesverwaltung, BAFU:2026",
+    "source_url": "https://www.bafu.admin.ch/de/oekobilanzierung",
+    "terms_url": "https://www.bafu.admin.ch/dam/de/sd-web/-9ZObeMCZy8A/BAFU-20XY%20Terms%20of%20Use_DE.pdf",
+    "modified_data": true,
+    "modification_documentation": "https://github.com/polca/premise/blob/premise-CLIC/docs/development/uvek-native-oil-ccs-heat.md",
+    "scope": "This is a separately documented modified screening model, not an official BAFU dataset or endorsement. BAFU-derived data elements are supplied under the BAFU terms; CLIC dependencies retain their own licenses and provenance."
+  }
+}
