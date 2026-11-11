@@ -1,0 +1,64 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-170849",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-170652",
+  "export_activity_count": 14750,
+  "capture_metadata_evidence": [
+    {
+      "name": "carbon dioxide, captured, at municipal solid waste incineration plant, for subsequent reuse",
+      "location": "RER",
+      "published_metadata_field": "share biogenic CO2",
+      "published_fraction": 0.6136363636363636,
+      "resolved_fraction": 0.6136363636363636
+    },
+    {
+      "name": "carbon dioxide, captured, at cement production plant, for subsequent reuse",
+      "location": "RER",
+      "published_metadata_field": "share biogenic CO2",
+      "published_fraction": 0.06,
+      "resolved_fraction": 0.06
+    }
+  ],
+  "unknown_origin_ledgers_before": 105,
+  "unknown_origin_ledgers_after": 0,
+  "changed_CO2_activities": [],
+  "scientific_exchange_signature": {
+    "before": "d02cd2040b6c3f421cb5ebf09d01223792583b44c3293a33d347070522cb17a4",
+    "after": "d02cd2040b6c3f421cb5ebf09d01223792583b44c3293a33d347070522cb17a4",
+    "rows_before": 467354,
+    "rows_after": 467354,
+    "fields": "Identity-normalized linked suppliers, production/technosphere/biosphere quantities, compartments, and uncertainty fields; exported database/code tuples excluded. Exchange order is canonicalized before hashing."
+  },
+  "validation_issues_by_rule": {
+    "LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT": 14
+  },
+  "lci_checks": [
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "World",
+      "unit": "cubic meter",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "EUR",
+      "unit": "cubic meter",
+      "amount": 1,
+      "supply_and_inventory_finite": true
+    }
+  ],
+  "controlled_comparison": {
+    "PYTHONHASHSEED": "0",
+    "baseline": "Private read-only shim ignores uppercase field to reproduce legacy interpretation; all other code and source data identical.",
+    "reason": "Uncontrolled runs exposed pre-existing overlapping Coal PC/CHP aliases with different efficiency caps; this is separately logged and unfinished."
+  },
+  "tests": {
+    "focused_passed": 249
+  },
+  "limitations": [
+    "This repairs metadata interpretation, not industrial combustion coverage.",
+    "No new captured-carbon fraction, inventory exchange, fuel quantity or omission is introduced.",
+    "Independent unseeded coal role overlap remains a required follow-up; this controlled result is not a claim of full workflow reproducibility."
+  ]
+}

@@ -534,3 +534,35 @@ def test_cng_properties_are_built_after_final_fuel_relinking(monkeypatch):
     }
     module._update_fuels(scenario, "3.12", "cutoff")
     assert events[-2:] == ["relink_datasets", "annotate"]
+
+
+@pytest.mark.parametrize("share", [0, 0.06, 0.613636363636, 1])
+def test_published_capture_metadata_capitalization_preserves_carbon_origin(share):
+    carbon = activity(
+        "published captured carbon", "carbon dioxide", **{"share biogenic CO2": share}
+    )
+    methane = activity("synthetic methane", "methane", inputs=[purchase(carbon, 2.75)])
+    before = deepcopy([carbon, methane])
+    assert CarbonOriginResolver([carbon, methane]).trace(methane)[0] == share
+    assert [carbon, methane] == before
+    carbon["share biogenic co2"] = share
+    assert CarbonOriginResolver([carbon]).trace(carbon)[0] == share
+
+
+def test_conflicting_capture_metadata_spellings_are_rejected():
+    carbon = activity(
+        "conflicting captured carbon",
+        "carbon dioxide",
+        **{"share biogenic co2": 0.06, "share biogenic CO2": 0.61},
+    )
+    with pytest.raises(ValueError, match="Conflicting captured-carbon fractions"):
+        CarbonOriginResolver([carbon]).trace(carbon)
+
+
+@pytest.mark.parametrize("share", [-0.1, 1.1, float("nan"), float("inf")])
+def test_invalid_published_capture_fraction_is_rejected(share):
+    carbon = activity(
+        "invalid captured carbon", "carbon dioxide", **{"share biogenic CO2": share}
+    )
+    with pytest.raises(ValueError, match="Invalid captured-carbon fraction"):
+        CarbonOriginResolver([carbon]).trace(carbon)

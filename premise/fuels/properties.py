@@ -185,8 +185,19 @@ class CarbonOriginResolver:
         if product.startswith("carbon dioxide"):
             if "direct air capture" in name.lower():
                 return 1.0, f"Atmospheric carbon: {name}"
-            if "share biogenic co2" in dataset:
-                share = float(dataset["share biogenic co2"])
+            # Published CLIC records retain the workbook's CO2 capitalization.
+            # Both spellings describe the same fraction, never competing values.
+            shares = {
+                float(dataset[field])
+                for field in ("share biogenic co2", "share biogenic CO2")
+                if field in dataset
+            }
+            if shares:
+                if len(shares) != 1:
+                    raise ValueError(
+                        f"Conflicting captured-carbon fractions in {name!r}"
+                    )
+                share = shares.pop()
                 if not math.isfinite(share) or not 0 <= share <= 1:
                     raise ValueError(f"Invalid captured-carbon fraction in {name!r}")
                 return share, f"Capture inventory's share biogenic co2: {name}"

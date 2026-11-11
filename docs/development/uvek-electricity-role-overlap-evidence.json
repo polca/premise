@@ -1,0 +1,62 @@
+{
+  "status": "reproduced_unresolved",
+  "native_alias_overlap": [
+    "Coal PC",
+    "Coal CHP"
+  ],
+  "source_name": "Electricity, hard coal, at power plant",
+  "source_location": "ENTSO-E",
+  "observed_runs": [
+    {
+      "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-165757",
+      "name": "Electricity, hard coal, at power plant",
+      "location": "ENTSO-E",
+      "log_parameters": {
+        "old efficiency": 0.9999949500255024,
+        "new efficiency": 0.4
+      },
+      "parameters": [
+        {
+          "name": "efficiency",
+          "amount": 0.4
+        }
+      ]
+    },
+    {
+      "database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-170123",
+      "name": "Electricity, hard coal, at power plant",
+      "location": "ENTSO-E",
+      "log_parameters": {
+        "old efficiency": 0.9999949500255024,
+        "new efficiency": 0.45
+      },
+      "parameters": [
+        {
+          "name": "efficiency",
+          "amount": 0.45
+        }
+      ]
+    }
+  ],
+  "synthetic_reproduction": [
+    {
+      "role_order": [
+        "Coal PC",
+        "Coal CHP"
+      ],
+      "recorded_new_efficiency": 0.4,
+      "portfolio_input_kWh_per_output_kWh": 2.5
+    },
+    {
+      "role_order": [
+        "Coal CHP",
+        "Coal PC"
+      ],
+      "recorded_new_efficiency": 0.45,
+      "portfolio_input_kWh_per_output_kWh": 2.2222222222222223
+    }
+  ],
+  "cause": "Shared aliases select one mutable record for two IAM roles with efficiency caps 0.4 and 0.45. update_electricity_efficiency builds an unordered technology intersection and skips later adjustment after the first role. An aggregate electricity portfolio also falls back to kWh input energy and is treated as a generator.",
+  "required_resolution": "Separate role-specific physical generator copies and audit aggregate portfolios before efficiency updates, preserving shared transformation logic. Verify different hash seeds without requiring a fixed seed in the public workflow.",
+  "scope_note": "Fixed-seed comparison isolates the independent capture-metadata fix; it does not resolve or certify this role overlap."
+}
