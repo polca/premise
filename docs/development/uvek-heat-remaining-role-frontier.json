@@ -111,7 +111,8 @@
     "full_real_IAM_scenario_verified": false,
     "next_checks": [
       "Electricity time-period market cycles reported by exhaustive graph validation.",
-      "Clinker zero-amount lognormal uncertainty reported by exhaustive graph validation."
+      "Clinker zero-amount lognormal uncertainty reported by exhaustive graph validation.",
+      "Scalar NumPy-array electricity amounts reported as non-numeric."
     ]
   }
 }

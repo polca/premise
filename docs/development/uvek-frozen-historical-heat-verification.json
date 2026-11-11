@@ -90,7 +90,8 @@
   "full_real_IAM_scenario_verified": false,
   "real_scenario_pending_failures": [
     "Electricity time-period market cycles reported by exhaustive graph validation.",
-    "Clinker zero-amount lognormal uncertainty reported by exhaustive graph validation."
+    "Clinker zero-amount lognormal uncertainty reported by exhaustive graph validation.",
+    "Scalar NumPy-array electricity amounts are reported as non-numeric by exhaustive validation."
   ],
   "ecoinvent_regression": {
     "source": "ecoinvent 3.12 cut-off",
@@ -117,7 +118,8 @@
     "frozen-industrial-solar-filter-tests.log": "5f3cbdd1f552b75923b1b4d045200e0b6c51643ce4159d6272eb720e72e42a32",
     "frozen-heat-ecoinvent-312-regression.log": "a941892ca84084243f2781c17903791788cf0857d14a904e97419c56920463e6",
     "native-swiss-frozen-heat-mix-primary.private.json": "949b2612d432973040861a61aa2d60eda97d6ffcccf901019f8ec70ec0cd1b8a",
-    "image-legacy-location-primary.private.json": "00577003adaf578abacf45cbbf595df86ef034317cc65bff827f9b45c7039a96"
+    "image-legacy-location-primary.private.json": "00577003adaf578abacf45cbbf595df86ef034317cc65bff827f9b45c7039a96",
+    "real-four-sector-failure-classification.private.json": "fbc60e89d071ae1f317c80fcc40a0f2b3382f5206288918e3533760692713a16"
   },
   "industrial_solar_audit": {
     "status": "controlled_shared_workflow_solar_screening_update_export_and_signed_LCI_verified",
@@ -140,5 +142,10 @@
     "useful_thermal_delivery_performance_validated": false,
     "full_real_IAM_scenario_verified": false,
     "CLIC_tagged_records_including_regional_clones": 419
+  },
+  "real_scenario_diagnostic_issue_counts": {
+    "GRAPH.FINITE_NUMERIC": 36,
+    "GRAPH.UNCERTAINTY": 46,
+    "GRAPH.NEW_FORBIDDEN_CYCLE": 108
   }
 }
