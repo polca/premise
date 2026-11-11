@@ -532,15 +532,26 @@ class InventorySet:
         filters = self._get_aliases(filepath=CEMENT_TECHS, model=self.model)
         return self.generate_sets_from_filters(filters)
 
-    def generate_fuel_map(self, model: Optional[str] = None) -> ActivityMapping:
+    def generate_fuel_map(
+        self, model: Optional[str] = None, *, for_markets: bool = False
+    ) -> ActivityMapping:
         """Return mapping of fuel supply chains to activities.
 
         :param model: IAM model identifier used to filter the mapping.
         :type model: Optional[str]
+        :param for_markets: Select declared supply references instead of classification carriers.
         :return: Mapping keyed by fuel name.
         :rtype: ActivityMapping
         """
         filters = self._get_aliases(filepath=FUELS_TECHS, model=model)
+        # Market references can differ from the carriers used to classify heat
+        # inputs. Select explicitly reviewed supply aliases without changing the
+        # default classification map or any physical conversion equations.
+        if for_markets:
+            filters = {
+                role: {**entry, **entry.get("market_suppliers", {})}
+                for role, entry in filters.items()
+            }
 
         lhv = get_mapping(filepath=FUELS_TECHS, var="lhv")
 
@@ -779,6 +790,11 @@ class InventorySet:
                         activity
                         for activity in techs[technology]
                         if not activity.get("clic provenance")
+                        or (
+                            definition.get("allow_generated_helpers", False)
+                            and activity["clic provenance"].get("role")
+                            == "generated helper"
+                        )
                         or (
                             activity["clic provenance"].get("slug") in allowed
                             and eligible(activity, technology)

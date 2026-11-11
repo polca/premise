@@ -126,7 +126,9 @@ class Fuels(
         self.mapping = InventorySet(
             self.database, version=self.version, model=self.model, family=self.family
         )
-        self.fuel_map = self.mapping.generate_fuel_map(model=self.model)
+        self.fuel_map = self.mapping.generate_fuel_map(
+            model=self.model, for_markets=True
+        )
 
         self.rev_fuel_map = {
             activity["name"]: fuel

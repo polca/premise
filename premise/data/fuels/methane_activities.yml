@@ -28,3 +28,8 @@ methane, from coal:
   - name: methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
     reference product: methane, high pressure
 
+
+# Reviewed cubic-metre wrapper enters the ordinary gas regional-copy stage.
+natural gas:
+  - name: market group for natural gas, high pressure, reviewed native supply [BrightPath UVEK conversion 03a1d748] [CLIC brightpath-uvek-import-03a1d7481f35ec1a56c18cd5]
+    reference product: natural gas, high pressure

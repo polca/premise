@@ -217,7 +217,9 @@ class SyntheticFuelsMixin:
 
         # Create markets for liquid fuels
         # update the fuel map to include all liquid fuels
-        self.fuel_map = self.mapping.generate_fuel_map(model=self.model)
+        self.fuel_map = self.mapping.generate_fuel_map(
+            model=self.model, for_markets=True
+        )
         self._filter_biodiesel_feedstocks()
         self._filter_bioethanol_feedstocks()
 

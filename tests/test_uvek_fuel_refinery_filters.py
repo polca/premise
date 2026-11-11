@@ -102,3 +102,65 @@ def test_native_soybean_ester_binds_oil_crop_role_and_shared_feedstock_stage():
         inv.generate_fuel_map(model="remind")["biodiesel, from oil crops"] == suppliers
     )
     assert name in fetch_mapping(BIOFUEL_SOURCES)["oil"]["soybean"]
+
+
+@pytest.mark.parametrize("container", [list, IndexedInventoryList])
+def test_gas_supply_uses_reviewed_m3_helper_without_changing_heat_classification(
+    container,
+):
+    name = "market group for natural gas, high pressure, reviewed native supply [BrightPath UVEK conversion 03a1d748] [CLIC brightpath-uvek-import-03a1d7481f35ec1a56c18cd5]"
+    helper = {
+        "name": name,
+        "reference product": "natural gas, high pressure",
+        "unit": "cubic meter",
+        "location": "RoW",
+        "clic provenance": {"role": "generated helper"},
+        "brightpath_conversion": {"recipe_id": "fuels-312-8474b2c5b3efba4ba611"},
+    }
+    native_name = "Natural gas, high pressure, at consumer"
+    native = {
+        "name": native_name,
+        "reference product": native_name,
+        "unit": "megajoule",
+        "location": "CH",
+    }
+    excluded = [
+        {**helper, "unit": "megajoule"},
+        {**helper, "name": name + " unreviewed"},
+        {
+            **helper,
+            "clic provenance": {
+                "slug": "unreviewed-published-process",
+                "role_bindings": [],
+            },
+        },
+    ]
+    inv = InventorySet(
+        container([helper, native, *excluded]),
+        family="uvek",
+        model="remind",
+        version="2026",
+    )
+    assert inv.generate_fuel_map(model="remind")["natural gas"] == [native]
+    assert inv.generate_fuel_map(model="remind", for_markets=True)["natural gas"] == [
+        helper
+    ]
+    # Purpose selection cannot mutate the cached default aliases used by heat.
+    assert inv.generate_fuel_map()["natural gas"] == [native]
+
+
+def test_ecoinvent_supply_selection_retains_original_filters():
+    name = "natural gas production"
+    source = {
+        "name": name,
+        "reference product": "natural gas, high pressure",
+        "unit": "cubic meter",
+        "location": "RoW",
+    }
+    inv = InventorySet([source], model="remind")
+    assert inv.generate_fuel_map(
+        model="remind", for_markets=True
+    ) == inv.generate_fuel_map(model="remind")
+    assert inv.generate_fuel_map(model="remind", for_markets=True)["natural gas"] == [
+        source
+    ]

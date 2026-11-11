@@ -169,6 +169,16 @@ wood chips:
     - market for lignocellulosic biomass, used as fuel
 natural gas:
   uvek_aliases:
+    market_suppliers:
+      allow_generated_helpers: true
+      exact: true
+      fltr:
+        name: market group for natural gas, high pressure, reviewed native supply [BrightPath UVEK conversion 03a1d748] [CLIC brightpath-uvek-import-03a1d7481f35ec1a56c18cd5]
+        reference product: natural gas, high pressure
+        unit: cubic meter
+      limitations:
+      - Reuse the existing reviewed fuels-312-8474b2c5b3efba4ba611 helper, 36 MJ native high-pressure supply per reference m3; no new scaling or physical omission.
+      - Native RER delivered high-pressure gas is a geographic, delivery-boundary and vintage screening proxy; downstream regional and consumer links still require verification.
     exact: true
     fltr:
       name:

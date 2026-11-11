@@ -87,7 +87,7 @@ def test_gcam_coal_methane_inventory_is_regionalized():
         production_volumes=None,
         natural_gas_blend=None,
     )
-    fuels.mapping = SimpleNamespace(generate_fuel_map=lambda: {})
+    fuels.mapping = SimpleNamespace(generate_fuel_map=lambda *, for_markets: {})
 
     captured = {}
 
@@ -187,7 +187,7 @@ def test_diesel_markets_receive_the_marginal_blend():
     )
     fuels.mapping = SimpleNamespace(
         generate_sets_from_filters=lambda filters: {},
-        generate_fuel_map=lambda model: fuel_map,
+        generate_fuel_map=lambda model, *, for_markets: fuel_map,
     )
     fuels.process_and_add_activities = lambda **kwargs: None
     fuels.generate_biofuel_activities = lambda: None

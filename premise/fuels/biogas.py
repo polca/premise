@@ -38,7 +38,7 @@ class BiogasMixin:
             mapping=methane_map, production_volumes=self.iam_data.production_volumes
         )
 
-        self.fuel_map = self.mapping.generate_fuel_map()
+        self.fuel_map = self.mapping.generate_fuel_map(for_markets=True)
 
         # create markets for natural gas and biogas
         # check that IAM data has "natural_gas_blend" attribute
