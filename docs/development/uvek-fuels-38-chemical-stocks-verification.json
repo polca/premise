@@ -53,7 +53,7 @@
     "brightpath_signed_quantity_uncertainty_and_existing_rule_tests": "17 passed",
     "premise_fresh_cache_and_removed_approval_negative_controls": "20 passed",
     "premise_exact_warning_text_check": "20 passed; repeated focused suite checks the exact approved limitation text in fresh and cached diagnostics, plus removal-of-approval refusals.",
-    "broader_approval_regressions": "Prior lime suite remains live; result not yet passing."
+    "broader_approval_regressions": "Original run: 805 passed, 28 stale refusal assertions failed. Targeted repaired controls pass; fresh full run pending. See uvek-approval-regression-review.json."
   },
   "wheel": "Review, resource and manifest match checkout bytes.",
   "regular_conda_install": "Git direct_url commit, review hash and 652 exact scopes verified.",

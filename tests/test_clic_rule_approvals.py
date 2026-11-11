@@ -1138,6 +1138,52 @@ def test_prior_helper_approval_returns_complete_owned_graph(
     )
 
 
+def remove_separate_review_for_negative_control(
+    monkeypatch, rule_id, review_path, version, fingerprint=None
+):
+    """Prove a named later decision authorizes exactly this formerly refused case."""
+    from premise.inventory import clic_rule_approvals
+
+    if fingerprint is None:
+        from brightpath import TechnosphereProfile
+        from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+        from brightpath.migrations.resources import load_uvek_technosphere_resource
+
+        resource = load_uvek_technosphere_resource()
+        rule = next(r for r in resource["replace"] if r["id"] == rule_id)
+        fingerprint = compatibility_rule_fingerprint(
+            resource,
+            "replace",
+            rule,
+            TechnosphereProfile("ecoinvent", version, "cutoff"),
+            TechnosphereProfile("uvek", "2025", "cutoff"),
+        )
+    target = resolve_inventory_target("2026", family="uvek")
+    assert fingerprint in approved_compatibility_rule_scopes(target)
+    ledger = copy.deepcopy(clic_rule_approvals._approval_ledger())
+    expected_source = {
+        "family": "ecoinvent",
+        "version": version,
+        "system_model": "cutoff",
+    }
+    matching = [
+        row
+        for row in ledger["operations"]
+        if row["rule_id"] == rule_id
+        and row["review_path"] == review_path
+        and any(scope["source"] == expected_source for scope in row["scopes"])
+    ]
+    assert len(matching) == 1
+    scopes = [
+        scope for scope in matching[0]["scopes"] if scope["source"] == expected_source
+    ]
+    assert len(scopes) == 1 and scopes[0]["fingerprint"] == fingerprint
+    matching[0]["scopes"].remove(scopes[0])
+    if not matching[0]["scopes"]:
+        ledger["operations"].remove(matching[0])
+    monkeypatch.setattr(clic_rule_approvals, "_approval_ledger", lambda: ledger)
+
+
 @pytest.mark.parametrize(
     "rule_id",
     [
@@ -1146,7 +1192,9 @@ def test_prior_helper_approval_returns_complete_owned_graph(
         "bp-08f2432b62895931",  # Epoxy resin grade is not verified by this group.
     ],
 )
-def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
+def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(
+    rule_id, monkeypatch
+):
     from brightpath import TechnosphereProfile
     from brightpath.background.rule_approvals import compatibility_rule_fingerprint
     from brightpath.migrations.resources import load_uvek_technosphere_resource
@@ -1160,6 +1208,16 @@ def test_unreviewed_native_boundaries_do_not_inherit_direct_approval(rule_id):
         TechnosphereProfile("ecoinvent", "3.6", "cutoff"),
         TechnosphereProfile("uvek", "2025", "cutoff"),
     )
+    # This cement case acquired a separate reviewed approval after the original
+    # native-boundary batch. Prove that batch cannot authorize it on its own.
+    if rule_id == "bp-9c3675cc3a3f003c":
+        remove_separate_review_for_negative_control(
+            monkeypatch,
+            rule_id,
+            "export/uvek_deferred_materials_review.json",
+            "3.6",
+            fingerprint,
+        )
     assert fingerprint not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )
@@ -1346,7 +1404,7 @@ def test_low_alloyed_cast_stock_keeps_source_routes_delivery_and_cached_warning(
 )
 @pytest.mark.parametrize("version", ["3.10", "3.9.1"])
 def test_existing_material_review_does_not_broaden_pilot_source_profiles(
-    rule_id, version
+    rule_id, version, monkeypatch
 ):
     from brightpath import TechnosphereProfile
     from brightpath.background.rule_approvals import compatibility_rule_fingerprint
@@ -1361,6 +1419,21 @@ def test_existing_material_review_does_not_broaden_pilot_source_profiles(
         TechnosphereProfile("ecoinvent", version, "cutoff"),
         TechnosphereProfile("uvek", "2025", "cutoff"),
     )
+    # Four materials were independently reviewed for the 3.10 heat update.
+    # Their old pilot review must not authorize 3.10 without that later decision.
+    if version == "3.10" and rule_id in {
+        "bp-1979ee200d36825e",
+        "bp-a3a951644bd5ed9c",
+        "bp-90d9ae3ee389f465",
+        "bp-4529f104ab14ba19",
+    }:
+        remove_separate_review_for_negative_control(
+            monkeypatch,
+            rule_id,
+            "export/uvek_heat_310_utilities_materials_review.json",
+            "3.10",
+            fingerprint,
+        )
     assert fingerprint not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )
@@ -1383,7 +1456,7 @@ def test_existing_material_review_does_not_broaden_pilot_source_profiles(
     ],
 )
 def test_reviewed_service_preserves_separate_emissions_and_cache_warnings(
-    tmp_path, rule_id, flow_name, warning_terms
+    tmp_path, rule_id, flow_name, warning_terms, monkeypatch
 ):
     from brightpath import TechnosphereProfile
     from brightpath.background import PackageCatalogProvider
@@ -1433,6 +1506,15 @@ def test_reviewed_service_preserves_separate_emissions_and_cache_warnings(
         TechnosphereProfile("ecoinvent", "3.9", "cutoff"),
         TechnosphereProfile("uvek", "2025", "cutoff"),
     )
+    if rule_id == "bp-deb7a57e4b2bc6e7":
+        # The separate heat review qualified 3.9 after the original 3.6 pilot.
+        remove_separate_review_for_negative_control(
+            monkeypatch,
+            rule_id,
+            "export/uvek_heat_profile_extension_review.json",
+            "3.9",
+            unreviewed,
+        )
     assert unreviewed not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )
@@ -1661,12 +1743,34 @@ def test_useful_heat_proxy_keeps_caller_mj_without_repeating_burner_factor(
         ("bp-7fe8308839f735bb", "3.6"),
     ],
 )
-def test_unresolved_gas_volume_bases_still_refuse_migration(tmp_path, rule_id, version):
+def test_unresolved_gas_volume_bases_still_refuse_migration(
+    tmp_path, rule_id, version, monkeypatch
+):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
     rule = next(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    from brightpath import TechnosphereProfile
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+
+    resource = load_uvek_technosphere_resource()
+    fingerprint = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        rule,
+        TechnosphereProfile("ecoinvent", version, "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+    # A later exact review resolved this boundary; without that decision the
+    # original pilot still must refuse it and cannot borrow another profile.
+    remove_separate_review_for_negative_control(
+        monkeypatch,
+        rule_id,
+        "export/uvek_deferred_delivered_gas_review.json",
+        version,
+        fingerprint,
     )
     resolved = graph(rule["source"], version=version)
     before = copy.deepcopy(resolved.activities)
@@ -1685,12 +1789,34 @@ def test_unresolved_gas_volume_bases_still_refuse_migration(tmp_path, rule_id, v
         ("bp-4f69327dbf9d3e42", "3.12"),
     ],
 )
-def test_legacy_additive_boundary_remains_unapproved(tmp_path, rule_id, version):
+def test_legacy_additive_boundary_remains_unapproved(
+    tmp_path, rule_id, version, monkeypatch
+):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
     rule = next(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
+    )
+    from brightpath import TechnosphereProfile
+    from brightpath.background.rule_approvals import compatibility_rule_fingerprint
+
+    resource = load_uvek_technosphere_resource()
+    fingerprint = compatibility_rule_fingerprint(
+        resource,
+        "replace",
+        rule,
+        TechnosphereProfile("ecoinvent", version, "cutoff"),
+        TechnosphereProfile("uvek", "2025", "cutoff"),
+    )
+    # A later exact review resolved this boundary; without that decision the
+    # original pilot still must refuse it and cannot borrow another profile.
+    remove_separate_review_for_negative_control(
+        monkeypatch,
+        rule_id,
+        "export/uvek_deferred_materials_review.json",
+        version,
+        fingerprint,
     )
     resolved = graph(rule["source"], version=version)
     before = copy.deepcopy(resolved.activities)
@@ -1960,7 +2086,7 @@ def test_active_chemical_basis_preserves_separate_water_and_cached_warning(tmp_p
     ],
 )
 def test_unresolved_chemical_bases_do_not_inherit_active_product_approval(
-    rule_id, version
+    rule_id, version, monkeypatch
 ):
     from brightpath import TechnosphereProfile
     from brightpath.background.rule_approvals import compatibility_rule_fingerprint
@@ -1975,6 +2101,14 @@ def test_unresolved_chemical_bases_do_not_inherit_active_product_approval(
         TechnosphereProfile("ecoinvent", version, "cutoff"),
         TechnosphereProfile("uvek", "2025", "cutoff"),
     )
+    later_reviews = {
+        "bp-c7c88174c5f11ce8": "export/uvek_deferred_naocl_review.json",
+        "bp-0ad47155a89ab7bb": "export/uvek_deferred_acrylic_review.json",
+    }
+    if rule_id in later_reviews:
+        remove_separate_review_for_negative_control(
+            monkeypatch, rule_id, later_reviews[rule_id], version, fingerprint
+        )
     assert fingerprint not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )
@@ -2114,7 +2248,7 @@ def test_approved_dense_soda_proxy_keeps_missing_densification_warning_in_cache(
     ],
 )
 def test_unreviewed_waste_fate_changes_still_refuse_migration(
-    tmp_path, rule_id, version
+    tmp_path, rule_id, version, monkeypatch
 ):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
@@ -2122,6 +2256,18 @@ def test_unreviewed_waste_fate_changes_still_refuse_migration(
     rule = next(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
     )
+    # Retain the old batch's refusal after withdrawing only the named later
+    # exact approval; all other profiles and reviews remain enabled.
+    later_reviews = {
+        "bp-e6c831a29eb4d1fa": "export/uvek_deferred_sorting_review.json",
+        "bp-ef0d29b6fa71b9c8": "export/uvek_deferred_waste_markets_review.json",
+        "bp-dc3ac2fe6b0e61bf": "export/uvek_deferred_waste_markets_review.json",
+        "bp-7df5d08d5bab9d33": "export/uvek_pilot_fae_routes_review.json",
+    }
+    if rule_id in later_reviews:
+        remove_separate_review_for_negative_control(
+            monkeypatch, rule_id, later_reviews[rule_id], version
+        )
     resolved = graph(rule["source"], version=version)
     before = copy.deepcopy(resolved.activities)
     with pytest.raises(ClicInventoryError, match="independent review"):
@@ -2182,13 +2328,24 @@ def test_wastewater_endpoint_keeps_treatment_volume_and_cached_stage_warning(tmp
 
 
 @pytest.mark.parametrize("rule_id", ["bp-3c10f9aaee8ffe42"])
-def test_other_wastewater_market_boundaries_remain_unapproved(tmp_path, rule_id):
+def test_other_wastewater_market_boundaries_remain_unapproved(
+    tmp_path, rule_id, monkeypatch
+):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
     rule = next(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
     )
+    # Retain the old batch's refusal after withdrawing only the named later
+    # exact approval; all other profiles and reviews remain enabled.
+    later_reviews = {
+        "bp-3c10f9aaee8ffe42": "export/uvek_pilot_wastewater_routes_review.json"
+    }
+    if rule_id in later_reviews:
+        remove_separate_review_for_negative_control(
+            monkeypatch, rule_id, later_reviews[rule_id], "3.9"
+        )
     resolved = graph(rule["source"], version="3.9")
     before = copy.deepcopy(resolved.activities)
     with pytest.raises(ClicInventoryError, match="independent review"):
@@ -2440,7 +2597,9 @@ def test_mixed_disposal_markets_keep_complete_owned_graph_and_cached_warnings(
 
 
 @pytest.mark.parametrize("version", ["3.9", "3.12"])
-def test_paperboard_does_not_inherit_uncontrolled_market_approval(tmp_path, version):
+def test_paperboard_does_not_inherit_uncontrolled_market_approval(
+    tmp_path, version, monkeypatch
+):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
 
@@ -2449,6 +2608,15 @@ def test_paperboard_does_not_inherit_uncontrolled_market_approval(tmp_path, vers
         for r in load_uvek_technosphere_resource()["replace"]
         if r["id"] == "bp-3e43100f56430f0c"
     )
+    # Retain the old batch's refusal after withdrawing only the named later
+    # exact approval; all other profiles and reviews remain enabled.
+    later_reviews = {
+        "bp-3e43100f56430f0c": "export/uvek_partial_paperboard_review.json"
+    }
+    if rule["id"] in later_reviews:
+        remove_separate_review_for_negative_control(
+            monkeypatch, rule["id"], later_reviews[rule["id"]], version
+        )
     resolved = graph(rule["source"], version=version)
     before = copy.deepcopy(resolved.activities)
     with pytest.raises(ClicInventoryError, match="independent review"):
@@ -2470,7 +2638,7 @@ def test_paperboard_does_not_inherit_uncontrolled_market_approval(tmp_path, vers
     ],
 )
 def test_unapproved_material_grades_do_not_inherit_supply_approval(
-    tmp_path, rule_id, version
+    tmp_path, rule_id, version, monkeypatch
 ):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
@@ -2478,6 +2646,20 @@ def test_unapproved_material_grades_do_not_inherit_supply_approval(
     rule = next(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
     )
+    # Retain the old batch's refusal after withdrawing only the named later
+    # exact approval; all other profiles and reviews remain enabled.
+    later_reviews = {
+        "bp-9c3675cc3a3f003c": "export/uvek_deferred_materials_review.json",
+        "bp-953779a9d7354634": "export/uvek_deferred_materials_review.json",
+        "bp-67e316270a112622": "export/uvek_pilot_nitrate_concrete_delivery_review.json",
+        "bp-1104956dff1c701e": "export/uvek_deferred_materials_review.json",
+        "bp-5968433ef239f628": "export/uvek_deferred_materials_review.json",
+        "bp-7c580ffe9daa9693": "export/uvek_deferred_materials_review.json",
+    }
+    if rule_id in later_reviews:
+        remove_separate_review_for_negative_control(
+            monkeypatch, rule_id, later_reviews[rule_id], version
+        )
     resolved = graph(rule["source"], version=version)
     before = copy.deepcopy(resolved.activities)
     with pytest.raises(ClicInventoryError, match="independent review"):
@@ -2538,7 +2720,7 @@ def test_pcb_preparation_keeps_service_quantity_and_cached_allocation_warning(tm
 
 @pytest.mark.parametrize("rule_id", ["bp-6046387e041ea5c2", "bp-0baf74e5f1f09452"])
 def test_xanthate_and_grain_oriented_steel_do_not_inherit_processing_approval(
-    tmp_path, rule_id
+    tmp_path, rule_id, monkeypatch
 ):
     from brightpath.background import PackageCatalogProvider
     from brightpath.migrations.resources import load_uvek_technosphere_resource
@@ -2546,6 +2728,13 @@ def test_xanthate_and_grain_oriented_steel_do_not_inherit_processing_approval(
     rule = next(
         r for r in load_uvek_technosphere_resource()["replace"] if r["id"] == rule_id
     )
+    # Retain the old batch's refusal after withdrawing only the named later
+    # exact approval; all other profiles and reviews remain enabled.
+    later_reviews = {"bp-6046387e041ea5c2": "export/uvek_deferred_xanthate_review.json"}
+    if rule_id in later_reviews:
+        remove_separate_review_for_negative_control(
+            monkeypatch, rule_id, later_reviews[rule_id], "3.12"
+        )
     resolved = graph(rule["source"], version="3.12")
     before = copy.deepcopy(resolved.activities)
     with pytest.raises(ClicInventoryError, match="independent review"):

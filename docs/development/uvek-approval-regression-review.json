@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-11",
+  "status": "Targeted approval-removal controls pass; fresh full approval regression is running against the repaired tests plus lime/chemical cases.",
+  "production_code_changed": false,
+  "approval_policy_or_ledger_changed_by_test_repair": false,
+  "cause": "Twenty-eight historical negative controls expected refusal after separate independently reviewed exact-profile approvals had been added. Reproduced failures are assertion/no-exception failures, not new migration errors.",
+  "repair": "For each named later review, first prove its exact fingerprint is currently authorized, then withdraw only that reviewed source-profile scope in the isolated test and assert refusal. Preserve all other profiles, approvals, source non-mutation checks, cache checks, warning content and separate caller emissions. Cases with no named later review keep their original refusal assertion.",
+  "reviews_covering_repaired_cases": [
+    "uvek_deferred_materials_review.json",
+    "uvek_heat_310_utilities_materials_review.json",
+    "uvek_heat_profile_extension_review.json",
+    "uvek_deferred_delivered_gas_review.json",
+    "uvek_deferred_naocl_review.json",
+    "uvek_deferred_acrylic_review.json",
+    "uvek_deferred_sorting_review.json",
+    "uvek_deferred_waste_markets_review.json",
+    "uvek_pilot_fae_routes_review.json",
+    "uvek_pilot_wastewater_routes_review.json",
+    "uvek_partial_paperboard_review.json",
+    "uvek_pilot_nitrate_concrete_delivery_review.json",
+    "uvek_deferred_xanthate_review.json"
+  ],
+  "focused_verification": {
+    "first_groups": "123 passed, 709 deselected",
+    "remaining_groups": "18 passed; two temporary undefined-name failures corrected; both corrected cases plus adjacent genuine refusal passed in a three-case rerun.",
+    "distinct_repaired_group_cases_covered": 143,
+    "lint_format": "Passed.",
+    "full_suite_clean_result": "Fresh run started; result pending."
+  },
+  "limitations": [
+    "The ongoing original broad run loaded the previous test functions; edits do not retroactively fix that run.",
+    "No full fuel-sector update/export or all-sector completion is claimed."
+  ],
+  "original_full_run": {
+    "failed": 28,
+    "passed": 805,
+    "warnings": 1,
+    "seconds": 1298.06,
+    "failure_scope": "Historical test functions asserting absence of subsequently reviewed approvals."
+  }
+}
