@@ -107,6 +107,19 @@ def test_message_legacy_uvek_locations_use_declared_representative_lookups():
         assert expected in geo.iam_regions
 
 
+def test_image_legacy_uvek_locations_use_declared_representative_lookups():
+    geo = Geomap("image")
+    for source, expected in {
+        "CPA": "CHN",
+        "ERCOT": "USA",
+        "LBFAC32": "WEU",
+        "US-SPP": "USA",
+        "EEU": "CEU",
+    }.items():
+        assert geo.ecoinvent_to_iam_location(source) == expected
+        assert expected in geo.iam_regions
+
+
 # This allows the test to be run from the command line via `python test_geomap.py`
 if __name__ == "__main__":
     unittest.main()

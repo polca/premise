@@ -1446,12 +1446,14 @@ ERCOT:
   remind: USA
   tiam-ucl: USA
   message: NAM
+  image: USA
 # Deterministic BAFU ecospold export alias for Europe without Switzerland.
 # Same representative IAM equivalence as the unabbreviated label above.
 LBFAC32:
   remind: EUR
   tiam-ucl: WEU
   message: WEU
+  image: WEU
 # Legacy ecoinvent-2 region "Centrally Planned Asia and China". REMIND CHA and
 # TIAM-UCL CHI are representative proxies, not identical-boundary claims.
 # See docs/development/uvek-standard-workflow.md for the retained limitation.
@@ -1460,6 +1462,7 @@ CPA:
   tiam-ucl: CHI
   # Representative China lookup; legacy CPA also includes non-Chinese areas.
   message: CHN
+  image: CHN
 # Legacy UVEK US-fleet generator labels. MRO/NPCC are representative
 # lookups for these documented US fleets, not exact NERC boundary claims.
 MRO:
@@ -1468,3 +1471,9 @@ NPCC:
   remind: USA
 US-SPP:
   remind: USA
+  image: USA
+
+# Native EEU coal storage documents generic worldwide values. CEU is a
+# representative IMAGE lookup, not a verified identity of regional boundaries.
+EEU:
+  image: CEU
