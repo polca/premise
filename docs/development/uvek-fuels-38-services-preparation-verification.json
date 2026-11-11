@@ -1,0 +1,586 @@
+{
+  "date": "2026-11-11",
+  "status": "Sixteen independently inspected 3.8 correspondences accepted by licensed preparation; forty-two other 3.8 correspondences still block preparation. Fuel transformation/export remain unfinished.",
+  "brightpath_commit": "52050e1cd9962769e4b30119724e78a904be7d8a",
+  "review_sha256": "1152685f7d0cb86f9484eed8f5dcaefce49e94e0e2b2e51dbe61ee6230effbd3",
+  "resource_sha256": "cd7e7db02a5fb98c25dd91c14dfc4e02436abd9ebaaf455e0222fd35268f7669",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_exact_38_cutoff_operations": 16,
+  "all_previous_operations_unchanged": true,
+  "previous_validated_scopes": 617,
+  "validated_scopes": 633,
+  "unchanged_brightpath_rules": 14,
+  "corrected_brightpath_rules": 2,
+  "new_helpers": 1,
+  "native_petrol_nonproduction_rows_retained": 25,
+  "new_source_input_omissions": 0,
+  "new_runtime_python_changes": 0,
+  "tests": {
+    "new_brightpath": 87,
+    "reference_sign_regressions": 733,
+    "new_premise": 16,
+    "total": 836
+  },
+  "complete_replay_byte_identical": true,
+  "wheel_review_resource_manifest_exact": true,
+  "native_checks": {
+    "date": "2026-11-11",
+    "source_database": "BAFU:2026-reimported",
+    "source_activities": 11947,
+    "source_modified_before": "2026-09-22T10:55:01.512934",
+    "source_modified_after": "2026-09-22T10:55:01.512934",
+    "native_matrix_solves": 16,
+    "distinct_native_suppliers": 12,
+    "results": [
+      {
+        "rule_id": "bp-fc9e4184d070b645",
+        "basis_amount": 1,
+        "unit": "kilowatt hour",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 7.101386199693504
+      },
+      {
+        "rule_id": "bp-8ad41ac985efe967",
+        "basis_amount": 1,
+        "unit": "kilowatt hour",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 253.50603319687275
+      },
+      {
+        "rule_id": "bp-3f19534eb7d97f64",
+        "basis_amount": 1,
+        "unit": "kilowatt hour",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 266.5829094653878
+      },
+      {
+        "rule_id": "bp-aa3f7acdc2cf5750",
+        "basis_amount": 1,
+        "unit": "ton kilometer",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 3.469824908723415
+      },
+      {
+        "rule_id": "bp-25557ccca7d5a61f",
+        "basis_amount": 1,
+        "unit": "ton kilometer",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 3.469824908723415
+      },
+      {
+        "rule_id": "bp-a3a951644bd5ed9c",
+        "basis_amount": 1,
+        "unit": "ton kilometer",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 10.606576046464152
+      },
+      {
+        "rule_id": "bp-28ca31beb771b312",
+        "basis_amount": 1,
+        "unit": "ton kilometer",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 5.258568922760817
+      },
+      {
+        "rule_id": "bp-155787c4bf1ee018",
+        "basis_amount": 1,
+        "unit": "megajoule",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 2.6993836368436983
+      },
+      {
+        "rule_id": "bp-182cd513cb8969f1",
+        "basis_amount": 1,
+        "unit": "kilogram",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 0.20207788469584037
+      },
+      {
+        "rule_id": "bp-7881a1c501dadd9f",
+        "basis_amount": 1,
+        "unit": "kilogram",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 58.927742825333006
+      },
+      {
+        "rule_id": "bp-afd07e4d1223d368",
+        "basis_amount": 1,
+        "unit": "cubic meter",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 274.0826965348382
+      },
+      {
+        "rule_id": "bp-7af323921dc1714c",
+        "basis_amount": 1,
+        "unit": "cubic meter",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 274.0826965348382
+      },
+      {
+        "rule_id": "bp-d0e6ca1d19a58c1d",
+        "basis_amount": 1,
+        "unit": "cubic meter",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 274.0826965348382
+      },
+      {
+        "rule_id": "bp-dc0174f7c0a93cdd",
+        "basis_amount": 1,
+        "unit": "megajoule",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 1.100000023841858
+      },
+      {
+        "rule_id": "bp-f5c20db2989094da",
+        "basis_amount": 1,
+        "unit": "megajoule",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 2.3273144992032835
+      },
+      {
+        "rule_id": "bp-ab9ef0df411ba0fe",
+        "basis_amount": 1,
+        "unit": "megajoule",
+        "native_inventory_finite": true,
+        "supply_finite": true,
+        "max_abs_inventory_entry": 2.6993836368436983
+      }
+    ],
+    "native_petrol_actual_input_kg_per_MJ": 0.02447,
+    "petrol_is_not_refinery_flare": true,
+    "native_petrol_reconstruction": {
+      "native_recipe_technosphere_rows": 4,
+      "native_recipe_biosphere_rows": 21,
+      "all_25_quantities_and_statistics_copied": true,
+      "publisher_biosphere_ids_categories_units_verified": true,
+      "native_vs_reconstruction_lci_allclose": true,
+      "relative_tolerance": 1e-09,
+      "absolute_tolerance": 1e-10,
+      "nominal_vs_imported_matrix_max_absolute_difference": 5.708234085410879e-08,
+      "all_25_native_matrix_coefficients_exactly_float32_of_original_nominal_amount": true,
+      "max_absolute_aggregate_inventory_difference_after_identical_import_precision": 3.382627511427927e-12,
+      "recipe_preserves_original_nominal_precision": true,
+      "precision_control": "Original imported matrix rounds every coefficient to float32. Quantize only the independent control calculation, leaving recipe data unchanged; original tolerances retained."
+    },
+    "database_written": false,
+    "scope": "Actual installed native functional reference LCIs; not prospective fuel transformation/export."
+  },
+  "strict_validation_failure_resolved": "Native petrol exists in 2026 but not intermediate 2025 catalog. Reconstruct its complete 4 technosphere and 21 biosphere rows through the existing recipe mechanism; no invented catalog entry or weakened coverage validation.",
+  "licensed_preparation": {
+    "diagnostic_only_public_guard_bypassed": true,
+    "source_cohort": "3.8",
+    "unapproved_before": 58,
+    "unapproved_after": 42,
+    "approved_correspondences": 47,
+    "audit_filename": "af90fa8900d456ec564479ffde8c622165aaa6c32d7052baada9db15e88db0ae.audit.json.gz",
+    "audit_sha256": "2c8062c6752d5f7da53fa8c0af08a57d7a8f6cfe821de393f22b8fe71f6b9b37",
+    "existing_unit_planning_diagnostic_retained": true,
+    "fuel_transformation_run": false,
+    "fuel_database_exported": false,
+    "remaining": [
+      {
+        "rule_id": "bp-05200779ee64a17f",
+        "source": {
+          "location": "RoW",
+          "name": "market for heat, from steam, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "unit": "megajoule"
+        }
+      },
+      {
+        "rule_id": "bp-6f58476b963abe8c",
+        "source": {
+          "location": "RoW",
+          "name": "market for hydrochloric acid, without water, in 30% solution state",
+          "reference product": "hydrochloric acid, without water, in 30% solution state",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-cac4eeaf7215b33d",
+        "source": {
+          "location": "GLO",
+          "name": "market for methanol",
+          "reference product": "methanol",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-6fb142ff07a96aed",
+        "source": {
+          "location": "GLO",
+          "name": "market for sodium methoxide",
+          "reference product": "sodium methoxide",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-42ca176032e4b754",
+        "source": {
+          "location": "RoW",
+          "name": "market for lime",
+          "reference product": "lime",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-4c51b8491a9aebe9",
+        "source": {
+          "location": "GLO",
+          "name": "market for ethanol fermentation plant",
+          "reference product": "ethanol fermentation plant",
+          "unit": "unit"
+        }
+      },
+      {
+        "rule_id": "bp-fe0deefded6d83bc",
+        "source": {
+          "location": "GLO",
+          "name": "market for hexane",
+          "reference product": "hexane",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-ae632332ea38e930",
+        "source": {
+          "location": "GLO",
+          "name": "market for compost",
+          "reference product": "compost",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-ab4e383b592be518",
+        "source": {
+          "location": "ID",
+          "name": "market for inorganic nitrogen fertiliser, as N",
+          "reference product": "inorganic nitrogen fertiliser, as N",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-1e5665194f1a7a40",
+        "source": {
+          "location": "GLO",
+          "name": "market for pesticide, unspecified",
+          "reference product": "pesticide, unspecified",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-342b0acc67aa560e",
+        "source": {
+          "location": "ID",
+          "name": "market for inorganic phosphorus fertiliser, as P2O5",
+          "reference product": "inorganic phosphorus fertiliser, as P2O5",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-498d9c2e6fa6b060",
+        "source": {
+          "location": "ID",
+          "name": "market for inorganic potassium fertiliser, as K2O",
+          "reference product": "inorganic potassium fertiliser, as K2O",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-cf2ed054ced71820",
+        "source": {
+          "location": "GLO",
+          "name": "market for packaging, for fertilisers",
+          "reference product": "packaging, for fertilisers",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-6073dd107b7b9ea8",
+        "source": {
+          "location": "GLO",
+          "name": "market for packaging, for pesticides",
+          "reference product": "packaging, for pesticides",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-91b9cff76b3562bb",
+        "source": {
+          "location": "RER",
+          "name": "market for hydrochloric acid, without water, in 30% solution state",
+          "reference product": "hydrochloric acid, without water, in 30% solution state",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-a7832124e7202895",
+        "source": {
+          "location": "GLO",
+          "name": "market for bipyridylium-compound",
+          "reference product": "bipyridylium-compound",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-745c517f85a78ba7",
+        "source": {
+          "location": "GLO",
+          "name": "market for natural gas, medium pressure, vehicle grade",
+          "reference product": "natural gas, medium pressure, vehicle grade",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-debda812c6313c05",
+        "source": {
+          "location": "CH",
+          "name": "market for inorganic nitrogen fertiliser, as N",
+          "reference product": "inorganic nitrogen fertiliser, as N",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-9bcfc79d3362fe6f",
+        "source": {
+          "location": "CH",
+          "name": "market for inorganic phosphorus fertiliser, as P2O5",
+          "reference product": "inorganic phosphorus fertiliser, as P2O5",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-4d440a5ab156b17c",
+        "source": {
+          "location": "CH",
+          "name": "market for inorganic potassium fertiliser, as K2O",
+          "reference product": "inorganic potassium fertiliser, as K2O",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-124e5ce8d75168cc",
+        "source": {
+          "location": "GLO",
+          "name": "market for rape seed",
+          "reference product": "rape seed",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-ffcd093245457004",
+        "source": {
+          "location": "GLO",
+          "name": "market for soil pH raising agent, as CaCO3",
+          "reference product": "soil pH raising agent, as CaCO3",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-a0a4f5a8616f11e2",
+        "source": {
+          "location": "GLO",
+          "name": "market for sugar beet seed, for sowing",
+          "reference product": "sugar beet seed, for sowing",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-89125291fb94d47e",
+        "source": {
+          "location": "GLO",
+          "name": "market for pyrethroid-compound",
+          "reference product": "pyrethroid-compound",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-1b65914b2f33ba7b",
+        "source": {
+          "location": "GLO",
+          "name": "market for packaging film, low density polyethylene",
+          "reference product": "packaging film, low density polyethylene",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-bd7ba1d16a722d39",
+        "source": {
+          "location": "US",
+          "name": "market for inorganic nitrogen fertiliser, as N",
+          "reference product": "inorganic nitrogen fertiliser, as N",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-0cb5cbfb2134d167",
+        "source": {
+          "location": "US",
+          "name": "market for inorganic phosphorus fertiliser, as P2O5",
+          "reference product": "inorganic phosphorus fertiliser, as P2O5",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-41b83536c4b66e37",
+        "source": {
+          "location": "US",
+          "name": "market for inorganic potassium fertiliser, as K2O",
+          "reference product": "inorganic potassium fertiliser, as K2O",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-9caeb1b3bd66b612",
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, low-alloyed",
+          "reference product": "steel, low-alloyed",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-4d389c0e2269e7e9",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of waste bulk iron, excluding reinforcement, sorting plant",
+          "reference product": "waste bulk iron, excluding reinforcement",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-263c185cdbca7a8c",
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, chromium steel 18/8, hot rolled",
+          "reference product": "steel, chromium steel 18/8, hot rolled",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-8bbb01130472bd02",
+        "source": {
+          "location": "GLO",
+          "name": "market for zeolite, powder",
+          "reference product": "zeolite, powder",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-6b60ae27d55196e6",
+        "source": {
+          "location": "CH",
+          "name": "market for concrete, sole plate and foundation",
+          "reference product": "concrete, sole plate and foundation",
+          "unit": "cubic meter"
+        }
+      },
+      {
+        "rule_id": "bp-7ca3587cbfe4ce9b",
+        "source": {
+          "location": "GLO",
+          "name": "market for reinforcing steel",
+          "reference product": "reinforcing steel",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-56f1f68f931b8c2a",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of waste reinforced concrete, collection for final disposal",
+          "reference product": "waste reinforced concrete",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-14199ba2d41a9688",
+        "source": {
+          "location": "RoW",
+          "name": "market for nitrogen, liquid",
+          "reference product": "nitrogen, liquid",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-48df3f130afafd5c",
+        "source": {
+          "location": "RoW",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-c291034cfcb83f1c",
+        "source": {
+          "location": "GLO",
+          "name": "market for liquid storage tank, chemicals, organics",
+          "reference product": "liquid storage tank, chemicals, organics",
+          "unit": "unit"
+        }
+      },
+      {
+        "rule_id": "bp-f1bc637c4fcf6060",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for water, deionised",
+          "reference product": "water, deionised",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-84bd9cf473cdeee9",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for wood chips, wet, measured as dry mass",
+          "reference product": "wood chips, wet, measured as dry mass",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-23f6df653910092e",
+        "source": {
+          "location": "RoW",
+          "name": "synthetic gas factory construction",
+          "reference product": "synthetic gas factory",
+          "unit": "unit"
+        }
+      },
+      {
+        "rule_id": "bp-4529f104ab14ba19",
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, chromium steel 18/8",
+          "reference product": "steel, chromium steel 18/8",
+          "unit": "kilogram"
+        }
+      }
+    ]
+  },
+  "regular_conda_git_install_verified": true,
+  "limitations": [
+    "Whole native functional proxies replace source internal market/production inventories rather than reconstructing their shares, source process emissions or internal uncertainty.",
+    "Petrol native documentation contains inherited diesel wording and a particle-filter title; actual petrol supply and petrol-specific engine description are independently inspected.",
+    "Native average non-road building-machine diesel is an explicit fleet/infrastructure/emissions proxy for agricultural machinery.",
+    "Swiss sprinkler irrigation replaces source surface/drip/sprinkler mixes and their different efficiencies; caller crop water flows remain unchanged and no water-balance correction is invented.",
+    "Preparation acceptance and finite native LCIs do not qualify prospective fuel transformation/export or remaining sectors."
+  ],
+  "obsolete_replay_wheel_bytes_removed": 246244690,
+  "regular_conda_validated_scopes": 633
+}

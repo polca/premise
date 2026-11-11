@@ -1170,3 +1170,57 @@ other sectors remain unfinished. The full goal stays active.
 
 See the [four-market receipt](uvek-fuels-39-final-markets-preparation-verification.json)
 and [grouped 3.8 triage](uvek-fuels-38-preparation-triage.json).
+
+
+### Sixteen 3.8 native services reviewed — 11 November 2026
+
+Actual licensed preparation accepts sixteen source-3.8 cut-off correspondences,
+reducing this cohort from **58 to 42** unapproved cases. Fourteen existing
+Brightpath rules remain byte-identical. Two combustion matches are corrected:
+petrol machinery no longer maps to refinery-gas flaring, and agricultural diesel
+uses an explicit average non-road diesel proxy rather than a particle-filter
+model. Existing native grids (ID medium voltage, US/ENTSO-E low voltage), barge,
+rail/pipeline freight, light fuel oil, gas-motor combustion, tap water and three
+irrigation services retain their actual native functional quantities. Complete
+native inventories replace source internal market mixes/production inventories
+with recorded technology, geography, allocation, water and vintage limitations.
+These source internal quantities are not claimed to be reconstructed.
+
+Petrol native documentation has inherited diesel wording and a particle-filter
+title; actual petrol supply is 0.02447 kg/MJ and the process describes
+gasoline-powered four-stroke machinery. The complete native 2026 process is
+absent from the intermediate 2025 catalog. Strict coverage correctly refused a
+direct link. The existing recipe mechanism reconstructs all **four technosphere
+and 21 biosphere rows**, preserving quantities, uncertainty and canonical flow
+UUIDs, rather than inventing a 2025 catalog identity or relaxing validation.
+No runtime Python module changes, additional source-input omission, energy
+credit, calorific/engine-efficiency ratio or alternate Premise engine is added.
+
+Three irrigation markets use complete Swiss sprinkler service per m3 supplied
+to plants. Native efficiency is 75%; source surface/drip/sprinkler variants
+state 45/90/75%. Technology mix, head, energy and geography differ. Both source
+and native descriptions leave supplied-water and infiltration/evaporation flows
+to crop datasets. Existing crop flows remain unchanged, with no invented
+efficiency multiplier, water abstraction/return or balance correction.
+
+All **836 checks pass**: 87 Brightpath targeted, 733 reference-sign regressions
+and sixteen strict fresh/cache Premise tests. All sixteen native functional
+LCIs are finite; source activity count and modified timestamp are unchanged.
+Petrol reconstruction reproduces the installed native LCI after matching its
+actual import precision: all 25 native matrix coefficients are exactly float32
+versions of the original amounts. The recipe retains original nominal values.
+The independently controlled LCI difference is 3.39e-12 or less, within the
+original 1e-10 absolute tolerance; no tolerance is weakened. Complete generation
+and wheel review/resource/manifest bytes match, canonical biosphere unchanged.
+Sixteen exact new scopes preserve every earlier approval operation and yield
+**633 validated scopes**. The colleague notebook is unchanged; requirements and
+guides pin the pushed Git revision. Removed 234.8 MiB of obsolete old/final
+replay and wheel outputs, retaining source evidence, logs and active caches.
+
+The public fuel guard remains closed. Further mapping cases, actual shared fuel
+transformation, consumer linking, validation/export and other registered sectors
+remain unfinished. Next: chemical/heat/water references and construction
+services, agricultural nutrient/packaging inputs (including wrong N-fertiliser
+and pyrethroid matches), then remaining materials and feedstock boundaries.
+The full integration goal remains active. See the
+[native-service receipt](uvek-fuels-38-services-preparation-verification.json).
