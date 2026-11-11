@@ -13,9 +13,7 @@ from premise.inventory.clic_harmonize import ClicHarmonizer
 
 RECORDS = {
     row["rule_id"]: {**row, "_review_path": f"export/{name}"}
-    for name in (
-        "uvek_fuels_38_infrastructure_water_review.json",
-    )
+    for name in ("uvek_fuels_38_infrastructure_water_review.json",)
     for row in json.loads((DATA_DIR / "export" / name).read_text())["records"]
 }
 
