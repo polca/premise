@@ -195044,6 +195044,462 @@
           "fingerprint": "35e6db810637349ceedcde6cc01291428ee833a02a01cbd933eff5023a1217a8"
         }
       ]
+    },
+    {
+      "rule_id": "bp-124e5ce8d75168cc",
+      "operation": "replace",
+      "mapping_method": "reviewed_crop_market_delivery",
+      "review_path": "export/uvek_fuels_38_crops_review.json",
+      "review_sha256": "21a5bba439cad665c9fe97e39c52d0b58c3623d3554f9a385190d29f6aa6f1da",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active shared-Premise BAFU/UVEK integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for rape seed",
+            "reference product": "rape seed",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "e2a31d414af635da484c6b29b79072a098b35edefb537f4761cc104d858b4e5f",
+          "inventory_sha256": "937fbbed46510dbc80d011820f1b18951283b8891549f60d8f0c8aa4e5a2ea1e",
+          "name": "market for rape seed",
+          "reference product": "rape seed",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "rape seed production",
+              "reference product": "rape seed",
+              "location": "Canada without Quebec",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ab20270880ad4bce249c066963da3da4991a0bc7e1f1b51fd57403630ec2a4f1",
+            "inventory_sha256": "7571abf386ace66624f4d9b1b57d0f6f669604e95e17bfbbf17c50a70fd90c5d",
+            "source_water_in_wet_mass": 0.06,
+            "target": {
+              "name": "Rape seed, at farm",
+              "reference product": "Rape seed, at farm",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "geographic_proxy": true
+          },
+          {
+            "identity": {
+              "name": "rape seed production",
+              "reference product": "rape seed",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "39b7227663e5bd013ad4e03172b3613517f986ad4a5354667a13434ffc47c1cd",
+            "inventory_sha256": "08a180eb0d47b0d320f2a0c98241f903d0861efcec162b21bf508f4244ef8227",
+            "source_water_in_wet_mass": 0.09,
+            "target": {
+              "name": "Rape seed conventional, at farm",
+              "reference product": "Rape seed conventional, at farm",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "geographic_proxy": false
+          },
+          {
+            "identity": {
+              "name": "rape seed production",
+              "reference product": "rape seed",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "8ebaeb2a56e5fa3eea5f46f363a9eb0f04d5bbaae0f1857b06b4744a4e41251b",
+            "inventory_sha256": "d953af1c81009fdf05a8ae62b532b59f7c17a59d2269a1893ba6681e6206b337",
+            "source_water_in_wet_mass": 0.0600000000000001,
+            "target": {
+              "name": "Rape seed, at farm",
+              "reference product": "Rape seed, at farm",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "geographic_proxy": false
+          },
+          {
+            "identity": {
+              "name": "rape seed production",
+              "reference product": "rape seed",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f0b21316ec0ac79250e6bfcdc80156b8d88b39e75a6e504a966bded4c9e3dade",
+            "inventory_sha256": "a0d8185725ed168c2bb5a505f3c02d83155f3b933b05d390289d1609c9fe2161",
+            "source_water_in_wet_mass": 0.09,
+            "target": {
+              "name": "Rape seed, at farm",
+              "reference product": "Rape seed, at farm",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "geographic_proxy": true
+          },
+          {
+            "identity": {
+              "name": "rape seed production",
+              "reference product": "rape seed",
+              "location": "FR",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e521ca139b4c01a4f28b8b1f3e860aaa13a3b3134107cb5d6d55bf9816ca8a45",
+            "inventory_sha256": "455becaf6f27f04b0c2058dd502988463c8e6fb0d7faf10d0d50820122ac9020",
+            "source_water_in_wet_mass": 0.1,
+            "target": {
+              "name": "xx Rape seed conventional, Barrois, at farm",
+              "reference product": "xx Rape seed conventional, Barrois, at farm",
+              "location": "FR",
+              "unit": "kilogram"
+            },
+            "geographic_proxy": false
+          },
+          {
+            "identity": {
+              "name": "rape seed production",
+              "reference product": "rape seed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7232590ba5845fcd3079ef0b08f3ebb93e28f555710fd36465e345ca72812d3a",
+            "inventory_sha256": "238e8d8357d3311253ffce2fd2fdefacf2f089ed3ecd3590ebb4cd1176ee1929",
+            "source_water_in_wet_mass": 0.0600000000000001,
+            "target": {
+              "name": "Rape seed, at farm",
+              "reference product": "Rape seed, at farm",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "geographic_proxy": true
+          }
+        ],
+        "basis": "Exact inspected ecoinvent 3.8 cut-off harvested-rapeseed market only. Preserve signed caller fresh kg, uncertainty, formulas and properties, all six separate original producer entries and all four final freight entries in source order, without aggregation, omission or renormalization. Use complete conventional at-farm rapeseed inventories: native country-wide Germany for DE, Barrois/France for FR, and US for US. Native matching crop suppliers are absent for Canada without Quebec, CA-QC and RoW, so the complete US at-farm process is an explicit same-crop geographic screening proxy for those three entries, not a reconstruction of their agriculture. Source Canada/QC quality ratings, yields, direct land-use-change, irrigation, fertilizer/pesticide inputs, allocation, field emissions, soil models, internal uncertainty and vintage are not reproduced. Source wet-basis moisture varies by producer; native US documents 6% water, while source CA-QC declares 9%. Preserve each original fresh-kg entry without a dry-mass, yield, oil-content, calorific-value or moisture multiplier; this is not equality per kg dry matter or oil output. Keep complete native cultivation, harvesting, drying and internal farm-input transport once. The source final freight group is separate from native farm-gate inventories and is retained at original tonne-km using complete native dry-goods ocean freight, European rail, generic road and barge services; fleet, geography, technology and allocation differ. Do not use sowing/propagation seed or an MJ-based cultivation record for harvested commodity kg. Separately listed caller processing, field emissions and application remain unchanged. All inventory and unquantified score differences remain warnings.",
+        "conversion_factor": 1,
+        "resource_action": "reviewed_delivery_helper",
+        "new_target": {
+          "recipe_ref": "fuels-38-crop-rape-851357a2b949b944fe48"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "da947add813fcb34247cd5102fa337739c8bb8448455d833918e5356957e9be1",
+            "inventory_sha256": "2b23d573b7e05cd385a7fa8e6c943ba8cafcaa67f7f613a173ed94fd425948e3"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec"
+          },
+          {
+            "identity": {
+              "name": "Rape seed, at farm",
+              "reference product": "Rape seed, at farm",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 65,
+            "metadata_sha256": "d77560484355e81b77b40731437029ec714448863bf508d75305d7096db70dbf",
+            "inventory_sha256": "44628fd7b9682f9eec19554597efb0cdcc0923d19f338b6c59050e69c23b789a"
+          },
+          {
+            "identity": {
+              "name": "Rape seed conventional, at farm",
+              "reference product": "Rape seed conventional, at farm",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 69,
+            "metadata_sha256": "ea00668e509d6675f897694fc4fdfd765b5b4badaa136da6a4ef1e47f96146f3",
+            "inventory_sha256": "34cb0ca42c50f4df793a76080f9204797f14c03fdfe20a8515042d05ea0e6292"
+          },
+          {
+            "identity": {
+              "name": "xx Rape seed conventional, Barrois, at farm",
+              "reference product": "xx Rape seed conventional, Barrois, at farm",
+              "location": "FR",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "444ee878d0e97cfd2d28a83857f2553e24f1ca54c2c930d6c61e07ae78bb4da3",
+            "inventory_sha256": "e5c5d93f5ab1480849983e9f4fd88768c0a080d3ac6a80dcffaace80a96bd2bc"
+          },
+          {
+            "identity": {
+              "name": "Sugar beet seed IP, at regional storehouse",
+              "reference product": "Sugar beet seed IP, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "metadata_sha256": "08087ad64f4942a3faba36e13f5f7654bec447303933d3ebe848318664aca3d0",
+            "inventory_sha256": "94aea340a750691558561850bb5889439934f06ee316981af882c706f0ced667"
+          }
+        ]
+      },
+      "limitations": [
+        "Exact inspected ecoinvent 3.8 cut-off harvested-rapeseed market only. Preserve signed caller fresh kg, uncertainty, formulas and properties, all six separate original producer entries and all four final freight entries in source order, without aggregation, omission or renormalization. Use complete conventional at-farm rapeseed inventories: native country-wide Germany for DE, Barrois/France for FR, and US for US. Native matching crop suppliers are absent for Canada without Quebec, CA-QC and RoW, so the complete US at-farm process is an explicit same-crop geographic screening proxy for those three entries, not a reconstruction of their agriculture. Source Canada/QC quality ratings, yields, direct land-use-change, irrigation, fertilizer/pesticide inputs, allocation, field emissions, soil models, internal uncertainty and vintage are not reproduced. Source wet-basis moisture varies by producer; native US documents 6% water, while source CA-QC declares 9%. Preserve each original fresh-kg entry without a dry-mass, yield, oil-content, calorific-value or moisture multiplier; this is not equality per kg dry matter or oil output. Keep complete native cultivation, harvesting, drying and internal farm-input transport once. The source final freight group is separate from native farm-gate inventories and is retained at original tonne-km using complete native dry-goods ocean freight, European rail, generic road and barge services; fleet, geography, technology and allocation differ. Do not use sowing/propagation seed or an MJ-based cultivation record for harvested commodity kg. Separately listed caller processing, field emissions and application remain unchanged. All inventory and unquantified score differences remain warnings."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3244c8a9a24f3a5c8b5cd1784fbcc60164d2efd51d83daadf87619ec79cce59c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a0a4f5a8616f11e2",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_fuels_38_crops_review.json",
+      "review_sha256": "21a5bba439cad665c9fe97e39c52d0b58c3623d3554f9a385190d29f6aa6f1da",
+      "authorization": "Standing auto-approval of independently inspected modelling decisions with warnings under the active shared-Premise BAFU/UVEK integration goal.",
+      "inspection": {
+        "date": "2026-11-11",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sugar beet seed, for sowing",
+            "reference product": "sugar beet seed, for sowing",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "42590e4c84a6ee10e98cb7d99aac4945243583c1211dd0ddbd03c8b4c336b143",
+          "inventory_sha256": "9d5d340529b90d68e8ee704062d56a5e5a8eb6d6786ed4c96bf0cf380fd99582",
+          "name": "market for sugar beet seed, for sowing",
+          "reference product": "sugar beet seed, for sowing",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "sugar beet seed production, for sowing",
+              "reference product": "sugar beet seed, for sowing",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "fe41ed5a2a3c93613e6fc8151f1479a2b040390946f627624e5087cc00511082",
+            "inventory_sha256": "5af949ef76613df5870747c503ac9c2c7deba46c5794b833e0b1035e2d639ced"
+          }
+        ],
+        "basis": "Exact independently inspected ecoinvent 3.8 cut-off sugar-beet sowing-seed market. Both source and native complete seed-preparation process declare positive one kg fresh propagation seed, not harvested sugar-beet roots, ordinary food crop, dry seed or seed count. Use the complete native Swiss IP seed process per signed source kg, preserving caller uncertainty, formulas and properties. The native inventory already includes cultivation inputs, cleaning, possible drying, chemical dressing, packaging, storage and regional transport. Retain it once and add no second seed-processing, packaging, delivery or dressing service, no seed-number, moisture, nutrient, crop-yield or density multiplier. Source global market has one producer with unit share; the native CH label, procurement, crop inputs, pesticide dressing, utilities, allocation, vintage and internal uncertainty differ. Native freshwater/biosphere exclusions and unquantified inventory/score effects remain. This complete same-purpose seed-stock proxy does not reproduce the full source producer inventory; separate caller operations and emissions remain unchanged.",
+        "conversion_factor": 1,
+        "resource_action": "unchanged_rule",
+        "new_target": {
+          "location": "CH",
+          "name": "Sugar beet seed IP, at regional storehouse",
+          "reference product": "Sugar beet seed IP, at regional storehouse",
+          "unit": "kilogram"
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 36,
+            "metadata_sha256": "da947add813fcb34247cd5102fa337739c8bb8448455d833918e5356957e9be1",
+            "inventory_sha256": "2b23d573b7e05cd385a7fa8e6c943ba8cafcaa67f7f613a173ed94fd425948e3"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 4,
+            "metadata_sha256": "e8b66b48093579124a22c663539f1f3f57a5996ccbbe7d7f24339e5bf05dac8b",
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 66,
+            "metadata_sha256": "5943d3e3188951f7ef9d28039c5cd22da5c48af9200c245329bc64c497c82346",
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 43,
+            "metadata_sha256": "9026a4434a920687f3a918fbe35cbc9b79843612f1107b629a44768f4e7b0237",
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec"
+          },
+          {
+            "identity": {
+              "name": "Rape seed, at farm",
+              "reference product": "Rape seed, at farm",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 65,
+            "metadata_sha256": "d77560484355e81b77b40731437029ec714448863bf508d75305d7096db70dbf",
+            "inventory_sha256": "44628fd7b9682f9eec19554597efb0cdcc0923d19f338b6c59050e69c23b789a"
+          },
+          {
+            "identity": {
+              "name": "Rape seed conventional, at farm",
+              "reference product": "Rape seed conventional, at farm",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 69,
+            "metadata_sha256": "ea00668e509d6675f897694fc4fdfd765b5b4badaa136da6a4ef1e47f96146f3",
+            "inventory_sha256": "34cb0ca42c50f4df793a76080f9204797f14c03fdfe20a8515042d05ea0e6292"
+          },
+          {
+            "identity": {
+              "name": "xx Rape seed conventional, Barrois, at farm",
+              "reference product": "xx Rape seed conventional, Barrois, at farm",
+              "location": "FR",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 73,
+            "metadata_sha256": "444ee878d0e97cfd2d28a83857f2553e24f1ca54c2c930d6c61e07ae78bb4da3",
+            "inventory_sha256": "e5c5d93f5ab1480849983e9f4fd88768c0a080d3ac6a80dcffaace80a96bd2bc"
+          },
+          {
+            "identity": {
+              "name": "Sugar beet seed IP, at regional storehouse",
+              "reference product": "Sugar beet seed IP, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "metadata_sha256": "08087ad64f4942a3faba36e13f5f7654bec447303933d3ebe848318664aca3d0",
+            "inventory_sha256": "94aea340a750691558561850bb5889439934f06ee316981af882c706f0ced667"
+          }
+        ]
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent 3.8 cut-off sugar-beet sowing-seed market. Both source and native complete seed-preparation process declare positive one kg fresh propagation seed, not harvested sugar-beet roots, ordinary food crop, dry seed or seed count. Use the complete native Swiss IP seed process per signed source kg, preserving caller uncertainty, formulas and properties. The native inventory already includes cultivation inputs, cleaning, possible drying, chemical dressing, packaging, storage and regional transport. Retain it once and add no second seed-processing, packaging, delivery or dressing service, no seed-number, moisture, nutrient, crop-yield or density multiplier. Source global market has one producer with unit share; the native CH label, procurement, crop inputs, pesticide dressing, utilities, allocation, vintage and internal uncertainty differ. Native freshwater/biosphere exclusions and unquantified inventory/score effects remain. This complete same-purpose seed-stock proxy does not reproduce the full source producer inventory; separate caller operations and emissions remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "faf5806899390f670118b74effc617f8a133330ab5831efeac045c49256603f3"
+        }
+      ]
     }
   ],
   "superseded_operations": [

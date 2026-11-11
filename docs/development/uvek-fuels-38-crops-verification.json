@@ -1,0 +1,143 @@
+{
+  "date": "2026-11-11",
+  "status": "Exact 3.8 harvested-rapeseed market and sugar-beet sowing-seed market qualified. Complete fuel-sector update/export and other registered sectors remain unfinished.",
+  "brightpath_commit": "fcdba89cbda42de49f05090538d0fa5dffbd83e5",
+  "review_sha256": "21a5bba439cad665c9fe97e39c52d0b58c3623d3554f9a385190d29f6aa6f1da",
+  "forward_resource_sha256": "de4b8b02b73c93592a418b61c2891a90fe57f307c220b38e140774cb4924cda7",
+  "canonical_biosphere_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+  "new_approval_scopes": 2,
+  "validated_approval_scopes": 668,
+  "all_prior_666_operations_and_fingerprints_preserved": true,
+  "mapping_change": "Only rapeseed parent changed; one native delivery helper added. All previous recipes/shared reviews and the sugar-beet sowing-seed rule preserved.",
+  "native_lci": {
+    "checks": [
+      {
+        "rule_id": "bp-124e5ce8d75168cc",
+        "status": "Finite complete flattened crop supply LCI; no Brightway write.",
+        "native_demands": [
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "amount": 1.545
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "amount": 0.239
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "amount": 0.0763
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "amount": 0.0476
+          },
+          {
+            "identity": {
+              "name": "Rape seed, at farm",
+              "reference product": "Rape seed, at farm",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "amount": 0.7958811172132054
+          },
+          {
+            "identity": {
+              "name": "Rape seed conventional, at farm",
+              "reference product": "Rape seed conventional, at farm",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "amount": 0.113487454067922
+          },
+          {
+            "identity": {
+              "name": "xx Rape seed conventional, Barrois, at farm",
+              "reference product": "xx Rape seed conventional, Barrois, at farm",
+              "location": "FR",
+              "unit": "kilogram"
+            },
+            "amount": 0.090631428718872
+          }
+        ],
+        "finite_supply": true,
+        "finite_inventory": true
+      },
+      {
+        "rule_id": "bp-a0a4f5a8616f11e2",
+        "status": "Finite complete flattened crop supply LCI; no Brightway write.",
+        "native_demands": [
+          {
+            "identity": {
+              "name": "Sugar beet seed IP, at regional storehouse",
+              "reference product": "Sugar beet seed IP, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "amount": 1
+          }
+        ],
+        "finite_supply": true,
+        "finite_inventory": true
+      }
+    ],
+    "source_database": "BAFU:2026-reimported",
+    "source_activity_count": 11947,
+    "source_modified": "2026-09-22T10:55:01.512934",
+    "source_unchanged": true
+  },
+  "tests": {
+    "brightpath_crops": "13 passed after correcting an authoring identity/type comparison guard before publication.",
+    "premise_crops": "10 passed; signed fresh mass, normal/lognormal uncertainty, formulas, exact proxy warnings, fresh/cache delivery and individual approval removal.",
+    "broader_baseline": "Earlier regression checkpoints remain documented in uvek-approval-regression-review.json and uvek-fuels-38-compost-verification.json; no post-crop full-suite pass is claimed."
+  },
+  "generator_replay": "Forward and canonical biosphere bytes match checkout.",
+  "wheel": "Review, resource and manifest bytes match checkout.",
+  "regular_environment": "Installed Git commit, exact resource SHA and all 668 approval scopes verified.",
+  "runtime_python_changes": false,
+  "authoring_changes": "Frozen crop review replay utility and generator hook only.",
+  "source_background_inventories_changed": false,
+  "fuel_preparation_queue": {
+    "source_activities": 117,
+    "source_cohorts": 6,
+    "profile_specific_refusals": 46,
+    "distinct_rule_identities": 42,
+    "exact_cases_removed": [
+      [
+        "3.8",
+        "bp-124e5ce8d75168cc"
+      ],
+      [
+        "3.8",
+        "bp-a0a4f5a8616f11e2"
+      ]
+    ],
+    "all_other_pending_cases_preserved": true,
+    "source_graph_unchanged": true,
+    "transformation_or_export_performed": false
+  },
+  "obsolete_generated_artifacts_removed_bytes": 123344417,
+  "limitations": [
+    "Exact inspected ecoinvent 3.8 cut-off harvested-rapeseed market only. Preserve signed caller fresh kg, uncertainty, formulas and properties, all six separate original producer entries and all four final freight entries in source order, without aggregation, omission or renormalization. Use complete conventional at-farm rapeseed inventories: native country-wide Germany for DE, Barrois/France for FR, and US for US. Native matching crop suppliers are absent for Canada without Quebec, CA-QC and RoW, so the complete US at-farm process is an explicit same-crop geographic screening proxy for those three entries, not a reconstruction of their agriculture. Source Canada/QC quality ratings, yields, direct land-use-change, irrigation, fertilizer/pesticide inputs, allocation, field emissions, soil models, internal uncertainty and vintage are not reproduced. Source wet-basis moisture varies by producer; native US documents 6% water, while source CA-QC declares 9%. Preserve each original fresh-kg entry without a dry-mass, yield, oil-content, calorific-value or moisture multiplier; this is not equality per kg dry matter or oil output. Keep complete native cultivation, harvesting, drying and internal farm-input transport once. The source final freight group is separate from native farm-gate inventories and is retained at original tonne-km using complete native dry-goods ocean freight, European rail, generic road and barge services; fleet, geography, technology and allocation differ. Do not use sowing/propagation seed or an MJ-based cultivation record for harvested commodity kg. Separately listed caller processing, field emissions and application remain unchanged. All inventory and unquantified score differences remain warnings.",
+    "Exact independently inspected ecoinvent 3.8 cut-off sugar-beet sowing-seed market. Both source and native complete seed-preparation process declare positive one kg fresh propagation seed, not harvested sugar-beet roots, ordinary food crop, dry seed or seed count. Use the complete native Swiss IP seed process per signed source kg, preserving caller uncertainty, formulas and properties. The native inventory already includes cultivation inputs, cleaning, possible drying, chemical dressing, packaging, storage and regional transport. Retain it once and add no second seed-processing, packaging, delivery or dressing service, no seed-number, moisture, nutrient, crop-yield or density multiplier. Source global market has one producer with unit share; the native CH label, procurement, crop inputs, pesticide dressing, utilities, allocation, vintage and internal uncertainty differ. Native freshwater/biosphere exclusions and unquantified inventory/score effects remain. This complete same-purpose seed-stock proxy does not reproduce the full source producer inventory; separate caller operations and emissions remain unchanged."
+  ]
+}
