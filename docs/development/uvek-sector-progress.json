@@ -506,6 +506,18 @@
         "signed_finite_lcis": 26,
         "remaining_ferrosilicon_supply_correspondences": 18,
         "limitation": "RoW gas mapping retains its previously approved other-version recipe and remains unresolved for3.9; complete ferrosilicon reconstruction and steel export remain unfinished."
+      },
+      "ferrosilicon_stored_fuels_verification": {
+        "review": "uvek-ferrosilicon-stored-fuels-review.md",
+        "correspondences": 15,
+        "native_suppliers": 8,
+        "geographic_proxies": 9,
+        "source_profile": "ecoinvent3.9cutoff",
+        "brightpath_tests_passed": 11,
+        "premise_tests_passed": 1,
+        "signed_finite_lcis": 16,
+        "remaining_ferrosilicon_supply_correspondences": 3,
+        "limitation": "Complete supply-model screening replacements; carbon composition and score equivalence unproven. Steel reconstruction/export unfinished."
       }
     },
     {

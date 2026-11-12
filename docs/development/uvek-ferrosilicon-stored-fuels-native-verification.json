@@ -1,0 +1,9 @@
+{
+  "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+  "native_complete_stored_fuel_suppliers": 8,
+  "signed_finite_LCIs": 16,
+  "exact_sign_reversal": true,
+  "source_modified_unchanged": true,
+  "new_helpers": 0,
+  "limitation": "Whole native stored-fuel inventories remain unchanged. No source/native score or carbon-composition equivalence is inferred. The complete ferrosilicon reconstruction and steel export remain unfinished."
+}

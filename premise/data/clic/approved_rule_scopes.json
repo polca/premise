@@ -231996,6 +231996,1086 @@
           "fingerprint": "5d75776356b9dcfb57fa40affa0e3730cd3a06e14b508b7500617b33b9186e41"
         }
       ]
+    },
+    {
+      "rule_id": "bp-25dc5bf33df45b6a",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "AU",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for hard coal",
+                "reference product": "hard coal",
+                "location": "AU",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "ae5e350a690bc416772301684e394818e4a0cd37b4e941e71810f85197072801",
+              "nonproduction_count": 28
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "AU",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d8f434ce89b717894aa12e139358e07b0de5b14389b0f986fcc4c4899009c7d5",
+          "nonproduction_count": 24
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source AU -> native AU: same location label with replaced internal supply model."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "111170247e6465a907d7aa217d1d24d984e75c657bd09ccf63d8b35edf036c73"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7800445b89bff35e",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "ID",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for hard coal",
+                "reference product": "hard coal",
+                "location": "ID",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "cfffe2571fd15d24025f6abe1fddd9753e8967007d07c679f192246622912263",
+              "nonproduction_count": 31
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "AU",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d8f434ce89b717894aa12e139358e07b0de5b14389b0f986fcc4c4899009c7d5",
+          "nonproduction_count": 24
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source ID -> native AU: explicit geographic screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "506ec8f6c51c9581bf3186b5f8b2fd7232ddcddeaf4ec9a866fd2fe9da37c1de"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-29403438166292a1",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "RLA",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for hard coal",
+                "reference product": "hard coal",
+                "location": "RLA",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "4049ee8f768ef1de59569e20ad252a07818abe5664d180b7cb1487cd292ed7f2",
+              "nonproduction_count": 30
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "RLA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "8ae6cf5792f97602960b2109961f64886aae9329f8a8d67b65e1140f8e8cd67b",
+          "nonproduction_count": 25
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source RLA -> native RLA: same location label with replaced internal supply model."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c99467065920226d58d325a856cbe9b182ba227f18303e705ff4f4cff858d44f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2860f66bf905dca7",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "ZA",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for hard coal",
+                "reference product": "hard coal",
+                "location": "ZA",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "e2c48ccb2b0bf8bee92d8ef578e80a4ac82e9fba27261de92d9508c5fdc1ff86",
+              "nonproduction_count": 27
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "ZA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "1cd94f70504cb1b99a517deb7865821a6e4d081d30f7d588b1c765cf987f745a",
+          "nonproduction_count": 24
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source ZA -> native ZA: same location label with replaced internal supply model."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fafbf6d7bfd3e11bce020831d0675aa971dd5dddc53d1dded54b0942a83f893e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ddfc7a065a8c7309",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "RNA",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for hard coal",
+                "reference product": "hard coal",
+                "location": "RNA",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "4d80fd493d9de55869432c6cd0d97c340b1ad0bf693ea5fd2c7a3bcbd1b335b5",
+              "nonproduction_count": 32
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "c6e31476f69f336810080aec0be20536c008e3fe55a7efbff562e6ab2b30d4c8",
+          "nonproduction_count": 24
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source RNA -> native US: explicit geographic screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "38c9dc30518fd55c600a3a3c1299aed0457cfd6609ae9985c2e3dbaa3da6fb2c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f642a8e3a6cd4a5c",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "IN",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for hard coal",
+                "reference product": "hard coal",
+                "location": "IN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "58beb23c5f8279f4275367a4c56d914dbd7f115816114f5853ce629e240fcd24",
+              "nonproduction_count": 34
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "IN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "8e7b97c23d2cbbe65d08b6e9aec4b6d2baca04f2ff719fc6a843dc39a12767db",
+          "nonproduction_count": 24
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source IN -> native IN: same location label with replaced internal supply model."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6814dbcc4e0f0cdc0b6dd53e73c8bcbbd58d65ed05c2bed5a30cbdef0f269046"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b1c5bccd675656ac",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "RU",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for hard coal",
+                "reference product": "hard coal",
+                "location": "RU",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "2057b389b2e4344fae38d442ed0d3be4231fb13b80f1c7b3c41e698413f0bd3e",
+              "nonproduction_count": 27
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "RU",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "eeb26467bd01cdca6d86895960f5bd301088ee7877f9f79df72e95680845cf11",
+          "nonproduction_count": 24
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source RU -> native RU: same location label with replaced internal supply model."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "46cf6edd3c5c06dde753ba0661e428020d2c0bda161f98211d8dc99aa3183d90"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f6c12fce58c094e9",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for heavy fuel oil",
+          "reference product": "heavy fuel oil",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for heavy fuel oil",
+                "reference product": "heavy fuel oil",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "5068648562dd94d6b3e5f6833b7049f38850066aeb40e838aabd867e7608ef2b",
+              "nonproduction_count": 111
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Heavy fuel oil, at regional storage",
+            "reference product": "Heavy fuel oil, at regional storage",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9b7d78aaa5f2e53870baa396bd7c8803812c520c6dfeada3afc72d5401edccfc",
+          "nonproduction_count": 14
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source RoW -> native RER: explicit geographic screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "307593a4b9797133f34beec89e4bf25fb40d25e52756fb2cf7714d46d68e2da2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1db7752ea4cc167a",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "IN",
+          "name": "market for heavy fuel oil",
+          "reference product": "heavy fuel oil",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for heavy fuel oil",
+                "reference product": "heavy fuel oil",
+                "location": "IN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "2bed000659f7a87c4ddfe5c82a52282404e906853b23aad6295a9a6b121f0262",
+              "nonproduction_count": 17
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Heavy fuel oil, at regional storage",
+            "reference product": "Heavy fuel oil, at regional storage",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9b7d78aaa5f2e53870baa396bd7c8803812c520c6dfeada3afc72d5401edccfc",
+          "nonproduction_count": 14
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source IN -> native RER: explicit geographic screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "25a79e65cd57c7fe0d0e08a6c977f7963d8af6e6965c18a3e1c71f5659f8cd4b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-557dd0b983512034",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "CO",
+          "name": "market for heavy fuel oil",
+          "reference product": "heavy fuel oil",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for heavy fuel oil",
+                "reference product": "heavy fuel oil",
+                "location": "CO",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "0fa6c08ce772c82fc78437f361fc2301418503a1c43b71db64a09095101cc682",
+              "nonproduction_count": 17
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Heavy fuel oil, at regional storage",
+            "reference product": "Heavy fuel oil, at regional storage",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9b7d78aaa5f2e53870baa396bd7c8803812c520c6dfeada3afc72d5401edccfc",
+          "nonproduction_count": 14
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source CO -> native RER: explicit geographic screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c4b1963562bca84de97f1ac46f62952c683d2427e06c26ae4397e750ed06123f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4b6ab4fd4330067f",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market group for heavy fuel oil",
+          "reference product": "heavy fuel oil",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market group for heavy fuel oil",
+                "reference product": "heavy fuel oil",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "f128ea06689d908028d4c6ca390d7873838b308354591ff676318881eac6632b",
+              "nonproduction_count": 2
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Heavy fuel oil, at regional storage",
+            "reference product": "Heavy fuel oil, at regional storage",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9b7d78aaa5f2e53870baa396bd7c8803812c520c6dfeada3afc72d5401edccfc",
+          "nonproduction_count": 14
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source RER -> native RER: same location label with replaced internal supply model."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "57bcd84eb00a89cf5ab4f8fa935cb54ae38e9f5cd60d215e8fc8ceb057fd5b26"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6c1bfc3c83c0152f",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "ZA",
+          "name": "market for heavy fuel oil",
+          "reference product": "heavy fuel oil",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for heavy fuel oil",
+                "reference product": "heavy fuel oil",
+                "location": "ZA",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "d9d75813d80d162c85f46db476134ab7b7c8a1164a52b95dd58a3df2d6723dcb",
+              "nonproduction_count": 18
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Heavy fuel oil, at regional storage",
+            "reference product": "Heavy fuel oil, at regional storage",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9b7d78aaa5f2e53870baa396bd7c8803812c520c6dfeada3afc72d5401edccfc",
+          "nonproduction_count": 14
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source ZA -> native RER: explicit geographic screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dd0b8364bf502ec34e6323f8e2b600fe889a9684861e96dd96800ef10777657f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-767c46c6eb385e1c",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "PE",
+          "name": "market for heavy fuel oil",
+          "reference product": "heavy fuel oil",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for heavy fuel oil",
+                "reference product": "heavy fuel oil",
+                "location": "PE",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "e9f334460fe3dbe0f33355115e89c36fd5596a3c9897d8ef0752cb151bd8be64",
+              "nonproduction_count": 16
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Heavy fuel oil, at regional storage",
+            "reference product": "Heavy fuel oil, at regional storage",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9b7d78aaa5f2e53870baa396bd7c8803812c520c6dfeada3afc72d5401edccfc",
+          "nonproduction_count": 14
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source PE -> native RER: explicit geographic screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c2b6afe0b6226509cac06a97f64bd8f24ea57c6657a365fe25795f23d1438e50"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e0e407d5da65d77c",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "BR",
+          "name": "market for heavy fuel oil",
+          "reference product": "heavy fuel oil",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for heavy fuel oil",
+                "reference product": "heavy fuel oil",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "e11180fdae81c92df05464dd4263fed7d526ea962d95bc7914023ba0c2b4663f",
+              "nonproduction_count": 17
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Heavy fuel oil, at regional storage",
+            "reference product": "Heavy fuel oil, at regional storage",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9b7d78aaa5f2e53870baa396bd7c8803812c520c6dfeada3afc72d5401edccfc",
+          "nonproduction_count": 14
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source BR -> native RER: explicit geographic screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "75683ca647af0e8590d79fcb515ad97e5013022540533ea28316fd59ffc46d7f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0d8a6f1f99941aa5",
+      "operation": "replace",
+      "mapping_method": "reviewed_complete_stored_fuel_proxy",
+      "review_path": "export/uvek_ferrosilicon_stored_fuels_review.json",
+      "review_sha256": "49d04d53874ead3b453cea1fe580a06760dba9ba46a064f23cea92cd0370d47c",
+      "authorization": "Standing autonomous approval of explicitly documented complete native screening proxies, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "CN",
+          "name": "market for hard coal",
+          "reference product": "hard coal",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for hard coal",
+                "reference product": "hard coal",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "9bbac2b4a93922c6dd9ba26296ea1d38b69ecff1e5e8b67de53b915b61716b7a",
+              "nonproduction_count": 34
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "CPA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "5ed898f4d8c7874f4ab0d6b5be5eef9fc2afeece8641762ec69a6c1e69ba993d",
+          "nonproduction_count": 24
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 1,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native delivered fuel screening proxy, per signed1kg. Exact ecoinvent3.9cutoff source and native references are positive1kg and nonempty. Use native hard coal at regional storage or heavy fuel oil at regional storage, not raw extraction or heat production. Replace the source internal supply/delivery model with the complete native inventory including its supply, transport, losses, infrastructure and storage emissions as provided. Do not transplant source self-loops, transport, leakage or emissions on top of the complete native supply, and add no combustion or recovery credit. This is not exchange-by-exchange inventory preservation: source/native mining/refining, delivery distances and modes, dust, aqueous discharges, regional membership, coal rank/moisture/energy/carbon composition, fuel specifications, allocation, vintage, biosphere exclusions and internal uncertainty can differ. Preserve signed caller kg amounts, uncertainties, formulas and separately listed caller emissions; do not invent density, calorific, moisture or carbon corrections. Score and carbon-balance effects are unquantified. Explicit geographic proxies are independently identified in each record; equal region labels do not imply equal membership. Only independently inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes remain unapproved. Source CN -> native CPA: explicit geographic screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "00740aa72f22af5a0acf3fde5d5d5fc0b55d18d0b09a3e87bd5b411143e4b4cd"
+        }
+      ]
     }
   ],
   "superseded_operations": [
