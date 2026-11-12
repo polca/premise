@@ -254774,6 +254774,567 @@
           "fingerprint": "4e9676425b3e27f11e0260f8ccd43b47a3e367e2c88c505e307043a4fa4080ce"
         }
       ]
+    },
+    {
+      "rule_id": "bp-1de3542379924d2f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_allyl_markets",
+      "review_path": "export/uvek_pulp_heat_allyl_markets_review.json",
+      "review_sha256": "d53427982dc0ffd780878057d0a645872d5793329903bcd8762d5307790e08df",
+      "authorization": "Standing autonomous approval of inspected same-product native screening proxies, with original market shares, freight, signs and uncertainty retained and all limitations logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for allyl chloride",
+          "reference product": "allyl chloride",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for allyl chloride",
+            "reference product": "allyl chloride",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "26f812af711b93c766e399a2583e275823da2699e3fb99ce53adcec640e04823",
+          "nonproduction_count": 11
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "allyl chloride production, reaction of propylene and chlorine",
+              "reference product": "allyl chloride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "fa730419500745cb81745783eba3f462e740a4e8a9ef67d17460cf83da4047d9",
+            "nonproduction_count": 25
+          }
+        ],
+        "component_bindings": [
+          {
+            "source": {
+              "name": "allyl chloride production, reaction of propylene and chlorine",
+              "reference product": "allyl chloride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "kind": "producer",
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "name": "Allyl chloride, from reacting propylene and chlorine, at plant",
+              "reference product": "Allyl chloride, from reacting propylene and chlorine, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "IN",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0224231473350459,
+              "uncertainty type": 2,
+              "loc": -3.797661490501636,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08093386943083909,
+              "uncertainty type": 2,
+              "loc": -2.514122884547314,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0056780093482361425,
+              "uncertainty type": 2,
+              "loc": -5.171154574536774,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.11165767412994829,
+              "uncertainty type": 2,
+              "loc": -2.192317569247477,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08840729975593056,
+              "uncertainty type": 2,
+              "loc": -2.4258007363232306,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0037411136550834123,
+              "uncertainty type": 2,
+              "loc": -5.588371943141128,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.18116364249000133,
+              "uncertainty type": 2,
+              "loc": -1.7083545540157898,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.02389524385491526,
+              "uncertainty type": 2,
+              "loc": -3.7340758417345654,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Reviewed exact3.9cutoff allyl-chloride markets RERandRoW. Correct the existing physically different vinyl-chloride match to the complete native Allylchloride,fromreactingpropyleneandchlorine,atplant,RERprocess. Source product is pureC3H5Cl,CAS107-05-1,positive1kgdryreference. Source/native both describe liquid propene with gaseous chlorine and the same three-output production system (allylchloride,HCl36wt%,1,3-dichloropropene). Their already allocated complete allyl product is used once perkg with factor+1; HCl36%is a co-product descriptor, not allyl purity, so add no inverse concentration,molar,stoichiometric,yield or secondallocation factor. Keep each original unit producer share and all original final-product freight rows separately,13acrossbothmarkets, including signedtonne-km, supporteduncertainty,pedigree,scale-without-pedigree andformulas without aggregation or normalization. Native precursor/internal logistics remain once; original final delivery is distinct and added once. Native process efficiency,energy,co-productallocation,water/waste-treatment/emissions,internaluncertainty,geography/vintageandbiospherecoverage differ, especially RoWtoRERproduction and whole RERrail/barge/heavy-fleet/OCEcontainer freight. These remain explicit screening proxies with unquantified score effects. Add no extra fuel,vehicle/port/network,coproductcredit,disposal or separate caller emission correction. No source omission, other-version, reverse or consequential approval. Full sulfuryl chloride,TCP/SO2feedback,sodiumsulfite,pulpheat andsteel export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "84de57945d0b2e8068ea3846a41877703e17b8b8b3b5ce362e898c2363218f02"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fc82dcc3d3185026",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_allyl_markets",
+      "review_path": "export/uvek_pulp_heat_allyl_markets_review.json",
+      "review_sha256": "d53427982dc0ffd780878057d0a645872d5793329903bcd8762d5307790e08df",
+      "authorization": "Standing autonomous approval of inspected same-product native screening proxies, with original market shares, freight, signs and uncertainty retained and all limitations logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for allyl chloride",
+          "reference product": "allyl chloride",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for allyl chloride",
+            "reference product": "allyl chloride",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "6c086d21b385f5b080a9efe940427579c60a7d07b2652dc780c491bf19db87d5",
+          "nonproduction_count": 4
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "allyl chloride production, reaction of propylene and chlorine",
+              "reference product": "allyl chloride",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8763a97fe4c81396feadfa2c6b420133f5704524c9def21135165a2dd071d7fd",
+            "nonproduction_count": 17
+          }
+        ],
+        "component_bindings": [
+          {
+            "source": {
+              "name": "allyl chloride production, reaction of propylene and chlorine",
+              "reference product": "allyl chloride",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "kind": "producer",
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "name": "Allyl chloride, from reacting propylene and chlorine, at plant",
+              "reference product": "Allyl chloride, from reacting propylene and chlorine, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0438,
+              "uncertainty type": 2,
+              "loc": -3.128121461599737,
+              "scale": 0.41231056256176607,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4711687595755899
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0219,
+              "uncertainty type": 2,
+              "loc": -3.8212686421596818,
+              "scale": 0.41231056256176607,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4711687595755899
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.1713,
+              "uncertainty type": 2,
+              "loc": -1.7643388736520629,
+              "scale": 0.41231056256176607,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4711687595755899
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Reviewed exact3.9cutoff allyl-chloride markets RERandRoW. Correct the existing physically different vinyl-chloride match to the complete native Allylchloride,fromreactingpropyleneandchlorine,atplant,RERprocess. Source product is pureC3H5Cl,CAS107-05-1,positive1kgdryreference. Source/native both describe liquid propene with gaseous chlorine and the same three-output production system (allylchloride,HCl36wt%,1,3-dichloropropene). Their already allocated complete allyl product is used once perkg with factor+1; HCl36%is a co-product descriptor, not allyl purity, so add no inverse concentration,molar,stoichiometric,yield or secondallocation factor. Keep each original unit producer share and all original final-product freight rows separately,13acrossbothmarkets, including signedtonne-km, supporteduncertainty,pedigree,scale-without-pedigree andformulas without aggregation or normalization. Native precursor/internal logistics remain once; original final delivery is distinct and added once. Native process efficiency,energy,co-productallocation,water/waste-treatment/emissions,internaluncertainty,geography/vintageandbiospherecoverage differ, especially RoWtoRERproduction and whole RERrail/barge/heavy-fleet/OCEcontainer freight. These remain explicit screening proxies with unquantified score effects. Add no extra fuel,vehicle/port/network,coproductcredit,disposal or separate caller emission correction. No source omission, other-version, reverse or consequential approval. Full sulfuryl chloride,TCP/SO2feedback,sodiumsulfite,pulpheat andsteel export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b88af6dd19e8c84aceeb4bd2399e9f523a19c79ee5752ba3f3086cf33bcff22c"
+        }
+      ]
     }
   ],
   "superseded_operations": [

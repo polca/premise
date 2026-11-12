@@ -1,0 +1,87 @@
+{
+  "status": "mapping_and_premise_approvals_integrated_verified",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "target_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_family": "ecoinvent",
+    "biosphere_version": "3.10"
+  },
+  "brightpath_commit": "add2624c5c7fcd48435563268915f6117e7cfcce",
+  "review_path": "brightpath/data/export/uvek_pulp_heat_allyl_markets_review.json",
+  "review_sha256": "d53427982dc0ffd780878057d0a645872d5793329903bcd8762d5307790e08df",
+  "new_correspondences": 2,
+  "new_market_helpers": 2,
+  "original_market_rows_retained": 15,
+  "original_producer_entries": 2,
+  "original_finished_product_freight_entries": 13,
+  "new_source_omissions": 0,
+  "native_suppliers_checked": 5,
+  "signed_finite_LCIs": 14,
+  "native_database_unchanged": true,
+  "tests": {
+    "Brightpath_focused_mapping_checks": 41,
+    "Brightpath_shared_planner_execution_manifest_checks": 48,
+    "Premise_fresh_cache_and_withdrawal_checks_including_prior_route_markets": 2
+  },
+  "installed_package": {
+    "status": "passed",
+    "installed_commit": "add2624c5c7fcd48435563268915f6117e7cfcce",
+    "installed_from_github": true,
+    "runtime_modules_byte_identical_to_previous_revision": true,
+    "qualified_premise_scopes": 1210,
+    "review_sha256": "d53427982dc0ffd780878057d0a645872d5793329903bcd8762d5307790e08df",
+    "cases": [
+      {
+        "rule_id": "bp-1de3542379924d2f",
+        "signed_amount_and_uncertainty_preserved": true,
+        "all_market_recipe_fields_preserved": true
+      },
+      {
+        "rule_id": "bp-fc82dcc3d3185026",
+        "signed_amount_and_uncertainty_preserved": true,
+        "all_market_recipe_fields_preserved": true
+      }
+    ],
+    "limitations": [
+      "Public standard migration API on installed wheel with exact Premise scopes; no new full sector run or export performed."
+    ]
+  },
+  "public_direct_pulp_frontier": 46,
+  "complete_steel_or_all_sector_run_verified": false,
+  "runtime_source_changes": false,
+  "runtime_cycle_proposal": "Archived and withdrawn; selected nativeSO2functional proxy needs no cyclic-recipe support.",
+  "private_receipts": [
+    {
+      "name": "allyl-review-focused-tests.log",
+      "sha256": "d0e7ac9d412430c7457d79d4dc3d5d2071d5d0a428e065e7fed80601a572788c"
+    },
+    {
+      "name": "allyl-review-shared-tests.log",
+      "sha256": "4b3404c1a5f4f58a78ae79fb2340ce095936008b4ae0e7c42b8cce27e2982ebc"
+    },
+    {
+      "name": "allyl-integrated-premise-tests.log",
+      "sha256": "ad700b236f44588a4b98f5fe2492568e55eb16ac9b0684a3864cd6407b37a642"
+    },
+    {
+      "name": "allyl-review-lci-verification.json",
+      "sha256": "3ae97600e55fb27503fac79fe4bee7be44a8fb98f9d36e2428be588a819b65a3"
+    },
+    {
+      "name": "allyl-installed-package-verification.json",
+      "sha256": "b7fd5baf48b348156923a650359284b44e06d2370b4b75377194e8f917b64118"
+    }
+  ],
+  "limitations": [
+    "Native supplier technology,allocation,geography,vintage and internal uncertainty differ; no score or stochastic equivalence claimed.",
+    "No complete new pulp-heat or steel export performed; direct frontier remains46.",
+    "The separate sodiumsulfite/nativeSO2candidate has private checks but is not integrated in this mapping batch.",
+    "Full-suite failures remain unresolved; focused passing checks do not establish a full-suite pass."
+  ]
+}
