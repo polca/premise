@@ -447,9 +447,20 @@
         "new_recipes": 3,
         "reused_stock_recipes": 1,
         "actual_remaining_root_cases": 11,
-        "standalone_mill_scale_treatment_still_unapproved": "bp-a617a8579b052845",
         "installed_GitHub_commit": "8e91a6f4b4d14be477831789d3fc8d143899ef2c",
-        "all_installed_approval_scopes_validated": 838
+        "all_installed_approval_scopes_validated": 838,
+        "standalone_mill_scale_follow_up": "docs/development/uvek-steel-mill-scale-direct-review.md"
+      },
+      "standalone_mill_scale_verification": {
+        "review": "docs/development/uvek-steel-mill-scale-direct-review.md",
+        "composite_LCI_receipt": "docs/development/uvek-steel-mill-scale-direct-composite-lci-verification.json",
+        "Brightpath_tests_passed": 28,
+        "Premise_tests_passed": 2,
+        "signed_finite_composite_LCIs": 2,
+        "new_recipes": 0,
+        "latest_actual_preparation_root_cases_unchanged": 11,
+        "installed_GitHub_commit": "afeda26c704c981165fc7496b831d48bde788a83",
+        "all_installed_approval_scopes_validated": 839
       }
     },
     {

@@ -218081,6 +218081,111 @@
           "fingerprint": "974bb89f11a31e31a2f18be11c180c973bd177cadc968c8878e92a9f729e568c"
         }
       ]
+    },
+    {
+      "rule_id": "bp-a617a8579b052845",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_mill_scale_disposal",
+      "review_path": "export/uvek_steel_39_mill_scale_direct_review.json",
+      "review_sha256": "45af4d82553884d11566b9681c42bb293d851ebae1724e0d79bb30f843b8291b",
+      "authorization": "Standing autonomous approval of independently inspected corrections with warnings and decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of mill scale, residual material landfill",
+            "reference product": "mill scale",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "inventory_sha256": "0f6b1ca1059a06fa28c5271ed9831ac56b21bc3aeee9636e00b29d30f455a82a",
+          "nonproduction_count": 76
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Process-specific burdens, residual material landfill",
+              "reference product": "Process-specific burdens, residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d25d5ae1db457e49a5870abd67bc4444b16cbd8ff045c53b7ddef682675776b5",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Residual material landfill facility",
+              "reference product": "Residual material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cd6d2274e3a9e424a4661ee3b1792b263956b0c9a4af555e36fa1ec71a05954b",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "reference product": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "87280176b5963951f0bf0d47415703453b5fa42ea8044465caad14d7b78ade8b",
+            "nonproduction_count": 44
+          },
+          {
+            "identity": {
+              "name": "Cement, unspecified, at plant",
+              "reference product": "Cement, unspecified, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "aa9da6e9e7db50739da5b70670360f2421801a45169df072c477647cb9b76656",
+            "nonproduction_count": 5
+          }
+        ],
+        "conversion_factor": -1,
+        "new_helpers": 0,
+        "reused_recipe_dependencies": [
+          "steel-39-mill-scale-landfill"
+        ]
+      },
+      "limitations": [
+        "Direct exact3.9cutoff mill-scale landfill service: replace the incorrect lead-smelter-slag correspondence with the independently verified mill-scale-specific native reconstruction. Retain all68specific leachate flows, their exact receiving compartments and units, stabilization cement, three regional operating inputs, facility and three hydrated-cement treatment rows, with source exchange uncertainty. Negative1kg waste reference becomes positive service demand with factor-1; no collection freight is added at this direct treatment boundary. Reuse the reviewed market treatment recipe unchanged, including same-UUID strontium label normalization and Swiss component, moisture, technology, allocation, native inventory and unquantified-score limitations. Do not infer recovery credits, zero treatment burden or generic slag equivalence. Preserve signed caller quantities, supported uncertainty, formulas and separate emissions. The previous universal sign-only approval did not establish product equivalence; other source releases and consequential/reverse routes are unresolved and cannot inherit this correction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "32da964ed5b2b62883c1479a74568e20db5c281fc522aa30824ce21809ce540b"
+        }
+      ]
     }
   ],
   "superseded_operations": [
