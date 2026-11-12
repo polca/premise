@@ -162,6 +162,16 @@ class BiogasMixin:
                         f"matched inputs={len(matches)}, target installed={self.is_in_index(target, dataset['location'])}."
                     )
                 for exchange in matches:
+                    # Geographic relinking can split one purchase among several
+                    # providers. Keep those distinct contributions auditable
+                    # when the reviewed replacement gives them one provider.
+                    original_supplier = tuple(
+                        exchange.get(field) for field in ("name", "product", "location")
+                    )
+                    exchange["comment"] = (
+                        exchange.get("comment", "")
+                        + f"\nUpstream supplier before reviewed replacement: {original_supplier!r}."
+                    )
                     rescale_exchange(exchange, factor, remove_uncertainty=False)
                     exchange.update(target)
                     exchange["location"] = dataset["location"]

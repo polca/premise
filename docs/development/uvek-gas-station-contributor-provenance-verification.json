@@ -1,0 +1,20 @@
+{
+  "database": "BAFU:2026-real-REMIND-SSP2-NPi-2050-two-wheeler-five-sectors-20261112-012517",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-194820",
+  "station_records_scientific_exchange_multisets_preserved": 14,
+  "gas_contributors_with_original_supplier_provenance": 63,
+  "no_quantity_unit_sign_uncertainty_or_supplier_change": true,
+  "duplicate_validation_unchanged": true,
+  "scope": "Exchange scientific records compared excluding comments and regenerated Brightway link identifiers; counts retain multiplicity.",
+  "comparison_defaults": {
+    "negative": false,
+    "properties": {},
+    "classifications": {}
+  },
+  "focused_tests_passed": 228,
+  "exhaustive_graph_issues_after_fix": 0,
+  "initial_exhaustive_duplicate_errors": 50,
+  "private_receipt_sha256": "83f9468e607aa38ef12ea50e7d74fc3f1c26647f50b5d3f109263df60f20e4bb",
+  "local_unrelated_GAINS_edits_present": true,
+  "public_fuels_gate_bypassed_for_diagnostic": true
+}

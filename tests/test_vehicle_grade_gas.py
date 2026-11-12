@@ -304,3 +304,54 @@ def test_declared_native_station_uses_same_regionalization_and_retains_losses(
     before = deepcopy(fuels.database)
     fuels.regionalize_vehicle_grade_gas()
     assert fuels.database == before
+
+
+@pytest.mark.parametrize("fuels", [2050], indirect=True)
+def test_reviewed_station_replacement_retains_distinct_geographic_contributors(
+    fuels, monkeypatch
+):
+    from premise.inventory.activity_maps import FUELS_TECHS, get_mapping
+
+    entry = get_mapping(FUELS_TECHS, "uvek_vehicle_gas_suppliers")["natural gas"][0]
+    source = entry["upstream replacement"]["source"]
+    inputs = []
+    for location in ("CH", "RER"):
+        exchange = purchase(
+            source["name"], source["product"], location, source["unit"], 24.0
+        )
+        exchange.update(
+            {
+                "comment": "Original source note",
+                "uncertainty type": 3,
+                "loc": 24.0,
+                "scale": 2.0,
+            }
+        )
+        inputs.append(exchange)
+    native = activity(
+        entry["name"], entry["reference product"], "EUR", "kilogram", inputs
+    )
+    native["regionalized"] = True
+    fuels.database.append(native)
+    fuels.add_to_index(native)
+    fuels.family = "uvek"
+
+    def apply_callback(**kwargs):
+        callback = kwargs.get("efficiency_adjustment_fn")
+        if callback:
+            callback(native, "vehicle-grade natural gas")
+
+    monkeypatch.setattr(fuels, "process_and_add_activities", apply_callback)
+    fuels.regionalize_vehicle_grade_gas()
+    replaced = [e for e in native["exchanges"] if e["type"] == "technosphere"]
+    assert len(replaced) == 2
+    assert sum(e["amount"] for e in replaced) == pytest.approx(48 / 36)
+    for exchange, original_location in zip(replaced, ("CH", "RER")):
+        assert exchange["name"] == GAS
+        assert exchange["location"] == "EUR"
+        assert exchange["loc"] == pytest.approx(24 / 36)
+        assert exchange["scale"] == pytest.approx(2 / 36)
+        assert exchange["uncertainty type"] == 3
+        assert exchange["comment"].startswith("Original source note")
+        assert repr(original_location) in exchange["comment"]
+    assert replaced[0] != replaced[1]
