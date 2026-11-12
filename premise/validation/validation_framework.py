@@ -29,7 +29,7 @@ import yaml
 from ..core.filesystem_constants import DATA_DIR
 from ..inventory.inventory_store import InventoryStore
 
-VALIDATION_RULESET_VERSION = 8
+VALIDATION_RULESET_VERSION = 9
 ValidationSeverity = Literal["error", "warning"]
 Applicability = Literal["applicable", "not_applicable"]
 ValidationPhaseKind = Literal["sector", "graph", "export"]
@@ -1755,7 +1755,10 @@ class InventoryGraphValidator:
                 declared_feedback
                 and cycle.intersection(declared_additions)
                 and cycle.intersection(scope_targeted_keys)
-                and any(cycle.intersection(baseline) for baseline in baseline_cycles)
+                and (
+                    cycle <= declared_additions
+                    or any(cycle.intersection(baseline) for baseline in baseline_cycles)
+                )
             ):
                 bound = _feedback_convergence_bound(
                     cycle, ids_by_key, requirements, reference_amounts

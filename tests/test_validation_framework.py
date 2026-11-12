@@ -812,3 +812,79 @@ def test_feedback_proof_handles_different_coordinate_scales(valid_inventory):
         intent=feedback_intent(key),
     )
     assert not rule_issues(report, "GRAPH.NEW_FORBIDDEN_CYCLE")
+
+
+def new_loss_market(inventory, amount):
+    period = copy.deepcopy(inventory[1])
+    period["name"] = "market for fuel, 20-year period"
+    period["code"] = "period"
+    period["exchanges"][0]["name"] = period["name"]
+    period["exchanges"].append(
+        {
+            "name": period["name"],
+            "product": "fuel",
+            "location": "CH",
+            "unit": "kilogram",
+            "type": "technosphere",
+            "amount": amount,
+            "input": ("test-db", "period"),
+        }
+    )
+    key = (period["name"], period["reference product"], period["location"])
+    return [*inventory, period], key
+
+
+@pytest.mark.parametrize("amount", [0.03, 1.0, -1.0, 2.0])
+def test_new_declared_loss_market_requires_absolute_convergence(
+    valid_inventory, amount
+):
+    inventory, key = new_loss_market(valid_inventory, amount)
+    intent = ValidationIntent(
+        transformation="electricity",
+        targeted=False,
+        scope_complete=True,
+        affected_activity_keys=frozenset({key}),
+        allowed_added_keys=frozenset({key}),
+    )
+    report = validate(inventory, intent=intent)
+    assert bool(rule_issues(report, "GRAPH.NEW_FORBIDDEN_CYCLE")) == (abs(amount) >= 1)
+    if amount == 0.03:
+        result = next(
+            r for r in report.rule_results if r.rule_id == "GRAPH.NEW_FORBIDDEN_CYCLE"
+        )
+        assert result.actual["declared_productive_feedback"][0][
+            "absolute_convergence_upper_bound"
+        ] == pytest.approx(0.03)
+        assert rule_issues(validate(inventory), "GRAPH.NEW_FORBIDDEN_CYCLE")
+
+
+def test_convergent_cycle_with_undeclared_existing_nodes_is_still_refused(
+    valid_inventory,
+):
+    inventory, key = cycle_with_wrapper(valid_inventory)
+    report = validate(inventory, intent=feedback_intent(key))
+    assert rule_issues(report, "GRAPH.NEW_FORBIDDEN_CYCLE")
+
+
+@pytest.mark.parametrize("amount", [[1.0, 2.0], float("nan"), float("inf")])
+def test_normalization_leaves_non_scalar_and_nonfinite_values_invalid(
+    valid_inventory, amount
+):
+    import numpy as np
+    from premise.database.new_database import _normalize_inventory_before_certification
+    from premise.validation.validation_framework import _finite
+
+    exchange = valid_inventory[1]["exchanges"][1]
+    exchange["amount"] = np.array(amount)
+    _normalize_inventory_before_certification(valid_inventory)
+    assert not _finite(exchange["amount"])
+
+
+def test_normalization_does_not_invent_missing_positive_lognormal_scale(
+    valid_inventory,
+):
+    from premise.database.new_database import _normalize_inventory_before_certification
+
+    valid_inventory[1]["exchanges"][1].update(**{"uncertainty type": 2, "loc": 0.0})
+    _normalize_inventory_before_certification(valid_inventory)
+    assert rule_issues(validate(valid_inventory), "GRAPH.UNCERTAINTY")
