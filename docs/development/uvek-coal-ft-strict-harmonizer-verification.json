@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "records": 4,
+  "omission_events": 46,
+  "diagnostic_kind": "Local licensed source in a diagnostic catalog wrapper; not a new CLIC publication or scenario export.",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "target_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_version": "3.10"
+  },
+  "source_nonproduction_exchanges": 20,
+  "new_omission_approvals": 0,
+  "source_inventory_sha256": "f8eacd3c5ce6ef0db19130bb3cd80fb4f18e02ded351e8077bc23a5bfe0779bb"
+}

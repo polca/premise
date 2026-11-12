@@ -44,12 +44,14 @@
   "native_inventory_sha256": "a38f1e9c711a92efecf796639d1e1aaf3bdb5f4b59af02d7d7b16ae0841e4c86",
   "new_approvals": 1,
   "new_helpers": 1,
-  "next_action": "Qualify the RoW ethanol market while retaining its 9.75289744524567% coal-Fischer-Tropsch share, then compile the 20-row water inventory and its original RoW market shares.",
+  "next_action": "Compile the qualified coal-FT inventory into a background recipe, carrying its inherited literal omission audit, then compose both original RoW ethanol producer shares and all freight. Verify the resulting ether-water and RoW water recipes.",
   "limitations": [
     "Point-estimate source allocation ratio does not make a different production technology equivalent.",
     "Only RER ethanol is newly approved. RoW ethanol remains unapproved because its coal route needs a qualified counterpart.",
     "No completed water/PCC/pulp-heat conversion or steel export is claimed."
   ],
   "RER_ethanol_review": "uvek-ether-ethanol-rer-review.md",
-  "helper_scope": "RER ethanol market only; water co-product and RoW market helpers are not yet compiled."
+  "helper_scope": "RER ethanol market only; water co-product and RoW market helpers are not yet compiled.",
+  "coal_route_background_review": "uvek-coal-ft-background-review.md",
+  "coal_route_direct_inventory_harmonization": "passed, four records, zero unresolved suppliers, 46 existing approved zero-interface omission events"
 }

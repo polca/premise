@@ -774,6 +774,23 @@
         "new_source_omissions": 0,
         "direct_pulp_heat_frontier_unchanged": 51,
         "limitation": "Corrects biomass match to fossil ethylene hydration; RoW coal-FT ethanol and complete water/PCC/steel conversion remain unfinished."
+      },
+      "coal_ft_background_verification": {
+        "review": "uvek-coal-ft-background-review.md",
+        "native_verification": "uvek-coal-ft-background-verification.json",
+        "strict_harmonizer": "uvek-coal-ft-strict-harmonizer-verification.json",
+        "new_exact_3_9_scopes": 2,
+        "unchanged_mapping_parents": 2,
+        "brightpath_tests_passed": 7,
+        "premise_tests_passed": 1,
+        "signed_native_LCI_checks": 4,
+        "coal_foreground_direct_missing_suppliers": 0,
+        "strict_foreground_records": 4,
+        "inherited_approved_omission_events": 46,
+        "new_source_omission_approvals": 0,
+        "new_helpers_from_background_qualification": 0,
+        "direct_pulp_heat_frontier_unchanged": 51,
+        "limitation": "Coal source foreground is translatable; background recipe, RoW ethanol/water/PCC composition and scenario export remain unfinished."
       }
     },
     {
