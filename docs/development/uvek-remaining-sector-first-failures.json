@@ -1,0 +1,268 @@
+{
+  "scope": "First failure only, encrypted REMIND SSP2-NPi 2050; not a complete missing-mapping count. Private diagnostic bypasses public unsupported-sector gate; validation remains enabled.",
+  "source": "BAFU:2026-reimported; ecoinvent-3.10-biosphere",
+  "results": [
+    {
+      "sector": "metals",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 40.70551250001881,
+      "first_refused_rule": {
+        "id": "bp-6b465f371713f763",
+        "source": {
+          "location": "GLO",
+          "name": "market for transport, freight, sea, bulk carrier for dry goods",
+          "reference product": "transport, freight, sea, bulk carrier for dry goods",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "location": "OCE",
+          "name": "Transport, transoceanic freight ship",
+          "reference product": "Transport, transoceanic freight ship",
+          "unit": "ton kilometer"
+        },
+        "mapping_method": "followup_review"
+      }
+    },
+    {
+      "sector": "mining",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 37.817146499990486,
+      "first_refused_rule": {
+        "id": "bp-412f090ea47af121",
+        "source": {
+          "location": "RER",
+          "name": "market for nitrogen, liquid",
+          "reference product": "nitrogen, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Nitrogen, liquid, at plant",
+          "reference product": "Nitrogen, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "mapping_method": "curated_legacy"
+      }
+    },
+    {
+      "sector": "cdr",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 39.07626879098825,
+      "first_refused_rule": {
+        "id": "bp-8e58bbf6b2e31687",
+        "source": {
+          "location": "GLO",
+          "name": "market for pump, 40W",
+          "reference product": "pump, 40W",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Pump 40W, at plant",
+          "reference product": "Pump 40W, at plant",
+          "unit": "unit"
+        },
+        "mapping_method": "curated_legacy"
+      }
+    },
+    {
+      "sector": "battery",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 60.7709878339665,
+      "first_refused_rule": {
+        "id": "bp-0bbfeb07da304c0c",
+        "source": {
+          "location": "RER",
+          "name": "market for hydrogen fluoride",
+          "reference product": "hydrogen fluoride",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Hydrogen fluoride, at plant",
+          "reference product": "Hydrogen fluoride, at plant",
+          "unit": "kilogram"
+        },
+        "mapping_method": "heuristic_similarity"
+      }
+    },
+    {
+      "sector": "cars",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 44.7101788331056,
+      "first_refused_rule": {
+        "id": "bp-1a39c7b4c1f58b77",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyphenylene sulfide",
+          "reference product": "polyphenylene sulfide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Polyphenylene sulfide, at plant",
+          "reference product": "Polyphenylene sulfide, at plant",
+          "unit": "kilogram"
+        },
+        "mapping_method": "curated_legacy"
+      }
+    },
+    {
+      "sector": "two_wheelers",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 35.7823126250878,
+      "first_refused_rule": {
+        "id": "bp-4b5ffb9631a00fd6",
+        "source": {
+          "location": "GLO",
+          "name": "market for battery, Li-ion, LFP, rechargeable",
+          "reference product": "battery, Li-ion, LFP, rechargeable",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+          "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+          "unit": "kilogram"
+        },
+        "mapping_method": "heuristic_similarity"
+      }
+    },
+    {
+      "sector": "trucks",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 39.70657620904967,
+      "first_refused_rule": {
+        "id": "bp-0ca8243428726044",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+          "reference product": "heat, district or industrial, natural gas",
+          "unit": "megajoule"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Heat, at cogen 1MWe lean burn, allocation heat",
+          "reference product": "Heat, at cogen 1MWe lean burn, allocation heat",
+          "unit": "megajoule"
+        },
+        "mapping_method": "curated_legacy"
+      }
+    },
+    {
+      "sector": "ships",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 34.322753000073135,
+      "first_refused_rule": {
+        "id": "bp-044d46746cc73c41",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of inert waste, inert material landfill",
+          "reference product": "inert waste, for final disposal",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+          "unit": "kilogram"
+        },
+        "mapping_method": "heuristic_similarity"
+      }
+    },
+    {
+      "sector": "buses",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 56.65531166701112,
+      "first_refused_rule": {
+        "id": "bp-1240bf1e5820731a",
+        "source": {
+          "location": "GLO",
+          "name": "market for copper, anode",
+          "reference product": "copper, anode",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Copper, primary, at refinery",
+          "reference product": "Copper, primary, at refinery",
+          "unit": "kilogram"
+        },
+        "mapping_method": "reviewed_heat_correct_native_boundary"
+      }
+    },
+    {
+      "sector": "trains",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 38.15075829101261,
+      "first_refused_rule": {
+        "id": "bp-effadcf67d6cad91",
+        "source": {
+          "location": "GLO",
+          "name": "market for barium carbonate",
+          "reference product": "barium carbonate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Lithium carbonate, at plant",
+          "reference product": "Lithium carbonate, at plant",
+          "unit": "kilogram"
+        },
+        "mapping_method": "heuristic_similarity"
+      }
+    },
+    {
+      "sector": "final energy",
+      "status": "failed",
+      "failed_stage": "inventory preparation",
+      "elapsed_seconds": 62.448579416028224,
+      "first_refused_rule": {
+        "id": "bp-0bbfeb07da304c0c",
+        "source": {
+          "location": "RER",
+          "name": "market for hydrogen fluoride",
+          "reference product": "hydrogen fluoride",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Hydrogen fluoride, at plant",
+          "reference product": "Hydrogen fluoride, at plant",
+          "unit": "kilogram"
+        },
+        "mapping_method": "heuristic_similarity"
+      }
+    },
+    {
+      "sector": "emissions",
+      "status": "diagnostic_update_and_graph_checks_passed",
+      "failed_stage": null,
+      "elapsed_seconds": 60.70113370893523,
+      "diagnostic": "Initial update and graph checks passed; no export qualification."
+    },
+    {
+      "sector": "fuels",
+      "status": "failed",
+      "failed_stage": "sector update",
+      "elapsed_seconds": 73.64311325002927,
+      "diagnostic": "Unreviewed gas-property carrier input: 'Electricity, medium voltage, at grid' in ('Natural gas, from high pressure network (1-5 bar), at service station', 'Natural gas, from high pressure network (1-5 bar), at service station', 'NEU', 'kilogram')"
+    }
+  ],
+  "review_findings": [
+    "Do not approve rules by name similarity: the trains first refusal proposes barium carbonate to lithium carbonate, a different chemical; reject this correspondence and find or reconstruct the correct product.",
+    "Two-wheelers first refusal substitutes NMC111 for LFP battery; do not approve across battery chemistry merely to pass preparation.",
+    "Other market-to-producer and transport/treatment matches need explicit boundary, geography, reference-basis and source-profile review.",
+    "Emissions initial diagnostic ran with locally modified GAINS review resources; committed-checkout/export reproducibility remains unproven."
+  ]
+}
