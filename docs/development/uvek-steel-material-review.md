@@ -46,3 +46,15 @@ metadata unchanged. See `uvek-steel-material-native-lci-verification.json`.
 The regular conda environment installs Brightpath GitHub commit
 `fd58a72a09212701885a03664e0cc5c98c2fe007`; installed commit identity and all
 772 exact approval scopes validate. Previous approval operations are unchanged.
+
+## Real preparation rerun
+
+Actual encrypted REMIND SSP2-NPi 2050 steel preparation now reports **38
+unapproved correspondences, down from 46**. All eight newly approved material
+cases cleared. The first remaining refusal is Swiss inert-waste final disposal,
+rule `bp-8be1ae15c0ed8dc7`. Strict migration validation remained enabled; only
+the still-closed steel support guard was bypassed for this diagnostic.
+No steel transformation or export is claimed. The private audit receipt is
+`66d2eb8b41d316457363d9a8c4d1537dcc5a37b5ffb1cc6462c309af6496742c.audit.json.gz`
+in the regular Premise retained/workbook-harmonized cache. The original
+52-case frontier is retained as historical review input.
