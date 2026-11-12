@@ -1,0 +1,27 @@
+{
+  "review_sha256": "9d3e59feda2dc840a80f280c73b51454fb3946d97e89b46f4ce8e0b18fd3e673",
+  "cases": [
+    {
+      "rule_id": "bp-02ad72c78509d9d0",
+      "helpers_traversed": 5,
+      "native_suppliers": 28,
+      "direct_biosphere_flows": 13,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    }
+  ],
+  "signed_finite_composite_LCIs": 2,
+  "all_reviewed_recipes_covered": 5,
+  "source_modified_unchanged": true,
+  "independent_preconverted_producers_and_original_market_weights_match": true,
+  "limitation": "All post-conversion helper recipes recursively included, with summed duplicate native demands and direct biosphere flows. Nominal checks do not establish LCIA equivalence or completed industrial-heat/steel transformation/export.",
+  "brightpath_tests_passed": 12,
+  "premise_tests_passed": 2,
+  "related_regressions_passed": 20,
+  "new_helpers": 2,
+  "unchanged_recipe_dependencies": 3,
+  "new_source_omission_approvals": 0,
+  "inherited_literal_omission_events": 46,
+  "source_market_nonproduction_rows": 12,
+  "source_coal_producer_nonproduction_rows": 20
+}

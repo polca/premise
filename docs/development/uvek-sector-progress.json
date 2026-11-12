@@ -1697,7 +1697,26 @@
         "full_real_IAM_qualification": false
       },
       "latest_clean_actual_scenario_verification": "docs/development/uvek-real-four-sector-heat-verification.json",
-      "actual_TIAM_heat_only_verification": "docs/development/uvek-real-TIAM-heat-verification.json"
+      "actual_TIAM_heat_only_verification": "docs/development/uvek-real-TIAM-heat-verification.json",
+      "ethanol_RoW_verification": {
+        "review": "uvek-ethanol-row-review.md",
+        "verification": "uvek-ethanol-row-verification.json",
+        "water_strict_harmonizer": "uvek-ether-water-strict-harmonizer-verification.json",
+        "new_exact_3_9_scopes": 1,
+        "new_helpers": 2,
+        "unchanged_recipe_dependencies": 3,
+        "source_market_rows_preserved": 12,
+        "coal_producer_rows_preserved": 20,
+        "brightpath_tests_passed": 12,
+        "premise_tests_passed": 2,
+        "related_regressions_passed": 20,
+        "signed_finite_composite_LCIs": 2,
+        "inherited_literal_omission_events": 46,
+        "new_source_omission_approvals": 0,
+        "ether_water_foreground_missing_suppliers": 0,
+        "direct_pulp_heat_frontier_unchanged": 51,
+        "limitation": "Ethanol background recipe completed and actual ether-water foreground passes strict harmonization; water-market compilation, PCC and steel remain unfinished."
+      }
     },
     {
       "sector": "cdr",

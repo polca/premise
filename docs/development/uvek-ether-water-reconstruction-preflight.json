@@ -1,5 +1,5 @@
 {
-  "status": "native_ether_proxy_rejected_direct_water_inventory_reconstruction_pending",
+  "status": "direct_water_inventory_strict_harmonization_passed_water_market_recipe_pending",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -29,29 +29,21 @@
   },
   "native_technology": "Ether co-product from direct ethylene hydration, with mass allocation against ethanol.",
   "decision": "Do not use this native ether supplier to represent the source water co-product. Reconstruct the source 20-row allocated water inventory directly, retaining reaction inputs, biosphere releases and uncertainty.",
-  "direct_reconstruction_pending_correspondences": [
-    {
-      "rule_id": "bp-02ad72c78509d9d0",
-      "source": {
-        "location": "RoW",
-        "name": "market for ethanol, without water, in 99.7% solution state, from ethylene",
-        "reference product": "ethanol, without water, in 99.7% solution state, from ethylene",
-        "unit": "kilogram"
-      }
-    }
-  ],
+  "direct_reconstruction_pending_correspondences": [],
   "source_inventory_sha256": "70a17efdff66c0ed47abaf573fde58c2dbeb760fd1d5cef6dcce3815e780198c",
   "native_inventory_sha256": "a38f1e9c711a92efecf796639d1e1aaf3bdb5f4b59af02d7d7b16ae0841e4c86",
-  "new_approvals": 1,
-  "new_helpers": 1,
-  "next_action": "Compile the qualified coal-FT inventory into a background recipe, carrying its inherited literal omission audit, then compose both original RoW ethanol producer shares and all freight. Verify the resulting ether-water and RoW water recipes.",
+  "new_approvals": 2,
+  "new_helpers": 3,
+  "next_action": "Compile the verified 20-row ether-water inventory and both original RoW water-market shares, including their inherited literal omission audit; then resume dedicated PCC dependencies.",
   "limitations": [
-    "Point-estimate source allocation ratio does not make a different production technology equivalent.",
-    "Only RER ethanol is newly approved. RoW ethanol remains unapproved because its coal route needs a qualified counterpart.",
-    "No completed water/PCC/pulp-heat conversion or steel export is claimed."
+    "The rejected native ether process uses a different reaction route; no such proxy or allocation-ratio shortcut is applied.",
+    "Both fossil ethanol markets now qualify as background supplies in this source3.9scope.",
+    "Water background recipe compilation, full PCC/pulp-heat conversion and steel export remain unfinished."
   ],
   "RER_ethanol_review": "uvek-ether-ethanol-rer-review.md",
-  "helper_scope": "RER ethanol market only; water co-product and RoW market helpers are not yet compiled.",
+  "helper_scope": "RER ethanol market plus RoW ethanol market and coal-FT producer; water co-product and RoW water-market helpers not yet compiled.",
   "coal_route_background_review": "uvek-coal-ft-background-review.md",
-  "coal_route_direct_inventory_harmonization": "passed, four records, zero unresolved suppliers, 46 existing approved zero-interface omission events"
+  "coal_route_direct_inventory_harmonization": "passed, four records, zero unresolved suppliers, 46 existing approved zero-interface omission events",
+  "RoW_ethanol_review": "uvek-ethanol-row-review.md",
+  "water_direct_inventory_harmonization": "passed:8records,0unapprovedcorrespondences,46existingliteralomissionevents"
 }
