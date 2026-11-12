@@ -1,0 +1,9 @@
+{
+  "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+  "native_complete_low_pressure_gas_suppliers": 13,
+  "signed_finite_LCIs": 26,
+  "exact_sign_reversal": true,
+  "source_modified_unchanged": true,
+  "new_helpers": 0,
+  "limitation": "Whole native delivered-gas inventories remain unchanged. No source/native score or carbon-composition equivalence is inferred. The complete ferrosilicon reconstruction and steel export remain unfinished."
+}

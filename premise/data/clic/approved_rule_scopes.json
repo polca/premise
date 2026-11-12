@@ -231008,6 +231008,994 @@
           "fingerprint": "081d2bc9cec9af6dad04b1f7ba5c2b12178f46c649044de3ba9544c5cfbabf90"
         }
       ]
+    },
+    {
+      "rule_id": "bp-e280cf6fd7ed9124",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "CA",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "CA",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "57a04c78ee9e9ae29609d2c6d11506585b2c036bffa70ab735572aa1ec5762c6",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "CA",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "c03076496c5536644e4e97aaf4819262e4578af9797e0f3f227440dc5792b849",
+          "nonproduction_count": 8
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d197ef908f335fb5e56cb52739f8c4057a8c88440936badcc9b2ac93355d4bcf"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7ea71c282ec7ddb2",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "TR",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "TR",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "14439437fd33dab52026f78724dfe37d84638c1236e6c036bc53c877dc3486a8",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "TR",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "860dda478339986397b25467c44dfccae453b0bb60995209beae04244d516741",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e4dc8fbe8677ef5676912af68e0d66dbbdd56f8515498454749f9872a343ca5b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-769cfa6415fa68e0",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "RoE",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "RoE",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "bf3a885b3bc20f729cf9dc2f0d48f9e2e079f9ba5310f556274af23d92ec1d17",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "RoE",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "c83e102710e4003b1feca4da17eb87079be93b3b2a9eb62f17281833418a20f1",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "87df270bfc89fad19a79ef0968600a504768a251495ff8b296c4f7bd57304283"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-357e0fb21516c7dd",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "BE",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "BE",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "b8b673abce284e5f6319e4dc9799941de77964dd44c520196310e77381bbd6a6",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "BE",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d6527b05196746ce87026e122e1751e291e508f78a839c64f34716bea7a57ec3",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d93ae211619dd23a2c53c6396134a0cc0835a48cc3e4dbff17fd9c0606c7b8d8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1a00345f7022dec7",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "IT",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "IT",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "b125946b64b4f10644e412e667ab49266fd4d6e54e1ecde62b9f3801720ee9f6",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "IT",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "5e26072ce772f33843756a781134a84bf60d08d35a1c118686024d56fc1d2c81",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a46b5db8d6751dd223658064f3273a692e8d38e6a4e2c54340f17b3e20b79cb3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-52beda005fa4c06a",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "ES",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "ES",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "17acfaf15f2d367aec4f5ffcfd094893df343478519b2e9ea0578c56c602a6aa",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "ES",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "3ae087ba019b39b9b725428dcf52c681432ab32a77efe57c29f273d3d70f4bb8",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c2403dbd7c13150cfab3e6054c21dda042a73b43f0f9ee5291a42ba51303fd03"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-83cdd455fcf026b6",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "CH",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "069e6f82d6c232f6f7ce0e859535cfc9c35c45d2b41701a667802fe4ee9cc61d",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "CH",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "be2f46daba2eb4b5317824bbaedfb11069085fb951ae27995cd864c6552caa0e",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4e66d7af4e3de978a8109f8863f812c441ba7259abc8bd08d7301c9854050a94"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2e7bdc0598307a42",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "US",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "US",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "212987383207a12f6fd02ed3ac8d4386bbf06a82a89b4fc76eca73c0f1992288",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "US",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9f0e7bc0d023c98cb6f354995244aae2d0a0ba3b0593a69d41b3dd01d359142b",
+          "nonproduction_count": 8
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ee2398f3693b25d35de7ce5caef674049fe2c5a186a29820aa8fc0aded8cdd06"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-eb3de75033492a9e",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "DE",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "DE",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "7322142ce7c16ff4e92f18f79fa3e4c3802d6048206d080d88cf907ae4bca2bc",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "DE",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d910fbd17974ebd7eed085eb9ecb3fbff4a002cdef6510a0002baec979f2c6f8",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "af5c4d28e00db52b6eb34e5e5c95947ad8c91c8bab6b43c42751fbc7a9f4f47e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-04ddcdd25ff854d6",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "FR",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "FR",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "2942124f467a4794c8e1c701f08a0b4cd349ef64a3d014c38781c8a16b89cb1a",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "FR",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "e4f1fcfee22312facbd4919fb10783fd8545b8049cd41683aa86478dd0f91de1",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "30280f68cf7041d8c3718b7470fc37f781ac8a7fe3de9a26dc8e72295eae1af4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-dc1c67b4284cf022",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "NL",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "NL",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "c3f1dee9e4beba5ec9398436a9435ba133824fa9dd96b12906f3f9e24d1c5c50",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "NL",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "361ecddd8f98ce4ee732ba899acee5e7b1d20d49da102e646b3b5617315299f2",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "42107214d3f551f970f1b89dc6f419b5d19368c37a39bc1824af601ff2b8ec0f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-587245b0c0ce743d",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "MX",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "MX",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "3844ff7a5e50b70d86c5bfb85606e995f302e23c40f16c9b01ab7a194f004b4d",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "MX",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "f6b6207ee8da25e68f4c9f2287e9b267587407e4cb2a9e6ab8f964dc8b124f6d",
+          "nonproduction_count": 9
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9131046510f247158ff3b36f96b9f6f887c1fb9882a013652716623b9c0a802a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fcc8499d54091163",
+      "operation": "replace",
+      "mapping_method": "reviewed_low_pressure_delivered_gas_energy",
+      "review_path": "export/uvek_ferrosilicon_gas_review.json",
+      "review_sha256": "f2918c3bd4da3ab9a6011103f9da081464e6a63affe897853399d5c8b5482f7c",
+      "authorization": "Standing autonomous approval of independently inspected same-function screening proxies with documented reference bases and explicit limitations.",
+      "inspection": {
+        "source": {
+          "location": "GB",
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "unit": "cubic meter"
+        },
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for natural gas, low pressure",
+                "reference product": "natural gas, low pressure",
+                "location": "GB",
+                "unit": "cubic meter"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "5a20ec383e7db38bda745129e02ab4fb9ef03577653728e4bc4188006ca80c50",
+              "nonproduction_count": 10
+            },
+            "net_heating_value_per_reference": {
+              "amount": 36.0,
+              "unit": "MJ"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "GB",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "06817e02c461808183b6a3bce710070d29f9bfacf4eacf9c38e132c9c60c62aa",
+          "nonproduction_count": 8
+        },
+        "geographic_proxy": false,
+        "conversion_factor": 36,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Reviewed complete native low-pressure delivered-gas screening proxy. The exact ecoinvent3.9cutoff source production reference is positive1m3 and explicitly declares heating value, net=36MJ per reference; native positive1MJ delivered gas documentation declares36MJ/Nm3. Apply factor+36MJ/m3, preserving signs and scaling caller uncertainty and formulas consistently. Reuse the complete same-location native low-pressure at-consumer process, including its upstream gas supply, local distribution, leakage, energy and infrastructure. Do not replace delivered gas by extraction, high-pressure gas or heat production; add no extra leakage, loss multiplier, combustion or avoided-emission credit. Native supply mixes, trade, regional membership, Swiss-based distribution assumptions, pressure/conventional volume definitions, vintage, allocation, biosphere exclusions, internal uncertainty and carbon composition can differ; source/native score equivalence and carbon-balance equivalence are not established. Caller separately listed emissions are retained unchanged. Only the independently inspected ecoinvent3.9cutoff profiles qualify; other releases, consequential and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5d75776356b9dcfb57fa40affa0e3730cd3a06e14b508b7500617b33b9186e41"
+        }
+      ]
     }
   ],
   "superseded_operations": [
