@@ -51,12 +51,13 @@
   ],
   "source_inventory_sha256": "70a17efdff66c0ed47abaf573fde58c2dbeb760fd1d5cef6dcce3815e780198c",
   "native_inventory_sha256": "a38f1e9c711a92efecf796639d1e1aaf3bdb5f4b59af02d7d7b16ae0841e4c86",
-  "new_approvals": 0,
+  "new_approvals": 1,
   "new_helpers": 0,
-  "next_action": "Inspect the two 3.9 fossil ethanol-from-ethylene markets and their active-substance reference bases. After qualifying their suppliers/delivery, compile and verify the 20-row water recipe and the original two-share RoW water market.",
+  "next_action": "Qualify the RoW ethanol market while retaining its 9.75289744524567% coal-Fischer-Tropsch share, then compile the 20-row water inventory and its original RoW market shares.",
   "limitations": [
     "Point-estimate source allocation ratio does not make a different production technology equivalent.",
-    "The two ethanol contexts are not yet newly approved.",
+    "Only RER ethanol is newly approved. RoW ethanol remains unapproved because its coal route needs a qualified counterpart.",
     "No completed water/PCC/pulp-heat conversion or steel export is claimed."
-  ]
+  ],
+  "RER_ethanol_review": "uvek-ether-ethanol-rer-review.md"
 }

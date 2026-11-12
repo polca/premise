@@ -248263,6 +248263,149 @@
           "fingerprint": "d675903f5f0db321ba1921d61cad51765952850b260645855d9b8bd2e5bc64b3"
         }
       ]
+    },
+    {
+      "rule_id": "bp-533134d2fbe5ce77",
+      "operation": "replace",
+      "mapping_method": "reviewed_ether_ethanol_rer",
+      "review_path": "export/uvek_pulp_heat_ether_ethanol_rer_review.json",
+      "review_sha256": "6ece873c7aec05bda6c51f80724de26d1bcbd7a26de4d01a3f2cf513cd0e1013",
+      "authorization": "Standing autonomous approval of inspected fossil ethylene-hydration ethanol and retained delivery, correcting a physically different biomass match and logging limitations.",
+      "inspection": {
+        "source": {
+          "name": "market for ethanol, without water, in 99.7% solution state, from ethylene",
+          "reference product": "ethanol, without water, in 99.7% solution state, from ethylene",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for ethanol, without water, in 99.7% solution state, from ethylene",
+            "reference product": "ethanol, without water, in 99.7% solution state, from ethylene",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "643fe89ecb44c3d5a5a765e1e6e8b3dfd257031d5ef8422e848b94b457b0b138",
+          "nonproduction_count": 4
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "682f77abcd07f84a8a15b35c5d576787032b9c72390015a7c64378a5e6de7db4",
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "name": "Ethanol from ethylene, at plant",
+              "reference product": "Ethanol from ethylene, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "0c9b6756b5825fad902f2b0502f02e4f4986a2aa0987db72bb7785bd2ff1f74b",
+            "statistics": {
+              "amount": 0.0438,
+              "uncertainty type": 2,
+              "loc": -3.128121461599737,
+              "scale": 0.41231056256176607,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4711687595755899
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "4bf84c2139100f2101d2c52303e7d31caf7b574bd538e5172bff91ebf6bad189",
+            "statistics": {
+              "amount": 0.0219,
+              "uncertainty type": 2,
+              "loc": -3.8212686421596818,
+              "scale": 0.41231056256176607,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4711687595755899
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "68b5ba8b3e8d5a9d0486420e34832de5157fe173ad62893c0dacc353b3e3d2dc",
+            "statistics": {
+              "amount": 0.1713,
+              "uncertainty type": 2,
+              "loc": -1.7643388736520629,
+              "scale": 0.41231056256176607,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 5,
+                "temporal correlation": 3,
+                "geographical correlation": 1,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4711687595755899
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "kg nominal source product -> kg nominal native product"
+      },
+      "limitations": [
+        "Exact3.9cutoff RER fossil ethanol-from-ethylene market reconstruction. Correct the existing biomass-distillation match to complete native RER direct ethylene-hydration production, retaining its mass-allocated ether co-product boundary. Source market positive1kg reference explicitly has1kgdry ethanol without water in99.7%solution state; native positive1kg legacy ethanol chemical reference follows active-substance quantity conventions. Apply factor+1 perkgactive ethanol, not1/0.997 or an elemental-carbon/energy multiplier. Source/native ethylene inputs0.6117015045477244and0.62193kg/kg differ because process/yield/allocation/vintage models differ; no feedstock-fitting correction is introduced. Preserve one source producer and three original final-product freight rows separately, with signed quantities, supported uncertainties/formulas, rail/barge/heavy-lorry modes and tonne-km, without renormalization. Native production includes precursor/internal transport; original final delivery is added once. Native raw-material origins, hydration efficiency, allocation, energy, emissions, internal uncertainty, geography/vintage and biosphere exclusions differ, with unquantified score/carbon effects. RER transport uses complete native rail/barge/fleet services with traction, fleet/load, fuel and technology warnings. Add no biogenic ethanol, biogenic uptake, denaturing chemical, fuel-distribution loss or invented carbon/water/purity/efficiency correction. Separate caller emissions and carbon-resource exchanges remain unchanged. Only independently inspected exact3.9cutoff RER qualifies. RoW coal-Fischer-Tropsch ethanol supply is not represented by ethylene hydration and remains unapproved pending separate reconstruction. No source omission, consequential/reverse or other-version approval is introduced. Ether-derived water, PCC, pulp heat and steel export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4f88b98fd3585932046b654c6972d83b5fb22e9d5a9594d496015ad0338d42f0"
+        }
+      ]
     }
   ],
   "superseded_operations": [
