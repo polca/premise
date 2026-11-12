@@ -954,7 +954,7 @@
     },
     {
       "sector": "fuels",
-      "status": "diagnostic_five_sector_export_verified_end_use_carbon_and_coverage_incomplete",
+      "status": "combined_clean_diagnostic_export_verified_pending_full_role_coverage",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -1058,24 +1058,12 @@
       },
       "blockers": [
         {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+          "code": "public_scope_qualification",
+          "finding": "Clean six-sector update, exhaustive graph validation, export and twenty signed LCIs passed. Public fuels gate remains closed pending full role/consumer/emission-origin qualification through the standard public workflow."
         },
         {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/fuels/base.py:29",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/fuels/base.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+          "code": "remaining_role_and_origin_coverage",
+          "finding": "Native four-fuel path audit retains all11947 source codes and classifies4114 native consumers; upstream production/process paths, fixed grades and remaining eligible IAM fuel roles require explicit review. Unreached paths are not automatically missing mappings."
         }
       ],
       "decisions": [],
@@ -1117,11 +1105,35 @@
         "docs/development/uvek-vehicle-station-verification.json",
         "docs/development/uvek-vehicle-blend-verification.json",
         "docs/development/uvek-additional-burner-verification.json",
-        "docs/development/uvek-allocated-heat-carbon-verification.json"
+        "docs/development/uvek-allocated-heat-carbon-verification.json",
+        "docs/development/uvek-clean-six-sector-verification.json",
+        "docs/development/uvek-six-sector-native-consumer-path-audit.json"
       ],
-      "latest_coverage_note": "Verified fuel-carbon milestones include 64 native low-pressure carriers, delivered-gas combustion services, liquid-fuel and transport balances, 13 regional CNG stations, two mass-preserving generic gas-vehicle handovers and 86 generic gas vehicles with dedicated biomethane routes unchanged. YAML-only extensions verify 25 additional burner records and 51 allocated CHP, fuel-cell or gas-driven heat-pump operating records, preserving recorded CO2 totals and other exchanges with finite LCIs. The latest native-route audit leaves 247 unreviewed process candidates and 64 delivery carriers. These are review candidates, not confirmed errors. Network/process loss origins, mixed industrial carbon, remaining fuel roles and other registered sectors remain unfinished; public fuels support stays disabled. Static first-pass findings above are historical and superseded only where linked runtime evidence explicitly proves a fix.",
+      "latest_coverage_note": "Clean committed checkout6c748d36: biomass/electricity/heat/cement/steel/fuels shared updates, exhaustive graph validation and Brightway export pass with15586datasets. Twenty signed finite LCIs cover five fuel markets in EUR/World. Twelve regional fossil gas components remain separate from mixed forwarding. Current660abe2fexact identity restriction preserves193actual export gas-carrier matches;343focused regressions pass. Native consumer-path audit retains all11947source codes and classifies4114consumers in four fuel families. This supersedes initial family-dispatch/runtime absence findings, not full sector qualification; remaining roles, origins and legitimate fixed-boundary cases still need review.",
       "two_wheeler_operating_exhaust_origin_verification": "docs/development/uvek-two-wheeler-carbon-verification.json",
-      "low_pressure_carrier_boundary_verification": "docs/development/uvek-low-pressure-carrier-boundary-verification.json"
+      "low_pressure_carrier_boundary_verification": "docs/development/uvek-low-pressure-carrier-boundary-verification.json",
+      "historical_initial_audit_blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/fuels/base.py:29",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/fuels/base.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ]
     },
     {
       "sector": "renewable",

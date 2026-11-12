@@ -1,0 +1,134 @@
+{
+  "database": "BAFU:2026-REMIND-SSP2-NPi-2050-clean-six-sector-20261113-001745",
+  "source_records": 11947,
+  "source_codes_retained": 11947,
+  "distinct_native_consumers_with_classified_fuel_purchase": 4114,
+  "coverage": {
+    "natural gas": {
+      "nonzero_purchases": 3765,
+      "does_not_reach_iam_mix": 849,
+      "reaches_iam_mix": 2916
+    },
+    "diesel": {
+      "nonzero_purchases": 1552,
+      "reaches_iam_mix": 1548,
+      "does_not_reach_iam_mix": 4
+    },
+    "gasoline": {
+      "nonzero_purchases": 281,
+      "reaches_iam_mix": 271,
+      "does_not_reach_iam_mix": 10
+    },
+    "kerosene": {
+      "nonzero_purchases": 49,
+      "reaches_iam_mix": 42,
+      "does_not_reach_iam_mix": 7
+    }
+  },
+  "unreached_supplier_groups": [
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, at production",
+      "purchase_count": 259
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, vented",
+      "purchase_count": 194
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, sweet, burned in production flare",
+      "purchase_count": 176
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, at production onshore",
+      "purchase_count": 61
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, at production offshore",
+      "purchase_count": 60
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, burned in gas turbine",
+      "purchase_count": 43
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, liquefied, at liquefaction plant",
+      "purchase_count": 18
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, production AO, at evaporation plant",
+      "purchase_count": 9
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, liquefied, production AO, at freight ship",
+      "purchase_count": 9
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, production GQ, at evaporation plant",
+      "purchase_count": 7
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, liquefied, production GQ, at freight ship",
+      "purchase_count": 7
+    },
+    {
+      "fuel": "kerosene",
+      "supplier_name": "Kerosene, at refinery",
+      "purchase_count": 7
+    },
+    {
+      "fuel": "gasoline",
+      "supplier_name": "Petrol, at refinery",
+      "purchase_count": 6
+    },
+    {
+      "fuel": "natural gas",
+      "supplier_name": "Natural gas, burned in gas turbine, for compressor station",
+      "purchase_count": 6
+    },
+    {
+      "fuel": "diesel",
+      "supplier_name": "Diesel, at refinery",
+      "purchase_count": 4
+    },
+    {
+      "fuel": "gasoline",
+      "supplier_name": "Petrol, 4% vol. ETBE additive, EtOH f. biomass, prod. RER, at service station",
+      "purchase_count": 1
+    },
+    {
+      "fuel": "gasoline",
+      "supplier_name": "Petrol, 15% vol. ETBE additive, EtOH f. biomass, prod. RER, at service station",
+      "purchase_count": 1
+    },
+    {
+      "fuel": "gasoline",
+      "supplier_name": "Petrol, 15% vol. ETBE additive, with ethanol from biomass, at refinery",
+      "purchase_count": 1
+    },
+    {
+      "fuel": "gasoline",
+      "supplier_name": "Petrol, 4% vol. ETBE additive, with ethanol from biomass, at refinery",
+      "purchase_count": 1
+    }
+  ],
+  "audit_corrections": [
+    "Follow exact source identities in uvek_market_handovers, including xxx Diesel, at regional storage. The first prefix-only probe incorrectly classified agricultural diesel as disconnected; no runtime mapping change was needed."
+  ],
+  "interpretation": [
+    "This inventory-path audit covers four fuel families in retained native source records; it is not complete IAM-role, converted-helper, regional-clone or emission-origin certification.",
+    "Unreached upstream production, venting/flaring, LNG and refinery-specific inputs require boundary-specific treatment; do not replace all of them with delivered-fuel mixes.",
+    "Fixed 4% and 15% ETBE petrol grades remain dedicated source recipes; changing them to an unspecified IAM average would lose their grade definition.",
+    "Retaining every source code proves record retention, not unchanged coefficients or completeness of source biosphere flows."
+  ]
+}
