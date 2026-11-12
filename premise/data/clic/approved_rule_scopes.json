@@ -216796,6 +216796,315 @@
           "fingerprint": "d4b1a53dbf9e98ab65c77b76b6654af7e9ef28b513872c090f493da2162c23b1"
         }
       ]
+    },
+    {
+      "rule_id": "bp-73e647b7a4f162a8",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_allocated_process_heat",
+      "review_path": "export/uvek_steel_39_process_heat_review.json",
+      "review_sha256": "5d6d16df4371f2e0b4797e10f5db8d209cdcf2fc7adccef93e7e42e13d3c376b",
+      "authorization": "Standing autonomous approval of inspected screening proxies, with explicit limitations for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "8b370970785b5b690511e332e56a211b4f882f7d389ece2d8372015f90b586c7",
+          "nonproduction_count": 287
+        },
+        "source_main_product_witness": {
+          "identity": {
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "0a902a29318b3f1b728362071a616972337055b65df324462f0af039d2dd700e",
+          "nonproduction_count": 287
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Steel, electric, un- and low-alloyed, at plant",
+              "reference product": "Steel, electric, un- and low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a2d0492fd7835103afd7c14a379d71e27ec9cb64f3bd1fbba4594168f28288c1",
+            "nonproduction_count": 37
+          }
+        ],
+        "conversion_factor": 0.022649572649572652,
+        "nominal_allocation_proof": {
+          "source_heat": {
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "candidate_main_references": 1,
+          "main_reference": {
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "main_reference_amount": 1.0,
+          "candidate_kg_equivalent_per_MJ": 0.022649572649572652,
+          "nominal_vector_proportional": true,
+          "comparison_relative_tolerance": 1e-10,
+          "comparison_absolute_tolerance": 0,
+          "missing_source_keys": 0,
+          "missing_main_keys": 0,
+          "technosphere_mismatches": 0,
+          "biosphere_mismatches": 0,
+          "compared_vector_terms": 287,
+          "private_heat_inventory_sha256": "b1f40329cb89d8e9d7df21ae81d34faa373ba0b1bab7ce7f6a638125f70d9985",
+          "private_main_inventory_sha256": "751b96bf54288f2fe4145cc7c3c9a0e9e818521aabb038727200e06f3a2493bb"
+        },
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Allocated process-burden proxy, not a physical mass/energy conversion or delivered metal purchase. All nominal source technosphere and biosphere coefficients are proportional to the same source main-product inventory. Apply that audited allocation-equivalent kg per MJ to the corresponding complete native process exactly once, preserving signed caller heat demand, uncertainty and formulas. Native technology, geography, vintage, allocation and internal uncertainty replace source assumptions; score differences remain unquantified. No gas boiler, district network, extra heat-loss multiplier, efficiency normalization, steel recovery credit or avoided process is added. No assumption of identical supplier/reference uncertainty correlation is made. Source and target references are positive; only exact ecoinvent3.9cutoff profiles qualify. Other releases, reverse and cross-system-model routes remain unapproved. Native European scrap-based electric-arc steelmaking and casting replaces Austrian/rest-of-world low-alloyed reinforcing-billet production. Native un-/low-alloyed product scope, alloy mix, scrap inputs and allocation differ. Do not substitute a converter, mixed-steel market, reinforcing product including rolling, or worst-plant inventory."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ee4f16caa8d6c804e3010d33589aab383c7b0302aa5222249823018ccf56e0fe"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3b5611212c9f50f4",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_allocated_process_heat",
+      "review_path": "export/uvek_steel_39_process_heat_review.json",
+      "review_sha256": "5d6d16df4371f2e0b4797e10f5db8d209cdcf2fc7adccef93e7e42e13d3c376b",
+      "authorization": "Standing autonomous approval of inspected screening proxies, with explicit limitations for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "AT",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d00fb0c4e9b2faa1539f22b6f98a2683887fe3ae9a96563838c6609947c1c6d3",
+          "nonproduction_count": 50
+        },
+        "source_main_product_witness": {
+          "identity": {
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "location": "AT",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "28eca9a7518495b45fe26cc7f5ea7689e6c4b092fb71844608732ceb1909fe3b",
+          "nonproduction_count": 50
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Steel, electric, un- and low-alloyed, at plant",
+              "reference product": "Steel, electric, un- and low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a2d0492fd7835103afd7c14a379d71e27ec9cb64f3bd1fbba4594168f28288c1",
+            "nonproduction_count": 37
+          }
+        ],
+        "conversion_factor": 0.02264957264957265,
+        "nominal_allocation_proof": {
+          "source_heat": {
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "AT",
+            "unit": "megajoule"
+          },
+          "candidate_main_references": 1,
+          "main_reference": {
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "location": "AT",
+            "unit": "kilogram"
+          },
+          "main_reference_amount": 1.0,
+          "candidate_kg_equivalent_per_MJ": 0.02264957264957265,
+          "nominal_vector_proportional": true,
+          "comparison_relative_tolerance": 1e-10,
+          "comparison_absolute_tolerance": 0,
+          "missing_source_keys": 0,
+          "missing_main_keys": 0,
+          "technosphere_mismatches": 0,
+          "biosphere_mismatches": 0,
+          "compared_vector_terms": 50,
+          "private_heat_inventory_sha256": "2a131e3866ac38ac6cf252792dd5a1a5290b356bcae4129ee6aa1093feadee6c",
+          "private_main_inventory_sha256": "9cd31a232837359b7df1a6cfe985e98b22e559a9880001afe75007d0fb5446b0"
+        },
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Allocated process-burden proxy, not a physical mass/energy conversion or delivered metal purchase. All nominal source technosphere and biosphere coefficients are proportional to the same source main-product inventory. Apply that audited allocation-equivalent kg per MJ to the corresponding complete native process exactly once, preserving signed caller heat demand, uncertainty and formulas. Native technology, geography, vintage, allocation and internal uncertainty replace source assumptions; score differences remain unquantified. No gas boiler, district network, extra heat-loss multiplier, efficiency normalization, steel recovery credit or avoided process is added. No assumption of identical supplier/reference uncertainty correlation is made. Source and target references are positive; only exact ecoinvent3.9cutoff profiles qualify. Other releases, reverse and cross-system-model routes remain unapproved. Native European scrap-based electric-arc steelmaking and casting replaces Austrian/rest-of-world low-alloyed reinforcing-billet production. Native un-/low-alloyed product scope, alloy mix, scrap inputs and allocation differ. Do not substitute a converter, mixed-steel market, reinforcing product including rolling, or worst-plant inventory."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "80066b79a599de8b89f3640deb23d4c59e0dcfccd0bf69aeb0ab66cce7b834eb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e95ed2963be7eca1",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_allocated_process_heat",
+      "review_path": "export/uvek_steel_39_process_heat_review.json",
+      "review_sha256": "5d6d16df4371f2e0b4797e10f5db8d209cdcf2fc7adccef93e7e42e13d3c376b",
+      "authorization": "Standing autonomous approval of inspected screening proxies, with explicit limitations for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "hot rolling, steel",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "AT",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "f19efec61321d6f3b39ac695d615f7dc7c2592967489f7ac3116149c96e9f370",
+          "nonproduction_count": 15
+        },
+        "source_main_product_witness": {
+          "identity": {
+            "name": "hot rolling, steel",
+            "reference product": "hot rolling, steel",
+            "location": "AT",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "ceb7906a04d7477b0973b65939f0ce6d7491571bbf7c4034c28ae55f689eeab1",
+          "nonproduction_count": 15
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Hot rolling, steel",
+              "reference product": "Hot rolling, steel",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d65c487835d94ffe236212584f6e8f290746ada11ee378ecbb36a69873975925",
+            "nonproduction_count": 53
+          }
+        ],
+        "conversion_factor": 0.15384615384615385,
+        "nominal_allocation_proof": {
+          "source_heat": {
+            "name": "hot rolling, steel",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "AT",
+            "unit": "megajoule"
+          },
+          "candidate_main_references": 1,
+          "main_reference": {
+            "name": "hot rolling, steel",
+            "reference product": "hot rolling, steel",
+            "location": "AT",
+            "unit": "kilogram"
+          },
+          "main_reference_amount": 1.0,
+          "candidate_kg_equivalent_per_MJ": 0.15384615384615385,
+          "nominal_vector_proportional": true,
+          "comparison_relative_tolerance": 1e-10,
+          "comparison_absolute_tolerance": 0,
+          "missing_source_keys": 0,
+          "missing_main_keys": 0,
+          "technosphere_mismatches": 0,
+          "biosphere_mismatches": 0,
+          "compared_vector_terms": 15,
+          "private_heat_inventory_sha256": "88f1d0c67c789035e0322cf89a3661ec5f967e8f203a8a1a2609ac69c34e200d",
+          "private_main_inventory_sha256": "784d24ef5e221edfc74af419dae931555dc01a975985bc122a08b3cff624f1c2"
+        },
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Allocated process-burden proxy, not a physical mass/energy conversion or delivered metal purchase. All nominal source technosphere and biosphere coefficients are proportional to the same source main-product inventory. Apply that audited allocation-equivalent kg per MJ to the corresponding complete native process exactly once, preserving signed caller heat demand, uncertainty and formulas. Native technology, geography, vintage, allocation and internal uncertainty replace source assumptions; score differences remain unquantified. No gas boiler, district network, extra heat-loss multiplier, efficiency normalization, steel recovery credit or avoided process is added. No assumption of identical supplier/reference uncertainty correlation is made. Source and target references are positive; only exact ecoinvent3.9cutoff profiles qualify. Other releases, reverse and cross-system-model routes remain unapproved. Native rolling is a processing service excluding steel, but represents cold/reheated billet processing with natural-gas furnace assumptions rather than the source integrated hot-billet operation. Its heating requirements and recovered-heat allocation can differ; retain complete native rolling once without adding steel input."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "16a52885ee22681e497ed6a3e1d9f3352db834445e1a2c491a96ae1d30bceda4"
+        }
+      ]
     }
   ],
   "superseded_operations": [

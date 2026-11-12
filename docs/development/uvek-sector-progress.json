@@ -408,6 +408,20 @@
         "native_exact_matrix_zero_proof": true,
         "new_helpers": 0,
         "pending_preparation_root_correspondences_unchanged": 15
+      },
+      "industrial_process_heat_dependencies": {
+        "status": "three_leaf_correspondences_reviewed_industrial_mix_still_unapproved",
+        "verification": "docs/development/uvek-steel-process-heat-review.md",
+        "EAF_heat_sources": 2,
+        "hot_rolling_heat_sources": 1,
+        "new_helpers": 0,
+        "source_signed_LCI_comparisons": 6,
+        "native_signed_finite_LCIs": 6,
+        "pending_preparation_root_correspondences_unchanged": 15,
+        "Brightpath_recovered_heat_regression_tests_passed": 23,
+        "Premise_mapping_relinking_and_steel_grade_tests_passed": 66,
+        "installed_GitHub_commit": "81a92781ef45b9963527682d8b568e09dd44bc07",
+        "all_installed_approval_scopes_validated": 834
       }
     },
     {

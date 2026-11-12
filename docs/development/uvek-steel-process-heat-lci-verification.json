@@ -1,0 +1,33 @@
+{
+  "review_sha256": "5d6d16df4371f2e0b4797e10f5db8d209cdcf2fc7adccef93e7e42e13d3c376b",
+  "cases": [
+    {
+      "rule_id": "bp-73e647b7a4f162a8",
+      "source_signed_LCI_equivalence_checks": 2,
+      "processed_matrix_matches_float32_source_coefficients": true,
+      "source_LCI_max_absolute_residual": 2.6143240905440734e-09,
+      "native_signed_finite_LCIs": 2
+    },
+    {
+      "rule_id": "bp-3b5611212c9f50f4",
+      "source_signed_LCI_equivalence_checks": 2,
+      "processed_matrix_matches_float32_source_coefficients": true,
+      "source_LCI_max_absolute_residual": 1.8152569225549087e-08,
+      "native_signed_finite_LCIs": 2
+    },
+    {
+      "rule_id": "bp-e95ed2963be7eca1",
+      "source_signed_LCI_equivalence_checks": 2,
+      "processed_matrix_matches_float32_source_coefficients": true,
+      "source_LCI_max_absolute_residual": 6.348279180112826e-08,
+      "native_signed_finite_LCIs": 2
+    }
+  ],
+  "source_signed_equivalence_checks": 6,
+  "processed_matrix_coefficient_audit_absolute_tolerance": 1e-15,
+  "nominal_source_proportionality_relative_tolerance": 1e-10,
+  "nominal_source_proportionality_absolute_tolerance": 0,
+  "native_signed_finite_LCIs": 6,
+  "source_and_native_database_modified_unchanged": true,
+  "limitation": "Raw source vectors establish nominal proportionality. Brightway processed amounts use float32; each processed column was checked against individually rounded source coefficients. Signed LCI residuals from that storage precision are recorded, not rounded away. This does not prove native score equivalence or stochastic correlation. Premise relinking and full steel export remain unverified."
+}
