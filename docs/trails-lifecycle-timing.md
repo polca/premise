@@ -30,7 +30,7 @@ constant annual entry and uniform annual ages from 1 through floor(L). Their
 remaining-life profiles follow from those declared assumptions. They are not
 empirical fleet histories or IAM-specific cohort estimates. Other weights can
 be supplied explicitly. The metadata-generation rules and their assumptions are
-retained in `scripts/assign_lifecycle_reference_events.py`.
+retained in `premise/lifecycle_reference_table.py`.
 For example, lifetime 20 and offsets `[-5, -15]` with weights `[0.5, 0.5]` give
 retirement offsets `[5, 15]` with weights `[0.5, 0.5]`. Ages exceeding the fixed
 lifetime, invalid weights and conflicting reference events are rejected.
