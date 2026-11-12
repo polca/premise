@@ -741,6 +741,25 @@
         "PCC_all_producer_direct_probe_after": 133,
         "direct_pulp_heat_unapproved_inputs_unchanged": 51,
         "limitation": "Only six simple water wrappers admitted. RoW ether co-product, PCC cobalt/rare-earth branches and whole PCC/pulp heat/steel conversion remain unfinished."
+      },
+      "pcc_allocated_carbonate_verification": {
+        "review": "uvek-pcc-allocated-carbonate-review.md",
+        "source_verification": "uvek-pcc-allocation-source-verification.json",
+        "native_verification": "uvek-pcc-allocated-carbonate-verification.json",
+        "source_profile": "ecoinvent 3.9 cutoff",
+        "reviewed_correspondences": 2,
+        "source_rows_checked": 334,
+        "signed_source_paired_LCI_comparisons": 4,
+        "finite_source_LCI_demands": 8,
+        "native_suppliers": 2,
+        "signed_native_LCI_checks": 8,
+        "brightpath_tests_passed": 16,
+        "premise_tests_passed": 1,
+        "new_helpers": 2,
+        "new_source_omissions": 0,
+        "dedicated_PCC_dependencies_still_unapproved": 5,
+        "direct_pulp_heat_unapproved_inputs_unchanged": 51,
+        "limitation": "Native cobalt/lanthanum screening burdens preserve source relative allocation, not source internal distributions or exact technology/score equivalence. Dedicated PCC, market composition, pulp heat and steel export remain unfinished."
       }
     },
     {

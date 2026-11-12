@@ -1,5 +1,5 @@
 {
-  "status": "PCC_market_unfinished_source_inventory_routes_inspected",
+  "status": "allocated_metal_branches_mapped_dedicated_producer_and_market_unfinished",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -146,12 +146,21 @@
   "water_review": "uvek-pcc-decarbonised-water-review.md",
   "unchanged_direct_pulp_heat_frontier": 51,
   "known_industrial_heat_preparation_roots": 1,
-  "next_action": "Inspect same-activity allocation relationships and native same-process metal inventories for the cobalt and rare-earth co-products before selecting a full upstream reconstruction or an allocated-burden helper. Neither a new proxy nor a zero assumption is authorized by this preflight.",
+  "next_action": "Finish the five dedicated-production dependencies, then compose and verify all three source market shares and original freight. The RoW ether-derived-water co-product needs its own allocation/technology review.",
   "limitations": [
     "Generic inorganic chemical correspondence remains unapproved for precipitated calcium carbonate; source precipitation technology and all three producer shares need preservation.",
     "The minor cobalt/rare-earth branches are nonempty and cannot be omitted because their shares are small.",
     "Counts of 5 and 133 describe nested direct source-inventory diagnostics, not additional sector roots or a fixed final mapping strategy.",
     "RoW decarbonised-water market remains unapproved for 3.9 because its diethyl-ether water co-product has 20 nonzero exchanges.",
     "No successful PCC/pulp-heat migration, steel transformation or steel export is claimed."
-  ]
+  ],
+  "allocated_branch_review": "uvek-pcc-allocated-carbonate-review.md",
+  "allocated_branch_source_verification": "uvek-pcc-allocation-source-verification.json",
+  "allocated_branch_target_verification": "uvek-pcc-allocated-carbonate-verification.json",
+  "selected_strategy": {
+    "cobalt_and_rare_earth_branches": "Two source-proven relative-allocation helpers over complete native cobalt/lanthanum-oxide screening inventories, with explicit technology and coverage warnings.",
+    "dedicated_PCC_production": "Direct source reconstruction still unfinished; five direct background dependencies remain.",
+    "complete_PCC_market": "Not yet assembled/approved; preserve all original producer shares and freight when composing reviewed branches.",
+    "historical_all_producer_direct_probe": "133 unapproved correspondences describe the full source-vector alternative, not the selected implementation frontier."
+  }
 }

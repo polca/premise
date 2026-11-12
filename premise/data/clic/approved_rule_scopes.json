@@ -248107,6 +248107,162 @@
           "fingerprint": "9713610c71cf55fc3992f010a593f776b5d12c26b2876b4561c5bc16e62d556e"
         }
       ]
+    },
+    {
+      "rule_id": "bp-317644ebe59927ef",
+      "operation": "replace",
+      "mapping_method": "reviewed_pcc_allocated_metal_burden",
+      "review_path": "export/uvek_pcc_allocated_carbonate_review.json",
+      "review_sha256": "71c01ef2fc3cf27bcc0805f19664db169241cc5daf3c1e40dab0430ebdcbc014",
+      "authorization": "Standing autonomous approval of inspected allocated-process screening helpers with explicit native technology, coverage, allocation and uncertainty limitations logged for later review.",
+      "inspection": {
+        "source": {
+          "name": "cobalt production",
+          "reference product": "calcium carbonate, precipitated",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "cobalt production",
+            "reference product": "calcium carbonate, precipitated",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "29c35b5dbb7d9008f3b12c886ca7043a270585ccc49a07de41316e82a6595fd2",
+          "nonproduction_count": 290
+        },
+        "source_main_witness": {
+          "identity": {
+            "name": "cobalt production",
+            "reference product": "cobalt",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "cc4bd3d4c8946c6ed43be59cb4322a987307b07daffcef4f38e21bb4335a9dd1",
+          "nonproduction_count": 290
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Cobalt, at plant",
+            "reference product": "Cobalt, at plant",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "3d2a8620c92d1b30ae36b1ac706aea3190f9a3de043b42ed01e748f712818f7f",
+          "nonproduction_count": 46
+        },
+        "allocation_ratio": 0.01704144503403511,
+        "native_reference_basis": "kg cobalt metal",
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "kg carbonate output; allocated metal/oxide process reference inside helper only"
+      },
+      "limitations": [
+        "Exact3.9cutoff allocated calcium-carbonate co-product screening helpers for cobalt production and Sichuan rare-earth oxide processing. Every raw source technosphere/biosphere coefficient is proportional to the same-activity allocated main output:290rows at0.01704144503403511kg-cobalt-inventory/kgcarbonate and44rows at0.12852314449326874kg-lanthanum-oxide-inventory/kgcarbonate. These observed whole-inventory ratios are not raw allocation fractions, market shares or calcium-carbonate metal contents. Source processed columns exactly match legacy float32-rounded source coefficients; four signed paired LCI comparisons agree within that input precision, with reported rounding/solver residuals, not bit-identical or stochastic equivalence. Source co-product and generated helper both reference positive1kg calcium carbonate,precipitated, so caller factor is+1; preserve caller signed quantities, supported uncertainty/formulas and source reference product. Apply the allocation ratio once inside each helper, never again to the caller. Each helper transfers allocated process burdens using the complete corresponding native metal/oxide inventory; its metal exchange is an inventory proxy, not an ingredient in calcium carbonate. Native Cobalt,atplant explicitly references1kg cobalt metal. Native Lanthanum oxide,atplant references1kg nominal oxide; source La content0.852680035corroborates source oxide rather than elemental-metal basis. No elemental-La fraction or inverse up-to99.9%purity multiplier is introduced. Native cobalt is a weak historical global model based on nickel mining/beneficiation and stoichiometric oxide reduction at95%yield, not the modern2016industry inventory. Documentation reports missing further-treatment emissions/incomplete residue coverage, while the actual native inventory includes34.9kg nonsulfidic-overburden disposal/kgCo; retain that actual input and add no guessed tailings/emission correction. Native lanthanum uses Chinese bastnasite concentrate, sulphuric-acid roasting at500C, solvent extraction and revenue allocation, while source2018Sichuan technology, reagent, energy, emissions and allocation differ. Up-to99.9%native purity, ore/route mixes, geography/province, prices, allocation, infrastructure, precursor transport, biosphere exclusions, internal uncertainty and missing-emission coverage remain explicit screening limitations with unquantified score/carbon effects. Native internal uncertainties replace source internal distributions; the raw-source point-estimate proportionality does not prove identical uncertainty/correlation or native/source LCIA. Preserve each complete native inventory and its own allocation once. Add no independent virgin-metal burden, recovery credit, carbonation reaction, carbon uptake, purity/efficiency correction or market freight; original market shares and final freight remain for the separate market reconstruction. Do not infer missing physical properties of the cobalt carbonate co-product from another branch. No zero allocation, source-exchange omission, small-share threshold or cross-system-model route is approved. Only exact independently inspected3.9cutoff profiles qualify. Dedicated PCC production, the complete three-route PCC market, pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "34f7c5532ba3cf764009f898cf8948e48be1be1a71bd0448bc353c52cb470fdf"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-71ef98905f20abb5",
+      "operation": "replace",
+      "mapping_method": "reviewed_pcc_allocated_metal_burden",
+      "review_path": "export/uvek_pcc_allocated_carbonate_review.json",
+      "review_sha256": "71c01ef2fc3cf27bcc0805f19664db169241cc5daf3c1e40dab0430ebdcbc014",
+      "authorization": "Standing autonomous approval of inspected allocated-process screening helpers with explicit native technology, coverage, allocation and uncertainty limitations logged for later review.",
+      "inspection": {
+        "source": {
+          "name": "rare earth oxides production, from rare earth oxide concentrate, 70% REO",
+          "reference product": "calcium carbonate, precipitated",
+          "location": "CN-SC",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "rare earth oxides production, from rare earth oxide concentrate, 70% REO",
+            "reference product": "calcium carbonate, precipitated",
+            "location": "CN-SC",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "51229d9f46afa9409c755324adfd355d05776afae7883e948f20a6641f6ade77",
+          "nonproduction_count": 44
+        },
+        "source_main_witness": {
+          "identity": {
+            "name": "rare earth oxides production, from rare earth oxide concentrate, 70% REO",
+            "reference product": "lanthanum oxide",
+            "location": "CN-SC",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "123935a208d966c82d4e435dbd2a4d0fe2cf8803aac8f8dc439dd1e33ae25ff4",
+          "nonproduction_count": 44
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Lanthanum oxide, at plant",
+            "reference product": "Lanthanum oxide, at plant",
+            "location": "CN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "47c12165f2b4072025ad9673e12af462889d177193f150def9ae26335afa0beb",
+          "nonproduction_count": 48
+        },
+        "allocation_ratio": 0.12852314449326874,
+        "native_reference_basis": "kg nominal lanthanum oxide",
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "kg carbonate output; allocated metal/oxide process reference inside helper only"
+      },
+      "limitations": [
+        "Exact3.9cutoff allocated calcium-carbonate co-product screening helpers for cobalt production and Sichuan rare-earth oxide processing. Every raw source technosphere/biosphere coefficient is proportional to the same-activity allocated main output:290rows at0.01704144503403511kg-cobalt-inventory/kgcarbonate and44rows at0.12852314449326874kg-lanthanum-oxide-inventory/kgcarbonate. These observed whole-inventory ratios are not raw allocation fractions, market shares or calcium-carbonate metal contents. Source processed columns exactly match legacy float32-rounded source coefficients; four signed paired LCI comparisons agree within that input precision, with reported rounding/solver residuals, not bit-identical or stochastic equivalence. Source co-product and generated helper both reference positive1kg calcium carbonate,precipitated, so caller factor is+1; preserve caller signed quantities, supported uncertainty/formulas and source reference product. Apply the allocation ratio once inside each helper, never again to the caller. Each helper transfers allocated process burdens using the complete corresponding native metal/oxide inventory; its metal exchange is an inventory proxy, not an ingredient in calcium carbonate. Native Cobalt,atplant explicitly references1kg cobalt metal. Native Lanthanum oxide,atplant references1kg nominal oxide; source La content0.852680035corroborates source oxide rather than elemental-metal basis. No elemental-La fraction or inverse up-to99.9%purity multiplier is introduced. Native cobalt is a weak historical global model based on nickel mining/beneficiation and stoichiometric oxide reduction at95%yield, not the modern2016industry inventory. Documentation reports missing further-treatment emissions/incomplete residue coverage, while the actual native inventory includes34.9kg nonsulfidic-overburden disposal/kgCo; retain that actual input and add no guessed tailings/emission correction. Native lanthanum uses Chinese bastnasite concentrate, sulphuric-acid roasting at500C, solvent extraction and revenue allocation, while source2018Sichuan technology, reagent, energy, emissions and allocation differ. Up-to99.9%native purity, ore/route mixes, geography/province, prices, allocation, infrastructure, precursor transport, biosphere exclusions, internal uncertainty and missing-emission coverage remain explicit screening limitations with unquantified score/carbon effects. Native internal uncertainties replace source internal distributions; the raw-source point-estimate proportionality does not prove identical uncertainty/correlation or native/source LCIA. Preserve each complete native inventory and its own allocation once. Add no independent virgin-metal burden, recovery credit, carbonation reaction, carbon uptake, purity/efficiency correction or market freight; original market shares and final freight remain for the separate market reconstruction. Do not infer missing physical properties of the cobalt carbonate co-product from another branch. No zero allocation, source-exchange omission, small-share threshold or cross-system-model route is approved. Only exact independently inspected3.9cutoff profiles qualify. Dedicated PCC production, the complete three-route PCC market, pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d675903f5f0db321ba1921d61cad51765952850b260645855d9b8bd2e5bc64b3"
+        }
+      ]
     }
   ],
   "superseded_operations": [

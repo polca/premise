@@ -1,0 +1,10 @@
+{
+  "review_sha256": "71c01ef2fc3cf27bcc0805f19664db169241cc5daf3c1e40dab0430ebdcbc014",
+  "native_complete_metal_suppliers": 2,
+  "signed_finite_LCIs": 8,
+  "exact_sign_reversal": true,
+  "source_modified_unchanged": true,
+  "new_helpers": 2,
+  "limitation": "Native allocated process proxies, not physical metal ingredients or exact source/native LCIA equivalence. Full pulp heat and steel remain unfinished.",
+  "LCI_calculation_method": "Native suppliers and allocation-scaled demands; generated helper graph/reference links verified by migration tests."
+}

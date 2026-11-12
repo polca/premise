@@ -1,0 +1,105 @@
+{
+  "source_project": "ecoinvent-3.9-cutoff",
+  "source_database": "ecoinvent-3.9-cutoff",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "records": [
+    {
+      "co_product_identity": {
+        "name": "cobalt production",
+        "reference product": "calcium carbonate, precipitated",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "main_identity": {
+        "name": "cobalt production",
+        "reference product": "cobalt",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "source_nonproduction_rows": 290,
+      "source_ratio": 0.01704144503403511,
+      "max_A_column_relation_residual": 9.444534754265987e-08,
+      "max_B_column_relation_residual": 5.1627512487328886e-08,
+      "processed_columns_match_float32_source_coefficients": [
+        {
+          "max_A_difference_from_float32_source_coefficients": 0.0,
+          "max_B_difference_from_float32_source_coefficients": 0.0
+        },
+        {
+          "max_A_difference_from_float32_source_coefficients": 0.0,
+          "max_B_difference_from_float32_source_coefficients": 0.0
+        }
+      ],
+      "paired_signed_LCI_checks": [
+        {
+          "sign": 1,
+          "max_absolute_inventory_difference": 2.818163352458214e-06,
+          "relative_L2_difference": 1.5168143033292554e-08,
+          "max_rounding_prediction_error": 2.2302851236441677e-10,
+          "comparison_relative_precision": 1.1920928955078125e-07
+        },
+        {
+          "sign": -1,
+          "max_absolute_inventory_difference": 2.818163352458214e-06,
+          "relative_L2_difference": 1.5168143033292554e-08,
+          "max_rounding_prediction_error": 2.2302851236441677e-10,
+          "comparison_relative_precision": 1.1920928955078125e-07
+        }
+      ],
+      "main_inventory_sha256": "cc4bd3d4c8946c6ed43be59cb4322a987307b07daffcef4f38e21bb4335a9dd1"
+    },
+    {
+      "co_product_identity": {
+        "name": "rare earth oxides production, from rare earth oxide concentrate, 70% REO",
+        "reference product": "calcium carbonate, precipitated",
+        "location": "CN-SC",
+        "unit": "kilogram"
+      },
+      "main_identity": {
+        "name": "rare earth oxides production, from rare earth oxide concentrate, 70% REO",
+        "reference product": "lanthanum oxide",
+        "location": "CN-SC",
+        "unit": "kilogram"
+      },
+      "source_nonproduction_rows": 44,
+      "source_ratio": 0.12852314449326874,
+      "max_A_column_relation_residual": 1.0897464042258775e-08,
+      "max_B_column_relation_residual": 7.273442204080993e-08,
+      "processed_columns_match_float32_source_coefficients": [
+        {
+          "max_A_difference_from_float32_source_coefficients": 0.0,
+          "max_B_difference_from_float32_source_coefficients": 0.0
+        },
+        {
+          "max_A_difference_from_float32_source_coefficients": 0.0,
+          "max_B_difference_from_float32_source_coefficients": 0.0
+        }
+      ],
+      "paired_signed_LCI_checks": [
+        {
+          "sign": 1,
+          "max_absolute_inventory_difference": 3.331390985295002e-07,
+          "relative_L2_difference": 1.1028919648384007e-08,
+          "max_rounding_prediction_error": 6.5120176385467535e-09,
+          "comparison_relative_precision": 1.1920928955078125e-07
+        },
+        {
+          "sign": -1,
+          "max_absolute_inventory_difference": 3.331390985295002e-07,
+          "relative_L2_difference": 1.1028919648384007e-08,
+          "max_rounding_prediction_error": 6.5120176385467535e-09,
+          "comparison_relative_precision": 1.1920928955078125e-07
+        }
+      ],
+      "main_inventory_sha256": "123935a208d966c82d4e435dbd2a4d0fe2cf8803aac8f8dc439dd1e33ae25ff4"
+    }
+  ],
+  "source_modified_unchanged": true,
+  "signed_paired_LCI_comparisons": 4,
+  "finite_source_LCI_demands": 8,
+  "limitation": "Raw source coefficients are proportional within1e-11relative tolerance. Installed processed columns exactly reflect legacy float32 rounding; paired LCI differences and rounding-prediction residuals are quantified and checked against float32 input precision. No source reprocessing, stochastic or native/source LCIA equivalence is claimed."
+}
