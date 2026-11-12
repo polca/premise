@@ -754,7 +754,7 @@
     },
     {
       "sector": "heat",
-      "status": "actual_REMIND_four_sector_export_and_signed_LCI_verified_other_scenarios_and_combined_fuels_unfinished",
+      "status": "actual_REMIND_four_sector_and_TIAM_heat_only_exports_verified_combined_fuels_and_other_scenarios_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -1290,7 +1290,8 @@
         "remaining_unqualified_individual_heat_bindings": 0,
         "full_real_IAM_qualification": false
       },
-      "latest_clean_actual_scenario_verification": "docs/development/uvek-real-four-sector-heat-verification.json"
+      "latest_clean_actual_scenario_verification": "docs/development/uvek-real-four-sector-heat-verification.json",
+      "actual_TIAM_heat_only_verification": "docs/development/uvek-real-TIAM-heat-verification.json"
     },
     {
       "sector": "cdr",

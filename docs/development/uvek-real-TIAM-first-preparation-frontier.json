@@ -596,5 +596,10 @@
     "Separate heat-only TIAM execution from the combined-sector prerequisite graph to identify whether the new cohort blocks heat itself."
   ],
   "private_migration_audit_sha256": "6d9fdd6edb6384bda2c88e100f7f711cc6477fb7cc92bf6fbca9af8722bb2a1e",
-  "full_TIAM_scenario_verified": false
+  "full_TIAM_scenario_verified": false,
+  "heat_only_follow_up": {
+    "status": "public_heat_only_update_export_and_native_CCS_stack_balance_verified",
+    "evidence": "docs/development/uvek-real-TIAM-heat-verification.json",
+    "combined_sector_frontier_still_open": true
+  }
 }

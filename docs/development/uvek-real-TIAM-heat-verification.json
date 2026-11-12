@@ -1,0 +1,64 @@
+{
+  "status": "actual_encrypted_TIAM_heat_only_public_workflow_export_and_all_new_signed_LCIs_verified",
+  "scenario": {
+    "model": "tiam-ucl",
+    "pathway": "SSP2-RCP19",
+    "year": 2050
+  },
+  "database": "BAFU:2026-real-TIAM-SSP2-RCP19-2050-heat-only-20261112-013509",
+  "export_activities": 12213,
+  "new_activities": 266,
+  "signed_finite_LCIs": 532,
+  "secondary_heat_markets": 17,
+  "all_technosphere_links_internal": 115218,
+  "biosphere_links_in_selected_database": 291208,
+  "exhaustive_graph_issues": 0,
+  "ruleset_version": 9,
+  "heat_IAM_roles": {
+    "buildings_heat_end_use": null,
+    "industrial_heat_end_use": null,
+    "secondary_heat_supply": [
+      "heat, secondary, from biomass",
+      "heat, secondary, from biomass with CCS",
+      "heat, secondary, from coal",
+      "heat, secondary, from coal with CCS",
+      "heat, secondary, from coke",
+      "heat, secondary, from coke with CCS",
+      "heat, secondary, from natural gas",
+      "heat, secondary, from natural gas with CCS",
+      "heat, secondary, from oil",
+      "heat, secondary, from oil with CCS",
+      "heat, secondary, from geothermal"
+    ]
+  },
+  "native_heat_supplement_kinds": {
+    "native_stack_CCS_screening": 68,
+    "retained_workbook_electric_boiler": 1,
+    "fixed_reference_provider": 4,
+    "frozen_native_generation_mix": 1,
+    "fixed_native_heat_producer": 8
+  },
+  "public_scope_guard_bypassed": false,
+  "IAM_arrays_replaced": false,
+  "local_unrelated_GAINS_edits_present": true,
+  "combined_TIAM_four_sector_qualified": false,
+  "CCS_records_independent_native_stack_90pct_capture_verified": 64,
+  "CCS_technology_counts": {
+    "heat production, at co-generation natural gas-fired power plant, post, native UVEK stack basis": 16,
+    "heat production, at co-generation hard coal-fired power plant, post, native UVEK stack basis": 16,
+    "heat production, at co-generation wood-fired power plant, post, native UVEK stack basis": 16,
+    "heat production, at co-generation oil-fired power plant, post, native UVEK stack basis": 16
+  },
+  "original_CCS_one_to_one_forwarders_verified": 4,
+  "runtime_and_mapping_commit": "6ea6b217",
+  "brightpath_commit": "587bfd9",
+  "private_receipt_sha256": "b9825624a39db2eb969fa0e407c90754495c47d5bb412b740812b1a58ace5c4b",
+  "sector_validation_phases": 2,
+  "sector_validation_issues": 0,
+  "limitations": [
+    "Actual heat-only TIAM SSP2-RCP19 2050 qualification; combined TIAM four-sector preparation remains blocked by 23 unreviewed correspondences.",
+    "Building and industrial end-use arrays are unavailable in this TIAM source; existing skip behavior is retained.",
+    "Historical screening proxies, CHP allocation, native carbon origin, coke-to-coal proxy and geographic/capture-chain limitations remain; no LCIA equivalence claimed.",
+    "Combined fuels, other real IAM scenarios and remaining registered sectors are unfinished."
+  ]
+}
