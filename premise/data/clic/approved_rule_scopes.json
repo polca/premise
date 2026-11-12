@@ -245750,6 +245750,1033 @@
           "fingerprint": "35d3dab7d346f20ab54cd1f99df2b892153065dd6f1b0483bf8a841359e8deb1"
         }
       ]
+    },
+    {
+      "rule_id": "bp-9b585d6930467bb0",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_auxiliary_market",
+      "review_path": "export/uvek_pulp_heat_wood_markets_review.json",
+      "review_sha256": "e0ee81a930e2c5f29efcf306564648738f0bdae12da7c68d303eacfacd504c8c",
+      "authorization": "Standing autonomous approval of independently inspected species/stage-matched wood supply screening reconstructions, with geographic, density, carbon, moisture and allocation limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for pulpwood, softwood, measured as solid wood under bark",
+          "reference product": "pulpwood, softwood, measured as solid wood under bark",
+          "location": "RoW",
+          "unit": "cubic meter"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for pulpwood, softwood, measured as solid wood under bark",
+            "reference product": "pulpwood, softwood, measured as solid wood under bark",
+            "location": "RoW",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "88d8a538bc6944a136938fb2be40ec2ba321c9fd51cd0702187599ff0f2ebf2f",
+          "nonproduction_count": 11
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "cubic meter",
+            "source_exchange_sha256": "b2d8cdca8b485f61bf80e9d77c60da817cebc149e8b3fdb69a991a79d7db6954",
+            "statistics": {
+              "amount": 0.446993170345926,
+              "uncertainty type": 0,
+              "loc": 0.446993170345926
+            },
+            "target": {
+              "name": "Pulpwood, pine, sustainable forest management, measured as solid wood under bark, at forest road",
+              "reference product": "Pulpwood, pine, sustainable forest management, measured as solid wood under bark, at forest road",
+              "location": "DE",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "cubic meter",
+            "source_exchange_sha256": "9a9796921b5695aa18894ea41b8f09c44d0599d51cef86874a9da142534cb9e7",
+            "statistics": {
+              "amount": 0.553006829654074,
+              "uncertainty type": 0,
+              "loc": 0.553006829654074
+            },
+            "target": {
+              "name": "Pulpwood, spruce, sustainable forest management, measured as solid wood under bark, at forest road",
+              "reference product": "Pulpwood, spruce, sustainable forest management, measured as solid wood under bark, at forest road",
+              "location": "DE",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "7d4457fbe785c328bdea508ff0e3d1c2e0bc51d1fa21879ed17c2de34058517e",
+            "statistics": {
+              "amount": 8.076086723359017,
+              "uncertainty type": 2,
+              "loc": 2.088907438797964,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "a400a012b7cdcddad1b774535ab25b8a691607884c5e0315952a6f2c9c5e3872",
+            "statistics": {
+              "amount": 29.149741497657327,
+              "uncertainty type": 2,
+              "loc": 3.372446044752286,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "5fb4b66653f9a1515cf6f30d276cfb044a7089a8760e6e8f1ae4dd65b609c1ae",
+            "statistics": {
+              "amount": 2.0450338762537696,
+              "uncertainty type": 2,
+              "loc": 0.7154143547628266,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "cf868403abb4c046829da679c1496c417f1fdb49a1468055a19b044b0af50ea3",
+            "statistics": {
+              "amount": 40.2154544198457,
+              "uncertainty type": 2,
+              "loc": 3.694251360052123,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "f80945a43669aa5d13d9a959af2c19a7e3fc072553237151620218bdb94374d2",
+            "statistics": {
+              "amount": 31.841427482884182,
+              "uncertainty type": 2,
+              "loc": 3.4607681929763694,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "cfa2938268be9681353260e28e94667a6047f182dcafbc0812150d1b1cefa732",
+            "statistics": {
+              "amount": 0.3465581201128543,
+              "uncertainty type": 2,
+              "loc": -1.0597047396046577,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "b9aa71fcd2796d006d93ca9d654365cf4fe4ac7461ee0769763f9143368f6b86",
+            "statistics": {
+              "amount": 16.782096766512762,
+              "uncertainty type": 2,
+              "loc": 2.8203126495206807,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "c2620f0d49f40e340a1d6fec651fef8c4b72e376f4c1ad6712ba08759597099e",
+            "statistics": {
+              "amount": 2.213536276489582,
+              "uncertainty type": 2,
+              "loc": 0.794591361801905,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "5c89c7bf40a7bef7b54f90b2f39490fb8d4bc05cbf940c36cd14c512bcf3376e",
+            "statistics": {
+              "amount": 165.040128,
+              "uncertainty type": 2,
+              "loc": 5.106188644332255,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "same explicit dry-kg or solid-wood-under-bark cubic-metre basis"
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff five-market wood supply screening reconstructions. Retain all original source producer shares and final-product freight rows separately, with signed quantities, supported uncertainties/formulas and no renormalization. Preserve pine/spruce/oak/birch/beech branches and forest-road versus sawmill stages using corresponding native species/stage suppliers. Native DE/SE species-specific forest-road suppliers and RER sawmill chips are explicit geographic proxies for RoW and Quebec; source forest management, allocation, yield, species mix within a labelled class, infrastructure, transport, emissions, land use, density, moisture, carbon content, vintage and internal uncertainty can differ. No softwood-to-hardwood substitution or generic all-hardwood chip portfolio is introduced. All source/native chip references explicitly use kilograms measured as dry mass: factor+1, not wet-mass multipliers2.4or moisture/density/energy scaling. Pulpwood and logs retain cubic metres of solid wood under bark with factor+1, not tonnes or loose-chip volume. Equal reference volume is not equal dry mass, carbon or calorific content; native/source density and carbon inventories are not asserted identical and score effects remain unquantified. Keep native complete species/process inventories and their original resource uptake/allocation; add no carbon-balance correction, uptake credit or energy adjustment. Native precursor/internal forestry transport remains inside production; add only original final-product market freight once. RER rail/heavy-lorry and OCE dry-bulk cargo services retain original tonne-km and modes; fleet/traction/loading/empty-return, geography and vintage differ. Separate caller emissions and carbon-resource exchanges remain unchanged. Only individually inspected exact3.9cutoff profiles qualify. No source exchange omission, consequential/reverse or other-version approval is introduced. Eucalyptus, pellets, bark and residual-wood markets are not approved by this review; their distinct density/co-product and process boundaries need separate work. Full pulp heat, industrial heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "559cb7a9e2a279ead0dbd53c42bada9209132f24c2199a69982b58bae558e53f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a3615210243ee7d8",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_auxiliary_market",
+      "review_path": "export/uvek_pulp_heat_wood_markets_review.json",
+      "review_sha256": "e0ee81a930e2c5f29efcf306564648738f0bdae12da7c68d303eacfacd504c8c",
+      "authorization": "Standing autonomous approval of independently inspected species/stage-matched wood supply screening reconstructions, with geographic, density, carbon, moisture and allocation limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for wood chips, wet, measured as dry mass",
+          "reference product": "wood chips, wet, measured as dry mass",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for wood chips, wet, measured as dry mass",
+            "reference product": "wood chips, wet, measured as dry mass",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "39b5ef82ee050d8a4bbefafe8190caf5e59aee420174b20a7e9f2ca782f2b485",
+          "nonproduction_count": 9
+        },
+        "component_bindings": [
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1696195d0932f884a4e93c82a6822bc0e50627395d2098ee1bbc0d5997e5fc3f",
+            "statistics": {
+              "amount": 0.002150065319013455,
+              "uncertainty type": 2,
+              "loc": -6.1422570563675665,
+              "scale": 0.37682887362833545
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "3796c55acb1003eeac36737eac783454fbb25d23b5106e2c190c21f2dbe193d5",
+            "statistics": {
+              "amount": 0.10411703591379387,
+              "uncertainty type": 2,
+              "loc": -2.2622396672422274,
+              "scale": 0.37682887362833545
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "aafb87f5312b29913a18488b1baf59e1237b9d0ce7f22f6820a1872efa3031e7",
+            "statistics": {
+              "amount": 0.013732898767192678,
+              "uncertainty type": 2,
+              "loc": -4.287960954961004,
+              "scale": 0.37682887362833545
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "adac355a7b356bdeeeef52356c3dee888bb85e6c0e1c2ca6d3d6ac65bd96e430",
+            "statistics": {
+              "amount": 0.00517546008420513,
+              "uncertainty type": 0,
+              "loc": 0.00517546008420513
+            },
+            "target": {
+              "name": "Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road",
+              "reference product": "Wood chips, oak, wet, sustainable forest management, measured as dry mass, at forest road",
+              "location": "DE",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "805b904bb1429ed385a0d92250f1c1ca48849caecb1b24ba5777a4e165302f1e",
+            "statistics": {
+              "amount": 0.204065878513226,
+              "uncertainty type": 0,
+              "loc": 0.204065878513226
+            },
+            "target": {
+              "name": "Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road",
+              "reference product": "Wood chips, pine, wet, sustainable forest management, measured as dry mass, at forest road",
+              "location": "DE",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "547c37ddb9d6ede8f9bd4ace1a1f306eb804fe564020057efc24cfad55e7df24",
+            "statistics": {
+              "amount": 0.220989824368687,
+              "uncertainty type": 0,
+              "loc": 0.220989824368687
+            },
+            "target": {
+              "name": "Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road",
+              "reference product": "Wood chips, spruce, wet, sustainable forest management, measured as dry mass, at forest road",
+              "location": "DE",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "46adeddd7ce14c02978670837a37e7a824373bea0483d8d1a47474a3dc3226a4",
+            "statistics": {
+              "amount": 0.522358587453303,
+              "uncertainty type": 0,
+              "loc": 0.522358587453303
+            },
+            "target": {
+              "name": "Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road",
+              "reference product": "Wood chips, birch, wet, sustainable forest management, measured as dry mass, at forest road",
+              "location": "SE",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "ad4f2678a183698a210ab752a5e1f1646be9f8ee2f542b06a625ea53cad327f3",
+            "statistics": {
+              "amount": 0.0264178762717016,
+              "uncertainty type": 0,
+              "loc": 0.0264178762717016
+            },
+            "target": {
+              "name": "Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road",
+              "reference product": "Wood chips, beech, wet, sustainable forest management, measured as dry mass, at forest road",
+              "location": "DE",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "814f113b4bf2c968fdd9339fd33dd7d07b969f84621966ee6ce5f7d091f2a48c",
+            "statistics": {
+              "amount": 0.0209923733088762,
+              "uncertainty type": 0,
+              "loc": 0.0209923733088762
+            },
+            "target": {
+              "name": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+              "reference product": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "same explicit dry-kg or solid-wood-under-bark cubic-metre basis"
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff five-market wood supply screening reconstructions. Retain all original source producer shares and final-product freight rows separately, with signed quantities, supported uncertainties/formulas and no renormalization. Preserve pine/spruce/oak/birch/beech branches and forest-road versus sawmill stages using corresponding native species/stage suppliers. Native DE/SE species-specific forest-road suppliers and RER sawmill chips are explicit geographic proxies for RoW and Quebec; source forest management, allocation, yield, species mix within a labelled class, infrastructure, transport, emissions, land use, density, moisture, carbon content, vintage and internal uncertainty can differ. No softwood-to-hardwood substitution or generic all-hardwood chip portfolio is introduced. All source/native chip references explicitly use kilograms measured as dry mass: factor+1, not wet-mass multipliers2.4or moisture/density/energy scaling. Pulpwood and logs retain cubic metres of solid wood under bark with factor+1, not tonnes or loose-chip volume. Equal reference volume is not equal dry mass, carbon or calorific content; native/source density and carbon inventories are not asserted identical and score effects remain unquantified. Keep native complete species/process inventories and their original resource uptake/allocation; add no carbon-balance correction, uptake credit or energy adjustment. Native precursor/internal forestry transport remains inside production; add only original final-product market freight once. RER rail/heavy-lorry and OCE dry-bulk cargo services retain original tonne-km and modes; fleet/traction/loading/empty-return, geography and vintage differ. Separate caller emissions and carbon-resource exchanges remain unchanged. Only individually inspected exact3.9cutoff profiles qualify. No source exchange omission, consequential/reverse or other-version approval is introduced. Eucalyptus, pellets, bark and residual-wood markets are not approved by this review; their distinct density/co-product and process boundaries need separate work. Full pulp heat, industrial heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "55e05b6b73318de5b723fb95a567fa32e50e5f285a086d8a375618120a0d35ad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c7c819284fdc5629",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_auxiliary_market",
+      "review_path": "export/uvek_pulp_heat_wood_markets_review.json",
+      "review_sha256": "e0ee81a930e2c5f29efcf306564648738f0bdae12da7c68d303eacfacd504c8c",
+      "authorization": "Standing autonomous approval of independently inspected species/stage-matched wood supply screening reconstructions, with geographic, density, carbon, moisture and allocation limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for wood chips, wet, measured as dry mass",
+          "reference product": "wood chips, wet, measured as dry mass",
+          "location": "CA-QC",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for wood chips, wet, measured as dry mass",
+            "reference product": "wood chips, wet, measured as dry mass",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "adf67391fc6c4c29eb913f4fb90213a22c03ffc77609a15a0ee89922143b0a82",
+          "nonproduction_count": 3
+        },
+        "component_bindings": [
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "df5c50da994746e51c979b1093235ff195cbda8410a04ca56363472d36730ad3",
+            "statistics": {
+              "amount": 0.24,
+              "uncertainty type": 2,
+              "loc": -1.4271163556401458,
+              "scale": 0.37682887362833545
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "74bfe23825863503378ed1495d8ba85d0ff3fd56c94903a128a15236870e6d27",
+            "statistics": {
+              "amount": 0.899466810911058,
+              "uncertainty type": 0,
+              "loc": 0.899466810911058
+            },
+            "target": {
+              "name": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+              "reference product": "Wood chips, softwood, wet, measured as dry mass, at sawmill",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "16707250ff7101b68350f592b52b063e773cf91bad1b3a034700c9a6a3e54783",
+            "statistics": {
+              "amount": 0.100533189088942,
+              "uncertainty type": 0,
+              "loc": 0.100533189088942
+            },
+            "target": {
+              "name": "Wood chips, hardwood, wet, measured as dry mass, at sawmill",
+              "reference product": "Wood chips, hardwood, wet, measured as dry mass, at sawmill",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "same explicit dry-kg or solid-wood-under-bark cubic-metre basis"
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff five-market wood supply screening reconstructions. Retain all original source producer shares and final-product freight rows separately, with signed quantities, supported uncertainties/formulas and no renormalization. Preserve pine/spruce/oak/birch/beech branches and forest-road versus sawmill stages using corresponding native species/stage suppliers. Native DE/SE species-specific forest-road suppliers and RER sawmill chips are explicit geographic proxies for RoW and Quebec; source forest management, allocation, yield, species mix within a labelled class, infrastructure, transport, emissions, land use, density, moisture, carbon content, vintage and internal uncertainty can differ. No softwood-to-hardwood substitution or generic all-hardwood chip portfolio is introduced. All source/native chip references explicitly use kilograms measured as dry mass: factor+1, not wet-mass multipliers2.4or moisture/density/energy scaling. Pulpwood and logs retain cubic metres of solid wood under bark with factor+1, not tonnes or loose-chip volume. Equal reference volume is not equal dry mass, carbon or calorific content; native/source density and carbon inventories are not asserted identical and score effects remain unquantified. Keep native complete species/process inventories and their original resource uptake/allocation; add no carbon-balance correction, uptake credit or energy adjustment. Native precursor/internal forestry transport remains inside production; add only original final-product market freight once. RER rail/heavy-lorry and OCE dry-bulk cargo services retain original tonne-km and modes; fleet/traction/loading/empty-return, geography and vintage differ. Separate caller emissions and carbon-resource exchanges remain unchanged. Only individually inspected exact3.9cutoff profiles qualify. No source exchange omission, consequential/reverse or other-version approval is introduced. Eucalyptus, pellets, bark and residual-wood markets are not approved by this review; their distinct density/co-product and process boundaries need separate work. Full pulp heat, industrial heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c3f38e96cd130edc37665dd4a184b627ad9ccfdb6e6410da3f580ab5b573c818"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fd77ff1f9c44ad4e",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_auxiliary_market",
+      "review_path": "export/uvek_pulp_heat_wood_markets_review.json",
+      "review_sha256": "e0ee81a930e2c5f29efcf306564648738f0bdae12da7c68d303eacfacd504c8c",
+      "authorization": "Standing autonomous approval of independently inspected species/stage-matched wood supply screening reconstructions, with geographic, density, carbon, moisture and allocation limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for sawlog and veneer log, softwood, measured as solid wood under bark",
+          "reference product": "sawlog and veneer log, softwood, measured as solid wood under bark",
+          "location": "RoW",
+          "unit": "cubic meter"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for sawlog and veneer log, softwood, measured as solid wood under bark",
+            "reference product": "sawlog and veneer log, softwood, measured as solid wood under bark",
+            "location": "RoW",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "5347121c42cc3f7e38ad9265ef9736f0b65374f3675456db3ad7becc164dde71",
+          "nonproduction_count": 11
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "cubic meter",
+            "source_exchange_sha256": "8de269e84c042a782110b90909b0eb232d8d907fd23000c03d9b07d02e740071",
+            "statistics": {
+              "amount": 0.448540479487862,
+              "uncertainty type": 0,
+              "loc": 0.448540479487862
+            },
+            "target": {
+              "name": "Sawlog and veneer log, pine, sustainable forest management, measured as solid wood under bark, at forest road",
+              "reference product": "Sawlog and veneer log, pine, sustainable forest management, measured as solid wood under bark, at forest road",
+              "location": "DE",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "cubic meter",
+            "source_exchange_sha256": "34dfe4d0a6247674cbf8dc70572ecf41f5033d55cb8d24d46604a2ca8ca4d62d",
+            "statistics": {
+              "amount": 0.551459520512138,
+              "uncertainty type": 0,
+              "loc": 0.551459520512138
+            },
+            "target": {
+              "name": "Sawlog and veneer log, spruce, sustainable forest management, measured as solid wood under bark, at forest road",
+              "reference product": "Sawlog and veneer log, spruce, sustainable forest management, measured as solid wood under bark, at forest road",
+              "location": "DE",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "33e3d844cddac327da8ee55d8e327d088e05b9628ba76752a212d1a18e4b480c",
+            "statistics": {
+              "amount": 0.959414396245348,
+              "uncertainty type": 2,
+              "loc": -0.0414321845594332,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "b44c82ac1f00a570016d6a5b2e79324824ddca3c4e9b41b98e6346bd1397de12",
+            "statistics": {
+              "amount": 3.462900114580608,
+              "uncertainty type": 2,
+              "loc": 1.2421064213948885,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "f8f78b78e5439ebe29f6d2670407f674116ae5db4d5d25acc7827976a4b7399f",
+            "statistics": {
+              "amount": 0.24294376829961054,
+              "uncertainty type": 2,
+              "loc": -1.4149252685945708,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1fb88c7a080e8760d0d81bc64b264a60b7970b71ddbfab0fef7e70a0042d4bf0",
+            "statistics": {
+              "amount": 4.7774729573360695,
+              "uncertainty type": 2,
+              "loc": 1.563911736694726,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "863285083130fab5326ee02e7de5d2798c0c605f96b2d4fa9048718fcbcd7b6f",
+            "statistics": {
+              "amount": 3.782664175178065,
+              "uncertainty type": 2,
+              "loc": 1.3304285696189722,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "008d6f1c6ccd939dcdbe37a0460c384c9bd28d613a7959535bfdad6540e67b98",
+            "statistics": {
+              "amount": 0.10402561097452258,
+              "uncertainty type": 2,
+              "loc": -2.2631181507872165,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "17d9daf01289acb9340b9bd1a3eed8ced959335d963ae470b7155d1e10b9533d",
+            "statistics": {
+              "amount": 5.037446154779327,
+              "uncertainty type": 2,
+              "loc": 1.616899238338122,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "336a73de2c2db3e0ee1d6012c24a5bfb8586eace8a47102bb8a09224cb35bd11",
+            "statistics": {
+              "amount": 0.6644324579701507,
+              "uncertainty type": 2,
+              "loc": -0.40882204938065375,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "fd91a931239d745aa4fcd8ed3bc7a421354017cfda636ff022722fafad5cf5b6",
+            "statistics": {
+              "amount": 15.6522262861392,
+              "uncertainty type": 2,
+              "loc": 2.7506131615743015,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "same explicit dry-kg or solid-wood-under-bark cubic-metre basis"
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff five-market wood supply screening reconstructions. Retain all original source producer shares and final-product freight rows separately, with signed quantities, supported uncertainties/formulas and no renormalization. Preserve pine/spruce/oak/birch/beech branches and forest-road versus sawmill stages using corresponding native species/stage suppliers. Native DE/SE species-specific forest-road suppliers and RER sawmill chips are explicit geographic proxies for RoW and Quebec; source forest management, allocation, yield, species mix within a labelled class, infrastructure, transport, emissions, land use, density, moisture, carbon content, vintage and internal uncertainty can differ. No softwood-to-hardwood substitution or generic all-hardwood chip portfolio is introduced. All source/native chip references explicitly use kilograms measured as dry mass: factor+1, not wet-mass multipliers2.4or moisture/density/energy scaling. Pulpwood and logs retain cubic metres of solid wood under bark with factor+1, not tonnes or loose-chip volume. Equal reference volume is not equal dry mass, carbon or calorific content; native/source density and carbon inventories are not asserted identical and score effects remain unquantified. Keep native complete species/process inventories and their original resource uptake/allocation; add no carbon-balance correction, uptake credit or energy adjustment. Native precursor/internal forestry transport remains inside production; add only original final-product market freight once. RER rail/heavy-lorry and OCE dry-bulk cargo services retain original tonne-km and modes; fleet/traction/loading/empty-return, geography and vintage differ. Separate caller emissions and carbon-resource exchanges remain unchanged. Only individually inspected exact3.9cutoff profiles qualify. No source exchange omission, consequential/reverse or other-version approval is introduced. Eucalyptus, pellets, bark and residual-wood markets are not approved by this review; their distinct density/co-product and process boundaries need separate work. Full pulp heat, industrial heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3a4e348369ca24182d3c58ded1d05e8d0b4bc1eb33f15e8c08c3fff3ac0ced07"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-add7cfc2a08b0b22",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_auxiliary_market",
+      "review_path": "export/uvek_pulp_heat_wood_markets_review.json",
+      "review_sha256": "e0ee81a930e2c5f29efcf306564648738f0bdae12da7c68d303eacfacd504c8c",
+      "authorization": "Standing autonomous approval of independently inspected species/stage-matched wood supply screening reconstructions, with geographic, density, carbon, moisture and allocation limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for pulpwood, hardwood, measured as solid wood under bark",
+          "reference product": "pulpwood, hardwood, measured as solid wood under bark",
+          "location": "RoW",
+          "unit": "cubic meter"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for pulpwood, hardwood, measured as solid wood under bark",
+            "reference product": "pulpwood, hardwood, measured as solid wood under bark",
+            "location": "RoW",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "130c058881bc29f004802532a485c1031741a782a828a4c8ef36656216ca190a",
+          "nonproduction_count": 12
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "cubic meter",
+            "source_exchange_sha256": "08a6411c4eda1cd239e3e8f0eddf301448292319dbfd2fea32116a41fc3f677c",
+            "statistics": {
+              "amount": 0.0119814912787502,
+              "uncertainty type": 0,
+              "loc": 0.0119814912787502
+            },
+            "target": {
+              "name": "Pulpwood, oak, sustainable forest management, measured as solid wood under bark, at forest road",
+              "reference product": "Pulpwood, oak, sustainable forest management, measured as solid wood under bark, at forest road",
+              "location": "DE",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "cubic meter",
+            "source_exchange_sha256": "d20814761453a7364887efc2ee2d1a7b92b14a0c4b25ec259f49949ae9c5a26b",
+            "statistics": {
+              "amount": 0.885436816985599,
+              "uncertainty type": 0,
+              "loc": 0.885436816985599
+            },
+            "target": {
+              "name": "Pulpwood, birch, sustainable forest management, measured as solid wood under bark, at forest road",
+              "reference product": "Pulpwood, birch, sustainable forest management, measured as solid wood under bark, at forest road",
+              "location": "SE",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "cubic meter",
+            "source_exchange_sha256": "8200f8799e6e439f32eb0b1ae31d5875f52574145e5687d494e5621e957f0b53",
+            "statistics": {
+              "amount": 0.102581691735651,
+              "uncertainty type": 0,
+              "loc": 0.102581691735651
+            },
+            "target": {
+              "name": "Pulpwood, beech, sustainable forest management, measured as solid wood under bark, at forest road",
+              "reference product": "Pulpwood, beech, sustainable forest management, measured as solid wood under bark, at forest road",
+              "location": "DE",
+              "unit": "cubic meter"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "7f13f4318f077a2576b9e50cc31af19dcc88a656d7cf0cacf7c6c5f5990cbbb3",
+            "statistics": {
+              "amount": 8.810276425482565,
+              "uncertainty type": 2,
+              "loc": 2.175918815787594,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "58966560b5f377c43b1074ed216de772f0b06bb52a12b9b75f42b7540d92121a",
+            "statistics": {
+              "amount": 31.799717997444358,
+              "uncertainty type": 2,
+              "loc": 3.4594574217419156,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "357cad757ac83eed31aa37815007702103a9b759a6606ac365622b1c464ba0e8",
+            "statistics": {
+              "amount": 2.2309460468222944,
+              "uncertainty type": 2,
+              "loc": 0.8024257317524565,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "7b15b88dd9360e772ec2e1c69ee7d691ab427ae8287d4f18d37c29bae9158e41",
+            "statistics": {
+              "amount": 43.871404821649854,
+              "uncertainty type": 2,
+              "loc": 3.7812627370417533,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "a23fa4df1e65e4e8dd1a24023f68e08298de609411dc258d84d5112cfc99d9fe",
+            "statistics": {
+              "amount": 34.736102708600924,
+              "uncertainty type": 2,
+              "loc": 3.5477795699659995,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "c90a87b617356c0a327f6caaf85b0f2dee575bb42e4756ac1118fa9fbdde1e1a",
+            "statistics": {
+              "amount": 0.3780634037594782,
+              "uncertainty type": 2,
+              "loc": -0.9726933626150258,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "a0c0f50ddad771b6697d67783ced769acb9c94c42b986ce57877d9f605096408",
+            "statistics": {
+              "amount": 18.30774192710487,
+              "uncertainty type": 2,
+              "loc": 2.9073240265103126,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "6f2b16a141dd5058bc979b6f474577a2ea6afee14eb0232ada0f53981e4bf6f9",
+            "statistics": {
+              "amount": 2.414766847079549,
+              "uncertainty type": 2,
+              "loc": 0.8816027387915369,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "3ff8e8f00dace3fccf780054efc756d756db11b22180ec02cc288344bbb64179",
+            "statistics": {
+              "amount": 180.043776,
+              "uncertainty type": 2,
+              "loc": 5.193200021321885,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "same explicit dry-kg or solid-wood-under-bark cubic-metre basis"
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff five-market wood supply screening reconstructions. Retain all original source producer shares and final-product freight rows separately, with signed quantities, supported uncertainties/formulas and no renormalization. Preserve pine/spruce/oak/birch/beech branches and forest-road versus sawmill stages using corresponding native species/stage suppliers. Native DE/SE species-specific forest-road suppliers and RER sawmill chips are explicit geographic proxies for RoW and Quebec; source forest management, allocation, yield, species mix within a labelled class, infrastructure, transport, emissions, land use, density, moisture, carbon content, vintage and internal uncertainty can differ. No softwood-to-hardwood substitution or generic all-hardwood chip portfolio is introduced. All source/native chip references explicitly use kilograms measured as dry mass: factor+1, not wet-mass multipliers2.4or moisture/density/energy scaling. Pulpwood and logs retain cubic metres of solid wood under bark with factor+1, not tonnes or loose-chip volume. Equal reference volume is not equal dry mass, carbon or calorific content; native/source density and carbon inventories are not asserted identical and score effects remain unquantified. Keep native complete species/process inventories and their original resource uptake/allocation; add no carbon-balance correction, uptake credit or energy adjustment. Native precursor/internal forestry transport remains inside production; add only original final-product market freight once. RER rail/heavy-lorry and OCE dry-bulk cargo services retain original tonne-km and modes; fleet/traction/loading/empty-return, geography and vintage differ. Separate caller emissions and carbon-resource exchanges remain unchanged. Only individually inspected exact3.9cutoff profiles qualify. No source exchange omission, consequential/reverse or other-version approval is introduced. Eucalyptus, pellets, bark and residual-wood markets are not approved by this review; their distinct density/co-product and process boundaries need separate work. Full pulp heat, industrial heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "60afe3f171e3b2876f3bda27e3d4f49ba6c55e0c8968848e12f2314b5ecca7ad"
+        }
+      ]
     }
   ],
   "superseded_operations": [

@@ -655,6 +655,22 @@
         "unapproved_nested_pulp_heat_correspondences_after": 59,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "Native 32-40t fleet uses Swiss2020 shares despite RER label; it does not reproduce Brazilian EURO5/biodiesel or load characteristics. Full pulp heat and steel export unfinished."
+      },
+      "pulp_heat_wood_market_verification": {
+        "review": "uvek-pulp-heat-wood-markets-review.md",
+        "verification": "uvek-pulp-heat-wood-market-verification.json",
+        "source_profile": "ecoinvent 3.9 cutoff",
+        "markets": 5,
+        "preserved_source_market_rows": 46,
+        "native_suppliers": 17,
+        "signed_finite_LCIs": 44,
+        "brightpath_tests_passed": 28,
+        "premise_tests_passed": 1,
+        "new_helpers": 5,
+        "new_source_omissions": 0,
+        "unapproved_nested_pulp_heat_correspondences_after": 54,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "DE/SE species and RER sawmill geographic proxies. Dry kg and solid-under-bark volume preserved; density/carbon/score equivalence is not claimed. Full pulp heat and steel export unfinished."
       }
     },
     {
