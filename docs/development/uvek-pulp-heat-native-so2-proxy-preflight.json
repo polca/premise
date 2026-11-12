@@ -1,0 +1,140 @@
+{
+  "status": "private_native_functional_proxy_candidate_verified_not_packaged",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff",
+    "biosphere_version": "3.9"
+  },
+  "target_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_version": "3.10"
+  },
+  "decision": {
+    "status": "selected_complete_native_functional_proxy_private_checks_passed_not_packaged",
+    "authorization": "Standing user approval of forthcoming modelling decisions, with decisions and limitations logged for later review.",
+    "goal_basis": "The active goal permits justified complete functional proxies and requires Python changes only where mappings cannot reasonably resolve a problem.",
+    "decision": "Use native positive1kgpure liquidSO2production as the complete functional production proxy in both exact3.9cutoff markets. Keep every original outer producer coefficient and freight row, with caller/market-row quantities and uncertainty, while explicitly replacing source production technologies and upstream allocations.",
+    "scientific_cost": "For RoW,18.6519413306824%ofsource supply comes from allocated zinc/TCPco-product SO2. Native secondary-sulfur SO2production replaces those co-product burdens. Their original technology,allocation and internal uncertainty are not preserved. Effects may be material and remain unquantified. This is a screening product-supply proxy, not an equivalent source reconstruction.",
+    "supersedes": "The earlier proposed full source chemical-loop reconstruction. Source allocation,chloride and feedback evidence remains retained for review; it no longer requires runtime cycle support for the selected mapping.",
+    "runtime_change": "None required by selected candidate. Real source sodiumsulfite market+producer convert using unchanged Brightpath a95a4d575a649ffaf7ee3b526403fb97e7eea305 from the isolated baseline checkout. Existing uncommitted cycle-support drafts must be archived and withdrawn after their running test/comparison processes finish.",
+    "next_action": "Freeze and test the two SO2market rules, reviewed CNrail proxy and sourceNa2SO3reconstruction; integrate exact approvals, repeat the five-pulp probe and only then update public coverage counts."
+  },
+  "source_market_rows_retained": 15,
+  "SO2market_candidates": 2,
+  "additional_required_transport_proxy": "Exact3.9CNgeneral freight-rail market to complete RERrail service, with explicit geography/traction warnings. Existing CNcoal-freight candidate has a primary-documentation functional-unit caveat.",
+  "sodium_sulfite": {
+    "source_foreground_processes": 2,
+    "converted_records": 20,
+    "unapproved_correspondences": 0,
+    "signed_finite_LCIs_including_SO2markets_and_suppliers": 14,
+    "native_suppliers_for_full_source_market": 59,
+    "direct_canonical_biosphere_identities": 131,
+    "source_foreground_identity_reference_and_row_counts_preserved": true,
+    "runtime_cycle_support_required": false,
+    "packaged_approval_completed": false
+  },
+  "LCI_verification": {
+    "review_sha256": "27b023eb905a131433e7d0008570ad63e486ddf5f7ffffd398ab2a17068bf66a",
+    "cases": [
+      {
+        "case": "Complete source sodium-sulfite market + producer with native SO2proxy",
+        "helpers": 19,
+        "native_suppliers": 59,
+        "direct_biosphere_identities": 131,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "Source sodium-sulfite producer with native SO2proxy",
+        "helpers": 19,
+        "native_suppliers": 56,
+        "direct_biosphere_identities": 131,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "bp-dc071fc3d9a52df4 native functional production + retained delivery",
+        "helpers": 0,
+        "native_suppliers": 3,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "bp-e592b4af2986b53f native functional production + retained delivery",
+        "helpers": 0,
+        "native_suppliers": 3,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "Sulphur dioxide, liquid, at plant | RER",
+        "helpers": 0,
+        "native_suppliers": 1,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "Transport, freight, rail | RER",
+        "helpers": 0,
+        "native_suppliers": 1,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "Transport, freight, lorry, fleet average | RER",
+        "helpers": 0,
+        "native_suppliers": 1,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      }
+    ],
+    "signed_finite_LCIs": 14,
+    "new_market_component_bindings_match": true,
+    "source_foreground_identities_references_and_row_counts_preserved": true,
+    "source_processes": 2,
+    "complete_converted_records": 20,
+    "requires_cyclic_recipe_support": false,
+    "runtime_revision": "a95a4d575a649ffaf7ee3b526403fb97e7eea305 baseline checkout",
+    "source_modified_unchanged": true,
+    "limitation": "Native background plus canonical direct biosphere nominal LCI checks, with all helper coefficients recursively included. Not source/native score equivalence, uncertainty sampling or a full pulp-heat/steel scenario export."
+  },
+  "runtime_source_changes_required": false,
+  "new_packaged_approvals": 0,
+  "public_direct_pulp_missing_correspondences": 46,
+  "private_evidence_receipts": [
+    {
+      "name": "so2-native-markets-candidate.private.json",
+      "sha256": "27b023eb905a131433e7d0008570ad63e486ddf5f7ffffd398ab2a17068bf66a"
+    },
+    {
+      "name": "so2-cn-rail-candidate.private.json",
+      "sha256": "1023821429f5a29be17a987beeb80064c8550226e5c6f85ffa8b220414aec582"
+    },
+    {
+      "name": "sodium-sulfite-native-so2-candidate-conversion-report.private.json",
+      "sha256": "3c68572ce9f9d55fccbae17bc35924e4a89f4a17aba555b252583a196a6f0925"
+    },
+    {
+      "name": "sodium-sulfite-native-so2-candidate-converted.private.json",
+      "sha256": "73b50cc025c619a740039d6bb5d44fb47011c3151106c0e4360b0b0dbc33d084"
+    },
+    {
+      "name": "sodium-sulfite-native-so2-lci-verification.json",
+      "sha256": "99a8668a7b61bdf0b33bf344cb76d26d887b21dca87b2b2068461ed2cd6b7692"
+    }
+  ],
+  "limitations": [
+    "Private candidate overrides and exact temporary policy scopes used; published Premise remains pinned to a95a4d5.",
+    "Source co-product production/allocation is explicitly replaced, not preserved by keeping separate outer coefficients.",
+    "Finite nominal inventories do not establish score or stochastic equivalence.",
+    "Complete pulp heat,steel and all-sector public updates/exports remain unfinished."
+  ]
+}

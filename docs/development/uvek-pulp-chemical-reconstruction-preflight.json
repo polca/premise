@@ -27,7 +27,18 @@
           "unit": "kilogram"
         }
       }
-    ]
+    ],
+    "private_candidate_verification": {
+      "source_foreground_processes": 2,
+      "converted_records": 20,
+      "unapproved_correspondences": 0,
+      "signed_finite_LCIs_including_SO2markets_and_suppliers": 14,
+      "native_suppliers_for_full_source_market": 59,
+      "direct_canonical_biosphere_identities": 131,
+      "source_foreground_identity_reference_and_row_counts_preserved": true,
+      "runtime_cycle_support_required": false,
+      "packaged_approval_completed": false
+    }
   },
   "sulfur_dioxide_market": {
     "source": {
@@ -167,7 +178,7 @@
         }
       }
     ],
-    "next_action": "Inspect Chinese rail and RoWchlorine technologies/reference bases; finish full regression comparison, then qualify and compile the complete source SO2/SO2co-product/sulfuryl loop before sodium sulfite. Do not flatten feedback, bypass missing mappings or replace co-product burdens with dedicated sulfur burning.",
+    "next_action": "Freeze and test the two SO2market rules, reviewed CNrail proxy and sourceNa2SO3reconstruction; integrate exact approvals, repeat the five-pulp probe and only then update public coverage counts.",
     "allyl_chloride_candidate": {
       "status": "private_candidate_verified_not_published",
       "incorrect_current_substance": "vinyl chloride",
@@ -180,7 +191,7 @@
       "native_database_unchanged": true
     },
     "source_feedback": {
-      "status": "reproduced_missing_generic_recipe_graph_support",
+      "status": "reproduced_but_not_required_by_selected_native_functional_proxy",
       "path": [
         "RoW liquidSO2market",
         "TCPproduction SO2co-product",
@@ -189,7 +200,7 @@
       ],
       "nominal_cycle_gain": 0.0005374524645318543,
       "old_recipe_error": "Cyclic recipe dependency.",
-      "proposed_runtime_scope": "Only Brightpath recipe validation, helper identity hashing and zero-stock dependency traversal. No Premise runtime change. Draft support not committed or pinned. Exact source model/profile and approval restrictions must remain enforced.",
+      "proposed_runtime_scope": "Investigated draft only. Selected native functional-proxy mapping avoids this runtime change; retain reduced topology evidence without claiming full source-network equivalence.",
       "reduced_Brightway_export": {
         "status": "passed",
         "helpers": 3,
@@ -220,6 +231,16 @@
         }
       ],
       "conversion_completed": false
+    },
+    "strategy_decision": {
+      "status": "selected_complete_native_functional_proxy_private_checks_passed_not_packaged",
+      "authorization": "Standing user approval of forthcoming modelling decisions, with decisions and limitations logged for later review.",
+      "goal_basis": "The active goal permits justified complete functional proxies and requires Python changes only where mappings cannot reasonably resolve a problem.",
+      "decision": "Use native positive1kgpure liquidSO2production as the complete functional production proxy in both exact3.9cutoff markets. Keep every original outer producer coefficient and freight row, with caller/market-row quantities and uncertainty, while explicitly replacing source production technologies and upstream allocations.",
+      "scientific_cost": "For RoW,18.6519413306824%ofsource supply comes from allocated zinc/TCPco-product SO2. Native secondary-sulfur SO2production replaces those co-product burdens. Their original technology,allocation and internal uncertainty are not preserved. Effects may be material and remain unquantified. This is a screening product-supply proxy, not an equivalent source reconstruction.",
+      "supersedes": "The earlier proposed full source chemical-loop reconstruction. Source allocation,chloride and feedback evidence remains retained for review; it no longer requires runtime cycle support for the selected mapping.",
+      "runtime_change": "None required by selected candidate. Real source sodiumsulfite market+producer convert using unchanged Brightpath a95a4d575a649ffaf7ee3b526403fb97e7eea305 from the isolated baseline checkout. Existing uncommitted cycle-support drafts must be archived and withdrawn after their running test/comparison processes finish.",
+      "next_action": "Freeze and test the two SO2market rules, reviewed CNrail proxy and sourceNa2SO3reconstruction; integrate exact approvals, repeat the five-pulp probe and only then update public coverage counts."
     }
   },
   "hydrazine": {
