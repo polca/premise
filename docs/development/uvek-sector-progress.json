@@ -818,6 +818,18 @@
         "status": "missing_supplier_resolved_strict_validation_unfinished",
         "tests_passed": 64,
         "next_work": "Audit 103 validation findings and native pig-iron/steel consumer filters; preserve rolling and shared regional market logic."
+      },
+      "native_validation_audit": {
+        "review": "docs/development/uvek-steel-native-validation-review.md",
+        "verification": "docs/development/uvek-steel-native-validation-verification.json",
+        "findings_before": 103,
+        "findings_after": 65,
+        "next_work": [
+          "Restore ordinary replacement-metadata quantity filling for UVEK workbooks; zero licensed placeholders currently remain unfilled.",
+          "Regionalize native pig iron and relink native and converted converter consumers.",
+          "Classify reviewed nominal-36-MJ/m3 gas helper explicitly in energy checks."
+        ],
+        "steel_export_verified": false
       }
     },
     {

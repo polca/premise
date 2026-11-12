@@ -1,0 +1,151 @@
+"""Keep physical steel checks while recognizing native fuel spelling."""
+
+import pytest
+
+from premise.validation.validation import SteelValidation
+
+
+@pytest.mark.parametrize(
+    "name,unit,amount",
+    [
+        ("Hard coal mix, at regional storage", "kilogram", 0.5),
+        ("hard coal supply", "kilogram", 0.5),
+        ("Natural gas, high pressure, at consumer", "cubic meter", 0.4),
+        ("natural gas supply", "cubic meter", 0.4),
+        ("Hydrogen supply", "kilogram", 0.1),
+        ("hydrogen supply", "kilogram", 0.1),
+    ],
+)
+def test_pig_iron_energy_counts_native_and_legacy_fuel_names(name, unit, amount):
+    validator, issues = energy_validator(name, unit, amount)
+    validator.check_steel_energy_use()
+    assert not issues
+
+
+def energy_validator(name, unit, amount):
+    validator = SteelValidation.__new__(SteelValidation)
+    validator.regions = ["EUR"]
+    validator.database = [
+        {
+            "name": "pig iron production, blast furnace",
+            "reference product": "pig iron",
+            "location": "EUR",
+            "exchanges": [
+                {"name": name, "unit": unit, "amount": amount, "type": "technosphere"}
+            ],
+        }
+    ]
+    issues = []
+    validator.log_issue = lambda *args, **kwargs: issues.append((args, kwargs))
+    return validator, issues
+
+
+@pytest.mark.parametrize("amount", [0, 0.1, -0.5])
+def test_low_or_negative_energy_still_fails(amount):
+    validator, issues = energy_validator("Hard coal mix", "kilogram", amount)
+    validator.check_steel_energy_use()
+    assert len(issues) == 1
+    assert issues[0][1]["issue_type"] == "major"
+
+
+@pytest.mark.parametrize("secondary_amount,expected_issues", [(0.25, 0), (0, 1)])
+def test_market_share_check_uses_reviewed_supplier_identity(
+    secondary_amount, expected_issues
+):
+    from types import SimpleNamespace
+    import xarray as xr
+
+    name = "Steel, electric, low-alloyed, at plant"
+    validator = SteelValidation.__new__(SteelValidation)
+    validator.regions = ["EUR"]
+    validator.year = 2050
+    validator.system_model = "cutoff"
+    production = xr.DataArray(
+        [[[3], [1]]],
+        dims=("region", "variables", "year"),
+        coords={
+            "region": ["EUR"],
+            "variables": ["steel - primary - BF/BOF", "steel - secondary"],
+            "year": [2050],
+        },
+    )
+    validator.iam_data = SimpleNamespace(
+        steel_technology_mix=production, production_volumes=production
+    )
+    validator.technology_map = {
+        "steel - secondary": [{"name": name, "reference product": name}]
+    }
+    validator.database = [
+        {
+            "name": "market for steel, low-alloyed",
+            "location": "EUR",
+            "exchanges": [
+                {
+                    "name": name,
+                    "product": name,
+                    "type": "technosphere",
+                    "unit": "kilogram",
+                    "amount": secondary_amount,
+                },
+                {
+                    "name": "converter steel",
+                    "product": "primary steel",
+                    "type": "technosphere",
+                    "unit": "kilogram",
+                    "amount": 1 - secondary_amount,
+                },
+            ],
+        }
+    ]
+    issues = []
+    validator.log_issue = lambda *args, **kwargs: issues.append((args, kwargs))
+    validator.check_steel_markets()
+    assert len(issues) == expected_issues
+    assert not validator._is_secondary_supplier(
+        {"name": name, "product": "chromium steel"}
+    )
+
+
+def test_mapped_native_eaf_still_has_electricity_minimum():
+    name = "Steel, electric, low-alloyed, at plant"
+    validator, issues = energy_validator(
+        "Electricity, medium voltage", "kilowatt hour", 0.2
+    )
+    validator.database[0].update(name=name, **{"reference product": name})
+    validator.technology_map = {
+        "steel - secondary": [{"name": name, "reference product": name}]
+    }
+    validator.check_steel_energy_use()
+    assert len(issues) == 1
+    assert issues[0][0][1] == "electricity use for EAF steel production too low"
+
+
+@pytest.mark.parametrize("name", ["Electricity, medium voltage", "electricity supply"])
+def test_shared_efficiency_scales_native_and_legacy_fuel_spelling(name):
+    from premise.materials.steel import Steel
+
+    steel = Steel.__new__(Steel)
+    steel.model, steel.scenario, steel.year = "remind", "SSP2-NPi", 2050
+    from types import SimpleNamespace
+
+    steel.iam_data = SimpleNamespace(steel_technology_efficiencies=None)
+    steel.find_iam_efficiency_change = lambda **kwargs: 2
+    dataset = {
+        "name": "Steel, electric, low-alloyed, at plant",
+        "location": "EUR",
+        "exchanges": [
+            {
+                "name": name,
+                "amount": 1,
+                "unit": "kilowatt hour",
+                "type": "technosphere",
+                "uncertainty type": 3,
+                "loc": 1,
+                "scale": 0.1,
+            },
+        ],
+    }
+    result = steel.adjust_process_efficiency(dataset, "steel - secondary")
+    assert result["exchanges"][0]["amount"] == 0.5
+    assert result["exchanges"][0]["loc"] == 0.5
+    assert result["exchanges"][0]["scale"] == 0.05

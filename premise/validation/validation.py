@@ -3764,11 +3764,31 @@ class FuelsValidation(BaseDatasetValidator):
 
 class SteelValidation(BaseDatasetValidator):
     def __init__(
-        self, model, scenario, year, regions, database, iam_data, system_model
+        self,
+        model,
+        scenario,
+        year,
+        regions,
+        database,
+        iam_data,
+        system_model,
+        technology_map=None,
     ):
         super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
         self.system_model = system_model
+        self.technology_map = technology_map or {}
+
+    def _is_secondary_supplier(self, record):
+        product = record.get("reference product", record.get("product"))
+        providers = getattr(self, "technology_map", {}).get("steel - secondary")
+        if providers is not None:
+            return any(
+                record["name"] == provider["name"]
+                and product == provider["reference product"]
+                for provider in providers
+            )
+        return record["name"].startswith("steel production, electric")
 
     def check_steel_markets(self):
         # check that the steel markets inputs
@@ -3843,7 +3863,7 @@ class SteelValidation(BaseDatasetValidator):
                         for x in ds["exchanges"]
                         if x["type"] == "technosphere"
                         and x["unit"] == "kilogram"
-                        and x["name"].startswith("steel production, electric")
+                        and self._is_secondary_supplier(x)
                     ]
                 )
 
@@ -3976,8 +3996,8 @@ class SteelValidation(BaseDatasetValidator):
 
         for ds in self.database:
             if (
-                ds["name"].startswith("steel production, electric")
-                and "steel" in ds["reference product"]
+                self._is_secondary_supplier(ds)
+                and "steel" in ds["reference product"].casefold()
                 and ds["location"] in self.regions
             ):
                 electricity = sum(
@@ -4027,7 +4047,7 @@ class SteelValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 26.4
                         for exc in ds["exchanges"]
-                        if "hard coal" in exc["name"]
+                        if "hard coal" in exc["name"].casefold()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -4038,7 +4058,7 @@ class SteelValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 36
                         for exc in ds["exchanges"]
-                        if "natural gas" in exc["name"]
+                        if "natural gas" in exc["name"].casefold()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "cubic meter"
                     ]
@@ -4059,7 +4079,7 @@ class SteelValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 120
                         for exc in ds["exchanges"]
-                        if "hydrogen" in exc["name"]
+                        if "hydrogen" in exc["name"].casefold()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]

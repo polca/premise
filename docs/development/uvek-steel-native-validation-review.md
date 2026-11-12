@@ -1,0 +1,17 @@
+# Steel validation and missing source quantities
+
+The real encrypted REMIND SSP2-NPi 2050 steel diagnostic now reports 65 strict validation findings, down from 103. No thresholds, severities or checks were removed. Public steel support remains gated and export remains unverified.
+
+Two small generic adaptations resolve confirmed recognition failures. Steel validation receives the same technology map used to build its markets and recognizes secondary suppliers by their mapped name and reference product. Native electric-steel producers are also subject to the existing electricity limits. Fuel matching uses case-insensitive names in the existing efficiency and energy checks, preserving the same energy coefficients and limits. The real rerun clears all 12 secondary-share findings and 26 pig-iron energy findings for the two top-gas-recycling routes. Source exchanges remain signed, and the efficiency test checks normal uncertainty scaling.
+
+The remaining findings need preparation and mapping work, not suppressed validation:
+
+- **Missing quantities:** the bundled blast-furnace-with-CCS workbook contains licensed-data placeholders. Its only nonzero technosphere entries are slag and carbon capture. Ordinary Premise fills replacement-tagged inputs from its background during `BaseInventoryImport.add_product_field_to_exchanges` / `fill_dataset_data_gaps`. The UVEK retained-workbook branch migrates parsed records directly and skips that operation. The transformed process therefore lacks its fuel, ore and other placeholder inputs. This is a real preparation defect; changing the validator would hide missing burdens.
+- **Native pig iron:** two ordinary converter templates reference positive native “Pig iron, at plant” in GLO. Existing regionalization and validation still select the ecoinvent “pig iron production” names. Merely accepting the native label would leave the supplier outside its intended IAM region. Both selection and relinking must be adapted together.
+- **Gas classification:** the reviewed gas helper has a nominal 36 MJ/m³ reference, but its name is “global high-pressure gas supply…”, rather than the literal “natural gas”. Its physical energy is omitted by the current keyword check in natural-gas DRI and hydrogen DRI. An explicit mapped fuel identity is needed; broad name guessing is inappropriate.
+
+These account for the remaining 39 energy and 26 pig-iron-input findings across the 13 IAM regions. They are counts for this diagnostic, not the entire project backlog. Next, restore the shared replacement-quantity workflow using explicitly mapped native donor/supplier identities, preserve signs and native reference units, fail clearly on unresolved placeholders, and verify regional native pig-iron links. Do not use arbitrary positive quantities to pass validation or treat an unfilled placeholder as a physical zero.
+
+Validation: 78 focused steel/alias/recognition tests and 86 shared validation regressions pass. Black passes on changed files; Ruff passes the changed steel and test modules. The validation module retains four pre-existing lint findings, independently confirmed identical to HEAD; no new lint finding was introduced. The full suite and steel export are not established by these focused checks.
+
+Task-owned diagnostic storage was reduced from roughly 347 MiB to 604 KiB by removing repeated provenance ledgers while preserving every captured exchange. Licensed coefficient vectors remain private.

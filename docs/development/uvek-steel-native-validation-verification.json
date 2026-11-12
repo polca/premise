@@ -1,0 +1,18 @@
+{
+  "steel_tests_passed": 78,
+  "shared_validation_tests_passed": 86,
+  "validation_module_preexisting_lint_findings": 4,
+  "new_lint_findings": 0,
+  "real_diagnostic": {
+    "status": "shared_steel_update_failed",
+    "exception_type": "PremiseValidationError",
+    "message": "Inventory validation failed with 65 unsuppressed error(s) [LEGACY.ENERGY_USE_FOR_PIG_IRON_PRODUCTION_TOO_LOW=39, LEGACY.NO_INPUT_OF_PIG_IRON=26]: LEGACY.ENERGY_USE_FOR_PIG_IRON_PRODUCTION_TOO_LOW: Energy use for pig iron production is too low: 0. (activity=('pig iron production, blast furnace, with carbon capture and storage', 'pig iron', 'CAZ')); LEGACY.NO_INPUT_OF_PIG_IRON: No input of pig iron found. (activity=('steel production, blast furnace-basic oxygen furnace, low-alloyed', 'steel, low-alloyed', 'CAZ')); ...",
+    "public_scope_guard_bypassed_in_private_diagnostic": true
+  },
+  "findings_before": 103,
+  "findings_after": 65,
+  "secondary_market_share_findings_cleared": 12,
+  "pig_iron_energy_findings_cleared": 26,
+  "public_gate_bypassed_only_in_private_diagnostic": true,
+  "export_completed": false
+}

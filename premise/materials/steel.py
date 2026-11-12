@@ -63,6 +63,7 @@ def _update_steel(
         database=steel.database,
         iam_data=scenario["iam data"],
         system_model=system_model,
+        technology_map=steel.steel_map,
     )
     record_validation_phase(scenario, validate.run_steel_checks())
 
@@ -362,7 +363,7 @@ class Steel(BaseTransformation):
                     [
                         exc["amount"] * 26.4
                         for exc in dataset["exchanges"]
-                        if "hard coal" in exc["name"]
+                        if "hard coal" in exc["name"].casefold()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -373,7 +374,7 @@ class Steel(BaseTransformation):
                     [
                         exc["amount"] * 36
                         for exc in dataset["exchanges"]
-                        if "natural gas" in exc["name"]
+                        if "natural gas" in exc["name"].casefold()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "cubic meter"
                     ]
@@ -394,7 +395,7 @@ class Steel(BaseTransformation):
                     [
                         exc["amount"] * 120
                         for exc in dataset["exchanges"]
-                        if "hydrogen" in exc["name"]
+                        if "hydrogen" in exc["name"].casefold()
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "kilogram"
                     ]
@@ -407,7 +408,9 @@ class Steel(BaseTransformation):
                 dataset,
                 scaling_factor,
                 technosphere_filters=[
-                    ws.either(*[ws.contains("name", x) for x in list_fuels])
+                    lambda exchange: any(
+                        fuel in exchange["name"].casefold() for fuel in list_fuels
+                    )
                 ],
                 biosphere_filters=[ws.contains("name", "Carbon dioxide, fossil")],
             )
