@@ -1,0 +1,90 @@
+{
+  "review_sha256": "e0115a9ea48dfb514ad5fce1e19e308c12d1b49e3724881930e13945c7f50d98",
+  "cases": [
+    {
+      "rule_id": "bp-b65c892acf4a332f",
+      "helpers_traversed": 4,
+      "native_suppliers": 7,
+      "direct_biosphere_flows": 38,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "approved_zero_clinker_source_omissions": 0
+    },
+    {
+      "rule_id": "bp-454fe7a83cbaa613",
+      "helpers_traversed": 4,
+      "native_suppliers": 7,
+      "direct_biosphere_flows": 68,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "approved_zero_clinker_source_omissions": 0
+    },
+    {
+      "rule_id": "bp-31651ee4fea3a8a6",
+      "helpers_traversed": 4,
+      "native_suppliers": 7,
+      "direct_biosphere_flows": 34,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "approved_zero_clinker_source_omissions": 0
+    },
+    {
+      "rule_id": "bp-5c1032ed559374f7",
+      "helpers_traversed": 4,
+      "native_suppliers": 8,
+      "direct_biosphere_flows": 38,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "approved_zero_clinker_source_omissions": 0
+    },
+    {
+      "rule_id": "bp-4c4b28fe5a79d86b",
+      "helpers_traversed": 3,
+      "native_suppliers": 7,
+      "direct_biosphere_flows": 60,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "approved_zero_clinker_source_omissions": 1
+    },
+    {
+      "rule_id": "bp-6531ffaccf5d8258",
+      "helpers_traversed": 5,
+      "native_suppliers": 7,
+      "direct_biosphere_flows": 68,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "approved_zero_clinker_source_omissions": 0
+    },
+    {
+      "rule_id": "bp-d81a08e7cd9ce632",
+      "helpers_traversed": 4,
+      "native_suppliers": 7,
+      "direct_biosphere_flows": 38,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "approved_zero_clinker_source_omissions": 0
+    },
+    {
+      "rule_id": "bp-07f9085bfc8dbc65",
+      "helpers_traversed": 4,
+      "native_suppliers": 7,
+      "direct_biosphere_flows": 60,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "approved_zero_clinker_source_omissions": 1
+    },
+    {
+      "rule_id": "bp-4f6f1d647b03cd3d",
+      "helpers_traversed": 4,
+      "native_suppliers": 6,
+      "direct_biosphere_flows": 60,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "approved_zero_clinker_source_omissions": 1
+    }
+  ],
+  "signed_finite_composite_LCIs": 18,
+  "all_reviewed_recipes_covered": 32,
+  "source_modified_unchanged": true,
+  "limitation": "All post-conversion helper recipes recursively included, with summed duplicate native demands and direct biosphere flows. Nominal checks do not establish LCIA equivalence or completed steel transformation/export."
+}

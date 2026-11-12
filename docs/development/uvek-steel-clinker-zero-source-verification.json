@@ -1,0 +1,48 @@
+{
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "cases": [
+    {
+      "source": {
+        "name": "clinker production",
+        "reference product": "electric arc furnace dust",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "signed_finite_LCIs": 2,
+      "exact_zero_matrix_proof": true,
+      "observed_numerical_inventory_max_abs": 0,
+      "same_activity_clinker_output_nonproduction_terms": 245
+    },
+    {
+      "source": {
+        "name": "clinker production",
+        "reference product": "blast furnace sludge",
+        "location": "Europe without Switzerland",
+        "unit": "kilogram"
+      },
+      "signed_finite_LCIs": 2,
+      "exact_zero_matrix_proof": true,
+      "observed_numerical_inventory_max_abs": 0,
+      "same_activity_clinker_output_nonproduction_terms": 58
+    },
+    {
+      "source": {
+        "name": "clinker production",
+        "reference product": "blast furnace sludge",
+        "location": "CH",
+        "unit": "kilogram"
+      },
+      "signed_finite_LCIs": 2,
+      "exact_zero_matrix_proof": true,
+      "observed_numerical_inventory_max_abs": 0,
+      "same_activity_clinker_output_nonproduction_terms": 49
+    }
+  ],
+  "signed_finite_source_LCIs": 6,
+  "source_modified_unchanged": true,
+  "limitation": "Only the exact observed production-only waste references have zero source LCI. Actual clinker production remains nonempty; no blanket zero-treatment inference. Omitting their explicit interfaces still requires an audited source-loss approval."
+}

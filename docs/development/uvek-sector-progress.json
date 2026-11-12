@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "retained_biosphere_and_41_of_initial_52_correspondences_verified_11_preparation_cases_and_transformation_unfinished",
+      "status": "retained_biosphere_and_50_of_initial_52_correspondences_verified_2_preparation_cases_and_transformation_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -367,7 +367,8 @@
         "Small non-gas heat mix retains52supplier shares with8pure-solar operation helpers and31native suppliers.9Brightpath checks and strict Premise cache/withdrawal pass; recursive signedLCIs include direct solar resource. Actual REMIND retained steel preparation has15pendingcases; full transformation/export unverified.",
         "36 exact3.9heat-allocation handovers preserve12empty heat co-products and24zero-stock forwarders using existing native plant-side heat.72signedsourceLCIszero; native exactmatrixzero proven with numerical roundoff recorded.13Brightpath checks and strict Premise cache/withdrawal pass;15root preparation cases remain.",
         "Two3.9pig-iron wastewater markets retain sewer shares and12untreated surface-water discharges each, with explicit embedded-sewer cancellation.38Brightpath and67Premise regression tests pass;4signed compositeLCIsfinite. Actual encrypted REMIND steel preparation has13pending correspondences, downfrom15; full transformation/export unverified.",
-        "Mill-scale market retains68leachate flows and all stabilization/landfill components with source exchange uncertainty; positive cut-off blast-furnace-slag retains empty stock and both freight rows.54Brightpath and68Premise tests pass;4signedcompositeLCIsfinite. Actual encrypted REMIND retained preparation has11pending cases, downfrom13; full transformation/export unverified."
+        "Mill-scale market retains68leachate flows and all stabilization/landfill components with source exchange uncertainty; positive cut-off blast-furnace-slag retains empty stock and both freight rows.54Brightpath and68Premise tests pass;4signedcompositeLCIsfinite. Actual encrypted REMIND retained preparation has11pending cases, downfrom13; full transformation/export unverified.",
+        "Nine residue markets and their coupled suppliers qualified:32correspondences/recipes,18dedicatedBrightpath tests and strict Premise cache/withdrawal/omission-gate checks pass.18signednative compositeLCIs cover all32recipes;6signedsourceLCIs and matrix proofs qualify three literal zero-burden clinker omissions. Actual encrypted REMIND retained preparation now has2pendingroots, downfrom11; steel transform/export unverified."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -395,7 +396,7 @@
       },
       "latest_actual_preparation_frontier": {
         "verification": "docs/development/uvek-steel-current-preparation-frontier.json",
-        "pending_correspondences": 11,
+        "pending_correspondences": 2,
         "public_update_or_export_verified": false
       },
       "first_four_prerequisites": "docs/development/uvek-steel-39-first-prerequisite-verification.json",
@@ -461,6 +462,28 @@
         "latest_actual_preparation_root_cases_unchanged": 11,
         "installed_GitHub_commit": "afeda26c704c981165fc7496b831d48bde788a83",
         "all_installed_approval_scopes_validated": 839
+      },
+      "remaining_residue_verification": {
+        "review": "docs/development/uvek-steel-remaining-residue-review.md",
+        "native_LCI_receipt": "docs/development/uvek-steel-remaining-residue-composite-lci-verification.json",
+        "zero_source_LCI_receipt": "docs/development/uvek-steel-clinker-zero-source-verification.json",
+        "qualified_correspondences": 32,
+        "new_recipes": 32,
+        "markets": 9,
+        "landfills": 10,
+        "recovery_handovers": 7,
+        "allocated_stocks": 6,
+        "audited_zero_clinker_source_omissions": 3,
+        "standalone_clinker_waste_substitutions_explicitly_unresolved": 3,
+        "Brightpath_dedicated_tests_passed": 18,
+        "Premise_dedicated_tests_passed": 2,
+        "signed_native_composite_LCIs": 18,
+        "signed_source_zero_LCIs": 6,
+        "latest_actual_preparation_roots": 2,
+        "Brightpath_related_regressions_passed": 46,
+        "Premise_related_regressions_passed": 4,
+        "installed_GitHub_commit": "c20f2856b52b76a2b4f18a782d1e988b118b78bc",
+        "all_installed_approval_scopes_validated": 871
       }
     },
     {
