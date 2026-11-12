@@ -553,7 +553,8 @@
         "docs/development/uvek-additional-burner-verification.json",
         "docs/development/uvek-allocated-heat-carbon-verification.json"
       ],
-      "latest_coverage_note": "Verified fuel-carbon milestones include 64 native low-pressure carriers, delivered-gas combustion services, liquid-fuel and transport balances, 13 regional CNG stations, two mass-preserving generic gas-vehicle handovers and 86 generic gas vehicles with dedicated biomethane routes unchanged. YAML-only extensions verify 25 additional burner records and 51 allocated CHP, fuel-cell or gas-driven heat-pump operating records, preserving recorded CO2 totals and other exchanges with finite LCIs. The latest native-route audit leaves 247 unreviewed process candidates and 64 delivery carriers. These are review candidates, not confirmed errors. Network/process loss origins, mixed industrial carbon, remaining fuel roles and other registered sectors remain unfinished; public fuels support stays disabled. Static first-pass findings above are historical and superseded only where linked runtime evidence explicitly proves a fix."
+      "latest_coverage_note": "Verified fuel-carbon milestones include 64 native low-pressure carriers, delivered-gas combustion services, liquid-fuel and transport balances, 13 regional CNG stations, two mass-preserving generic gas-vehicle handovers and 86 generic gas vehicles with dedicated biomethane routes unchanged. YAML-only extensions verify 25 additional burner records and 51 allocated CHP, fuel-cell or gas-driven heat-pump operating records, preserving recorded CO2 totals and other exchanges with finite LCIs. The latest native-route audit leaves 247 unreviewed process candidates and 64 delivery carriers. These are review candidates, not confirmed errors. Network/process loss origins, mixed industrial carbon, remaining fuel roles and other registered sectors remain unfinished; public fuels support stays disabled. Static first-pass findings above are historical and superseded only where linked runtime evidence explicitly proves a fix.",
+      "two_wheeler_operating_exhaust_origin_verification": "docs/development/uvek-two-wheeler-carbon-verification.json"
     },
     {
       "sector": "renewable",
@@ -1615,7 +1616,8 @@
           "transport_two_wheelers.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
-      }
+      },
+      "two_wheeler_operating_exhaust_origin_verification": "docs/development/uvek-two-wheeler-carbon-verification.json"
     },
     {
       "sector": "trucks",

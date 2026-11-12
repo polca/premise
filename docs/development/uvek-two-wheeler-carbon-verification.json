@@ -1,0 +1,36 @@
+{
+  "database": "BAFU:2026-real-REMIND-SSP2-NPi-2050-two-wheeler-five-sectors-20261112-012517",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-194820",
+  "actual_encrypted_IAM": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "export_activities": 14817,
+  "reviewed_operating_records": 12,
+  "signed_finite_LCIs": 24,
+  "positive_CO2_totals_preserved": true,
+  "final_linked_fuel_origin_verified": true,
+  "all_other_exchange_fields_preserved": true,
+  "excluded_two_stroke_and_fleet_records_unchanged": 4,
+  "exhaustive_graph_issues": 0,
+  "ruleset_version": 9,
+  "implementation": "Twelve YAML-only exhaust selectors; companion gas-station contributor-provenance runtime fix required for exhaustive five-sector export (0949eaaa).",
+  "public_fuels_gate_bypassed_for_diagnostic": true,
+  "local_unrelated_GAINS_edits_present": true,
+  "all_registered_sectors_qualified": false,
+  "comparison_defaults": {
+    "negative": false,
+    "properties": {},
+    "classifications": {}
+  },
+  "authorization": "Standing autonomous approval for similar documented screening decisions",
+  "focused_tests_passed": 228,
+  "private_receipt_sha256": "edd335a99ed3a7c21c417086a727059c052f1c13e61658953372a1ce12268576",
+  "limitations": [
+    "Recorded positive exhaust total retained; final purchased fuel determines only fossil/non-fossil origin.",
+    "Fuel-dominant convention can reclassify minor lubricant carbon; contribution and score effect unquantified.",
+    "Two-stroke petrol/oil blend and fleet aggregator remain excluded; this does not operationalize the two_wheelers update.",
+    "Other process and non-CO2 origins, real other-IAM coverage and public fuel support remain unfinished."
+  ]
+}

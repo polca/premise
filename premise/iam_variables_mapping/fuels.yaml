@@ -1105,6 +1105,40 @@ gasoline:
       exact: true
       fltr:
         name:
+        - Transport, Motorbike, gasoline, 11-35kW, EURO-3, 2006
+        - Transport, Motorbike, gasoline, 11-35kW, EURO-4, 2016
+        - Transport, Motorbike, gasoline, 11-35kW, EURO-5, 2020
+        - Transport, Motorbike, gasoline, 4-11kW, EURO-3, 2006
+        - Transport, Motorbike, gasoline, 4-11kW, EURO-4, 2016
+        - Transport, Motorbike, gasoline, 4-11kW, EURO-5, 2020
+        - Transport, Motorbike, gasoline, >35kW, EURO-3, 2006
+        - Transport, Motorbike, gasoline, >35kW, EURO-4, 2016
+        - Transport, Motorbike, gasoline, >35kW, EURO-5, 2020
+        - Transport, Scooter, gasoline, 4-11kW, EURO-3, 2006
+        - Transport, Scooter, gasoline, 4-11kW, EURO-4, 2016
+        - Transport, Scooter, gasoline, 4-11kW, EURO-5, 2020
+        reference product:
+        - Transport, Motorbike, gasoline, 11-35kW, EURO-3, 2006
+        - Transport, Motorbike, gasoline, 11-35kW, EURO-4, 2016
+        - Transport, Motorbike, gasoline, 11-35kW, EURO-5, 2020
+        - Transport, Motorbike, gasoline, 4-11kW, EURO-3, 2006
+        - Transport, Motorbike, gasoline, 4-11kW, EURO-4, 2016
+        - Transport, Motorbike, gasoline, 4-11kW, EURO-5, 2020
+        - Transport, Motorbike, gasoline, >35kW, EURO-3, 2006
+        - Transport, Motorbike, gasoline, >35kW, EURO-4, 2016
+        - Transport, Motorbike, gasoline, >35kW, EURO-5, 2020
+        - Transport, Scooter, gasoline, 4-11kW, EURO-3, 2006
+        - Transport, Scooter, gasoline, 4-11kW, EURO-4, 2016
+        - Transport, Scooter, gasoline, 4-11kW, EURO-5, 2020
+        unit: kilometer
+    limitations:
+    - Exact reviewed conventional gasoline scooter and motorcycle operating services only. Preserve recorded positive CO2 total, fuel quantities, uncertainty, vehicle performance, infrastructure, signed credits and other emissions; refresh only carbon origin from final linked gasoline properties.
+    - Fuel-dominant whole-exhaust screening convention can reclassify minor lubricant carbon; its contribution and score effect are unquantified. No guessed correction, efficiency change or avoided-emission credit is added.
+    - Two-stroke petrol-oil blends, fleet-average aggregators and vehicle manufacturing are excluded; source technology, geography and vintage limitations remain.
+  - selector:
+      exact: true
+      fltr:
+        name:
         - Petrol, burned in building machine, with particle filter
         reference product:
         - Petrol, burned in building machine, with particle filter
