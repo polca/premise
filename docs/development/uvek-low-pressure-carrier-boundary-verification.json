@@ -1,0 +1,21 @@
+{
+  "database": "BAFU:2026-real-REMIND-SSP2-NPi-2050-two-wheeler-five-sectors-20261112-012517",
+  "comparison_database": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-194820",
+  "native_low_pressure_carriers": 64,
+  "signed_finite_LCIs": 128,
+  "outgoing_one_MJ_carbon_properties_verified_from_incoming_delivered_gas": true,
+  "complete_exchange_multisets_preserved": true,
+  "native_loss_and_operating_emissions_unchanged": true,
+  "no_loss_multiplier_or_zeroing_added": true,
+  "comparison_defaults": {
+    "negative": false,
+    "properties": {},
+    "classifications": {}
+  },
+  "qualification": "Existing explicit boundary verified, not an origin update for methane or other non-CO2 loss emissions. Public fuels support and full integration remain unfinished.",
+  "private_receipt_sha256": "cb17144f1088f27e7f6f41f3a076335755088dfec87b1fc79addbbd90807de5b",
+  "public_fuels_gate_bypassed_for_diagnostic": true,
+  "local_unrelated_GAINS_edits_present": true,
+  "source_database_modified": false,
+  "implementation_changes": "None: independent inspection of existing mapped carrier boundary."
+}

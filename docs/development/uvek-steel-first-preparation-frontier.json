@@ -1,0 +1,127 @@
+{
+  "status": "first_failing_source_profile_preparation_frontier_not_complete_steel_audit",
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "target": "UVEK 2026 cutoff with ecoinvent 3.10 biosphere via reviewed UVEK 2025 edge",
+  "public_steel_gate_bypassed_for_diagnostic": true,
+  "migration_validation_retained": true,
+  "source_or_runtime_code_modified": false,
+  "blockers": [
+    {
+      "message": "Compatibility rule bp-495f5d0604658b3c requires independent review for ecoinvent 3.9 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "7fee598d9639c1a4908c52090edf975cb0dbdbf2fa8fea22b07feb6f369bb743",
+      "mapping_method": "curated_legacy",
+      "matching_paths": [
+        "datasets[0].exchanges[11]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-495f5d0604658b3c",
+      "source": {
+        "location": "RER",
+        "name": "market for ammonia, anhydrous, liquid",
+        "reference product": "ammonia, anhydrous, liquid",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Ammonia, liquid, at regional storehouse",
+        "reference product": "Ammonia, liquid, at regional storehouse",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-e5c0f91e3ad85dad requires independent review for ecoinvent 3.9 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "9866975b9950b9b7f820aedc9133320053b9456aacccd9722fffa0d5173bab21",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[4]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-e5c0f91e3ad85dad",
+      "source": {
+        "location": "GLO",
+        "name": "market group for natural gas, high pressure",
+        "reference product": "natural gas, high pressure",
+        "unit": "cubic meter"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Natural gas, vented",
+        "reference product": "Natural gas, vented",
+        "unit": "cubic meter"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-6e92a90be37a3d27 requires independent review for ecoinvent 3.9 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "11a920aaa04373c7015d8ac964173d2d9c2fddad10fd76d77e17cbdb84b60339",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[1].exchanges[6]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-6e92a90be37a3d27",
+      "source": {
+        "location": "RoW",
+        "name": "market for waste zeolite",
+        "reference product": "waste zeolite",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, zeolite, 5% water, to construction waste landfill",
+        "reference product": "Disposal, zeolite, 5% water, to construction waste landfill",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-2f63c1e3aad0336e requires independent review for ecoinvent 3.9 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "5366cd90ed5696abf092a7e875fb726da7b97eef866358dbff31576fe5784913",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[4].exchanges[1]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-2f63c1e3aad0336e",
+      "source": {
+        "location": "GLO",
+        "name": "market for iron pellet",
+        "reference product": "iron pellet",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Pellets, iron, at plant",
+        "reference product": "Pellets, iron, at plant",
+        "unit": "kilogram"
+      }
+    }
+  ],
+  "primary_reference_inspection": {
+    "source_ammonia_kg": 1,
+    "source_gas_m3": 1,
+    "source_zeolite_treatment_kg": -1,
+    "native_zeolite_treatment_kg": 1,
+    "source_pellet_kg": 1,
+    "native_pellet_kg": 1
+  },
+  "decisions": [
+    "Do not approve delivered natural gas -> vented natural gas: supply and release are different physical functions. Establish a reviewed delivered-gas supply and reference-energy basis.",
+    "Waste-zeolite source treatment reference is negative and native reference positive; preserve the physical treatment demand through an explicitly reviewed sign conversion and treatment/freight boundary.",
+    "Ammonia and iron-pellet source products and native references have positive kg references, but complete production/allocation/delivery boundaries still need exact 3.9 review.",
+    "Do not infer approval for later source profiles or full steel transformation from this first failing batch."
+  ],
+  "private_migration_audit_sha256": "a5e6fc32dd937b4840754748d64334ca395a4510345829b89230c18af0b9b76d",
+  "private_primary_inspection_sha256": "f6af9e9aae49dc15607075d09dd5511ffdc190b668deb57565f64f32bf004e87"
+}

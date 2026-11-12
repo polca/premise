@@ -1,0 +1,600 @@
+{
+  "status": "actual_TIAM_four_sector_preparation_blocked_before_transformations",
+  "scenario": {
+    "model": "tiam-ucl",
+    "pathway": "SSP2-RCP19",
+    "year": 2050
+  },
+  "requested_updates": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement"
+  ],
+  "public_support_guard_bypassed": false,
+  "IAM_arrays_replaced": false,
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.12",
+    "system_model": "cutoff"
+  },
+  "unapproved_correspondences_in_first_failing_profile": 23,
+  "blockers": [
+    {
+      "message": "Compatibility rule bp-effadcf67d6cad91 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "735117deaace651b5fc8f73d15824356915f074cadf8ff9e2b15d5c01c2f2d22",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[1]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-effadcf67d6cad91",
+      "source": {
+        "location": "GLO",
+        "name": "market for barium carbonate",
+        "reference product": "barium carbonate",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Lithium carbonate, at plant",
+        "reference product": "Lithium carbonate, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-011b0c14ef8a369d requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "b4e6c5d138466a9172b871019eb0fda33c26826382bc7b9fe95a21826d4bbad7",
+      "mapping_method": "curated_legacy",
+      "matching_paths": [
+        "datasets[0].exchanges[2]",
+        "datasets[23].exchanges[2]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-011b0c14ef8a369d",
+      "source": {
+        "location": "RER",
+        "name": "market for titanium dioxide",
+        "reference product": "titanium dioxide",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Titanium dioxide, production mix, at plant",
+        "reference product": "Titanium dioxide, production mix, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-548c151eafe8725b requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "31455c389319e8de5c2ae22a11d22442a6a0d6bb4541766b56b095898d8b6f87",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[16].exchanges[4]",
+        "datasets[20].exchanges[8]",
+        "datasets[21].exchanges[8]",
+        "datasets[22].exchanges[7]",
+        "datasets[24].exchanges[7]",
+        "datasets[25].exchanges[7]",
+        "datasets[26].exchanges[6]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-548c151eafe8725b",
+      "source": {
+        "location": "GLO",
+        "name": "market for phosphorus, white, liquid",
+        "reference product": "phosphorus, white, liquid",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Phosphorus, white, liquid, at plant",
+        "reference product": "Phosphorus, white, liquid, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-7b57882e271d26d2 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "02f6cd6f48167e9c91ebe3378dec186d814a53141734ef89d3cc7492c765d20e",
+      "mapping_method": "curated_legacy",
+      "matching_paths": [
+        "datasets[17].exchanges[6]",
+        "datasets[18].exchanges[6]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-7b57882e271d26d2",
+      "source": {
+        "location": "CH",
+        "name": "market for waste plastic, mixture",
+        "reference product": "waste plastic, mixture",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, plastics, mixture, 15.3% water, to sanitary landfill",
+        "reference product": "Disposal, plastics, mixture, 15.3% water, to sanitary landfill",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-cd0e2e0252556e0e requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "39ac22fcb3432aaf654d57ae6ee0f72a6fee0087dde02ceda9b249163ad4979c",
+      "mapping_method": "reviewed_cutoff_stock_recipe",
+      "matching_paths": [
+        "datasets[17].exchanges[7]",
+        "datasets[18].exchanges[7]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "cutoff-stock-f7f6921e17b3a8acac22"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-b1b0530d12f8b303 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "783e0cce6764398a7ede560addf0971326abab3eafb682fe023c12f4db117b93",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[18].exchanges[11]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-b1b0530d12f8b303",
+      "source": {
+        "location": "GLO",
+        "name": "market for inductor, miniature radio frequency chip",
+        "reference product": "inductor, miniature radio frequency chip",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Inductor, miniature RF chip type, MRFI, at plant",
+        "reference product": "Inductor, miniature RF chip type, MRFI, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-9c31099652a27a68 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "581e2d321b76e1c103ddb2a033a7d06d5ae602f35c4dd46f3eeb02facf13374e",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[18].exchanges[12]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-9c31099652a27a68",
+      "source": {
+        "location": "GLO",
+        "name": "market for diode, glass-, for surface-mounting",
+        "reference product": "diode, glass-, for surface-mounting",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Diode, glass-, SMD type, surface mounting, at plant",
+        "reference product": "Diode, glass-, SMD type, surface mounting, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-60b0673da5bb6e7b requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "17c1829ca3984b2166b73b726e21a22c8d254d811903542e923fbfd3460a7dfc",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[1].exchanges[11]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-60b0673da5bb6e7b",
+      "source": {
+        "location": "GLO",
+        "name": "market for printed wiring board, for through-hole mounting, Pb free surface",
+        "reference product": "printed wiring board, for through-hole mounting, Pb free surface",
+        "unit": "square meter"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Printed wiring board, through-hole, lead-free surface, at plant",
+        "reference product": "Printed wiring board, through-hole, lead-free surface, at plant",
+        "unit": "square meter"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-711b4feda57acd26 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "5ca306f71b8300f8f81cc7831a9b42d85c103c19ac12d72ade4b238630eb52ab",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[1].exchanges[2]",
+        "datasets[17].exchanges[15]",
+        "datasets[18].exchanges[23]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-711b4feda57acd26",
+      "source": {
+        "location": "GLO",
+        "name": "market for ferrite",
+        "reference product": "ferrite",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Ferrite, at plant",
+        "reference product": "Ferrite, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-612859ed6ea4236c requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "a0555813206351a44f287e17f0f2ba8c849c989da60d75436efb5540662698df",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[1].exchanges[7]",
+        "datasets[17].exchanges[11]",
+        "datasets[19].exchanges[1]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-612859ed6ea4236c",
+      "source": {
+        "location": "GLO",
+        "name": "market for resistor, surface-mounted",
+        "reference product": "resistor, surface-mounted",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Resistor, SMD type, surface mounting, at plant",
+        "reference product": "Resistor, SMD type, surface mounting, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-d48eb25095b39fa4 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "3ee079888606e8d517ce45f8c3d9fd9fa14a5a8dca1f90d25c986448366a360f",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[20].exchanges[12]",
+        "datasets[21].exchanges[12]",
+        "datasets[24].exchanges[12]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-d48eb25095b39fa4",
+      "source": {
+        "location": "RER",
+        "name": "market for chlorine, gaseous",
+        "reference product": "chlorine, gaseous",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Chlorine, gaseous, membrane cell, at plant",
+        "reference product": "Chlorine, gaseous, membrane cell, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-f91c426026b3b7a5 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "d2b699ecccb391a0dc77e75a5c462764b911f3a16c857017bebdbd0e2624f148",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[23].exchanges[6]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-f91c426026b3b7a5",
+      "source": {
+        "location": "GLO",
+        "name": "market for chromium",
+        "reference product": "chromium",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Chromium, at regional storage",
+        "reference product": "Chromium, at regional storage",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-e63089df7d6cc779 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "c6088e3567a8b6845d3ef39ce632683cb2c18fd9b05c03b2729df18d082761cf",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[2].exchanges[1]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-e63089df7d6cc779",
+      "source": {
+        "location": "CN",
+        "name": "battery cell production, Li-ion, LFP",
+        "reference product": "battery cell, Li-ion, LFP",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Battery cell, LFP",
+        "reference product": "Battery cell, LFP",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-11eb77f35655db2a requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "9462ca41923ed7f4e94fdecc97568323d2c616c7da9f47c51b5d904a7169eece",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[4].exchanges[4]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-11eb77f35655db2a",
+      "source": {
+        "location": "GLO",
+        "name": "market for used Li-ion battery",
+        "reference product": "used Li-ion battery",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Disposal, Li-ions batteries, mixed technology",
+        "reference product": "Disposal, Li-ions batteries, mixed technology",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-ff83b71c804cabb4 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "eb0841ed031311413b92bfdc5dfd8b1cfcce2ec4d7fe7e9eb9b462761caed27f",
+      "mapping_method": "curated_legacy",
+      "matching_paths": [
+        "datasets[5].exchanges[10]",
+        "datasets[16].exchanges[5]",
+        "datasets[17].exchanges[5]",
+        "datasets[18].exchanges[5]",
+        "datasets[20].exchanges[3]",
+        "datasets[21].exchanges[3]",
+        "datasets[22].exchanges[2]",
+        "datasets[23].exchanges[1]",
+        "datasets[24].exchanges[2]",
+        "datasets[25].exchanges[2]",
+        "datasets[26].exchanges[9]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-ff83b71c804cabb4",
+      "source": {
+        "location": "GLO",
+        "name": "market for gold",
+        "reference product": "gold",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Gold, at regional storage",
+        "reference product": "Gold, at regional storage",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-e9cdd018f5d75d22 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "0e7876b368e41b370f4b5f09bab48b04dca2f2057c5d89883a2100a98de3a4d0",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[5].exchanges[11]",
+        "datasets[20].exchanges[4]",
+        "datasets[21].exchanges[4]",
+        "datasets[22].exchanges[3]",
+        "datasets[23].exchanges[9]",
+        "datasets[24].exchanges[3]",
+        "datasets[25].exchanges[3]",
+        "datasets[26].exchanges[2]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-e9cdd018f5d75d22",
+      "source": {
+        "location": "GLO",
+        "name": "market for palladium",
+        "reference product": "palladium",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Palladium, at regional storage",
+        "reference product": "Palladium, at regional storage",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-3e953694d9531d69 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "b1d0ab8a0a7ea40a83017998a9959e342c77103e01d5e17a30ba830b8373c8d7",
+      "mapping_method": "curated_legacy",
+      "matching_paths": [
+        "datasets[5].exchanges[12]",
+        "datasets[22].exchanges[11]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-3e953694d9531d69",
+      "source": {
+        "location": "RER",
+        "name": "market for phenolic resin",
+        "reference product": "phenolic resin",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Phenolic resin, at plant",
+        "reference product": "Phenolic resin, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-dbd744f486420f56 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "17ed91a4c28dd9a8cc9ff68af5ab7ab2ce879026ba348b81c5b7883f0ac6e105",
+      "mapping_method": "reviewed_fuels_39_final_market",
+      "matching_paths": [
+        "datasets[5].exchanges[13]",
+        "datasets[20].exchanges[10]",
+        "datasets[21].exchanges[10]",
+        "datasets[22].exchanges[12]",
+        "datasets[23].exchanges[10]",
+        "datasets[24].exchanges[4]",
+        "datasets[24].exchanges[10]",
+        "datasets[25].exchanges[11]",
+        "datasets[26].exchanges[10]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-dbd744f486420f56",
+      "source": {
+        "location": "GLO",
+        "name": "market for silica sand",
+        "reference product": "silica sand",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "fuels-39-final-market-5135e054986e0de8eda4"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-12e7a5399b37ae6a requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "a8bdf4c6f4bc575dc1377921b116b0db061fbeb65b61c42db119ae27ccd9a726",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[5].exchanges[4]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-12e7a5399b37ae6a",
+      "source": {
+        "location": "GLO",
+        "name": "market for sulfur",
+        "reference product": "sulfur",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Cobalt sulfate",
+        "reference product": "Cobalt sulfate",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-9cd16b2738739a5e requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "6e9e69fe44c61e77c821f2ca9ea40113d4b3f48a1b8b20985dce02e211ad0045",
+      "mapping_method": "product_checked",
+      "matching_paths": [
+        "datasets[5].exchanges[5]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-9cd16b2738739a5e",
+      "source": {
+        "location": "GLO",
+        "name": "market for manganese",
+        "reference product": "manganese",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Manganese, at regional storage",
+        "reference product": "Manganese, at regional storage",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-9c5fc38656c5bb31 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "fce46f3c1c533149d13fb4a356edbe4e73f0f55da38697ac20608fa494207ac5",
+      "mapping_method": "pairwise_review",
+      "matching_paths": [
+        "datasets[6].exchanges[1]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-9c5fc38656c5bb31",
+      "source": {
+        "location": "RER",
+        "name": "market for calcium carbonate, precipitated",
+        "reference product": "calcium carbonate, precipitated",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Chemicals inorganic, at plant",
+        "reference product": "Chemicals inorganic, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-746b4e34afee8858 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "bb1d9211e8413a34e1ae067177e0a8a115b79a458d208a9ee6539f24e3af5b45",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[6].exchanges[2]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-746b4e34afee8858",
+      "source": {
+        "location": "GLO",
+        "name": "market for zirconium oxide",
+        "reference product": "zirconium oxide",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "AU",
+        "name": "Zirconium oxide, at plant",
+        "reference product": "Zirconium oxide, at plant",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "message": "Compatibility rule bp-ef673f7bc19f4581 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.",
+      "fingerprint": "e19ffa5abbb440b1925c1b9c5663d469eec8fb55483ddb905c0809315c7a46f3",
+      "mapping_method": "reviewed_pilot_hazardous_paint",
+      "matching_paths": [
+        "datasets[8].exchanges[5]",
+        "datasets[9].exchanges[5]",
+        "datasets[10].exchanges[5]",
+        "datasets[11].exchanges[5]",
+        "datasets[12].exchanges[5]",
+        "datasets[13].exchanges[5]",
+        "datasets[14].exchanges[5]",
+        "datasets[15].exchanges[6]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-ef673f7bc19f4581",
+      "source": {
+        "location": "RoW",
+        "name": "market for hazardous waste, for incineration",
+        "reference product": "hazardous waste, for incineration",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "pilot-hazardous-paint-7781a4a3e2537f64b1d3"
+      }
+    }
+  ],
+  "decisions": [
+    "Keep all migration refusals; no proxy or omission approved by this diagnostic.",
+    "Barium carbonate -> lithium carbonate and sulfur -> cobalt sulfate are different chemicals. Establish correct counterparts or justified reconstructions rather than approve these suggestions.",
+    "Previously reviewed recipes do not automatically qualify a new source release; inspect source reference basis, shares, treatment signs and recipe dependencies.",
+    "Separate heat-only TIAM execution from the combined-sector prerequisite graph to identify whether the new cohort blocks heat itself."
+  ],
+  "private_migration_audit_sha256": "6d9fdd6edb6384bda2c88e100f7f711cc6477fb7cc92bf6fbca9af8722bb2a1e",
+  "full_TIAM_scenario_verified": false
+}
