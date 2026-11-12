@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "diagnostic_export_verified_native_consumer_mix_and_combined_regression_incomplete",
+      "status": "diagnostic_processing_market_export_verified_combined_and_advanced_year_regressions_incomplete",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -892,6 +892,20 @@
         "signed_finite_complete_inventory_LCIs": 6,
         "positive_IAM_roles_at_2050": 2,
         "remaining": "Native rolled-steel processing mixture technology shares, positive-advanced-technology-year checks, and combined-sector regression."
+      },
+      "processing_market_stage": {
+        "review": "docs/development/uvek-steel-processing-market-review.md",
+        "verification": "docs/development/uvek-steel-processing-market-verification.json",
+        "real_2050_records": 12516,
+        "processing_markets": 13,
+        "rolling_quantity_and_uncertainty_preserved_in_IAM_regions": 12,
+        "nonzero_consumers_of_original_RER_handover": 0,
+        "signed_finite_LCIs": 2,
+        "tests_passed": 211,
+        "remaining": [
+          "Positive advanced-technology year through the standard shared workflow.",
+          "Combined-sector regression before public steel support."
+        ]
       }
     },
     {

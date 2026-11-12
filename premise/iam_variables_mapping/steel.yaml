@@ -705,3 +705,26 @@ pig iron:
     native_limitations:
       - Regionalise the complete existing native GLO/RER blast-furnace pig-iron producers through the shared auxiliary-production workflow; retain native process quantities and allocation.
       - Geographic extrapolation and historical technology remain screening limitations. This alias does not identify direct-reduction iron, scrap, cast iron or finished steel as blast-furnace pig iron.
+
+# This delivered product includes processing and must not become a bare market.
+steel processing market - low-alloyed:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, low-alloyed, at plant
+      reference product: Steel, low-alloyed, at plant
+      location: RER
+      unit: kilogram
+    native_reference_amount: 1.0
+    processing_market: true
+    replace_suppliers:
+    - name: Steel, converter, low-alloyed, at plant
+      reference product: Steel, converter, low-alloyed, at plant
+      unit: kilogram
+    - name: Steel, electric, un- and low-alloyed, at plant
+      reference product: Steel, electric, un- and low-alloyed, at plant
+      unit: kilogram
+    native_limitations:
+    - Replace only the historical converter/EAF basket with the IAM technology mix, at the original total steel-input quantity per one kg product. Retain hot rolling and all other ancillary exchanges, signs and uncertainty.
+    - The existing RER processing inventory represents every IAM region as an explicit geographic and historical-technology proxy. No extra rolling, transport, yield-loss or recovery-credit term is added.
+    - Historical uncertainty on converter/EAF shares is replaced by deterministic IAM shares as in ordinary Premise markets; retained processing-exchange uncertainty is preserved. Source/native impact equivalence is not established.

@@ -2,6 +2,10 @@
 Integrates projections regarding steel production.
 """
 
+from copy import deepcopy
+import math
+import warnings
+
 from typing import List
 from collections import defaultdict
 
@@ -72,6 +76,7 @@ def _update_steel(
         natural_gas_inputs=steel.natural_gas_inputs,
         pig_iron_inputs=steel.pig_iron_inputs,
         additional_fuel_lhvs=steel.additional_fuel_lhvs,
+        processing_market_bases=steel.processing_market_bases,
     )
     record_validation_phase(scenario, validate.run_steel_checks())
 
@@ -167,6 +172,84 @@ class Steel(BaseTransformation):
             for provider in self.pig_iron_map["pig iron"]
         )
 
+        self.processing_market_definitions = {
+            role: definition
+            for role, definition in get_mapping(
+                STEEL_TECHS, f"{self.family}_aliases"
+            ).items()
+            if definition.get("processing_market")
+        }
+        self.processing_market_bases = {}
+
+    def _processing_market_options(self, dataset, definition, mapping):
+        """Retain processing while the shared market builder replaces suppliers."""
+
+        def identity(record):
+            return (
+                record["name"],
+                record.get("product") or record.get("reference product"),
+                record["unit"],
+            )
+
+        expected = {identity(s) for s in definition["replace_suppliers"]}
+        inputs = [
+            e
+            for e in dataset["exchanges"]
+            if e["type"] == "technosphere" and identity(e) in expected
+        ]
+        production = list(ws.production(dataset))
+        if (
+            len(production) != 1
+            or production[0]["amount"] != 1
+            or identity(production[0]) != identity(dataset)
+            or {identity(e) for e in inputs} != expected
+            or any(not math.isfinite(e["amount"]) or e["amount"] < 0 for e in inputs)
+        ):
+            raise ValueError(
+                "Processing market does not match its reviewed reference or supplier basket."
+            )
+        basis = sum(e["amount"] for e in inputs)
+        if basis <= 0:
+            raise ValueError("Processing market needs a positive material-input basis.")
+        ancillary = [
+            deepcopy(e)
+            for e in dataset["exchanges"]
+            if e["type"] != "production"
+            and not (e["type"] == "technosphere" and identity(e) in expected)
+        ]
+        source = (
+            dataset["name"],
+            dataset["reference product"],
+            dataset["location"],
+            dataset["unit"],
+        )
+        self.processing_market_bases[identity(dataset)] = basis
+        warnings.warn(
+            "Updating processing market "
+            + repr(source)
+            + ": "
+            + " ".join(definition["native_limitations"]),
+            stacklevel=2,
+        )
+
+        def retain_processing(market):
+            for exchange in ancillary:
+                copied = deepcopy(exchange)
+                copied.pop("input", None)
+                market["exchanges"].append(copied)
+            market["steel market processing"] = {
+                "source": source,
+                "steel input basis": basis,
+                "limitations": definition["native_limitations"],
+            }
+
+        return {
+            "conversion_factor": {role: basis for role in mapping},
+            "normalize_before_conversion": True,
+            "market_ancillaries": {},
+            "additional_exchanges_fn": retain_processing,
+        }
+
     def create_steel_markets(self):
         """
         Create steel markets for different regions
@@ -174,16 +257,30 @@ class Steel(BaseTransformation):
         :return: Does not return anything. Adds new markets to database.
         """
 
-        for ds in ws.get_many(
-            self.database,
-            ws.contains("name", "market for steel"),
-            ws.equals("unit", "kilogram"),
-            ws.contains("reference product", "steel"),
-            ws.doesnt_contain_any(
-                "name", ["chromium", "rolled", "removed", "residue", "grain"]
-            ),
-        ):
+        markets = list(
+            ws.get_many(
+                self.database,
+                ws.contains("name", "market for steel"),
+                ws.equals("unit", "kilogram"),
+                ws.contains("reference product", "steel"),
+                ws.doesnt_contain_any(
+                    "name", ["chromium", "rolled", "removed", "residue", "grain"]
+                ),
+            )
+        )
+        processing = {}
+        for role, definition in getattr(
+            self, "processing_market_definitions", {}
+        ).items():
+            selected = self.inv.generate_map({role: definition})[role]
+            if len(selected) != 1:
+                raise ValueError(
+                    f"Missing or ambiguous reviewed processing market: {role!r}."
+                )
+            markets.extend(selected)
+            processing[id(selected[0])] = definition
 
+        for ds in markets:
             if ds.get("regionalized", False) is True:
                 continue
 
@@ -205,7 +302,13 @@ class Steel(BaseTransformation):
                     for k, v in self.steel_map.items()
                 }
 
+            options = (
+                self._processing_market_options(ds, processing[id(ds)], mapping)
+                if id(ds) in processing
+                else {}
+            )
             self.process_and_add_markets(
+                **options,
                 name=ds["name"],
                 reference_product=ds["reference product"],
                 unit=ds["unit"],

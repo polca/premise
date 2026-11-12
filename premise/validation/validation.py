@@ -3776,6 +3776,7 @@ class SteelValidation(BaseDatasetValidator):
         natural_gas_inputs=(),
         pig_iron_inputs=(),
         additional_fuel_lhvs=None,
+        processing_market_bases=None,
     ):
         super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
@@ -3784,6 +3785,7 @@ class SteelValidation(BaseDatasetValidator):
         self.natural_gas_inputs = frozenset(natural_gas_inputs)
         self.pig_iron_inputs = frozenset(pig_iron_inputs)
         self.additional_fuel_lhvs = additional_fuel_lhvs or {}
+        self.processing_market_bases = processing_market_bases or {}
 
     def _is_pig_iron_supplier(self, record):
         return (
@@ -3803,13 +3805,35 @@ class SteelValidation(BaseDatasetValidator):
             )
         return record["name"].startswith("steel production, electric")
 
+    def _processing_market_basis(self, record):
+        return getattr(self, "processing_market_bases", {}).get(
+            (
+                record["name"],
+                record.get("product") or record.get("reference product"),
+                record.get("unit"),
+            )
+        )
+
+    def _is_steel_producer(self, record):
+        return any(
+            record["name"] == p["name"]
+            and (record.get("product") or record.get("reference product"))
+            == p["reference product"]
+            and record["unit"] == p["unit"]
+            for providers in self.technology_map.values()
+            for p in providers
+        )
+
     def check_steel_markets(self):
         # check that the steel markets inputs
         # equal to 1
 
         for ds in self.database:
             if (
-                ds["name"].startswith("market for steel, ")
+                (
+                    ds["name"].startswith("market for steel, ")
+                    or self._processing_market_basis(ds) is not None
+                )
                 and ds["location"] in self.regions
                 and ds["location"] != "World"
             ):
@@ -3817,9 +3841,15 @@ class SteelValidation(BaseDatasetValidator):
                     [
                         x["amount"]
                         for x in ds["exchanges"]
-                        if x["type"] == "technosphere" and x["unit"] == "kilogram"
+                        if x["type"] == "technosphere"
+                        and x["unit"] == "kilogram"
+                        and (
+                            self._processing_market_basis(ds) is None
+                            or self._is_steel_producer(x)
+                        )
                     ]
                 )
+                total /= self._processing_market_basis(ds) or 1
                 if total < 0.99 or total > 1.1:
                     message = f"Steel market inputs sum to {total}."
                     self.log_issue(
@@ -3831,7 +3861,10 @@ class SteelValidation(BaseDatasetValidator):
 
             # check that the inputs of EAF steel matches the IAM projections
             if (
-                ds["name"].startswith("market for steel")
+                (
+                    ds["name"].startswith("market for steel")
+                    or self._processing_market_basis(ds) is not None
+                )
                 and any(x in ds["name"] for x in ["low-alloyed", "unalloyed"])
                 and ds["location"] in self.regions
             ):
@@ -3880,6 +3913,7 @@ class SteelValidation(BaseDatasetValidator):
                     ]
                 )
 
+                total /= self._processing_market_basis(ds) or 1
                 if eaf_steel > 0:
                     if self.system_model != "consequential":
                         # check that the total is roughly equal to the IAM projection
@@ -3913,7 +3947,10 @@ class SteelValidation(BaseDatasetValidator):
             ds["name"]
             for ds in self.database
             if ds.get("regionalized", False)
-            and any(ds["name"].startswith(name) for name in market_names)
+            and (
+                any(ds["name"].startswith(name) for name in market_names)
+                or self._processing_market_basis(ds) is not None
+            )
         }
 
         for ds in self.database:
@@ -3944,7 +3981,10 @@ class SteelValidation(BaseDatasetValidator):
             ds["name"]
             for ds in self.database
             if ds.get("regionalized", False)
-            and any(ds["name"].startswith(name) for name in fuel_market_names)
+            and (
+                any(ds["name"].startswith(name) for name in fuel_market_names)
+                or self._processing_market_basis(ds) is not None
+            )
         }
 
         for ds in self.database:

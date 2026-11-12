@@ -1,0 +1,51 @@
+{
+  "database": "BAFU:2026-REMIND-SSP2-NPi-2050-steel-diagnostic-20261112-221801",
+  "activities": 12516,
+  "processing_markets": 13,
+  "market_regions": [
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "SSA",
+    "USA",
+    "World"
+  ],
+  "all_regional_steel_baskets_retain_native_input_basis": true,
+  "hot_rolling_quantity_and_uncertainty_retained_in_all_12_IAM_regions": true,
+  "world_processing_counted_via_regional_markets_only": true,
+  "nonzero_consumers_of_original_RER_handover": 0,
+  "signed_finite_LCIs": [
+    {
+      "name": "Steel, low-alloyed, at plant",
+      "location": "EUR",
+      "demand": 1,
+      "finite": true
+    },
+    {
+      "name": "Steel, low-alloyed, at plant",
+      "location": "EUR",
+      "demand": -1,
+      "finite": true
+    }
+  ],
+  "sign_reversal": true,
+  "source_database_metadata_unchanged_during_audit": true,
+  "limitations": [
+    "Regional processing is the reviewed RER screening proxy.",
+    "Historical steel-share uncertainty is replaced by IAM scenario shares; processing uncertainty is retained.",
+    "This private diagnostic bypasses only the public steel gate. Combined-sector and positive advanced-technology-year checks remain required."
+  ],
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "tests_passed": 211,
+  "strict_sector_validation": "passed",
+  "exhaustive_graph_validation": "passed",
+  "public_steel_gate_bypassed_only_in_private_diagnostic": true,
+  "review": "docs/development/uvek-steel-processing-market-review.md"
+}
