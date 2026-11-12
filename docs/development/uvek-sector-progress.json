@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "all_workbook_quantity_recipes_qualified_shared_validation_and_export_unfinished",
+      "status": "diagnostic_export_verified_native_consumer_mix_and_combined_regression_incomplete",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -845,7 +845,7 @@
         "native_elementary_fills_in_first_recipe": 7,
         "explicit_native_absences_in_first_recipe": 6,
         "status": "real_preparation_and_shared_sector_checks_passed_export_and_coverage_unfinished",
-        "limitation": "All 28 quantity recipes are qualified and the real shared sector update passes; full role coverage, exhaustive certification and export remain separate requirements.",
+        "limitation": "All 28 quantity recipes are qualified. Shared sector checks, exhaustive graph certification, a private Brightway export and six signed complete-inventory LCIs pass; full native consumer coverage and combined-sector regression remain unfinished.",
         "qualified_lookup_slots": 639,
         "remaining_workbook_activities": 0,
         "remaining_lookup_slots": 0,
@@ -871,10 +871,10 @@
           "existing_sector_regressions_overlapping": 58
         },
         "public_steel_gate_bypassed_only_in_private_diagnostic": true,
-        "export_verified": false,
+        "export_verified": true,
         "remaining": [
-          "Audit active IAM technology and native consumer coverage.",
-          "Exhaustive certification, Brightway export and finite LCIs.",
+          "Adapt native rolled-steel mixture while preserving rolling, yield and ancillary inventory.",
+          "Verify a real IAM year with positive advanced steel production.",
           "Combined-sector regression before public steel support."
         ]
       },
@@ -887,8 +887,11 @@
         "positive_IAM_roles_missing_suppliers": 0,
         "post_update_records": 12503,
         "shared_sector_checks": "passed",
-        "exhaustive_certification": "refused_cycle_baseline_product_label_mismatch_under_investigation",
-        "export_verified": false
+        "exhaustive_certification": "passed_correct_read_only_diagnostic",
+        "export_verified": true,
+        "signed_finite_complete_inventory_LCIs": 6,
+        "positive_IAM_roles_at_2050": 2,
+        "remaining": "Native rolled-steel processing mixture technology shares, positive-advanced-technology-year checks, and combined-sector regression."
       }
     },
     {
