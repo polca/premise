@@ -245232,6 +245232,396 @@
           "fingerprint": "d3728781861b7834ade06b5ac9553db1f2058354f1fe97cef561f03160f75985"
         }
       ]
+    },
+    {
+      "rule_id": "bp-eb13cb39b0f5fbce",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_auxiliary_market",
+      "review_path": "export/uvek_pulp_heat_auxiliary_markets_review.json",
+      "review_sha256": "4543470b43a0939a121900831bc7b36858188e472aab56c238765fa9a6df9f5c",
+      "authorization": "Standing autonomous approval of independently inspected nominal-reference supply reconstructions, with geography, N2O performance, allocation and inventory limitations recorded for review.",
+      "inspection": {
+        "source": {
+          "name": "market for retention aid, for paper production",
+          "reference product": "retention aid, for paper production",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for retention aid, for paper production",
+            "reference product": "retention aid, for paper production",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "c9a49e44aebe54aeb7f1711a1540de150638994f70ffb63acf08dfd8d094f6fb",
+          "nonproduction_count": 11
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "80542d98229ff5ca452e0a38077bf86578ebbfbfca8e4003f3f0519b7736e20d",
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "name": "Retention aids, in paper production, at plant",
+              "reference product": "Retention aids, in paper production, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "e099b8c26d484c6cf1bc6a185cae1d608dcf0ada16797a6e6bbe4f902f1f6415",
+            "statistics": {
+              "amount": 0.0224231473350459,
+              "uncertainty type": 2,
+              "loc": -3.797661490501636,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "5e5de6d0d10c002f0d86f4afe58390e2df3b18efc0d691354373c1c29769ae59",
+            "statistics": {
+              "amount": 0.08093386943083909,
+              "uncertainty type": 2,
+              "loc": -2.514122884547314,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ca14d3a29396271d29de59d6fedd9297ec38af0df3376678a7521c7f1fd84847",
+            "statistics": {
+              "amount": 0.0056780093482361425,
+              "uncertainty type": 2,
+              "loc": -5.171154574536774,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "a38dc8ffb7122abfc445f8a4872cc36ed371fa3525debcf49f8b192d0c9e8d29",
+            "statistics": {
+              "amount": 0.11165767412994829,
+              "uncertainty type": 2,
+              "loc": -2.192317569247477,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "db73a365ebdfc19833a0d876b3fa70e8bb217b461a858e19e43a6d68f72e0229",
+            "statistics": {
+              "amount": 0.08840729975593056,
+              "uncertainty type": 2,
+              "loc": -2.4258007363232306,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "b8d10bbf9cf85d3c0de4d49ad6490fc944a347c0e7511c1c84ac643e7a128481",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "508bf388ab47439435752ebd2198f8b58ae05fe182d2bee342d9688c8802b4cf",
+            "statistics": {
+              "amount": 0.0037411136550834123,
+              "uncertainty type": 2,
+              "loc": -5.588371943141128,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ed4e582b195883e1613af8f9c03948163bc3b457e429a16d4691abe5160b529e",
+            "statistics": {
+              "amount": 0.18116364249000133,
+              "uncertainty type": 2,
+              "loc": -1.7083545540157898,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "9d4feda932da3ee367ccfb3226ae00f6ae23e4caef6e55a3dc335b0a62298b92",
+            "statistics": {
+              "amount": 0.02389524385491526,
+              "uncertainty type": 2,
+              "loc": -3.7340758417345654,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1a85585d99f24f6bf2ffa0835a877cf051d9258d2b17a348e4bd7c21013bec7a",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "kg nominal source product -> kg nominal native product"
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg retention-aid and adipic-acid market reconstructions. Both source and native retention-aid documentation explicitly reference1kg retention aids and use rough acrylic-acid process estimates; native1.05kg acrylic acid,4e-10chemical-plant units,0.333kWh and2MJ corroborate the process. Further inputs, solid wastes and emissions are omitted in that rough underlying model and are not invented. Both source adipic producers and native documentation include refining to99%; retain the nominal1kg product basis with factor+1, not1/0.99. Source adipic N2O abatement is95% versus native80%; the source allocated succinic/glutaric by-products, native precursor/energy model, emissions, allocation and vintage differ, with unquantified score effects. No efficiency, N2O or purity compensation is introduced. Replace producer inventories with complete existing native RER at-plant suppliers, preserving every original source market producer share and final-product freight row separately, with original signed quantities and supported uncertainties/formulas and no renormalization. Native plants already include precursor transport; original market freight represents final-product delivery, added only once. RER chemical and rail/barge/lorry/LCV suppliers and OCE container shipping are explicit geography, traction, fleet/load, technology and vintage screening proxies; tonne-km and modes remain unchanged. Native biosphere exclusions and internal uncertainties remain; no source/native score equivalence is claimed. Separate caller emissions and carbon-resource exchanges remain unchanged. No source exchange is omitted, and no new credit, carbon uptake, field emission or water correction is added. Only independently inspected exact3.9cutoff profiles qualify; no other source version, consequential or reverse route is approved. Pulp heat, industrial heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "aafd724d46601db4db025d3af3096811e49a0180ae468d56f33f9a5393b05a23"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-aa26b987c1edf1e9",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_auxiliary_market",
+      "review_path": "export/uvek_pulp_heat_auxiliary_markets_review.json",
+      "review_sha256": "4543470b43a0939a121900831bc7b36858188e472aab56c238765fa9a6df9f5c",
+      "authorization": "Standing autonomous approval of independently inspected nominal-reference supply reconstructions, with geography, N2O performance, allocation and inventory limitations recorded for review.",
+      "inspection": {
+        "source": {
+          "name": "market for adipic acid",
+          "reference product": "adipic acid",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for adipic acid",
+            "reference product": "adipic acid",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "fd2f4496df5e4c1988e695d9271b593d8321b576aabbb5e0b21231a2b2e7ed23",
+          "nonproduction_count": 6
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "8e43fac942768a07a1d5b0610d8338f6c11f4f7f4c8a19203d5685f3c867ae73",
+            "statistics": {
+              "amount": 0.174,
+              "uncertainty type": 0,
+              "loc": 0.174
+            },
+            "target": {
+              "name": "Adipic acid, at plant",
+              "reference product": "Adipic acid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "a82e2831ab9e7caafc1bfa2076ca4e2dfbfca8c83e785476efd834ab3ed1cfbf",
+            "statistics": {
+              "amount": 0.826,
+              "uncertainty type": 0,
+              "loc": 0.826
+            },
+            "target": {
+              "name": "Adipic acid, at plant",
+              "reference product": "Adipic acid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "734e838d0774811c2a38934f269552a8a100733cf6d66afe0375543ab4004ff3",
+            "statistics": {
+              "amount": 0.3091,
+              "uncertainty type": 2,
+              "loc": -1.1740904298440664,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "efc3c2e389f31e16a9057adc43e6933fcd4908dbba9134208f9f1ad202cd3c83",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "03d30d3b3ea5db07cfff1357f0d784fefce3bc1e0514d88ff5ac924c231500b3",
+            "statistics": {
+              "amount": 0.2088,
+              "uncertainty type": 2,
+              "loc": -1.5663784229736533,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1a85585d99f24f6bf2ffa0835a877cf051d9258d2b17a348e4bd7c21013bec7a",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "kg nominal source product -> kg nominal native product"
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg retention-aid and adipic-acid market reconstructions. Both source and native retention-aid documentation explicitly reference1kg retention aids and use rough acrylic-acid process estimates; native1.05kg acrylic acid,4e-10chemical-plant units,0.333kWh and2MJ corroborate the process. Further inputs, solid wastes and emissions are omitted in that rough underlying model and are not invented. Both source adipic producers and native documentation include refining to99%; retain the nominal1kg product basis with factor+1, not1/0.99. Source adipic N2O abatement is95% versus native80%; the source allocated succinic/glutaric by-products, native precursor/energy model, emissions, allocation and vintage differ, with unquantified score effects. No efficiency, N2O or purity compensation is introduced. Replace producer inventories with complete existing native RER at-plant suppliers, preserving every original source market producer share and final-product freight row separately, with original signed quantities and supported uncertainties/formulas and no renormalization. Native plants already include precursor transport; original market freight represents final-product delivery, added only once. RER chemical and rail/barge/lorry/LCV suppliers and OCE container shipping are explicit geography, traction, fleet/load, technology and vintage screening proxies; tonne-km and modes remain unchanged. Native biosphere exclusions and internal uncertainties remain; no source/native score equivalence is claimed. Separate caller emissions and carbon-resource exchanges remain unchanged. No source exchange is omitted, and no new credit, carbon uptake, field emission or water correction is added. Only independently inspected exact3.9cutoff profiles qualify; no other source version, consequential or reverse route is approved. Pulp heat, industrial heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "08e5743bd2aa98dd0360f616de068029c3148cb62ceb51946a8e9db0228f5ec3"
+        }
+      ]
     }
   ],
   "superseded_operations": [

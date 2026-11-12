@@ -1,5 +1,5 @@
 {
-  "status": "source_and_native_evidence_collected_conversion_still_unfinished",
+  "status": "two_market_mappings_implemented_two_active_ingredient_basis_checks_pending",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -31,7 +31,8 @@
       "native_inventory_sha256": "2b8e451949d6d1850d0db39849e585d6ea6792c5144bf64ada7357bfbf8788a1",
       "observation": "Both source producer and native candidate explicitly describe 1 kg retention aids. Both model 1.05 kg acrylic acid, chemical plant 4e-10 units and about 0.333 kWh plus 2 MJ heat. Both are rough process estimates omitting further inputs, solid wastes and emissions.",
       "next_action": "Reconstruct source market with native at-plant supply at factor +1 and retain original final-delivery rows and uncertainty. Native precursor transport is part of its plant boundary; do not confuse it with source final delivery.",
-      "approval_added": false
+      "approval_added": true,
+      "follow_up_status": "exact3.9cutoff market reconstructed and tested; see follow-up review"
     },
     {
       "rule_id": "bp-3d05182603078fea",
@@ -94,12 +95,14 @@
       "native_inventory_sha256": "16639c6d50657c5e660490e582acd249c50b4da78fdb7ea996b63f754db29b0e",
       "observation": "Both source producer and native documentation explicitly include refining to 99%. This resolves the apparent unilateral native purity difference: no 1/0.99 factor is justified. Source describes 95% N2O abatement versus native 80%, and allocated by-products differ.",
       "next_action": "Retain market producer shares and freight around a documented native production proxy, factor +1 on nominal product basis, warning about N2O performance, allocation and inventory differences. Do not rescale to purity based on the shared 99% phrase.",
-      "approval_added": false
+      "approval_added": true,
+      "follow_up_status": "exact3.9cutoff market reconstructed and tested; see follow-up review"
     }
   ],
   "limitations": [
-    "No new mapping or approval is added by this preflight. Strict pulp probe remains at 63 unresolved inputs.",
+    "This preflight originally added no approval. Follow-up implements two market reconstructions; triazine/dithiocarbamate remain unapproved. Strict pulp probe now has 61 unresolved inputs.",
     "Complete source inventories remain private; only identities, hashes and bounded interpretation are published.",
     "Other source versions are not qualified by this inspection."
-  ]
+  ],
+  "follow_up_review": "uvek-pulp-heat-auxiliary-markets-review.md"
 }

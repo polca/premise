@@ -624,6 +624,21 @@
         "unapproved_nested_pulp_heat_correspondences_after": 63,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "Nitrogen-preserving native delivered-stock proxy, not product-mass or score equivalence. Steel export remains unfinished."
+      },
+      "pulp_heat_auxiliary_market_verification": {
+        "review": "uvek-pulp-heat-auxiliary-markets-review.md",
+        "verification": "uvek-pulp-heat-auxiliary-market-verification.json",
+        "source_profile": "ecoinvent 3.9 cutoff",
+        "markets": 2,
+        "preserved_source_market_rows": 17,
+        "native_suppliers": 6,
+        "signed_finite_LCIs": 16,
+        "brightpath_tests_passed": 15,
+        "premise_tests_passed": 1,
+        "new_source_omissions": 0,
+        "unapproved_nested_pulp_heat_correspondences_after": 61,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Screening production proxies retain original final delivery. Adipic N2O performance/allocation differences remain explicit. Full pulp heat and steel export unfinished."
       }
     },
     {

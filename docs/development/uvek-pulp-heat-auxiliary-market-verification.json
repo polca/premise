@@ -1,0 +1,9 @@
+{
+  "review_sha256": "4543470b43a0939a121900831bc7b36858188e472aab56c238765fa9a6df9f5c",
+  "independently_verified_source_market_rows": 17,
+  "native_suppliers": 6,
+  "signed_finite_LCIs": 16,
+  "exact_sign_reversal": true,
+  "source_modified_unchanged": true,
+  "limitation": "Finite native supplier/composite inventories do not establish source/native score equivalence. Full pulp heat and steel remain unfinished."
+}
