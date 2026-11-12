@@ -1,0 +1,147 @@
+{
+  "brightpath_commit": "8f933b62f0e19b3d178d97adaee163b81d04552a",
+  "exact_source_profiles": 10,
+  "rules": 8,
+  "new_helpers": 2,
+  "producer_contributions_per_helper": 57,
+  "migration_tests_passed": 26,
+  "related_regressions_passed": 33,
+  "premise_fresh_cached_tests_passed": 3,
+  "scope_validation": {
+    "all_existing_and_new_approval_scopes_valid": true,
+    "scope_count": 1227,
+    "new_scope_count": 10,
+    "changed_runtime_python_modules": 0
+  },
+  "native_lci": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "source_database": "BAFU:2026-reimported",
+    "source_activity_count": 11947,
+    "source_database_metadata_unchanged": true,
+    "review_sha256": "4acd02486ccb4d37f9c2f2fab235f5379ac47cf062f0c69c74f3f06aa0b9d805",
+    "signed_native_lci_checks": [
+      {
+        "case": "reviewed-rer-gas-production-heat-38",
+        "kind": "composite_native_demand",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "reviewed-rer-gas-production-heat-38",
+        "kind": "composite_native_demand",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "reviewed-rer-gas-production-heat-39",
+        "kind": "composite_native_demand",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "reviewed-rer-gas-production-heat-39",
+        "kind": "composite_native_demand",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-0ca8243428726044",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-0ca8243428726044",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-743282c4fc2ab912",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-743282c4fc2ab912",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-7dd6b6497336da23",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-7dd6b6497336da23",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-8045db2598ea9a18",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-8045db2598ea9a18",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-abe7b4d90ef350e0",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-abe7b4d90ef350e0",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-68faa29ecd203ad4",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-68faa29ecd203ad4",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-a5ec1e60bc7a6cee",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-a5ec1e60bc7a6cee",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      }
+    ],
+    "consistent_sign_reversal": true,
+    "limitation": "Composite complete-native functional demands and direct native processes checked read-only. This does not establish source/native score equivalence, exact joint uncertainty propagation or sector export."
+  },
+  "wheel_resource_review_manifest_bytes_verified": true,
+  "mining_first_heat_refusal_cleared_in_private_source_checkout_diagnostic": true,
+  "mining_full_preparation_passed": false,
+  "next_mining_rule": "bp-fe711136ab4271bf",
+  "runtime_python_modules_changed": 0,
+  "limitations": [
+    "Complete affected-sector public update/export qualification remains unfinished.",
+    "Native composite LCI checks do not establish source/native score equivalence or exact joint uncertainty propagation."
+  ],
+  "mining_heat_refusal_cleared_with_installed_git_package": true,
+  "installed_git_package_premise_fresh_cached_tests_passed": 3,
+  "next_mining_failure_stage": "inventory preparation"
+}

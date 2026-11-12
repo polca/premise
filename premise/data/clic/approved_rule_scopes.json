@@ -256195,6 +256195,518 @@
           "fingerprint": "30b86ba4833fae860dfd484aa441fdcdfb42e5e9bdc200c289d2a523b1193795"
         }
       ]
+    },
+    {
+      "rule_id": "bp-4a7e42807ddffd8a",
+      "operation": "replace",
+      "mapping_method": "reviewed_production_heat_boundary",
+      "review_path": "export/uvek_remaining_production_heat_review.json",
+      "review_sha256": "4acd02486ccb4d37f9c2f2fab235f5379ac47cf062f0c69c74f3f06aa0b9d805",
+      "authorization": "Standing autonomous user approval of reviewed mappings, helpers and explicit screening proxies with logged warnings.",
+      "limitations": [
+        "Use complete native production-side allocated heat per signed source MJ of heat. Preserve caller quantities, formulas, supported uncertainty, separate emissions and freight. Do not reinterpret one MJ of heat as one MJ of fuel, rescale efficiencies, add combustion, duplicate emissions, add delivery networks/losses or invent co-product credits. Native fuel, performance, allocation, equipment, geography, vintage, internal uncertainty and inherited biosphere exclusions remain screening limitations; score effects are unquantified. Reconstruct the two inspected European gas-heat market groups, retaining all57 deterministic positive producer contributions per profile and their original CHP-versus-boiler shares. The three source market layers contain no direct emissions, nonheat inputs, uncertain shares or formulas. Replace the incorrect consumer-side district-network match, which adds11%heat losses. Use source-country native large-CHP heat where present and ENTSO-E otherwise. Same-capacity1MWe and500kWe native gas-engine heat uses exergy allocation; the200kWe source uses the reviewed300kWth exergy heat proxy, with electrical/thermal capacity and geography differences explicit. Boiler/furnace counterparts retain production class with native size/geography differences. No native/import loss correction is inferred."
+      ],
+      "inspection": {
+        "source_profiles": [
+          {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          }
+        ],
+        "source_witnesses": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "market group for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "d2eaee171ce31716fff449c2f2ae114e5954e1543c25a6f19ffc21bcdce0d1d9",
+            "comment_sha256": "eaf60a41f0053bb6c9a3da987ed8d265b94c408c7566611d816d3217c8baba8c"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "market group for heat, district or industrial, natural gas",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "512a2d3859de31d346ed46e410f9a19f6312bd5926b358a3b96c08370b13e0e8",
+            "comment_sha256": "eaf60a41f0053bb6c9a3da987ed8d265b94c408c7566611d816d3217c8baba8c"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e1ae586db6baa674380250147250ee74ea354a330a3d4d49c70539371af43cc8"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dc75cd580e6dcd91aeae1c5566ed12114a27268308ce2c4862f2feabfe8ca5ae"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0ca8243428726044",
+      "operation": "replace",
+      "mapping_method": "reviewed_production_heat_boundary",
+      "review_path": "export/uvek_remaining_production_heat_review.json",
+      "review_sha256": "4acd02486ccb4d37f9c2f2fab235f5379ac47cf062f0c69c74f3f06aa0b9d805",
+      "authorization": "Standing autonomous user approval of reviewed mappings, helpers and explicit screening proxies with logged warnings.",
+      "limitations": [
+        "Use complete native production-side allocated heat per signed source MJ of heat. Preserve caller quantities, formulas, supported uncertainty, separate emissions and freight. Do not reinterpret one MJ of heat as one MJ of fuel, rescale efficiencies, add combustion, duplicate emissions, add delivery networks/losses or invent co-product credits. Native fuel, performance, allocation, equipment, geography, vintage, internal uncertainty and inherited biosphere exclusions remain screening limitations; score effects are unquantified. Correct the old heat-only-allocation target to the existing same1MWe lean-burn native exergy-allocated heat process. Both inspected source profiles document exergy allocation; no allocation multiplier or capacity scaling is added. Preserve the source treatment convention in the caller; the complete native waste-oil handling is part of the replacement inventory."
+      ],
+      "inspection": {
+        "source_profiles": [
+          {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          }
+        ],
+        "source_witnesses": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "e967fb96c141516c75a19836761c71cb2d25e2e50ae1310cb73aabdea67b884e",
+            "comment_sha256": "707b97adbfcd80936487cfadd076c8d9298af266c4de845c0a621d2932834486"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "f78d91a1c6464c82837c715668df50da4a75af063864605905e6b5c9a92807aa",
+            "comment_sha256": "9563cdd3efbd830169f1a58c86e5ac75852c0302638bc7fa68e1af6940517d51"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1115c1cfa1f2e1c5f271b0ef5ac9a0084aa53532d1992494abf6329a59b98683"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "eace6224c81c2b32b072e5fb6ab9d36298d3fd8f3e996e259ba716ccf38cd2ca"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-743282c4fc2ab912",
+      "operation": "replace",
+      "mapping_method": "pairwise_review",
+      "review_path": "export/uvek_remaining_production_heat_review.json",
+      "review_sha256": "4acd02486ccb4d37f9c2f2fab235f5379ac47cf062f0c69c74f3f06aa0b9d805",
+      "authorization": "Standing autonomous user approval of reviewed mappings, helpers and explicit screening proxies with logged warnings.",
+      "limitations": [
+        "Use complete native production-side allocated heat per signed source MJ of heat. Preserve caller quantities, formulas, supported uncertainty, separate emissions and freight. Do not reinterpret one MJ of heat as one MJ of fuel, rescale efficiencies, add combustion, duplicate emissions, add delivery networks/losses or invent co-product credits. Native fuel, performance, allocation, equipment, geography, vintage, internal uncertainty and inherited biosphere exclusions remain screening limitations; score effects are unquantified. Wood-chip CHP proxy: source capacity6667kW refers to fuel input; native1MWth refers to thermal output. These are not equal capacities. Retain complete native exergy-allocated heat; source operating mix, moisture, filtration and co-product allocation differ. No electricity credit, capacity ratio or added wood combustion is introduced."
+      ],
+      "inspection": {
+        "source_profiles": [
+          {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          }
+        ],
+        "source_witnesses": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "heat and power co-generation, wood chips, 6667 kW",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "cdaf996491ac8bccf46e0509966aecac29e905dacfc58d579f039a8fcdb5f549",
+            "comment_sha256": "c17ca8f8f002deeb7da06c94ae08d0a9c96ee3cd8d5a2c835c7ff4260bf17ecf"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4e2c72f07cf2fe1181ac7c1ed884b7754363788911fa7723a246feba5d1476e2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7dd6b6497336da23",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_remaining_production_heat_review.json",
+      "review_sha256": "4acd02486ccb4d37f9c2f2fab235f5379ac47cf062f0c69c74f3f06aa0b9d805",
+      "authorization": "Standing autonomous user approval of reviewed mappings, helpers and explicit screening proxies with logged warnings.",
+      "limitations": [
+        "Use complete native production-side allocated heat per signed source MJ of heat. Preserve caller quantities, formulas, supported uncertainty, separate emissions and freight. Do not reinterpret one MJ of heat as one MJ of fuel, rescale efficiencies, add combustion, duplicate emissions, add delivery networks/losses or invent co-product credits. Native fuel, performance, allocation, equipment, geography, vintage, internal uncertainty and inherited biosphere exclusions remain screening limitations; score effects are unquantified. Industrial natural-gas furnace proxy from RoW to Swiss1MW; source class is above100kW. Preserve the heat-output basis; source size, efficiency and emission-control differences are not normalized away."
+      ],
+      "inspection": {
+        "source_profiles": [
+          {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          }
+        ],
+        "source_witnesses": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "e13b3eafc3228daf7f711720c01775d0133fe73504e656131990ccfc9586c3ea",
+            "comment_sha256": "47baf7fe7e470eb134c1c7fce056b511074f7c63e7de265c8d2acfeada893423"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d94fea75b10581f59e2570bbe3086409d40839e2d66b4c9b5fbad0f376dd29c2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8045db2598ea9a18",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_remaining_production_heat_review.json",
+      "review_sha256": "4acd02486ccb4d37f9c2f2fab235f5379ac47cf062f0c69c74f3f06aa0b9d805",
+      "authorization": "Standing autonomous user approval of reviewed mappings, helpers and explicit screening proxies with logged warnings.",
+      "limitations": [
+        "Use complete native production-side allocated heat per signed source MJ of heat. Preserve caller quantities, formulas, supported uncertainty, separate emissions and freight. Do not reinterpret one MJ of heat as one MJ of fuel, rescale efficiencies, add combustion, duplicate emissions, add delivery networks/losses or invent co-product credits. Native fuel, performance, allocation, equipment, geography, vintage, internal uncertainty and inherited biosphere exclusions remain screening limitations; score effects are unquantified. Industrial natural-gas furnace proxy from Europe-without-Switzerland to Swiss1MW; source class is above100kW. Preserve the heat-output basis without inferred plant-size or efficiency scaling."
+      ],
+      "inspection": {
+        "source_profiles": [
+          {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          }
+        ],
+        "source_witnesses": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "35a6338ec5687a6a2f1ee6d2a4780cd7fade6d98133f0beb9b2d48a9d816187c",
+            "comment_sha256": "ae3ff55308a333fb6343c8e252588df6860b46e06aaf9145c99adbec92a95603"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7003460a87213efc9b33f433c9abd1e63f13b04786d6366b6fb0c8000a060aef"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-abe7b4d90ef350e0",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_remaining_production_heat_review.json",
+      "review_sha256": "4acd02486ccb4d37f9c2f2fab235f5379ac47cf062f0c69c74f3f06aa0b9d805",
+      "authorization": "Standing autonomous user approval of reviewed mappings, helpers and explicit screening proxies with logged warnings.",
+      "limitations": [
+        "Use complete native production-side allocated heat per signed source MJ of heat. Preserve caller quantities, formulas, supported uncertainty, separate emissions and freight. Do not reinterpret one MJ of heat as one MJ of fuel, rescale efficiencies, add combustion, duplicate emissions, add delivery networks/losses or invent co-product credits. Native fuel, performance, allocation, equipment, geography, vintage, internal uncertainty and inherited biosphere exclusions remain screening limitations; score effects are unquantified. Complete heavy-fuel-oil1MW heat proxy from RoW to the native European product. Native documentation excludes distribution losses inside the factory; do not add a district network or other delivery loss."
+      ],
+      "inspection": {
+        "source_profiles": [
+          {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          }
+        ],
+        "source_witnesses": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "heat production, heavy fuel oil, at industrial furnace 1MW",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "e764105be33c85c6e7fd3442d9677f8f480dce42e78fa7fcfa77bd3248034394",
+            "comment_sha256": "0a6ba3d97bab3201a8461f3fc6f55f20ba5489f6cd660a61d8dfd15215e5928c"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fbc45b318631ac872554af90a06b914b978327a391dd977b1c3f0a01822d2e54"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-68faa29ecd203ad4",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_remaining_production_heat_review.json",
+      "review_sha256": "4acd02486ccb4d37f9c2f2fab235f5379ac47cf062f0c69c74f3f06aa0b9d805",
+      "authorization": "Standing autonomous user approval of reviewed mappings, helpers and explicit screening proxies with logged warnings.",
+      "limitations": [
+        "Use complete native production-side allocated heat per signed source MJ of heat. Preserve caller quantities, formulas, supported uncertainty, separate emissions and freight. Do not reinterpret one MJ of heat as one MJ of fuel, rescale efficiencies, add combustion, duplicate emissions, add delivery networks/losses or invent co-product credits. Native fuel, performance, allocation, equipment, geography, vintage, internal uncertainty and inherited biosphere exclusions remain screening limitations; score effects are unquantified. Wood-pellet furnace scale proxy: source nominal25kW represents approximately20–100kW annual operation, native15kW has its own annual efficiency. Both provide1MJheat; retain complete native operation and equipment with explicit capacity, cycling, efficiency and emission differences. No capacity ratio or guessed correction is applied."
+      ],
+      "inspection": {
+        "source_profiles": [
+          {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          }
+        ],
+        "source_witnesses": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "heat production, wood pellet, at furnace 25kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "ef90f2571d2e95e48303255a439871f72832ca81df37515a37b0f0a1f3689131",
+            "comment_sha256": "321faf36ab41f3b483420fc948fde2d024b7f9f41ebda48fd94038b98e823c97"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5b450f3ad8b60bd1f9d3bd5aae200edf7e2a850614649960b0c85dafc1b870a7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a5ec1e60bc7a6cee",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_remaining_production_heat_review.json",
+      "review_sha256": "4acd02486ccb4d37f9c2f2fab235f5379ac47cf062f0c69c74f3f06aa0b9d805",
+      "authorization": "Standing autonomous user approval of reviewed mappings, helpers and explicit screening proxies with logged warnings.",
+      "limitations": [
+        "Use complete native production-side allocated heat per signed source MJ of heat. Preserve caller quantities, formulas, supported uncertainty, separate emissions and freight. Do not reinterpret one MJ of heat as one MJ of fuel, rescale efficiencies, add combustion, duplicate emissions, add delivery networks/losses or invent co-product credits. Native fuel, performance, allocation, equipment, geography, vintage, internal uncertainty and inherited biosphere exclusions remain screening limitations; score effects are unquantified. Complete light-fuel-oil1MW heat proxy from RoW to the Swiss product. Native documentation excludes factory distribution losses. Source output is1MJheat, although its process comment discusses fuel-input data; no change to the declared heat-reference basis or extra loss factor is introduced."
+      ],
+      "inspection": {
+        "source_profiles": [
+          {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          }
+        ],
+        "source_witnesses": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "identity": {
+              "name": "heat production, light fuel oil, at industrial furnace 1MW",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "e56dde1bf84533dc88de826a70d4cabb6307280b4087fef06fd5e59e65f65042",
+            "comment_sha256": "04f999d653d14e76b96c76bf8d4742172288572b2d8aaa2d50fcdd2c35ba6001"
+          }
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c058acdcfab442ea04eefd28b396bfb1d0ff7abdd0bce110998a08bd29de894d"
+        }
+      ]
     }
   ],
   "superseded_operations": [
