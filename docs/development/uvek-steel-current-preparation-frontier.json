@@ -7,11 +7,11 @@
     "system_model": "cutoff",
     "biosphere_version": "3.10"
   },
-  "pending_correspondences": 17,
-  "previous_pending": 18,
+  "pending_correspondences": 16,
+  "previous_pending": 17,
   "cleared_this_batch": 1,
   "diagnostic_guard_bypass": "Steel support gate only; strict migration validation retained.",
-  "private_audit_receipt": "75c2a651555deabfb2264d85e81ad68ffb166e087441d07fe8220f23e72604f2.audit.json.gz",
+  "private_audit_receipt": "4b3dc5fe5ceba74acd131aa197a3c4e8717f47a64a7448b4b99cbb08c05f5117.audit.json.gz",
   "scope_limitation": "This is the current retained ecoinvent3.9 steel preparation cohort; later cohorts and sector transformation may reveal additional issues. Suggested targets are unapproved, not scientifically endorsed.",
   "cases": [
     {
@@ -139,22 +139,6 @@
         "recipe_ref": "additional-cutoff-waste-market-44e733cab27bc801612e"
       },
       "category": "waste_residue_and_wastewater"
-    },
-    {
-      "rule_id": "bp-5a3b5a4a13938317",
-      "source": {
-        "location": "GLO",
-        "name": "market group for heat, district or industrial, natural gas",
-        "reference product": "heat, district or industrial, natural gas",
-        "unit": "megajoule"
-      },
-      "unapproved_suggested_target": {
-        "location": "CH",
-        "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
-        "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
-        "unit": "megajoule"
-      },
-      "category": "fuel_and_heat_boundary"
     },
     {
       "rule_id": "bp-daa9398e0257c1a7",

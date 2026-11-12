@@ -1,0 +1,10 @@
+{
+  "native_suppliers_checked": 36,
+  "direct_district_delivery_inputs": 0,
+  "original_CHP_share": 0.8004311948425638,
+  "retained_CHP_share": 0.8004311948425638,
+  "heat_only_share": 0.19956880515743677,
+  "ENTSO_E_fallback_share": 0.2583126193301761,
+  "no_network_multiplier_added": true,
+  "limitation": "Direct native supplier inputs checked; this does not claim equal efficiencies, CHP allocation, fleet technology or LCI/LCIA results."
+}

@@ -210051,6 +210051,1877 @@
           "fingerprint": "246b5f06c09f83df5ed1882f57288458fdcc5b6aa1ad0a6d9722a345fb768cba"
         }
       ]
+    },
+    {
+      "rule_id": "bp-5a3b5a4a13938317",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_production_heat_mix",
+      "review_path": "export/uvek_steel_39_ng_heat_review.json",
+      "review_sha256": "acb922b2f63b28666de6d270e29eb973e6bab71814a4ce019d02d404180045a1",
+      "authorization": "Standing autonomous approval of inspected supply reconstructions and documented technology/geographic screening proxies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market group for heat, district or industrial, natural gas",
+            "reference product": "heat, district or industrial, natural gas",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "712e7ffe0028e811a6179b160ce7c00c2324ab2b14536730777b9d9f2cc136bd",
+          "nonproduction_count": 3
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "SA",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1931cfcc3ffbcc3e595571f5db378e088ee1cbec3c57fad3707df7df1f0e9b9b",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-MRO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c5f36aa0a8a6fcd29f3c35337cfd3ac85dd523b876a1eefe9e045b1769320909",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cd53ba475bbabeb61e1932253b4a8d22cac48ef2c2bef0d1fb44854d2caeac9b",
+            "nonproduction_count": 53
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler modulating >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "383728584909c2d5a489f9bbc675d37dadfbbc7be362145d6bf88cde28bff018",
+            "nonproduction_count": 53
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "KR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9d2d43cefda391ef74bdd616df2a3f27d132e190ed03bb72a817155eaa2d8862",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cf72f003dd55d7edb48561bc38908d5cf5d5f4404ab3740eb098ab4320355b2c",
+            "nonproduction_count": 18
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-RFC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c01efb595178fff624f336842a91f227267e231eda5426b470460f46bbbae12d",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-SERC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "73f3d8fcabad0e800764c8d377f2fa5c0509a97e127154d605a0e1640524571b",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-BC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1b3f5b06a390a9506d4cdb9a4970465918e8c14237b1d325da54c69159cfdea5",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 500kW electrical, lean burn",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f866334ffbdfc70180b9bef20515c8f4a5be7706068b740368fa534e43aea35d",
+            "nonproduction_count": 27
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "IR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9ffb9ed0345183600e4b62ee5dab570006e449445ba144b12e860ad1862be570",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace low-NOx >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f48267be8fcda6bf21adb3e33d4250b64fde8e7492153a55b6d46fbef22d7307",
+            "nonproduction_count": 53
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-ON",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cbc8c6656c1d04f2fb0875a3150008b9fe5146315911c35c2626f206cb79ab35",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "PE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "31f80f1783a216af6d3cfc8907d89fd8a78588d192e2c7b6fe5a2c4cc4d8d559",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b24110d9a2ec68c774beac926c3048dbd5fd89b9455c68e06a9d4d49ee9b38a4",
+            "nonproduction_count": 41
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-WECC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ff311f1ff14a66b4db521181429eb71490231b12a0d61576a1acb0f64faa759b",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e030c741b071c89c8e0b81eb92cf402d9b62b91eccc623a0f7acedbd93e88794",
+            "nonproduction_count": 57
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "AU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "039f288d10533997eedbfe94a384c105fdf4303bcb3ccc7d4721aafa738fbaf4",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-TRE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6d73e89adecb78030aaa1f62db8b29cea18cc89e6c70c5e5d4b90a1d2b7cf31e",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b09d7345481d150baf1c3cfa1b3598ab5d523ebc2180abe86f2effab3f8ec7d7",
+            "nonproduction_count": 62
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6e6a3a36aeed5ff94c6fd39e0b90a743566b50734908bd3989031e3d420db253",
+            "nonproduction_count": 71
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-TRE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c039fc7c839514fa761ed723fdb645ff095bc643ddf7261c20fe8b843eb620c1",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-NPCC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d38fa0b9a4d26472cbc147ad5cb89b8640082fb384857641b1355745d44433d7",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-ASCC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7b253ee5322a610098535d8fe5c2aa9c78f8ecd8ff7a64277e5c2938299e8052",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-WECC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "700dc1c33bef94b64d8a86197575f1cb02eee944d51ae0150058e8adde1a907d",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7b1816480c7c3871af0175b9eef9cd49fde17989e990c60439a329d06242908f",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-AB",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "2c5ff0e6f62d013d4402663b5f1457d149efa8e80db171376ef61530d3424719",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-SERC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "fae22b6f50dcb58f6a71c9b19e3b30a79eb6a6b25d21745aa8fe1f9ceda58351",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-RFC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d9862955f110de2df2e72b433c96dedd95bb6b1bba7d5a85f2a62bd46abec0a7",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ac8bf243368dcd4c4e5501223c2187dd3dd0ca410e99f3e0881b602d633597da",
+            "nonproduction_count": 41
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-NB",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e3d086868bcaae58b27903b3e180363eb947877be56db1a049ea43c71ac6a63c",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "IR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a105760c16e89e9cececf854fd53f578d8adb439d089a99f1c13267a9afa3af2",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "SA",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e7e3e9bb2b363353e2202f8fbde9fa7574eec1e02fb19d77d0afed2c26b4868f",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-ASCC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "26559a3b8893ca7362f503a547b06ab4a8185f73a163cfc49bf5b300959ddb52",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "TW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "fb6eb5bbdbb7897d1a4cf165dea405800a1a71c6a62b7e310c27e8feb40c53ab",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-MRO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c1d1b0b70689799468d3ae8fa1829305f8f09a22d98cc34774c4b0644e1ba230",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "TR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e21e8b9d5e3a10873409341d4870c8d295a31dba987fdf562379c22e273bab27",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 200kW electrical, lean burn",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5a05f253e33ea9c1d92f5f5988ec75895e8ff9a7f572ceca4a9552f6f7b751d7",
+            "nonproduction_count": 27
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-SK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "46935d2de33cf4f29c42ac6a2127fba888194b66f56ed42060978f32c66eb55d",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "KR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "496b2ea7e6edca37a1a39ee6f09256733f0d858a3ade8d5ec7edd0a1fe53a690",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "TR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c33d002fa511bd1245254374cc5843a6486b6c2b9ae2c481db42fad483cf0280",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "AR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "917b4f746b938176dff614f71dd1ce0df4fce5479c380bdfdd0e3af9a0137a9e",
+            "nonproduction_count": 38
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "US-NPCC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6ed6baccecd7eb0406920c67952e134e6ec955882e77f5b63b80103365160b48",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace low-NOx >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "796fdac70df2c7ff485ea680d566ac5efe15d9834b6642067c0aa94f505b89c4",
+            "nonproduction_count": 23
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler modulating >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "26feb6663fd38fffdaa173f44574c7f2377524459652323685e54c0429bf8eb5",
+            "nonproduction_count": 23
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "fff82d2c739936453a989ded8b7a363a658f4961b4affe9e16a5a4fd929d282c",
+            "nonproduction_count": 27
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "38f61846200e1ff1902018239f8d2024824de003641cdab2fd66599c18d1b50a",
+            "nonproduction_count": 23
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 200kW electrical, lean burn",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3c605731182d8923277d483354e808df3ec0e6359df5ef154bcaec4d91c6726f",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 500kW electrical, lean burn",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ca64899f79a9f2c5e5e7caacd76415e9c6be4f6249a55d9c9aaabcf6fba745d4",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "06a7e38cebd459cc33a32cd84f30e8ac65846d9a38fcbe4d9cb9f361ffa2343c",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "HR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "28d552c5b67f7de5a72691b2917f43a974e7befc11e306041310973d07ed0682",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "HR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "64b368fb8380e76dc7d57f31f1904dfc49b27c124d22f2f97c905305fbb646a5",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "BA",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "98e9f056e58f636e79babfe18086993e7adf49fe88bf04b00a891b073bea50ae",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "GR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9ac27b0ad956f6533eadf344ceb755a43750bbe13cb2fefde2188d0b910caeb9",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "EE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8acf3616b6def88831624d42d092b14c1770b782fe28ee62ef5d629b7ac0caa9",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "SE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b2022a62079ec66e9b40bd3a95decca9ce8af41dd92ebf03fcdbdfef82169ec7",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "AT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ef5941b8c2fc2c7576edc67815446894fc147ddd57032b396abb676b1045cfc0",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "LU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9fcb1de8f68311d652330e67cd5e5eb1e72ceceef42f6353aabbf300f5526319",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "HU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "be42f8d2e7df2b90fd8a944649f47f52f3e01b4590e42848b6646c7d04e18974",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "NL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c9fb6758380f5e96f8664d9004cff8125649051eb058ef1952599a062bbe7ebc",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "IT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f30a9752a6cd01fa3963a281563b6767022e2560152966a3f0f84b658c8c9b84",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "SK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6da793c2aae82ebef68385c3f23a95957a1b103047494b0ebfa9817c24527f0c",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "DE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e2d89d95435817da413fae0be54424339de267bab75cbb1cb70bc17401e8b092",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "BG",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "afc7453262b381f1a7cdc8fbc2a5997e5b1de57b70f0b31daa2be9f11f082f12",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "IT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7dbfbb77f98924f119ee92b5765b7aa4e961c65e74c756a1a74bca8585eb3ace",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "MK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6ec0b102ece1538f33147f16f467828ef4e5e7fe082e71a6cbf81724eedd8d5d",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "LT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "df0adf206fb8f32ed0464252dc13918e7a78ab3834319ec9fdfa86dc18582892",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "SI",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "363ebd6f3307705a58253e5a0f08d9884480bc83b8b36a8dbc346b6c7e376dd9",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CZ",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "092b646b0fa4888d983f7fb8d7c0957c98da988e706f515c2224c1cadb41e801",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "AT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37fc958098cc7f9e1cb82b685728e3c821f39b59b859097bc4b9bbc7a1c19145",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "DE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ee01d7afdb2691f90fd431edd7704592f01873d493e34562c5d121c70264d6e8",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace low-NOx >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e83910d29bb133212fc3c989c4c8f0552e4b219beea9d930dcca8e6d08556e71",
+            "nonproduction_count": 23
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "LV",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f03212e385c4df3e7a4b10b491699a7f8692a7b37d952d56489f0a4669af7b97",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "BG",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d18999c7daa11d773052f14db313b5712ee11b76e1112a48871f4b3e88eeea21",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1a7b4d606d411cafb28fd7c350b9ed799ab900f227e131ad7bfe33a125ce30c9",
+            "nonproduction_count": 15
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "NL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b6d5dd938defc61f45313b7d7c2f64ee846e98b1c41d5795a0f77fe752172b67",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "PT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f313ca1bcd1ca16ad3ab467271d3c677c9a595275c7e9760a2eb28a3185a7cec",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "PL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b0e80ef57b3af8a74946b0aeb9281238d0ca9631394762dfe66be12781da8bae",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "GB",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0d8d56c255f93ecaabcb1e4c31816c9ed575ddecee54ce166bb4eccf41bb127d",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "FR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f314666ded6fe38d52768912b605af56255b0202f6785096b033d10b1497af23",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "SK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cf6440a86303d7e99739fd512cc6f23fe1eb2ec8f2a504956d4240e8239637e4",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "DK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c0bcd950e9a061dab21a593a125d8aad745f8e3fadf117d3210a34921ee2a8af",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "PT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f48ce90d9b73a49981295092582081d39fff5c83f14ef9e14c392a4bd3e2bfa4",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RS",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0e840a2191fa20585f56508751f64b6b0ac5d0036c58abec7c1d817af9d4fe10",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "HU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "409d31371b678b313e856eadfa472e357fbadad72cf01a283a3dfc3fc1c07b25",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "DK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b6b1b4ec772945e284961501934720f77e52134eadd05759b494befaf1e418d3",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "Europe without Switzerland",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "73f9746a5cedd230f3fb036af64a2e490a7518ae1555ff4ff79043b178cf101d",
+            "nonproduction_count": 23
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "46a14ea24a08f579730bc0f1f83868a16599de9f03891744bf6fc7644baa1881",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "GR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8921614a7b558b6f30f5c75c8d00bab0779ed4c196222b213cee32bf2de402a5",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "BE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b8d06a37fba8a8d704939f51312c50a7c043df831881d1837a02f43e18279c00",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "ES",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b822a7174afcac975dffcb283378abe9a1bf1436ffc1263e22c562620b46672d",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "LU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7ea5f63e6239fabab4e9cf423d91f2080d8db02004bdad386cab41e67c4d31b8",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "RO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a11d45e47992425ba99226a53353edb0d33729cea37ad54eaea71833c3b2c717",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "UA",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9243f3f45ffe2eff9f13af9d9b72a684b13cde249934ba4ef935a88f5e072bb4",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "ES",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e612add9c477095052823368a9bd91fc6f6e3ff34bb752635ba18782f937f879",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "MK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "adc7de198c7e626896c9af8edad3da22f7a76b0ada71b35f2f6e96ad256198b1",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "FI",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "62fde4a5e459ffa24de2f5dacc426f8386c65b7503ca05ce77119948979be147",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "BE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "75b8954a403e73ae5a1c91dd1308aa8c77879512567c22c716aef30d3898d36f",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "LT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a36a82c46570c082ee514ae215ee2ecf298b23ae716fd3842c5047756f83ecb8",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "LV",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "98b1a8f9c008097e87c5348d4e820498ce250b2f2106788cc2925636c4eed5b6",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "IE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3b24337ce81471b962b7efbb2f5601036c9233a9d60da19d56cac0963c37b270",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "FI",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cc72f067afe82f40d206f93477082b411181ad79318ddbdec619e04a10add9ba",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "PL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a562c9d20a955babef79e94da63099ef0a41a2531e79fe34014e4f5fa84932f2",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "GB",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d80d82105d945320fd475974f020b956ec4f2dfb61a5345169f99f3ff3076a0",
+            "nonproduction_count": 40
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "ENTSO-E",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8103d936e504298232f3ee5e6a969288e62279019ea5b612a2f594f1441ba817",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at industrial furnace 1MW",
+              "reference product": "Heat, natural gas, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7f047569e5853d72a57a0eda57240a47ade3ee767b06b05a4d4404aa6cf0398b",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "xx Heat, natural gas, at boiler modulating >100kW",
+              "reference product": "xx Heat, natural gas, at boiler modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "57c55095c545ad1691d1ca01e0290435005a83091b0001a645dfe1ade8787edb",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "KR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "dab4211f5317d5c04756063a0bff15bd319098eba35c6fd57ac725356255ec92",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+              "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "fded74a9097206818983aebaf35806c4f082b89f937f19175881e58d64358b74",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+              "reference product": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7e18beebf9f3bce6451485ed70971bc92ff44b562077feff1ae644b465dc6dd2",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "RU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0165a0cf1e4c3bea5da558474646c64bb2d14344290e85219467749be78f7d7f",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cf370255f6e60838778623f06228b8ef859aa6d7083d65028f37eafe33afc359",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "TW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "44d2d9f5e3428a551af5a4c50bd82f1f54c081465ae7a7a51b4e15b28e970111",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, at cogen 300kWth, natural gas, allocation exergy",
+              "reference product": "Heat, at cogen 300kWth, natural gas, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7ffe2a4e163daf7ba003db4ecbe1c9bd961258da5bbd6d338c104b728a517bbf",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "HR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "4ff1267ff3b25a9149293d7105ebad849d16eb1fa13b417435df78685c25d0a9",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "GR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5400d95dd0db38b3029010225086627f3b99566eaf2810ccbc8dff3d856f33ba",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "EE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cf4b91b292773fbcada7d081cdbaad1113fe4306973db46e7c7ef1e5059f6098",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "SE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cbb6d04f1295dbe5c3f947aab7e02f18f9c68fc52117f6c2d30e89790bbc9393",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "AT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8f8842f5b03f8c5c793444b12f034b179f1db88259ccfe0eb7669d86326fc78a",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "LU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cfe72432738b0077559fdac5ead3bc9f7bbade28dd80425a3dde32031c65a867",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "HU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "921ec948ec8a95242e825db5733ab56e68cfb26c88fc86f63775dbba57f32235",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "NL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8c46110924cc8316b8ba2b079fe25545e8598371a09860ee7ecdd4b7caed9ef3",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "IT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9928183b98801bf49bdda8007da746b14282df6bedc66109db339f942b102a09",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "SK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "152872abaed096b74be409514884564fef59fbb7050ec60b301cb585fd04dc5f",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "DE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f3c96216dbf7c0baf64d3ca5bd507e0e1a48c7a67ade75d46680e76f11a0685c",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "BG",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c793cabc007b28eddac5ead7cbed4acf319d7e1fde481a803367fd33998fdb42",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "LT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9aacb84af0f89093244dc869b0e7ac42fb668e5e4c4961f8150d8d88e4c0b94c",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "SI",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "2a17e217abaa1f1db176439bcaf86e33fc95db9b5e74623d3ee4ad4b880f1012",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "CZ",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3ad507e5170dc80912ee72ef4d38d21e6b9ea28bb0c7010b77c95700133f1e86",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "LV",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "eaf4a0cdb99e7b1e52a266e8844c751521c99f9bc75caf2653c40f1985212294",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "PT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9f295de6764d49677841001face8edefd491cb9c72e09dd06e24b449f4154611",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "PL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a685fac97cf630bf330d544b4a0d35ad56bd3573b1a3a9b2c30e1a9cb55405f9",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "GB",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "79f128ae2fe7dd37c5d7bc98c407b8b3632d7c48ac1f68b2dc8ed36d5914b3ad",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "FR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "edab559261bf951849dde4a4fb88d5714122e04bb2730110e5af776b0584d14c",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "DK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "153a161043dd768b2e5d2606e32a6f6751b23aba0cce37a24f4a1d96601c6c9e",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "RO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9d4db2db71977eab2831ae06c061359e56ac3c525d0bc95136dc750f0b5fda54",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "BE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "376aa4841dcfa8227ec0d426c0f2e4c9560f5202b723e4d1d9f5bdf6087ae916",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "ES",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cae4787ae4f944d0495382bab45314e82939322d9087bfa1858845faad95ddec",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "FI",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b499a760b80131e35abb4b118b13f19538f9716ff2110b972158aebe4b2bf65d",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, natural gas, at CHP power plant",
+              "reference product": "Heat, natural gas, at CHP power plant",
+              "location": "IE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8b515b761c24673ef9d3fa295d4407e70a0546643d123ab21397b905144a2424",
+            "nonproduction_count": 1
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Reconstruct inspected global3.9natural-gas heat production mix at1MJ with all104 positive supplier contributions and original deterministic market weights. Market layers contain no direct emissions, nonheat inputs, uncertain shares or formulas, so flattening deterministic paths does not discard uncertainty. Preserve CHP-versus-heat-only shares and use complete native production-side heat; add no district network or delivery-loss factor. Large conventional and combined-cycle gas CHP use native country CHP heat where present, ENTSO-E otherwise; native cycle/fleet and allocation replace source-specific plant models. Gas engines use native Swiss exergy-allocated300kWth/1MWth heat proxies; source capacities are electrical, target capacities thermal, not equal-scale claims. Boiler/furnace counterparts retain fuel and production class with explicit Swiss/RER geography and capacity proxies. Native allocation, efficiency, infrastructure, stack emissions, technology, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects unquantified. Reference is1MJallocated heat, not1MJfuel; no fuel-demand normalization, avoided-electricity credit, added combustion, efficiency correction or second emissions. Preserve caller signs, quantities, uncertainty, formulas and separate exchanges. Only inspected3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8425a6a3b2016061c235c4b89327574e3c5cc1bf854a18726435d827bd0e0cb5"
+        }
+      ]
     }
   ],
   "superseded_operations": [

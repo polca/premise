@@ -1,5 +1,5 @@
 {
-  "status": "primary_portfolio_evidence_only_not_mapping_approval",
+  "status": "source_portfolios_verified_natural_gas_mapping_qualified_other_two_unapproved",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -161,5 +161,10 @@
     "district_transport_MJ_per_MJ": 1,
     "boundary": "Native complete delivered heat; source market layers have no separate district network input. Do not assume these delivery boundaries or allocation models are equivalent."
   },
-  "licensing": "Aggregate technology weights and reference facts only; source vectors remain private."
+  "licensing": "Aggregate technology weights and reference facts only; source vectors remain private.",
+  "mapping_qualification": {
+    "bp-5a3b5a4a13938317": "Reviewed native production-side mix; see uvek-steel-ng-heat-review.md. This does not qualify the full steel update.",
+    "bp-daa9398e0257c1a7": "Unapproved; preserve non-gas fuel and CHP portfolio before enabling.",
+    "bp-6501bd73396374f4": "Unapproved; preserve anthracite/other fuel and heating-technology portfolio before enabling."
+  }
 }
