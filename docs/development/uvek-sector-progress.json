@@ -803,6 +803,14 @@
         "unapproved_nested_pulp_heat_correspondences_after": 45,
         "runtime_python_changes": false,
         "limitation": "Exact3.9cutoff supplies only; nativeSO2production replaces source co-product allocation with explicit warnings. Full pulp/industrial heat andsteel export unfinished."
+      },
+      "native_heat_supply_resolution": {
+        "status": "inventory_preparation_passed_transformation_unfinished",
+        "review": "docs/development/uvek-native-nongas-heat-review.md",
+        "imported_records": 138,
+        "new_heat_helpers": 0,
+        "old_pulp_reconstruction_cases": "45 unresolved correspondences are no longer dependencies of the selected direct heat proxy; not individually resolved.",
+        "next_failure": "Missing secondary-steel supplier in CAZ; native aliases and shared family propagation require adaptation."
       }
     },
     {

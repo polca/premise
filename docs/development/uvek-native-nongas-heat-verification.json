@@ -1,0 +1,46 @@
+{
+  "brightpath_commit": "e3cb8d6d078ee49b80282cc41d91ae58f1b58c96",
+  "mapping_tests": 16,
+  "manifest_tests": 1,
+  "native_lci": {
+    "status": "passed",
+    "review_sha256": "1f9bc5a9fee06480793c69422f05a996dc3ed596bef6f63d793b770291d1de7a",
+    "signed_finite_LCIs": 2,
+    "exact_sign_reversal": true,
+    "caller_MJ_heat_factor": 1,
+    "native_fuel_MJ_per_heat_MJ": 1.25,
+    "native_efficiency_already_included": 0.8,
+    "new_helpers": 0,
+    "native_database_unchanged": true,
+    "limitation": "Native useful-heat screening supply only. Source global fuel mix and upstream allocation are replaced; no source/native impact equivalence or full steel update/export is established."
+  },
+  "real_preparation": {
+    "status": "steel_inventory_preparation_passed",
+    "loaded_sectors": [
+      "steel"
+    ],
+    "prepared_base_records": 12085,
+    "imported_records": 138,
+    "elapsed_seconds": 30.601766333100386,
+    "source_database_unchanged": true,
+    "new_heat_helpers": 0,
+    "uses_existing_native_heat_dataset": true,
+    "public_sector_guard_bypassed_in_private_diagnostic": true,
+    "transformation_or_export_performed": false,
+    "IAM": "Encrypted REMIND SSP2-NPi2050,unmodified",
+    "limitation": "Preparation success does not establish sector transformation,certification or export."
+  },
+  "real_update": {
+    "status": "shared_steel_update_failed",
+    "exception_type": "ValueError",
+    "message": "No activity found for technology steel - secondary in region CAZ. Available activities: [].",
+    "public_scope_guard_bypassed_in_private_diagnostic": true
+  },
+  "premise_tests": {
+    "passed": 2,
+    "coverage": "Native heat and preceding SO2/sulfite: fresh imports, cached imports, approval withdrawal."
+  },
+  "installed_github_wheel_verified": true,
+  "approval_scope_count": 1216,
+  "earlier_approval_scopes_preserved": 1215
+}

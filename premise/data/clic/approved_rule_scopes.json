@@ -256031,6 +256031,74 @@
           "fingerprint": "312c68e2ee7833943e9cae3541d54573c9721ece400d3a06da97d7a4a6ad4c06"
         }
       ]
+    },
+    {
+      "rule_id": "bp-daa9398e0257c1a7",
+      "operation": "replace",
+      "mapping_method": "reviewed_native_nongas_industrial_heat_proxy",
+      "review_path": "export/uvek_native_nongas_heat_proxy_review.json",
+      "review_sha256": "1f9bc5a9fee06480793c69422f05a996dc3ed596bef6f63d793b770291d1de7a",
+      "authorization": "Standing user approval of forthcoming modelling decisions and user steering to map the missing heat input to a suitable existing BAFUcandidate before reconstructing upstream inventories; explicit native functional proxy with limitations logged.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market group for heat, district or industrial, other than natural gas",
+          "reference product": "heat, district or industrial, other than natural gas",
+          "location": "GLO",
+          "unit": "megajoule"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for heat, district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "e680f5f2cc44f412ac54e60be6c2b4382e09ad80be95ceaa47e41f7da133c10d"
+        },
+        "native_witness": {
+          "identity": {
+            "name": "Heat, at hard coal industrial furnace 1-10MW",
+            "reference product": "Heat, at hard coal industrial furnace 1-10MW",
+            "location": "RER",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "7bcb37da4ac523633e7ec9e0b2c0cebf15f67b5d87ba9678baf1e575fbdb207d"
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "new_source_omissions": [],
+        "source_main_coal_heat_share": 0.6934266333261081,
+        "native_efficiency_already_included": 0.8
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff GLOmarketgroup for district/industrialheat otherthannaturalgas supplies1MJheat. Use the complete native RERHeat,athardcoalindustrialfurnace1-10MWas a representative functional screening proxy per1MJusefulheat,factor+1. Both actual reference outputs are positive1MJheat. Native80%net efficiency is already represented by1.25MJofHardcoal,burnedinindustrialfurnaceperMJheat: apply no additional1.25or inverse-efficiency factor and add no duplicate burner,fuel,infrastructure or emissions. The inspected source market hierarchy has6marketnodes,heatinputtotal1MJandno separate nonheatmarket edge. Hard-coal industrial furnaces provide69.34266333261082%ofsource heat; the five pulp co-product sources provide0.03198085075367603%. Select the existing native coal-heat supply rather than reconstructing327source producers and their upstream chemical inventories. This deliberately replaces the entire mixed source portfolio with native coal-based industrial heat; the other30.65733666738918%ofsource heat,including renewable/waste heat,oil,other fuels and co-production allocations,is not retained as a mix. Fossil/biogenic shares,geography,technology,allocation,internal uncertainty,distribution boundaries and scores may materially differ; their effects remain unquantified. Native represents German conditions and early1990sstoker-boiler technology despite itsRERlabel,with documented trace-emission approximations and omitted water emissions. Existing native biosphere-import gaps remain limitations. The selected primary fuel respects the source exclusion of naturalgas. Preserve caller signedMJheat,uncertainty andformulas. Source market-to-consumer versus native at-furnace boundaries remain a screening approximation; add no invented11%districtloss,heatnetwork,steam-enthalpy conversion,pulp-moisture assumption,biogenic-carbon correction or co-product recovery credit. This is not source/native impact or stochastic equivalence. No foreground exchange is omitted,no helper dataset is created,and no Python runtime change is needed. Only exact3.9cutoff is approved; no reverse,other-version or consequential approval. Native heat mapping resolves one required background supply,not the whole steel transformation/export."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "46b4022083419bedd448101d6aea7fb863af87ec71a6534645d2f74d5187cd68"
+        }
+      ]
     }
   ],
   "superseded_operations": [
