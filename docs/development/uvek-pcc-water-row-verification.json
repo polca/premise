@@ -1,0 +1,31 @@
+{
+  "review_sha256": "76e857f4983f2720bd8b81c7329b34a2b70fff9968f7b407d72ec684ebec941c",
+  "cases": [
+    {
+      "rule_id": "bp-c5ad7d30b2b18c4c",
+      "helpers_traversed": 9,
+      "native_suppliers": 69,
+      "direct_biosphere_flows": 25,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    }
+  ],
+  "signed_finite_composite_LCIs": 2,
+  "all_reviewed_recipes_covered": 9,
+  "source_modified_unchanged": true,
+  "independent_preconverted_producers_and_original_market_weights_match": true,
+  "limitation": "All post-conversion helper recipes recursively included, with summed duplicate native demands and direct biosphere flows. Nominal checks do not establish LCIA equivalence or completed industrial-heat/steel transformation/export.",
+  "brightpath_tests_passed": 14,
+  "premise_tests_passed": 3,
+  "related_regressions_passed": 25,
+  "new_helpers": 2,
+  "unchanged_recipe_dependencies": 7,
+  "inherited_literal_omission_events": 46,
+  "new_source_omission_approvals": 0,
+  "source_market_rows_preserved": 2,
+  "source_water_coproduct_rows_preserved": 20,
+  "earlier_36_target_factor_unchanged": true,
+  "earlier_36_approval_metadata_reissued": true,
+  "PCC_main_unapproved_correspondences_before": 5,
+  "PCC_main_unapproved_correspondences_after": 4
+}

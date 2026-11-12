@@ -1716,6 +1716,29 @@
         "ether_water_foreground_missing_suppliers": 0,
         "direct_pulp_heat_frontier_unchanged": 51,
         "limitation": "Ethanol background recipe completed and actual ether-water foreground passes strict harmonization; water-market compilation, PCC and steel remain unfinished."
+      },
+      "PCC_RoW_water_verification": {
+        "review": "uvek-pcc-water-row-review.md",
+        "verification": "uvek-pcc-water-row-verification.json",
+        "new_exact_3_9_scopes": 1,
+        "earlier_3_6_target_factor_unchanged": true,
+        "earlier_3_6_parent_metadata_reissued": true,
+        "new_helpers": 2,
+        "unchanged_recipe_dependencies": 7,
+        "source_market_rows_preserved": 2,
+        "allocated_water_rows_preserved": 20,
+        "brightpath_tests_passed": 14,
+        "premise_tests_passed": 3,
+        "related_regressions_passed": 25,
+        "signed_finite_composite_LCIs": 2,
+        "native_suppliers": 69,
+        "direct_biosphere_identities": 25,
+        "inherited_literal_omission_events": 46,
+        "new_source_omission_approvals": 0,
+        "PCC_main_missing_correspondences_before": 5,
+        "PCC_main_missing_correspondences_after": 4,
+        "original_pulp_heat_frontier_unchanged": 51,
+        "limitation": "Water mapping complete; dedicated PCC, full pulp heat and steel export remain unfinished."
       }
     },
     {

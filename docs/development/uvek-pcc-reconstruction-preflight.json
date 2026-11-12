@@ -57,13 +57,12 @@
   "all_three_producer_dependencies_before_water_review": 139,
   "direct_reconstruction_probes_after_water_review": {
     "main": {
-      "unapproved_correspondences": 5,
+      "unapproved_correspondences": 4,
       "families": {
-        "electricity, medium voltage": 1,
-        "heat, district or industrial, natural gas": 1,
         "heat, from steam, in chemical industry": 1,
         "limestone, crushed, washed": 1,
-        "water, decarbonised": 1
+        "electricity, medium voltage": 1,
+        "heat, district or industrial, natural gas": 1
       }
     },
     "all-producers": {
@@ -146,12 +145,11 @@
   "water_review": "uvek-pcc-decarbonised-water-review.md",
   "unchanged_direct_pulp_heat_frontier": 51,
   "known_industrial_heat_preparation_roots": 1,
-  "next_action": "Assemble and test RoW ethanol using the now-translatable source coal-FT route plus native hydration, preserving original producer/freight shares and inherited omission audits; then complete ether-derived water and the remaining dedicated-PCC dependencies.",
+  "next_action": "Inspect and qualify the four remaining dedicated-PCC dependencies (chemical-industry steam, washed limestone, one medium-voltage electricity market and one gas-heat market), then compose all original PCC supply shares and freight.",
   "limitations": [
     "Generic inorganic chemical correspondence remains unapproved for precipitated calcium carbonate; source precipitation technology and all three producer shares need preservation.",
     "The minor cobalt/rare-earth branches are nonempty and cannot be omitted because their shares are small.",
-    "Counts of 5 and 133 describe nested direct source-inventory diagnostics, not additional sector roots or a fixed final mapping strategy.",
-    "RoW decarbonised-water market remains unapproved for 3.9 because its diethyl-ether water co-product has 20 nonzero exchanges.",
+    "Counts of 4 and 133 describe nested direct source-inventory diagnostics, not additional sector roots or a fixed final mapping strategy.",
     "No successful PCC/pulp-heat migration, steel transformation or steel export is claimed."
   ],
   "allocated_branch_review": "uvek-pcc-allocated-carbonate-review.md",
@@ -159,10 +157,12 @@
   "allocated_branch_target_verification": "uvek-pcc-allocated-carbonate-verification.json",
   "selected_strategy": {
     "cobalt_and_rare_earth_branches": "Two source-proven relative-allocation helpers over complete native cobalt/lanthanum-oxide screening inventories, with explicit technology and coverage warnings.",
-    "dedicated_PCC_production": "Direct source reconstruction still unfinished; five direct background dependencies remain.",
+    "dedicated_PCC_production": "Direct source reconstruction still unfinished; four direct background dependencies remain after qualifying RoW water.",
     "complete_PCC_market": "Not yet assembled/approved; preserve all original producer shares and freight when composing reviewed branches.",
     "historical_all_producer_direct_probe": "133 unapproved correspondences describe the full source-vector alternative, not the selected implementation frontier."
   },
   "ether_water_preflight": "uvek-ether-water-reconstruction-preflight.json",
-  "coal_ethanol_background_review": "uvek-coal-ft-background-review.md"
+  "coal_ethanol_background_review": "uvek-coal-ft-background-review.md",
+  "water_row_review": "uvek-pcc-water-row-review.md",
+  "water_row_verification": "uvek-pcc-water-row-verification.json"
 }

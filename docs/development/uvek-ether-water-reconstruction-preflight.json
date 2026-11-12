@@ -1,5 +1,5 @@
 {
-  "status": "direct_water_inventory_strict_harmonization_passed_water_market_recipe_pending",
+  "status": "direct_water_and_RoW_water_market_recipes_verified",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -32,18 +32,20 @@
   "direct_reconstruction_pending_correspondences": [],
   "source_inventory_sha256": "70a17efdff66c0ed47abaf573fde58c2dbeb760fd1d5cef6dcce3815e780198c",
   "native_inventory_sha256": "a38f1e9c711a92efecf796639d1e1aaf3bdb5f4b59af02d7d7b16ae0841e4c86",
-  "new_approvals": 2,
-  "new_helpers": 3,
-  "next_action": "Compile the verified 20-row ether-water inventory and both original RoW water-market shares, including their inherited literal omission audit; then resume dedicated PCC dependencies.",
+  "new_approvals": 3,
+  "new_helpers": 5,
+  "next_action": "Resume the four remaining dedicated-PCC dependencies, then compose the PCC market.",
   "limitations": [
     "The rejected native ether process uses a different reaction route; no such proxy or allocation-ratio shortcut is applied.",
-    "Both fossil ethanol markets now qualify as background supplies in this source3.9scope.",
-    "Water background recipe compilation, full PCC/pulp-heat conversion and steel export remain unfinished."
+    "Exact3.9ethanol and RoWwater background mappings are now qualified; the earlier3.6water selected target/factor remains unchanged.",
+    "Full PCC/pulp-heat conversion and steel export remain unfinished."
   ],
   "RER_ethanol_review": "uvek-ether-ethanol-rer-review.md",
-  "helper_scope": "RER ethanol market plus RoW ethanol market and coal-FT producer; water co-product and RoW water-market helpers not yet compiled.",
+  "helper_scope": "Three ethanol helpers plus allocated ether-water and complete RoW decarbonised-water market; seven unchanged dependencies are not counted as new.",
   "coal_route_background_review": "uvek-coal-ft-background-review.md",
   "coal_route_direct_inventory_harmonization": "passed, four records, zero unresolved suppliers, 46 existing approved zero-interface omission events",
   "RoW_ethanol_review": "uvek-ethanol-row-review.md",
-  "water_direct_inventory_harmonization": "passed:8records,0unapprovedcorrespondences,46existingliteralomissionevents"
+  "water_direct_inventory_harmonization": "passed:8records,0unapprovedcorrespondences,46existingliteralomissionevents",
+  "water_market_review": "uvek-pcc-water-row-review.md",
+  "water_market_verification": "uvek-pcc-water-row-verification.json"
 }
