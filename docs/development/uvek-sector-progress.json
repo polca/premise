@@ -594,6 +594,22 @@
         "unapproved_nested_pulp_heat_correspondences_after": 71,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "Stock screening proxies; no source/native LCIA equivalence claim. Full pulp heat, industrial heat and steel transformation/export remain unfinished."
+      },
+      "pulp_heat_cutoff_stock_verification": {
+        "review": "uvek-pulp-heat-cutoff-stocks-review.md",
+        "source_matrix_receipt": "uvek-pulp-heat-cutoff-stock-verification.json",
+        "stock_correspondences": 6,
+        "independently_checked_source_profiles": 54,
+        "signed_exact_matrix_zero_LCI_checks": 108,
+        "signed_finite_global_solver_checks": 108,
+        "premise_fresh_cache_withdrawal_tests_passed": 9,
+        "existing_helper_definitions_reused": 6,
+        "new_brightpath_helper_definitions": 0,
+        "new_source_omissions": 0,
+        "unapproved_nested_pulp_heat_correspondences_before": 71,
+        "unapproved_nested_pulp_heat_correspondences_after": 65,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Only exact positive production-only allocation handovers. Full pulp heat and steel transformation/export remain unfinished."
       }
     },
     {

@@ -1,0 +1,2180 @@
+{
+  "status": "exact_stock_correspondences_premise_approved_and_tested",
+  "source_profiles": "nine independently installed ecoinvent cutoff profiles",
+  "records": [
+    {
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "0a8c915e94e7992157229713e4e7ce520b91d6e589ef5977d54fee4cc46e65b4",
+      "existing_review_path": "export/uvek_copper_stock_review.json",
+      "existing_review_sha256": "5449a2a7fdce615b776d13d3af3a2b4bd2d1333e707ad623c1bc0adbf3d0129f",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.6-cutoff",
+        "inventory_sha256": "0afc058aad96aae7854ae9455a13b22e7f45ae603108b0f11e24826d1bb7347c",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "brightpath-reference-3.6-cutoff",
+      "source_database": "ecoinvent-3.6-cutoff"
+    },
+    {
+      "rule_id": "bp-febf9f5de6b7b989",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "digester sludge, Recycled Content cut-off",
+        "reference product": "digester sludge",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "21e74b855f21779250c2edafc791ed10e03b8afec849bad7f2afe9bbe4bdc62d",
+      "existing_review_path": "export/uvek_digester_stock_review.json",
+      "existing_review_sha256": "b99f607635daed4d9afc1834b340a650a9065fdb9315a9e0e4a67cbf49a0225a",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.6-cutoff",
+        "inventory_sha256": "34f1315d98fae765104f9409c490f45612420bd166f61d95f98c19dbf1cc0527",
+        "source_sign": 1,
+        "bindings": [],
+        "recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+        "recipe": {
+          "name": "Allocated cut-off stock, digester sludge, GLO",
+          "reference product": "digester sludge",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_digester_stock_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        }
+      },
+      "target_recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "brightpath-reference-3.6-cutoff",
+      "source_database": "ecoinvent-3.6-cutoff"
+    },
+    {
+      "rule_id": "bp-b74f6df51cca91ae",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "electronics scrap, Recycled Content cut-off",
+        "reference product": "electronics scrap",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "9937b298d6e58ac1edcb3a4b8c9e400d8a40eeb9dd7e4c828b56f548ecc97164",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.6-cutoff",
+        "inventory_sha256": "11c3b31bbdce2687544997dc70e6e26599692cdd3d52e04d9ab6a0ef5990eff9",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-6c5f06b439d93e73f256",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "brightpath-reference-3.6-cutoff",
+      "source_database": "ecoinvent-3.6-cutoff"
+    },
+    {
+      "rule_id": "bp-72e20647991ff00e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+        "reference product": "aluminium scrap, post-consumer",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "1c9fed195d5be9e0fb6db664adee7238821ff60fdc11fca1001e572655080ee0",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.6-cutoff",
+        "inventory_sha256": "6b45c4cf104a2cadff015bdd9c9b39c76932bce60cd86b9462dc74c70cc45d34",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-d51d28a616ca138e3db9",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 3.714613182983518e-10,
+      "global_solver_residual_max_abs": 3.864118015523338e-11,
+      "source_project": "brightpath-reference-3.6-cutoff",
+      "source_database": "ecoinvent-3.6-cutoff"
+    },
+    {
+      "rule_id": "bp-679e09d6edfabf75",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "iron scrap, unsorted, Recycled Content cut-off",
+        "reference product": "iron scrap, unsorted",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "429a673a54ccafce71a3bcfb729fd45733d8d91b5e349d8e6b37d4c400c74838",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.6-cutoff",
+        "inventory_sha256": "0da4b0996fc1b48e4452ec574988d5c82665828d876e0fa785af8e390a35c979",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-5d2d3e0335d9fe263a14",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 3.0206180931883425e-11,
+      "global_solver_residual_max_abs": 4.1841115280084334e-13,
+      "source_project": "brightpath-reference-3.6-cutoff",
+      "source_database": "ecoinvent-3.6-cutoff"
+    },
+    {
+      "rule_id": "bp-c63b19dd1ce08539",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "waste packaging paper, Recycled Content cut-off",
+        "reference product": "waste packaging paper",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "abb22d36104e32ebd209765ef100433caa5e35ed44daa0fd1063c46223df4380",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.6-cutoff",
+        "inventory_sha256": "ecdb138a384ebc5ec162e80116ef012ad6fbff7692d25ffbd706f09aad4bdd38",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-4c79c54a0691048851f5",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "brightpath-reference-3.6-cutoff",
+      "source_database": "ecoinvent-3.6-cutoff"
+    },
+    {
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "81216b2676496be54fa9e8a8f50edf667644418aaace83fe3888229f3373cc53",
+      "existing_review_path": "export/uvek_copper_stock_review.json",
+      "existing_review_sha256": "5449a2a7fdce615b776d13d3af3a2b4bd2d1333e707ad623c1bc0adbf3d0129f",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.7-cutoff",
+        "inventory_sha256": "ea15ec43b9c0f647b8054c9152ba2f5ce5e6d25f94eea720dab5a3e2dbd57f01",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "brightpath-reference-3.7-cutoff",
+      "source_database": "ecoinvent-3.7-cutoff"
+    },
+    {
+      "rule_id": "bp-febf9f5de6b7b989",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "digester sludge, Recycled Content cut-off",
+        "reference product": "digester sludge",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "8b5e50fab41cd3e2acbfdd2b3e5aa05f882d94f2d67b99f3187172e3a45af3bf",
+      "existing_review_path": "export/uvek_digester_stock_review.json",
+      "existing_review_sha256": "b99f607635daed4d9afc1834b340a650a9065fdb9315a9e0e4a67cbf49a0225a",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.7-cutoff",
+        "inventory_sha256": "172bb1e7ed5e2c6956329a6242406cace711ccf92e99fbc1e7e975fabcc95fa5",
+        "source_sign": 1,
+        "bindings": [],
+        "recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+        "recipe": {
+          "name": "Allocated cut-off stock, digester sludge, GLO",
+          "reference product": "digester sludge",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_digester_stock_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        }
+      },
+      "target_recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.9774629960503946e-14,
+      "global_solver_residual_max_abs": 3.9926165591892386e-17,
+      "source_project": "brightpath-reference-3.7-cutoff",
+      "source_database": "ecoinvent-3.7-cutoff"
+    },
+    {
+      "rule_id": "bp-b74f6df51cca91ae",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "electronics scrap, Recycled Content cut-off",
+        "reference product": "electronics scrap",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "b67dfe71c5d3496779238c82ac62eac4697f1ad9b63cd163a63768648f7e65d8",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.7-cutoff",
+        "inventory_sha256": "34e74f1d9fea54ca9d30cdbbf2aa1e1e3e415a8204f5f6667a4c426f19ac4ed9",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-6c5f06b439d93e73f256",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "brightpath-reference-3.7-cutoff",
+      "source_database": "ecoinvent-3.7-cutoff"
+    },
+    {
+      "rule_id": "bp-72e20647991ff00e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+        "reference product": "aluminium scrap, post-consumer",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "c38e210ea15fa24728b71da81ed198a25fd06f7204e2cc3fb410c1d42e1f2290",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.7-cutoff",
+        "inventory_sha256": "1c0b58aae701991eb3e6359f9547b06a6e90548bdd8ab53a4f31c1001055fdfb",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-d51d28a616ca138e3db9",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "brightpath-reference-3.7-cutoff",
+      "source_database": "ecoinvent-3.7-cutoff"
+    },
+    {
+      "rule_id": "bp-679e09d6edfabf75",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "iron scrap, unsorted, Recycled Content cut-off",
+        "reference product": "iron scrap, unsorted",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "d67eef7b6e5c8d99f0ef076ff74bc1a681ff949db8fecd7f31f0a935938e1995",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.7-cutoff",
+        "inventory_sha256": "c0c0cd3305e702318cce71b9a76ce1eaa89b50e38f81dac6873f04e68d8e8f1f",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-5d2d3e0335d9fe263a14",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 4.715277467554056e-11,
+      "global_solver_residual_max_abs": 7.79872172581917e-14,
+      "source_project": "brightpath-reference-3.7-cutoff",
+      "source_database": "ecoinvent-3.7-cutoff"
+    },
+    {
+      "rule_id": "bp-c63b19dd1ce08539",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "waste packaging paper, Recycled Content cut-off",
+        "reference product": "waste packaging paper",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "3b796c4189a72f346a6538d931d93c95b89a4c252f58a94ed5c20a541285ab22",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.7-cutoff",
+        "inventory_sha256": "36bd5902ca4fbf187a71c025e84e7e8f4e1e89f1683795f73d2cee50225cfc47",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-4c79c54a0691048851f5",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "brightpath-reference-3.7-cutoff",
+      "source_database": "ecoinvent-3.7-cutoff"
+    },
+    {
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "8e103ab094b640ec772705e086f55ea2dc70e8d774a61bb200827bb1915aba7d",
+      "existing_review_path": "export/uvek_copper_stock_review.json",
+      "existing_review_sha256": "5449a2a7fdce615b776d13d3af3a2b4bd2d1333e707ad623c1bc0adbf3d0129f",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.8-cutoff",
+        "inventory_sha256": "22da528d537e287839759e5693b3582efcebacf5b1d7d03e4652d09ef5c4e487",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.8-cutoff",
+      "source_database": "ecoinvent-3.8-cutoff"
+    },
+    {
+      "rule_id": "bp-febf9f5de6b7b989",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "digester sludge, Recycled Content cut-off",
+        "reference product": "digester sludge",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "d91f130d33c8963c34512fbd6c0bf801ad56e7a2a642ac703c9377b3c5e1ff2b",
+      "existing_review_path": "export/uvek_digester_stock_review.json",
+      "existing_review_sha256": "b99f607635daed4d9afc1834b340a650a9065fdb9315a9e0e4a67cbf49a0225a",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.8-cutoff",
+        "inventory_sha256": "cf24ad11c3225acc335deb0f87de98c844b6b6326f9ad10803433b9baf7cdf39",
+        "source_sign": 1,
+        "bindings": [],
+        "recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+        "recipe": {
+          "name": "Allocated cut-off stock, digester sludge, GLO",
+          "reference product": "digester sludge",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_digester_stock_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        }
+      },
+      "target_recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 2.3706441488226416e-14,
+      "global_solver_residual_max_abs": 1.427566315833078e-17,
+      "source_project": "ecoinvent-3.8-cutoff",
+      "source_database": "ecoinvent-3.8-cutoff"
+    },
+    {
+      "rule_id": "bp-b74f6df51cca91ae",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "electronics scrap, Recycled Content cut-off",
+        "reference product": "electronics scrap",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "c271f5a7fe5e5205d213d5ed85d1accc3654dbfce189f0f031ff151a2608487f",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.8-cutoff",
+        "inventory_sha256": "f35728c56257b722cf5389ecd48f03e27ecef8d1d4b094f3c6a40779d25810c2",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-6c5f06b439d93e73f256",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 2.281698430434138e-13,
+      "global_solver_residual_max_abs": 1.053228418253892e-15,
+      "source_project": "ecoinvent-3.8-cutoff",
+      "source_database": "ecoinvent-3.8-cutoff"
+    },
+    {
+      "rule_id": "bp-72e20647991ff00e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+        "reference product": "aluminium scrap, post-consumer",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "a2cb325e3165da2216ff291f36946c33faf4b006bffe2f978947a2b7a8bf2e7a",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.8-cutoff",
+        "inventory_sha256": "5a065fd664209989fc34d28e8467d136991b3843c5f582d31ca5cdc1cd9a7f4e",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-d51d28a616ca138e3db9",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.8-cutoff",
+      "source_database": "ecoinvent-3.8-cutoff"
+    },
+    {
+      "rule_id": "bp-679e09d6edfabf75",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "iron scrap, unsorted, Recycled Content cut-off",
+        "reference product": "iron scrap, unsorted",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "2ac96e8bd38accf8e83d9d33ec564125d3f3a735a9207ce596e4c927a389a0aa",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.8-cutoff",
+        "inventory_sha256": "a525db4cac63bf4fc429a4d3386bb520a05fa4442ad97dd8d0cc09db1d2d0727",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-5d2d3e0335d9fe263a14",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 7.913897888633785e-11,
+      "global_solver_residual_max_abs": 6.669299047409999e-13,
+      "source_project": "ecoinvent-3.8-cutoff",
+      "source_database": "ecoinvent-3.8-cutoff"
+    },
+    {
+      "rule_id": "bp-c63b19dd1ce08539",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "waste packaging paper, Recycled Content cut-off",
+        "reference product": "waste packaging paper",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "ee29e01126cd81fb27f941c1104250543768ac43d14a722aa5ff7dad9e7c5604",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.8-cutoff",
+        "inventory_sha256": "5ec35740a94fcd3dccc3ca3dfe134f3509d7f7eb1e0f9596d62017f9951ea682",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-4c79c54a0691048851f5",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.8-cutoff",
+      "source_database": "ecoinvent-3.8-cutoff"
+    },
+    {
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "a182b6d38593f617ede958c0c4457702f54a08bf554e53ef9766e9108b1c1381",
+      "existing_review_path": "export/uvek_copper_stock_review.json",
+      "existing_review_sha256": "5449a2a7fdce615b776d13d3af3a2b4bd2d1333e707ad623c1bc0adbf3d0129f",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.9-cutoff",
+        "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.9-cutoff",
+      "source_database": "ecoinvent-3.9-cutoff"
+    },
+    {
+      "rule_id": "bp-febf9f5de6b7b989",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "digester sludge, Recycled Content cut-off",
+        "reference product": "digester sludge",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "265e6185e341d192315db4b50519f518af33ebba26bdcf1f9d452d7837bd7fa4",
+      "existing_review_path": "export/uvek_digester_stock_review.json",
+      "existing_review_sha256": "b99f607635daed4d9afc1834b340a650a9065fdb9315a9e0e4a67cbf49a0225a",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.9-cutoff",
+        "inventory_sha256": "8e939c6620420551e8bdb87fd55c19f7cb3aee5cc674cd926831f77fce28e4c0",
+        "source_sign": 1,
+        "bindings": [],
+        "recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+        "recipe": {
+          "name": "Allocated cut-off stock, digester sludge, GLO",
+          "reference product": "digester sludge",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_digester_stock_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        }
+      },
+      "target_recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 4.982075894772726e-12,
+      "global_solver_residual_max_abs": 2.771195223478342e-17,
+      "source_project": "ecoinvent-3.9-cutoff",
+      "source_database": "ecoinvent-3.9-cutoff"
+    },
+    {
+      "rule_id": "bp-b74f6df51cca91ae",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "electronics scrap, Recycled Content cut-off",
+        "reference product": "electronics scrap",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "30b45ffd17686f5b8b9e6dd49dce9cb239f6994407b0dc3d98210a75d29d1aac",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.9-cutoff",
+        "inventory_sha256": "43eee7bbbc1fe5c9405c37a45f0f3a6674ff0eaa0128b3d68b7c9978d6fa81d3",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-6c5f06b439d93e73f256",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.9-cutoff",
+      "source_database": "ecoinvent-3.9-cutoff"
+    },
+    {
+      "rule_id": "bp-72e20647991ff00e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+        "reference product": "aluminium scrap, post-consumer",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "f4d04dd8383c0ab5501fc3a2025419e9888ef3e8ea2851d9bbe48e578d8a2fb2",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.9-cutoff",
+        "inventory_sha256": "3913009a98940f841d4c4a5e5db4e8f3fbaeb440ee3f7da91708493afc109618",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-d51d28a616ca138e3db9",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.9-cutoff",
+      "source_database": "ecoinvent-3.9-cutoff"
+    },
+    {
+      "rule_id": "bp-679e09d6edfabf75",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "iron scrap, unsorted, Recycled Content cut-off",
+        "reference product": "iron scrap, unsorted",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "cf99a4eac66f473c2090c6a916d71b7412ed99f8a266260de4061c2dc01f1786",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.9-cutoff",
+        "inventory_sha256": "e4a60c5e5194d011d6da055ea40bf57e91e7aa0fb0fec5be6cbba8f56b69acf9",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-5d2d3e0335d9fe263a14",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 7.127491274223073e-09,
+      "global_solver_residual_max_abs": 6.193517143410528e-11,
+      "source_project": "ecoinvent-3.9-cutoff",
+      "source_database": "ecoinvent-3.9-cutoff"
+    },
+    {
+      "rule_id": "bp-c63b19dd1ce08539",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "waste packaging paper, Recycled Content cut-off",
+        "reference product": "waste packaging paper",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "229e4e6dac015e7dcdb9eb986e03e5403dd1a0f92a40a50762d173991fd7c07b",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.9-cutoff",
+        "inventory_sha256": "4235a3ff832f1039fee6e3ccfb1a07b69fe01a5898ce8c74f8e73fc9b1c69c9a",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-4c79c54a0691048851f5",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.9-cutoff",
+      "source_database": "ecoinvent-3.9-cutoff"
+    },
+    {
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "b6604e46a21fd40b6d4b2da3c19c53e0a580a2a345b4950a4ca50503fb57dcd1",
+      "existing_review_path": "export/uvek_copper_stock_review.json",
+      "existing_review_sha256": "5449a2a7fdce615b776d13d3af3a2b4bd2d1333e707ad623c1bc0adbf3d0129f",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.9.1-cutoff",
+        "inventory_sha256": "6eec655f0feb4da300f76e8d467be8d7030de24b0b6da487ba035d5da5c945f1",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.339735059049139e-07,
+      "global_solver_residual_max_abs": 6.579200469664091e-10,
+      "source_project": "ecoinvent-3.9.1-cutoff",
+      "source_database": "ecoinvent-3.9.1-cutoff"
+    },
+    {
+      "rule_id": "bp-febf9f5de6b7b989",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "digester sludge, Recycled Content cut-off",
+        "reference product": "digester sludge",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "25e3f6bcfc1347ce69b0223ea55fab3464d99be7b3fa67013247c80b39c31968",
+      "existing_review_path": "export/uvek_digester_stock_review.json",
+      "existing_review_sha256": "b99f607635daed4d9afc1834b340a650a9065fdb9315a9e0e4a67cbf49a0225a",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.9.1-cutoff",
+        "inventory_sha256": "1e0b41a9f8d51dba5b91db30b9cd0c91504c6a257ee09b37773e8561b82cc1ad",
+        "source_sign": 1,
+        "bindings": [],
+        "recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+        "recipe": {
+          "name": "Allocated cut-off stock, digester sludge, GLO",
+          "reference product": "digester sludge",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_digester_stock_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        }
+      },
+      "target_recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 2.5455280679516925e-11,
+      "global_solver_residual_max_abs": 6.984087872390227e-13,
+      "source_project": "ecoinvent-3.9.1-cutoff",
+      "source_database": "ecoinvent-3.9.1-cutoff"
+    },
+    {
+      "rule_id": "bp-b74f6df51cca91ae",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "electronics scrap, Recycled Content cut-off",
+        "reference product": "electronics scrap",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "e796a2ce6ace7a2a945fa3227d7e224f068668129d04e0a8571838c48a7f8056",
+      "existing_review_path": "export/uvek_exact_patch_boundary_review.json",
+      "existing_review_sha256": "ffb5c1c9d3cfc7161b57b718160ca24e4d7edb62a1ec5d1076eb2bdad900fba9",
+      "existing_exact_profile_proof": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9.1"
+        },
+        "conversion_factor": 1,
+        "review": {
+          "evidence": [
+            "brightpath/data/export/uvek_cutoff_stock_review.json#ecoinvent-3.9.1-cutoff/46c1fbab863ba3b9d193d02f5f45b9fdaaf38128e624006670f081b04fd4dc5f",
+            "brightpath/data/export/uvek_exact_patch_boundary_review.json#ecoinvent-3.9.1-cutoff/46c1fbab863ba3b9d193d02f5f45b9fdaaf38128e624006670f081b04fd4dc5f"
+          ],
+          "reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "source_sign": 1,
+          "status": "verified",
+          "target_sign": 1
+        },
+        "fresh_source_production_only_and_processed_matrix_verified": true
+      },
+      "target_recipe_id": "cutoff-stock-6c5f06b439d93e73f256",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.9.1-cutoff",
+      "source_database": "ecoinvent-3.9.1-cutoff"
+    },
+    {
+      "rule_id": "bp-72e20647991ff00e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+        "reference product": "aluminium scrap, post-consumer",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "accbb70237d0bfbe549548ff213282cf30039c9e767e2efe3de2d927343c83a8",
+      "existing_review_path": "export/uvek_exact_patch_boundary_review.json",
+      "existing_review_sha256": "ffb5c1c9d3cfc7161b57b718160ca24e4d7edb62a1ec5d1076eb2bdad900fba9",
+      "existing_exact_profile_proof": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9.1"
+        },
+        "conversion_factor": 1,
+        "review": {
+          "evidence": [
+            "brightpath/data/export/uvek_cutoff_stock_review.json#ecoinvent-3.9.1-cutoff/f5a5345e4d66253e6ac42aa3200677a387ab4658f2d93536665e81d31cea6122",
+            "brightpath/data/export/uvek_exact_patch_boundary_review.json#ecoinvent-3.9.1-cutoff/f5a5345e4d66253e6ac42aa3200677a387ab4658f2d93536665e81d31cea6122"
+          ],
+          "reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "source_sign": 1,
+          "status": "verified",
+          "target_sign": 1
+        },
+        "fresh_source_production_only_and_processed_matrix_verified": true
+      },
+      "target_recipe_id": "cutoff-stock-d51d28a616ca138e3db9",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 6.053728031882232e-08,
+      "global_solver_residual_max_abs": 3.330621963840504e-09,
+      "source_project": "ecoinvent-3.9.1-cutoff",
+      "source_database": "ecoinvent-3.9.1-cutoff"
+    },
+    {
+      "rule_id": "bp-679e09d6edfabf75",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "iron scrap, unsorted, Recycled Content cut-off",
+        "reference product": "iron scrap, unsorted",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "f0755f09668353ac8f4a026242ea2cc10cb0884b451f2610f96d7c58c91739f3",
+      "existing_review_path": "export/uvek_complete_patch_boundary_review.json",
+      "existing_review_sha256": "f7b8ef6a890344e992852dc838919a351ccd1868d36d22bd78dfae5195e52bc7",
+      "existing_exact_profile_proof": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9.1"
+        },
+        "conversion_factor": 1,
+        "review": {
+          "evidence": [
+            "brightpath/data/export/uvek_cutoff_stock_review.json#ecoinvent-3.9.1-cutoff/379c44b02add592b08cbc099471104f8fc1c4598716a69972ee1ad9b893c70c6",
+            "brightpath/data/export/uvek_complete_patch_boundary_review.json#ecoinvent-3.9.1-cutoff/379c44b02add592b08cbc099471104f8fc1c4598716a69972ee1ad9b893c70c6"
+          ],
+          "reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "source_sign": 1,
+          "status": "verified",
+          "target_sign": 1
+        },
+        "fresh_source_production_only_and_processed_matrix_verified": true
+      },
+      "target_recipe_id": "cutoff-stock-5d2d3e0335d9fe263a14",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.8340503177062724e-08,
+      "global_solver_residual_max_abs": 6.907295769103666e-11,
+      "source_project": "ecoinvent-3.9.1-cutoff",
+      "source_database": "ecoinvent-3.9.1-cutoff"
+    },
+    {
+      "rule_id": "bp-c63b19dd1ce08539",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "waste packaging paper, Recycled Content cut-off",
+        "reference product": "waste packaging paper",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "797b2f54d66f79f6393e7643ba2f9bc255d347abc0b87d39b834aaf94cf36fe1",
+      "existing_review_path": "export/uvek_complete_patch_boundary_review.json",
+      "existing_review_sha256": "f7b8ef6a890344e992852dc838919a351ccd1868d36d22bd78dfae5195e52bc7",
+      "existing_exact_profile_proof": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9.1"
+        },
+        "conversion_factor": 1,
+        "review": {
+          "evidence": [
+            "brightpath/data/export/uvek_cutoff_stock_review.json#ecoinvent-3.9.1-cutoff/1587374a17c3b972503ccfc19ce28d1d3ffed8e580202dc617cf661a41c53f3a",
+            "brightpath/data/export/uvek_complete_patch_boundary_review.json#ecoinvent-3.9.1-cutoff/1587374a17c3b972503ccfc19ce28d1d3ffed8e580202dc617cf661a41c53f3a"
+          ],
+          "reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "source_sign": 1,
+          "status": "verified",
+          "target_sign": 1
+        },
+        "fresh_source_production_only_and_processed_matrix_verified": true
+      },
+      "target_recipe_id": "cutoff-stock-4c79c54a0691048851f5",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.9.1-cutoff",
+      "source_database": "ecoinvent-3.9.1-cutoff"
+    },
+    {
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "2426fa3e6bc03adbd1448addb98c282227cc1e6a78e728dd29b2edfef5f4283c",
+      "existing_review_path": "export/uvek_copper_stock_review.json",
+      "existing_review_sha256": "5449a2a7fdce615b776d13d3af3a2b4bd2d1333e707ad623c1bc0adbf3d0129f",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.10-cutoff",
+        "inventory_sha256": "04ab25b36674105cd862ef85bb921a21377f6129fb00fda158851a56d58849f8",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.492458826667424e-08,
+      "global_solver_residual_max_abs": 3.54356415779558e-11,
+      "source_project": "ecoinvent-3.10-cutoff",
+      "source_database": "ecoinvent-3.10-cutoff"
+    },
+    {
+      "rule_id": "bp-febf9f5de6b7b989",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "digester sludge, Recycled Content cut-off",
+        "reference product": "digester sludge",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "631878b476a75ad61e9614b499a3bffa03502fad4c8695472275fab4250534e1",
+      "existing_review_path": "export/uvek_digester_stock_review.json",
+      "existing_review_sha256": "b99f607635daed4d9afc1834b340a650a9065fdb9315a9e0e4a67cbf49a0225a",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.10-cutoff",
+        "inventory_sha256": "5f3d98d818de3f4bf063b01aa0d36073a03b4eed038a2bd1d6560ac8ed332b67",
+        "source_sign": 1,
+        "bindings": [],
+        "recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+        "recipe": {
+          "name": "Allocated cut-off stock, digester sludge, GLO",
+          "reference product": "digester sludge",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_digester_stock_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        }
+      },
+      "target_recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 2.871179852560235e-16,
+      "global_solver_residual_max_abs": 3.4357345033795013e-17,
+      "source_project": "ecoinvent-3.10-cutoff",
+      "source_database": "ecoinvent-3.10-cutoff"
+    },
+    {
+      "rule_id": "bp-b74f6df51cca91ae",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "electronics scrap, Recycled Content cut-off",
+        "reference product": "electronics scrap",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "f3c75b12d7196deb9ffd69fd32eb4d8878b7ef3ab4da10491147a17510fb4474",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.10-cutoff",
+        "inventory_sha256": "b28a563ff5fd4438d4971b0e35d1b7bca9516b157b5183dfd60f80a78b4f3562",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-6c5f06b439d93e73f256",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.10-cutoff",
+      "source_database": "ecoinvent-3.10-cutoff"
+    },
+    {
+      "rule_id": "bp-72e20647991ff00e",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+        "reference product": "aluminium scrap, post-consumer",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "28a82cbbf96756995c885755dd0b600e0665c1f85799c9fbe6974b76878fb6df",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.10-cutoff",
+        "inventory_sha256": "f42b3ae7bad437b28c97718dbd9648b7f816ab61950d29e2f57e2c7a7406c6ac",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-d51d28a616ca138e3db9",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.10-cutoff",
+      "source_database": "ecoinvent-3.10-cutoff"
+    },
+    {
+      "rule_id": "bp-679e09d6edfabf75",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "iron scrap, unsorted, Recycled Content cut-off",
+        "reference product": "iron scrap, unsorted",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "763eb271b6ea146c6fe8d26684f9ff94501ca4e85b5ac65ef12cc58810cc6042",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.10-cutoff",
+        "inventory_sha256": "571997fb50042c65a6444433edfabc845c8d3f56e15af636aa8f4f779f407108",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-5d2d3e0335d9fe263a14",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 4.341311096793703e-09,
+      "global_solver_residual_max_abs": 2.154071636760678e-11,
+      "source_project": "ecoinvent-3.10-cutoff",
+      "source_database": "ecoinvent-3.10-cutoff"
+    },
+    {
+      "rule_id": "bp-c63b19dd1ce08539",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "waste packaging paper, Recycled Content cut-off",
+        "reference product": "waste packaging paper",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "4d6a45f1571b0b0e946fe3188b48300f57233faa68d6d8a61ac140fa0a222b1e",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.10-cutoff",
+        "inventory_sha256": "0f8d2c56235fa7e35c483db38c45504283ba34f8af505a80f7851ea2c6b5c1e1",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-4c79c54a0691048851f5",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0,
+      "source_project": "ecoinvent-3.10-cutoff",
+      "source_database": "ecoinvent-3.10-cutoff"
+    },
+    {
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source_project": "premise-metals-version-3.10.1-cutoff-20261019",
+      "source_database": "ecoinvent-3.10.1-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "fc5c22d8a5ba785d7252ac833859b18cd14f444bf10f18131e4d8bddc5142fe1",
+      "existing_review_path": "export/uvek_copper_stock_review.json",
+      "existing_review_sha256": "5449a2a7fdce615b776d13d3af3a2b4bd2d1333e707ad623c1bc0adbf3d0129f",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.10.1-cutoff",
+        "inventory_sha256": "dea82bc6ccdd3fe31e14a2beba0f12efdb89fd419b09af08735eb052273bf05c",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 2.1825320097299938e-10,
+      "global_solver_residual_max_abs": 2.51877106293463e-13
+    },
+    {
+      "rule_id": "bp-febf9f5de6b7b989",
+      "source_project": "premise-metals-version-3.10.1-cutoff-20261019",
+      "source_database": "ecoinvent-3.10.1-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "digester sludge, Recycled Content cut-off",
+        "reference product": "digester sludge",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "6db74fd650bb968bb3ad132fdce870820a4ff7061a07c7947e89af40022df3e6",
+      "existing_review_path": "export/uvek_digester_stock_review.json",
+      "existing_review_sha256": "b99f607635daed4d9afc1834b340a650a9065fdb9315a9e0e4a67cbf49a0225a",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.10.1-cutoff",
+        "inventory_sha256": "937b945a1e94ff3f301b3319e561d337c9ce230b35f8ac6a5b87bcacfeedb302",
+        "source_sign": 1,
+        "bindings": [],
+        "recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+        "recipe": {
+          "name": "Allocated cut-off stock, digester sludge, GLO",
+          "reference product": "digester sludge",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_digester_stock_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        }
+      },
+      "target_recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 2.943443704644932e-13,
+      "global_solver_residual_max_abs": 1.1565988518238611e-15
+    },
+    {
+      "rule_id": "bp-b74f6df51cca91ae",
+      "source_project": "premise-metals-version-3.10.1-cutoff-20261019",
+      "source_database": "ecoinvent-3.10.1-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "electronics scrap, Recycled Content cut-off",
+        "reference product": "electronics scrap",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "ec84d34fd08ec2827156b79f14925b4ae0da38c05386dabbbb11f9f753dea960",
+      "existing_review_path": "export/uvek_exact_patch_boundary_review.json",
+      "existing_review_sha256": "ffb5c1c9d3cfc7161b57b718160ca24e4d7edb62a1ec5d1076eb2bdad900fba9",
+      "existing_exact_profile_proof": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.10.1"
+        },
+        "conversion_factor": 1,
+        "review": {
+          "evidence": [
+            "brightpath/data/export/uvek_cutoff_stock_review.json#ecoinvent-3.10.1-cutoff/c89c1971f5307d84af7fac3f7ee3e2dc0dd900f00b5b59f62a95daa064352b45",
+            "brightpath/data/export/uvek_exact_patch_boundary_review.json#ecoinvent-3.10.1-cutoff/c89c1971f5307d84af7fac3f7ee3e2dc0dd900f00b5b59f62a95daa064352b45"
+          ],
+          "reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "source_sign": 1,
+          "status": "verified",
+          "target_sign": 1
+        },
+        "fresh_source_production_only_and_processed_matrix_verified": true
+      },
+      "target_recipe_id": "cutoff-stock-6c5f06b439d93e73f256",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0
+    },
+    {
+      "rule_id": "bp-72e20647991ff00e",
+      "source_project": "premise-metals-version-3.10.1-cutoff-20261019",
+      "source_database": "ecoinvent-3.10.1-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+        "reference product": "aluminium scrap, post-consumer",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "02593e8d0e7720fef54a71c48be63139c0dbfff2c199f28fca4eacc0859893b3",
+      "existing_review_path": "export/uvek_exact_patch_boundary_review.json",
+      "existing_review_sha256": "ffb5c1c9d3cfc7161b57b718160ca24e4d7edb62a1ec5d1076eb2bdad900fba9",
+      "existing_exact_profile_proof": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.10.1"
+        },
+        "conversion_factor": 1,
+        "review": {
+          "evidence": [
+            "brightpath/data/export/uvek_cutoff_stock_review.json#ecoinvent-3.10.1-cutoff/842fa2c7c29b6052a9d3c8c7364d3a4d350bbd31dd558ece9a04bb396481353d",
+            "brightpath/data/export/uvek_exact_patch_boundary_review.json#ecoinvent-3.10.1-cutoff/842fa2c7c29b6052a9d3c8c7364d3a4d350bbd31dd558ece9a04bb396481353d"
+          ],
+          "reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "source_sign": 1,
+          "status": "verified",
+          "target_sign": 1
+        },
+        "fresh_source_production_only_and_processed_matrix_verified": true
+      },
+      "target_recipe_id": "cutoff-stock-d51d28a616ca138e3db9",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.6392925386423714e-11,
+      "global_solver_residual_max_abs": 2.5729322813947334e-13
+    },
+    {
+      "rule_id": "bp-679e09d6edfabf75",
+      "source_project": "premise-metals-version-3.10.1-cutoff-20261019",
+      "source_database": "ecoinvent-3.10.1-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "iron scrap, unsorted, Recycled Content cut-off",
+        "reference product": "iron scrap, unsorted",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "01ec15fb6b2b588de85032d1299370609e050c50b2427a3d2726023951177471",
+      "existing_review_path": "export/uvek_complete_patch_boundary_review.json",
+      "existing_review_sha256": "f7b8ef6a890344e992852dc838919a351ccd1868d36d22bd78dfae5195e52bc7",
+      "existing_exact_profile_proof": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.10.1"
+        },
+        "conversion_factor": 1,
+        "review": {
+          "evidence": [
+            "brightpath/data/export/uvek_cutoff_stock_review.json#ecoinvent-3.10.1-cutoff/c4ee414fcfc3a1772b3022bfb9e5e96293f7c3fabdf6b943f7ba000763e0754d",
+            "brightpath/data/export/uvek_complete_patch_boundary_review.json#ecoinvent-3.10.1-cutoff/c4ee414fcfc3a1772b3022bfb9e5e96293f7c3fabdf6b943f7ba000763e0754d"
+          ],
+          "reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "source_sign": 1,
+          "status": "verified",
+          "target_sign": 1
+        },
+        "fresh_source_production_only_and_processed_matrix_verified": true
+      },
+      "target_recipe_id": "cutoff-stock-5d2d3e0335d9fe263a14",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.2133839367198792e-10,
+      "global_solver_residual_max_abs": 4.0377016202652164e-14
+    },
+    {
+      "rule_id": "bp-c63b19dd1ce08539",
+      "source_project": "premise-metals-version-3.10.1-cutoff-20261019",
+      "source_database": "ecoinvent-3.10.1-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10.1",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "waste packaging paper, Recycled Content cut-off",
+        "reference product": "waste packaging paper",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "8982840ea912fab29b909669a3ac106ad59fbefe1b6a106578a0d78bbbb167b4",
+      "existing_review_path": "export/uvek_complete_patch_boundary_review.json",
+      "existing_review_sha256": "f7b8ef6a890344e992852dc838919a351ccd1868d36d22bd78dfae5195e52bc7",
+      "existing_exact_profile_proof": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.10.1"
+        },
+        "conversion_factor": 1,
+        "review": {
+          "evidence": [
+            "brightpath/data/export/uvek_cutoff_stock_review.json#ecoinvent-3.10.1-cutoff/cb395281aef359765377b1be0047c46204227bfa8121dd875337bfe946dd3f38",
+            "brightpath/data/export/uvek_complete_patch_boundary_review.json#ecoinvent-3.10.1-cutoff/cb395281aef359765377b1be0047c46204227bfa8121dd875337bfe946dd3f38"
+          ],
+          "reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "source_sign": 1,
+          "status": "verified",
+          "target_sign": 1
+        },
+        "fresh_source_production_only_and_processed_matrix_verified": true
+      },
+      "target_recipe_id": "cutoff-stock-4c79c54a0691048851f5",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0
+    },
+    {
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source_project": "ecoinvent-3.11-cutoff",
+      "source_database": "ecoinvent-3.11-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.11",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "a872cdbb29a3bc15831db1d82c93a373c52e277efb7b6e7f8039b1117ad114dc",
+      "existing_review_path": "export/uvek_copper_stock_review.json",
+      "existing_review_sha256": "5449a2a7fdce615b776d13d3af3a2b4bd2d1333e707ad623c1bc0adbf3d0129f",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.11-cutoff",
+        "inventory_sha256": "c9163a85f95933c2bb4d053b4387ebfeb1a4965945b78799833ddd3ed6fd9b9e",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.1216752845272433e-10,
+      "global_solver_residual_max_abs": 1.0151740614328515e-12
+    },
+    {
+      "rule_id": "bp-febf9f5de6b7b989",
+      "source_project": "ecoinvent-3.11-cutoff",
+      "source_database": "ecoinvent-3.11-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.11",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "digester sludge, Recycled Content cut-off",
+        "reference product": "digester sludge",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "05398ccc9f14a03954378cf96e6171806e536f3ae2090643a064238bb584a7b0",
+      "existing_review_path": "export/uvek_digester_stock_review.json",
+      "existing_review_sha256": "b99f607635daed4d9afc1834b340a650a9065fdb9315a9e0e4a67cbf49a0225a",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.11-cutoff",
+        "inventory_sha256": "fd1eb53bcadb02e02a19a6118fec527e881f3153cb5319e6b155ce21f4fe1517",
+        "source_sign": 1,
+        "bindings": [],
+        "recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+        "recipe": {
+          "name": "Allocated cut-off stock, digester sludge, GLO",
+          "reference product": "digester sludge",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_digester_stock_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        }
+      },
+      "target_recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 2.5689590227302744e-15,
+      "global_solver_residual_max_abs": 1.1495506286938366e-17
+    },
+    {
+      "rule_id": "bp-b74f6df51cca91ae",
+      "source_project": "ecoinvent-3.11-cutoff",
+      "source_database": "ecoinvent-3.11-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.11",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "electronics scrap, Recycled Content cut-off",
+        "reference product": "electronics scrap",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "36f014fd8238364624d169cee7339a9d49a45bd63d17c9eb421f0f958d17e420",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.11-cutoff",
+        "inventory_sha256": "ca77f22334aee0d56bdc5be30326bdee1a577323d97b0d0412e1752e77b3780a",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-6c5f06b439d93e73f256",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0
+    },
+    {
+      "rule_id": "bp-72e20647991ff00e",
+      "source_project": "ecoinvent-3.11-cutoff",
+      "source_database": "ecoinvent-3.11-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.11",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+        "reference product": "aluminium scrap, post-consumer",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "fcf871eda470dc10308e8443a642a0571dc92a0a067ea47995eb00ce02b68c28",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.11-cutoff",
+        "inventory_sha256": "17eec9110cd1d1adfe4f1a1b7e22d72ff76bdd0e7a2d0d810609ba7ece9f8419",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-d51d28a616ca138e3db9",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 7.664332324160576e-10,
+      "global_solver_residual_max_abs": 1.3327171362722083e-11
+    },
+    {
+      "rule_id": "bp-679e09d6edfabf75",
+      "source_project": "ecoinvent-3.11-cutoff",
+      "source_database": "ecoinvent-3.11-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.11",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "iron scrap, unsorted, Recycled Content cut-off",
+        "reference product": "iron scrap, unsorted",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "98630e22a2d32f88f3ea798631f59cbcd8f5729ea42f519cfb6c65e23592020a",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.11-cutoff",
+        "inventory_sha256": "a1bdda4797dff4dfca8d3d6a49c368c9276868ced5d46c121e3ea1ba034cad10",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-5d2d3e0335d9fe263a14",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.1613496096801383e-11,
+      "global_solver_residual_max_abs": 5.646874745635164e-12
+    },
+    {
+      "rule_id": "bp-c63b19dd1ce08539",
+      "source_project": "ecoinvent-3.11-cutoff",
+      "source_database": "ecoinvent-3.11-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.11",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "waste packaging paper, Recycled Content cut-off",
+        "reference product": "waste packaging paper",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "19b97eedc2a154bb58cdfbbe521ea2b7626028ed395908a6dc3c7e696c5dbe22",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.11-cutoff",
+        "inventory_sha256": "74751fcb0a9eccc78fac03e354e8dd9794003f2ffd62796962668c61cab90556",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-4c79c54a0691048851f5",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0
+    },
+    {
+      "rule_id": "bp-cd0e2e0252556e0e",
+      "source_project": "ecoinvent-3.12-cutoff",
+      "source_database": "ecoinvent-3.12-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+        "reference product": "copper scrap, sorted, pressed",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "620bc47106ef2832a25beef85e6d1d394f24785b9c4d0f0be40ce23a4b6c691d",
+      "existing_review_path": "export/uvek_copper_stock_review.json",
+      "existing_review_sha256": "5449a2a7fdce615b776d13d3af3a2b4bd2d1333e707ad623c1bc0adbf3d0129f",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.12-cutoff",
+        "inventory_sha256": "17222451acc0c4d9b51dd25a37a0dfbeb6aaa036883de2964096d1e88c467c4a",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.1677799283745503e-07,
+      "global_solver_residual_max_abs": 8.189615015257175e-10
+    },
+    {
+      "rule_id": "bp-febf9f5de6b7b989",
+      "source_project": "ecoinvent-3.12-cutoff",
+      "source_database": "ecoinvent-3.12-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "digester sludge, Recycled Content cut-off",
+        "reference product": "digester sludge",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "5e8823a43d5571831985555d98f82b1a6a20a2d004efdc9165c8ed66a6a9ab36",
+      "existing_review_path": "export/uvek_digester_stock_review.json",
+      "existing_review_sha256": "b99f607635daed4d9afc1834b340a650a9065fdb9315a9e0e4a67cbf49a0225a",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.12-cutoff",
+        "inventory_sha256": "20cc1886b580fe18ca1392af8fd7e668fb3b43eec3e54fffe1cb7f6c8d451906",
+        "source_sign": 1,
+        "bindings": [],
+        "recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+        "recipe": {
+          "name": "Allocated cut-off stock, digester sludge, GLO",
+          "reference product": "digester sludge",
+          "location": "GLO",
+          "unit": "kilogram",
+          "inputs": [],
+          "zero_burden": true,
+          "zero_burden_reason": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "rationale": "Reviewed production-only cut-off stock supply: the exact source supplier is explicitly marked Recycled Content cut-off and contains only self-linked production +1, with no processing, freight, biosphere or other exchanges. Preserve this observed allocation boundary through a production-only foreground supplier. Do not add the former UVEK production/disposal supplier's burdens, avoided primary-material credits or biogenic uptake. This is not a claim of zero life-cycle impact for actual recycling or treatment; those processes belong outside this allocated stock and remain separate. No uncharacterized or missing inventory is assigned zero. Preserve signed material quantities, uncertainty, formulas, foreground suppliers, production and separately listed emissions and credits. Only the enumerated exact positive-reference cut-off profiles are approved; other versions, patch releases, consequential supplies and negative-reference empty treatment stages remain outside this approval. Export and score all returned foreground helpers.",
+          "evidence": [
+            "brightpath/data/export/uvek_digester_stock_review.json: exact positive cut-off production-only supplier and inventory fingerprints."
+          ]
+        }
+      },
+      "target_recipe_id": "cutoff-stock-0eb1e42b770a639f2dfa",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 2.9136732308421035e-12,
+      "global_solver_residual_max_abs": 3.902296753195339e-16
+    },
+    {
+      "rule_id": "bp-b74f6df51cca91ae",
+      "source_project": "ecoinvent-3.12-cutoff",
+      "source_database": "ecoinvent-3.12-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "electronics scrap, Recycled Content cut-off",
+        "reference product": "electronics scrap",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "6399f6fe701c46d7e7f0add90440ec4dd871877d43a0aad140c42f133fe24b14",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.12-cutoff",
+        "inventory_sha256": "e5d6151949e6905169d138cff4b2dd0c42cdcb22adaa850404eb1a384d41e7be",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-6c5f06b439d93e73f256",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0
+    },
+    {
+      "rule_id": "bp-72e20647991ff00e",
+      "source_project": "ecoinvent-3.12-cutoff",
+      "source_database": "ecoinvent-3.12-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, post-consumer, Recycled Content cut-off",
+        "reference product": "aluminium scrap, post-consumer",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "1ee98ef014b7372705e16c53b5b12a59a87ad1a45a2cf424017a0180b1143177",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.12-cutoff",
+        "inventory_sha256": "80863678d4b85a7526667a5ac00299701e828fbbc454df1bbe6bb70772553b76",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-d51d28a616ca138e3db9",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0
+    },
+    {
+      "rule_id": "bp-679e09d6edfabf75",
+      "source_project": "ecoinvent-3.12-cutoff",
+      "source_database": "ecoinvent-3.12-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "iron scrap, unsorted, Recycled Content cut-off",
+        "reference product": "iron scrap, unsorted",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "da36f9ea1eda04468dfd5a5b801c71083600fa44b7290356aa1f6cbf260e9295",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.12-cutoff",
+        "inventory_sha256": "e10f299c72425d4f14dba43b44453550c1cce00b4828c8e04de8f78253e6a748",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-5d2d3e0335d9fe263a14",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 1.1776546427577992e-09,
+      "global_solver_residual_max_abs": 2.3814653031127234e-11
+    },
+    {
+      "rule_id": "bp-c63b19dd1ce08539",
+      "source_project": "ecoinvent-3.12-cutoff",
+      "source_database": "ecoinvent-3.12-cutoff",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "source": {
+        "location": "GLO",
+        "name": "waste packaging paper, Recycled Content cut-off",
+        "reference product": "waste packaging paper",
+        "unit": "kilogram"
+      },
+      "source_reference_amount": 1,
+      "source_nonproduction_count": 0,
+      "source_inventory_sha256": "bc4dd3e89e4f9c3eeca8e18eab9b74e4738d3b6786c0d8435a1ecfe6d0ec31f8",
+      "existing_review_path": "export/uvek_cutoff_stock_review.json",
+      "existing_review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "existing_exact_profile_proof": {
+        "label": "ecoinvent-3.12-cutoff",
+        "inventory_sha256": "8786d091921c42f6e25a0cb603cbacfbc493d5b19ceb71556518e17baec5033e",
+        "total_exchanges": 1,
+        "only_self_production": true,
+        "production_amount": 1
+      },
+      "target_recipe_id": "cutoff-stock-4c79c54a0691048851f5",
+      "target_recipe_empty": true,
+      "target_reference_amount": 1,
+      "conversion_factor": 1,
+      "signed_source_zero_LCIs": 2,
+      "exact_processed_matrix_zero_proof": true,
+      "global_solver_max_abs_inventory_roundoff": 0.0,
+      "global_solver_residual_max_abs": 0.0
+    }
+  ],
+  "signed_source_exact_matrix_zero_LCIs": 108,
+  "signed_finite_global_solver_LCIs": 108,
+  "global_solver_roundoff_max_abs": 1.339735059049139e-07,
+  "source_modified_unchanged": true,
+  "limitation": "Only six exact positive-reference production-only allocation handovers. No claim of zero burden for recycling/treatment, other suppliers, negative-reference empty services or other system models.",
+  "premise_fresh_cache_withdrawal_tests_passed": 9,
+  "brightpath_resource_changes": false,
+  "runtime_python_changes": false,
+  "automatic_brightway_updates_observed": {
+    "update": "bw2data4.7database-dependency metadata reprocessing",
+    "projects": [
+      "ecoinvent-3.9.1-cutoff",
+      "premise-metals-version-3.10.1-cutoff-20261019"
+    ],
+    "scope": "Brightway automatically rebuilt processed LCI/LCIA datapackages on project opening. No manual scientific inventory edits were made."
+  },
+  "numerical_note": "Exact unit supply vectors were checked against complete source technosphere and biosphere matrices. Global LU solves are finite with residuals below1e-8, but small inventory roundoff is recorded separately; machine-exact zero is not claimed for every global solve."
+}
