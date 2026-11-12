@@ -1,5 +1,5 @@
 {
-  "status": "private_native_functional_proxy_candidate_verified_not_packaged",
+  "status": "historical_private_preflight_superseded_by_packaged_verification",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -187,5 +187,8 @@
     "new_source_omissions": 0,
     "runtime_changes_required": false,
     "limitation": "Strict candidate rule overrides with exact temporary scopes; not yet frozen in packaged resources or public Premise approvals. Flat native/biosphere vectors match the previously calculated complete source reconstruction."
-  }
+  },
+  "packaged_verification": "uvek-pulp-heat-so2-sulfite-verification.json",
+  "latest_verified_pulp_frontier": 45,
+  "historical_fields_note": "Original candidate counters and receipts below describe the pre-packaging stage. Current approvals,installed revision and frontier are in packaged_verification."
 }

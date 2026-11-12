@@ -1,5 +1,5 @@
 {
-  "status": "direct_reconstruction_incomplete_ozone_beet_sugar_fatty_alcohol_reviewed",
+  "status": "direct_reconstruction_incomplete_sodium_sulfite_native_SO2_proxy_reviewed",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -14,7 +14,7 @@
   },
   "inventories_probed": 5,
   "purpose": "Test direct reconstruction of the five pulp-mill heat coproduct inventories without inferring pulp moisture or a generic combustion proxy. All source signed exchanges and resource-compartment carbon correction remain in the probe.",
-  "unapproved_nested_correspondences": 46,
+  "unapproved_nested_correspondences": 45,
   "unapproved_reference_product_families": {
     "bark chips, wet, measured as dry mass": 1,
     "biogas": 1,
@@ -36,7 +36,6 @@
     "sludge from pulp and paper production": 1,
     "sodium chloride, powder": 1,
     "sodium hydrogen sulfite": 1,
-    "sodium sulfite": 1,
     "solvent, organic": 1,
     "spent antifreezer liquid": 1,
     "spent solvent mixture": 1,
@@ -47,7 +46,7 @@
     "wood ash mixture, pure": 1,
     "wood pellet, measured as dry mass": 1
   },
-  "limitation": "Five full source pulp heat inventories remain unconverted. Energy, nominal chemicals, solutions, positive stocks, urea, auxiliary markets, freight, wood markets, Quebec bark, limestone and biomass-methanol reviews qualify 51, 9, 3, 6, 2, 2, 2, 5, 1, 1 and 1 current inputs respectively. These 51 nested inputs remain behind one industrial-heat preparation root. The limestone review also reconstructs its landfill dependency and audits two empty interfaces. No additional proxy or omission is approved by this diagnostic.",
+  "limitation": "Five complete source pulp-heat inventories remain unconverted behind one industrial-heat preparation root.45nested correspondences remain unapproved. Earlier completed mapping batches remain audited in their linked reviews. This diagnostic does not approve a generic pulp moisture/combustion proxy or any new omission; full industrial heat andsteel transformation/export are unfinished.",
   "related_review": "uvek-steel-pulp-carbon-preflight.json",
   "initial_unapproved_nested_correspondences": 134,
   "energy_supply_review": "uvek-pulp-heat-energy-review.md",
@@ -65,6 +64,7 @@
   "PCC_decarbonised_water_review": "uvek-pcc-decarbonised-water-review.md",
   "PCC_market_review": "uvek-pcc-market-review.md",
   "PCC_last_four_review": "uvek-pcc-last-four-review.md",
-  "latest_probe": "Five full normalized source3.9pulp-heat inventories; missing correspondences remain errors. Ozone,beetsugar andallfourfattyalcoholfeedstockroutes newly qualify.",
-  "route_markets_review": "uvek-pulp-heat-route-markets-review.md"
+  "latest_probe": "Five reviewed normalized source3.9pulp-heat inventories with all1215qualified scopes. Sodiumsulfite newly resolves;45other correspondences remain explicit errors. No new missing correspondence appeared.",
+  "route_markets_review": "uvek-pulp-heat-route-markets-review.md",
+  "so2_sulfite_review": "uvek-pulp-heat-so2-sulfite-review.md"
 }

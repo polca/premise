@@ -368,7 +368,8 @@
         "36 exact3.9heat-allocation handovers preserve12empty heat co-products and24zero-stock forwarders using existing native plant-side heat.72signedsourceLCIszero; native exactmatrixzero proven with numerical roundoff recorded.13Brightpath checks and strict Premise cache/withdrawal pass;15root preparation cases remain.",
         "Two3.9pig-iron wastewater markets retain sewer shares and12untreated surface-water discharges each, with explicit embedded-sewer cancellation.38Brightpath and67Premise regression tests pass;4signed compositeLCIsfinite. Actual encrypted REMIND steel preparation has13pending correspondences, downfrom15; full transformation/export unverified.",
         "Mill-scale market retains68leachate flows and all stabilization/landfill components with source exchange uncertainty; positive cut-off blast-furnace-slag retains empty stock and both freight rows.54Brightpath and68Premise tests pass;4signedcompositeLCIsfinite. Actual encrypted REMIND retained preparation has11pending cases, downfrom13; full transformation/export unverified.",
-        "Nine residue markets and their coupled suppliers qualified:32correspondences/recipes,18dedicatedBrightpath tests and strict Premise cache/withdrawal/omission-gate checks pass.18signednative compositeLCIs cover all32recipes;6signedsourceLCIs and matrix proofs qualify three literal zero-burden clinker omissions. Actual encrypted REMIND retained preparation now has2pendingroots, downfrom11; steel transform/export unverified."
+        "Nine residue markets and their coupled suppliers qualified:32correspondences/recipes,18dedicatedBrightpath tests and strict Premise cache/withdrawal/omission-gate checks pass.18signednative compositeLCIs cover all32recipes;6signedsourceLCIs and matrix proofs qualify three literal zero-burden clinker omissions. Actual encrypted REMIND retained preparation now has2pendingroots, downfrom11; steel transform/export unverified.",
+        "96focused and48shared Brightpath checks,3Premise cold/warm/withdrawal checks,and16signedLCIs pass for5SO2/Na2SO3/CNrail correspondences. All1210earlier fingerprints retain their values; installed package validates1215scopes. Actual five-pulp probe moves46to45missing correspondences. No runtime Python change or complete steel export."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -791,6 +792,17 @@
         "new_helpers_from_background_qualification": 0,
         "direct_pulp_heat_frontier_unchanged": 51,
         "limitation": "Coal source foreground is translatable; background recipe, RoW ethanol/water/PCC composition and scenario export remain unfinished."
+      },
+      "pulp_heat_so2_sulfite_verification": {
+        "verification": "uvek-pulp-heat-so2-sulfite-verification.json",
+        "qualified_correspondences": 5,
+        "new_helpers": 4,
+        "unchanged_recipe_dependencies": 17,
+        "signed_finite_LCIs": 16,
+        "unapproved_nested_pulp_heat_correspondences_before": 46,
+        "unapproved_nested_pulp_heat_correspondences_after": 45,
+        "runtime_python_changes": false,
+        "limitation": "Exact3.9cutoff supplies only; nativeSO2production replaces source co-product allocation with explicit warnings. Full pulp/industrial heat andsteel export unfinished."
       }
     },
     {

@@ -255335,6 +255335,702 @@
           "fingerprint": "b88af6dd19e8c84aceeb4bd2399e9f523a19c79ee5752ba3f3086cf33bcff22c"
         }
       ]
+    },
+    {
+      "rule_id": "bp-dc071fc3d9a52df4",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_so2_sulfite",
+      "review_path": "export/uvek_pulp_heat_so2_sulfite_review.json",
+      "review_sha256": "80f99198d8087a0ac4ea2823e0437a57728b748b525f2dabc015203fd468d923",
+      "authorization": "Standing user approval of forthcoming modelling decisions, documented complete functional proxies and justified reconstructions, with warnings and later review; preserve source references, signs, quantities and supported uncertainty.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for sulfur dioxide, liquid",
+          "reference product": "sulfur dioxide, liquid",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for sulfur dioxide, liquid",
+            "reference product": "sulfur dioxide, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "c1410dc3f9776f5be67604881b506e6d9a8e7b67989872b67f56268049b3ca6a",
+          "nonproduction_rows": 12
+        },
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "generated_helper_recipes": 1,
+        "new_source_omissions": [],
+        "approved_recipe_source_omissions": {},
+        "component_bindings": [
+          {
+            "kind": "native-functional-production-proxy",
+            "source": {
+              "name": "primary zinc production from concentrate",
+              "reference product": "sulfur dioxide, liquid",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.000487919610247929,
+              "uncertainty type": 0,
+              "loc": 0.000487919610247929
+            },
+            "target": {
+              "name": "Sulphur dioxide, liquid, at plant",
+              "reference product": "Sulphur dioxide, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "native-functional-production-proxy",
+            "source": {
+              "name": "trichloropropane production",
+              "reference product": "sulfur dioxide, liquid",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.00512417155023209,
+              "uncertainty type": 0,
+              "loc": 0.00512417155023209
+            },
+            "target": {
+              "name": "Sulphur dioxide, liquid, at plant",
+              "reference product": "Sulphur dioxide, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "native-functional-production-proxy",
+            "source": {
+              "name": "primary zinc production from concentrate",
+              "reference product": "sulfur dioxide, liquid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.180907322146344,
+              "uncertainty type": 0,
+              "loc": 0.180907322146344
+            },
+            "target": {
+              "name": "Sulphur dioxide, liquid, at plant",
+              "reference product": "Sulphur dioxide, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "native-functional-production-proxy",
+            "source": {
+              "name": "sulfur dioxide production, liquid",
+              "reference product": "sulfur dioxide, liquid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.813480586693176,
+              "uncertainty type": 0,
+              "loc": 0.813480586693176
+            },
+            "target": {
+              "name": "Sulphur dioxide, liquid, at plant",
+              "reference product": "Sulphur dioxide, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "IN",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.006726944200513771,
+              "uncertainty type": 2,
+              "loc": -5.001634294827572,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.02428016082925173,
+              "uncertainty type": 2,
+              "loc": -3.7180956888732504,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.0017034028044708432,
+              "uncertainty type": 2,
+              "loc": -6.375127378862709,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.03349730223898449,
+              "uncertainty type": 2,
+              "loc": -3.3962903735734127,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.026522189926779172,
+              "uncertainty type": 2,
+              "loc": -3.6297735406491665,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.0011223340965250237,
+              "uncertainty type": 2,
+              "loc": -6.792344747467064,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.0543490927470004,
+              "uncertainty type": 2,
+              "loc": -2.912327358341726,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.007168573156474578,
+              "uncertainty type": 2,
+              "loc": -4.938048646060501,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "recipe_id": "pulp-heat-39-so2-native-market-row"
+      },
+      "limitations": [
+        "Use a complete native functional production proxy for exact ecoinvent3.9cutoff liquidSO2markets, preserving the original delivered-product market rows. Source and native both define positive1kgpureSO2,CAS7446-09-5,with a liquid reference. Map each source producer entry to the complete native RERliquidSO2process per unchanged signedkg; retain original producer quantities and their supported uncertainty separately. This deliberately replaces the source production technologies and their upstream co-product allocations with the target-native production model. In RoW,18.6519413306824%ofsource supply is allocated co-product SO2fromprimaryzinc(18.1395241756592%)andTCPchlorination(0.512417155023209%);81.3480586693176%is dedicatedSO2production. The native process instead represents complete production using secondary sulfur recovered fromrefineries. It is not a reconstruction of those zinc/TCPco-product burdens, nor does keeping their separate market coefficients preserve their technologies or allocation. Those technology/allocation shifts may materially change scores and remain unquantified. No source producer-specific internal amounts or uncertainty are claimed retained; the complete native internal inventory/uncertainty replaces them. Caller amounts,signs,uncertainty,formulas and source market delivery-row metadata remain unchanged with factor+1. The native positive1kgSO2plant includes secondary sulfur,process energy/heat andinfrastructure once; add no separate source-producer inputs,second sulfur supply,avoidedSO2emission,zinc recovery,TCPcredit,yield/purity/stoichiometric factor or nominal flattened-feedback multiplier. Native production documentation describes rough estimates, European energy/geography,vintageandbiosphere-data gaps; these are screening limitations. Retain all original source rail/heavy-road finaldelivery rows at exacttonne-km using complete native RERrail/heavyfleet services. Freight traction,fuel,fleet/loading,infrastructure,geography,vintage,allocation and internaluncertainty differ; no invented distance,payload,return-trip or vehicle/fuel multiplier. This mapping replaces external product supplies rather than reproducing the source chemical-background loop; it requires no cyclic recipe support. No physical source-exchange omission,consequential,reverse or other-version approval. Sodiumsulfite uses its own explicitNa2SO3source inventory,not the native ambiguousSO3(2-)reference. Full pulpheat andsteel export remain unverified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c827a721fda39e04c87270cae1bac4d85542d03eaaf27cb7237a7ee1d87633b2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e592b4af2986b53f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_so2_sulfite",
+      "review_path": "export/uvek_pulp_heat_so2_sulfite_review.json",
+      "review_sha256": "80f99198d8087a0ac4ea2823e0437a57728b748b525f2dabc015203fd468d923",
+      "authorization": "Standing user approval of forthcoming modelling decisions, documented complete functional proxies and justified reconstructions, with warnings and later review; preserve source references, signs, quantities and supported uncertainty.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for sulfur dioxide, liquid",
+          "reference product": "sulfur dioxide, liquid",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for sulfur dioxide, liquid",
+            "reference product": "sulfur dioxide, liquid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "4eb3f2493c848013e71433a280f45fb949677f298474854ab999bdc724174e62",
+          "nonproduction_rows": 3
+        },
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "generated_helper_recipes": 1,
+        "new_source_omissions": [],
+        "approved_recipe_source_omissions": {},
+        "component_bindings": [
+          {
+            "kind": "native-functional-production-proxy",
+            "source": {
+              "name": "sulfur dioxide production, liquid",
+              "reference product": "sulfur dioxide, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "name": "Sulphur dioxide, liquid, at plant",
+              "reference product": "Sulphur dioxide, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.09273,
+              "uncertainty type": 2,
+              "loc": -2.3780632341700025,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.06264,
+              "uncertainty type": 2,
+              "loc": -2.770351227299589,
+              "scale": 0.4049691346263318,
+              "pedigree": {
+                "reliability": 1,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.4959838707054898
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "recipe_id": "pulp-heat-39-so2-native-market-rer"
+      },
+      "limitations": [
+        "Use a complete native functional production proxy for exact ecoinvent3.9cutoff liquidSO2markets, preserving the original delivered-product market rows. Source and native both define positive1kgpureSO2,CAS7446-09-5,with a liquid reference. Map each source producer entry to the complete native RERliquidSO2process per unchanged signedkg; retain original producer quantities and their supported uncertainty separately. This deliberately replaces the source production technologies and their upstream co-product allocations with the target-native production model. In RoW,18.6519413306824%ofsource supply is allocated co-product SO2fromprimaryzinc(18.1395241756592%)andTCPchlorination(0.512417155023209%);81.3480586693176%is dedicatedSO2production. The native process instead represents complete production using secondary sulfur recovered fromrefineries. It is not a reconstruction of those zinc/TCPco-product burdens, nor does keeping their separate market coefficients preserve their technologies or allocation. Those technology/allocation shifts may materially change scores and remain unquantified. No source producer-specific internal amounts or uncertainty are claimed retained; the complete native internal inventory/uncertainty replaces them. Caller amounts,signs,uncertainty,formulas and source market delivery-row metadata remain unchanged with factor+1. The native positive1kgSO2plant includes secondary sulfur,process energy/heat andinfrastructure once; add no separate source-producer inputs,second sulfur supply,avoidedSO2emission,zinc recovery,TCPcredit,yield/purity/stoichiometric factor or nominal flattened-feedback multiplier. Native production documentation describes rough estimates, European energy/geography,vintageandbiosphere-data gaps; these are screening limitations. Retain all original source rail/heavy-road finaldelivery rows at exacttonne-km using complete native RERrail/heavyfleet services. Freight traction,fuel,fleet/loading,infrastructure,geography,vintage,allocation and internaluncertainty differ; no invented distance,payload,return-trip or vehicle/fuel multiplier. This mapping replaces external product supplies rather than reproducing the source chemical-background loop; it requires no cyclic recipe support. No physical source-exchange omission,consequential,reverse or other-version approval. Sodiumsulfite uses its own explicitNa2SO3source inventory,not the native ambiguousSO3(2-)reference. Full pulpheat andsteel export remain unverified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8a0fc8743ef6c2dab48de5824a2c333648331cf6323551c4f1a830eeb98e9894"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-46ffc4892be8fcb1",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_so2_sulfite",
+      "review_path": "export/uvek_pulp_heat_so2_sulfite_review.json",
+      "review_sha256": "80f99198d8087a0ac4ea2823e0437a57728b748b525f2dabc015203fd468d923",
+      "authorization": "Standing user approval of forthcoming modelling decisions, documented complete functional proxies and justified reconstructions, with warnings and later review; preserve source references, signs, quantities and supported uncertainty.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for transport, freight train",
+          "reference product": "transport, freight train",
+          "location": "CN",
+          "unit": "ton kilometer"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "CN",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "4564843faa22f809555b5f44d223a81aa04cb6eecd511b7bec1d9ad31697c8ec"
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "generated_helper_recipes": 0,
+        "new_source_omissions": [],
+        "approved_recipe_source_omissions": {},
+        "native_witness": {
+          "identity": {
+            "name": "Transport, freight, rail",
+            "reference product": "Transport, freight, rail",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "1cb6cc63fc5be25d8a4604d158dfd1ea35497d5fda68f5b114b33038b21ad2fd"
+        }
+      },
+      "limitations": [
+        "The current Chinese coal-freight supplier has a different commodity portfolio, and its original documentation questions the functional unit inferred from Chinese official statistics and limits use to cases where transport is a minor contributor. The available complete RERgeneral-freight process has a documented1tkmservice basis. Select that as an explicit geographic and traction proxy rather than silently accepting the CNcoal-data limitation. Exact3.9cutoff Chinese freight-rail market supplies1metricton across1km,positive1tkm. Use complete native European freight-rail life-cycle service per unchanged signedtkm atfactor+1 as a geographic/traction screening proxy. Native includes train energy and shunting,vehicles,track construction/maintenance/disposal and land use; add no separate locomotive,rail,grid,diesel,fuel,empty-return,payload,network,distance or efficiency adjustment. Source historical market uses28.7%electric,1.6%coal-firedsteam and69.7%diesel; the native RERtrain portfolio uses European electric/diesel instead. These internal source traction shares,Chinese electricity/fuel mixes,loads,operating conditions,emissions,allocation,uncertainty,vintageandgeography are replaced by the complete native service,not claimed preserved. Retain every caller ton-km and its sign/uncertainty/formula, including distinct finished-product delivery entries. No road,passenger,pipeline or generic mass transport substitution. Differences and resulting score effects remain unquantified. This proxy does not authorize other source versions/models or missing chloride chemistry."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2a99eca4606abe534b3117c4094275a1ce3c82239c6a6837e297a6465abd401c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5484396eb5e79c5d",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_so2_sulfite",
+      "review_path": "export/uvek_pulp_heat_so2_sulfite_review.json",
+      "review_sha256": "80f99198d8087a0ac4ea2823e0437a57728b748b525f2dabc015203fd468d923",
+      "authorization": "Standing user approval of forthcoming modelling decisions, documented complete functional proxies and justified reconstructions, with warnings and later review; preserve source references, signs, quantities and supported uncertainty.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for sodium sulfite",
+          "reference product": "sodium sulfite",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for sodium sulfite",
+            "reference product": "sodium sulfite",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "4a6e33bcf0822a9d5003a9fef7f4258decb7b7255602a2afbf8d3803ca5c8588",
+          "nonproduction_rows": 11,
+          "direct_biosphere_rows": 0
+        },
+        "conversion_factor": 1,
+        "new_helpers": 3,
+        "generated_helper_recipes": 20,
+        "new_source_omissions": [],
+        "approved_recipe_source_omissions": {},
+        "recipe_id": "pulp-heat-39-sodium-sulfite-market"
+      },
+      "limitations": [
+        "Exact3.9cutoff source sodiumsulfite market and producer retain their positive1kgNa2SO3,CAS7757-83-7reference. Native Sulphite has an SO3(2-)reference and is not a justified salt-basis counterpart. Reconstruct the complete source market and producer through individually reviewed native suppliers,canonicalecoinvent3.10biosphere andexisting helpers, preserving signed quantities,formulas,supporteduncertainty,pedigree,scale-without-pedigree andparameters. Every direct source exchange is retained; source reference output is positive1kg,callerconversionfactor+1. The SO2supply deliberately uses the complete native functional production proxy with retained original outer market coefficients and delivery. It replaces source zinc/TCPco-product technologies,upstream allocation and internaluncertainty; it does not reproduce their chemical feedback or establish impact equivalence. Keep the complete native SO2secondarysulfur,energy,infrastructure once; add no doubleallocation,purity/stoichiometric/ionic-mass factor,avoidedSO2emission,recoverycredit or flattened-feedback coefficient. The CNrail correspondence uses complete RERgeneral freight with explicit geographic/traction proxy limitations; original source market freight quantities remain unchanged. Existing water,wastewater,chemicalsteam,Quebecproductiongasheat andRNAelectricity helper inventories and biosphere decisions remain unchanged. Native process/energy,geography,vintage,water/emissions,allocation and internaluncertainty differences and imported native biosphere gaps remain screening limitations with unquantified score effects. No new source omission,other-version,reverse or consequential approval. Complete pulp heat andsteel export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8a45619ae3aa5a155c5bc12c4fa1932520e4eefd4519c376fdbc7001e9e42d3d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8d2ec25ccb852299",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_so2_sulfite",
+      "review_path": "export/uvek_pulp_heat_so2_sulfite_review.json",
+      "review_sha256": "80f99198d8087a0ac4ea2823e0437a57728b748b525f2dabc015203fd468d923",
+      "authorization": "Standing user approval of forthcoming modelling decisions, documented complete functional proxies and justified reconstructions, with warnings and later review; preserve source references, signs, quantities and supported uncertainty.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "sodium sulfite production",
+          "reference product": "sodium sulfite",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "sodium sulfite production",
+            "reference product": "sodium sulfite",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "6b4c209d4cc7f4cabd04502d44a8b8f1b6c18be46f27e5475b10a39dfb7d10c8",
+          "nonproduction_rows": 32,
+          "direct_biosphere_rows": 9
+        },
+        "conversion_factor": 1,
+        "new_helpers": 2,
+        "generated_helper_recipes": 19,
+        "new_source_omissions": [],
+        "approved_recipe_source_omissions": {},
+        "recipe_id": "pulp-heat-39-sodium-sulfite-production"
+      },
+      "limitations": [
+        "Exact3.9cutoff source sodiumsulfite market and producer retain their positive1kgNa2SO3,CAS7757-83-7reference. Native Sulphite has an SO3(2-)reference and is not a justified salt-basis counterpart. Reconstruct the complete source market and producer through individually reviewed native suppliers,canonicalecoinvent3.10biosphere andexisting helpers, preserving signed quantities,formulas,supporteduncertainty,pedigree,scale-without-pedigree andparameters. Every direct source exchange is retained; source reference output is positive1kg,callerconversionfactor+1. The SO2supply deliberately uses the complete native functional production proxy with retained original outer market coefficients and delivery. It replaces source zinc/TCPco-product technologies,upstream allocation and internaluncertainty; it does not reproduce their chemical feedback or establish impact equivalence. Keep the complete native SO2secondarysulfur,energy,infrastructure once; add no doubleallocation,purity/stoichiometric/ionic-mass factor,avoidedSO2emission,recoverycredit or flattened-feedback coefficient. The CNrail correspondence uses complete RERgeneral freight with explicit geographic/traction proxy limitations; original source market freight quantities remain unchanged. Existing water,wastewater,chemicalsteam,Quebecproductiongasheat andRNAelectricity helper inventories and biosphere decisions remain unchanged. Native process/energy,geography,vintage,water/emissions,allocation and internaluncertainty differences and imported native biosphere gaps remain screening limitations with unquantified score effects. No new source omission,other-version,reverse or consequential approval. Complete pulp heat andsteel export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "312c68e2ee7833943e9cae3541d54573c9721ece400d3a06da97d7a4a6ad4c06"
+        }
+      ]
     }
   ],
   "superseded_operations": [

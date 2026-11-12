@@ -1,0 +1,191 @@
+{
+  "status": "five_exact_correspondences_and_premise_approvals_verified_pulp_frontier_45",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "target_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_family": "ecoinvent",
+    "biosphere_version": "3.10"
+  },
+  "brightpath_commit": "a680d650321f4a9899c82859847363793be7b0b8",
+  "review_path": "brightpath/data/export/uvek_pulp_heat_so2_sulfite_review.json",
+  "review_sha256": "80f99198d8087a0ac4ea2823e0437a57728b748b525f2dabc015203fd468d923",
+  "qualified_correspondences": 5,
+  "new_helper_definitions": 4,
+  "unchanged_recipe_dependencies": 17,
+  "retained_SO2market_rows": 15,
+  "retained_source_sodium_sulfite_rows": 43,
+  "new_source_omissions": 0,
+  "inherited_source_omissions": 0,
+  "runtime_python_changes": false,
+  "tests": {
+    "focused_mapping_checks_including_prior_allyl_batch": 96,
+    "shared_planner_execution_manifest_checks": 48,
+    "Premise_fresh_cache_withdrawal_checks_including_prior_two_batches": 3
+  },
+  "LCI_verification": {
+    "status": "packaged_mapping_LCI_passed",
+    "review_sha256": "80f99198d8087a0ac4ea2823e0437a57728b748b525f2dabc015203fd468d923",
+    "cases": [
+      {
+        "case": "bp-dc071fc3d9a52df4",
+        "native_suppliers": 3,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true,
+        "matches_independent_expected_vectors": true
+      },
+      {
+        "case": "bp-e592b4af2986b53f",
+        "native_suppliers": 3,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true,
+        "matches_independent_expected_vectors": true
+      },
+      {
+        "case": "bp-46ffc4892be8fcb1",
+        "native_suppliers": 1,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true,
+        "matches_independent_expected_vectors": true
+      },
+      {
+        "case": "bp-5484396eb5e79c5d",
+        "native_suppliers": 59,
+        "direct_biosphere_identities": 131,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true,
+        "matches_independent_expected_vectors": true
+      },
+      {
+        "case": "bp-8d2ec25ccb852299",
+        "native_suppliers": 56,
+        "direct_biosphere_identities": 131,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true,
+        "matches_independent_expected_vectors": true
+      },
+      {
+        "case": "Sulphur dioxide, liquid, at plant | RER",
+        "native_suppliers": 1,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true,
+        "matches_independent_expected_vectors": false
+      },
+      {
+        "case": "Transport, freight, rail | RER",
+        "native_suppliers": 1,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true,
+        "matches_independent_expected_vectors": false
+      },
+      {
+        "case": "Transport, freight, lorry, fleet average | RER",
+        "native_suppliers": 1,
+        "direct_biosphere_identities": 0,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true,
+        "matches_independent_expected_vectors": false
+      }
+    ],
+    "signed_finite_LCIs": 16,
+    "native_database_unchanged": true,
+    "new_source_omissions": 0,
+    "runtime_changes_required": false,
+    "limitation": "Nominal target-native and canonical-biosphere inventories are finite; source sodium-salt vectors match the checked reconstruction. Does not establish source/native impact or stochastic equivalence or a full steel/sector export."
+  },
+  "installed_package": {
+    "status": "passed",
+    "installed_commit": "a680d650321f4a9899c82859847363793be7b0b8",
+    "installed_from_github": true,
+    "runtime_modules_byte_identical_to_previous_revision": true,
+    "qualified_premise_scopes": 1215,
+    "review_sha256": "80f99198d8087a0ac4ea2823e0437a57728b748b525f2dabc015203fd468d923",
+    "cases": [
+      {
+        "rule_id": "bp-dc071fc3d9a52df4",
+        "signed_amount_and_uncertainty_preserved": true,
+        "all_market_recipe_fields_preserved": true
+      },
+      {
+        "rule_id": "bp-e592b4af2986b53f",
+        "signed_amount_and_uncertainty_preserved": true,
+        "all_market_recipe_fields_preserved": true
+      },
+      {
+        "rule_id": "bp-46ffc4892be8fcb1",
+        "signed_amount_and_uncertainty_preserved": true,
+        "all_market_recipe_fields_preserved": true
+      },
+      {
+        "rule_id": "bp-5484396eb5e79c5d",
+        "signed_amount_and_uncertainty_preserved": true,
+        "all_market_recipe_fields_preserved": true
+      },
+      {
+        "rule_id": "bp-8d2ec25ccb852299",
+        "signed_amount_and_uncertainty_preserved": true,
+        "all_market_recipe_fields_preserved": true
+      }
+    ],
+    "limitations": [
+      "Public standard migration API on installed wheel with exact Premise scopes; no new full sector run or export performed."
+    ]
+  },
+  "five_pulp_probe": {
+    "before": 46,
+    "after": 45,
+    "newly_resolved_rule_ids": [
+      "bp-5484396eb5e79c5d"
+    ],
+    "new_unapproved_rule_ids": [],
+    "complete_conversion_passed": false,
+    "source_inventories": 5
+  },
+  "scientific_boundary": "Complete native liquidSO2production replaces source zinc/TCPco-product production and allocations in18.6519413306824%ofRoWsupply; original outer coefficients/delivery remain. Native/source impact and uncertainty equivalence is not established.",
+  "limitations": [
+    "SO2production technology/allocation and CNrail geography/traction are explicit screening proxies with unquantified score effects.",
+    "Sodiumsulfite reference remains1kgNa2SO3; no substitution by ambiguous nativeSO3(2-),no ionic-mass factor or added credit.",
+    "Five pulp inventories still fail on45unapproved correspondences; industrial heat andsteel transformation/export remain unfinished.",
+    "Full-suite failures in uvek-brightpath-regression-triage.json remain unresolved; focused checks do not constitute a full-suite pass."
+  ],
+  "private_receipts": [
+    {
+      "name": "so2-sulfite-focused-tests.log",
+      "sha256": "c6e4271ee93cdf48c6e5c33388ec211ea2b6ea7448f9d2148ababe354ec7e607"
+    },
+    {
+      "name": "so2-sulfite-shared-tests.log",
+      "sha256": "1549758a19f46c18673cceb9494938086f1678e9ee091ecaee19b577cd685f9f"
+    },
+    {
+      "name": "so2-sulfite-premise-integrated-tests.log",
+      "sha256": "cac62d10fa98f058788a82a33401ee46c5c40e110e798416be4c36bd8a3f54d0"
+    },
+    {
+      "name": "so2-sulfite-packaged-lci-verification.json",
+      "sha256": "33b7f3c0ddde41dc505d92fbbccefc278efedf3678864802640685e9e7d38d5f"
+    },
+    {
+      "name": "so2-sulfite-installed-package-verification.json",
+      "sha256": "82b17273d0c9b8e1537ec01485a43940ac14740f27b086b89d417511b9dc9410"
+    },
+    {
+      "name": "steel-pulp-heat-before-so2-sulfite-probe.private.json",
+      "sha256": "80482e6caa093bd081c8107c8baec923241e797c1f5fe6cee157da4ba1428239"
+    },
+    {
+      "name": "steel-pulp-heat-conversion-probe.private.json",
+      "sha256": "901ac6e3d9583408e82aa18b7ccddcd22a52f45e51b3038582c9dd2ad5a3f1e3"
+    }
+  ]
+}
