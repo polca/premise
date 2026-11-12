@@ -1,0 +1,715 @@
+{
+  "status": "preflight_only_no_new_mapping_approval",
+  "source_profile": "ecoinvent 3.9 cutoff",
+  "independently_inspected_source_profiles": {
+    "3.6": 19,
+    "3.9": 31,
+    "3.12": 31
+  },
+  "remaining_correspondences": 31,
+  "findings": [
+    "All 31 ecoinvent 3.9 sources have positive unit reference quantities.",
+    "Native low-pressure delivered gas suppliers exist and use MJ, while source markets use cubic metres. A verified or explicitly documented screening energy basis is required.",
+    "Native raw extraction is not accepted as an equivalent delivered fuel market.",
+    "No new mapping approval, steel completion or successful export is claimed."
+  ],
+  "rows": [
+    {
+      "source": {
+        "name": "market for coal tar",
+        "reference product": "coal tar",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-0281677fb9d20241",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 5,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Tar, at coke plant",
+            "reference product": "Tar, at coke plant",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9a96fc6d6ab5db33a4f9094aa581e7a9821831b8e0d2c16dda61b29ed1efccc8",
+          "nonproduction_count": 57
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "location": "AU",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-25dc5bf33df45b6a",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 28,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "AU",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d8f434ce89b717894aa12e139358e07b0de5b14389b0f986fcc4c4899009c7d5",
+          "nonproduction_count": 24
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "location": "ID",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-7800445b89bff35e",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 31,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "location": "RLA",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-29403438166292a1",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 30,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "RLA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "8ae6cf5792f97602960b2109961f64886aae9329f8a8d67b65e1140f8e8cd67b",
+          "nonproduction_count": 25
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "location": "ZA",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-2860f66bf905dca7",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 27,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "ZA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "1cd94f70504cb1b99a517deb7865821a6e4d081d30f7d588b1c765cf987f745a",
+          "nonproduction_count": 24
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "location": "RNA",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-ddfc7a065a8c7309",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 32,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "location": "IN",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-f642a8e3a6cd4a5c",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 34,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "IN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "8e7b97c23d2cbbe65d08b6e9aec4b6d2baca04f2ff719fc6a843dc39a12767db",
+          "nonproduction_count": 24
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "location": "RU",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-b1c5bccd675656ac",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 27,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Hard coal, at regional storage",
+            "reference product": "Hard coal, at regional storage",
+            "location": "RU",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "eeb26467bd01cdca6d86895960f5bd301088ee7877f9f79df72e95680845cf11",
+          "nonproduction_count": 24
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for heavy fuel oil",
+        "reference product": "heavy fuel oil",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-f6c12fce58c094e9",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 111,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for heavy fuel oil",
+        "reference product": "heavy fuel oil",
+        "location": "IN",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-1db7752ea4cc167a",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 17,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for heavy fuel oil",
+        "reference product": "heavy fuel oil",
+        "location": "CO",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-557dd0b983512034",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 17,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market group for heavy fuel oil",
+        "reference product": "heavy fuel oil",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-4b6ab4fd4330067f",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 2,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Heavy fuel oil, at regional storage",
+            "reference product": "Heavy fuel oil, at regional storage",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9b7d78aaa5f2e53870baa396bd7c8803812c520c6dfeada3afc72d5401edccfc",
+          "nonproduction_count": 14
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for heavy fuel oil",
+        "reference product": "heavy fuel oil",
+        "location": "ZA",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-6c1bfc3c83c0152f",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 18,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for heavy fuel oil",
+        "reference product": "heavy fuel oil",
+        "location": "PE",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-767c46c6eb385e1c",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 16,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for heavy fuel oil",
+        "reference product": "heavy fuel oil",
+        "location": "BR",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-e0e407d5da65d77c",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 17,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "CA",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-e280cf6fd7ed9124",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "CA",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "c03076496c5536644e4e97aaf4819262e4578af9797e0f3f227440dc5792b849",
+          "nonproduction_count": 8
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "TR",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-7ea71c282ec7ddb2",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "TR",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "860dda478339986397b25467c44dfccae453b0bb60995209beae04244d516741",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "RoE",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-769cfa6415fa68e0",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "RoE",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "c83e102710e4003b1feca4da17eb87079be93b3b2a9eb62f17281833418a20f1",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "BE",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-357e0fb21516c7dd",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "BE",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d6527b05196746ce87026e122e1751e291e508f78a839c64f34716bea7a57ec3",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "RoW",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-76fe8c58029110f6",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "e2c63bebc25bc52b114872caa42a4cf8445ed96da2e38359b0b835fbcaea157a",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "IT",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-1a00345f7022dec7",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "IT",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "5e26072ce772f33843756a781134a84bf60d08d35a1c118686024d56fc1d2c81",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "ES",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-52beda005fa4c06a",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "ES",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "3ae087ba019b39b9b725428dcf52c681432ab32a77efe57c29f273d3d70f4bb8",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "CH",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-83cdd455fcf026b6",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "CH",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "be2f46daba2eb4b5317824bbaedfb11069085fb951ae27995cd864c6552caa0e",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "US",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-2e7bdc0598307a42",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "US",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9f0e7bc0d023c98cb6f354995244aae2d0a0ba3b0593a69d41b3dd01d359142b",
+          "nonproduction_count": 8
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "DE",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-eb3de75033492a9e",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "DE",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d910fbd17974ebd7eed085eb9ecb3fbff4a002cdef6510a0002baec979f2c6f8",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "FR",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-04ddcdd25ff854d6",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "FR",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "e4f1fcfee22312facbd4919fb10783fd8545b8049cd41683aa86478dd0f91de1",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "NL",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-dc1c67b4284cf022",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "NL",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "361ecddd8f98ce4ee732ba899acee5e7b1d20d49da102e646b3b5617315299f2",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "MX",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-587245b0c0ce743d",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "MX",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "f6b6207ee8da25e68f4c9f2287e9b267587407e4cb2a9e6ab8f964dc8b124f6d",
+          "nonproduction_count": 9
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for natural gas, low pressure",
+        "reference product": "natural gas, low pressure",
+        "location": "GB",
+        "unit": "cubic meter"
+      },
+      "rule_id": "bp-fcc8499d54091163",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 10,
+      "same_location_native_candidates": [
+        {
+          "identity": {
+            "name": "Natural gas, low pressure, at consumer",
+            "reference product": "Natural gas, low pressure, at consumer",
+            "location": "GB",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "06817e02c461808183b6a3bce710070d29f9bfacf4eacf9c38e132c9c60c62aa",
+          "nonproduction_count": 8
+        }
+      ],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for petroleum coke",
+        "reference product": "petroleum coke",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-ed9567d915d3e1af",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 7,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    },
+    {
+      "source": {
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "location": "CN",
+        "unit": "kilogram"
+      },
+      "rule_id": "bp-0d8a6f1f99941aa5",
+      "positive_reference_verified": true,
+      "source_nonproduction_count": 34,
+      "same_location_native_candidates": [],
+      "status": "unapproved_pending_reference_basis_and_delivery_review"
+    }
+  ]
+}
