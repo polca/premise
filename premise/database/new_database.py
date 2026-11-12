@@ -2704,6 +2704,9 @@ class NewDatabase:
         store = runtime_scenario.pop("_inventory_store", None)
         if store is None:
             database = runtime_scenario.pop("_inventory_working_copy")
+            _normalize_inventory_before_certification(
+                database, provenance_owner=runtime_scenario
+            )
             store = create_inventory_store(
                 database,
                 backend=runtime_scenario.get("_inventory_backend")

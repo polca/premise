@@ -1571,3 +1571,30 @@ def test_indexed_wurst_bridge_preserves_equals_none_semantics(inventory):
         "consumer",
         "glo-grid",
     ]
+
+
+def test_updated_scenario_is_normalized_before_its_store_is_certified(inventory):
+    obj = object.__new__(NewDatabase)
+    obj._inventory_api_active = True
+    obj.scenarios = [{"model": "image", "pathway": "SSP2-Base", "year": 2050}]
+    rows = copy.deepcopy(inventory)
+    exchange = next(
+        e for a in rows for e in a["exchanges"] if e["type"] == "technosphere"
+    )
+    exchange.update(
+        amount=np.array(0.0), **{"uncertainty type": 2, "loc": -2.0, "scale": 0.1}
+    )
+    runtime = {**obj.scenarios[0], "_inventory_working_copy": rows}
+    observed = []
+
+    def certify(scenario, store, **kwargs):
+        observed.extend(store.materialize(restore_metadata=True))
+
+    obj._certify_scenario_store = certify
+    obj._store_updated_scenario(obj.scenarios[0], runtime, persist=False)
+    actual = next(
+        e for a in observed for e in a["exchanges"] if e["type"] == "technosphere"
+    )
+    assert type(actual["amount"]) is float and actual["amount"] == 0.0
+    assert actual["uncertainty type"] == 0
+    assert actual["loc"] == 0.0 and "scale" not in actual

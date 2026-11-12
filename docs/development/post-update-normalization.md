@@ -1,0 +1,9 @@
+# Normalize transformed data before storing and certifying it
+
+An actual encrypted REMIND SSP2-NPi 2050 UVEK build passed the sector contracts but failed exhaustive validation. Thirty-six electricity amounts were scalar NumPy arrays rather than numeric scalars. Cement also retained lognormal metadata on fuel inputs explicitly scaled to zero. Neither failure requires a new inventory model or a mapping substitution.
+
+The existing numeric and uncertainty normalization already handles these cases. The private mutable working graph now passes through that same normalization before its final inventory store is created and certified. This is a three-line call, not a new repair algorithm. Scalar values retain their numerical amounts; zero-scaled lognormal demand becomes deterministic zero instead of retaining a stale nonzero distribution. Normalization events retain their existing provenance handling. Explicit user mutations of stored inventories still face read-only validation rather than this trusted transformation handoff.
+
+Regression tests observe the inventory at certification, verify the zero distribution, and confirm that multivalued arrays, NaN, infinity and genuinely missing positive-lognormal scale remain invalid. The graph/store/NewDatabase group passed 155 tests. One pre-existing lambda-style lint finding in the inventory-store test file remains unchanged; the changed runtime modules and validation tests have no new lint findings.
+
+The other real-build issue was declared new time-period electricity loss recurrences. Their convergence proof is documented in `validation-feedback-proof.md`. The resulting actual four-sector build completes exhaustive validation and normal Brightway export; a separate verification receipt records its output checks. This does not qualify other IAM models, combined fuels or the remaining sector updates.
