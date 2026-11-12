@@ -1666,6 +1666,7 @@ class Electricity(BaseTransformation):
                     "name", ["market", "factory", "module", "electric installation"]
                 ),
                 ws.equals("unit", "unit"),
+                lambda ds: "electric installation" not in ds["name"].casefold(),
             ],
         )
 

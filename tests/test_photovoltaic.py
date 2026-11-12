@@ -184,7 +184,14 @@ def test_efficiency_uses_total_module_area_and_mw_capacity(inventories):
     )
 
 
-def test_efficiency_skips_electrical_installation(inventories, capsys):
+@pytest.mark.parametrize(
+    "name",
+    [
+        "electric installation production, photovoltaic plant",
+        "Electric installation, photovoltaic plant, at plant",
+    ],
+)
+def test_efficiency_skips_electrical_installation(inventories, capsys, name):
     core, _ = inventories
     dataset = deepcopy(
         next(
@@ -193,6 +200,7 @@ def test_efficiency_skips_electrical_installation(inventories, capsys):
             if d["name"] == "electric installation production, photovoltaic plant"
         )
     )
+    dataset["name"] = name
     before = deepcopy(dataset)
     efficiency = Electricity.__new__(Electricity)
     efficiency.database = [dataset]
