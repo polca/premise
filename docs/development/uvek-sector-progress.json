@@ -213,7 +213,8 @@
         }
       ],
       "blockers": [],
-      "public_rollout_implementation": "This tracker and the public biomass dispatch/export changes are committed together; use git history for the rollout commit."
+      "public_rollout_implementation": "This tracker and the public biomass dispatch/export changes are committed together; use git history for the rollout commit.",
+      "latest_clean_actual_scenario_verification": "docs/development/uvek-real-four-sector-heat-verification.json"
     },
     {
       "sector": "cement",
@@ -301,7 +302,8 @@
       "latest_evidence": [
         "docs/development/uvek-colleague-four-sector-regression.json",
         "docs/development/uvek-five-sector-vehicle-fuel-verification.json"
-      ]
+      ],
+      "latest_clean_actual_scenario_verification": "docs/development/uvek-real-four-sector-heat-verification.json"
     },
     {
       "sector": "steel",
@@ -749,7 +751,7 @@
     },
     {
       "sector": "heat",
-      "status": "operational_screening_for_reviewed_roles_other_IAM_roles_pending",
+      "status": "actual_REMIND_four_sector_export_and_signed_LCI_verified_other_scenarios_and_combined_fuels_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -1284,7 +1286,8 @@
         "verification": "docs/development/uvek-frozen-historical-heat-verification.json",
         "remaining_unqualified_individual_heat_bindings": 0,
         "full_real_IAM_qualification": false
-      }
+      },
+      "latest_clean_actual_scenario_verification": "docs/development/uvek-real-four-sector-heat-verification.json"
     },
     {
       "sector": "cdr",

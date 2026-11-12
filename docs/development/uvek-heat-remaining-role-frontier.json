@@ -114,5 +114,11 @@
       "Clinker zero-amount lognormal uncertainty reported by exhaustive graph validation.",
       "Scalar NumPy-array electricity amounts reported as non-numeric."
     ]
+  },
+  "follow_up_clean_real_REMIND": {
+    "status": "actual_four_sector_export_and_all_new_activity_signed_LCI_verified",
+    "evidence": "docs/development/uvek-real-four-sector-heat-verification.json",
+    "all_sectors_complete": false,
+    "other_real_IAM_scenarios_and_combined_fuels_qualified": false
   }
 }

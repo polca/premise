@@ -1,0 +1,57 @@
+{
+  "status": "actual_encrypted_REMIND_four_sector_export_and_all_new_activity_signed_LCI_verified",
+  "actual_IAM_scenario": true,
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "database": "BAFU:2026-real-REMIND-SSP2-NPi-2050-clean-four-sectors-20261112-011303",
+  "activities": 13891,
+  "new_activities_against_native_source": 1944,
+  "signed_finite_LCIs": 3888,
+  "heat_market_counts": {
+    "market for heat, for buildings": 13,
+    "market for heat, secondary, district or industrial": 13,
+    "market for heat, district or industrial": 13
+  },
+  "EUR_and_NEU_heat_markets_present": true,
+  "time_period_electricity_markets": 108,
+  "maximum_period_self_loss": 0.041426258423349016,
+  "zero_clinker_technosphere_exchanges_deterministic": 23,
+  "internal_technosphere_links": 132927,
+  "selected_biosphere_links": 302536,
+  "ruleset_version": 9,
+  "exhaustive_graph_issues": 0,
+  "productive_feedback_components": 109,
+  "maximum_absolute_convergence_upper_bound": 0.9919629861045601,
+  "premise_commit": "bc1bfb10",
+  "brightpath_commit": "587bfd9",
+  "clean_worktree_tree_matches_main_checkout_commit": true,
+  "unrelated_local_GAINS_changes_excluded": true,
+  "qualification": "Actual REMIND SSP2-NPi 2050 biomass/electricity/heat/cement only; other IAM scenarios, combined fuel update and remaining sectors are unfinished.",
+  "private_receipt_sha256": "1f27052ca868fbcad0b9584eaac748a0edf4e18a3506cea6989ba797da5437bf",
+  "heat_layer_coverage": {
+    "buildings_end_use": {
+      "available": true,
+      "technologies": 12,
+      "regional_volume_records": 144,
+      "positive_technology_region_records": 102,
+      "documented_conversion_records": 123
+    },
+    "industrial_end_use": {
+      "available": true,
+      "technologies": 9,
+      "regional_volume_records": 108,
+      "positive_technology_region_records": 107,
+      "documented_conversion_records": 96
+    },
+    "secondary_supply": {
+      "available": true,
+      "technologies": 8,
+      "regional_volume_records": 96,
+      "positive_technology_region_records": 84,
+      "documented_conversion_records": 0
+    }
+  }
+}
