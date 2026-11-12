@@ -16,6 +16,104 @@
       "rule_id": "bp-412f090ea47af121",
       "source_version": "3.8",
       "review": "docs/development/uvek-mining-liquid-nitrogen-review.md"
+    },
+    {
+      "rule_id": "bp-4a7e42807ddffd8a",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-production-heat-boundary-review.md"
+    },
+    {
+      "rule_id": "bp-0ca8243428726044",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-production-heat-boundary-review.md"
+    },
+    {
+      "rule_id": "bp-743282c4fc2ab912",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-production-heat-boundary-review.md"
+    },
+    {
+      "rule_id": "bp-7dd6b6497336da23",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-production-heat-boundary-review.md"
+    },
+    {
+      "rule_id": "bp-8045db2598ea9a18",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-production-heat-boundary-review.md"
+    },
+    {
+      "rule_id": "bp-abe7b4d90ef350e0",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-production-heat-boundary-review.md"
+    },
+    {
+      "rule_id": "bp-68faa29ecd203ad4",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-production-heat-boundary-review.md"
+    },
+    {
+      "rule_id": "bp-a5ec1e60bc7a6cee",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-production-heat-boundary-review.md"
     }
   ],
   "rules": [

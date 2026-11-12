@@ -1334,6 +1334,11 @@
         "version_assumption_lines_to_review": [],
         "role_files": [],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "production_heat_correspondence_review": {
+        "review": "docs/development/uvek-production-heat-boundary-review.md",
+        "verification": "docs/development/uvek-production-heat-boundary-verification.json",
+        "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       }
     },
     {
@@ -2069,6 +2074,11 @@
           "carbon_dioxide_removal.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "production_heat_correspondence_review": {
+        "review": "docs/development/uvek-production-heat-boundary-review.md",
+        "verification": "docs/development/uvek-production-heat-boundary-verification.json",
+        "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       }
     },
     {
@@ -2120,6 +2130,11 @@
         "version_assumption_lines_to_review": [],
         "role_files": [],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "production_heat_correspondence_review": {
+        "review": "docs/development/uvek-production-heat-boundary-review.md",
+        "verification": "docs/development/uvek-production-heat-boundary-verification.json",
+        "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       }
     },
     {
@@ -2228,6 +2243,11 @@
           "transport_passenger_cars.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "production_heat_correspondence_review": {
+        "review": "docs/development/uvek-production-heat-boundary-review.md",
+        "verification": "docs/development/uvek-production-heat-boundary-verification.json",
+        "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       }
     },
     {
@@ -2419,6 +2439,11 @@
           "transport_road_freight.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "production_heat_correspondence_review": {
+        "review": "docs/development/uvek-production-heat-boundary-review.md",
+        "verification": "docs/development/uvek-production-heat-boundary-verification.json",
+        "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       }
     },
     {
@@ -2581,6 +2606,11 @@
           "transport_bus.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "production_heat_correspondence_review": {
+        "review": "docs/development/uvek-production-heat-boundary-review.md",
+        "verification": "docs/development/uvek-production-heat-boundary-verification.json",
+        "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       }
     },
     {
@@ -3153,6 +3183,11 @@
           "final_energy.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "production_heat_correspondence_review": {
+        "review": "docs/development/uvek-production-heat-boundary-review.md",
+        "verification": "docs/development/uvek-production-heat-boundary-verification.json",
+        "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       }
     },
     {
