@@ -1,0 +1,270 @@
+{
+  "status": "retained_steel_legacy_biosphere_names_canonicalized_and_exact_source_validation_passed",
+  "actual_scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050
+  },
+  "legacy_name_occurrences_normalized": 141,
+  "distinct_names_normalized": 13,
+  "biosphere_exchanges_checked": 379,
+  "all_exchanges_checked": 803,
+  "all_fields_except_biosphere_name_preserved_at_normalization": true,
+  "source_validation": {
+    "biosphere": {
+      "coverage": 1.0,
+      "resolved_links": 379,
+      "total_links": 379,
+      "unchecked_links": 0,
+      "unresolved_links": 0,
+      "validation_coverage": 1.0
+    },
+    "technosphere": {
+      "catalog_links": 367,
+      "coverage": 1.0,
+      "foreground_links": 28,
+      "resolved_links": 395,
+      "total_links": 395,
+      "unchecked_links": 0,
+      "unresolved_links": 0,
+      "validation_coverage": 1.0
+    }
+  },
+  "aliases": [
+    {
+      "from": [
+        "Cadmium",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Cadmium II",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "1c5a7322-9261-4d59-a692-adde6c12de92"
+    },
+    {
+      "from": [
+        "Chromium",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Chromium III",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "e142b577-e934-4085-9a07-3983d4d92afb"
+    },
+    {
+      "from": [
+        "Hydrogen chloride",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Hydrochloric acid",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "c9a8073a-8a19-5b9b-a120-7d549563b67b"
+    },
+    {
+      "from": [
+        "Iron",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Iron ion",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "8dba66e2-0f2e-4038-84ef-1e40b4f573a6"
+    },
+    {
+      "from": [
+        "Lead",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Lead II",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "8e123669-94d3-41d8-9480-a79211fe7c43"
+    },
+    {
+      "from": [
+        "Manganese",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Manganese II",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "295060ba-3c3d-45e4-99ca-e17b1204b553"
+    },
+    {
+      "from": [
+        "Mercury",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Mercury II",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "71234253-b3a7-4dfe-b166-a484ad15bee7"
+    },
+    {
+      "from": [
+        "Nickel",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Nickel II",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "a5506f4b-113f-4713-95c3-c819dde6e48b"
+    },
+    {
+      "from": [
+        "Particulates, < 2.5 um",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Particulate Matter, < 2.5 um",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "21e46cb8-6233-4c99-bac3-c41d2ab99498"
+    },
+    {
+      "from": [
+        "Particulates, > 10 um",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Particulate Matter, > 10 um",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "66020d27-7ae4-4e59-83a3-89214b72c40a"
+    },
+    {
+      "from": [
+        "Particulates, > 2.5 um, and < 10um",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Particulate Matter, > 2.5 um and < 10um",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "b967e1bf-f09b-4c89-8740-ace21db47bba"
+    },
+    {
+      "from": [
+        "Sodium, ion",
+        [
+          "water"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Sodium I",
+        [
+          "water"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "5ac961f0-8e53-42ff-b13f-1a7fb9133868"
+    },
+    {
+      "from": [
+        "Zinc",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "to": [
+        "Zinc II",
+        [
+          "air"
+        ],
+        "kilogram"
+      ],
+      "source_catalog_flow_id": "5ce378a0-b48d-471c-977d-79681521efde"
+    }
+  ],
+  "existing_correspondence_yaml_sha256": "558929044940531bef82efe0c04dabc386a1c58fa0e16328c0693f19e37a4f06",
+  "new_correspondences_added": 0,
+  "runtime_change": "One generic retained-workbook adapter uses existing correspondence data only when the original identity is absent and the candidate exactly matches the source catalog, unit and categories. Canonicalization provenance participates in cache identity.",
+  "source_copies_only": true,
+  "strict_migration_cache_and_alias_regressions_passed": 20,
+  "broader_compatibility_approval_regressions_passed": 834,
+  "broader_suite_scope": "Existing approval and fuel-carbon regressions; new retained adapter checked separately.",
+  "private_observation_sha256": "1317893083e6d6c9141ebc7eb509cae897fbadea43f2fc64de4127697e9a6819",
+  "steel_update_or_export_qualified": false,
+  "public_steel_guard_bypassed_only_for_diagnostic": true,
+  "migration_or_catalog_validation_bypassed": false,
+  "next_frontier": "docs/development/uvek-steel-retained-technosphere-frontier.json",
+  "focused_test_scope": "Retained biosphere adapter, hybrid inventory and user inventory regressions",
+  "focused_test_log_sha256": "8f6866e340fe5d96cc82daf8c842ee5e52c26b38c16648e3481488e771b3c088"
+}

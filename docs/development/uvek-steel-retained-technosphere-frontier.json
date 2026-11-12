@@ -1,0 +1,1512 @@
+{
+  "status": "retained_steel_source_links_validated_52_technosphere_correspondence_reviews_pending",
+  "source_context": {
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.9"
+    },
+    "technosphere": {
+      "family": "ecoinvent",
+      "system_model": "cutoff",
+      "version": "3.9"
+    }
+  },
+  "source_validation": {
+    "biosphere": {
+      "coverage": 1.0,
+      "resolved_links": 379,
+      "total_links": 379,
+      "unchecked_links": 0,
+      "unresolved_links": 0,
+      "validation_coverage": 1.0
+    },
+    "technosphere": {
+      "catalog_links": 367,
+      "coverage": 1.0,
+      "foreground_links": 28,
+      "resolved_links": 395,
+      "total_links": 395,
+      "unchecked_links": 0,
+      "unresolved_links": 0,
+      "validation_coverage": 1.0
+    }
+  },
+  "pending_correspondences": 52,
+  "categories": {
+    "material_gas_or_equipment_reference_review": 29,
+    "waste_residue_allocation_and_treatment": 14,
+    "wrong_product_or_transport_mode_suggestion": 5,
+    "fuel_heat_reference_and_delivery_boundary": 4
+  },
+  "records": [
+    {
+      "fingerprint": "2b664c0991f366287bdd915f059d0fef08f176d2b3752bcdd9cb8a9c305534af",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[10]",
+        "datasets[2].exchanges[2]",
+        "datasets[4].exchanges[11]",
+        "datasets[7].exchanges[11]",
+        "datasets[10].exchanges[11]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-8599277b333713a0",
+      "source": {
+        "location": "GLO",
+        "name": "market for ferronickel",
+        "reference product": "ferronickel",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Ferronickel, 25% Ni, at plant",
+        "reference product": "Ferronickel, 25% Ni, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "c3745ad1a479ee9555ae7063151a43ff94a0f1e81d63089900736c2e3f1f3877",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[11]",
+        "datasets[1].exchanges[10]",
+        "datasets[3].exchanges[8]",
+        "datasets[4].exchanges[12]",
+        "datasets[5].exchanges[11]",
+        "datasets[6].exchanges[8]",
+        "datasets[7].exchanges[12]",
+        "datasets[8].exchanges[11]",
+        "datasets[9].exchanges[8]",
+        "datasets[10].exchanges[12]",
+        "datasets[11].exchanges[11]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-8be1ae15c0ed8dc7",
+      "source": {
+        "location": "CH",
+        "name": "market for inert waste, for final disposal",
+        "reference product": "inert waste, for final disposal",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Disposal, construction waste, to final disposal type B",
+        "reference product": "Disposal, construction waste, to final disposal type B",
+        "unit": "kilogram"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": [
+        "3.6"
+      ]
+    },
+    {
+      "fingerprint": "1fb86c2579b8f26569439964744f75af08378b54cdf5b51bc55c49bb6849104c",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[12]",
+        "datasets[1].exchanges[11]",
+        "datasets[3].exchanges[9]",
+        "datasets[4].exchanges[13]",
+        "datasets[5].exchanges[12]",
+        "datasets[6].exchanges[9]",
+        "datasets[7].exchanges[13]",
+        "datasets[8].exchanges[12]",
+        "datasets[9].exchanges[9]",
+        "datasets[10].exchanges[13]",
+        "datasets[11].exchanges[12]",
+        "datasets[28].exchanges[3]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-23f293b98c9d5570",
+      "source": {
+        "location": "GLO",
+        "name": "market for iron ore concentrate",
+        "reference product": "iron ore concentrate",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Chromite, ore concentrate, at beneficiation",
+        "reference product": "Chromite, ore concentrate, at beneficiation",
+        "unit": "kilogram"
+      },
+      "category": "wrong_product_or_transport_mode_suggestion",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "fff2228f60c64f7f29c50521edc1dd5fd8d7b24fade386865919c13636f859f6",
+      "mapping_method": "reviewed_market_composition",
+      "matching_paths": [
+        "datasets[0].exchanges[13]",
+        "datasets[1].exchanges[12]",
+        "datasets[4].exchanges[14]",
+        "datasets[5].exchanges[13]",
+        "datasets[7].exchanges[14]",
+        "datasets[8].exchanges[13]",
+        "datasets[10].exchanges[14]",
+        "datasets[11].exchanges[13]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-007ad58954d82851",
+      "source": {
+        "location": "RER",
+        "name": "market for mill scale",
+        "reference product": "mill scale",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "older-regional-road-market-composition-2baadc1c776e09e81d42"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "a649c718d0da780cd77e9a8005b49bed3387e5cd945eaa7cca3860236bab4556",
+      "mapping_method": "reviewed_deferred_delivered_gas",
+      "matching_paths": [
+        "datasets[0].exchanges[15]",
+        "datasets[1].exchanges[13]",
+        "datasets[3].exchanges[13]",
+        "datasets[4].exchanges[16]",
+        "datasets[5].exchanges[14]",
+        "datasets[6].exchanges[13]",
+        "datasets[7].exchanges[16]",
+        "datasets[8].exchanges[14]",
+        "datasets[9].exchanges[13]",
+        "datasets[10].exchanges[16]",
+        "datasets[11].exchanges[14]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-7fe8308839f735bb",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market group for natural gas, high pressure",
+        "reference product": "natural gas, high pressure",
+        "unit": "cubic meter"
+      },
+      "target": {
+        "recipe_ref": "deferred-delivered-gas-52beaa2b0f89f7430e73"
+      },
+      "category": "fuel_heat_reference_and_delivery_boundary",
+      "previously_reviewed_other_source_versions": [
+        "3.12",
+        "3.6"
+      ]
+    },
+    {
+      "fingerprint": "3fe25d0185058c45ea4d47df9205ad9f6c25d58a75a2764bc13101e8eb4183a4",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[17]",
+        "datasets[1].exchanges[15]",
+        "datasets[4].exchanges[18]",
+        "datasets[5].exchanges[16]",
+        "datasets[7].exchanges[18]",
+        "datasets[8].exchanges[16]",
+        "datasets[10].exchanges[18]",
+        "datasets[11].exchanges[16]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-2db59faccae4349c",
+      "source": {
+        "location": "RER",
+        "name": "market for oxygen, liquid",
+        "reference product": "oxygen, liquid",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Oxygen, liquid, at plant",
+        "reference product": "Oxygen, liquid, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": [
+        "3.12"
+      ]
+    },
+    {
+      "fingerprint": "ac47ebb3a69e48dd7146ba880be8786741ef8766a4cb6c99d76a032ea85dbc6c",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[18]",
+        "datasets[1].exchanges[16]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-9a7e41a299b5edcb",
+      "source": {
+        "location": "RER",
+        "name": "pig iron production",
+        "reference product": "pig iron",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Pig iron, at plant",
+        "reference product": "Pig iron, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "d191cbe7ac275fb6a7527e50dfd90b42576e4e07d7d8fdc24fc74b5002cdd30f",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[19]",
+        "datasets[1].exchanges[17]",
+        "datasets[4].exchanges[19]",
+        "datasets[5].exchanges[17]",
+        "datasets[7].exchanges[19]",
+        "datasets[8].exchanges[17]",
+        "datasets[10].exchanges[19]",
+        "datasets[11].exchanges[17]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-283ee01cf9e7943c",
+      "source": {
+        "location": "CH",
+        "name": "market for quicklime, in pieces, loose",
+        "reference product": "quicklime, in pieces, loose",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Quicklime, in pieces, loose, at plant",
+        "reference product": "Quicklime, in pieces, loose, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "97a6010e4054936807c7651aad5d4bf7db3acb2fe0d8b3a68ccbe3722e688f5b",
+      "mapping_method": "reviewed_steel_residue_service",
+      "matching_paths": [
+        "datasets[0].exchanges[1]",
+        "datasets[1].exchanges[1]",
+        "datasets[4].exchanges[2]",
+        "datasets[5].exchanges[2]",
+        "datasets[7].exchanges[2]",
+        "datasets[8].exchanges[2]",
+        "datasets[10].exchanges[2]",
+        "datasets[11].exchanges[2]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-b65c892acf4a332f",
+      "source": {
+        "location": "RER",
+        "name": "market for basic oxygen furnace dust",
+        "reference product": "basic oxygen furnace dust",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "steel-residue-market-e5a828c05c3ddd6a0460"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "566754e8b733651045caa46778c89a3b91d0a0db94e637fdc9ec091ee621c57f",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[20]",
+        "datasets[1].exchanges[18]",
+        "datasets[3].exchanges[16]",
+        "datasets[4].exchanges[20]",
+        "datasets[5].exchanges[18]",
+        "datasets[6].exchanges[16]",
+        "datasets[7].exchanges[20]",
+        "datasets[8].exchanges[18]",
+        "datasets[9].exchanges[16]",
+        "datasets[10].exchanges[20]",
+        "datasets[11].exchanges[18]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-0b346b8f3969e16b",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for wastewater from pig iron production",
+        "reference product": "wastewater from pig iron production",
+        "unit": "cubic meter"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+        "reference product": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+        "unit": "cubic meter"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "e214905b62327f262feaf30666b0a389f1a36c7d2c349fd3d85f833618c5a594",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[21]",
+        "datasets[1].exchanges[19]",
+        "datasets[3].exchanges[17]",
+        "datasets[4].exchanges[21]",
+        "datasets[5].exchanges[19]",
+        "datasets[6].exchanges[17]",
+        "datasets[7].exchanges[21]",
+        "datasets[8].exchanges[19]",
+        "datasets[9].exchanges[17]",
+        "datasets[10].exchanges[21]",
+        "datasets[11].exchanges[19]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-370d86f95a1eb95a",
+      "source": {
+        "location": "CH",
+        "name": "market for wastewater from pig iron production",
+        "reference product": "wastewater from pig iron production",
+        "unit": "cubic meter"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+        "reference product": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+        "unit": "cubic meter"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "da65fb345f2920abd5bc3cf34f9c75e8e63c88688def26c7751da53cc0d7b088",
+      "mapping_method": "reviewed_additional_cutoff_waste_market_service",
+      "matching_paths": [
+        "datasets[0].exchanges[2]",
+        "datasets[1].exchanges[2]",
+        "datasets[4].exchanges[3]",
+        "datasets[5].exchanges[3]",
+        "datasets[7].exchanges[3]",
+        "datasets[8].exchanges[3]",
+        "datasets[10].exchanges[3]",
+        "datasets[11].exchanges[3]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-454fe7a83cbaa613",
+      "source": {
+        "location": "RER",
+        "name": "market for basic oxygen furnace slag",
+        "reference product": "basic oxygen furnace slag",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "additional-cutoff-waste-market-833a015632c268d7106b"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "e6246c933c1d0799379c42bbf2d8ca556b8ce0824588a9a8443e4bd2c27c92ab",
+      "mapping_method": "reviewed_additional_cutoff_waste_market_service",
+      "matching_paths": [
+        "datasets[0].exchanges[3]",
+        "datasets[1].exchanges[3]",
+        "datasets[4].exchanges[4]",
+        "datasets[5].exchanges[4]",
+        "datasets[7].exchanges[4]",
+        "datasets[8].exchanges[4]",
+        "datasets[10].exchanges[4]",
+        "datasets[11].exchanges[4]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-31651ee4fea3a8a6",
+      "source": {
+        "location": "RER",
+        "name": "market for basic oxygen furnace sludge",
+        "reference product": "basic oxygen furnace sludge",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "additional-cutoff-waste-market-e78c5fb8460aa74a75d7"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "efee40d88543cdc074bd0048155c56e05b8eb569390df7bf4f420151416676a6",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[4]",
+        "datasets[1].exchanges[4]",
+        "datasets[4].exchanges[5]",
+        "datasets[5].exchanges[5]",
+        "datasets[7].exchanges[5]",
+        "datasets[8].exchanges[5]",
+        "datasets[10].exchanges[5]",
+        "datasets[11].exchanges[5]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-dcb6e26394868f41",
+      "source": {
+        "location": "GLO",
+        "name": "market for blast oxygen furnace converter",
+        "reference product": "blast oxygen furnace converter",
+        "unit": "unit"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Blast oxygen furnace converter",
+        "reference product": "Blast oxygen furnace converter",
+        "unit": "unit"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "6697329c5cf73ffa4fed93b71c3d3e9ddbed7b22807c94f6128088383c49bbca",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[5]",
+        "datasets[1].exchanges[5]",
+        "datasets[3].exchanges[6]",
+        "datasets[4].exchanges[6]",
+        "datasets[5].exchanges[6]",
+        "datasets[6].exchanges[6]",
+        "datasets[7].exchanges[6]",
+        "datasets[8].exchanges[6]",
+        "datasets[9].exchanges[6]",
+        "datasets[10].exchanges[6]",
+        "datasets[11].exchanges[6]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-17e215cce428b4d6",
+      "source": {
+        "location": "GLO",
+        "name": "market for coke",
+        "reference product": "coke",
+        "unit": "megajoule"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Coke oven gas, at plant",
+        "reference product": "Coke oven gas, at plant",
+        "unit": "megajoule"
+      },
+      "category": "wrong_product_or_transport_mode_suggestion",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "5a9bc7596114143d4448bd1575708c8d689416515effee33c137990cec51fab4",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[6]",
+        "datasets[1].exchanges[6]",
+        "datasets[4].exchanges[7]",
+        "datasets[5].exchanges[7]",
+        "datasets[7].exchanges[7]",
+        "datasets[8].exchanges[7]",
+        "datasets[10].exchanges[7]",
+        "datasets[11].exchanges[7]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-61178cfdbac64a96",
+      "source": {
+        "location": "RER",
+        "name": "market for compressed air, 600 kPa gauge",
+        "reference product": "compressed air, 600 kPa gauge",
+        "unit": "cubic meter"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Compressed air, best generation, >30kW, 6 bar gauge, at compressor",
+        "reference product": "Compressed air, best generation, >30kW, 6 bar gauge, at compressor",
+        "unit": "cubic meter"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "ba1b0e474d3de4965ba47d9ed6bec9e606bc4a1925b4202547057bef897a8374",
+      "mapping_method": "curated_legacy",
+      "matching_paths": [
+        "datasets[0].exchanges[7]",
+        "datasets[1].exchanges[7]",
+        "datasets[4].exchanges[8]",
+        "datasets[5].exchanges[8]",
+        "datasets[7].exchanges[8]",
+        "datasets[8].exchanges[8]",
+        "datasets[10].exchanges[8]",
+        "datasets[11].exchanges[8]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-10b3c68ea03a4684",
+      "source": {
+        "location": "RER",
+        "name": "market for dolomite",
+        "reference product": "dolomite",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Dolomite, at plant",
+        "reference product": "Dolomite, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "62388cbc6d1dfa4c19f28cfca4fd8c81dea62dfcd7a2b53ec2df14b5f212af54",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[0].exchanges[9]",
+        "datasets[1].exchanges[9]",
+        "datasets[2].exchanges[1]",
+        "datasets[4].exchanges[10]",
+        "datasets[5].exchanges[10]",
+        "datasets[7].exchanges[10]",
+        "datasets[8].exchanges[10]",
+        "datasets[10].exchanges[10]",
+        "datasets[11].exchanges[10]",
+        "datasets[14].exchanges[32]",
+        "datasets[17].exchanges[32]",
+        "datasets[19].exchanges[32]",
+        "datasets[26].exchanges[32]",
+        "datasets[27].exchanges[32]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-2016f06332c370d1",
+      "source": {
+        "location": "GLO",
+        "name": "market for ferromanganese, high-coal, 74.5% Mn",
+        "reference product": "ferromanganese, high-coal, 74.5% Mn",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Ferromanganese, high-coal, 74.5% Mn, at regional storage",
+        "reference product": "Ferromanganese, high-coal, 74.5% Mn, at regional storage",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "ac4be8a15080945fe2a7eaf6810f8ed369a43bc1bc45e1fcef9eb251291e98a1",
+      "mapping_method": "reviewed_additional_cutoff_waste_market_service",
+      "matching_paths": [
+        "datasets[12].exchanges[2]",
+        "datasets[15].exchanges[2]",
+        "datasets[20].exchanges[6]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-5c1032ed559374f7",
+      "source": {
+        "location": "RoW",
+        "name": "market for blast furnace dust",
+        "reference product": "blast furnace dust",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "additional-cutoff-waste-market-204ea06fda7faa8a657a"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "6996f7b9a2793af95258eae6f37bb4d99c8899b18da91d4f8b2d307cd4f1d05b",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[13].exchanges[27]",
+        "datasets[14].exchanges[27]",
+        "datasets[16].exchanges[27]",
+        "datasets[17].exchanges[27]",
+        "datasets[18].exchanges[27]",
+        "datasets[19].exchanges[27]",
+        "datasets[26].exchanges[27]",
+        "datasets[27].exchanges[27]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-ebcd400b75b919e6",
+      "source": {
+        "location": "GLO",
+        "name": "market for anode, for metal electrolysis",
+        "reference product": "anode, for metal electrolysis",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Anode, for metal electrolysis",
+        "reference product": "Anode, for metal electrolysis",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "f12b0b34705b3a2d99fab5e61077d72d80c860c731058d11cd37ac4280571e38",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[13].exchanges[28]",
+        "datasets[14].exchanges[28]",
+        "datasets[16].exchanges[28]",
+        "datasets[17].exchanges[28]",
+        "datasets[18].exchanges[28]",
+        "datasets[19].exchanges[28]",
+        "datasets[26].exchanges[28]",
+        "datasets[27].exchanges[28]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-8185695a8558088a",
+      "source": {
+        "location": "RER",
+        "name": "market for argon, liquid",
+        "reference product": "argon, liquid",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Argon, liquid, at plant",
+        "reference product": "Argon, liquid, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "9f06a4020d90f040a52848a75e00660f6b0dfe25340cf5526a2833c7574487a6",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[13].exchanges[29]",
+        "datasets[14].exchanges[29]",
+        "datasets[16].exchanges[29]",
+        "datasets[17].exchanges[29]",
+        "datasets[18].exchanges[29]",
+        "datasets[19].exchanges[29]",
+        "datasets[26].exchanges[29]",
+        "datasets[27].exchanges[29]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-af24b2b9ca020261",
+      "source": {
+        "location": "GLO",
+        "name": "market for electric arc furnace converter",
+        "reference product": "electric arc furnace converter",
+        "unit": "unit"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Electric arc furnace converter",
+        "reference product": "Electric arc furnace converter",
+        "unit": "unit"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "a4d0463eab1212367e9688e7bce06bb0d824c5e7ef1adeee423b04100f483ca5",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[13].exchanges[30]",
+        "datasets[14].exchanges[30]",
+        "datasets[16].exchanges[30]",
+        "datasets[17].exchanges[30]",
+        "datasets[18].exchanges[30]",
+        "datasets[19].exchanges[30]",
+        "datasets[26].exchanges[30]",
+        "datasets[27].exchanges[30]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-4c4b28fe5a79d86b",
+      "source": {
+        "location": "RER",
+        "name": "market for electric arc furnace dust",
+        "reference product": "electric arc furnace dust",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Electric arc furnace slag, at plant",
+        "reference product": "Electric arc furnace slag, at plant",
+        "unit": "kilogram"
+      },
+      "category": "wrong_product_or_transport_mode_suggestion",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "1cc95f1e9c3904bc171aabf2a6fe2b329f35ef416a949c56c0cd89e1ceb580a1",
+      "mapping_method": "reviewed_additional_cutoff_waste_market_service",
+      "matching_paths": [
+        "datasets[13].exchanges[31]",
+        "datasets[14].exchanges[31]",
+        "datasets[16].exchanges[31]",
+        "datasets[17].exchanges[31]",
+        "datasets[18].exchanges[31]",
+        "datasets[19].exchanges[31]",
+        "datasets[26].exchanges[31]",
+        "datasets[27].exchanges[31]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-6531ffaccf5d8258",
+      "source": {
+        "location": "RER",
+        "name": "market for electric arc furnace slag",
+        "reference product": "electric arc furnace slag",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "additional-cutoff-waste-market-44e733cab27bc801612e"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "4612b27d30a8191180236aeab301e3bc884a8ba2f701a1ff2df6d09d588512f5",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "matching_paths": [
+        "datasets[13].exchanges[32]",
+        "datasets[14].exchanges[33]",
+        "datasets[16].exchanges[32]",
+        "datasets[17].exchanges[33]",
+        "datasets[18].exchanges[32]",
+        "datasets[19].exchanges[33]",
+        "datasets[26].exchanges[34]",
+        "datasets[27].exchanges[34]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-5ede2be860ad337d",
+      "source": {
+        "location": "RoW",
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "UCTE",
+        "name": "Hard coal mix, at regional storage",
+        "reference product": "Hard coal mix, at regional storage",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": [
+        "3.8"
+      ]
+    },
+    {
+      "fingerprint": "3c8ba939bdd84f58f9ca8fd17c2a5f5e8ae292dd515922daffcc1de03f1a182d",
+      "mapping_method": "curated_legacy",
+      "matching_paths": [
+        "datasets[13].exchanges[34]",
+        "datasets[14].exchanges[35]",
+        "datasets[16].exchanges[34]",
+        "datasets[17].exchanges[35]",
+        "datasets[18].exchanges[34]",
+        "datasets[19].exchanges[35]",
+        "datasets[26].exchanges[36]",
+        "datasets[27].exchanges[36]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-14199ba2d41a9688",
+      "source": {
+        "location": "RoW",
+        "name": "market for nitrogen, liquid",
+        "reference product": "nitrogen, liquid",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Nitrogen, liquid, at plant",
+        "reference product": "Nitrogen, liquid, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": [
+        "3.8"
+      ]
+    },
+    {
+      "fingerprint": "591af6512778b2f19d65941cc729b5af2575178613ca96cfb0384cf013eb065e",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[13].exchanges[36]",
+        "datasets[14].exchanges[37]",
+        "datasets[16].exchanges[36]",
+        "datasets[17].exchanges[37]",
+        "datasets[18].exchanges[36]",
+        "datasets[19].exchanges[37]",
+        "datasets[26].exchanges[38]",
+        "datasets[27].exchanges[38]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-e1d9517f5b28fbc3",
+      "source": {
+        "location": "RoW",
+        "name": "market for quicklime, in pieces, loose",
+        "reference product": "quicklime, in pieces, loose",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Quicklime, in pieces, loose, at plant",
+        "reference product": "Quicklime, in pieces, loose, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "6b9a86d14eb3c115ccbe1b592539814a433ca7c950ce2c0a990a0d0c88623664",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[21].exchanges[5]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-aa40fe080fdf97d2",
+      "source": {
+        "location": "RoW",
+        "name": "aluminium electrolysis facility construction",
+        "reference product": "aluminium electrolysis facility",
+        "unit": "unit"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Aluminium electrolysis, plant",
+        "reference product": "Aluminium electrolysis, plant",
+        "unit": "unit"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "821c202651fffef07420efa8c2ad6bf769a933d27f4d43b7653f53ccb9760295",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[22].exchanges[1]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-8dde2ba1759a15bf",
+      "source": {
+        "location": "GLO",
+        "name": "market for aluminium hydroxide factory",
+        "reference product": "aluminium hydroxide factory",
+        "unit": "unit"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Aluminium hydroxide, plant",
+        "reference product": "Aluminium hydroxide, plant",
+        "unit": "unit"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "f1696a8fd52640bc44e6617985bfaf6c459085e7aeeb7b63c92ff30278397907",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[22].exchanges[3]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-a8ee5a92b554b3db",
+      "source": {
+        "location": "RoW",
+        "name": "market for quicklime, milled, loose",
+        "reference product": "quicklime, milled, loose",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Quicklime, milled, loose, at plant",
+        "reference product": "Quicklime, milled, loose, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "d95aedda1ebaf466fc8135308b206d534059bbe35620ae031682b9ae2f06b977",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[23].exchanges[1]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-98dd4c54584cde5e",
+      "source": {
+        "location": "RoW",
+        "name": "anode production, graphite, for Li-ion battery",
+        "reference product": "anode, graphite, for Li-ion battery",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Anode, graphite, for Li-ion battery",
+        "reference product": "Anode, graphite, for Li-ion battery",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "46e81f47cf7d31c5d81eb853864183927b5d2255ae616ada2897dc5638f6215a",
+      "mapping_method": "followup_review",
+      "matching_paths": [
+        "datasets[23].exchanges[2]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-949e9423153a45de",
+      "source": {
+        "location": "IN",
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "unit": "ton kilometer"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Transport, freight, rail",
+        "reference product": "Transport, freight, rail",
+        "unit": "ton kilometer"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "49165c80a73870cee321aeac4944c95760e6756dda9c50977d212d848a56713c",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[23].exchanges[3]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-4a797a6b30510a65",
+      "source": {
+        "location": "US",
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "unit": "ton kilometer"
+      },
+      "target": {
+        "location": "US",
+        "name": "Transport, freight, rail, diesel",
+        "reference product": "Transport, freight, rail, diesel",
+        "unit": "ton kilometer"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "b816843b769c42376040e8301e9f3989cc1f285212e1d2870b5f485790ef23c4",
+      "mapping_method": "followup_review",
+      "matching_paths": [
+        "datasets[23].exchanges[4]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-e567e56fc816d39f",
+      "source": {
+        "location": "ZA",
+        "name": "market for transport, freight train",
+        "reference product": "transport, freight train",
+        "unit": "ton kilometer"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Transport, freight, rail",
+        "reference product": "Transport, freight, rail",
+        "unit": "ton kilometer"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "2229b71a7f29299a5e9eb94ba9e4fd29220ae99517e9b75b9d2b2afa5113346a",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[23].exchanges[8]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-8e691fdb86f7b1c6",
+      "source": {
+        "location": "RER",
+        "name": "market group for transport, freight train",
+        "reference product": "transport, freight train",
+        "unit": "ton kilometer"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Transport, aircraft, freight",
+        "reference product": "Transport, aircraft, freight",
+        "unit": "ton kilometer"
+      },
+      "category": "wrong_product_or_transport_mode_suggestion",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "244e8fae009c19da80703932254f56e35d5a1f9cf1d162067dec108a4b351ea2",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[24].exchanges[5]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-893c998297990a95",
+      "source": {
+        "location": "RER",
+        "name": "anode factory construction",
+        "reference product": "anode factory",
+        "unit": "unit"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Anode plant",
+        "reference product": "Anode plant",
+        "unit": "unit"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "e8f8bd4a174f5d9a8f82bbbf4544ffcb9b680cdbcc82b961fc5eb58dc172ac34",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[24].exchanges[8]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-5a3b5a4a13938317",
+      "source": {
+        "location": "GLO",
+        "name": "market group for heat, district or industrial, natural gas",
+        "reference product": "heat, district or industrial, natural gas",
+        "unit": "megajoule"
+      },
+      "target": {
+        "location": "CH",
+        "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "unit": "megajoule"
+      },
+      "category": "fuel_heat_reference_and_delivery_boundary",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "594f2194ad8dd43ba05b04f3de88896d4319f8bb6f3cb5936620557a17ac3e56",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[24].exchanges[9]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-daa9398e0257c1a7",
+      "source": {
+        "location": "GLO",
+        "name": "market group for heat, district or industrial, other than natural gas",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "unit": "megajoule"
+      },
+      "target": {
+        "location": "CH",
+        "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "unit": "megajoule"
+      },
+      "category": "fuel_heat_reference_and_delivery_boundary",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "1988f67473b131a62a062ecfd14118339b1ea977f8f74960a0e7e48841994e7f",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[26].exchanges[33]",
+        "datasets[27].exchanges[33]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-ab66d17baa663f1c",
+      "source": {
+        "location": "GLO",
+        "name": "market for ferrosilicon",
+        "reference product": "ferrosilicon",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Battery retention",
+        "reference product": "Battery retention",
+        "unit": "kilogram"
+      },
+      "category": "wrong_product_or_transport_mode_suggestion",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "be4e52f3c6a5a24fc3e68eedb89ab3a2da7da3743ebdaf7f0d1d65c4024d491d",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[28].exchanges[1]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-1cec8621edcd6a08",
+      "source": {
+        "location": "GLO",
+        "name": "market for conveyor belt",
+        "reference product": "conveyor belt",
+        "unit": "meter"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Conveyor belt, at plant",
+        "reference product": "Conveyor belt, at plant",
+        "unit": "meter"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "3a3be6ab5dd83c42b883b66f07cd6bb87e5319b6d81b273c5d952d34c2be438c",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[28].exchanges[2]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-158077bc2cebae56",
+      "source": {
+        "location": "RoW",
+        "name": "market for industrial machine, heavy, unspecified",
+        "reference product": "industrial machine, heavy, unspecified",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Industrial machine, heavy, unspecified, at plant",
+        "reference product": "Industrial machine, heavy, unspecified, at plant",
+        "unit": "kilogram"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "1d3640207a3df84b96ff356d587906de58085230ee6406e1a73cf8fb0ebacdec",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[28].exchanges[4]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-2f9c80eaacf32839",
+      "source": {
+        "location": "GLO",
+        "name": "market group for electricity, high voltage",
+        "reference product": "electricity, high voltage",
+        "unit": "kilowatt hour"
+      },
+      "target": {
+        "location": "GLO",
+        "name": "Electricity, high voltage, at grid",
+        "reference product": "Electricity, high voltage, at grid",
+        "unit": "kilowatt hour"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": [
+        "3.6"
+      ]
+    },
+    {
+      "fingerprint": "8a7c7cf4d5d7f07864df90ff9a46f0bfa7f8bccd3b3d095f1c550b0689c04830",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[28].exchanges[6]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-6501bd73396374f4",
+      "source": {
+        "location": "RoW",
+        "name": "market for heat, central or small-scale, other than natural gas",
+        "reference product": "heat, central or small-scale, other than natural gas",
+        "unit": "megajoule"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Heat, from natural gas",
+        "reference product": "Heat, from natural gas",
+        "unit": "megajoule"
+      },
+      "category": "fuel_heat_reference_and_delivery_boundary",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "2685816104b205b8cacac0008a35235aac22b85d474508de40ca39c469d29c1d",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[3].exchanges[11]",
+        "datasets[6].exchanges[11]",
+        "datasets[9].exchanges[11]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-0b777be472022fd9",
+      "source": {
+        "location": "RER",
+        "name": "iron sinter production",
+        "reference product": "iron sinter",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Sinter, iron, at plant",
+        "reference product": "Sinter, iron, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "5a3c73f7448430b4fef2151496fd776b94ba46d79975291c4c3b2ca85ea60351",
+      "mapping_method": "followup_review",
+      "matching_paths": [
+        "datasets[3].exchanges[12]",
+        "datasets[6].exchanges[12]",
+        "datasets[9].exchanges[12]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-b5d0a03de9a0c80e",
+      "source": {
+        "location": "CH",
+        "name": "market for limestone, unprocessed",
+        "reference product": "limestone, unprocessed",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "CH",
+        "name": "Limestone, at mine",
+        "reference product": "Limestone, at mine",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "6cbccfa78fd4320641df603723b126f11f4c0adb3509bfaf7d58dc7b1704bdae",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[3].exchanges[15]",
+        "datasets[6].exchanges[15]",
+        "datasets[9].exchanges[15]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-04c4aea3d5973dac",
+      "source": {
+        "location": "GLO",
+        "name": "market for refractory, fireclay, packed",
+        "reference product": "refractory, fireclay, packed",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "DE",
+        "name": "Refractory, fireclay, packed, at plant",
+        "reference product": "Refractory, fireclay, packed, at plant",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "77fb1a92ecce029569e7316730bd73276e375772e971424ce0d6cd465b03f46d",
+      "mapping_method": "heuristic_similarity",
+      "matching_paths": [
+        "datasets[3].exchanges[1]",
+        "datasets[6].exchanges[1]",
+        "datasets[9].exchanges[1]",
+        "datasets[12].exchanges[1]",
+        "datasets[15].exchanges[1]",
+        "datasets[20].exchanges[1]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-1dc02dfd7e0c4f04",
+      "source": {
+        "location": "GLO",
+        "name": "market for blast furnace",
+        "reference product": "blast furnace",
+        "unit": "unit"
+      },
+      "target": {
+        "location": "RER",
+        "name": "Blast furnace",
+        "reference product": "Blast furnace",
+        "unit": "unit"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "12662263a7bde4d147e4da3dd5d73c95a4714e5296b7a864e7fa393d92089f49",
+      "mapping_method": "reviewed_additional_cutoff_waste_market_service",
+      "matching_paths": [
+        "datasets[3].exchanges[2]",
+        "datasets[6].exchanges[2]",
+        "datasets[9].exchanges[2]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-d81a08e7cd9ce632",
+      "source": {
+        "location": "RER",
+        "name": "market for blast furnace dust",
+        "reference product": "blast furnace dust",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "additional-cutoff-waste-market-75dda99d82c2d18d44a6"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "b124579ef0254fc2d044c78c04bd9c783eaee32297427da892f64c75b44c72ea",
+      "mapping_method": "reviewed_market_composition",
+      "matching_paths": [
+        "datasets[3].exchanges[3]",
+        "datasets[6].exchanges[3]",
+        "datasets[9].exchanges[3]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-3ecbec256b0ffcbb",
+      "source": {
+        "location": "GLO",
+        "name": "market for blast furnace slag",
+        "reference product": "blast furnace slag",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "whole-freight-market-composition-1e58b0556ffd09259418"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "92dd23756f1c8060ced21abbb9fab63ab941aa70dcd228b175c29372f3c259a7",
+      "mapping_method": "reviewed_steel_residue_service",
+      "matching_paths": [
+        "datasets[3].exchanges[4]",
+        "datasets[6].exchanges[4]",
+        "datasets[9].exchanges[4]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-07f9085bfc8dbc65",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for blast furnace sludge",
+        "reference product": "blast furnace sludge",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "steel-residue-market-51f9c479965de83243ff"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "fd0e845e625a8e8554622d36c9c1cbbb7ead21c1f0f4ef7c586c615982446335",
+      "mapping_method": "reviewed_steel_residue_service",
+      "matching_paths": [
+        "datasets[3].exchanges[5]",
+        "datasets[6].exchanges[5]",
+        "datasets[9].exchanges[5]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-4f6f1d647b03cd3d",
+      "source": {
+        "location": "CH",
+        "name": "market for blast furnace sludge",
+        "reference product": "blast furnace sludge",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "steel-residue-market-43f384630465d630bffe"
+      },
+      "category": "waste_residue_allocation_and_treatment",
+      "previously_reviewed_other_source_versions": []
+    },
+    {
+      "fingerprint": "3575cfc7757213dad34459cfc44ecc4b8f5449684120f189267b2e848774fbf5",
+      "mapping_method": "curated_legacy",
+      "matching_paths": [
+        "datasets[3].exchanges[7]",
+        "datasets[6].exchanges[7]",
+        "datasets[9].exchanges[7]"
+      ],
+      "operation": "replace",
+      "resource": "ecoinvent-3.x-to-uvek-2025-technosphere",
+      "rule_id": "bp-793f007705cc43d3",
+      "source": {
+        "location": "Europe, without Russia and Turkey",
+        "name": "market for hard coal",
+        "reference product": "hard coal",
+        "unit": "kilogram"
+      },
+      "target": {
+        "location": "WEU",
+        "name": "Hard coal, at regional storage",
+        "reference product": "Hard coal, at regional storage",
+        "unit": "kilogram"
+      },
+      "category": "material_gas_or_equipment_reference_review",
+      "previously_reviewed_other_source_versions": [
+        "3.6"
+      ]
+    }
+  ],
+  "decisions": [
+    "No current suggestion is approved by this classification. Reject unrelated product/mode suggestions pending a correct counterpart or faithful reconstruction.",
+    "Inspect source quantities, reference amounts, alloy/contained-metal and pressure/volume bases, process allocation, nonempty waste treatment, credits and freight before extending another-version review.",
+    "Coke is not coke-oven gas, iron concentrate is not chromite, ferrosilicon is not battery retention, and rail is not air transport.",
+    "All source catalog checks and compatibility refusals remain active; no physical exchange omitted."
+  ],
+  "private_audit_sha256": "413c02c6178367ff1d3ec18f26ed759b161ed1602bcc57fe063837021029a33e",
+  "scope": "First failing retained-workbook source-profile batch; later batches are not yet qualified.",
+  "primary_inspection": {
+    "exact_source_records_located": 52,
+    "candidate_native_direct_records_located": 41,
+    "producer_witness_occurrences": 139,
+    "private_receipt_sha256": "d49eed9e0d98579dd3ac072b0176d2b905fc59920c2e551a98f3a8c528cecb44",
+    "qualification": "Availability and raw primary evidence only; candidates and their reference bases remain unapproved."
+  },
+  "direct_candidate_units_match_source": true,
+  "reference_basis_warning": "Matching units do not establish matching grade, energy/state, composition, allocation or equipment function."
+}

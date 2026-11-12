@@ -1,5 +1,5 @@
 {
-  "status": "steel_retained_workbook_source_biosphere_validation_blocked_after_four_prerequisite_reviews",
+  "status": "source_biosphere_validation_passed_after_existing_correspondence_normalization",
   "source_profile": {
     "technosphere": {
       "family": "ecoinvent",
@@ -11,7 +11,7 @@
       "version": "3.9"
     }
   },
-  "error_count": 141,
+  "error_count": 0,
   "distinct_identities": 13,
   "identities": [
     {
@@ -106,7 +106,11 @@
       "unit": "kilogram"
     }
   ],
-  "counts_by_name": {
+  "migration_validation_bypassed": false,
+  "physical_exchanges_omitted": false,
+  "private_audit_sha256": "5f505f7716a0629fc21273a626f6b10001bbb7c9be560286ac5a64a3d8484839",
+  "original_error_count": 141,
+  "original_counts_by_name": {
     "Chromium": 16,
     "Particulates, < 2.5 um": 19,
     "Manganese": 11,
@@ -121,10 +125,14 @@
     "Hydrogen chloride": 8,
     "Sodium, ion": 1
   },
-  "diagnosis": "Legacy flow names do not match exact catalog names. Parent-only air/water compartments themselves are valid in the source catalog; do not invent subcompartments.",
-  "next_required_evidence": "Match publisher flow UUIDs or reviewed official migration identities before accepting legacy-to-canonical names. Do not infer oxidation states from generic metal labels.",
-  "migration_validation_bypassed": false,
-  "physical_exchanges_omitted": false,
-  "runtime_code_changed": false,
-  "private_audit_sha256": "5f505f7716a0629fc21273a626f6b10001bbb7c9be560286ac5a64a3d8484839"
+  "original_diagnosis": "Legacy flow names do not match exact catalog names. Parent-only air/water compartments themselves are valid in the source catalog; do not invent subcompartments.",
+  "original_required_evidence": "Match publisher flow UUIDs or reviewed official migration identities before accepting legacy-to-canonical names. Do not infer oxidation states from generic metal labels.",
+  "follow_up": {
+    "evidence": "docs/development/uvek-retained-biosphere-name-verification.json",
+    "source_biosphere_links_resolved": 379,
+    "source_biosphere_links_total": 379,
+    "next_frontier": "docs/development/uvek-steel-retained-technosphere-frontier.json"
+  },
+  "original_diagnostic_runtime_code_changed": false,
+  "normalization_adapter": "premise/inventory/clic_hybrid.py"
 }

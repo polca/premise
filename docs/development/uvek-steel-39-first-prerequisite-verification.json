@@ -21,15 +21,20 @@
   "tests": {
     "brightpath_new_sign_uncertainty_profile_refusal_replay_and_related_regressions_passed": 85,
     "premise_fresh_cache_withdrawal_and_internal_recipe_uncertainty_test_passed": 1,
-    "broader_premise_approval_suite": "running; final result not yet claimed"
+    "broader_premise_approval_suite": {
+      "passed": 834,
+      "scope": "Compatibility approval and fuel-carbon regressions",
+      "log_sha256": "d195602606f6f4b70103a54bbff5e61bd9cbbb37e4062c8c17e4e78edb10ba63"
+    }
   },
   "installed_regular_conda_environment_from_pushed_github_commit": true,
   "runtime_python_changes_in_either_repository": false,
   "authoring_python_changes": "Frozen review replay, generator registration and regression tests only.",
-  "next_blocker": "docs/development/uvek-steel-retained-biosphere-frontier.json",
+  "next_blocker": "docs/development/uvek-steel-retained-technosphere-frontier.json",
   "steel_support_gate_opened": false,
   "steel_transformation_or_export_qualified": false,
   "gas_energy_basis": "Nominal Premise 36 MJ/m3 screening assumption; actual GLO source NCV not available.",
   "zeolite_treatment_boundary": "Two generic inert-landfill components and nine source freight rows preserved; source reference -1 becomes positive treatment basis via factor -1.",
-  "ecoinvent_whole_sector_regression": "Not rerun for this source-profile mapping batch; broad approval regressions still running."
+  "ecoinvent_whole_sector_regression": "Not rerun for this source-profile mapping batch; broad approval regressions still running.",
+  "scope": "Four-prerequisite mapping batch; the subsequent retained-workbook runtime adapter is documented separately."
 }

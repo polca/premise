@@ -44,7 +44,7 @@ after warming the cache. All 758 exact approval fingerprints validate, preservin
 the previous 754 scopes. The regular conda environment installs the pushed GitHub
 commit, and the colleague guide/requirements pin is updated. No runtime Python
 module changes in either repository are needed. The broader Premise approval
-suite is still running; its final result is not claimed here.
+suite subsequently passed 834 compatibility/approval and fuel-carbon tests.
 
 The actual encrypted REMIND steel diagnostic now advances to retained-workbook
 source-biosphere validation: 141 unresolved exchanges spanning 13 legacy flow
@@ -54,5 +54,7 @@ canonicalizing metal names with oxidation states. No emissions are dropped and
 no validation is bypassed. Steel remains publicly gated, with native filters,
 transformation, physical validation and export still unfinished.
 
-See `uvek-steel-39-first-prerequisite-verification.json` and
-`uvek-steel-retained-biosphere-frontier.json` for the evidence and next blocker.
+The biosphere-name frontier has since been resolved through the existing
+correspondences; see `uvek-retained-biosphere-name-normalization.md`. The retained
+workbook now passes all exact source-link checks and stops at 52 unreviewed
+technosphere correspondences. See `uvek-steel-retained-technosphere-frontier.json`.

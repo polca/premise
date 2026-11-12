@@ -734,6 +734,66 @@ def _workbook_migration_metadata(diagnostics):
     return {}
 
 
+def _canonicalize_owned_biosphere_names(records, background, catalog_provider=None):
+    """Apply existing name correspondences only to exact source-catalog identities."""
+    if background["biosphere"]["family"] != "ecoinvent" or not any(
+        e.get("type") == "biosphere" for a in records for e in a["exchanges"]
+    ):
+        return []
+    from brightpath import BiosphereProfile
+    from brightpath.background import catalog_provider_from_environment
+    from brightpath.background.catalogs import (
+        CatalogIntegrityError,
+        CatalogNotFoundError,
+    )
+    from .inventory_imports import get_correspondence_bio_flows
+
+    profile = BiosphereProfile(**background["biosphere"])
+    provider = catalog_provider or catalog_provider_from_environment()
+    try:
+        catalog = provider.load_biosphere(profile)
+    except (CatalogIntegrityError, CatalogNotFoundError):
+        return []  # The ordinary harmonizer retains its detailed catalog refusal.
+    if catalog.profile != profile:
+        return []
+    aliases = get_correspondence_bio_flows()
+    notes = []
+    for activity in records:
+        for edge in activity["exchanges"]:
+            if edge.get("type") != "biosphere":
+                continue
+            categories = edge.get("categories") or ()
+            categories = (
+                (categories,) if isinstance(categories, str) else tuple(categories)
+            )
+            original = (edge.get("name"), categories, edge.get("unit"))
+            name = (
+                aliases.get(categories[0], {}).get(original[0]) if categories else None
+            )
+            target = (name, categories, edge.get("unit"))
+            if (
+                original in catalog.identities
+                or not name
+                or target not in catalog.identities
+            ):
+                continue
+            edge["name"] = name
+            notes.append(
+                {
+                    "code": "clic.retained_biosphere_name_canonicalized",
+                    "severity": "info",
+                    "activity": activity["name"],
+                    "source_profile": background["biosphere"],
+                    "from": original,
+                    "to": target,
+                    "flow_id": catalog.references.get(target),
+                    "catalog_digest": catalog.digest,
+                    "correspondence_digest": content_hash(aliases),
+                }
+            )
+    return notes
+
+
 def _prepare_family_records(
     batches,
     database,
@@ -764,9 +824,13 @@ def _prepare_family_records(
     target = resolve_inventory_target(version, family=family, system_model=system_model)
     records, rows, originals = [], [], {}
     by_identity, qualified = defaultdict(list), {}
+    biosphere_aliases = []
     for batch, background in batches:
-        for raw in batch:
-            activity = copy.deepcopy(raw)
+        copied = [copy.deepcopy(raw) for raw in batch]
+        biosphere_aliases.extend(
+            _canonicalize_owned_biosphere_names(copied, background, catalog_provider)
+        )
+        for activity in copied:
             provenance = activity["inventory provenance"]
             code = content_hash([provenance["provider"], provenance["record_id"]])
             if code in originals:
@@ -866,8 +930,12 @@ def _prepare_family_records(
         activities=records,
         versions=rows,
         archive={"source": "owned workbooks"},
-        fingerprint=content_hash(records),
-        diagnostics=[],
+        fingerprint=(
+            content_hash([records, biosphere_aliases])
+            if biosphere_aliases
+            else content_hash(records)
+        ),
+        diagnostics=biosphere_aliases,
         lockfile=lambda: {},
     )
     harmonized = ClicHarmonizer(
