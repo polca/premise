@@ -639,6 +639,22 @@
         "unapproved_nested_pulp_heat_correspondences_after": 61,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "Screening production proxies retain original final delivery. Adipic N2O performance/allocation differences remain explicit. Full pulp heat and steel export unfinished."
+      },
+      "pulp_heat_freight_verification": {
+        "review": "uvek-pulp-heat-freight-review.md",
+        "verification": "uvek-pulp-heat-freight-verification.json",
+        "source_profile": "ecoinvent 3.9 cutoff",
+        "correspondences": 2,
+        "native_suppliers": 2,
+        "new_helpers": 0,
+        "brightpath_tests_passed": 11,
+        "premise_tests_passed": 1,
+        "signed_finite_LCIs": 4,
+        "older_3_8_barge_parent_target_and_signed_quantities_preserved": true,
+        "new_source_omissions": 0,
+        "unapproved_nested_pulp_heat_correspondences_after": 59,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Native 32-40t fleet uses Swiss2020 shares despite RER label; it does not reproduce Brazilian EURO5/biodiesel or load characteristics. Full pulp heat and steel export unfinished."
       }
     },
     {

@@ -14,7 +14,7 @@
   },
   "inventories_probed": 5,
   "purpose": "Test direct reconstruction of the five pulp-mill heat coproduct inventories without inferring pulp moisture or a generic combustion proxy. All source signed exchanges and resource-compartment carbon correction remain in the probe.",
-  "unapproved_nested_correspondences": 61,
+  "unapproved_nested_correspondences": 59,
   "unapproved_reference_product_families": {
     "bark chips, wet, measured as dry mass": 2,
     "biogas": 1,
@@ -50,8 +50,6 @@
     "spent antifreezer liquid": 1,
     "spent solvent mixture": 1,
     "sugar, from sugar beet": 1,
-    "transport, freight, inland waterways, barge": 1,
-    "transport, freight, lorry >32 metric ton, EURO5": 1,
     "triazine-compound, unspecified": 1,
     "waste plastic, mixture": 6,
     "waste textile, soiled": 1,
@@ -60,7 +58,7 @@
     "wood chips, wet, measured as dry mass": 2,
     "wood pellet, measured as dry mass": 1
   },
-  "limitation": "Five full source pulp heat inventories remain unconverted. Energy, nominal chemicals, solutions, positive stocks, urea and auxiliary-market reviews qualify 51, 9, 3, 6, 2 and 2 current inputs respectively. These 61 nested inputs remain behind one industrial-heat preparation root. No additional proxy or omission is approved by this diagnostic.",
+  "limitation": "Five full source pulp heat inventories remain unconverted. Energy, nominal chemicals, solutions, positive stocks, urea, auxiliary markets and freight reviews qualify 51, 9, 3, 6, 2, 2 and 2 current inputs respectively. These 59 nested inputs remain behind one industrial-heat preparation root. No additional proxy or omission is approved by this diagnostic.",
   "related_review": "uvek-steel-pulp-carbon-preflight.json",
   "initial_unapproved_nested_correspondences": 134,
   "energy_supply_review": "uvek-pulp-heat-energy-review.md",
@@ -68,5 +66,6 @@
   "solution_market_review": "uvek-pulp-heat-solution-markets-review.md",
   "cutoff_stock_review": "uvek-pulp-heat-cutoff-stocks-review.md",
   "urea_review": "uvek-pulp-heat-urea-review.md",
-  "auxiliary_market_review": "uvek-pulp-heat-auxiliary-markets-review.md"
+  "auxiliary_market_review": "uvek-pulp-heat-auxiliary-markets-review.md",
+  "freight_review": "uvek-pulp-heat-freight-review.md"
 }

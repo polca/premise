@@ -245622,6 +245622,134 @@
           "fingerprint": "08e5743bd2aa98dd0360f616de068029c3148cb62ceb51946a8e9db0228f5ec3"
         }
       ]
+    },
+    {
+      "rule_id": "bp-aa3f7acdc2cf5750",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pulp_heat_freight_review.json",
+      "review_sha256": "cd0e60948d5ed82ceadeb284a35b8059b5acc3ad3664a7a9742c7a5cfc9c3ed9",
+      "authorization": "Standing autonomous approval of independently inspected freight-service screening proxies, with fleet, fuel, geographic and emissions limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for transport, freight, inland waterways, barge",
+          "reference product": "transport, freight, inland waterways, barge",
+          "location": "RoW",
+          "unit": "ton kilometer"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, inland waterways, barge",
+            "reference product": "transport, freight, inland waterways, barge",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "e32dd65acc72f31d693f25dee8f2c386f0a759ac11d488f3541b49cbc43cb4fa",
+          "nonproduction_count": 1
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Transport, barge",
+            "reference product": "Transport, barge",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "5bbab786aad52cb1c3032c9e8ec5186b16b2bcde9e070630f9ebb03692396d48",
+          "nonproduction_count": 43
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "quantity_basis": "tonne-km freight service",
+        "parent_unchanged": true
+      },
+      "limitations": [
+        "Exact3.9cutoff freight-service screening proxies per signed tonne-km, positive1tkm source/native references and factor+1. RoW inland-waterway barge source is itself extrapolated from European Rhine-fleet data and includes vessel, port/canal, operation, fuel and emissions. Use complete native RER Transport,barge once; vessel lifetime/performance, loading, port/canal allocation, geography, emissions and vintage differ. Brazilian >32ton EURO5 freight uses the complete native RER-labelled32t-40t fleet-average service rather than an all-size Swiss fleet. Native documentation explicitly says Swiss2020fleet shares/HBEFA5.1 despite the RER label. This is not a Brazilian or EURO5-specific inventory: source includes Brazilian ProconveP7/EURO5,12%biodiesel/10ppmS diesel, local emissions and utilization. Size-class upper bound, actual payload, empty returns, fleet standards, fuel carbon/biodiesel, emissions, road/vehicle infrastructure, geography and vintage differ with unquantified score and carbon effects. Preserve caller signed tonne-km and supported uncertainties/formulas; do not infer distance, tonnes, payload or an efficiency multiplier from GVW classes. Reuse each complete transport inventory once without adding another diesel, infrastructure, tailpipe emissions or empty-return multiplier. Separate caller emissions and carbon-resource exchanges remain unchanged. Existing3.8barge parent, target and approval are retained byte-for-byte; only its independently inspected3.9scope is newly admitted. Only exact3.9cutoff lorry source qualifies; no consequential/reverse or other-version approval. No helper or source omission is added. Full pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3bccb1a2349aa2a9e94efac05983dc5e06ad5ea85410e82b4bf57a12ddc534c6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5ba08ac3a7f56b96",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_heavy_freight",
+      "review_path": "export/uvek_pulp_heat_freight_review.json",
+      "review_sha256": "cd0e60948d5ed82ceadeb284a35b8059b5acc3ad3664a7a9742c7a5cfc9c3ed9",
+      "authorization": "Standing autonomous approval of independently inspected freight-service screening proxies, with fleet, fuel, geographic and emissions limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for transport, freight, lorry >32 metric ton, EURO5",
+          "reference product": "transport, freight, lorry >32 metric ton, EURO5",
+          "location": "BR",
+          "unit": "ton kilometer"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry >32 metric ton, EURO5",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO5",
+            "location": "BR",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "6a5d89165383c3f6267e44f79388f9952588831d806fecba1c4047e7d802f305",
+          "nonproduction_count": 1
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+            "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "d3ab010f93e49003eba8ffd88035a5ccbccd7500403c64b98d05517177a19e1a",
+          "nonproduction_count": 3
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "quantity_basis": "tonne-km freight service",
+        "parent_unchanged": false
+      },
+      "limitations": [
+        "Exact3.9cutoff freight-service screening proxies per signed tonne-km, positive1tkm source/native references and factor+1. RoW inland-waterway barge source is itself extrapolated from European Rhine-fleet data and includes vessel, port/canal, operation, fuel and emissions. Use complete native RER Transport,barge once; vessel lifetime/performance, loading, port/canal allocation, geography, emissions and vintage differ. Brazilian >32ton EURO5 freight uses the complete native RER-labelled32t-40t fleet-average service rather than an all-size Swiss fleet. Native documentation explicitly says Swiss2020fleet shares/HBEFA5.1 despite the RER label. This is not a Brazilian or EURO5-specific inventory: source includes Brazilian ProconveP7/EURO5,12%biodiesel/10ppmS diesel, local emissions and utilization. Size-class upper bound, actual payload, empty returns, fleet standards, fuel carbon/biodiesel, emissions, road/vehicle infrastructure, geography and vintage differ with unquantified score and carbon effects. Preserve caller signed tonne-km and supported uncertainties/formulas; do not infer distance, tonnes, payload or an efficiency multiplier from GVW classes. Reuse each complete transport inventory once without adding another diesel, infrastructure, tailpipe emissions or empty-return multiplier. Separate caller emissions and carbon-resource exchanges remain unchanged. Existing3.8barge parent, target and approval are retained byte-for-byte; only its independently inspected3.9scope is newly admitted. Only exact3.9cutoff lorry source qualifies; no consequential/reverse or other-version approval. No helper or source omission is added. Full pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "35d3dab7d346f20ab54cd1f99df2b892153065dd6f1b0483bf8a841359e8deb1"
+        }
+      ]
     }
   ],
   "superseded_operations": [

@@ -1,0 +1,9 @@
+{
+  "review_sha256": "cd0e60948d5ed82ceadeb284a35b8059b5acc3ad3664a7a9742c7a5cfc9c3ed9",
+  "native_complete_transport_suppliers": 2,
+  "signed_finite_LCIs": 4,
+  "exact_sign_reversal": true,
+  "source_modified_unchanged": true,
+  "new_helpers": 0,
+  "limitation": "Tonne-km basis preserved; no source/native fleet, fuel, emissions or score equivalence claimed. Full pulp heat and steel remain unfinished."
+}
