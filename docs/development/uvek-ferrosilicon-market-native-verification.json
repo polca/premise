@@ -1,0 +1,18 @@
+{
+  "review_sha256": "7c1ff117a5a496880261d44fb7d2f15af82425968da3ad5624e16ee5a21ab7a5",
+  "cases": [
+    {
+      "rule_id": "bp-ab66d17baa663f1c",
+      "helpers_traversed": 22,
+      "native_suppliers": 96,
+      "direct_biosphere_flows": 133,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    }
+  ],
+  "signed_finite_composite_LCIs": 2,
+  "all_reviewed_recipes_covered": 22,
+  "source_modified_unchanged": true,
+  "independent_preconverted_producers_and_original_market_weights_match": true,
+  "limitation": "All post-conversion helper recipes recursively included, with summed duplicate native demands and direct biosphere flows. Nominal checks do not establish LCIA equivalence or completed steel transformation/export."
+}

@@ -396,7 +396,7 @@
       },
       "latest_actual_preparation_frontier": {
         "verification": "docs/development/uvek-steel-current-preparation-frontier.json",
-        "pending_correspondences": 2,
+        "pending_correspondences": 1,
         "public_update_or_export_verified": false
       },
       "first_four_prerequisites": "docs/development/uvek-steel-39-first-prerequisite-verification.json",
@@ -530,6 +530,21 @@
         "complete_producer_migration_records": 21,
         "producer_direct_biosphere_exchanges_each": 8,
         "limitation": "Producer prerequisite migration succeeds. Global ferrosilicon market mapping and industrial heat remain preparation roots; steel transformation/export unfinished."
+      },
+      "ferrosilicon_market_verification": {
+        "review": "uvek-ferrosilicon-market-review.md",
+        "brightpath_tests_passed": 12,
+        "premise_tests_passed": 2,
+        "new_recipes": 3,
+        "reused_recipe_dependencies": 19,
+        "signed_finite_composite_lcis": 2,
+        "native_suppliers": 96,
+        "combined_direct_biosphere_flows": 133,
+        "independent_converted_producers_and_original_market_weights_match": true,
+        "new_source_omissions": 0,
+        "literal_existing_recipe_omissions_remain_gated": 6,
+        "actual_remaining_preparation_correspondences": 1,
+        "limitation": "Real encrypted REMIND SSP2-NPi2050 preparation still stops at industrial heat. Later cohorts, sector transformation and steel export are unverified."
       }
     },
     {

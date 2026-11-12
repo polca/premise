@@ -7,11 +7,11 @@
     "system_model": "cutoff",
     "biosphere_version": "3.10"
   },
-  "pending_correspondences": 2,
-  "previous_pending": 11,
-  "cleared_this_batch": 9,
+  "pending_correspondences": 1,
+  "previous_pending": 2,
+  "cleared_this_batch": 1,
   "diagnostic_guard_bypass": "Steel support gate only; strict migration validation retained.",
-  "private_audit_receipt": "e4a5f12dc3636e8685f79edc1c65381d487a6a6931a12ebc6d243ed2a474c8e9.audit.json.gz",
+  "private_audit_receipt": "008b3160794e5e6306a2f14b6c7cd9096fa5f68c9df8e6e550f145430b16c466.audit.json.gz",
   "scope_limitation": "This is the current retained ecoinvent3.9 steel preparation cohort; later cohorts and sector transformation may reveal additional issues. Suggested targets are unapproved, not scientifically endorsed.",
   "cases": [
     {
@@ -29,22 +29,6 @@
         "unit": "megajoule"
       },
       "category": "fuel_and_heat_boundary"
-    },
-    {
-      "rule_id": "bp-ab66d17baa663f1c",
-      "source": {
-        "location": "GLO",
-        "name": "market for ferrosilicon",
-        "reference product": "ferrosilicon",
-        "unit": "kilogram"
-      },
-      "unapproved_suggested_target": {
-        "location": "GLO",
-        "name": "Battery retention",
-        "reference product": "Battery retention",
-        "unit": "kilogram"
-      },
-      "category": "ferrosilicon_reconstruction"
     }
   ]
 }

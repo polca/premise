@@ -1,0 +1,15 @@
+# Complete ferrosilicon market reconstruction
+
+The exact ecoinvent 3.9 cut-off global ferrosilicon market now maps to an on-demand reconstruction containing its two complete regional producer inventories. It uses three new positive-1-kg helpers (CN production, RoW production and global market), plus 19 unchanged reviewed dependency recipes. The previous battery-retention suggestion is removed for this exact profile. Other versions, consequential and reverse routes remain unapproved by this review.
+
+The global producer shares remain 0.453551912568306 RoW and 0.546448087431694 CN. All four original freight quantities, separate rows and uncertainty remain. Each producer retains all eight direct biosphere exchanges after canonical ecoinvent 3.10 flow migration, its original signed material and treatment inputs, 28 MJ coke demand and 8.56 kWh direct low-voltage electricity per kg. No alloy grade or carbon correction is inferred from the generic ferrosilicon label. The source properties and emissions are preserved; this review does not prove an independently closed elemental carbon balance.
+
+Native supply proxies retain the documented limitations in their individual reviews: production routes, grades, coal/gas composition, electricity mixes, delivery assumptions, allocation, technology, geography, vintage, internal uncertainty and biosphere exclusions can differ. Rail, road, barge and dry-bulk-sea freight use complete native services at the original tonne-km quantities. LCIA equivalence and the size of score differences remain unquantified.
+
+Six existing literal source-exchange omissions in three inherited dependency recipes remain explicitly listed and gated in the new root review. Their definitions are unchanged; no new physical omission is introduced. Premise refuses the reconstruction if that literal authorization is removed. Runtime Python and validation rules are unchanged.
+
+Verification: 12 Brightpath tests and two Premise fresh/cache/withdrawal/omission-gate tests passed. Two finite signed composite LCIs traverse all 22 helper recipes, 96 native suppliers and 133 combined direct biosphere flows, with exact sign reversal. Independently flattening the earlier converted producers at the original market weights, plus original freight, reproduces the new market's native demands and biosphere vector. Source database modification metadata remained unchanged.
+
+A real encrypted REMIND SSP2-NPi 2050 steel preparation run, bypassing only the still-closed steel support gate, now reports one unapproved mapping instead of two: the global industrial-heat market. Strict migrations remain enabled. Later preparation cohorts, sector transformation and full steel export remain unverified; this is not a passing public steel build.
+
+Frozen review SHA256: 7c1ff117a5a496880261d44fb7d2f15af82425968da3ad5624e16ee5a21ab7a5. Brightpath commit: 6f0b88571ba085f774d180ae853e7de9b2140c4d. Actual preparation receipt: 008b3160794e5e6306a2f14b6c7cd9096fa5f68c9df8e6e550f145430b16c466.audit.json.gz.

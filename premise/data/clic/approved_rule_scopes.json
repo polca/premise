@@ -233762,6 +233762,344 @@
           "fingerprint": "ca33d294c6946bdf0c6f64dc00ed058e1596113dad14733239c3885f133179a9"
         }
       ]
+    },
+    {
+      "rule_id": "bp-ab66d17baa663f1c",
+      "operation": "replace",
+      "mapping_method": "reviewed_ferrosilicon_inventory_reconstruction",
+      "review_path": "export/uvek_ferrosilicon_market_review.json",
+      "review_sha256": "7c1ff117a5a496880261d44fb7d2f15af82425968da3ad5624e16ee5a21ab7a5",
+      "authorization": "Standing autonomous approval of inspected complete native-background reconstructions and documented screening proxies, with all decisions retained for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for ferrosilicon",
+            "reference product": "ferrosilicon",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "0bf349b99b868e28e4c19a92cb5538573c13f162e888c6c8df276e9e9dd9d121",
+          "nonproduction_count": 6,
+          "name": "market for ferrosilicon",
+          "reference product": "ferrosilicon",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ferrosilicon production",
+              "reference product": "ferrosilicon",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "089dafab60da314045f3c860c5ebde8d9c174571ab375c6ff4e66c5e4ea6167b",
+            "nonproduction_count": 98,
+            "direct_biosphere_count": 8
+          },
+          {
+            "identity": {
+              "name": "ferrosilicon production",
+              "reference product": "ferrosilicon",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9bd4f226b8bf47d64a51f7378f1a783491c0ad5acfabc318deb30b5f925844ba",
+            "nonproduction_count": 21,
+            "direct_biosphere_count": 8
+          }
+        ],
+        "market_bindings": [
+          {
+            "source": {
+              "name": "ferrosilicon production",
+              "reference product": "ferrosilicon",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.453551912568306,
+              "uncertainty type": 0,
+              "loc": 0.453551912568306
+            },
+            "target": "ferrosilicon-39-production-row"
+          },
+          {
+            "source": {
+              "name": "ferrosilicon production",
+              "reference product": "ferrosilicon",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.546448087431694,
+              "uncertainty type": 0,
+              "loc": 0.546448087431694
+            },
+            "target": "ferrosilicon-39-production-cn"
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.1903,
+              "uncertainty type": 2,
+              "loc": -1.6591535046800332,
+              "scale": 0.4049691346263318
+            },
+            "target": "Transport, freight, rail"
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.0201,
+              "uncertainty type": 2,
+              "loc": -3.907035463917107,
+              "scale": 0.4049691346263318
+            },
+            "target": "Transport, barge"
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.2065,
+              "uncertainty type": 2,
+              "loc": -1.5774548665810497,
+              "scale": 0.4049691346263318
+            },
+            "target": "Transport, freight, lorry, fleet average"
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, sea, bulk carrier for dry goods",
+              "reference product": "transport, freight, sea, bulk carrier for dry goods",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.4409,
+              "uncertainty type": 2,
+              "loc": -0.8189371866182451,
+              "scale": 0.4049691346263318
+            },
+            "target": "Transport, transoceanic freight ship"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 3,
+        "existing_recipe_dependencies": 19,
+        "new_source_omissions": [],
+        "approved_recipe_source_omissions": {
+          "deferred-concrete-ccc89e73133fcd6a3b64": [
+            {
+              "original_index": 2,
+              "rationale": "Independently verified production-only allocated clinker terminal: zero nonproduction exchanges, source LCI contribution exactly zero. Retain signed source quantity in this audit. No invented landfill, fuel burden, recovery credit or renormalization; no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "location": "Europe without Switzerland",
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -0.5648257344156875,
+                "loc": -0.5648257344156875,
+                "location": "Europe without Switzerland",
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "ff5e2fc0bee26cda7715686a10e4ed5dcce2d051a415e7cf51f0c4c41adb4d0c",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ],
+          "deferred-titanium-inert-56c49e46b8a65138c045": [
+            {
+              "original_index": 2,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -0.0004874542674927177,
+                "loc": -0.0004874542674927177,
+                "location": "BR",
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 3,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -0.06281127794067003,
+                "loc": -0.06281127794067003,
+                "location": "US",
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 4,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -0.6200088643474869,
+                "loc": -0.6200088643474869,
+                "location": "RoW",
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 5,
+              "rationale": "Independently verified production-only negative-reference allocated clinker terminal: source has no processing, freight or direct flows. Retain original signed quantity in literal audit; no invented landfill, credit or renormalization, and no claim that physical kiln treatment is burden-free.",
+              "source_activity": {
+                "location": "RoW",
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -4.286739848569684e-06,
+                "loc": -4.286739848569684e-06,
+                "location": "CO",
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "be3952a73fe9a410345e5a7c8b71df051bde0ac924ac30ed25baedbdcbed86eb",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ],
+          "deferred-waste-market-bad1b3a323f58dd0d12d": [
+            {
+              "original_index": 1,
+              "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens.",
+              "source_activity": {
+                "location": "CH",
+                "name": "market for inert waste",
+                "reference product": "inert waste",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": -1.0,
+                "loc": -1.0,
+                "location": "CH",
+                "name": "clinker production",
+                "reference product": "inert waste",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "932df6be65bcc9d6d6ddb17214d77e19298759e7c261b8aa74ce9bcfe0f0671b",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff ferrosilicon market reconstruction using the independently migrated complete CN and RoW producer inventories and already-reviewed native background supplies. Retain the source global producer shares, all four freight quantities and uncertainty, every signed producer input, and all eight direct biosphere exchanges per producer after canonical3.10flow migration. Preserve source waste-treatment signs and reference bases, reviewed recipe dependencies and their previously approved scoped omissions; no new source-exchange omission is approved. Preserve the source28MJ coke demand and8.56kWh direct electricity per kg through their documented energy and complete low-voltage supply mappings. Do not infer a silicon grade from the generic product label or repair source carbon/emission data from an assumed alloy composition. Existing source properties do not establish an independently closed elemental carbon balance; no invented carbon/density/moisture correction is applied. The two new producer recipes and global market are on-demand positive1kg helpers. Original source2regional producer inventories are reconstructed, not replaced by battery retention or a generic steel/silicon blend. Freight uses complete native RER rail/barge/fleet-average lorry and OCE transoceanic dry-freight shipping, retaining all originaltonne-km. Native backgrounds, gas composition, production routes, regional membership, grades, allocation, technology, vintage, internal uncertainty and biosphere exclusions differ as documented in the19reused recipes and their supplier reviews; score and carbon-balance effects remain unquantified. Caller signed quantities, uncertainty, formulas and separate emissions remain unchanged with factor+1. Only exact inspected ecoinvent3.9cutoff qualifies; other releases, consequential and reverse routes are not inferred. This correspondence does not establish operational steel transformation or a successful full steel export."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e18554476fbc003fe2415fda12a4dd41c02ea25e6dcf3b5475d222518b117e52"
+        }
+      ]
     }
   ],
   "superseded_operations": [
