@@ -45,13 +45,53 @@ affects the study result.
 
 ## Status and next checks
 
-Primary review complete; **the migration rule and Premise approval have not yet
-been changed**. Before enabling it: verify the exact packaged target catalog,
-freeze the source-profile-scoped evidence, update the Brightpath resource and
-integrity manifest, test signed quantities and uncertainty, and rerun strict
-steel preparation. This finding does not qualify the steel sector or other
-source versions.
+Implementation and scoped approval are now complete. The exact native target
+exists in the packaged UVEK 2025 bridge catalog and the installed UVEK 2026
+database. The source-scoped migration rule, frozen review, deterministic
+maintainer replay and integrity manifest have been updated. This does not
+qualify the complete steel sector or other source versions.
 
 Inspection used the regular Brightway project
 `bafu-2026-ecospold2-biosphere-310`; it did not change inventories. Licensed
 source vectors remain in the private review workspace.
+
+
+## Implementation evidence
+
+Brightpath commit `3bc23eec91b9363091e7bad4ab7d6dd6db4f708d` is pushed and
+installed from GitHub in the regular conda environment. The frozen review is
+`export/uvek_steel_39_air_review.json`, SHA256
+`007378f77d3801d4e9e402b226fa4bb77f7a7d86ec88cf7c6fe619a2cf7df9f4`.
+The rule uses the complete native network supplier directly; no helper is added.
+Runtime Python modules remain unchanged. Python edits are maintainer replay
+scripts, their generator hook and tests.
+
+Seven Brightpath checks pass, covering positive/negative demand, normal and
+lognormal uncertainty, formulas, immutable foreground input, refusal for an
+unreviewed source release, replay idempotence and atomic parent-drift refusal.
+The Premise strict fresh/cache/approval-withdrawal test passes (17.54 seconds).
+Black and Ruff pass. The native network supplier passes two finite signed LCIs
+with exact sign reversal; the 11,947-activity source and modification metadata
+remain unchanged.
+
+The actual encrypted REMIND SSP2-NPi 2050 diagnostic steel preparation now has
+**37 pending correspondences, down from 38**. Strict migration validation stayed
+enabled; only the steel support guard was bypassed. It still stops at inert-waste
+final disposal, so no successful steel transformation or export is claimed.
+Private audit receipt:
+`d5db54834999209161029b2611256e0d8c4397f19ddc0db6d8ffcb1ea7499614.audit.json.gz`.
+
+## Following waste-treatment review
+
+The remaining Swiss inert-waste market has a negative kg reference, whereas
+its suggested native construction-waste disposal has a positive reference and
+little descriptive metadata. The source treatment explicitly contains generic
+inert-landfill operation and infrastructure, without direct leachate emissions.
+That candidate is not approved merely because it is a disposal process.
+
+The two pig-iron wastewater markets also have negative references. Their source
+model places direct emissions and sewering in the market, separate from treatment.
+A direct substitution with the native class-3 treatment alone could drop those
+burdens. Review the complete market vectors and treatment boundary before
+approving or reconstructing these correspondences; no new omission is authorized
+by this review.
