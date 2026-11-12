@@ -164,5 +164,32 @@
   "ether_water_preflight": "uvek-ether-water-reconstruction-preflight.json",
   "coal_ethanol_background_review": "uvek-coal-ft-background-review.md",
   "water_row_review": "uvek-pcc-water-row-review.md",
-  "water_row_verification": "uvek-pcc-water-row-verification.json"
+  "water_row_verification": "uvek-pcc-water-row-verification.json",
+  "remaining_dependency_preflight": [
+    {
+      "rule_id": "bp-05200779ee64a17f",
+      "source": "RoW chemical-industry steam market; one producer, no market transport/losses",
+      "current_mapping": "Existing source3.8heat-and-seven-water-input recipe",
+      "next_action": "Inspect exact3.9producer steam/water basis and quantities; preserve its own water inputs and avoid borrowing3.8coefficients without proof."
+    },
+    {
+      "rule_id": "bp-6e6dd9c98a58356d",
+      "source": "RoW washed crushed limestone market; one producer and three final lorry rows",
+      "current_mapping": "Complete native Swiss washed crushed limestone, no market-delivery reconstruction yet",
+      "next_action": "Verify producer kg/crushing/washing boundary and retain all three original delivery rows in a market helper."
+    },
+    {
+      "rule_id": "bp-a819b95a8342323b",
+      "source": "RNA medium-voltage market group; two CA/US delivered-market shares, no direct grid infrastructure or losses at group level",
+      "current_mapping": "Complete native RNA delivered MV grid; actual inventory includes upstream electricity and grid infrastructure",
+      "next_action": "Inspect complete native CA/US delivered MV grids; retain source country weights without adding a second regional loss/network layer. Native legacy busbar wording must not override actual inventory."
+    },
+    {
+      "rule_id": "bp-b093a40f996187dc",
+      "source": "CA-QC gas-heat market; four furnace/boiler suppliers, explicitly no transport/losses",
+      "current_mapping": "Native district-heat consumer process includes11%heat-transport loss and delivery infrastructure",
+      "decision": "Do not approve the current consumer-level match for this production-only source market.",
+      "next_action": "Select matching native production-level furnace/boiler services and retain all four source technology shares; add no district network/loss."
+    }
+  ]
 }
