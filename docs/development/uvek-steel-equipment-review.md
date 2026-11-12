@@ -42,3 +42,15 @@ GitHub commit `00f6c902ae5a5c262507979f0df45ceabd29ac5a`; its installed
 commit identity and all 764 approval scopes validate. This is preparation evidence, not successful steel
 transformation, exported database or signed LCI qualification. A real encrypted
 REMIND steel preparation rerun is being checked separately.
+
+## Real preparation rerun
+
+The actual encrypted REMIND SSP2-NPi 2050 diagnostic rerun finished after these
+changes. It retains strict migration validation and bypasses only the still
+closed steel support guard. Its retained-workbook audit reports **46 unapproved
+correspondences, down from 52**. All six equipment blockers are cleared; the
+first remaining refusal is ferronickel (`bp-8599277b333713a0`). No steel sector
+transformation or export is claimed. The private audit receipt is
+`fec8d6aae3f9f390f76a6c265d2fb6c2127244d9f9fe8c80ff1276c656ab20df.audit.json.gz`
+in the regular Premise retained/workbook-harmonized cache. The earlier 52-case
+frontier remains a historical input cohort, not the current unresolved count.
