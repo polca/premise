@@ -1,7 +1,11 @@
 {
   "file": "lci-steel.xlsx",
   "activities_with_replacement_metadata": 28,
-  "replacement_slots": 641,
+  "replacement_slots": 640,
+  "tagged_exchange_rows": 641,
+  "unknown_zero_input_slots": 639,
+  "positive_input_slots": 1,
+  "production_rows_with_replacement_metadata": 1,
   "distinct_donor_queries": 11,
   "rows": [
     {
@@ -12,7 +16,10 @@
         "kilogram"
       ],
       "placeholder_count": 33,
+      "tagged_exchange_count": 33,
+      "unknown_zero_input_count": 33,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, converter, low-alloyed",
@@ -29,7 +36,10 @@
         "kilogram"
       ],
       "placeholder_count": 31,
+      "tagged_exchange_count": 31,
+      "unknown_zero_input_count": 31,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, converter, unalloyed",
@@ -51,7 +61,10 @@
         "kilogram"
       ],
       "placeholder_count": 3,
+      "tagged_exchange_count": 3,
+      "unknown_zero_input_count": 3,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, converter, low-alloyed",
@@ -68,7 +81,10 @@
         "kilogram"
       ],
       "placeholder_count": 27,
+      "tagged_exchange_count": 27,
+      "unknown_zero_input_count": 27,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "pig iron production",
@@ -85,7 +101,10 @@
         "kilogram"
       ],
       "placeholder_count": 33,
+      "tagged_exchange_count": 33,
+      "unknown_zero_input_count": 33,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, converter, low-alloyed",
@@ -102,7 +121,10 @@
         "kilogram"
       ],
       "placeholder_count": 31,
+      "tagged_exchange_count": 31,
+      "unknown_zero_input_count": 31,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, converter, unalloyed",
@@ -124,7 +146,10 @@
         "kilogram"
       ],
       "placeholder_count": 23,
+      "tagged_exchange_count": 23,
+      "unknown_zero_input_count": 23,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "pig iron production",
@@ -141,7 +166,10 @@
         "kilogram"
       ],
       "placeholder_count": 33,
+      "tagged_exchange_count": 33,
+      "unknown_zero_input_count": 33,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, converter, low-alloyed",
@@ -158,7 +186,10 @@
         "kilogram"
       ],
       "placeholder_count": 31,
+      "tagged_exchange_count": 31,
+      "unknown_zero_input_count": 31,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, converter, unalloyed",
@@ -175,7 +206,10 @@
         "kilogram"
       ],
       "placeholder_count": 23,
+      "tagged_exchange_count": 23,
+      "unknown_zero_input_count": 23,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "pig iron production",
@@ -192,7 +226,10 @@
         "kilogram"
       ],
       "placeholder_count": 33,
+      "tagged_exchange_count": 33,
+      "unknown_zero_input_count": 33,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, converter, low-alloyed",
@@ -209,7 +246,10 @@
         "kilogram"
       ],
       "placeholder_count": 31,
+      "tagged_exchange_count": 31,
+      "unknown_zero_input_count": 31,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, converter, unalloyed",
@@ -226,7 +266,10 @@
         "kilogram"
       ],
       "placeholder_count": 1,
+      "tagged_exchange_count": 1,
+      "unknown_zero_input_count": 1,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "sponge iron production",
@@ -243,7 +286,10 @@
         "kilogram"
       ],
       "placeholder_count": 35,
+      "tagged_exchange_count": 35,
+      "unknown_zero_input_count": 35,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, electric, low-alloyed",
@@ -260,7 +306,10 @@
         "kilogram"
       ],
       "placeholder_count": 35,
+      "tagged_exchange_count": 35,
+      "unknown_zero_input_count": 35,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, electric, low-alloyed",
@@ -277,7 +326,10 @@
         "kilogram"
       ],
       "placeholder_count": 1,
+      "tagged_exchange_count": 1,
+      "unknown_zero_input_count": 1,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "sponge iron production",
@@ -293,8 +345,11 @@
         "GLO",
         "kilogram"
       ],
-      "placeholder_count": 36,
-      "nonzero_replacement_tagged_count": 1,
+      "placeholder_count": 35,
+      "tagged_exchange_count": 36,
+      "unknown_zero_input_count": 35,
+      "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 1,
       "donors": [
         [
           "steel production, electric, low-alloyed",
@@ -311,7 +366,10 @@
         "kilogram"
       ],
       "placeholder_count": 35,
+      "tagged_exchange_count": 35,
+      "unknown_zero_input_count": 35,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, electric, low-alloyed",
@@ -328,7 +386,10 @@
         "kilogram"
       ],
       "placeholder_count": 35,
+      "tagged_exchange_count": 35,
+      "unknown_zero_input_count": 35,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, electric, low-alloyed",
@@ -345,7 +406,10 @@
         "kilogram"
       ],
       "placeholder_count": 35,
+      "tagged_exchange_count": 35,
+      "unknown_zero_input_count": 35,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, electric, low-alloyed",
@@ -362,7 +426,10 @@
         "kilogram"
       ],
       "placeholder_count": 1,
+      "tagged_exchange_count": 1,
+      "unknown_zero_input_count": 1,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "sponge iron production",
@@ -379,7 +446,10 @@
         "kilogram"
       ],
       "placeholder_count": 1,
+      "tagged_exchange_count": 1,
+      "unknown_zero_input_count": 1,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "aluminium production, primary, liquid, prebake",
@@ -396,7 +466,10 @@
         "kilogram"
       ],
       "placeholder_count": 1,
+      "tagged_exchange_count": 1,
+      "unknown_zero_input_count": 1,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "aluminium hydroxide production",
@@ -413,7 +486,10 @@
         "kilogram"
       ],
       "placeholder_count": 8,
+      "tagged_exchange_count": 8,
+      "unknown_zero_input_count": 8,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "market for anode, graphite, for Li-ion battery",
@@ -430,7 +506,10 @@
         "kilogram"
       ],
       "placeholder_count": 8,
+      "tagged_exchange_count": 8,
+      "unknown_zero_input_count": 8,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "anode production, for metal electrolysis",
@@ -447,7 +526,10 @@
         "kilogram"
       ],
       "placeholder_count": 37,
+      "tagged_exchange_count": 37,
+      "unknown_zero_input_count": 37,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, electric, low-alloyed",
@@ -464,7 +546,10 @@
         "kilogram"
       ],
       "placeholder_count": 37,
+      "tagged_exchange_count": 37,
+      "unknown_zero_input_count": 36,
       "nonzero_replacement_tagged_count": 1,
+      "production_reference_tags": 0,
       "donors": [
         [
           "steel production, electric, low-alloyed",
@@ -481,7 +566,10 @@
         "kilogram"
       ],
       "placeholder_count": 3,
+      "tagged_exchange_count": 3,
+      "unknown_zero_input_count": 3,
       "nonzero_replacement_tagged_count": 0,
+      "production_reference_tags": 0,
       "donors": [
         [
           "quicklime production, milled, loose",
@@ -491,5 +579,5 @@
       ]
     }
   ],
-  "limitation": "Workbook metadata scan, not a count of required source correspondences or successful native fills. Exact role selection and native donor qualification remain necessary."
+  "interpretation": "The older 641 count included one production-reference tag and one documented positive FeMn input. There are 640 replacement-tagged input rows, including 639 unknown zero lookups. Counts do not establish native qualification or sector/export success."
 }

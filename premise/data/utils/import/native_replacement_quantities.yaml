@@ -2449,3 +2449,1318 @@ recipes:
   - *id091
   - *id032
   - *id085
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-13
+  activity:
+  - pig iron production, with natural gas-based direct reduction
+  - iron
+  - GLO
+  - kilogram
+  replacement_source:
+  - sponge iron production
+  - sponge iron
+  - IN
+  donor:
+  - Pig iron, at plant
+  - Pig iron, at plant
+  - RER
+  - kilogram
+  limitations:
+  - The source DRI template borrows only a blast-furnace construction input from Indian sponge-iron
+    production. No native sponge/direct-reduction producer is available in the inspected source.
+    Use the actual blast-furnace construction quantity per kg of native conventional RER pig iron
+    as an explicit infrastructure-intensity screening proxy.
+  - This is not a sponge-iron-to-pig-iron process mapping. The DRI chemistry, iron/pellet/hydrogen/gas
+    inputs, electricity, emissions, capture, output and every explicit source exchange remain unchanged.
+    Only the tagged construction-asset quantity is filled.
+  - Native conventional-furnace capacity, lifetime, utilization, production basis, metal composition
+    and geographic conditions differ from the intended DRI service. Do not introduce an invented
+    throughput, purity or technology factor. The infrastructure and overall score effects are unquantified;
+    absence of a native DRI donor does not prove negligible capital burdens.
+  - Source placeholders are deterministic. Native construction-use quantity is copied using the standard
+    Premise filler; donor exchange uncertainty is not transferred. Upstream asset inventory remains
+    unchanged.
+  slots:
+  - &id126
+    source:
+      type: technosphere
+      name: market for blast furnace
+      unit: unit
+      product: blast furnace
+      location: GLO
+    native:
+    - type: technosphere
+      name: Blast furnace
+      unit: unit
+      product: Blast furnace
+      location: RER
+    limitation: Only the native blast-furnace construction intensity is borrowed, under the explicit
+      conventional-pig-iron-to-DRI infrastructure proxy described in this recipe; no operating inventory
+      is substituted.
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-14
+  activity:
+  - steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed
+  - steel, low-alloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, electric, low-alloyed
+  - steel, low-alloyed
+  - Europe without Switzerland and Austria
+  donor:
+  - Steel, electric, un- and low-alloyed, at plant
+  - Steel, electric, un- and low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Fill the tagged source input groups using the existing native European un- and low-alloyed electric-steel
+    producer. This replaces the source Europe-without-Switzerland-and-Austria donor with the broader
+    historical RER grade/region mix; it is a screening proxy, not exact grade or geographic equivalence.
+  - Only donor lookups are borrowed. Preserve all explicit source DRI/electrowinning inputs, electricity,
+    alloy auxiliary inputs, capture services, slag and other non-placeholder exchanges. Additional
+    native inputs outside the source lookup groups are not silently added. Do not reinterpret this
+    as replacing the whole DRI or electrowinning technology with scrap-based EAF production.
+  - Native dust/inert-waste moisture, landfill composition, air/water chemistry, alloy references,
+    infrastructure lifetime and regional supply differ. Source slots absent from the native donor
+    are explicit omissions of unknown source quantities, with unquantified score effects.
+  - Use each actual native input quantity and unit. No metal-content, purity, heating-value, pressure,
+    dust-moisture or density correction is introduced for an unknown source quantity.
+  - Preserve full compartments and particle-size classes. Do not move metal emissions between air
+    and water or substitute a different particle-size bin to fill an absent source slot. Native ionic
+    labels remain in their installed biosphere identities; no molecular-weight conversion is asserted.
+  - Source placeholders are deterministic. The ordinary filler transfers native amounts, not the
+    donor exchange uncertainty distributions. Upstream provider inventories remain unchanged.
+  - Native source import exclusions remain as documented in its original audit. This mapping does
+    not restore missing original native elementary exchanges or establish equal source/native scores.
+  slots:
+  - &id092
+    source:
+      type: biosphere
+      name: Benzene
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Benzene
+      unit: kilogram
+      categories:
+      - air
+  - &id093
+    source:
+      type: biosphere
+      name: Benzene, hexachloro-
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Hexachlorobenzene
+      unit: kilogram
+      categories:
+      - air
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id094
+    source:
+      type: biosphere
+      name: Cadmium
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Cadmium II
+      unit: kilogram
+      categories:
+      - air
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id095
+    source:
+      type: biosphere
+      name: Carbon dioxide, fossil
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Carbon dioxide, fossil
+      unit: kilogram
+      categories:
+      - air
+  - &id096
+    source:
+      type: biosphere
+      name: Carbon monoxide, fossil
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Carbon monoxide, fossil
+      unit: kilogram
+      categories:
+      - air
+  - &id097
+    source:
+      type: biosphere
+      name: Chromium
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Chromium III
+      unit: kilogram
+      categories:
+      - air
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id098
+    source:
+      type: biosphere
+      name: Copper ion
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Copper ion
+      unit: kilogram
+      categories:
+      - air
+  - &id099
+    source:
+      type: biosphere
+      name: Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin
+      unit: kilogram
+      categories:
+      - air
+  - &id100
+    source:
+      type: biosphere
+      name: Hydrocarbons, aromatic
+      unit: kilogram
+      categories:
+      - air
+    native: []
+    limitation: Absent from the selected native donor in the same defined compartment/product group.
+      Omit this unknown source slot with a warning, without assuming measured zero, negligible effects
+      or another chemical/particle-size definition.
+  - &id101
+    source:
+      type: biosphere
+      name: Hydrogen chloride
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Hydrochloric acid
+      unit: kilogram
+      categories:
+      - air
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id102
+    source:
+      type: biosphere
+      name: Hydrogen fluoride
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Hydrogen fluoride
+      unit: kilogram
+      categories:
+      - air
+  - &id103
+    source:
+      type: biosphere
+      name: Lead
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Lead II
+      unit: kilogram
+      categories:
+      - air
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id104
+    source:
+      type: biosphere
+      name: Mercury
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Mercury II
+      unit: kilogram
+      categories:
+      - air
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id105
+    source:
+      type: biosphere
+      name: Nickel
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Nickel II
+      unit: kilogram
+      categories:
+      - air
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id106
+    source:
+      type: biosphere
+      name: Nitrogen oxides
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Nitrogen oxides
+      unit: kilogram
+      categories:
+      - air
+  - *id024
+  - &id107
+    source:
+      type: biosphere
+      name: Particulates, < 2.5 um
+      unit: kilogram
+      categories:
+      - air
+    native: []
+    limitation: Absent from the selected native donor in the same defined compartment/product group.
+      Omit this unknown source slot with a warning, without assuming measured zero, negligible effects
+      or another chemical/particle-size definition.
+  - &id108
+    source:
+      type: biosphere
+      name: Particulates, > 10 um
+      unit: kilogram
+      categories:
+      - air
+    native: []
+    limitation: Absent from the selected native donor in the same defined compartment/product group.
+      Omit this unknown source slot with a warning, without assuming measured zero, negligible effects
+      or another chemical/particle-size definition.
+  - &id109
+    source:
+      type: biosphere
+      name: Particulates, > 2.5 um, and < 10um
+      unit: kilogram
+      categories:
+      - air
+    native: []
+    limitation: Absent from the selected native donor in the same defined compartment/product group.
+      Omit this unknown source slot with a warning, without assuming measured zero, negligible effects
+      or another chemical/particle-size definition.
+  - &id110
+    source:
+      type: biosphere
+      name: Polychlorinated biphenyls
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Polychlorinated biphenyls
+      unit: kilogram
+      categories:
+      - air
+  - &id111
+    source:
+      type: biosphere
+      name: Sulfur dioxide
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Sulfur dioxide
+      unit: kilogram
+      categories:
+      - air
+  - &id112
+    source:
+      type: biosphere
+      name: Water
+      unit: cubic meter
+      categories:
+      - air
+    native: []
+    limitation: Absent from the selected native donor in the same defined compartment/product group.
+      Omit this unknown source slot with a warning, without assuming measured zero, negligible effects
+      or another chemical/particle-size definition.
+  - &id113
+    source:
+      type: biosphere
+      name: Water
+      unit: cubic meter
+      categories:
+      - water
+    native:
+    - type: biosphere
+      name: Water
+      unit: cubic meter
+      categories:
+      - water
+  - &id114
+    source:
+      type: biosphere
+      name: Water, cooling, unspecified natural origin
+      unit: cubic meter
+      categories:
+      - natural resource
+      - in water
+    native:
+    - type: biosphere
+      name: Water, cooling, unspecified natural origin
+      unit: cubic meter
+      categories:
+      - natural resource
+      - in water
+  - &id115
+    source:
+      type: biosphere
+      name: Zinc
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Zinc II
+      unit: kilogram
+      categories:
+      - air
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id116
+    source:
+      type: technosphere
+      name: market for anode, for metal electrolysis
+      unit: kilogram
+      product: anode, for metal electrolysis
+      location: GLO
+    native:
+    - type: technosphere
+      name: Anode, for metal electrolysis
+      unit: kilogram
+      product: Anode, for metal electrolysis
+      location: RER
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id117
+    source:
+      type: technosphere
+      name: market for argon, liquid
+      unit: kilogram
+      product: argon, liquid
+      location: RER
+    native:
+    - type: technosphere
+      name: Argon, liquid, at plant
+      unit: kilogram
+      product: Argon, liquid, at plant
+      location: RER
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id118
+    source:
+      type: technosphere
+      name: market for electric arc furnace converter
+      unit: unit
+      product: electric arc furnace converter
+      location: GLO
+    native:
+    - type: technosphere
+      name: Electric arc furnace converter
+      unit: unit
+      product: Electric arc furnace converter
+      location: RER
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id119
+    source:
+      type: technosphere
+      name: market for electric arc furnace dust
+      unit: kilogram
+      product: electric arc furnace dust
+      location: RER
+    native:
+    - type: technosphere
+      name: Disposal, dust, unalloyed EAF steel, 15.4% water, to residual material landfill
+      unit: kilogram
+      product: Disposal, dust, unalloyed EAF steel, 15.4% water, to residual material landfill
+      location: CH
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id120
+    source:
+      type: technosphere
+      name: market for hard coal
+      unit: kilogram
+      product: hard coal
+      location: RoW
+    native:
+    - type: technosphere
+      name: Hard coal mix, at regional storage
+      unit: kilogram
+      product: Hard coal mix, at regional storage
+      location: UCTE
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id121
+    source:
+      type: technosphere
+      name: market for inert waste, for final disposal
+      unit: kilogram
+      product: inert waste, for final disposal
+      location: RoW
+    native:
+    - type: technosphere
+      name: Disposal, inert waste, 5% water, to construction waste landfill
+      unit: kilogram
+      product: Disposal, inert waste, 5% water, to construction waste landfill
+      location: CH
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id122
+    source:
+      type: technosphere
+      name: market for nitrogen, liquid
+      unit: kilogram
+      product: nitrogen, liquid
+      location: RoW
+    native:
+    - type: technosphere
+      name: Nitrogen, liquid, at plant
+      unit: kilogram
+      product: Nitrogen, liquid, at plant
+      location: RER
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id123
+    source:
+      type: technosphere
+      name: market for oxygen, liquid
+      unit: kilogram
+      product: oxygen, liquid
+      location: RoW
+    native:
+    - type: technosphere
+      name: Oxygen, liquid, at plant
+      unit: kilogram
+      product: Oxygen, liquid, at plant
+      location: RER
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id124
+    source:
+      type: technosphere
+      name: market for quicklime, in pieces, loose
+      unit: kilogram
+      product: quicklime, in pieces, loose
+      location: RoW
+    native:
+    - type: technosphere
+      name: Quicklime, in pieces, loose, at plant
+      unit: kilogram
+      product: Quicklime, in pieces, loose, at plant
+      location: CH
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+  - &id125
+    source:
+      type: technosphere
+      name: market for refractory, basic, packed
+      unit: kilogram
+      product: refractory, basic, packed
+      location: GLO
+    native:
+    - type: technosphere
+      name: Refractory, basic, packed, at plant
+      unit: kilogram
+      product: Refractory, basic, packed, at plant
+      location: DE
+    limitation: Use the actual native donor quantity and reference unit for this explicitly declared
+      product/chemical-label and geographic proxy; retain the recipe limitations and unquantified
+      score differences.
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-15
+  activity:
+  - steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed
+  - steel, unalloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, electric, low-alloyed
+  - steel, low-alloyed
+  - Europe without Switzerland and Austria
+  donor:
+  - Steel, electric, un- and low-alloyed, at plant
+  - Steel, electric, un- and low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Fill the tagged source input groups using the existing native European un- and low-alloyed electric-steel
+    producer. This replaces the source Europe-without-Switzerland-and-Austria donor with the broader
+    historical RER grade/region mix; it is a screening proxy, not exact grade or geographic equivalence.
+  - Only donor lookups are borrowed. Preserve all explicit source DRI/electrowinning inputs, electricity,
+    alloy auxiliary inputs, capture services, slag and other non-placeholder exchanges. Additional
+    native inputs outside the source lookup groups are not silently added. Do not reinterpret this
+    as replacing the whole DRI or electrowinning technology with scrap-based EAF production.
+  - Native dust/inert-waste moisture, landfill composition, air/water chemistry, alloy references,
+    infrastructure lifetime and regional supply differ. Source slots absent from the native donor
+    are explicit omissions of unknown source quantities, with unquantified score effects.
+  - Use each actual native input quantity and unit. No metal-content, purity, heating-value, pressure,
+    dust-moisture or density correction is introduced for an unknown source quantity.
+  - Preserve full compartments and particle-size classes. Do not move metal emissions between air
+    and water or substitute a different particle-size bin to fill an absent source slot. Native ionic
+    labels remain in their installed biosphere identities; no molecular-weight conversion is asserted.
+  - Source placeholders are deterministic. The ordinary filler transfers native amounts, not the
+    donor exchange uncertainty distributions. Upstream provider inventories remain unchanged.
+  - Native source import exclusions remain as documented in its original audit. This mapping does
+    not restore missing original native elementary exchanges or establish equal source/native scores.
+  slots:
+  - *id092
+  - *id093
+  - *id094
+  - *id095
+  - *id096
+  - *id097
+  - *id098
+  - *id099
+  - *id100
+  - *id101
+  - *id102
+  - *id103
+  - *id104
+  - *id105
+  - *id106
+  - *id024
+  - *id107
+  - *id108
+  - *id109
+  - *id110
+  - *id111
+  - *id112
+  - *id113
+  - *id114
+  - *id115
+  - *id116
+  - *id117
+  - *id118
+  - *id119
+  - *id120
+  - *id121
+  - *id122
+  - *id123
+  - *id124
+  - *id125
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-16
+  activity:
+  - pig iron production, with natural gas-based direct reduction, with carbon capture and storage
+  - pig iron
+  - GLO
+  - kilogram
+  replacement_source:
+  - sponge iron production
+  - sponge iron
+  - IN
+  donor:
+  - Pig iron, at plant
+  - Pig iron, at plant
+  - RER
+  - kilogram
+  limitations:
+  - The source DRI template borrows only a blast-furnace construction input from Indian sponge-iron
+    production. No native sponge/direct-reduction producer is available in the inspected source.
+    Use the actual blast-furnace construction quantity per kg of native conventional RER pig iron
+    as an explicit infrastructure-intensity screening proxy.
+  - This is not a sponge-iron-to-pig-iron process mapping. The DRI chemistry, iron/pellet/hydrogen/gas
+    inputs, electricity, emissions, capture, output and every explicit source exchange remain unchanged.
+    Only the tagged construction-asset quantity is filled.
+  - Native conventional-furnace capacity, lifetime, utilization, production basis, metal composition
+    and geographic conditions differ from the intended DRI service. Do not introduce an invented
+    throughput, purity or technology factor. The infrastructure and overall score effects are unquantified;
+    absence of a native DRI donor does not prove negligible capital burdens.
+  - Source placeholders are deterministic. Native construction-use quantity is copied using the standard
+    Premise filler; donor exchange uncertainty is not transferred. Upstream asset inventory remains
+    unchanged.
+  slots:
+  - *id126
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-17
+  activity:
+  - steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture
+    and storage, low-alloyed
+  - steel, low-alloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, electric, low-alloyed
+  - steel, low-alloyed
+  - Europe without Switzerland and Austria
+  donor:
+  - Steel, electric, un- and low-alloyed, at plant
+  - Steel, electric, un- and low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Fill the tagged source input groups using the existing native European un- and low-alloyed electric-steel
+    producer. This replaces the source Europe-without-Switzerland-and-Austria donor with the broader
+    historical RER grade/region mix; it is a screening proxy, not exact grade or geographic equivalence.
+  - Only donor lookups are borrowed. Preserve all explicit source DRI/electrowinning inputs, electricity,
+    alloy auxiliary inputs, capture services, slag and other non-placeholder exchanges. Additional
+    native inputs outside the source lookup groups are not silently added. Do not reinterpret this
+    as replacing the whole DRI or electrowinning technology with scrap-based EAF production.
+  - Native dust/inert-waste moisture, landfill composition, air/water chemistry, alloy references,
+    infrastructure lifetime and regional supply differ. Source slots absent from the native donor
+    are explicit omissions of unknown source quantities, with unquantified score effects.
+  - Use each actual native input quantity and unit. No metal-content, purity, heating-value, pressure,
+    dust-moisture or density correction is introduced for an unknown source quantity.
+  - Preserve full compartments and particle-size classes. Do not move metal emissions between air
+    and water or substitute a different particle-size bin to fill an absent source slot. Native ionic
+    labels remain in their installed biosphere identities; no molecular-weight conversion is asserted.
+  - Source placeholders are deterministic. The ordinary filler transfers native amounts, not the
+    donor exchange uncertainty distributions. Upstream provider inventories remain unchanged.
+  - Native source import exclusions remain as documented in its original audit. This mapping does
+    not restore missing original native elementary exchanges or establish equal source/native scores.
+  slots:
+  - *id092
+  - *id093
+  - *id094
+  - *id095
+  - *id096
+  - *id097
+  - *id098
+  - *id099
+  - *id100
+  - *id101
+  - *id102
+  - *id103
+  - *id104
+  - *id105
+  - *id106
+  - *id024
+  - *id107
+  - *id108
+  - *id109
+  - *id110
+  - *id111
+  - *id112
+  - *id113
+  - *id114
+  - *id115
+  - *id116
+  - *id117
+  - *id118
+  - *id119
+  - *id120
+  - *id121
+  - *id122
+  - *id123
+  - *id124
+  - *id125
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-18
+  activity:
+  - steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture
+    and storage, unalloyed
+  - steel, unalloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, electric, low-alloyed
+  - steel, low-alloyed
+  - Europe without Switzerland and Austria
+  donor:
+  - Steel, electric, un- and low-alloyed, at plant
+  - Steel, electric, un- and low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Fill the tagged source input groups using the existing native European un- and low-alloyed electric-steel
+    producer. This replaces the source Europe-without-Switzerland-and-Austria donor with the broader
+    historical RER grade/region mix; it is a screening proxy, not exact grade or geographic equivalence.
+  - Only donor lookups are borrowed. Preserve all explicit source DRI/electrowinning inputs, electricity,
+    alloy auxiliary inputs, capture services, slag and other non-placeholder exchanges. Additional
+    native inputs outside the source lookup groups are not silently added. Do not reinterpret this
+    as replacing the whole DRI or electrowinning technology with scrap-based EAF production.
+  - Native dust/inert-waste moisture, landfill composition, air/water chemistry, alloy references,
+    infrastructure lifetime and regional supply differ. Source slots absent from the native donor
+    are explicit omissions of unknown source quantities, with unquantified score effects.
+  - Use each actual native input quantity and unit. No metal-content, purity, heating-value, pressure,
+    dust-moisture or density correction is introduced for an unknown source quantity.
+  - Preserve full compartments and particle-size classes. Do not move metal emissions between air
+    and water or substitute a different particle-size bin to fill an absent source slot. Native ionic
+    labels remain in their installed biosphere identities; no molecular-weight conversion is asserted.
+  - Source placeholders are deterministic. The ordinary filler transfers native amounts, not the
+    donor exchange uncertainty distributions. Upstream provider inventories remain unchanged.
+  - Native source import exclusions remain as documented in its original audit. This mapping does
+    not restore missing original native elementary exchanges or establish equal source/native scores.
+  slots:
+  - *id092
+  - *id093
+  - *id094
+  - *id095
+  - *id096
+  - *id097
+  - *id098
+  - *id099
+  - *id100
+  - *id101
+  - *id102
+  - *id103
+  - *id104
+  - *id105
+  - *id106
+  - *id024
+  - *id107
+  - *id108
+  - *id109
+  - *id110
+  - *id111
+  - *id112
+  - *id113
+  - *id114
+  - *id115
+  - *id116
+  - *id117
+  - *id118
+  - *id119
+  - *id120
+  - *id121
+  - *id122
+  - *id123
+  - *id124
+  - *id125
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-19
+  activity:
+  - steel production, hydrogen-based direct reduction iron-electric arc furnace, low-alloyed
+  - steel, low-alloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, electric, low-alloyed
+  - steel, low-alloyed
+  - Europe without Switzerland and Austria
+  donor:
+  - Steel, electric, un- and low-alloyed, at plant
+  - Steel, electric, un- and low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Fill the tagged source input groups using the existing native European un- and low-alloyed electric-steel
+    producer. This replaces the source Europe-without-Switzerland-and-Austria donor with the broader
+    historical RER grade/region mix; it is a screening proxy, not exact grade or geographic equivalence.
+  - Only donor lookups are borrowed. Preserve all explicit source DRI/electrowinning inputs, electricity,
+    alloy auxiliary inputs, capture services, slag and other non-placeholder exchanges. Additional
+    native inputs outside the source lookup groups are not silently added. Do not reinterpret this
+    as replacing the whole DRI or electrowinning technology with scrap-based EAF production.
+  - Native dust/inert-waste moisture, landfill composition, air/water chemistry, alloy references,
+    infrastructure lifetime and regional supply differ. Source slots absent from the native donor
+    are explicit omissions of unknown source quantities, with unquantified score effects.
+  - Use each actual native input quantity and unit. No metal-content, purity, heating-value, pressure,
+    dust-moisture or density correction is introduced for an unknown source quantity.
+  - Preserve full compartments and particle-size classes. Do not move metal emissions between air
+    and water or substitute a different particle-size bin to fill an absent source slot. Native ionic
+    labels remain in their installed biosphere identities; no molecular-weight conversion is asserted.
+  - Source placeholders are deterministic. The ordinary filler transfers native amounts, not the
+    donor exchange uncertainty distributions. Upstream provider inventories remain unchanged.
+  - Native source import exclusions remain as documented in its original audit. This mapping does
+    not restore missing original native elementary exchanges or establish equal source/native scores.
+  slots:
+  - *id092
+  - *id093
+  - *id094
+  - *id095
+  - *id096
+  - *id097
+  - *id098
+  - *id099
+  - *id100
+  - *id101
+  - *id102
+  - *id103
+  - *id104
+  - *id105
+  - *id106
+  - *id024
+  - *id107
+  - *id108
+  - *id109
+  - *id110
+  - *id111
+  - *id112
+  - *id113
+  - *id114
+  - *id115
+  - *id116
+  - *id117
+  - *id118
+  - *id119
+  - *id120
+  - *id121
+  - *id122
+  - *id123
+  - *id124
+  - *id125
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-20
+  activity:
+  - steel production, hydrogen-based direct reduction iron-electric arc furnace, unalloyed
+  - steel, unalloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, electric, low-alloyed
+  - steel, low-alloyed
+  - Europe without Switzerland and Austria
+  donor:
+  - Steel, electric, un- and low-alloyed, at plant
+  - Steel, electric, un- and low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Fill the tagged source input groups using the existing native European un- and low-alloyed electric-steel
+    producer. This replaces the source Europe-without-Switzerland-and-Austria donor with the broader
+    historical RER grade/region mix; it is a screening proxy, not exact grade or geographic equivalence.
+  - Only donor lookups are borrowed. Preserve all explicit source DRI/electrowinning inputs, electricity,
+    alloy auxiliary inputs, capture services, slag and other non-placeholder exchanges. Additional
+    native inputs outside the source lookup groups are not silently added. Do not reinterpret this
+    as replacing the whole DRI or electrowinning technology with scrap-based EAF production.
+  - Native dust/inert-waste moisture, landfill composition, air/water chemistry, alloy references,
+    infrastructure lifetime and regional supply differ. Source slots absent from the native donor
+    are explicit omissions of unknown source quantities, with unquantified score effects.
+  - Use each actual native input quantity and unit. No metal-content, purity, heating-value, pressure,
+    dust-moisture or density correction is introduced for an unknown source quantity.
+  - Preserve full compartments and particle-size classes. Do not move metal emissions between air
+    and water or substitute a different particle-size bin to fill an absent source slot. Native ionic
+    labels remain in their installed biosphere identities; no molecular-weight conversion is asserted.
+  - Source placeholders are deterministic. The ordinary filler transfers native amounts, not the
+    donor exchange uncertainty distributions. Upstream provider inventories remain unchanged.
+  - Native source import exclusions remain as documented in its original audit. This mapping does
+    not restore missing original native elementary exchanges or establish equal source/native scores.
+  slots:
+  - *id092
+  - *id093
+  - *id094
+  - *id095
+  - *id096
+  - *id097
+  - *id098
+  - *id099
+  - *id100
+  - *id101
+  - *id102
+  - *id103
+  - *id104
+  - *id105
+  - *id106
+  - *id024
+  - *id107
+  - *id108
+  - *id109
+  - *id110
+  - *id111
+  - *id112
+  - *id113
+  - *id114
+  - *id115
+  - *id116
+  - *id117
+  - *id118
+  - *id119
+  - *id120
+  - *id121
+  - *id122
+  - *id123
+  - *id124
+  - *id125
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-21
+  activity:
+  - pig iron production, hydrogen-based direct reduction iron
+  - pig iron
+  - GLO
+  - kilogram
+  replacement_source:
+  - sponge iron production
+  - sponge iron
+  - IN
+  donor:
+  - Pig iron, at plant
+  - Pig iron, at plant
+  - RER
+  - kilogram
+  limitations:
+  - The source DRI template borrows only a blast-furnace construction input from Indian sponge-iron
+    production. No native sponge/direct-reduction producer is available in the inspected source.
+    Use the actual blast-furnace construction quantity per kg of native conventional RER pig iron
+    as an explicit infrastructure-intensity screening proxy.
+  - This is not a sponge-iron-to-pig-iron process mapping. The DRI chemistry, iron/pellet/hydrogen/gas
+    inputs, electricity, emissions, capture, output and every explicit source exchange remain unchanged.
+    Only the tagged construction-asset quantity is filled.
+  - Native conventional-furnace capacity, lifetime, utilization, production basis, metal composition
+    and geographic conditions differ from the intended DRI service. Do not introduce an invented
+    throughput, purity or technology factor. The infrastructure and overall score effects are unquantified;
+    absence of a native DRI donor does not prove negligible capital burdens.
+  - Source placeholders are deterministic. Native construction-use quantity is copied using the standard
+    Premise filler; donor exchange uncertainty is not transferred. Upstream asset inventory remains
+    unchanged.
+  slots:
+  - *id126
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-22
+  activity:
+  - steel production, electrowinning-electric arc furnace, low-alloyed
+  - steel, low-alloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, electric, low-alloyed
+  - steel, low-alloyed
+  - Europe without Switzerland and Austria
+  donor:
+  - Steel, electric, un- and low-alloyed, at plant
+  - Steel, electric, un- and low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Fill the tagged source input groups using the existing native European un- and low-alloyed electric-steel
+    producer. This replaces the source Europe-without-Switzerland-and-Austria donor with the broader
+    historical RER grade/region mix; it is a screening proxy, not exact grade or geographic equivalence.
+  - Only donor lookups are borrowed. Preserve all explicit source DRI/electrowinning inputs, electricity,
+    alloy auxiliary inputs, capture services, slag and other non-placeholder exchanges. Additional
+    native inputs outside the source lookup groups are not silently added. Do not reinterpret this
+    as replacing the whole DRI or electrowinning technology with scrap-based EAF production.
+  - Native dust/inert-waste moisture, landfill composition, air/water chemistry, alloy references,
+    infrastructure lifetime and regional supply differ. Source slots absent from the native donor
+    are explicit omissions of unknown source quantities, with unquantified score effects.
+  - Use each actual native input quantity and unit. No metal-content, purity, heating-value, pressure,
+    dust-moisture or density correction is introduced for an unknown source quantity.
+  - Preserve full compartments and particle-size classes. Do not move metal emissions between air
+    and water or substitute a different particle-size bin to fill an absent source slot. Native ionic
+    labels remain in their installed biosphere identities; no molecular-weight conversion is asserted.
+  - Source placeholders are deterministic. The ordinary filler transfers native amounts, not the
+    donor exchange uncertainty distributions. Upstream provider inventories remain unchanged.
+  - Native source import exclusions remain as documented in its original audit. This mapping does
+    not restore missing original native elementary exchanges or establish equal source/native scores.
+  slots:
+  - *id092
+  - *id093
+  - *id094
+  - *id095
+  - *id096
+  - *id097
+  - *id098
+  - *id099
+  - *id100
+  - *id101
+  - *id102
+  - *id103
+  - *id104
+  - *id105
+  - *id106
+  - *id024
+  - *id107
+  - *id108
+  - *id109
+  - *id110
+  - *id111
+  - *id112
+  - *id113
+  - *id114
+  - *id115
+  - *id116
+  - *id117
+  - *id118
+  - *id119
+  - source:
+      type: technosphere
+      name: market for ferromanganese, high-coal, 74.5% Mn
+      unit: kilogram
+      product: ferromanganese, high-coal, 74.5% Mn
+      location: GLO
+    native: []
+    limitation: Absent from the selected native donor in the same defined compartment/product group.
+      Omit this unknown source slot with a warning, without assuming measured zero, negligible effects
+      or another chemical/particle-size definition.
+  - &id127
+    source:
+      type: technosphere
+      name: market for ferrosilicon
+      unit: kilogram
+      product: ferrosilicon
+      location: GLO
+    native: []
+    limitation: Absent from the selected native donor in the same defined compartment/product group.
+      Omit this unknown source slot with a warning, without assuming measured zero, negligible effects
+      or another chemical/particle-size definition.
+  - *id120
+  - *id121
+  - *id122
+  - *id123
+  - *id124
+  - *id125
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-23
+  activity:
+  - steel production, electrowinning-electric arc furnace, unalloyed
+  - steel, unalloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, electric, low-alloyed
+  - steel, low-alloyed
+  - Europe without Switzerland and Austria
+  donor:
+  - Steel, electric, un- and low-alloyed, at plant
+  - Steel, electric, un- and low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Fill the tagged source input groups using the existing native European un- and low-alloyed electric-steel
+    producer. This replaces the source Europe-without-Switzerland-and-Austria donor with the broader
+    historical RER grade/region mix; it is a screening proxy, not exact grade or geographic equivalence.
+  - Only donor lookups are borrowed. Preserve all explicit source DRI/electrowinning inputs, electricity,
+    alloy auxiliary inputs, capture services, slag and other non-placeholder exchanges. Additional
+    native inputs outside the source lookup groups are not silently added. Do not reinterpret this
+    as replacing the whole DRI or electrowinning technology with scrap-based EAF production.
+  - Native dust/inert-waste moisture, landfill composition, air/water chemistry, alloy references,
+    infrastructure lifetime and regional supply differ. Source slots absent from the native donor
+    are explicit omissions of unknown source quantities, with unquantified score effects.
+  - Use each actual native input quantity and unit. No metal-content, purity, heating-value, pressure,
+    dust-moisture or density correction is introduced for an unknown source quantity.
+  - Preserve full compartments and particle-size classes. Do not move metal emissions between air
+    and water or substitute a different particle-size bin to fill an absent source slot. Native ionic
+    labels remain in their installed biosphere identities; no molecular-weight conversion is asserted.
+  - Source placeholders are deterministic. The ordinary filler transfers native amounts, not the
+    donor exchange uncertainty distributions. Upstream provider inventories remain unchanged.
+  - Native source import exclusions remain as documented in its original audit. This mapping does
+    not restore missing original native elementary exchanges or establish equal source/native scores.
+  - The one explicitly documented positive FeMn input in the electrowinning/unalloyed template is
+    preserved before normal migration. This is a scoped metadata correction; other nonzero replacement-tagged
+    inputs remain refused unless independently declared.
+  slots:
+  - *id092
+  - *id093
+  - *id094
+  - *id095
+  - *id096
+  - *id097
+  - *id098
+  - *id099
+  - *id100
+  - *id101
+  - *id102
+  - *id103
+  - *id104
+  - *id105
+  - *id106
+  - *id024
+  - *id107
+  - *id108
+  - *id109
+  - *id110
+  - *id111
+  - *id112
+  - *id113
+  - *id114
+  - *id115
+  - *id116
+  - *id117
+  - *id118
+  - *id119
+  - source:
+      type: technosphere
+      name: market for ferromanganese, high-coal, 74.5% Mn
+      unit: kilogram
+      product: ferromanganese, high-coal, 74.5% Mn
+      location: GLO
+    native: []
+    preserve_explicit_quantity: true
+    limitation: The source author explicitly changed this FeMn input to the unalloyed-converter value
+      in 2025 but retained stale replacement tags. Preserve the actual positive source amount and
+      uncertainty, discard only those stale tags, and apply ordinary background migration. Do not
+      overwrite it with a native donor amount or count it as an omission.
+  - *id127
+  - *id120
+  - *id121
+  - *id122
+  - *id123
+  - *id124
+  - *id125

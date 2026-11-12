@@ -289,3 +289,42 @@ def test_only_declared_slot_specific_donor_alias_is_accepted(fixture):
     assert [
         e["amount"] for e in record["exchanges"] if e["type"] == "technosphere"
     ] == [12]
+
+
+def test_production_reference_with_lookup_metadata_is_not_a_placeholder(fixture):
+    record, database, target, _, _ = fixture
+    reference = record["exchanges"][0]
+    reference.update(
+        {
+            "replacement name": "legacy donor",
+            "replacement product": "legacy steel",
+            "replacement location": "RER",
+        }
+    )
+    before = copy.deepcopy(reference)
+    with pytest.warns(UserWarning):
+        prepare(record, database, target)
+    assert record["exchanges"][0] == before
+    assert record["exchanges"][0]["amount"] == 1
+
+
+def test_scoped_explicit_input_keeps_quantity_uncertainty_before_normal_migration(
+    fixture,
+):
+    record, database, target, path, recipe = fixture
+    explicit = record["exchanges"][1]
+    explicit.update(amount=0.25, **{"uncertainty type": 3, "loc": 0.25, "scale": 0.02})
+    recipe["slots"][0].update(
+        preserve_explicit_quantity=True,
+        native=[],
+        limitation="Documented source override; retain it and discard stale lookup tags.",
+    )
+    path.write_text(yaml.safe_dump({"schema_version": 1, "recipes": [recipe]}))
+    with pytest.warns(UserWarning):
+        notes = prepare(record, database, target)
+    result = next(e for e in record["exchanges"] if e["name"] == "source gas")
+    assert result["amount"] == result["loc"] == 0.25
+    assert result["scale"] == 0.02
+    assert "replacement name" not in result and module.NATIVE_INPUT not in result
+    assert len(notes[0]["preserved explicit exchanges"]) == 1
+    assert not notes[0]["omissions"]

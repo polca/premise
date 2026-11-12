@@ -47,7 +47,10 @@ def prepare_replacement_quantities(records, database, background, target):
     diagnostics = []
     for record in records:
         placeholders = [
-            edge for edge in record["exchanges"] if "replacement name" in edge
+            edge
+            for edge in record["exchanges"]
+            if "replacement name" in edge
+            and edge["type"] in {"technosphere", "biosphere"}
         ]
         if not placeholders:
             continue
@@ -94,7 +97,7 @@ def prepare_replacement_quantities(records, database, background, target):
         slots = recipe["slots"]
         if len(placeholders) != len(slots):
             raise ClicInventoryError("Reviewed replacement placeholder scope changed.")
-        queries, omissions, seen = [], [], set()
+        queries, omissions, preserved, seen = [], [], [], set()
         for edge in placeholders:
             matches = [
                 i for i, slot in enumerate(slots) if slot["source"] == _selector(edge)
@@ -106,12 +109,10 @@ def prepare_replacement_quantities(records, database, background, target):
             if (
                 len(matches) != 1
                 or matches[0] in seen
-                or edge["amount"] != 0
                 or parent
                 != slots[matches[0]].get(
                     "replacement_source", recipe["replacement_source"]
                 )
-                or edge.get("uncertainty type", 0) > 1
                 or edge.get("formula") != slots[matches[0]].get("source_formula")
             ):
                 raise ClicInventoryError(
@@ -121,6 +122,28 @@ def prepare_replacement_quantities(records, database, background, target):
                 )
             seen.add(matches[0])
             slot = slots[matches[0]]
+            if slot.get("preserve_explicit_quantity"):
+                if (
+                    edge["type"] != "technosphere"
+                    or edge["amount"] <= 0
+                    or not slot.get("limitation")
+                ):
+                    raise ClicInventoryError(
+                        "Reviewed explicit replacement input must retain a positive source quantity and limitation."
+                    )
+                retained = copy.deepcopy(edge)
+                for field in (
+                    "replacement name",
+                    "replacement product",
+                    "replacement location",
+                ):
+                    retained.pop(field, None)
+                preserved.append(retained)
+                continue
+            if edge["amount"] != 0 or edge.get("uncertainty type", 0) > 1:
+                raise ClicInventoryError(
+                    "Reviewed unknown replacement quantity changed or has unsupported uncertainty."
+                )
             if not slot["native"]:
                 if not slot.get("limitation"):
                     raise ClicInventoryError(
@@ -176,21 +199,24 @@ def prepare_replacement_quantities(records, database, background, target):
                 record,
                 placeholders,
                 filled["exchanges"],
+                preserved,
                 {
                     "recipe": recipe["id"],
                     "review_sha256": content_hash(recipe),
                     "donor": recipe["donor"],
                     "limitations": recipe["limitations"],
                     "omissions": omissions,
+                    "preserved explicit exchanges": copy.deepcopy(preserved),
                     "filled exchanges": [copy.deepcopy(e) for e in filled["exchanges"]],
                 },
             )
         )
     # Apply only after the whole owned batch passes its identity and link checks.
-    for record, placeholders, filled, audit in pending:
+    for record, placeholders, filled, preserved, audit in pending:
         removed = {id(e) for e in placeholders}
         record["exchanges"] = [e for e in record["exchanges"] if id(e) not in removed]
         record["exchanges"].extend(e for e in filled if e["type"] == "technosphere")
+        record["exchanges"].extend(preserved)
         record[NATIVE_BIOSPHERE] = [e for e in filled if e["type"] == "biosphere"]
         record["inventory provenance"]["native replacement quantities"] = audit
         diagnostics.append(
