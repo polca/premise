@@ -704,6 +704,23 @@
         "unapproved_nested_pulp_heat_correspondences_after": 52,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "Original tiny landfill share and generic inert-landfill boundary retained; two proven zero interfaces omitted only in this market. Full pulp heat and steel export unfinished."
+      },
+      "pulp_heat_biomethanol_verification": {
+        "review": "uvek-pulp-heat-biomethanol-review.md",
+        "verification": "uvek-pulp-heat-biomethanol-verification.json",
+        "source_profile": "ecoinvent 3.9 cutoff",
+        "reviewed_correspondences": 1,
+        "new_helpers": 1,
+        "preserved_source_market_rows": 15,
+        "native_suppliers": 6,
+        "signed_finite_LCIs": 14,
+        "brightpath_tests_passed": 12,
+        "premise_tests_passed": 1,
+        "shared_migration_regressions_passed": 47,
+        "new_source_omissions": 0,
+        "unapproved_nested_pulp_heat_correspondences_after": 51,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "CH biomass-syngas methanol production proxy retains original final delivery; native regional retail/storage inventory is not added. Full pulp heat and steel export unfinished."
       }
     },
     {

@@ -247339,6 +247339,312 @@
           "fingerprint": "21a3d7fdba1784242866cb4efe4de5d57aed0f1bb38fa4c16126b1b10b2f97b3"
         }
       ]
+    },
+    {
+      "rule_id": "bp-66eda42a6052dcd5",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_biomethanol_market",
+      "review_path": "export/uvek_pulp_heat_biomethanol_market_review.json",
+      "review_sha256": "4a535c33a0d7af13601f8b7a1bbc53bd12493def1783e292df2ca6fb6b70ebee",
+      "authorization": "Standing autonomous approval of independently inspected same-technology biomass-methanol production and retained market delivery, with geographic and inventory limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for methanol, from biomass",
+          "reference product": "methanol, from biomass",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for methanol, from biomass",
+            "reference product": "methanol, from biomass",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "998921de28d4ee6dc72f092992e4d5d14c36327896aae11e39180fa9fb31f4bf",
+          "nonproduction_count": 15
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "0110b2d25d1511a1bdd7bd9555721b7527458a15ec7c2a4a63d81d59fcf12d85",
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "name": "Methanol, from synthetic gas, at plant",
+              "reference product": "Methanol, from synthetic gas, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "33f3c5ca419b2b042bb12d5b5eabaa2f91b8ccad1481225337b484f760eb1ace",
+            "statistics": {
+              "amount": 0.0030154473571830987,
+              "uncertainty type": 2,
+              "loc": -5.8040070826346355,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "7f6135fe6b38d13d04c76f9ff5ebfb23b1f7c434f3d732cb481abc8da892c3c5",
+            "statistics": {
+              "amount": 0.01088392360961696,
+              "uncertainty type": 2,
+              "loc": -4.520468476680314,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "8271e9c33a00657aa98d1fe159307f9ae9b8fc3fc2c1490093cc6110a820467f",
+            "statistics": {
+              "amount": 0.0007635742666882207,
+              "uncertainty type": 2,
+              "loc": -7.177500166669773,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "63e93e600729ec074dca45d62710d1e6995c70980a68acf737e6bdb39293d36f",
+            "statistics": {
+              "amount": 0.01501563689224517,
+              "uncertainty type": 2,
+              "loc": -4.198663161380476,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "336753ea54ee4112a4d21dc4c73153ba606d1101eeeb0a98314d714f129d66b7",
+            "statistics": {
+              "amount": 0.011888944688333562,
+              "uncertainty type": 2,
+              "loc": -4.43214632845623,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "236db243c26058a8271967c0d2ea5335358c611ee938eecbdd2113f4b98f384d",
+            "statistics": {
+              "amount": 0.0024324731859329866,
+              "uncertainty type": 2,
+              "loc": -6.018846767219553,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "191ab330932b8cfc5af42a62b9d9bf0c7078031293f8792e0cdf418b89e0500a",
+            "statistics": {
+              "amount": 0.0323,
+              "uncertainty type": 2,
+              "loc": -3.4326880487535263,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge tanker",
+              "reference product": "Transport, barge tanker",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "aafac2f4dcffe10e4c4f75c555a361ff131cdbe3a6e8d2dd450fd74952fa121f",
+            "statistics": {
+              "amount": 0.0015269273602319215,
+              "uncertainty type": 2,
+              "loc": -6.4844978241247375,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "5003c715b4ed4e24ebd0dd15cd52fa887636de3c0776a1794c6c37e88dc94d69",
+            "statistics": {
+              "amount": 0.00018409632222584252,
+              "uncertainty type": 2,
+              "loc": -8.600051446970726,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "cbb7c2c4c944533392127d8e1556a71932929b17193aa8b160dd6fcbdc90f9f5",
+            "statistics": {
+              "amount": 8.897631754223572e-05,
+              "uncertainty type": 2,
+              "loc": -9.327140318672758,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "63bf1f4470b4dc390fa71add24e67916a48053772717e7b728469925210f31dd",
+            "statistics": {
+              "amount": 0.0010159058632338575,
+              "uncertainty type": 2,
+              "loc": -6.891974588415906,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "dcf0b294acf278804cff3c8ce7d239209b74798b842f351e4a2c4c3ac384979c",
+            "statistics": {
+              "amount": 0.0491952994692676,
+              "uncertainty type": 2,
+              "loc": -3.0119571992905674,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "9963374706a85dcde655c9f6cf325e8d8b56717af2861163f97db4c58dfe7b71",
+            "statistics": {
+              "amount": 0.00648879466749854,
+              "uncertainty type": 2,
+              "loc": -5.037678487009343,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "bf3c931632adbda59d536cb65108ede8c54e798031303dba507470f1ae7be120",
+            "statistics": {
+              "amount": 0.645,
+              "uncertainty type": 2,
+              "loc": -0.43850496218636453,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic tanker",
+              "reference product": "Transport, transoceanic tanker",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "nominal kg biomass methanol product, preserving wet-product reference"
+      },
+      "limitations": [
+        "Exact3.9cutoff RoW biomass-methanol market reconstruction per signed nominal kg methanol, factor+1. Source positive1kg wet product has0.999kg dry mass; native at-plant positive1kg is nominal methanol, not kg-carbon, wood, volume or energy. No inverse-purity, moisture, density, carbon or heating-value factor is introduced. Both source/native production descriptions explicitly state full-methanol steam reforming of biomass-derived syngas at H2:CO2.2:1, without external CO2use or hydrogen co-production; both use7.1255m3syngas/kg. Native CH gas mix is verified50%fixed-bed and50%fluidized-bed wood gasification, not fossil gas. Geographic syngas/precursor origins, pilot technology mix, electricity, catalysts, wastewater, allocation, purity, carbon/resource accounting, vintage, native biosphere exclusions and internal uncertainty differ with unquantified score effects. Retain the complete native CH at-plant inventory and its precursor transport once. Retain the source one producer and14final-product freight rows separately with original signed quantities, supported uncertainty/formulas and no renormalization. Preserve rail, inland barge tanker, light-commercial vehicle, heavy-lorry and ocean liquid-tanker modes and tonne-km, using explicit RER/OCE geographic, fleet, traction, load and fuel screening proxies. No second fuel station, storage-loss model or distribution inventory is added: native regional storage would instead add1.0005kgplant supply/kg plus retail/storage infrastructure and evaporation/effluent burdens. No source exchange omission, invented energy/purity/carbon correction, combustion/field emissions or recovery credit is introduced. Separate caller emissions and carbon-resource exchanges remain unchanged. Only independently inspected exact3.9cutoff qualifies; no other source version, fossil-methanol, consequential or reverse approval. Full pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1cbc3adba4823f1ebc8d3056fab0120059b86a450956a308f7e8070ccea0248a"
+        }
+      ]
     }
   ],
   "superseded_operations": [
