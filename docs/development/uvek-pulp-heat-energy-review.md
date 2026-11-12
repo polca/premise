@@ -1,0 +1,15 @@
+# Pulp heat energy-supply review
+
+51 ecoinvent 3.9 cut-off correspondences now have independently inspected source and native positive reference quantities and complete native supply inventories: 24 high-pressure gas, 15 voltage-specific electricity, six diesel and six light-fuel-oil supplies. This qualifies the energy inputs to the five source pulp-mill heat inventories; it does not finish those heat inventories.
+
+Gas production references explicitly declare 36 MJ net heating value per positive 1 m³. Native high-pressure gas at consumer references are positive 1 MJ and document 36 MJ/Nm³. Apply +36 MJ per signed source m³, scaling supported uncertainty and formulas consistently. Retain complete delivered gas, not extraction or combustion. Conventional volume state, pressure, composition and carbon mass are not proven equal. EC and CO use the explicit native RoW geographic proxy; the other 22 retain their location codes.
+
+Electricity uses complete native grids at the source voltage and +1 kWh per signed kWh, retaining native transformation, losses, generation/import mixes and infrastructure once. The two Canada-without-Quebec supplies use CA as an explicit broader-geography proxy. Matching regional labels do not establish equal membership or generation mixes. Eight existing electricity parent rules and their older 3.6 approvals remain unchanged; new 3.9 approvals are separate exact scopes.
+
+The 12 diesel/light-fuel-oil supplies use complete native RER regional-storage supplies at +1 kg per signed kg. These replace the source internal refining, transport, storage, emissions, losses and infrastructure model. Geography, distances/modes, fossil/biogenic supply shares, petroleum specifications, allocation and carbon composition can differ. Source freight or combustion is not added on top of complete native delivered supplies.
+
+There are 16 explicit geographic proxies across this batch. Native technology, vintage, allocation, biosphere exclusions and internal uncertainty remain screening limitations. Score and carbon-balance effects are unquantified. Caller signed inputs, supported uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges remain unchanged. No new helper, loss multiplier, carbon correction, recovery credit or omission is introduced. No new other-version, consequential or reverse approval is inferred.
+
+Validation: 11 Brightpath tests, one Premise fresh/cache/withdrawn-approval test, and 78 signed finite LCIs across 39 native inventories passed, with exact sign reversal and unchanged source modification metadata. The complete pulp-heat probe decreased from 134 to 83 unapproved background correspondences. Five full pulp-heat inventories, the industrial-heat market, later steel cohorts and full steel transformation/export remain unfinished. The actual steel preparation-root frontier remains one case.
+
+Frozen review SHA256: 065cccb9f42aa08586f915b9ebfbfbbba4b06e10c795de3a846690a449955e1e. Brightpath commit: fab1a88d29a1308109e4a284847d37c842775eae. Changes are mapping data, maintainer replay scripts and tests; no runtime Python changes.

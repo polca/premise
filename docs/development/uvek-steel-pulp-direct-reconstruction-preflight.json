@@ -1,5 +1,5 @@
 {
-  "status": "diagnostic_only_no_new_approval",
+  "status": "direct_reconstruction_incomplete_energy_dependencies_reviewed",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -13,8 +13,8 @@
     "biosphere_version": "3.10"
   },
   "inventories_probed": 5,
-  "purpose": "Test direct reconstruction of the five pulp-mill heat coproduct inventories without inferring pulp moisture, alloy grade or a generic combustion proxy. All source signed exchanges and resource-compartment carbon correction remain in the probe.",
-  "unapproved_nested_correspondences": 134,
+  "purpose": "Test direct reconstruction of the five pulp-mill heat coproduct inventories without inferring pulp moisture or a generic combustion proxy. All source signed exchanges and resource-compartment carbon correction remain in the probe.",
+  "unapproved_nested_correspondences": 83,
   "unapproved_reference_product_families": {
     "EDTA, ethylenediaminetetraacetic acid": 1,
     "adipic acid": 1,
@@ -26,11 +26,8 @@
     "chemical, organic": 1,
     "chlorine dioxide": 1,
     "copper scrap, sorted, pressed": 1,
-    "diesel": 6,
     "digester sludge": 1,
     "dithiocarbamate-compound": 1,
-    "electricity, high voltage": 8,
-    "electricity, medium voltage": 7,
     "electronics scrap": 1,
     "fatty alcohol": 1,
     "green liquor dregs": 1,
@@ -38,7 +35,6 @@
     "hydrazine": 1,
     "hydrogen peroxide, without water, in 50% solution state": 1,
     "iron scrap, unsorted": 1,
-    "light fuel oil": 6,
     "lime": 1,
     "limestone residue": 1,
     "lubricating oil": 1,
@@ -48,7 +44,6 @@
     "methanol": 1,
     "methanol, from biomass": 1,
     "municipal solid waste": 4,
-    "natural gas, high pressure": 24,
     "ozone, liquid": 1,
     "peat": 1,
     "phosphoric acid, industrial grade, without water, in 85% solution state": 1,
@@ -86,6 +81,8 @@
     "wood chips, wet, measured as dry mass": 2,
     "wood pellet, measured as dry mass": 1
   },
-  "limitation": "These are nested inputs behind one remaining industrial-heat preparation root, not134newsector roots. Direct reconstruction has not succeeded; no new omission or proxy has been approved by this diagnostic. Existing native-pulp reference-basis/carbon preflight remains unresolved.",
-  "related_review": "uvek-steel-pulp-carbon-preflight.json"
+  "limitation": "Five complete source pulp heat inventories remain unconverted. The separate energy review qualifies51inputs. These83nested inputs remain behind one industrial-heat preparation root, not83sector roots. No additional proxy or omission is approved by this diagnostic.",
+  "related_review": "uvek-steel-pulp-carbon-preflight.json",
+  "initial_unapproved_nested_correspondences": 134,
+  "energy_supply_review": "uvek-pulp-heat-energy-review.md"
 }

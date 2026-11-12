@@ -1,0 +1,9 @@
+{
+  "review_sha256": "065cccb9f42aa08586f915b9ebfbfbbba4b06e10c795de3a846690a449955e1e",
+  "native_complete_energy_suppliers": 39,
+  "signed_finite_LCIs": 78,
+  "exact_sign_reversal": true,
+  "source_modified_unchanged": true,
+  "new_helpers": 0,
+  "limitation": "Whole native energy supplies remain unchanged; source/native score or carbon composition equivalence is not established. Pulp heat reconstruction and steel export remain unfinished."
+}

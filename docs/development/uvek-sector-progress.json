@@ -546,7 +546,23 @@
         "actual_remaining_preparation_correspondences": 1,
         "limitation": "Real encrypted REMIND SSP2-NPi2050 preparation still stops at industrial heat. Later cohorts, sector transformation and steel export are unverified."
       },
-      "pulp_direct_reconstruction_preflight": "docs/development/uvek-steel-pulp-direct-reconstruction-preflight.json"
+      "pulp_direct_reconstruction_preflight": "docs/development/uvek-steel-pulp-direct-reconstruction-preflight.json",
+      "pulp_heat_energy_verification": {
+        "review": "uvek-pulp-heat-energy-review.md",
+        "qualified_correspondences": 51,
+        "changed_mapping_parents": 43,
+        "historical_electricity_parents_unchanged": 8,
+        "geographic_proxies": 16,
+        "native_suppliers": 39,
+        "brightpath_tests_passed": 11,
+        "premise_tests_passed": 1,
+        "signed_finite_lcis": 78,
+        "new_helpers": 0,
+        "unapproved_nested_pulp_heat_correspondences_before": 134,
+        "unapproved_nested_pulp_heat_correspondences_after": 83,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Energy prerequisites only; full pulp heat inventories, industrial heat market and steel transformation/export remain incomplete."
+      }
     },
     {
       "sector": "fuels",
