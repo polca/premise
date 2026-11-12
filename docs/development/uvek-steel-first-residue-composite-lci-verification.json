@@ -1,0 +1,26 @@
+{
+  "review_sha256": "04fd6627fc00204ff56afcc35c9df275c08fcd70c96bda9659dd42b6b3887c7f",
+  "cases": [
+    {
+      "rule_id": "bp-007ad58954d82851",
+      "helpers_traversed": 2,
+      "native_suppliers": 7,
+      "direct_biosphere_flows": 68,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "all_specific_leachate_flows_included": true
+    },
+    {
+      "rule_id": "bp-3ecbec256b0ffcbb",
+      "helpers_traversed": 2,
+      "native_suppliers": 2,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true,
+      "all_specific_leachate_flows_included": "not applicable: verified empty allocated stock"
+    }
+  ],
+  "signed_finite_composite_LCIs": 4,
+  "source_modified_unchanged": true,
+  "limitation": "All post-conversion helper recipes recursively included, with summed duplicate native demands and direct biosphere flows. Nominal checks do not establish LCIA equivalence or completed steel transformation/export."
+}

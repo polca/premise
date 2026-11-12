@@ -1,0 +1,23 @@
+# Mill-scale and cut-off blast-furnace-slag markets
+
+Two exact ecoinvent 3.9 cut-off market correspondences now use independently inspected reconstructions. Mill scale is not represented by lead-smelter-slag disposal, and rail is not represented by air freight. Every original freight quantity and its lognormal uncertainty remain, using complete native European rail, inland barge and heavy-lorry fleet services. Their geographic, fuel/fleet, vintage and allocation differences remain explicit screening limitations. No payload, distance, moisture or mass multiplier is applied.
+
+## Mill scale
+
+The market supplies one kg of waste treatment with a negative source reference. A positive-service helper therefore uses caller factor −1. Its treatment retains all 68 waste-specific leachate releases, with original amounts, uncertainty, units and receiving compartments, including long-term groundwater. The two old strontium names normalize to Strontium II through identical published flow UUIDs and unchanged units/compartments; no speciation multiplier is inferred.
+
+The helper retains 0.4 kg stabilization cement, all three regional landfill-operation rows, 2.08333333333333e-9 facility units and all three hydrated-cement-disposal rows. Complete native Swiss cement, residual-landfill operation, its 300,000 m³ facility and dedicated hydrated-cement disposal are the previously reviewed component proxies. Incoming quantities, regional weights and exchange uncertainty remain separate without renormalization. Swiss suppliers replace the original regional supply backgrounds; operation, construction, energy, aftercare, cement blend, disposal moisture and native internal uncertainty differ. Native 0%-water disposal does not prove equal source moisture. No extra landfill operation, construction, leachate release, recovery credit or generic metal substitution is added. Score effects are unquantified.
+
+## Blast-furnace slag
+
+This market has a positive one-kg reference and an actual production-only Recycled Content cut-off supplier. Its existing explicit empty allocation-stock helper remains, along with 0.0112 rail and 0.01932 road tonne-km, including original uncertainty. Caller factor stays +1. This is an unburdened allocated material handover, not free disposal, a metal-recovery credit or a processing inventory. No inference is made for negative-reference slag treatments.
+
+## Scope and verification
+
+Only the two exact 3.9 cut-off market profile entries changed. Every other parent field, other exact-profile selection, existing recipe and review remains unchanged; those historical mappings are not endorsed by this review. Source callers, uncertainty and formulas survive conversion and caching. Reverse and cross-system-model routes remain unapproved. The standalone mill-scale treatment correspondence `bp-a617a8579b052845` is not approved here; the reviewed market reaches the new landfill helper directly. That standalone correspondence still needs a separate scoped correction before it can be used.
+
+Sixteen dedicated Brightpath tests pass. The four recent batches pass together with 54 Brightpath tests; Premise migration/cache/withdrawal, relinking and steel-grade checks pass with 68 tests. Four recursively assembled signed composite LCIs are finite and reverse exactly. The mill-scale result includes all 68 direct biosphere identities and seven distinct native suppliers; the slag result has two freight suppliers and no direct emissions. Direct flows outside the native background's active biosphere matrix remain in the combined flow vector. Native source data remained unchanged. These are nominal inventory checks, not score equivalence or a completed steel export. Black and Ruff pass for new maintainer/test files; the generator's two pre-existing import-order findings remain unchanged.
+
+Frozen review: `export/uvek_steel_39_first_residue_review.json`, SHA-256 `04fd6627fc00204ff56afcc35c9df275c08fcd70c96bda9659dd42b6b3887c7f`. Brightpath commit: `8e91a6f4b4d14be477831789d3fc8d143899ef2c`. The regular environment installs this pushed GitHub commit and all 838 approval scopes validate. Three new recipes reuse one existing cut-off stock; no runtime Python module changes were needed.
+
+The real encrypted REMIND SSP2-NPi 2050 diagnostic now reports **11 preparation correspondences, down from 13**: nine residue markets, industrial other-fuel heat and ferrosilicon. Only the closed sector support gate was bypassed; strict migration validation remained enabled. Later cohorts and steel transformation/export remain unverified. Audit receipt: `ba8456133f84ba5be665f77f3f6af5662be03299a473c72530448377dd78c494.audit.json.gz`.

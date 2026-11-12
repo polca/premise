@@ -7,26 +7,13 @@
     "system_model": "cutoff",
     "biosphere_version": "3.10"
   },
-  "pending_correspondences": 13,
-  "previous_pending": 15,
+  "pending_correspondences": 11,
+  "previous_pending": 13,
   "cleared_this_batch": 2,
   "diagnostic_guard_bypass": "Steel support gate only; strict migration validation retained.",
-  "private_audit_receipt": "962d700cd74df6929061105355ac8e1f2726744872f3f6c1553c5d8da8ba535c.audit.json.gz",
+  "private_audit_receipt": "ba8456133f84ba5be665f77f3f6af5662be03299a473c72530448377dd78c494.audit.json.gz",
   "scope_limitation": "This is the current retained ecoinvent3.9 steel preparation cohort; later cohorts and sector transformation may reveal additional issues. Suggested targets are unapproved, not scientifically endorsed.",
   "cases": [
-    {
-      "rule_id": "bp-007ad58954d82851",
-      "source": {
-        "location": "RER",
-        "name": "market for mill scale",
-        "reference product": "mill scale",
-        "unit": "kilogram"
-      },
-      "unapproved_suggested_target": {
-        "recipe_ref": "older-regional-road-market-composition-2baadc1c776e09e81d42"
-      },
-      "category": "waste_residue_and_wastewater"
-    },
     {
       "rule_id": "bp-b65c892acf4a332f",
       "source": {
@@ -150,19 +137,6 @@
       },
       "unapproved_suggested_target": {
         "recipe_ref": "additional-cutoff-waste-market-75dda99d82c2d18d44a6"
-      },
-      "category": "waste_residue_and_wastewater"
-    },
-    {
-      "rule_id": "bp-3ecbec256b0ffcbb",
-      "source": {
-        "location": "GLO",
-        "name": "market for blast furnace slag",
-        "reference product": "blast furnace slag",
-        "unit": "kilogram"
-      },
-      "unapproved_suggested_target": {
-        "recipe_ref": "whole-freight-market-composition-1e58b0556ffd09259418"
       },
       "category": "waste_residue_and_wastewater"
     },

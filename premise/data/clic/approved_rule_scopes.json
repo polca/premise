@@ -217601,6 +217601,486 @@
           "fingerprint": "d771ceabe1cfde6bbe525f30655ca1a226d3bbf711944a25c642401ba3e3b2a6"
         }
       ]
+    },
+    {
+      "rule_id": "bp-007ad58954d82851",
+      "operation": "replace",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_steel_39_first_residue_review.json",
+      "review_sha256": "04fd6627fc00204ff56afcc35c9df275c08fcd70c96bda9659dd42b6b3887c7f",
+      "authorization": "Standing autonomous approval of independently inspected boundary-preserving reconstructions, recorded for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for mill scale",
+            "reference product": "mill scale",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "inventory_sha256": "8666fb850062d10cfb70fa95acf7307d46440a537318e464101937641c54953f",
+          "nonproduction_count": 4
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of mill scale, residual material landfill",
+              "reference product": "mill scale",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "0f6b1ca1059a06fa28c5271ed9831ac56b21bc3aeee9636e00b29d30f455a82a",
+            "nonproduction_count": 76
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Process-specific burdens, residual material landfill",
+              "reference product": "Process-specific burdens, residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d25d5ae1db457e49a5870abd67bc4444b16cbd8ff045c53b7ddef682675776b5",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Residual material landfill facility",
+              "reference product": "Residual material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cd6d2274e3a9e424a4661ee3b1792b263956b0c9a4af555e36fa1ec71a05954b",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "nonproduction_count": 43
+          },
+          {
+            "identity": {
+              "name": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "reference product": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "87280176b5963951f0bf0d47415703453b5fa42ea8044465caad14d7b78ade8b",
+            "nonproduction_count": 44
+          },
+          {
+            "identity": {
+              "name": "Cement, unspecified, at plant",
+              "reference product": "Cement, unspecified, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "aa9da6e9e7db50739da5b70670360f2421801a45169df072c477647cb9b76656",
+            "nonproduction_count": 5
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "nonproduction_count": 4
+          }
+        ],
+        "conversion_factor": -1,
+        "source_market_inputs": [
+          {
+            "recipe": "steel-39-mill-scale-landfill",
+            "amount": 1.0,
+            "uncertainty type": 0,
+            "loc": 1.0
+          },
+          {
+            "name": "Transport, freight, rail",
+            "reference product": "Transport, freight, rail",
+            "location": "RER",
+            "unit": "ton kilometer",
+            "type": "technosphere",
+            "amount": 0.00735211149004253,
+            "uncertainty type": 2,
+            "loc": -4.912767729456881,
+            "scale": 0.41231056256176607,
+            "pedigree": {
+              "reliability": 3,
+              "completeness": 5,
+              "temporal correlation": 1,
+              "geographical correlation": 1,
+              "further technological correlation": 4
+            },
+            "scale without pedigree": 0.41231056256176607
+          },
+          {
+            "name": "Transport, barge",
+            "reference product": "Transport, barge",
+            "location": "RER",
+            "unit": "ton kilometer",
+            "type": "technosphere",
+            "amount": 0.00462885773230601,
+            "uncertainty type": 2,
+            "loc": -5.375445151407028,
+            "scale": 0.41231056256176607,
+            "pedigree": {
+              "reliability": 3,
+              "completeness": 5,
+              "temporal correlation": 1,
+              "geographical correlation": 1,
+              "further technological correlation": 4
+            },
+            "scale without pedigree": 0.41231056256176607
+          },
+          {
+            "name": "Transport, freight, lorry, fleet average",
+            "reference product": "Transport, freight, lorry, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer",
+            "type": "technosphere",
+            "amount": 0.0636638457328113,
+            "uncertainty type": 2,
+            "loc": -2.754138448446842,
+            "scale": 0.41231056256176607,
+            "pedigree": {
+              "reliability": 3,
+              "completeness": 5,
+              "temporal correlation": 1,
+              "geographical correlation": 1,
+              "further technological correlation": 4
+            },
+            "scale without pedigree": 0.41231056256176607
+          }
+        ],
+        "canonical_biosphere_renames": [
+          {
+            "code": "8f1b69d9-fc00-4b46-99f9-7a57fd71dad2",
+            "source_name": "Strontium",
+            "target_name": "Strontium II",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "target_CAS": "007440-24-6"
+          },
+          {
+            "code": "4295ed5b-9824-4bbf-97a4-fc4cabd87f0d",
+            "source_name": "Strontium",
+            "target_name": "Strontium II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "target_CAS": "007440-24-6"
+          }
+        ],
+        "new_root_helpers": 2
+      },
+      "limitations": [
+        "Exact3.9cutoff steel-residue market reconstruction. Preserve original signed source demands and every freight row with original lognormal uncertainty, without transport distance, payload, moisture or mass scaling. Generic rail uses complete RER rail, barge uses complete RER inland barge, and unspecified road uses the complete RER heavy-lorry fleet: no air-freight or single-truck substitution. Geography, country/fuel/fleet mixtures, vintage, allocation and native internal uncertainty differ; score equivalence is not established. Preserve caller signs, formulas and supported uncertainty; no reverse, consequential or other-release approval is added. Mill scale uses its own68direct leachate releases in their exact ecoinvent3.10 species, units and receiving compartments, including long-term groundwater. Preserve stabilization cement0.4kg, all three regional operating rows, facility2.08333333333333e-9units and all three hydrated-cement disposal rows, with original uncertainty. Existing independently reviewed complete Swiss residual-landfill operation,300000m3facility, unspecified cement and dedicated hydrated-cement disposal are background proxies. Preserve original quantities and geographic weights without renormalization; geographic mix is represented by Swiss suppliers and their operation/energy/construction assumptions. Negative inputs to negative waste-treatment references are disposal demand and become positive service inputs; never substitute lead-smelter slag or invent material recovery. Native0%-water cement-disposal label does not establish source moisture equivalence. The two Strontium labels normalize to Strontium II using identical published flow UUIDs, units and compartments; quantities do not change. No source leachate flow is omitted or replaced by generic metal labels; no extra operating, construction or leachate burden is added. The source market reference is-1kg, so the positive-service helper uses factor-1."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e7b322f067b43395f128eeee7f864b9c95a2fefe07ae67c6b8548d129919c159"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3ecbec256b0ffcbb",
+      "operation": "replace",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_steel_39_first_residue_review.json",
+      "review_sha256": "04fd6627fc00204ff56afcc35c9df275c08fcd70c96bda9659dd42b6b3887c7f",
+      "authorization": "Standing autonomous approval of independently inspected boundary-preserving reconstructions, recorded for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for blast furnace slag",
+            "reference product": "blast furnace slag",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "bbb1ecd1b98c90c8571af67555a223f8d85c25f48978fd27cd2724fbaaad17e8",
+          "nonproduction_count": 3
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "blast furnace slag, Recycled Content cut-off",
+              "reference product": "blast furnace slag",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "2d0a0c994ef26a7fccbabb71b5ed81774439dc96dcb569249fd8f38e7360ac89",
+            "nonproduction_count": 0
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Process-specific burdens, residual material landfill",
+              "reference product": "Process-specific burdens, residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d25d5ae1db457e49a5870abd67bc4444b16cbd8ff045c53b7ddef682675776b5",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Residual material landfill facility",
+              "reference product": "Residual material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cd6d2274e3a9e424a4661ee3b1792b263956b0c9a4af555e36fa1ec71a05954b",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c26b3ea260f59ba6f1ec5e7fbc77817577f9936cc45afbf7462c01c348e40bec",
+            "nonproduction_count": 43
+          },
+          {
+            "identity": {
+              "name": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "reference product": "Disposal, cement, hydrated, 0% water, to residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "87280176b5963951f0bf0d47415703453b5fa42ea8044465caad14d7b78ade8b",
+            "nonproduction_count": 44
+          },
+          {
+            "identity": {
+              "name": "Cement, unspecified, at plant",
+              "reference product": "Cement, unspecified, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "aa9da6e9e7db50739da5b70670360f2421801a45169df072c477647cb9b76656",
+            "nonproduction_count": 5
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "nonproduction_count": 4
+          }
+        ],
+        "conversion_factor": 1,
+        "source_market_inputs": [
+          {
+            "amount": 1.0,
+            "recipe": "cutoff-stock-23009c697573b89d369f",
+            "zero_burden_supplier": {
+              "profile_review_sha256": "7b1dbf1582b9bb4ac028c0e3281efaebc2887e0f8aa003abb122bcc6b63bf3aa",
+              "rule_id": "bp-d45620b85ed56ffc",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            "uncertainty type": 0,
+            "loc": 1.0
+          },
+          {
+            "name": "Transport, freight, rail",
+            "reference product": "Transport, freight, rail",
+            "location": "RER",
+            "unit": "ton kilometer",
+            "type": "technosphere",
+            "amount": 0.0112,
+            "uncertainty type": 2,
+            "loc": -4.491841500681089,
+            "scale": 0.4074309757492673,
+            "pedigree": {
+              "reliability": 3,
+              "completeness": 1,
+              "temporal correlation": 5,
+              "geographical correlation": 5,
+              "further technological correlation": 4
+            },
+            "scale without pedigree": 0.5
+          },
+          {
+            "name": "Transport, freight, lorry, fleet average",
+            "reference product": "Transport, freight, lorry, fleet average",
+            "location": "RER",
+            "unit": "ton kilometer",
+            "type": "technosphere",
+            "amount": 0.01932,
+            "uncertainty type": 2,
+            "loc": -3.946614450197765,
+            "scale": 0.4074309757492673,
+            "pedigree": {
+              "reliability": 3,
+              "completeness": 1,
+              "temporal correlation": 5,
+              "geographical correlation": 5,
+              "further technological correlation": 4
+            },
+            "scale without pedigree": 0.5
+          }
+        ],
+        "canonical_biosphere_renames": [
+          {
+            "code": "8f1b69d9-fc00-4b46-99f9-7a57fd71dad2",
+            "source_name": "Strontium",
+            "target_name": "Strontium II",
+            "categories": [
+              "water",
+              "ground-, long-term"
+            ],
+            "unit": "kilogram",
+            "target_CAS": "007440-24-6"
+          },
+          {
+            "code": "4295ed5b-9824-4bbf-97a4-fc4cabd87f0d",
+            "source_name": "Strontium",
+            "target_name": "Strontium II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "target_CAS": "007440-24-6"
+          }
+        ],
+        "new_root_helpers": 2
+      },
+      "limitations": [
+        "Exact3.9cutoff steel-residue market reconstruction. Preserve original signed source demands and every freight row with original lognormal uncertainty, without transport distance, payload, moisture or mass scaling. Generic rail uses complete RER rail, barge uses complete RER inland barge, and unspecified road uses the complete RER heavy-lorry fleet: no air-freight or single-truck substitution. Geography, country/fuel/fleet mixtures, vintage, allocation and native internal uncertainty differ; score equivalence is not established. Preserve caller signs, formulas and supported uncertainty; no reverse, consequential or other-release approval is added. Blast-furnace slag has a positive1kg source reference and a positive1kg Recycled Content cut-off stock with production only. Preserve that independently verified allocation handover, not a processing or avoided-treatment inventory, as an explicit existing zero-burden stock helper. Retain0.0112rail and0.01932road tonne-km with original uncertainty. No negative-reference disposal, recovered-metal credit, virgin-metal burden or additional processing is inferred. Caller factor remains+1."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "974bb89f11a31e31a2f18be11c180c973bd177cadc968c8878e92a9f729e568c"
+        }
+      ]
     }
   ],
   "superseded_operations": [

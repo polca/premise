@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "retained_biosphere_and_39_of_initial_52_correspondences_verified_13_preparation_cases_and_transformation_unfinished",
+      "status": "retained_biosphere_and_41_of_initial_52_correspondences_verified_11_preparation_cases_and_transformation_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -366,7 +366,8 @@
         "Natural-gas heat production mix retains104supplier contributions and80.043%CHPshare using36native producers with no direct district-delivery inputs.9Brightpath checks and strict Premise cache/withdrawal pass; composite signedLCIsfinite. Actual REMIND steel preparation has16pending cases; transformation/export unverified.",
         "Small non-gas heat mix retains52supplier shares with8pure-solar operation helpers and31native suppliers.9Brightpath checks and strict Premise cache/withdrawal pass; recursive signedLCIs include direct solar resource. Actual REMIND retained steel preparation has15pendingcases; full transformation/export unverified.",
         "36 exact3.9heat-allocation handovers preserve12empty heat co-products and24zero-stock forwarders using existing native plant-side heat.72signedsourceLCIszero; native exactmatrixzero proven with numerical roundoff recorded.13Brightpath checks and strict Premise cache/withdrawal pass;15root preparation cases remain.",
-        "Two3.9pig-iron wastewater markets retain sewer shares and12untreated surface-water discharges each, with explicit embedded-sewer cancellation.38Brightpath and67Premise regression tests pass;4signed compositeLCIsfinite. Actual encrypted REMIND steel preparation has13pending correspondences, downfrom15; full transformation/export unverified."
+        "Two3.9pig-iron wastewater markets retain sewer shares and12untreated surface-water discharges each, with explicit embedded-sewer cancellation.38Brightpath and67Premise regression tests pass;4signed compositeLCIsfinite. Actual encrypted REMIND steel preparation has13pending correspondences, downfrom15; full transformation/export unverified.",
+        "Mill-scale market retains68leachate flows and all stabilization/landfill components with source exchange uncertainty; positive cut-off blast-furnace-slag retains empty stock and both freight rows.54Brightpath and68Premise tests pass;4signedcompositeLCIsfinite. Actual encrypted REMIND retained preparation has11pending cases, downfrom13; full transformation/export unverified."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -394,7 +395,7 @@
       },
       "latest_actual_preparation_frontier": {
         "verification": "docs/development/uvek-steel-current-preparation-frontier.json",
-        "pending_correspondences": 13,
+        "pending_correspondences": 11,
         "public_update_or_export_verified": false
       },
       "first_four_prerequisites": "docs/development/uvek-steel-39-first-prerequisite-verification.json",
@@ -436,7 +437,20 @@
         "installed_GitHub_commit": "7175458faab64d7ee1f36ceed8cfc565fcaf5f1b",
         "all_installed_approval_scopes_validated": 836
       },
-      "pulp_carbon_preflight": "docs/development/uvek-steel-pulp-carbon-preflight.json"
+      "pulp_carbon_preflight": "docs/development/uvek-steel-pulp-carbon-preflight.json",
+      "first_residue_market_verification": {
+        "review": "docs/development/uvek-steel-first-residue-review.md",
+        "native_composite_LCI_receipt": "docs/development/uvek-steel-first-residue-composite-lci-verification.json",
+        "Brightpath_tests_passed": 54,
+        "Premise_tests_passed": 68,
+        "signed_finite_composite_LCIs": 4,
+        "new_recipes": 3,
+        "reused_stock_recipes": 1,
+        "actual_remaining_root_cases": 11,
+        "standalone_mill_scale_treatment_still_unapproved": "bp-a617a8579b052845",
+        "installed_GitHub_commit": "8e91a6f4b4d14be477831789d3fc8d143899ef2c",
+        "all_installed_approval_scopes_validated": 838
+      }
     },
     {
       "sector": "fuels",
