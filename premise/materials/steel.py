@@ -16,7 +16,12 @@ from ..core.transformation import BaseTransformation, ws
 from ..core.utils import rescale_exchanges
 from ..validation.validation import SteelValidation
 from ..validation.validation_framework import record_validation_phase
-from ..inventory.activity_maps import InventorySet, FUELS_TECHS, get_mapping
+from ..inventory.activity_maps import (
+    InventorySet,
+    FUELS_TECHS,
+    STEEL_TECHS,
+    get_mapping,
+)
 
 logger = create_logger("steel")
 
@@ -65,6 +70,8 @@ def _update_steel(
         system_model=system_model,
         technology_map=steel.steel_map,
         natural_gas_inputs=steel.natural_gas_inputs,
+        pig_iron_inputs=steel.pig_iron_inputs,
+        additional_fuel_lhvs=steel.additional_fuel_lhvs,
     )
     record_validation_phase(scenario, validate.run_steel_checks())
 
@@ -132,6 +139,32 @@ class Steel(BaseTransformation):
         self.natural_gas_inputs = frozenset(
             (provider["name"], provider["reference product"], provider["unit"])
             for provider in gas
+        )
+        # The historical energy sum omits mass-based light fuel oil. Use the
+        # existing carrier aliases/LHV, without annotating native providers.
+        oil = self.inv.generate_map(
+            {
+                "light fuel oil": get_mapping(
+                    FUELS_TECHS, f"{self.family}_aliases"
+                ).get("light fuel oil", {})
+            }
+        )["light fuel oil"]
+        oil_lhv = get_mapping(FUELS_TECHS, "lhv")["light fuel oil"]["value"]
+        self.additional_fuel_lhvs = {
+            (provider["name"], provider["reference product"], provider["unit"]): oil_lhv
+            for provider in oil
+            if provider["unit"] == "kilogram"
+        }
+        self.pig_iron_map = self.inv.generate_map(
+            {
+                "pig iron": get_mapping(STEEL_TECHS, f"{self.family}_aliases").get(
+                    "pig iron", {}
+                )
+            }
+        )
+        self.pig_iron_inputs = frozenset(
+            (provider["name"], provider["reference product"], provider["unit"])
+            for provider in self.pig_iron_map["pig iron"]
         )
 
     def create_steel_markets(self):
@@ -295,9 +328,13 @@ class Steel(BaseTransformation):
             "pig iron": [
                 ds
                 for ds in self.database
-                if ds["name"].startswith("pig iron production")
+                if (
+                    ds["name"].startswith("pig iron production")
+                    or (ds["name"], ds["reference product"], ds["unit"])
+                    in self.pig_iron_inputs
+                )
                 and ds["unit"] == "kilogram"
-                and "pig iron" in ds["reference product"]
+                and "pig iron" in ds["reference product"].casefold()
                 and ds.get("regionalized", False) is False
             ]
         }
@@ -362,13 +399,30 @@ class Steel(BaseTransformation):
             # see Theoretical Minimum Energies To Produce Steel for Selected Conditions
             # US Department of Energy, 2000
 
-            if dataset["name"].startswith("pig iron production"):
+            if dataset["name"].startswith("pig iron production") or (
+                dataset["name"],
+                dataset.get("reference product"),
+                dataset.get("unit"),
+            ) in getattr(self, "pig_iron_inputs", ()):
                 energy = sum(
                     [
                         exc["amount"]
                         for exc in dataset["exchanges"]
                         if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
                     ]
+                )
+                energy += sum(
+                    exc["amount"]
+                    * getattr(self, "additional_fuel_lhvs", {}).get(
+                        (
+                            exc["name"],
+                            exc.get("product") or exc.get("reference product"),
+                            exc["unit"],
+                        ),
+                        0,
+                    )
+                    for exc in dataset["exchanges"]
+                    if exc["type"] == "technosphere" and exc["unit"] == "kilogram"
                 )
                 # add input of coal
                 energy += sum(

@@ -81,3 +81,17 @@ def test_steel_constructor_passes_background_family_to_shared_maps(monkeypatch):
     assert steel.inv.family == "uvek"
     assert steel.biosphere_version == "3.10"
     assert len(steel.steel_map["steel - secondary"]) == 3
+
+
+def test_pig_iron_auxiliary_alias_is_exact_and_not_an_iam_steel_technology():
+    from premise.inventory.activity_maps import STEEL_TECHS, get_mapping
+
+    name = "Pig iron, at plant"
+    native = activity(name, name, "GLO")
+    wrong = activity(name, "cast iron", "GLO")
+    supply = activity("market for pig iron", "pig iron", "GLO")
+    inv = InventorySet([native, wrong, supply], "2026", "remind", family="uvek")
+    definition = get_mapping(STEEL_TECHS, "uvek_aliases")["pig iron"]
+    assert inv.generate_map({"pig iron": definition})["pig iron"] == [native]
+    assert "pig iron" not in inv.generate_steel_map()
+    assert "pig iron" not in get_mapping(STEEL_TECHS, "ecoinvent_aliases")

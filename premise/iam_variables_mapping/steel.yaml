@@ -594,3 +594,16 @@ steel - secondary:
 #      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Gases|Coal
 #      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Solids|Biomass
 #      - Final Energy|Industry|Iron and Steel|BF|w/ CCS|Solids|Coal
+
+# Auxiliary production role, not an IAM steel technology or an additional market.
+pig iron:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Pig iron, at plant
+      reference product: Pig iron, at plant
+      unit: kilogram
+    native_reference_amount: 1.0
+    native_limitations:
+      - Regionalise the complete existing native GLO/RER blast-furnace pig-iron producers through the shared auxiliary-production workflow; retain native process quantities and allocation.
+      - Geographic extrapolation and historical technology remain screening limitations. This alias does not identify direct-reduction iron, scrap, cast iron or finished steel as blast-furnace pig iron.

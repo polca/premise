@@ -844,8 +844,8 @@
         "native_technosphere_fills_in_first_recipe": 12,
         "native_elementary_fills_in_first_recipe": 7,
         "explicit_native_absences_in_first_recipe": 6,
-        "status": "real_inventory_preparation_passed_shared_update_validation_unfinished",
-        "limitation": "Steel preparation previously returned despite unfilled licensed placeholders; it now refuses the next unqualified donor recipe. Transformation, validation and export remain unfinished.",
+        "status": "real_preparation_and_shared_sector_checks_passed_export_and_coverage_unfinished",
+        "limitation": "All 28 quantity recipes are qualified and the real shared sector update passes; full role coverage, exhaustive certification and export remain separate requirements.",
         "qualified_lookup_slots": 639,
         "remaining_workbook_activities": 0,
         "remaining_lookup_slots": 0,
@@ -857,7 +857,26 @@
         "qualified_input_rows": 640,
         "real_imported_records": 75,
         "real_prepared_base_records": 12022,
-        "current_validation_findings": 52
+        "current_validation_findings": 0
+      },
+      "native_pig_iron_regionalization": {
+        "review": "docs/development/uvek-steel-pig-iron-review.md",
+        "gas_review": "docs/development/uvek-steel-gas-classification-review.md",
+        "real_scenario": "encrypted REMIND SSP2-NPi 2050",
+        "shared_sector_update": "passed_private_diagnostic",
+        "strict_sector_validation_findings": 0,
+        "records_after_update": 12511,
+        "tests": {
+          "transformation_steel_validation": 198,
+          "existing_sector_regressions_overlapping": 58
+        },
+        "public_steel_gate_bypassed_only_in_private_diagnostic": true,
+        "export_verified": false,
+        "remaining": [
+          "Audit active IAM technology and native consumer coverage.",
+          "Exhaustive certification, Brightway export and finite LCIs.",
+          "Combined-sector regression before public steel support."
+        ]
       }
     },
     {

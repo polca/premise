@@ -1323,3 +1323,35 @@ def test_relink_keeps_zero_valued_uncertainty_parameters(
     assert mapped["amount"] == 1.0
     for field, value in expected.items():
         assert mapped[field] == value
+
+
+def test_new_local_provider_invalidates_only_its_cached_routes():
+    transformation = object.__new__(BaseTransformation)
+    transformation.index = defaultdict(list)
+    transformation.model = "remind"
+    key = ("Pig iron, at plant", "Pig iron, at plant", "GLO", "kilogram")
+    other_unit = (*key[:3], "megajoule")
+    other_product = (key[0], "cast iron", "GLO", "kilogram")
+    transformation.cache = {
+        "EUR": {
+            "remind": {
+                key: [(key[0], key[1], "RER", key[3], 1.0)],
+                other_unit: [(key[0], key[1], "RER", "megajoule", 1.0)],
+                other_product: [(key[0], "cast iron", "RER", "kilogram", 1.0)],
+            }
+        },
+        "NEU": {"remind": {key: [(key[0], key[1], "GLO", key[3], 1.0)]}},
+    }
+    transformation.add_to_index(
+        {
+            "name": key[0],
+            "reference product": key[1],
+            "location": "EUR",
+            "unit": "kilogram",
+            "exchanges": [{"type": "production", "amount": 1}],
+        }
+    )
+    assert key not in transformation.cache["EUR"]["remind"]
+    assert other_unit in transformation.cache["EUR"]["remind"]
+    assert other_product in transformation.cache["EUR"]["remind"]
+    assert key in transformation.cache["NEU"]["remind"]

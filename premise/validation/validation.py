@@ -3774,12 +3774,23 @@ class SteelValidation(BaseDatasetValidator):
         system_model,
         technology_map=None,
         natural_gas_inputs=(),
+        pig_iron_inputs=(),
+        additional_fuel_lhvs=None,
     ):
         super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
         self.system_model = system_model
         self.technology_map = technology_map or {}
         self.natural_gas_inputs = frozenset(natural_gas_inputs)
+        self.pig_iron_inputs = frozenset(pig_iron_inputs)
+        self.additional_fuel_lhvs = additional_fuel_lhvs or {}
+
+    def _is_pig_iron_supplier(self, record):
+        return (
+            record["name"],
+            record.get("product") or record.get("reference product"),
+            record.get("unit"),
+        ) in getattr(self, "pig_iron_inputs", ())
 
     def _is_secondary_supplier(self, record):
         product = record.get("reference product", record.get("product"))
@@ -3970,7 +3981,10 @@ class SteelValidation(BaseDatasetValidator):
                 pig_iron = [
                     x
                     for x in ds["exchanges"]
-                    if "pig iron production" in x["name"]
+                    if (
+                        "pig iron production" in x["name"]
+                        or self._is_pig_iron_supplier(x)
+                    )
                     and x["type"] == "technosphere"
                     and x["amount"] > 0
                 ]
@@ -4035,14 +4049,27 @@ class SteelValidation(BaseDatasetValidator):
         for ds in self.database:
             if (
                 ds["name"].startswith("pig iron production")
-                and ds["location"] in self.regions
-            ):
+                or self._is_pig_iron_supplier(ds)
+            ) and ds["location"] in self.regions:
                 energy = sum(
                     [
                         exc["amount"]
                         for exc in ds["exchanges"]
                         if exc["unit"] == "megajoule" and exc["type"] == "technosphere"
                     ]
+                )
+                energy += sum(
+                    exc["amount"]
+                    * getattr(self, "additional_fuel_lhvs", {}).get(
+                        (
+                            exc["name"],
+                            exc.get("product") or exc.get("reference product"),
+                            exc["unit"],
+                        ),
+                        0,
+                    )
+                    for exc in ds["exchanges"]
+                    if exc["type"] == "technosphere" and exc["unit"] == "kilogram"
                 )
                 # add input of coal
                 energy += sum(

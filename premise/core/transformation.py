@@ -788,6 +788,16 @@ class BaseTransformation:
                 # visible as undeclared collateral changes.
                 self._validation_added_targets[id(d)] = d
             self.index[key].append(_provider_record(d))
+            # A newly available local provider supersedes routes calculated
+            # before it existed (for example while cloning its own inputs).
+            cached_routes = (
+                getattr(self, "cache", {})
+                .get(d["location"], {})
+                .get(getattr(self, "model", None), {})
+            )
+            for exchange_key in tuple(cached_routes):
+                if exchange_key[:2] == key and exchange_key[3] == d["unit"]:
+                    del cached_routes[exchange_key]
             provider_semantics[semantic_key] = (
                 provider_semantics.get(semantic_key, 0) + 1
             )

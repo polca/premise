@@ -179,3 +179,72 @@ def test_reviewed_volume_gas_helper_is_classified_without_renaming_or_rescaling(
     validator.database[0]["exchanges"][0]["product"] = "different material"
     validator.check_steel_energy_use()
     assert len(issues) == 1
+
+
+@pytest.mark.parametrize(
+    "location,amount,expected",
+    [("EUR", 1, 0), ("GLO", 1, 1), ("EUR", 0, 1), ("EUR", -1, 1)],
+)
+def test_mapped_pig_iron_input_keeps_positive_quantity_and_region_checks(
+    location, amount, expected
+):
+    validator = SteelValidation.__new__(SteelValidation)
+    validator.regions = ["EUR"]
+    name = "Pig iron, at plant"
+    validator.pig_iron_inputs = {(name, name, "kilogram")}
+    validator.database = [
+        {
+            "name": "steel production, blast furnace-basic oxygen furnace, low-alloyed",
+            "location": "EUR",
+            "exchanges": [
+                {
+                    "name": name,
+                    "product": name,
+                    "unit": "kilogram",
+                    "type": "technosphere",
+                    "amount": amount,
+                    "location": location,
+                }
+            ],
+        }
+    ]
+    issues = []
+    validator.log_issue = lambda *args, **kwargs: issues.append((args, kwargs))
+    validator.check_pig_iron_input()
+    assert len(issues) == expected
+    validator.database[0]["exchanges"][0]["product"] = "cast iron"
+    issues.clear()
+    validator.check_pig_iron_input()
+    assert len(issues) == 1
+
+
+def test_mapped_native_pig_iron_still_has_energy_minimum():
+    validator, issues = energy_validator("electricity", "kilowatt hour", 0.1)
+    name = "Pig iron, at plant"
+    validator.database[0].update(
+        name=name, unit="kilogram", **{"reference product": name}
+    )
+    validator.pig_iron_inputs = {(name, name, "kilogram")}
+    validator.check_steel_energy_use()
+    assert len(issues) == 1
+
+
+@pytest.mark.parametrize(
+    "unit,product,amount,expected",
+    [
+        ("kilogram", "Light fuel oil, at regional storage", 0.2, 0),
+        ("kilogram", "other oil", 0.2, 1),
+        ("megajoule", "Light fuel oil, at regional storage", 0.2, 1),
+        ("kilogram", "Light fuel oil, at regional storage", -0.2, 1),
+    ],
+)
+def test_mapped_oil_energy_keeps_reference_basis_and_signed_quantity(
+    unit, product, amount, expected
+):
+    name = "Light fuel oil, at regional storage"
+    validator, issues = energy_validator(name, unit, amount)
+    validator.database[0]["exchanges"][0]["product"] = product
+    validator.additional_fuel_lhvs = {(name, name, "kilogram"): 42.6}
+    validator.check_steel_energy_use()
+    assert len(issues) == expected
+    assert validator.database[0]["exchanges"][0]["amount"] == amount
