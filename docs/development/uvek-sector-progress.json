@@ -518,6 +518,18 @@
         "signed_finite_lcis": 16,
         "remaining_ferrosilicon_supply_correspondences": 3,
         "limitation": "Complete supply-model screening replacements; carbon composition and score equivalence unproven. Steel reconstruction/export unfinished."
+      },
+      "ferrosilicon_last_supplies_verification": {
+        "review": "uvek-ferrosilicon-last-supplies-review.md",
+        "correspondences": 3,
+        "new_helpers": 3,
+        "brightpath_tests_passed": 20,
+        "premise_tests_passed": 1,
+        "signed_finite_composite_lcis": 6,
+        "remaining_ferrosilicon_supply_correspondences": 0,
+        "complete_producer_migration_records": 21,
+        "producer_direct_biosphere_exchanges_each": 8,
+        "limitation": "Producer prerequisite migration succeeds. Global ferrosilicon market mapping and industrial heat remain preparation roots; steel transformation/export unfinished."
       }
     },
     {

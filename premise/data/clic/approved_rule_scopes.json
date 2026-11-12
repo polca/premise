@@ -136073,7 +136073,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "8e90d760fd2214db69465f9cd83fa0aa5a7ec8ef2eb33ba41fcb9b4f11282a5e"
+          "fingerprint": "d3b3327bd88520f46694b2d8feb5c1d952881390e01b5b8dc487715733c0cf8a"
         }
       ]
     },
@@ -233074,6 +233074,692 @@
             "system_model": "cutoff"
           },
           "fingerprint": "00740aa72f22af5a0acf3fde5d5d5fc0b55d18d0b09a3e87bd5b411143e4b4cd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0281677fb9d20241",
+      "operation": "replace",
+      "mapping_method": "reviewed_ferrosilicon_delivered_product",
+      "review_path": "export/uvek_ferrosilicon_last_supplies_review.json",
+      "review_sha256": "36f4920a95d3a9944f8c9f704da6505db8341272d1636972f7ad2b5550a7d932",
+      "authorization": "Standing autonomous approval of inspected native production-route/geography screening proxies with preserved market shares/freight and explicit review limitations.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for coal tar",
+            "reference product": "coal tar",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "1f38ad64310c0c135119faa3926026b85f5ba818dac1d5409e091385cfc595f7",
+          "nonproduction_count": 5,
+          "name": "market for coal tar",
+          "reference product": "coal tar",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "basis": "Exact3.9cutoff delivered supply reconstruction. Keep every original producer share separately and every freight quantity and supported uncertainty without renormalization. The three coal-tar producers use complete native GLO coke-plant tar; this replaces the small rare-earth-processing tar co-product as an explicit production-route/allocation proxy, not rare-earth oxide production. The three petroleum-coke producers use complete native RER refinery petroleum coke, preserving original shares but replacing regional refining/allocation with that native model. No generic coal, heat service or waste treatment is substituted for these products. Rail, inland barge, road fleet and dry-bulk sea use complete native RER rail/barge/lorry fleet and OCE transoceanic freight ship respectively, at original signed tonne-km. Native technology, cargo vessel design, fuel/load, geography, vintage, infrastructure, distribution assumptions, product grade/moisture/carbon/energy content, allocation, biosphere exclusions and internal uncertainty differ. Score and carbon-balance differences are unquantified. For RoW low-pressure gas only, source positive1m3 explicitly declares net heating value36MJ; supply36MJ of complete native RoW low-pressure at-consumer gas, preserving source signedm3 caller reference in a helper. No added loss, density/state/carbon correction, combustion or recovery credit. Caller signs, uncertainties, formulas and separate emissions remain. Only exact inspected3.9cutoff profiles qualify. Existing3.12RoWgas selection and its recipe remain unchanged; no cross-model or reverse route is inferred.",
+        "conversion_factor": 1,
+        "resource_action": "add exact3.9delivered supply reconstruction; preserve old selected decisions and recipes",
+        "new_target": {
+          "recipe_ref": "ferrosilicon-39-final-0281677fb9d20241"
+        },
+        "component_bindings": [
+          {
+            "source": {
+              "name": "coking",
+              "reference product": "coal tar",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.992278881529662,
+              "uncertainty type": 0,
+              "loc": 0.992278881529662
+            },
+            "target": {
+              "name": "Tar, at coke plant",
+              "reference product": "Tar, at coke plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source": {
+              "name": "coking",
+              "reference product": "coal tar",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.00766771409883056,
+              "uncertainty type": 0,
+              "loc": 0.00766771409883056
+            },
+            "target": {
+              "name": "Tar, at coke plant",
+              "reference product": "Tar, at coke plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source": {
+              "name": "rare earth oxides production, from rare earth oxide concentrate, 70% REO",
+              "reference product": "coal tar",
+              "location": "CN-SC",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 5.34043715068229e-05,
+              "uncertainty type": 0,
+              "loc": 5.34043715068229e-05
+            },
+            "target": {
+              "name": "Tar, at coke plant",
+              "reference product": "Tar, at coke plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.0112,
+              "uncertainty type": 2,
+              "loc": -4.491841500681089,
+              "scale": 0.4074309757492673
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.01932,
+              "uncertainty type": 2,
+              "loc": -3.946614450197765,
+              "scale": 0.4074309757492673
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Tar, at coke plant",
+              "reference product": "Tar, at coke plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9a96fc6d6ab5db33a4f9094aa581e7a9821831b8e0d2c16dda61b29ed1efccc8",
+            "nonproduction_count": 57
+          },
+          {
+            "identity": {
+              "name": "Petroleum coke, at refinery",
+              "reference product": "Petroleum coke, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e6fd50693e6c561e1ed0653ba2b9a80703ac90d202d1bdd563cde78e87fc2db1",
+            "nonproduction_count": 150
+          },
+          {
+            "identity": {
+              "name": "Natural gas, low pressure, at consumer",
+              "reference product": "Natural gas, low pressure, at consumer",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e2c63bebc25bc52b114872caa42a4cf8445ed96da2e38359b0b835fbcaea157a",
+            "nonproduction_count": 9
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0b3cf4b17bfa32cc78fc565b14fb4d041d0ab98fca1cb0e96c2bec4d032bc4a8",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5bbab786aad52cb1c3032c9e8ec5186b16b2bcde9e070630f9ebb03692396d48",
+            "nonproduction_count": 43
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a3b9ac4ab71ebde133bff9e5c360e47ccab7b7dae03d9bdddcc091c20afb9561",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5ad2d372ae19f81da30d6a290991aea3b785005cc2ffb353c5bcbdbfcce37938",
+            "nonproduction_count": 36
+          }
+        ]
+      },
+      "limitations": [
+        "Exact3.9cutoff delivered supply reconstruction. Keep every original producer share separately and every freight quantity and supported uncertainty without renormalization. The three coal-tar producers use complete native GLO coke-plant tar; this replaces the small rare-earth-processing tar co-product as an explicit production-route/allocation proxy, not rare-earth oxide production. The three petroleum-coke producers use complete native RER refinery petroleum coke, preserving original shares but replacing regional refining/allocation with that native model. No generic coal, heat service or waste treatment is substituted for these products. Rail, inland barge, road fleet and dry-bulk sea use complete native RER rail/barge/lorry fleet and OCE transoceanic freight ship respectively, at original signed tonne-km. Native technology, cargo vessel design, fuel/load, geography, vintage, infrastructure, distribution assumptions, product grade/moisture/carbon/energy content, allocation, biosphere exclusions and internal uncertainty differ. Score and carbon-balance differences are unquantified. For RoW low-pressure gas only, source positive1m3 explicitly declares net heating value36MJ; supply36MJ of complete native RoW low-pressure at-consumer gas, preserving source signedm3 caller reference in a helper. No added loss, density/state/carbon correction, combustion or recovery credit. Caller signs, uncertainties, formulas and separate emissions remain. Only exact inspected3.9cutoff profiles qualify. Existing3.12RoWgas selection and its recipe remain unchanged; no cross-model or reverse route is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1f0d21d479db2bab7b965ab6d04c0b4d7e7984f95664b613108cdab412b94fa4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ed9567d915d3e1af",
+      "operation": "replace",
+      "mapping_method": "reviewed_ferrosilicon_delivered_product",
+      "review_path": "export/uvek_ferrosilicon_last_supplies_review.json",
+      "review_sha256": "36f4920a95d3a9944f8c9f704da6505db8341272d1636972f7ad2b5550a7d932",
+      "authorization": "Standing autonomous approval of inspected native production-route/geography screening proxies with preserved market shares/freight and explicit review limitations.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for petroleum coke",
+            "reference product": "petroleum coke",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "1ece5487cfe25ba5f515ff8382ed8122dce52d76fc488779d541de57c01f6ad7",
+          "nonproduction_count": 7,
+          "name": "market for petroleum coke",
+          "reference product": "petroleum coke",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "basis": "Exact3.9cutoff delivered supply reconstruction. Keep every original producer share separately and every freight quantity and supported uncertainty without renormalization. The three coal-tar producers use complete native GLO coke-plant tar; this replaces the small rare-earth-processing tar co-product as an explicit production-route/allocation proxy, not rare-earth oxide production. The three petroleum-coke producers use complete native RER refinery petroleum coke, preserving original shares but replacing regional refining/allocation with that native model. No generic coal, heat service or waste treatment is substituted for these products. Rail, inland barge, road fleet and dry-bulk sea use complete native RER rail/barge/lorry fleet and OCE transoceanic freight ship respectively, at original signed tonne-km. Native technology, cargo vessel design, fuel/load, geography, vintage, infrastructure, distribution assumptions, product grade/moisture/carbon/energy content, allocation, biosphere exclusions and internal uncertainty differ. Score and carbon-balance differences are unquantified. For RoW low-pressure gas only, source positive1m3 explicitly declares net heating value36MJ; supply36MJ of complete native RoW low-pressure at-consumer gas, preserving source signedm3 caller reference in a helper. No added loss, density/state/carbon correction, combustion or recovery credit. Caller signs, uncertainties, formulas and separate emissions remain. Only exact inspected3.9cutoff profiles qualify. Existing3.12RoWgas selection and its recipe remain unchanged; no cross-model or reverse route is inferred.",
+        "conversion_factor": 1,
+        "resource_action": "add exact3.9delivered supply reconstruction; preserve old selected decisions and recipes",
+        "new_target": {
+          "recipe_ref": "ferrosilicon-39-final-ed9567d915d3e1af"
+        },
+        "component_bindings": [
+          {
+            "source": {
+              "name": "petroleum coke production, petroleum refinery operation",
+              "reference product": "petroleum coke",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.152487647205075,
+              "uncertainty type": 0,
+              "loc": 0.152487647205075
+            },
+            "target": {
+              "name": "Petroleum coke, at refinery",
+              "reference product": "Petroleum coke, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source": {
+              "name": "petroleum coke production, petroleum refinery operation",
+              "reference product": "petroleum coke",
+              "location": "ZA",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.00588404209814908,
+              "uncertainty type": 0,
+              "loc": 0.00588404209814908
+            },
+            "target": {
+              "name": "Petroleum coke, at refinery",
+              "reference product": "Petroleum coke, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source": {
+              "name": "petroleum coke production, petroleum refinery operation",
+              "reference product": "petroleum coke",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.841628310696776,
+              "uncertainty type": 0,
+              "loc": 0.841628310696776
+            },
+            "target": {
+              "name": "Petroleum coke, at refinery",
+              "reference product": "Petroleum coke, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.409,
+              "uncertainty type": 2,
+              "loc": -0.8940401229393353,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.032,
+              "uncertainty type": 2,
+              "loc": -3.4420193761824103,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.058,
+              "uncertainty type": 2,
+              "loc": -2.8473122684357177,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, sea, bulk carrier for dry goods",
+              "reference product": "transport, freight, sea, bulk carrier for dry goods",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.645,
+              "uncertainty type": 2,
+              "loc": -0.43850496218636453,
+              "scale": 0.5744562646538028
+            },
+            "target": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Tar, at coke plant",
+              "reference product": "Tar, at coke plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9a96fc6d6ab5db33a4f9094aa581e7a9821831b8e0d2c16dda61b29ed1efccc8",
+            "nonproduction_count": 57
+          },
+          {
+            "identity": {
+              "name": "Petroleum coke, at refinery",
+              "reference product": "Petroleum coke, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e6fd50693e6c561e1ed0653ba2b9a80703ac90d202d1bdd563cde78e87fc2db1",
+            "nonproduction_count": 150
+          },
+          {
+            "identity": {
+              "name": "Natural gas, low pressure, at consumer",
+              "reference product": "Natural gas, low pressure, at consumer",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e2c63bebc25bc52b114872caa42a4cf8445ed96da2e38359b0b835fbcaea157a",
+            "nonproduction_count": 9
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0b3cf4b17bfa32cc78fc565b14fb4d041d0ab98fca1cb0e96c2bec4d032bc4a8",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5bbab786aad52cb1c3032c9e8ec5186b16b2bcde9e070630f9ebb03692396d48",
+            "nonproduction_count": 43
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a3b9ac4ab71ebde133bff9e5c360e47ccab7b7dae03d9bdddcc091c20afb9561",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5ad2d372ae19f81da30d6a290991aea3b785005cc2ffb353c5bcbdbfcce37938",
+            "nonproduction_count": 36
+          }
+        ]
+      },
+      "limitations": [
+        "Exact3.9cutoff delivered supply reconstruction. Keep every original producer share separately and every freight quantity and supported uncertainty without renormalization. The three coal-tar producers use complete native GLO coke-plant tar; this replaces the small rare-earth-processing tar co-product as an explicit production-route/allocation proxy, not rare-earth oxide production. The three petroleum-coke producers use complete native RER refinery petroleum coke, preserving original shares but replacing regional refining/allocation with that native model. No generic coal, heat service or waste treatment is substituted for these products. Rail, inland barge, road fleet and dry-bulk sea use complete native RER rail/barge/lorry fleet and OCE transoceanic freight ship respectively, at original signed tonne-km. Native technology, cargo vessel design, fuel/load, geography, vintage, infrastructure, distribution assumptions, product grade/moisture/carbon/energy content, allocation, biosphere exclusions and internal uncertainty differ. Score and carbon-balance differences are unquantified. For RoW low-pressure gas only, source positive1m3 explicitly declares net heating value36MJ; supply36MJ of complete native RoW low-pressure at-consumer gas, preserving source signedm3 caller reference in a helper. No added loss, density/state/carbon correction, combustion or recovery credit. Caller signs, uncertainties, formulas and separate emissions remain. Only exact inspected3.9cutoff profiles qualify. Existing3.12RoWgas selection and its recipe remain unchanged; no cross-model or reverse route is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fd3874883be9694446ed355dd5ab27b5e1be4c202501b633c23b37ed7f905689"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-76fe8c58029110f6",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_312_dependency",
+      "review_path": "export/uvek_ferrosilicon_last_supplies_review.json",
+      "review_sha256": "36f4920a95d3a9944f8c9f704da6505db8341272d1636972f7ad2b5550a7d932",
+      "authorization": "Standing autonomous approval of inspected native production-route/geography screening proxies with preserved market shares/freight and explicit review limitations.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for natural gas, low pressure",
+            "reference product": "natural gas, low pressure",
+            "location": "RoW",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "6113068efe1db9dbeca37c09c8d4aa95b094715c4249577c2af661c47600bcd3",
+          "nonproduction_count": 10,
+          "name": "market for natural gas, low pressure",
+          "reference product": "natural gas, low pressure",
+          "location": "RoW",
+          "unit": "cubic meter"
+        },
+        "basis": "Exact3.9cutoff delivered supply reconstruction. Keep every original producer share separately and every freight quantity and supported uncertainty without renormalization. The three coal-tar producers use complete native GLO coke-plant tar; this replaces the small rare-earth-processing tar co-product as an explicit production-route/allocation proxy, not rare-earth oxide production. The three petroleum-coke producers use complete native RER refinery petroleum coke, preserving original shares but replacing regional refining/allocation with that native model. No generic coal, heat service or waste treatment is substituted for these products. Rail, inland barge, road fleet and dry-bulk sea use complete native RER rail/barge/lorry fleet and OCE transoceanic freight ship respectively, at original signed tonne-km. Native technology, cargo vessel design, fuel/load, geography, vintage, infrastructure, distribution assumptions, product grade/moisture/carbon/energy content, allocation, biosphere exclusions and internal uncertainty differ. Score and carbon-balance differences are unquantified. For RoW low-pressure gas only, source positive1m3 explicitly declares net heating value36MJ; supply36MJ of complete native RoW low-pressure at-consumer gas, preserving source signedm3 caller reference in a helper. No added loss, density/state/carbon correction, combustion or recovery credit. Caller signs, uncertainties, formulas and separate emissions remain. Only exact inspected3.9cutoff profiles qualify. Existing3.12RoWgas selection and its recipe remain unchanged; no cross-model or reverse route is inferred.",
+        "conversion_factor": 1,
+        "resource_action": "add exact3.9delivered supply reconstruction; preserve old selected decisions and recipes",
+        "new_target": {
+          "recipe_ref": "ferrosilicon-39-final-76fe8c58029110f6"
+        },
+        "component_bindings": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Tar, at coke plant",
+              "reference product": "Tar, at coke plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9a96fc6d6ab5db33a4f9094aa581e7a9821831b8e0d2c16dda61b29ed1efccc8",
+            "nonproduction_count": 57
+          },
+          {
+            "identity": {
+              "name": "Petroleum coke, at refinery",
+              "reference product": "Petroleum coke, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e6fd50693e6c561e1ed0653ba2b9a80703ac90d202d1bdd563cde78e87fc2db1",
+            "nonproduction_count": 150
+          },
+          {
+            "identity": {
+              "name": "Natural gas, low pressure, at consumer",
+              "reference product": "Natural gas, low pressure, at consumer",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e2c63bebc25bc52b114872caa42a4cf8445ed96da2e38359b0b835fbcaea157a",
+            "nonproduction_count": 9
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0b3cf4b17bfa32cc78fc565b14fb4d041d0ab98fca1cb0e96c2bec4d032bc4a8",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5bbab786aad52cb1c3032c9e8ec5186b16b2bcde9e070630f9ebb03692396d48",
+            "nonproduction_count": 43
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a3b9ac4ab71ebde133bff9e5c360e47ccab7b7dae03d9bdddcc091c20afb9561",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5ad2d372ae19f81da30d6a290991aea3b785005cc2ffb353c5bcbdbfcce37938",
+            "nonproduction_count": 36
+          }
+        ]
+      },
+      "limitations": [
+        "Exact3.9cutoff delivered supply reconstruction. Keep every original producer share separately and every freight quantity and supported uncertainty without renormalization. The three coal-tar producers use complete native GLO coke-plant tar; this replaces the small rare-earth-processing tar co-product as an explicit production-route/allocation proxy, not rare-earth oxide production. The three petroleum-coke producers use complete native RER refinery petroleum coke, preserving original shares but replacing regional refining/allocation with that native model. No generic coal, heat service or waste treatment is substituted for these products. Rail, inland barge, road fleet and dry-bulk sea use complete native RER rail/barge/lorry fleet and OCE transoceanic freight ship respectively, at original signed tonne-km. Native technology, cargo vessel design, fuel/load, geography, vintage, infrastructure, distribution assumptions, product grade/moisture/carbon/energy content, allocation, biosphere exclusions and internal uncertainty differ. Score and carbon-balance differences are unquantified. For RoW low-pressure gas only, source positive1m3 explicitly declares net heating value36MJ; supply36MJ of complete native RoW low-pressure at-consumer gas, preserving source signedm3 caller reference in a helper. No added loss, density/state/carbon correction, combustion or recovery credit. Caller signs, uncertainties, formulas and separate emissions remain. Only exact inspected3.9cutoff profiles qualify. Existing3.12RoWgas selection and its recipe remain unchanged; no cross-model or reverse route is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ca33d294c6946bdf0c6f64dc00ed058e1596113dad14733239c3885f133179a9"
         }
       ]
     }
