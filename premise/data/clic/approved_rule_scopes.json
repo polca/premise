@@ -208354,6 +208354,353 @@
           "fingerprint": "794a8fcdf6dd7a399bf8639cb65c6edbb7be57ab369267ded440e2c5caff26ce"
         }
       ]
+    },
+    {
+      "rule_id": "bp-23f293b98c9d5570",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_correct_product",
+      "review_path": "export/uvek_steel_39_product_corrections_review.json",
+      "review_sha256": "ea268b87ea68e8b15ffc993150372b4bf01d8ff36256280145f31341fb45cecb",
+      "authorization": "Standing autonomous approval of independently inspected screening proxies; logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for iron ore concentrate",
+            "reference product": "iron ore concentrate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "b4c43511a0177649b8e2ced8e5a6e17bf7f9c943f6a8c8cd29a004a7f933d5dc",
+          "nonproduction_count": 13
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "niobium mine operation and beneficiation, from pyrochlore ore",
+              "reference product": "iron ore concentrate",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "fad97dfd0e872b6c7ba6d9d88f78c5eff20446720f8b035fd88d4a03b0b7fcdc",
+            "nonproduction_count": 26
+          },
+          {
+            "identity": {
+              "name": "vanadium-titanomagnetite mine operation and beneficiation",
+              "reference product": "iron ore concentrate",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a3b9452f29daffb0658a21a22d28bfa58d7e387bbda2e14ee8fd686a67139d7d",
+            "nonproduction_count": 30
+          },
+          {
+            "identity": {
+              "name": "iron ore mine operation and beneficiation",
+              "reference product": "iron ore concentrate",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d7875c7b9bf8b317f382c91efd70eac811cd3cba283f268d3ca8b97dc987f26f",
+            "nonproduction_count": 55
+          },
+          {
+            "identity": {
+              "name": "rare earth oxides production, from rare earth oxide concentrate, 70% REO",
+              "reference product": "iron ore concentrate",
+              "location": "CN-SC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "dce5be190b558e4b09efe64d15e45312a8e6ce529540283565b19ece6a7ccd76",
+            "nonproduction_count": 44
+          },
+          {
+            "identity": {
+              "name": "rare earth element mine operation and beneficiation, bastnaesite and monazite ore",
+              "reference product": "iron ore concentrate",
+              "location": "CN-NM",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3455ecc23543dc7469e7a01019675cd0f2e9eea28ffed66f9b68c1052b0b6fec",
+            "nonproduction_count": 40
+          },
+          {
+            "identity": {
+              "name": "scandium oxide production, from rare earth tailings",
+              "reference product": "iron ore concentrate",
+              "location": "CN-NM",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b52c5e34f06da0290ec246c1f144219ffe0aaaf56a1186812bc3c8b208ed8a1b",
+            "nonproduction_count": 30
+          },
+          {
+            "identity": {
+              "name": "niobium mine operation and beneficiation, from pyrochlore ore",
+              "reference product": "iron ore concentrate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "fb04e24f906ccdc25f723cbf82458979f3eea1de9257f10bd92aaa73572bf300",
+            "nonproduction_count": 55
+          },
+          {
+            "identity": {
+              "name": "iron ore beneficiation",
+              "reference product": "iron ore concentrate",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d8bb5b5e058d93d4141e53138157d7e24fe05ddcb3c2f8cebb855c0f2ae34a2f",
+            "nonproduction_count": 21
+          },
+          {
+            "identity": {
+              "name": "iron ore beneficiation",
+              "reference product": "iron ore concentrate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "63377a877e5775573178f4ea42e02582c2ded5220ce34a73f4dfd30b433a8ac3",
+            "nonproduction_count": 65
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Iron ore, 65% Fe, at beneficiation",
+              "reference product": "Iron ore, 65% Fe, at beneficiation",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "da9412be875bb2ab39fed5d4216acac3f6859a66a10f97f7290d2545b0ad2d7c",
+            "nonproduction_count": 20
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg beneficiated iron ore at 65% Fe, not chromite, raw 46%-Fe ore, contained iron, sinter or pellets. Source market explicitly references 65% Fe dry-basis concentrate; native size distribution includes lump and finer feed, so particle size and moisture detail remain a screening limitation. Complete native beneficiation supply replaces global primary/co-product producer shares and source market freight. Native 84% iron yield is internal; no contained-metal, yield, drying or extra beneficiation multiplier. Complete native supplies are screening proxies; geography, technology, delivery, allocation, vintage, internal uncertainty and native biosphere exclusions differ, with unquantified score effects. Preserve caller quantity, signs, formulas, uncertainty and separately listed emissions/freight. Only independently inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "aab7a30bc27f5487f22565e08a6e06046044e760817ee32e3874df78177824c9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-17e215cce428b4d6",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_correct_product",
+      "review_path": "export/uvek_steel_39_product_corrections_review.json",
+      "review_sha256": "ea268b87ea68e8b15ffc993150372b4bf01d8ff36256280145f31341fb45cecb",
+      "authorization": "Standing autonomous approval of independently inspected screening proxies; logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for coke",
+            "reference product": "coke",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "f5ca7aa803ba8c56a24f1329db3e3a9cd5f47eba654335094c9ba0f5489ac341",
+          "nonproduction_count": 8
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "coking",
+              "reference product": "coke",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "11afea435631dde63c4b27a39b7e7d745eb80b3d1205c6d513ec080005afd1a1",
+            "nonproduction_count": 121
+          },
+          {
+            "identity": {
+              "name": "coking",
+              "reference product": "coke",
+              "location": "DE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9e6d04661339446ffff7611c688740b98f90c9ce4af65b3219949aebf5633120",
+            "nonproduction_count": 70
+          },
+          {
+            "identity": {
+              "name": "petroleum coke to generic market for coke",
+              "reference product": "coke",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "961155efc6aa16f5f2d26c40d913a665f995033d4905ed61d14db13049a03042",
+            "nonproduction_count": 1
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Hard coal coke, at plant",
+              "reference product": "Hard coal coke, at plant",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "75f9d862cbd47f28232b3e5411add7daf9ea62acd018f9fc488b2f2ad97a45e8",
+            "nonproduction_count": 57
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One MJ of solid hard-coal coke supply, not coke-oven gas, petroleum coke or burned heat. Native complete coking inventory allocates 79.8% to coke; retain that allocation and add no co-product credit or end-use emissions. Native historical global approximation replaces source coking mix, minor petroleum-coke supply and market freight. Source 28.6 MJ/kg does not require a mass conversion because both references already are MJ. Native documentation calls for local assessment when coke making is important. Complete native supplies are screening proxies; geography, technology, delivery, allocation, vintage, internal uncertainty and native biosphere exclusions differ, with unquantified score effects. Preserve caller quantity, signs, formulas, uncertainty and separately listed emissions/freight. Only independently inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b24a292f269cb153bb3ae6d7312ed033818247fc8feae89ea65a97b0362749d7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8e691fdb86f7b1c6",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_correct_product",
+      "review_path": "export/uvek_steel_39_product_corrections_review.json",
+      "review_sha256": "ea268b87ea68e8b15ffc993150372b4bf01d8ff36256280145f31341fb45cecb",
+      "authorization": "Standing autonomous approval of independently inspected screening proxies; logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market group for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "99b603689a1a776bc27381849ba357fd3a44becfc459e2e73517d97c31d83e32",
+          "nonproduction_count": 2
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "nonproduction_count": 66
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One tonne-km of complete European freight rail, not air freight. Native service includes electric and diesel operation, shunting, vehicle manufacture/maintenance and rail infrastructure. Replace source European market-of-markets with the complete native DE/AT/IT/FR-based historical fleet. Geographic weights, traction split, load factors, shunting, infrastructure allocation and vintage differ. No extra infrastructure, diesel, shunting, rail service or distance multiplier. Complete native supplies are screening proxies; geography, technology, delivery, allocation, vintage, internal uncertainty and native biosphere exclusions differ, with unquantified score effects. Preserve caller quantity, signs, formulas, uncertainty and separately listed emissions/freight. Only independently inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "811f58c065cdcab0a8ed087fe57e5097cafae86a6d8275165cc7103bcbaab4a1"
+        }
+      ]
     }
   ],
   "superseded_operations": [
