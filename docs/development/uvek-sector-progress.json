@@ -610,6 +610,20 @@
         "unapproved_nested_pulp_heat_correspondences_after": 65,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "Only exact positive production-only allocation handovers. Full pulp heat and steel transformation/export remain unfinished."
+      },
+      "pulp_heat_urea_verification": {
+        "review": "uvek-pulp-heat-urea-review.md",
+        "verification": "uvek-pulp-heat-urea-verification.json",
+        "source_profiles": 16,
+        "market_correspondences": 2,
+        "nitrogen_quantity_factor": 0.466461632733939,
+        "brightpath_tests_passed": 38,
+        "premise_tests_passed": 8,
+        "signed_finite_LCIs": 2,
+        "new_helpers": 0,
+        "unapproved_nested_pulp_heat_correspondences_after": 63,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Nitrogen-preserving native delivered-stock proxy, not product-mass or score equivalence. Steel export remains unfinished."
       }
     },
     {

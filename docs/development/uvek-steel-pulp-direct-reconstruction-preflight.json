@@ -14,7 +14,7 @@
   },
   "inventories_probed": 5,
   "purpose": "Test direct reconstruction of the five pulp-mill heat coproduct inventories without inferring pulp moisture or a generic combustion proxy. All source signed exchanges and resource-compartment carbon correction remain in the probe.",
-  "unapproved_nested_correspondences": 65,
+  "unapproved_nested_correspondences": 63,
   "unapproved_reference_product_families": {
     "adipic acid": 1,
     "bark chips, wet, measured as dry mass": 2,
@@ -55,7 +55,6 @@
     "transport, freight, inland waterways, barge": 1,
     "transport, freight, lorry >32 metric ton, EURO5": 1,
     "triazine-compound, unspecified": 1,
-    "urea": 2,
     "waste plastic, mixture": 6,
     "waste textile, soiled": 1,
     "waste wood, untreated": 7,
@@ -63,11 +62,12 @@
     "wood chips, wet, measured as dry mass": 2,
     "wood pellet, measured as dry mass": 1
   },
-  "limitation": "Five full source pulp heat inventories remain unconverted. Separate energy, nominal-chemical, solution and positive-stock reviews qualify51,9,3and6current inputs. These65nested inputs remain behind one industrial-heat preparation root, not65sector roots. No additional proxy or omission is approved by this diagnostic.",
+  "limitation": "Five full source pulp heat inventories remain unconverted. Energy, nominal chemicals, solutions, positive stocks and urea reviews qualify 51, 9, 3, 6 and 2 current inputs respectively. These 63 nested inputs remain behind one industrial-heat preparation root, not 63 sector roots. No additional proxy or omission is approved by this diagnostic.",
   "related_review": "uvek-steel-pulp-carbon-preflight.json",
   "initial_unapproved_nested_correspondences": 134,
   "energy_supply_review": "uvek-pulp-heat-energy-review.md",
   "chemical_market_review": "uvek-pulp-heat-chemical-markets-review.md",
   "solution_market_review": "uvek-pulp-heat-solution-markets-review.md",
-  "cutoff_stock_review": "uvek-pulp-heat-cutoff-stocks-review.md"
+  "cutoff_stock_review": "uvek-pulp-heat-cutoff-stocks-review.md",
+  "urea_review": "uvek-pulp-heat-urea-review.md"
 }

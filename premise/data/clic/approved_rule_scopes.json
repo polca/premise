@@ -244430,6 +244430,808 @@
           "fingerprint": "a2020cb0bec9ae033d4b2dc32084e9ded9f563c51b55a7ad8fe1d7f5669537e1"
         }
       ]
+    },
+    {
+      "rule_id": "bp-9dc568a9b04d1fe2",
+      "operation": "replace",
+      "mapping_method": "reviewed_urea_nitrogen_equivalent_supply",
+      "review_path": "export/uvek_pulp_heat_urea_review.json",
+      "review_sha256": "c45cef29bbfe5b5fef612e30a11c5c466009f307817eeff2aea6015c4e785956",
+      "authorization": "Standing autonomous approval of independently inspected same-product/reference-basis screening proxies, including explicit geographic and inventory-boundary limitations, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for urea",
+          "reference product": "urea",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "rule_id": "bp-9dc568a9b04d1fe2",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.7",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "74996068b4dda174ebec1dcda42986e074f10beac4c1812f717e7ff1b475e50d",
+              "nonproduction_count": 7
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-9dc568a9b04d1fe2",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "970a8e28a60cc039c402dbb27889dca6545ea9df2c3d9facfea436fd32ca5574",
+              "nonproduction_count": 7
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-9dc568a9b04d1fe2",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "629712b1c852bc733b0ddf43281901f167e969e60a0e38fa934ab5f93a98e7d9",
+              "nonproduction_count": 9
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-9dc568a9b04d1fe2",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9.1",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "b4e9c0e351d8ee276dfa98da74767eba423ea59edb01377c4dc579a5ae60cd41",
+              "nonproduction_count": 9
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-9dc568a9b04d1fe2",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "b2df94153dd78ccfb1c401bd880df2dc8753953f5f302f00a25141a35f2fd174",
+              "nonproduction_count": 9
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-9dc568a9b04d1fe2",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10.1",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "412b40d20a6d65f1262f424a67cc78835cadd0906002321377e919cb11c83ae3",
+              "nonproduction_count": 9
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-9dc568a9b04d1fe2",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "f2afcc8ea9827e449291ed4094b19686d7cc6ffe7b368ce4cc5db2c14f52b054",
+              "nonproduction_count": 9
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-9dc568a9b04d1fe2",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "02ad9cccba0521a36fdefc75d749de25d08339b3f9b231b7579b790eee5c1982",
+              "nonproduction_count": 9
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Urea, as N, at regional storehouse",
+            "reference product": "Urea, as N, at regional storehouse",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "reference_basis": "kg nitrogen",
+          "inventory_sha256": "69d93a07b37c6533d427eb93204d3c61d2b380bfb391a8f1393e1a1dc52e0c98",
+          "nonproduction_count": 14,
+          "declared_urea_N_fraction": 0.46,
+          "declared_approximate_urea_product_kg_per_reference": 2.17
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 0.466461632733939,
+        "new_helpers": 0,
+        "quantity_basis": "kg source urea -> kg native nitrogen"
+      },
+      "limitations": [
+        "Reviewed nitrogen-equivalent complete native urea supply proxy. The exact source positive1kg urea references explicitly declare1kg dry urea and nitrogen mass fraction0.466461632733939kgN/kg. Native UVEK Urea,asN,atregionalstorehouse has positive1kgN reference; documentation gives about2.17kgurea at46.0%N. Supply0.466461632733939kgN per signed sourcekg, preserving the recorded nitrogen quantity. Do not use factor1, an inverse46%multiplier or a ratio derived from the rounded2.17kg description. Preserve signs, supported uncertainties and formulas with the same positive factor. This is N-equivalent, not exact source/native product-mass, purity or carbon-composition equivalence: native fertiliser-grade specifications and rounded product-mass information can differ from source pure-urea properties. Reuse the complete existing RER regional-storehouse inventory, including native production, precursor supply, energy, infrastructure and final delivery once. The source market internal producer shares and freight are replaced by that complete native supply model; do not add source freight or source production again. RER is an explicit geographic/production-route screening proxy for CN and RoW. Native ammonia/feedstock, allocation, CO2 accounting, vintage, losses, emissions and internal uncertainty differ. Native documentation excludes CO2 consumption from the production inventory because it is treated as an ammonia by-product, and excludes catalyst waste treatment, coating and packaging; biosphere exclusions also remain. Score and carbon-balance effects are unquantified. Add no atmospheric CO2 uptake, fertiliser field/application emissions, avoided-emission credit, carbon, moisture or purity correction. Separate caller emissions and carbon-resource exchanges remain unchanged. Only the16independently inspected exact cut-off source profiles qualify. The two exact3.6suppliers were absent and are not approved; no consequential, reverse or uninspected-profile fallback is inferred. Pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6286802eef165a2c87c96bc2106ce8cedcf931393c5dd7f2beea1236c978d1bd"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a884a76ee744e451ac19ede888521ae9bdac6ef2bee19fba4c88839a439e2393"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "799a8bcb8bb50f329d4e02192ccdcc2434f6201c46dbfe6f99be31dbecd8d7cf"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "da9ee1d92b7e2e022b3540ec3482788962437fb2aabc808e92ba89dcd1384388"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1103f3c6b334980431b96beead3f1030c8af4ab85bb63427b622fc9483df2e78"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "01496a724b80ec44e578a260699c867fbbf4304717f62fbe294d87750c58d165"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3dcb7c9e0ceaf5faae925b697fa09c5e759e09ab9888542a44446b2518354345"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "906cd27afcfcb21c978ada1e20f5af60c583095d6675985463e89decc8dc30f3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ba826351b85eebe0",
+      "operation": "replace",
+      "mapping_method": "reviewed_urea_nitrogen_equivalent_supply",
+      "review_path": "export/uvek_pulp_heat_urea_review.json",
+      "review_sha256": "c45cef29bbfe5b5fef612e30a11c5c466009f307817eeff2aea6015c4e785956",
+      "authorization": "Standing autonomous approval of independently inspected same-product/reference-basis screening proxies, including explicit geographic and inventory-boundary limitations, logged for review.",
+      "inspection": {
+        "source": {
+          "location": "CN",
+          "name": "market for urea",
+          "reference product": "urea",
+          "unit": "kilogram"
+        },
+        "source_profiles": [
+          {
+            "rule_id": "bp-ba826351b85eebe0",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.7",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "11ae58c68078037f2b77f4edaa27448aa83672152c3c820f5a095c9ac087e297",
+              "nonproduction_count": 5
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-ba826351b85eebe0",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "658429a1a6d02875f7654a467a9915e67ed12a7027c8406418837bbcb692a639",
+              "nonproduction_count": 5
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-ba826351b85eebe0",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "b5bef763284755063a95ebd638e6c8ae68ad2539a49100b4380fe0d48dc45258",
+              "nonproduction_count": 5
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-ba826351b85eebe0",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9.1",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "4feb1dad9c8d54cb9a0fd84ed91e9009060ee2d7dd1f151cc92639f7dee3736d",
+              "nonproduction_count": 5
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-ba826351b85eebe0",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "2807a90589383c61ae48349edb033bf7397d4acf0da09880d7a887dd6b314bee",
+              "nonproduction_count": 5
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-ba826351b85eebe0",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10.1",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "98c52d1a3ae74f550b3f19212713a5827865bc47d98b77615e855deeedb2979a",
+              "nonproduction_count": 5
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-ba826351b85eebe0",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "f9d8ae464be460b5458ace93e694c36b4785e82485c7b328b557cbea57774ae1",
+              "nonproduction_count": 5
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          },
+          {
+            "rule_id": "bp-ba826351b85eebe0",
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "witness": {
+              "identity": {
+                "name": "market for urea",
+                "reference product": "urea",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "inventory_sha256": "dbfa6a9c50b8107b97adf17cf3f0f1e80295d6df14a2307856cabd71833d10a2",
+              "nonproduction_count": 5
+            },
+            "nitrogen_fraction_kgN_per_kg_urea": 0.466461632733939,
+            "nitrogen_property": {
+              "amount": 0.466461632733939,
+              "comment": "Nitrogen content (on a dry matter basis) of urea is calculated from the molecular formula of the substance (CH4N2O).",
+              "unit": "dimensionless"
+            },
+            "dry_mass_per_reference": {
+              "amount": 1.0,
+              "comment": "The substance is assumed to be 100% dry.",
+              "unit": "kg"
+            }
+          }
+        ],
+        "native_2026_witness": {
+          "identity": {
+            "name": "Urea, as N, at regional storehouse",
+            "reference product": "Urea, as N, at regional storehouse",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "reference_basis": "kg nitrogen",
+          "inventory_sha256": "69d93a07b37c6533d427eb93204d3c61d2b380bfb391a8f1393e1a1dc52e0c98",
+          "nonproduction_count": 14,
+          "declared_urea_N_fraction": 0.46,
+          "declared_approximate_urea_product_kg_per_reference": 2.17
+        },
+        "geographic_proxy": true,
+        "conversion_factor": 0.466461632733939,
+        "new_helpers": 0,
+        "quantity_basis": "kg source urea -> kg native nitrogen"
+      },
+      "limitations": [
+        "Reviewed nitrogen-equivalent complete native urea supply proxy. The exact source positive1kg urea references explicitly declare1kg dry urea and nitrogen mass fraction0.466461632733939kgN/kg. Native UVEK Urea,asN,atregionalstorehouse has positive1kgN reference; documentation gives about2.17kgurea at46.0%N. Supply0.466461632733939kgN per signed sourcekg, preserving the recorded nitrogen quantity. Do not use factor1, an inverse46%multiplier or a ratio derived from the rounded2.17kg description. Preserve signs, supported uncertainties and formulas with the same positive factor. This is N-equivalent, not exact source/native product-mass, purity or carbon-composition equivalence: native fertiliser-grade specifications and rounded product-mass information can differ from source pure-urea properties. Reuse the complete existing RER regional-storehouse inventory, including native production, precursor supply, energy, infrastructure and final delivery once. The source market internal producer shares and freight are replaced by that complete native supply model; do not add source freight or source production again. RER is an explicit geographic/production-route screening proxy for CN and RoW. Native ammonia/feedstock, allocation, CO2 accounting, vintage, losses, emissions and internal uncertainty differ. Native documentation excludes CO2 consumption from the production inventory because it is treated as an ammonia by-product, and excludes catalyst waste treatment, coating and packaging; biosphere exclusions also remain. Score and carbon-balance effects are unquantified. Add no atmospheric CO2 uptake, fertiliser field/application emissions, avoided-emission credit, carbon, moisture or purity correction. Separate caller emissions and carbon-resource exchanges remain unchanged. Only the16independently inspected exact cut-off source profiles qualify. The two exact3.6suppliers were absent and are not approved; no consequential, reverse or uninspected-profile fallback is inferred. Pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "33dcb54afb1cd1596fc651cfb0d3671c507b2d75a6930c33ed6ef02333d8bdb9"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "495a99f7f73a8e175ebc64b019f50358876adfaaab7cff9dccb77061a165fc6f"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "75308680e671a311199eb39c46de1b7cad9ffc471834bc00bc1f054655950723"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9a58874e6d43df67f97e20abe51d9b0bec1d395cd0e6acb228acd54ce3e79015"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a411a57ebb487fbe90219a1fa3b4401fc8560ba93985e7cbab4aa498af981a6b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10.1",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f3a3a92a185172d544998fc32f744609b8b0940de918e28996254fa36d274115"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d7edd008187ee8b39585bc1b0ba9e9873f704f92db18e106de90a67e31dbcc94"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d3728781861b7834ade06b5ac9553db1f2058354f1fe97cef561f03160f75985"
+        }
+      ]
     }
   ],
   "superseded_operations": [

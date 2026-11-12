@@ -1,0 +1,9 @@
+{
+  "review_sha256": "c45cef29bbfe5b5fef612e30a11c5c466009f307817eeff2aea6015c4e785956",
+  "native_complete_N_referenced_urea_suppliers": 1,
+  "signed_finite_LCIs": 2,
+  "exact_sign_reversal": true,
+  "source_modified_unchanged": true,
+  "new_helpers": 0,
+  "limitation": "Native complete regional kg-N urea stock is used at the source nitrogen fraction. No source/native product-mass, carbon or score equivalence is claimed. Pulp heat and steel export remain unfinished."
+}
