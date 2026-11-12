@@ -206220,6 +206220,729 @@
           "fingerprint": "bf3b6696d46d0df7b02d91f3445ef660f5f82adaaa3ec06bb2e45c5f7911570c"
         }
       ]
+    },
+    {
+      "rule_id": "bp-e5c0f91e3ad85dad",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_native_service",
+      "review_path": "export/uvek_steel_39_first_review.json",
+      "review_sha256": "5964fb114e0e3c27a4c8dd9512aefead2a72e16d1bc3317d3221f9343dc799b9",
+      "authorization": "Standing autonomous approval for similar inspected screening proxies and reconstructions; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market group for natural gas, high pressure",
+            "reference product": "natural gas, high pressure",
+            "location": "GLO",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "8ea7c147a5cee07e539129533ac447c88144d1376fddc74562ec43031ead0f8f",
+          "metadata_sha256": "2510d3d2401df109b1871bd70b4b8359f3aa82ec190f930c1df73f2106f32516",
+          "nonproduction_count": 27
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Natural gas, high pressure, at consumer",
+              "reference product": "Natural gas, high pressure, at consumer",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "24eb0729d75a60fd2ba1db2d6e41b8eff87d4a52b496a451816953c2c08eb596",
+            "metadata_sha256": "4b0311d86578cc766c3bc0de2faa69a37b856241e1dcbd6afeeca71d4f01a5e1",
+            "nonproduction_count": 31
+          },
+          {
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "72219a316742a8b70b4e5523697cc73d71217d5c2a88d8b38438fe12a4f0c588",
+            "metadata_sha256": "7e0fc69832674a74017f714c1ac4b2f35fa08a6477cc435ca78e25ba68e29ee5",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "51d53d7be2cdae67118b340d0169025b463bc1ea745ee1cfa266bd9aeac1a381",
+            "metadata_sha256": "536fcc40d20c75f9af823c344d13e77848752424285348003eb55efb82936415",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "metadata_sha256": "13113985fb5b74a84fe9111e19e84ce71eb2c084e32368b41e5cbe2f01f4f495",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "metadata_sha256": "a192e5787cdfb9eb7170250161cf6a00623e21ad568882b7546293679d984be3",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7f8d71c3deee07fd8ebd2100eb15f39b678ca94246f78d4c6f78a8e43aac580f",
+            "metadata_sha256": "4354eee2652801e8cdb004c844a4769b902abceb51b9e3672a01d52d2d01e481",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Pellets, iron, at plant",
+              "reference product": "Pellets, iron, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "65166885840cb0c75531ca5e06d5dc5fb6638a88831f56d7714af1f6d9d05af3",
+            "metadata_sha256": "7aa741e819f245ae4be02a73711f00eacc312866ca24f75524fc5820c852ce8c",
+            "nonproduction_count": 30
+          }
+        ],
+        "conversion_factor": 1,
+        "gas_energy_basis": "Premise documented nominal 36 MJ/m3 screening assumption, not measured or directly verified GLO source NCV.",
+        "source_calorific_property_available": false,
+        "zeolite_freight_rows_retained": 9,
+        "zeolite_treatment_components_retained": 2,
+        "recipe_hashes": {
+          "steel-39-global-delivered-gas-nominal-energy": "aa6d5505342714d78eb821cb26c3f3ab1f9155416aab36b4372bfa8a84dc23a4",
+          "steel-39-zeolite-generic-inert-treatment": "55652b5ac9efd7c8ede6ff0c65d9e491ef1480c557098248a5b302936cdec1cb",
+          "steel-39-zeolite-market-with-freight": "c9fb67ed60ff3212ce615e67fc8db85e95c587d5e27c4a33179ffaae7bd992ea"
+        }
+      },
+      "limitations": [
+        "Delivered high-pressure fuel supply, never gas venting. Preserve the original signed m3 demand and supply 36 MJ of complete native RER high-pressure gas at consumer per m3. 36 MJ/m3 is the explicitly documented nominal Premise natural-gas reference, not a verified calorific property of this global 3.9 market group, measured gas composition or standard-state equivalence. This energy-functional screening assumption replaces the global market-of-markets supply mix with native RER supply. It includes native upstream fuel, trade, compression, network own-use and leakage once. Source quality, density, pressure/state, geographic mix, vintage and internal uncertainty differ; effects are unquantified. Do not add end-use combustion, another pipeline, a loss/state/density correction or alter separate caller stack emissions.",
+        "Only independently inspected ecoinvent 3.9 cut-off identities qualify. Preserve caller signs, units, quantities, supported uncertainty, formulae, ownership and separately listed emissions/freight. Complete native inventories replace technology, geography, allocation, vintage and internal uncertainty; native upstream biosphere exclusions and unquantified score effects remain. No reverse, other-release or cross-system-model approval, recovery credit, measured-score or LCIA-equivalence claim."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "737e4fadb21ca67039ecc0dada916de79d0c7b18dcbcd897b1ad5854303ac42f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6e92a90be37a3d27",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_native_service",
+      "review_path": "export/uvek_steel_39_first_review.json",
+      "review_sha256": "5964fb114e0e3c27a4c8dd9512aefead2a72e16d1bc3317d3221f9343dc799b9",
+      "authorization": "Standing autonomous approval for similar inspected screening proxies and reconstructions; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for waste zeolite",
+            "reference product": "waste zeolite",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "inventory_sha256": "7ee835d7fb5e96bcd30f6cc52ae6cfee5ea6f2167bb7d225d5fdfe857754bac0",
+          "metadata_sha256": "a930312d83e26b1180b4e8a8b4b12e4446850d53e86033e2e23b6c94cbd1b72c",
+          "nonproduction_count": 10
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste zeolite, inert material landfill",
+              "reference product": "waste zeolite",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "8443c55b0f558baf068e9404fb5d95406af04b228317a4f7c5d157be56eb0e87",
+            "metadata_sha256": "66afc8c905e40a29830062b1d9121f97897822062342a4a8b896a0b33acb46af",
+            "nonproduction_count": 2
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Natural gas, high pressure, at consumer",
+              "reference product": "Natural gas, high pressure, at consumer",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "24eb0729d75a60fd2ba1db2d6e41b8eff87d4a52b496a451816953c2c08eb596",
+            "metadata_sha256": "4b0311d86578cc766c3bc0de2faa69a37b856241e1dcbd6afeeca71d4f01a5e1",
+            "nonproduction_count": 31
+          },
+          {
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "72219a316742a8b70b4e5523697cc73d71217d5c2a88d8b38438fe12a4f0c588",
+            "metadata_sha256": "7e0fc69832674a74017f714c1ac4b2f35fa08a6477cc435ca78e25ba68e29ee5",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "51d53d7be2cdae67118b340d0169025b463bc1ea745ee1cfa266bd9aeac1a381",
+            "metadata_sha256": "536fcc40d20c75f9af823c344d13e77848752424285348003eb55efb82936415",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "metadata_sha256": "13113985fb5b74a84fe9111e19e84ce71eb2c084e32368b41e5cbe2f01f4f495",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "metadata_sha256": "a192e5787cdfb9eb7170250161cf6a00623e21ad568882b7546293679d984be3",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7f8d71c3deee07fd8ebd2100eb15f39b678ca94246f78d4c6f78a8e43aac580f",
+            "metadata_sha256": "4354eee2652801e8cdb004c844a4769b902abceb51b9e3672a01d52d2d01e481",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Pellets, iron, at plant",
+              "reference product": "Pellets, iron, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "65166885840cb0c75531ca5e06d5dc5fb6638a88831f56d7714af1f6d9d05af3",
+            "metadata_sha256": "7aa741e819f245ae4be02a73711f00eacc312866ca24f75524fc5820c852ce8c",
+            "nonproduction_count": 30
+          }
+        ],
+        "conversion_factor": -1,
+        "gas_energy_basis": "Premise documented nominal 36 MJ/m3 screening assumption, not measured or directly verified GLO source NCV.",
+        "source_calorific_property_available": false,
+        "zeolite_freight_rows_retained": 9,
+        "zeolite_treatment_components_retained": 2,
+        "recipe_hashes": {
+          "steel-39-global-delivered-gas-nominal-energy": "aa6d5505342714d78eb821cb26c3f3ab1f9155416aab36b4372bfa8a84dc23a4",
+          "steel-39-zeolite-generic-inert-treatment": "55652b5ac9efd7c8ede6ff0c65d9e491ef1480c557098248a5b302936cdec1cb",
+          "steel-39-zeolite-market-with-freight": "c9fb67ed60ff3212ce615e67fc8db85e95c587d5e27c4a33179ffaae7bd992ea"
+        }
+      },
+      "limitations": [
+        "Reconstruct the complete negative-reference waste-zeolite market as a positive physical treatment service with factor -1. Preserve all nine original freight rows and the one treatment row in source order, with original amounts and supported uncertainty. The inspected treatment has exactly 1 kg generic inert-landfill operating burden and 1.48e-9 facility units, and no direct biosphere emissions; preserve both using the complete native generic inert-landfill operation and facility, without inventing waste-specific leaching. The old native zeolite 5%-water construction-waste landfill is a different model and is not used. Native Swiss operation/facility proxies replace RoW background; all rail legs use complete native RER rail and all unspecified-lorry legs native RER fleet-average road services at unchanged tonne-km. Fleet, geography, network, placement, land use, aftercare, vintage, allocation and uncertainty differences remain unquantified. Do not introduce dry-mass/moisture scaling, a recovery credit, renormalization, omitted transport or a second disposal burden.",
+        "Only independently inspected ecoinvent 3.9 cut-off identities qualify. Preserve caller signs, units, quantities, supported uncertainty, formulae, ownership and separately listed emissions/freight. Complete native inventories replace technology, geography, allocation, vintage and internal uncertainty; native upstream biosphere exclusions and unquantified score effects remain. No reverse, other-release or cross-system-model approval, recovery credit, measured-score or LCIA-equivalence claim."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5ee8dacdec5a5d9e61eb65e01db358819c89dd50873e40e05f85941ce1d1a3a0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-495f5d0604658b3c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_steel_39_first_review.json",
+      "review_sha256": "5964fb114e0e3c27a4c8dd9512aefead2a72e16d1bc3317d3221f9343dc799b9",
+      "authorization": "Standing autonomous approval for similar inspected screening proxies and reconstructions; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "243d6c5167619b1f52183328589a927d17e292949d07962bebe293ea50a7e307",
+          "metadata_sha256": "a396be5ba4a34aabdacc6ad6794598afef1157a34c8f112bcd9a034f419b7f14",
+          "nonproduction_count": 6
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ammonia production, steam reforming, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RER w/o RU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cdecfd619750b9c4c7264a1e75036229ba233621324ca234dbae4852f8fae82b",
+            "metadata_sha256": "12e601b5ceea95ee97f771e74b8b4c9e665d6542efc40f4fe370ae4779d22d86",
+            "nonproduction_count": 15
+          },
+          {
+            "identity": {
+              "name": "cocamide diethanolamine production",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "331a675537609b691a0367352ebd8dfdfe810b27e70299b11b6ab680c9510bf4",
+            "metadata_sha256": "3f9f94f9f3cac35aacc319868f749522891133aa7f6ad57d039f6e32ddfd9f47",
+            "nonproduction_count": 20
+          },
+          {
+            "identity": {
+              "name": "ammonia production, steam reforming, liquid",
+              "reference product": "ammonia, anhydrous, liquid",
+              "location": "RU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3cb1f40d2755b3e347bf6c1add5e45a4de4c781dfcebd67c8b826ae53a5e01c4",
+            "metadata_sha256": "5cbe37b6ec9ff1912ac07d0a99969c6e7e7b512250c854a26c890a7a64f83301",
+            "nonproduction_count": 14
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Natural gas, high pressure, at consumer",
+              "reference product": "Natural gas, high pressure, at consumer",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "24eb0729d75a60fd2ba1db2d6e41b8eff87d4a52b496a451816953c2c08eb596",
+            "metadata_sha256": "4b0311d86578cc766c3bc0de2faa69a37b856241e1dcbd6afeeca71d4f01a5e1",
+            "nonproduction_count": 31
+          },
+          {
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "72219a316742a8b70b4e5523697cc73d71217d5c2a88d8b38438fe12a4f0c588",
+            "metadata_sha256": "7e0fc69832674a74017f714c1ac4b2f35fa08a6477cc435ca78e25ba68e29ee5",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "51d53d7be2cdae67118b340d0169025b463bc1ea745ee1cfa266bd9aeac1a381",
+            "metadata_sha256": "536fcc40d20c75f9af823c344d13e77848752424285348003eb55efb82936415",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "metadata_sha256": "13113985fb5b74a84fe9111e19e84ce71eb2c084e32368b41e5cbe2f01f4f495",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "metadata_sha256": "a192e5787cdfb9eb7170250161cf6a00623e21ad568882b7546293679d984be3",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7f8d71c3deee07fd8ebd2100eb15f39b678ca94246f78d4c6f78a8e43aac580f",
+            "metadata_sha256": "4354eee2652801e8cdb004c844a4769b902abceb51b9e3672a01d52d2d01e481",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Pellets, iron, at plant",
+              "reference product": "Pellets, iron, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "65166885840cb0c75531ca5e06d5dc5fb6638a88831f56d7714af1f6d9d05af3",
+            "metadata_sha256": "7aa741e819f245ae4be02a73711f00eacc312866ca24f75524fc5820c852ce8c",
+            "nonproduction_count": 30
+          }
+        ],
+        "conversion_factor": 1,
+        "gas_energy_basis": "Premise documented nominal 36 MJ/m3 screening assumption, not measured or directly verified GLO source NCV.",
+        "source_calorific_property_available": false,
+        "zeolite_freight_rows_retained": 9,
+        "zeolite_treatment_components_retained": 2,
+        "recipe_hashes": {
+          "steel-39-global-delivered-gas-nominal-energy": "aa6d5505342714d78eb821cb26c3f3ab1f9155416aab36b4372bfa8a84dc23a4",
+          "steel-39-zeolite-generic-inert-treatment": "55652b5ac9efd7c8ede6ff0c65d9e491ef1480c557098248a5b302936cdec1cb",
+          "steel-39-zeolite-market-with-freight": "c9fb67ed60ff3212ce615e67fc8db85e95c587d5e27c4a33179ffaae7bd992ea"
+        }
+      },
+      "limitations": [
+        "One kg complete native liquid anhydrous NH3 at regional storehouse per kg source product, not aqueous ammonia, ammonia-N or a nitriding service. Native 85% steam-reforming/15% heavy-oil partial-oxidation production and delivery replace the source European steam-reforming-dominated market, its minor allocated co-product share and original freight. Retain the complete native supply once; no 82%-N multiplier, concentration correction or additional ammonia/freight. Technology, allocation, route mix, delivery, geography and vintage differences remain explicit screening limitations.",
+        "Only independently inspected ecoinvent 3.9 cut-off identities qualify. Preserve caller signs, units, quantities, supported uncertainty, formulae, ownership and separately listed emissions/freight. Complete native inventories replace technology, geography, allocation, vintage and internal uncertainty; native upstream biosphere exclusions and unquantified score effects remain. No reverse, other-release or cross-system-model approval, recovery credit, measured-score or LCIA-equivalence claim."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7fee598d9639c1a4908c52090edf975cb0dbdbf2fa8fea22b07feb6f369bb743"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2f63c1e3aad0336e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_first_review.json",
+      "review_sha256": "5964fb114e0e3c27a4c8dd9512aefead2a72e16d1bc3317d3221f9343dc799b9",
+      "authorization": "Standing autonomous approval for similar inspected screening proxies and reconstructions; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for iron pellet",
+            "reference product": "iron pellet",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "6d26d6df36b1cfc0ecd7f3791194f3c37d27918af56e25f77d5360f65f763d6f",
+          "metadata_sha256": "c9cafe00649c9f0f38116447bafcb26d3e9fac1cec2474702d9aab434baf18c0",
+          "nonproduction_count": 2
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "iron pellet production",
+              "reference product": "iron pellet",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c4eadc0512983b1471940bf8007b664ce859b7c841f7e1175c62426868b566dd",
+            "metadata_sha256": "a1cc41afb9391df8e632a812ecc9bb22dff8f107f3179f8059b2a64002a1f7a8",
+            "nonproduction_count": 49
+          },
+          {
+            "identity": {
+              "name": "iron pellet production",
+              "reference product": "iron pellet",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "be617ae6045e994eae030f2a19cad781a8fa3da29c5acebd3283654ae6b4a23d",
+            "metadata_sha256": "9043effa92bca26b38c010f2133d8d5d665fc0dafaf1524a0c07304adcac50ee",
+            "nonproduction_count": 191
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Natural gas, high pressure, at consumer",
+              "reference product": "Natural gas, high pressure, at consumer",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "24eb0729d75a60fd2ba1db2d6e41b8eff87d4a52b496a451816953c2c08eb596",
+            "metadata_sha256": "4b0311d86578cc766c3bc0de2faa69a37b856241e1dcbd6afeeca71d4f01a5e1",
+            "nonproduction_count": 31
+          },
+          {
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "72219a316742a8b70b4e5523697cc73d71217d5c2a88d8b38438fe12a4f0c588",
+            "metadata_sha256": "7e0fc69832674a74017f714c1ac4b2f35fa08a6477cc435ca78e25ba68e29ee5",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "51d53d7be2cdae67118b340d0169025b463bc1ea745ee1cfa266bd9aeac1a381",
+            "metadata_sha256": "536fcc40d20c75f9af823c344d13e77848752424285348003eb55efb82936415",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "metadata_sha256": "13113985fb5b74a84fe9111e19e84ce71eb2c084e32368b41e5cbe2f01f4f495",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "metadata_sha256": "a192e5787cdfb9eb7170250161cf6a00623e21ad568882b7546293679d984be3",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Ammonia, liquid, at regional storehouse",
+              "reference product": "Ammonia, liquid, at regional storehouse",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7f8d71c3deee07fd8ebd2100eb15f39b678ca94246f78d4c6f78a8e43aac580f",
+            "metadata_sha256": "4354eee2652801e8cdb004c844a4769b902abceb51b9e3672a01d52d2d01e481",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Pellets, iron, at plant",
+              "reference product": "Pellets, iron, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "65166885840cb0c75531ca5e06d5dc5fb6638a88831f56d7714af1f6d9d05af3",
+            "metadata_sha256": "7aa741e819f245ae4be02a73711f00eacc312866ca24f75524fc5820c852ce8c",
+            "nonproduction_count": 30
+          }
+        ],
+        "conversion_factor": 1,
+        "gas_energy_basis": "Premise documented nominal 36 MJ/m3 screening assumption, not measured or directly verified GLO source NCV.",
+        "source_calorific_property_available": false,
+        "zeolite_freight_rows_retained": 9,
+        "zeolite_treatment_components_retained": 2,
+        "recipe_hashes": {
+          "steel-39-global-delivered-gas-nominal-energy": "aa6d5505342714d78eb821cb26c3f3ab1f9155416aab36b4372bfa8a84dc23a4",
+          "steel-39-zeolite-generic-inert-treatment": "55652b5ac9efd7c8ede6ff0c65d9e491ef1480c557098248a5b302936cdec1cb",
+          "steel-39-zeolite-market-with-freight": "c9fb67ed60ff3212ce615e67fc8db85e95c587d5e27c4a33179ffaae7bd992ea"
+        }
+      },
+      "limitations": [
+        "One kg complete native global iron pellets at plant per kg source pellets, not raw ore, pig iron, metallic iron or a sintering-only processing service. Native blending, mixing and pellet sintering retain their ore, binder, energy, infrastructure, internal freight and emissions once. This replaces the source 2.0892225% Quebec/97.9107775% RoW producer mix with the native global process; no separate final market freight is present in the source. Retain mass basis without an ore-grade, contained-iron, pellet-yield or extra sintering correction. Pellet qualities, plant design, fuel, allocation, geography, vintage and uncertainty differ and score effects remain unquantified.",
+        "Only independently inspected ecoinvent 3.9 cut-off identities qualify. Preserve caller signs, units, quantities, supported uncertainty, formulae, ownership and separately listed emissions/freight. Complete native inventories replace technology, geography, allocation, vintage and internal uncertainty; native upstream biosphere exclusions and unquantified score effects remain. No reverse, other-release or cross-system-model approval, recovery credit, measured-score or LCIA-equivalence claim."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5366cd90ed5696abf092a7e875fb726da7b97eef866358dbff31576fe5784913"
+        }
+      ]
     }
   ],
   "superseded_operations": [

@@ -1,0 +1,130 @@
+{
+  "status": "steel_retained_workbook_source_biosphere_validation_blocked_after_four_prerequisite_reviews",
+  "source_profile": {
+    "technosphere": {
+      "family": "ecoinvent",
+      "version": "3.9",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.9"
+    }
+  },
+  "error_count": 141,
+  "distinct_identities": 13,
+  "identities": [
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Cadmium",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Chromium",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Hydrogen chloride",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Iron",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Lead",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Manganese",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Mercury",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Nickel",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Particulates, < 2.5 um",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Particulates, > 10 um",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Particulates, > 2.5 um, and < 10um",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "air"
+      ],
+      "name": "Zinc",
+      "unit": "kilogram"
+    },
+    {
+      "categories": [
+        "water"
+      ],
+      "name": "Sodium, ion",
+      "unit": "kilogram"
+    }
+  ],
+  "counts_by_name": {
+    "Chromium": 16,
+    "Particulates, < 2.5 um": 19,
+    "Manganese": 11,
+    "Iron": 8,
+    "Lead": 19,
+    "Particulates, > 2.5 um, and < 10um": 13,
+    "Mercury": 8,
+    "Nickel": 11,
+    "Particulates, > 10 um": 11,
+    "Zinc": 8,
+    "Cadmium": 8,
+    "Hydrogen chloride": 8,
+    "Sodium, ion": 1
+  },
+  "diagnosis": "Legacy flow names do not match exact catalog names. Parent-only air/water compartments themselves are valid in the source catalog; do not invent subcompartments.",
+  "next_required_evidence": "Match publisher flow UUIDs or reviewed official migration identities before accepting legacy-to-canonical names. Do not infer oxidation states from generic metal labels.",
+  "migration_validation_bypassed": false,
+  "physical_exchanges_omitted": false,
+  "runtime_code_changed": false,
+  "private_audit_sha256": "5f505f7716a0629fc21273a626f6b10001bbb7c9be560286ac5a64a3d8484839"
+}

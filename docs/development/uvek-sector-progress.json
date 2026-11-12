@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "audited_not_operational",
+      "status": "first_four_prerequisites_reviewed_retained_workbook_biosphere_and_transformation_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -385,7 +385,8 @@
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
       },
-      "latest_actual_preparation_frontier": "docs/development/uvek-steel-first-preparation-frontier.json"
+      "latest_actual_preparation_frontier": "docs/development/uvek-steel-retained-biosphere-frontier.json",
+      "first_four_prerequisites": "docs/development/uvek-steel-39-first-prerequisite-verification.json"
     },
     {
       "sector": "fuels",

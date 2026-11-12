@@ -123,5 +123,12 @@
     "Do not infer approval for later source profiles or full steel transformation from this first failing batch."
   ],
   "private_migration_audit_sha256": "a5e6fc32dd937b4840754748d64334ca395a4510345829b89230c18af0b9b76d",
-  "private_primary_inspection_sha256": "f6af9e9aae49dc15607075d09dd5511ffdc190b668deb57565f64f32bf004e87"
+  "private_primary_inspection_sha256": "f6af9e9aae49dc15607075d09dd5511ffdc190b668deb57565f64f32bf004e87",
+  "follow_up_first_four_reviews": {
+    "status": "four_exact_3.9_correspondences_reviewed_preparation_advanced_to_retained_workbook_biosphere_validation",
+    "brightpath_commit": "014c1b3b4d97d69069dce6ef2703bdcc67c1cad0",
+    "evidence": "docs/development/uvek-steel-39-first-prerequisite-verification.json",
+    "next_frontier": "docs/development/uvek-steel-retained-biosphere-frontier.json",
+    "steel_update_operational": false
+  }
 }
