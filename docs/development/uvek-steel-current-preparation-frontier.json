@@ -7,11 +7,11 @@
     "system_model": "cutoff",
     "biosphere_version": "3.10"
   },
-  "pending_correspondences": 18,
-  "previous_pending": 33,
-  "cleared_this_batch": 15,
+  "pending_correspondences": 17,
+  "previous_pending": 18,
+  "cleared_this_batch": 1,
   "diagnostic_guard_bypass": "Steel support gate only; strict migration validation retained.",
-  "private_audit_receipt": "6ef3686bd60c7e7b73c1693a15c8fec0fbd12555790f683a220062c38cab699d.audit.json.gz",
+  "private_audit_receipt": "75c2a651555deabfb2264d85e81ad68ffb166e087441d07fe8220f23e72604f2.audit.json.gz",
   "scope_limitation": "This is the current retained ecoinvent3.9 steel preparation cohort; later cohorts and sector transformation may reveal additional issues. Suggested targets are unapproved, not scientifically endorsed.",
   "cases": [
     {
@@ -26,19 +26,6 @@
         "recipe_ref": "older-regional-road-market-composition-2baadc1c776e09e81d42"
       },
       "category": "waste_residue_and_wastewater"
-    },
-    {
-      "rule_id": "bp-7fe8308839f735bb",
-      "source": {
-        "location": "Europe without Switzerland",
-        "name": "market group for natural gas, high pressure",
-        "reference product": "natural gas, high pressure",
-        "unit": "cubic meter"
-      },
-      "unapproved_suggested_target": {
-        "recipe_ref": "deferred-delivered-gas-52beaa2b0f89f7430e73"
-      },
-      "category": "fuel_and_heat_boundary"
     },
     {
       "rule_id": "bp-b65c892acf4a332f",

@@ -112615,7 +112615,12 @@
             "original_fingerprint": "3ffac3c0946dbc1e63550a38e4e6f2c0d8d11252af00ee490eb8ad2fe6f2a316",
             "selected_source_target_factor_reference_review_and_recipe_closure_unchanged": true
           }
-        ]
+        ],
+        "steel_39_profile_extension_review": {
+          "review_path": "export/uvek_steel_39_regional_gas_review.json",
+          "review_sha256": "f496fa6f29308681a12f8de6ec9609d9c72f3304a8e761a4ea0bbdc29264c07c",
+          "complete_historical_36_and_312_selected_resources_identical": true
+        }
       },
       "limitations": [
         "User-approved autonomous modelling decision: legacy source-mass-based delivered-gas ENERGY SCREENING PROXY, not a verified source calorific property. The exact3.6cut-off Europe-without-Switzerland market group has positive1m3 reference, declared dry/wet fuel mass0.842655842955148kg and zero water, but no net calorific property; its gross-energy field10.9015926281975MJ is not substituted for net energy. Ecoinvent v2 Overview and Methodology(2007), Table4.6, provides a generic natural-gas net calorific value45.4MJ/kg. Apply that documented legacy FUEL-QUALITY ASSUMPTION to the audited source mass: 38.256575270163715MJ per original m3, supplied by the complete native RER high-pressure gas-at-consumer process. This is a calibrated functional fuel-supply proxy, not a measured3.6NCV or exact gas-composition/volume/carbon-mass equivalence. It avoids assuming equal m3/Nm3 states and does not inherit the independently documented3.9Swiss36MJ/m3. The native RER model represents EU-28 trade2023 with production, transport, distribution, compression, network own fuel and leakage; source geography/origin mix, historical fuel quality, density/carbon content, trade vintage, internal uncertainty and2991upstreambiosphere exclusions differ. Caller volume, signed uncertainty and formulas remain unchanged at factor+1, as do separately listed stack emissions. No extra burner, network, dilution/state correction, avoided credit or numerical calorific uncertainty distribution is invented; proxy score effects remain unquantified. Only the exact3.6cut-off identity/profile is qualified; no other release, reverse or cross-system-model route inherits this property assumption."
@@ -112632,7 +112637,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "174bf81f7c9b175fb2015aa18567db6e47bb6394894b150c506c7198b3f5f7b8"
+          "fingerprint": "c3a56ccdc1c9071a8cbf460b2e82d922c656e98dea6f8446deb6f51f3210bec0"
         }
       ]
     },
@@ -135943,7 +135948,12 @@
             }
           }
         ],
-        "physical_omissions": []
+        "physical_omissions": [],
+        "steel_39_profile_extension_review": {
+          "review_path": "export/uvek_steel_39_regional_gas_review.json",
+          "review_sha256": "f496fa6f29308681a12f8de6ec9609d9c72f3304a8e761a4ea0bbdc29264c07c",
+          "complete_historical_36_and_312_selected_resources_identical": true
+        }
       },
       "limitations": [
         "Inspected 3.12 cut-off high-pressure delivered-gas supply. Source product information declares NCV 36.0 MJ per standard cubic metre at 15 C/1013 mbar, with GCV 40 MJ/m3 and density 0.735 kg/m3. Supply exactly 36 MJ of the complete native RER high-pressure gas-at-consumer process per original m3. This is an energy-functional supply proxy, not equal-volume/composition/carbon-mass proof for source Sm3 and native Nm3. Keep the complete native production, upstream transport and pressure-appropriate network/compression/leakage model once. Native RER geography/trade, technology, density/composition, vintage and internal uncertainty replace the source model; score effects are unquantified. No extra burner, fuel-production burden, state/ideal-gas/density, loss/self-loop or carbon correction is added. Separate caller stack emissions remain unchanged. The 3.6 high-pressure 38.256575270163715 MJ legacy calibration remains restricted to its prior inspected profile and is not reused for 3.12.",
@@ -135961,7 +135971,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "d764907468679ee276ce082bbf4c39e9a415455e5f8659537baae42eb9943df1"
+          "fingerprint": "15b9f6b814d5a7ee3fb9f54f173e0d86caa4d10d75f3f45308c81e67af8eb100"
         }
       ]
     },
@@ -209975,6 +209985,70 @@
             "system_model": "cutoff"
           },
           "fingerprint": "3575cfc7757213dad34459cfc44ecc4b8f5449684120f189267b2e848774fbf5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7fe8308839f735bb",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_delivered_gas",
+      "review_path": "export/uvek_steel_39_regional_gas_review.json",
+      "review_sha256": "f496fa6f29308681a12f8de6ec9609d9c72f3304a8e761a4ea0bbdc29264c07c",
+      "authorization": "Standing autonomous approval of inspected nominal-energy screening supply proxies; logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market group for natural gas, high pressure",
+            "reference product": "natural gas, high pressure",
+            "location": "Europe without Switzerland",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "b4407042cb29a355de5d2c661331a965c3fc8c05152199bf00fb5b107add7c2b",
+          "nonproduction_count": 20
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Natural gas, high pressure, at consumer",
+              "reference product": "Natural gas, high pressure, at consumer",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "24eb0729d75a60fd2ba1db2d6e41b8eff87d4a52b496a451816953c2c08eb596",
+            "metadata_sha256": "4b0311d86578cc766c3bc0de2faa69a37b856241e1dcbd6afeeca71d4f01a5e1",
+            "nonproduction_count": 31
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "For the inspected 3.9 regional high-pressure gas market group, preserve signed m3 demand and use existing complete native RER high-pressure gas at consumer at nominal36MJ/m3. The source declares no calorific property; 36MJ/m3 is the reviewed Premise screening reference, not measured/source-verified gas quality, density or standard-state equivalence. Reuse the existing regional36MJ recipe without adding a redundant helper recipe. Source twenty-country market weights are replaced by native complete RER supply; trade routing, compression, network losses, leakage, fuel composition, geography, vintage, internal uncertainty and allocation can differ. Native biosphere exclusions and unquantified score effects remain. Add no end-use combustion, second network, extra loss, pressure or density correction; preserve separate caller stack emissions and freight, quantities, uncertainty and formulas. Historical3.6 and3.12 selected resources remain unchanged. Only independently inspected3.9cutoff added; no reverse or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "246b5f06c09f83df5ed1882f57288458fdcc5b6aa1ad0a6d9722a345fb768cba"
         }
       ]
     }

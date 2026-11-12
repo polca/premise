@@ -1,0 +1,165 @@
+{
+  "status": "primary_portfolio_evidence_only_not_mapping_approval",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "private_receipt_sha256": "3dd9a9b64e39ccc8968e10edb62bce49f338f14a86eaf8bb4c53e20ebc60887a",
+  "portfolios": [
+    {
+      "rule_id": "bp-5a3b5a4a13938317",
+      "source": {
+        "name": "market group for heat, district or industrial, natural gas",
+        "reference product": "heat, district or industrial, natural gas",
+        "location": "GLO",
+        "unit": "megajoule"
+      },
+      "market_nodes": 6,
+      "leaf_suppliers": 104,
+      "leaf_heat_total": 1.0000000000000004,
+      "all_reference_amounts_positive_one": true,
+      "cycles": 0,
+      "other_market_edges": 0,
+      "largest_technology_weights": [
+        {
+          "technology": "heat and power co-generation, natural gas, conventional power plant, 100MW electrical",
+          "weight": 0.5778999037108601
+        },
+        {
+          "technology": "heat production, natural gas, at industrial furnace >100kW",
+          "weight": 0.1532122759544419
+        },
+        {
+          "technology": "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+          "weight": 0.08032012232802019
+        },
+        {
+          "technology": "heat and power co-generation, natural gas, combined cycle power plant, 400MW electrical",
+          "weight": 0.07425800210153378
+        },
+        {
+          "technology": "heat and power co-generation, natural gas, 200kW electrical, lean burn",
+          "weight": 0.037491402318427375
+        },
+        {
+          "technology": "heat and power co-generation, natural gas, 500kW electrical, lean burn",
+          "weight": 0.03046176438372226
+        },
+        {
+          "technology": "heat production, natural gas, at industrial furnace low-NOx >100kW",
+          "weight": 0.017128363460517243
+        },
+        {
+          "technology": "heat production, natural gas, at boiler condensing modulating >100kW",
+          "weight": 0.01461984975063908
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-daa9398e0257c1a7",
+      "source": {
+        "name": "market group for heat, district or industrial, other than natural gas",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "GLO",
+        "unit": "megajoule"
+      },
+      "market_nodes": 6,
+      "leaf_suppliers": 327,
+      "leaf_heat_total": 1.0,
+      "all_reference_amounts_positive_one": true,
+      "cycles": 0,
+      "other_market_edges": 0,
+      "largest_technology_weights": [
+        {
+          "technology": "heat production, at hard coal industrial furnace 1-10MW",
+          "weight": 0.6934266333261082
+        },
+        {
+          "technology": "heat production, wood chips from industry, at furnace 300kW",
+          "weight": 0.09110737015823087
+        },
+        {
+          "technology": "heat production, heavy fuel oil, at industrial furnace 1MW",
+          "weight": 0.08248362562736623
+        },
+        {
+          "technology": "treatment of bagasse, from sugarcane, in heat and power co-generation unit, 6400kW thermal",
+          "weight": 0.03517210852865959
+        },
+        {
+          "technology": "heat and power co-generation, wood chips, 6667 kW, state-of-the-art 2014",
+          "weight": 0.014205164087014591
+        },
+        {
+          "technology": "heat and power co-generation, hard coal",
+          "weight": 0.005808593431513126
+        },
+        {
+          "technology": "heat production, propane, at industrial furnace >100kW",
+          "weight": 0.005450567742349762
+        },
+        {
+          "technology": "heat and power co-generation, lignite",
+          "weight": 0.004477651377138018
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6501bd73396374f4",
+      "source": {
+        "name": "market for heat, central or small-scale, other than natural gas",
+        "reference product": "heat, central or small-scale, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "market_nodes": 1,
+      "leaf_suppliers": 52,
+      "leaf_heat_total": 1.0,
+      "all_reference_amounts_positive_one": true,
+      "cycles": 0,
+      "other_market_edges": 0,
+      "largest_technology_weights": [
+        {
+          "technology": "heat production, anthracite, at stove 5-15kW",
+          "weight": 0.714855888392575
+        },
+        {
+          "technology": "heat production, hard coal briquette, stove 5-15kW",
+          "weight": 0.05733555582232089
+        },
+        {
+          "technology": "heat production, light fuel oil, at boiler 10kW condensing, non-modulating",
+          "weight": 0.031120299260787514
+        },
+        {
+          "technology": "heat production, light fuel oil, at boiler 100kW condensing, non-modulating",
+          "weight": 0.031120298914985658
+        },
+        {
+          "technology": "heat production, light fuel oil, at boiler 10kW, non-modulating",
+          "weight": 0.030990539066552997
+        },
+        {
+          "technology": "heat production, wood pellet, at furnace 9kW",
+          "weight": 0.028491717673738554
+        },
+        {
+          "technology": "heat production, wood pellet, at furnace 9kW, state-of-the-art 2014",
+          "weight": 0.028491717673738554
+        },
+        {
+          "technology": "heat production, light fuel oil, at boiler 100kW, non-modulating",
+          "weight": 0.02636288581013521
+        }
+      ]
+    }
+  ],
+  "native_existing_candidate": {
+    "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+    "heat_input_MJ_per_MJ": 1.11,
+    "district_transport_MJ_per_MJ": 1,
+    "boundary": "Native complete delivered heat; source market layers have no separate district network input. Do not assume these delivery boundaries or allocation models are equivalent."
+  },
+  "licensing": "Aggregate technology weights and reference facts only; source vectors remain private."
+}
