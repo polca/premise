@@ -811,6 +811,13 @@
         "new_heat_helpers": 0,
         "old_pulp_reconstruction_cases": "45 unresolved correspondences are no longer dependencies of the selected direct heat proxy; not individually resolved.",
         "next_failure": "Missing secondary-steel supplier in CAZ; native aliases and shared family propagation require adaptation."
+      },
+      "native_producer_alias_resolution": {
+        "review": "docs/development/uvek-steel-native-producer-review.md",
+        "verification": "docs/development/uvek-steel-native-producer-verification.json",
+        "status": "missing_supplier_resolved_strict_validation_unfinished",
+        "tests_passed": 64,
+        "next_work": "Audit 103 validation findings and native pig-iron/steel consumer filters; preserve rolling and shared regional market logic."
       }
     },
     {

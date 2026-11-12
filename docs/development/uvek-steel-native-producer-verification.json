@@ -1,0 +1,30 @@
+{
+  "tests_passed": 64,
+  "ecoinvent_tests_included": 62,
+  "new_alias_and_routing_tests": 2,
+  "python_changes_necessary_because": "Steel previously omitted the existing family and biosphere settings, so native YAML aliases could not be selected.",
+  "real_preparation": {
+    "status": "steel_inventory_preparation_passed",
+    "loaded_sectors": [
+      "steel"
+    ],
+    "prepared_base_records": 12085,
+    "imported_records": 138,
+    "elapsed_seconds": 32.40872720791958,
+    "source_database_unchanged": true,
+    "new_heat_helpers": 0,
+    "uses_existing_native_heat_dataset": true,
+    "public_sector_guard_bypassed_in_private_diagnostic": true,
+    "transformation_or_export_performed": false,
+    "IAM": "Encrypted REMIND SSP2-NPi2050,unmodified",
+    "limitation": "Preparation success does not establish sector transformation,certification or export."
+  },
+  "real_update": {
+    "status": "shared_steel_update_failed",
+    "exception_type": "PremiseValidationError",
+    "message": "Inventory validation failed with 103 unsuppressed error(s) [LEGACY.ENERGY_USE_FOR_PIG_IRON_PRODUCTION_TOO_LOW=65, LEGACY.INCORRECT_SECONDARY_STEEL_MARKET_INPUT=12, LEGACY.NO_INPUT_OF_PIG_IRON=26]: LEGACY.ENERGY_USE_FOR_PIG_IRON_PRODUCTION_TOO_LOW: Energy use for pig iron production is too low: 0. (activity=('pig iron production, blast furnace, with carbon capture and storage', 'pig iron', 'CAZ')); LEGACY.INCORRECT_SECONDARY_STEEL_MARKET_INPUT: Input of secondary steel incorrect: 0 instead of 0.7530968765271889. (activity=('market for steel, low-alloyed, composed from resolved suppliers, GLO [BrightPath UVEK conversion 7dc4beca] [CLIC brightpath-uvek-import-7dc4beca8a944f2fb534d975]', 'steel, low-alloyed', 'CAZ')); LEGACY.NO_INPUT_OF_PIG_IRON: No input of pig iron found. (activity=('steel production, blast furnace-basic oxygen furnace, low-alloyed', 'steel, low-alloyed', 'CAZ')); ...",
+    "public_scope_guard_bypassed_in_private_diagnostic": true
+  },
+  "public_steel_support": false,
+  "export_verified": false
+}

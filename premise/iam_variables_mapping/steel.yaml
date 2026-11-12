@@ -118,6 +118,19 @@ steel - primary - BF/BOF:
       - Final Energy|Production|Steel|Primary|BF and BOF 1|Biofuels|w/o CCS
       - Final Energy|Production|Steel|Primary|BF and BOF 2|Petroleum Coke
       - Final Energy|Production|Steel|Primary|BF and BOF 1|Petroleum Coke|w/o CCS
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+        - Steel, converter, low-alloyed, at plant
+        - Steel, converter, unalloyed, at plant
+      reference product:
+        - Steel, converter, low-alloyed, at plant
+        - Steel, converter, unalloyed, at plant
+      unit: kilogram
+    native_reference_amount: 1
+    native_limitations:
+      - Native RER converter routes retain their complete inventories; regional extrapolation and historical operating conditions are screening limitations.
   ecoinvent_aliases:
     fltr:
       - steel production, blast furnace-basic oxygen furnace
@@ -478,6 +491,21 @@ steel - secondary:
       - Final Energy|Production|Steel|Secondary|EAF 3|Natural Gas
       - Final Energy|Production|Steel|Secondary|EAF 1|Coal
 
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+        - Steel, electric, unalloyed, at plant
+        - Steel, electric, low-alloyed, at plant
+        - Steel, electric, un- and low-alloyed, at plant
+      reference product:
+        - Steel, electric, unalloyed, at plant
+        - Steel, electric, low-alloyed, at plant
+        - Steel, electric, un- and low-alloyed, at plant
+      unit: kilogram
+    native_reference_amount: 1
+    native_limitations:
+      - Native CH/RER electric routes retain their complete inventories. The combined un- and low-alloyed supplier does not establish equivalence with specialty steels; historic operation, grade mix and regional extrapolation are screening limitations.
   ecoinvent_aliases:
     fltr:
       - steel production, electric

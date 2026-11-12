@@ -21,7 +21,9 @@ from ..inventory.activity_maps import InventorySet
 logger = create_logger("steel")
 
 
-def _update_steel(scenario, version, system_model):
+def _update_steel(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
 
     if scenario["iam data"].steel_technology_mix is None:
         print("No steel scenario data available -- skipping")
@@ -37,6 +39,8 @@ def _update_steel(scenario, version, system_model):
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     steel.create_pig_iron_production_activities()
@@ -95,6 +99,8 @@ class Steel(BaseTransformation):
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ) -> None:
         super().__init__(
             database,
@@ -106,9 +112,13 @@ class Steel(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.version = version
-        self.inv = InventorySet(self.database, self.version, self.model)
+        self.inv = InventorySet(
+            self.database, self.version, self.model, family=self.family
+        )
         self.steel_map = self.inv.generate_steel_map()
 
     def create_steel_markets(self):

@@ -2926,6 +2926,7 @@ class NewDatabase:
                 "electricity",
                 "heat",
                 "cement",
+                "steel",
                 "fuels",
                 "emissions",
             ):
