@@ -924,6 +924,16 @@
         "unmodified_IAM_arrays": true,
         "source_database_metadata_unchanged": true,
         "remaining": "Native specialty and other-producer selector/boundary audit."
+      },
+      "native_other_producer_audit": {
+        "review": "docs/development/uvek-steel-other-producer-audit.md",
+        "native_Steel_prefix_records": 19,
+        "ordinary_IAM_role_records": 5,
+        "processed_market_records": 1,
+        "other_producer_records_to_review": 12,
+        "distinct_other_producer_names": 9,
+        "allocated_battery_steel_coproduct_records": 1,
+        "status": "source_catalog_and_installed_boundary_audit_only_runtime_aliases_unfinished"
       }
     },
     {
