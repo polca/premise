@@ -1,5 +1,5 @@
 {
-  "status": "preflight_only_no_new_approval",
+  "status": "resolved_by_active_basis_review_with_explicit_hypochlorite_inventory_proxy",
   "source_profile": "ecoinvent3.9cutoff",
   "target_profile": "uvek2026cutoff_with_ecoinvent3.10biosphere",
   "source_market_count": 3,
@@ -42,5 +42,6 @@
       "interpretation": "Reagent demands differ. Neither1/0.15nor their ratio establishes a reference-unit conversion; technology, allocation and native reference basis require separate qualification."
     }
   ],
-  "limitation": "Selected chemical-input comparisons only. They do not prove complete inventory, concentration, allocation or LCIA equivalence, and no mapping or quantity factor is approved by this preflight."
+  "limitation": "Historical selected-input preflight. The linked completed review qualifies the active basis and retains native hypochlorite boundary/reagent differences as an explicit screening proxy; complete inventory and LCIA equivalence are not claimed.",
+  "resolved_by_review": "uvek-pulp-heat-solution-markets-review.md"
 }

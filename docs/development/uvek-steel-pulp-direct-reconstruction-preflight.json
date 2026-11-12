@@ -14,7 +14,7 @@
   },
   "inventories_probed": 5,
   "purpose": "Test direct reconstruction of the five pulp-mill heat coproduct inventories without inferring pulp moisture or a generic combustion proxy. All source signed exchanges and resource-compartment carbon correction remain in the probe.",
-  "unapproved_nested_correspondences": 74,
+  "unapproved_nested_correspondences": 71,
   "unapproved_reference_product_families": {
     "adipic acid": 1,
     "aluminium scrap, post-consumer": 1,
@@ -30,7 +30,6 @@
     "green liquor dregs": 1,
     "heat, district or industrial, natural gas": 1,
     "hydrazine": 1,
-    "hydrogen peroxide, without water, in 50% solution state": 1,
     "iron scrap, unsorted": 1,
     "lime": 1,
     "limestone residue": 1,
@@ -41,7 +40,6 @@
     "municipal solid waste": 4,
     "ozone, liquid": 1,
     "peat": 1,
-    "phosphoric acid, industrial grade, without water, in 85% solution state": 1,
     "propane": 1,
     "propane, burned in building machine": 1,
     "pulp factory": 1,
@@ -54,7 +52,6 @@
     "sludge from pulp and paper production": 1,
     "sodium chloride, powder": 1,
     "sodium hydrogen sulfite": 1,
-    "sodium hypochlorite, without water, in 15% solution state": 1,
     "sodium sulfite": 1,
     "solvent, organic": 1,
     "spent antifreezer liquid": 1,
@@ -72,9 +69,10 @@
     "wood chips, wet, measured as dry mass": 2,
     "wood pellet, measured as dry mass": 1
   },
-  "limitation": "Five complete source pulp heat inventories remain unconverted. Separate energy and chemical reviews qualify51and9inputs respectively. These74nested inputs remain behind one industrial-heat preparation root, not74sector roots. No additional proxy or omission is approved by this diagnostic.",
+  "limitation": "Five full source pulp heat inventories remain unconverted. Separate energy, nominal-chemical and solution reviews qualify51,9and3inputs. These71nested inputs remain behind one industrial-heat preparation root, not71sector roots. No additional proxy or omission is approved by this diagnostic.",
   "related_review": "uvek-steel-pulp-carbon-preflight.json",
   "initial_unapproved_nested_correspondences": 134,
   "energy_supply_review": "uvek-pulp-heat-energy-review.md",
-  "chemical_market_review": "uvek-pulp-heat-chemical-markets-review.md"
+  "chemical_market_review": "uvek-pulp-heat-chemical-markets-review.md",
+  "solution_market_review": "uvek-pulp-heat-solution-markets-review.md"
 }

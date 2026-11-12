@@ -11067,7 +11067,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "ef7d5b89cb819912524f8b440b9467c68787d838c3b2bce20cab6f766f65e6f6"
+          "fingerprint": "5c6dcb90767cbd0b553fb7fd916dfaf9462189875be03aa35607338acd191c59"
         }
       ]
     },
@@ -240613,6 +240613,652 @@
             "system_model": "cutoff"
           },
           "fingerprint": "d0f91de0d5e0eced9c28dd48ef6d9ce54c2e244d671642d4fd005bbab11ae4eb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5df95a4dc7805fe3",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_active_solution_market",
+      "review_path": "export/uvek_pulp_heat_solution_markets_review.json",
+      "review_sha256": "4b59a4fa11ec3f84f37b0f571da610c311bf839be316625f4eba383f5b9a2006",
+      "authorization": "Standing autonomous approval of inspected same-product active-reference supply reconstructions and explicit hypochlorite boundary/reagent screening proxy, with limitations logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for hydrogen peroxide, without water, in 50% solution state",
+            "reference product": "hydrogen peroxide, without water, in 50% solution state",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "0f055947f86647166e185e5ee675c2177569edc0633590e09ed4551509e81f41",
+          "nonproduction_count": 11,
+          "name": "market for hydrogen peroxide, without water, in 50% solution state",
+          "reference product": "hydrogen peroxide, without water, in 50% solution state",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "1aca6bdeac92dcd3abdcb1dc668a6358455a5b04eaa4c1969d48ebd7b1f47389",
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "location": "RER",
+              "name": "Hydrogen peroxide, 50% in H2O, at plant",
+              "reference product": "Hydrogen peroxide, 50% in H2O, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "e099b8c26d484c6cf1bc6a185cae1d608dcf0ada16797a6e6bbe4f902f1f6415",
+            "statistics": {
+              "amount": 0.0224231473350459,
+              "uncertainty type": 2,
+              "loc": -3.797661490501636,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "5e5de6d0d10c002f0d86f4afe58390e2df3b18efc0d691354373c1c29769ae59",
+            "statistics": {
+              "amount": 0.08093386943083909,
+              "uncertainty type": 2,
+              "loc": -2.514122884547314,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ca14d3a29396271d29de59d6fedd9297ec38af0df3376678a7521c7f1fd84847",
+            "statistics": {
+              "amount": 0.0056780093482361425,
+              "uncertainty type": 2,
+              "loc": -5.171154574536774,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "a38dc8ffb7122abfc445f8a4872cc36ed371fa3525debcf49f8b192d0c9e8d29",
+            "statistics": {
+              "amount": 0.11165767412994829,
+              "uncertainty type": 2,
+              "loc": -2.192317569247477,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "db73a365ebdfc19833a0d876b3fa70e8bb217b461a858e19e43a6d68f72e0229",
+            "statistics": {
+              "amount": 0.08840729975593056,
+              "uncertainty type": 2,
+              "loc": -2.4258007363232306,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "b8d10bbf9cf85d3c0de4d49ad6490fc944a347c0e7511c1c84ac643e7a128481",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "508bf388ab47439435752ebd2198f8b58ae05fe182d2bee342d9688c8802b4cf",
+            "statistics": {
+              "amount": 0.0037411136550834123,
+              "uncertainty type": 2,
+              "loc": -5.588371943141128,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ed4e582b195883e1613af8f9c03948163bc3b457e429a16d4691abe5160b529e",
+            "statistics": {
+              "amount": 0.18116364249000133,
+              "uncertainty type": 2,
+              "loc": -1.7083545540157898,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "9d4feda932da3ee367ccfb3226ae00f6ae23e4caef6e55a3dc335b0a62298b92",
+            "statistics": {
+              "amount": 0.02389524385491526,
+              "uncertainty type": 2,
+              "loc": -3.7340758417345654,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1a85585d99f24f6bf2ffa0835a877cf051d9258d2b17a348e4bd7c21013bec7a",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "active_reference_kg": 1,
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "hypochlorite_boundary_comparison": {
+          "source_primary_chlorine_kg_per_reference": 0.952447874110337,
+          "source_active_NaOH_kg_per_reference": 1.07441948482084,
+          "native_primary_chlorine_kg_per_reference": 0,
+          "native_active_NaOH_kg_per_reference": 0.56,
+          "new_compensation_or_credit": false,
+          "score_effect": "unquantified"
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact3.9cutoff solution-state chemical market screening reconstructions for hydrogen peroxide50%, sodium hypochlorite15% and industrial phosphoric acid85%, per signedkg active chemical. The ecoinvent2013methodology section9.3 identifies active-substance quantity conventions and explains the older v1/v2solution naming; percentages describe supplied concentration rather than an automatic mixture-quantity multiplier. Source positive1kg without-water references have1kg dry active mass. Original native archive references retain the legacy names, positive1kg references and matching chemical identities. Native active-mass phosphoric/caustic conventions were independently inspected in the earlier active-chemical review; equal hydrogen0.0656kg and phosphoric-feed1.02kg/sulphuric-acid0.129kg inputs corroborate the peroxide/phosphoric nominal basis. Apply factor+1, not1/0.50,1/0.15or1/0.85. Keep every original producer share, freight row, signedquantity and supported uncertainty separately, without renormalization; native plants include upstream precursor transport and only original final-product market freight is added. Complete native RER production replaces source regional producer inventories. The hypochlorite correspondence is explicitly a supply-boundary/reagent screening proxy: both descriptions refer to chlorine-emission capture, but source producers record0.952447874110337kg primary chlorine and1.07441948482084kg active NaOH perkg; native records no primary chlorine input and0.56kg active NaOH. Native chemical-plant heat/electricity, allocation, emissions and internal uncertainty also differ. Do not rescale the reference quantity to force a reagent match, invent primary-chlorine/caustic compensation, or introduce an avoided-emission credit. Missing native primary-chlorine burdens can affect scores and the effect is unquantified. Complete RER rail/barge/heavy-lorry and OCE container-shipping services retain originaltonne-km; country/traction/fleet/load/technology, geography, allocation, grade, vintage, biosphere exclusions and internal uncertainty differ. No extra water, density, loss, purity, carbon or concentration multiplier is introduced. Separate caller emissions and carbon-resource exchanges remain unchanged. Only exact independently inspected3.9cutoff is newly approved. The older3.8phosphoric target and factor remain unchanged; its positive active basis is made explicit without changing its delivered data. No new physical source-exchange omission or other-version/consequential/reverse approval is introduced. This batch does not complete pulp heat or steel transformation/export."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "bdfb3a2fc0537ecad6c055926929bca408f48376bcce89005938aac97c25c037"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-172446e59949fefa",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_active_solution_market",
+      "review_path": "export/uvek_pulp_heat_solution_markets_review.json",
+      "review_sha256": "4b59a4fa11ec3f84f37b0f571da610c311bf839be316625f4eba383f5b9a2006",
+      "authorization": "Standing autonomous approval of inspected same-product active-reference supply reconstructions and explicit hypochlorite boundary/reagent screening proxy, with limitations logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sodium hypochlorite, without water, in 15% solution state",
+            "reference product": "sodium hypochlorite, without water, in 15% solution state",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "5fedf375b3826739c403a55e715039b23ccfe2acc0d266f8808618487c6de7d5",
+          "nonproduction_count": 10,
+          "name": "market for sodium hypochlorite, without water, in 15% solution state",
+          "reference product": "sodium hypochlorite, without water, in 15% solution state",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "5311d2e9d0642ed254144d447827a1dc69ce6c8c10d37cab404f7553076296e0",
+            "statistics": {
+              "amount": 0.00242130750605327,
+              "uncertainty type": 0,
+              "loc": 0.00242130750605327
+            },
+            "target": {
+              "location": "RER",
+              "name": "Sodium hypochlorite, 15% in H2O, at plant",
+              "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "36da0502ffe302daca8b2768d4342cc00283f8b0de18881c4285c3baec71420a",
+            "statistics": {
+              "amount": 0.997578692493947,
+              "uncertainty type": 0,
+              "loc": 0.997578692493947
+            },
+            "target": {
+              "location": "RER",
+              "name": "Sodium hypochlorite, 15% in H2O, at plant",
+              "reference product": "Sodium hypochlorite, 15% in H2O, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "825ca9bda0a037904bd4e2ffe97453c96d3502a5f520d99110dd81783cf75d9f",
+            "statistics": {
+              "amount": 0.006724767900222437,
+              "uncertainty type": 2,
+              "loc": -5.0019578670678975,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "afb6537375c4c235a8f0a8db68d7cc4b200cbe8398372556f161ce1c4473fb02",
+            "statistics": {
+              "amount": 0.024272305714133885,
+              "uncertainty type": 2,
+              "loc": -3.7184192611135756,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "4627f6b8b7dd127025bf39bbbb76ecb8ddc9f25bde6fd0f88ef991c186cb2a04",
+            "statistics": {
+              "amount": 0.0017028517197718877,
+              "uncertainty type": 2,
+              "loc": -6.375450951103034,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "68c4470a7a44767e7ffbbbdfc7c94ba8405effeae271479277146cceeb4aa6fd",
+            "statistics": {
+              "amount": 0.03348646519523198,
+              "uncertainty type": 2,
+              "loc": -3.396613945813738,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "e6d96f6fca1d101f669d130711fd1411ec0aba94291680f906ee992d8c1f1640",
+            "statistics": {
+              "amount": 0.02651360947063981,
+              "uncertainty type": 2,
+              "loc": -3.6300971128894917,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "90a27c5f4fbaf8f1a48a26340868ba2f9803d8ff1be85c91d21f69d2969cfd4a",
+            "statistics": {
+              "amount": 0.0011216174080853525,
+              "uncertainty type": 2,
+              "loc": -6.792983521043559,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "6ff091047938f8bf2fdf095bbfe35607dbdda6eadb90339d01fdffb2c6661948",
+            "statistics": {
+              "amount": 0.054314387068362474,
+              "uncertainty type": 2,
+              "loc": -2.9129661319182207,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "2fd9641932e8347ed4dc44561ee02d5ca4b553d8deded8949677e85f14bbe99e",
+            "statistics": {
+              "amount": 0.00716399552355218,
+              "uncertainty type": 2,
+              "loc": -4.938687419636996,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "active_reference_kg": 1,
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "hypochlorite_boundary_comparison": {
+          "source_primary_chlorine_kg_per_reference": 0.952447874110337,
+          "source_active_NaOH_kg_per_reference": 1.07441948482084,
+          "native_primary_chlorine_kg_per_reference": 0,
+          "native_active_NaOH_kg_per_reference": 0.56,
+          "new_compensation_or_credit": false,
+          "score_effect": "unquantified"
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact3.9cutoff solution-state chemical market screening reconstructions for hydrogen peroxide50%, sodium hypochlorite15% and industrial phosphoric acid85%, per signedkg active chemical. The ecoinvent2013methodology section9.3 identifies active-substance quantity conventions and explains the older v1/v2solution naming; percentages describe supplied concentration rather than an automatic mixture-quantity multiplier. Source positive1kg without-water references have1kg dry active mass. Original native archive references retain the legacy names, positive1kg references and matching chemical identities. Native active-mass phosphoric/caustic conventions were independently inspected in the earlier active-chemical review; equal hydrogen0.0656kg and phosphoric-feed1.02kg/sulphuric-acid0.129kg inputs corroborate the peroxide/phosphoric nominal basis. Apply factor+1, not1/0.50,1/0.15or1/0.85. Keep every original producer share, freight row, signedquantity and supported uncertainty separately, without renormalization; native plants include upstream precursor transport and only original final-product market freight is added. Complete native RER production replaces source regional producer inventories. The hypochlorite correspondence is explicitly a supply-boundary/reagent screening proxy: both descriptions refer to chlorine-emission capture, but source producers record0.952447874110337kg primary chlorine and1.07441948482084kg active NaOH perkg; native records no primary chlorine input and0.56kg active NaOH. Native chemical-plant heat/electricity, allocation, emissions and internal uncertainty also differ. Do not rescale the reference quantity to force a reagent match, invent primary-chlorine/caustic compensation, or introduce an avoided-emission credit. Missing native primary-chlorine burdens can affect scores and the effect is unquantified. Complete RER rail/barge/heavy-lorry and OCE container-shipping services retain originaltonne-km; country/traction/fleet/load/technology, geography, allocation, grade, vintage, biosphere exclusions and internal uncertainty differ. No extra water, density, loss, purity, carbon or concentration multiplier is introduced. Separate caller emissions and carbon-resource exchanges remain unchanged. Only exact independently inspected3.9cutoff is newly approved. The older3.8phosphoric target and factor remain unchanged; its positive active basis is made explicit without changing its delivered data. No new physical source-exchange omission or other-version/consequential/reverse approval is introduced. This batch does not complete pulp heat or steel transformation/export."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "38e4cd2a280bff34cb3db94df0685603cc1fc1fdbcb5ffb0ffd55d5c1f2ca3bb"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7ef361e0dafa8736",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_pulp_heat_solution_markets_review.json",
+      "review_sha256": "4b59a4fa11ec3f84f37b0f571da610c311bf839be316625f4eba383f5b9a2006",
+      "authorization": "Standing autonomous approval of inspected same-product active-reference supply reconstructions and explicit hypochlorite boundary/reagent screening proxy, with limitations logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for phosphoric acid, industrial grade, without water, in 85% solution state",
+            "reference product": "phosphoric acid, industrial grade, without water, in 85% solution state",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "7a42d29a8659e1b7973b7e3167a325d02e6c40a3efc617b4f46636975d4844fc",
+          "nonproduction_count": 6,
+          "name": "market for phosphoric acid, industrial grade, without water, in 85% solution state",
+          "reference product": "phosphoric acid, industrial grade, without water, in 85% solution state",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "4ec3831da262382ef9a2ea29305708be381c830083ebe7cd0a88e011c1f4006c",
+            "statistics": {
+              "amount": 0.826,
+              "uncertainty type": 0,
+              "loc": 0.826
+            },
+            "target": {
+              "location": "RER",
+              "name": "Phosphoric acid, industrial grade, 85% in H2O, at plant",
+              "reference product": "Phosphoric acid, industrial grade, 85% in H2O, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "04a29b2142cc9208661736d685d033753c45b9dbcd36e310736d9b8c929a5992",
+            "statistics": {
+              "amount": 0.174,
+              "uncertainty type": 0,
+              "loc": 0.174
+            },
+            "target": {
+              "location": "RER",
+              "name": "Phosphoric acid, industrial grade, 85% in H2O, at plant",
+              "reference product": "Phosphoric acid, industrial grade, 85% in H2O, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "734e838d0774811c2a38934f269552a8a100733cf6d66afe0375543ab4004ff3",
+            "statistics": {
+              "amount": 0.3091,
+              "uncertainty type": 2,
+              "loc": -1.1740904298440664,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "efc3c2e389f31e16a9057adc43e6933fcd4908dbba9134208f9f1ad202cd3c83",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "03d30d3b3ea5db07cfff1357f0d784fefce3bc1e0514d88ff5ac924c231500b3",
+            "statistics": {
+              "amount": 0.2088,
+              "uncertainty type": 2,
+              "loc": -1.5663784229736533,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "34a2453390a72c43cfd6a0b153e48e4d5695b5eaeadba490372909d742e312b4",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic tanker",
+              "reference product": "Transport, transoceanic tanker",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "active_reference_kg": 1,
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "hypochlorite_boundary_comparison": {
+          "source_primary_chlorine_kg_per_reference": 0.952447874110337,
+          "source_active_NaOH_kg_per_reference": 1.07441948482084,
+          "native_primary_chlorine_kg_per_reference": 0,
+          "native_active_NaOH_kg_per_reference": 0.56,
+          "new_compensation_or_credit": false,
+          "score_effect": "unquantified"
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact3.9cutoff solution-state chemical market screening reconstructions for hydrogen peroxide50%, sodium hypochlorite15% and industrial phosphoric acid85%, per signedkg active chemical. The ecoinvent2013methodology section9.3 identifies active-substance quantity conventions and explains the older v1/v2solution naming; percentages describe supplied concentration rather than an automatic mixture-quantity multiplier. Source positive1kg without-water references have1kg dry active mass. Original native archive references retain the legacy names, positive1kg references and matching chemical identities. Native active-mass phosphoric/caustic conventions were independently inspected in the earlier active-chemical review; equal hydrogen0.0656kg and phosphoric-feed1.02kg/sulphuric-acid0.129kg inputs corroborate the peroxide/phosphoric nominal basis. Apply factor+1, not1/0.50,1/0.15or1/0.85. Keep every original producer share, freight row, signedquantity and supported uncertainty separately, without renormalization; native plants include upstream precursor transport and only original final-product market freight is added. Complete native RER production replaces source regional producer inventories. The hypochlorite correspondence is explicitly a supply-boundary/reagent screening proxy: both descriptions refer to chlorine-emission capture, but source producers record0.952447874110337kg primary chlorine and1.07441948482084kg active NaOH perkg; native records no primary chlorine input and0.56kg active NaOH. Native chemical-plant heat/electricity, allocation, emissions and internal uncertainty also differ. Do not rescale the reference quantity to force a reagent match, invent primary-chlorine/caustic compensation, or introduce an avoided-emission credit. Missing native primary-chlorine burdens can affect scores and the effect is unquantified. Complete RER rail/barge/heavy-lorry and OCE container-shipping services retain originaltonne-km; country/traction/fleet/load/technology, geography, allocation, grade, vintage, biosphere exclusions and internal uncertainty differ. No extra water, density, loss, purity, carbon or concentration multiplier is introduced. Separate caller emissions and carbon-resource exchanges remain unchanged. Only exact independently inspected3.9cutoff is newly approved. The older3.8phosphoric target and factor remain unchanged; its positive active basis is made explicit without changing its delivered data. No new physical source-exchange omission or other-version/consequential/reverse approval is introduced. This batch does not complete pulp heat or steel transformation/export."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f059557a736f21ed8ecae43d3a9109294e0868909e2b70a7fb10e038d3d7d629"
         }
       ]
     }

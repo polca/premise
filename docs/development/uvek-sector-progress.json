@@ -577,6 +577,23 @@
         "unapproved_nested_pulp_heat_correspondences_after": 74,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "Nominal-mass chemical and delivery proxies only; solution-sensitive materials and other inputs remain unresolved. Pulp heat and steel transformation/export incomplete."
+      },
+      "pulp_heat_solution_markets_verification": {
+        "review": "uvek-pulp-heat-solution-markets-review.md",
+        "qualified_correspondences": 3,
+        "new_recipes": 3,
+        "original_source_rows_verified": 27,
+        "reference_basis": "kg active chemical; factor+1",
+        "brightpath_tests_passed": 25,
+        "premise_tests_passed": 2,
+        "signed_finite_composite_lcis": 6,
+        "older_3_8_phosphoric_target_and_quantity_preserved": true,
+        "hypochlorite_boundary_proxy_explicitly_warned": true,
+        "new_source_omissions": 0,
+        "unapproved_nested_pulp_heat_correspondences_before": 74,
+        "unapproved_nested_pulp_heat_correspondences_after": 71,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Stock screening proxies; no source/native LCIA equivalence claim. Full pulp heat, industrial heat and steel transformation/export remain unfinished."
       }
     },
     {
