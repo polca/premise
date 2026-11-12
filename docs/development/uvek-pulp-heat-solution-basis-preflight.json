@@ -1,0 +1,46 @@
+{
+  "status": "preflight_only_no_new_approval",
+  "source_profile": "ecoinvent3.9cutoff",
+  "target_profile": "uvek2026cutoff_with_ecoinvent3.10biosphere",
+  "source_market_count": 3,
+  "source_producer_count": 5,
+  "findings": [
+    {
+      "chemical": "hydrogen peroxide, without water, in50%solution state",
+      "source_key_input_kg_per_reference": {
+        "hydrogen, liquid": 0.0656
+      },
+      "native_key_input_kg_per_reference": {
+        "Hydrogen, liquid, at plant": 0.0656
+      },
+      "interpretation": "Matching hydrogen demand is consistent with a common nominal active-substance basis; the concentration in the name alone is not evidence for multiplying by2. Complete delivery and basis qualification remains pending."
+    },
+    {
+      "chemical": "phosphoric acid, industrial grade, without water, in85%solution state",
+      "source_producer_locations": [
+        "RoW",
+        "RER"
+      ],
+      "source_key_inputs_kg_per_reference": {
+        "phosphoric acid, fertiliser grade, without water, in70%solution state": 1.02,
+        "sulfuric acid": 0.129
+      },
+      "native_key_inputs_kg_per_reference": {
+        "Phosphoric acid, fertiliser grade,70%inH2O, at plant": 1.02,
+        "Sulphuric acid, liquid, at plant": 0.129
+      },
+      "interpretation": "Matching chemical input quantities are consistent with a common nominal active-substance basis, not an automatic1/0.85mixture multiplier. Existing older-version approvals must remain unchanged when this exact profile is qualified."
+    },
+    {
+      "chemical": "sodium hypochlorite, without water, in15%solution state",
+      "source_producer_locations": [
+        "CA-QC",
+        "RoW"
+      ],
+      "source_sodium_hydroxide_without_water_kg_per_reference": 1.07441948482084,
+      "native_sodium_hydroxide_50percent_label_kg_per_reference": 0.56,
+      "interpretation": "Reagent demands differ. Neither1/0.15nor their ratio establishes a reference-unit conversion; technology, allocation and native reference basis require separate qualification."
+    }
+  ],
+  "limitation": "Selected chemical-input comparisons only. They do not prove complete inventory, concentration, allocation or LCIA equivalence, and no mapping or quantity factor is approved by this preflight."
+}
