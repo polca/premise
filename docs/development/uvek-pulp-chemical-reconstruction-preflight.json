@@ -1,0 +1,259 @@
+{
+  "status": "primary_reconstruction_preflight_no_new_approval",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff",
+    "biosphere_version": "3.9"
+  },
+  "target_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_version": "3.10"
+  },
+  "sodium_sulfite": {
+    "source_product": "Na2SO3, pure substance, CAS7757-83-7, positive1kg",
+    "native_candidate": "Sulphite, at plant, RER; original archive reference1kg with SO3(2-) formula/CAS14265-45-3",
+    "native_reference_basis": "Not established as1kgNa2SO3by the original reference definition; no factor1or ionic-mass ratio approved.",
+    "selected_strategy": "Reconstruct complete source producer and market, preserving their explicit sodium-salt reference and original exchanges.",
+    "producer_missing_correspondences": [
+      {
+        "rule_id": "bp-dc071fc3d9a52df4",
+        "source": {
+          "location": "RoW",
+          "name": "market for sulfur dioxide, liquid",
+          "reference product": "sulfur dioxide, liquid",
+          "unit": "kilogram"
+        }
+      }
+    ]
+  },
+  "sulfur_dioxide_market": {
+    "source": {
+      "name": "market for sulfur dioxide, liquid",
+      "reference product": "sulfur dioxide, liquid",
+      "location": "RoW",
+      "unit": "kilogram"
+    },
+    "producer_shares": [
+      {
+        "source": {
+          "name": "primary zinc production from concentrate",
+          "reference product": "sulfur dioxide, liquid",
+          "location": "CA-QC",
+          "unit": "kilogram"
+        },
+        "amount": 0.000487919610247929
+      },
+      {
+        "source": {
+          "name": "trichloropropane production",
+          "reference product": "sulfur dioxide, liquid",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "amount": 0.00512417155023209
+      },
+      {
+        "source": {
+          "name": "primary zinc production from concentrate",
+          "reference product": "sulfur dioxide, liquid",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "amount": 0.180907322146344
+      },
+      {
+        "source": {
+          "name": "sulfur dioxide production, liquid",
+          "reference product": "sulfur dioxide, liquid",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "amount": 0.813480586693176
+      }
+    ],
+    "dedicated_production_share": 0.813480586693176,
+    "coproduct_share": 0.18651941330682403,
+    "final_delivery_rows": 8,
+    "allocated_source_proofs": [
+      {
+        "source": {
+          "name": "primary zinc production from concentrate",
+          "reference product": "sulfur dioxide, liquid",
+          "location": "CA-QC",
+          "unit": "kilogram"
+        },
+        "main_output": {
+          "name": "primary zinc production from concentrate",
+          "reference product": "zinc",
+          "location": "CA-QC",
+          "unit": "kilogram"
+        },
+        "source_nonproduction_rows": 82,
+        "relative_allocation_ratio": 0.12596153846153849,
+        "nonproportional_aggregated_point_flows": 0
+      },
+      {
+        "source": {
+          "name": "trichloropropane production",
+          "reference product": "sulfur dioxide, liquid",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "main_output": {
+          "name": "trichloropropane production",
+          "reference product": "trichloropropane",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_nonproduction_rows": 17,
+        "relative_allocation_ratio": 0.13731656184486374,
+        "nonproportional_aggregated_point_flows": 0
+      },
+      {
+        "source": {
+          "name": "primary zinc production from concentrate",
+          "reference product": "sulfur dioxide, liquid",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "main_output": {
+          "name": "primary zinc production from concentrate",
+          "reference product": "zinc",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_nonproduction_rows": 383,
+        "relative_allocation_ratio": 0.12596153846153846,
+        "nonproportional_aggregated_point_flows": 0
+      }
+    ],
+    "allocated_source_rows_checked": 482,
+    "native_zinc_candidate": {
+      "name": "Zinc, primary, at regional storage",
+      "reference product": "Zinc, primary, at regional storage",
+      "location": "RER",
+      "unit": "kilogram"
+    },
+    "native_zinc_qualification": "Not yet reviewed for reference/grade, source region/technology, allocation, production-versus-storage boundary or native biosphere coverage. Source proportionality alone grants no native mapping.",
+    "trichloropropane_coproduct_direct_reconstruction_pending": [
+      {
+        "rule_id": "bp-1de3542379924d2f",
+        "source": {
+          "location": "RoW",
+          "name": "market for allyl chloride",
+          "reference product": "allyl chloride",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-fc82dcc3d3185026",
+        "source": {
+          "location": "RER",
+          "name": "market for allyl chloride",
+          "reference product": "allyl chloride",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-f8b5075e2170b5e7",
+        "source": {
+          "location": "GLO",
+          "name": "market for sulfuryl chloride",
+          "reference product": "sulfuryl chloride",
+          "unit": "kilogram"
+        }
+      }
+    ],
+    "next_action": "Qualify appropriate native primary-zinc allocation proxies and allyl/sulfuryl chloride backgrounds; retain all four SO2source shares and eight freight rows before compiling sodium sulfite."
+  },
+  "hydrazine": {
+    "selected_strategy": "Direct source reconstruction; no native hydrazine supplier found and the current unrelated-chemical match remains unapproved.",
+    "producer_missing_correspondences": [
+      {
+        "rule_id": "bp-2d2b80140d7f768a",
+        "source": {
+          "location": "CN",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-587a97cfe8d95f2a",
+        "source": {
+          "location": "UN-OCEANIA",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-453788094d436898",
+        "source": {
+          "location": "RAF",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-8d3e02760638dae3",
+        "source": {
+          "location": "SAS",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-1a966b3046a6a915",
+        "source": {
+          "location": "UN-SEASIA",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-48df3f130afafd5c",
+        "source": {
+          "location": "RoW",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-c050583a8ee4b3d7",
+        "source": {
+          "location": "RNA",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        }
+      },
+      {
+        "rule_id": "bp-7b76e4593bdbc136",
+        "source": {
+          "location": "RLA",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        }
+      }
+    ],
+    "next_action": "Inspect eight regional ammonia markets, their production technologies, reference bases and native counterparts before qualification."
+  },
+  "new_approvals": 0,
+  "new_helpers": 0,
+  "new_source_omissions": 0,
+  "limitations": [
+    "All allocation comparisons are point-estimate source observations; no native/source LCIA or uncertainty equivalence is established.",
+    "Primary sulfate/sulfite species and counter-ion reference ambiguities cannot be resolved by name similarity.",
+    "Full pulp/industrial heat and steel export remain unfinished; current direct pulp frontier is46.",
+    "Original source inventory vectors and full original archive records remain private."
+  ]
+}
