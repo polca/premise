@@ -211922,6 +211922,1136 @@
           "fingerprint": "8425a6a3b2016061c235c4b89327574e3c5cc1bf854a18726435d827bd0e0cb5"
         }
       ]
+    },
+    {
+      "rule_id": "bp-6501bd73396374f4",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_small_heat_mix",
+      "review_path": "export/uvek_steel_39_small_heat_review.json",
+      "review_sha256": "8f55c8165ad078cf09de31490bd183a0ac13d3df847623cc8da5be04d3c2a4db",
+      "authorization": "Standing autonomous approval of inspected full heat-service reconstructions and explicit screening proxies; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for heat, central or small-scale, other than natural gas",
+            "reference product": "heat, central or small-scale, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "15970621a9891b077058b86c4d7ad8d337996f93d1f23314ef1b9ada27750e51",
+          "nonproduction_count": 52
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "heat production, wood pellet, at furnace 9kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5eac4f49bc52a7023f054543480a8c6705df9e448d5a89b99c2dcbd46c3f4ecb",
+            "nonproduction_count": 51
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "US-TRE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9279a18ba33f8b488583f2dd1a62944dec6fa7aeb8bd88ca64033ab8695e6cb1",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat production, light fuel oil, at boiler 10kW condensing, non-modulating",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "405d40f4140190a281724a34cd4fc3e1740a64155a9bff2b99026ecec791db6b",
+            "nonproduction_count": 48
+          },
+          {
+            "identity": {
+              "name": "heat production, wood chips from industry, at furnace 50kW, state-of-the-art 2014",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "88eec491d3905be8c704c8b16ae7419d694026c996fd1a8e02809e5a8938b193",
+            "nonproduction_count": 54
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "US-HICC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "017a324e20baaeb1a35cee75293b3ad0855a10664134ee0c9b26eb2913ec4bb6",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "US-MRO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "82030397e0743137204df74137932af63f5945cc9ca999501dd59a80a52aebe5",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat production, mixed logs, at furnace 100kW, state-of-the-art 2014",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "09b0a886061b4e594d6587ce8d31c3b676b299d4cef46f9bbcc6339bf88d0e24",
+            "nonproduction_count": 56
+          },
+          {
+            "identity": {
+              "name": "heat production, mixed logs, at wood heater 6kW, state-of-the-art 2014",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c44666804b0c60990b4c9d07f295470b3e7fe6f77f61e09594e4266614a842d6",
+            "nonproduction_count": 48
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "US-NPCC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3966869955929cc78e6f790e7829e2c7e42a93ac618c1969382707c2ed74f0bf",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat production, mixed logs, at furnace 100kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5647ae4d78108a538dedc750a4b3aa17a631ddd3985b67957ebcda2719b7fd48",
+            "nonproduction_count": 56
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "US-RFC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "79e08a62b2a6425e8116f5724e332b83cd712eb2bb3778ee50a0b61dea1d5be0",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "883b58e8735761672d8beb83b385a02f581ec0df75058214a976cc3040b30c76",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "US-WECC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "dab08eb40e6e9b93ecce4503bf06b67579ee07f18c46ae06a9824c30a49ef720",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat production, mixed logs, at furnace 30kW, state-of-the-art 2014",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "01565999ad0cf94391e1bedc114739a42f9b084f4574a4874652f35e9d989d22",
+            "nonproduction_count": 56
+          },
+          {
+            "identity": {
+              "name": "heat production, hardwood chips from forest, at furnace 50kW, state-of-the-art 2014",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9c9aab905811bbf2e7c7aaf33975e7d83e4a48877bdefa851b14ae575c153815",
+            "nonproduction_count": 56
+          },
+          {
+            "identity": {
+              "name": "heat production, wood pellet, at furnace 25kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a9f447eef0474b916a99f39b4bdc8d2bb1242e0cb787731cbee60adab67ea14b",
+            "nonproduction_count": 54
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "US-SERC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a22caa373498bb2e0afd89de15db9b20562594bb81fa64dba36ed1459d8d3d56",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat production, at heat pump 30kW, allocation exergy",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "4c8014f28727d4e1cfddd3d2c4caaa63be177174028a9521b53f17dc8e4c8c1a",
+            "nonproduction_count": 8
+          },
+          {
+            "identity": {
+              "name": "operation, solar collector system, Cu flat plate collector, one-family house, for combined system",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "85ffd1f5b1586243beb225ace31a242d16d13d01fe0467de7cea48e434bfdb76",
+            "nonproduction_count": 3
+          },
+          {
+            "identity": {
+              "name": "heat production, hard coal coke, stove 5-15kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "820469b0b8e3ae5734ebde81698fefe02ca048fe30ee4742de604ed292ce8db3",
+            "nonproduction_count": 76
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "MX",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "30ca4cee59f1d764863909268930670e30825f02a9e9f5ea00dcab30a75f7dad",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat production, light fuel oil, at boiler 100kW, non-modulating",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "917a79e505960b87bfdd91d6ccad79f71f3f38358c44ed889a2befebe110fac2",
+            "nonproduction_count": 47
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "MY",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9f87ed5b55b79533825d458faa08a8c097f635ee161cdc0408c250e440de764a",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "KR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3d885ded417e5eca991082af00ac97b420ea1a654628ea18a5510fa90d4d39c5",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat production, wood pellet, at furnace 9kW, state-of-the-art 2014",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f1488d57a17776c6bedb417779d375a811062bffca867d5ed83469564dc7207c",
+            "nonproduction_count": 51
+          },
+          {
+            "identity": {
+              "name": "heat production, softwood chips from forest, at furnace 50kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e207faa556883e01a5bd396754361a90b3d0acb872b0e2fde07eaa6b2515b9c8",
+            "nonproduction_count": 56
+          },
+          {
+            "identity": {
+              "name": "operation, solar collector system, Cu flat plate collector, multiple dwelling, for hot water",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6743b219edd92cfd3369da81f9ec57e2f57f19b8c37a7efd5b87ea8f3e29710f",
+            "nonproduction_count": 11
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "IR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ac0924da5d9ae91336d2a85cec53fd570bde646338a102b3224f19d4f031c86d",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat production, light fuel oil, at boiler 10kW, non-modulating",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0a87ec262a7eb448d53e5180b02bcf1e3b632fb535da4bd523d30684e7839b14",
+            "nonproduction_count": 47
+          },
+          {
+            "identity": {
+              "name": "heat production, wood pellet, at furnace 300kW, state-of-the-art 2014",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1bb2e76c6d8018488052d835ffa151eed38ce594423f4cded2c577f3405fcc42",
+            "nonproduction_count": 54
+          },
+          {
+            "identity": {
+              "name": "heat production, lignite briquette, at stove 5-15kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ac39aa87de0f817274c7aa12d7c25fce0a1b4ee0cb99048e26a5528dcaabadf4",
+            "nonproduction_count": 76
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "TR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "4c84aecf4ea640ce11bc5c1a3d4e24670a053f8f6a921993fdb195c1606d55e9",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "TH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "cc00c8e6b3aadc16f01c9308872222352d1431dfc196760e3c751ead34ec4f50",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "operation, solar collector system, Cu flat plate collector, one-family house, for hot water",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3c44e426ade38f7380ba2c34260155acd099603c6030e6cb11ed58ed5b2c9943",
+            "nonproduction_count": 3
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "PE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "20936bcd6038d0da33f01776b2b01ebb1a000be43e2451591748d594286044f0",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "operation, solar collector system, evacuated tube collector, one-family house, for combined system",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "972c51b957fe540a25fe273e32f5ad0babc27779c505444313136d39ba728cd0",
+            "nonproduction_count": 3
+          },
+          {
+            "identity": {
+              "name": "heat production, hard coal briquette, stove 5-15kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "64ce9f22fbac3d76b16b9591405b5fb96822a4d7540274ca72822183f47e94d1",
+            "nonproduction_count": 76
+          },
+          {
+            "identity": {
+              "name": "heat production, hardwood chips from forest, at furnace 50kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ff40299d1300a7f3159a3a07a3ebc21e3d62a5febcc57d205c22dfc565d60acc",
+            "nonproduction_count": 56
+          },
+          {
+            "identity": {
+              "name": "treatment of stalk, in wood heater 6kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "IN",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f4fe6a6c442db29891d598d2a10b309fd96dc5eb9e822783f38712fbc2f5a48d",
+            "nonproduction_count": 43
+          },
+          {
+            "identity": {
+              "name": "operation, solar collector system, Cu flat plate collector, one-family house, for combined system",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9f0c802eb2845fa1ca0ea06586f298620318dba45e5de66a37727af6a6f30518",
+            "nonproduction_count": 11
+          },
+          {
+            "identity": {
+              "name": "heat production, light fuel oil, at boiler 100kW condensing, non-modulating",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "32aedbad084fd98fbb190fb9ace7f2677b1791859451913fd26b940c6cfc857e",
+            "nonproduction_count": 48
+          },
+          {
+            "identity": {
+              "name": "operation, solar collector system, Cu flat plate collector, one-family house, for hot water",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7fae957b89bafc106e4dd25cbfece6c76b466b31f2dec146c7c844710425f0fa",
+            "nonproduction_count": 11
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "TW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a1ef29403eb66832825b8186a25898e6e948aa807b221bc729b067e7450bc724",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "operation, solar collector system, evacuated tube collector, one-family house, for combined system",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "480267945e31bfccdce11321a1a1bf1365292838008c992b93166bc27f4ebb95",
+            "nonproduction_count": 11
+          },
+          {
+            "identity": {
+              "name": "heat production, wood chips from industry, at furnace 50kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "285ab8606ab32115ce74e76c12049226f65b35776ca8dc26d03c613f77606882",
+            "nonproduction_count": 54
+          },
+          {
+            "identity": {
+              "name": "heat and power co-generation, biogas, gas engine",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "AU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "63bb40bfb4f56c6c65e9a0aed14687d9d337a8466d86b3b51ccdb0190bb151d6",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "heat production, wood pellet, at furnace 25kW, state-of-the-art 2014",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0a2cc15acfb8d17275512756338d279d2cdbe12ab5f70bf424738d85ad0095e9",
+            "nonproduction_count": 54
+          },
+          {
+            "identity": {
+              "name": "operation, solar collector system, Cu flat plate collector, multiple dwelling, for hot water",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e4b498af8376e0e783b89a30c2433bb9c09745361fd2d11400c52e0d3a77f9e9",
+            "nonproduction_count": 3
+          },
+          {
+            "identity": {
+              "name": "heat production, softwood chips from forest, at furnace 50kW, state-of-the-art 2014",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f0e62ff32867b9d9ea54585f48da7612091b5623d3e6a4c6f54366f3acb71be6",
+            "nonproduction_count": 56
+          },
+          {
+            "identity": {
+              "name": "heat production, anthracite, at stove 5-15kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b064529bdc2f56e8988b8649a644398aecaf2aea1900f5ed7be9ee1b513e903c",
+            "nonproduction_count": 83
+          },
+          {
+            "identity": {
+              "name": "heat production, mixed logs, at wood heater 6kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7500a16423ec18c43b607100cd9955f3814f5fec833096b50659b1c230364868",
+            "nonproduction_count": 48
+          },
+          {
+            "identity": {
+              "name": "heat production, wood pellet, at furnace 300kW",
+              "reference product": "heat, central or small-scale, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "27dbfdc3a6b1bb0bc81aa7bc4bf8f72e0ad5970028d85a15c28b3009f820a57d",
+            "nonproduction_count": 54
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, wood pellets, at furnace 15kW",
+              "reference product": "Heat, wood pellets, at furnace 15kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8a3b6fc853fdff266df21668f8997112fc8ebc3fb75d4cb01a07d3eddb6b1459",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, at cogen with biogas engine, allocation exergy",
+              "reference product": "Heat, at cogen with biogas engine, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "aee71f4c4778a20db0d5632936fa572540ad147e73888d40994457f3669715f3",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+              "reference product": "Heat, light fuel oil, at boiler 10kW condensing, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0325e56aa8bb259c67165cb868997d96bf0b2a62e9528ff39da19419b2540666",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, mixed chips from industry, at furnace 50kW",
+              "reference product": "Heat, mixed chips from industry, at furnace 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "63631e782bb4908c61b354b06eaa5f1bee3614b14fc62ad85cc78d9e722956a2",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, mixed logs, at furnace 50kW",
+              "reference product": "Heat, mixed logs, at furnace 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5b80f7830c5e9ecef39ed9c523a011be518dd5a23e7111ccf7e27cabb2021a5d",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, mixed logs, at wood heater 6kW",
+              "reference product": "Heat, mixed logs, at wood heater 6kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "be30d0a1ab217463d1245148bde501725e4c9cea85c9dfa52d19541f692c430b",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, hardwood chips from forest, at furnace 50kW",
+              "reference product": "Heat, hardwood chips from forest, at furnace 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0c15ff406f9461508f7fac813e05990ab27a261bf755ee4f35810db38818c770",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, wood pellets, at furnace 50kW",
+              "reference product": "Heat, wood pellets, at furnace 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9242a45da958ec640ce2cbc9f08614c3aa56d55ea08697d1ee2b56655c103984",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, at heat pump 30kW, allocation exergy",
+              "reference product": "Heat, at heat pump 30kW, allocation exergy",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0f227028ab0cc2622f59de40ef00e117da3266096cc38cd1c074c35fd326d685",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "CA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f7a502abdf3c89f3cfb393a22e3dcd93df38748f601b8df1c4d771ca3c2be87f",
+            "nonproduction_count": 6
+          },
+          {
+            "identity": {
+              "name": "xxx Solar system, flat plate collector, one-family house, combined system",
+              "reference product": "xxx Solar system, flat plate collector, one-family house, combined system",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ffe99a56659e2b8f9aab61c6edc37ae9f530333601abbcfd6d12f153e520c20e",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Heat, hard coal coke, at stove 5-15kW",
+              "reference product": "Heat, hard coal coke, at stove 5-15kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ffaea59f51d07f72e36e539d1d321505c54bd4e9770d690984c6b303be6f88e1",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+              "reference product": "Heat, light fuel oil, at boiler 100kW, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d02af4028b77dcb6f1023b48afd531420fabd0d056513deabf630a9a6ed934da",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, softwood chips from forest, at furnace 50kW",
+              "reference product": "Heat, softwood chips from forest, at furnace 50kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9001d9edd4adb6d8e5227b17a1aea89cfd825b63e8edd2c9c5bd0b7289fe42eb",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RU",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "982a7b27217ab4454afc2fdc8986222ef81b4cc1e5607e2298c5cd7e096aaa5c",
+            "nonproduction_count": 6
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "US",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6e3916cfed659143bf7ef08108bbe60bb22eefd562976bc480f8496ce7a178bb",
+            "nonproduction_count": 6
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RAF",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "eb5a0f45ac7d10530c6f76435f061b79ea66ff107e57bf0edaaf754b683348d5",
+            "nonproduction_count": 6
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "AU",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8baa133acd21e5f0d1abc898723406e9bea489b131ad27c52db2d4efdfcef31f",
+            "nonproduction_count": 6
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RLA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1b5555572eb5610a87e4fefef7a5467a12674e168da9351ff6cf0380c4fd1697",
+            "nonproduction_count": 6
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "72e2caf3a427e4922fcd7fa0151dcaac81ca8dd4ac1b208291253bd2cf1932dc",
+            "nonproduction_count": 6
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "RAS",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "bdc87f8aad0e2042c69a11b1c531123c1349e0d206ea2918e7781639657e6299",
+            "nonproduction_count": 6
+          },
+          {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "NZ",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "530c7a73696d503ba99d820cdcca9c96f7e2d85c1b97d584519088464e422135",
+            "nonproduction_count": 6
+          },
+          {
+            "identity": {
+              "name": "xxx Solar system, flat plate collector, multiple dwelling, hot water",
+              "reference product": "xxx Solar system, flat plate collector, multiple dwelling, hot water",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "88bf1207151d9af515da046d3df5d961be95b686718737886fb0b74411561d8e",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+              "reference product": "Heat, light fuel oil, at boiler 10kW, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "de96b40e0473f2bf3e2874d5ac5158e538dce45a152839326b32e2e59533b52f",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, wood pellets, at furnace 300kW",
+              "reference product": "Heat, wood pellets, at furnace 300kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "dba6385216b555b1e966863cadbfda68795f166231b5af5396f23e8b01c70e95",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "xx Heat, lignite briquette, at stove 5-15kW",
+              "reference product": "xx Heat, lignite briquette, at stove 5-15kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "83d8386c5679f693fe9b37c41b3ae50849938ec2b6f08ca24be62f55f1dd3e15",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "xxx Solar system, flat plate collector, one-family house, hot water",
+              "reference product": "xxx Solar system, flat plate collector, one-family house, hot water",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "31afe711847494811914e8cbf7475101ac618ce68e7ddaece430f3ddf4a8906f",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "xxx Solar system with evacuated tube collector, one-family house, combined system",
+              "reference product": "xxx Solar system with evacuated tube collector, one-family house, combined system",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ea2c5fb91ff98cc27e953a57099666704ad927771f27af50e1779e4a9f315ba7",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Heat, hard coal briquette, at stove 5-15kW",
+              "reference product": "Heat, hard coal briquette, at stove 5-15kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "4711fe72ed64a39b27f1dcda3168040dd09575976ef01f9283e00d417ba20902",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+              "reference product": "Heat, light fuel oil, at boiler 100kW condensing, non-modulating",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a3f1b80f73367c5e886d309ebe943bfa4d995190f00dbba562fd7690d467dbd0",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "xx Heat, anthracite, at stove 5-15kW",
+              "reference product": "xx Heat, anthracite, at stove 5-15kW",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "448a6b5674f3487cf6eb206730c7945b6ed6eb4a67b2c6dc48223c82aac9b3db",
+            "nonproduction_count": 1
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Retain all52 original positive source small-scale non-gas heat supplier shares, including tiny solar shares, without renormalization or omissions. Use native anthracite, coal/lignite briquette, coke, oil boiler, wood heat, heat-pump and biogas CHP counterparts per1MJ output. Native capacities replace9kWpellet with15kW,25kWpellet with50kW,30/100kWlogs with50kW; do not claim equal-size plants or preserve2014emission performance. Stalk branch (0.0006264488297394893MJ/MJ) uses complete native6kWmixed-log heat as explicit feedstock proxy: source has positive-input jute/kenaf stalk supply, not an avoided-treatment credit. Agricultural allocation/supply, carbon/ash composition, moisture, combustion emissions, forest land use and ash fate differ, with unquantified score effects; no fuel-mass/CO2 correction or credit invented. Solar operation is reconstructed separately for each of8source profiles, retaining original electricity rows, complete collector-system fraction, solar-energy resource and supported uncertainty. Exact native legacy collector areas12.3/58.3/4/10.5m2 match source; auxiliary heating excluded. No area/lifetime/yield scaling, gas backup, extra storage or inferred losses. Canadian provincial electricity uses native CA; other available country grids retained, GLO only where source country unavailable. Native generation technology, allocation, climate, plant design, geography, vintage, internal uncertainty and biosphere exclusions remain screening differences. Preserve caller signs, quantity, formulas, uncertainty and separate exchanges; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0a8da313fbc8852fc15ba8f913c04a17e470933572a80c3fe3d78a046e9c0ad2"
+        }
+      ]
     }
   ],
   "superseded_operations": [

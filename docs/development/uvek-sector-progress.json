@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "retained_biosphere_and_36_of_initial_52_correspondences_verified_16_preparation_cases_and_transformation_unfinished",
+      "status": "retained_biosphere_and_37_of_initial_52_correspondences_verified_15_preparation_cases_and_transformation_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -363,7 +363,8 @@
       "tests": [
         "Fifteen remaining-supply approvals pass strict fresh/cache/withdrawal checks; native targets pass30signedfiniteLCIs across13distinct suppliers. Actual REMIND retained preparation now has18unapproved correspondences, downfrom33. Complete historical3.8coal selection unchanged; steel transform/export still unfinished.",
         "Exact3.9regionalgas extension reuses existing36MJ/m3 recipe;10Brightpath checks and strict Premise cache/withdrawal test pass. Complete3.6and3.12selected resources identical. Actual REMIND retained preparation has17pending correspondences; three heat portfolios independently traced but unapproved.",
-        "Natural-gas heat production mix retains104supplier contributions and80.043%CHPshare using36native producers with no direct district-delivery inputs.9Brightpath checks and strict Premise cache/withdrawal pass; composite signedLCIsfinite. Actual REMIND steel preparation has16pending cases; transformation/export unverified."
+        "Natural-gas heat production mix retains104supplier contributions and80.043%CHPshare using36native producers with no direct district-delivery inputs.9Brightpath checks and strict Premise cache/withdrawal pass; composite signedLCIsfinite. Actual REMIND steel preparation has16pending cases; transformation/export unverified.",
+        "Small non-gas heat mix retains52supplier shares with8pure-solar operation helpers and31native suppliers.9Brightpath checks and strict Premise cache/withdrawal pass; recursive signedLCIs include direct solar resource. Actual REMIND retained steel preparation has15pendingcases; full transformation/export unverified."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -391,7 +392,7 @@
       },
       "latest_actual_preparation_frontier": {
         "verification": "docs/development/uvek-steel-current-preparation-frontier.json",
-        "pending_correspondences": 16,
+        "pending_correspondences": 15,
         "public_update_or_export_verified": false
       },
       "first_four_prerequisites": "docs/development/uvek-steel-39-first-prerequisite-verification.json",

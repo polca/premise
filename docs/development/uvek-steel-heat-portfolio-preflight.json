@@ -1,5 +1,5 @@
 {
-  "status": "source_portfolios_verified_natural_gas_mapping_qualified_other_two_unapproved",
+  "status": "source_portfolios_verified_natural_gas_and_small_heat_mappings_qualified_industrial_other_fuels_unapproved",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -165,6 +165,6 @@
   "mapping_qualification": {
     "bp-5a3b5a4a13938317": "Reviewed native production-side mix; see uvek-steel-ng-heat-review.md. This does not qualify the full steel update.",
     "bp-daa9398e0257c1a7": "Unapproved; preserve non-gas fuel and CHP portfolio before enabling.",
-    "bp-6501bd73396374f4": "Unapproved; preserve anthracite/other fuel and heating-technology portfolio before enabling."
+    "bp-6501bd73396374f4": "Reviewed full small-heat mix with pure solar reconstructions and documented screening proxies; see uvek-steel-small-heat-review.md. Full steel update remains unqualified."
   }
 }

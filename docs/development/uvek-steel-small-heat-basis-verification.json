@@ -1,0 +1,59 @@
+{
+  "status": "verified_legacy_collector_fields_are_nonempty_and_match_source_areas",
+  "systems_checked": 4,
+  "source_and_native_areas_m2": [
+    12.3,
+    58.3,
+    4.0,
+    10.5
+  ],
+  "source_stalk_market_reference": 1,
+  "source_stalk_producer_references": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "stalk_credit_created_or_omitted": false,
+  "stalk_proxy": "Complete native mixed-log6kWheat replaces source jute/kenaf-stalk heat; feedstock and emission differences remain unquantified.",
+  "collector_components": [
+    {
+      "system": "xxx Solar system, flat plate collector, one-family house, combined system",
+      "collector": "xxx Flat plate collector, at plant",
+      "collector_unit": "square meter",
+      "collector_reference_amount": 1,
+      "collector_area_m2": 12.3,
+      "collector_nonproduction_exchanges": 29,
+      "has_nonzero_inventory": true
+    },
+    {
+      "system": "xxx Solar system, flat plate collector, multiple dwelling, hot water",
+      "collector": "xxx Flat plate collector, at plant",
+      "collector_unit": "square meter",
+      "collector_reference_amount": 1,
+      "collector_area_m2": 58.3,
+      "collector_nonproduction_exchanges": 29,
+      "has_nonzero_inventory": true
+    },
+    {
+      "system": "xxx Solar system, flat plate collector, one-family house, hot water",
+      "collector": "xxx Flat plate collector, at plant",
+      "collector_unit": "square meter",
+      "collector_reference_amount": 1,
+      "collector_area_m2": 4.0,
+      "collector_nonproduction_exchanges": 29,
+      "has_nonzero_inventory": true
+    },
+    {
+      "system": "xxx Solar system with evacuated tube collector, one-family house, combined system",
+      "collector": "Evacuated tube collector, at plant",
+      "collector_unit": "square meter",
+      "collector_reference_amount": 1,
+      "collector_area_m2": 10.5,
+      "collector_nonproduction_exchanges": 31,
+      "has_nonzero_inventory": true
+    }
+  ],
+  "limitation": "Selected collector core components checked, not an independent audit of every upstream native inventory."
+}

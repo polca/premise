@@ -7,11 +7,11 @@
     "system_model": "cutoff",
     "biosphere_version": "3.10"
   },
-  "pending_correspondences": 16,
-  "previous_pending": 17,
+  "pending_correspondences": 15,
+  "previous_pending": 16,
   "cleared_this_batch": 1,
   "diagnostic_guard_bypass": "Steel support gate only; strict migration validation retained.",
-  "private_audit_receipt": "4b3dc5fe5ceba74acd131aa197a3c4e8717f47a64a7448b4b99cbb08c05f5117.audit.json.gz",
+  "private_audit_receipt": "1660fad0c2a3f9955678f81555c449f278b003002ef75f123068582eb834045e.audit.json.gz",
   "scope_limitation": "This is the current retained ecoinvent3.9 steel preparation cohort; later cohorts and sector transformation may reveal additional issues. Suggested targets are unapproved, not scientifically endorsed.",
   "cases": [
     {
@@ -171,22 +171,6 @@
         "unit": "kilogram"
       },
       "category": "ferrosilicon_reconstruction"
-    },
-    {
-      "rule_id": "bp-6501bd73396374f4",
-      "source": {
-        "location": "RoW",
-        "name": "market for heat, central or small-scale, other than natural gas",
-        "reference product": "heat, central or small-scale, other than natural gas",
-        "unit": "megajoule"
-      },
-      "unapproved_suggested_target": {
-        "location": "CH",
-        "name": "Heat, from natural gas",
-        "reference product": "Heat, from natural gas",
-        "unit": "megajoule"
-      },
-      "category": "fuel_and_heat_boundary"
     },
     {
       "rule_id": "bp-d81a08e7cd9ce632",

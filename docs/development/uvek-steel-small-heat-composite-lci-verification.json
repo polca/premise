@@ -1,0 +1,13 @@
+{
+  "recipes_traversed": 9,
+  "root_supplier_shares": 52,
+  "native_suppliers": 31,
+  "direct_biosphere_flows": 1,
+  "direct_solar_energy_MJ_per_MJ": 1.3977442788456373e-05,
+  "signed_finite_composite_LCIs": 2,
+  "exact_sign_reversal": true,
+  "source_activities": 11947,
+  "source_modified_unchanged": true,
+  "review_sha256": "8f55c8165ad078cf09de31490bd183a0ac13d3df847623cc8da5be04d3c2a4db",
+  "limitation": "Recursive nominal recipe demand and direct solar resource checked. Does not establish equal technology/LCIA or completed steel export."
+}
