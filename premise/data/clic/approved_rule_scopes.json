@@ -246777,6 +246777,123 @@
           "fingerprint": "60afe3f171e3b2876f3bda27e3d4f49ba6c55e0c8968848e12f2314b5ecca7ad"
         }
       ]
+    },
+    {
+      "rule_id": "bp-b03f1fe5a9169a5f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_auxiliary_market",
+      "review_path": "export/uvek_pulp_heat_bark_market_review.json",
+      "review_sha256": "f575ef52e8544c0467c903c4029ca8490dc375fe358497848c933a5865675129",
+      "authorization": "Standing autonomous approval of independently inspected same-product and same-stage bark co-product supply reconstruction, with geographic, allocation and inventory limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for bark chips, wet, measured as dry mass",
+          "reference product": "bark chips, wet, measured as dry mass",
+          "location": "CA-QC",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for bark chips, wet, measured as dry mass",
+            "reference product": "bark chips, wet, measured as dry mass",
+            "location": "CA-QC",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1
+          ],
+          "inventory_sha256": "2aef7b4e396387c6e2f0aa47e508828025deb1768f16c0727ed0ff0b0e0d7c1b",
+          "nonproduction_count": 4
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "889286ddb2920ce5c4f976836f6de154822d82f0a02ca59202114ab66c36fe25",
+            "statistics": {
+              "amount": 0.1944600793287361,
+              "uncertainty type": 0,
+              "loc": 0.1944600793287361
+            },
+            "target": {
+              "name": "Bark chips, hardwood, wet, measured as dry mass, at sawmill",
+              "reference product": "Bark chips, hardwood, wet, measured as dry mass, at sawmill",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "84d134ac55ea9af2837279ce78239bee5f71c18d4a5192a0ab4e6a784ee76fcb",
+            "statistics": {
+              "amount": 6.512909795910207e-05,
+              "uncertainty type": 0,
+              "loc": 6.512909795910207e-05
+            },
+            "target": {
+              "name": "Bark chips, wet, from soft fibreboard production, from wet & dry processes, measured as dry mass, at plant",
+              "reference product": "Bark chips, wet, from soft fibreboard production, from wet & dry processes, measured as dry mass, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "7cbd7efbe4bd78b9af11e94990fb6fc4a0edb5a804ae31bb7d9805692cf8a425",
+            "statistics": {
+              "amount": 0.8054747915733048,
+              "uncertainty type": 0,
+              "loc": 0.8054747915733048
+            },
+            "target": {
+              "name": "Bark chips, softwood, wet, measured as dry mass, at sawmill",
+              "reference product": "Bark chips, softwood, wet, measured as dry mass, at sawmill",
+              "location": "RER",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "4e3f9ea96ca1e8a282f5e73035aaea664b6107c7e0bbe51dd43762bbace7d527",
+            "statistics": {
+              "amount": 0.12,
+              "uncertainty type": 2,
+              "loc": -2.120263536200091,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "quantity_basis": "kg bark measured as dry mass"
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff Quebec bark market reconstruction per signed kilogram measured as dry mass. Preserve all three producer shares separately: hardwood sawmill bark, softwood sawmill bark and allocated bark from soft fibreboard production using wet/dry processes. Use the corresponding complete native RER hardwood/softwood sawmill and soft-fibreboard bark co-product inventories, not full fibreboard output or an all-hardwood bark substitute. All source/native reference outputs are positive1kg measured as dry mass, factor+1. Source wet mass2.4kg per drykg does not justify a wet-mass multiplier. Native allocated inventories retain their own allocation, wood/energy/resource uptake and emission models; do not reallocate, add main-board burdens or an avoided-product credit. RER is a geographic screening proxy for Quebec. Species within the hardwood/softwood class, mill yields, allocation, wet/dry process mix, density/moisture, carbon, energy, infrastructure, vintage, native biosphere exclusions and internal uncertainty can differ, with unquantified score effects. Original final-product lorry tonne-km, signed quantities and supported uncertainty/formulas remain unchanged. Native precursor transport is inside production; original market final delivery is added once, using the complete RER fleet service with geographic/fleet/load/fuel/standard warnings and no extra diesel or empty-return multiplier. Separate caller emissions and carbon-resource exchanges remain unchanged. No source exchange is omitted, no carbon/energy/moisture correction is invented, and no main-product or co-product quantities are renormalized. Only independently inspected exact3.9cutoff Quebec bark qualifies. RoW pulp/paper bark, window-frame pellet co-products and residual-wood transformations remain unapproved; no other source version or consequential/reverse route is inferred. Full pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "df9a0a99331a4037e70f4c383985bacdb07fcc856fecea1459df854114c0547b"
+        }
+      ]
     }
   ],
   "superseded_operations": [

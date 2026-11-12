@@ -671,6 +671,22 @@
         "unapproved_nested_pulp_heat_correspondences_after": 54,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "DE/SE species and RER sawmill geographic proxies. Dry kg and solid-under-bark volume preserved; density/carbon/score equivalence is not claimed. Full pulp heat and steel export unfinished."
+      },
+      "pulp_heat_bark_market_verification": {
+        "review": "uvek-pulp-heat-bark-market-review.md",
+        "verification": "uvek-pulp-heat-bark-market-verification.json",
+        "source_profile": "ecoinvent 3.9 cutoff",
+        "markets": 1,
+        "preserved_source_market_rows": 4,
+        "native_suppliers": 4,
+        "signed_finite_LCIs": 10,
+        "brightpath_tests_passed": 12,
+        "premise_tests_passed": 1,
+        "new_helpers": 1,
+        "new_source_omissions": 0,
+        "unapproved_nested_pulp_heat_correspondences_after": 53,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "RER geographic proxy for Quebec; native hardwood/softwood sawmill and allocated soft-fibreboard bark boundaries retained. RoW pulp/paper bark, pellets and residual wood remain unapproved. Steel export unfinished."
       }
     },
     {
