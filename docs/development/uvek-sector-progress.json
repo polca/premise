@@ -1757,8 +1757,31 @@
         "dedicated_PCC_missing_correspondences_before": 4,
         "dedicated_PCC_missing_correspondences_after": 0,
         "new_source_omission_approvals": 0,
-        "original_pulp_heat_frontier_unchanged": 51,
-        "limitation": "Dedicated producer passes; complete PCC background market and steel export remain unfinished."
+        "limitation": "Dedicated producer passes; complete PCC background market and steel export remain unfinished.",
+        "pulp_heat_missing_correspondences_at_last_prior_probe": 51,
+        "pulp_probe_rerun_at_that_stage": false
+      },
+      "PCC_complete_market_verification": {
+        "review": "uvek-pcc-market-review.md",
+        "verification": "uvek-pcc-market-verification.json",
+        "new_exact_3_9_scopes": 1,
+        "new_helpers": 2,
+        "unchanged_recipe_dependencies": 29,
+        "all_source_producer_shares_retained": 3,
+        "all_source_final_delivery_rows_retained": 10,
+        "dedicated_producer_rows_retained": 43,
+        "brightpath_tests_passed": 13,
+        "premise_tests_passed": 2,
+        "related_regressions_passed": 43,
+        "signed_finite_composite_LCIs": 2,
+        "native_suppliers": 113,
+        "direct_biosphere_identities": 157,
+        "inherited_literal_omission_events": 46,
+        "new_source_omission_approvals": 0,
+        "pulp_heat_missing_correspondences_before_two_batches": 51,
+        "pulp_heat_missing_correspondences_after_two_batches": 49,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Exact3.9PCCbackground market complete; remaining49pulp-heat mappings and steel scenario transformation/export remain unfinished."
       }
     },
     {

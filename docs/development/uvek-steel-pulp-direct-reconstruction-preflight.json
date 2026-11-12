@@ -1,5 +1,5 @@
 {
-  "status": "direct_reconstruction_incomplete_energy_dependencies_reviewed",
+  "status": "direct_reconstruction_incomplete_PCC_and_Quebec_gas_market_reviewed",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -14,16 +14,14 @@
   },
   "inventories_probed": 5,
   "purpose": "Test direct reconstruction of the five pulp-mill heat coproduct inventories without inferring pulp moisture or a generic combustion proxy. All source signed exchanges and resource-compartment carbon correction remain in the probe.",
-  "unapproved_nested_correspondences": 51,
+  "unapproved_nested_correspondences": 49,
   "unapproved_reference_product_families": {
     "bark chips, wet, measured as dry mass": 1,
     "biogas": 1,
-    "calcium carbonate, precipitated": 1,
     "chemical, organic": 1,
     "dithiocarbamate-compound": 1,
     "fatty alcohol": 1,
     "green liquor dregs": 1,
-    "heat, district or industrial, natural gas": 1,
     "hydrazine": 1,
     "lime": 1,
     "lubricating oil": 1,
@@ -67,5 +65,8 @@
   "limestone_review": "uvek-pulp-heat-limestone-review.md",
   "biomethanol_review": "uvek-pulp-heat-biomethanol-review.md",
   "PCC_reconstruction_preflight": "uvek-pcc-reconstruction-preflight.json",
-  "PCC_decarbonised_water_review": "uvek-pcc-decarbonised-water-review.md"
+  "PCC_decarbonised_water_review": "uvek-pcc-decarbonised-water-review.md",
+  "PCC_market_review": "uvek-pcc-market-review.md",
+  "PCC_last_four_review": "uvek-pcc-last-four-review.md",
+  "latest_probe": "Actual five normalized source3.9pulp-heat inventories; strict correspondence approvals retained. Two newly cleared direct contexts are RoW PCC and CA-QC production gas-heat market. Missing correspondences remain an error; no full pulp/steel conversion is claimed."
 }
