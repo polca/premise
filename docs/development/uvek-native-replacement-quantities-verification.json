@@ -1,0 +1,37 @@
+{
+  "tests_passed": 38,
+  "tests_scope": "Native replacement grouping/ownership/linking; real harmonizer and cache withdrawal; retained UVEK workbooks, CLIC user inventories and hybrid regression.",
+  "native_preflight": {
+    "native_technosphere_fills": 12,
+    "native_biosphere_fills": 7,
+    "explicit_nonplaceholder_exchanges_unchanged": true,
+    "omissions": 6
+  },
+  "signed_component_lci": {
+    "signed_finite_native_component_LCIs": 2,
+    "sign_reversal": true,
+    "native_database_unchanged": true,
+    "includes_direct_native_biosphere_fills": true,
+    "limitation": "Only the newly filled native components. This excludes explicit workbook exchanges and does not establish a complete CCS inventory, steel transformation, certification or export."
+  },
+  "supported_sector_preparation": {
+    "status": "supported_four_sector_preparation_passed",
+    "loaded_sectors": [
+      "biomass",
+      "cement",
+      "electricity",
+      "heat"
+    ],
+    "imported_records": 632,
+    "source_database_unchanged": true
+  },
+  "steel_preparation": {
+    "status": "steel_inventory_preparation_failed",
+    "exception_type": "ClicInventoryError",
+    "message": "Unfilled replacement quantities in 'steel production, blast furnace-basic oxygen furnace, low-alloyed': no unique reviewed native donor recipe. The zero-valued licensed placeholders cannot be imported as physical zeros.",
+    "elapsed_seconds": 27.389649374992587
+  },
+  "steel_export_verified": false,
+  "source_coefficients_in_public_mapping": false,
+  "runtime_ecoinvent_database_required": false
+}

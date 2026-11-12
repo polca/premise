@@ -819,14 +819,23 @@ def _prepare_family_records(
     from dataclasses import asdict
     from .clic_adapter import prepare_clic_for_premise
     from .clic_harmonize import ClicHarmonizer
+    from .replacement_quantities import (
+        NATIVE_INPUT,
+        NATIVE_BIOSPHERE,
+        prepare_replacement_quantities,
+    )
     from ..core.filesystem_constants import DIR_CACHED_FILES
 
     target = resolve_inventory_target(version, family=family, system_model=system_model)
     records, rows, originals = [], [], {}
     by_identity, qualified = defaultdict(list), {}
     biosphere_aliases = []
+    native_biosphere, replacement_notes = {}, []
     for batch, background in batches:
         copied = [copy.deepcopy(raw) for raw in batch]
+        replacement_notes.extend(
+            prepare_replacement_quantities(copied, database, background, asdict(target))
+        )
         biosphere_aliases.extend(
             _canonicalize_owned_biosphere_names(copied, background, catalog_provider)
         )
@@ -836,6 +845,7 @@ def _prepare_family_records(
             if code in originals:
                 raise ClicInventoryError("Duplicate owned workbook record identity.")
             originals[code] = copy.deepcopy(provenance)
+            native_biosphere[code] = activity.pop(NATIVE_BIOSPHERE, [])
             if activity.get("database") and activity.get("code"):
                 qualified[(activity["database"], activity["code"])] = code
             activity.update(database="__clic__", code=code)
@@ -864,6 +874,7 @@ def _prepare_family_records(
                 reference = (
                     tuple(reference) if isinstance(reference, (tuple, list)) else None
                 )
+                native_input = edge.pop(NATIVE_INPUT, False)
                 choices = by_identity.get(_key(activity_identity(edge)), ())
                 external = foreground_destinations.get(
                     _key(activity_identity(edge)), ()
@@ -879,10 +890,10 @@ def _prepare_family_records(
                     )
                 elif (
                     reference in destination
-                    and managed_inventory_key(destination[reference])
+                    and (managed_inventory_key(destination[reference]) or native_input)
                 ) or external:
-                    if reference in destination and managed_inventory_key(
-                        destination[reference]
+                    if reference in destination and (
+                        managed_inventory_key(destination[reference]) or native_input
                     ):
                         supplier = destination[reference]
                     elif len(external) == 1:
@@ -931,9 +942,13 @@ def _prepare_family_records(
         versions=rows,
         archive={"source": "owned workbooks"},
         fingerprint=(
-            content_hash([records, biosphere_aliases])
-            if biosphere_aliases
-            else content_hash(records)
+            content_hash([records, biosphere_aliases, native_biosphere])
+            if replacement_notes
+            else (
+                content_hash([records, biosphere_aliases])
+                if biosphere_aliases
+                else content_hash(records)
+            )
         ),
         diagnostics=biosphere_aliases,
         lockfile=lambda: {},
@@ -977,6 +992,21 @@ def _prepare_family_records(
         keep_uncertainty=keep_uncertainty,
         catalog_provider=catalog_provider,
     )
+    for activity in prepared:
+        elementary = native_biosphere.get(activity["code"], [])
+        if any(
+            tuple(edge.get("input", ()))[0:1] != (biosphere_name,)
+            for edge in elementary
+        ):
+            raise ClicInventoryError(
+                "Native replacement elementary flow has an unexpected biosphere link."
+            )
+        activity["exchanges"].extend(copy.deepcopy(elementary))
+        if elementary and not keep_uncertainty:
+            from ..inventory.clean_datasets import remove_uncertainty
+
+            remove_uncertainty([activity])
+    diagnostics.extend(replacement_notes)
     unique = []
     for activity in prepared:
         key = (activity["database"], activity["code"])

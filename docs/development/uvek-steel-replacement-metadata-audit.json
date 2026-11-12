@@ -1,0 +1,495 @@
+{
+  "file": "lci-steel.xlsx",
+  "activities_with_replacement_metadata": 28,
+  "replacement_slots": 641,
+  "distinct_donor_queries": 11,
+  "rows": [
+    {
+      "activity": [
+        "steel production, blast furnace-basic oxygen furnace, low-alloyed",
+        "steel, low-alloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 33,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, converter, low-alloyed",
+          "steel, low-alloyed",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, blast furnace-basic oxygen furnace, unalloyed",
+        "steel, unalloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 31,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, converter, unalloyed",
+          "steel, converter, unalloyed",
+          "RER"
+        ],
+        [
+          "steel production, converter, unalloyed",
+          "steel, unalloyed",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "alloys production, for low-alloyed steel",
+        "alloys, for low-alloyed steel",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 3,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, converter, low-alloyed",
+          "steel, low-alloyed",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "pig iron production, blast furnace, with carbon capture and storage",
+        "pig iron",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 27,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "pig iron production",
+          "pig iron",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed",
+        "steel, low-alloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 33,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, converter, low-alloyed",
+          "steel, low-alloyed",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed",
+        "steel, unalloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 31,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, converter, unalloyed",
+          "steel, converter, unalloyed",
+          "RER"
+        ],
+        [
+          "steel production, converter, unalloyed",
+          "steel, unalloyed",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "pig iron production, top gas recycling-blast furnace",
+        "pig iron",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 23,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "pig iron production",
+          "pig iron",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed",
+        "steel, low-alloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 33,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, converter, low-alloyed",
+          "steel, low-alloyed",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed",
+        "steel, unalloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 31,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, converter, unalloyed",
+          "steel, unalloyed",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "pig iron production, blast furnace, with top gas recycling, with carbon capture and storage",
+        "pig iron",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 23,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "pig iron production",
+          "pig iron",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, low-alloyed",
+        "steel, low-alloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 33,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, converter, low-alloyed",
+          "steel, low-alloyed",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, unalloyed",
+        "steel, unalloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 31,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, converter, unalloyed",
+          "steel, unalloyed",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "pig iron production, with natural gas-based direct reduction",
+        "iron",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 1,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "sponge iron production",
+          "sponge iron",
+          "IN"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed",
+        "steel, low-alloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 35,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, electric, low-alloyed",
+          "steel, low-alloyed",
+          "Europe without Switzerland and Austria"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed",
+        "steel, unalloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 35,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, electric, low-alloyed",
+          "steel, low-alloyed",
+          "Europe without Switzerland and Austria"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "pig iron production, with natural gas-based direct reduction, with carbon capture and storage",
+        "pig iron",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 1,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "sponge iron production",
+          "sponge iron",
+          "IN"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, low-alloyed",
+        "steel, low-alloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 36,
+      "nonzero_replacement_tagged_count": 1,
+      "donors": [
+        [
+          "steel production, electric, low-alloyed",
+          "steel, low-alloyed",
+          "Europe without Switzerland and Austria"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed",
+        "steel, unalloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 35,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, electric, low-alloyed",
+          "steel, low-alloyed",
+          "Europe without Switzerland and Austria"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, hydrogen-based direct reduction iron-electric arc furnace, low-alloyed",
+        "steel, low-alloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 35,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, electric, low-alloyed",
+          "steel, low-alloyed",
+          "Europe without Switzerland and Austria"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, hydrogen-based direct reduction iron-electric arc furnace, unalloyed",
+        "steel, unalloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 35,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, electric, low-alloyed",
+          "steel, low-alloyed",
+          "Europe without Switzerland and Austria"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "pig iron production, hydrogen-based direct reduction iron",
+        "pig iron",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 1,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "sponge iron production",
+          "sponge iron",
+          "IN"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "pig iron production, by electrowinning",
+        "pig iron",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 1,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "aluminium production, primary, liquid, prebake",
+          "aluminium, primary, liquid",
+          "IAI Area, EU27 & EFTA"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "leaching of iron ore",
+        "iron oxide in alkaline solution",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 1,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "aluminium hydroxide production",
+          "aluminium hydroxide",
+          "RoW"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "market for cathode, graphite",
+        "cathode, graphite",
+        "RoW",
+        "kilogram"
+      ],
+      "placeholder_count": 8,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "market for anode, graphite, for Li-ion battery",
+          "anode, graphite, for Li-ion battery",
+          "RoW"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "nickel anode production, for electrolysis of iron ore",
+        "nickel anode, for electrolysis of iron ore",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 8,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "anode production, for metal electrolysis",
+          "anode, for metal electrolysis",
+          "RER"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, electrowinning-electric arc furnace, low-alloyed",
+        "steel, low-alloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 37,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "steel production, electric, low-alloyed",
+          "steel, low-alloyed",
+          "Europe without Switzerland and Austria"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "steel production, electrowinning-electric arc furnace, unalloyed",
+        "steel, unalloyed",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 37,
+      "nonzero_replacement_tagged_count": 1,
+      "donors": [
+        [
+          "steel production, electric, low-alloyed",
+          "steel, low-alloyed",
+          "Europe without Switzerland and Austria"
+        ]
+      ]
+    },
+    {
+      "activity": [
+        "ultrafine grinding of iron ore",
+        "iron ore, ultrafine ground",
+        "GLO",
+        "kilogram"
+      ],
+      "placeholder_count": 3,
+      "nonzero_replacement_tagged_count": 0,
+      "donors": [
+        [
+          "quicklime production, milled, loose",
+          "quicklime, milled, loose",
+          "RoW"
+        ]
+      ]
+    }
+  ],
+  "limitation": "Workbook metadata scan, not a count of required source correspondences or successful native fills. Exact role selection and native donor qualification remain necessary."
+}

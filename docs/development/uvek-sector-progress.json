@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "retained_biosphere_and_50_of_initial_52_correspondences_verified_2_preparation_cases_and_transformation_unfinished",
+      "status": "native_replacement_quantity_mapping_incomplete_shared_transformation_validation_and_export_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -810,7 +810,9 @@
         "imported_records": 138,
         "new_heat_helpers": 0,
         "old_pulp_reconstruction_cases": "45 unresolved correspondences are no longer dependencies of the selected direct heat proxy; not individually resolved.",
-        "next_failure": "Missing secondary-steel supplier in CAZ; native aliases and shared family propagation require adaptation."
+        "historical_receipt": true,
+        "next_failure_at_time_of_receipt": "Missing secondary-steel supplier in CAZ; native aliases and shared family propagation require adaptation.",
+        "current_preparation_caveat": "The direct heat mapping remains qualified, but the old 138-record preparation receipt did not establish filled workbook quantities. Current preparation refuses the next unqualified replacement-donor recipe."
       },
       "native_producer_alias_resolution": {
         "review": "docs/development/uvek-steel-native-producer-review.md",
@@ -830,6 +832,20 @@
           "Classify reviewed nominal-36-MJ/m3 gas helper explicitly in energy checks."
         ],
         "steel_export_verified": false
+      },
+      "replacement_quantity_preparation": {
+        "review": "docs/development/uvek-native-replacement-quantities-review.md",
+        "verification": "docs/development/uvek-native-replacement-quantities-verification.json",
+        "metadata_audit": "docs/development/uvek-steel-replacement-metadata-audit.json",
+        "workbook_activities_with_replacement_metadata": 28,
+        "workbook_replacement_slots": 641,
+        "distinct_donor_queries": 11,
+        "qualified_activities": 1,
+        "native_technosphere_fills_in_first_recipe": 12,
+        "native_elementary_fills_in_first_recipe": 7,
+        "explicit_native_absences_in_first_recipe": 6,
+        "status": "generic_bridge_verified_first_recipe_qualified_other_lookups_unfinished",
+        "limitation": "Steel preparation previously returned despite unfilled licensed placeholders; it now refuses the next unqualified donor recipe. Transformation, validation and export remain unfinished."
       }
     },
     {
