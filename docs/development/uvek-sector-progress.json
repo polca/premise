@@ -484,6 +484,17 @@
         "Premise_related_regressions_passed": 4,
         "installed_GitHub_commit": "c20f2856b52b76a2b4f18a782d1e988b118b78bc",
         "all_installed_approval_scopes_validated": 871
+      },
+      "ferrosilicon_voltage_verification": {
+        "review": "uvek-ferrosilicon-voltage-review.md",
+        "correspondences": 46,
+        "source_profiles": 138,
+        "native_grids": 26,
+        "brightpath_tests_passed": 19,
+        "premise_tests_passed": 3,
+        "signed_finite_lcis": 52,
+        "remaining_ferrosilicon_supply_correspondences": 31,
+        "limitation": "Ferrosilicon reconstruction and steel transformation/export remain unfinished; two preparation-root cases remain."
       }
     },
     {
