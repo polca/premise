@@ -190,21 +190,40 @@ def test_carrier_limitations_are_warned_once_per_declaration_not_per_country():
     assert other[PROPERTIES_KEY]["carrier limitations"] == spec["limitations"]
 
 
-def test_native_station_and_kg_forwarder_share_final_gas_origin_without_inventory_changes():
+@pytest.mark.parametrize("native_supply", [False, True])
+@pytest.mark.parametrize("canonical_electricity_product", [False, True])
+def test_native_station_and_kg_forwarder_share_final_gas_origin_without_inventory_changes(
+    native_supply,
+    canonical_electricity_product,
+):
     spec = deepcopy(
         get_mapping(FUELS_TECHS, "uvek_gas_property_carriers")["natural gas"][1]
     )
     upstream = activity("market for natural gas, high pressure", "cubic meter")
     upstream["reference product"] = "natural gas, high pressure"
+    if native_supply:
+        upstream = activity("Natural gas, high pressure, at consumer")
     upstream[PROPERTIES_KEY] = {
-        "reference unit": "cubic meter",
-        "energy MJ per unit": 36,
-        "fossil CO2 kg per unit": 1.44,
-        "non-fossil CO2 kg per unit": 0.72,
+        "reference unit": upstream["unit"],
+        "energy MJ per unit": 1 if native_supply else 36,
+        "fossil CO2 kg per unit": 0.04 if native_supply else 1.44,
+        "non-fossil CO2 kg per unit": 0.02 if native_supply else 0.72,
         "unresolved CO2 kg per unit": 0,
     }
+    electricity = activity("Electricity, medium voltage, at grid", "kilowatt hour")
+    if canonical_electricity_product:
+        electricity["reference product"] = "electricity, medium voltage"
     station = activity(
-        spec["selector"]["fltr"]["name"], "kilogram", [purchase(upstream, 1.4)]
+        spec["selector"]["fltr"]["name"],
+        "kilogram",
+        [
+            purchase(upstream, 1.4),
+            purchase(
+                electricity,
+                0.2,
+                **{"uncertainty type": 3, "loc": 0.2, "scale": 0.02},
+            ),
+        ],
     )
     station["location"] = "NEU"
     station["exchanges"][0]["location"] = "NEU"

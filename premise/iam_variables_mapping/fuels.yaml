@@ -524,7 +524,16 @@ natural gas:
     - name: Natural gas, from high pressure network (1-5 bar), at service station
       product: Natural gas, from high pressure network (1-5 bar), at service station
       unit: kilogram
+    - name: Natural gas, high pressure, at consumer
+      product: Natural gas, high pressure, at consumer
+      unit: megajoule
     ancillary inputs:
+    - name: Electricity, medium voltage, at grid
+      product: Electricity, medium voltage, at grid
+      unit: kilowatt hour
+    - name: Electricity, medium voltage, at grid
+      product: electricity, medium voltage
+      unit: kilowatt hour
     - name: market group for electricity, medium voltage
       product: electricity, medium voltage
       unit: kilowatt hour
