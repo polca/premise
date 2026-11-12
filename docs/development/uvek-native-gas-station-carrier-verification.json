@@ -1,0 +1,15 @@
+{
+  "status": "diagnostic_update_and_graph_checks_passed",
+  "activities": 13122,
+  "source_database_metadata_unchanged": true,
+  "sector": "fuels",
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "elapsed_seconds": 73.06002820900176,
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+  "validation_disabled": false,
+  "export_performed": false,
+  "mapping_commit": "15817323",
+  "focused_tests_passed": 226,
+  "qualification": "Private single-sector diagnostic only. Public scope remains gated pending target coverage, combined workflow, export and signed LCI checks. Local unrelated GAINS edits were present; clean-commit reproducibility remains to verify."
+}

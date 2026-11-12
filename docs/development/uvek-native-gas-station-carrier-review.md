@@ -27,3 +27,11 @@ and the resulting fossil/non-fossil carbon proportions. The focused gas-carrier,
 fuel-energy, carbon-balance and vehicle-carbon suite passes 226 tests.
 
 This correction alone does not qualify the entire fuels update or export.
+
+The corrected real encrypted REMIND SSP2-NPi 2050 diagnostic completed the
+shared fuels update and exhaustive graph validation with 13,122 activities.
+The source database modification marker was unchanged. No export was performed
+and the unsupported-sector gate was bypassed only in the diagnostic process.
+Local unrelated GAINS edits were present; clean-commit reproduction, target
+coverage, combined-sector and export/LCI qualification are still required.
+See `uvek-native-gas-station-carrier-verification.json`.
