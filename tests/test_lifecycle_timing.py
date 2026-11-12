@@ -47,6 +47,13 @@ def test_reference_event_controls_retirement_without_reapplying_vintage():
     assert [year + offset for year in [2010, 2020]] == [2030, 2040]
     with pytest.raises(ValueError, match="explicit"):
         retirement_profile("existing_fleet", 20)
+    # The explicitly declared fleet life belongs with its age weights, even if
+    # an unrelated legacy stock classification supplied another caller life.
+    assert retirement_profile(
+        "existing_fleet",
+        30,
+        {"lifetime": 20, "age_offsets": [-5, -15], "age_weights": [1, 1]},
+    ) == ([5, 15], [0.5, 0.5])
 
 
 def test_loader_requires_explicit_age_weights_and_rejects_conflicts(tmp_path):
@@ -149,15 +156,27 @@ def test_assignment_applies_current_new_and_fleet_reference_events(
     assert {row["timing_reference"] for row in report} == {x[2] for x in definitions}
 
 
-def test_shipped_references_are_consistent_and_do_not_invent_fleet_histories():
+def test_shipped_references_distinguish_declared_stationary_fleet_proxies():
     records = load_lifecycle_timing(trails.FILEPATH_TEMPORAL_PARAMETERS)
     assert len(records) > 9000
     assert {r["timing_reference"] for r in records.values()} == {
         "new_asset",
         "current_output",
         "lifecycle_event",
+        "existing_fleet",
     }
     assert (
         records["market for used cable", "used cable"]["timing_reference"]
         == "lifecycle_event"
     )
+
+
+def test_shipped_stationary_fleets_have_valid_normalised_remaining_lives():
+    records = load_lifecycle_timing(trails.FILEPATH_TEMPORAL_PARAMETERS)
+    fleets = [r for r in records.values() if r["timing_reference"] == "existing_fleet"]
+    assert fleets
+    for record in fleets:
+        assert min(record["offsets"]) >= 0
+        assert max(record["offsets"]) <= record["lifetime"]
+        assert sum(record["weights"]) == pytest.approx(1)
+        assert len(record["age_offsets"]) == int(record["lifetime"])

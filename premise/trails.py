@@ -1684,7 +1684,12 @@ class TrailsDataPackage:
                                     "exchange_name": sup_name,
                                     "exchange_product": sup_ref,
                                     "timing_reference": reference,
-                                    "fixed_lifetime": ds_lifetime,
+                                    "fixed_lifetime": lifecycle_timing.get(
+                                        ds_key, {}
+                                    ).get("lifetime", ds_lifetime),
+                                    "timing_assumption": lifecycle_timing.get(
+                                        ds_key, {}
+                                    ).get("assumption", ""),
                                     "temporal_offsets": json.dumps(offsets),
                                     "temporal_weights": json.dumps(weights),
                                 }

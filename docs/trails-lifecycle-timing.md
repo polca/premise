@@ -7,7 +7,9 @@ The optional `timing_reference` column in the temporal CSV distinguishes:
   nearest year. There is no automatic additional year.
 * `existing_fleet`: retirement after the remaining life of assets supplying
   current service. Explicit `fleet_age_offsets` and `fleet_age_weights` are JSON
-  lists of production offsets (zero or negative) and their weights. For a fixed
+  lists of production offsets (zero or negative) and their weights. The optional
+  `fleet_lifetime` explicitly pairs a service life with those weights, taking
+  precedence over an unrelated legacy stock classification. For a fixed
   lifetime L and age a, the remaining life is L-a. The age profile must refer to
   the asset being retired, rather than unrelated infrastructure in the process.
 * `current_output`: treatment of waste generated with current production stays
@@ -22,9 +24,13 @@ already produces several retirement years. Do not apply the vintage profile a
 second time to the retirement exchange. Ordinary output and market rows do not
 receive a new full lifetime merely because they call a treatment supplier.
 
-The table does not supply empirical fleet histories for direct existing-fleet
-retirement calls. The `existing_fleet` option therefore requires explicit input
-weights and is tested separately. It is not inferred from the caller lifetime.
+The table supplies explicit stationary-stock proxies for identified operating
+services whose inventories allocate asset disposal. These assume a fixed life,
+constant annual entry and uniform annual ages from 1 through floor(L). Their
+remaining-life profiles follow from those declared assumptions. They are not
+empirical fleet histories or IAM-specific cohort estimates. Other weights can
+be supplied explicitly. The metadata-generation rules and their assumptions are
+retained in `scripts/assign_lifecycle_reference_events.py`.
 For example, lifetime 20 and offsets `[-5, -15]` with weights `[0.5, 0.5]` give
 retirement offsets `[5, 15]` with weights `[0.5, 0.5]`. Ages exceeding the fixed
 lifetime, invalid weights and conflicting reference events are rejected.

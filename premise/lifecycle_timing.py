@@ -62,12 +62,15 @@ def load_lifecycle_timing(path):
             if reference not in TIMING_REFERENCES:
                 raise ValueError(f"Unknown end-of-life timing reference: {reference!r}")
             key = (row["name"].strip(), row["reference product"].strip())
-            record = {"timing_reference": reference}
+            record = {
+                "timing_reference": reference,
+                "assumption": (row.get("timing_reference_notes") or "").strip(),
+            }
             if reference == "existing_fleet":
                 try:
                     ages = json.loads(row.get("fleet_age_offsets") or "[]")
                     weights = json.loads(row.get("fleet_age_weights") or "[]")
-                    lifetime = float(row["lifetime"])
+                    lifetime = float(row.get("fleet_lifetime") or row["lifetime"])
                     offsets, normalised = remaining_life_profile(
                         lifetime, ages, weights
                     )
@@ -106,6 +109,8 @@ def retirement_profile(reference, lifetime=None, fleet=None):
                 "Existing fleets require explicit exchange-relevant age weights."
             )
         return remaining_life_profile(
-            lifetime, fleet["age_offsets"], fleet["age_weights"]
+            fleet.get("lifetime", lifetime),
+            fleet["age_offsets"],
+            fleet["age_weights"],
         )
     raise ValueError(f"Unresolved end-of-life reference event: {reference!r}")
