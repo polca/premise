@@ -23,3 +23,9 @@ The regression tests both list and indexed containers, rejects crossed products
 and units, retains the approved helper and native carrier classification, checks
 the separate market supplier selection and checks repeated mapping calls.
 This does not independently qualify the entire fuels sector for public use.
+
+Verification: 343 focused tests pass across activity maps, native mapping,
+steel gas validation, gas-carrier composition, fuel background axes, handovers,
+native vehicle references, fuel energy and carbon accounting. Ruff passes for
+the changed Python module and test. These checks include ecoinvent filter and
+background-axis regressions; they are not a licensed full ecoinvent build.
