@@ -3773,11 +3773,13 @@ class SteelValidation(BaseDatasetValidator):
         iam_data,
         system_model,
         technology_map=None,
+        natural_gas_inputs=(),
     ):
         super().__init__(model, scenario, year, regions, database, system_model)
         self.iam_data = iam_data
         self.system_model = system_model
         self.technology_map = technology_map or {}
+        self.natural_gas_inputs = frozenset(natural_gas_inputs)
 
     def _is_secondary_supplier(self, record):
         product = record.get("reference product", record.get("product"))
@@ -4058,7 +4060,15 @@ class SteelValidation(BaseDatasetValidator):
                     [
                         exc["amount"] * 36
                         for exc in ds["exchanges"]
-                        if "natural gas" in exc["name"].casefold()
+                        if (
+                            "natural gas" in exc["name"].casefold()
+                            or (
+                                exc["name"],
+                                (exc.get("product") or exc.get("reference product")),
+                                exc["unit"],
+                            )
+                            in getattr(self, "natural_gas_inputs", ())
+                        )
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "cubic meter"
                     ]

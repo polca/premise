@@ -149,3 +149,33 @@ def test_shared_efficiency_scales_native_and_legacy_fuel_spelling(name):
     assert result["exchanges"][0]["amount"] == 0.5
     assert result["exchanges"][0]["loc"] == 0.5
     assert result["exchanges"][0]["scale"] == 0.05
+
+
+def test_reviewed_volume_gas_helper_is_classified_without_renaming_or_rescaling():
+    from premise.inventory.activity_maps import InventorySet, FUELS_TECHS, get_mapping
+    from test_steel_market_grades import activity
+
+    definition = get_mapping(FUELS_TECHS, "uvek_aliases")["natural gas"]
+    name = next(
+        n
+        for n in definition["fltr"]["name"]
+        if n.startswith("global high-pressure gas supply, nominal 36")
+    )
+    helper = activity(name, "natural gas, high pressure", "GLO")
+    helper["unit"] = helper["exchanges"][0]["unit"] = "cubic meter"
+    helper["clic provenance"] = {"role": "generated helper"}
+    providers = InventorySet([helper], "2026", "remind", family="uvek").generate_map(
+        {"natural gas": definition}
+    )["natural gas"]
+    assert providers == [helper]
+    assert "lhv" not in helper  # Classification does not annotate source providers.
+    identities = {(a["name"], a["reference product"], a["unit"]) for a in providers}
+    validator, issues = energy_validator(name, "cubic meter", 0.3)
+    validator.database[0]["exchanges"][0]["product"] = "natural gas, high pressure"
+    validator.natural_gas_inputs = identities
+    validator.check_steel_energy_use()
+    assert not issues  # Existing 36 MJ/m3 equation gives 10.8 MJ, not zero.
+    assert validator.database[0]["exchanges"][0]["amount"] == 0.3
+    validator.database[0]["exchanges"][0]["product"] = "different material"
+    validator.check_steel_energy_use()
+    assert len(issues) == 1

@@ -16,7 +16,7 @@ from ..core.transformation import BaseTransformation, ws
 from ..core.utils import rescale_exchanges
 from ..validation.validation import SteelValidation
 from ..validation.validation_framework import record_validation_phase
-from ..inventory.activity_maps import InventorySet
+from ..inventory.activity_maps import InventorySet, FUELS_TECHS, get_mapping
 
 logger = create_logger("steel")
 
@@ -64,6 +64,7 @@ def _update_steel(
         iam_data=scenario["iam data"],
         system_model=system_model,
         technology_map=steel.steel_map,
+        natural_gas_inputs=steel.natural_gas_inputs,
     )
     record_validation_phase(scenario, validate.run_steel_checks())
 
@@ -121,6 +122,17 @@ class Steel(BaseTransformation):
             self.database, self.version, self.model, family=self.family
         )
         self.steel_map = self.inv.generate_steel_map()
+        gas = self.inv.generate_map(
+            {
+                "natural gas": get_mapping(FUELS_TECHS, f"{self.family}_aliases").get(
+                    "natural gas", {}
+                )
+            }
+        )["natural gas"]
+        self.natural_gas_inputs = frozenset(
+            (provider["name"], provider["reference product"], provider["unit"])
+            for provider in gas
+        )
 
     def create_steel_markets(self):
         """
@@ -374,7 +386,15 @@ class Steel(BaseTransformation):
                     [
                         exc["amount"] * 36
                         for exc in dataset["exchanges"]
-                        if "natural gas" in exc["name"].casefold()
+                        if (
+                            "natural gas" in exc["name"].casefold()
+                            or (
+                                exc["name"],
+                                (exc.get("product") or exc.get("reference product")),
+                                exc["unit"],
+                            )
+                            in getattr(self, "natural_gas_inputs", ())
+                        )
                         and exc["type"] == "technosphere"
                         and exc["unit"] == "cubic meter"
                     ]
