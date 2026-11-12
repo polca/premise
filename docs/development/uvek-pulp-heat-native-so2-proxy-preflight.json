@@ -129,6 +129,10 @@
     {
       "name": "sodium-sulfite-native-so2-lci-verification.json",
       "sha256": "99a8668a7b61bdf0b33bf344cb76d26d887b21dca87b2b2068461ed2cd6b7692"
+    },
+    {
+      "name": "sodium-sulfite-compiled-candidate-verification.json",
+      "sha256": "dda5356561672d3728921af54d51c164a5868d0d6f69ab179113394f6e33a3ca"
     }
   ],
   "limitations": [
@@ -136,5 +140,52 @@
     "Source co-product production/allocation is explicitly replaced, not preserved by keeping separate outer coefficients.",
     "Finite nominal inventories do not establish score or stochastic equivalence.",
     "Complete pulp heat,steel and all-sector public updates/exports remain unfinished."
-  ]
+  ],
+  "compiled_mapping_candidate": {
+    "status": "private_compiled_candidate_passed_not_packaged",
+    "cases": [
+      {
+        "rule_id": "bp-5484396eb5e79c5d",
+        "amount": 2,
+        "records": 21,
+        "native_suppliers": 59,
+        "direct_biosphere_identities": 131,
+        "flattened_inventory_equals_checked_source_reconstruction": true,
+        "caller_uncertainty_formula_preserved": true
+      },
+      {
+        "rule_id": "bp-5484396eb5e79c5d",
+        "amount": -2,
+        "records": 21,
+        "native_suppliers": 59,
+        "direct_biosphere_identities": 131,
+        "flattened_inventory_equals_checked_source_reconstruction": true,
+        "caller_uncertainty_formula_preserved": true
+      },
+      {
+        "rule_id": "bp-8d2ec25ccb852299",
+        "amount": 2,
+        "records": 20,
+        "native_suppliers": 56,
+        "direct_biosphere_identities": 131,
+        "flattened_inventory_equals_checked_source_reconstruction": true,
+        "caller_uncertainty_formula_preserved": true
+      },
+      {
+        "rule_id": "bp-8d2ec25ccb852299",
+        "amount": -2,
+        "records": 20,
+        "native_suppliers": 56,
+        "direct_biosphere_identities": 131,
+        "flattened_inventory_equals_checked_source_reconstruction": true,
+        "caller_uncertainty_formula_preserved": true
+      }
+    ],
+    "new_recipes": 2,
+    "frozen_dependencies": 18,
+    "inherited_omissions": 0,
+    "new_source_omissions": 0,
+    "runtime_changes_required": false,
+    "limitation": "Strict candidate rule overrides with exact temporary scopes; not yet frozen in packaged resources or public Premise approvals. Flat native/biosphere vectors match the previously calculated complete source reconstruction."
+  }
 }

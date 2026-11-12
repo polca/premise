@@ -14,7 +14,7 @@ Checks completed:
 
 - Strict conversion of both source sodium-sulfite processes produces 20 linked records without unresolved correspondences, using unchanged Brightpath revision `a95a4d5`.
 - The original two process identities, positive reference quantities and exchange counts remain intact.
-- Fourteen positive/negative LCI calculations are finite and reverse signs exactly. The complete sodium-sulfite case uses 56 native suppliers and 131 directly linked biosphere identities.
+- Fourteen positive/negative LCI calculations are finite and reverse signs exactly. The sodium-sulfite market uses 59 native suppliers; its producer uses 56. Both have 131 directly linked biosphere identities.
 - The native database remains unchanged. These checks do not establish equal impact scores or uncertainty distributions.
 
 Next, freeze and test the mapping resources and exact approvals, then repeat the five-pulp conversion probe. The published backlog remains 46 direct correspondences until that integration is verified. Full steel and all-sector exports remain unfinished.
