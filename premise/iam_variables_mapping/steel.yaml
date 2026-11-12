@@ -728,3 +728,169 @@ steel processing market - low-alloyed:
     - Replace only the historical converter/EAF basket with the IAM technology mix, at the original total steel-input quantity per one kg product. Retain hot rolling and all other ancillary exchanges, signs and uncertainty.
     - The existing RER processing inventory represents every IAM region as an explicit geographic and historical-technology proxy. No extra rolling, transport, yield-loss or recovery-credit term is added.
     - Historical uncertainty on converter/EAF shares is replaced by deterministic IAM shares as in ordinary Premise markets; retained processing-exchange uncertainty is preserved. Source/native impact equivalence is not established.
+
+# Complete distinct product; not an ordinary IAM technology supplier.
+other steel production - chromium electric:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, electric, chromium steel 18/8, at plant
+      reference product: Steel, electric, chromium steel 18/8, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: &other_steel_regionalisation_limitations
+    - Regionalise the complete native product through the unchanged shared other-producer workflow, preserving grade, reference, signed quantities, ancillary processing and supported uncertainty. Do not include these distinct grades or best/worst operating cases in the ordinary IAM steel mix or apply its average efficiency adjustment to them.
+    - Native plant technology, allocation, vintage and geographic extrapolation remain screening assumptions; no source/native impact equivalence is established. Retain source freight; no extra Swiss import leg is inferred from a name. Country variants are geographic prototypes selected by the existing shared routing.
+    - Fixed recycled-content and reinforcing products retain their declared electric/converter supply, processing and rolling. No reinforcing-specific IAM technology shares are available; preserve the complete grade-specific recipe rather than impose the ordinary steel mix. Battery-recycling steel remains outside this group because its burdens are allocated to disposal.
+
+# Complete distinct product; not an ordinary IAM technology supplier.
+other steel production - chromium converter:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, converter, chromium steel 18/8, at plant
+      reference product: Steel, converter, chromium steel 18/8, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+# Complete distinct product; not an ordinary IAM technology supplier.
+other steel production - alloy 44FMn28:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, electric, alloyed, 44FMn28, at plant
+      reference product: Steel, electric, alloyed, 44FMn28, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+# Complete distinct product; not an ordinary IAM technology supplier.
+other steel production - alloy 23MnCrSiMoF66:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, electric, alloyed, 23MnCrSiMoF66, at plant
+      reference product: Steel, electric, alloyed, 23MnCrSiMoF66, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+# Complete distinct product; not an ordinary IAM technology supplier.
+other steel production - alloy 42CrMoS4:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, electric, alloyed, 42CrMoS4, at plant
+      reference product: Steel, electric, alloyed, 42CrMoS4, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+# Complete distinct product; not an ordinary IAM technology supplier.
+other steel production - best electric plants:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, electric, low-alloyed, at plant, best plants (min. values)
+      reference product: Steel, electric, low-alloyed, at plant, best plants (min. values)
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+# Complete distinct product; not an ordinary IAM technology supplier.
+other steel production - worst electric plants:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, electric, low-alloyed, at plant, worst plants (max. values)
+      reference product: Steel, electric, low-alloyed, at plant, worst plants (max. values)
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+# Complete distinct product; not an ordinary IAM technology supplier.
+other steel production - reinforcing import producers:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, electric, un- and low-alloyed, for reinforcing steel, import to CH, at plant
+      reference product: Steel, electric, un- and low-alloyed, for reinforcing steel, import to CH, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+# Complete distinct product; not an ordinary IAM technology supplier.
+other steel production - recycled construction steel:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Steel, low alloyed, secondary production (100% Rec.)
+      reference product: Steel, low alloyed, secondary production (100% Rec.)
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+other steel production - reinforcing product:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Reinforcing steel, at plant
+      reference product: Reinforcing steel, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+other steel production - reinforcing electric:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Reinforcing steel, electric, at plant
+      reference product: Reinforcing steel, electric, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+other steel production - reinforcing converter:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Reinforcing steel, converter, at plant
+      reference product: Reinforcing steel, converter, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+other steel production - reinforcing electric import product:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Reinforcing steel, electric, import CH, at plant
+      reference product: Reinforcing steel, electric, import CH, at plant
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations
+
+other steel production - reinforcing primary construction product:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Reinforcing steel, primary production (0% Rec.)
+      reference product: Reinforcing steel, primary production (0% Rec.)
+      unit: kilogram
+    regionalize_as_other: true
+    native_reference_amount: 1.0
+    native_limitations: *other_steel_regionalisation_limitations

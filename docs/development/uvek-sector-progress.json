@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat and cement. Fuels have a successful diagnostic five-sector export but remain publicly gated pending end-use carbon and coverage checks; other sectors remain unfinished.",
+  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement and steel. The unchanged no-argument default selects biomass, electricity and heat. Other registered sectors remain gated until verified.",
   "sectors": [
     {
       "sector": "biomass",
@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "combined_export_and_advanced_year_verified_native_specialty_filter_audit_incomplete",
+      "status": "operational_screening_public_combined_export_verified_with_explicit_native_limits",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -845,7 +845,7 @@
         "native_elementary_fills_in_first_recipe": 7,
         "explicit_native_absences_in_first_recipe": 6,
         "status": "real_preparation_and_shared_sector_checks_passed_export_and_coverage_unfinished",
-        "limitation": "All 28 quantity recipes are qualified. Shared sector checks, exhaustive graph certification, a private Brightway export and six signed complete-inventory LCIs pass; full native consumer coverage and combined-sector regression remain unfinished.",
+        "limitation": "All 28 quantity recipes are qualified; the public combined 2050 update, graph checks and Brightway export pass. Screening proxies, source omissions and uncertainty limitations remain recorded in their reviews.",
         "qualified_lookup_slots": 639,
         "remaining_workbook_activities": 0,
         "remaining_lookup_slots": 0,
@@ -872,11 +872,7 @@
         },
         "public_steel_gate_bypassed_only_in_private_diagnostic": true,
         "export_verified": true,
-        "remaining": [
-          "Adapt native rolled-steel mixture while preserving rolling, yield and ancillary inventory.",
-          "Verify a real IAM year with positive advanced steel production.",
-          "Combined-sector regression before public steel support."
-        ]
+        "remaining": []
       },
       "retained_advanced_role_bindings": {
         "review": "docs/development/uvek-steel-retained-role-review.md",
@@ -902,9 +898,7 @@
         "nonzero_consumers_of_original_RER_handover": 0,
         "signed_finite_LCIs": 2,
         "tests_passed": 211,
-        "remaining": [
-          "Audit native specialty-producer, reinforcing-supply and allocated battery-steel boundaries before public steel support."
-        ]
+        "remaining": []
       },
       "combined_and_advanced_year_verification": {
         "verification": "docs/development/uvek-steel-combined-verification.json",
@@ -923,7 +917,7 @@
         "hydrogen_share_region_checks": 12,
         "unmodified_IAM_arrays": true,
         "source_database_metadata_unchanged": true,
-        "remaining": "Native specialty and other-producer selector/boundary audit."
+        "remaining": "Earlier advanced-year share check remains historical evidence; public 2050 integration is now verified with the completed native other-producer selectors."
       },
       "native_other_producer_audit": {
         "review": "docs/development/uvek-steel-other-producer-audit.md",
@@ -933,7 +927,29 @@
         "other_producer_records_to_review": 12,
         "distinct_other_producer_names": 9,
         "allocated_battery_steel_coproduct_records": 1,
-        "status": "source_catalog_and_installed_boundary_audit_only_runtime_aliases_unfinished"
+        "status": "original_archive_boundaries_and_public_workflow_verified",
+        "verification": "docs/development/uvek-steel-other-producer-verification.json",
+        "additional_reinforcing_plant_records": 9,
+        "curated_other_source_records": 21,
+        "curated_other_alias_pairs": 14,
+        "regional_copies": 182
+      },
+      "public_workflow_verification": {
+        "verification": "docs/development/uvek-steel-other-producer-verification.json",
+        "public_support_gate_bypassed": false,
+        "combined_sectors": [
+          "biomass",
+          "electricity",
+          "heat",
+          "cement",
+          "steel"
+        ],
+        "activities": 14670,
+        "exhaustive_graph_checks": "passed",
+        "Brightway_export": "passed",
+        "source_database_metadata_unchanged": true,
+        "signed_finite_specialty_LCIs": 10,
+        "tests_passed": 225
       }
     },
     {
@@ -1166,6 +1182,13 @@
         "version_assumption_lines_to_review": [],
         "role_files": [],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "first_real_native_probe": {
+        "scenario": "encrypted REMIND SSP2-NPi 2050",
+        "failure": "METHOD.RENEWABLE.TARGET_COVERAGE",
+        "declared_targets": 0,
+        "stage": "shared direct-drive wind variants",
+        "diagnosis": "Legacy ecoinvent name selectors and missing family/biosphere propagation require native target review; no validation rule relaxed."
       }
     },
     {

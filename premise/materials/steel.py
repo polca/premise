@@ -180,6 +180,22 @@ class Steel(BaseTransformation):
             if definition.get("processing_market")
         }
         self.processing_market_bases = {}
+        other_definitions = {
+            role: definition
+            for role, definition in get_mapping(
+                STEEL_TECHS, f"{self.family}_aliases"
+            ).items()
+            if definition.get("regionalize_as_other")
+        }
+        self.other_steel_map = self.inv.generate_map(other_definitions)
+        if any(self.other_steel_map.values()):
+            warnings.warn(
+                "Regionalising complete distinct steel products: "
+                + " ".join(
+                    next(iter(other_definitions.values()))["native_limitations"]
+                ),
+                stacklevel=2,
+            )
 
     def _processing_market_options(self, dataset, definition, mapping):
         """Retain processing while the shared market builder replaces suppliers."""
@@ -337,12 +353,16 @@ class Steel(BaseTransformation):
         )
 
         # make other steel datasets region-specific
-        steel_datasets = ws.get_many(
-            self.database,
-            ws.contains("name", "steel production"),
-            ws.contains("reference product", "steel"),
-            ws.equals("unit", "kilogram"),
+        steel_datasets = list(
+            ws.get_many(
+                self.database,
+                ws.contains("name", "steel production"),
+                ws.contains("reference product", "steel"),
+                ws.equals("unit", "kilogram"),
+            )
         )
+        for datasets in getattr(self, "other_steel_map", {}).values():
+            steel_datasets.extend(datasets)
         steel_datasets = {
             "other": [
                 ds

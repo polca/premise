@@ -1,0 +1,211 @@
+{
+  "public_workflow": {
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel"
+    ],
+    "shared_updates": "passed",
+    "exhaustive_graph_validation": "passed",
+    "activities": 14670,
+    "public_steel_gate_bypassed_only_in_private_diagnostic": false,
+    "source_database_metadata_unchanged": true,
+    "export_performed": true,
+    "database": "BAFU:2026-REMIND-SSP2-NPi-2050-five-sector-public-20261112-233413"
+  },
+  "native_other_regionalisation": {
+    "source_records": 21,
+    "distinct_names": 14,
+    "regional_copies": 182,
+    "source_quantities_preserved_in_all_copies": true,
+    "rows": [
+      {
+        "name": "Reinforcing steel, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Reinforcing steel, converter, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Reinforcing steel, electric, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Reinforcing steel, electric, import CH, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Reinforcing steel, primary production (0% Rec.)",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Steel, converter, chromium steel 18/8, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Steel, electric, alloyed, 23MnCrSiMoF66, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Steel, electric, alloyed, 42CrMoS4, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Steel, electric, alloyed, 44FMn28, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Steel, electric, chromium steel 18/8, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Steel, electric, low-alloyed, at plant, best plants (min. values)",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Steel, electric, low-alloyed, at plant, worst plants (max. values)",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Steel, electric, un- and low-alloyed, for reinforcing steel, import to CH, at plant",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      },
+      {
+        "name": "Steel, low alloyed, secondary production (100% Rec.)",
+        "regional_copies": 13,
+        "complete_inventory_quantity_groups_preserved": true
+      }
+    ],
+    "scope": "Read-only central quantity audit against the actual selected pre-Steel native prototype, after shared regionalisation. Does not claim exact joint uncertainty-distribution or source/native LCIA equivalence."
+  },
+  "specialty_inventory_checks": {
+    "database": "BAFU:2026-REMIND-SSP2-NPi-2050-five-sector-public-20261112-233413",
+    "activities": 14670,
+    "selected_specialty_reinforcing_and_fixed_recycled_content_products": [
+      "Steel, electric, chromium steel 18/8, at plant",
+      "Reinforcing steel, electric, import CH, at plant",
+      "Reinforcing steel, primary production (0% Rec.)",
+      "Steel, low alloyed, secondary production (100% Rec.)",
+      "Steel, electric, low-alloyed, at plant, best plants (min. values)"
+    ],
+    "signed_finite_LCIs": [
+      {
+        "name": "Steel, low alloyed, secondary production (100% Rec.)",
+        "region": "EUR",
+        "demand": 1,
+        "finite": true
+      },
+      {
+        "name": "Steel, low alloyed, secondary production (100% Rec.)",
+        "region": "EUR",
+        "demand": -1,
+        "finite": true
+      },
+      {
+        "name": "Steel, electric, low-alloyed, at plant, best plants (min. values)",
+        "region": "EUR",
+        "demand": 1,
+        "finite": true
+      },
+      {
+        "name": "Steel, electric, low-alloyed, at plant, best plants (min. values)",
+        "region": "EUR",
+        "demand": -1,
+        "finite": true
+      },
+      {
+        "name": "Reinforcing steel, electric, import CH, at plant",
+        "region": "EUR",
+        "demand": 1,
+        "finite": true
+      },
+      {
+        "name": "Reinforcing steel, electric, import CH, at plant",
+        "region": "EUR",
+        "demand": -1,
+        "finite": true
+      },
+      {
+        "name": "Reinforcing steel, primary production (0% Rec.)",
+        "region": "EUR",
+        "demand": 1,
+        "finite": true
+      },
+      {
+        "name": "Reinforcing steel, primary production (0% Rec.)",
+        "region": "EUR",
+        "demand": -1,
+        "finite": true
+      },
+      {
+        "name": "Steel, electric, chromium steel 18/8, at plant",
+        "region": "EUR",
+        "demand": 1,
+        "finite": true
+      },
+      {
+        "name": "Steel, electric, chromium steel 18/8, at plant",
+        "region": "EUR",
+        "demand": -1,
+        "finite": true
+      }
+    ],
+    "consistent_signed_reversal": true,
+    "external_dependencies": [
+      "ecoinvent-3.10-biosphere"
+    ],
+    "allocated_battery_steel_still_reference_only": true,
+    "limitations": [
+      "Central LCI and sign checks do not establish source/native score equivalence or exact joint uncertainty-distribution equivalence.",
+      "Native plant and geographic proxies retain their reviewed source limits."
+    ]
+  },
+  "focused_tests_passed": 225,
+  "archive_boundary_checks": {
+    "allocated_battery_steel": {
+      "uuid": "6cf7c2e0-f171-4b91-a195-6bc8d4cfb6ae",
+      "reference_only_in_original_archive": true,
+      "archive_exchange_count": 1,
+      "nonreference_exchanges": 0,
+      "allocation": "Original documentation assigns all burdens to disposal."
+    },
+    "fixed_recycled_construction_steel": {
+      "uuid": "5733cb9a-b0b6-36f7-b445-60d6739da152",
+      "one_kg_reference_confirmed": true,
+      "electric_steel_and_hot_rolling_retained": true
+    },
+    "reinforcing_country_profiles": {
+      "countries": [
+        "DE",
+        "IT",
+        "PL",
+        "FR"
+      ],
+      "publisher_documents_country_electricity_change_with_remainder_retained": true,
+      "original_freight_retained_without_invented_Swiss_import_leg": true
+    }
+  },
+  "limitations": [
+    "Normal shared geographic prototype selection and relinking remain screening assumptions.",
+    "No reinforcing-specific IAM shares are inferred; complete distinct grade recipes are retained.",
+    "Quantity and signed finite-LCI checks do not establish exact joint uncertainty-distribution or source/native LCIA equivalence."
+  ],
+  "remaining_goal_scope": "Fourteen other registered sector updates remain unfinished; renewable has a reproduced missing-target selector failure."
+}
