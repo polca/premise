@@ -1,0 +1,74 @@
+{
+  "review_sha256": "1c89742d3ceb021afe5c25ab0f87a2fe6fc7068ff2422f46cbe201f2a5f71838",
+  "cases": [
+    {
+      "case": "bp-05200779ee64a17f",
+      "helpers": 1,
+      "native_suppliers": 2,
+      "direct_biosphere_identities": 2,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "bp-6e6dd9c98a58356d",
+      "helpers": 1,
+      "native_suppliers": 2,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "bp-a819b95a8342323b",
+      "helpers": 1,
+      "native_suppliers": 2,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "bp-b093a40f996187dc",
+      "helpers": 1,
+      "native_suppliers": 4,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "actual source3.9dedicated PCC foreground",
+      "helpers": 27,
+      "native_suppliers": 111,
+      "direct_biosphere_identities": 157,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    }
+  ],
+  "signed_finite_LCIs": 10,
+  "new_market_component_bindings_match": true,
+  "source_modified_unchanged": true,
+  "limitation": "Native background plus canonical direct biosphere nominal LCI checks, with all helper coefficients recursively included. Not source/native score equivalence, uncertainty sampling or a full PCC market/steel scenario export.",
+  "brightpath_tests_passed": 26,
+  "premise_tests_passed": 2,
+  "related_regressions_passed": 211,
+  "new_helpers": 4,
+  "new_source_omission_approvals": 0,
+  "unchanged_older_chemical_heat_profiles": 8,
+  "source_water_uncertainty_rows_restored": 9,
+  "dedicated_PCC_missing_correspondences_before": 4,
+  "dedicated_PCC_missing_correspondences_after": 0,
+  "lint": {
+    "new_replayer_and_tests_lint": "passed",
+    "generator_lint": "two pre-existing I001 import-order findings, unchanged from HEAD",
+    "baseline_findings": [
+      [
+        "I001",
+        635,
+        "Import block is un-sorted or un-formatted"
+      ],
+      [
+        "I001",
+        741,
+        "Import block is un-sorted or un-formatted"
+      ]
+    ]
+  }
+}

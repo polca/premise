@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "records": 28,
+  "omission_events": 46,
+  "source_profile": {
+    "technosphere": {
+      "family": "ecoinvent",
+      "version": "3.9",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.9"
+    }
+  },
+  "target_profile": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "source_nonproduction_rows": 43,
+  "unapproved_correspondences": 0,
+  "new_source_omission_approvals": 0,
+  "limitation": "Actual locally licensed source dedicated-PCC inventory through normal strict ClicHarmonizer using a local synthetic catalog wrapper. Not publication, complete PCC background-market approval or scenario export."
+}

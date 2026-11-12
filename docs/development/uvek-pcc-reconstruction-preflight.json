@@ -1,5 +1,5 @@
 {
-  "status": "allocated_metal_branches_mapped_dedicated_producer_and_market_unfinished",
+  "status": "dedicated_PCC_strict_harmonization_passed_complete_market_assembly_pending",
   "source_profile": {
     "family": "ecoinvent",
     "version": "3.9",
@@ -57,13 +57,8 @@
   "all_three_producer_dependencies_before_water_review": 139,
   "direct_reconstruction_probes_after_water_review": {
     "main": {
-      "unapproved_correspondences": 4,
-      "families": {
-        "heat, from steam, in chemical industry": 1,
-        "limestone, crushed, washed": 1,
-        "electricity, medium voltage": 1,
-        "heat, district or industrial, natural gas": 1
-      }
+      "unapproved_correspondences": 0,
+      "families": {}
     },
     "all-producers": {
       "unapproved_correspondences": 133,
@@ -145,11 +140,11 @@
   "water_review": "uvek-pcc-decarbonised-water-review.md",
   "unchanged_direct_pulp_heat_frontier": 51,
   "known_industrial_heat_preparation_roots": 1,
-  "next_action": "Inspect and qualify the four remaining dedicated-PCC dependencies (chemical-industry steam, washed limestone, one medium-voltage electricity market and one gas-heat market), then compose all original PCC supply shares and freight.",
+  "next_action": "Assemble the complete PCC background market from the verified dedicated producer and two approved native allocation helpers, retaining all three original producer shares, ten freight rows, uncertainty and literal inherited omission audit.",
   "limitations": [
     "Generic inorganic chemical correspondence remains unapproved for precipitated calcium carbonate; source precipitation technology and all three producer shares need preservation.",
     "The minor cobalt/rare-earth branches are nonempty and cannot be omitted because their shares are small.",
-    "Counts of 4 and 133 describe nested direct source-inventory diagnostics, not additional sector roots or a fixed final mapping strategy.",
+    "Counts of 0 and 133 describe nested direct source-inventory diagnostics, not additional sector roots or a fixed final mapping strategy.",
     "No successful PCC/pulp-heat migration, steel transformation or steel export is claimed."
   ],
   "allocated_branch_review": "uvek-pcc-allocated-carbonate-review.md",
@@ -157,7 +152,7 @@
   "allocated_branch_target_verification": "uvek-pcc-allocated-carbonate-verification.json",
   "selected_strategy": {
     "cobalt_and_rare_earth_branches": "Two source-proven relative-allocation helpers over complete native cobalt/lanthanum-oxide screening inventories, with explicit technology and coverage warnings.",
-    "dedicated_PCC_production": "Direct source reconstruction still unfinished; four direct background dependencies remain after qualifying RoW water.",
+    "dedicated_PCC_production": "All43source rows now convert through strict normal harmonization:28records,0unapprovedcorrespondences and46inherited audited zero-interface omission events.",
     "complete_PCC_market": "Not yet assembled/approved; preserve all original producer shares and freight when composing reviewed branches.",
     "historical_all_producer_direct_probe": "133 unapproved correspondences describe the full source-vector alternative, not the selected implementation frontier."
   },
@@ -191,5 +186,8 @@
       "decision": "Do not approve the current consumer-level match for this production-only source market.",
       "next_action": "Select matching native production-level furnace/boiler services and retain all four source technology shares; add no district network/loss."
     }
-  ]
+  ],
+  "last_four_review": "uvek-pcc-last-four-review.md",
+  "dedicated_producer_strict_verification": "uvek-pcc-main-strict-harmonizer-verification.json",
+  "remaining_dependency_preflight_status": "All four entries below are retained as pre-review evidence; each is now superseded by uvek-pcc-last-four-review.md, not an outstanding dependency."
 }

@@ -195635,7 +195635,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "67f06788d5766401678ed96afcd1882e16ac13ceee445126e18d99a9c7f84819"
+          "fingerprint": "29c468fae64d2b0fc48d576b9f6ee2a63f23cc7b5f3f62818c7cd8e4360380bb"
         }
       ]
     },
@@ -251378,6 +251378,838 @@
             "system_model": "cutoff"
           },
           "fingerprint": "731130fe4fb50428f250f3b61617ac915ed10fd8eab25149f62ae95df20eb5a1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-05200779ee64a17f",
+      "operation": "replace",
+      "mapping_method": "reviewed_chemical_heat_with_retained_water",
+      "review_path": "export/uvek_pcc_last_four_review.json",
+      "review_sha256": "1c89742d3ceb021afe5c25ab0f87a2fe6fc7068ff2422f46cbe201f2a5f71838",
+      "authorization": "Standing autonomous approval of inspected same-function native supplies and complete source market reconstructions, rejecting added heat distribution and restoring source3.9water uncertainty, with all limitations logged.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for heat, from steam, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "location": "RoW",
+          "unit": "megajoule"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for heat, from steam, in chemical industry",
+            "reference product": "heat, from steam, in chemical industry",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "59011f93a881cb44b82d0339eb38ac85ecb228d059371effb4a00a41da38b7ed",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "steam production, as energy carrier, in chemical industry",
+              "reference product": "heat, from steam, in chemical industry",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5031bf104a520c39daf20edaa6a98752cf5bd9a3292e9d147b9b98212dca9ee8",
+            "nonproduction_count": 18
+          }
+        ],
+        "component_bindings": [
+          {
+            "kind": "heat_core",
+            "source": {
+              "name": "steam production, as energy carrier, in chemical industry",
+              "reference product": "heat, from steam, in chemical industry",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "statistics": {
+              "amount": 1
+            },
+            "target": {
+              "name": "Heat, unspecific, in chemical plant",
+              "reference product": "Heat, unspecific, in chemical plant",
+              "location": "RER",
+              "unit": "megajoule"
+            }
+          },
+          {
+            "kind": "tap_water",
+            "source": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "IN",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.004827086319833733,
+              "uncertainty type": 2,
+              "loc": -5.3335122397552155,
+              "scale": 0.12328828005937953,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 3,
+                "temporal correlation": 4,
+                "geographical correlation": 5,
+                "further technological correlation": 1
+              },
+              "scale without pedigree": 0.16248076809271922
+            },
+            "target": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            }
+          },
+          {
+            "kind": "tap_water",
+            "source": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "ZA",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.0003571971995074818,
+              "uncertainty type": 2,
+              "loc": -7.937222549117295,
+              "scale": 0.12328828005937953,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 3,
+                "temporal correlation": 4,
+                "geographical correlation": 5,
+                "further technological correlation": 1
+              },
+              "scale without pedigree": 0.16248076809271922
+            },
+            "target": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            }
+          },
+          {
+            "kind": "tap_water",
+            "source": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.05523880003790616,
+              "uncertainty type": 2,
+              "loc": -2.896089673379627,
+              "scale": 0.12328828005937953,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 3,
+                "temporal correlation": 4,
+                "geographical correlation": 5,
+                "further technological correlation": 1
+              },
+              "scale without pedigree": 0.16248076809271922
+            },
+            "target": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            }
+          },
+          {
+            "kind": "tap_water",
+            "source": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.0009622630519319354,
+              "uncertainty type": 2,
+              "loc": -6.946222701920535,
+              "scale": 0.12328828005937953,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 3,
+                "temporal correlation": 4,
+                "geographical correlation": 5,
+                "further technological correlation": 1
+              },
+              "scale without pedigree": 0.16248076809271922
+            },
+            "target": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            }
+          },
+          {
+            "kind": "tap_water",
+            "source": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.00011583062799480447,
+              "uncertainty type": 2,
+              "loc": -9.063381537340817,
+              "scale": 0.12328828005937953,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 3,
+                "temporal correlation": 4,
+                "geographical correlation": 5,
+                "further technological correlation": 1
+              },
+              "scale without pedigree": 0.16248076809271922
+            },
+            "target": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            }
+          },
+          {
+            "kind": "tap_water",
+            "source": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "CO",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.0001914291441202083,
+              "uncertainty type": 2,
+              "loc": -8.560992822406375,
+              "scale": 0.12328828005937953,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 3,
+                "temporal correlation": 4,
+                "geographical correlation": 5,
+                "further technological correlation": 1
+              },
+              "scale without pedigree": 0.16248076809271922
+            },
+            "target": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            }
+          },
+          {
+            "kind": "tap_water",
+            "source": {
+              "name": "market for tap water",
+              "reference product": "tap water",
+              "location": "PE",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 0.0001255754368874702,
+              "uncertainty type": 2,
+              "loc": -8.982603889238298,
+              "scale": 0.12328828005937953,
+              "pedigree": {
+                "reliability": 2,
+                "completeness": 3,
+                "temporal correlation": 4,
+                "geographical correlation": 5,
+                "further technological correlation": 1
+              },
+              "scale without pedigree": 0.16248076809271922
+            },
+            "target": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            }
+          },
+          {
+            "kind": "water_release",
+            "source": {
+              "name": "Water",
+              "categories": [
+                "air"
+              ],
+              "unit": "cubic meter"
+            },
+            "statistics": {
+              "amount": 9.27272727272727e-06,
+              "uncertainty type": 2,
+              "loc": -11.588433017478375,
+              "scale": 0.30335622624235026,
+              "pedigree": {
+                "reliability": 4,
+                "completeness": 4,
+                "temporal correlation": 4,
+                "geographical correlation": 2,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.3873628789649313
+            },
+            "target": {
+              "name": "Water",
+              "categories": [
+                "air"
+              ],
+              "unit": "cubic meter",
+              "type": "biosphere"
+            }
+          },
+          {
+            "kind": "water_release",
+            "source": {
+              "name": "Water",
+              "categories": [
+                "water"
+              ],
+              "unit": "cubic meter"
+            },
+            "statistics": {
+              "amount": 5.25454545454545e-05,
+              "uncertainty type": 2,
+              "loc": -9.853831962090268,
+              "scale": 0.30335622624235026,
+              "pedigree": {
+                "reliability": 4,
+                "completeness": 4,
+                "temporal correlation": 4,
+                "geographical correlation": 2,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.3873628789649313
+            },
+            "target": {
+              "name": "Water",
+              "categories": [
+                "water"
+              ],
+              "unit": "cubic meter",
+              "type": "biosphere"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact source3.9cutoff RoW chemical-industry steam market has one positive1MJ producer share and no delivery/loss term. Reuse complete native Heat,unspecific,inchemicalplant per1MJ, whose documented boundary explicitly excludes water. Retain all seven source tap-water rows and both physical Water releases at their exact signed quantities and compartments, now with original lognormal parameters,pedigree and scale-without-pedigree instead of the earlier deterministic recipe rows. Replace only the source producer heat/electricity inputs with the already-reviewed complete native average chemical-plant heat core once; fuel mix, efficiency, region, allocation, internal uncertainty and vintage are screening differences, not exact equivalence. Add no source fuel/electricity again, rounded0.36kg/MJ, inverse steam conversion, condenser/distribution loss or water-balance correction. Native CH tap-water supplies are whole-service geography/technology proxies with source quantities retained; source water grade, origins, water-stress and upstream treatment differences remain warned. Other exact source profiles retain their existing selected targets, coefficients, reference-sign decisions, helper inventories and uncertainty unchanged. Reissue the3.8approval fingerprint only because the raw shared parent now has a3.9profile-specific helper with restored metadata. Preserve signed caller quantity, reference product/unit, supported uncertainty/formulas and separately listed emissions. No source omission, recovery credit, reverse or consequential approval. Only exact3.9cutoff is newly qualified; uninspected releases remain unapproved. PCC assembly, pulp heat, industrial heat and steel export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e569945184f828afc91b1179146c30f989032090e6215f17c5693a27d4cbce84"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6e6dd9c98a58356d",
+      "operation": "replace",
+      "mapping_method": "reviewed_pcc_remaining_markets",
+      "review_path": "export/uvek_pcc_last_four_review.json",
+      "review_sha256": "1c89742d3ceb021afe5c25ab0f87a2fe6fc7068ff2422f46cbe201f2a5f71838",
+      "authorization": "Standing autonomous approval of inspected same-function native supplies and complete source market reconstructions, rejecting added heat distribution and restoring source3.9water uncertainty, with all limitations logged.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for limestone, crushed, washed",
+          "reference product": "limestone, crushed, washed",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for limestone, crushed, washed",
+            "reference product": "limestone, crushed, washed",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "3e847b22fff542ebc785a1bbbeededad236a6db6cb8e833b847794081e682ec2",
+          "nonproduction_count": 4
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "limestone production, crushed, washed",
+              "reference product": "limestone, crushed, washed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "dcb46d168c39323f5aa87a382b1da593256f0f9035699547be1c08d26ff1a440",
+            "nonproduction_count": 23
+          }
+        ],
+        "component_bindings": [
+          {
+            "kind": "limestone",
+            "source": {
+              "name": "limestone production, crushed, washed",
+              "reference product": "limestone, crushed, washed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "name": "Limestone, crushed, washed",
+              "reference product": "Limestone, crushed, washed",
+              "location": "CH",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.0003583442198355759,
+              "uncertainty type": 2,
+              "loc": -7.934016525595621,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.017352839318965644,
+              "uncertainty type": 2,
+              "loc": -4.053999136470282,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "source": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "statistics": {
+              "amount": 0.0022888164611987796,
+              "uncertainty type": 2,
+              "loc": -6.079720424189058,
+              "scale": 0.4074309757492673,
+              "pedigree": {
+                "reliability": 3,
+                "completeness": 1,
+                "temporal correlation": 5,
+                "geographical correlation": 5,
+                "further technological correlation": 4
+              },
+              "scale without pedigree": 0.5
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact source3.9cutoff RoW washed-crushed limestone market retains its1kgproducer share and three separate original ZA/RoW/BRheavy-road freight rows. Source producer and native CH supplier both describe crushing,washing,conveyor handling,partial heating and equipment from the same Swiss KFN process description,195000t/yand25yearmachine-life assumptions; both references positive1kg. Use complete native washed-crushed limestone once, not milled limestone,PCC,quicklime or an unwashed quarry product. Source upstream resource geography, electricity, heat, equipment/emissions, internal uncertainty and vintage differ; no density,grade,moisture,purity or energy multiplier. Retain final-delivery tonne-km and all uncertainty/pedigree/formula metadata, using the independently reviewed complete native RERheavy-lorry fleet. Fleet,load,fuels,geography,emissions and vintage are screening differences; native internal conveyor/precursor logistics and original final delivery are distinct, each counted once. Preserve signed caller quantity, reference product/unit, supported uncertainty/formulas and separately listed emissions. No source omission, recovery credit, reverse or consequential approval. Only exact3.9cutoff is newly qualified; uninspected releases remain unapproved. PCC assembly, pulp heat, industrial heat and steel export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4fa3e510171f81ab2f0fce3517980e5aa480e3d17b0616e4d0770f4ddf5ed262"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a819b95a8342323b",
+      "operation": "replace",
+      "mapping_method": "reviewed_pcc_remaining_markets",
+      "review_path": "export/uvek_pcc_last_four_review.json",
+      "review_sha256": "1c89742d3ceb021afe5c25ab0f87a2fe6fc7068ff2422f46cbe201f2a5f71838",
+      "authorization": "Standing autonomous approval of inspected same-function native supplies and complete source market reconstructions, rejecting added heat distribution and restoring source3.9water uncertainty, with all limitations logged.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "location": "RNA",
+          "unit": "kilowatt hour"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "RNA",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "94de84de45228460548334cda848baf0dc37cddc449762a0c5f54af1b070dfff",
+          "nonproduction_count": 2
+        },
+        "source_producer_witnesses": [],
+        "component_bindings": [
+          {
+            "kind": "country_grid",
+            "source": {
+              "name": "market group for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "CA",
+              "unit": "kilowatt hour"
+            },
+            "statistics": {
+              "amount": 0.11521209723031647,
+              "uncertainty type": 0,
+              "loc": 0.11521209723031647
+            },
+            "target": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CA",
+              "unit": "kilowatt hour"
+            }
+          },
+          {
+            "kind": "country_grid",
+            "source": {
+              "name": "market group for electricity, medium voltage",
+              "reference product": "electricity, medium voltage",
+              "location": "US",
+              "unit": "kilowatt hour"
+            },
+            "statistics": {
+              "amount": 0.8847879027696831,
+              "uncertainty type": 0,
+              "loc": 0.8847879027696831
+            },
+            "target": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "US",
+              "unit": "kilowatt hour"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact source3.9cutoff RNA medium-voltage electricity market group retains its separate0.11521209723031647CAand0.8847879027696831USdelivered-market shares without renormalization. The source group has no own grid,loss or emission layer. Use complete native CAandUSdeliveredmedium-voltage grids once per signedkWh, retaining actual native HVrequirements1.00775032421169and1.00733211929508kWh/kWhplusSF6andnetwork infrastructure. Do not add native RNAgrid, extra transformation/loss/network or generation-busbar layer. Native2023countrygeneration/trade/imports, voltage-loss split, SF6, infrastructure, source uncertainty, geography and vintage differ from source2018national/regionalsupply portfolios with unquantified score effects. Stale legacy busbar prose does not override actual delivered-grid inventories. Native internal uncertainty substitutes the source national-market internal model; original group share/caller uncertainty remains intact. Preserve signed caller quantity, reference product/unit, supported uncertainty/formulas and separately listed emissions. No source omission, recovery credit, reverse or consequential approval. Only exact3.9cutoff is newly qualified; uninspected releases remain unapproved. PCC assembly, pulp heat, industrial heat and steel export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4773617acb275fc27736adc24cd79899fab4a08c56eb3b782210b19c81e465b2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b093a40f996187dc",
+      "operation": "replace",
+      "mapping_method": "reviewed_pcc_remaining_markets",
+      "review_path": "export/uvek_pcc_last_four_review.json",
+      "review_sha256": "1c89742d3ceb021afe5c25ab0f87a2fe6fc7068ff2422f46cbe201f2a5f71838",
+      "authorization": "Standing autonomous approval of inspected same-function native supplies and complete source market reconstructions, rejecting added heat distribution and restoring source3.9water uncertainty, with all limitations logged.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for heat, district or industrial, natural gas",
+          "reference product": "heat, district or industrial, natural gas",
+          "location": "CA-QC",
+          "unit": "megajoule"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for heat, district or industrial, natural gas",
+            "reference product": "heat, district or industrial, natural gas",
+            "location": "CA-QC",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "5cd3bbdecad2362d5075e9f9a6785e478395118c4cf47243d22af5121c46c3e1",
+          "nonproduction_count": 4
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace low-NOx >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "796fdac70df2c7ff485ea680d566ac5efe15d9834b6642067c0aa94f505b89c4",
+            "nonproduction_count": 23
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler modulating >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "26feb6663fd38fffdaa173f44574c7f2377524459652323685e54c0429bf8eb5",
+            "nonproduction_count": 23
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "fff82d2c739936453a989ded8b7a363a658f4961b4affe9e16a5a4fd929d282c",
+            "nonproduction_count": 27
+          },
+          {
+            "identity": {
+              "name": "heat production, natural gas, at industrial furnace >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "38f61846200e1ff1902018239f8d2024824de003641cdab2fd66599c18d1b50a",
+            "nonproduction_count": 23
+          }
+        ],
+        "component_bindings": [
+          {
+            "kind": "production_heat",
+            "source": {
+              "name": "heat production, natural gas, at industrial furnace low-NOx >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "statistics": {
+              "amount": 0.2370011424962827,
+              "uncertainty type": 0,
+              "loc": 0.2370011424962827
+            },
+            "target": {
+              "name": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+              "reference product": "xxx Heat, natural gas, at industrial furnace low-NOx >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            }
+          },
+          {
+            "kind": "production_heat",
+            "source": {
+              "name": "heat production, natural gas, at boiler modulating >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "statistics": {
+              "amount": 0.25320343301106,
+              "uncertainty type": 0,
+              "loc": 0.25320343301106
+            },
+            "target": {
+              "name": "xx Heat, natural gas, at boiler modulating >100kW",
+              "reference product": "xx Heat, natural gas, at boiler modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            }
+          },
+          {
+            "kind": "production_heat",
+            "source": {
+              "name": "heat production, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "statistics": {
+              "amount": 0.269028646325603,
+              "uncertainty type": 0,
+              "loc": 0.269028646325603
+            },
+            "target": {
+              "name": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "reference product": "Heat, natural gas, at boiler condensing modulating >100kW",
+              "location": "RER",
+              "unit": "megajoule"
+            }
+          },
+          {
+            "kind": "production_heat",
+            "source": {
+              "name": "heat production, natural gas, at industrial furnace >100kW",
+              "reference product": "heat, district or industrial, natural gas",
+              "location": "CA-QC",
+              "unit": "megajoule"
+            },
+            "statistics": {
+              "amount": 0.2407667781670541,
+              "uncertainty type": 0,
+              "loc": 0.2407667781670541
+            },
+            "target": {
+              "name": "Heat, natural gas, at industrial furnace 1MW",
+              "reference product": "Heat, natural gas, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            }
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact source3.9cutoff CA-QC gas-heat market retains all four original positive1MJproduction-service supplier rows: industriallow-NOx,modulatingboiler,condensingmodulatingboiler andordinaryindustrialfurnace. Reuse the same exact source-provider/native-technology bindings independently inspected in the source3.9globalgas-heat reconstruction. Complete native RERlow-NOx,modulating,condensingandCH1MWindustrialproduction services include combustion,fuel,operation andinfrastructure and explicitly excludeheatdistribution. Reject the old native districtheat-atconsumer match with11%transportlossanddeliverynetwork: source market explicitly has neither. Keep source supplier quantities and uncertainty separately, with no aggregation, renormalization, distribution loss, network, added fuel or invented efficiency factor. Native furnace/boiler efficiencies, source>100kWversusnative1MWordinaryfurnace, technology/vintage, Canadian-to-Europeanfuel/electricity/emissions and regional geography remain screening differences with unquantified score effects. No CHP is present in these four source rows; add no electricity coproduct or credit. Preserve signed caller quantity, reference product/unit, supported uncertainty/formulas and separately listed emissions. No source omission, recovery credit, reverse or consequential approval. Only exact3.9cutoff is newly qualified; uninspected releases remain unapproved. PCC assembly, pulp heat, industrial heat and steel export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "876ed661a183f1f7cc2d9ad9bee0926ec4e29f13efbad238ca6cad60b14f7355"
         }
       ]
     }

@@ -1739,6 +1739,26 @@
         "PCC_main_missing_correspondences_after": 4,
         "original_pulp_heat_frontier_unchanged": 51,
         "limitation": "Water mapping complete; dedicated PCC, full pulp heat and steel export remain unfinished."
+      },
+      "PCC_last_four_background_verification": {
+        "review": "uvek-pcc-last-four-review.md",
+        "verification": "uvek-pcc-last-four-verification.json",
+        "strict_dedicated_producer": "uvek-pcc-main-strict-harmonizer-verification.json",
+        "new_exact_3_9_scopes": 4,
+        "new_helpers": 4,
+        "restored_water_uncertainty_rows": 9,
+        "older_chemical_heat_profiles_preserved": 8,
+        "earlier_3_8_approval_fingerprint_reissued_only": true,
+        "brightpath_tests_passed": 26,
+        "premise_tests_passed": 2,
+        "related_regressions_passed": 211,
+        "signed_finite_LCIs": 10,
+        "dedicated_PCC_strict_records": 28,
+        "dedicated_PCC_missing_correspondences_before": 4,
+        "dedicated_PCC_missing_correspondences_after": 0,
+        "new_source_omission_approvals": 0,
+        "original_pulp_heat_frontier_unchanged": 51,
+        "limitation": "Dedicated producer passes; complete PCC background market and steel export remain unfinished."
       }
     },
     {
