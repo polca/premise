@@ -1,0 +1,8 @@
+{
+  "native_suppliers": 8,
+  "signed_finite_LCI_checks": 16,
+  "exact_sign_reversal": true,
+  "source_database_count": 11947,
+  "source_database_modified_unchanged": true,
+  "review_sha256": "b9f95c859aaaddffac17f3509ff3a9b1f5f91b82e38605abbae9d9e44e0077ae"
+}

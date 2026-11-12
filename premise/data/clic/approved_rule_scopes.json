@@ -207450,6 +207450,681 @@
           "fingerprint": "77fb1a92ecce029569e7316730bd73276e375772e971424ce0d6cd465b03f46d"
         }
       ]
+    },
+    {
+      "rule_id": "bp-8599277b333713a0",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_material_review.json",
+      "review_sha256": "b9f95c859aaaddffac17f3509ff3a9b1f5f91b82e38605abbae9d9e44e0077ae",
+      "authorization": "Standing autonomous approval for independently inspected screening proxies; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for ferronickel",
+            "reference product": "ferronickel",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "5e2038599bcbce10e033de808e094942bf49cf528825cc392d8bea8911990b0d",
+          "nonproduction_count": 6
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "cobalt production",
+              "reference product": "ferronickel",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5f45e30e9c136654eef87d0efd68b58734ba3c7b8688c40f3b13cd15ad5ede24",
+            "nonproduction_count": 290
+          },
+          {
+            "identity": {
+              "name": "ferronickel production",
+              "reference product": "ferronickel",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3ad8d84ae155e872f876873fb6b0a0102d10deb46e01f0a9c1a19d738426f2f4",
+            "nonproduction_count": 60
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Ferronickel, 25% Ni, at plant",
+              "reference product": "Ferronickel, 25% Ni, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "48e9aea4795fe78827a7a3d419b9160a026a6d262338b65961e4d3278864aa52",
+            "nonproduction_count": 59
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg ferronickel alloy containing 25% Ni, not kg contained nickel. No nickel-content multiplier. Native 1994 global mining/beneficiation/smelting inventory replaces the source producer/co-product mix and market freight. Its documentation warns against use when ferronickel dominates results and borrows missing direct emissions from copper production; retain those limitations.",
+        "Complete native inventory is a screening proxy: production mix, delivery, allocation, grade detail, geography, vintage and internal uncertainty can differ. Native biosphere exclusions remain. Score effects are unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. No reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2b664c0991f366287bdd915f059d0fef08f176d2b3752bcdd9cb8a9c305534af"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-10b3c68ea03a4684",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_steel_39_material_review.json",
+      "review_sha256": "b9f95c859aaaddffac17f3509ff3a9b1f5f91b82e38605abbae9d9e44e0077ae",
+      "authorization": "Standing autonomous approval for independently inspected screening proxies; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for dolomite",
+            "reference product": "dolomite",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "3d0abafcc8cf2cf8fc08b94dc4e429ac09a461fb62634b5cf96094a0752dd10f",
+          "nonproduction_count": 4
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "dolomite production",
+              "reference product": "dolomite",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ba6d3949504813539d702365b8f0277762f0d9973109ec5564d0f465ed9857d5",
+            "nonproduction_count": 15
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Dolomite, at plant",
+              "reference product": "Dolomite, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9f0aa84b5788413412be732d4cb40c5373e13e0fb2a07a22f6c5e474a5ffda54",
+            "nonproduction_count": 19
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg raw milled dolomite, not calcined dolime. Source already includes its 95% process yield; do not add another yield correction. Native limestone-based mining/crushing/milling approximation has weak process data and no water emissions. Complete native process replaces source market delivery.",
+        "Complete native inventory is a screening proxy: production mix, delivery, allocation, grade detail, geography, vintage and internal uncertainty can differ. Native biosphere exclusions remain. Score effects are unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. No reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ba1b0e474d3de4965ba47d9ed6bec9e606bc4a1925b4202547057bef897a8374"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2016f06332c370d1",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_material_review.json",
+      "review_sha256": "b9f95c859aaaddffac17f3509ff3a9b1f5f91b82e38605abbae9d9e44e0077ae",
+      "authorization": "Standing autonomous approval for independently inspected screening proxies; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for ferromanganese, high-coal, 74.5% Mn",
+            "reference product": "ferromanganese, high-coal, 74.5% Mn",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "483ae2c06ff83623de78b5c527c837dcd91e55b79d418cd23ccd7432b79c5aba",
+          "nonproduction_count": 2
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ferromanganese production, high-coal, 74.5% Mn",
+              "reference product": "ferromanganese, high-coal, 74.5% Mn",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "80dbbffe604a7aec2ed3958b1db7272f78242bb090ead8a4d95dfb3c740abb95",
+            "nonproduction_count": 33
+          },
+          {
+            "identity": {
+              "name": "ferromanganese production, high-coal, 74.5% Mn",
+              "reference product": "ferromanganese, high-coal, 74.5% Mn",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "898d3e86c1b24612717837bfd32901c97637faf0fad2e8f5ae8ad1abec1d0c22",
+            "nonproduction_count": 28
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Ferromanganese, high-coal, 74.5% Mn, at regional storage",
+              "reference product": "Ferromanganese, high-coal, 74.5% Mn, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "60f90839b6d094459437fe6b5648f8e91997388b384ba2aa086df660cc42c057",
+            "nonproduction_count": 29
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg high-carbon ferromanganese alloy containing 74.5% Mn, not contained manganese. Native regional storage supply replaces source global production mix; source market has no final freight. Native European 1995 mix excludes secondary production and uses weak historical proxy data. No Mn-content multiplier or extra storage/freight.",
+        "Complete native inventory is a screening proxy: production mix, delivery, allocation, grade detail, geography, vintage and internal uncertainty can differ. Native biosphere exclusions remain. Score effects are unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. No reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "62388cbc6d1dfa4c19f28cfca4fd8c81dea62dfcd7a2b53ec2df14b5f212af54"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ebcd400b75b919e6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_material_review.json",
+      "review_sha256": "b9f95c859aaaddffac17f3509ff3a9b1f5f91b82e38605abbae9d9e44e0077ae",
+      "authorization": "Standing autonomous approval for independently inspected screening proxies; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for anode, for metal electrolysis",
+            "reference product": "anode, for metal electrolysis",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "38ba8c6fb6b2019780459dc768c0df8825fbe3977360640a2111fd0961b39ed5",
+          "nonproduction_count": 2
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "anode production, for metal electrolysis",
+              "reference product": "anode, for metal electrolysis",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "10548daa221a9389102ab57b1f31b5f3dfcc1c9e606681176afd1a793a1003b8",
+            "nonproduction_count": 26
+          },
+          {
+            "identity": {
+              "name": "anode production, for metal electrolysis",
+              "reference product": "anode, for metal electrolysis",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "50c8b69aad3bbbe0e8194758c69767f422648158738a0ea160567f10d4e337cd",
+            "nonproduction_count": 37
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Anode, for metal electrolysis",
+              "reference product": "Anode, for metal electrolysis",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "12053709d282613f60141c312ddf46dcdbf136fcb3cf9c04077048eb1784fff5",
+            "nonproduction_count": 28
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg complete carbon anode for metal electrolysis, including its manufacturing plant, input transports and manufacturing waste. Native 85% prebaked/15% Soderberg technology is a European historical proxy. Not bare graphite or battery active material. Preserve separately listed use-phase oxidation emissions; add no combustion or anode-use credit.",
+        "Complete native inventory is a screening proxy: production mix, delivery, allocation, grade detail, geography, vintage and internal uncertainty can differ. Native biosphere exclusions remain. Score effects are unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. No reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6996f7b9a2793af95258eae6f37bb4d99c8899b18da91d4f8b2d307cd4f1d05b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-98dd4c54584cde5e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_material_review.json",
+      "review_sha256": "b9f95c859aaaddffac17f3509ff3a9b1f5f91b82e38605abbae9d9e44e0077ae",
+      "authorization": "Standing autonomous approval for independently inspected screening proxies; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "anode production, graphite, for Li-ion battery",
+            "reference product": "anode, graphite, for Li-ion battery",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "4f05760e755ab821ce7f59ca2b94727173b06e97973498ef6ff5ca52375d97a7",
+          "nonproduction_count": 60
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Anode, graphite, for Li-ion battery",
+              "reference product": "Anode, graphite, for Li-ion battery",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1a2be328ae5742ba016138f4a76788fdce653ca6c6b18cb5e28a51d8229f1228",
+            "nonproduction_count": 11
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg complete graphite-based Li-ion battery anode, not bare graphite. Both source and native describe complete graphite-based anode manufacture with chemical-factory infrastructure. Preserve native binder/additive inventory; no extra collector, binder, capacity or active-material fraction scaling. Native global literature model replaces RoW source based on China.",
+        "Complete native inventory is a screening proxy: production mix, delivery, allocation, grade detail, geography, vintage and internal uncertainty can differ. Native biosphere exclusions remain. Score effects are unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. No reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d95aedda1ebaf466fc8135308b206d534059bbe35620ae031682b9ae2f06b977"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1cec8621edcd6a08",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_material_review.json",
+      "review_sha256": "b9f95c859aaaddffac17f3509ff3a9b1f5f91b82e38605abbae9d9e44e0077ae",
+      "authorization": "Standing autonomous approval for independently inspected screening proxies; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for conveyor belt",
+            "reference product": "conveyor belt",
+            "location": "GLO",
+            "unit": "meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d8ad621b7dca24569ebb4922d68a0c276b72e067392a146e52fdb9069bcff2fb",
+          "nonproduction_count": 6
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "conveyor belt production",
+              "reference product": "conveyor belt",
+              "location": "RoW",
+              "unit": "meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c1b2ed2a9bf306d97a5a73653fde24bb2581796e678539604f0411c901cbe7b7",
+            "nonproduction_count": 14
+          },
+          {
+            "identity": {
+              "name": "conveyor belt production",
+              "reference product": "conveyor belt",
+              "location": "RER",
+              "unit": "meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ce6109f16facb7406f7a18db014fa47de45562bfc2085b08f38e7c1654ecf064",
+            "nonproduction_count": 12
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Conveyor belt, at plant",
+              "reference product": "Conveyor belt, at plant",
+              "location": "RER",
+              "unit": "meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "eeb17e1c26374f70321cdd1f15dd80b827c407538aef275ecd2eefea10bb914f",
+            "nonproduction_count": 9
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One metre of complete conveyor infrastructure, not kg rubber belt. Both describe materials, component transport and decommissioning transport, concrete/rubber disposal, metal recycling handover and no assembly energy. Native European plant process replaces source global market delivery; no kg-to-metre factor. Both recommend a specific inventory when this process materially affects results.",
+        "Complete native inventory is a screening proxy: production mix, delivery, allocation, grade detail, geography, vintage and internal uncertainty can differ. Native biosphere exclusions remain. Score effects are unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. No reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "be4e52f3c6a5a24fc3e68eedb89ab3a2da7da3743ebdaf7f0d1d65c4024d491d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b5d0a03de9a0c80e",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_steel_39_material_review.json",
+      "review_sha256": "b9f95c859aaaddffac17f3509ff3a9b1f5f91b82e38605abbae9d9e44e0077ae",
+      "authorization": "Standing autonomous approval for independently inspected screening proxies; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for limestone, unprocessed",
+            "reference product": "limestone, unprocessed",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "1dc42559b3724734b13ffd4a220d0daf6b09e7425f5372f2526ecda988b123eb",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "limestone quarry operation",
+              "reference product": "limestone, unprocessed",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5f9d1edfc16f574503184b4c2119154d2863dd6bf3e2980416f926d966f7084f",
+            "nonproduction_count": 14
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Limestone, at mine",
+              "reference product": "Limestone, at mine",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "aa1025ddf4c28d2bac1a794ebf17b7a63bd6059c05c207178b6d198a4013bf30",
+            "nonproduction_count": 12
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg unprocessed quarried limestone, not lime or calcium oxide. Native Swiss mine process includes blasting, internal transport, mine infrastructure and recultivation. Source market has no final delivery because the next step is colocated. No calcination, carbonate-content, quarry-yield or extra transport multiplier.",
+        "Complete native inventory is a screening proxy: production mix, delivery, allocation, grade detail, geography, vintage and internal uncertainty can differ. Native biosphere exclusions remain. Score effects are unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. No reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5a3c73f7448430b4fef2151496fd776b94ba46d79975291c4c3b2ca85ea60351"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-04c4aea3d5973dac",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_material_review.json",
+      "review_sha256": "b9f95c859aaaddffac17f3509ff3a9b1f5f91b82e38605abbae9d9e44e0077ae",
+      "authorization": "Standing autonomous approval for independently inspected screening proxies; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for refractory, fireclay, packed",
+            "reference product": "refractory, fireclay, packed",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "b9d06617b57e0c41fa680fdc56c906157a57be6afdb1631615f63c46902f628e",
+          "nonproduction_count": 5
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "refractory production, fireclay, packed",
+              "reference product": "refractory, fireclay, packed",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ce9977d98f428c1cc8cb577d1857222bb49a0d5da8dcabdc5ed2cbe79128eb70",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "refractory production, fireclay, packed",
+              "reference product": "refractory, fireclay, packed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "79a6c7881c2a5504e1b73bcd8e2b84dc0d7a280cc634471412c6475ee85044c5",
+            "nonproduction_count": 99
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Refractory, fireclay, packed, at plant",
+              "reference product": "Refractory, fireclay, packed, at plant",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "efd2ddf38d309f81a155ebf4213b98cafe7cb5667dfcc91d9cd7eaa4e8e75383",
+            "nonproduction_count": 17
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg packed refractory fireclay product, not unburnt clay or chamotte alone. Both complete manufacture boundaries include internal transport, packing and infrastructure, excluding administration. Native German plant replaces the global market including its producer mix and final delivery. No extra firing, clay-input yield correction or packing burden.",
+        "Complete native inventory is a screening proxy: production mix, delivery, allocation, grade detail, geography, vintage and internal uncertainty can differ. Native biosphere exclusions remain. Score effects are unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. No reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6cbccfa78fd4320641df603723b126f11f4c0adb3509bfaf7d58dc7b1704bdae"
+        }
+      ]
     }
   ],
   "superseded_operations": [
