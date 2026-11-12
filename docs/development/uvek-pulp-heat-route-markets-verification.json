@@ -1,0 +1,140 @@
+{
+  "review_sha256": "32777e30418c6895e99cc2502174c3e27772ecf888b61ade0ff182e84a1f5633",
+  "cases": [
+    {
+      "case": "bp-a0edce43a67009b0",
+      "helpers": 1,
+      "native_suppliers": 3,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "bp-f968f450dde9256c",
+      "helpers": 1,
+      "native_suppliers": 5,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "bp-3cec06f29a64bf3f",
+      "helpers": 1,
+      "native_suppliers": 8,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Ozone, liquid, at plant | RER",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Transport, freight, rail | RER",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Transport, freight, lorry, fleet average | RER",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "xx Sugar, from sugar beet, at sugar refinery | CH",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Transport, freight, lorry, 3.5t gross weight, fleet average | RER",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Transport, transoceanic freight ship | OCE",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Fatty alcohol, petrochemical, at plant | RER",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Fatty alcohol, from coconut oil, at plant | RER",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Fatty alcohol, from palm kernel oil, at plant | RER",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Fatty alcohol, from palm oil, at plant | RER",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Transport, barge | RER",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "case": "Transport, transoceanic container ship | OCE",
+      "helpers": 0,
+      "native_suppliers": 1,
+      "direct_biosphere_identities": 0,
+      "signed_finite_LCIs": 2,
+      "exact_sign_reversal": true
+    }
+  ],
+  "signed_finite_LCIs": 30,
+  "new_market_component_bindings_match": true,
+  "source_modified_unchanged": true,
+  "limitation": "Native background plus canonical direct biosphere nominal LCI checks, with all helper coefficients recursively included. Not source/native score equivalence, uncertainty sampling or a full pulp-heat/steel scenario export.",
+  "brightpath_tests_passed": 19,
+  "premise_tests_passed": 1,
+  "shared_regressions_passed": 48,
+  "new_helpers": 3,
+  "source_market_rows_preserved": 27,
+  "source_producer_shares_preserved": 11,
+  "source_delivery_rows_preserved": 16,
+  "native_suppliers": 12,
+  "new_source_omission_approvals": 0,
+  "pulp_heat_missing_correspondences_before": 49,
+  "pulp_heat_missing_correspondences_after": 46
+}

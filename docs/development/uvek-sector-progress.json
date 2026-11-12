@@ -1782,6 +1782,25 @@
         "pulp_heat_missing_correspondences_after_two_batches": 49,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "Exact3.9PCCbackground market complete; remaining49pulp-heat mappings and steel scenario transformation/export remain unfinished."
+      },
+      "pulp_heat_route_markets_verification": {
+        "review": "uvek-pulp-heat-route-markets-review.md",
+        "verification": "uvek-pulp-heat-route-markets-verification.json",
+        "new_exact_3_9_scopes": 3,
+        "new_helpers": 3,
+        "source_market_rows_preserved": 27,
+        "original_producer_shares_preserved": 11,
+        "original_delivery_rows_preserved": 16,
+        "native_suppliers": 12,
+        "brightpath_tests_passed": 19,
+        "premise_tests_passed": 1,
+        "shared_regressions_passed": 48,
+        "signed_finite_LCIs": 30,
+        "new_source_omission_approvals": 0,
+        "pulp_heat_missing_correspondences_before": 49,
+        "pulp_heat_missing_correspondences_after": 46,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Three market prerequisites qualify; full pulp/industrial heat, steel update/export and remaining sectors remain unfinished."
       }
     },
     {
