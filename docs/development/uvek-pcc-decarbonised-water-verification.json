@@ -1,0 +1,9 @@
+{
+  "review_sha256": "cbcf15095ca38d88e9f378e0f13dda34cdff98b70930bf140cf3e91a95a57508",
+  "native_complete_water_suppliers": 1,
+  "signed_finite_LCIs": 2,
+  "exact_sign_reversal": true,
+  "source_modified_unchanged": true,
+  "new_helpers": 0,
+  "limitation": "Kg-water reference preserved; no source/native water-quality or score equivalence claimed. Full pulp heat and steel remain unfinished."
+}

@@ -1,0 +1,157 @@
+{
+  "status": "PCC_market_unfinished_source_inventory_routes_inspected",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff",
+    "biosphere_version": "3.9"
+  },
+  "target_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_version": "3.10"
+  },
+  "source_market": {
+    "name": "market for calcium carbonate, precipitated",
+    "reference product": "calcium carbonate, precipitated",
+    "location": "RoW",
+    "unit": "kilogram"
+  },
+  "production_branches": [
+    {
+      "process": {
+        "name": "cobalt production",
+        "reference product": "calcium carbonate, precipitated",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "source_market_share": 0.00934612515441106,
+      "nonproduction_rows": 290,
+      "nonzero_nonproduction_rows": 290
+    },
+    {
+      "process": {
+        "name": "calcium carbonate production, precipitated",
+        "reference product": "calcium carbonate, precipitated",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "source_market_share": 0.990336071944508,
+      "nonproduction_rows": 43,
+      "nonzero_nonproduction_rows": 43
+    },
+    {
+      "process": {
+        "name": "rare earth oxides production, from rare earth oxide concentrate, 70% REO",
+        "reference product": "calcium carbonate, precipitated",
+        "location": "CN-SC",
+        "unit": "kilogram"
+      },
+      "source_market_share": 0.000317802901081526,
+      "nonproduction_rows": 44,
+      "nonzero_nonproduction_rows": 44
+    }
+  ],
+  "dedicated_producer_dependencies_before_water_review": 11,
+  "all_three_producer_dependencies_before_water_review": 139,
+  "direct_reconstruction_probes_after_water_review": {
+    "main": {
+      "unapproved_correspondences": 5,
+      "families": {
+        "electricity, medium voltage": 1,
+        "heat, district or industrial, natural gas": 1,
+        "heat, from steam, in chemical industry": 1,
+        "limestone, crushed, washed": 1,
+        "water, decarbonised": 1
+      }
+    },
+    "all-producers": {
+      "unapproved_correspondences": 133,
+      "families": {
+        "DTPA, diethylenetriaminepentaacetic acid": 1,
+        "acetic acid, without water, in 98% solution state": 1,
+        "acrylic acid": 1,
+        "ammonia, anhydrous, liquid": 8,
+        "ammonium nitrate": 4,
+        "bentonite": 1,
+        "benzaldehyde": 2,
+        "blast furnace sludge": 2,
+        "carbon dioxide, liquid": 2,
+        "carbon disulfide": 1,
+        "charcoal": 1,
+        "chemical, organic": 1,
+        "chlorine, gaseous": 2,
+        "chlorine, liquid": 1,
+        "citric acid": 1,
+        "compressed air, 800 kPa gauge": 2,
+        "diesel": 1,
+        "electricity, medium voltage": 2,
+        "electricity, medium voltage, cobalt industry": 1,
+        "esters of versatic acid": 1,
+        "ethanol, without water, in 99.7% solution state, from ethylene": 2,
+        "explosive, tovex": 1,
+        "heat, district or industrial, natural gas": 1,
+        "heat, district or industrial, other than natural gas": 1,
+        "heat, from steam, in chemical industry": 1,
+        "hydrochloric acid, without water, in 30% solution state": 1,
+        "hydrogen peroxide, without water, in 50% solution state": 1,
+        "hydrogen sulfide": 2,
+        "hydrogen, liquid": 2,
+        "iron sulfate": 2,
+        "isobutanol": 2,
+        "kerosene": 8,
+        "leach residue from copper production": 1,
+        "light fuel oil": 1,
+        "lime, hydrated, loose weight": 2,
+        "limestone, crushed, for mill": 2,
+        "limestone, crushed, washed": 2,
+        "low level radioactive waste for final repository": 1,
+        "lubricating oil": 1,
+        "manganese sulfate": 1,
+        "metalliferous hydroxide sludge": 1,
+        "naphtha": 7,
+        "nickel smelter slag": 1,
+        "nitric acid, without water, in 50% solution state": 10,
+        "non-sulfidic overburden, off-site": 1,
+        "paraffin": 1,
+        "polyacrylamide": 1,
+        "process-specific burdens, inert material landfill": 2,
+        "propane": 1,
+        "quicklime, milled, loose": 1,
+        "quicklime, milled, packed": 1,
+        "rare earth oxide concentrate, 70% REO": 1,
+        "refinery sludge": 3,
+        "soda ash, light": 1,
+        "sodium percarbonate, powder": 2,
+        "sodium persulfate": 1,
+        "sodium phosphate": 2,
+        "sodium sulfate, anhydrite": 1,
+        "sodium sulfide": 1,
+        "sodium tetrahydridoborate": 1,
+        "spent solvent mixture": 3,
+        "sulfidic tailings, generic": 1,
+        "sulfur dioxide, liquid": 2,
+        "transport, freight, lorry 16-32 metric ton, EURO4": 2,
+        "transport, freight, lorry >32 metric ton, EURO4": 2,
+        "transport, freight, sea, bulk carrier for dry goods": 1,
+        "waste mineral oil": 1,
+        "water, decarbonised": 7,
+        "water, deionised": 1,
+        "water, harvested from rainwater": 1,
+        "zinc": 1
+      }
+    }
+  },
+  "water_review": "uvek-pcc-decarbonised-water-review.md",
+  "unchanged_direct_pulp_heat_frontier": 51,
+  "known_industrial_heat_preparation_roots": 1,
+  "next_action": "Inspect same-activity allocation relationships and native same-process metal inventories for the cobalt and rare-earth co-products before selecting a full upstream reconstruction or an allocated-burden helper. Neither a new proxy nor a zero assumption is authorized by this preflight.",
+  "limitations": [
+    "Generic inorganic chemical correspondence remains unapproved for precipitated calcium carbonate; source precipitation technology and all three producer shares need preservation.",
+    "The minor cobalt/rare-earth branches are nonempty and cannot be omitted because their shares are small.",
+    "Counts of 5 and 133 describe nested direct source-inventory diagnostics, not additional sector roots or a fixed final mapping strategy.",
+    "RoW decarbonised-water market remains unapproved for 3.9 because its diethyl-ether water co-product has 20 nonzero exchanges.",
+    "No successful PCC/pulp-heat migration, steel transformation or steel export is claimed."
+  ]
+}

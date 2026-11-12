@@ -65,5 +65,7 @@
   "wood_market_review": "uvek-pulp-heat-wood-markets-review.md",
   "bark_market_review": "uvek-pulp-heat-bark-market-review.md",
   "limestone_review": "uvek-pulp-heat-limestone-review.md",
-  "biomethanol_review": "uvek-pulp-heat-biomethanol-review.md"
+  "biomethanol_review": "uvek-pulp-heat-biomethanol-review.md",
+  "PCC_reconstruction_preflight": "uvek-pcc-reconstruction-preflight.json",
+  "PCC_decarbonised_water_review": "uvek-pcc-decarbonised-water-review.md"
 }

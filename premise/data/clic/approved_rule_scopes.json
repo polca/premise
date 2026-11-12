@@ -247645,6 +247645,468 @@
           "fingerprint": "1cbc3adba4823f1ebc8d3056fab0120059b86a450956a308f7e8070ccea0248a"
         }
       ]
+    },
+    {
+      "rule_id": "bp-a55991d52eed7e95",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pcc_decarbonised_water_review.json",
+      "review_sha256": "cbcf15095ca38d88e9f378e0f13dda34cdff98b70930bf140cf3e91a95a57508",
+      "authorization": "Standing autonomous approval of independently inspected same-water-quality and same-treatment-class geographic screening proxies, extending the earlier reviewed water correspondence to exact3.9source profiles, with limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "location": "IN",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "IN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "772a6147200025167108387451eeb143d74afc29f1f94940d422a96861735e7a",
+          "nonproduction_count": 1
+        },
+        "source_producer_witness": {
+          "identity": {
+            "name": "water production, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "IN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "193fd386ecce6741ffa8f6f6736e14bd16e7a502639a2ad338b2dae3754248b7",
+          "nonproduction_count": 9
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Water, decarbonised, at plant",
+            "reference product": "Water, decarbonised, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "85005afaa1b6cc9fd183ad61bcdabd8d782e1e5ec38ab22731d83daffa7a6f6c",
+          "nonproduction_count": 9
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "quantity_basis": "kg decarbonised water, not dry kg or m3",
+        "parent_unchanged": true
+      },
+      "limitations": [
+        "Extend independently inspected ecoinvent3.9cutoff decarbonised-water market contexts for IN,US,CN,CA,BRandZA using existing unchanged native RER correspondences. Each source market has positive1kgwater reference, one positive1kg same-product producer input and no freight/direct biosphere exchanges. Source reference properties declare1kg wet/water mass and0kg dry mass: factor+1 nominalkgwater, not drykg, m3, cooling service or a density/purity multiplier. Source producers explicitly describe carbonate/suspended-matter removal for cooling towers/flue-gas scrubbers; native positive1kg Water,decarbonised,atplant describes carbonate precipitation for power-plant cooling water. This is decarbonised water, not fully deionised water or drinking water. Use the complete existing RER treatment inventory once, retaining native raw-water resource intake, chemicals, energy, treatment releases and decarbonising-waste disposal. It replaces the source regional process inventories; geography, raw-water origin, hardness/removal efficiency, chemical doses, waste moisture, wastewater, water returns, allocation, vintage, biosphere exclusions and internal uncertainty differ, with unquantified score effects. Do not add source internal exchanges again or invent a water-balance/loss/quality correction. Caller signed kg, supported uncertainty/formulas and separate process water returns/emissions remain unchanged. No helper, source omission or resource/parent edit is added; older3.6parents and approvals remain byte-for-byte unchanged. Only these six exact3.9cutoff contexts are newly approved; no consequential/reverse or other new source version. This removes six nested dedicated-PCC dependencies, not the complete three-route PCC market. Pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "27b413c0179e7433d6dc6683cf6da854733601490068fdeeac2b5d0442e5e940"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fac4a1f43671b603",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pcc_decarbonised_water_review.json",
+      "review_sha256": "cbcf15095ca38d88e9f378e0f13dda34cdff98b70930bf140cf3e91a95a57508",
+      "authorization": "Standing autonomous approval of independently inspected same-water-quality and same-treatment-class geographic screening proxies, extending the earlier reviewed water correspondence to exact3.9source profiles, with limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "location": "US",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "103762a6acb5cee2e41188613a29a5c93ec733b2ebb7762fb55277a41a6601df",
+          "nonproduction_count": 1
+        },
+        "source_producer_witness": {
+          "identity": {
+            "name": "water production, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "33dbc6d5acddb0038dd20c7262736718b1dbb8b28efdf7e94007c077a53e44e1",
+          "nonproduction_count": 9
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Water, decarbonised, at plant",
+            "reference product": "Water, decarbonised, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "85005afaa1b6cc9fd183ad61bcdabd8d782e1e5ec38ab22731d83daffa7a6f6c",
+          "nonproduction_count": 9
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "quantity_basis": "kg decarbonised water, not dry kg or m3",
+        "parent_unchanged": true
+      },
+      "limitations": [
+        "Extend independently inspected ecoinvent3.9cutoff decarbonised-water market contexts for IN,US,CN,CA,BRandZA using existing unchanged native RER correspondences. Each source market has positive1kgwater reference, one positive1kg same-product producer input and no freight/direct biosphere exchanges. Source reference properties declare1kg wet/water mass and0kg dry mass: factor+1 nominalkgwater, not drykg, m3, cooling service or a density/purity multiplier. Source producers explicitly describe carbonate/suspended-matter removal for cooling towers/flue-gas scrubbers; native positive1kg Water,decarbonised,atplant describes carbonate precipitation for power-plant cooling water. This is decarbonised water, not fully deionised water or drinking water. Use the complete existing RER treatment inventory once, retaining native raw-water resource intake, chemicals, energy, treatment releases and decarbonising-waste disposal. It replaces the source regional process inventories; geography, raw-water origin, hardness/removal efficiency, chemical doses, waste moisture, wastewater, water returns, allocation, vintage, biosphere exclusions and internal uncertainty differ, with unquantified score effects. Do not add source internal exchanges again or invent a water-balance/loss/quality correction. Caller signed kg, supported uncertainty/formulas and separate process water returns/emissions remain unchanged. No helper, source omission or resource/parent edit is added; older3.6parents and approvals remain byte-for-byte unchanged. Only these six exact3.9cutoff contexts are newly approved; no consequential/reverse or other new source version. This removes six nested dedicated-PCC dependencies, not the complete three-route PCC market. Pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "46c4538232a39898cafc396b950b6e9d561a3e7a436e3a425fa5f2d2239f092c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2c87af773f68847e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pcc_decarbonised_water_review.json",
+      "review_sha256": "cbcf15095ca38d88e9f378e0f13dda34cdff98b70930bf140cf3e91a95a57508",
+      "authorization": "Standing autonomous approval of independently inspected same-water-quality and same-treatment-class geographic screening proxies, extending the earlier reviewed water correspondence to exact3.9source profiles, with limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "location": "CN",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "CN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "ec0e1c114b5b5802c28b3ef4e4cf8a9ab88351a9169d9f3c57c0c8ab9de2a166",
+          "nonproduction_count": 1
+        },
+        "source_producer_witness": {
+          "identity": {
+            "name": "water production, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "CN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "383d35eec5e653ff570c44a57e1e0f8f69183e81e331f12133db925a4c5f1bbd",
+          "nonproduction_count": 9
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Water, decarbonised, at plant",
+            "reference product": "Water, decarbonised, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "85005afaa1b6cc9fd183ad61bcdabd8d782e1e5ec38ab22731d83daffa7a6f6c",
+          "nonproduction_count": 9
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "quantity_basis": "kg decarbonised water, not dry kg or m3",
+        "parent_unchanged": true
+      },
+      "limitations": [
+        "Extend independently inspected ecoinvent3.9cutoff decarbonised-water market contexts for IN,US,CN,CA,BRandZA using existing unchanged native RER correspondences. Each source market has positive1kgwater reference, one positive1kg same-product producer input and no freight/direct biosphere exchanges. Source reference properties declare1kg wet/water mass and0kg dry mass: factor+1 nominalkgwater, not drykg, m3, cooling service or a density/purity multiplier. Source producers explicitly describe carbonate/suspended-matter removal for cooling towers/flue-gas scrubbers; native positive1kg Water,decarbonised,atplant describes carbonate precipitation for power-plant cooling water. This is decarbonised water, not fully deionised water or drinking water. Use the complete existing RER treatment inventory once, retaining native raw-water resource intake, chemicals, energy, treatment releases and decarbonising-waste disposal. It replaces the source regional process inventories; geography, raw-water origin, hardness/removal efficiency, chemical doses, waste moisture, wastewater, water returns, allocation, vintage, biosphere exclusions and internal uncertainty differ, with unquantified score effects. Do not add source internal exchanges again or invent a water-balance/loss/quality correction. Caller signed kg, supported uncertainty/formulas and separate process water returns/emissions remain unchanged. No helper, source omission or resource/parent edit is added; older3.6parents and approvals remain byte-for-byte unchanged. Only these six exact3.9cutoff contexts are newly approved; no consequential/reverse or other new source version. This removes six nested dedicated-PCC dependencies, not the complete three-route PCC market. Pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c110377c33e29ae7717c1a35ff45364a552cf1034cc4bd2ea5966e262423176d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-be3d5782d2d74037",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pcc_decarbonised_water_review.json",
+      "review_sha256": "cbcf15095ca38d88e9f378e0f13dda34cdff98b70930bf140cf3e91a95a57508",
+      "authorization": "Standing autonomous approval of independently inspected same-water-quality and same-treatment-class geographic screening proxies, extending the earlier reviewed water correspondence to exact3.9source profiles, with limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "location": "CA",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "CA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "e5d5d2c8e6a083887603756d5e98bca66292e68bb1c4802b09d994fc8abd774a",
+          "nonproduction_count": 1
+        },
+        "source_producer_witness": {
+          "identity": {
+            "name": "water production, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "CA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "cb303261530276b9071ce0c1f76be95f31124a11c25bf1956de97ef086d56859",
+          "nonproduction_count": 9
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Water, decarbonised, at plant",
+            "reference product": "Water, decarbonised, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "85005afaa1b6cc9fd183ad61bcdabd8d782e1e5ec38ab22731d83daffa7a6f6c",
+          "nonproduction_count": 9
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "quantity_basis": "kg decarbonised water, not dry kg or m3",
+        "parent_unchanged": true
+      },
+      "limitations": [
+        "Extend independently inspected ecoinvent3.9cutoff decarbonised-water market contexts for IN,US,CN,CA,BRandZA using existing unchanged native RER correspondences. Each source market has positive1kgwater reference, one positive1kg same-product producer input and no freight/direct biosphere exchanges. Source reference properties declare1kg wet/water mass and0kg dry mass: factor+1 nominalkgwater, not drykg, m3, cooling service or a density/purity multiplier. Source producers explicitly describe carbonate/suspended-matter removal for cooling towers/flue-gas scrubbers; native positive1kg Water,decarbonised,atplant describes carbonate precipitation for power-plant cooling water. This is decarbonised water, not fully deionised water or drinking water. Use the complete existing RER treatment inventory once, retaining native raw-water resource intake, chemicals, energy, treatment releases and decarbonising-waste disposal. It replaces the source regional process inventories; geography, raw-water origin, hardness/removal efficiency, chemical doses, waste moisture, wastewater, water returns, allocation, vintage, biosphere exclusions and internal uncertainty differ, with unquantified score effects. Do not add source internal exchanges again or invent a water-balance/loss/quality correction. Caller signed kg, supported uncertainty/formulas and separate process water returns/emissions remain unchanged. No helper, source omission or resource/parent edit is added; older3.6parents and approvals remain byte-for-byte unchanged. Only these six exact3.9cutoff contexts are newly approved; no consequential/reverse or other new source version. This removes six nested dedicated-PCC dependencies, not the complete three-route PCC market. Pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "4f23c8c1b2689cef4c28b0a808bc1bab23258f374f63fe1f0c80b917a9f76290"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7431264e8037a627",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pcc_decarbonised_water_review.json",
+      "review_sha256": "cbcf15095ca38d88e9f378e0f13dda34cdff98b70930bf140cf3e91a95a57508",
+      "authorization": "Standing autonomous approval of independently inspected same-water-quality and same-treatment-class geographic screening proxies, extending the earlier reviewed water correspondence to exact3.9source profiles, with limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "location": "BR",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "BR",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "58cce61da5b2afc9cc06b9901abcfb8f76589f2205bc8985ba2fedc64f24bb2e",
+          "nonproduction_count": 1
+        },
+        "source_producer_witness": {
+          "identity": {
+            "name": "water production, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "BR",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "04de9046438491ad34f3b6b8214ccd2cd825ea4c212b7d3b9b542e5e109c5feb",
+          "nonproduction_count": 9
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Water, decarbonised, at plant",
+            "reference product": "Water, decarbonised, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "85005afaa1b6cc9fd183ad61bcdabd8d782e1e5ec38ab22731d83daffa7a6f6c",
+          "nonproduction_count": 9
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "quantity_basis": "kg decarbonised water, not dry kg or m3",
+        "parent_unchanged": true
+      },
+      "limitations": [
+        "Extend independently inspected ecoinvent3.9cutoff decarbonised-water market contexts for IN,US,CN,CA,BRandZA using existing unchanged native RER correspondences. Each source market has positive1kgwater reference, one positive1kg same-product producer input and no freight/direct biosphere exchanges. Source reference properties declare1kg wet/water mass and0kg dry mass: factor+1 nominalkgwater, not drykg, m3, cooling service or a density/purity multiplier. Source producers explicitly describe carbonate/suspended-matter removal for cooling towers/flue-gas scrubbers; native positive1kg Water,decarbonised,atplant describes carbonate precipitation for power-plant cooling water. This is decarbonised water, not fully deionised water or drinking water. Use the complete existing RER treatment inventory once, retaining native raw-water resource intake, chemicals, energy, treatment releases and decarbonising-waste disposal. It replaces the source regional process inventories; geography, raw-water origin, hardness/removal efficiency, chemical doses, waste moisture, wastewater, water returns, allocation, vintage, biosphere exclusions and internal uncertainty differ, with unquantified score effects. Do not add source internal exchanges again or invent a water-balance/loss/quality correction. Caller signed kg, supported uncertainty/formulas and separate process water returns/emissions remain unchanged. No helper, source omission or resource/parent edit is added; older3.6parents and approvals remain byte-for-byte unchanged. Only these six exact3.9cutoff contexts are newly approved; no consequential/reverse or other new source version. This removes six nested dedicated-PCC dependencies, not the complete three-route PCC market. Pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1e53e5ca8a20f273413b05572a76bb842d9603bf5bb6797a16f4cd8f12a1c477"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f15e4a6a029e8ddb",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_pcc_decarbonised_water_review.json",
+      "review_sha256": "cbcf15095ca38d88e9f378e0f13dda34cdff98b70930bf140cf3e91a95a57508",
+      "authorization": "Standing autonomous approval of independently inspected same-water-quality and same-treatment-class geographic screening proxies, extending the earlier reviewed water correspondence to exact3.9source profiles, with limitations logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "location": "ZA",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for water, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "ZA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "1dcc519166d34636cd0d262bad804969cc62193fc7e53102f27d99c8ff1a2786",
+          "nonproduction_count": 1
+        },
+        "source_producer_witness": {
+          "identity": {
+            "name": "water production, decarbonised",
+            "reference product": "water, decarbonised",
+            "location": "ZA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "50dbb75f102047f12d1c9de5fde405dfc3d7e36841f5e88fb23484f87d35f89c",
+          "nonproduction_count": 9
+        },
+        "native_2026_witness": {
+          "identity": {
+            "name": "Water, decarbonised, at plant",
+            "reference product": "Water, decarbonised, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "85005afaa1b6cc9fd183ad61bcdabd8d782e1e5ec38ab22731d83daffa7a6f6c",
+          "nonproduction_count": 9
+        },
+        "conversion_factor": 1,
+        "new_helpers": 0,
+        "quantity_basis": "kg decarbonised water, not dry kg or m3",
+        "parent_unchanged": true
+      },
+      "limitations": [
+        "Extend independently inspected ecoinvent3.9cutoff decarbonised-water market contexts for IN,US,CN,CA,BRandZA using existing unchanged native RER correspondences. Each source market has positive1kgwater reference, one positive1kg same-product producer input and no freight/direct biosphere exchanges. Source reference properties declare1kg wet/water mass and0kg dry mass: factor+1 nominalkgwater, not drykg, m3, cooling service or a density/purity multiplier. Source producers explicitly describe carbonate/suspended-matter removal for cooling towers/flue-gas scrubbers; native positive1kg Water,decarbonised,atplant describes carbonate precipitation for power-plant cooling water. This is decarbonised water, not fully deionised water or drinking water. Use the complete existing RER treatment inventory once, retaining native raw-water resource intake, chemicals, energy, treatment releases and decarbonising-waste disposal. It replaces the source regional process inventories; geography, raw-water origin, hardness/removal efficiency, chemical doses, waste moisture, wastewater, water returns, allocation, vintage, biosphere exclusions and internal uncertainty differ, with unquantified score effects. Do not add source internal exchanges again or invent a water-balance/loss/quality correction. Caller signed kg, supported uncertainty/formulas and separate process water returns/emissions remain unchanged. No helper, source omission or resource/parent edit is added; older3.6parents and approvals remain byte-for-byte unchanged. Only these six exact3.9cutoff contexts are newly approved; no consequential/reverse or other new source version. This removes six nested dedicated-PCC dependencies, not the complete three-route PCC market. Pulp heat and steel transformation/export remain unfinished."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9713610c71cf55fc3992f010a593f776b5d12c26b2876b4561c5bc16e62d556e"
+        }
+      ]
     }
   ],
   "superseded_operations": [
