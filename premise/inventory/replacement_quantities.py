@@ -107,7 +107,10 @@ def prepare_replacement_quantities(records, database, background, target):
                 len(matches) != 1
                 or matches[0] in seen
                 or edge["amount"] != 0
-                or parent != recipe["replacement_source"]
+                or parent
+                != slots[matches[0]].get(
+                    "replacement_source", recipe["replacement_source"]
+                )
                 or edge.get("uncertainty type", 0) > 1
                 or edge.get("formula") != slots[matches[0]].get("source_formula")
             ):

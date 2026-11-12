@@ -43,11 +43,12 @@ recipes:
     Unknown quantities are not reported as measured zero.
   - Repeated source geography slots mapping to one native supplier group must be filled once, preserving
     the actual native supplier structure.
-  - Source placeholders are deterministic. The shared filler transfers native amounts,
-    not the donor exchange uncertainty distributions; upstream supplier inventories remain
-    unchanged. Do not claim equal source and native uncertainty.
+  - Source placeholders are deterministic. The shared filler transfers native amounts, not the donor
+    exchange uncertainty distributions; upstream supplier inventories remain unchanged. Do not claim
+    equal source and native uncertainty.
   slots:
-  - source:
+  - &id064
+    source:
       type: technosphere
       name: market for blast furnace
       unit: unit
@@ -62,7 +63,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id065
+    source:
       type: technosphere
       name: market for blast furnace dust
       unit: kilogram
@@ -72,7 +74,8 @@ recipes:
     limitation: Absent from the selected native donor. The source quantity is an unfilled licensed
       placeholder, not an established physical zero. This screening inventory omits that source slot;
       its score effect is unquantified.
-  - source:
+  - &id066
+    source:
       type: technosphere
       name: market for blast furnace sludge
       unit: kilogram
@@ -87,7 +90,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id067
+    source:
       type: technosphere
       name: market for blast furnace sludge
       unit: kilogram
@@ -132,7 +136,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id068
+    source:
       type: technosphere
       name: market for inert waste, for final disposal
       unit: kilogram
@@ -147,7 +152,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id069
+    source:
       type: technosphere
       name: market for iron ore concentrate
       unit: kilogram
@@ -162,7 +168,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id070
+    source:
       type: technosphere
       name: market for iron pellet
       unit: kilogram
@@ -177,7 +184,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id071
+    source:
       type: technosphere
       name: iron sinter production
       unit: kilogram
@@ -192,7 +200,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id072
+    source:
       type: technosphere
       name: market for limestone, unprocessed
       unit: kilogram
@@ -207,7 +216,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id073
+    source:
       type: technosphere
       name: market group for natural gas, high pressure
       unit: cubic meter
@@ -222,7 +232,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id074
+    source:
       type: technosphere
       name: market for natural gas, high pressure
       unit: cubic meter
@@ -237,7 +248,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id075
+    source:
       type: technosphere
       name: market for refractory, fireclay, packed
       unit: kilogram
@@ -247,7 +259,8 @@ recipes:
     limitation: Absent from the selected native donor. The source quantity is an unfilled licensed
       placeholder, not an established physical zero. This screening inventory omits that source slot;
       its score effect is unquantified.
-  - source:
+  - &id076
+    source:
       type: technosphere
       name: market for wastewater from pig iron production
       unit: cubic meter
@@ -262,7 +275,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id077
+    source:
       type: technosphere
       name: market for wastewater from pig iron production
       unit: cubic meter
@@ -277,7 +291,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id002
+    source:
       type: biosphere
       name: Carbon dioxide, fossil
       unit: kilogram
@@ -290,7 +305,8 @@ recipes:
       categories:
       - air
     source_formula: CO2
-  - source:
+  - &id001
+    source:
       type: biosphere
       name: Carbon monoxide, fossil
       unit: kilogram
@@ -303,7 +319,8 @@ recipes:
       categories:
       - air
     source_formula: CO
-  - source:
+  - &id078
+    source:
       type: biosphere
       name: Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin
       unit: kilogram
@@ -314,7 +331,8 @@ recipes:
     limitation: Absent from the selected native donor. The source quantity is an unfilled licensed
       placeholder, not an established physical zero. This screening inventory omits that source slot;
       its score effect is unquantified.
-  - source:
+  - &id079
+    source:
       type: biosphere
       name: Hydrogen sulfide
       unit: kilogram
@@ -325,7 +343,8 @@ recipes:
     limitation: Absent from the selected native donor. The source quantity is an unfilled licensed
       placeholder, not an established physical zero. This screening inventory omits that source slot;
       its score effect is unquantified.
-  - source:
+  - &id080
+    source:
       type: biosphere
       name: Lead
       unit: kilogram
@@ -341,7 +360,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id081
+    source:
       type: biosphere
       name: Manganese
       unit: kilogram
@@ -357,7 +377,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id082
+    source:
       type: biosphere
       name: Nickel
       unit: kilogram
@@ -373,7 +394,8 @@ recipes:
     limitation: Use the selected native donor input and its own unit, quantity, sign and supplier
       structure. Source geography, supply technology, allocation and label/basis differences remain
       screening limitations; this does not establish source-inventory equivalence.
-  - source:
+  - &id083
+    source:
       type: biosphere
       name: Water
       unit: cubic meter
@@ -384,7 +406,8 @@ recipes:
     limitation: Absent from the selected native donor. The source quantity is an unfilled licensed
       placeholder, not an established physical zero. This screening inventory omits that source slot;
       its score effect is unquantified.
-  - source:
+  - &id084
+    source:
       type: biosphere
       name: Water
       unit: cubic meter
@@ -397,7 +420,8 @@ recipes:
       categories:
       - water
     source_formula: H2O
-  - source:
+  - &id085
+    source:
       type: biosphere
       name: Water, cooling, unspecified natural origin
       unit: cubic meter
@@ -412,7 +436,8 @@ recipes:
       - natural resource
       - in water
     source_formula: H2O
-  - source:
+  - &id086
+    source:
       type: biosphere
       name: Water, unspecified natural origin
       unit: cubic meter
@@ -424,3 +449,2003 @@ recipes:
     limitation: Absent from the selected native donor. The source quantity is an unfilled licensed
       placeholder, not an established physical zero. This screening inventory omits that source slot;
       its score effect is unquantified.
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-2
+  activity:
+  - steel production, blast furnace-basic oxygen furnace, low-alloyed
+  - steel, low-alloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, converter, low-alloyed
+  - steel, low-alloyed
+  - RER
+  donor:
+  - Steel, converter, low-alloyed, at plant
+  - Steel, converter, low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The dust and sludge lookup slots jointly select the existing native converter waste-treatment
+    basket, including its BOF-waste landfill and EAF-dust landfill proxy. This changes source residue
+    composition, moisture, treatment and emission assumptions; it does not assert that sludge, BOF
+    dust and EAF dust are identical. The complete selected basket is copied once, with no invented
+    sludge/dust split.
+  - The source explicit BOF-slag/coproduct input remains unchanged. Borrowed native residue quantities
+    and that source allocation term retain different boundaries; no claim of equal source/native
+    residue balance or allocation is made.
+  - Where present, native compressed air is an average <30 kW, 8 bar-gauge service, differing from
+    the source 600 kPa-gauge lookup. Use its donor quantity unchanged; do not invent a pressure ratio
+    or compressor efficiency correction.
+  slots:
+  - &id003
+    source:
+      type: technosphere
+      name: market for basic oxygen furnace dust
+      unit: kilogram
+      product: basic oxygen furnace dust
+      location: RER
+    native:
+    - type: technosphere
+      name: Disposal, basic oxygen furnace wastes, 0% water, to residual material landfill
+      unit: kilogram
+      product: Disposal, basic oxygen furnace wastes, 0% water, to residual material landfill
+      location: CH
+    - type: technosphere
+      name: Disposal, dust, unalloyed EAF steel, 15.4% water, to residual material landfill
+      unit: kilogram
+      product: Disposal, dust, unalloyed EAF steel, 15.4% water, to residual material landfill
+      location: CH
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id007
+    source:
+      type: technosphere
+      name: market for basic oxygen furnace sludge
+      unit: kilogram
+      product: basic oxygen furnace sludge
+      location: RER
+    native:
+    - type: technosphere
+      name: Disposal, basic oxygen furnace wastes, 0% water, to residual material landfill
+      unit: kilogram
+      product: Disposal, basic oxygen furnace wastes, 0% water, to residual material landfill
+      location: CH
+    - type: technosphere
+      name: Disposal, dust, unalloyed EAF steel, 15.4% water, to residual material landfill
+      unit: kilogram
+      product: Disposal, dust, unalloyed EAF steel, 15.4% water, to residual material landfill
+      location: CH
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id008
+    source:
+      type: technosphere
+      name: market for blast oxygen furnace converter
+      unit: unit
+      product: blast oxygen furnace converter
+      location: GLO
+    native:
+    - type: technosphere
+      name: Blast oxygen furnace converter
+      unit: unit
+      product: Blast oxygen furnace converter
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id009
+    source:
+      type: technosphere
+      name: market for coke
+      unit: megajoule
+      product: coke
+      location: GLO
+    native:
+    - type: technosphere
+      name: Hard coal coke, at plant
+      unit: megajoule
+      product: Hard coal coke, at plant
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id010
+    source:
+      type: technosphere
+      name: market for compressed air, 600 kPa gauge
+      unit: cubic meter
+      product: compressed air, 600 kPa gauge
+      location: RER
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+  - &id011
+    source:
+      type: technosphere
+      name: market for dolomite
+      unit: kilogram
+      product: dolomite
+      location: RER
+    native:
+    - type: technosphere
+      name: Dolomite, at plant
+      unit: kilogram
+      product: Dolomite, at plant
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id012
+    source:
+      type: technosphere
+      name: market group for electricity, medium voltage
+      unit: kilowatt hour
+      product: electricity, medium voltage
+      location: RER
+    native:
+    - type: technosphere
+      name: Electricity, medium voltage, production ENTSO-E, at grid
+      unit: kilowatt hour
+      product: Electricity, medium voltage, production ENTSO-E, at grid
+      location: ENTSO-E
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id004
+    source:
+      type: technosphere
+      name: market for ferromanganese, high-coal, 74.5% Mn
+      unit: kilogram
+      product: ferromanganese, high-coal, 74.5% Mn
+      location: GLO
+    native:
+    - type: technosphere
+      name: Ferromanganese, high-coal, 74.5% Mn, at regional storage
+      unit: kilogram
+      product: Ferromanganese, high-coal, 74.5% Mn, at regional storage
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id005
+    source:
+      type: technosphere
+      name: market for ferronickel
+      unit: kilogram
+      product: ferronickel
+      location: GLO
+    native:
+    - type: technosphere
+      name: Ferronickel, 25% Ni, at plant
+      unit: kilogram
+      product: Ferronickel, 25% Ni, at plant
+      location: GLO
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id013
+    source:
+      type: technosphere
+      name: market for inert waste, for final disposal
+      unit: kilogram
+      product: inert waste, for final disposal
+      location: CH
+    native:
+    - type: technosphere
+      name: Disposal, inert waste, 5% water, to construction waste landfill
+      unit: kilogram
+      product: Disposal, inert waste, 5% water, to construction waste landfill
+      location: CH
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id014
+    source:
+      type: technosphere
+      name: market for iron ore concentrate
+      unit: kilogram
+      product: iron ore concentrate
+      location: GLO
+    native:
+    - type: technosphere
+      name: Iron ore, 65% Fe, at beneficiation
+      unit: kilogram
+      product: Iron ore, 65% Fe, at beneficiation
+      location: GLO
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id015
+    source:
+      type: technosphere
+      name: market for mill scale
+      unit: kilogram
+      product: mill scale
+      location: RER
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+  - &id006
+    source:
+      type: technosphere
+      name: market for molybdenite
+      unit: kilogram
+      product: molybdenite
+      location: GLO
+    native:
+    - type: technosphere
+      name: Molybdenite, at plant
+      unit: kilogram
+      product: Molybdenite, at plant
+      location: GLO
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id016
+    source:
+      type: technosphere
+      name: market group for natural gas, high pressure
+      unit: cubic meter
+      product: natural gas, high pressure
+      location: Europe without Switzerland
+    native:
+    - type: technosphere
+      name: Natural gas, high pressure, at consumer
+      unit: megajoule
+      product: Natural gas, high pressure, at consumer
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id017
+    source:
+      type: technosphere
+      name: market for natural gas, high pressure
+      unit: cubic meter
+      product: natural gas, high pressure
+      location: CH
+    native:
+    - type: technosphere
+      name: Natural gas, high pressure, at consumer
+      unit: megajoule
+      product: Natural gas, high pressure, at consumer
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id018
+    source:
+      type: technosphere
+      name: market for oxygen, liquid
+      unit: kilogram
+      product: oxygen, liquid
+      location: RER
+    native:
+    - type: technosphere
+      name: Oxygen, liquid, at plant
+      unit: kilogram
+      product: Oxygen, liquid, at plant
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id019
+    source:
+      type: technosphere
+      name: market for quicklime, in pieces, loose
+      unit: kilogram
+      product: quicklime, in pieces, loose
+      location: CH
+    native:
+    - type: technosphere
+      name: Quicklime, in pieces, loose, at plant
+      unit: kilogram
+      product: Quicklime, in pieces, loose, at plant
+      location: CH
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id020
+    source:
+      type: technosphere
+      name: market for wastewater from pig iron production
+      unit: cubic meter
+      product: wastewater from pig iron production
+      location: Europe without Switzerland
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+  - &id021
+    source:
+      type: technosphere
+      name: market for wastewater from pig iron production
+      unit: cubic meter
+      product: wastewater from pig iron production
+      location: CH
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+  - &id022
+    source:
+      type: biosphere
+      name: Chromium
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Chromium III
+      unit: kilogram
+      categories:
+      - air
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    source_formula: Cr
+  - &id023
+    source:
+      type: biosphere
+      name: Water, cooling, unspecified natural origin
+      unit: cubic meter
+      categories:
+      - natural resource
+      - in water
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    source_formula: H2O
+  - &id024
+    source:
+      type: biosphere
+      name: PAH, polycyclic aromatic hydrocarbons
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: PAH, polycyclic aromatic hydrocarbons
+      unit: kilogram
+      categories:
+      - air
+  - &id025
+    source:
+      type: biosphere
+      name: Copper ion
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Copper ion
+      unit: kilogram
+      categories:
+      - air
+    source_formula: Cu
+  - &id026
+    source:
+      type: biosphere
+      name: Nitrogen oxides
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Nitrogen oxides
+      unit: kilogram
+      categories:
+      - air
+    source_formula: H3NO
+  - &id027
+    source:
+      type: biosphere
+      name: Particulates, < 2.5 um
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Particulate Matter, < 2.5 um
+      unit: kilogram
+      categories:
+      - air
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - &id028
+    source:
+      type: biosphere
+      name: Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin
+      unit: kilogram
+      categories:
+      - air
+    source_formula: C12H4Cl4O2
+  - &id029
+    source:
+      type: biosphere
+      name: Manganese
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Manganese II
+      unit: kilogram
+      categories:
+      - air
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    source_formula: Mn
+  - &id030
+    source:
+      type: biosphere
+      name: Iron
+      unit: kilogram
+      categories:
+      - air
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    source_formula: Fe
+  - &id031
+    source:
+      type: biosphere
+      name: Lead
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Lead II
+      unit: kilogram
+      categories:
+      - air
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    source_formula: Pb
+  - &id032
+    source:
+      type: biosphere
+      name: Water
+      unit: cubic meter
+      categories:
+      - air
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    source_formula: H2O
+  - &id033
+    source:
+      type: biosphere
+      name: Heat, waste
+      unit: megajoule
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Heat, waste
+      unit: megajoule
+      categories:
+      - air
+  - *id001
+  - *id002
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-3
+  activity:
+  - steel production, blast furnace-basic oxygen furnace, unalloyed
+  - steel, unalloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, converter, unalloyed
+  - steel, converter, unalloyed
+  - RER
+  donor:
+  - Steel, converter, unalloyed, at plant
+  - Steel, converter, unalloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The dust and sludge lookup slots jointly select the existing native converter waste-treatment
+    basket, including its BOF-waste landfill and EAF-dust landfill proxy. This changes source residue
+    composition, moisture, treatment and emission assumptions; it does not assert that sludge, BOF
+    dust and EAF dust are identical. The complete selected basket is copied once, with no invented
+    sludge/dust split.
+  - The source explicit BOF-slag/coproduct input remains unchanged. Borrowed native residue quantities
+    and that source allocation term retain different boundaries; no claim of equal source/native
+    residue balance or allocation is made.
+  - Where present, native compressed air is an average <30 kW, 8 bar-gauge service, differing from
+    the source 600 kPa-gauge lookup. Use its donor quantity unchanged; do not invent a pressure ratio
+    or compressor efficiency correction.
+  slots:
+  - *id003
+  - &id034
+    source:
+      type: technosphere
+      name: market for basic oxygen furnace sludge
+      unit: kilogram
+      product: basic oxygen furnace sludge
+      location: RER
+    native:
+    - type: technosphere
+      name: Disposal, basic oxygen furnace wastes, 0% water, to residual material landfill
+      unit: kilogram
+      product: Disposal, basic oxygen furnace wastes, 0% water, to residual material landfill
+      location: CH
+    - type: technosphere
+      name: Disposal, dust, unalloyed EAF steel, 15.4% water, to residual material landfill
+      unit: kilogram
+      product: Disposal, dust, unalloyed EAF steel, 15.4% water, to residual material landfill
+      location: CH
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id035
+    source:
+      type: technosphere
+      name: market for blast oxygen furnace converter
+      unit: unit
+      product: blast oxygen furnace converter
+      location: GLO
+    native:
+    - type: technosphere
+      name: Blast oxygen furnace converter
+      unit: unit
+      product: Blast oxygen furnace converter
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id036
+    source:
+      type: technosphere
+      name: market for coke
+      unit: megajoule
+      product: coke
+      location: GLO
+    native:
+    - type: technosphere
+      name: Hard coal coke, at plant
+      unit: megajoule
+      product: Hard coal coke, at plant
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id037
+    source:
+      type: technosphere
+      name: market for compressed air, 600 kPa gauge
+      unit: cubic meter
+      product: compressed air, 600 kPa gauge
+      location: RER
+    native:
+    - type: technosphere
+      name: Compressed air, average installation, <30kW, 8 bar gauge, at supply network
+      unit: cubic meter
+      product: Compressed air, average installation, <30kW, 8 bar gauge, at supply network
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id038
+    source:
+      type: technosphere
+      name: market for dolomite
+      unit: kilogram
+      product: dolomite
+      location: RER
+    native:
+    - type: technosphere
+      name: Dolomite, at plant
+      unit: kilogram
+      product: Dolomite, at plant
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id039
+    source:
+      type: technosphere
+      name: market group for electricity, medium voltage
+      unit: kilowatt hour
+      product: electricity, medium voltage
+      location: RER
+    native:
+    - type: technosphere
+      name: Electricity, medium voltage, production ENTSO-E, at grid
+      unit: kilowatt hour
+      product: Electricity, medium voltage, production ENTSO-E, at grid
+      location: ENTSO-E
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id040
+    source:
+      type: technosphere
+      name: market for ferromanganese, high-coal, 74.5% Mn
+      unit: kilogram
+      product: ferromanganese, high-coal, 74.5% Mn
+      location: GLO
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id041
+    source:
+      type: technosphere
+      name: market for inert waste, for final disposal
+      unit: kilogram
+      product: inert waste, for final disposal
+      location: CH
+    native:
+    - type: technosphere
+      name: Disposal, inert waste, 5% water, to construction waste landfill
+      unit: kilogram
+      product: Disposal, inert waste, 5% water, to construction waste landfill
+      location: CH
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id042
+    source:
+      type: technosphere
+      name: market for iron ore concentrate
+      unit: kilogram
+      product: iron ore concentrate
+      location: GLO
+    native:
+    - type: technosphere
+      name: Iron ore, 65% Fe, at beneficiation
+      unit: kilogram
+      product: Iron ore, 65% Fe, at beneficiation
+      location: GLO
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id043
+    source:
+      type: technosphere
+      name: market for mill scale
+      unit: kilogram
+      product: mill scale
+      location: RER
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id044
+    source:
+      type: technosphere
+      name: market group for natural gas, high pressure
+      unit: cubic meter
+      product: natural gas, high pressure
+      location: Europe without Switzerland
+    native:
+    - type: technosphere
+      name: Natural gas, high pressure, at consumer
+      unit: megajoule
+      product: Natural gas, high pressure, at consumer
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id045
+    source:
+      type: technosphere
+      name: market for natural gas, high pressure
+      unit: cubic meter
+      product: natural gas, high pressure
+      location: CH
+    native:
+    - type: technosphere
+      name: Natural gas, high pressure, at consumer
+      unit: megajoule
+      product: Natural gas, high pressure, at consumer
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id046
+    source:
+      type: technosphere
+      name: market for oxygen, liquid
+      unit: kilogram
+      product: oxygen, liquid
+      location: RER
+    native:
+    - type: technosphere
+      name: Oxygen, liquid, at plant
+      unit: kilogram
+      product: Oxygen, liquid, at plant
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id047
+    source:
+      type: technosphere
+      name: market for quicklime, in pieces, loose
+      unit: kilogram
+      product: quicklime, in pieces, loose
+      location: CH
+    native:
+    - type: technosphere
+      name: Quicklime, in pieces, loose, at plant
+      unit: kilogram
+      product: Quicklime, in pieces, loose, at plant
+      location: CH
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id048
+    source:
+      type: technosphere
+      name: market for wastewater from pig iron production
+      unit: cubic meter
+      product: wastewater from pig iron production
+      location: Europe without Switzerland
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id049
+    source:
+      type: technosphere
+      name: market for wastewater from pig iron production
+      unit: cubic meter
+      product: wastewater from pig iron production
+      location: CH
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id050
+    source:
+      type: biosphere
+      name: Carbon dioxide, fossil
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Carbon dioxide, fossil
+      unit: kilogram
+      categories:
+      - air
+    source_formula: CO2
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id051
+    source:
+      type: biosphere
+      name: Carbon monoxide, fossil
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Carbon monoxide, fossil
+      unit: kilogram
+      categories:
+      - air
+    source_formula: CO
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id052
+    source:
+      type: biosphere
+      name: Chromium
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Chromium III
+      unit: kilogram
+      categories:
+      - air
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    source_formula: Cr
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id053
+    source:
+      type: biosphere
+      name: Copper ion
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Copper ion
+      unit: kilogram
+      categories:
+      - air
+    source_formula: Cu
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id054
+    source:
+      type: biosphere
+      name: Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Dioxins, measured as 2,3,7,8-tetrachlorodibenzo-p-dioxin
+      unit: kilogram
+      categories:
+      - air
+    source_formula: C12H4Cl4O2
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id055
+    source:
+      type: biosphere
+      name: Heat, waste
+      unit: megajoule
+      categories:
+      - air
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id056
+    source:
+      type: biosphere
+      name: Iron
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Iron ion
+      unit: kilogram
+      categories:
+      - air
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    source_formula: Fe
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id057
+    source:
+      type: biosphere
+      name: Lead
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Lead II
+      unit: kilogram
+      categories:
+      - air
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    source_formula: Pb
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id058
+    source:
+      type: biosphere
+      name: Manganese
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Manganese II
+      unit: kilogram
+      categories:
+      - air
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    source_formula: Mn
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id059
+    source:
+      type: biosphere
+      name: Nitrogen oxides
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Nitrogen oxides
+      unit: kilogram
+      categories:
+      - air
+    source_formula: H3NO
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id060
+    source:
+      type: biosphere
+      name: PAH, polycyclic aromatic hydrocarbons
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: PAH, polycyclic aromatic hydrocarbons
+      unit: kilogram
+      categories:
+      - air
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id061
+    source:
+      type: biosphere
+      name: Particulates, < 2.5 um
+      unit: kilogram
+      categories:
+      - air
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id062
+    source:
+      type: biosphere
+      name: Water
+      unit: cubic meter
+      categories:
+      - air
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+    source_formula: H2O
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+  - &id063
+    source:
+      type: biosphere
+      name: Water, cooling, unspecified natural origin
+      unit: cubic meter
+      categories:
+      - natural resource
+      - in water
+    native:
+    - type: biosphere
+      name: Water, cooling, unspecified natural origin
+      unit: cubic meter
+      categories:
+      - natural resource
+      - in water
+    source_formula: H2O
+    replacement_source:
+    - steel production, converter, unalloyed
+    - steel, unalloyed
+    - RER
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-4
+  activity:
+  - alloys production, for low-alloyed steel
+  - alloys, for low-alloyed steel
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, converter, low-alloyed
+  - steel, low-alloyed
+  - RER
+  donor:
+  - Steel, converter, low-alloyed, at plant
+  - Steel, converter, low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The dust and sludge lookup slots jointly select the existing native converter waste-treatment
+    basket, including its BOF-waste landfill and EAF-dust landfill proxy. This changes source residue
+    composition, moisture, treatment and emission assumptions; it does not assert that sludge, BOF
+    dust and EAF dust are identical. The complete selected basket is copied once, with no invented
+    sludge/dust split.
+  - The source explicit BOF-slag/coproduct input remains unchanged. Borrowed native residue quantities
+    and that source allocation term retain different boundaries; no claim of equal source/native
+    residue balance or allocation is made.
+  - Where present, native compressed air is an average <30 kW, 8 bar-gauge service, differing from
+    the source 600 kPa-gauge lookup. Use its donor quantity unchanged; do not invent a pressure ratio
+    or compressor efficiency correction.
+  - This auxiliary retains the original workbook reference and borrows the three native converter
+    alloy-input quantities per converter reference. It is not renormalized into one kg of pure alloy,
+    and no exact source steel-composition equivalence is claimed.
+  slots:
+  - *id004
+  - *id005
+  - *id006
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-5
+  activity:
+  - steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed
+  - steel, low-alloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, converter, low-alloyed
+  - steel, low-alloyed
+  - RER
+  donor:
+  - Steel, converter, low-alloyed, at plant
+  - Steel, converter, low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The dust and sludge lookup slots jointly select the existing native converter waste-treatment
+    basket, including its BOF-waste landfill and EAF-dust landfill proxy. This changes source residue
+    composition, moisture, treatment and emission assumptions; it does not assert that sludge, BOF
+    dust and EAF dust are identical. The complete selected basket is copied once, with no invented
+    sludge/dust split.
+  - The source explicit BOF-slag/coproduct input remains unchanged. Borrowed native residue quantities
+    and that source allocation term retain different boundaries; no claim of equal source/native
+    residue balance or allocation is made.
+  - Where present, native compressed air is an average <30 kW, 8 bar-gauge service, differing from
+    the source 600 kPa-gauge lookup. Use its donor quantity unchanged; do not invent a pressure ratio
+    or compressor efficiency correction.
+  slots:
+  - *id003
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id004
+  - *id005
+  - *id013
+  - *id014
+  - *id015
+  - *id006
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id001
+  - *id002
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-6
+  activity:
+  - steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed
+  - steel, unalloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, converter, unalloyed
+  - steel, converter, unalloyed
+  - RER
+  donor:
+  - Steel, converter, unalloyed, at plant
+  - Steel, converter, unalloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The dust and sludge lookup slots jointly select the existing native converter waste-treatment
+    basket, including its BOF-waste landfill and EAF-dust landfill proxy. This changes source residue
+    composition, moisture, treatment and emission assumptions; it does not assert that sludge, BOF
+    dust and EAF dust are identical. The complete selected basket is copied once, with no invented
+    sludge/dust split.
+  - The source explicit BOF-slag/coproduct input remains unchanged. Borrowed native residue quantities
+    and that source allocation term retain different boundaries; no claim of equal source/native
+    residue balance or allocation is made.
+  - Where present, native compressed air is an average <30 kW, 8 bar-gauge service, differing from
+    the source 600 kPa-gauge lookup. Use its donor quantity unchanged; do not invent a pressure ratio
+    or compressor efficiency correction.
+  slots:
+  - *id003
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  - *id039
+  - *id040
+  - *id041
+  - *id042
+  - *id043
+  - *id044
+  - *id045
+  - *id046
+  - *id047
+  - *id048
+  - *id049
+  - *id050
+  - *id051
+  - *id052
+  - *id053
+  - *id054
+  - *id055
+  - *id056
+  - *id057
+  - *id058
+  - *id059
+  - *id060
+  - *id061
+  - *id062
+  - *id063
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-7
+  activity:
+  - pig iron production, top gas recycling-blast furnace
+  - pig iron
+  - GLO
+  - kilogram
+  replacement_source:
+  - pig iron production
+  - pig iron
+  - RER
+  donor:
+  - Pig iron, at plant
+  - Pig iron, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The top-gas-recycling template retains its explicit source fuel, electricity, zeolite, slag and
+    capture entries. Only its tagged baseline-material and elementary-flow slots are borrowed from
+    native conventional pig iron, as in Premise's ordinary donor-copy operation; emissions are not
+    recalculated from the technology-specific fuel demand here.
+  slots:
+  - *id064
+  - *id065
+  - *id066
+  - *id067
+  - *id068
+  - *id069
+  - *id070
+  - *id071
+  - *id072
+  - *id073
+  - *id074
+  - *id075
+  - *id076
+  - *id077
+  - *id078
+  - *id079
+  - *id080
+  - *id081
+  - *id082
+  - *id083
+  - *id084
+  - *id085
+  - *id086
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-8
+  activity:
+  - steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed
+  - steel, low-alloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, converter, low-alloyed
+  - steel, low-alloyed
+  - RER
+  donor:
+  - Steel, converter, low-alloyed, at plant
+  - Steel, converter, low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The dust and sludge lookup slots jointly select the existing native converter waste-treatment
+    basket, including its BOF-waste landfill and EAF-dust landfill proxy. This changes source residue
+    composition, moisture, treatment and emission assumptions; it does not assert that sludge, BOF
+    dust and EAF dust are identical. The complete selected basket is copied once, with no invented
+    sludge/dust split.
+  - The source explicit BOF-slag/coproduct input remains unchanged. Borrowed native residue quantities
+    and that source allocation term retain different boundaries; no claim of equal source/native
+    residue balance or allocation is made.
+  - Where present, native compressed air is an average <30 kW, 8 bar-gauge service, differing from
+    the source 600 kPa-gauge lookup. Use its donor quantity unchanged; do not invent a pressure ratio
+    or compressor efficiency correction.
+  slots:
+  - *id003
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id004
+  - *id005
+  - *id013
+  - *id014
+  - *id015
+  - *id006
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id001
+  - *id002
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-9
+  activity:
+  - steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed
+  - steel, unalloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, converter, unalloyed
+  - steel, unalloyed
+  - RER
+  donor:
+  - Steel, converter, unalloyed, at plant
+  - Steel, converter, unalloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The dust and sludge lookup slots jointly select the existing native converter waste-treatment
+    basket, including its BOF-waste landfill and EAF-dust landfill proxy. This changes source residue
+    composition, moisture, treatment and emission assumptions; it does not assert that sludge, BOF
+    dust and EAF dust are identical. The complete selected basket is copied once, with no invented
+    sludge/dust split.
+  - The source explicit BOF-slag/coproduct input remains unchanged. Borrowed native residue quantities
+    and that source allocation term retain different boundaries; no claim of equal source/native
+    residue balance or allocation is made.
+  - Where present, native compressed air is an average <30 kW, 8 bar-gauge service, differing from
+    the source 600 kPa-gauge lookup. Use its donor quantity unchanged; do not invent a pressure ratio
+    or compressor efficiency correction.
+  slots:
+  - *id003
+  - *id007
+  - *id008
+  - *id009
+  - &id087
+    source:
+      type: technosphere
+      name: market for compressed air, 600 kPa gauge
+      unit: cubic meter
+      product: compressed air, 600 kPa gauge
+      location: RER
+    native:
+    - type: technosphere
+      name: Compressed air, average installation, <30kW, 8 bar gauge, at supply network
+      unit: cubic meter
+      product: Compressed air, average installation, <30kW, 8 bar gauge, at supply network
+      location: RER
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+  - *id011
+  - *id012
+  - &id088
+    source:
+      type: technosphere
+      name: market for ferromanganese, high-coal, 74.5% Mn
+      unit: kilogram
+      product: ferromanganese, high-coal, 74.5% Mn
+      location: GLO
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id002
+  - *id001
+  - *id022
+  - *id025
+  - *id028
+  - &id089
+    source:
+      type: biosphere
+      name: Heat, waste
+      unit: megajoule
+      categories:
+      - air
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+  - &id090
+    source:
+      type: biosphere
+      name: Iron
+      unit: kilogram
+      categories:
+      - air
+    native:
+    - type: biosphere
+      name: Iron ion
+      unit: kilogram
+      categories:
+      - air
+    limitation: Borrow the declared native input group and actual signed native quantity/unit, with
+      the recipe-specific technology, grade, geographic, residue, chemical-label or pressure limitations.
+      This is not a general equivalence between these source and native labels.
+    source_formula: Fe
+  - *id031
+  - *id029
+  - *id026
+  - *id024
+  - &id091
+    source:
+      type: biosphere
+      name: Particulates, < 2.5 um
+      unit: kilogram
+      categories:
+      - air
+    native: []
+    limitation: Not represented by a corresponding input group in the selected native donor. This
+      unknown source slot is omitted in the screening model; its score effect remains unquantified.
+  - *id032
+  - *id085
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-10
+  activity:
+  - pig iron production, blast furnace, with top gas recycling, with carbon capture and storage
+  - pig iron
+  - GLO
+  - kilogram
+  replacement_source:
+  - pig iron production
+  - pig iron
+  - RER
+  donor:
+  - Pig iron, at plant
+  - Pig iron, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The top-gas-recycling template retains its explicit source fuel, electricity, zeolite, slag and
+    capture entries. Only its tagged baseline-material and elementary-flow slots are borrowed from
+    native conventional pig iron, as in Premise's ordinary donor-copy operation; emissions are not
+    recalculated from the technology-specific fuel demand here.
+  slots:
+  - *id064
+  - *id065
+  - *id066
+  - *id067
+  - *id068
+  - *id069
+  - *id070
+  - *id071
+  - *id072
+  - *id073
+  - *id074
+  - *id075
+  - *id076
+  - *id077
+  - *id078
+  - *id079
+  - *id080
+  - *id081
+  - *id082
+  - *id083
+  - *id084
+  - *id085
+  - *id086
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-11
+  activity:
+  - steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture
+    and storage, low-alloyed
+  - steel, low-alloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, converter, low-alloyed
+  - steel, low-alloyed
+  - RER
+  donor:
+  - Steel, converter, low-alloyed, at plant
+  - Steel, converter, low-alloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The dust and sludge lookup slots jointly select the existing native converter waste-treatment
+    basket, including its BOF-waste landfill and EAF-dust landfill proxy. This changes source residue
+    composition, moisture, treatment and emission assumptions; it does not assert that sludge, BOF
+    dust and EAF dust are identical. The complete selected basket is copied once, with no invented
+    sludge/dust split.
+  - The source explicit BOF-slag/coproduct input remains unchanged. Borrowed native residue quantities
+    and that source allocation term retain different boundaries; no claim of equal source/native
+    residue balance or allocation is made.
+  - Where present, native compressed air is an average <30 kW, 8 bar-gauge service, differing from
+    the source 600 kPa-gauge lookup. Use its donor quantity unchanged; do not invent a pressure ratio
+    or compressor efficiency correction.
+  slots:
+  - *id003
+  - *id007
+  - *id008
+  - *id009
+  - *id010
+  - *id011
+  - *id012
+  - *id004
+  - *id005
+  - *id013
+  - *id014
+  - *id015
+  - *id006
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id022
+  - *id023
+  - *id024
+  - *id025
+  - *id026
+  - *id027
+  - *id028
+  - *id029
+  - *id030
+  - *id031
+  - *id032
+  - *id033
+  - *id001
+  - *id002
+- file: lci-steel.xlsx
+  source_version: '3.9'
+  target:
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor_reference_amount: 1
+  authorization: Standing user instruction to work autonomously and auto-approve modelling decisions
+    with warnings and review logs.
+  id: uvek-2026-native-steel-fill-12
+  activity:
+  - steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture
+    and storage, unalloyed
+  - steel, unalloyed
+  - GLO
+  - kilogram
+  replacement_source:
+  - steel production, converter, unalloyed
+  - steel, unalloyed
+  - RER
+  donor:
+  - Steel, converter, unalloyed, at plant
+  - Steel, converter, unalloyed, at plant
+  - RER
+  - kilogram
+  limitations:
+  - Use the corresponding input groups of the selected historical native donor through the unchanged
+    Premise placeholder filler. Preserve all explicit non-placeholder exchanges, reference output,
+    units, signs, capture services and coproduct entries; do not normalize the borrowed ingredient
+    quantities.
+  - This is a screening model, not an ecoinvent inventory reconstruction or a complete copy of the
+    native donor. Fuel/ore/alloy grades, regional supply, allocation, infrastructure, residue and
+    emission models differ; the score effects are unquantified. Additional native inputs outside
+    the declared source slots are not silently added.
+  - Source quantities in these slots are unknown licensed-data placeholders. Native absence is an
+    explicitly recorded omission, not a measured source zero or evidence of negligible effect.
+  - Borrow native gas quantities in their actual MJ unit and native ore/alloy quantities in their
+    actual reference bases; do not introduce density, purity, metal-content or heating-value multipliers
+    for an unknown source quantity.
+  - Native ionic trace-element labels and particle labels remain in their installed biosphere identities
+    and native units. No molecular-weight conversion or equality of chemical definitions is asserted.
+  - Duplicate source geography slots and joint residue-basket selectors are filled once per actual
+    donor input group by the standard Premise filler. Native repeated coefficients are retained individually
+    once.
+  - Source placeholders are deterministic. Donor quantities are copied; donor exchange uncertainty
+    distributions are not transferred. Upstream supplier inventories remain unchanged.
+  - The selected native source already excludes unsupported biosphere exchanges documented in its
+    original import audit. This lookup mapping does not restore those exclusions.
+  - The dust and sludge lookup slots jointly select the existing native converter waste-treatment
+    basket, including its BOF-waste landfill and EAF-dust landfill proxy. This changes source residue
+    composition, moisture, treatment and emission assumptions; it does not assert that sludge, BOF
+    dust and EAF dust are identical. The complete selected basket is copied once, with no invented
+    sludge/dust split.
+  - The source explicit BOF-slag/coproduct input remains unchanged. Borrowed native residue quantities
+    and that source allocation term retain different boundaries; no claim of equal source/native
+    residue balance or allocation is made.
+  - Where present, native compressed air is an average <30 kW, 8 bar-gauge service, differing from
+    the source 600 kPa-gauge lookup. Use its donor quantity unchanged; do not invent a pressure ratio
+    or compressor efficiency correction.
+  slots:
+  - *id003
+  - *id007
+  - *id008
+  - *id009
+  - *id087
+  - *id011
+  - *id012
+  - *id088
+  - *id013
+  - *id014
+  - *id015
+  - *id016
+  - *id017
+  - *id018
+  - *id019
+  - *id020
+  - *id021
+  - *id002
+  - *id001
+  - *id022
+  - *id025
+  - *id028
+  - *id089
+  - *id090
+  - *id031
+  - *id029
+  - *id026
+  - *id024
+  - *id091
+  - *id032
+  - *id085

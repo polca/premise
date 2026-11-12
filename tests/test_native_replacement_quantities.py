@@ -273,3 +273,19 @@ def test_later_unreviewed_record_leaves_the_entire_batch_unchanged(fixture):
             batch, database, _workbook_background("3.9"), target
         )
     assert batch == before
+
+
+def test_only_declared_slot_specific_donor_alias_is_accepted(fixture):
+    record, database, target, path, recipe = fixture
+    record["exchanges"][1]["replacement product"] = "source donor spelling variant"
+    recipe["slots"][0]["replacement_source"] = [
+        "source donor",
+        "source donor spelling variant",
+        "GLO",
+    ]
+    path.write_text(yaml.safe_dump({"schema_version": 1, "recipes": [recipe]}))
+    with pytest.warns(UserWarning):
+        prepare(record, database, target)
+    assert [
+        e["amount"] for e in record["exchanges"] if e["type"] == "technosphere"
+    ] == [12]

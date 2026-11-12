@@ -840,12 +840,17 @@
         "workbook_activities_with_replacement_metadata": 28,
         "workbook_replacement_slots": 641,
         "distinct_donor_queries": 11,
-        "qualified_activities": 1,
+        "qualified_activities": 12,
         "native_technosphere_fills_in_first_recipe": 12,
         "native_elementary_fills_in_first_recipe": 7,
         "explicit_native_absences_in_first_recipe": 6,
-        "status": "generic_bridge_verified_first_recipe_qualified_other_lookups_unfinished",
-        "limitation": "Steel preparation previously returned despite unfilled licensed placeholders; it now refuses the next unqualified donor recipe. Transformation, validation and export remain unfinished."
+        "status": "twelve_native_donor_recipes_qualified_other_lookups_unfinished",
+        "limitation": "Steel preparation previously returned despite unfilled licensed placeholders; it now refuses the next unqualified donor recipe. Transformation, validation and export remain unfinished.",
+        "qualified_lookup_slots": 332,
+        "remaining_workbook_activities": 16,
+        "remaining_lookup_slots": 309,
+        "latest_review": "docs/development/uvek-converter-replacement-review.md",
+        "latest_verification": "docs/development/uvek-converter-replacement-verification.json"
       }
     },
     {
