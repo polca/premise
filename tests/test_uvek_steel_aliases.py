@@ -95,3 +95,39 @@ def test_pig_iron_auxiliary_alias_is_exact_and_not_an_iam_steel_technology():
     assert inv.generate_map({"pig iron": definition})["pig iron"] == [native]
     assert "pig iron" not in inv.generate_steel_map()
     assert "pig iron" not in get_mapping(STEEL_TECHS, "ecoinvent_aliases")
+
+
+def test_all_reviewed_retained_steel_routes_have_distinct_native_target_bindings():
+    from premise.inventory.activity_maps import STEEL_TECHS, get_mapping
+
+    definitions = get_mapping(STEEL_TECHS, "uvek_aliases")
+    roles = [
+        r
+        for r in definitions
+        if r.startswith("steel -")
+        and r not in {"steel - primary - BF/BOF", "steel - secondary"}
+    ]
+    records = []
+    for role in roles:
+        for name in definitions[role]["fltr"]["name"]:
+            product = (
+                "steel, low-alloyed"
+                if name.endswith("low-alloyed")
+                else "steel, unalloyed"
+            )
+            record = activity(name, product, "GLO")
+            record["inventory provenance"] = {"source": "retained workbook"}
+            records.append(record)
+    assert len(roles) == 7 and len(records) == 14
+    mapping = InventorySet(records, "2026", "remind", family="uvek").generate_map(
+        {r: definitions[r] for r in roles}
+    )
+    for role in roles:
+        assert {a["name"] for a in mapping[role]} == set(
+            definitions[role]["fltr"]["name"]
+        )
+        assert len(mapping[role]) == 2
+    assert not any(
+        a in mapping["steel - primary - DRI"]
+        for a in mapping["steel - primary - DRI CCS"]
+    )

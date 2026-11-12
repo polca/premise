@@ -1,0 +1,166 @@
+{
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "background": "UVEK2026cutoff + ecoinvent3.10biosphere",
+  "public_sector_gate_bypassed_only_in_private_diagnostic": true,
+  "steel_sector_checks": "passed",
+  "prepared_records": 12022,
+  "imported_records": 75,
+  "post_update_records": 12503,
+  "IAM_role_coverage": [
+    {
+      "role": "steel - primary - DRI",
+      "IAM_total_positive": false,
+      "supplier_count": 26,
+      "IAM_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA"
+      ],
+      "supplier_names": [
+        "steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed",
+        "steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed"
+      ]
+    },
+    {
+      "role": "steel - primary - H-DRI",
+      "IAM_total_positive": true,
+      "supplier_count": 26,
+      "IAM_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA"
+      ],
+      "supplier_names": [
+        "steel production, hydrogen-based direct reduction iron-electric arc furnace, low-alloyed",
+        "steel production, hydrogen-based direct reduction iron-electric arc furnace, unalloyed"
+      ]
+    },
+    {
+      "role": "steel - secondary",
+      "IAM_total_positive": true,
+      "supplier_count": 39,
+      "IAM_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA"
+      ],
+      "supplier_names": [
+        "Steel, electric, low-alloyed, at plant",
+        "Steel, electric, un- and low-alloyed, at plant",
+        "Steel, electric, unalloyed, at plant"
+      ]
+    },
+    {
+      "role": "steel - primary - BF/BOF",
+      "IAM_total_positive": true,
+      "supplier_count": 26,
+      "IAM_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA"
+      ],
+      "supplier_names": [
+        "Steel, converter, low-alloyed, at plant",
+        "Steel, converter, unalloyed, at plant"
+      ]
+    },
+    {
+      "role": "steel - primary - DRI CCS",
+      "IAM_total_positive": false,
+      "supplier_count": 26,
+      "IAM_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA"
+      ],
+      "supplier_names": [
+        "steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, low-alloyed",
+        "steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed"
+      ]
+    },
+    {
+      "role": "steel - primary - BF/BOF CCS",
+      "IAM_total_positive": false,
+      "supplier_count": 26,
+      "IAM_locations": [
+        "CAZ",
+        "CHA",
+        "EUR",
+        "IND",
+        "JPN",
+        "LAM",
+        "MEA",
+        "NEU",
+        "OAS",
+        "REF",
+        "SSA",
+        "USA"
+      ],
+      "supplier_names": [
+        "steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed",
+        "steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed"
+      ]
+    }
+  ],
+  "export": "not_performed_exhaustive_certification_refused",
+  "remaining_exhaustive_error": "GRAPH.NEW_FORBIDDEN_CYCLE",
+  "cycle_diagnostic": {
+    "flagged_component_nodes": 4156,
+    "identical_component_present_in_untransformed_prepared_source": true,
+    "cached_baseline_different_electricity_product_labels": 232,
+    "interpretation": "Product-label consistency between baseline and output needs investigation; no graph rule has been disabled or relaxed."
+  },
+  "tests": {
+    "steel_mapping_energy_markets": 90,
+    "activity_maps_and_clic_requirements": 33
+  },
+  "limitations": [
+    "Runtime coverage here proves supplier presence for the selected REMIND scenario, not market-consumption coverage or all IAM scenarios.",
+    "Exhaustive certification, Brightway export and finite complete-inventory LCIs remain unfinished."
+  ]
+}

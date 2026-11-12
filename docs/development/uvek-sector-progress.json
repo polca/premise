@@ -877,6 +877,18 @@
           "Exhaustive certification, Brightway export and finite LCIs.",
           "Combined-sector regression before public steel support."
         ]
+      },
+      "retained_advanced_role_bindings": {
+        "review": "docs/development/uvek-steel-retained-role-review.md",
+        "verification": "docs/development/uvek-steel-retained-role-verification.json",
+        "qualified_YAML_roles": 7,
+        "exact_retained_suppliers": 14,
+        "real_REMIND_roles_with_suppliers": 6,
+        "positive_IAM_roles_missing_suppliers": 0,
+        "post_update_records": 12503,
+        "shared_sector_checks": "passed",
+        "exhaustive_certification": "refused_cycle_baseline_product_label_mismatch_under_investigation",
+        "export_verified": false
       }
     },
     {

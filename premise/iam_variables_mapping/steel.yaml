@@ -207,6 +207,20 @@ steel - primary - BF/BOF CCS:
       - FE|Industry|Steel|BF-BOF-CCS|+|Hydrogen
       - FE|Industry|Steel|BF-BOF-CCS|+|Liquids
       - FE|Industry|Steel|BF-BOF-CCS|+|Solids
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed
+      - steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed
+      reference product:
+      - steel, low-alloyed
+      - steel, unalloyed
+      unit: kilogram
+    native_reference_amount: 1.0
+    native_limitations:
+    - Bind only the existing retained steel-workbook foreground templates with reviewed native quantity recipes. No new process or technology proxy is introduced by this alias.
+    - Retain the template's explicit inputs and its documented native donor proxies, omissions, uncertainty and allocation limitations. Native-source and source-template impact equivalence is not established.
   ecoinvent_aliases:
     fltr:
       - steel production, blast furnace-basic oxygen furnace, with carbon capture and storage
@@ -270,6 +284,20 @@ steel - primary - DRI:
       - Final Energy|Industry|Iron and Steel|EAF|Sponge Iron|Electricity
       - Final Energy|Industry|Iron and Steel|EAF|Sponge Iron|Gases|Biomass
       - Final Energy|Industry|Iron and Steel|EAF|Sponge Iron|Gases|Gas
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed
+      - steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed
+      reference product:
+      - steel, low-alloyed
+      - steel, unalloyed
+      unit: kilogram
+    native_reference_amount: 1.0
+    native_limitations:
+    - Bind only the existing retained steel-workbook foreground templates with reviewed native quantity recipes. No new process or technology proxy is introduced by this alias.
+    - Retain the template's explicit inputs and its documented native donor proxies, omissions, uncertainty and allocation limitations. Native-source and source-template impact equivalence is not established.
   ecoinvent_aliases:
     fltr:
       - steel production, natural gas-based direct reduction iron-electric arc furnace
@@ -311,6 +339,20 @@ steel - primary - DRI CCS:
       - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Hydrogen
       - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Liquids
       - FE|Industry|Steel|DRI-NG-EAF-CCS|+|Solids
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, low-alloyed
+      - steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed
+      reference product:
+      - steel, low-alloyed
+      - steel, unalloyed
+      unit: kilogram
+    native_reference_amount: 1.0
+    native_limitations:
+    - Bind only the existing retained steel-workbook foreground templates with reviewed native quantity recipes. No new process or technology proxy is introduced by this alias.
+    - Retain the template's explicit inputs and its documented native donor proxies, omissions, uncertainty and allocation limitations. Native-source and source-template impact equivalence is not established.
   ecoinvent_aliases:
     fltr:
       - steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage
@@ -350,6 +392,20 @@ steel - primary - H-DRI:
       - FE|Industry|Steel|DRI-H2-EAF|+|Hydrogen
       - FE|Industry|Steel|DRI-H2-EAF|+|Liquids
       - FE|Industry|Steel|DRI-H2-EAF|+|Solids
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - steel production, hydrogen-based direct reduction iron-electric arc furnace, low-alloyed
+      - steel production, hydrogen-based direct reduction iron-electric arc furnace, unalloyed
+      reference product:
+      - steel, low-alloyed
+      - steel, unalloyed
+      unit: kilogram
+    native_reference_amount: 1.0
+    native_limitations:
+    - Bind only the existing retained steel-workbook foreground templates with reviewed native quantity recipes. No new process or technology proxy is introduced by this alias.
+    - Retain the template's explicit inputs and its documented native donor proxies, omissions, uncertainty and allocation limitations. Native-source and source-template impact equivalence is not established.
   ecoinvent_aliases:
     fltr:
       - steel production, hydrogen-based direct reduction iron-electric arc furnace
@@ -382,6 +438,20 @@ steel - primary - TGR BF/BOF:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF|Traditional Biomass
     message:
       - Final Energy|Industry|Iron and Steel|BOF|TGR|Electricity
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed
+      - steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed
+      reference product:
+      - steel, low-alloyed
+      - steel, unalloyed
+      unit: kilogram
+    native_reference_amount: 1.0
+    native_limitations:
+    - Bind only the existing retained steel-workbook foreground templates with reviewed native quantity recipes. No new process or technology proxy is introduced by this alias.
+    - Retain the template's explicit inputs and its documented native donor proxies, omissions, uncertainty and allocation limitations. Native-source and source-template impact equivalence is not established.
   ecoinvent_aliases:
     fltr:
       - steel production, blast furnace-basic oxygen furnace, with top gas recycling
@@ -401,6 +471,20 @@ steel - primary - TGR BF/BOF CCS:
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Oil
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Secondary Heat
       - Final Energy|Industry|Iron and Steel|TGR BF/BOF BAT + CCS|Traditional Biomass
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, low-alloyed
+      - steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, unalloyed
+      reference product:
+      - steel, low-alloyed
+      - steel, unalloyed
+      unit: kilogram
+    native_reference_amount: 1.0
+    native_limitations:
+    - Bind only the existing retained steel-workbook foreground templates with reviewed native quantity recipes. No new process or technology proxy is introduced by this alias.
+    - Retain the template's explicit inputs and its documented native donor proxies, omissions, uncertainty and allocation limitations. Native-source and source-template impact equivalence is not established.
   ecoinvent_aliases:
     fltr:
       - steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage
@@ -418,6 +502,20 @@ steel - primary - Electrowinning:
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Oil
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Secondary Heat
       - Final Energy|Industry|Iron and Steel|Electrowinning/EAF|Traditional Biomass
+  uvek_aliases:
+    exact: true
+    fltr:
+      name:
+      - steel production, electrowinning-electric arc furnace, low-alloyed
+      - steel production, electrowinning-electric arc furnace, unalloyed
+      reference product:
+      - steel, low-alloyed
+      - steel, unalloyed
+      unit: kilogram
+    native_reference_amount: 1.0
+    native_limitations:
+    - Bind only the existing retained steel-workbook foreground templates with reviewed native quantity recipes. No new process or technology proxy is introduced by this alias.
+    - Retain the template's explicit inputs and its documented native donor proxies, omissions, uncertainty and allocation limitations. Native-source and source-template impact equivalence is not established.
   ecoinvent_aliases:
     fltr:
       - steel production, electrowinning-electric arc furnace
