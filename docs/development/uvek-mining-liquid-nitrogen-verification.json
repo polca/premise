@@ -1,0 +1,37 @@
+{
+  "status": "failed",
+  "exception_type": "ClicInventoryError",
+  "message": "Liquid nitrogen scope passed after installing Brightpath d3e5ea6; next first-cohort refusal is bp-4a7e42807ddffd8a.",
+  "failed_stage": "inventory preparation",
+  "sector": "mining",
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "elapsed_seconds": 33.27657941693906,
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+  "validation_disabled": false,
+  "export_performed": false,
+  "brightpath_commit": "d3e5ea6ecefd98a566d52607248b9c9c13d9eea7",
+  "next_rule": {
+    "id": "bp-4a7e42807ddffd8a",
+    "source": {
+      "location": "RER",
+      "name": "market group for heat, district or industrial, natural gas",
+      "reference product": "heat, district or industrial, natural gas",
+      "unit": "megajoule"
+    },
+    "target": {
+      "location": "CH",
+      "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+      "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+      "unit": "megajoule"
+    },
+    "mapping_method": "heuristic_similarity"
+  },
+  "nitrogen_exact_scope_accepted_in_real_preflight": true,
+  "complete_mining_preparation_passed": false,
+  "brightpath_migration_tests_passed": 8,
+  "premise_focused_scope_drift_and_harmonization_tests_passed": 5,
+  "other_tests_deselected": 828,
+  "broader_approval_suite": "Intentionally interrupted after89passes; not a completed full-suite result.",
+  "wheel_review_bytes_verified": true
+}

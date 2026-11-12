@@ -256099,6 +256099,102 @@
           "fingerprint": "46b4022083419bedd448101d6aea7fb863af87ec71a6534645d2f74d5187cd68"
         }
       ]
+    },
+    {
+      "rule_id": "bp-412f090ea47af121",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_mining_38_liquid_nitrogen_review.json",
+      "review_sha256": "965cf4f7b063a5cdcef9601bcc19a7c3b43697b817dccf69f0b66200457d2970",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously, with decisions and limitations logged.",
+      "limitations": [
+        "Liquid nitrogen market-to-plant screening proxy; source road and rail delivery inside the market are replaced by the complete native plant boundary. No delivery equivalence is established and no guessed freight correction is added. Separately listed caller freight remains untouched.",
+        "Source and native electricity, water/resource flows, plant infrastructure, allocation, geography and vintage differ. Native physical and biosphere omissions inherited from the installed export remain source limitations. Score effects are unquantified.",
+        "Preserve signed caller quantities, formulas and supported uncertainty. Approval covers only ecoinvent 3.8 cut-off to UVEK 2026 cut-off through the existing 2025 bridge and ecoinvent 3.10 biosphere; no other release, inverse direction or system-model conversion is authorized."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for nitrogen, liquid",
+          "reference product": "nitrogen, liquid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Nitrogen, liquid, at plant",
+          "reference product": "Nitrogen, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_market": {
+          "identity": {
+            "name": "market for nitrogen, liquid",
+            "reference product": "nitrogen, liquid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "068663ada884e071ae63f4a222925cf90b4643efa3eb329b62b0f9becc1d325c",
+          "comment_sha256": "83666558b44fd827378f2b3c95008ef13286b313cf08bebb696a2624539cc673"
+        },
+        "source_producers": [
+          {
+            "identity": {
+              "name": "air separation, cryogenic",
+              "reference product": "nitrogen, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "normalized_inventory_sha256": "689dbdee7fc8ed8442ad1782244fb84ba9fe6861be3f20903c35be46386e49ed",
+            "comment_sha256": "8067eb6438b32e0eb35cc3759c5bdec241c32d9549ad6279285e41f0b49e6a9c"
+          }
+        ],
+        "native_2026": {
+          "identity": {
+            "name": "Nitrogen, liquid, at plant",
+            "reference product": "Nitrogen, liquid, at plant",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "6269055ed680d4fdffea8c50513dc7403bf373f20ab4c8320ab6ce8d22d6b77f",
+          "comment_sha256": "aafa56b6e6349bae1acfb9896ed9c2380c6bb33c93137f137ffd0177c00f29d3"
+        },
+        "comparison_to_reviewed_39": {
+          "market_vectors_identical": false,
+          "producer_vectors_identical": false,
+          "interpretation": "Different inventories; this is an independent exact-profile screening qualification, not an identity or score equivalence assertion."
+        }
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "30b86ba4833fae860dfd484aa441fdcdfb42e5e9bdc200c289d2a523b1193795"
+        }
+      ]
     }
   ],
   "superseded_operations": [
