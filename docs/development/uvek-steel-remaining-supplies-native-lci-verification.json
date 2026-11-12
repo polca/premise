@@ -1,0 +1,9 @@
+{
+  "native_suppliers": 13,
+  "reviewed_mapping_rows": 15,
+  "signed_finite_LCI_checks": 30,
+  "exact_sign_reversal": true,
+  "source_database_count": 11947,
+  "source_database_modified_unchanged": true,
+  "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe"
+}

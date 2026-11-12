@@ -1,0 +1,273 @@
+{
+  "status": "preparation_incomplete_sector_transformation_unverified",
+  "scenario": "actual encrypted REMIND SSP2-NPi 2050",
+  "source_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_version": "3.10"
+  },
+  "pending_correspondences": 18,
+  "previous_pending": 33,
+  "cleared_this_batch": 15,
+  "diagnostic_guard_bypass": "Steel support gate only; strict migration validation retained.",
+  "private_audit_receipt": "6ef3686bd60c7e7b73c1693a15c8fec0fbd12555790f683a220062c38cab699d.audit.json.gz",
+  "scope_limitation": "This is the current retained ecoinvent3.9 steel preparation cohort; later cohorts and sector transformation may reveal additional issues. Suggested targets are unapproved, not scientifically endorsed.",
+  "cases": [
+    {
+      "rule_id": "bp-007ad58954d82851",
+      "source": {
+        "location": "RER",
+        "name": "market for mill scale",
+        "reference product": "mill scale",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "older-regional-road-market-composition-2baadc1c776e09e81d42"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-7fe8308839f735bb",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market group for natural gas, high pressure",
+        "reference product": "natural gas, high pressure",
+        "unit": "cubic meter"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "deferred-delivered-gas-52beaa2b0f89f7430e73"
+      },
+      "category": "fuel_and_heat_boundary"
+    },
+    {
+      "rule_id": "bp-b65c892acf4a332f",
+      "source": {
+        "location": "RER",
+        "name": "market for basic oxygen furnace dust",
+        "reference product": "basic oxygen furnace dust",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "steel-residue-market-e5a828c05c3ddd6a0460"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-0b346b8f3969e16b",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for wastewater from pig iron production",
+        "reference product": "wastewater from pig iron production",
+        "unit": "cubic meter"
+      },
+      "unapproved_suggested_target": {
+        "location": "CH",
+        "name": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+        "reference product": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+        "unit": "cubic meter"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-370d86f95a1eb95a",
+      "source": {
+        "location": "CH",
+        "name": "market for wastewater from pig iron production",
+        "reference product": "wastewater from pig iron production",
+        "unit": "cubic meter"
+      },
+      "unapproved_suggested_target": {
+        "location": "CH",
+        "name": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+        "reference product": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+        "unit": "cubic meter"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-454fe7a83cbaa613",
+      "source": {
+        "location": "RER",
+        "name": "market for basic oxygen furnace slag",
+        "reference product": "basic oxygen furnace slag",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "additional-cutoff-waste-market-833a015632c268d7106b"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-31651ee4fea3a8a6",
+      "source": {
+        "location": "RER",
+        "name": "market for basic oxygen furnace sludge",
+        "reference product": "basic oxygen furnace sludge",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "additional-cutoff-waste-market-e78c5fb8460aa74a75d7"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-5c1032ed559374f7",
+      "source": {
+        "location": "RoW",
+        "name": "market for blast furnace dust",
+        "reference product": "blast furnace dust",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "additional-cutoff-waste-market-204ea06fda7faa8a657a"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-4c4b28fe5a79d86b",
+      "source": {
+        "location": "RER",
+        "name": "market for electric arc furnace dust",
+        "reference product": "electric arc furnace dust",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "location": "RER",
+        "name": "Electric arc furnace slag, at plant",
+        "reference product": "Electric arc furnace slag, at plant",
+        "unit": "kilogram"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-6531ffaccf5d8258",
+      "source": {
+        "location": "RER",
+        "name": "market for electric arc furnace slag",
+        "reference product": "electric arc furnace slag",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "additional-cutoff-waste-market-44e733cab27bc801612e"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-5a3b5a4a13938317",
+      "source": {
+        "location": "GLO",
+        "name": "market group for heat, district or industrial, natural gas",
+        "reference product": "heat, district or industrial, natural gas",
+        "unit": "megajoule"
+      },
+      "unapproved_suggested_target": {
+        "location": "CH",
+        "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "unit": "megajoule"
+      },
+      "category": "fuel_and_heat_boundary"
+    },
+    {
+      "rule_id": "bp-daa9398e0257c1a7",
+      "source": {
+        "location": "GLO",
+        "name": "market group for heat, district or industrial, other than natural gas",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "unit": "megajoule"
+      },
+      "unapproved_suggested_target": {
+        "location": "CH",
+        "name": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "reference product": "District heat, at consumer, natural gas in industrial furnace 1MW",
+        "unit": "megajoule"
+      },
+      "category": "fuel_and_heat_boundary"
+    },
+    {
+      "rule_id": "bp-ab66d17baa663f1c",
+      "source": {
+        "location": "GLO",
+        "name": "market for ferrosilicon",
+        "reference product": "ferrosilicon",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "location": "GLO",
+        "name": "Battery retention",
+        "reference product": "Battery retention",
+        "unit": "kilogram"
+      },
+      "category": "ferrosilicon_reconstruction"
+    },
+    {
+      "rule_id": "bp-6501bd73396374f4",
+      "source": {
+        "location": "RoW",
+        "name": "market for heat, central or small-scale, other than natural gas",
+        "reference product": "heat, central or small-scale, other than natural gas",
+        "unit": "megajoule"
+      },
+      "unapproved_suggested_target": {
+        "location": "CH",
+        "name": "Heat, from natural gas",
+        "reference product": "Heat, from natural gas",
+        "unit": "megajoule"
+      },
+      "category": "fuel_and_heat_boundary"
+    },
+    {
+      "rule_id": "bp-d81a08e7cd9ce632",
+      "source": {
+        "location": "RER",
+        "name": "market for blast furnace dust",
+        "reference product": "blast furnace dust",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "additional-cutoff-waste-market-75dda99d82c2d18d44a6"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-3ecbec256b0ffcbb",
+      "source": {
+        "location": "GLO",
+        "name": "market for blast furnace slag",
+        "reference product": "blast furnace slag",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "whole-freight-market-composition-1e58b0556ffd09259418"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-07f9085bfc8dbc65",
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for blast furnace sludge",
+        "reference product": "blast furnace sludge",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "steel-residue-market-51f9c479965de83243ff"
+      },
+      "category": "waste_residue_and_wastewater"
+    },
+    {
+      "rule_id": "bp-4f6f1d647b03cd3d",
+      "source": {
+        "location": "CH",
+        "name": "market for blast furnace sludge",
+        "reference product": "blast furnace sludge",
+        "unit": "kilogram"
+      },
+      "unapproved_suggested_target": {
+        "recipe_ref": "steel-residue-market-43f384630465d630bffe"
+      },
+      "category": "waste_residue_and_wastewater"
+    }
+  ]
+}

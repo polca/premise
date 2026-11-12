@@ -129920,6 +129920,11 @@
             "inventory_sha256": "debda988953cf930ae593cf74b5fa683c11966ad45743386b6794b6097416ce9",
             "metadata_sha256": "ecf3a0debad26c37297cbbd1eaf6ebc1ea20c32c17eb929ba68d3a71ddd053ce"
           }
+        },
+        "steel_39_reference_extension_review": {
+          "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+          "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+          "historical_38_selected_resource_identical": true
         }
       },
       "limitations": [
@@ -129939,7 +129944,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "2a2240e4d846e9e8844f718456a8d2120fe4ad546bcc9a6ccf7219132a6a1898"
+          "fingerprint": "a5cf30d17110014daa67db151708254c2f0c0a2a8232d70656d5a15ed0f08786"
         }
       ]
     },
@@ -208699,6 +208704,1277 @@
             "system_model": "cutoff"
           },
           "fingerprint": "811f58c065cdcab0a8ed087fe57e5097cafae86a6d8275165cc7103bcbaab4a1"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2db59faccae4349c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for oxygen, liquid",
+            "reference product": "oxygen, liquid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "6dc812b7423bf7ee61c9b224f4a4e912786d15d64b1de809f09928d5feee5aa0",
+          "nonproduction_count": 3
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "air separation, cryogenic",
+              "reference product": "oxygen, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "bc0327e4ca6368a8e5d5c7dd0d7e89e76e9096adf3b4fb0cadd668ef5ee43ebc",
+            "nonproduction_count": 8
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Oxygen, liquid, at plant",
+              "reference product": "Oxygen, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "4da1b31b7c2c78499b586cd374debfcfe849eec0bbec7abd8ad0f64332135dbc",
+            "nonproduction_count": 6
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg liquid oxygen, not gaseous oxygen or volume of air. Complete native cryogenic separation retains its allocated liquefaction, cooling and plant inventory. Native thermal-property allocation and European plant supply replace source market allocation/mix and final delivery. No extra liquefaction, concentration or density multiplier.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3fe25d0185058c45ea4d47df9205ad9f6c25d58a75a2764bc13101e8eb4183a4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9a7e41a299b5edcb",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "pig iron production",
+            "reference product": "pig iron",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "36884ac4fac595ea5df7e8f5f6202bda1f6aaf8f3a59b184040957e6752f0dab",
+          "nonproduction_count": 33
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Pig iron, at plant",
+              "reference product": "Pig iron, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "083c4aaa0ccc53eb1c9c7fcba28a07f0aeea83f8c79878aa66e95d50029b27a8",
+            "nonproduction_count": 46
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg complete blast-furnace pig iron at plant, not iron ore, sinter, steel or molten-iron processing only. Native pig-iron production replaces the source BAT-based process. Native economic allocation factor 0.985 and 94% slag reuse/6% landfill model differ from source dust/sludge recycling and by-product handling. Preserve native complete inventory once, without additional avoided slag, coke combustion or direct emissions.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ac47ebb3a69e48dd7146ba880be8786741ef8766a4cb6c99d76a032ea85dbc6c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-283ee01cf9e7943c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for quicklime, in pieces, loose",
+            "reference product": "quicklime, in pieces, loose",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "719f32b3cb24fa9157a0088a37faea03abfe0125010d223e9c170568b9e2969c",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "quicklime production, in pieces, loose",
+              "reference product": "quicklime, in pieces, loose",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d572cf2bf02914723cc399d853bf4505b3bf981400d6a6913544a5849c3a6bd1",
+            "nonproduction_count": 14
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Quicklime, in pieces, loose, at plant",
+              "reference product": "Quicklime, in pieces, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c2eb9b6462daaa6fcc6b79deb0919e8305e88d6f60c68623e065920997180fa0",
+            "nonproduction_count": 15
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg loose quicklime in pieces, not limestone, hydrated lime, clinker or milled quicklime. Complete Swiss native two-vertical-kiln production retains heavy-fuel-oil calcination and process CO2. Source market has no final transport/losses. Native omits unmeasured emissions and fireproof bricks; preserve those documented limitations. No CaO fraction, calcination, milling or extra CO2 factor.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d191cbe7ac275fb6a7527e50dfd90b42576e4e07d7d8fdc24fc74b5002cdd30f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8185695a8558088a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for argon, liquid",
+            "reference product": "argon, liquid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "db99acf663e0a872fd73a64cb7ad5074fd0b32033b159b7cfc4d5992d1dd8bef",
+          "nonproduction_count": 3
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "argon production, liquid",
+              "reference product": "argon, liquid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "2fa32767b941b0ff74f1467479042bd8287adbadde5e14c9bb8d7f89940c3aa1",
+            "nonproduction_count": 4
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Argon, liquid, at plant",
+              "reference product": "Argon, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "2b2763df7c275d32932152a199d5782d354468aefa3694d8532a3139e3398bcc",
+            "nonproduction_count": 5
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg liquid purified argon, not crude argon or gaseous volume. Native process includes crude argon supply, electricity and hydrogen purification. Source producer describes 99.999% argon; no claim of identical native purity. Native weak process/infrastructure evidence and omitted emissions remain limitations. Native plant supply replaces market freight; no second purification or arbitrary purity factor.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f12b0b34705b3a2d99fab5e61077d72d80c860c731058d11cd37ac4280571e38"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5ede2be860ad337d",
+      "operation": "replace",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for hard coal",
+            "reference product": "hard coal",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "14364e310bc6057885c57e8e5baeba7c7134c8f19714e99e341149b13cf2c476",
+          "nonproduction_count": 96
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "hard coal mine operation and hard coal preparation",
+              "reference product": "hard coal",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "82326159e0b5cdbabdf2f95b7cde4e707d495fdbfeb4aecc9e813d95698962be",
+            "nonproduction_count": 80
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Hard coal mix, at regional storage",
+              "reference product": "Hard coal mix, at regional storage",
+              "location": "UCTE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "717372cdd083131d8bf55f147b7effff55cce883a6c6ca3728bf1006af77369b",
+            "nonproduction_count": 30
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg complete native UCTE hard-coal supply at regional storage replaces RoW hard-coal market. Native supply includes producing-region portfolio, import transport, handling dust/losses and storage-related leaching. Source nominal 27.91 MJ/kg does not establish equal native fuel quality. Preserve signed kg and separate caller combustion emissions; no calorific-value, carbon-content, loss, combustion or extra delivery correction. Regional fuel-grade and routing differences remain unquantified.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "506c40fecfbc632c1020523835ed1718decd5ca842ee108c198aa210422024cd"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-14199ba2d41a9688",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for nitrogen, liquid",
+            "reference product": "nitrogen, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "3165de0767a17d2d83ff77241f22d1494797f2c06c9215a0531d5d3b402301bb",
+          "nonproduction_count": 10
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "air separation, cryogenic",
+              "reference product": "nitrogen, liquid",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e953b4a445ec4d619913481cf3d83d3fbd231a43cc9ed9ea6977fbb90883eb26",
+            "nonproduction_count": 8
+          },
+          {
+            "identity": {
+              "name": "air separation, cryogenic",
+              "reference product": "nitrogen, liquid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5caf0e39b98c8099a13626786b92020fba432a30536999ad983541894b80d72d",
+            "nonproduction_count": 14
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Nitrogen, liquid, at plant",
+              "reference product": "Nitrogen, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3aac77d107bea47dd3129020d355a41ade2487adbfeb1577d41a72d7e42120a7",
+            "nonproduction_count": 6
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg liquid nitrogen, not gaseous nitrogen or volume of air. Complete native cryogenic separation retains allocation based on thermal properties, liquefaction, cooling and infrastructure. European native model replaces RoW market supply and freight. No second liquefaction or density/concentration factor.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3c8ba939bdd84f58f9ca8fd17c2a5f5e8ae292dd515922daffcc1de03f1a182d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e1d9517f5b28fbc3",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for quicklime, in pieces, loose",
+            "reference product": "quicklime, in pieces, loose",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "97ee231fd34ac85516791f1644cdefd07e38bf3ed7dc5c8a872b5d1f66abff7a",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "quicklime production, in pieces, loose",
+              "reference product": "quicklime, in pieces, loose",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "bb8a8e55a3f6032082d2e1be464d57a3a07617dbcb50bba628787ff4f21b041c",
+            "nonproduction_count": 159
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Quicklime, in pieces, loose, at plant",
+              "reference product": "Quicklime, in pieces, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c2eb9b6462daaa6fcc6b79deb0919e8305e88d6f60c68623e065920997180fa0",
+            "nonproduction_count": 15
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg loose quicklime in pieces, not limestone, hydrated lime or milled quicklime. Native Swiss heavy-fuel-oil vertical-kiln inventory replaces RoW production/geography. Source market has no final transport/losses. Retain native calcination emissions; no CaO, milling, avoided-emission or extra combustion factor. Native unmeasured-emission/fireproof-brick exclusions remain.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "591af6512778b2f19d65941cc729b5af2575178613ca96cfb0384cf013eb065e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a8ee5a92b554b3db",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for quicklime, milled, loose",
+            "reference product": "quicklime, milled, loose",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d6a8b2639b81bccc3fb895cfb9cbfa38f04c7e391eb89802a66d02184be3d27d",
+          "nonproduction_count": 3
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "zinc mine operation",
+              "reference product": "quicklime, milled, loose",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d0a17ed5bbaa8a6683937363074e342ed3f6e4c53d56e2a47a8d20beef910130",
+            "nonproduction_count": 264
+          },
+          {
+            "identity": {
+              "name": "quicklime production, milled, loose",
+              "reference product": "quicklime, milled, loose",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "93adbc522871fe9d41327751d33fbe5bcffa4e68714f73aed2dec13352aec5f7",
+            "nonproduction_count": 15
+          },
+          {
+            "identity": {
+              "name": "quicklime production, milled, loose",
+              "reference product": "quicklime, milled, loose",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "4f18c1f60488545c8329bdf171c28c7054598414697092291f3dad9842b19446",
+            "nonproduction_count": 5
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Quicklime, milled, loose, at plant",
+              "reference product": "Quicklime, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1f57d86f254f27877f06fa3fbfd7a7902f255be837ac106e36747e960732bbfc",
+            "nonproduction_count": 7
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg loose milled quicklime, not raw limestone, hydrated lime or pieces-only quicklime. Complete native milling inventory includes its upstream quicklime, crushing/milling, filtering, dedusting, transport and storage. Replaces RoW producer mix including allocated zinc-mine co-product supply. Source market has no final transport/losses. No second quicklime production, milling, drying or calcination factor.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f1696a8fd52640bc44e6617985bfaf6c459085e7aeeb7b63c92ff30278397907"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-949e9423153a45de",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "IN",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "c2bc0c90695de1af302d69210e6de96d852ee88456719a3293a5e399a68e5b04",
+          "nonproduction_count": 2
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "transport, freight train, electricity",
+              "reference product": "transport, freight train",
+              "location": "IN",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0433ae7e09a43aa880454765448afc0e5b5d69332e2ed39f43e1f092bb2cef27",
+            "nonproduction_count": 32
+          },
+          {
+            "identity": {
+              "name": "transport, freight train, diesel",
+              "reference product": "transport, freight train",
+              "location": "IN",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c09d0001790398e3da27f8e8541abb3ade197ae19b66b9844eda73c68b49b49f",
+            "nonproduction_count": 29
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "nonproduction_count": 66
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One tonne-km complete rail service. Native RER electric/diesel fleet replaces Indian national rail market, not an Indian-specific model. Traction shares, electricity geography, shunting, loads, fuel/emission standards and infrastructure allocation differ. Complete vehicle/track burdens retained once; no distance, load or energy multiplier.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "46e81f47cf7d31c5d81eb853864183927b5d2255ae616ada2897dc5638f6215a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4a797a6b30510a65",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "US",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "ec7bbf5ecaeb9a1c5a8181421af21ee69fc0f3a5314917dd2545fde2c79f5b38",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "transport, freight train, diesel",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c96d99473862817d7706f98f7177495557dfbdbdb61ab937941502a66e93466d",
+            "nonproduction_count": 29
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, rail, diesel",
+              "reference product": "Transport, freight, rail, diesel",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "52e7e4e9bf48ab932193de65a0f532b05cf1030b8a35682b35eb2666344088a3",
+            "nonproduction_count": 9
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One tonne-km complete native US-labelled diesel rail service replaces US rail market. Native documentation states its technology is extrapolated from European rail, despite US label. Retain diesel-only operation, vehicles and track; source fleet, loads, fuel/emission standards, allocation and geography differ. No duplicate shunting, vehicle, diesel, infrastructure or tonne-km factor.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "49165c80a73870cee321aeac4944c95760e6756dda9c50977d212d848a56713c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e567e56fc816d39f",
+      "operation": "replace",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "ZA",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "58496ba4dfcf9fd124c35b20199a69f1f737800ccc8cad9703104b7941dce402",
+          "nonproduction_count": 2
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "transport, freight train, electricity",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f421ae6e60a70c83a02ef52c9791e5cd466adc78014c94af0c30fea42c74b66b",
+            "nonproduction_count": 32
+          },
+          {
+            "identity": {
+              "name": "transport, freight train, diesel",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "67740c0a960b408cdc36402f4f0d3f94b1accf027bbb28d16e6d13d50b79d388",
+            "nonproduction_count": 29
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "nonproduction_count": 66
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One tonne-km complete native RER rail replaces South African national rail market. Native European electric/diesel fleet is an explicit geographic/traction proxy, not a local supplier. Source electric and diesel routes and coal/general freight characteristics differ. Keep complete vehicles, tracks and shunting once; no load, distance or extra diesel/electricity factor.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b816843b769c42376040e8301e9f3989cc1f285212e1d2870b5f485790ef23c4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-158077bc2cebae56",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for industrial machine, heavy, unspecified",
+            "reference product": "industrial machine, heavy, unspecified",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "a369bb98f559f886c514b45bda1db5557cd1ff1a6e8f4210f6bd1ec2385efae4",
+          "nonproduction_count": 11
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "industrial machine production, heavy, unspecified",
+              "reference product": "industrial machine, heavy, unspecified",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1b0ef0e1166b0a96065550ee17d8cfa6572db27f392d63ae931340d15ab09d0a",
+            "nonproduction_count": 8
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Industrial machine, heavy, unspecified, at plant",
+              "reference product": "Industrial machine, heavy, unspecified, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "466fa30ba6548f73dd475718c904c796a62f0e5fec1f51f5912a777704785818",
+            "nonproduction_count": 8
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg complete heavy industrial machine infrastructure, not one whole machine or operating crusher service. Both describe rock-crusher-based materialization and 25-year service life. Native plant includes principal materials and component transport, no assembly energy or disposal because recycling is assumed. Replaces source RoW market delivery. No equipment-mass or lifetime multiplier; seek specific data if material to results.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3a3be6ab5dd83c42b883b66f07cd6bb87e5319b6d81b273c5d952d34c2be438c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2f9c80eaacf32839",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market group for electricity, high voltage",
+            "reference product": "electricity, high voltage",
+            "location": "GLO",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "ed8c210d93cc845319308fcb4e1d781efc53e3803e6f961df95e708d7d7d2d52",
+          "nonproduction_count": 8
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "10ceeb320801ea5c3d2ca2eef1d4f880f1862d88a6c55a9e03ab08f4a1d98948",
+            "nonproduction_count": 6
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kWh complete native global high-voltage grid supply, not low-voltage delivery or bare generator output. Native 2023 electricity portfolio and grid/loss/infrastructure conventions replace source global market-group weights. Native documentation has mixed wording on transmission/loss coverage; preserve its complete actual vector without assuming loss-free supply or adding an inferred multiplier. No extra transformation, grid, generator or distribution branch. Regional shares, losses, vintage and direct grid emissions differ.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1d3640207a3df84b96ff356d587906de58085230ee6406e1a73cf8fb0ebacdec"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0b777be472022fd9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "iron sinter production",
+            "reference product": "iron sinter",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "53a71c79e71f42a971b79e997cff1c3c6f2230c251ca0db424a44f8583fa0af8",
+          "nonproduction_count": 51
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Sinter, iron, at plant",
+              "reference product": "Sinter, iron, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "bf013f09c721fe4a678f3d3cc1c84c35bbee3c1bb8468a214f77b6ca02e5a5e8",
+            "nonproduction_count": 47
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg complete iron sinter at plant, not raw concentrate, pellets or metallic iron. Both source and native reference European BAT iron/steel data, but input factors, returned materials, emissions and background versions can differ. Native complete blending/mixing/sintering inventory retains abatement and internal energy once. No separate yield, agglomeration or emission correction.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2685816104b205b8cacac0008a35235aac22b85d474508de40ca39c469d29c1d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-793f007705cc43d3",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for hard coal",
+            "reference product": "hard coal",
+            "location": "Europe, without Russia and Turkey",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "f7578ab8ddc4027f9b014ec51e2953d4a4d30691be9d18c79b5f47a9918cb608",
+          "nonproduction_count": 33
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "hard coal, import from AU",
+              "reference product": "hard coal",
+              "location": "Europe, without Russia and Turkey",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "20584cec42e2c9a3a3440cc6231dd3a0fd3ab9641e82d61517631e39b14176b1",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "hard coal, import from ZA",
+              "reference product": "hard coal",
+              "location": "Europe, without Russia and Turkey",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9f6d2102a36efef2fd1b2b23af852463a2f0eaf0533d7bfc2e4e82173a9bb4a7",
+            "nonproduction_count": 23
+          },
+          {
+            "identity": {
+              "name": "hard coal, import from RU",
+              "reference product": "hard coal",
+              "location": "Europe, without Russia and Turkey",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "4e5d6a060313983ea2ca5b33076bf37f4642768e3f4a3b2197510543b0ea5c1c",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "hard coal, import from RLA",
+              "reference product": "hard coal",
+              "location": "Europe, without Russia and Turkey",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "147ac461b215c4d1bd842cc912a458a3b3aff3990219b07510be8dd6631a7cb9",
+            "nonproduction_count": 4
+          },
+          {
+            "identity": {
+              "name": "hard coal, import from RNA",
+              "reference product": "hard coal",
+              "location": "Europe, without Russia and Turkey",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0443c39630482c5f403eac76e19de3eedfefde8cd9c5e39b758c9dc169069599",
+            "nonproduction_count": 3
+          },
+          {
+            "identity": {
+              "name": "hard coal mine operation and hard coal preparation",
+              "reference product": "hard coal",
+              "location": "Europe, without Russia and Turkey",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e992ff524361095d44005c00b5c9ddc84d0cf288fab680cef2851338e55b02e9",
+            "nonproduction_count": 34
+          },
+          {
+            "identity": {
+              "name": "hard coal, import from ID",
+              "reference product": "hard coal",
+              "location": "Europe, without Russia and Turkey",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1feffb4bd8d913c78fb0f7b2e6b0ef2267d867c03e22d58b840cd24f7df63f7f",
+            "nonproduction_count": 3
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Hard coal, at regional storage",
+              "reference product": "Hard coal, at regional storage",
+              "location": "WEU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "97f05c796186342e0268bbdcf123f724d822b664a8fae34b4f01d52b40ad1729",
+            "nonproduction_count": 24
+          }
+        ],
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "One kg native WEU hard coal at regional storage replaces source European market excluding Russia/Turkey geography (which still includes imported coal). Native supply retains its production, transport to producer border and storage. Source producer/import portfolio and delivery routes differ; this is not identical end-consumer coverage. Preserve kg, no extra import route, calorific multiplier, coal loss or combustion credit; source 27.91 MJ/kg is not verified native equality.",
+        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3575cfc7757213dad34459cfc44ecc4b8f5449684120f189267b2e848774fbf5"
         }
       ]
     }
