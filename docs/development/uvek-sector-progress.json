@@ -562,6 +562,21 @@
         "unapproved_nested_pulp_heat_correspondences_after": 83,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "Energy prerequisites only; full pulp heat inventories, industrial heat market and steel transformation/export remain incomplete."
+      },
+      "pulp_heat_chemical_markets_verification": {
+        "review": "uvek-pulp-heat-chemical-markets-review.md",
+        "qualified_correspondences": 9,
+        "new_recipes": 9,
+        "native_chemical_and_freight_suppliers": 17,
+        "original_source_rows_verified": 104,
+        "brightpath_tests_passed": 43,
+        "premise_tests_passed": 1,
+        "signed_finite_composite_lcis": 18,
+        "new_source_omissions": 0,
+        "unapproved_nested_pulp_heat_correspondences_before": 83,
+        "unapproved_nested_pulp_heat_correspondences_after": 74,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Nominal-mass chemical and delivery proxies only; solution-sensitive materials and other inputs remain unresolved. Pulp heat and steel transformation/export incomplete."
       }
     },
     {

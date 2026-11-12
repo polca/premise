@@ -238390,6 +238390,2231 @@
           "fingerprint": "3bcb55a8000c448fdb09186e5eacd161f09f1050e00c152a5fd76c1041696c94"
         }
       ]
+    },
+    {
+      "rule_id": "bp-ff104fcb6360596e",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_dry_chemical_market",
+      "review_path": "export/uvek_pulp_heat_dry_markets_review.json",
+      "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+      "authorization": "Standing autonomous approval of independently inspected same-product native chemical reconstructions and explicit production-route/geography/fleet screening proxies, logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for chlorine dioxide",
+            "reference product": "chlorine dioxide",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "b4d948bc47e9052644268b207d7fed29d626a9792eda1599436b321565b4cb6c",
+          "nonproduction_count": 9,
+          "name": "market for chlorine dioxide",
+          "reference product": "chlorine dioxide",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "location": "RER",
+              "name": "Chlorine dioxide, at plant",
+              "reference product": "Chlorine dioxide, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "6b7e4762e15ec702258c56cb22c3bc5f77ccff36ae03b1a2c72c5dd0b1a83f57"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.006724767900222437,
+              "uncertainty type": 2,
+              "loc": -5.0019578670678975,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "825ca9bda0a037904bd4e2ffe97453c96d3502a5f520d99110dd81783cf75d9f"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.024272305714133885,
+              "uncertainty type": 2,
+              "loc": -3.7184192611135756,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "afb6537375c4c235a8f0a8db68d7cc4b200cbe8398372556f161ce1c4473fb02"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0017028517197718877,
+              "uncertainty type": 2,
+              "loc": -6.375450951103034,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "4627f6b8b7dd127025bf39bbbb76ecb8ddc9f25bde6fd0f88ef991c186cb2a04"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.03348646519523198,
+              "uncertainty type": 2,
+              "loc": -3.396613945813738,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "68c4470a7a44767e7ffbbbdfc7c94ba8405effeae271479277146cceeb4aa6fd"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.02651360947063981,
+              "uncertainty type": 2,
+              "loc": -3.6300971128894917,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "e6d96f6fca1d101f669d130711fd1411ec0aba94291680f906ee992d8c1f1640"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0011216174080853525,
+              "uncertainty type": 2,
+              "loc": -6.792983521043559,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "90a27c5f4fbaf8f1a48a26340868ba2f9803d8ff1be85c91d21f69d2969cfd4a"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.054314387068362474,
+              "uncertainty type": 2,
+              "loc": -2.9129661319182207,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "6ff091047938f8bf2fdf095bbfe35607dbdda6eadb90339d01fdffb2c6661948"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.00716399552355218,
+              "uncertainty type": 2,
+              "loc": -4.938687419636996,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "2fd9641932e8347ed4dc44561ee02d5ca4b553d8deded8949677e85f14bbe99e"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg chemical market reconstructions for chlorine dioxide, EDTA acid, aluminium sulphate powder, magnesium sulphate, malusil, sodium chlorate powder, sodium formate, anhydrous sodium sulphate and elemental sulphur. Source positive1kg references and native positive1kg nonempty chemical inventories are independently inspected. Keep every original producer share separately, every original freight row/quantity and supported uncertainty; no renormalization. Complete native RER producers replace source regional production routes and allocations. Use sodium sulphate powder production mix, not chemically different persulphate; use secondary refinery sulphur, not cobalt sulphate. Source compound/CAS/nominal reference facts and native documentation support the selected chemical identity; no solvent multiplier, hydration, purity, density or elemental correction is invented. Native sodium formate is the documented sold co-product of pentaerythritol manufacture with mass-price allocation; its shared pentaerythritol formula in the comment is not treated as a formate formula or reference basis. Native magnesium sulphate and malusil inventories are explicitly based on lime mining/crushing/milling approximations. Native EDTA/chlorine-dioxide estimates omit solid wastes and have weak/incomplete emissions data; these inherited limitations and all native biosphere exclusions remain screening limitations, not new source-exchange omission approvals. Preserve distinct rail, road, barge, barge-tanker, container-sea, dry-bulk-sea and liquid-tanker quantities at signedtonne-km using complete native RER rail/barge/barge-tanker/fleet-average heavy-lorry/3.5t-light-lorry and OCE container/freight/tanker services. Light-commercial <3.5t -> native3.5t fleet, regional rail traction/fleet/load, global-to-European services, liquid chemical/sulphur cargo vs generic tanker design, handling/phase, upstream product transport and vessel/vintage/infrastructure differences are explicit proxies; no petroleum/LNG cargo equivalence is claimed. Plant inputs already contain upstream raw-material transport; only the original final-product market freight is added. Source/native mining/refining/synthesis, coproduct shares, allocation, product grade, geography, vintage, uncertainty and emission completeness differ; LCIA and carbon-balance equivalence and the size of score effects are unquantified. Preserve caller signedkg, uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges with factor+1. No new recovery credit, combustion, source-exchange omission or other-release/consequential/reverse approval is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ab170929816f13a71d8735d04e5d76c85faac8cf51486f238eb0534da24600f9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-06eec793f6cddf6e",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_dry_chemical_market",
+      "review_path": "export/uvek_pulp_heat_dry_markets_review.json",
+      "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+      "authorization": "Standing autonomous approval of independently inspected same-product native chemical reconstructions and explicit production-route/geography/fleet screening proxies, logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for EDTA, ethylenediaminetetraacetic acid",
+            "reference product": "EDTA, ethylenediaminetetraacetic acid",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "1d22218ab873780e1edf1a2d824b0d140431a1e323169e3b26f548fda5e37720",
+          "nonproduction_count": 6,
+          "name": "market for EDTA, ethylenediaminetetraacetic acid",
+          "reference product": "EDTA, ethylenediaminetetraacetic acid",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.174,
+              "uncertainty type": 0,
+              "loc": 0.174
+            },
+            "target": {
+              "location": "RER",
+              "name": "EDTA, ethylenediaminetetraacetic acid, at plant",
+              "reference product": "EDTA, ethylenediaminetetraacetic acid, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "719b04f15f555fa94486780bc72893c924ab81f349bd6c7c667686465dbb9fdf"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.826,
+              "uncertainty type": 0,
+              "loc": 0.826
+            },
+            "target": {
+              "location": "RER",
+              "name": "EDTA, ethylenediaminetetraacetic acid, at plant",
+              "reference product": "EDTA, ethylenediaminetetraacetic acid, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "7722c286fae317b1035ecc6ebc6e4f25368df91741290271b804e4b42ed83e54"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.3091,
+              "uncertainty type": 2,
+              "loc": -1.1740904298440664,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "734e838d0774811c2a38934f269552a8a100733cf6d66afe0375543ab4004ff3"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "efc3c2e389f31e16a9057adc43e6933fcd4908dbba9134208f9f1ad202cd3c83"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.2088,
+              "uncertainty type": 2,
+              "loc": -1.5663784229736533,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "03d30d3b3ea5db07cfff1357f0d784fefce3bc1e0514d88ff5ac924c231500b3"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1a85585d99f24f6bf2ffa0835a877cf051d9258d2b17a348e4bd7c21013bec7a"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg chemical market reconstructions for chlorine dioxide, EDTA acid, aluminium sulphate powder, magnesium sulphate, malusil, sodium chlorate powder, sodium formate, anhydrous sodium sulphate and elemental sulphur. Source positive1kg references and native positive1kg nonempty chemical inventories are independently inspected. Keep every original producer share separately, every original freight row/quantity and supported uncertainty; no renormalization. Complete native RER producers replace source regional production routes and allocations. Use sodium sulphate powder production mix, not chemically different persulphate; use secondary refinery sulphur, not cobalt sulphate. Source compound/CAS/nominal reference facts and native documentation support the selected chemical identity; no solvent multiplier, hydration, purity, density or elemental correction is invented. Native sodium formate is the documented sold co-product of pentaerythritol manufacture with mass-price allocation; its shared pentaerythritol formula in the comment is not treated as a formate formula or reference basis. Native magnesium sulphate and malusil inventories are explicitly based on lime mining/crushing/milling approximations. Native EDTA/chlorine-dioxide estimates omit solid wastes and have weak/incomplete emissions data; these inherited limitations and all native biosphere exclusions remain screening limitations, not new source-exchange omission approvals. Preserve distinct rail, road, barge, barge-tanker, container-sea, dry-bulk-sea and liquid-tanker quantities at signedtonne-km using complete native RER rail/barge/barge-tanker/fleet-average heavy-lorry/3.5t-light-lorry and OCE container/freight/tanker services. Light-commercial <3.5t -> native3.5t fleet, regional rail traction/fleet/load, global-to-European services, liquid chemical/sulphur cargo vs generic tanker design, handling/phase, upstream product transport and vessel/vintage/infrastructure differences are explicit proxies; no petroleum/LNG cargo equivalence is claimed. Plant inputs already contain upstream raw-material transport; only the original final-product market freight is added. Source/native mining/refining/synthesis, coproduct shares, allocation, product grade, geography, vintage, uncertainty and emission completeness differ; LCIA and carbon-balance equivalence and the size of score effects are unquantified. Preserve caller signedkg, uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges with factor+1. No new recovery credit, combustion, source-exchange omission or other-release/consequential/reverse approval is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ed0c52ef4742ab57805b0dc8e5d2fd581904196ad020470fcd10129298fbdef3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-361861031be56877",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_dry_chemical_market",
+      "review_path": "export/uvek_pulp_heat_dry_markets_review.json",
+      "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+      "authorization": "Standing autonomous approval of independently inspected same-product native chemical reconstructions and explicit production-route/geography/fleet screening proxies, logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for aluminium sulfate, powder",
+            "reference product": "aluminium sulfate, powder",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "97f3001acad0c1cc123c78c2c03a48ba9e5909b0c19507b20626f8b2f716cc50",
+          "nonproduction_count": 11,
+          "name": "market for aluminium sulfate, powder",
+          "reference product": "aluminium sulfate, powder",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 1.0,
+              "uncertainty type": 0,
+              "loc": 1.0
+            },
+            "target": {
+              "location": "RER",
+              "name": "Aluminium sulphate, powder, at plant",
+              "reference product": "Aluminium sulphate, powder, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "666514001e37f7ea46b01e2ffb11697a4aaaf7fddb2e0356988a2ee7490efd47"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0224231473350459,
+              "uncertainty type": 2,
+              "loc": -3.797661490501636,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "e099b8c26d484c6cf1bc6a185cae1d608dcf0ada16797a6e6bbe4f902f1f6415"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08093386943083909,
+              "uncertainty type": 2,
+              "loc": -2.514122884547314,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "5e5de6d0d10c002f0d86f4afe58390e2df3b18efc0d691354373c1c29769ae59"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0056780093482361425,
+              "uncertainty type": 2,
+              "loc": -5.171154574536774,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ca14d3a29396271d29de59d6fedd9297ec38af0df3376678a7521c7f1fd84847"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.11165767412994829,
+              "uncertainty type": 2,
+              "loc": -2.192317569247477,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "a38dc8ffb7122abfc445f8a4872cc36ed371fa3525debcf49f8b192d0c9e8d29"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08840729975593056,
+              "uncertainty type": 2,
+              "loc": -2.4258007363232306,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "db73a365ebdfc19833a0d876b3fa70e8bb217b461a858e19e43a6d68f72e0229"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "b8d10bbf9cf85d3c0de4d49ad6490fc944a347c0e7511c1c84ac643e7a128481"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0037411136550834123,
+              "uncertainty type": 2,
+              "loc": -5.588371943141128,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "508bf388ab47439435752ebd2198f8b58ae05fe182d2bee342d9688c8802b4cf"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.18116364249000133,
+              "uncertainty type": 2,
+              "loc": -1.7083545540157898,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ed4e582b195883e1613af8f9c03948163bc3b457e429a16d4691abe5160b529e"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.02389524385491526,
+              "uncertainty type": 2,
+              "loc": -3.7340758417345654,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "9d4feda932da3ee367ccfb3226ae00f6ae23e4caef6e55a3dc335b0a62298b92"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1a85585d99f24f6bf2ffa0835a877cf051d9258d2b17a348e4bd7c21013bec7a"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg chemical market reconstructions for chlorine dioxide, EDTA acid, aluminium sulphate powder, magnesium sulphate, malusil, sodium chlorate powder, sodium formate, anhydrous sodium sulphate and elemental sulphur. Source positive1kg references and native positive1kg nonempty chemical inventories are independently inspected. Keep every original producer share separately, every original freight row/quantity and supported uncertainty; no renormalization. Complete native RER producers replace source regional production routes and allocations. Use sodium sulphate powder production mix, not chemically different persulphate; use secondary refinery sulphur, not cobalt sulphate. Source compound/CAS/nominal reference facts and native documentation support the selected chemical identity; no solvent multiplier, hydration, purity, density or elemental correction is invented. Native sodium formate is the documented sold co-product of pentaerythritol manufacture with mass-price allocation; its shared pentaerythritol formula in the comment is not treated as a formate formula or reference basis. Native magnesium sulphate and malusil inventories are explicitly based on lime mining/crushing/milling approximations. Native EDTA/chlorine-dioxide estimates omit solid wastes and have weak/incomplete emissions data; these inherited limitations and all native biosphere exclusions remain screening limitations, not new source-exchange omission approvals. Preserve distinct rail, road, barge, barge-tanker, container-sea, dry-bulk-sea and liquid-tanker quantities at signedtonne-km using complete native RER rail/barge/barge-tanker/fleet-average heavy-lorry/3.5t-light-lorry and OCE container/freight/tanker services. Light-commercial <3.5t -> native3.5t fleet, regional rail traction/fleet/load, global-to-European services, liquid chemical/sulphur cargo vs generic tanker design, handling/phase, upstream product transport and vessel/vintage/infrastructure differences are explicit proxies; no petroleum/LNG cargo equivalence is claimed. Plant inputs already contain upstream raw-material transport; only the original final-product market freight is added. Source/native mining/refining/synthesis, coproduct shares, allocation, product grade, geography, vintage, uncertainty and emission completeness differ; LCIA and carbon-balance equivalence and the size of score effects are unquantified. Preserve caller signedkg, uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges with factor+1. No new recovery credit, combustion, source-exchange omission or other-release/consequential/reverse approval is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d74a231b2a1fd73e7d29d3cea9d9cd477e7123ccb98df95ef7c0596d3dea5fa8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0aaf462b149fd2fc",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_dry_chemical_market",
+      "review_path": "export/uvek_pulp_heat_dry_markets_review.json",
+      "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+      "authorization": "Standing autonomous approval of independently inspected same-product native chemical reconstructions and explicit production-route/geography/fleet screening proxies, logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for magnesium sulfate",
+            "reference product": "magnesium sulfate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "47cf7240cc41e14a36aab557862d7f47553ab52d4c3d9774928243f58151b3ea",
+          "nonproduction_count": 7,
+          "name": "market for magnesium sulfate",
+          "reference product": "magnesium sulfate",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.999999696899691,
+              "uncertainty type": 0,
+              "loc": 0.999999696899691
+            },
+            "target": {
+              "location": "RER",
+              "name": "Magnesium sulphate, at plant",
+              "reference product": "Magnesium sulphate, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "aa1afc052e9d97eca6369150610a454155b88c0868a64572bab83e0f3601508a"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 1.00202644000618e-07,
+              "uncertainty type": 0,
+              "loc": 1.00202644000618e-07
+            },
+            "target": {
+              "location": "RER",
+              "name": "Magnesium sulphate, at plant",
+              "reference product": "Magnesium sulphate, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "a3fd7977503c32f29212ee5474372a5c34fa22ca4c95b391503c08fdffd43427"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 2.02897665198143e-07,
+              "uncertainty type": 0,
+              "loc": 2.02897665198143e-07
+            },
+            "target": {
+              "location": "RER",
+              "name": "Magnesium sulphate, at plant",
+              "reference product": "Magnesium sulphate, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "bf0efe2994fee29c2c840ae7bfc7c325fbef0469586bdc6f8cb559b76a587ca1"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.3861,
+              "uncertainty type": 2,
+              "loc": -0.9516588757119464,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "acf741ba5aacc29c32df1aee0c750770ffa7534a6b05ba3f7dd8591049804528"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.3272,
+              "uncertainty type": 2,
+              "loc": -1.117183674253545,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "29dbe7eff38eedcd71a03b928f3d9ba922122f2bc4e87d9bad0db541086b560e"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.1739,
+              "uncertainty type": 2,
+              "loc": -1.7492748576218997,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "b90e2d722545a274a1134ef9395a1d5416e4e485af456999a255346121c83fe9"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 1.699,
+              "uncertainty type": 2,
+              "loc": 0.530039842689795,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "6989adcbdbb419742b825a7650c1e5dded7a8cf3b5bd1f06d439728d87e37afa"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg chemical market reconstructions for chlorine dioxide, EDTA acid, aluminium sulphate powder, magnesium sulphate, malusil, sodium chlorate powder, sodium formate, anhydrous sodium sulphate and elemental sulphur. Source positive1kg references and native positive1kg nonempty chemical inventories are independently inspected. Keep every original producer share separately, every original freight row/quantity and supported uncertainty; no renormalization. Complete native RER producers replace source regional production routes and allocations. Use sodium sulphate powder production mix, not chemically different persulphate; use secondary refinery sulphur, not cobalt sulphate. Source compound/CAS/nominal reference facts and native documentation support the selected chemical identity; no solvent multiplier, hydration, purity, density or elemental correction is invented. Native sodium formate is the documented sold co-product of pentaerythritol manufacture with mass-price allocation; its shared pentaerythritol formula in the comment is not treated as a formate formula or reference basis. Native magnesium sulphate and malusil inventories are explicitly based on lime mining/crushing/milling approximations. Native EDTA/chlorine-dioxide estimates omit solid wastes and have weak/incomplete emissions data; these inherited limitations and all native biosphere exclusions remain screening limitations, not new source-exchange omission approvals. Preserve distinct rail, road, barge, barge-tanker, container-sea, dry-bulk-sea and liquid-tanker quantities at signedtonne-km using complete native RER rail/barge/barge-tanker/fleet-average heavy-lorry/3.5t-light-lorry and OCE container/freight/tanker services. Light-commercial <3.5t -> native3.5t fleet, regional rail traction/fleet/load, global-to-European services, liquid chemical/sulphur cargo vs generic tanker design, handling/phase, upstream product transport and vessel/vintage/infrastructure differences are explicit proxies; no petroleum/LNG cargo equivalence is claimed. Plant inputs already contain upstream raw-material transport; only the original final-product market freight is added. Source/native mining/refining/synthesis, coproduct shares, allocation, product grade, geography, vintage, uncertainty and emission completeness differ; LCIA and carbon-balance equivalence and the size of score effects are unquantified. Preserve caller signedkg, uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges with factor+1. No new recovery credit, combustion, source-exchange omission or other-release/consequential/reverse approval is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d29072585ad6f8ccc810c9798b500bcef71bc861646f8a83ea02e92cd564358d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1039d8cd20c7b48f",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_dry_chemical_market",
+      "review_path": "export/uvek_pulp_heat_dry_markets_review.json",
+      "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+      "authorization": "Standing autonomous approval of independently inspected same-product native chemical reconstructions and explicit production-route/geography/fleet screening proxies, logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for malusil",
+            "reference product": "malusil",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "30febd646a3bd90a219f8980880ba15fdaed64cd9445b4d36bb2bfc20fe50f81",
+          "nonproduction_count": 7,
+          "name": "market for malusil",
+          "reference product": "malusil",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.330592351639303,
+              "uncertainty type": 0,
+              "loc": 0.330592351639303
+            },
+            "target": {
+              "location": "RER",
+              "name": "Malusil, at plant",
+              "reference product": "Malusil, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "750c28c8817da6da55ccc1bfd5d33f5310c3caae508eb77b573f7418ecf30ef6"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.669407648360697,
+              "uncertainty type": 0,
+              "loc": 0.669407648360697
+            },
+            "target": {
+              "location": "RER",
+              "name": "Malusil, at plant",
+              "reference product": "Malusil, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "b521d9fbfb7a66f44effb840312ed686c650e4eba39b30e36d98e669744b8d01"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0121,
+              "uncertainty type": 2,
+              "loc": -4.414549826379441,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "8100a84e8dd11ed035478cc37032dab4df76d494450b2a77b1e001d14c3083d7"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0021,
+              "uncertainty type": 2,
+              "loc": -6.16581793425276,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "62d06aeeb2609c168f3bd3d9ed0966da769a013448761e85c90966401859cd01"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.001,
+              "uncertainty type": 2,
+              "loc": -6.907755278982137,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "aa9673031552af4fb0a32d103b0ed21b92a3fe07bc2f6d0fe54f999a8439f055"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0323,
+              "uncertainty type": 2,
+              "loc": -3.4326880487535263,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "09faca251503ff10be2ea903f274f0629be60f79ea3fdbb887ad0ff1a3f195cb"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0727,
+              "uncertainty type": 2,
+              "loc": -2.6214138944426635,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "2c15963b6ac13694aefd9403051c933c5a820381b505957f411ff96ff2690455"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg chemical market reconstructions for chlorine dioxide, EDTA acid, aluminium sulphate powder, magnesium sulphate, malusil, sodium chlorate powder, sodium formate, anhydrous sodium sulphate and elemental sulphur. Source positive1kg references and native positive1kg nonempty chemical inventories are independently inspected. Keep every original producer share separately, every original freight row/quantity and supported uncertainty; no renormalization. Complete native RER producers replace source regional production routes and allocations. Use sodium sulphate powder production mix, not chemically different persulphate; use secondary refinery sulphur, not cobalt sulphate. Source compound/CAS/nominal reference facts and native documentation support the selected chemical identity; no solvent multiplier, hydration, purity, density or elemental correction is invented. Native sodium formate is the documented sold co-product of pentaerythritol manufacture with mass-price allocation; its shared pentaerythritol formula in the comment is not treated as a formate formula or reference basis. Native magnesium sulphate and malusil inventories are explicitly based on lime mining/crushing/milling approximations. Native EDTA/chlorine-dioxide estimates omit solid wastes and have weak/incomplete emissions data; these inherited limitations and all native biosphere exclusions remain screening limitations, not new source-exchange omission approvals. Preserve distinct rail, road, barge, barge-tanker, container-sea, dry-bulk-sea and liquid-tanker quantities at signedtonne-km using complete native RER rail/barge/barge-tanker/fleet-average heavy-lorry/3.5t-light-lorry and OCE container/freight/tanker services. Light-commercial <3.5t -> native3.5t fleet, regional rail traction/fleet/load, global-to-European services, liquid chemical/sulphur cargo vs generic tanker design, handling/phase, upstream product transport and vessel/vintage/infrastructure differences are explicit proxies; no petroleum/LNG cargo equivalence is claimed. Plant inputs already contain upstream raw-material transport; only the original final-product market freight is added. Source/native mining/refining/synthesis, coproduct shares, allocation, product grade, geography, vintage, uncertainty and emission completeness differ; LCIA and carbon-balance equivalence and the size of score effects are unquantified. Preserve caller signedkg, uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges with factor+1. No new recovery credit, combustion, source-exchange omission or other-release/consequential/reverse approval is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "21f74e154f0f3ffd5ed9e6f03ab1ca5faeb43d886a8144753948659f8998285d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e82e3e6afef57143",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_dry_chemical_market",
+      "review_path": "export/uvek_pulp_heat_dry_markets_review.json",
+      "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+      "authorization": "Standing autonomous approval of independently inspected same-product native chemical reconstructions and explicit production-route/geography/fleet screening proxies, logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sodium chlorate, powder",
+            "reference product": "sodium chlorate, powder",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "620f6ba6ce292094a17d2e962372011ed1666d0eb3ebd0b5b77d3d863fa0148e",
+          "nonproduction_count": 12,
+          "name": "market for sodium chlorate, powder",
+          "reference product": "sodium chlorate, powder",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.00219927095990279,
+              "uncertainty type": 0,
+              "loc": 0.00219927095990279
+            },
+            "target": {
+              "location": "RER",
+              "name": "Sodium chlorate, powder, at plant",
+              "reference product": "Sodium chlorate, powder, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "6f0cd1921ea421fe9fa582154f8c37eed38a866037495fbd4a1d7a1a83230860"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.997800729040097,
+              "uncertainty type": 0,
+              "loc": 0.997800729040097
+            },
+            "target": {
+              "location": "RER",
+              "name": "Sodium chlorate, powder, at plant",
+              "reference product": "Sodium chlorate, powder, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "04c271646a7c70165f2dd7d313a7519624b60cf2d174c08fa64f6578b238bc6d"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0224231473350459,
+              "uncertainty type": 2,
+              "loc": -3.797661490501636,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "e099b8c26d484c6cf1bc6a185cae1d608dcf0ada16797a6e6bbe4f902f1f6415"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08093386943083909,
+              "uncertainty type": 2,
+              "loc": -2.514122884547314,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "5e5de6d0d10c002f0d86f4afe58390e2df3b18efc0d691354373c1c29769ae59"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0056780093482361425,
+              "uncertainty type": 2,
+              "loc": -5.171154574536774,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ca14d3a29396271d29de59d6fedd9297ec38af0df3376678a7521c7f1fd84847"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.11165767412994829,
+              "uncertainty type": 2,
+              "loc": -2.192317569247477,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "a38dc8ffb7122abfc445f8a4872cc36ed371fa3525debcf49f8b192d0c9e8d29"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08840729975593056,
+              "uncertainty type": 2,
+              "loc": -2.4258007363232306,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "db73a365ebdfc19833a0d876b3fa70e8bb217b461a858e19e43a6d68f72e0229"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "b8d10bbf9cf85d3c0de4d49ad6490fc944a347c0e7511c1c84ac643e7a128481"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0037411136550834123,
+              "uncertainty type": 2,
+              "loc": -5.588371943141128,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "508bf388ab47439435752ebd2198f8b58ae05fe182d2bee342d9688c8802b4cf"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.18116364249000133,
+              "uncertainty type": 2,
+              "loc": -1.7083545540157898,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ed4e582b195883e1613af8f9c03948163bc3b457e429a16d4691abe5160b529e"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.02389524385491526,
+              "uncertainty type": 2,
+              "loc": -3.7340758417345654,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "9d4feda932da3ee367ccfb3226ae00f6ae23e4caef6e55a3dc335b0a62298b92"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1a85585d99f24f6bf2ffa0835a877cf051d9258d2b17a348e4bd7c21013bec7a"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg chemical market reconstructions for chlorine dioxide, EDTA acid, aluminium sulphate powder, magnesium sulphate, malusil, sodium chlorate powder, sodium formate, anhydrous sodium sulphate and elemental sulphur. Source positive1kg references and native positive1kg nonempty chemical inventories are independently inspected. Keep every original producer share separately, every original freight row/quantity and supported uncertainty; no renormalization. Complete native RER producers replace source regional production routes and allocations. Use sodium sulphate powder production mix, not chemically different persulphate; use secondary refinery sulphur, not cobalt sulphate. Source compound/CAS/nominal reference facts and native documentation support the selected chemical identity; no solvent multiplier, hydration, purity, density or elemental correction is invented. Native sodium formate is the documented sold co-product of pentaerythritol manufacture with mass-price allocation; its shared pentaerythritol formula in the comment is not treated as a formate formula or reference basis. Native magnesium sulphate and malusil inventories are explicitly based on lime mining/crushing/milling approximations. Native EDTA/chlorine-dioxide estimates omit solid wastes and have weak/incomplete emissions data; these inherited limitations and all native biosphere exclusions remain screening limitations, not new source-exchange omission approvals. Preserve distinct rail, road, barge, barge-tanker, container-sea, dry-bulk-sea and liquid-tanker quantities at signedtonne-km using complete native RER rail/barge/barge-tanker/fleet-average heavy-lorry/3.5t-light-lorry and OCE container/freight/tanker services. Light-commercial <3.5t -> native3.5t fleet, regional rail traction/fleet/load, global-to-European services, liquid chemical/sulphur cargo vs generic tanker design, handling/phase, upstream product transport and vessel/vintage/infrastructure differences are explicit proxies; no petroleum/LNG cargo equivalence is claimed. Plant inputs already contain upstream raw-material transport; only the original final-product market freight is added. Source/native mining/refining/synthesis, coproduct shares, allocation, product grade, geography, vintage, uncertainty and emission completeness differ; LCIA and carbon-balance equivalence and the size of score effects are unquantified. Preserve caller signedkg, uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges with factor+1. No new recovery credit, combustion, source-exchange omission or other-release/consequential/reverse approval is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "26c539e5e90aa500a13aeaaa4655c41edd93817232fd8bbc0263779668589dac"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e6d31064647d028b",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_dry_chemical_market",
+      "review_path": "export/uvek_pulp_heat_dry_markets_review.json",
+      "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+      "authorization": "Standing autonomous approval of independently inspected same-product native chemical reconstructions and explicit production-route/geography/fleet screening proxies, logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sodium formate",
+            "reference product": "sodium formate",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "bef142d7e89791f104d79d9adb280659a47aa08605efeb5df15dc7cf46ed1004",
+          "nonproduction_count": 12,
+          "name": "market for sodium formate",
+          "reference product": "sodium formate",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.975392396543782,
+              "uncertainty type": 0,
+              "loc": 0.975392396543782
+            },
+            "target": {
+              "location": "RER",
+              "name": "Sodium formate, reaction of formaldehyde with acetaldehyde, at plant",
+              "reference product": "Sodium formate, reaction of formaldehyde with acetaldehyde, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "e9a888633487b0844a3ac3c78b2c8992295c1e516e33ace591b3c284296435f9"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.0246076034562177,
+              "uncertainty type": 0,
+              "loc": 0.0246076034562177
+            },
+            "target": {
+              "location": "RER",
+              "name": "Sodium formate, reaction of formaldehyde with acetaldehyde, at plant",
+              "reference product": "Sodium formate, reaction of formaldehyde with acetaldehyde, at plant",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "1addb911117fb1c0b8c6bbb19a4cb90161ca06a9aead2bf7abe0074a3184dc63"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0224231473350459,
+              "uncertainty type": 2,
+              "loc": -3.797661490501636,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "e099b8c26d484c6cf1bc6a185cae1d608dcf0ada16797a6e6bbe4f902f1f6415"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08093386943083909,
+              "uncertainty type": 2,
+              "loc": -2.514122884547314,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "5e5de6d0d10c002f0d86f4afe58390e2df3b18efc0d691354373c1c29769ae59"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0056780093482361425,
+              "uncertainty type": 2,
+              "loc": -5.171154574536774,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ca14d3a29396271d29de59d6fedd9297ec38af0df3376678a7521c7f1fd84847"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.11165767412994829,
+              "uncertainty type": 2,
+              "loc": -2.192317569247477,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "a38dc8ffb7122abfc445f8a4872cc36ed371fa3525debcf49f8b192d0c9e8d29"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08840729975593056,
+              "uncertainty type": 2,
+              "loc": -2.4258007363232306,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "db73a365ebdfc19833a0d876b3fa70e8bb217b461a858e19e43a6d68f72e0229"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "b8d10bbf9cf85d3c0de4d49ad6490fc944a347c0e7511c1c84ac643e7a128481"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0037411136550834123,
+              "uncertainty type": 2,
+              "loc": -5.588371943141128,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "508bf388ab47439435752ebd2198f8b58ae05fe182d2bee342d9688c8802b4cf"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.18116364249000133,
+              "uncertainty type": 2,
+              "loc": -1.7083545540157898,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ed4e582b195883e1613af8f9c03948163bc3b457e429a16d4691abe5160b529e"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.02389524385491526,
+              "uncertainty type": 2,
+              "loc": -3.7340758417345654,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "9d4feda932da3ee367ccfb3226ae00f6ae23e4caef6e55a3dc335b0a62298b92"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1a85585d99f24f6bf2ffa0835a877cf051d9258d2b17a348e4bd7c21013bec7a"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg chemical market reconstructions for chlorine dioxide, EDTA acid, aluminium sulphate powder, magnesium sulphate, malusil, sodium chlorate powder, sodium formate, anhydrous sodium sulphate and elemental sulphur. Source positive1kg references and native positive1kg nonempty chemical inventories are independently inspected. Keep every original producer share separately, every original freight row/quantity and supported uncertainty; no renormalization. Complete native RER producers replace source regional production routes and allocations. Use sodium sulphate powder production mix, not chemically different persulphate; use secondary refinery sulphur, not cobalt sulphate. Source compound/CAS/nominal reference facts and native documentation support the selected chemical identity; no solvent multiplier, hydration, purity, density or elemental correction is invented. Native sodium formate is the documented sold co-product of pentaerythritol manufacture with mass-price allocation; its shared pentaerythritol formula in the comment is not treated as a formate formula or reference basis. Native magnesium sulphate and malusil inventories are explicitly based on lime mining/crushing/milling approximations. Native EDTA/chlorine-dioxide estimates omit solid wastes and have weak/incomplete emissions data; these inherited limitations and all native biosphere exclusions remain screening limitations, not new source-exchange omission approvals. Preserve distinct rail, road, barge, barge-tanker, container-sea, dry-bulk-sea and liquid-tanker quantities at signedtonne-km using complete native RER rail/barge/barge-tanker/fleet-average heavy-lorry/3.5t-light-lorry and OCE container/freight/tanker services. Light-commercial <3.5t -> native3.5t fleet, regional rail traction/fleet/load, global-to-European services, liquid chemical/sulphur cargo vs generic tanker design, handling/phase, upstream product transport and vessel/vintage/infrastructure differences are explicit proxies; no petroleum/LNG cargo equivalence is claimed. Plant inputs already contain upstream raw-material transport; only the original final-product market freight is added. Source/native mining/refining/synthesis, coproduct shares, allocation, product grade, geography, vintage, uncertainty and emission completeness differ; LCIA and carbon-balance equivalence and the size of score effects are unquantified. Preserve caller signedkg, uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges with factor+1. No new recovery credit, combustion, source-exchange omission or other-release/consequential/reverse approval is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "894860b50203800fd782e37c1a444d162812b51a0e88154b4aa52e6ae19378a2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ac0e66ba02739e93",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_dry_chemical_market",
+      "review_path": "export/uvek_pulp_heat_dry_markets_review.json",
+      "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+      "authorization": "Standing autonomous approval of independently inspected same-product native chemical reconstructions and explicit production-route/geography/fleet screening proxies, logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sodium sulfate, anhydrite",
+            "reference product": "sodium sulfate, anhydrite",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "2aa22537eaea249ea3bda0c097d472754c7224a727788e0f8ee0b5139d4eaea3",
+          "nonproduction_count": 22,
+          "name": "market for sodium sulfate, anhydrite",
+          "reference product": "sodium sulfate, anhydrite",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.0444896088886174,
+              "uncertainty type": 0,
+              "loc": 0.0444896088886174
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "6098f1de1fd57da91c50ce0679404ec700e395df3dbf79eadd00ebb568501a42"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.0243745007501549,
+              "uncertainty type": 0,
+              "loc": 0.0243745007501549
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "3b9a9016064f41dc78ec658ce5dcd0e325fb4065a5211e3355f43b3d73f507f4"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 9.26831062943436e-05,
+              "uncertainty type": 0,
+              "loc": 9.26831062943436e-05
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "5979253a872efc5c4f1b131e0528ef987dec3b7a224783a76abcfa4711d8dc8e"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.00166942964062647,
+              "uncertainty type": 0,
+              "loc": 0.00166942964062647
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "f34b095d5776f51ec7c300ee8f5d4b5438cdf8cfecaa17a32642ad786f2cf78f"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.000418679450240839,
+              "uncertainty type": 0,
+              "loc": 0.000418679450240839
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "5905e954966d7df1958781dceafa4c32099c7a7a8476518df9c96350982f9e18"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.000284865522438821,
+              "uncertainty type": 0,
+              "loc": 0.000284865522438821
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "42495c4c27aa775e3e7d0d6ea888816e81d92caef34a7e68cb206bde05a9528a"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.194867580068336,
+              "uncertainty type": 0,
+              "loc": 0.194867580068336
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "dea0a1432eb82ce6d2f25372404ec250b0666d6919f994ccff0fcf225478c2a8"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.00736455251480715,
+              "uncertainty type": 0,
+              "loc": 0.00736455251480715
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "0af3a7f1cb041aefc213415763c9b31493ca23a9a6e4272f5a0872070d9e15d0"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.00190762201445132,
+              "uncertainty type": 0,
+              "loc": 0.00190762201445132
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "aacb4b06d9c50f4953ef5ac71fde70b907077c626e220aacb7876587737407da"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.721533682216733,
+              "uncertainty type": 0,
+              "loc": 0.721533682216733
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "d124359652b369002bac602d44b5632d540f338be2b69bdeda2a0352e3c5a240"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.00245363453663776,
+              "uncertainty type": 0,
+              "loc": 0.00245363453663776
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "8a2ee366230598e9200626d9682fada6de903278cecd185a4900e3ede3979a49"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.000543161290662478,
+              "uncertainty type": 0,
+              "loc": 0.000543161290662478
+            },
+            "target": {
+              "name": "Sodium sulphate, powder, production mix, at plant",
+              "reference product": "Sodium sulphate, powder, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "b663b122f4b79eeed2f18d498564a8a20b4ae4f08e4efc2c8edbe32b71e66ca4"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0224231473350459,
+              "uncertainty type": 2,
+              "loc": -3.797661490501636,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "e099b8c26d484c6cf1bc6a185cae1d608dcf0ada16797a6e6bbe4f902f1f6415"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08093386943083909,
+              "uncertainty type": 2,
+              "loc": -2.514122884547314,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "5e5de6d0d10c002f0d86f4afe58390e2df3b18efc0d691354373c1c29769ae59"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0056780093482361425,
+              "uncertainty type": 2,
+              "loc": -5.171154574536774,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ca14d3a29396271d29de59d6fedd9297ec38af0df3376678a7521c7f1fd84847"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.11165767412994829,
+              "uncertainty type": 2,
+              "loc": -2.192317569247477,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "a38dc8ffb7122abfc445f8a4872cc36ed371fa3525debcf49f8b192d0c9e8d29"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.08840729975593056,
+              "uncertainty type": 2,
+              "loc": -2.4258007363232306,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "db73a365ebdfc19833a0d876b3fa70e8bb217b461a858e19e43a6d68f72e0229"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0246,
+              "uncertainty type": 2,
+              "loc": -3.70500883604382,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "b8d10bbf9cf85d3c0de4d49ad6490fc944a347c0e7511c1c84ac643e7a128481"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0037411136550834123,
+              "uncertainty type": 2,
+              "loc": -5.588371943141128,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "508bf388ab47439435752ebd2198f8b58ae05fe182d2bee342d9688c8802b4cf"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.18116364249000133,
+              "uncertainty type": 2,
+              "loc": -1.7083545540157898,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "ed4e582b195883e1613af8f9c03948163bc3b457e429a16d4691abe5160b529e"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.02389524385491526,
+              "uncertainty type": 2,
+              "loc": -3.7340758417345654,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "9d4feda932da3ee367ccfb3226ae00f6ae23e4caef6e55a3dc335b0a62298b92"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.599,
+              "uncertainty type": 2,
+              "loc": -0.5124936808666878,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "1a85585d99f24f6bf2ffa0835a877cf051d9258d2b17a348e4bd7c21013bec7a"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg chemical market reconstructions for chlorine dioxide, EDTA acid, aluminium sulphate powder, magnesium sulphate, malusil, sodium chlorate powder, sodium formate, anhydrous sodium sulphate and elemental sulphur. Source positive1kg references and native positive1kg nonempty chemical inventories are independently inspected. Keep every original producer share separately, every original freight row/quantity and supported uncertainty; no renormalization. Complete native RER producers replace source regional production routes and allocations. Use sodium sulphate powder production mix, not chemically different persulphate; use secondary refinery sulphur, not cobalt sulphate. Source compound/CAS/nominal reference facts and native documentation support the selected chemical identity; no solvent multiplier, hydration, purity, density or elemental correction is invented. Native sodium formate is the documented sold co-product of pentaerythritol manufacture with mass-price allocation; its shared pentaerythritol formula in the comment is not treated as a formate formula or reference basis. Native magnesium sulphate and malusil inventories are explicitly based on lime mining/crushing/milling approximations. Native EDTA/chlorine-dioxide estimates omit solid wastes and have weak/incomplete emissions data; these inherited limitations and all native biosphere exclusions remain screening limitations, not new source-exchange omission approvals. Preserve distinct rail, road, barge, barge-tanker, container-sea, dry-bulk-sea and liquid-tanker quantities at signedtonne-km using complete native RER rail/barge/barge-tanker/fleet-average heavy-lorry/3.5t-light-lorry and OCE container/freight/tanker services. Light-commercial <3.5t -> native3.5t fleet, regional rail traction/fleet/load, global-to-European services, liquid chemical/sulphur cargo vs generic tanker design, handling/phase, upstream product transport and vessel/vintage/infrastructure differences are explicit proxies; no petroleum/LNG cargo equivalence is claimed. Plant inputs already contain upstream raw-material transport; only the original final-product market freight is added. Source/native mining/refining/synthesis, coproduct shares, allocation, product grade, geography, vintage, uncertainty and emission completeness differ; LCIA and carbon-balance equivalence and the size of score effects are unquantified. Preserve caller signedkg, uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges with factor+1. No new recovery credit, combustion, source-exchange omission or other-release/consequential/reverse approval is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "79dc29fccb9dced20a5ddf649a3da7b6b102db0e084e3c036efb3134218be6df"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-12e7a5399b37ae6a",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_dry_chemical_market",
+      "review_path": "export/uvek_pulp_heat_dry_markets_review.json",
+      "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+      "authorization": "Standing autonomous approval of independently inspected same-product native chemical reconstructions and explicit production-route/geography/fleet screening proxies, logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for sulfur",
+            "reference product": "sulfur",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "3a3e2bcc168d33732ff20294d183b6fa796a5010da9261149f4dfa8b9b188aa1",
+          "nonproduction_count": 18,
+          "name": "market for sulfur",
+          "reference product": "sulfur",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "component_bindings": [
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.0002348864259131457,
+              "uncertainty type": 0,
+              "loc": 0.0002348864259131457
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "ea724bac5485655e76f1f3df46ec5b6fbf1f996f9028a674152f8d22daeae5fb"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.0001561784600718905,
+              "uncertainty type": 0,
+              "loc": 0.0001561784600718905
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "fe93e97ae4932a711e83a57162c8f1f772de8725fe896c86f51b516fb4eed2ce"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.7041655347508846,
+              "uncertainty type": 0,
+              "loc": 0.7041655347508846
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "f0392654be8ba21d4bd197f3e96496b828b057b2e24b1760798a80dec2f1a055"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.150457435487284,
+              "uncertainty type": 0,
+              "loc": 0.150457435487284
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "16287f4d1ba9fda8d6162f5ab036095b5eb70bd42b3794407024f589d21dc725"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.0196077412414849,
+              "uncertainty type": 0,
+              "loc": 0.0196077412414849
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "b4eda4d411fe7eedd97db5dc0d92c36d16be44fa9abbf1c94d25469c8d7c5473"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.002010013558128796,
+              "uncertainty type": 0,
+              "loc": 0.002010013558128796
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "a694b6e84bb2276287002e80eecfcb674de06353e9306f42209f0575e0743a5c"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.001528825930131476,
+              "uncertainty type": 0,
+              "loc": 0.001528825930131476
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "d19f31f9b7c972e8aa51423322bcbd975a58d47926ddc0918d874a508f7aebe1"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.1063419292665175,
+              "uncertainty type": 0,
+              "loc": 0.1063419292665175
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "b95922be3a13556639949c002faf22136f78c8f90316d291fab616dd455c5983"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.00257457758728464,
+              "uncertainty type": 0,
+              "loc": 0.00257457758728464
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "424dba5a211808591d30904387b51037bdd341b5a35060826d7687baa888c854"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 4.414854001070486e-06,
+              "uncertainty type": 0,
+              "loc": 4.414854001070486e-06
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "7d63010dfded51bd00caae76d474497f481039482f8090423d66e6d1a12e221b"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.004117615924005518,
+              "uncertainty type": 0,
+              "loc": 0.004117615924005518
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "65f9de126a80a2e4ec714e929ef8d1b7fd05b79f4d8e2ecc451bad27d461293d"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.008091566545655975,
+              "uncertainty type": 0,
+              "loc": 0.008091566545655975
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "0b1e727896a22d4aa99005ff9d61d61a47e96b5a5a51bd3c8b128b41bd4e6cac"
+          },
+          {
+            "kind": "producer",
+            "statistics": {
+              "amount": 0.000709279968636546,
+              "uncertainty type": 0,
+              "loc": 0.000709279968636546
+            },
+            "target": {
+              "name": "Secondary sulphur, at refinery",
+              "reference product": "Secondary sulphur, at refinery",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_unit": "kilogram",
+            "source_exchange_sha256": "10989cd77929d655a665b8ec2fc96ed9abb6f3f2e934c680d8c0b120d0ad2745"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.022,
+              "uncertainty type": 2,
+              "loc": -3.816712825623821,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "81c49e77ef9fb9bf13d9c11e2d7337bfdf3db871d615924bcb4b389959c6adc7"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0323,
+              "uncertainty type": 2,
+              "loc": -3.4326880487535263,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, barge tanker",
+              "reference product": "Transport, barge tanker",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "bbfa9094b08aab8da9c3b6a7fab1462f41877d5a0046a8400e7ba0a1a07cc6da"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0009,
+              "uncertainty type": 2,
+              "loc": -7.013115794639964,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "c24758fea932d06e7e6e9402052ee255a18901e30163a7a4ad5bdf9f660374b7"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.0284,
+              "uncertainty type": 2,
+              "loc": -3.5613661338149765,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "51348540f8d71af9c34cd6fd0fc14606b1894609d9f0e8f8a72fd5468a07ea3d"
+          },
+          {
+            "kind": "freight",
+            "statistics": {
+              "amount": 0.645,
+              "uncertainty type": 2,
+              "loc": -0.43850496218636453,
+              "scale": 0.4049691346263318
+            },
+            "target": {
+              "name": "Transport, transoceanic tanker",
+              "reference product": "Transport, transoceanic tanker",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "source_unit": "ton kilometer",
+            "source_exchange_sha256": "bf3c931632adbda59d536cb65108ede8c54e798031303dba507470f1ae7be120"
+          }
+        ],
+        "conversion_factor": 1,
+        "new_helpers": 1,
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff nominal-kg chemical market reconstructions for chlorine dioxide, EDTA acid, aluminium sulphate powder, magnesium sulphate, malusil, sodium chlorate powder, sodium formate, anhydrous sodium sulphate and elemental sulphur. Source positive1kg references and native positive1kg nonempty chemical inventories are independently inspected. Keep every original producer share separately, every original freight row/quantity and supported uncertainty; no renormalization. Complete native RER producers replace source regional production routes and allocations. Use sodium sulphate powder production mix, not chemically different persulphate; use secondary refinery sulphur, not cobalt sulphate. Source compound/CAS/nominal reference facts and native documentation support the selected chemical identity; no solvent multiplier, hydration, purity, density or elemental correction is invented. Native sodium formate is the documented sold co-product of pentaerythritol manufacture with mass-price allocation; its shared pentaerythritol formula in the comment is not treated as a formate formula or reference basis. Native magnesium sulphate and malusil inventories are explicitly based on lime mining/crushing/milling approximations. Native EDTA/chlorine-dioxide estimates omit solid wastes and have weak/incomplete emissions data; these inherited limitations and all native biosphere exclusions remain screening limitations, not new source-exchange omission approvals. Preserve distinct rail, road, barge, barge-tanker, container-sea, dry-bulk-sea and liquid-tanker quantities at signedtonne-km using complete native RER rail/barge/barge-tanker/fleet-average heavy-lorry/3.5t-light-lorry and OCE container/freight/tanker services. Light-commercial <3.5t -> native3.5t fleet, regional rail traction/fleet/load, global-to-European services, liquid chemical/sulphur cargo vs generic tanker design, handling/phase, upstream product transport and vessel/vintage/infrastructure differences are explicit proxies; no petroleum/LNG cargo equivalence is claimed. Plant inputs already contain upstream raw-material transport; only the original final-product market freight is added. Source/native mining/refining/synthesis, coproduct shares, allocation, product grade, geography, vintage, uncertainty and emission completeness differ; LCIA and carbon-balance equivalence and the size of score effects are unquantified. Preserve caller signedkg, uncertainty, formulas and separate pulp-heat emissions/carbon-resource exchanges with factor+1. No new recovery credit, combustion, source-exchange omission or other-release/consequential/reverse approval is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d0f91de0d5e0eced9c28dd48ef6d9ce54c2e244d671642d4fd005bbab11ae4eb"
+        }
+      ]
     }
   ],
   "superseded_operations": [

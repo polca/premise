@@ -1,0 +1,81 @@
+{
+  "review_sha256": "195fe3e200f88d4214ae8d0b7a0eaffb5b071119c7c5be2052c8c157c69c8ee9",
+  "cases": [
+    {
+      "rule_id": "bp-ff104fcb6360596e",
+      "helpers_traversed": 1,
+      "native_suppliers": 3,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "rule_id": "bp-06eec793f6cddf6e",
+      "helpers_traversed": 1,
+      "native_suppliers": 5,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "rule_id": "bp-361861031be56877",
+      "helpers_traversed": 1,
+      "native_suppliers": 5,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "rule_id": "bp-0aaf462b149fd2fc",
+      "helpers_traversed": 1,
+      "native_suppliers": 5,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "rule_id": "bp-1039d8cd20c7b48f",
+      "helpers_traversed": 1,
+      "native_suppliers": 6,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "rule_id": "bp-e82e3e6afef57143",
+      "helpers_traversed": 1,
+      "native_suppliers": 5,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "rule_id": "bp-e6d31064647d028b",
+      "helpers_traversed": 1,
+      "native_suppliers": 5,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "rule_id": "bp-ac0e66ba02739e93",
+      "helpers_traversed": 1,
+      "native_suppliers": 5,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    },
+    {
+      "rule_id": "bp-12e7a5399b37ae6a",
+      "helpers_traversed": 1,
+      "native_suppliers": 6,
+      "direct_biosphere_flows": 0,
+      "signed_finite_composite_LCIs": 2,
+      "exact_sign_reversal": true
+    }
+  ],
+  "signed_finite_composite_LCIs": 18,
+  "all_reviewed_recipes_covered": 9,
+  "source_modified_unchanged": true,
+  "limitation": "All post-conversion helper recipes recursively included, with summed duplicate native demands and direct biosphere flows. Nominal checks do not establish LCIA equivalence or completed steel transformation/export."
+}
