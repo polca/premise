@@ -1,0 +1,128 @@
+{
+  "status": "preflight_only_no_mapping_approval",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "cases": [
+    {
+      "source": {
+        "name": "sulfate pulp production, from softwood, unbleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "main_product_reference_kg": 1,
+      "main_product_dry_mass_kg": 0.9,
+      "main_product_carbon_allocation_kg": 0.4446,
+      "heat_carbon_allocation_kg": 0.0,
+      "carbon_correction_compartment": [
+        "natural resource",
+        "in air"
+      ],
+      "nominal_inventory_mismatch_count": 1,
+      "simple_44_over_12_formula_exactly_verified": false
+    },
+    {
+      "source": {
+        "name": "sulfate pulp production, from softwood, bleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "main_product_reference_kg": 1,
+      "main_product_dry_mass_kg": 0.9,
+      "main_product_carbon_allocation_kg": 0.4446,
+      "heat_carbon_allocation_kg": 0.0,
+      "carbon_correction_compartment": [
+        "natural resource",
+        "in air"
+      ],
+      "nominal_inventory_mismatch_count": 1,
+      "simple_44_over_12_formula_exactly_verified": false
+    },
+    {
+      "source": {
+        "name": "sulfate pulp production, from eucalyptus, bleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "main_product_reference_kg": 1,
+      "main_product_dry_mass_kg": 0.9,
+      "main_product_carbon_allocation_kg": 0.4446,
+      "heat_carbon_allocation_kg": 0.0,
+      "carbon_correction_compartment": [
+        "natural resource",
+        "in air"
+      ],
+      "nominal_inventory_mismatch_count": 1,
+      "simple_44_over_12_formula_exactly_verified": false
+    },
+    {
+      "source": {
+        "name": "sulfate pulp production, from hardwood, bleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "main_product_reference_kg": 1,
+      "main_product_dry_mass_kg": 0.9,
+      "main_product_carbon_allocation_kg": 0.4446,
+      "heat_carbon_allocation_kg": 0.0,
+      "carbon_correction_compartment": [
+        "natural resource",
+        "in air"
+      ],
+      "nominal_inventory_mismatch_count": 1,
+      "simple_44_over_12_formula_exactly_verified": false
+    },
+    {
+      "source": {
+        "name": "sulfate pulp production, from eucalyptus, bleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RLA",
+        "unit": "megajoule"
+      },
+      "main_product_reference_kg": 1,
+      "main_product_dry_mass_kg": 0.9,
+      "main_product_carbon_allocation_kg": 0.4446,
+      "heat_carbon_allocation_kg": 0.0,
+      "carbon_correction_compartment": [
+        "natural resource",
+        "in air"
+      ],
+      "nominal_inventory_mismatch_count": 1,
+      "simple_44_over_12_formula_exactly_verified": false
+    }
+  ],
+  "native_original_references": [
+    {
+      "identity": {
+        "name": "Sulphate pulp, unbleached, at plant",
+        "reference product": "Sulphate pulp, unbleached, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "reference_kg": 1,
+      "original_member": "ecoSpold files/process_36bb2a27-e9ad-3852-9f95-9eca37e21ba9.xml",
+      "original_sha256": "8288116e0031c10042d95969df246f0fc26b9dc55f04ece46798faa14a5e17ab",
+      "matching_dry_mass_or_product_carbon_not_declared_in_reference_metadata": true
+    },
+    {
+      "identity": {
+        "name": "Sulphate pulp, ECF bleached, at plant",
+        "reference product": "Sulphate pulp, ECF bleached, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "reference_kg": 1,
+      "original_member": "ecoSpold files/process_2138b094-4930-3bcc-9625-07e636a24060.xml",
+      "original_sha256": "46e7223bcba8ba3c71dbbf16e175a2892203e8bff4f0a49db0e6fc442493e7e4",
+      "matching_dry_mass_or_product_carbon_not_declared_in_reference_metadata": true
+    }
+  ],
+  "finding": "Source heat and main pulp inventory differ in a signed non-fossil carbon resource correction. A whole pulp burden proxy would inherit product storage accounting. Neither an assumed dry-mass conversion nor a generic molecular-weight correction has been approved. The bundled paper report is an overview and does not resolve the native pulp basis.",
+  "next_review": "Establish the native product mass/carbon basis and retained correction before using a pulp-equivalent helper, or independently review a complete recovery-heat process proxy. Do not infer zero heat burden or use a natural-gas district boiler."
+}

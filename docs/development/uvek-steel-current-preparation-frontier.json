@@ -7,11 +7,11 @@
     "system_model": "cutoff",
     "biosphere_version": "3.10"
   },
-  "pending_correspondences": 15,
-  "previous_pending": 16,
-  "cleared_this_batch": 1,
+  "pending_correspondences": 13,
+  "previous_pending": 15,
+  "cleared_this_batch": 2,
   "diagnostic_guard_bypass": "Steel support gate only; strict migration validation retained.",
-  "private_audit_receipt": "1660fad0c2a3f9955678f81555c449f278b003002ef75f123068582eb834045e.audit.json.gz",
+  "private_audit_receipt": "962d700cd74df6929061105355ac8e1f2726744872f3f6c1553c5d8da8ba535c.audit.json.gz",
   "scope_limitation": "This is the current retained ecoinvent3.9 steel preparation cohort; later cohorts and sector transformation may reveal additional issues. Suggested targets are unapproved, not scientifically endorsed.",
   "cases": [
     {
@@ -37,38 +37,6 @@
       },
       "unapproved_suggested_target": {
         "recipe_ref": "steel-residue-market-e5a828c05c3ddd6a0460"
-      },
-      "category": "waste_residue_and_wastewater"
-    },
-    {
-      "rule_id": "bp-0b346b8f3969e16b",
-      "source": {
-        "location": "Europe without Switzerland",
-        "name": "market for wastewater from pig iron production",
-        "reference product": "wastewater from pig iron production",
-        "unit": "cubic meter"
-      },
-      "unapproved_suggested_target": {
-        "location": "CH",
-        "name": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
-        "reference product": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
-        "unit": "cubic meter"
-      },
-      "category": "waste_residue_and_wastewater"
-    },
-    {
-      "rule_id": "bp-370d86f95a1eb95a",
-      "source": {
-        "location": "CH",
-        "name": "market for wastewater from pig iron production",
-        "reference product": "wastewater from pig iron production",
-        "unit": "cubic meter"
-      },
-      "unapproved_suggested_target": {
-        "location": "CH",
-        "name": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
-        "reference product": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
-        "unit": "cubic meter"
       },
       "category": "waste_residue_and_wastewater"
     },

@@ -1,0 +1,21 @@
+# Pig-iron wastewater markets
+
+Two exact ecoinvent 3.9 cut-off markets now retain their collection and untreated-discharge boundaries when converted to native UVEK 2026. Europe without Switzerland sends 87.2964% to treatment; Switzerland sends 98.1094%. The source rural/urban sewer-throughput shares remain unchanged. All twelve direct surface-water discharges per market retain their names, signed quantities, units and compartments, including the original water volumes. No balance is forced by renormalizing those published quantities.
+
+Only the treated fraction uses native Swiss class-3 pig-iron effluent treatment. Its declared COD is 0.0000203 kg/m³, versus 0.00002 kg/m³ in the source documentation. This is a complete-process screening proxy, with no inferred COD or removal-efficiency multiplier. Treatment, sludge handling, geography, capacity, vintage, internal uncertainty and excluded native biosphere flows can differ; score effects are unquantified.
+
+The native service already contains 2.1782e-7 km of class-3 sewer infrastructure per m³. The supplier describes a 109.4 km municipal network serving 24,864 person equivalents, with a 100-year lifetime and renovation after 70 years. It is not merely an internal treatment-plant pipe. The same positive reference and deterministic embedded coefficient were also checked in the installed native UVEK 2025 project. Because the original sewer services remain, each helper subtracts exactly that embedded length times its treated fraction from the same native supplier. This corrects duplicate infrastructure accounting; it is not a physical avoided-construction credit. No other treatment exchange is removed.
+
+Existing independently reviewed rural/urban sewer-throughput recipes are reused without changes, including their material, freight and operation proxies. Two new root helpers share four existing dependency recipes. Source waste references are −1 m³; helpers have positive service references, so caller demand uses factor −1 with consistent uncertainty and formula scaling. Other releases, consequential and reverse routes remain unapproved.
+
+## Verification
+
+Fifteen dedicated Brightpath tests pass; the three recent batches pass together with 38 tests. Premise strict fresh/cache/approval-withdrawal, recovered-heat relinking and steel-grade regression checks pass together with 67 tests. Black and Ruff pass for new maintainer/test files; the generator's two pre-existing import-order findings are unchanged.
+
+All five helper inventories per individual market were recursively included in four finite signed composite LCIs, covering 23 distinct native suppliers and 14 direct biosphere identities. Duplicate demands were summed. Direct biosphere flows absent from the native LCA matrix were included explicitly in the combined flow vector; none were dropped. Both negative demands reverse the full result exactly. The native source database remained unchanged. This does not establish score equivalence or completed steel export.
+
+Frozen review: `export/uvek_steel_39_wastewater_review.json`, SHA-256 `a0ac432d03ec3bae84d42cae38a2295bc5c17d10213168f988ca5df0be8718ed`. Pushed Brightpath dependency: `7175458faab64d7ee1f36ceed8cfc565fcaf5f1b`. The regular environment installs this GitHub commit and all 836 approval scopes validate. No runtime Python module changes were needed.
+
+The real encrypted REMIND SSP2-NPi 2050 diagnostic now reports **13 outstanding preparation correspondences, down from 15**. Only the steel support gate was bypassed; strict migration validation remained enabled. The remaining cases are eleven residue/waste markets, industrial other-fuel heat and ferrosilicon. Later cohorts and full steel transformation/export remain unverified. Audit receipt: `962d700cd74df6929061105355ac8e1f2726744872f3f6c1553c5d8da8ba535c.audit.json.gz`.
+
+The separate pulp carbon preflight grants no mapping approval: source pulp references contain 0.9 kg dry matter and 0.4446 kg allocated carbon per kg, while heat has zero allocated product carbon. A scaled pulp proxy would retain product storage accounting. Native archive reference metadata and the bundled overview report do not resolve the matching native basis; no assumed moisture factor or generic carbon correction is introduced.

@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "retained_biosphere_and_37_of_initial_52_correspondences_verified_15_preparation_cases_and_transformation_unfinished",
+      "status": "retained_biosphere_and_39_of_initial_52_correspondences_verified_13_preparation_cases_and_transformation_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -365,7 +365,8 @@
         "Exact3.9regionalgas extension reuses existing36MJ/m3 recipe;10Brightpath checks and strict Premise cache/withdrawal test pass. Complete3.6and3.12selected resources identical. Actual REMIND retained preparation has17pending correspondences; three heat portfolios independently traced but unapproved.",
         "Natural-gas heat production mix retains104supplier contributions and80.043%CHPshare using36native producers with no direct district-delivery inputs.9Brightpath checks and strict Premise cache/withdrawal pass; composite signedLCIsfinite. Actual REMIND steel preparation has16pending cases; transformation/export unverified.",
         "Small non-gas heat mix retains52supplier shares with8pure-solar operation helpers and31native suppliers.9Brightpath checks and strict Premise cache/withdrawal pass; recursive signedLCIs include direct solar resource. Actual REMIND retained steel preparation has15pendingcases; full transformation/export unverified.",
-        "36 exact3.9heat-allocation handovers preserve12empty heat co-products and24zero-stock forwarders using existing native plant-side heat.72signedsourceLCIszero; native exactmatrixzero proven with numerical roundoff recorded.13Brightpath checks and strict Premise cache/withdrawal pass;15root preparation cases remain."
+        "36 exact3.9heat-allocation handovers preserve12empty heat co-products and24zero-stock forwarders using existing native plant-side heat.72signedsourceLCIszero; native exactmatrixzero proven with numerical roundoff recorded.13Brightpath checks and strict Premise cache/withdrawal pass;15root preparation cases remain.",
+        "Two3.9pig-iron wastewater markets retain sewer shares and12untreated surface-water discharges each, with explicit embedded-sewer cancellation.38Brightpath and67Premise regression tests pass;4signed compositeLCIsfinite. Actual encrypted REMIND steel preparation has13pending correspondences, downfrom15; full transformation/export unverified."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -393,7 +394,7 @@
       },
       "latest_actual_preparation_frontier": {
         "verification": "docs/development/uvek-steel-current-preparation-frontier.json",
-        "pending_correspondences": 15,
+        "pending_correspondences": 13,
         "public_update_or_export_verified": false
       },
       "first_four_prerequisites": "docs/development/uvek-steel-39-first-prerequisite-verification.json",
@@ -422,7 +423,20 @@
         "Premise_mapping_relinking_and_steel_grade_tests_passed": 66,
         "installed_GitHub_commit": "81a92781ef45b9963527682d8b568e09dd44bc07",
         "all_installed_approval_scopes_validated": 834
-      }
+      },
+      "wastewater_market_verification": {
+        "review": "docs/development/uvek-steel-wastewater-review.md",
+        "native_composite_LCI_receipt": "docs/development/uvek-steel-wastewater-composite-lci-verification.json",
+        "Brightpath_tests_passed": 38,
+        "Premise_tests_passed": 67,
+        "signed_finite_composite_LCIs": 4,
+        "new_root_helpers": 2,
+        "reused_dependency_recipes": 4,
+        "actual_remaining_root_cases": 13,
+        "installed_GitHub_commit": "7175458faab64d7ee1f36ceed8cfc565fcaf5f1b",
+        "all_installed_approval_scopes_validated": 836
+      },
+      "pulp_carbon_preflight": "docs/development/uvek-steel-pulp-carbon-preflight.json"
     },
     {
       "sector": "fuels",

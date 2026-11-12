@@ -217105,6 +217105,502 @@
           "fingerprint": "16a52885ee22681e497ed6a3e1d9f3352db834445e1a2c491a96ae1d30bceda4"
         }
       ]
+    },
+    {
+      "rule_id": "bp-0b346b8f3969e16b",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_wastewater_market",
+      "review_path": "export/uvek_steel_39_wastewater_review.json",
+      "review_sha256": "a0ac432d03ec3bae84d42cae38a2295bc5c17d10213168f988ca5df0be8718ed",
+      "authorization": "Standing autonomous approval of inspected boundary-preserving reconstructions with warnings; log decisions for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for wastewater from pig iron production",
+            "reference product": "wastewater from pig iron production",
+            "location": "Europe without Switzerland",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "inventory_sha256": "988f0f80adc789ef9f156b4374d73b5a6b14b7938a64efea0000ec7102cfb1ab",
+          "nonproduction_count": 15
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of wastewater from pig iron production, wastewater treatment",
+              "reference product": "wastewater from pig iron production",
+              "location": "Europe without Switzerland",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "d388532368f4815f9de844f2aad4e02fd9c6b24788e60b08eaad91114cdbb24f",
+            "nonproduction_count": 70
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+              "reference product": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "877fce90d147d501ffd6816b5a57c497d2707deb440b37da742ed0550ffd82bd",
+            "nonproduction_count": 59
+          }
+        ],
+        "conversion_factor": -1,
+        "treated_fraction": 0.8729643339038445,
+        "sewer_services": [
+          {
+            "source": {
+              "name": "sewer grid construction, rural",
+              "reference product": "sewer grid, rural",
+              "location": "GLO",
+              "unit": "cubic meter"
+            },
+            "recipe_ref": "sewer-throughput-b7b0053b62e47219bbda",
+            "amount": 0.1723
+          },
+          {
+            "source": {
+              "name": "sewer grid construction, urban",
+              "reference product": "sewer grid, urban",
+              "location": "GLO",
+              "unit": "cubic meter"
+            },
+            "recipe_ref": "sewer-throughput-5ad254f2a66ab4151737",
+            "amount": 0.8277
+          }
+        ],
+        "untreated_discharges": [
+          {
+            "type": "biosphere",
+            "name": "BOD5, Biological Oxygen Demand",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 9.82098712136059e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "COD, Chemical Oxygen Demand",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 2.03058959451944e-06
+          },
+          {
+            "type": "biosphere",
+            "name": "Chromium III",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 2.54071332192311e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "Copper ion",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 5.33549797603853e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "DOC, Dissolved Organic Carbon",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 3.54175437076081e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "Hydrogen",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 3.33341587836312e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "Lead II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 2.54071332192311e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "Nickel II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 3.81106998288466e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "Oxygen",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 6.38036632967941e-08
+          },
+          {
+            "type": "biosphere",
+            "name": "TOC, Total Organic Carbon",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 5.20846230994237e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "Water",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "cubic meter",
+            "amount": 0.127035661214651
+          },
+          {
+            "type": "biosphere",
+            "name": "Zinc II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 2.54071332192311e-06
+          }
+        ],
+        "embedded_native_sewer_correction": {
+          "name": "Sewer grid, class 3",
+          "reference product": "Sewer grid, class 3",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "technosphere",
+          "amount": -1.9014909121093543e-07,
+          "comment": "Cancel only deterministic sewer infrastructure embedded in the native treatment; retain source rural/urban service quantities."
+        },
+        "embedded_sewer_boundary": {
+          "identity": {
+            "name": "Sewer grid, class 3",
+            "reference product": "Sewer grid, class 3",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "native_input_km_per_treated_m3": 2.1782e-07,
+          "deterministic": true,
+          "municipal_network_length_km": 109.4,
+          "person_equivalents": 24864,
+          "lifetime_years": 100,
+          "renovation_after_years": 70,
+          "source_metadata_sha256": "72947bb4050c87ae4e65561a9adffc037d9c8cbdd88945ce2ce562a52f70a99a",
+          "limitation": "This is the municipal sewer network, not merely an internal treatment-plant pipe. Cancel this infrastructure only because separately reconstructed source sewer services remain."
+        },
+        "new_root_helpers": 2
+      },
+      "limitations": [
+        "Reconstruct the exact3.9cutoff pig-iron wastewater market as a positive physical service, factor-1 from its negative1m3 waste reference. Preserve original rural/urban sewer-throughput quantities, the original treated fraction, and every separate untreated water/pollutant discharge with its signed amount, original surface-water compartment and units. Use complete native Swiss class3 pig-iron effluent treatment only for the treated fraction. Native documented COD0.0000203kg/m3 versus source0.00002kg/m3 does not establish equal pollutant inventories; no COD or efficiency rescaling is inferred. The native treatment includes deterministic class3 sewer infrastructure: subtract exactly that embedded length times treated fraction from the same native supplier to prevent double counting with retained source sewer services. This negative correction is bookkeeping, not avoided sewer construction or a physical recovery credit. Native treatment retains all other inputs/emissions and embeds sludge handling. Treatment technology, plant capacity, geography, vintage, internal uncertainty, biosphere exclusions and LCIA scores can differ; effects unquantified. Existing separately reviewed sewer-throughput reconstructions and their documented material, freight, operation and native-supply proxies apply unchanged. No full-volume treatment approximation, renormalization, omitted untreated release, extra treatment, network lifetime multiplier, kg/m3 conversion, moisture correction or cross-system-model route. Preserve caller signs, supported uncertainty, formulas and separate foreground emissions. Only exact independently inspected3.9cutoff profiles qualify; other releases and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "81596aa1d0c9e75997a2ee7c99ce1ed382a52e4d31fbe36f83fdfac3c5e3c48b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-370d86f95a1eb95a",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_wastewater_market",
+      "review_path": "export/uvek_steel_39_wastewater_review.json",
+      "review_sha256": "a0ac432d03ec3bae84d42cae38a2295bc5c17d10213168f988ca5df0be8718ed",
+      "authorization": "Standing autonomous approval of inspected boundary-preserving reconstructions with warnings; log decisions for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for wastewater from pig iron production",
+            "reference product": "wastewater from pig iron production",
+            "location": "CH",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "inventory_sha256": "f5252da13265088fa606b9223b43fe047f1dc59230f98d6903351e9887e02841",
+          "nonproduction_count": 15
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of wastewater from pig iron production, wastewater treatment",
+              "reference product": "wastewater from pig iron production",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "ec02b0fe77bd786720f990ec5fbed63453e0c1365b12231a5ab6373141ad6d56",
+            "nonproduction_count": 66
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+              "reference product": "Treatment, pig iron production effluent, to wastewater treatment, class 3",
+              "location": "CH",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "877fce90d147d501ffd6816b5a57c497d2707deb440b37da742ed0550ffd82bd",
+            "nonproduction_count": 59
+          }
+        ],
+        "conversion_factor": -1,
+        "treated_fraction": 0.981093834,
+        "sewer_services": [
+          {
+            "source": {
+              "name": "sewer grid construction, rural",
+              "reference product": "sewer grid, rural",
+              "location": "GLO",
+              "unit": "cubic meter"
+            },
+            "recipe_ref": "sewer-throughput-b7b0053b62e47219bbda",
+            "amount": 0.2482
+          },
+          {
+            "source": {
+              "name": "sewer grid construction, urban",
+              "reference product": "sewer grid, urban",
+              "location": "GLO",
+              "unit": "cubic meter"
+            },
+            "recipe_ref": "sewer-throughput-5ad254f2a66ab4151737",
+            "amount": 0.7518
+          }
+        ],
+        "untreated_discharges": [
+          {
+            "type": "biosphere",
+            "name": "BOD5, Biological Oxygen Demand",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 1.46161482445223e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "COD, Chemical Oxygen Demand",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 3.02203823001948e-07
+          },
+          {
+            "type": "biosphere",
+            "name": "Chromium III",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 3.78123319999999e-08
+          },
+          {
+            "type": "biosphere",
+            "name": "Copper ion",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 7.94058971999998e-08
+          },
+          {
+            "type": "biosphere",
+            "name": "DOC, Dissolved Organic Carbon",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 5.27103908079998e-08
+          },
+          {
+            "type": "biosphere",
+            "name": "Hydrogen",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 4.96097795839999e-08
+          },
+          {
+            "type": "biosphere",
+            "name": "Lead II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 3.78123319999999e-08
+          },
+          {
+            "type": "biosphere",
+            "name": "Nickel II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 5.67184979999998e-08
+          },
+          {
+            "type": "biosphere",
+            "name": "Oxygen",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 9.49562187349997e-09
+          },
+          {
+            "type": "biosphere",
+            "name": "TOC, Total Organic Carbon",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 7.75152805999998e-08
+          },
+          {
+            "type": "biosphere",
+            "name": "Water",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "cubic meter",
+            "amount": 0.0189061652735069
+          },
+          {
+            "type": "biosphere",
+            "name": "Zinc II",
+            "categories": [
+              "water",
+              "surface water"
+            ],
+            "unit": "kilogram",
+            "amount": 3.78123319999999e-07
+          }
+        ],
+        "embedded_native_sewer_correction": {
+          "name": "Sewer grid, class 3",
+          "reference product": "Sewer grid, class 3",
+          "location": "CH",
+          "unit": "kilometer",
+          "type": "technosphere",
+          "amount": -2.1370185892188e-07,
+          "comment": "Cancel only deterministic sewer infrastructure embedded in the native treatment; retain source rural/urban service quantities."
+        },
+        "embedded_sewer_boundary": {
+          "identity": {
+            "name": "Sewer grid, class 3",
+            "reference product": "Sewer grid, class 3",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "native_input_km_per_treated_m3": 2.1782e-07,
+          "deterministic": true,
+          "municipal_network_length_km": 109.4,
+          "person_equivalents": 24864,
+          "lifetime_years": 100,
+          "renovation_after_years": 70,
+          "source_metadata_sha256": "72947bb4050c87ae4e65561a9adffc037d9c8cbdd88945ce2ce562a52f70a99a",
+          "limitation": "This is the municipal sewer network, not merely an internal treatment-plant pipe. Cancel this infrastructure only because separately reconstructed source sewer services remain."
+        },
+        "new_root_helpers": 2
+      },
+      "limitations": [
+        "Reconstruct the exact3.9cutoff pig-iron wastewater market as a positive physical service, factor-1 from its negative1m3 waste reference. Preserve original rural/urban sewer-throughput quantities, the original treated fraction, and every separate untreated water/pollutant discharge with its signed amount, original surface-water compartment and units. Use complete native Swiss class3 pig-iron effluent treatment only for the treated fraction. Native documented COD0.0000203kg/m3 versus source0.00002kg/m3 does not establish equal pollutant inventories; no COD or efficiency rescaling is inferred. The native treatment includes deterministic class3 sewer infrastructure: subtract exactly that embedded length times treated fraction from the same native supplier to prevent double counting with retained source sewer services. This negative correction is bookkeeping, not avoided sewer construction or a physical recovery credit. Native treatment retains all other inputs/emissions and embeds sludge handling. Treatment technology, plant capacity, geography, vintage, internal uncertainty, biosphere exclusions and LCIA scores can differ; effects unquantified. Existing separately reviewed sewer-throughput reconstructions and their documented material, freight, operation and native-supply proxies apply unchanged. No full-volume treatment approximation, renormalization, omitted untreated release, extra treatment, network lifetime multiplier, kg/m3 conversion, moisture correction or cross-system-model route. Preserve caller signs, supported uncertainty, formulas and separate foreground emissions. Only exact independently inspected3.9cutoff profiles qualify; other releases and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d771ceabe1cfde6bbe525f30655ca1a226d3bbf711944a25c642401ba3e3b2a6"
+        }
+      ]
     }
   ],
   "superseded_operations": [
