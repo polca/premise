@@ -1,0 +1,13 @@
+{
+  "review_sha256": "2f9ae67a9304dd9dfdec0c81ea651a752638c37752b9ddc6232dcbe0e7acf3f2",
+  "independently_verified_retained_source_rows": 12,
+  "audited_empty_source_interfaces": 2,
+  "signed_exact_source_zero_matrix_checks": 4,
+  "native_suppliers": 4,
+  "signed_finite_LCIs": 12,
+  "exact_sign_reversal": true,
+  "source_and_native_modified_unchanged": true,
+  "landfill_share_preserved": 8.47378205105051e-10,
+  "new_helpers": 2,
+  "limitation": "Two literal zero-burden interfaces omitted only within this market. Generic source inert-landfill boundary retained; no waste-specific leachate or water rescaling added. Full pulp heat and steel remain unfinished."
+}

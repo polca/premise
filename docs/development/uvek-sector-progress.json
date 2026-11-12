@@ -687,6 +687,23 @@
         "unapproved_nested_pulp_heat_correspondences_after": 53,
         "actual_industrial_heat_preparation_roots_unchanged": 1,
         "limitation": "RER geographic proxy for Quebec; native hardwood/softwood sawmill and allocated soft-fibreboard bark boundaries retained. RoW pulp/paper bark, pellets and residual wood remain unapproved. Steel export unfinished."
+      },
+      "pulp_heat_limestone_verification": {
+        "review": "uvek-pulp-heat-limestone-review.md",
+        "verification": "uvek-pulp-heat-limestone-verification.json",
+        "source_profile": "ecoinvent 3.9 cutoff",
+        "reviewed_correspondences": 2,
+        "new_helpers": 2,
+        "independently_checked_retained_source_rows": 12,
+        "scoped_empty_interface_omissions": 2,
+        "signed_exact_source_zero_matrix_checks": 4,
+        "native_suppliers": 4,
+        "signed_finite_LCIs": 12,
+        "brightpath_tests_passed": 15,
+        "premise_tests_passed": 2,
+        "unapproved_nested_pulp_heat_correspondences_after": 52,
+        "actual_industrial_heat_preparation_roots_unchanged": 1,
+        "limitation": "Original tiny landfill share and generic inert-landfill boundary retained; two proven zero interfaces omitted only in this market. Full pulp heat and steel export unfinished."
       }
     },
     {

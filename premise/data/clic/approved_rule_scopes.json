@@ -246894,6 +246894,451 @@
           "fingerprint": "df9a0a99331a4037e70f4c383985bacdb07fcc856fecea1459df854114c0547b"
         }
       ]
+    },
+    {
+      "rule_id": "bp-72a8ad74c81bdc51",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_limestone_residue",
+      "review_path": "export/uvek_pulp_heat_limestone_review.json",
+      "review_sha256": "2f9ae67a9304dd9dfdec0c81ea651a752638c37752b9ddc6232dcbe0e7acf3f2",
+      "authorization": "Standing autonomous approval of independently inspected reconstructions and explicitly audited omissions of proven empty allocated interfaces, logged for review.",
+      "inspection": {
+        "source": {
+          "name": "treatment of limestone residue, inert material landfill",
+          "reference product": "limestone residue",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "treatment of limestone residue, inert material landfill",
+            "reference product": "limestone residue",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "inventory_sha256": "89e5c30e288b60c98bfb6851eb495270f6b5ebae79f38567d73987dcb379fede",
+          "nonproduction_count": 2
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c776979b5739f089eff4f0c47f91f3a864964f84ea5a21bb3fc850044ecdfffa",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "794800a5351542b5438c0badeae48052a880c98270fa93ad66a63e7bba393cd8",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0b3cf4b17bfa32cc78fc565b14fb4d041d0ab98fca1cb0e96c2bec4d032bc4a8",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a3b9ac4ab71ebde133bff9e5c360e47ccab7b7dae03d9bdddcc091c20afb9561",
+            "nonproduction_count": 4
+          }
+        ],
+        "conversion_factor": -1,
+        "kind": "landfill",
+        "recipe_id": "pulp-heat-39-limestone-inert-landfill",
+        "empty_clinker_controls": [
+          {
+            "source_witness": {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "limestone residue",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                -1
+              ],
+              "inventory_sha256": "0f4419b72c00bc3e0533b667dbff954ed664bccec8e1bee4a9a4221efc0f007c",
+              "nonproduction_count": 0
+            },
+            "main_clinker_witness": {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "clinker",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "inventory_sha256": "3f9ed58e84b384e67bcd3777550861f13bf73e3a311a31f583afe9b533206801",
+              "nonproduction_count": 59
+            },
+            "same_activity_uuid": true
+          },
+          {
+            "source_witness": {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "limestone residue",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                -1
+              ],
+              "inventory_sha256": "486430853cf301ce0aeb78d0dc2eead65f887002a6959992e82ff7952565fc28",
+              "nonproduction_count": 0
+            },
+            "main_clinker_witness": {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "clinker",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "inventory_sha256": "0383e9389b75fe2c22b9f433c77f505d68f66e0fac22a5375f87422e455ee463",
+              "nonproduction_count": 245
+            },
+            "same_activity_uuid": true
+          }
+        ],
+        "empty_clinker_matrix_proofs": [
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "limestone residue",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "signed_exact_zero_matrix_checks": 2,
+            "column_only_negative_unit_self_production": true,
+            "biosphere_column_empty": true
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "limestone residue",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "signed_exact_zero_matrix_checks": 2,
+            "column_only_negative_unit_self_production": true,
+            "biosphere_column_empty": true
+          }
+        ],
+        "approved_recipe_source_omissions": {},
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff limestone-residue market and inert-landfill reconstruction. Source market and landfill references are-1kg waste; target helpers have+1kg treatment references, so caller conversion is-1. Retain the tiny original inert-landfill share8.47378205105051e-10kg perkg and all six rail/three road freight rows separately, with their original quantities and supported uncertainty/formulas, without renormalizing. Do not replace the entire market with1kglandfill. Landfill helper retains its two source components:1kg process-specific inert-landfill burdens plus1.48e-9facility units. Use complete native CH generic inert-landfill operation and facility components, not the composition-specific5%-water construction-landfill dataset with added waste-specific leachate. Source reference properties report0.5%water; no5%water assumption, moisture multiplier or invented leachate is introduced. Native facility has legacy xx-prefixed name but independently verified positive1unit output and nonempty inventory; the label is not treated as an empty process. Native operation has no facility input, so the separately listed facility is included once. Source landfill documentation already describes Swiss2000technology and50%sealed sites; native documentation matches this broad class. Geography, operation, energy, infrastructure, site, vintage, generic land-use/biosphere exclusions and internal uncertainty remain screening differences with unquantified score effects. RER rail and heavy-lorry services retain original tonne-km with country/traction/fleet/load/fuel/empty-return/geography warnings; no extra fuel, distance, recovery or emissions credit is added. Separate caller emissions and carbon-resource exchanges remain unchanged. Two exact negative-reference clinker waste branches have only-1kg self-production and no other exchanges, proven by full source A/B columns and four exact signed zero-LCI matrix checks; their same-activity positive clinker outputs are nonempty. Omit only those two zero-burden source interfaces inside this exact market, recording original signed amounts, identities, positions and hashes, without assigning clinker-production burdens or credits. This loses two explicit interfaces but no modeled source LCI burden; it does not authorize standalone zero maps, unknown/nonempty treatments or quantity-threshold omissions. Only exact3.9cutoff is newly approved. Earlier3.11/3.12market profiles and their helper inventories remain scientifically unchanged; no consequential/reverse or other new source-profile approval is inferred. Full pulp heat, industrial heat and steel transformation/export remain unfinished.",
+        "Scoped omission of an independently verified empty negative-reference clinker waste interface only. Complete source matrix column has-1self-production and empty biosphere column; same-activity clinker output is nonempty. Preserve the signed source quantity and context in the audit. No modeled source LCI burden is removed; no standalone zero correspondence, clinker burden or credit, nonempty-treatment omission or renormalization is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7996b7d2f5df978dcf98fe82d91c1369e9a740132ac83dbc0833cd30cbd5fc43"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d0ba52e7d658a135",
+      "operation": "replace",
+      "mapping_method": "reviewed_pulp_heat_limestone_residue",
+      "review_path": "export/uvek_pulp_heat_limestone_review.json",
+      "review_sha256": "2f9ae67a9304dd9dfdec0c81ea651a752638c37752b9ddc6232dcbe0e7acf3f2",
+      "authorization": "Standing autonomous approval of independently inspected reconstructions and explicitly audited omissions of proven empty allocated interfaces, logged for review.",
+      "inspection": {
+        "source": {
+          "name": "market for limestone residue",
+          "reference product": "limestone residue",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for limestone residue",
+            "reference product": "limestone residue",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "inventory_sha256": "c5aba45ead19a2ada1813a76918fbbb0f2b98861c558bd6b934eb00647507bf6",
+          "nonproduction_count": 12
+        },
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c776979b5739f089eff4f0c47f91f3a864964f84ea5a21bb3fc850044ecdfffa",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "794800a5351542b5438c0badeae48052a880c98270fa93ad66a63e7bba393cd8",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0b3cf4b17bfa32cc78fc565b14fb4d041d0ab98fca1cb0e96c2bec4d032bc4a8",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a3b9ac4ab71ebde133bff9e5c360e47ccab7b7dae03d9bdddcc091c20afb9561",
+            "nonproduction_count": 4
+          }
+        ],
+        "conversion_factor": -1,
+        "kind": "market",
+        "recipe_id": "pulp-heat-39-limestone-residue-market",
+        "empty_clinker_controls": [
+          {
+            "source_witness": {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "limestone residue",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                -1
+              ],
+              "inventory_sha256": "0f4419b72c00bc3e0533b667dbff954ed664bccec8e1bee4a9a4221efc0f007c",
+              "nonproduction_count": 0
+            },
+            "main_clinker_witness": {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "clinker",
+                "location": "BR",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "inventory_sha256": "3f9ed58e84b384e67bcd3777550861f13bf73e3a311a31f583afe9b533206801",
+              "nonproduction_count": 59
+            },
+            "same_activity_uuid": true
+          },
+          {
+            "source_witness": {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "limestone residue",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                -1
+              ],
+              "inventory_sha256": "486430853cf301ce0aeb78d0dc2eead65f887002a6959992e82ff7952565fc28",
+              "nonproduction_count": 0
+            },
+            "main_clinker_witness": {
+              "identity": {
+                "name": "clinker production",
+                "reference product": "clinker",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "inventory_sha256": "0383e9389b75fe2c22b9f433c77f505d68f66e0fac22a5375f87422e455ee463",
+              "nonproduction_count": 245
+            },
+            "same_activity_uuid": true
+          }
+        ],
+        "empty_clinker_matrix_proofs": [
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "limestone residue",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "signed_exact_zero_matrix_checks": 2,
+            "column_only_negative_unit_self_production": true,
+            "biosphere_column_empty": true
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "limestone residue",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "signed_exact_zero_matrix_checks": 2,
+            "column_only_negative_unit_self_production": true,
+            "biosphere_column_empty": true
+          }
+        ],
+        "approved_recipe_source_omissions": {
+          "pulp-heat-39-limestone-residue-market": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "name": "market for limestone residue",
+                "reference product": "limestone residue",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "c5aba45ead19a2ada1813a76918fbbb0f2b98861c558bd6b934eb00647507bf6",
+              "original_index": 1,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "limestone residue",
+                "location": "BR",
+                "unit": "kilogram",
+                "amount": -0.26714150300729,
+                "uncertainty type": 0,
+                "loc": -0.26714150300729,
+                "type": "technosphere"
+              },
+              "rationale": "Scoped omission of an independently verified empty negative-reference clinker waste interface only. Complete source matrix column has-1self-production and empty biosphere column; same-activity clinker output is nonempty. Preserve the signed source quantity and context in the audit. No modeled source LCI burden is removed; no standalone zero correspondence, clinker burden or credit, nonempty-treatment omission or renormalization is authorized. Waste inventory SHA256:0f4419b72c00bc3e0533b667dbff954ed664bccec8e1bee4a9a4221efc0f007c; nonempty clinker inventory SHA256:3f9ed58e84b384e67bcd3777550861f13bf73e3a311a31f583afe9b533206801"
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "name": "market for limestone residue",
+                "reference product": "limestone residue",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "c5aba45ead19a2ada1813a76918fbbb0f2b98861c558bd6b934eb00647507bf6",
+              "original_index": 3,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "limestone residue",
+                "location": "RoW",
+                "unit": "kilogram",
+                "amount": -0.732858496145332,
+                "uncertainty type": 0,
+                "loc": -0.732858496145332,
+                "type": "technosphere"
+              },
+              "rationale": "Scoped omission of an independently verified empty negative-reference clinker waste interface only. Complete source matrix column has-1self-production and empty biosphere column; same-activity clinker output is nonempty. Preserve the signed source quantity and context in the audit. No modeled source LCI burden is removed; no standalone zero correspondence, clinker burden or credit, nonempty-treatment omission or renormalization is authorized. Waste inventory SHA256:486430853cf301ce0aeb78d0dc2eead65f887002a6959992e82ff7952565fc28; nonempty clinker inventory SHA256:0383e9389b75fe2c22b9f433c77f505d68f66e0fac22a5375f87422e455ee463"
+            }
+          ]
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9cutoff limestone-residue market and inert-landfill reconstruction. Source market and landfill references are-1kg waste; target helpers have+1kg treatment references, so caller conversion is-1. Retain the tiny original inert-landfill share8.47378205105051e-10kg perkg and all six rail/three road freight rows separately, with their original quantities and supported uncertainty/formulas, without renormalizing. Do not replace the entire market with1kglandfill. Landfill helper retains its two source components:1kg process-specific inert-landfill burdens plus1.48e-9facility units. Use complete native CH generic inert-landfill operation and facility components, not the composition-specific5%-water construction-landfill dataset with added waste-specific leachate. Source reference properties report0.5%water; no5%water assumption, moisture multiplier or invented leachate is introduced. Native facility has legacy xx-prefixed name but independently verified positive1unit output and nonempty inventory; the label is not treated as an empty process. Native operation has no facility input, so the separately listed facility is included once. Source landfill documentation already describes Swiss2000technology and50%sealed sites; native documentation matches this broad class. Geography, operation, energy, infrastructure, site, vintage, generic land-use/biosphere exclusions and internal uncertainty remain screening differences with unquantified score effects. RER rail and heavy-lorry services retain original tonne-km with country/traction/fleet/load/fuel/empty-return/geography warnings; no extra fuel, distance, recovery or emissions credit is added. Separate caller emissions and carbon-resource exchanges remain unchanged. Two exact negative-reference clinker waste branches have only-1kg self-production and no other exchanges, proven by full source A/B columns and four exact signed zero-LCI matrix checks; their same-activity positive clinker outputs are nonempty. Omit only those two zero-burden source interfaces inside this exact market, recording original signed amounts, identities, positions and hashes, without assigning clinker-production burdens or credits. This loses two explicit interfaces but no modeled source LCI burden; it does not authorize standalone zero maps, unknown/nonempty treatments or quantity-threshold omissions. Only exact3.9cutoff is newly approved. Earlier3.11/3.12market profiles and their helper inventories remain scientifically unchanged; no consequential/reverse or other new source-profile approval is inferred. Full pulp heat, industrial heat and steel transformation/export remain unfinished.",
+        "Scoped omission of an independently verified empty negative-reference clinker waste interface only. Complete source matrix column has-1self-production and empty biosphere column; same-activity clinker output is nonempty. Preserve the signed source quantity and context in the audit. No modeled source LCI burden is removed; no standalone zero correspondence, clinker burden or credit, nonempty-treatment omission or renormalization is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "21a3d7fdba1784242866cb4efe4de5d57aed0f1bb38fa4c16126b1b10b2f97b3"
+        }
+      ]
     }
   ],
   "superseded_operations": [

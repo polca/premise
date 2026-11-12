@@ -14,7 +14,7 @@
   },
   "inventories_probed": 5,
   "purpose": "Test direct reconstruction of the five pulp-mill heat coproduct inventories without inferring pulp moisture or a generic combustion proxy. All source signed exchanges and resource-compartment carbon correction remain in the probe.",
-  "unapproved_nested_correspondences": 53,
+  "unapproved_nested_correspondences": 52,
   "unapproved_reference_product_families": {
     "bark chips, wet, measured as dry mass": 1,
     "biogas": 1,
@@ -26,7 +26,6 @@
     "heat, district or industrial, natural gas": 1,
     "hydrazine": 1,
     "lime": 1,
-    "limestone residue": 1,
     "lubricating oil": 1,
     "manganese": 1,
     "methanol": 1,
@@ -54,7 +53,7 @@
     "wood ash mixture, pure": 1,
     "wood pellet, measured as dry mass": 1
   },
-  "limitation": "Five full source pulp heat inventories remain unconverted. Energy, nominal chemicals, solutions, positive stocks, urea, auxiliary markets, freight, wood markets and Quebec bark reviews qualify 51, 9, 3, 6, 2, 2, 2, 5 and 1 current inputs respectively. These 53 nested inputs remain behind one industrial-heat preparation root. No additional proxy or omission is approved by this diagnostic.",
+  "limitation": "Five full source pulp heat inventories remain unconverted. Energy, nominal chemicals, solutions, positive stocks, urea, auxiliary markets, freight, wood markets, Quebec bark and limestone reviews qualify 51, 9, 3, 6, 2, 2, 2, 5, 1 and 1 current inputs respectively. These 52 nested inputs remain behind one industrial-heat preparation root. The limestone review separately reconstructs its landfill dependency and audits two empty interfaces. No additional proxy or omission is approved by this diagnostic.",
   "related_review": "uvek-steel-pulp-carbon-preflight.json",
   "initial_unapproved_nested_correspondences": 134,
   "energy_supply_review": "uvek-pulp-heat-energy-review.md",
@@ -65,5 +64,6 @@
   "auxiliary_market_review": "uvek-pulp-heat-auxiliary-markets-review.md",
   "freight_review": "uvek-pulp-heat-freight-review.md",
   "wood_market_review": "uvek-pulp-heat-wood-markets-review.md",
-  "bark_market_review": "uvek-pulp-heat-bark-market-review.md"
+  "bark_market_review": "uvek-pulp-heat-bark-market-review.md",
+  "limestone_review": "uvek-pulp-heat-limestone-review.md"
 }
