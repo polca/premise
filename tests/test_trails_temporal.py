@@ -300,6 +300,9 @@ def test_nested_lifecycle_services_are_scheduled_in_the_caller_year(
         ("component maintenance", "component maintenance"),
     }
     obj.dataset_lifetimes = {("asset operation", "service"): 20}
+    obj.lifecycle_timing = {
+        ("asset operation", "service"): {"timing_reference": "new_asset"}
+    }
     obj.long_term_biosphere_params = []
     obj.datapackage = SimpleNamespace(scenarios=[scenario], database="db")
 
@@ -314,7 +317,7 @@ def test_nested_lifecycle_services_are_scheduled_in_the_caller_year(
     nested_maintenance = scenario["database"][2]["exchanges"][0]
 
     assert asset_treatment["temporal_distribution"] == 6
-    assert asset_treatment["temporal_offsets"] == [21.0]
+    assert asset_treatment["temporal_offsets"] == [20.0]
     assert nested_treatment["temporal_distribution"] == 6
     assert nested_treatment["temporal_offsets"] == [0.0]
     assert nested_maintenance["temporal_distribution"] == 6

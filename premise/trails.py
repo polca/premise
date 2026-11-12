@@ -38,6 +38,7 @@ from .iam.scenario_downloader import (
 )
 from .core.filesystem_constants import DATA_DIR
 from .core.utils import load_database, dump_database
+from .lifecycle_timing import load_lifecycle_timing, retirement_profile
 
 FILEPATH_TEMPORAL_PARAMETERS = DATA_DIR / "trails" / "temporal_distributions.csv"
 
@@ -155,6 +156,7 @@ class TrailsDataPackage:
             self.long_term_biosphere_params,
             self.dataset_lifetimes,
         ) = self._load_temporal_specs_from_csv(FILEPATH_TEMPORAL_PARAMETERS)
+        self.lifecycle_timing = load_lifecycle_timing(FILEPATH_TEMPORAL_PARAMETERS)
 
     @staticmethod
     def _year_from_column(column):
@@ -1337,7 +1339,7 @@ class TrailsDataPackage:
         - long_term_emission: apply biosphere-flow params by flow selector
         - stock_asset: apply supplier-level params directly
         - maintenance: uniform distribution over [0, lifetime] using calling dataset lifetime from CSV
-        - end_of_life: one-pulse (type 6) at dataset lifetime + 1 from CSV
+        - end_of_life: retirement relative to the caller's explicit reference event
         - nested lifecycle services: one-pulse (type 6) at the caller year
         """
         stock_assets = getattr(self, "stock_asset_params", {})  # (name, ref) -> params
@@ -1346,6 +1348,7 @@ class TrailsDataPackage:
         maintenance = getattr(self, "maintenance_suppliers", set())
         long_term_biosphere = getattr(self, "long_term_biosphere_params", [])
         dataset_lifetimes = getattr(self, "dataset_lifetimes", {})
+        lifecycle_timing = getattr(self, "lifecycle_timing", {})
         outdir = Path.cwd() / "trails_temp"
         outfile = outdir / "temporal_distribution_faulty_exchanges.csv"
         match_outfile = outdir / "long_term_biosphere_matches.csv"
@@ -1353,8 +1356,12 @@ class TrailsDataPackage:
             outfile.unlink()
         if match_outfile.exists():
             match_outfile.unlink()
+        retirement_outfile = outdir / "end_of_life_timing.csv"
+        if retirement_outfile.exists():
+            retirement_outfile.unlink()
         faulty_exchanges = []
         long_term_matches = []
+        retirement_assignments = []
 
         def _scenario_label(value):
             return " | ".join(
@@ -1551,6 +1558,26 @@ class TrailsDataPackage:
                     is_lifecycle_service = (
                         ds_key in maintenance or ds_key in end_of_life
                     )
+                    reference = lifecycle_timing.get(ds_key, {}).get("timing_reference")
+                    if is_lifecycle_service:
+                        reference = "lifecycle_event"
+                    if reference is None:
+                        # Compatibility for custom tables without the optional
+                        # caller reference field. A stock dataset denotes a newly
+                        # produced asset, while an ordinary output is current.
+                        reference = (
+                            "lifecycle_event"
+                            if is_lifecycle_service
+                            else (
+                                "new_asset"
+                                if ds_key in stock_assets
+                                else (
+                                    "current_output"
+                                    if ds_key in dataset_lifetimes
+                                    else None
+                                )
+                            )
+                        )
 
                     bg = biomass_growth.get((ds_name, ds_ref))
                     for e in ds.get("exchanges", []):
@@ -1631,11 +1658,40 @@ class TrailsDataPackage:
                         # Maintenance and end-of-life datasets represent lifecycle
                         # events, not assets with another service life. Their nested
                         # lifecycle suppliers are substeps of the same event.
-                        if is_lifecycle_service and (is_maintenance or is_end_of_life):
+                        if is_lifecycle_service and is_maintenance:
                             _apply_discrete_pulse(e, 0.0)
                             continue
 
-                        if (is_maintenance or is_end_of_life) and ds_lifetime is None:
+                        if is_end_of_life:
+                            try:
+                                offsets, weights = retirement_profile(
+                                    reference,
+                                    ds_lifetime,
+                                    lifecycle_timing.get(ds_key),
+                                )
+                            except ValueError as error:
+                                _record_fault(ds, e, str(error))
+                                continue
+                            _apply_discrete_pulse(e, 0.0)
+                            e["temporal_offsets"] = [float(value) for value in offsets]
+                            e["temporal_weights"] = weights
+                            retirement_assignments.append(
+                                {
+                                    "scenario": _scenario_label(scenario),
+                                    "calling_dataset_name": ds_name,
+                                    "calling_dataset_reference_product": ds_ref,
+                                    "calling_dataset_location": ds.get("location", ""),
+                                    "exchange_name": sup_name,
+                                    "exchange_product": sup_ref,
+                                    "timing_reference": reference,
+                                    "fixed_lifetime": ds_lifetime,
+                                    "temporal_offsets": json.dumps(offsets),
+                                    "temporal_weights": json.dumps(weights),
+                                }
+                            )
+                            continue
+
+                        if is_maintenance and ds_lifetime is None:
                             _record_fault(
                                 ds,
                                 e,
@@ -1653,10 +1709,6 @@ class TrailsDataPackage:
                             e["temporal_offsets"] = None
                             e["temporal_weights"] = None
                             continue
-
-                        if is_end_of_life:
-                            pulse_time = float(ds_lifetime) + 1.0
-                            _apply_discrete_pulse(e, pulse_time)
 
                     if transaction is not None:
                         for exchange_id, exchange in zip(
@@ -1687,6 +1739,15 @@ class TrailsDataPackage:
                     # A checkpoint-only scenario cannot compare the new store
                     # generation with its previous semantic certificate.
                     scenario.pop("_validation_report", None)
+
+        if retirement_assignments:
+            outdir.mkdir(parents=True, exist_ok=True)
+            with retirement_outfile.open("w", newline="", encoding="utf-8") as stream:
+                writer = csv.DictWriter(
+                    stream, fieldnames=list(retirement_assignments[0])
+                )
+                writer.writeheader()
+                writer.writerows(retirement_assignments)
 
         if long_term_matches:
             outdir.mkdir(parents=True, exist_ok=True)
