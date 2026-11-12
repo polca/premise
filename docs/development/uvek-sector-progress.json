@@ -545,7 +545,8 @@
         "literal_existing_recipe_omissions_remain_gated": 6,
         "actual_remaining_preparation_correspondences": 1,
         "limitation": "Real encrypted REMIND SSP2-NPi2050 preparation still stops at industrial heat. Later cohorts, sector transformation and steel export are unverified."
-      }
+      },
+      "pulp_direct_reconstruction_preflight": "docs/development/uvek-steel-pulp-direct-reconstruction-preflight.json"
     },
     {
       "sector": "fuels",
