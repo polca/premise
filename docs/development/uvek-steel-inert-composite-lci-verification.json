@@ -1,0 +1,9 @@
+{
+  "recipe_inputs": 4,
+  "signed_finite_composite_LCIs": 2,
+  "exact_sign_reversal": true,
+  "source_activities": 11947,
+  "source_modified_unchanged": true,
+  "review_sha256": "3a48cfa716b1576b793acab9810e0690987a3e6e58d580aa237bf0fc51cd4d27",
+  "limitation": "Weighted complete native suppliers checked as a composite functional demand; no steel sector export claimed."
+}

@@ -205035,7 +205035,13 @@
         },
         "rule_sha256": "fb3352979a7a9a5757e0a369698fc2cf2a7c5a45024ce71a80cb742a2ea7c123",
         "conversion_factor": -1,
-        "resource_action": "unchanged_rule"
+        "resource_action": "unchanged_rule",
+        "steel_39_profile_extension_review": {
+          "review_path": "export/uvek_steel_39_inert_review.json",
+          "review_sha256": "3a48cfa716b1576b793acab9810e0690987a3e6e58d580aa237bf0fc51cd4d27",
+          "historical_source_target_factor_and_sign_decision_unchanged": true,
+          "reason": "Fingerprint includes the complete shared rule and newly added 3.9 recipe closure; historical 3.6 selection remains identical."
+        }
       },
       "limitations": [
         "Use complete native Swiss type-B construction-waste disposal as a per-kg screening proxy for the Swiss inert-waste market. Source inert-landfill documentation excludes direct leachate emissions and describes partly sealed sites; native represents 5%-water inert material plus its own disposal delivery. Moisture, landfill class, sealing, closure, emissions, infrastructure and allocation can differ.",
@@ -205054,7 +205060,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "d2913f609666623a51f8b6f8035509e728da2495f18691231e6f3f9826aaa504"
+          "fingerprint": "2ed412f0d022e1e851e6efdcf87b664d64a2ebcc281347ab3ab279b1d39805a2"
         }
       ]
     },
@@ -208226,6 +208232,126 @@
             "system_model": "cutoff"
           },
           "fingerprint": "e6933c97f7fbacba08bb43d7b82270aff675aff16709a219ceb2f9d5301beb15"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8be1ae15c0ed8dc7",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_steel_39_inert_review.json",
+      "review_sha256": "3a48cfa716b1576b793acab9810e0690987a3e6e58d580aa237bf0fc51cd4d27",
+      "authorization": "Standing autonomous approval of inspected physical reconstructions; decisions logged for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "market for inert waste, for final disposal",
+            "reference product": "inert waste, for final disposal",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "inventory_sha256": "20e9236159b43a9171fe52133ae50d6307d05aa942cd380c6ea236b5dcb7d580",
+          "nonproduction_count": 3
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of inert waste, inert material landfill",
+              "reference product": "inert waste, for final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "84174c44bb1b8f0c2f953c651185fdc0f3da3cf18927e2a24ec0a7b74bb9b161",
+            "nonproduction_count": 2
+          }
+        ],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "xx Inert material landfill facility",
+              "reference product": "xx Inert material landfill facility",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "72219a316742a8b70b4e5523697cc73d71217d5c2a88d8b38438fe12a4f0c588",
+            "metadata_sha256": "7e0fc69832674a74017f714c1ac4b2f35fa08a6477cc435ca78e25ba68e29ee5",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Process-specific burdens, inert material landfill",
+              "reference product": "Process-specific burdens, inert material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "51d53d7be2cdae67118b340d0169025b463bc1ea745ee1cfa266bd9aeac1a381",
+            "metadata_sha256": "536fcc40d20c75f9af823c344d13e77848752424285348003eb55efb82936415",
+            "nonproduction_count": 13
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8d23dd1c07ee7c67ed704060ce4e05fdd7eeaee049e963d1e228bbca96879205",
+            "metadata_sha256": "13113985fb5b74a84fe9111e19e84ce71eb2c084e32368b41e5cbe2f01f4f495",
+            "nonproduction_count": 66
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8fa0c4608353f2a4c3a3334b23e90af00d8a80efa598094e024a350c496fedc4",
+            "metadata_sha256": "a192e5787cdfb9eb7170250161cf6a00623e21ad568882b7546293679d984be3",
+            "nonproduction_count": 4
+          }
+        ],
+        "conversion_factor": -1
+      },
+      "limitations": [
+        "Reconstruct negative-reference Swiss inert-waste treatment market as positive physical disposal service with factor -1. Preserve 1 kg generic inert-landfill operation, 1.48e-9 facility units and both original freight rows (0.0036 rail and 0.0258 road tonne-km), with their original uncertainty. Source has no direct landfill emissions and deterministic unit treatment share; do not invent material-specific leaching. Use complete native Swiss generic operation/facility and RER rail/fleet-average road supplies, not construction-waste type-B disposal. Geography, transport fleet, landfill operation/infrastructure, land use, aftercare, vintage, allocation, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller sign, formulas and uncertainty with reference factor -1; no recovery credit, moisture correction, omitted freight or second disposal burden. Only independently inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "794a8fcdf6dd7a399bf8639cb65c6edbb7be57ab369267ded440e2c5caff26ce"
         }
       ]
     }
