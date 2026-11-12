@@ -1,0 +1,146 @@
+{
+  "combined_scenario": {
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel"
+    ],
+    "shared_updates": "passed",
+    "exhaustive_graph_validation": "passed",
+    "activities": 14488,
+    "public_steel_gate_bypassed_only_in_private_diagnostic": true,
+    "source_database_metadata_unchanged": true,
+    "export_performed": true,
+    "database": "BAFU:2026-REMIND-SSP2-NPi-2050-five-sector-diagnostic-20261112-222920"
+  },
+  "combined_export_processing_audit": {
+    "database": "BAFU:2026-REMIND-SSP2-NPi-2050-five-sector-diagnostic-20261112-222920",
+    "activities": 14488,
+    "processing_markets": 13,
+    "market_regions": [
+      "CAZ",
+      "CHA",
+      "EUR",
+      "IND",
+      "JPN",
+      "LAM",
+      "MEA",
+      "NEU",
+      "OAS",
+      "REF",
+      "SSA",
+      "USA",
+      "World"
+    ],
+    "all_regional_steel_baskets_retain_native_input_basis": true,
+    "hot_rolling_quantity_and_uncertainty_retained_in_all_12_IAM_regions": true,
+    "world_processing_counted_via_regional_markets_only": true,
+    "nonzero_consumers_of_original_RER_handover": 0,
+    "signed_finite_LCIs": [
+      {
+        "name": "Steel, low-alloyed, at plant",
+        "location": "EUR",
+        "demand": 1,
+        "finite": true
+      },
+      {
+        "name": "Steel, low-alloyed, at plant",
+        "location": "EUR",
+        "demand": -1,
+        "finite": true
+      }
+    ],
+    "sign_reversal": true,
+    "source_database_metadata_unchanged_during_audit": true,
+    "limitations": [
+      "Retained RER processing is a geographic/historical-technology screening proxy.",
+      "Historical steel-share uncertainty is replaced by IAM shares; processing uncertainty is retained.",
+      "Finite LCI does not establish source/native score equivalence."
+    ]
+  },
+  "positive_advanced_year": {
+    "scenario": "encrypted REMIND SSP2-NPi 2100",
+    "modified_IAM_arrays": false,
+    "shared_steel_update": "passed",
+    "exhaustive_graph_validation": "passed",
+    "processing_market_hydrogen_shares_match_target_year_IAM": [
+      {
+        "region": "CAZ",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "CHA",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "EUR",
+        "positive_hydrogen_DRI": true,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "IND",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "JPN",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "LAM",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "MEA",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "NEU",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "OAS",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "REF",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "SSA",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      },
+      {
+        "region": "USA",
+        "positive_hydrogen_DRI": false,
+        "IAM_share_matches": true
+      }
+    ],
+    "public_steel_gate_bypassed_only_in_private_diagnostic": true,
+    "source_database_metadata_unchanged": true,
+    "export_performed": false
+  },
+  "tests": {
+    "steel_transformation_validation_regressions": 211,
+    "photovoltaic_regressions": 37
+  },
+  "public_support_status": "Steel remains diagnostically verified but gated pending native specialty-producer filter/boundary audit.",
+  "review": "docs/development/uvek-steel-processing-market-review.md",
+  "remaining": [
+    "Audit native specialty steel producer filters, retaining complete distinct grade inventories outside the ordinary IAM mix.",
+    "Distinguish reinforcing-steel supply and battery-recycling co-products from ordinary steel production.",
+    "Complete the other unfinished registered sectors; the overall goal remains active."
+  ]
+}
