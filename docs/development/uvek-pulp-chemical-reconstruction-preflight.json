@@ -137,7 +137,7 @@
       "location": "RER",
       "unit": "kilogram"
     },
-    "native_zinc_qualification": "Not yet reviewed for reference/grade, source region/technology, allocation, production-versus-storage boundary or native biosphere coverage. Source proportionality alone grants no native mapping.",
+    "native_zinc_qualification": "Private candidate reference/grade/boundary review completed: positive1kgSHGprimary zinc, native80%hydrometallurgical/20%pyrometallurgical, regional-storage boundary. All465individual source co-product rows are proportional to the corresponding main-zinc output by the recorded nominal relative-allocation ratios. Six signed native LCIs finite. Native/source technology,geography,allocation,vintage,stock-versus-factory boundary and uncertainty differences remain explicit unquantified screening limitations. No packaged rule or Premise approval changed.",
     "trichloropropane_coproduct_direct_reconstruction_pending": [
       {
         "rule_id": "bp-1de3542379924d2f",
@@ -167,7 +167,60 @@
         }
       }
     ],
-    "next_action": "Qualify appropriate native primary-zinc allocation proxies and allyl/sulfuryl chloride backgrounds; retain all four SO2source shares and eight freight rows before compiling sodium sulfite."
+    "next_action": "Inspect Chinese rail and RoWchlorine technologies/reference bases; finish full regression comparison, then qualify and compile the complete source SO2/SO2co-product/sulfuryl loop before sodium sulfite. Do not flatten feedback, bypass missing mappings or replace co-product burdens with dedicated sulfur burning.",
+    "allyl_chloride_candidate": {
+      "status": "private_candidate_verified_not_published",
+      "incorrect_current_substance": "vinyl chloride",
+      "candidate_native_supplier": "Allyl chloride, from reacting propylene and chlorine, at plant, RER",
+      "reference_basis": "Source and native positive1kgpureallylchloride,C3H5Cl,CAS107-05-1. HCl36wt%is a separately allocated co-product, not allyl purity.",
+      "markets": 2,
+      "original_producer_entries": 2,
+      "original_final_freight_entries": 13,
+      "signed_finite_LCIs": 14,
+      "native_database_unchanged": true
+    },
+    "source_feedback": {
+      "status": "reproduced_missing_generic_recipe_graph_support",
+      "path": [
+        "RoW liquidSO2market",
+        "TCPproduction SO2co-product",
+        "sulfurylchloride market andproduction",
+        "RoW liquidSO2market"
+      ],
+      "nominal_cycle_gain": 0.0005374524645318543,
+      "old_recipe_error": "Cyclic recipe dependency.",
+      "proposed_runtime_scope": "Only Brightpath recipe validation, helper identity hashing and zero-stock dependency traversal. No Premise runtime change. Draft support not committed or pinned. Exact source model/profile and approval restrictions must remain enforced.",
+      "reduced_Brightway_export": {
+        "status": "passed",
+        "helpers": 3,
+        "signed_finite_LCIs": 2,
+        "uncertainty_metadata_preserved": true,
+        "exact_sign_reversal": true,
+        "processed_matrix_rounding_verified": true,
+        "limitation": "Actual source feedback coefficients with one synthetic external supplier emitting1kgCO2/kg. A topology/export/algebra check, not the full SO2inventory, native environmental score or approval of missing mappings."
+      },
+      "focused_synthetic_tests_passed": 14,
+      "existing_packaged_DAG_helper_signatures_verified_unchanged": 3896,
+      "full_regressions": "Running; inherited and possible new failures must be classified before committing runtime support."
+    },
+    "candidate_five_process_cluster_probe": {
+      "status": "strict_conversion_still_refuses_two_unapproved_correspondences",
+      "source_processes": 5,
+      "private_candidate_rules": 6,
+      "remaining": [
+        {
+          "rule_id": "bp-46ffc4892be8fcb1",
+          "name": "market for transport, freight train",
+          "location": "CN"
+        },
+        {
+          "rule_id": "bp-dfa75efead55c5e9",
+          "name": "market for chlorine, liquid",
+          "location": "RoW"
+        }
+      ],
+      "conversion_completed": false
+    }
   },
   "hydrazine": {
     "selected_strategy": "Direct source reconstruction; no native hydrazine supplier found and the current unrelated-chemical match remains unapproved.",

@@ -1,0 +1,166 @@
+{
+  "status": "private_candidate_preflight_only",
+  "packaged_mapping_changes": false,
+  "premise_runtime_changes": false,
+  "direct_pulp_missing_correspondences": 46,
+  "native_zinc": {
+    "status": "source_relative_allocation_and_native_LCI_checked_not_full_SO2_mapping",
+    "source_proofs": [
+      {
+        "source_location": "CA-QC",
+        "source_reference": 1,
+        "source_main_zinc_reference": 1,
+        "source_rows_compared": 82,
+        "relative_allocation_ratio": 0.12596153846153849,
+        "maximum_absolute_row_residual": 2.7755575615628914e-17
+      },
+      {
+        "source_location": "RoW",
+        "source_reference": 1,
+        "source_main_zinc_reference": 1,
+        "source_rows_compared": 383,
+        "relative_allocation_ratio": 0.12596153846153846,
+        "maximum_absolute_row_residual": 2.7755575615628914e-17
+      }
+    ],
+    "native_identity": {
+      "name": "Zinc, primary, at regional storage",
+      "reference product": "Zinc, primary, at regional storage",
+      "location": "RER",
+      "unit": "kilogram"
+    },
+    "native_reference_amount": 1,
+    "native_inventory_sha256": "fe98f8dbb2463e8be0369a2ffa5a6cdef25b7b9050c4bd84c6d5c5e248b1a83f",
+    "native_grade_description": "High-grade SHG primary zinc; not secondary zinc, ore, concentrate or alloy.",
+    "native_technology_mix": "80%hydrometallurgical/20%pyrometallurgical with stated different emission-control performance.",
+    "native_boundary": "European primary-zinc supply at regional storage, including upstream allocation/resource corrections,wastewater andslag disposal.",
+    "source_boundary_limitations": "SourceCA-QChydrometallurgical production and newerRoWprimarilyelectrometallurgical production have different geographic,technology,vintage,allocation,andfactory-versus-regional-supply boundaries. No stage/grade/efficiency correction is justified here.",
+    "cases": [
+      {
+        "native_zinc_demand_kg": 1,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "native_zinc_demand_kg": 0.12596153846153849,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "native_zinc_demand_kg": 0.12596153846153846,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      }
+    ],
+    "signed_native_LCIs": 6,
+    "native_modified_unchanged": true,
+    "limitations": [
+      "Source-row proportionality is a nominal source observation, not native/source LCIA or stochastic equivalence.",
+      "The native zinc background includes its existing co-product allocations and source-data gaps; no correction/credit added.",
+      "The full SO2market,TCPchlorination branch,feedback loop andsodiumsulfite remain unfinished."
+    ]
+  },
+  "allyl_markets": {
+    "status": "private_candidate_passed_not_published",
+    "source_rows_retained": 15,
+    "source_final_freight_rows_retained": 13,
+    "new_market_helpers": 2,
+    "native_suppliers": 5,
+    "cases": [
+      {
+        "case": "bp-1de3542379924d2f",
+        "native_suppliers": 5,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "bp-fc82dcc3d3185026",
+        "native_suppliers": 4,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "Allyl chloride, from reacting propylene and chlorine, at plant",
+        "native_suppliers": 1,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "Transport, freight, rail",
+        "native_suppliers": 1,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "Transport, barge",
+        "native_suppliers": 1,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "Transport, freight, lorry, fleet average",
+        "native_suppliers": 1,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      },
+      {
+        "case": "Transport, transoceanic container ship",
+        "native_suppliers": 1,
+        "signed_finite_LCIs": 2,
+        "exact_sign_reversal": true
+      }
+    ],
+    "signed_finite_LCIs": 14,
+    "native_modified_unchanged": true,
+    "limitation": "Private candidate resource overrides in this diagnostic only. Normal source/target validation and exact candidate policy fingerprints used; no packaged mapping or Premise approval changed."
+  },
+  "reduced_feedback_export": {
+    "status": "passed",
+    "reduced_graph_only": true,
+    "source_edge_coefficients": [
+      0.00512417155023209,
+      0.13968445595142226,
+      0.7508761622622723
+    ],
+    "nominal_cycle_gain": 0.0005374524645318543,
+    "helpers_exported": 3,
+    "total_written_processes": 5,
+    "internal_uncertainty_metadata_preserved": true,
+    "signed_finite_LCIs": 2,
+    "positive_synthetic_biosphere_amount": 0.8139180579051636,
+    "analytic_expected_from_processed_coefficients": 0.8139180579051637,
+    "raw_nominal_expected": 0.8139180289437588,
+    "observed_raw_relative_difference": 3.5582704645908594e-08,
+    "all_processed_coefficients_equal_float32_rounding": true,
+    "exact_sign_reversal": true,
+    "limitation": "Actual source feedback coefficients with one synthetic external supplier emitting1kgCO2/kg. A topology/export/algebra check, not the full SO2inventory, native environmental score or approval of missing mappings."
+  },
+  "private_evidence_receipts": [
+    {
+      "name": "so2-zinc-basis-lci-verification.json",
+      "sha256": "23633db6906d174f622b67dfb7ee01a49103434dad2ae4b3dc9cc4fd4dac4e37"
+    },
+    {
+      "name": "allyl-candidate-lci-verification.json",
+      "sha256": "3fe15021ca8b5ca89d98e49b332058a334de71acb79e128cd4f921e94eb78b3b"
+    },
+    {
+      "name": "so2-feedback-export-verification.json",
+      "sha256": "3a4b0e1dc6dc5c38482516ccfadbfe72011d712fde2ab6832ac37e577e98acdf"
+    },
+    {
+      "name": "so2-feedback-candidate-conversion-report.private.json",
+      "sha256": "b7b9ec2bb73336f4991b3c0b57d809e162d0e5bfd37bdc92ffad1d613eb01bc6"
+    },
+    {
+      "name": "so2-rer-sulfuryl-evidence.private.json",
+      "sha256": "8b0b1f3d7b9af69f00b0e006b09eb1fb743a56c303825f372a81660e4dea2b00"
+    }
+  ],
+  "limitations": [
+    "No native/source score or stochastic equivalence claimed.",
+    "Reduced feedback export uses a synthetic external supplier, not a complete chemical inventory.",
+    "Private candidate resource overrides do not qualify packaged mappings.",
+    "Four sectors remain verified; complete steel and all-sector integration/export are unfinished."
+  ]
+}
