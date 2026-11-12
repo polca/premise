@@ -166,5 +166,17 @@
     "bp-5a3b5a4a13938317": "Reviewed native production-side mix; see uvek-steel-ng-heat-review.md. This does not qualify the full steel update.",
     "bp-daa9398e0257c1a7": "Unapproved; preserve non-gas fuel and CHP portfolio before enabling.",
     "bp-6501bd73396374f4": "Reviewed full small-heat mix with pure solar reconstructions and documented screening proxies; see uvek-steel-small-heat-review.md. Full steel update remains unqualified."
+  },
+  "industrial_zero_heat_allocation": {
+    "verification": "uvek-steel-zero-heat-review.md",
+    "verified_leaf_correspondences": 36,
+    "direct_empty_heat_co_products": 12,
+    "fully_zero_forwarding_paths": 24,
+    "excluded_partly_nonzero_paths": 2,
+    "native_stock": "Heat from waste, at municipal waste incineration plant",
+    "native_reference_MJ": 1,
+    "native_nonproduction_exchanges": 0,
+    "new_helpers": 0,
+    "root_mix_mapping_qualified": false
   }
 }

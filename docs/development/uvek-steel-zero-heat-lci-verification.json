@@ -1,0 +1,14 @@
+{
+  "source_heat_cases": 36,
+  "source_signed_zero_LCIs": 72,
+  "native_heat_stocks": 1,
+  "native_signed_zero_LCIs": 2,
+  "source_LCIs_finite_and_exactly_zero": true,
+  "native_exact_algebraic_zero_proved": true,
+  "native_numerical_inventory_max_abs": 1.232903015218289e-17,
+  "native_numerical_audit_tolerance": 1e-12,
+  "source_and_native_database_modified_unchanged": true,
+  "new_helpers": 0,
+  "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+  "limitation": "Native zero burden is proved from the exact matrix column, not inferred from the solver tolerance. Positive MJ allocated-heat stocks only. Negative kg waste-treatment inventories and the two nonzero internal-reuse heat paths are not qualified."
+}

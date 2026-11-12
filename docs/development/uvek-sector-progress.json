@@ -364,7 +364,8 @@
         "Fifteen remaining-supply approvals pass strict fresh/cache/withdrawal checks; native targets pass30signedfiniteLCIs across13distinct suppliers. Actual REMIND retained preparation now has18unapproved correspondences, downfrom33. Complete historical3.8coal selection unchanged; steel transform/export still unfinished.",
         "Exact3.9regionalgas extension reuses existing36MJ/m3 recipe;10Brightpath checks and strict Premise cache/withdrawal test pass. Complete3.6and3.12selected resources identical. Actual REMIND retained preparation has17pending correspondences; three heat portfolios independently traced but unapproved.",
         "Natural-gas heat production mix retains104supplier contributions and80.043%CHPshare using36native producers with no direct district-delivery inputs.9Brightpath checks and strict Premise cache/withdrawal pass; composite signedLCIsfinite. Actual REMIND steel preparation has16pending cases; transformation/export unverified.",
-        "Small non-gas heat mix retains52supplier shares with8pure-solar operation helpers and31native suppliers.9Brightpath checks and strict Premise cache/withdrawal pass; recursive signedLCIs include direct solar resource. Actual REMIND retained steel preparation has15pendingcases; full transformation/export unverified."
+        "Small non-gas heat mix retains52supplier shares with8pure-solar operation helpers and31native suppliers.9Brightpath checks and strict Premise cache/withdrawal pass; recursive signedLCIs include direct solar resource. Actual REMIND retained steel preparation has15pendingcases; full transformation/export unverified.",
+        "36 exact3.9heat-allocation handovers preserve12empty heat co-products and24zero-stock forwarders using existing native plant-side heat.72signedsourceLCIszero; native exactmatrixzero proven with numerical roundoff recorded.13Brightpath checks and strict Premise cache/withdrawal pass;15root preparation cases remain."
       ],
       "integration_exports": [],
       "static_audit": {
@@ -396,7 +397,18 @@
         "public_update_or_export_verified": false
       },
       "first_four_prerequisites": "docs/development/uvek-steel-39-first-prerequisite-verification.json",
-      "retained_biosphere_verification": "docs/development/uvek-retained-biosphere-name-verification.json"
+      "retained_biosphere_verification": "docs/development/uvek-retained-biosphere-name-verification.json",
+      "industrial_zero_heat_dependencies": {
+        "status": "36_leaf_correspondences_verified_industrial_mix_still_unapproved",
+        "verification": "docs/development/uvek-steel-zero-heat-review.md",
+        "direct_empty_heat_sources": 12,
+        "verified_zero_heat_forwarders": 24,
+        "excluded_nonzero_heat_forwarders": 2,
+        "source_signed_zero_LCIs": 72,
+        "native_exact_matrix_zero_proof": true,
+        "new_helpers": 0,
+        "pending_preparation_root_correspondences_unchanged": 15
+      }
     },
     {
       "sector": "fuels",

@@ -1,0 +1,281 @@
+{
+  "status": "preflight_only_no_native_mapping_approval",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "scope": "Fourteen nonzero heat co-products. Nominal vectors only; source uncertainty and target equivalence require separate checks. Candidate factors with mismatches are not conversion factors.",
+  "cases": [
+    {
+      "source_heat": {
+        "name": "sulfate pulp production, from softwood, unbleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 1,
+      "main_reference": {
+        "name": "sulfate pulp production, from softwood, unbleached",
+        "reference product": "sulfate pulp, unbleached",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "main_reference_amount": 1.0,
+      "candidate_kg_equivalent_per_MJ": 0.018055159243269416,
+      "nominal_vector_proportional": false,
+      "comparison_relative_tolerance": 1e-10,
+      "comparison_absolute_tolerance": 0,
+      "missing_source_keys": 0,
+      "missing_main_keys": 0,
+      "technosphere_mismatches": 0,
+      "biosphere_mismatches": 1,
+      "compared_vector_terms": 92,
+      "private_heat_inventory_sha256": "155e7a806a154280f7ec9f064aa738af7208d5216bbfb76b0451a4e80c2bb7c1",
+      "private_main_inventory_sha256": "cc7d39bd76656568c8ee3b4cd3760b8703a4bf36c128352a75cf08942a1cbc37"
+    },
+    {
+      "source_heat": {
+        "name": "sulfate pulp production, from softwood, bleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 1,
+      "main_reference": {
+        "name": "sulfate pulp production, from softwood, bleached",
+        "reference product": "sulfate pulp, bleached",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "main_reference_amount": 1.0,
+      "candidate_kg_equivalent_per_MJ": 0.015897710373362076,
+      "nominal_vector_proportional": false,
+      "comparison_relative_tolerance": 1e-10,
+      "comparison_absolute_tolerance": 0,
+      "missing_source_keys": 0,
+      "missing_main_keys": 0,
+      "technosphere_mismatches": 0,
+      "biosphere_mismatches": 1,
+      "compared_vector_terms": 218,
+      "private_heat_inventory_sha256": "71ce8d75d9de994468ce1c6b54f8beb1416976acdb7dc9014b03c7bb28b3f8c6",
+      "private_main_inventory_sha256": "be281773814f91f961c29dd38c83dba9c8f6f4bd04e70eadf4ad3af1aa4da591"
+    },
+    {
+      "source_heat": {
+        "name": "sulfate pulp production, from eucalyptus, bleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 1,
+      "main_reference": {
+        "name": "sulfate pulp production, from eucalyptus, bleached",
+        "reference product": "sulfate pulp, bleached",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "main_reference_amount": 1.0,
+      "candidate_kg_equivalent_per_MJ": 0.014640926886219404,
+      "nominal_vector_proportional": false,
+      "comparison_relative_tolerance": 1e-10,
+      "comparison_absolute_tolerance": 0,
+      "missing_source_keys": 0,
+      "missing_main_keys": 0,
+      "technosphere_mismatches": 0,
+      "biosphere_mismatches": 1,
+      "compared_vector_terms": 193,
+      "private_heat_inventory_sha256": "68c3f5117a994b62083bec5e0a359d56cb34571dcbc447c75102d3372aad20c4",
+      "private_main_inventory_sha256": "ada3c710e5d103179abc8c0c2cb611b25f0289836779495cd4febbaa36777fff"
+    },
+    {
+      "source_heat": {
+        "name": "steel production, electric, low-alloyed",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 1,
+      "main_reference": {
+        "name": "steel production, electric, low-alloyed",
+        "reference product": "steel, low-alloyed",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "main_reference_amount": 1.0,
+      "candidate_kg_equivalent_per_MJ": 0.022649572649572652,
+      "nominal_vector_proportional": true,
+      "comparison_relative_tolerance": 1e-10,
+      "comparison_absolute_tolerance": 0,
+      "missing_source_keys": 0,
+      "missing_main_keys": 0,
+      "technosphere_mismatches": 0,
+      "biosphere_mismatches": 0,
+      "compared_vector_terms": 287,
+      "private_heat_inventory_sha256": "b1f40329cb89d8e9d7df21ae81d34faa373ba0b1bab7ce7f6a638125f70d9985",
+      "private_main_inventory_sha256": "751b96bf54288f2fe4145cc7c3c9a0e9e818521aabb038727200e06f3a2493bb"
+    },
+    {
+      "source_heat": {
+        "name": "sulfate pulp production, from hardwood, bleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 1,
+      "main_reference": {
+        "name": "sulfate pulp production, from hardwood, bleached",
+        "reference product": "sulfate pulp, bleached",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "main_reference_amount": 1.0,
+      "candidate_kg_equivalent_per_MJ": 0.0191445408047492,
+      "nominal_vector_proportional": false,
+      "comparison_relative_tolerance": 1e-10,
+      "comparison_absolute_tolerance": 0,
+      "missing_source_keys": 0,
+      "missing_main_keys": 0,
+      "technosphere_mismatches": 0,
+      "biosphere_mismatches": 1,
+      "compared_vector_terms": 328,
+      "private_heat_inventory_sha256": "09d74f7e70d83e1d388607c5d65233fd4fa3e3173264d63b88f86f1d7b76585b",
+      "private_main_inventory_sha256": "8bd18eec27edc801550ee037c7ca2ab6e1675ef3532a6669d652f5e75c925b25"
+    },
+    {
+      "source_heat": {
+        "name": "sulfate pulp production, from eucalyptus, bleached",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "RLA",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 1,
+      "main_reference": {
+        "name": "sulfate pulp production, from eucalyptus, bleached",
+        "reference product": "sulfate pulp, bleached",
+        "location": "RLA",
+        "unit": "kilogram"
+      },
+      "main_reference_amount": 1.0,
+      "candidate_kg_equivalent_per_MJ": 0.014735102052253684,
+      "nominal_vector_proportional": false,
+      "comparison_relative_tolerance": 1e-10,
+      "comparison_absolute_tolerance": 0,
+      "missing_source_keys": 0,
+      "missing_main_keys": 0,
+      "technosphere_mismatches": 0,
+      "biosphere_mismatches": 1,
+      "compared_vector_terms": 127,
+      "private_heat_inventory_sha256": "bb03760319967aa67c8089482818ccc20187aab918a3342436556781bb34bf54",
+      "private_main_inventory_sha256": "505b97cbd8045cc8d47501dd93fea54b90d356d294750d710fa83f2881793997"
+    },
+    {
+      "source_heat": {
+        "name": "steel production, electric, low-alloyed",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 1,
+      "main_reference": {
+        "name": "steel production, electric, low-alloyed",
+        "reference product": "steel, low-alloyed",
+        "location": "AT",
+        "unit": "kilogram"
+      },
+      "main_reference_amount": 1.0,
+      "candidate_kg_equivalent_per_MJ": 0.02264957264957265,
+      "nominal_vector_proportional": true,
+      "comparison_relative_tolerance": 1e-10,
+      "comparison_absolute_tolerance": 0,
+      "missing_source_keys": 0,
+      "missing_main_keys": 0,
+      "technosphere_mismatches": 0,
+      "biosphere_mismatches": 0,
+      "compared_vector_terms": 50,
+      "private_heat_inventory_sha256": "2a131e3866ac38ac6cf252792dd5a1a5290b356bcae4129ee6aa1093feadee6c",
+      "private_main_inventory_sha256": "9cd31a232837359b7df1a6cfe985e98b22e559a9880001afe75007d0fb5446b0"
+    },
+    {
+      "source_heat": {
+        "name": "hot rolling, steel",
+        "reference product": "heat, district or industrial, other than natural gas",
+        "location": "AT",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 1,
+      "main_reference": {
+        "name": "hot rolling, steel",
+        "reference product": "hot rolling, steel",
+        "location": "AT",
+        "unit": "kilogram"
+      },
+      "main_reference_amount": 1.0,
+      "candidate_kg_equivalent_per_MJ": 0.15384615384615385,
+      "nominal_vector_proportional": true,
+      "comparison_relative_tolerance": 1e-10,
+      "comparison_absolute_tolerance": 0,
+      "missing_source_keys": 0,
+      "missing_main_keys": 0,
+      "technosphere_mismatches": 0,
+      "biosphere_mismatches": 0,
+      "compared_vector_terms": 15,
+      "private_heat_inventory_sha256": "88f1d0c67c789035e0322cf89a3661ec5f967e8f203a8a1a2609ac69c34e200d",
+      "private_main_inventory_sha256": "784d24ef5e221edfc74af419dae931555dc01a975985bc122a08b3cff624f1c2"
+    },
+    {
+      "source_heat": {
+        "name": "treatment of waste packaging paper, municipal incineration",
+        "reference product": "heat, for reuse in municipal waste incineration only",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 0
+    },
+    {
+      "source_heat": {
+        "name": "treatment of digester sludge, municipal incineration",
+        "reference product": "heat, for reuse in municipal waste incineration only",
+        "location": "GLO",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 0
+    },
+    {
+      "source_heat": {
+        "name": "treatment of waste newspaper, municipal incineration",
+        "reference product": "heat, for reuse in municipal waste incineration only",
+        "location": "RoW",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 0
+    },
+    {
+      "source_heat": {
+        "name": "treatment of digester sludge, municipal incineration with fly ash extraction",
+        "reference product": "heat, for reuse in municipal waste incineration only",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 0
+    },
+    {
+      "source_heat": {
+        "name": "treatment of waste packaging paper, municipal incineration with fly ash extraction",
+        "reference product": "heat, for reuse in municipal waste incineration only",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 0
+    },
+    {
+      "source_heat": {
+        "name": "treatment of waste newspaper, municipal incineration with fly ash extraction",
+        "reference product": "heat, for reuse in municipal waste incineration only",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "candidate_main_references": 0
+    }
+  ]
+}

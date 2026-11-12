@@ -213052,6 +213052,3750 @@
           "fingerprint": "0a8da313fbc8852fc15ba8f913c04a17e470933572a80c3fe3d78a046e9c0ad2"
         }
       ]
+    },
+    {
+      "rule_id": "bp-fe8f6bf0f690b1de",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste paint, hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "e832f4af5233dc23d8a44fc8307085dc2263b415d1b2bd95b17ba9424e9b18cc",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste paint, hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e832f4af5233dc23d8a44fc8307085dc2263b415d1b2bd95b17ba9424e9b18cc",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste paint, hazardous waste incineration, with energy recovery",
+              "reference product": "waste paint",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "e6ddaa9f6cb66ace88592cda6725394f6cef52f7ab4e3fb913c7ba409df5d28e",
+            "nonproduction_count": 65
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ed8660c199b7ce507d936b4f344355367f8c7e2cd3399afbf516ab5f87bae112"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8708ed72d7c425c3",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat production, untreated waste wood, at furnace 1000-5000 kW",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d461b3981433831cb9f6156cd2718510ed440384efc3da4f589cd7de0c81302f",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat production, untreated waste wood, at furnace 1000-5000 kW",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d461b3981433831cb9f6156cd2718510ed440384efc3da4f589cd7de0c81302f",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "heat production, untreated waste wood, at furnace 1000-5000 kW",
+              "reference product": "waste wood, untreated",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "8a75401d6f57002c0871687124620b84a9427a8ad76def280e9a680e1c2b64d9",
+            "nonproduction_count": 53
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "09a4b760df97f58e801e151980d8b6bfb5fe2c1b826ca6cdfebc669e54c5dbaf"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-59e8b3d4679ac180",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat production, untreated waste wood, at furnace 1000-5000 kW, state-of-the-art 2014",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "54166689def9a9a844bf58224c58acbd686f1305a0a7ab4d365aca7d6efaa248",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat production, untreated waste wood, at furnace 1000-5000 kW, state-of-the-art 2014",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "54166689def9a9a844bf58224c58acbd686f1305a0a7ab4d365aca7d6efaa248",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "heat production, untreated waste wood, at furnace 1000-5000 kW, state-of-the-art 2014",
+              "reference product": "waste wood, untreated",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "8c9a79bc5a7afc494aa74d86b52562fcce25069f0d14becaa4810851daf7658b",
+            "nonproduction_count": 53
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b9f70d679bc5753efe8ddd0974607fc588984a8dc94dc71699e6f91145013887"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a42bb3c098eea7c9",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "b81551979cdddf30da1c2743e401c08490ff90675cae9ce8b6587736ab3465b3",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b81551979cdddf30da1c2743e401c08490ff90675cae9ce8b6587736ab3465b3",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+              "reference product": "spent solvent mixture",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "0e4c3b90cc473aaa5982b6c53cd28be969946990a602d8cf3ca47bdf9f0b8523",
+            "nonproduction_count": 84
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2d0b4a0c455ef3b0751f29543b8c56cd76242b4204eebeefb90b6bf629ebe53e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e991805ec7d1195b",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of spent antifreezer liquid, hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "e22c91b9ee37f4c0828facb26f518b1db41f595758190dc68e28ff68b51b5c70",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of spent antifreezer liquid, hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e22c91b9ee37f4c0828facb26f518b1db41f595758190dc68e28ff68b51b5c70",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of spent antifreezer liquid, hazardous waste incineration, with energy recovery",
+              "reference product": "spent antifreezer liquid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "f0d46123e698f579ded6ca269000da634af496c14cd797719bbaf6ee140a6095",
+            "nonproduction_count": 30
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f9989ccd150638e386c21aa30675f57fe1ab0d22d08ba681b990625f55b86371"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f5220870026766cd",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of fly ash and scrubber sludge, hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "6d5fd63504f2fff5ff0eed14339e2626fc5dd0355564fe36247b76ea79bda1ee",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of fly ash and scrubber sludge, hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6d5fd63504f2fff5ff0eed14339e2626fc5dd0355564fe36247b76ea79bda1ee",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of fly ash and scrubber sludge, hazardous waste incineration, with energy recovery",
+              "reference product": "fly ash and scrubber sludge",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "bb5856e5bc5499b4aaf6c84265e253087e9c69ab0569b4728f8e9d5768fe0bb5",
+            "nonproduction_count": 131
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0bfb2fb3cc18ea7af0d81e6c75408dab9b2c804bd7224c91609ff53e4ec9e59c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-34080bc9df39b5d2",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste emulsion paint, hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "2aa4a0b09acb3110b54547948aa7b461daefb7f5f946b20dbb80bebf4bd0c992",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste emulsion paint, hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "2aa4a0b09acb3110b54547948aa7b461daefb7f5f946b20dbb80bebf4bd0c992",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste emulsion paint, hazardous waste incineration, with energy recovery",
+              "reference product": "waste emulsion paint",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "3831b42c5c5c7cdd44fc86938465e8070a377988668a0f1b415edfb6a7028af3",
+            "nonproduction_count": 63
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "318b6a5840889245a63c0b6f662332e4cae1b670d06a5508ac7a9b6baac4ce2d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4fdee8c01d46d8b0",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of used capacitor, to hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "7454461d3739a82660bb0285a3e0e95fdc78f94fdf413aec687b02a1bdafbd5a",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of used capacitor, to hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7454461d3739a82660bb0285a3e0e95fdc78f94fdf413aec687b02a1bdafbd5a",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of used capacitor, to hazardous waste incineration, with energy recovery",
+              "reference product": "used capacitor",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "c8e272191798dcf59627e9d923859cb1cf171b8ddc1ac0c36e4317af3d2bd6dd",
+            "nonproduction_count": 163
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0e722a5edcfa0081f1da0c304f374cd28e78083aa960319b884b0b9a1b1b0d2b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bf8bbf80a5602a9d",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of refinery sludge, hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "e948226436e296869c38ae49a3dd3c9ce31c5a8db5724cdf2c08710a4c044dbf",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of refinery sludge, hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e948226436e296869c38ae49a3dd3c9ce31c5a8db5724cdf2c08710a4c044dbf",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of refinery sludge, hazardous waste incineration, with energy recovery",
+              "reference product": "refinery sludge",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "68dcaf6f0dd3fcbc7def1689f3f86fcddcd82d428e3e3c36677af50abb3c8c52",
+            "nonproduction_count": 80
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "44b7ef1561af64e8420226bdf09806f3696fe340ea57d2e1d6bf13736bf7968c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-931d6312257670c4",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of hazardous waste, hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "b05aa92e2b0ebfa361d87256c6bbb8ebc2d4c8caa8f61486f85866e517c57bb9",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of hazardous waste, hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b05aa92e2b0ebfa361d87256c6bbb8ebc2d4c8caa8f61486f85866e517c57bb9",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of hazardous waste, hazardous waste incineration, with energy recovery",
+              "reference product": "hazardous waste, for incineration",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "67b29df5fbcf785d2702432ee4fc1190c9bca5be3ba69a05fc30e8fe910e024e",
+            "nonproduction_count": 92
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f8780c645ab3de476b3e28b1bd885cb1dc12553a356fc44d0c2f96fd497cea4d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e7d11a043e15ff00",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of bilge oil, hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9b015a7dfd2a5fc866f3ebded775d2199b4b84f10c3511844987fa9325ec7b78",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of bilge oil, hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9b015a7dfd2a5fc866f3ebded775d2199b4b84f10c3511844987fa9325ec7b78",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of bilge oil, hazardous waste incineration, with energy recovery",
+              "reference product": "bilge oil",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "e4ab641a1deada7c12a17a9602f762e93e13c03b45020039a67296213dffef4a",
+            "nonproduction_count": 77
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3460104e9b131fc7b3405429ebd1230ced4b8130c8ddb3417c646c3f0cfe5029"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b395d85a64901e9c",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9a868b47bcdd42d13467af226f92947095e2548009389d1b7aefb0db56247de1",
+          "nonproduction_count": 0
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "direct_empty_allocated_heat",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RoW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9a868b47bcdd42d13467af226f92947095e2548009389d1b7aefb0db56247de1",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+              "reference product": "waste mineral oil",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "inventory_sha256": "5873d1ff11c0f2574fe083d27d826227cdd046deb8a3d412f0637038d3e581da",
+            "nonproduction_count": 60
+          }
+        ],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: direct_empty_allocated_heat."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "84bb70bfda4fc4086934c5005336c240c204a9a010f6b4d96275a2f98166e44d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3321478934d74658",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "JP",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "9791e7345160703fcb203245a572446328ed1c34acb22aa28a2ca5b09c5a6ab5",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "JP",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9791e7345160703fcb203245a572446328ed1c34acb22aa28a2ca5b09c5a6ab5",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "JP",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "dbcb6a3f782aefa6d0bf8338948db93df19576b0d5406948588929ec43841657",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "JP",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d09b285e590a9bdbddd8097c6bb5cb7bcdf7e870c2d2d8ff56871c367b72b326",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ba8c038de8b2a9286428e8cd2c77eef1abd74372cae7bc17294ab64e3fd962e7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9c9f28798631185d",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "TW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "edeac8defd54c4425c5a7671030e90d96a5d5f2675551305d1edcae2b4350c29",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "TW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "edeac8defd54c4425c5a7671030e90d96a5d5f2675551305d1edcae2b4350c29",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "TW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ff8a882a835c78d494a96de428be177e31620db09b3067b5d9507532a7eef474",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "TW",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "adc9c28df53009351158c65e564323ec35484e089abc877919dceffb7b0212a0",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "07dd6252aabfeaa336be43ac461b2ffbb4d718c12b716052718b1452ecfb6533"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-555fe90a05227d5c",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "RU",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "03ce7a129ecd65996d1c25a10078e7530f80ccc328d6824a693b1db40f23a266",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "RU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "03ce7a129ecd65996d1c25a10078e7530f80ccc328d6824a693b1db40f23a266",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "RU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c04068ad3cee14a923370e18e15ad43d2c3ecfe0db5bc9d4fefa31c8c371dd9d",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "RU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8e8c87b8d37e1a995fac5a22ba257534a7f8a9f35c71ae59959672ee04be8da8",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7e92b9d3019908b0e52f15377197b57a952f12745957c628709e6ade031a3c4c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-592ec87572a9f838",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "KR",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "0b026acc3509e7685610b833333f748515eed90e91e1999394142be719926716",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "KR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0b026acc3509e7685610b833333f748515eed90e91e1999394142be719926716",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "KR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5be71076e6154405100d3ed0bc9bcdaefcc65f96f44167640ef3d55fa1a115c9",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "KR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9556a65e8caf07e3cbbdaa5ff7e41b654cc465b133e0dda96f4eaf4203e9d090",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "10797753f66470d41cdb73c780796170fbddc40c9e6f2e4abbf97cddda9b6b5a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c30b4bb1b82ec0b7",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "TR",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "5a2b3000b24776a19ec89eafb35782d8a024313aad5692b97c42f8ddabd8f7cd",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "TR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5a2b3000b24776a19ec89eafb35782d8a024313aad5692b97c42f8ddabd8f7cd",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "TR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c031a56bc5e3eb74857687c73bf90f36bc301f69e2ebde820a7f0ab962a13495",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "TR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d313983a184390fadb87c0c31ac3ad94aab6815aead1f9ba51b617531609dc06",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "93cf1d98552f0f8d78d5a361947cb9b02cbedfeb1e464c2860f662b0e72f7f67"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-daf16f4e5bebce81",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "HU",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "241d5d036726f646bfab9c5a61dfd80573fb5e2cd7f20bf3ff03f18b287824fa",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "HU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "241d5d036726f646bfab9c5a61dfd80573fb5e2cd7f20bf3ff03f18b287824fa",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "HU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f93f63f620a63fcf3f1f78805a4ac5bab4aaa5d3d4146df4d59da31b7a229d4f",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "HU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "433978a060e406d97d26fccdf3bd17aa55911587750e33a4bea5a13ef432b277",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a0bce3f3ecb84095eea357842beb7a8a14a89aad85643eb9d660c0e3662ce1f7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8ef1fd2149727946",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "FR",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "00bccf354abcb04b95551cf1cf9919a42514a2ca5e9b891eaac811971c67791f",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "FR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "00bccf354abcb04b95551cf1cf9919a42514a2ca5e9b891eaac811971c67791f",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "FR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "456b87a4068ee1206e08342f643ffff0ef3492af7e71f2ecc0f85f88fea9b5fb",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "FR",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9544122e7c5775707186cb742c8765490539a2c8436af2af0e7cefc1482c5eda",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "03e367a844df37cac041868645a3611182ea2d0b5efae9bf4383217e022eccd4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-94db50a99d951582",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "NL",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "55b101af4fd4bc92d7bef62897b890b113bcc8324dd0cc3135e2f4643db4c787",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "NL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "55b101af4fd4bc92d7bef62897b890b113bcc8324dd0cc3135e2f4643db4c787",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "NL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "fd12fb6c811c992169c6058a41a33bc3deb52034b9bf01cfbe287700d4336b0c",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "NL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c0df9b50aefba30dd37dabb7984c4fab70e414e89066ca03b7418a3b14bea6f9",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fb2fdd601ea40d2bce392f5421e48f17684c80ab6397a38c4cf9ddf0223edd0b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e4af1f6a8b12a54d",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "GB",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "2ccee83d6ef1b475c37f4dda5dc7506b9180c70b8e160cba65482057ea2fd560",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "GB",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "2ccee83d6ef1b475c37f4dda5dc7506b9180c70b8e160cba65482057ea2fd560",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "GB",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c727b7b7b5ba78c1a079c0adbad2c7562f1d7a0af0a1128d1261634728769a17",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "GB",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e38577aaac39533199b3fb489651178ca9be80ffab31910001e582a8d700b4d0",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ec89b93f324e8040da0c17321d7035b7f46d6f7c6f5ad9bb234c03bf34edbcdc"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-875e936121f0caae",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "BE",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "75612ec3c3f3a41bfc1a92bd84d07f94852e32879754e087fe68a2beef364769",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "BE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "75612ec3c3f3a41bfc1a92bd84d07f94852e32879754e087fe68a2beef364769",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "BE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6167303d7e9dafe98c3c4e058976ccdfd3786c1d99f89f9887ff8d50f2653d10",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "BE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9e54376e8c22c54bb782e8d0553a9b9106b717a8618f43c37e752043c3d8ae93",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8f38157f85c3a7f4a364d885aa95428b5ae0c96d670dbbb301ac389de51377e0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-60c459d10b7d6906",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "NO",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "44b17adf17056c9ba342cb5254d8389722f7330e6339b63993da715ac6ac785f",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "NO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "44b17adf17056c9ba342cb5254d8389722f7330e6339b63993da715ac6ac785f",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "NO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "42f4b224b221f6385174d1ff3303eefbdbc2382253c6e25d10e7c6ee04e0882f",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "NO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a5872090920a40a69e77caa8c012e159f1a75008b476ad7d6f7e44af37a41064",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7fa03f0370e4915837dd8b1b447fc12fee4defe449ce4e0f43566e5a39297450"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fcf00b03c694a975",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "IT",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "0c6a5f914b9fdffe5850d763836467c0c1cb4ca0991948c5d8a28374ccd5961c",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "IT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0c6a5f914b9fdffe5850d763836467c0c1cb4ca0991948c5d8a28374ccd5961c",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "IT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "9e22e5958c4fbe8b33c670ba72acc9fcd556263021ab76df7a6323019c8cffbc",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "IT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "32180647071132d51d11b6641fafe7862a39185390bec9411204311962019278",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "81495aad6e00a8cdf9a3e7748472d7c75aeab8e2555c93d6140b33d7baf70c94"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b46752e7a0c92471",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "AT",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "8696aff5396d04f202ad9d255fc789f246460d760c2dfb609971c1fa7e70850a",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "AT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "8696aff5396d04f202ad9d255fc789f246460d760c2dfb609971c1fa7e70850a",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "AT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e8f93165e02a72ca44069016b7fe0bafc1244b27d5e85c7cb75813bf62109307",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "AT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "07dd2f3b0b687311bd1539bb26f3968d67760d8fe05dfe70c98d41dd850f514e",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0d063c940af430ca1b36e11a756536a48b47215c4a5aa795b37d132a6419e691"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a117e6f3e51f32d1",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "SK",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "0c8e6852eda78abb4df5f5bb6a0cabfb69463ead58ae41c1a824eed44bc17349",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "SK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0c8e6852eda78abb4df5f5bb6a0cabfb69463ead58ae41c1a824eed44bc17349",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "SK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "5f709385fee68754c3d3938edc3092441319bd4e63abb42e434b3d397a33ff08",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "SK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "f6f37f156071ddc22cc6503071e8250c1b434e9902d62ada5393f0f876fb4e9d",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5ecd3e3710fd9b6429986ac47b3caba651c3c267ee99423f7cd078dc9e1309d4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a779dde69a7c53e4",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "CZ",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "e9255ffa54978dabd16cd887cb43843e9c2908ab14e6a22dcbc7fda3d442d1f9",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "CZ",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "e9255ffa54978dabd16cd887cb43843e9c2908ab14e6a22dcbc7fda3d442d1f9",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "CZ",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "65d126823a83a180156e88a190122a329afcea2d69ba459a77ba0b728db65b3b",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "CZ",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "81d605fbf5e859e0a28029c8e454b944cdd5fbe807ba16ac16a38971b4478fe5",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5aeb2f13a3cf60c1b71a2061114dcc3a8f0da92e7513de6fcf009258085f9a50"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-9efd96d7c15b758e",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "BG",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "44e11c7637610b16443fb250ed79c3b829996cd19ff63fa44d5c676def6d3daf",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "BG",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "44e11c7637610b16443fb250ed79c3b829996cd19ff63fa44d5c676def6d3daf",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "BG",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b637c473eb1c6340e8a8795c7aedff3a05b057b443840b81c3315de0fd76dc74",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "BG",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "0b3916ab4c56e8593d32a14915e6093d53d99dbe1262182eadf98f160f3285b4",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "935c6351d54cbed02505b41f58f666c13e507d88c4c40823886e01d14cb94f1c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-dba423bf9bc5ef76",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "SE",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "54ef5859e735bd70f4eba4976f525af54cf3e77b515acd2cdd4bedc22a77523b",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "SE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "54ef5859e735bd70f4eba4976f525af54cf3e77b515acd2cdd4bedc22a77523b",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "SE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "4318b6e14063e3a35783e0774216a5bf061abbc162b2aff303a5c00dd82de44f",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "SE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d896416be8dab05c8da33dce091792b117a332699ae62cf70a7fd434591679c1",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a3187622195e1252a101a9d9394ee215f16f5bcfffea678babd173c28e79a07a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bba60a67093b3507",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "PL",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "1c2aed434eb039e2c1db95c778bab60c74ae86fd76bf4f83810d1ff569dc52af",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "PL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "1c2aed434eb039e2c1db95c778bab60c74ae86fd76bf4f83810d1ff569dc52af",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "PL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "7dbf2f161a861289a812b8645d19bfbe5ed50fd0e3aaeb0ccdb1a4cf0e9aee3d",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "PL",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "79f9bd823d59fb67d55a11cf0409e3a036f82cdfe0ee45cc37fdca1bcb1b98cf",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ec585d6942497d88afbaabce601ec42b7ea1a979ca0863a0ce85a36092658297"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b5f1916b263de1d2",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "DK",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "d6412726d824ab40fa4dbebdd9df61b8665ba983a73bf84eea134b128d90db15",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "DK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d6412726d824ab40fa4dbebdd9df61b8665ba983a73bf84eea134b128d90db15",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "DK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "82d78df8efca251102497e952747380e7f22caa5e4968c0f055d9116f82e4354",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "DK",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "007270c6884681ddbe49755513619d01ee20024da0b74bd39ad90f7a4fda8df8",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0312d5a32be8ae108f75b06e9d8198fc386cfd70cfb686336be2081b408027af"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c43132c56a80743b",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "PT",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "b663eda1917fe70c521b11b3222016720c3f3667275f2bf081869956b2318d88",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "PT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "b663eda1917fe70c521b11b3222016720c3f3667275f2bf081869956b2318d88",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "PT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d3ac2b21ea41351a8b26d6758af33ad56cdef4c04903f87843ff38f5c3869413",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "PT",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "2e3439737842980ec9a27c98ccdc64b73db83dea54ea5b510baa7eb4c7e2be22",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "32bb6d7eba477817027a5343f023e014641fbead1a8965c631d66a06e1ac54ee"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d3c7479d93c63184",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "FI",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "6cd0a800d5fbc6ac0c28d85a586bbdc0711e7a924a9fe59b5d701f7253b3f34b",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "FI",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "6cd0a800d5fbc6ac0c28d85a586bbdc0711e7a924a9fe59b5d701f7253b3f34b",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "FI",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a0a21b608d895d9eb57f3abde26e31930e2ea1bed4b65cace78d3283e6bc8404",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "FI",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d11a40c5dcabafd1bf2d9ff953eabe384b0d915915226b85ff4d7378451f68a9",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ca860e49e5b134f87d91a5cf03540aba78e949852677ae0ea08ed12f92160e9d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d2a06d114ebe0574",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "LU",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "426d2b0d0bace0c70081a113f3445548a6c623f1f6be8b36e1b54f125b664701",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "LU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "426d2b0d0bace0c70081a113f3445548a6c623f1f6be8b36e1b54f125b664701",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "LU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "3d8d2ad6da284bb308fb8ced2ccd2d11704d67fd44accc85366a14fbfdfdac8c",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "LU",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "2806a13fffc77881f82fb69e978b41c176208597f4204f78d3b1d3602fbb6a94",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "59cc2e5f7303566727c8297a9b9f30c37aad460102939bfa13db39148f50baae"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-344490b0a113fd91",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "DE",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "70a24a06a45b4996df072d5772942c88e7a402772f76eb17b2fa884a9d604e08",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "DE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "70a24a06a45b4996df072d5772942c88e7a402772f76eb17b2fa884a9d604e08",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "DE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "4df0812b6264c5da1de23647e515e53ea1c7a78732ba07fa4c02032c5ce78e33",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "DE",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "c451ccc55f9e1e30c08a60c760a29291642d3115a4d796141f92ae528562022f",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "065090214ddc3e699c2c672b7c954b3750658b7b3adcc71b9255de75a808dd6d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-adcaf6380190c1b7",
+      "operation": "replace",
+      "mapping_method": "reviewed_steel_39_zero_heat_allocation",
+      "review_path": "export/uvek_steel_39_zero_heat_review.json",
+      "review_sha256": "08c8c2b7811ae662c15ebcbe69096728ceeca5879d58ca4a3ffb9f3f3bf9c83c",
+      "authorization": "Standing autonomous approval of independently inspected allocation-preserving correspondences; decisions logged for review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "identity": {
+            "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+            "reference product": "heat, district or industrial, other than natural gas",
+            "location": "ES",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "inventory_sha256": "001c1412cd43923bd94a95e5e7035f1ce6359529564c1033876548c9e7f32390",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [],
+        "native_2026_witnesses": [
+          {
+            "identity": {
+              "name": "Heat from waste, at municipal waste incineration plant",
+              "reference product": "Heat from waste, at municipal waste incineration plant",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "37d3b91d886ddda2c5ecd84ce018d5ebf20c6171665f2c1e818629b97d41a047",
+            "nonproduction_count": 0
+          }
+        ],
+        "conversion_factor": 1,
+        "source_zero_proof": "heat_only_forwarding_to_verified_zero_stocks",
+        "source_trace_witnesses": [
+          {
+            "identity": {
+              "name": "heat, from municipal waste incineration to generic market for heat district or industrial, other than natural gas",
+              "reference product": "heat, district or industrial, other than natural gas",
+              "location": "ES",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "001c1412cd43923bd94a95e5e7035f1ce6359529564c1033876548c9e7f32390",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "market for heat, for reuse in municipal waste incineration only",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "ES",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "a69982a755db694f9c545820100b954126c3ae34681c09f0f6172034dcad4817",
+            "nonproduction_count": 1
+          },
+          {
+            "identity": {
+              "name": "treatment of municipal solid waste, incineration",
+              "reference product": "heat, for reuse in municipal waste incineration only",
+              "location": "ES",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d982aed04941321991c5140635950748b13afe659b0fa6e089124e8c612391d1",
+            "nonproduction_count": 0
+          }
+        ],
+        "allocation_control_witnesses": [],
+        "native_nonproduction_count": 0,
+        "new_helpers": 0
+      },
+      "limitations": [
+        "Preserve verified zero-burden allocated heat at plant, per signed1MJ, by reusing the existing native zero-burden recovered-heat stock. No new helper, district network, loss multiplier, incineration load, avoided-treatment or electricity credit. Native stock is MSWI-labelled and Swiss; this is an allocation-handover proxy only, not equivalence of waste origin, plant technology, temperature or geography. Source negative-kg waste-treatment inventories retain their burdens and are not covered. Only independently inspected3.9cutoff heat references with full zero-burden proof qualify; never infer zero from a name, missing supplier, small share or unrelated source profile. Preserve caller signs, amounts, supported uncertainty and formulas. Other versions, reverse and cross-system-model routes remain unapproved. Source proof: heat_only_forwarding_to_verified_zero_stocks."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "d4b1a53dbf9e98ab65c77b76b6654af7e9ef28b513872c090f493da2162c23b1"
+        }
+      ]
     }
   ],
   "superseded_operations": [
