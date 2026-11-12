@@ -1,0 +1,62 @@
+{
+  "status": "native_ether_proxy_rejected_direct_water_inventory_reconstruction_pending",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "source_water_coproduct": {
+    "name": "diethyl ether production",
+    "reference product": "water, decarbonised",
+    "location": "GLO",
+    "unit": "kilogram"
+  },
+  "source_main_output": {
+    "name": "diethyl ether production",
+    "reference product": "diethyl ether, without water, in 99.95% solution state",
+    "location": "GLO",
+    "unit": "kilogram"
+  },
+  "source_water_nonproduction_rows": 20,
+  "observed_aggregated_source_allocation_ratio": 0.0004107142857142857,
+  "ratio_authorizes_native_proxy": false,
+  "source_technology": "Sulphuric-acid-catalysed dehydration of ethanol, 95% reaction yield, with acid neutralization and distillation.",
+  "native_candidate": {
+    "name": "Diethyl ether, at plant",
+    "reference product": "Diethyl ether, at plant",
+    "location": "RER",
+    "unit": "kilogram"
+  },
+  "native_technology": "Ether co-product from direct ethylene hydration, with mass allocation against ethanol.",
+  "decision": "Do not use this native ether supplier to represent the source water co-product. Reconstruct the source 20-row allocated water inventory directly, retaining reaction inputs, biosphere releases and uncertainty.",
+  "direct_reconstruction_pending_correspondences": [
+    {
+      "rule_id": "bp-02ad72c78509d9d0",
+      "source": {
+        "location": "RoW",
+        "name": "market for ethanol, without water, in 99.7% solution state, from ethylene",
+        "reference product": "ethanol, without water, in 99.7% solution state, from ethylene",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-533134d2fbe5ce77",
+      "source": {
+        "location": "RER",
+        "name": "market for ethanol, without water, in 99.7% solution state, from ethylene",
+        "reference product": "ethanol, without water, in 99.7% solution state, from ethylene",
+        "unit": "kilogram"
+      }
+    }
+  ],
+  "source_inventory_sha256": "70a17efdff66c0ed47abaf573fde58c2dbeb760fd1d5cef6dcce3815e780198c",
+  "native_inventory_sha256": "a38f1e9c711a92efecf796639d1e1aaf3bdb5f4b59af02d7d7b16ae0841e4c86",
+  "new_approvals": 0,
+  "new_helpers": 0,
+  "next_action": "Inspect the two 3.9 fossil ethanol-from-ethylene markets and their active-substance reference bases. After qualifying their suppliers/delivery, compile and verify the 20-row water recipe and the original two-share RoW water market.",
+  "limitations": [
+    "Point-estimate source allocation ratio does not make a different production technology equivalent.",
+    "The two ethanol contexts are not yet newly approved.",
+    "No completed water/PCC/pulp-heat conversion or steel export is claimed."
+  ]
+}

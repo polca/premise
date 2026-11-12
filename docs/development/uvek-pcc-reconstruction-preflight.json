@@ -146,7 +146,7 @@
   "water_review": "uvek-pcc-decarbonised-water-review.md",
   "unchanged_direct_pulp_heat_frontier": 51,
   "known_industrial_heat_preparation_roots": 1,
-  "next_action": "Finish the five dedicated-production dependencies, then compose and verify all three source market shares and original freight. The RoW ether-derived-water co-product needs its own allocation/technology review.",
+  "next_action": "Qualify the two fossil ethanol-from-ethylene market contexts needed to reconstruct the 20-row ether-derived-water branch, then finish the RoW water market and remaining dedicated-PCC dependencies. Native ether hydration is not a proxy for source ethanol-dehydration water.",
   "limitations": [
     "Generic inorganic chemical correspondence remains unapproved for precipitated calcium carbonate; source precipitation technology and all three producer shares need preservation.",
     "The minor cobalt/rare-earth branches are nonempty and cannot be omitted because their shares are small.",
@@ -162,5 +162,6 @@
     "dedicated_PCC_production": "Direct source reconstruction still unfinished; five direct background dependencies remain.",
     "complete_PCC_market": "Not yet assembled/approved; preserve all original producer shares and freight when composing reviewed branches.",
     "historical_all_producer_direct_probe": "133 unapproved correspondences describe the full source-vector alternative, not the selected implementation frontier."
-  }
+  },
+  "ether_water_preflight": "uvek-ether-water-reconstruction-preflight.json"
 }
