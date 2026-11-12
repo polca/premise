@@ -307,7 +307,7 @@
     },
     {
       "sector": "steel",
-      "status": "native_replacement_quantity_mapping_incomplete_shared_transformation_validation_and_export_unfinished",
+      "status": "all_workbook_quantity_recipes_qualified_shared_validation_and_export_unfinished",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -840,21 +840,24 @@
         "workbook_activities_with_replacement_metadata": 28,
         "workbook_replacement_slots": 640,
         "distinct_donor_queries": 11,
-        "qualified_activities": 23,
+        "qualified_activities": 28,
         "native_technosphere_fills_in_first_recipe": 12,
         "native_elementary_fills_in_first_recipe": 7,
         "explicit_native_absences_in_first_recipe": 6,
-        "status": "twenty_three_native_recipes_qualified_five_auxiliary_templates_unfinished",
+        "status": "real_inventory_preparation_passed_shared_update_validation_unfinished",
         "limitation": "Steel preparation previously returned despite unfilled licensed placeholders; it now refuses the next unqualified donor recipe. Transformation, validation and export remain unfinished.",
-        "qualified_lookup_slots": 618,
-        "remaining_workbook_activities": 5,
-        "remaining_lookup_slots": 21,
-        "latest_review": "docs/development/uvek-eaf-dri-replacement-review.md",
-        "latest_verification": "docs/development/uvek-eaf-dri-replacement-verification.json",
+        "qualified_lookup_slots": 639,
+        "remaining_workbook_activities": 0,
+        "remaining_lookup_slots": 0,
+        "latest_review": "docs/development/uvek-steel-auxiliary-quantity-review.md",
+        "latest_verification": "docs/development/uvek-steel-auxiliary-quantity-verification.json",
         "workbook_unknown_zero_lookup_slots": 639,
         "tagged_production_references_ignored": 1,
         "preserved_explicit_positive_input_rows": 1,
-        "qualified_input_rows": 619
+        "qualified_input_rows": 640,
+        "real_imported_records": 75,
+        "real_prepared_base_records": 12022,
+        "current_validation_findings": 52
       }
     },
     {

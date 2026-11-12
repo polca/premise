@@ -1,0 +1,587 @@
+{
+  "qualified_activities": 28,
+  "input_rows_reviewed": 640,
+  "unknown_zero_input_lookups": 639,
+  "preserved_positive_inputs": 1,
+  "production_reference_tag_ignored": 1,
+  "tests_passed": 47,
+  "native_component_checks": {
+    "qualified_activities": 28,
+    "lookup_slots": 640,
+    "rows": [
+      {
+        "activity": [
+          "steel production, blast furnace-basic oxygen furnace, low-alloyed",
+          "steel, low-alloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 33,
+        "native_technosphere_fills": 14,
+        "native_biosphere_fills": 11,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, blast furnace-basic oxygen furnace, unalloyed",
+          "steel, unalloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 31,
+        "native_technosphere_fills": 14,
+        "native_biosphere_fills": 11,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "alloys production, for low-alloyed steel",
+          "alloys, for low-alloyed steel",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 3,
+        "native_technosphere_fills": 3,
+        "native_biosphere_fills": 0,
+        "native_absences": 0,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "pig iron production, blast furnace, with carbon capture and storage",
+          "pig iron",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 27,
+        "native_technosphere_fills": 16,
+        "native_biosphere_fills": 9,
+        "native_absences": 3,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed",
+          "steel, low-alloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 33,
+        "native_technosphere_fills": 14,
+        "native_biosphere_fills": 11,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed",
+          "steel, unalloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 31,
+        "native_technosphere_fills": 14,
+        "native_biosphere_fills": 11,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "pig iron production, top gas recycling-blast furnace",
+          "pig iron",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 23,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 5,
+        "native_absences": 6,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed",
+          "steel, low-alloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 33,
+        "native_technosphere_fills": 14,
+        "native_biosphere_fills": 11,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed",
+          "steel, unalloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 31,
+        "native_technosphere_fills": 14,
+        "native_biosphere_fills": 11,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "pig iron production, blast furnace, with top gas recycling, with carbon capture and storage",
+          "pig iron",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 23,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 5,
+        "native_absences": 6,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, low-alloyed",
+          "steel, low-alloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 33,
+        "native_technosphere_fills": 14,
+        "native_biosphere_fills": 11,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, unalloyed",
+          "steel, unalloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 31,
+        "native_technosphere_fills": 14,
+        "native_biosphere_fills": 11,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "pig iron production, with natural gas-based direct reduction",
+          "iron",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 1,
+        "native_technosphere_fills": 1,
+        "native_biosphere_fills": 0,
+        "native_absences": 0,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed",
+          "steel, low-alloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 35,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 20,
+        "native_absences": 5,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed",
+          "steel, unalloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 35,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 20,
+        "native_absences": 5,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "pig iron production, with natural gas-based direct reduction, with carbon capture and storage",
+          "pig iron",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 1,
+        "native_technosphere_fills": 1,
+        "native_biosphere_fills": 0,
+        "native_absences": 0,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, low-alloyed",
+          "steel, low-alloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 35,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 20,
+        "native_absences": 5,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed",
+          "steel, unalloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 35,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 20,
+        "native_absences": 5,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, hydrogen-based direct reduction iron-electric arc furnace, low-alloyed",
+          "steel, low-alloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 35,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 20,
+        "native_absences": 5,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, hydrogen-based direct reduction iron-electric arc furnace, unalloyed",
+          "steel, unalloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 35,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 20,
+        "native_absences": 5,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "pig iron production, hydrogen-based direct reduction iron",
+          "pig iron",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 1,
+        "native_technosphere_fills": 1,
+        "native_biosphere_fills": 0,
+        "native_absences": 0,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "pig iron production, by electrowinning",
+          "pig iron",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 1,
+        "native_technosphere_fills": 1,
+        "native_biosphere_fills": 0,
+        "native_absences": 0,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "leaching of iron ore",
+          "iron oxide in alkaline solution",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 1,
+        "native_technosphere_fills": 1,
+        "native_biosphere_fills": 0,
+        "native_absences": 0,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "market for cathode, graphite",
+          "cathode, graphite",
+          "RoW",
+          "kilogram"
+        ],
+        "source_slots": 8,
+        "native_technosphere_fills": 1,
+        "native_biosphere_fills": 0,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "nickel anode production, for electrolysis of iron ore",
+          "nickel anode, for electrolysis of iron ore",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 8,
+        "native_technosphere_fills": 4,
+        "native_biosphere_fills": 4,
+        "native_absences": 0,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, electrowinning-electric arc furnace, low-alloyed",
+          "steel, low-alloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 37,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 20,
+        "native_absences": 7,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "steel production, electrowinning-electric arc furnace, unalloyed",
+          "steel, unalloyed",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 37,
+        "native_technosphere_fills": 10,
+        "native_biosphere_fills": 20,
+        "native_absences": 6,
+        "preserved_positive_inputs": 1,
+        "explicit_exchanges_unchanged": true
+      },
+      {
+        "activity": [
+          "ultrafine grinding of iron ore",
+          "iron ore, ultrafine ground",
+          "GLO",
+          "kilogram"
+        ],
+        "source_slots": 3,
+        "native_technosphere_fills": 3,
+        "native_biosphere_fills": 0,
+        "native_absences": 0,
+        "preserved_positive_inputs": 0,
+        "explicit_exchanges_unchanged": true
+      }
+    ],
+    "native_database_unchanged": true,
+    "scope": "Native donor filling only; full steel preparation/transformation/export remain unproven."
+  },
+  "signed_component_lcis": {
+    "activities": 28,
+    "signed_finite_native_component_LCIs": 56,
+    "native_database_unchanged": true,
+    "rows": [
+      {
+        "activity": "steel production, blast furnace-basic oxygen furnace, low-alloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, blast furnace-basic oxygen furnace, unalloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "alloys production, for low-alloyed steel",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "pig iron production, blast furnace, with carbon capture and storage",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "pig iron production, top gas recycling-blast furnace",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "pig iron production, blast furnace, with top gas recycling, with carbon capture and storage",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, low-alloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, unalloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "pig iron production, with natural gas-based direct reduction",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "pig iron production, with natural gas-based direct reduction, with carbon capture and storage",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, low-alloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, hydrogen-based direct reduction iron-electric arc furnace, low-alloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, hydrogen-based direct reduction iron-electric arc furnace, unalloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "pig iron production, hydrogen-based direct reduction iron",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "pig iron production, by electrowinning",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "leaching of iron ore",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "market for cathode, graphite",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "nickel anode production, for electrolysis of iron ore",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, electrowinning-electric arc furnace, low-alloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "steel production, electrowinning-electric arc furnace, unalloyed",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      },
+      {
+        "activity": "ultrafine grinding of iron ore",
+        "finite_signed_component_LCIs": 2,
+        "signed_reversal": true
+      }
+    ],
+    "scope": "Only filled native components, including direct elementary-flow fills. Explicit workbook exchanges, complete technology inventories, steel transformation/validation/export and source/native score equivalence are not established."
+  },
+  "conventional_baseline_completeness": {
+    "all_native_global_technosphere_inputs_copied_once": true,
+    "count": 16,
+    "direct_energy_MJ_per_kg_using_unchanged_steel_check": 13.804,
+    "no_guessed_unit_or_efficiency_correction": true,
+    "scope": "Conventional blast-furnace-with-CCS baseline only; source explicit slag/capture and other explicit exchanges retained unchanged."
+  },
+  "real_preparation": {
+    "status": "steel_inventory_preparation_passed",
+    "loaded_sectors": [
+      "steel"
+    ],
+    "prepared_base_records": 12022,
+    "imported_records": 75,
+    "elapsed_seconds": 41.007451832992956,
+    "source_database_unchanged": true,
+    "new_heat_helpers": 0,
+    "uses_existing_native_heat_dataset": true,
+    "public_sector_guard_bypassed_in_private_diagnostic": true,
+    "transformation_or_export_performed": false,
+    "IAM": "Encrypted REMIND SSP2-NPi2050,unmodified",
+    "limitation": "Preparation success does not establish sector transformation,certification or export."
+  },
+  "real_update": {
+    "status": "shared_steel_update_failed",
+    "exception_type": "PremiseValidationError",
+    "message": "Inventory validation failed with 52 unsuppressed error(s) [LEGACY.ENERGY_USE_FOR_PIG_IRON_PRODUCTION_TOO_LOW=26, LEGACY.NO_INPUT_OF_PIG_IRON=26]: LEGACY.ENERGY_USE_FOR_PIG_IRON_PRODUCTION_TOO_LOW: Energy use for pig iron production is too low: 0.43199999999999994. (activity=('pig iron production, with natural gas-based direct reduction, with carbon capture and storage', 'pig iron', 'CAZ')); LEGACY.NO_INPUT_OF_PIG_IRON: No input of pig iron found. (activity=('steel production, blast furnace-basic oxygen furnace, low-alloyed', 'steel, low-alloyed', 'CAZ')); ...",
+    "public_scope_guard_bypassed_in_private_diagnostic": true
+  },
+  "public_steel_support_opened": false,
+  "full_export_verified": false
+}

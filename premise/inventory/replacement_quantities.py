@@ -32,6 +32,62 @@ def _selector(edge):
     return result
 
 
+def _reference_supply(record, edge, slot, slots, donor):
+    """Use a complete native product once, without copying its inputs again."""
+    reference = {
+        "type": "technosphere",
+        "name": donor["name"],
+        "product": donor["reference product"],
+        "location": donor["location"],
+        "unit": donor["unit"],
+    }
+    output = [e for e in record["exchanges"] if e["type"] == "production"]
+    if (
+        slot["native"] != [reference]
+        or not slot.get("limitation")
+        or edge["type"] != "technosphere"
+        or edge["unit"] != donor["unit"]
+        or record["unit"] != donor["unit"]
+        or edge.get("formula")
+        or len(output) != 1
+        or output[0]["amount"] != 1
+        or output[0]["unit"] != record["unit"]
+        or any(
+            e["type"] != "production"
+            and (e["amount"] != 0 or "replacement name" not in e)
+            for e in record["exchanges"]
+        )
+        or any(
+            other is not slot
+            and (other["native"] or other.get("preserve_explicit_quantity"))
+            for other in slots
+        )
+    ):
+        raise ClicInventoryError(
+            "A complete native product proxy requires matching unit references, "
+            "only unknown source inputs, and no additional donor-component copies."
+        )
+    result = copy.deepcopy(edge)
+    result.update(reference)
+    result.update(
+        amount=1,
+        loc=1,
+        **{"uncertainty type": 0, "reference product": donor["reference product"]},
+    )
+    for key in (
+        "replacement name",
+        "replacement product",
+        "replacement location",
+        "scale",
+        "shape",
+        "minimum",
+        "maximum",
+        "negative",
+    ):
+        result.pop(key, None)
+    return result
+
+
 def prepare_replacement_quantities(records, database, background, target):
     """Fill owned placeholders with explicitly reviewed native donor inputs.
 
@@ -97,7 +153,7 @@ def prepare_replacement_quantities(records, database, background, target):
         slots = recipe["slots"]
         if len(placeholders) != len(slots):
             raise ClicInventoryError("Reviewed replacement placeholder scope changed.")
-        queries, omissions, preserved, seen = [], [], [], set()
+        queries, omissions, preserved, references, seen = [], [], [], [], set()
         for edge in placeholders:
             matches = [
                 i for i, slot in enumerate(slots) if slot["source"] == _selector(edge)
@@ -144,6 +200,9 @@ def prepare_replacement_quantities(records, database, background, target):
                 raise ClicInventoryError(
                     "Reviewed unknown replacement quantity changed or has unsupported uncertainty."
                 )
+            if slot.get("native_reference_supply"):
+                references.append(_reference_supply(record, edge, slot, slots, donor))
+                continue
             if not slot["native"]:
                 if not slot.get("limitation"):
                     raise ClicInventoryError(
@@ -162,6 +221,7 @@ def prepare_replacement_quantities(records, database, background, target):
                     query["reference product"] = query["product"]
                 else:
                     query["categories"] = tuple(query["categories"])
+                    query.pop("database", None)
                 (
                     query["replacement name"],
                     query["replacement product"],
@@ -174,6 +234,7 @@ def prepare_replacement_quantities(records, database, background, target):
         filler.database = [donor]
         filled = {"exchanges": queries}
         filler.fill_dataset_data_gaps(filled)
+        filled["exchanges"].extend(references)
         if any("replacement name" in e for e in filled["exchanges"]):
             raise ClicInventoryError(
                 "Native replacement lookup remained unresolved; no placeholder was accepted."
@@ -207,6 +268,7 @@ def prepare_replacement_quantities(records, database, background, target):
                     "limitations": recipe["limitations"],
                     "omissions": omissions,
                     "preserved explicit exchanges": copy.deepcopy(preserved),
+                    "native reference supplies": copy.deepcopy(references),
                     "filled exchanges": [copy.deepcopy(e) for e in filled["exchanges"]],
                 },
             )
@@ -229,8 +291,8 @@ def prepare_replacement_quantities(records, database, background, target):
         )
         warnings.warn(
             f"Filled replacement quantities in {record['name']!r} from native donor "
-            f"{audit['donor']!r}; {len(audit['omissions'])} source slots are absent "
-            "from that donor and omitted. Screening differences and unknown score "
+            f"{audit['donor']!r}; {len(audit['omissions'])} source slots are omitted "
+            "as separate inputs. Screening differences and unknown score "
             "effects are recorded in inventory provenance.",
             UserWarning,
             stacklevel=2,
