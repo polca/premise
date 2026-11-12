@@ -581,6 +581,25 @@ natural gas:
       - megajoule
       - cubic meter
     allow_generated_helpers: true
+    exact_identities:
+    - name: Natural gas, high pressure, at consumer
+      reference product: Natural gas, high pressure, at consumer
+      unit: megajoule
+    - name: Natural gas, low pressure, at consumer
+      reference product: Natural gas, low pressure, at consumer
+      unit: megajoule
+    - name: Natural gas, burned in power plant or heat plant
+      reference product: Natural gas, burned in power plant or heat plant
+      unit: megajoule
+    - name: Natural gas, burned in combined cycle plant, best technology
+      reference product: Natural gas, burned in combined cycle plant, best technology
+      unit: megajoule
+    - name: global high-pressure gas supply, nominal 36 MJ per m3, reviewed native service [BrightPath UVEK conversion 1d14c970] [CLIC brightpath-uvek-import-1d14c9705c839090633a35bf]
+      reference product: natural gas, high pressure
+      unit: cubic meter
+    - name: market group for natural gas, high pressure, reviewed native supply [BrightPath UVEK conversion 03a1d748] [CLIC brightpath-uvek-import-03a1d7481f35ec1a56c18cd5]
+      reference product: natural gas, high pressure
+      unit: cubic meter
     carrier_classification_limitations:
     - Recognize only these existing independently reviewed nominal-36-MJ-per-m3 gas helpers as natural-gas input carriers. Native MJ suppliers retain their actual unit;
       this classification changes no quantity, conversion factor, fuel-market supplier selection or migration approval.

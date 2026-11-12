@@ -105,7 +105,7 @@ def test_native_soybean_ester_binds_oil_crop_role_and_shared_feedstock_stage():
 
 
 @pytest.mark.parametrize("container", [list, IndexedInventoryList])
-def test_gas_supply_uses_reviewed_m3_helper_without_changing_heat_classification(
+def test_gas_supply_uses_only_reviewed_carrier_identity_triples(
     container,
 ):
     name = "market group for natural gas, high pressure, reviewed native supply [BrightPath UVEK conversion 03a1d748] [CLIC brightpath-uvek-import-03a1d7481f35ec1a56c18cd5]"
@@ -126,6 +126,8 @@ def test_gas_supply_uses_reviewed_m3_helper_without_changing_heat_classification
     }
     excluded = [
         {**helper, "unit": "megajoule"},
+        {**native, "unit": "cubic meter"},
+        {**helper, "reference product": native_name},
         {**helper, "name": name + " unreviewed"},
         {
             **helper,
@@ -141,12 +143,14 @@ def test_gas_supply_uses_reviewed_m3_helper_without_changing_heat_classification
         model="remind",
         version="2026",
     )
-    assert inv.generate_fuel_map(model="remind")["natural gas"] == [native]
+    classification = inv.generate_fuel_map(model="remind")["natural gas"]
+    assert len(classification) == 2
+    assert helper in classification and native in classification
     assert inv.generate_fuel_map(model="remind", for_markets=True)["natural gas"] == [
         helper
     ]
     # Purpose selection cannot mutate the cached default aliases used by heat.
-    assert inv.generate_fuel_map()["natural gas"] == [native]
+    assert inv.generate_fuel_map()["natural gas"] == classification
 
 
 def test_ecoinvent_supply_selection_retains_original_filters():

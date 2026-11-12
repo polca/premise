@@ -780,6 +780,19 @@ class InventorySet:
             for tech, fltr in filtr.items()
         }
 
+        # Optional exact tuples narrow existing filters where independent field
+        # lists would otherwise admit unreviewed name/product/unit combinations.
+        for technology, definition in filtr.items():
+            if "exact_identities" in definition:
+                techs[technology] = [
+                    activity
+                    for activity in techs[technology]
+                    if any(
+                        all(activity.get(key) == value for key, value in row.items())
+                        for row in definition["exact_identities"]
+                    )
+                ]
+
         if self.family == "uvek":
             # Native UVEK identities cannot establish a CLIC scientific role.
             # Published records enter only through the reviewed bindings below.
