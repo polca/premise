@@ -1949,11 +1949,12 @@ class HeatValidation(BaseDatasetValidator):
         # is within the expected range
 
         for ds in self.database:
+            name = ds["name"].lower()
             if (
-                "heat" in ds["name"]
+                "heat" in name
                 and ds["unit"] == "megajoule"
                 and not any(
-                    x in ds["name"]
+                    x in name
                     for x in [
                         "heat pump",
                         "heat recovery",
@@ -2208,15 +2209,14 @@ class HeatValidation(BaseDatasetValidator):
                 efficiency = 1 / energy_input
 
                 if efficiency > 1.2 and not any(
-                    x in ds["name"]
-                    for x in ["co-generation", "allocated", "allocation"]
+                    x in name for x in ["co-generation", "allocated", "allocation"]
                 ):
                     message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 1.2."
                     self.log_issue(
                         ds, "heat conversion efficiency", message, issue_type="major"
                     )
 
-                if efficiency > 3.0 and "co-generation" in ds["name"]:
+                if efficiency > 3.0 and "co-generation" in name:
                     message = f"Heat conversion efficiency is {efficiency:.2f}, expected to be less than 3.0."
                     self.log_issue(
                         ds,
@@ -2235,7 +2235,7 @@ class HeatValidation(BaseDatasetValidator):
                 )
 
                 if not math.isclose(co2, expected_co2, rel_tol=0.2):
-                    if "co-generation" not in ds["name"]:
+                    if "co-generation" not in name:
                         message = f"CO2 emissions are {co2:.3f}, expected to be {expected_co2:.3f}."
                         self.log_issue(ds, "CO2 emissions", message, issue_type="major")
 
