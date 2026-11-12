@@ -1,0 +1,105 @@
+{
+  "status": "source_and_native_evidence_collected_conversion_still_unfinished",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.9",
+    "system_model": "cutoff"
+  },
+  "target_profile": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_version": "3.10"
+  },
+  "cases": [
+    {
+      "rule_id": "bp-eb13cb39b0f5fbce",
+      "source": {
+        "name": "market for retention aid, for paper production",
+        "reference product": "retention aid, for paper production",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "source_inventory_sha256": "f7c9575572dc9e7062600eb50f82ce86f813e85baed2dca2aa099aa6606357d5",
+      "source_production_amount": 1,
+      "candidate_native": {
+        "name": "Retention aids, in paper production, at plant",
+        "reference product": "Retention aids, in paper production, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "native_inventory_sha256": "2b8e451949d6d1850d0db39849e585d6ea6792c5144bf64ada7357bfbf8788a1",
+      "observation": "Both source producer and native candidate explicitly describe 1 kg retention aids. Both model 1.05 kg acrylic acid, chemical plant 4e-10 units and about 0.333 kWh plus 2 MJ heat. Both are rough process estimates omitting further inputs, solid wastes and emissions.",
+      "next_action": "Reconstruct source market with native at-plant supply at factor +1 and retain original final-delivery rows and uncertainty. Native precursor transport is part of its plant boundary; do not confuse it with source final delivery.",
+      "approval_added": false
+    },
+    {
+      "rule_id": "bp-3d05182603078fea",
+      "source": {
+        "name": "market for triazine-compound, unspecified",
+        "reference product": "triazine-compound, unspecified",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "source_inventory_sha256": "8bb06e6c60d9fd8328e22232078be24d8dc6caba377c5388058b45cdf987dda0",
+      "source_production_amount": 1,
+      "candidate_native": {
+        "name": "Triazine-compounds, at regional storehouse",
+        "reference product": "Triazine-compounds, at regional storehouse",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "native_inventory_sha256": "a32c3125e1696ceef715c5847d07f6d85a693df3bde8a0c1674937c43a87a346",
+      "observation": "Current transistor correspondence is physically wrong. Native RER triazine compounds are a closer candidate. Source RER producer explicitly references 1 kg active ingredient; original native archive references 1 kg compounds, without an explicit active-ingredient qualifier. Major precursor quantities corroborate related chemistry but do not alone prove formulation equivalence.",
+      "next_action": "Confirm native active-ingredient basis before approving; choose the European chemical rather than the Swiss electricity variant. Avoid adding source freight over complete regional-stock delivery.",
+      "approval_added": false
+    },
+    {
+      "rule_id": "bp-f241056fab62d2f5",
+      "source": {
+        "name": "market for dithiocarbamate-compound",
+        "reference product": "dithiocarbamate-compound",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "source_inventory_sha256": "554ef0fe6f192fdf573c0a39fd2b6dde4a9701ae851a3f49aceaeaa812784717",
+      "source_production_amount": 1,
+      "candidate_native": {
+        "name": "Dithiocarbamate-compounds, at regional storehouse",
+        "reference product": "Dithiocarbamate-compounds, at regional storehouse",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "native_inventory_sha256": "aa504d1ac45841d18799b6a37eed382800a4ccca226e564314a1e21c22ce3d59",
+      "observation": "Source RER producer explicitly models 1 kg active ingredient, using mancozeb as class representative. Native RER supply is a closer geography than the existing CH match and shares principal precursor coefficients. Original native archive references 1 kg compounds without an explicit active-ingredient qualifier.",
+      "next_action": "Confirm representative compound/formulation basis; use complete regional supply once or reconstruct source delivery around a verified factory-gate supplier. Do not silently add source freight twice.",
+      "approval_added": false
+    },
+    {
+      "rule_id": "bp-aa26b987c1edf1e9",
+      "source": {
+        "name": "market for adipic acid",
+        "reference product": "adipic acid",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "source_inventory_sha256": "fb1e916de41c19b8a04db317977679e496bbfc9d4c3e58609f729a4aff6d0108",
+      "source_production_amount": 1,
+      "candidate_native": {
+        "name": "Adipic acid, at plant",
+        "reference product": "Adipic acid, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "native_inventory_sha256": "16639c6d50657c5e660490e582acd249c50b4da78fdb7ea996b63f754db29b0e",
+      "observation": "Both source producer and native documentation explicitly include refining to 99%. This resolves the apparent unilateral native purity difference: no 1/0.99 factor is justified. Source describes 95% N2O abatement versus native 80%, and allocated by-products differ.",
+      "next_action": "Retain market producer shares and freight around a documented native production proxy, factor +1 on nominal product basis, warning about N2O performance, allocation and inventory differences. Do not rescale to purity based on the shared 99% phrase.",
+      "approval_added": false
+    }
+  ],
+  "limitations": [
+    "No new mapping or approval is added by this preflight. Strict pulp probe remains at 63 unresolved inputs.",
+    "Complete source inventories remain private; only identities, hashes and bounded interpretation are published.",
+    "Other source versions are not qualified by this inspection."
+  ]
+}
