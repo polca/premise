@@ -1548,3 +1548,23 @@ the built wheel contains the exact reviewed resources. Actual native signed
 LCIs are finite. A real diagnostic passes heat, steel and wastewater and now
 stops at European tap water; the unrelated-alcohol MDEA correspondence is also
 still unapproved. CDR stays gated, with no sector update/export qualification.
+
+
+## Installed-package replay and coordinated publication
+
+The installed GitHub package passes the 16 focused Premise checks with every
+current approval fingerprint validated. Brightpath's 26 mapping cases pass.
+The resource group passed 105 checks and exposed one stale expected target count;
+updating that count for the reviewed 50 kW destination makes the remaining case
+pass. The final package revision differs from the tested runtime revision only
+in that test assertion/comment; installed mapping/resources match exactly.
+
+The later committed-notebook repeat completed its normal three-sector update.
+Its export encountered a confirmed SQLite busy wait alongside another active
+Jupyter session. Only the owned duplicate run was stopped, and its zero-row
+registration removed; no new export is claimed. The earlier complete nine-cell
+run, 39 markets and finite EUR/NEU inventory checks remain the handoff evidence.
+The detailed [installed receipt](uvek-installed-batch-verification-2026-11-13.json)
+keeps that interruption separate from passing tests and records 175 MB of completed
+temporary wheel/resource copies reclaimed. Source projects and unrelated edits
+are preserved. The full goal remains unfinished, with seven qualified sectors.

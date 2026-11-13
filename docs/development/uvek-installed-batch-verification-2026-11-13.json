@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-13",
+  "premise_runtime_revision_tested": "49ce5b97",
+  "installed_brightpath_revision": "1dd68cef3696320f3a4e2070482f6eab654f7989",
+  "installed_runtime_tests_revision": "d266862cef44f291606f468a343a762ce64a731c",
+  "difference_between_brightpath_revisions": [
+    "tests/test_uvek_resource_storage.py"
+  ],
+  "installed_package_reviews_resource_and_manifest_match_local_commit": true,
+  "installed_package_premise_checks_passed": 16,
+  "brightpath_signed_scoped_mapping_checks_passed": 26,
+  "resource_checks": {
+    "initial_passed": 105,
+    "initial_failed": 1,
+    "reason": "One stale target-count assertion expected 4020 rather than 4021 after adding the reviewed 50 kW heat destination.",
+    "fix": "Update only the expected count and explanatory comment; runtime and mapping resources unchanged.",
+    "failed_case_rerun_passed": 1
+  },
+  "earlier_complete_notebook": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
+  "latest_installed_repeat": {
+    "three_sector_update_completed_without_error": true,
+    "export_status": "interrupted_diagnostic_not_counted_as_success",
+    "reason": "Confirmed SQLite busy-handler wait with another active Jupyter session. Only the owned duplicate kernel was stopped; no restart or bypass of validation.",
+    "cleanup": {
+      "owned_interrupted_export": "BAFU:2026-remind-SSP2-NPi-2050-review-20261113-093132",
+      "activity_rows_before_cleanup": 0,
+      "exchange_rows_and_references_before_cleanup": 0,
+      "removed_only_empty_registration": true,
+      "other_database_metadata_exactly_preserved": true,
+      "cleanup_method": "Metadata-only removal after verifying zero database rows, avoiding SQL deletion while another session holds a read transaction.",
+      "reason": "Owned duplicate notebook export cancelled after a verified SQLite busy wait. Earlier complete notebook run remains the export evidence; repeat is not counted as passed."
+    }
+  },
+  "temporary_artifact_cleanup": {
+    "installed_revision_verified": "d266862cef44f291606f468a343a762ce64a731c",
+    "removed": [
+      {
+        "name": "brightpath-1.0.0a14-py3-none-any.whl",
+        "bytes": 43795505,
+        "sha256": "5af71cafb795c4c7799495a820215b656afd559452fa8092edab574646b2a28b"
+      },
+      {
+        "name": "solvent-before-installed-resource.json",
+        "bytes": 72947153,
+        "sha256": "9ddc104ac77d1d4a52b0aa4764ac082c43469eda0583234a9f57c52363bc808a"
+      },
+      {
+        "name": "cdr-equipment-prior-resource.private.json",
+        "bytes": 58764780,
+        "sha256": "3cce133abf0bd776222138ec6a7c682622503348658f9a8f1dedb682f2cb316f"
+      }
+    ],
+    "total_bytes": 175507438,
+    "preserved": "Native Brightway projects, exports, licensed evidence, notebook copies, verification receipts and user edits"
+  },
+  "runtime_python_modules_changed": [],
+  "carbon_removal_qualified": false,
+  "qualified_sector_count": 7,
+  "remaining_unreviewed_in_current_cdr_inventory": [
+    "European tap-water route",
+    "MDEA route; wrong alcohol correspondence remains refused"
+  ]
+}

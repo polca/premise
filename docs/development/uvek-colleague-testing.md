@@ -45,7 +45,7 @@ already belongs to an environment you need, register a different name and select
 it manually in JupyterLab. Registering a kernel does not move Brightway projects.
 
 Premise installs Brightpath directly from GitHub at
-`d266862cef44f291606f468a343a762ce64a731c`. Installing only the published
+`1dd68cef3696320f3a4e2070482f6eab654f7989`. Installing only the published
 Brightpath alpha14 package is insufficient. Internet access is needed for the
 installation, biosphere installation and first CLIC inventory download.
 
@@ -53,7 +53,7 @@ If you previously installed another GitHub revision, the unchanged alpha14
 version number can make pip keep it. To update that existing environment explicitly:
 
 ```bash
-python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@d266862cef44f291606f468a343a762ce64a731c"
+python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@1dd68cef3696320f3a4e2070482f6eab654f7989"
 ```
 
 Restart the notebook kernel after upgrading. A fresh environment uses the pinned
@@ -249,3 +249,23 @@ See the [two-page progress summary](uvek-progress-summary-2026-11-13.pdf) and
 [notebook verification](uvek-colleague-notebook-verification-2026-11-13.json).
 The seven-sector export remains separately qualified; this notebook rerun does
 not qualify carbon removal or any other unfinished sector.
+
+
+## Installed-package check after the latest mapping batch
+
+The final dependency pin includes the reviewed small-boiler heat, steel and
+wastewater cases plus the corrected resource-count test. All 16 installed-
+package Premise checks pass; the final Brightpath follow-up changes only a test,
+with identical package runtime and mapping resources. See the
+[installed batch verification](uvek-installed-batch-verification-2026-11-13.json).
+
+The later notebook repeat completed the ordinary three-sector update, but its
+export waited on a SQLite lock with another active Jupyter session. Only the
+owned duplicate run was stopped. Its empty export registration was removed
+after confirming zero activity/exchange rows; other database metadata were
+preserved. That repeat is not reported as a successful new export. The earlier
+nine-cell run above remains the complete notebook/export evidence.
+
+For a reliable export, finish other database writes and release open transactions
+in the same Brightway project first. The example code and user workflow are
+unchanged. Local notebook edits and unrelated worktree changes were not staged.
