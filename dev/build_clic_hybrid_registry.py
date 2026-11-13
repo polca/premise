@@ -126,8 +126,13 @@ def build(archive, registry):
                     node["inputs"].append({"clic_slug": match})
     role_nodes = {}
     mapping_dir = Path(__file__).resolve().parents[1] / "premise/iam_variables_mapping"
-    for filename in dict.fromkeys(SECTOR_FILES.values()):
-        definitions = yaml.safe_load((mapping_dir / filename).read_text())
+    mapping_files = [
+        mapping_dir / name for name in dict.fromkeys(SECTOR_FILES.values())
+    ]
+    mapping_files.append(mapping_dir.parent / "data/mining/tailings_activities.yaml")
+    for mapping_path in mapping_files:
+        filename = mapping_path.name
+        definitions = yaml.safe_load(mapping_path.read_text())
         role_nodes[filename] = {
             role: [
                 node["id"]

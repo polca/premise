@@ -2929,6 +2929,7 @@ class NewDatabase:
                 "steel",
                 "fuels",
                 "emissions",
+                "mining",
             ):
                 self.sector_update_methods[sector]["args"] += (
                     self.source_family,

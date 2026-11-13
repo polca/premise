@@ -1,0 +1,362 @@
+{
+  "date": "2026-11-13",
+  "source_project": "bafu-2026-ecospold2-biosphere-310",
+  "source_database": "BAFU:2026-reimported",
+  "biosphere": "ecoinvent-3.10-biosphere",
+  "scenario": "Encrypted REMIND SSP2-NPi 2050",
+  "source_database_metadata_unchanged": true,
+  "runtime_family": "uvek",
+  "registered_role_bindings": "three exact legacy CLIC roots; one exact native impoundment service",
+  "native_source_codes_retained": 11947,
+  "activities": 12024,
+  "inventory_preparation": "passed",
+  "shared_mining_update": "passed",
+  "exhaustive_graph_validation": "passed",
+  "roles": {
+    "sulfidic tailings - backfill": {
+      "before": 1,
+      "after": 13,
+      "reference_amount": -1
+    },
+    "sulfidic tailings - impoundment": {
+      "before": 1,
+      "after": 13,
+      "reference_amount": 1
+    },
+    "sulfidic tailings - flocculation": {
+      "before": 1,
+      "after": 13,
+      "reference_amount": -1
+    },
+    "sulfidic tailings - roasting": {
+      "before": 1,
+      "after": 13,
+      "reference_amount": -1
+    }
+  },
+  "regional_treatment_clones": [
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "CAZ",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "CHA",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "EUR",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "IND",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "JPN",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "LAM",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "NEU",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "OAS",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "REF",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "SSA",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "USA",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, generic, backfilling",
+      "role": "sulfidic tailings - backfill",
+      "location": "World",
+      "reference_amount": -1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "CAZ",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "CHA",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "EUR",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "IND",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "JPN",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "LAM",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "NEU",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "OAS",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "REF",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "SSA",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "USA",
+      "reference_amount": 1
+    },
+    {
+      "name": "Disposal, sulfidic tailings, off-site",
+      "role": "sulfidic tailings - impoundment",
+      "location": "World",
+      "reference_amount": 1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "CAZ",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "CHA",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "EUR",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "IND",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "JPN",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "LAM",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "NEU",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "OAS",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "REF",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "SSA",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "USA",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, flocculation-flotation process",
+      "role": "sulfidic tailings - flocculation",
+      "location": "World",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "CAZ",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "CHA",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "EUR",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "IND",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "JPN",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "LAM",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "NEU",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "OAS",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "REF",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "SSA",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "USA",
+      "reference_amount": -1
+    },
+    {
+      "name": "treatment of sulfidic tailings, roasting and leaching",
+      "role": "sulfidic tailings - roasting",
+      "location": "World",
+      "reference_amount": -1
+    }
+  ],
+  "native_consumer_count": 57,
+  "existing_native_consumer_quantity_uncertainty_formula_unchanged": true,
+  "tailings_market_count": 0,
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "validation_disabled": false,
+  "export_performed": false,
+  "elapsed_seconds": 42.66192129103001,
+  "remaining": "Native regional treatment markets/fate mixes and consumer routing to those mixes are unfinished. Passing graph validation and cloning treatment services do not qualify the complete mining update.",
+  "scope_evidence": {
+    "shared_treatment_algorithm_ast_unchanged": true,
+    "algorithm_ast_sha256": "613b154261ba44756a5cad23bf5564acc6ce4dc5f7486b529d0ef9b8586dd00d",
+    "existing_ecoinvent_filters_unchanged": true,
+    "all_original_share_series_unchanged": true,
+    "requirements_change_only_adds_mining_role_bindings": true,
+    "mining_bindings": {
+      "sulfidic tailings - backfill": [
+        3090
+      ],
+      "sulfidic tailings - impoundment": [],
+      "sulfidic tailings - flocculation": [
+        3091
+      ],
+      "sulfidic tailings - roasting": [
+        3094
+      ]
+    }
+  },
+  "offline_tests": {
+    "focused_mapping_and_clic_requirements": 17,
+    "mapping_and_validation_regressions": 115,
+    "database_and_handoff_regressions": 48,
+    "new_test_file_ruff": "passed",
+    "black_changed_python_files": "passed",
+    "preexisting_ruff_findings_in_changed_existing_files": "unchanged from HEAD"
+  }
+}

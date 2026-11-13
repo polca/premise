@@ -1,4 +1,10 @@
 sulfidic tailings - backfill:
+  # This scientific role is supplied by the reviewed, converted CLIC record.
+  # Its negative waste reference is retained; native names cannot claim it.
+  uvek_aliases:
+    clic_slugs:
+      - treatment-of-sulfidic-tailings-generic-backfilling
+    clic_role_key: 'tailings_activities.yaml:sulfidic tailings - backfill'
   ecoinvent_aliases:
     fltr:
       name: treatment of sulfidic tailings, generic, backfilling
@@ -66,6 +72,15 @@ sulfidic tailings - backfill:
         max: 0.15
         mean: 0.10
 sulfidic tailings - impoundment:
+  uvek_aliases:
+    exact: true
+    fltr:
+      name: Disposal, sulfidic tailings, off-site
+      reference product: Disposal, sulfidic tailings, off-site
+      unit: kilogram
+    # The complete native service models a mechanically stable impoundment,
+    # with short-/long-term leachate and land use. Its reference is +1 kg.
+    # It is a generic screening model, not a verified ore/climate-specific fate.
   ecoinvent_aliases:
     fltr:
       name:
@@ -141,6 +156,10 @@ sulfidic tailings - impoundment:
         max: 0.80
         mean: 0.80
 sulfidic tailings - flocculation:
+  uvek_aliases:
+    clic_slugs:
+      - treatment-of-sulfidic-tailings-flocculation-flotation-process
+    clic_role_key: 'tailings_activities.yaml:sulfidic tailings - flocculation'
   ecoinvent_aliases:
     fltr:
       name:
@@ -212,6 +231,10 @@ sulfidic tailings - flocculation:
         max: 0.12
         mean: 0.08
 sulfidic tailings - roasting:
+  uvek_aliases:
+    clic_slugs:
+      - treatment-of-sulfidic-tailings-roasting-and-leaching
+    clic_role_key: 'tailings_activities.yaml:sulfidic tailings - roasting'
   ecoinvent_aliases:
     fltr:
       name:

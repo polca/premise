@@ -30,7 +30,9 @@ TAILINGS_REGIONS_FILE = DATA_DIR / "mining" / "tailings_topology.yaml"
 TAILINGS_WASTE_SHARES = DATA_DIR / "mining" / "tailings_activities.yaml"
 
 
-def _update_mining(scenario, version, system_model):
+def _update_mining(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
     mining = Mining(
         database=get_scenario_inventory(scenario),
         model=scenario["model"],
@@ -41,6 +43,8 @@ def _update_mining(scenario, version, system_model):
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     mining.update_tailings_treatment()
@@ -156,6 +160,8 @@ class Mining(BaseTransformation):
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ):
         super().__init__(
             database,
@@ -167,11 +173,15 @@ class Mining(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.year = int(year)
         self.tailings_shares = load_tailings_config(model)
         self.geomap = Geomap(model)
-        inv = InventorySet(database=database, version=version, model=model)
+        inv = InventorySet(
+            database=database, version=version, model=model, family=self.family
+        )
         self.mining_map = inv.generate_mining_waste_map()
 
     def update_tailings_treatment(self):
