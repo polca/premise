@@ -1,0 +1,347 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "252c69c80186d481d640720e45357886560a7db8",
+  "scope_registration": {
+    "prior_scopes": 1345,
+    "new_scopes": 1352,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-8a6394dd395bb22d",
+      "bp-8b6f1fcdfadf34af",
+      "bp-64033d1871a0085f",
+      "bp-5354bdd7138f4c36",
+      "bp-8a359dcca23fcd31",
+      "bp-bfe29265a6f55cc7",
+      "bp-2ae2f2f9bbd2a627"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_sign_uncertainty_exact_scope_and_owned_bulk_metal": 99,
+    "premise_fresh_cache_exact_scope_and_owned_bulk_metal": 42,
+    "installed_package_premise_checks": 42,
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 7,
+    "native_suppliers": 4,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 14,
+    "independent_native_reference_LCI_solves": 7,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-8a6394dd395bb22d",
+        "source": {
+          "location": "RER",
+          "name": "metal working, average for aluminium product manufacturing",
+          "reference product": "metal working, average for aluminium product manufacturing",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 1.3552527156068805e-20,
+        "full_graph_residual": {
+          "residual_before": 1.7392408620482245e-08,
+          "residual_after": 3.3413074147837578e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.7392408620482245e-08,
+          "residual_after": 3.3413074147837578e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-8b6f1fcdfadf34af",
+        "source": {
+          "location": "RER",
+          "name": "metal working, average for steel product manufacturing",
+          "reference product": "metal working, average for steel product manufacturing",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "refined_max_abs_inventory_difference": 1.7763568394002505e-15,
+        "full_graph_residual": {
+          "residual_before": 2.2543715244105507e-08,
+          "residual_after": 1.7553817982008183e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.2543715244105507e-08,
+          "residual_after": 1.7553817982008183e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-64033d1871a0085f",
+        "source": {
+          "location": "RER",
+          "name": "metal working, average for copper product manufacturing",
+          "reference product": "metal working, average for copper product manufacturing",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "refined_max_abs_inventory_difference": 2.5849394142282115e-26,
+        "full_graph_residual": {
+          "residual_before": 2.185600478984909e-08,
+          "residual_after": 2.0104098035335205e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.185600478984909e-08,
+          "residual_after": 2.0104098035335205e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-5354bdd7138f4c36",
+        "source": {
+          "location": "RoW",
+          "name": "metal working, average for aluminium product manufacturing",
+          "reference product": "metal working, average for aluminium product manufacturing",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 1.3552527156068805e-20,
+        "full_graph_residual": {
+          "residual_before": 1.7392408620482245e-08,
+          "residual_after": 3.3413074147837578e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.7392408620482245e-08,
+          "residual_after": 3.3413074147837578e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-8a359dcca23fcd31",
+        "source": {
+          "location": "RoW",
+          "name": "metal working, average for copper product manufacturing",
+          "reference product": "metal working, average for copper product manufacturing",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "refined_max_abs_inventory_difference": 1.3568048221745057e-27,
+        "full_graph_residual": {
+          "residual_before": 2.185600478984909e-08,
+          "residual_after": 2.0104098035335205e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.185600478984909e-08,
+          "residual_after": 2.0104098035335205e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-bfe29265a6f55cc7",
+        "source": {
+          "location": "RoW",
+          "name": "metal working, average for metal product manufacturing",
+          "reference product": "metal working, average for metal product manufacturing",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "refined_max_abs_inventory_difference": 2.7755575615628914e-17,
+        "full_graph_residual": {
+          "residual_before": 2.0009489672599155e-08,
+          "residual_after": 2.3982271064782915e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.0009489672599155e-08,
+          "residual_after": 2.3982271064782915e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-2ae2f2f9bbd2a627",
+        "source": {
+          "location": "RER",
+          "name": "metal working, average for metal product manufacturing",
+          "reference product": "metal working, average for metal product manufacturing",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "refined_max_abs_inventory_difference": 2.7755575615628914e-17,
+        "full_graph_residual": {
+          "residual_before": 2.0009489672599155e-08,
+          "residual_after": 2.3982271064782915e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.0009489672599155e-08,
+          "residual_after": 2.3982271064782915e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the seven processing-service interfaces and separate caller emissions and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "native_release_interface_checks": [
+    {
+      "identity": {
+        "location": "RER",
+        "name": "Aluminium product manufacturing, average metal working",
+        "reference product": "Aluminium product manufacturing, average metal working",
+        "unit": "kilogram"
+      },
+      "native2025_and2026_technosphere_interfaces_match": true,
+      "nonproduction_counts": [
+        5,
+        5
+      ]
+    },
+    {
+      "identity": {
+        "location": "RER",
+        "name": "Steel product manufacturing, average metal working",
+        "reference product": "Steel product manufacturing, average metal working",
+        "unit": "kilogram"
+      },
+      "native2025_and2026_technosphere_interfaces_match": true,
+      "nonproduction_counts": [
+        5,
+        5
+      ]
+    },
+    {
+      "identity": {
+        "location": "RER",
+        "name": "Copper product manufacturing, average metal working",
+        "reference product": "Copper product manufacturing, average metal working",
+        "unit": "kilogram"
+      },
+      "native2025_and2026_technosphere_interfaces_match": true,
+      "nonproduction_counts": [
+        5,
+        5
+      ]
+    },
+    {
+      "identity": {
+        "location": "RER",
+        "name": "Metal product manufacturing, average metal working",
+        "reference product": "Metal product manufacturing, average metal working",
+        "unit": "kilogram"
+      },
+      "native2025_and2026_technosphere_interfaces_match": true,
+      "nonproduction_counts": [
+        8,
+        8
+      ]
+    }
+  ],
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_metalworking_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 147,
+    "current": 140,
+    "removed_rules": [
+      "bp-2ae2f2f9bbd2a627",
+      "bp-5354bdd7138f4c36",
+      "bp-64033d1871a0085f",
+      "bp-8a359dcca23fcd31",
+      "bp-8a6394dd395bb22d",
+      "bp-8b6f1fcdfadf34af",
+      "bp-bfe29265a6f55cc7"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-34f7b4af26714213",
+    "next_source": {
+      "location": "RER",
+      "name": "injection moulding",
+      "reference product": "injection moulding",
+      "unit": "kilogram"
+    },
+    "failed_stage": "inventory preparation",
+    "battery_qualified": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "migration_resource_changes": [],
+  "existing_rules_and_default_targets_unchanged": true,
+  "new_source_omissions": [],
+  "new_helpers": 0,
+  "qualification_limit": "Seven exact source3.9 processing-service interfaces and caller ownership verified; native/source environmental or stochastic equivalence and battery completion not claimed."
+}

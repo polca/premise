@@ -267502,6 +267502,701 @@
           "fingerprint": "0c8043e8ef15366d3deb224b6c1d2e33304bfc9f5e4ce0b68636c84e491bc21c"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-8a6394dd395bb22d",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_metalworking_39_review.json",
+      "review_sha256": "64796551d79c90158a024633c372e527823866e954a9299d66c36dc700f36590",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-service/material-form/geographic screening proxies, with explicit warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "metal working, average for aluminium product manufacturing",
+            "reference product": "metal working, average for aluminium product manufacturing",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "865de92328c4f9ee35e259b00fb02239b9469fd27f26d280baddde9c9171dbdd",
+          "inventory_sha256": "3c2f83a8bf835473ebfe850faaff615c8056bf0a7d0a68d40c85f5164da797f1",
+          "activity_comment_sha256": "802f8b8dbc578ec1d1493f3ea7819b326bc648501d78a39b68608b4b633c98af",
+          "product_information_sha256": "961c1cde0a5c0df5ee62118c7daf55208235d857348a6c48998c7c0d6d8d6679"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium product manufacturing, average metal working",
+              "reference product": "Aluminium product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "cf28cfb2d1166650c5565a4a0e01f49289098bacaa20d6fbf21d02cf157cc87a",
+            "inventory_sha256": "961fd77211b7fddcd3a03f607bae6f0e323099e2a5c2c34d47d28d415cc4a903",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium product manufacturing, average metal working",
+              "reference product": "Aluminium product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "10eed59296b10313051f3d7738ab367d0c79078ad3b6e958d2a6d52e3d733088",
+            "inventory_sha256": "283f11393e6647ab71e7421bfc3a3d6858a3ed54a502ead1e926d17eefc8e0c1",
+            "activity_comment_sha256": "5bb89eb07f142b53f1e5f7da9403b1f0445bea7b8c74b5c1ecaa8655e3408b5f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "main_metal_and_degreasing_excluded": true,
+          "source_loss_metal_kg_per_service_kg": {
+            "aluminium": 0.22699999999999998
+          },
+          "native_loss_metal_kg_per_service_kg": {
+            "aluminium": 0.227
+          },
+          "native_loss_metal_total_kg_per_service_kg": 0.227,
+          "metal_class_quantities_match": true,
+          "machine_kg_per_service_kg": 3.95e-05,
+          "factory_units_per_service_kg": 4.58e-10,
+          "factory_and_machine_operations_each_service_kg": 1
+        }
+      },
+      "limitations": [
+        "New approval is limited to the inspected ecoinvent 3.9 cut-off metalworking service identity. Positive source and native references are one kg of processing service per kg of final manufactured product, factor +1. This is processing, not supply of one kg bulk metal. Preserve signed caller service kg, supported uncertainty/formulas, foreground ownership and separately listed materials, emissions and degreasing. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete same-metal native average metalworking process once. Both source and native include nominal machine/factory operation and processing-loss metal, while excluding the main semi-finished metal input and degreasing. Keep caller-supplied bulk metal separate. Do not remove the internal loss allowance, add another full kg of metal, multiply service demand by gross-to-net yield, normalize loss-metal fractions, infer a scrap credit or automatically add degreasing. Nominal metal-class loss amounts, machine demand and factory construction quantities match; this does not establish full upstream LCI or stochastic equivalence.",
+        "The native complete service replaces source internal manufacturing, utilities/heat, infrastructure, metal-production supply and delivery, waste handling, allocation, vintage and internal uncertainty. Native factory/machine operations remain inside that service; do not duplicate them externally. Native material-grade/form, production-market boundary and energy geography can differ even where named interface quantities match. The original source loss-material grades and distribution portfolios are not reconstructed. These are explicit screening proxies; native/source LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "Existing direct replacement rules, default targets and all earlier approval fingerprints remain unchanged. No new helper, recipe, omitted exchange, runtime Python module, alternative UVEK sector engine or validation bypass. New exact-profile permissions do not approve processing of another metal or substitute virgin bulk-metal production.",
+        "The source aluminium processing-loss allowance separates cast and wrought alloy supply; native complete processing instead uses its aluminium production mix at the same combined loss-metal kg. Preserve the combined service basis without claiming the same cast/wrought alloy split, scrap content, forming history or allocation. No density, purity, alloy-content or yield correction is invented.",
+        "The source and target carry European regional labels, but matching labels do not prove the same company sample, power/heat, production portfolio, product form, delivery or vintage. Preserve the native European complete service with those limitations."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d030401ae8b4aaa3f3cd28dd04bf86e743c47b3c81822613656de45b8de9669c"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-8b6f1fcdfadf34af",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_metalworking_39_review.json",
+      "review_sha256": "64796551d79c90158a024633c372e527823866e954a9299d66c36dc700f36590",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-service/material-form/geographic screening proxies, with explicit warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "metal working, average for steel product manufacturing",
+            "reference product": "metal working, average for steel product manufacturing",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "cc38f9451bdc392aea506b02a8cce0b500b7b5c0ca6083b7880c54bc8d8473dc",
+          "inventory_sha256": "0c29d6a84f8fdd6be3fe33b3077001785b2aeaa3143ca363e166059626740490",
+          "activity_comment_sha256": "45ab2fa5829fedd6613f945d21521f42070ff376fa1d839881795d78ee77cb59",
+          "product_information_sha256": "5f4947f69e784559b924a748409e33fe73819574cf02ae84268cb2dce50e9c84"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Steel product manufacturing, average metal working",
+              "reference product": "Steel product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "f5aa636d99b661c6954597817f129259df9ddf6aa5eaf16704c025987c508ee1",
+            "inventory_sha256": "e05572e771a650338290dbe75ae4a5bcd35c8907436dec217f293b6de53942db",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Steel product manufacturing, average metal working",
+              "reference product": "Steel product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "13545d2e30426ad16582faba87ee1cb3681ebd2d6af0892530cccaa0579fd19e",
+            "inventory_sha256": "a4405c942972d457f00abac84f48dca8340e81fe5145ebbdcf90c677f68b5d24",
+            "activity_comment_sha256": "a1bd231b1317d12a53f378f2d8f351c2637e2f3749debbddab325ea1f08828de",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "main_metal_and_degreasing_excluded": true,
+          "source_loss_metal_kg_per_service_kg": {
+            "low_alloy_steel": 0.227
+          },
+          "native_loss_metal_kg_per_service_kg": {
+            "low_alloy_steel": 0.227
+          },
+          "native_loss_metal_total_kg_per_service_kg": 0.227,
+          "metal_class_quantities_match": true,
+          "machine_kg_per_service_kg": 3.95e-05,
+          "factory_units_per_service_kg": 4.58e-10,
+          "factory_and_machine_operations_each_service_kg": 1
+        }
+      },
+      "limitations": [
+        "New approval is limited to the inspected ecoinvent 3.9 cut-off metalworking service identity. Positive source and native references are one kg of processing service per kg of final manufactured product, factor +1. This is processing, not supply of one kg bulk metal. Preserve signed caller service kg, supported uncertainty/formulas, foreground ownership and separately listed materials, emissions and degreasing. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete same-metal native average metalworking process once. Both source and native include nominal machine/factory operation and processing-loss metal, while excluding the main semi-finished metal input and degreasing. Keep caller-supplied bulk metal separate. Do not remove the internal loss allowance, add another full kg of metal, multiply service demand by gross-to-net yield, normalize loss-metal fractions, infer a scrap credit or automatically add degreasing. Nominal metal-class loss amounts, machine demand and factory construction quantities match; this does not establish full upstream LCI or stochastic equivalence.",
+        "The native complete service replaces source internal manufacturing, utilities/heat, infrastructure, metal-production supply and delivery, waste handling, allocation, vintage and internal uncertainty. Native factory/machine operations remain inside that service; do not duplicate them externally. Native material-grade/form, production-market boundary and energy geography can differ even where named interface quantities match. The original source loss-material grades and distribution portfolios are not reconstructed. These are explicit screening proxies; native/source LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "Existing direct replacement rules, default targets and all earlier approval fingerprints remain unchanged. No new helper, recipe, omitted exchange, runtime Python module, alternative UVEK sector engine or validation bypass. New exact-profile permissions do not approve processing of another metal or substitute virgin bulk-metal production.",
+        "Source loss-metal supply includes hot-rolled low-alloy and/or chromium steel; the native composite uses its corresponding at-plant steel supplies. Product form, rolling history, supplier portfolio, allocation and upstream energy differ. These native loss inputs do not replace the caller-owned main steel stock or authorize unrelated steel products.",
+        "The source and target carry European regional labels, but matching labels do not prove the same company sample, power/heat, production portfolio, product form, delivery or vintage. Preserve the native European complete service with those limitations."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9a2ce378de3e5ffbe3e54742a798568f42d9480133cc42132211aa6b133c9ad5"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-64033d1871a0085f",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_metalworking_39_review.json",
+      "review_sha256": "64796551d79c90158a024633c372e527823866e954a9299d66c36dc700f36590",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-service/material-form/geographic screening proxies, with explicit warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "metal working, average for copper product manufacturing",
+            "reference product": "metal working, average for copper product manufacturing",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "6f30a5560f3f513bef9a5179f9212629db52ac5c1ce678f6e4cb9c5a6b912e78",
+          "inventory_sha256": "3e30adef701b7d841dcaaf2539e259553e4cecc7336aba9ad08e9f87303b6260",
+          "activity_comment_sha256": "475b4adae5a46ced31b44bc7abc748bc2bceb8eabce2c95bc3791f3d3002ca36",
+          "product_information_sha256": "6d4fe2d5d1734c7a139ac8aa4e9e403a8217f6da5624e01adb9a464a02849c43"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Copper product manufacturing, average metal working",
+              "reference product": "Copper product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "c5cdd1e2e8b6f7270ac1bb7d73357f1cda1ddfcb347ca6a30912d1efe26c6acc",
+            "inventory_sha256": "f4d9ea187d286bb589b1084681dbc667f68660b312307a480999262ca3045d9f",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Copper product manufacturing, average metal working",
+              "reference product": "Copper product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "9685f9da06db1e1189e055cc4e86805b934a9331097ea4a00a1054fe5abd5556",
+            "inventory_sha256": "f3358ebe9bd9cdb91cd2b5e0654742d0da3aa8095ef3bbf361cd85f5e18de3c6",
+            "activity_comment_sha256": "9435bc37c02cf6f49d1a9faca1f681891b9291e5fd4a3379e902c5b2fa0c54d1",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "main_metal_and_degreasing_excluded": true,
+          "source_loss_metal_kg_per_service_kg": {
+            "copper": 0.227
+          },
+          "native_loss_metal_kg_per_service_kg": {
+            "copper": 0.227
+          },
+          "native_loss_metal_total_kg_per_service_kg": 0.227,
+          "metal_class_quantities_match": true,
+          "machine_kg_per_service_kg": 3.95e-05,
+          "factory_units_per_service_kg": 4.58e-10,
+          "factory_and_machine_operations_each_service_kg": 1
+        }
+      },
+      "limitations": [
+        "New approval is limited to the inspected ecoinvent 3.9 cut-off metalworking service identity. Positive source and native references are one kg of processing service per kg of final manufactured product, factor +1. This is processing, not supply of one kg bulk metal. Preserve signed caller service kg, supported uncertainty/formulas, foreground ownership and separately listed materials, emissions and degreasing. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete same-metal native average metalworking process once. Both source and native include nominal machine/factory operation and processing-loss metal, while excluding the main semi-finished metal input and degreasing. Keep caller-supplied bulk metal separate. Do not remove the internal loss allowance, add another full kg of metal, multiply service demand by gross-to-net yield, normalize loss-metal fractions, infer a scrap credit or automatically add degreasing. Nominal metal-class loss amounts, machine demand and factory construction quantities match; this does not establish full upstream LCI or stochastic equivalence.",
+        "The native complete service replaces source internal manufacturing, utilities/heat, infrastructure, metal-production supply and delivery, waste handling, allocation, vintage and internal uncertainty. Native factory/machine operations remain inside that service; do not duplicate them externally. Native material-grade/form, production-market boundary and energy geography can differ even where named interface quantities match. The original source loss-material grades and distribution portfolios are not reconstructed. These are explicit screening proxies; native/source LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "Existing direct replacement rules, default targets and all earlier approval fingerprints remain unchanged. No new helper, recipe, omitted exchange, runtime Python module, alternative UVEK sector engine or validation bypass. New exact-profile permissions do not approve processing of another metal or substitute virgin bulk-metal production.",
+        "Source copper loss supply is cathode-market material; native complete service draws copper at regional storage for the same nominal loss kg. Purity/production route, delivery, allocation and geographic supply differences remain screening limitations; no additional copper refining, full bulk-copper purchase or recovery credit is inserted.",
+        "The source and target carry European regional labels, but matching labels do not prove the same company sample, power/heat, production portfolio, product form, delivery or vintage. Preserve the native European complete service with those limitations."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4c55ebd7df560924ad6beb799f801b92e5a8319d93892b76efe9e9bf74e3773f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-5354bdd7138f4c36",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_metalworking_39_review.json",
+      "review_sha256": "64796551d79c90158a024633c372e527823866e954a9299d66c36dc700f36590",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-service/material-form/geographic screening proxies, with explicit warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "metal working, average for aluminium product manufacturing",
+            "reference product": "metal working, average for aluminium product manufacturing",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "deff5f2cec186395ba046ab917be206ff3f7ec8ff0b8da62a54e3d5301713fb4",
+          "inventory_sha256": "8abbd1ef244ef1bd439fd04ee70764e782c6456bbff4246451e04297cfb66783",
+          "activity_comment_sha256": "802f8b8dbc578ec1d1493f3ea7819b326bc648501d78a39b68608b4b633c98af",
+          "product_information_sha256": "961c1cde0a5c0df5ee62118c7daf55208235d857348a6c48998c7c0d6d8d6679"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium product manufacturing, average metal working",
+              "reference product": "Aluminium product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "cf28cfb2d1166650c5565a4a0e01f49289098bacaa20d6fbf21d02cf157cc87a",
+            "inventory_sha256": "961fd77211b7fddcd3a03f607bae6f0e323099e2a5c2c34d47d28d415cc4a903",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium product manufacturing, average metal working",
+              "reference product": "Aluminium product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "10eed59296b10313051f3d7738ab367d0c79078ad3b6e958d2a6d52e3d733088",
+            "inventory_sha256": "283f11393e6647ab71e7421bfc3a3d6858a3ed54a502ead1e926d17eefc8e0c1",
+            "activity_comment_sha256": "5bb89eb07f142b53f1e5f7da9403b1f0445bea7b8c74b5c1ecaa8655e3408b5f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "main_metal_and_degreasing_excluded": true,
+          "source_loss_metal_kg_per_service_kg": {
+            "aluminium": 0.22699999999999998
+          },
+          "native_loss_metal_kg_per_service_kg": {
+            "aluminium": 0.227
+          },
+          "native_loss_metal_total_kg_per_service_kg": 0.227,
+          "metal_class_quantities_match": true,
+          "machine_kg_per_service_kg": 3.95e-05,
+          "factory_units_per_service_kg": 4.58e-10,
+          "factory_and_machine_operations_each_service_kg": 1
+        }
+      },
+      "limitations": [
+        "New approval is limited to the inspected ecoinvent 3.9 cut-off metalworking service identity. Positive source and native references are one kg of processing service per kg of final manufactured product, factor +1. This is processing, not supply of one kg bulk metal. Preserve signed caller service kg, supported uncertainty/formulas, foreground ownership and separately listed materials, emissions and degreasing. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete same-metal native average metalworking process once. Both source and native include nominal machine/factory operation and processing-loss metal, while excluding the main semi-finished metal input and degreasing. Keep caller-supplied bulk metal separate. Do not remove the internal loss allowance, add another full kg of metal, multiply service demand by gross-to-net yield, normalize loss-metal fractions, infer a scrap credit or automatically add degreasing. Nominal metal-class loss amounts, machine demand and factory construction quantities match; this does not establish full upstream LCI or stochastic equivalence.",
+        "The native complete service replaces source internal manufacturing, utilities/heat, infrastructure, metal-production supply and delivery, waste handling, allocation, vintage and internal uncertainty. Native factory/machine operations remain inside that service; do not duplicate them externally. Native material-grade/form, production-market boundary and energy geography can differ even where named interface quantities match. The original source loss-material grades and distribution portfolios are not reconstructed. These are explicit screening proxies; native/source LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "Existing direct replacement rules, default targets and all earlier approval fingerprints remain unchanged. No new helper, recipe, omitted exchange, runtime Python module, alternative UVEK sector engine or validation bypass. New exact-profile permissions do not approve processing of another metal or substitute virgin bulk-metal production.",
+        "The source aluminium processing-loss allowance separates cast and wrought alloy supply; native complete processing instead uses its aluminium production mix at the same combined loss-metal kg. Preserve the combined service basis without claiming the same cast/wrought alloy split, scrap content, forming history or allocation. No density, purity, alloy-content or yield correction is invented.",
+        "The source Rest-of-World manufacturing/utility mix is represented by the native European average at unchanged signed service kg. Regional power/heat, factory technology, material origins, regulation, delivery and vintage are not equivalent; no false Rest-of-World label or region-specific accuracy is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5cc23b7bec23c2e508b6a0f7f80007a5bdf66275e26319d9c5ae5b3aee746df7"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-8a359dcca23fcd31",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_metalworking_39_review.json",
+      "review_sha256": "64796551d79c90158a024633c372e527823866e954a9299d66c36dc700f36590",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-service/material-form/geographic screening proxies, with explicit warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "metal working, average for copper product manufacturing",
+            "reference product": "metal working, average for copper product manufacturing",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "bbc09c60a1759fb499e0156a0fc30640dcb2cddbc765499aba823a4501c06410",
+          "inventory_sha256": "202ac84cde8ddf985884cd4f279ca2b56d9e10cdfb6447032721eb8308db7112",
+          "activity_comment_sha256": "475b4adae5a46ced31b44bc7abc748bc2bceb8eabce2c95bc3791f3d3002ca36",
+          "product_information_sha256": "6d4fe2d5d1734c7a139ac8aa4e9e403a8217f6da5624e01adb9a464a02849c43"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Copper product manufacturing, average metal working",
+              "reference product": "Copper product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "c5cdd1e2e8b6f7270ac1bb7d73357f1cda1ddfcb347ca6a30912d1efe26c6acc",
+            "inventory_sha256": "f4d9ea187d286bb589b1084681dbc667f68660b312307a480999262ca3045d9f",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Copper product manufacturing, average metal working",
+              "reference product": "Copper product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "9685f9da06db1e1189e055cc4e86805b934a9331097ea4a00a1054fe5abd5556",
+            "inventory_sha256": "f3358ebe9bd9cdb91cd2b5e0654742d0da3aa8095ef3bbf361cd85f5e18de3c6",
+            "activity_comment_sha256": "9435bc37c02cf6f49d1a9faca1f681891b9291e5fd4a3379e902c5b2fa0c54d1",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "main_metal_and_degreasing_excluded": true,
+          "source_loss_metal_kg_per_service_kg": {
+            "copper": 0.227
+          },
+          "native_loss_metal_kg_per_service_kg": {
+            "copper": 0.227
+          },
+          "native_loss_metal_total_kg_per_service_kg": 0.227,
+          "metal_class_quantities_match": true,
+          "machine_kg_per_service_kg": 3.95e-05,
+          "factory_units_per_service_kg": 4.58e-10,
+          "factory_and_machine_operations_each_service_kg": 1
+        }
+      },
+      "limitations": [
+        "New approval is limited to the inspected ecoinvent 3.9 cut-off metalworking service identity. Positive source and native references are one kg of processing service per kg of final manufactured product, factor +1. This is processing, not supply of one kg bulk metal. Preserve signed caller service kg, supported uncertainty/formulas, foreground ownership and separately listed materials, emissions and degreasing. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete same-metal native average metalworking process once. Both source and native include nominal machine/factory operation and processing-loss metal, while excluding the main semi-finished metal input and degreasing. Keep caller-supplied bulk metal separate. Do not remove the internal loss allowance, add another full kg of metal, multiply service demand by gross-to-net yield, normalize loss-metal fractions, infer a scrap credit or automatically add degreasing. Nominal metal-class loss amounts, machine demand and factory construction quantities match; this does not establish full upstream LCI or stochastic equivalence.",
+        "The native complete service replaces source internal manufacturing, utilities/heat, infrastructure, metal-production supply and delivery, waste handling, allocation, vintage and internal uncertainty. Native factory/machine operations remain inside that service; do not duplicate them externally. Native material-grade/form, production-market boundary and energy geography can differ even where named interface quantities match. The original source loss-material grades and distribution portfolios are not reconstructed. These are explicit screening proxies; native/source LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "Existing direct replacement rules, default targets and all earlier approval fingerprints remain unchanged. No new helper, recipe, omitted exchange, runtime Python module, alternative UVEK sector engine or validation bypass. New exact-profile permissions do not approve processing of another metal or substitute virgin bulk-metal production.",
+        "Source copper loss supply is cathode-market material; native complete service draws copper at regional storage for the same nominal loss kg. Purity/production route, delivery, allocation and geographic supply differences remain screening limitations; no additional copper refining, full bulk-copper purchase or recovery credit is inserted.",
+        "The source Rest-of-World manufacturing/utility mix is represented by the native European average at unchanged signed service kg. Regional power/heat, factory technology, material origins, regulation, delivery and vintage are not equivalent; no false Rest-of-World label or region-specific accuracy is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f906b2d9119331585c1dadc0424a809e503ea6f86ab10cfe64ac5daf1e0f3295"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-bfe29265a6f55cc7",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_metalworking_39_review.json",
+      "review_sha256": "64796551d79c90158a024633c372e527823866e954a9299d66c36dc700f36590",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-service/material-form/geographic screening proxies, with explicit warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "metal working, average for metal product manufacturing",
+            "reference product": "metal working, average for metal product manufacturing",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 9,
+          "metadata_sha256": "7bfe1743fed9eb6b65b22f4a3e645ce4afdc554a610047e5ad1f856925820b97",
+          "inventory_sha256": "39ea48aa7e9020cd0d30723357eca520b2b442c9d46dc46ba9b09534a10d5510",
+          "activity_comment_sha256": "137c514d0f3a23e399d2d6981d9e6c0175396477548e2d656878e1a06876eb5a",
+          "product_information_sha256": "3aa3b833d226021cacca8d2bc936adad70e6ac33d05d6da1ad03a6c0b5da4ccf"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Metal product manufacturing, average metal working",
+              "reference product": "Metal product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 8,
+            "metadata_sha256": "d023d2bfbe4afe8232cd264c06e88c030098b6522953756f606ba64ea6d54d3b",
+            "inventory_sha256": "0eebcdb7206ab61d77fe8b59bc498ba8e147daa238e2eadeeef4048026b566c6",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Metal product manufacturing, average metal working",
+              "reference product": "Metal product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 8,
+            "metadata_sha256": "81ffd0f2f5ce93e40dba477731aff3f1dcca2f91cf8c782df04150d40119182c",
+            "inventory_sha256": "a36d5137c6be8f1092358ee5f29e08665417d1f7ae79cc58f51c7a1c40079d47",
+            "activity_comment_sha256": "28a0152bb42b7bc256dafbd7e9376cf37d1a12d73e17ebf32993cc962ba5adc0",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "main_metal_and_degreasing_excluded": true,
+          "source_loss_metal_kg_per_service_kg": {
+            "aluminium": 0.007430000000000001,
+            "copper": 0.0278,
+            "chromium_steel": 0.00447,
+            "low_alloy_steel": 0.187
+          },
+          "native_loss_metal_kg_per_service_kg": {
+            "chromium_steel": 0.00447,
+            "aluminium": 0.00743,
+            "low_alloy_steel": 0.187,
+            "copper": 0.0278
+          },
+          "native_loss_metal_total_kg_per_service_kg": 0.22669999999999998,
+          "metal_class_quantities_match": true,
+          "machine_kg_per_service_kg": 3.95e-05,
+          "factory_units_per_service_kg": 4.58e-10,
+          "factory_and_machine_operations_each_service_kg": 1
+        }
+      },
+      "limitations": [
+        "New approval is limited to the inspected ecoinvent 3.9 cut-off metalworking service identity. Positive source and native references are one kg of processing service per kg of final manufactured product, factor +1. This is processing, not supply of one kg bulk metal. Preserve signed caller service kg, supported uncertainty/formulas, foreground ownership and separately listed materials, emissions and degreasing. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete same-metal native average metalworking process once. Both source and native include nominal machine/factory operation and processing-loss metal, while excluding the main semi-finished metal input and degreasing. Keep caller-supplied bulk metal separate. Do not remove the internal loss allowance, add another full kg of metal, multiply service demand by gross-to-net yield, normalize loss-metal fractions, infer a scrap credit or automatically add degreasing. Nominal metal-class loss amounts, machine demand and factory construction quantities match; this does not establish full upstream LCI or stochastic equivalence.",
+        "The native complete service replaces source internal manufacturing, utilities/heat, infrastructure, metal-production supply and delivery, waste handling, allocation, vintage and internal uncertainty. Native factory/machine operations remain inside that service; do not duplicate them externally. Native material-grade/form, production-market boundary and energy geography can differ even where named interface quantities match. The original source loss-material grades and distribution portfolios are not reconstructed. These are explicit screening proxies; native/source LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "Existing direct replacement rules, default targets and all earlier approval fingerprints remain unchanged. No new helper, recipe, omitted exchange, runtime Python module, alternative UVEK sector engine or validation bypass. New exact-profile permissions do not approve processing of another metal or substitute virgin bulk-metal production.",
+        "The source aluminium processing-loss allowance separates cast and wrought alloy supply; native complete processing instead uses its aluminium production mix at the same combined loss-metal kg. Preserve the combined service basis without claiming the same cast/wrought alloy split, scrap content, forming history or allocation. No density, purity, alloy-content or yield correction is invented.",
+        "Source loss-metal supply includes hot-rolled low-alloy and/or chromium steel; the native composite uses its corresponding at-plant steel supplies. Product form, rolling history, supplier portfolio, allocation and upstream energy differ. These native loss inputs do not replace the caller-owned main steel stock or authorize unrelated steel products.",
+        "Source copper loss supply is cathode-market material; native complete service draws copper at regional storage for the same nominal loss kg. Purity/production route, delivery, allocation and geographic supply differences remain screening limitations; no additional copper refining, full bulk-copper purchase or recovery credit is inserted.",
+        "The source Rest-of-World manufacturing/utility mix is represented by the native European average at unchanged signed service kg. Regional power/heat, factory technology, material origins, regulation, delivery and vintage are not equivalent; no false Rest-of-World label or region-specific accuracy is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "79089708c75138b345839682c15528c93c2be79dad55dbf0a8ceba775c503c32"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-2ae2f2f9bbd2a627",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_metalworking_39_review.json",
+      "review_sha256": "64796551d79c90158a024633c372e527823866e954a9299d66c36dc700f36590",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-service/material-form/geographic screening proxies, with explicit warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "metal working, average for metal product manufacturing",
+            "reference product": "metal working, average for metal product manufacturing",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 9,
+          "metadata_sha256": "e4e8e6260a7a1322455ecb5660baf3b24c91275fd021d46ee813dcaf61504612",
+          "inventory_sha256": "002f386be951f17400a6d692f33873b02aa24a86a6caf764e5b631068b92f7b2",
+          "activity_comment_sha256": "137c514d0f3a23e399d2d6981d9e6c0175396477548e2d656878e1a06876eb5a",
+          "product_information_sha256": "3aa3b833d226021cacca8d2bc936adad70e6ac33d05d6da1ad03a6c0b5da4ccf"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Metal product manufacturing, average metal working",
+              "reference product": "Metal product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 8,
+            "metadata_sha256": "d023d2bfbe4afe8232cd264c06e88c030098b6522953756f606ba64ea6d54d3b",
+            "inventory_sha256": "0eebcdb7206ab61d77fe8b59bc498ba8e147daa238e2eadeeef4048026b566c6",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Metal product manufacturing, average metal working",
+              "reference product": "Metal product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 8,
+            "metadata_sha256": "81ffd0f2f5ce93e40dba477731aff3f1dcca2f91cf8c782df04150d40119182c",
+            "inventory_sha256": "a36d5137c6be8f1092358ee5f29e08665417d1f7ae79cc58f51c7a1c40079d47",
+            "activity_comment_sha256": "28a0152bb42b7bc256dafbd7e9376cf37d1a12d73e17ebf32993cc962ba5adc0",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "main_metal_and_degreasing_excluded": true,
+          "source_loss_metal_kg_per_service_kg": {
+            "aluminium": 0.007430000000000001,
+            "copper": 0.0278,
+            "chromium_steel": 0.00447,
+            "low_alloy_steel": 0.187
+          },
+          "native_loss_metal_kg_per_service_kg": {
+            "chromium_steel": 0.00447,
+            "aluminium": 0.00743,
+            "low_alloy_steel": 0.187,
+            "copper": 0.0278
+          },
+          "native_loss_metal_total_kg_per_service_kg": 0.22669999999999998,
+          "metal_class_quantities_match": true,
+          "machine_kg_per_service_kg": 3.95e-05,
+          "factory_units_per_service_kg": 4.58e-10,
+          "factory_and_machine_operations_each_service_kg": 1
+        }
+      },
+      "limitations": [
+        "New approval is limited to the inspected ecoinvent 3.9 cut-off metalworking service identity. Positive source and native references are one kg of processing service per kg of final manufactured product, factor +1. This is processing, not supply of one kg bulk metal. Preserve signed caller service kg, supported uncertainty/formulas, foreground ownership and separately listed materials, emissions and degreasing. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete same-metal native average metalworking process once. Both source and native include nominal machine/factory operation and processing-loss metal, while excluding the main semi-finished metal input and degreasing. Keep caller-supplied bulk metal separate. Do not remove the internal loss allowance, add another full kg of metal, multiply service demand by gross-to-net yield, normalize loss-metal fractions, infer a scrap credit or automatically add degreasing. Nominal metal-class loss amounts, machine demand and factory construction quantities match; this does not establish full upstream LCI or stochastic equivalence.",
+        "The native complete service replaces source internal manufacturing, utilities/heat, infrastructure, metal-production supply and delivery, waste handling, allocation, vintage and internal uncertainty. Native factory/machine operations remain inside that service; do not duplicate them externally. Native material-grade/form, production-market boundary and energy geography can differ even where named interface quantities match. The original source loss-material grades and distribution portfolios are not reconstructed. These are explicit screening proxies; native/source LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "Existing direct replacement rules, default targets and all earlier approval fingerprints remain unchanged. No new helper, recipe, omitted exchange, runtime Python module, alternative UVEK sector engine or validation bypass. New exact-profile permissions do not approve processing of another metal or substitute virgin bulk-metal production.",
+        "The source aluminium processing-loss allowance separates cast and wrought alloy supply; native complete processing instead uses its aluminium production mix at the same combined loss-metal kg. Preserve the combined service basis without claiming the same cast/wrought alloy split, scrap content, forming history or allocation. No density, purity, alloy-content or yield correction is invented.",
+        "Source loss-metal supply includes hot-rolled low-alloy and/or chromium steel; the native composite uses its corresponding at-plant steel supplies. Product form, rolling history, supplier portfolio, allocation and upstream energy differ. These native loss inputs do not replace the caller-owned main steel stock or authorize unrelated steel products.",
+        "Source copper loss supply is cathode-market material; native complete service draws copper at regional storage for the same nominal loss kg. Purity/production route, delivery, allocation and geographic supply differences remain screening limitations; no additional copper refining, full bulk-copper purchase or recovery credit is inserted.",
+        "The source and target carry European regional labels, but matching labels do not prove the same company sample, power/heat, production portfolio, product form, delivery or vintage. Preserve the native European complete service with those limitations."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "83f0930d2f5a5af2d44a44e79ec0303c24405a401001af9a32ebaa8c0e02c7b8"
+        }
+      ]
     }
   ],
   "superseded_operations": [
