@@ -45,7 +45,7 @@ already belongs to an environment you need, register a different name and select
 it manually in JupyterLab. Registering a kernel does not move Brightway projects.
 
 Premise installs Brightpath directly from GitHub at
-`12b643ba3ee6e34b109786452ebe0c34e8445b23`. Installing only the published
+`03fdd32f7942720d07f9d0607c81e8a85412369e`. Installing only the published
 Brightpath alpha14 package is insufficient. Internet access is needed for the
 installation, biosphere installation and first CLIC inventory download.
 
@@ -53,7 +53,7 @@ If you previously installed another GitHub revision, the unchanged alpha14
 version number can make pip keep it. To update that existing environment explicitly:
 
 ```bash
-python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@12b643ba3ee6e34b109786452ebe0c34e8445b23"
+python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@03fdd32f7942720d07f9d0607c81e8a85412369e"
 ```
 
 Restart the notebook kernel after upgrading. A fresh environment uses the pinned

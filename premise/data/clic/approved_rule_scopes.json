@@ -210588,19 +210588,14 @@
       ]
     },
     {
-      "rule_id": "bp-8185695a8558088a",
       "operation": "replace",
+      "rule_id": "bp-8185695a8558088a",
       "mapping_method": "heuristic_similarity",
-      "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
-      "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
-      "authorization": "Standing autonomous approval for inspected screening proxies; decisions logged for review.",
+      "review_path": "export/uvek_argon_liquid_39_review.json",
+      "review_sha256": "93b69f8262d179b6341abf6cd4ed845898b912a011325986352a00936789dbb2",
+      "authorization": "Standing autonomous approval to resolve remaining mappings and similar cases with explicit warnings and reviewable decisions. Existing European plant-only market approximation explicitly refined to retain source delivery.",
       "inspection": {
-        "source_profile": {
-          "family": "ecoinvent",
-          "version": "3.9",
-          "system_model": "cutoff"
-        },
-        "source": {
+        "source_witness": {
           "identity": {
             "name": "market for argon, liquid",
             "reference product": "argon, liquid",
@@ -210610,8 +210605,11 @@
           "reference_amounts": [
             1.0
           ],
-          "inventory_sha256": "db99acf663e0a872fd73a64cb7ad5074fd0b32033b159b7cfc4d5992d1dd8bef",
-          "nonproduction_count": 3
+          "nonproduction_count": 3,
+          "metadata_sha256": "02b3db50637ce958d5bba52f5e5d28fe57cc4cb138ad1b5e62682ee0c163271a",
+          "inventory_sha256": "884fa53d87948c83359336f443ec6176d90c82ebb9b75780d70bd81dab43091f",
+          "activity_comment_sha256": "19bde38b8fd6236d60c0e9f27731e14e5bfa277df81c1b2ad13a89b349880cb2",
+          "product_information_sha256": "3b4958f7143373becbebc17b601905fbca50f4392f0a225ab0a202023f3817a2"
         },
         "source_producer_witnesses": [
           {
@@ -210624,12 +210622,32 @@
             "reference_amounts": [
               1.0
             ],
-            "inventory_sha256": "2fa32767b941b0ff74f1467479042bd8287adbadde5e14c9bb8d7f89940c3aa1",
-            "nonproduction_count": 4
+            "nonproduction_count": 4,
+            "metadata_sha256": "b20309a278142529f88ad788108f8ef9416aff0153a84b007fdf87d54fe1232b",
+            "inventory_sha256": "97d7d8ca7123b9e8368ca9f39b08fa76414446e3aac88febc81cf598470afe30",
+            "activity_comment_sha256": "d6e57dd7895ad6301b2e4b68c1260b89c26435bd3e3b5063fea2c48858d14143",
+            "product_information_sha256": "3b4958f7143373becbebc17b601905fbca50f4392f0a225ab0a202023f3817a2"
           }
         ],
-        "native_2026_witnesses": [
-          {
+        "recipe_id": "argon-liquid-39-rer-retained-delivery",
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Argon, liquid, at plant",
+              "reference product": "Argon, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "d7e46fb35701a02caac2addee5919fe06039f112a4623104e663e0e18208da6f",
+            "inventory_sha256": "3de7b1948f565fcba2950937dc6527be59110474a69bff6f8e7311a4e6a174b7",
+            "activity_comment_sha256": "66f095fc171e7d6c8f89d3645820431b16c103c31ff78c66e0f51783052176c4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
             "identity": {
               "name": "Argon, liquid, at plant",
               "reference product": "Argon, liquid, at plant",
@@ -210639,15 +210657,27 @@
             "reference_amounts": [
               1.0
             ],
-            "inventory_sha256": "2b2763df7c275d32932152a199d5782d354468aefa3694d8532a3139e3398bcc",
-            "nonproduction_count": 5
+            "nonproduction_count": 5,
+            "metadata_sha256": "e232be13f18889615f3f718d10c3c3090b68c0f651833f3472c53bd49b29667c",
+            "inventory_sha256": "3fe6ca1866ca470a21db01c814af6103e22a0189bab880a2c95755fd328ce50c",
+            "activity_comment_sha256": "494cb19c56e30ebafc14386c651a7767ed930332ea7063a0050c739d12a3ef84",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
           }
-        ],
-        "conversion_factor": 1
+        },
+        "supersedes": {
+          "review_path": "export/uvek_steel_39_remaining_supplies_review.json",
+          "review_sha256": "bc3f80a505bef6a960aef939194151a52be1ebe4508114abdb3faf27e5423cbe",
+          "fingerprint": "f12b0b34705b3a2d99fab5e61077d72d80c860c731058d11cd37ac4280571e38",
+          "reason": "Retain original RER 0.0044 rail and 0.0171 road tkm instead of prior plant-only market screening approximation. Prior full approval retained in packaged review."
+        }
       },
       "limitations": [
-        "One kg liquid purified argon, not crude argon or gaseous volume. Native process includes crude argon supply, electricity and hydrogen purification. Source producer describes 99.999% argon; no claim of identical native purity. Native weak process/infrastructure evidence and omitted emissions remain limitations. Native plant supply replaces market freight; no second purification or arbitrary purity factor.",
-        "Complete native inventory is a screening proxy. Grade detail, technology, delivery, allocation, geography, vintage, internal uncertainty and native biosphere exclusions can differ; score effects unquantified. Preserve caller signs, quantities, formulas, uncertainty and separately listed emissions/freight. Only inspected ecoinvent3.9cutoff; no reverse, other-release or cross-system-model approval."
+        "Only independently inspected ecoinvent 3.9 cut-off liquid-argon producer and market identities are newly reviewed. Source and native references are positive one kg liquid argon, factor +1. Preserve caller signed kg, supported uncertainty/formulas, foreground ownership and separate emissions. No gas-volume/density, normal-condition, purity or cryogenic-loss multiplier. Source product boilerplate about normal conditions does not redefine this explicit liquid-production mass basis. Other releases, patches, system models and inverse routes need independent review.",
+        "Same compound CAS007440-37-1 and catalytic hydrogen purification of crude liquid argon. Both source producers and native process use 1.03 kg crude liquid argon, 0.004 kg liquid hydrogen, 0.0464 kWh electricity and 2e-10 air-separation-plant units per kg product. Source RoW splits electricity among six regional suppliers; native uses complete ENTSO-E supply. Retain the complete native producer, including its upstream cryogenic air separation/allocation, hydrogen, energy and infrastructure, without adding another purification plant, electricity, 3% loss or emissions correction.",
+        "Source producer describes 99.999% purity and neglected small waste-gas releases. Native exact purity is not established; native literature/process/infrastructure uncertainty remains. Both source producer inventories have no direct biosphere exchanges, whereas native2026 adds 0.167 MJ waste heat. Keep native complete inventory with explicit electricity geography, raw-material/allocation, purity, emissions, vintage and internal-uncertainty warnings. Matching nominal core inputs is not source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified.",
+        "Market wrappers retain original product supply and final delivery separately, without renormalization. Complete native RER generic rail and heavy-lorry fleet are same-mode geographic/traction/fleet proxies. Generic rail is not coal-specific transport; historical steam/electric/diesel traction, gauge, loading, fleet, fuel and age differ. No extra distances, payload/capacity corrections, vehicles or infrastructure. Source delivery is outside native at-plant supply and is retained once. Other previously frozen industrial inventories are not silently re-expanded.",
+        "No new source omissions, recovery credits, biosphere proxy, runtime Python module, alternative sector engine or validation bypass. Two market helpers represent actual final-delivery boundaries; the native producer remains shared and unchanged. Existing European market approval is explicitly superseded by this retained-delivery review, with the old operation and matching source/native witnesses recorded. All other approval operations remain unchanged.",
+        "This RER market retains 2 original freight entries and one kg product. The RER wrapper keeps 0.0044 rail and 0.0171 road tkm; RoW keeps its five rail and three road country entries independently. These are actual source coefficients, not updated transport estimates."
       ],
       "scopes": [
         {
@@ -210658,10 +210688,10 @@
           },
           "target": {
             "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
+            "system_model": "cutoff",
+            "version": "2025"
           },
-          "fingerprint": "f12b0b34705b3a2d99fab5e61077d72d80c860c731058d11cd37ac4280571e38"
+          "fingerprint": "f997e081adae1662fc9498c208511376e9f62a92b4c0c9177305182a14311a2f"
         }
       ]
     },
@@ -265857,6 +265887,276 @@
             "version": "2025"
           },
           "fingerprint": "76fb8417b90b0abb6298426f98e983a8254897e2cb8ced105d36728523c84f84"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-76332be3d4c0a31f",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_argon_liquid_39_review.json",
+      "review_sha256": "93b69f8262d179b6341abf6cd4ed845898b912a011325986352a00936789dbb2",
+      "authorization": "Standing autonomous approval to resolve remaining mappings and similar cases with explicit warnings and reviewable decisions. Existing European plant-only market approximation explicitly refined to retain source delivery.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "argon production, liquid",
+            "reference product": "argon, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 9,
+          "metadata_sha256": "e683222ae50fa6eafa2a4828df912dbe444c9da15fd88c8f22ebbe27d686cecf",
+          "inventory_sha256": "ed97d350fd778b6098244ea20e8eae846fb50d92bdf8e72764ced14ca6071b3a",
+          "activity_comment_sha256": "8e107a58ec38df7214c7e0228d3c26b8715513f9eed54cfcd4f5b177b0b830c3",
+          "product_information_sha256": "3b4958f7143373becbebc17b601905fbca50f4392f0a225ab0a202023f3817a2"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": null,
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Argon, liquid, at plant",
+              "reference product": "Argon, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "d7e46fb35701a02caac2addee5919fe06039f112a4623104e663e0e18208da6f",
+            "inventory_sha256": "3de7b1948f565fcba2950937dc6527be59110474a69bff6f8e7311a4e6a174b7",
+            "activity_comment_sha256": "66f095fc171e7d6c8f89d3645820431b16c103c31ff78c66e0f51783052176c4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Argon, liquid, at plant",
+              "reference product": "Argon, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "e232be13f18889615f3f718d10c3c3090b68c0f651833f3472c53bd49b29667c",
+            "inventory_sha256": "3fe6ca1866ca470a21db01c814af6103e22a0189bab880a2c95755fd328ce50c",
+            "activity_comment_sha256": "494cb19c56e30ebafc14386c651a7767ed930332ea7063a0050c739d12a3ef84",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "limitations": [
+        "Only independently inspected ecoinvent 3.9 cut-off liquid-argon producer and market identities are newly reviewed. Source and native references are positive one kg liquid argon, factor +1. Preserve caller signed kg, supported uncertainty/formulas, foreground ownership and separate emissions. No gas-volume/density, normal-condition, purity or cryogenic-loss multiplier. Source product boilerplate about normal conditions does not redefine this explicit liquid-production mass basis. Other releases, patches, system models and inverse routes need independent review.",
+        "Same compound CAS007440-37-1 and catalytic hydrogen purification of crude liquid argon. Both source producers and native process use 1.03 kg crude liquid argon, 0.004 kg liquid hydrogen, 0.0464 kWh electricity and 2e-10 air-separation-plant units per kg product. Source RoW splits electricity among six regional suppliers; native uses complete ENTSO-E supply. Retain the complete native producer, including its upstream cryogenic air separation/allocation, hydrogen, energy and infrastructure, without adding another purification plant, electricity, 3% loss or emissions correction.",
+        "Source producer describes 99.999% purity and neglected small waste-gas releases. Native exact purity is not established; native literature/process/infrastructure uncertainty remains. Both source producer inventories have no direct biosphere exchanges, whereas native2026 adds 0.167 MJ waste heat. Keep native complete inventory with explicit electricity geography, raw-material/allocation, purity, emissions, vintage and internal-uncertainty warnings. Matching nominal core inputs is not source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified.",
+        "Market wrappers retain original product supply and final delivery separately, without renormalization. Complete native RER generic rail and heavy-lorry fleet are same-mode geographic/traction/fleet proxies. Generic rail is not coal-specific transport; historical steam/electric/diesel traction, gauge, loading, fleet, fuel and age differ. No extra distances, payload/capacity corrections, vehicles or infrastructure. Source delivery is outside native at-plant supply and is retained once. Other previously frozen industrial inventories are not silently re-expanded.",
+        "No new source omissions, recovery credits, biosphere proxy, runtime Python module, alternative sector engine or validation bypass. Two market helpers represent actual final-delivery boundaries; the native producer remains shared and unchanged. Existing European market approval is explicitly superseded by this retained-delivery review, with the old operation and matching source/native witnesses recorded. All other approval operations remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "60a8c0ef0acdfb07b41c348a89fadb9609a81d528ccfaa4fc79495d6191f8d5a"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-cbae1cc4dca9564a",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_argon_liquid_39_review.json",
+      "review_sha256": "93b69f8262d179b6341abf6cd4ed845898b912a011325986352a00936789dbb2",
+      "authorization": "Standing autonomous approval to resolve remaining mappings and similar cases with explicit warnings and reviewable decisions. Existing European plant-only market approximation explicitly refined to retain source delivery.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for argon, liquid",
+            "reference product": "argon, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 9,
+          "metadata_sha256": "85b40ff0c3708c345a98c027c56d32f584dbf495eac06976fb921844eca3458b",
+          "inventory_sha256": "7c2c23c2ad9b9e79001fedd0b4383309634e279b517a5f1112ef9d05dd980b4a",
+          "activity_comment_sha256": "931640e1bc5e4227cef4602f0d325a81ed38259dea84c993ce8a2a845e784647",
+          "product_information_sha256": "3b4958f7143373becbebc17b601905fbca50f4392f0a225ab0a202023f3817a2"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "argon production, liquid",
+              "reference product": "argon, liquid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 9,
+            "metadata_sha256": "e683222ae50fa6eafa2a4828df912dbe444c9da15fd88c8f22ebbe27d686cecf",
+            "inventory_sha256": "ed97d350fd778b6098244ea20e8eae846fb50d92bdf8e72764ced14ca6071b3a",
+            "activity_comment_sha256": "8e107a58ec38df7214c7e0228d3c26b8715513f9eed54cfcd4f5b177b0b830c3",
+            "product_information_sha256": "3b4958f7143373becbebc17b601905fbca50f4392f0a225ab0a202023f3817a2"
+          }
+        ],
+        "recipe_id": "argon-liquid-39-row-retained-delivery",
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Argon, liquid, at plant",
+              "reference product": "Argon, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "d7e46fb35701a02caac2addee5919fe06039f112a4623104e663e0e18208da6f",
+            "inventory_sha256": "3de7b1948f565fcba2950937dc6527be59110474a69bff6f8e7311a4e6a174b7",
+            "activity_comment_sha256": "66f095fc171e7d6c8f89d3645820431b16c103c31ff78c66e0f51783052176c4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Argon, liquid, at plant",
+              "reference product": "Argon, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "e232be13f18889615f3f718d10c3c3090b68c0f651833f3472c53bd49b29667c",
+            "inventory_sha256": "3fe6ca1866ca470a21db01c814af6103e22a0189bab880a2c95755fd328ce50c",
+            "activity_comment_sha256": "494cb19c56e30ebafc14386c651a7767ed930332ea7063a0050c739d12a3ef84",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "limitations": [
+        "Only independently inspected ecoinvent 3.9 cut-off liquid-argon producer and market identities are newly reviewed. Source and native references are positive one kg liquid argon, factor +1. Preserve caller signed kg, supported uncertainty/formulas, foreground ownership and separate emissions. No gas-volume/density, normal-condition, purity or cryogenic-loss multiplier. Source product boilerplate about normal conditions does not redefine this explicit liquid-production mass basis. Other releases, patches, system models and inverse routes need independent review.",
+        "Same compound CAS007440-37-1 and catalytic hydrogen purification of crude liquid argon. Both source producers and native process use 1.03 kg crude liquid argon, 0.004 kg liquid hydrogen, 0.0464 kWh electricity and 2e-10 air-separation-plant units per kg product. Source RoW splits electricity among six regional suppliers; native uses complete ENTSO-E supply. Retain the complete native producer, including its upstream cryogenic air separation/allocation, hydrogen, energy and infrastructure, without adding another purification plant, electricity, 3% loss or emissions correction.",
+        "Source producer describes 99.999% purity and neglected small waste-gas releases. Native exact purity is not established; native literature/process/infrastructure uncertainty remains. Both source producer inventories have no direct biosphere exchanges, whereas native2026 adds 0.167 MJ waste heat. Keep native complete inventory with explicit electricity geography, raw-material/allocation, purity, emissions, vintage and internal-uncertainty warnings. Matching nominal core inputs is not source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified.",
+        "Market wrappers retain original product supply and final delivery separately, without renormalization. Complete native RER generic rail and heavy-lorry fleet are same-mode geographic/traction/fleet proxies. Generic rail is not coal-specific transport; historical steam/electric/diesel traction, gauge, loading, fleet, fuel and age differ. No extra distances, payload/capacity corrections, vehicles or infrastructure. Source delivery is outside native at-plant supply and is retained once. Other previously frozen industrial inventories are not silently re-expanded.",
+        "No new source omissions, recovery credits, biosphere proxy, runtime Python module, alternative sector engine or validation bypass. Two market helpers represent actual final-delivery boundaries; the native producer remains shared and unchanged. Existing European market approval is explicitly superseded by this retained-delivery review, with the old operation and matching source/native witnesses recorded. All other approval operations remain unchanged.",
+        "This RoW market retains 8 original freight entries and one kg product. The RER wrapper keeps 0.0044 rail and 0.0171 road tkm; RoW keeps its five rail and three road country entries independently. These are actual source coefficients, not updated transport estimates."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d153b7a653ac751532e5f614e28c4ed96063da8179203a8a2f05187561c5d023"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-67138f26fbafbaeb",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_argon_liquid_39_review.json",
+      "review_sha256": "93b69f8262d179b6341abf6cd4ed845898b912a011325986352a00936789dbb2",
+      "authorization": "Standing autonomous approval to resolve remaining mappings and similar cases with explicit warnings and reviewable decisions. Existing European plant-only market approximation explicitly refined to retain source delivery.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "argon production, liquid",
+            "reference product": "argon, liquid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "b20309a278142529f88ad788108f8ef9416aff0153a84b007fdf87d54fe1232b",
+          "inventory_sha256": "97d7d8ca7123b9e8368ca9f39b08fa76414446e3aac88febc81cf598470afe30",
+          "activity_comment_sha256": "d6e57dd7895ad6301b2e4b68c1260b89c26435bd3e3b5063fea2c48858d14143",
+          "product_information_sha256": "3b4958f7143373becbebc17b601905fbca50f4392f0a225ab0a202023f3817a2"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": null,
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Argon, liquid, at plant",
+              "reference product": "Argon, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "d7e46fb35701a02caac2addee5919fe06039f112a4623104e663e0e18208da6f",
+            "inventory_sha256": "3de7b1948f565fcba2950937dc6527be59110474a69bff6f8e7311a4e6a174b7",
+            "activity_comment_sha256": "66f095fc171e7d6c8f89d3645820431b16c103c31ff78c66e0f51783052176c4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Argon, liquid, at plant",
+              "reference product": "Argon, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "e232be13f18889615f3f718d10c3c3090b68c0f651833f3472c53bd49b29667c",
+            "inventory_sha256": "3fe6ca1866ca470a21db01c814af6103e22a0189bab880a2c95755fd328ce50c",
+            "activity_comment_sha256": "494cb19c56e30ebafc14386c651a7767ed930332ea7063a0050c739d12a3ef84",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "limitations": [
+        "Only independently inspected ecoinvent 3.9 cut-off liquid-argon producer and market identities are newly reviewed. Source and native references are positive one kg liquid argon, factor +1. Preserve caller signed kg, supported uncertainty/formulas, foreground ownership and separate emissions. No gas-volume/density, normal-condition, purity or cryogenic-loss multiplier. Source product boilerplate about normal conditions does not redefine this explicit liquid-production mass basis. Other releases, patches, system models and inverse routes need independent review.",
+        "Same compound CAS007440-37-1 and catalytic hydrogen purification of crude liquid argon. Both source producers and native process use 1.03 kg crude liquid argon, 0.004 kg liquid hydrogen, 0.0464 kWh electricity and 2e-10 air-separation-plant units per kg product. Source RoW splits electricity among six regional suppliers; native uses complete ENTSO-E supply. Retain the complete native producer, including its upstream cryogenic air separation/allocation, hydrogen, energy and infrastructure, without adding another purification plant, electricity, 3% loss or emissions correction.",
+        "Source producer describes 99.999% purity and neglected small waste-gas releases. Native exact purity is not established; native literature/process/infrastructure uncertainty remains. Both source producer inventories have no direct biosphere exchanges, whereas native2026 adds 0.167 MJ waste heat. Keep native complete inventory with explicit electricity geography, raw-material/allocation, purity, emissions, vintage and internal-uncertainty warnings. Matching nominal core inputs is not source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified.",
+        "Market wrappers retain original product supply and final delivery separately, without renormalization. Complete native RER generic rail and heavy-lorry fleet are same-mode geographic/traction/fleet proxies. Generic rail is not coal-specific transport; historical steam/electric/diesel traction, gauge, loading, fleet, fuel and age differ. No extra distances, payload/capacity corrections, vehicles or infrastructure. Source delivery is outside native at-plant supply and is retained once. Other previously frozen industrial inventories are not silently re-expanded.",
+        "No new source omissions, recovery credits, biosphere proxy, runtime Python module, alternative sector engine or validation bypass. Two market helpers represent actual final-delivery boundaries; the native producer remains shared and unchanged. Existing European market approval is explicitly superseded by this retained-delivery review, with the old operation and matching source/native witnesses recorded. All other approval operations remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c145e7d5c6c9d6d7110415094671cb442b20838702b4d2147b762bb4791d9b54"
         }
       ]
     }

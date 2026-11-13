@@ -1,0 +1,189 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "03fdd32f7942720d07f9d0607c81e8a85412369e",
+  "scope_registration": {
+    "prior_scopes": 1333,
+    "new_scopes": 1336,
+    "new_direct_or_market_scopes": 3,
+    "explicitly_superseded_scope": {
+      "rule_id": "bp-8185695a8558088a",
+      "old_fingerprint": "f12b0b34705b3a2d99fab5e61077d72d80c860c731058d11cd37ac4280571e38",
+      "new_fingerprint": "f997e081adae1662fc9498c208511376e9f62a92b4c0c9177305182a14311a2f",
+      "change": "Retained source delivery added to existing European market."
+    },
+    "all_other_operations_and_fingerprints_unchanged": true,
+    "old_approval_archived_in_packaged_review": true,
+    "new_source_omissions": [],
+    "runtime_python_changes": []
+  },
+  "tests": {
+    "brightpath_mapping_storage_checks": 71,
+    "existing_brightpath_coal_sign_regression_checks": 3,
+    "installed_package_premise_argon_fresh_cache_sign_uncertainty_and_scope_checks": 20,
+    "existing_premise_steel_supply_cohort_fresh_cache_and_refusal_check": 1,
+    "premise_approval_integrity_checks": 7,
+    "optional_broad_run": {
+      "status": "intentionally_interrupted_to_keep_this_change_verification_targeted",
+      "passed_before_interruption": 171,
+      "failed_before_interruption": 0,
+      "full_suite_pass_claimed": false,
+      "note": "General approval module has 832 cases; the completed argon module, existing steel cohort and selected approval-integrity checks were independently verified. Full whole-project qualification remains unfinished."
+    },
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 6,
+    "native_suppliers": 3,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 8,
+    "independent_native_reference_LCI_solves": 4,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-76332be3d4c0a31f",
+        "source": {
+          "location": "RoW",
+          "name": "argon production, liquid",
+          "reference product": "argon, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 2.710505431213761e-20,
+        "full_graph_residual": {
+          "residual_before": 4.3914667828364996e-09,
+          "residual_after": 1.171444006451243e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.3914667828364996e-09,
+          "residual_after": 1.171444006451243e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-cbae1cc4dca9564a",
+        "source": {
+          "location": "RoW",
+          "name": "market for argon, liquid",
+          "reference product": "argon, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 3.469446951953614e-18,
+        "full_graph_residual": {
+          "residual_before": 7.028701848388811e-09,
+          "residual_after": 6.445733597606228e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.028701848388811e-09,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-67138f26fbafbaeb",
+        "source": {
+          "location": "RER",
+          "name": "argon production, liquid",
+          "reference product": "argon, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 2.710505431213761e-20,
+        "full_graph_residual": {
+          "residual_before": 4.3914667828364996e-09,
+          "residual_after": 1.171444006451243e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.3914667828364996e-09,
+          "residual_after": 1.171444006451243e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-8185695a8558088a",
+        "source": {
+          "location": "RER",
+          "name": "market for argon, liquid",
+          "reference product": "argon, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 6.776263578034403e-21,
+        "full_graph_residual": {
+          "residual_before": 1.9575070622553008e-08,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.9575070622553008e-08,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies argon-liquid liquid purification, retained final-delivery markets and explicit European approval refinement and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 155,
+    "current": 154,
+    "removed_rules": [
+      "bp-cbae1cc4dca9564a"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-90d430e673cde906",
+    "stage": "inventory preparation",
+    "battery_qualified": false,
+    "note": "European market explicitly refined and both producers reviewed/tested independently."
+  },
+  "previously_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "new_source_omissions": [],
+  "clean_eight_sector_graph_rerun": "planned because the European market refinement affects an existing steel prerequisite; no new Brightway export intended"
+}
