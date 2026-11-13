@@ -52,7 +52,9 @@ def test_ferrosilicon_voltage_fresh_cached_and_withdrawn_approvals(
     for cached in (False, True):
         result = harmonizer.harmonize(resolved, version="2026", family="uvek")
         assert result.manifest["cohorts"][0]["cache_hit"] is cached
-        assert len(result.activities) == 1  # Reuse native low-voltage grids; no helpers.
+        assert (
+            len(result.activities) == 1
+        )  # Reuse native low-voltage grids; no helpers.
         for row, edge in zip(
             review["records"], result.activities[0]["exchanges"][1:], strict=True
         ):
