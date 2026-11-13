@@ -206,11 +206,11 @@ for retained quantities/uncertainty, LCIs and remaining warnings. Other sector
 updates and other IAM models are still being qualified; this does not extend
 support to conversions between system models.
 
-The qualified REMIND workflow also includes steel and mining. To exercise all
-six currently qualified sectors, use:
+The qualified REMIND workflow also includes steel, mining and renewable. To
+exercise all seven currently qualified sectors, use:
 
 ```python
-ndb.update(["biomass", "electricity", "heat", "cement", "steel", "mining"])
+ndb.update(["biomass", "electricity", "heat", "cement", "steel", "mining", "renewable"])
 ```
 
 Then export using the notebook's existing `write_db_to_brightway` call. The
@@ -219,4 +219,8 @@ and processing inventories; mining creates the configured regional tailings
 markets and connects native disposal-service consumers without changing their
 quantities. See [steel review](uvek-steel-other-producer-audit.md) and
 [mining review](uvek-mining-market-review.md) for screening limits and verification.
-Fuels and the remaining sectors are still being qualified.
+The renewable step creates preparatory wind variants while preserving complete
+source inventories; it does not itself calculate a direct-drive bill of materials.
+See [renewable review](uvek-renewable-variant-review.md) and
+[qualification](uvek-renewable-qualification.json). Fuels, metals and the other
+remaining sectors are still being qualified.

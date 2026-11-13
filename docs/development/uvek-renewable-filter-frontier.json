@@ -1,19 +1,6 @@
 {
-  "status": "reproduced_unfinished_renewable_filter_integration",
+  "status": "resolved_by_shared_mapped_renewable_workflow",
   "scenario": "encrypted REMIND SSP2-NPi 2050",
-  "failure": {
-    "status": "failed",
-    "exception_type": "PremiseValidationError",
-    "message": "Inventory validation failed with 1 unsuppressed error(s) [METHOD.RENEWABLE.TARGET_COVERAGE=1]: METHOD.RENEWABLE.TARGET_COVERAGE: Applicable sector transformation declared no validation targets. (expected='>= 1 target', actual=0)",
-    "failed_stage": "sector update",
-    "sector": "renewable",
-    "scenario": "encrypted REMIND SSP2-NPi 2050",
-    "elapsed_seconds": 64.86511941708159,
-    "public_scope_gate_bypassed_for_diagnostic_only": true,
-    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
-    "validation_disabled": false,
-    "export_performed": false
-  },
   "native_reviewed_wind_generator_count": 7,
   "native_reviewed_wind_generator_identities": [
     {
@@ -81,6 +68,20 @@
     }
   ],
   "native_wind_names_matching_shared_hardcoded_terms": [],
-  "finding": "The existing hardcoded ecoinvent name terms select none of the seven reviewed native wind generators. No targets are created, and target-coverage validation correctly refuses the update. This is a mapping/filter gap, not missing wind IAM data or legitimate inapplicability.",
-  "next_work": "Extend explicit mapping filters for the variant templates and their construction links through the existing renewable transformation; verify linked variant dependencies and the family/biosphere handoff. Preserve shared algorithm and default ecoinvent selection; do not label unchanged unrelated native inputs as direct-drive components. No renewable support gate is opened by this receipt."
+  "next_work": "The seven-sector shared workflow and export now pass; see the qualification receipt. Separate metals mappings and all other unfinished sectors remain in scope. No technology-specific direct-drive bill of materials is inferred by the renewable copy step.",
+  "qualification": "uvek-renewable-qualification.json",
+  "original_failure": {
+    "status": "failed",
+    "exception_type": "PremiseValidationError",
+    "message": "Inventory validation failed with 1 unsuppressed error(s) [METHOD.RENEWABLE.TARGET_COVERAGE=1]: METHOD.RENEWABLE.TARGET_COVERAGE: Applicable sector transformation declared no validation targets. (expected='>= 1 target', actual=0)",
+    "failed_stage": "sector update",
+    "sector": "renewable",
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 64.86511941708159,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "original_finding": "The existing hardcoded ecoinvent name terms select none of the seven reviewed native wind generators. No targets are created, and target-coverage validation correctly refuses the update. This is a mapping/filter gap, not missing wind IAM data or legitimate inapplicability."
 }

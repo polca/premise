@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-13",
+  "scenario": {
+    "model": "remind",
+    "pathway": "SSP2-NPi",
+    "year": 2050,
+    "encrypted_IAM": true
+  },
+  "workflow": {
+    "status": "standard_seven_sector_graph_inventory_and_export_passed",
+    "database": "BAFU:2026-REMIND-SSP2-NPi-2050-seven-renewable-20261113-061544",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable"
+    ],
+    "activities": 14902,
+    "native_source_codes_retained": 11947,
+    "source_database_metadata_unchanged": true,
+    "variants": 119,
+    "prototype_identities": 28,
+    "component_edges_relinked": 294,
+    "other_unit_edges_retained": 126,
+    "all_variant_exchange_vectors_match_originals_after_declared_name_relink": true,
+    "public_scope_gate_bypassed": false,
+    "validation_disabled": false,
+    "normal_reports_generated": true,
+    "elapsed_seconds": 331.735338959028
+  },
+  "exported_database_audit": {
+    "status": "exported_wind_variants_signed_LCIs_and_source_inventory_identities_verified",
+    "database": "BAFU:2026-REMIND-SSP2-NPi-2050-seven-renewable-20261113-061544",
+    "activities": 14902,
+    "variants": 119,
+    "variant_unit_counts": {
+      "kilowatt hour": 98,
+      "unit": 21
+    },
+    "variant_locations": [
+      "CAZ",
+      "CHA",
+      "EUR",
+      "IND",
+      "JPN",
+      "LAM",
+      "MEA",
+      "NEU",
+      "OAS",
+      "REF",
+      "RER",
+      "SSA",
+      "USA",
+      "World"
+    ],
+    "signed_finite_LCI_checks": 238,
+    "strict_source_variant_LCI_identity_checks": 119,
+    "max_refined_source_variant_LCI_absolute_difference": 1.6763806343078613e-08,
+    "max_independently_refined_matrix_residual": 2.9802322387695312e-08,
+    "max_normwise_relative_linear_system_backward_error": 9.231340117184152e-27,
+    "all_internal_links_and_biosphere_codes_resolved": true,
+    "internal_input_links_including_production": 161288,
+    "biosphere_input_links": 312908,
+    "external_dependencies": [
+      "ecoinvent-3.10-biosphere"
+    ],
+    "runtime_calculation_or_validation_modified": false,
+    "solver_note": "Two private residual-correction steps check strict source/variant central LCI identities; a normwise dimensionless backward error accounts for different kg/kWh/unit scales and numerically negligible supplies in zero-demand rows using the unchanged exported matrix and existing factorization. Normal signed LCIs are also checked before refinement. No runtime solver or validation tolerance is changed.",
+    "limitations": [
+      "The shared renewable step creates complete-inventory variant templates; it does not itself calculate a direct-drive bill of materials.",
+      "Central LCI equality does not establish joint uncertainty correlation or validate native turbine technology/design/geography."
+    ],
+    "elapsed_seconds": 7.955668375012465
+  },
+  "tests": {
+    "mapping_scope_database_validation": 182,
+    "transformation_export_sector_validation": 72,
+    "groups_overlap": true,
+    "black": "pass",
+    "ruff_changed_renewable_module_and_new_tests": "pass",
+    "documentation_references_regenerated_and_check": "pass"
+  },
+  "runtime_change_necessity": "The existing renewable loop read only hardcoded ecoinvent terms and selected zero native targets. Optional family YAML now selects exact templates through InventorySet and restricts the existing relinker to copied suppliers. Explicit family/biosphere context follows the shared wrapper/base pattern. The existing cloning/suffix/reference algorithm and default ecoinvent filters remain.",
+  "remaining_scope": "Fuels and eleven other registered sectors remain unqualified. Renewable creates preparatory variants through the existing logic; this does not complete or qualify the separate metals material-intensity update."
+}

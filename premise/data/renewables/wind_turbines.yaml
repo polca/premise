@@ -1,0 +1,107 @@
+# Exact native templates for the existing renewable variant-copying step.
+# Ecoinvent keeps its original selector and relinking defaults in the shared code.
+direct drive:
+  uvek_aliases:
+    fltr:
+      name:
+      - 'Electricity, at '
+      - 'Wind turbine '
+      unit:
+      - kilowatt hour
+      - unit
+    exact_identities:
+    - name: Electricity, at 1005MW wind farm, offshore, 15MW turbines
+      reference product: Electricity, at 1005MW wind farm, offshore, 15MW turbines
+      unit: kilowatt hour
+    - name: Electricity, at 100MW wind farm, onshore, 2.3MW turbines
+      reference product: Electricity, at 100MW wind farm, onshore, 2.3MW turbines
+      unit: kilowatt hour
+    - name: Electricity, at 100MW wind farm, onshore, 4.5 MW turbines
+      reference product: Electricity, at 100MW wind farm, onshore, 4.5 MW turbines
+      unit: kilowatt hour
+    - name: Electricity, at 100MW wind farm, onshore, 6.2MW turbines
+      reference product: Electricity, at 100MW wind farm, onshore, 6.2MW turbines
+      unit: kilowatt hour
+    - name: Electricity, at 150MW wind farm, offshore, 5MW turbines
+      reference product: Electricity, at 150MW wind farm, offshore, 5MW turbines
+      unit: kilowatt hour
+    - name: Electricity, at 200MW wind farm, onshore, 3.4MW turbines
+      reference product: Electricity, at 200MW wind farm, onshore, 3.4MW turbines
+      unit: kilowatt hour
+    - name: Electricity, at 740MW wind farm, offshore, 10MW turbines
+      reference product: Electricity, at 740MW wind farm, offshore, 10MW turbines
+      unit: kilowatt hour
+    - name: Wind turbine 10MW, offshore, monopile substructure
+      reference product: Wind turbine 10MW, offshore, monopile substructure
+      unit: unit
+    - name: Wind turbine 10MW, offshore, moving parts
+      reference product: Wind turbine 10MW, offshore, moving parts
+      unit: unit
+    - name: Wind turbine 10MW, offshore, tower
+      reference product: Wind turbine 10MW, offshore, tower
+      unit: unit
+    - name: Wind turbine 15MW, offshore, monopile substructure
+      reference product: Wind turbine 15MW, offshore, monopile substructure
+      unit: unit
+    - name: Wind turbine 15MW, offshore, moving parts
+      reference product: Wind turbine 15MW, offshore, moving parts
+      unit: unit
+    - name: Wind turbine 15MW, offshore, tower
+      reference product: Wind turbine 15MW, offshore, tower
+      unit: unit
+    - name: Wind turbine 2.3MW, onshore, foundation
+      reference product: Wind turbine 2.3MW, onshore, foundation
+      unit: unit
+    - name: Wind turbine 2.3MW, onshore, moving parts
+      reference product: Wind turbine 2.3MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 2.3MW, onshore, tower, steel
+      reference product: Wind turbine 2.3MW, onshore, tower, steel
+      unit: unit
+    - name: Wind turbine 3.4MW, onshore, foundation
+      reference product: Wind turbine 3.4MW, onshore, foundation
+      unit: unit
+    - name: Wind turbine 3.4MW, onshore, moving parts
+      reference product: Wind turbine 3.4MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 3.4MW, onshore, tower
+      reference product: Wind turbine 3.4MW, onshore, tower
+      unit: unit
+    - name: Wind turbine 4.5MW, onshore, foundation
+      reference product: Wind turbine 4.5MW, onshore, foundation
+      unit: unit
+    - name: Wind turbine 4.5MW, onshore, moving parts
+      reference product: Wind turbine 4.5MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 4.5MW, onshore, tower
+      reference product: Wind turbine 4.5MW, onshore, tower
+      unit: unit
+    - name: Wind turbine 5MW, offshore, jacket substructure
+      reference product: Wind turbine 5MW, offshore, jacket substructure
+      unit: unit
+    - name: Wind turbine 5MW, offshore, moving parts
+      reference product: Wind turbine 5MW, offshore, moving parts
+      unit: unit
+    - name: Wind turbine 5MW, offshore, tower
+      reference product: Wind turbine 5MW, offshore, tower
+      unit: unit
+    - name: Wind turbine 6.2MW, onshore, foundation
+      reference product: Wind turbine 6.2MW, onshore, foundation
+      unit: unit
+    - name: Wind turbine 6.2MW, onshore, moving parts
+      reference product: Wind turbine 6.2MW, onshore, moving parts
+      unit: unit
+    - name: Wind turbine 6.2MW, onshore, tower
+      reference product: Wind turbine 6.2MW, onshore, tower
+      unit: unit
+    reference_amount: 1
+    limitations: The existing Premise renewable update creates preparatory direct-drive variants
+      by copying complete native wind inventories; this step does not recalculate their material
+      composition or remove a gearbox. Native generators cover different turbine designs, capacities,
+      rotor/tower/substructure boundaries, lifetime and geography. A direct-drive label alone does
+      not establish a direct-drive bill of materials; subsequent technology/material updates require
+      their own reviewed mappings. Keep every signed coefficient, formula and supported uncertainty.
+      Relink only the explicitly selected native turbine components; retain substations, grid connections,
+      factories, transport, disposal and all other infrastructure unchanged. No extra generator,
+      lifetime conversion, loss multiplier or metal credit is invented. These are screening templates
+      with unquantified score effects, not verified technology-specific LCIA equivalents.

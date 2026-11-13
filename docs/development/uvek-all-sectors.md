@@ -1403,3 +1403,27 @@ This is an unfinished filter/mapping integration, not IAM inapplicability.
 identities. Fuels and the other twelve sectors remain unfinished. Removed
 1,504,732,378 bytes of obsolete task-owned heat diagnostic snapshots, retaining
 current databases, scripts and aggregate verification receipts.
+
+## Renewable: exact native templates through the existing variant workflow
+
+The renewable filter gap is resolved with exact YAML identities for seven native
+wind generators and 21 connected turbine components. The shared copying loop
+uses those aliases and limits supplier renaming to the selected components,
+retaining substations and other unrelated infrastructure. Explicit background
+family/biosphere arguments now reach the same existing constructor and base.
+Ecoinvent keeps its original name terms and construction-relinking defaults.
+No separate UVEK engine or inferred direct-drive material recipe is introduced.
+
+The actual normal seven-sector REMIND SSP2-NPi 2050 run exports 14,902 activities,
+including 119 wind variants, with graph validation and normal reports. All copied
+exchange vectors match the source templates after their declared name changes;
+all 238 signed variant LCIs and 119 strict source/variant LCI comparisons pass.
+The default three-sector call remains unchanged. See
+[renewable review](uvek-renewable-variant-review.md) and
+[qualification](uvek-renewable-qualification.json).
+
+Seven sectors are now qualified for this source/scenario. Fuels and eleven other
+registered sectors remain unfinished. A fresh carbon-removal probe still stops
+at the 40W pump correspondence for the 3.9 cut-off source: the existing evidence
+covers 3.6 only. Review that additional source profile rather than assume that
+an approval for another version establishes the same producer specification.

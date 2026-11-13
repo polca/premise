@@ -6,8 +6,10 @@ turbine datasets to represent the direct-drive technology.
 
 import copy
 import uuid
+import warnings
 
-from ..inventory.activity_maps import InventorySet
+from ..inventory.activity_maps import InventorySet, get_mapping
+from ..core.utils import DATA_DIR
 from ..core.logger import create_logger
 from ..reporting.provenance import record_change_event
 from ..inventory.inventory_store import (
@@ -19,7 +21,9 @@ from ..core.transformation import BaseTransformation, IAMDataCollection, List, n
 logger = create_logger("wind_turbine")
 
 
-def _update_wind_turbines(scenario, version, system_model):
+def _update_wind_turbines(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
     wind_turbine = WindTurbine(
         database=get_scenario_inventory(scenario),
         iam_data=scenario["iam data"],
@@ -30,6 +34,8 @@ def _update_wind_turbines(scenario, version, system_model):
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     wind_turbine.create_direct_drive_turbines()
@@ -41,9 +47,7 @@ def _update_wind_turbines(scenario, version, system_model):
     return scenario
 
 
-def relink(
-    dataset,
-) -> dict:
+def relink(dataset, suppliers=None) -> dict:
     """
     Relink technosphere exchanges to the new datasets.
     """
@@ -53,7 +57,21 @@ def relink(
         ws.equals("unit", "unit"),
         ws.exclude(ws.contains("name", "connection")),
     ):
+        if (
+            suppliers is not None
+            and (
+                exc["name"],
+                exc.get("product", exc.get("reference product")),
+                exc["location"],
+                exc["unit"],
+            )
+            not in suppliers
+        ):
+            continue
         exc["name"] += ", direct drive"
+        # Explicit native input keys still identify the original supplier.
+        # Resolve the renamed purchase by its new identity during normal linking.
+        exc.pop("input", None)
 
     return dataset
 
@@ -76,6 +94,8 @@ class WindTurbine(BaseTransformation):
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ) -> None:
         super().__init__(
             database,
@@ -87,10 +107,17 @@ class WindTurbine(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.system_model = system_model
-        mapping = InventorySet(database=database, version=version, model=model)
+        mapping = InventorySet(
+            database=database, version=version, model=model, family=family
+        )
         self.powerplant_map = mapping.generate_powerplant_map()
+        self.variant_mapping = get_mapping(
+            DATA_DIR / "renewables" / "wind_turbines.yaml", f"{family}_aliases"
+        ).get("direct drive")
 
     def create_direct_drive_turbines(self):
         """
@@ -108,16 +135,57 @@ class WindTurbine(BaseTransformation):
             "market for wind turbine",
         ]
 
-        new_datasets, processed = [], []
-        for dataset in ws.get_many(
+        candidates = ws.get_many(
             self.database,
             ws.either(*[ws.contains("name", tech) for tech in datasets_terms]),
             ws.exclude(ws.contains("name", "direct drive")),
-        ):
+        )
+        suppliers = None
+        if self.variant_mapping is not None:
+            mapping = InventorySet(self.database, family=self.family)
+            candidates = mapping.generate_sets_from_filters(
+                {"direct drive": self.variant_mapping}
+            )["direct drive"]
+            for identity in self.variant_mapping["exact_identities"]:
+                if not any(
+                    all(ds.get(key) == value for key, value in identity.items())
+                    for ds in candidates
+                ):
+                    raise ValueError(
+                        f"Missing native wind variant template: {identity!r}."
+                    )
+            for dataset in candidates:
+                references = list(ws.production(dataset))
+                if (
+                    len(references) != 1
+                    or references[0]["amount"]
+                    != self.variant_mapping["reference_amount"]
+                    or isinstance(references[0]["amount"], (bool, np.bool_))
+                    or references[0].get("uncertainty type", 0) != 0
+                    or references[0].get("formula")
+                    or references[0].get("unit", dataset["unit"]) != dataset["unit"]
+                ):
+                    raise ValueError(
+                        "Native wind variant requires a deterministic +1 reference."
+                    )
+            suppliers = {
+                (ds["name"], ds["reference product"], ds["location"], ds["unit"])
+                for ds in candidates
+            }
+            warnings.warn(
+                self.variant_mapping["limitations"], UserWarning, stacklevel=2
+            )
+
+        new_datasets, processed = [], []
+        for dataset in candidates:
             key = (dataset["name"], dataset["reference product"], dataset["location"])
             if key not in processed:
                 dataset_copy = self.create_dataset_copy(dataset, "direct drive")
-                dataset_copy = relink(dataset_copy)
+                dataset_copy = relink(dataset_copy, suppliers)
+                if self.variant_mapping is not None:
+                    dataset_copy["comment"] += (
+                        "\n" + self.variant_mapping["limitations"]
+                    )
                 new_datasets.append(dataset_copy)
                 processed.append(key)
 
@@ -133,7 +201,7 @@ class WindTurbine(BaseTransformation):
 
         dataset_copy["comment"] += (
             f" This dataset represents the {suffix} technology "
-            "variant of the ecoinvent dataset."
+            f"variant of the {self.family} dataset."
         )
 
         for exc in ws.production(dataset_copy):

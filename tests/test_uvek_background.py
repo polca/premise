@@ -169,6 +169,7 @@ def test_uvek_scope_defaults_to_pilot_and_refuses_unverified_sectors():
     assert validate_uvek_scope("cement") == ["cement"]
     assert validate_uvek_scope("steel") == ["steel"]
     assert validate_uvek_scope(["electricity", "mining"]) == ["electricity", "mining"]
+    assert validate_uvek_scope("renewable") == ["renewable"]
     with pytest.raises(ValueError, match="unsupported sectors.*fuels"):
         validate_uvek_scope(["electricity", "fuels"])
 
