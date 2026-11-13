@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-13",
+  "scope": "Fifth bounded cleanup of superseded task-generated review exports; fresh reference audit and protected activity-count snapshots before deletion.",
+  "cleanup": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "max_batch": 5,
+    "deleted": [
+      {
+        "name": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-165116",
+        "activity_rows_removed": 14750,
+        "processed_cache_bytes_removed": 20089234,
+        "seconds": 10.646481291973032
+      },
+      {
+        "name": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-165757",
+        "activity_rows_removed": 14750,
+        "processed_cache_bytes_removed": 20090158,
+        "seconds": 9.358942917082459
+      },
+      {
+        "name": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-170123",
+        "activity_rows_removed": 14750,
+        "processed_cache_bytes_removed": 20090158,
+        "seconds": 9.272674125037156
+      },
+      {
+        "name": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-170652",
+        "activity_rows_removed": 14750,
+        "processed_cache_bytes_removed": 20090158,
+        "seconds": 8.985831166966818
+      },
+      {
+        "name": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-170849",
+        "activity_rows_removed": 14750,
+        "processed_cache_bytes_removed": 20090158,
+        "seconds": 9.599036999978125
+      }
+    ],
+    "deferred": [],
+    "vacuum_performed": false,
+    "protected_plan_count": 38,
+    "source_and_biosphere_preserved": true,
+    "storage_before": {
+      "file_bytes": 71805771776,
+      "page_count": 17530706,
+      "free_pages": 2100196,
+      "page_size": 4096
+    },
+    "all_other_preexisting_database_names_preserved": true,
+    "storage_after": {
+      "file_bytes": 71805771776,
+      "page_count": 17530706,
+      "free_pages": 2860006,
+      "page_size": 4096
+    },
+    "total_seconds": 68.06992000003811,
+    "registered_after": 53
+  },
+  "independent_readonly_SQL_checks": {
+    "deleted_activity_and_incoming_outgoing_exchange_rows_absent": true,
+    "all_protected_database_activity_counts_preserved": true,
+    "protected_database_count": 38,
+    "protected_native_biosphere_and_review_activity_counts": {
+      "BAFU:2026-reimported": 11947,
+      "ecoinvent-3.10-biosphere": 4362,
+      "BAFU:2026-REMIND-SSP2-NPi-2050-eight-cdr-20261113-120504": 15137,
+      "BAFU:2026-remind-SSP2-NPi-2050-review-20261113-081929": 13626,
+      "BAFU:2026-remind-SSP2-NPi-2050-review-20261113-092129": 14902
+    }
+  },
+  "removed_activity_rows": 73750,
+  "removed_processed_cache_bytes": 100449866,
+  "additional_reusable_SQLite_bytes": 3112181760,
+  "physical_SQLite_file_size_before": 71805771776,
+  "physical_SQLite_file_size_after": 71805771776,
+  "storage_note": "Deleting rows makes SQLite pages reusable. No VACUUM performed; the physical database file need not shrink.",
+  "protection_policy": "Source/biosphere, other-name databases, latest same-purpose exports, milestones, current notebook references, calculation setups, database parameters and actual/declared dependencies protected. Only known superseded task exports selected. Routine mapping LCIs continue in memory."
+}
