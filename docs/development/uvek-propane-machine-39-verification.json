@@ -1,0 +1,194 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "c31607e0752771440a7d031f96080ce3cc32ea78",
+  "scope_registration": {
+    "prior_scopes": 1343,
+    "new_scopes": 1345,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-92df809e4d10f3a5",
+      "bp-c2d08833986ab3cf"
+    ],
+    "runtime_python_changes": [
+      "premise/inventory/clic_rule_approvals.py"
+    ],
+    "new_source_omissions": [],
+    "reason": "Keep explicitly reviewed nested omission audits at child reference basis; otherwise kg audits are incorrectly compared with the enclosing MJ service. Literal/source-profile/fingerprint checks remain."
+  },
+  "tests": {
+    "brightpath_signed_uncertainty_profile_replay_storage_and_standalone_component_refusals": 45,
+    "premise_fresh_cache_and_nested_audit_basis_acceptance_refusal": 27,
+    "existing_literal_and_quantity_drift_omission_guards": 6,
+    "installed_package_premise_checks": 27,
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 6,
+    "foreground_biosphere_flows": 21,
+    "native_suppliers": 8,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-92df809e4d10f3a5",
+        "source": {
+          "location": "GLO",
+          "name": "market for propane, burned in building machine",
+          "reference product": "propane, burned in building machine",
+          "unit": "megajoule"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "megajoule",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.4769252487667472e-10,
+        "refined_max_abs_inventory_difference": 2.7755575615628914e-17,
+        "full_graph_residual": {
+          "residual_before": 1.623126274052662e-13,
+          "residual_after": 4.9307632472438816e-18,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.5743057990443827e-10,
+          "residual_after": 4.9307632472438816e-18,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-c2d08833986ab3cf",
+        "source": {
+          "location": "GLO",
+          "name": "propane, burned in building machine",
+          "reference product": "propane, burned in building machine",
+          "unit": "megajoule"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "megajoule",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.4769252487667472e-10,
+        "refined_max_abs_inventory_difference": 2.7755575615628914e-17,
+        "full_graph_residual": {
+          "residual_before": 1.623126274052662e-13,
+          "residual_after": 4.9307632472438816e-18,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.5743057990443827e-10,
+          "residual_after": 4.9307632472438816e-18,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the propane-machine fuel-MJ service and twenty retained engine-emission interfaces and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "inherited_omission_audit": {
+    "checked_empty_terminals": [
+      {
+        "identity": {
+          "name": "clinker production",
+          "reference product": "waste mineral oil",
+          "location": "BR",
+          "unit": "kilogram"
+        },
+        "reference_amount": -1,
+        "nonproduction_count": 0,
+        "existing_inventory_hash_matches": true
+      },
+      {
+        "identity": {
+          "name": "clinker production",
+          "reference product": "waste mineral oil",
+          "location": "US",
+          "unit": "kilogram"
+        },
+        "reference_amount": -1,
+        "nonproduction_count": 0,
+        "existing_inventory_hash_matches": true
+      },
+      {
+        "identity": {
+          "name": "clinker production",
+          "reference product": "waste mineral oil",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "reference_amount": -1,
+        "nonproduction_count": 0,
+        "existing_inventory_hash_matches": true
+      },
+      {
+        "identity": {
+          "name": "clinker production",
+          "reference product": "waste mineral oil",
+          "location": "CH",
+          "unit": "kilogram"
+        },
+        "reference_amount": -1,
+        "nonproduction_count": 0,
+        "existing_inventory_hash_matches": true
+      }
+    ],
+    "nested_audits": 2,
+    "literal_inherited_omissions": 4,
+    "root_basis": "megajoule",
+    "child_basis": "kilogram",
+    "new_source_omissions": [],
+    "review_sha256": "482db234e521ae7800cd1d498e5f25aa4728b99f5ba9c2202d640bb653537536"
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_propane_machine_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 148,
+    "current": 147,
+    "removed_rules": [
+      "bp-92df809e4d10f3a5"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-8a6394dd395bb22d",
+    "next_source": {
+      "location": "RER",
+      "name": "metal working, average for aluminium product manufacturing",
+      "reference product": "metal working, average for aluminium product manufacturing",
+      "unit": "kilogram"
+    },
+    "failed_stage": "inventory preparation",
+    "battery_qualified": false,
+    "note": "Both service and its market reviewed; only the market was pending in this cohort. Preparation still stops on the next mapping; later nested-audit checks are independently exercised by focused harmonizer tests."
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [
+    "premise/inventory/clic_rule_approvals.py"
+  ],
+  "runtime_change_reason": "Recognize explicitly packaged child-recipe omission inspections at the child reference basis, preserving literal/source-profile/fingerprint checks. A kg child audit otherwise fails inside an MJ parent. No sector transformation changed.",
+  "runtime_change_review": "docs/development/uvek-nested-recipe-audit-basis.md",
+  "new_source_omissions": [],
+  "new_service_helpers": 1,
+  "reused_nested_helpers": 3,
+  "retained_service_technosphere_inputs": 7,
+  "retained_service_direct_biosphere_inputs": 20,
+  "basis": "MJ of source fuel combusted, not useful heat, shaft work or electricity",
+  "preliminary_failure": "Initial Premise checks refused four existing per-kg omission audits under an enclosing per-MJ service. The explicit nested-audit extension and literal approval metadata resolve this without changing coefficients or relaxing comparisons."
+}

@@ -2305,19 +2305,19 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-92df809e4d10f3a5",
+        "rule_id": "bp-8a6394dd395bb22d",
         "source": {
-          "location": "GLO",
-          "name": "market for propane, burned in building machine",
-          "reference product": "propane, burned in building machine",
-          "unit": "megajoule"
+          "location": "RER",
+          "name": "metal working, average for aluminium product manufacturing",
+          "reference product": "metal working, average for aluminium product manufacturing",
+          "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 148,
+        "unapproved_correspondence_count_in_current_39_cohort": 147,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-ferrochromium-39-verification.json",
+        "verification": "docs/development/uvek-propane-machine-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Inspect the next pending correspondence against native source metadata and reference basis. Continue cobalt-industry portfolio review separately without authorizing the aluminium-industry candidate."
+        "next_action": "Inspect aluminium metalworking as a processing service, protecting separately supplied bulk aluminium and checking processing-loss material, degreasing and native utility boundaries. Cobalt-industry power portfolio remains a separate review."
       }
     },
     {
@@ -3628,6 +3628,6 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-ferrochromium-39-verification.json"
+    "latest_mapping_review": "docs/development/uvek-propane-machine-39-verification.json"
   }
 }

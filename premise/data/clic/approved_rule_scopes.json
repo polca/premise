@@ -266820,6 +266820,688 @@
           "fingerprint": "b08b3ffaa0281a0e154ec2f618c3a1c27942030760496f56bf32c64d681629bc"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-92df809e4d10f3a5",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_propane_machine_39_review.json",
+      "review_sha256": "482db234e521ae7800cd1d498e5f25aa4728b99f5ba9c2202d640bb653537536",
+      "authorization": "Standing autonomous approval of remaining mappings and scoped screening proxies, with warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for propane, burned in building machine",
+            "reference product": "propane, burned in building machine",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "cc9ffb16c0d4fb0248badea1de241a09ed49893deecb6dfd5e955ee308ca7036",
+          "inventory_sha256": "778239fdb889280bc43ef2b4a4a529a4237ce5a8bfd6778e485f4f71ca769b7d",
+          "activity_comment_sha256": "8275f6f0ae886867178c47873801900ba3a45e8077beab1ad43dcce7a57a71ea",
+          "product_information_sha256": "130000bdfebbd2830a1a3421afde4bbd69e891fb8ce8733a4a3f47f332e7e0bf"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "propane, burned in building machine",
+              "reference product": "propane, burned in building machine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 27,
+            "metadata_sha256": "fb2faaec8a85c38ae89e142417cbf8b3604caff9d30dc0596bca346b60ad3fd1",
+            "inventory_sha256": "08a7d8710f8b6ba548108555c1947b1a292a1bd30a623d07329f8559f00efb1b",
+            "activity_comment_sha256": "5e39f8d945b453980a4c8e7c0f30e8910f75b80cec092bda47859d4a0725ab83",
+            "product_information_sha256": "130000bdfebbd2830a1a3421afde4bbd69e891fb8ce8733a4a3f47f332e7e0bf"
+          }
+        ],
+        "recipe_id": "propane-building-machine-39-retained-combustion",
+        "source": {
+          "location": "GLO",
+          "name": "market for propane, burned in building machine",
+          "reference product": "propane, burned in building machine",
+          "unit": "megajoule"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "nested_recipe_inspections": [
+          {
+            "source": {
+              "location": "RoW",
+              "name": "market for waste mineral oil",
+              "reference product": "waste mineral oil",
+              "unit": "kilogram"
+            },
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_witness": {
+              "metadata_sha256": "5fc67e0cae75322395ccb8a7598e5520b8e8822458022859148e9f137ee00b57",
+              "inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22"
+            },
+            "approved_recipe_source_omissions": {
+              "deferred-waste-market-50f4925138b4cb960750": [
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for waste mineral oil",
+                    "reference product": "waste mineral oil",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+                  "original_index": 9,
+                  "source_exchange": {
+                    "name": "clinker production",
+                    "reference product": "waste mineral oil",
+                    "location": "BR",
+                    "unit": "kilogram",
+                    "amount": -0.00969024242811162,
+                    "uncertainty type": 0,
+                    "loc": -0.00969024242811162,
+                    "type": "technosphere"
+                  },
+                  "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+                },
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for waste mineral oil",
+                    "reference product": "waste mineral oil",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+                  "original_index": 10,
+                  "source_exchange": {
+                    "name": "clinker production",
+                    "reference product": "waste mineral oil",
+                    "location": "US",
+                    "unit": "kilogram",
+                    "amount": -0.0306648502198906,
+                    "uncertainty type": 0,
+                    "loc": -0.0306648502198906,
+                    "type": "technosphere"
+                  },
+                  "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+                },
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for waste mineral oil",
+                    "reference product": "waste mineral oil",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+                  "original_index": 12,
+                  "source_exchange": {
+                    "name": "clinker production",
+                    "reference product": "waste mineral oil",
+                    "location": "RoW",
+                    "unit": "kilogram",
+                    "amount": -0.328591585433064,
+                    "uncertainty type": 0,
+                    "loc": -0.328591585433064,
+                    "type": "technosphere"
+                  },
+                  "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+                }
+              ]
+            },
+            "prior_rule_id": "bp-dc3ac2fe6b0e61bf",
+            "prior_review_path": "export/uvek_deferred_waste_markets_review.json",
+            "prior_review_sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+            "terminal_witnesses": [
+              {
+                "identity": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "BR",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "ea9f9a0275eafe8de6393850377f39eedaf3595d92880f8d6d6a2413bf89c068",
+                "inventory_sha256": "4ace5370ab6cf583118241de48cbafa953ff9fb48f2de93ce2ebe76270fbd6c4",
+                "nonproduction_count": 0,
+                "reference_amount": -1,
+                "original_market_fraction": 0.00969024242811162
+              },
+              {
+                "identity": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "US",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "55c23f841c2b41a03afe6656549c0148fc0944f3260ff4b8471dd0b33d210d35",
+                "inventory_sha256": "598036e7ba584b26a3c4aa229f636b7034adff03e32ac148364e095d8f73bf66",
+                "nonproduction_count": 0,
+                "reference_amount": -1,
+                "original_market_fraction": 0.0306648502198906
+              },
+              {
+                "identity": {
+                  "name": "treatment of waste mineral oil, hazardous waste incineration",
+                  "reference product": "waste mineral oil",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "56c5c080535299a45d889178ce952d5c613c2ab2291c4dfedc42869c9fad8d1f",
+                "inventory_sha256": "8e67d82d78e274605390cf76fa31496a3321f20f7c8b6072c69a4562b3e3f1d8",
+                "nonproduction_count": 60,
+                "reference_amount": -1,
+                "original_market_fraction": 0.315447172002172
+              },
+              {
+                "identity": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "2fdc86e940a8ed4df0982ccb54e024c33853b1fcf3e5da4bc36b8d6328fadc49",
+                "inventory_sha256": "f76dd28303ba1c3415fe2977f3521cd263038a83ec768db32acc1040655e68fc",
+                "nonproduction_count": 0,
+                "reference_amount": -1,
+                "original_market_fraction": 0.328591585433064
+              },
+              {
+                "identity": {
+                  "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+                  "reference product": "waste mineral oil",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "dcd49681bec1e3636aa711358b27cc528f1951bcf1fb9a25afe0843d41822cb7",
+                "inventory_sha256": "f683dfce2264cfaa14e51ddbb8b8ee3e2894a0a7b97a5c94d42bb65d6eb9f51e",
+                "nonproduction_count": 60,
+                "reference_amount": -1,
+                "original_market_fraction": 0.315606149916762
+              }
+            ]
+          },
+          {
+            "source": {
+              "location": "CH",
+              "name": "market for waste mineral oil",
+              "reference product": "waste mineral oil",
+              "unit": "kilogram"
+            },
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_witness": {
+              "metadata_sha256": "70d4fb19c6d707572bf7ace1eca60ae7d05d3e546fb1bdcb027914048a985f68",
+              "inventory_sha256": "3a6bb6a21704e3b6fa987d67a4bc6492f2744134845cd2c0d8c976214b3f3107"
+            },
+            "approved_recipe_source_omissions": {
+              "deferred-waste-market-eb02326d461abc9266ea": [
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "source_activity": {
+                    "location": "CH",
+                    "name": "market for waste mineral oil",
+                    "reference product": "waste mineral oil",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "3a6bb6a21704e3b6fa987d67a4bc6492f2744134845cd2c0d8c976214b3f3107",
+                  "original_index": 4,
+                  "source_exchange": {
+                    "name": "clinker production",
+                    "reference product": "waste mineral oil",
+                    "location": "CH",
+                    "unit": "kilogram",
+                    "amount": -0.126166818620844,
+                    "uncertainty type": 0,
+                    "loc": -0.126166818620844,
+                    "type": "technosphere"
+                  },
+                  "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+                }
+              ]
+            },
+            "prior_rule_id": "bp-ef0d29b6fa71b9c8",
+            "prior_review_path": "export/uvek_deferred_waste_markets_review.json",
+            "prior_review_sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+            "terminal_witnesses": [
+              {
+                "identity": {
+                  "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+                  "reference product": "waste mineral oil",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "52a4a7cc6834f6cd983fae1f65f88f9d37e52f22613a0b3fe89c024d96606cb2",
+                "inventory_sha256": "7004b5d5e68ab7b44e075de0863e3bc8c711441dbf348000d026924f9011c312",
+                "nonproduction_count": 53,
+                "reference_amount": -1,
+                "original_market_fraction": 0.436916590689578
+              },
+              {
+                "identity": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "eb50d373311146357099fb8203680855ae3a0a2d9447bbdffa86485a40bba89f",
+                "inventory_sha256": "e5ba3a875294c0374ae85a8bdf7cc20af8b173b80cd2c0ea16e63883179bf6c5",
+                "nonproduction_count": 0,
+                "reference_amount": -1,
+                "original_market_fraction": 0.126166818620844
+              },
+              {
+                "identity": {
+                  "name": "treatment of waste mineral oil, hazardous waste incineration",
+                  "reference product": "waste mineral oil",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "38be3d5fd1c894be29abb1da0dbb43519d535c23896c892e93638e1f7b70770a",
+                "inventory_sha256": "0b991aaccc344147f3d7244c9aed197948d1b63301bccaff86198594af389940",
+                "nonproduction_count": 53,
+                "reference_amount": -1,
+                "original_market_fraction": 0.436916590689578
+              }
+            ]
+          }
+        ]
+      },
+      "limitations": [
+        "Approval is limited to the inspected ecoinvent 3.9 cut-off global propane-burning building-machine service and its single-supplier market. Both references are positive one MJ of source fuel combusted, not MJ of useful heat, shaft work or delivered electricity. Factor +1 preserves signed caller MJ, supported uncertainty/formulas, foreground ownership and separately listed emissions. No useful-output efficiency, electrical/heat credit, boiler service, native diesel combustion or extra fuel-energy multiplier is substituted. Other releases, patches, system models and reverse routes receive no new permission.",
+        "One shared on-demand reconstruction retains all 27 source service interfaces: seven utility/waste inputs and twenty direct combustion emissions. The single-supplier market uses the same service without a redundant wrapper. Source documentation adapts an earlier building-machine inventory using commercial propane composition and EPA NONROAD LPG-engine NOx/CO/PM factors; these direct emissions and supported uncertainty remain unchanged. All twenty source3.9 biosphere publisher UUIDs, names, units and compartments match canonical ecoinvent3.10 exactly. No diesel/boiler direct-emission vector, new emission factor, stoichiometric carbon correction, heat waste, avoided emission or recovery credit is added.",
+        "Preserve 0.02152389152 kg fuel per source MJ. Native Swiss delivered LPG at service station replaces the source global propane supply; it includes its complete fuel supply and distribution once. This is a mass-preserving commercial-fuel screening proxy, not pure-propane chemistry or an exact global gas-extraction supply chain. Native propane/butane blend composition, refinery/gas allocation, calorific value, delivery, geography, vintage and uncertainty differ; target composition/LHV equivalence is not established. Source engine emissions are intentionally retained rather than recalculated for an unknown native blend. No guessed energy or composition multiplier is applied, and no native LPG combustion process is added. Source/native fuel-production and combustion consistency and score effects remain uncertain.",
+        "Retain the source 1.34e-7 building-machine units and both lubricating-oil entries separately (total 0.000514 kg). Use complete native European generic Building machine and Lubricating oil at plant only inside this service; global source manufacturing/market mix and internal delivery are replaced by those native boundaries. Source/native fictitious-machine construction, lifetime/capacity, geography, lubricant grade, allocation, delivery, vintage and internal uncertainty differ; do not rescale machinery by fuel efficiency or duplicate native upstream oil production. These scoped component decisions do not authorize the standalone source markets.",
+        "Retain all three negative used-oil demands separately. Their source waste references are negative one kg; each independent factor -1 converts it to positive demand for positive-reference native treatment, without reversing the whole machine service. Reuse the exact reviewed RoW and Swiss source3.9 market recipes unchanged. Only inside this machine service, the European non-Swiss market uses complete Swiss hazardous-waste incineration of used mineral oil at nominal 10% water, per signed source kg. Its treatment/recovery portfolio, collection, allocation, water content and geography are screening limitations, not an equivalence claim; source water content is not established and no invented dry/wet adjustment or recovery credit is added. Existing nested-recipe warnings and literal omission audits remain active.",
+        "Source and native LCI, LCIA and stochastic equivalence are not claimed; score effects are unquantified. Caller-owned separate emissions/inputs remain separate. No caller exchange or original service input is omitted. Default targets and unrelated profile entries stay unchanged; the diesel candidates receive no new default approval. No runtime Python module, alternative UVEK sector engine or validation bypass is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "78926e39a4cb112735f767bd3af4bc6b12c1a4aedd585c00ee5e65bdc3b093c2"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-c2d08833986ab3cf",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_propane_machine_39_review.json",
+      "review_sha256": "482db234e521ae7800cd1d498e5f25aa4728b99f5ba9c2202d640bb653537536",
+      "authorization": "Standing autonomous approval of remaining mappings and scoped screening proxies, with warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "propane, burned in building machine",
+            "reference product": "propane, burned in building machine",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 27,
+          "metadata_sha256": "fb2faaec8a85c38ae89e142417cbf8b3604caff9d30dc0596bca346b60ad3fd1",
+          "inventory_sha256": "08a7d8710f8b6ba548108555c1947b1a292a1bd30a623d07329f8559f00efb1b",
+          "activity_comment_sha256": "5e39f8d945b453980a4c8e7c0f30e8910f75b80cec092bda47859d4a0725ab83",
+          "product_information_sha256": "130000bdfebbd2830a1a3421afde4bbd69e891fb8ce8733a4a3f47f332e7e0bf"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "propane, burned in building machine",
+              "reference product": "propane, burned in building machine",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 27,
+            "metadata_sha256": "fb2faaec8a85c38ae89e142417cbf8b3604caff9d30dc0596bca346b60ad3fd1",
+            "inventory_sha256": "08a7d8710f8b6ba548108555c1947b1a292a1bd30a623d07329f8559f00efb1b",
+            "activity_comment_sha256": "5e39f8d945b453980a4c8e7c0f30e8910f75b80cec092bda47859d4a0725ab83",
+            "product_information_sha256": "130000bdfebbd2830a1a3421afde4bbd69e891fb8ce8733a4a3f47f332e7e0bf"
+          }
+        ],
+        "recipe_id": "propane-building-machine-39-retained-combustion",
+        "source": {
+          "location": "GLO",
+          "name": "propane, burned in building machine",
+          "reference product": "propane, burned in building machine",
+          "unit": "megajoule"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "nested_recipe_inspections": [
+          {
+            "source": {
+              "location": "RoW",
+              "name": "market for waste mineral oil",
+              "reference product": "waste mineral oil",
+              "unit": "kilogram"
+            },
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_witness": {
+              "metadata_sha256": "5fc67e0cae75322395ccb8a7598e5520b8e8822458022859148e9f137ee00b57",
+              "inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22"
+            },
+            "approved_recipe_source_omissions": {
+              "deferred-waste-market-50f4925138b4cb960750": [
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for waste mineral oil",
+                    "reference product": "waste mineral oil",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+                  "original_index": 9,
+                  "source_exchange": {
+                    "name": "clinker production",
+                    "reference product": "waste mineral oil",
+                    "location": "BR",
+                    "unit": "kilogram",
+                    "amount": -0.00969024242811162,
+                    "uncertainty type": 0,
+                    "loc": -0.00969024242811162,
+                    "type": "technosphere"
+                  },
+                  "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+                },
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for waste mineral oil",
+                    "reference product": "waste mineral oil",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+                  "original_index": 10,
+                  "source_exchange": {
+                    "name": "clinker production",
+                    "reference product": "waste mineral oil",
+                    "location": "US",
+                    "unit": "kilogram",
+                    "amount": -0.0306648502198906,
+                    "uncertainty type": 0,
+                    "loc": -0.0306648502198906,
+                    "type": "technosphere"
+                  },
+                  "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+                },
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "source_activity": {
+                    "location": "RoW",
+                    "name": "market for waste mineral oil",
+                    "reference product": "waste mineral oil",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "d9385092a54ffbe41a413b41271d360202049e8802310dda844ca9815ec59d22",
+                  "original_index": 12,
+                  "source_exchange": {
+                    "name": "clinker production",
+                    "reference product": "waste mineral oil",
+                    "location": "RoW",
+                    "unit": "kilogram",
+                    "amount": -0.328591585433064,
+                    "uncertainty type": 0,
+                    "loc": -0.328591585433064,
+                    "type": "technosphere"
+                  },
+                  "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+                }
+              ]
+            },
+            "prior_rule_id": "bp-dc3ac2fe6b0e61bf",
+            "prior_review_path": "export/uvek_deferred_waste_markets_review.json",
+            "prior_review_sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+            "terminal_witnesses": [
+              {
+                "identity": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "BR",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "ea9f9a0275eafe8de6393850377f39eedaf3595d92880f8d6d6a2413bf89c068",
+                "inventory_sha256": "4ace5370ab6cf583118241de48cbafa953ff9fb48f2de93ce2ebe76270fbd6c4",
+                "nonproduction_count": 0,
+                "reference_amount": -1,
+                "original_market_fraction": 0.00969024242811162
+              },
+              {
+                "identity": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "US",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "55c23f841c2b41a03afe6656549c0148fc0944f3260ff4b8471dd0b33d210d35",
+                "inventory_sha256": "598036e7ba584b26a3c4aa229f636b7034adff03e32ac148364e095d8f73bf66",
+                "nonproduction_count": 0,
+                "reference_amount": -1,
+                "original_market_fraction": 0.0306648502198906
+              },
+              {
+                "identity": {
+                  "name": "treatment of waste mineral oil, hazardous waste incineration",
+                  "reference product": "waste mineral oil",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "56c5c080535299a45d889178ce952d5c613c2ab2291c4dfedc42869c9fad8d1f",
+                "inventory_sha256": "8e67d82d78e274605390cf76fa31496a3321f20f7c8b6072c69a4562b3e3f1d8",
+                "nonproduction_count": 60,
+                "reference_amount": -1,
+                "original_market_fraction": 0.315447172002172
+              },
+              {
+                "identity": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "2fdc86e940a8ed4df0982ccb54e024c33853b1fcf3e5da4bc36b8d6328fadc49",
+                "inventory_sha256": "f76dd28303ba1c3415fe2977f3521cd263038a83ec768db32acc1040655e68fc",
+                "nonproduction_count": 0,
+                "reference_amount": -1,
+                "original_market_fraction": 0.328591585433064
+              },
+              {
+                "identity": {
+                  "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+                  "reference product": "waste mineral oil",
+                  "location": "RoW",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "dcd49681bec1e3636aa711358b27cc528f1951bcf1fb9a25afe0843d41822cb7",
+                "inventory_sha256": "f683dfce2264cfaa14e51ddbb8b8ee3e2894a0a7b97a5c94d42bb65d6eb9f51e",
+                "nonproduction_count": 60,
+                "reference_amount": -1,
+                "original_market_fraction": 0.315606149916762
+              }
+            ]
+          },
+          {
+            "source": {
+              "location": "CH",
+              "name": "market for waste mineral oil",
+              "reference product": "waste mineral oil",
+              "unit": "kilogram"
+            },
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_witness": {
+              "metadata_sha256": "70d4fb19c6d707572bf7ace1eca60ae7d05d3e546fb1bdcb027914048a985f68",
+              "inventory_sha256": "3a6bb6a21704e3b6fa987d67a4bc6492f2744134845cd2c0d8c976214b3f3107"
+            },
+            "approved_recipe_source_omissions": {
+              "deferred-waste-market-eb02326d461abc9266ea": [
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "source_activity": {
+                    "location": "CH",
+                    "name": "market for waste mineral oil",
+                    "reference product": "waste mineral oil",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "3a6bb6a21704e3b6fa987d67a4bc6492f2744134845cd2c0d8c976214b3f3107",
+                  "original_index": 4,
+                  "source_exchange": {
+                    "name": "clinker production",
+                    "reference product": "waste mineral oil",
+                    "location": "CH",
+                    "unit": "kilogram",
+                    "amount": -0.126166818620844,
+                    "uncertainty type": 0,
+                    "loc": -0.126166818620844,
+                    "type": "technosphere"
+                  },
+                  "rationale": "Collapse exactly this production-only allocated clinker-treatment terminal: zero nonproduction exchanges verified by its recorded supplier inventory witness. Its contribution to the inspected source LCI is exactly zero. Preserve its original signed quantity and fraction in this audit; no landfill, fuel-production burden, recovery credit or renormalization. This is an allocated handover, not a claim that physical cement-kiln treatment has no burdens."
+                }
+              ]
+            },
+            "prior_rule_id": "bp-ef0d29b6fa71b9c8",
+            "prior_review_path": "export/uvek_deferred_waste_markets_review.json",
+            "prior_review_sha256": "19117fadd243bf92f8b637ff6f9f7233cbdd3a469ac4c125e63ac6ddced1e3e2",
+            "terminal_witnesses": [
+              {
+                "identity": {
+                  "name": "treatment of waste mineral oil, hazardous waste incineration, with energy recovery",
+                  "reference product": "waste mineral oil",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "52a4a7cc6834f6cd983fae1f65f88f9d37e52f22613a0b3fe89c024d96606cb2",
+                "inventory_sha256": "7004b5d5e68ab7b44e075de0863e3bc8c711441dbf348000d026924f9011c312",
+                "nonproduction_count": 53,
+                "reference_amount": -1,
+                "original_market_fraction": 0.436916590689578
+              },
+              {
+                "identity": {
+                  "name": "clinker production",
+                  "reference product": "waste mineral oil",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "eb50d373311146357099fb8203680855ae3a0a2d9447bbdffa86485a40bba89f",
+                "inventory_sha256": "e5ba3a875294c0374ae85a8bdf7cc20af8b173b80cd2c0ea16e63883179bf6c5",
+                "nonproduction_count": 0,
+                "reference_amount": -1,
+                "original_market_fraction": 0.126166818620844
+              },
+              {
+                "identity": {
+                  "name": "treatment of waste mineral oil, hazardous waste incineration",
+                  "reference product": "waste mineral oil",
+                  "location": "CH",
+                  "unit": "kilogram"
+                },
+                "metadata_sha256": "38be3d5fd1c894be29abb1da0dbb43519d535c23896c892e93638e1f7b70770a",
+                "inventory_sha256": "0b991aaccc344147f3d7244c9aed197948d1b63301bccaff86198594af389940",
+                "nonproduction_count": 53,
+                "reference_amount": -1,
+                "original_market_fraction": 0.436916590689578
+              }
+            ]
+          }
+        ]
+      },
+      "limitations": [
+        "Approval is limited to the inspected ecoinvent 3.9 cut-off global propane-burning building-machine service and its single-supplier market. Both references are positive one MJ of source fuel combusted, not MJ of useful heat, shaft work or delivered electricity. Factor +1 preserves signed caller MJ, supported uncertainty/formulas, foreground ownership and separately listed emissions. No useful-output efficiency, electrical/heat credit, boiler service, native diesel combustion or extra fuel-energy multiplier is substituted. Other releases, patches, system models and reverse routes receive no new permission.",
+        "One shared on-demand reconstruction retains all 27 source service interfaces: seven utility/waste inputs and twenty direct combustion emissions. The single-supplier market uses the same service without a redundant wrapper. Source documentation adapts an earlier building-machine inventory using commercial propane composition and EPA NONROAD LPG-engine NOx/CO/PM factors; these direct emissions and supported uncertainty remain unchanged. All twenty source3.9 biosphere publisher UUIDs, names, units and compartments match canonical ecoinvent3.10 exactly. No diesel/boiler direct-emission vector, new emission factor, stoichiometric carbon correction, heat waste, avoided emission or recovery credit is added.",
+        "Preserve 0.02152389152 kg fuel per source MJ. Native Swiss delivered LPG at service station replaces the source global propane supply; it includes its complete fuel supply and distribution once. This is a mass-preserving commercial-fuel screening proxy, not pure-propane chemistry or an exact global gas-extraction supply chain. Native propane/butane blend composition, refinery/gas allocation, calorific value, delivery, geography, vintage and uncertainty differ; target composition/LHV equivalence is not established. Source engine emissions are intentionally retained rather than recalculated for an unknown native blend. No guessed energy or composition multiplier is applied, and no native LPG combustion process is added. Source/native fuel-production and combustion consistency and score effects remain uncertain.",
+        "Retain the source 1.34e-7 building-machine units and both lubricating-oil entries separately (total 0.000514 kg). Use complete native European generic Building machine and Lubricating oil at plant only inside this service; global source manufacturing/market mix and internal delivery are replaced by those native boundaries. Source/native fictitious-machine construction, lifetime/capacity, geography, lubricant grade, allocation, delivery, vintage and internal uncertainty differ; do not rescale machinery by fuel efficiency or duplicate native upstream oil production. These scoped component decisions do not authorize the standalone source markets.",
+        "Retain all three negative used-oil demands separately. Their source waste references are negative one kg; each independent factor -1 converts it to positive demand for positive-reference native treatment, without reversing the whole machine service. Reuse the exact reviewed RoW and Swiss source3.9 market recipes unchanged. Only inside this machine service, the European non-Swiss market uses complete Swiss hazardous-waste incineration of used mineral oil at nominal 10% water, per signed source kg. Its treatment/recovery portfolio, collection, allocation, water content and geography are screening limitations, not an equivalence claim; source water content is not established and no invented dry/wet adjustment or recovery credit is added. Existing nested-recipe warnings and literal omission audits remain active.",
+        "Source and native LCI, LCIA and stochastic equivalence are not claimed; score effects are unquantified. Caller-owned separate emissions/inputs remain separate. No caller exchange or original service input is omitted. Default targets and unrelated profile entries stay unchanged; the diesel candidates receive no new default approval. No runtime Python module, alternative UVEK sector engine or validation bypass is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0c8043e8ef15366d3deb224b6c1d2e33304bfc9f5e4ce0b68636c84e491bc21c"
+        }
+      ]
     }
   ],
   "superseded_operations": [
