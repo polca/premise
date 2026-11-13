@@ -98,17 +98,21 @@ def approved_recipe_source_omission(loss, report):
         return False
     for review in report.get("premise_compatibility_reviews", ()):
         inspection = review.get("inspection", {})
-        omissions = inspection.get("approved_recipe_source_omissions", {}).get(
-            details.get("recipe_id"), []
-        )
-        if (
-            index < len(omissions)
-            and details.get("omission") == omissions[index]
-            and details.get("source_profile") == inspection.get("source_profile")
-            and details.get("basis")
-            == {"amount": 1, "unit": inspection.get("source", {}).get("unit")}
-        ):
-            return True
+        # Child recipes keep their own reference basis (e.g. kg waste inside
+        # an MJ service). Only explicitly packaged child audits may authorize
+        # their omissions; the matched parent fingerprint binds the closure.
+        for context in [inspection, *inspection.get("nested_recipe_inspections", [])]:
+            omissions = context.get("approved_recipe_source_omissions", {}).get(
+                details.get("recipe_id"), []
+            )
+            if (
+                index < len(omissions)
+                and details.get("omission") == omissions[index]
+                and details.get("source_profile") == context.get("source_profile")
+                and details.get("basis")
+                == {"amount": 1, "unit": context.get("source", {}).get("unit")}
+            ):
+                return True
     return False
 
 
