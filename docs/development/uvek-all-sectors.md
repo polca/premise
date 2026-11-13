@@ -1936,3 +1936,7 @@ Replaced three unrelated-chemical matches with retained RER/RoW acid inventories
 ### Ilmenite built-site infrastructure — 13 November 2026
 
 Reconstructed the original built-site buildings and five land-use flows, replacing the complete hard-coal-mine match. Preserved the asset market and two building producer shares; source site/building lifetime conventions and geographic/old-building proxies remain warnings. Mapping/storage, fresh/cache sign/uncertainty tests and in-memory LCIs pass without database writes. Battery cohort falls from 166 to 165 unapproved rules, next RoW unleaded petrol. Eight of nineteen sectors remain qualified. See `uvek-ilmenite-mine-39-review.md` and verification JSON.
+
+### RoW delivered fossil petrol — 13 November 2026
+
+Replaced the older refinery-only match with complete native fossil petrol at regional storage, explicitly replacing the internal delivery model. Caller signed kg and separate emissions remain; refinery/blend, country/fleet, electricity, loss, evaporation and other model differences are warnings. Native ethanol-containing mixes excluded by source fossil-only function. No helper or runtime module change. Mapping/storage, fresh/cache sign checks and in-memory LCIs pass without database writes. Battery cohort falls from 165 to 164 unapproved rules, next ilmenite recultivation. Eight of nineteen sectors remain qualified. See `uvek-petrol-row-39-review.md` and verification JSON. Queued for next batch push.

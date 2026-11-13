@@ -1,0 +1,115 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "aa2a622d157491eec4c63fbe2135e98f3e00a5d3",
+  "scope_registration": {
+    "prior_scopes": 1317,
+    "new_scopes": 1318,
+    "all_existing_operations_unchanged": true
+  },
+  "tests": {
+    "brightpath_mapping_and_storage_checks": 27,
+    "premise_fresh_cached_sign_uncertainty_and_scope_checks": 5,
+    "lint": "passed",
+    "note": "Whole native fossil delivered-fuel proxy replaces the internal 122-row source market model, with explicit geography, blend, electricity, distribution and evaporation differences. Caller mass, uncertainty and separate emissions retained.",
+    "installed_package_premise_checks": 5
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 1,
+    "native_suppliers": 1,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-a3c515458cd0a130",
+        "source": {
+          "location": "RoW",
+          "name": "market for petrol, unleaded",
+          "reference product": "petrol, unleaded",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 0.0,
+        "full_graph_residual": {
+          "residual_before": 3.297605049789494e-09,
+          "residual_after": 1.7763568394002505e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.297605049789494e-09,
+          "residual_after": 1.7763568394002505e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the complete fossil-petrol delivery proxy and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "frontier": {
+    "before_unapproved_rule_count": 165,
+    "after_unapproved_rule_count": 164,
+    "cleared_rule_ids": [
+      "bp-a3c515458cd0a130"
+    ],
+    "new_unapproved_rules": [],
+    "next_unapproved_rule": "bp-1db267d42c18e2bd",
+    "next_source": {
+      "location": "GLO",
+      "name": "market for recultivation, ilmenite mine",
+      "reference product": "recultivation, ilmenite mine",
+      "unit": "square meter"
+    },
+    "next_target": {
+      "location": "GLO",
+      "name": "Recultivation, bauxite mine",
+      "reference product": "Recultivation, bauxite mine",
+      "unit": "square meter"
+    },
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique rules in the inspected source-3.9 cut-off battery cohort, not dataset count or all source profiles. Native CH fossil storage is distinct from refinery-only supply and ethanol-containing regional mixes; no helper or caller omission introduced."
+  },
+  "runtime_python_changes": [],
+  "complete_source_internal_model_replaced": true,
+  "new_helpers": 0,
+  "caller_exchange_omissions": 0,
+  "explicit_model_changes": {
+    "distribution_electricity_kWh_per_kg": {
+      "source": 0.0067,
+      "native": 0.050762
+    },
+    "source_nonproduction_rows": 122,
+    "native_nonproduction_rows": 28,
+    "native_fuel_blend_plus_loss_input_kg": 1.001194,
+    "source_evaporation_flows_with_changed_amounts": 10,
+    "native_additional_waste_heat_MJ": 0.18274
+  },
+  "installed_package_verification": {
+    "brightpath_commit": "aa2a622d157491eec4c63fbe2135e98f3e00a5d3",
+    "installed_resources_match_commit": [
+      "export/uvek_petrol_row_39_review.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "migrations/RESOURCE_MANIFEST.json"
+    ],
+    "removed_unused_wheel": "brightpath-1.0.0a14-py3-none-any.whl",
+    "removed_bytes": 44182556,
+    "sha256": "18a732ada38a3abf9bd82a2cee2a1ff6e186eb5ad8052275e438c9ba59d430b0",
+    "unused_candidate_evidence_vectors_removed_bytes": 14938878
+  }
+}
