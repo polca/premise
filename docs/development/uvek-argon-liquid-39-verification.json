@@ -185,5 +185,21 @@
   "registered_sectors": 19,
   "runtime_python_changes": [],
   "new_source_omissions": [],
-  "clean_eight_sector_graph_rerun": "planned because the European market refinement affects an existing steel prerequisite; no new Brightway export intended"
+  "clean_eight_sector_graph_rerun": {
+    "status": "passed",
+    "proof": "uvek-argon-eight-sector-no-write-verification.json",
+    "activities": 15137,
+    "native_codes_retained": 11947,
+    "exhaustive_validation_errors": 0,
+    "all_eight_sector_target_contracts_applicable_with_positive_coverage": true,
+    "complete_matrix_signed_LCI_solves": 168,
+    "all_LCIs_finite": true,
+    "new_brightway_databases": 0,
+    "source_user_edits_excluded": true
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_argon_liquid_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ]
 }

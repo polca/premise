@@ -1,0 +1,202 @@
+{
+  "status": "clean_public_eight_sector_update_exhaustive_validation_and_in_memory_LCIs_passed",
+  "activities": 15137,
+  "native_codes_retained": 11947,
+  "exhaustive_validation_errors": 0,
+  "validation_phases": [
+    {
+      "phase_id": "graph:full",
+      "kind": "graph",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:biomass",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:biomass:contract",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:electricity:supplier-vector",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:electricity",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:electricity:contract",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:heat",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:heat:contract",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:cement",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:cement:contract",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:steel",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:steel:contract",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:mining:contract",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:renewable:contract",
+      "kind": "sector",
+      "error_issues": 0
+    },
+    {
+      "phase_id": "sector:cdr:contract",
+      "kind": "sector",
+      "error_issues": 0
+    }
+  ],
+  "complete_graph_LCI": {
+    "scenario": "encrypted REMIND SSP2-NPi 2050; combined eight sectors with CDR",
+    "all_transformed_activities": 15137,
+    "linked_technosphere_exchanges": 148624,
+    "transient_technosphere_coordinates": 150704,
+    "transient_biosphere_coordinates": 278813,
+    "matrix_boundary": "Complete transformed point-estimate graph; no unchanged native technosphere overlay.",
+    "foreground_datapackage_filesystem": "memory",
+    "selected_regional_CDR_activities_and_markets": 84,
+    "signed_LCI_solves": 168,
+    "all_LCIs_finite": true,
+    "all_signed_reversals_match": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "source_and_biosphere_preserved": true,
+    "database_registry_unchanged": true,
+    "qualification_limit": "Deterministic numerical and linking checks; not LCIA equivalence, source emission completeness, uncertainty simulation, or Brightway export qualification."
+  },
+  "source_project": "bafu-2026-ecospold2-biosphere-310",
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement",
+    "steel",
+    "mining",
+    "renewable",
+    "cdr"
+  ],
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "premise_checkout_commit": "87f5a8a6717603c11866103daaf0d7fe4a34d670",
+  "brightpath_commit": "03fdd32f7942720d07f9d0607c81e8a85412369e",
+  "source_and_biosphere_metadata_preserved": true,
+  "database_registry_unchanged": true,
+  "processed_files_unchanged": true,
+  "export_performed": false,
+  "validation_disabled": false,
+  "public_gate_bypassed": false,
+  "source_worktree_user_edits_included": false,
+  "elapsed_seconds": 208.09350833389908,
+  "sector_target_coverage": {
+    "biomass": [
+      {
+        "rule_id": "METHOD.BIOMASS.TARGET_COVERAGE",
+        "applicability": "applicable",
+        "checked_object_count": 55,
+        "expected": ">= 1 target",
+        "actual": 55
+      }
+    ],
+    "electricity": [
+      {
+        "rule_id": "METHOD.ELECTRICITY.TARGET_COVERAGE",
+        "applicability": "applicable",
+        "checked_object_count": 508,
+        "expected": ">= 1 target",
+        "actual": 508
+      }
+    ],
+    "heat": [
+      {
+        "rule_id": "METHOD.HEAT.TARGET_COVERAGE",
+        "applicability": "applicable",
+        "checked_object_count": 352,
+        "expected": ">= 1 target",
+        "actual": 352
+      }
+    ],
+    "cement": [
+      {
+        "rule_id": "METHOD.CEMENT.TARGET_COVERAGE",
+        "applicability": "applicable",
+        "checked_object_count": 26,
+        "expected": ">= 1 target",
+        "actual": 26
+      }
+    ],
+    "steel": [
+      {
+        "rule_id": "METHOD.STEEL.TARGET_COVERAGE",
+        "applicability": "applicable",
+        "checked_object_count": 169,
+        "expected": ">= 1 target",
+        "actual": 169
+      }
+    ],
+    "mining": [
+      {
+        "rule_id": "METHOD.MINING.TARGET_COVERAGE",
+        "applicability": "applicable",
+        "checked_object_count": 84,
+        "expected": ">= 1 target",
+        "actual": 84
+      }
+    ],
+    "renewable": [
+      {
+        "rule_id": "METHOD.RENEWABLE.TARGET_COVERAGE",
+        "applicability": "applicable",
+        "checked_object_count": 119,
+        "expected": ">= 1 target",
+        "actual": 119
+      }
+    ],
+    "cdr": [
+      {
+        "rule_id": "METHOD.CDR.TARGET_COVERAGE",
+        "applicability": "applicable",
+        "checked_object_count": 79,
+        "expected": ">= 1 target",
+        "actual": 79
+      }
+    ]
+  },
+  "qualification_limit": "Clean committed-code eight-sector update, target coverage, exhaustive graph/link checks and deterministic complete-matrix LCIs for inspected REMIND scenario. No new export; historical Brightway export retained. Not full nineteen-sector completion, emission completeness, LCIA equivalence or universal IAM technology coverage.",
+  "historical_brightway_milestone_unchanged": true,
+  "owned_clean_checkout_size_kib": 94716,
+  "owned_clean_checkout_removed": true
+}
