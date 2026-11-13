@@ -1,0 +1,44 @@
+{
+  "status": "all_nine_example_code_cells_executed_in_order",
+  "example": "examples/uvek_2026_review_workflow.ipynb",
+  "kernel_executable": "/opt/homebrew/Caskroom/miniforge/base/envs/premise/bin/python",
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat"
+  ],
+  "encrypted_IAM": true,
+  "runtime_scope_guard_bypassed": false,
+  "validation_disabled": false,
+  "export_performed": true,
+  "elapsed_seconds": 96.40719383291434,
+  "private_password_automation": "Private executed copy reads only the IAM key from a kernel environment variable; all nine original workflow cells run in order. Published notebook unchanged.",
+  "exported_database": "BAFU:2026-remind-SSP2-NPi-2050-review-20261113-081929",
+  "exported_activities": 13626,
+  "base_regional_electricity_markets": 39,
+  "native_source_activities": 11947,
+  "native_source_database_present": true,
+  "LCI_checks": {
+    "EUR_high": {
+      "name": "market group for electricity, high voltage",
+      "reference_product": "electricity, high voltage",
+      "location": "EUR",
+      "demand_kWh": 1,
+      "finite_supply_and_inventory": true,
+      "technosphere_inputs": 172
+    },
+    "NEU_low": {
+      "name": "market group for electricity, low voltage",
+      "reference_product": "electricity, low voltage",
+      "location": "NEU",
+      "demand_kWh": 1,
+      "finite_supply_and_inventory": true,
+      "technosphere_inputs": 4
+    }
+  },
+  "brightpath_commit": "4ec9c53f05d5ed7ee2d8a55861d236fb58f3c907",
+  "public_notebook_outputs_and_counts_cleared": true,
+  "premise_checkout_commit": "f645a352",
+  "published_notebook_modified": false,
+  "scope": "Standard three-sector notebook and EUR/NEU exported electricity LCI checks; not qualification of pending sectors."
+}

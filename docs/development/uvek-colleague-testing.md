@@ -23,9 +23,11 @@ This works even if the fork initially contains only the default branch. If your
 clone already has a local `premise-CLIC` branch, use `git switch premise-CLIC`
 instead of creating it again. Do not use the default branch for this test.
 
-Record `git rev-parse HEAD` with your results. The branch contains the shared
-UVEK workflow (`712ccac6`) and the GitHub Brightpath dependency (`6637ee4a`),
-plus the notebook and guide supplied with this handoff.
+Record `git rev-parse HEAD` with your results. Use the `premise-CLIC` branch,
+not the default branch. Focused development commits are now published in batches
+of roughly 5-10, so a local progress report can be ahead of GitHub. The already
+published branch contains the runnable three-sector example; pending carbon-
+removal mappings are not needed to run it.
 
 ## 2. Install in a separate environment
 
@@ -224,3 +226,25 @@ source inventories; it does not itself calculate a direct-drive bill of material
 See [renewable review](uvek-renewable-variant-review.md) and
 [qualification](uvek-renewable-qualification.json). Fuels, metals and the other
 remaining sectors are still being qualified.
+
+
+## Fresh notebook check: 13 November 2026
+
+All nine example code cells ran in order in the registered `premise` Jupyter
+kernel, using the installed GitHub Brightpath revision listed above. Only the
+password prompt was automated in a private execution copy; the published
+notebook keeps the interactive prompt and remains unchanged, with no outputs
+or execution counts. No sector gate or validation was bypassed.
+
+The run took about 96 seconds on the local review machine and exported
+`BAFU:2026-remind-SSP2-NPi-2050-review-20261113-081929`, containing 13,626
+activities. The source remains present with 11,947 activities. Independent
+checks found the expected 39 base electricity markets and finite inventories
+for 1 kWh of EUR high-voltage and NEU low-voltage electricity. Counts can change
+with CLIC archive revisions; these figures are evidence for this run, not fixed
+acceptance thresholds or a runtime estimate for another computer.
+
+See the [two-page progress summary](uvek-progress-summary-2026-11-13.pdf) and
+[notebook verification](uvek-colleague-notebook-verification-2026-11-13.json).
+The seven-sector export remains separately qualified; this notebook rerun does
+not qualify carbon removal or any other unfinished sector.
