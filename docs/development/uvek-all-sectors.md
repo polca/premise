@@ -1809,3 +1809,18 @@ The next reported case is hydrated lime. Battery remains unfinished; eight of
 19 sectors remain qualified. Changes await a later batch publication. See
 [review](uvek-battery-fluoride-39-review.md) and
 [verification](uvek-battery-fluoride-39-verification.json).
+
+## Battery: two exact 3.9 whole-service interfaces
+
+Independent inspection extends the unchanged complete native barge and average
+steel-processing correspondences to source 3.9. Barge is a full tkm service;
+metal working is processing per kg, with the native 0.227 kg loss steel retained
+and the principal material still owned by the caller. The source processing
+market's two regional producer shares are represented by one native average
+service as an explicit geographic proxy; their internal mix is not reconstructed.
+All previous approval operations remain unchanged. Ten fresh/cache/refusal tests
+and four signed transient LCIs plus two native-reference comparisons pass with
+no database write or runtime module change. The next joint battery retry will
+verify these grants alongside the seven new material cases. See
+[review](uvek-battery-reused-services-39-review.md) and
+[verification](uvek-battery-reused-services-39-verification.json).

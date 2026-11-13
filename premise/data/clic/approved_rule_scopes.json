@@ -260861,6 +260861,222 @@
           "fingerprint": "90dc4357e422efe0485281b67ab947e0dbf5dba6cbafce7f63e6eb70cf5c2646"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-15ef78b8ed5991f1",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_heat_310_products_review.json",
+      "review_sha256": "fcf198e34f2b15174557885ca0d51bd1fea131043b8eddcd9490573753b5cc9c",
+      "authorization": "Standing autonomous approval with warnings: independently inspected exact 3.9 source/native whole-service interfaces; existing frozen native service reviews and parent mappings retained.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for metal working, average for steel product manufacturing",
+          "reference product": "metal working, average for steel product manufacturing",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for metal working, average for steel product manufacturing",
+            "reference product": "metal working, average for steel product manufacturing",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "inventory_sha256": "aee8d9eff847fc184f0f728f2cf4671b4772930de0d972cb9bacf60fdcc17a75",
+          "metadata_sha256": "58c2bc235c60ee8870016dec3504fc20a02fbd9fb2a63e44d36f9436206e0551"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "metal working, average for steel product manufacturing",
+              "reference product": "metal working, average for steel product manufacturing",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "inventory_sha256": "f4f14ad404900d5472aebdc4ade6bca8438738109171404f0a8883a6d290ecda",
+            "metadata_sha256": "614a522876a825766325e3e0334dc66905e03f735e07c2e4f6c95c92279786de"
+          },
+          {
+            "identity": {
+              "name": "metal working, average for steel product manufacturing",
+              "reference product": "metal working, average for steel product manufacturing",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "inventory_sha256": "0c29d6a84f8fdd6be3fe33b3077001785b2aeaa3143ca363e166059626740490",
+            "metadata_sha256": "cc38f9451bdc392aea506b02a8cce0b500b7b5c0ca6083b7880c54bc8d8473dc"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Steel product manufacturing, average metal working",
+              "reference product": "Steel product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "inventory_sha256": "e05572e771a650338290dbe75ae4a5bcd35c8907436dec217f293b6de53942db",
+            "metadata_sha256": "f5aa636d99b661c6954597817f129259df9ddf6aa5eaf16704c025987c508ee1"
+          },
+          "2026": {
+            "identity": {
+              "name": "Steel product manufacturing, average metal working",
+              "reference product": "Steel product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "inventory_sha256": "a4405c942972d457f00abac84f48dca8340e81fe5145ebbdcf90c677f68b5d24",
+            "metadata_sha256": "13545d2e30426ad16582faba87ee1cb3681ebd2d6af0892530cccaa0579fd19e"
+          }
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off global average steel-product metal-working market is newly inspected. Its two positive RER/RoW processing-service entries sum to one kg; there is no freight, direct biosphere exchange or market loss. Use the complete native RER average manufacturing service per signed kg. Source/native manufacturing include one kg machine operation and factory operation, matching machine/factory coefficients, and 0.227 kg additional steel for processing loss; the main semi-finished steel input remains the caller responsibility. Do not add the principal steel input, multiply by 1.227, remove the included loss steel, add degreasing, or add a new scrap/recovery credit.",
+        "Native RER is a technology/geography/vintage proxy for the two source processing services; source regional upstream energy/material mix and internal uncertainty/formulas are replaced by the complete native model, not reconstructed. The source producer split is represented by one native average service, not separately preserved as new producer clones. Factor +1 preserves signed caller kg, supported uncertainty, formulas, foreground ownership and separate emissions. No LCIA/stochastic equivalence, inverse or cross-system-model route is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5f46f96ec895ceddb2c31d93e541eb02b490c281b6c70b2d40bd268ae66323e4"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-25557ccca7d5a61f",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_fuels_38_services_review.json",
+      "review_sha256": "1152685f7d0cb86f9484eed8f5dcaefce49e94e0e2b2e51dbe61ee6230effbd3",
+      "authorization": "Standing autonomous approval with warnings: independently inspected exact 3.9 source/native whole-service interfaces; existing frozen native service reviews and parent mappings retained.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for transport, freight, inland waterways, barge",
+          "reference product": "transport, freight, inland waterways, barge",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, inland waterways, barge",
+            "reference product": "transport, freight, inland waterways, barge",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "inventory_sha256": "da6c0a9ade36589dc778411053c7cfc43a638e3197c44d5bcda91be208eea574",
+          "metadata_sha256": "ce8802ed41e6c1226ffaf3aba2e11187d1d6a48a24152cf6c6588e90c274df53"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 32,
+            "inventory_sha256": "08a630955080c6b42c9070b2b28cd9a876f44f3e153de20a1de608fee715cfb3",
+            "metadata_sha256": "360e1bf28449af9395bfbdde77b43784f68d6bd9d904d9ada1f5b99a4c3ed3d5"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 43,
+            "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+            "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 43,
+            "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+            "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+          }
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off RER barge freight market is newly inspected. It contains one positive unit share of the RER barge service and no other input, direct release, loss or freight layer. Source and native are complete transport life-cycle services per positive tkm, including operation, vessel, maintenance, port and canal infrastructure. Use the complete native service once per signed source tkm; add no vessel/port/canal, payload/distance multiplier, fuel-only process or extra freight layer.",
+        "Native vessel/diesel-engine technology, allocation, upstream fuel, infrastructure quantities, vintage and internal uncertainty differ. Native service replaces the original full upstream model without claiming LCI, LCIA or stochastic equivalence. Caller signs, units, uncertainty/formulas, foreground suppliers and separate emissions remain unchanged. Other source profiles and reverse/system-model routes gain no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4de31b0ca9b357c97cdf812ba39e28ad4572aa536f45a364651ff9cac2252d82"
+        }
+      ]
     }
   ],
   "superseded_operations": [
