@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement and steel. The unchanged no-argument default selects biomass, electricity and heat. Other registered sectors remain gated until verified.",
+  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining and renewable. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
   "sectors": [
     {
       "sector": "biomass",
@@ -1137,7 +1137,7 @@
     },
     {
       "sector": "renewable",
-      "status": "audited_not_operational",
+      "status": "standard_shared_REMIND_2050_update_export_and_native_inventory_audit_verified_with_screening_limits",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -1148,32 +1148,18 @@
         "files": [],
         "runtime_verified": false
       },
-      "blockers": [
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [
+        "59cf225f"
+      ],
+      "tests": [],
+      "integration_exports": [
         {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
-        },
-        {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/electricity/renewables.py:22",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/electricity/renewables.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+          "database": "BAFU:2026-REMIND-SSP2-NPi-2050-seven-renewable-20261113-061544",
+          "evidence": "docs/development/uvek-renewable-qualification.json"
         }
       ],
-      "decisions": [],
-      "implementation_commits": [],
-      "tests": [],
-      "integration_exports": [],
       "static_audit": {
         "callback": "_update_wind_turbines",
         "module": "premise/electricity/renewables.py",
@@ -1193,7 +1179,8 @@
         "biosphere_dictionary_calls": [],
         "version_assumption_lines_to_review": [],
         "role_files": [],
-        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations.",
+        "interpretation": "Historical first pass; superseded by the current qualification evidence."
       },
       "first_real_native_probe": {
         "scenario": "encrypted REMIND SSP2-NPi 2050",
@@ -1201,6 +1188,62 @@
         "declared_targets": 0,
         "stage": "shared direct-drive wind variants",
         "diagnosis": "Legacy ecoinvent name selectors and missing family/biosphere propagation require native target review; no validation rule relaxed."
+      },
+      "historical_first_pass": {
+        "status": "audited_not_operational",
+        "blockers": [
+          {
+            "code": "scope_gate",
+            "path": "premise/database/background.py:validate_uvek_scope",
+            "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+          },
+          {
+            "code": "family_dispatch",
+            "path": "premise/database/new_database.py:NewDatabase.update",
+            "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+          },
+          {
+            "code": "sector_implementation_and_integration",
+            "path": "premise/electricity/renewables.py:22",
+            "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+          },
+          {
+            "code": "inventory_family_default",
+            "path": "premise/electricity/renewables.py",
+            "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+          }
+        ],
+        "static_audit": {
+          "callback": "_update_wind_turbines",
+          "module": "premise/electricity/renewables.py",
+          "module_sha256": "f522b9a4eca7c339506111c42d05a1b2ca58456a7b65e35f446393874e5ffafc",
+          "update_function_line": 22,
+          "declared_arguments": [
+            "scenario",
+            "version",
+            "system_model"
+          ],
+          "inventory_set_calls": [
+            {
+              "line": 92,
+              "family_keyword_supplied": false
+            }
+          ],
+          "biosphere_dictionary_calls": [],
+          "version_assumption_lines_to_review": [],
+          "role_files": [],
+          "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations.",
+          "interpretation": "Historical first pass; superseded by the current qualification evidence."
+        }
+      },
+      "current_qualification": {
+        "date": "2026-11-13",
+        "scenario": "encrypted REMIND SSP2-NPi 2050",
+        "evidence": "docs/development/uvek-renewable-qualification.json",
+        "current_seven_sector_evidence": "docs/development/uvek-renewable-qualification.json",
+        "public_scope_gate_bypassed": false,
+        "validation_disabled": false,
+        "limitations": "The inspected source/scenario is qualified with documented proxies. Other IAM scenarios are not implied. Renewable copies retain source inventories; no new direct-drive material bill is inferred."
       }
     },
     {
@@ -1277,7 +1320,7 @@
     },
     {
       "sector": "mining",
-      "status": "audited_not_operational",
+      "status": "standard_shared_REMIND_2050_update_export_and_native_inventory_audit_verified_with_screening_limits",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -1288,32 +1331,19 @@
         "files": [],
         "runtime_verified": false
       },
-      "blockers": [
+      "blockers": [],
+      "decisions": [],
+      "implementation_commits": [
+        "862c98e3",
+        "ca45c70f"
+      ],
+      "tests": [],
+      "integration_exports": [
         {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
-        },
-        {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/materials/mining.py:33",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/materials/mining.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+          "database": "BAFU:2026-REMIND-SSP2-NPi-2050-seven-renewable-20261113-061544",
+          "evidence": "docs/development/uvek-mining-combined-qualification.json"
         }
       ],
-      "decisions": [],
-      "implementation_commits": [],
-      "tests": [],
-      "integration_exports": [],
       "static_audit": {
         "callback": "_update_mining",
         "module": "premise/materials/mining.py",
@@ -1333,7 +1363,8 @@
         "biosphere_dictionary_calls": [],
         "version_assumption_lines_to_review": [],
         "role_files": [],
-        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations.",
+        "interpretation": "Historical first pass; superseded by the current qualification evidence."
       },
       "production_heat_correspondence_review": {
         "review": "docs/development/uvek-production-heat-boundary-review.md",
@@ -1374,6 +1405,62 @@
         "remaining_refused_rules_in_first_source_group": 1,
         "brightpath_commit": "e9cf7106cf7bdb6f00ee04773d38ae3d9527897a",
         "qualification": "Rounded public reactants with source production services and delivery retained; exact 3.8 cut-off only. Complete mining preparation/update/validation/export remain unfinished."
+      },
+      "historical_first_pass": {
+        "status": "audited_not_operational",
+        "blockers": [
+          {
+            "code": "scope_gate",
+            "path": "premise/database/background.py:validate_uvek_scope",
+            "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+          },
+          {
+            "code": "family_dispatch",
+            "path": "premise/database/new_database.py:NewDatabase.update",
+            "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+          },
+          {
+            "code": "sector_implementation_and_integration",
+            "path": "premise/materials/mining.py:33",
+            "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+          },
+          {
+            "code": "inventory_family_default",
+            "path": "premise/materials/mining.py",
+            "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+          }
+        ],
+        "static_audit": {
+          "callback": "_update_mining",
+          "module": "premise/materials/mining.py",
+          "module_sha256": "a9f3888f681b85b7d228c4b9afd97f38378cdf32282cc9fc75e5c1b753a44a12",
+          "update_function_line": 33,
+          "declared_arguments": [
+            "scenario",
+            "version",
+            "system_model"
+          ],
+          "inventory_set_calls": [
+            {
+              "line": 174,
+              "family_keyword_supplied": false
+            }
+          ],
+          "biosphere_dictionary_calls": [],
+          "version_assumption_lines_to_review": [],
+          "role_files": [],
+          "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations.",
+          "interpretation": "Historical first pass; superseded by the current qualification evidence."
+        }
+      },
+      "current_qualification": {
+        "date": "2026-11-13",
+        "scenario": "encrypted REMIND SSP2-NPi 2050",
+        "evidence": "docs/development/uvek-mining-combined-qualification.json",
+        "current_seven_sector_evidence": "docs/development/uvek-renewable-qualification.json",
+        "public_scope_gate_bypassed": false,
+        "validation_disabled": false,
+        "limitations": "Native treatment-service and negative tailings-reference coordinates remain distinct, with reviewed sign conversion and uncertainty preserved; other scenarios are not implied."
       }
     },
     {
@@ -2114,6 +2201,25 @@
         "review": "docs/development/uvek-production-heat-boundary-review.md",
         "verification": "docs/development/uvek-production-heat-boundary-verification.json",
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
+      },
+      "current_mapping_frontier": {
+        "date": "2026-11-13",
+        "status": "inventory_preparation_incomplete_no_CDR_update_or_export",
+        "completed_reviews": [
+          "docs/development/uvek-pump-profiles-review.md",
+          "docs/development/uvek-spent-solvent-profiles-review.md",
+          "docs/development/uvek-cogen-heat-exchanger-review.md",
+          "docs/development/uvek-cdr-equipment-profiles-review.md"
+        ],
+        "next_source_profile": "ecoinvent 3.12 cut-off",
+        "pending_cases": [
+          "small biomethane boiler heat",
+          "delivered tap-water market",
+          "methyldiethanolamine market (incorrect existing alcohol match)",
+          "chromium steel 18/8 production",
+          "average wastewater treatment"
+        ],
+        "scope_gate": "Intentionally closed until standard update/export and filters are verified."
       }
     },
     {
@@ -3461,5 +3567,22 @@
     "review": "docs/development/uvek-pv-wiring-filter-review.md",
     "tests_passed": 37,
     "runtime_change": "One case-insensitive exclusion in the existing shared plant-efficiency selector; observed inventory coefficients unchanged."
+  },
+  "current_snapshot": {
+    "date": "2026-11-13",
+    "qualified_for_encrypted_REMIND_SSP2_NPi_2050": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable"
+    ],
+    "registered_sectors_including_electricity": 19,
+    "remaining_unqualified_sector_count": 12,
+    "latest_combined_export_evidence": "docs/development/uvek-renewable-qualification.json",
+    "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
+    "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification."
   }
 }
