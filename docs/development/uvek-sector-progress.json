@@ -1339,6 +1339,14 @@
         "review": "docs/development/uvek-production-heat-boundary-review.md",
         "verification": "docs/development/uvek-production-heat-boundary-verification.json",
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
+      },
+      "material_correspondence_progress": {
+        "review": "docs/development/uvek-mining38-material-supplier-review.md",
+        "verification": "docs/development/uvek-mining38-material-supplier-verification.json",
+        "source_version": "3.8",
+        "new_scopes": 12,
+        "remaining_refused_rules_in_first_source_group": 4,
+        "qualification": "This group only; complete mining inventories, shared update, validation and export remain unfinished."
       }
     },
     {

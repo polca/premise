@@ -114,6 +114,138 @@
         }
       ],
       "review": "docs/development/uvek-production-heat-boundary-review.md"
+    },
+    {
+      "rule_id": "bp-a873c926397e2bb9",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-4d98066a982c4bda",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-385650baf6c0e83b",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-1d02d57e06e24b45",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-bb4f40528bc8819a",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-495f5d0604658b3c",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-4c36ad8aa71acca8",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-f44ccb0394f2d921",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-fe711136ab4271bf",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-533134d2fbe5ce77",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-2636fda034da7300",
+      "source_profiles": [
+        {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        }
+      ],
+      "review": "docs/development/uvek-mining38-material-supplier-review.md"
     }
   ],
   "rules": [
