@@ -1,0 +1,19 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "check": "Actual reviewed 3.12-to-UVEK heat migration and signed native LCI using transient foreground matrix columns",
+  "native_source_read_only": true,
+  "foreground_datapackage_filesystem": "memory",
+  "new_brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "database_registry_unchanged": true,
+  "source_and_biosphere_metadata_unchanged": true,
+  "native_demand_MJ": [
+    2.5,
+    -2.5
+  ],
+  "finite_supply_and_inventory": true,
+  "matches_native_reference_and_signed_reversal": true,
+  "max_abs_inventory_difference": 0.0,
+  "qualification_limit": "Proves the no-write mapping/LCI check path, not a new sector update or Brightway export."
+}

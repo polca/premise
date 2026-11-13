@@ -1568,3 +1568,31 @@ The detailed [installed receipt](uvek-installed-batch-verification-2026-11-13.js
 keeps that interruption separate from passing tests and records 175 MB of completed
 temporary wheel/resource copies reclaimed. Source projects and unrelated edits
 are preserved. The full goal remains unfinished, with seven qualified sectors.
+
+
+## Storage policy: obsolete exports and checks without new databases
+
+The project audit found 77 databases and 40 superseded duplicate task exports,
+after protecting source/biosphere, current notebook references, calculation
+setups, parameterized databases, dependency references and current qualification
+milestones. The first lock-aware batch retires five older exports, removing
+67,085 activity rows and 94,956,010 bytes of processed files. The registry now
+contains 72 databases. All other pre-existing database names and the source/
+biosphere metadata/counts are preserved. SQLite has 2,725,228,544 free bytes
+available internally for reuse; no VACUUM or physical-file shrink is claimed.
+The remaining 35 initial duplicate candidates are for later short batches,
+subject to rechecking current references and locks. See the
+[cleanup receipt](uvek-review-storage-cleanup-2026-11-13.json).
+
+An actual reviewed ecoinvent-3.12-to-UVEK heat migration was checked using
+transient foreground columns in a memory-filesystem datapackage, combined with
+existing read-only native/biosphere datapackages. Both signed 2.5 MJ demands
+have finite supply/inventory and exactly match the native reference. No new
+Brightway database, registered activity or processed file is created; the
+registry and source metadata remain unchanged. See the
+[no-write LCI receipt](uvek-no-write-lci-verification-2026-11-13.json).
+This proves the selected mapping/LCI check path, not a new whole-sector export.
+Use non-exporting graph checks and selected in-memory LCIs between qualification
+milestones, reserving new Brightway exports for meaningful integration/export
+checks. The colleague notebook remains unchanged. The full goal is active,
+with European water and MDEA next in the current CDR inventory.

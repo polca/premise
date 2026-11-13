@@ -1,0 +1,58 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "max_batch": 5,
+  "deleted": [
+    {
+      "name": "BAFU:2026-premise-remind-SSP2-NPi-2050-standard-20261110-121525",
+      "activity_rows_removed": 13417,
+      "processed_cache_bytes_removed": 18936968,
+      "seconds": 10.206939333002083
+    },
+    {
+      "name": "BAFU:2026-premise-remind-SSP2-NPi-2050-standard-20261110-122101",
+      "activity_rows_removed": 13417,
+      "processed_cache_bytes_removed": 19009355,
+      "seconds": 9.360800334019586
+    },
+    {
+      "name": "BAFU:2026-premise-remind-SSP2-NPi-2050-standard-20261110-123517",
+      "activity_rows_removed": 13417,
+      "processed_cache_bytes_removed": 19009355,
+      "seconds": 11.209125375025906
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-134124",
+      "activity_rows_removed": 13417,
+      "processed_cache_bytes_removed": 19008078,
+      "seconds": 10.121041249949485
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-191325",
+      "activity_rows_removed": 13417,
+      "processed_cache_bytes_removed": 18992254,
+      "seconds": 9.398241000017151
+    }
+  ],
+  "deferred": [],
+  "vacuum_performed": false,
+  "protected_plan_count": 37,
+  "source_and_biosphere_preserved": true,
+  "storage_before": {
+    "file_bytes": 70903144448,
+    "page_count": 17310338,
+    "free_pages": 0,
+    "page_size": 4096
+  },
+  "all_other_preexisting_database_names_preserved": true,
+  "storage_after": {
+    "file_bytes": 70903144448,
+    "page_count": 17310338,
+    "free_pages": 665339,
+    "page_size": 4096
+  },
+  "total_seconds": 74.59141745907255,
+  "registered_after": 72,
+  "obsolete_candidates_in_initial_plan": 40,
+  "remaining_obsolete_duplicate_candidates_from_initial_plan": 35,
+  "retention_policy": "Preserve native source and biosphere; current example notebook/calculation setup/parameter references; other user databases; latest family exports and named three/seven-sector, mining, fuels and TIAM qualification milestones. Retire only superseded task duplicates, in short lock-aware batches without automatic VACUUM."
+}

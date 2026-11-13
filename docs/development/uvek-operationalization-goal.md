@@ -55,3 +55,29 @@ The external hook remains compatible where invoked; it is not counted as a ninet
 
 No new deadline or token budget has been imposed. The previous electricity-only ETA does not apply to this expanded scope. Estimate the additional work after the sector blocker audit.
 
+
+
+### Storage and verification instructions added on 13 November 2026
+
+Routine mapping, supplier/filter, sign/unit and graph checks should not create
+new Brightway databases. Use the existing inventory stores and validation
+reports, and transient in-memory matrix datapackages for selected LCI checks.
+Re-use native/source datapackages read-only. This avoids repeated full exports
+while preserving the normal user-facing notebook and transformation logic.
+A transient-foreground test does not by itself prove a whole scenario LCI.
+Keep representative real Brightway exports for sector/combined qualification
+milestones and changes to export behavior; the full completion requirements
+above are unchanged.
+
+Periodically retire verified obsolete task-generated review databases. Preserve
+source and biosphere databases, current notebook/calculation/parameter
+references, other user databases and current qualification milestones. Check
+incoming references from retained databases before deletion. Use short batches
+and defer if SQLite is busy; do not compete with an active Jupyter transaction.
+Remove associated obsolete processed files and retain concise cleanup receipts.
+SQLite free pages are reusable space, not necessarily disk space returned to
+the OS. Compact the shared file only during a suitable idle maintenance window.
+
+Targeted commits remain required; authorized pushes are grouped into batches
+of roughly 5-10 commits, rather than one push per commit. Keep unrelated local
+changes, including notebook edits, out of those commits.
