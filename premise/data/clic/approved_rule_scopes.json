@@ -264404,6 +264404,191 @@
           "fingerprint": "22b6eaf83d7044652c2575ce2f9b1cdde5b2b0db104cacfcb5108086dc069376"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-24cd9f366ddc341b",
+      "mapping_method": "reviewed_explicit_limestone_recultivation_proxy_39",
+      "review_path": "export/uvek_ilmenite_recultivation_39_review.json",
+      "review_sha256": "558eaeddf6966c4e673c5ee29540dc23de8fbe6f44019686667dc475bc376320",
+      "authorization": "Standing user approval for autonomous modelling decisions with explicit warnings and logged limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "recultivation, ilmenite mine",
+            "reference product": "recultivation, ilmenite mine",
+            "location": "GLO",
+            "unit": "square meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "b8f97d57f5f4abd5f6add0f5ac0cd035515b5633a815978b45bf113d8778ef63",
+          "inventory_sha256": "1d0e656ae2102df87695666a22c8f9d6ddc59cc18adea57a79dc0f4ebc22af26",
+          "activity_comment_sha256": "d483c5de9c5f0a312ec99584cfb084a8bf30721cb2f495108a6a179581980215",
+          "product_information_sha256": "be7e2418c05b2d98cccfff57678fc486732a1085038f71196bfe0163eebda028"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Recultivation, limestone mine",
+              "reference product": "Recultivation, limestone mine",
+              "location": "CH",
+              "unit": "square meter"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "ab293bb767fdb0b03d84811678aa2b8ec4d5fe8032208aecff629f2101522b11",
+            "inventory_sha256": "21dd2e03037640afdd0ff35ba1eae829425e4d64e14a0f989a1a79867929985e",
+            "activity_comment_sha256": "55b9107c9a70abf71233918051a9c7faa5d87798e2756834cf2dd5dd36318463",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Recultivation, limestone mine",
+              "reference product": "Recultivation, limestone mine",
+              "location": "CH",
+              "unit": "square meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "d4887981a23df72d413a9f92cdb601237e17e5607a9a5432840c85ad30e63020",
+            "inventory_sha256": "926fbfdaddf930cca5ccddf1a462e06843665482ce0bffd67f2f9ef53b372372",
+            "activity_comment_sha256": "3704d264ae6123b07871828af8e6298830c874dbd84f6487d5ad70b29bb02ccb",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off ilmenite recultivation process and its one-producer global market are reviewed. Source and native reference positive one m2 of restoration. Factor +1 preserves signed caller area, supported uncertainty/formulas, foreground ownership, separate emissions and credits. Other source releases, patches, system models and reverse routes remain unapproved.",
+        "The source explicitly uses Swiss KFN limestone-mine recultivation as its ilmenite proxy. Use the actual complete native CH Recultivation, limestone mine, not generic bauxite restoration. Both retain 7.44 MJ diesel building-machine service and transform one m2 from mineral extraction site to one m2 unspecified forest. Both direct land exchanges match publisher UUID, complete receiving compartment, unit and amount in native2026. The source market has exactly one positive producer, without freight, loss or direct emissions; no additional distribution helper is needed.",
+        "Both descriptions use assumed 0.3 m topsoil, density 1400 kg/m3 and approximately 0.26% topsoil-to-extracted-material ratio as the diesel-estimation basis. These are inherited Swiss limestone proxy assumptions, not site-specific validation for ilmenite mines worldwide. Preserve the original 7.44 MJ/m2 and one-m2 land references without inventing soil/ore density, thickness, yield, annual-production, fuel-efficiency, carbon or area corrections.",
+        "The source uses a global market for diesel burned in building machinery; native uses complete Swiss average building-machine diesel combustion. Upstream fuel, machinery technology, emissions, allocation, geography, vintage, internal uncertainty/correlations and native biosphere coverage can differ. The native full process replaces source internal supplier composition and uncertainty. Score differences remain unquantified; matching the reference, direct land flows and nominal diesel coefficient does not prove LCI, LCIA or stochastic equivalence.",
+        "Keep the complete native restoration once. Add no bauxite-mine earthmoving, second diesel service, topsoil inventory, second forest transformation, extra land occupation, mine construction, ore extraction, sequestration or avoided virgin-material credit. Preserve separately listed caller exchanges; no caller or source omission rule is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "81ad28995ec217ac9dcafb5fbfa7defaf1dc3ea59eb67157772e84217a943ef3"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-1db267d42c18e2bd",
+      "mapping_method": "reviewed_explicit_limestone_recultivation_proxy_39",
+      "review_path": "export/uvek_ilmenite_recultivation_39_review.json",
+      "review_sha256": "558eaeddf6966c4e673c5ee29540dc23de8fbe6f44019686667dc475bc376320",
+      "authorization": "Standing user approval for autonomous modelling decisions with explicit warnings and logged limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for recultivation, ilmenite mine",
+            "reference product": "recultivation, ilmenite mine",
+            "location": "GLO",
+            "unit": "square meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "2b0f58eec6356e955a093db8c51b57abb2fdadb9ea472d45dd255434bbc46968",
+          "inventory_sha256": "bde6d7937fcf29b8ff435e63507daa04c6a2f2053d2a011adb769fda196d1c40",
+          "activity_comment_sha256": "dc9bbc7e9cf634acf1f0619cb333a0b97d8742a859846c0667372d89bac04d5f",
+          "product_information_sha256": "be7e2418c05b2d98cccfff57678fc486732a1085038f71196bfe0163eebda028"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "recultivation, ilmenite mine",
+              "reference product": "recultivation, ilmenite mine",
+              "location": "GLO",
+              "unit": "square meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "b8f97d57f5f4abd5f6add0f5ac0cd035515b5633a815978b45bf113d8778ef63",
+            "inventory_sha256": "1d0e656ae2102df87695666a22c8f9d6ddc59cc18adea57a79dc0f4ebc22af26",
+            "activity_comment_sha256": "d483c5de9c5f0a312ec99584cfb084a8bf30721cb2f495108a6a179581980215",
+            "product_information_sha256": "be7e2418c05b2d98cccfff57678fc486732a1085038f71196bfe0163eebda028"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Recultivation, limestone mine",
+              "reference product": "Recultivation, limestone mine",
+              "location": "CH",
+              "unit": "square meter"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "ab293bb767fdb0b03d84811678aa2b8ec4d5fe8032208aecff629f2101522b11",
+            "inventory_sha256": "21dd2e03037640afdd0ff35ba1eae829425e4d64e14a0f989a1a79867929985e",
+            "activity_comment_sha256": "55b9107c9a70abf71233918051a9c7faa5d87798e2756834cf2dd5dd36318463",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Recultivation, limestone mine",
+              "reference product": "Recultivation, limestone mine",
+              "location": "CH",
+              "unit": "square meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "d4887981a23df72d413a9f92cdb601237e17e5607a9a5432840c85ad30e63020",
+            "inventory_sha256": "926fbfdaddf930cca5ccddf1a462e06843665482ce0bffd67f2f9ef53b372372",
+            "activity_comment_sha256": "3704d264ae6123b07871828af8e6298830c874dbd84f6487d5ad70b29bb02ccb",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off ilmenite recultivation process and its one-producer global market are reviewed. Source and native reference positive one m2 of restoration. Factor +1 preserves signed caller area, supported uncertainty/formulas, foreground ownership, separate emissions and credits. Other source releases, patches, system models and reverse routes remain unapproved.",
+        "The source explicitly uses Swiss KFN limestone-mine recultivation as its ilmenite proxy. Use the actual complete native CH Recultivation, limestone mine, not generic bauxite restoration. Both retain 7.44 MJ diesel building-machine service and transform one m2 from mineral extraction site to one m2 unspecified forest. Both direct land exchanges match publisher UUID, complete receiving compartment, unit and amount in native2026. The source market has exactly one positive producer, without freight, loss or direct emissions; no additional distribution helper is needed.",
+        "Both descriptions use assumed 0.3 m topsoil, density 1400 kg/m3 and approximately 0.26% topsoil-to-extracted-material ratio as the diesel-estimation basis. These are inherited Swiss limestone proxy assumptions, not site-specific validation for ilmenite mines worldwide. Preserve the original 7.44 MJ/m2 and one-m2 land references without inventing soil/ore density, thickness, yield, annual-production, fuel-efficiency, carbon or area corrections.",
+        "The source uses a global market for diesel burned in building machinery; native uses complete Swiss average building-machine diesel combustion. Upstream fuel, machinery technology, emissions, allocation, geography, vintage, internal uncertainty/correlations and native biosphere coverage can differ. The native full process replaces source internal supplier composition and uncertainty. Score differences remain unquantified; matching the reference, direct land flows and nominal diesel coefficient does not prove LCI, LCIA or stochastic equivalence.",
+        "Keep the complete native restoration once. Add no bauxite-mine earthmoving, second diesel service, topsoil inventory, second forest transformation, extra land occupation, mine construction, ore extraction, sequestration or avoided virgin-material credit. Preserve separately listed caller exchanges; no caller or source omission rule is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1eb60ba04c9db295327a292e6ecc4caaf0ccd4173f04291e27e0b6914cced586"
+        }
+      ]
     }
   ],
   "superseded_operations": [

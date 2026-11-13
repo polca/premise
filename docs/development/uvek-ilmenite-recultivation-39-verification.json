@@ -1,0 +1,133 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "8cc7635d1a77653d005ce68e2558398eb3df3ab4",
+  "scope_registration": {
+    "prior_scopes": 1318,
+    "new_scopes": 1320,
+    "all_existing_operations_unchanged": true
+  },
+  "tests": {
+    "brightpath_mapping_and_storage_checks": 32,
+    "premise_fresh_cached_sign_uncertainty_and_scope_checks": 10,
+    "lint": "passed",
+    "note": "Source explicitly uses limestone-mine restoration; native service matches 7.44 MJ diesel demand and both land exchanges per m2. Market is one producer, with no added delivery. Machinery supply and source proxy limitations retained.",
+    "installed_package_premise_checks": 10
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 2,
+    "native_suppliers": 1,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-24cd9f366ddc341b",
+        "source": {
+          "location": "GLO",
+          "name": "recultivation, ilmenite mine",
+          "reference product": "recultivation, ilmenite mine",
+          "unit": "square meter"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "square meter",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "refined_max_abs_inventory_difference": 0.0,
+        "full_graph_residual": {
+          "residual_before": 5.228788115849851e-10,
+          "residual_after": 9.562991927475666e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 5.228788115849851e-10,
+          "residual_after": 9.562991927475666e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-1db267d42c18e2bd",
+        "source": {
+          "location": "GLO",
+          "name": "market for recultivation, ilmenite mine",
+          "reference product": "recultivation, ilmenite mine",
+          "unit": "square meter"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "square meter",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "refined_max_abs_inventory_difference": 1.1924744764872226e-29,
+        "full_graph_residual": {
+          "residual_before": 5.228788115849851e-10,
+          "residual_after": 9.562991927475666e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 5.228788115849851e-10,
+          "residual_after": 9.562991927475666e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the ilmenite restoration service and its market, using the explicit limestone proxy and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "frontier": {
+    "before_unapproved_rule_count": 164,
+    "after_unapproved_rule_count": 163,
+    "cleared_rule_ids": [
+      "bp-1db267d42c18e2bd"
+    ],
+    "new_unapproved_rules": [],
+    "next_unapproved_rule": "bp-4387cc32c40a194a",
+    "next_source": {
+      "location": "GLO",
+      "name": "market group for heat, central or small-scale, natural gas",
+      "reference product": "heat, central or small-scale, natural gas",
+      "unit": "megajoule"
+    },
+    "next_target": {
+      "location": "CH",
+      "name": "Heat, from natural gas",
+      "reference product": "Heat, from natural gas",
+      "unit": "megajoule"
+    },
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique rules in the inspected source-3.9 cut-off battery cohort, not dataset count or all source profiles. Only restoration market pending in this cohort; production counterpart tested independently. No helper or caller omission introduced."
+  },
+  "runtime_python_changes": [],
+  "installed_package_verification": {
+    "brightpath_commit": "8cc7635d1a77653d005ce68e2558398eb3df3ab4",
+    "installed_resources_match_commit": [
+      "export/uvek_ilmenite_recultivation_39_review.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "migrations/RESOURCE_MANIFEST.json"
+    ],
+    "removed_unused_wheel": "brightpath-1.0.0a14-py3-none-any.whl",
+    "removed_bytes": 44189397,
+    "sha256": "dd39de1db09a88b8191a8a3c04eb6daaca2907aa7cfb523c3f33e7af2ed9d715"
+  },
+  "matching_direct_land_exchange_count": 2,
+  "matching_diesel_coefficient_MJ_per_m2": 7.44,
+  "new_helpers": 0
+}
