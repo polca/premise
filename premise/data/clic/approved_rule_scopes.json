@@ -263695,6 +263695,72 @@
           "fingerprint": "5950e019a69efdf6f83166050ba33158b5857e72f2c9693043c5805742aea909"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-c4d523bcaba06d16",
+      "mapping_method": "reviewed_unsorted_iron_scrap_market_39",
+      "review_path": "export/uvek_unsorted_iron_scrap_39_review.json",
+      "review_sha256": "fff526a1e56dc390a0133a4d144906f95171c14b3788c01e73ca2ae48543186f",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warnings and logged decisions.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for iron scrap, unsorted",
+            "reference product": "iron scrap, unsorted",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "2e4ef74bdaa3fa4473c2bd55b39725133fae8a25fcb225d078d33b8fb41751b4",
+          "inventory_sha256": "bb9018cd44dc65a0fec3ba054804cf52f45342746fb35e5a855ab15eceb3c7b5",
+          "activity_comment_sha256": "6e3ada2879d3357b3353b3c297d4e5b141f4f87eb8572cb68d94804568d6e2de",
+          "product_information_sha256": "94512cfe8bbe50950aca610af62143af06d3f6e657e61ad20bb52d98ecb1e15e"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "iron scrap, unsorted, Recycled Content cut-off",
+              "reference product": "iron scrap, unsorted",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "361bb21a65dca15b8ac98c03b068f53df529fba4db01262fab3493759a3615d4",
+            "inventory_sha256": "e4a60c5e5194d011d6da055ea40bf57e91e7aa0fb0fec5be6cbba8f56b69acf9",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "94512cfe8bbe50950aca610af62143af06d3f6e657e61ad20bb52d98ecb1e15e"
+          }
+        ],
+        "recipe_id": "unsorted-iron-scrap-39-stock-and-delivery"
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent 3.9 cut-off unsorted iron-scrap market is reviewed. Reference is positive one kg and conversion factor +1 preserves signed caller quantities, supported uncertainty, formulas, foreground ownership and separate emissions. Other source versions, patches, system models and reverse routes gain no approval.",
+        "The source stock supplier is explicitly Recycled Content cut-off and contains only self-linked production +1, without collection, processing, transport, biosphere or other exchanges. Its observed inventory hash exactly matches the existing independently approved source-3.9 stock. Reuse that existing production-only recipe and its exact direct-supplier binding. This preserves an observed allocation boundary, not a claim that physical recycling has zero impact. No uncharacterized or nonempty supplier is assigned zero.",
+        "Keep one kg of the explicit cut-off stock plus the original 0.0112 tkm rail and 0.01932 tkm generic lorry delivery per kg scrap, preserving each supported exchange uncertainty. Complete RER rail and lorry fleet are geographic, fleet and vintage proxies for global delivery groups. The freight already includes its native operation and infrastructure. Do not add BAFU sorted/pressed scrap, scrap-yard electricity, pressing, another collection stage, avoided-primary-metal credits, yield, payload or loss corrections.",
+        "This is an unsorted scrap supply, distinct from sorted and pressed scrap or concrete-demolition recovery. Native freight geography, energy, allocation, vintage, internal uncertainty and biosphere coverage differ; score differences remain unquantified. No source omission or market renormalization is introduced. Export the returned stock and market helpers with the foreground."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "083e069b54ec88f3454267cd253089ea03fa2f1b6a7b6ad3d52f136d5c00a79a"
+        }
+      ]
     }
   ],
   "superseded_operations": [

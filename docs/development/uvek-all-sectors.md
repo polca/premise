@@ -1920,3 +1920,7 @@ Corrected both mercury matches to the complete native unmounted LCD module, reta
 ### PVF treatment and collection — 13 November 2026
 
 Retained Swiss PVF collection freight and reviewed the complete native incinerator as a warned proxy for fly-ash-extraction treatment. Negative waste references convert to positive treatment demand; source-matrix balance, sign/uncertainty/cache checks and in-memory LCIs pass without database writes. The fresh source-3.9 battery cohort falls from 170 to 169 unapproved rules; next unsorted iron scrap. Eight of nineteen sectors remain qualified. See `uvek-pvf-treatment-39-review.md` and verification JSON. Queued for the next batch push.
+
+### Unsorted iron scrap market — 13 November 2026
+
+Reused the exact existing production-only cut-off stock, preserving the original market rail/lorry freight and uncertainty. Avoided introducing BAFU sorting/pressing burdens into unsorted stock supply. Profile/dependency guards, fresh/cache sign checks and in-memory LCIs pass without database writes. The source-3.9 battery cohort falls from 169 to 168 unapproved rules; next Swiss municipal-waste incineration. Sorted scrap remains a separate nonempty supply. Eight of nineteen sectors remain qualified. See `uvek-unsorted-iron-scrap-39-review.md` and verification JSON.
