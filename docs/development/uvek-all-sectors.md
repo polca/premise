@@ -1658,3 +1658,28 @@ comparison, the component is contained in the known baseline. See the
 CDR family normalization and filters, then verify exhaustive validation and
 actual technology coverage. Do not suppress the cycle rule. Three installed
 local-wheel MDEA checks also pass (overlap with the primary Premise cases).
+
+## Standalone CDR family handoff and support-role bindings
+
+The existing shared CDR path now receives the selected family and biosphere.
+This fixes the reproduced standalone electricity-alias/baseline mismatch without
+changing CDR algorithms. Explicit support YAML slug/role bindings and one new
+registry role group preserve the original support selection under UVEK's strict
+published-role checks. All previous registry values and original filters remain
+unchanged; there is no new physical proxy, omission or quantity conversion.
+The maintainer generator replays these data bindings.
+
+The real standalone update restores 12,214 records and passes exhaustive
+validation: 11 regional markets, 73 regional main CDR records and 165 regional
+support records (overlapping counts). There are no missing energy matches among
+436 checks on 48 DAC records. The complete transformed graph passes 168 signed
+in-memory LCIs for 84 regional CDR activities and markets, without new Brightway
+databases, registered activities or processed files. The 41 focused/shared-energy
+and 64 requirement/hybrid/activity-map regressions pass. Four pre-existing unused
+CDR imports are preserved to avoid unrelated source changes; other changed Python
+files pass Ruff and all changed Python files pass Black.
+
+See [review](uvek-cdr-family-review.md) and
+[verification](uvek-cdr-family-verification.json). Combined-sector and actual-export
+qualification remain pending. The public gate still admits seven sectors and its
+no-argument default remains biomass/electricity/heat. Changes await a later batch.

@@ -27,9 +27,43 @@ direct air capture:
       - polyethyleneimine (PEI) production, for sorbent-based direct air capture system
       - silica gel production, for sorbent-based direct air capture system
 
+  # Reviewed CLIC counterparts of the existing support filters.
+  clic_role_key: "cdr_activities.yaml:direct air capture"
+  clic_slugs:
+    - amine-based-silica-production-for-sorbent-based-direct-air-capture-system
+    - carbon-dioxide-captured-and-stored-with-a-solvent-based-direct-air-capture-system-1mtco2
+    - carbon-dioxide-captured-and-stored-with-a-solvent-based-direct-air-capture-system-1mtco2-with-heat-pump-heat-and-grid-electricity
+    - carbon-dioxide-captured-and-stored-with-a-solvent-based-direct-air-capture-system-1mtco2-with-hydrogen-heat-and-grid-electricity
+    - carbon-dioxide-captured-and-stored-with-a-solvent-based-direct-air-capture-system-1mtco2-with-industrial-steam-heat-and-grid-electricity
+    - carbon-dioxide-captured-and-stored-with-a-sorbent-based-direct-air-capture-system-100ktco2
+    - carbon-dioxide-captured-and-stored-with-a-sorbent-based-direct-air-capture-system-100ktco2-with-heat-pump-heat-and-grid-electricity
+    - carbon-dioxide-captured-and-stored-with-a-sorbent-based-direct-air-capture-system-100ktco2-with-hydrogen-heat-and-grid-electricity
+    - carbon-dioxide-captured-and-stored-with-a-sorbent-based-direct-air-capture-system-100ktco2-with-industrial-steam-heat-and-grid-electricity
+    - carbon-dioxide-captured-and-stored-with-a-sorbent-based-direct-air-capture-system-100ktco2-with-waste-heat-and-grid-electricity
+    - carbon-dioxide-captured-with-a-solvent-based-direct-air-capture-system-1mtco2
+    - carbon-dioxide-captured-with-a-solvent-based-direct-air-capture-system-1mtco2-with-heat-pump-heat-and-grid-electricity
+    - carbon-dioxide-captured-with-a-solvent-based-direct-air-capture-system-1mtco2-with-hydrogen-heat-and-grid-electricity
+    - carbon-dioxide-captured-with-a-solvent-based-direct-air-capture-system-1mtco2-with-industrial-steam-heat-and-grid-electricity
+    - carbon-dioxide-captured-with-a-sorbent-based-direct-air-capture-system-100ktco2
+    - carbon-dioxide-captured-with-a-sorbent-based-direct-air-capture-system-100ktco2-with-heat-pump-heat-and-grid-electricity
+    - carbon-dioxide-captured-with-a-sorbent-based-direct-air-capture-system-100ktco2-with-hydrogen-heat-and-grid-electricity
+    - carbon-dioxide-captured-with-a-sorbent-based-direct-air-capture-system-100ktco2-with-industrial-steam-heat-and-grid-electricity
+    - carbon-dioxide-captured-with-a-sorbent-based-direct-air-capture-system-100ktco2-with-waste-heat-and-grid-electricity
+    - direct-air-capture-system-solvent-based-1mtco2
+    - direct-air-capture-system-sorbent-based-100ktco2
+    - polyethyleneimine-pei-production-for-sorbent-based-direct-air-capture-system
+    - silica-gel-production-for-sorbent-based-direct-air-capture-system
+    - treatment-of-direct-air-capture-system-solvent-based-1mtco2
+    - treatment-of-direct-air-capture-system-sorbent-based-100ktco2
+
 CO2 storage:
   fltr:
     name: carbon dioxide compression, transport and storage
+
+  # Reviewed CLIC counterparts of the existing support filters.
+  clic_role_key: "cdr_activities.yaml:CO2 storage"
+  clic_slugs:
+    - carbon-dioxide-compression-transport-and-storage
 
 industrial CCS:
   fltr:
@@ -44,6 +78,16 @@ industrial CCS:
       - air separation, cryogenic
       - market for oxygen, liquid
 
+  # Reviewed CLIC counterparts of the existing support filters.
+  clic_role_key: "cdr_activities.yaml:industrial CCS"
+  clic_slugs:
+    - carbon-dioxide-captured-and-stored-at-cement-production-plant-from-non-fossil-carbon-dioxide-using-monoethanolamine
+    - carbon-dioxide-captured-at-cement-production-plant-for-subsequent-reuse
+    - carbon-dioxide-captured-at-cement-production-plant-using-direct-separation
+    - carbon-dioxide-captured-at-cement-production-plant-using-monoethanolamine
+    - carbon-dioxide-captured-at-cement-production-plant-using-oxyfuel
+    - carbon-dioxide-captured-at-municipal-solid-waste-incineration-plant-for-subsequent-reuse
+
 land use:
   fltr:
     name: carbon dioxide, captured and stored, by land-use change
@@ -54,10 +98,20 @@ biochar:
       - carbon dioxide, captured and stored, by biochar application on mineral soil
       - biochar, from spruce wood pyrolysis
 
+  # Reviewed CLIC counterparts of the existing support filters.
+  clic_role_key: "cdr_activities.yaml:biochar"
+  clic_slugs:
+    - biochar-from-spruce-wood-pyrolysis
+    - carbon-dioxide-captured-and-stored-by-biochar-application-on-mineral-soil
 
 enhanced rock weathering:
   fltr:
     name: carbon dioxide, captured and stored, by olivine spreading on coastline
+
+  # Reviewed CLIC counterparts of the existing support filters.
+  clic_role_key: "cdr_activities.yaml:enhanced rock weathering"
+  clic_slugs:
+    - carbon-dioxide-captured-and-stored-by-olivine-spreading-on-coastline
 
 ocean liming:
   fltr:
@@ -65,7 +119,17 @@ ocean liming:
       - carbon dioxide, captured and stored, by ocean liming
       - hydrated lime production, from quicklime with carbon capture and storage
 
+  # Reviewed CLIC counterparts of the existing support filters.
+  clic_role_key: "cdr_activities.yaml:ocean liming"
+  clic_slugs:
+    - carbon-dioxide-captured-and-stored-by-ocean-liming
+    - hydrated-lime-production-from-quicklime-with-carbon-capture-and-storage
 
 bioenergy, with CCS:
   fltr:
     name: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
+
+  # Reviewed CLIC counterparts of the existing support filters.
+  clic_role_key: "cdr_activities.yaml:bioenergy, with CCS"
+  clic_slugs:
+    - carbon-dioxide-captured-and-stored-at-wood-burning-power-plant-pipeline-200km-storage-1000m

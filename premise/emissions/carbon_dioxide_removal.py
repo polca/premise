@@ -61,7 +61,9 @@ def fetch_mapping(filepath=CDR_ACTIVITIES) -> dict:
     return mapping
 
 
-def _update_cdr(scenario, version, system_model):
+def _update_cdr(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
 
     if scenario["iam data"].cdr_technology_mix is None:
         print("No CDR scenario data available -- skipping")
@@ -77,6 +79,8 @@ def _update_cdr(scenario, version, system_model):
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     if scenario["iam data"].cdr_technology_mix is not None:
@@ -113,6 +117,8 @@ class CarbonDioxideRemoval(BaseTransformation):
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ):
         super().__init__(
             database,
@@ -124,6 +130,8 @@ class CarbonDioxideRemoval(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.database = database
         self.iam_data = iam_data
@@ -132,7 +140,7 @@ class CarbonDioxideRemoval(BaseTransformation):
         self.year = year
         self.version = version
         self.system_model = system_model
-        self.mapping = InventorySet(self.database)
+        self.mapping = InventorySet(self.database, family=self.family)
 
     def regionalize_cdr_activities(self) -> None:
         """

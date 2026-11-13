@@ -2931,6 +2931,7 @@ class NewDatabase:
                 "emissions",
                 "mining",
                 "renewable",
+                "cdr",
             ):
                 self.sector_update_methods[sector]["args"] += (
                     self.source_family,

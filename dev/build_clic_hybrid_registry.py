@@ -32,6 +32,19 @@ def key(record):
     return tuple(result)
 
 
+def cdr_support_roles(nodes, definitions):
+    """Bind the existing support filters to retained, unit-bearing identities."""
+    fields = ("name", "reference product", "location", "unit")
+    return {
+        role: [
+            node["id"]
+            for node in nodes
+            if matches(dict(zip(fields, node["identity"])), definition)
+        ]
+        for role, definition in definitions.items()
+    }
+
+
 def build(archive, registry):
     sources = defaultdict(set)
     paths = {}
@@ -147,6 +160,10 @@ def build(archive, registry):
         "nodes": nodes,
         "roles": role_nodes,
     }
+    support_path = mapping_dir.parent / "data/cdr/cdr_activities.yaml"
+    role_nodes[support_path.name] = cdr_support_roles(
+        nodes, yaml.safe_load(support_path.read_text())
+    )
     return registry
 
 
