@@ -260574,6 +260574,293 @@
           "fingerprint": "d020135792cf1c2dc096a16180e4926a664b2d2a6cf2a77d66737028991ad3a3"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-6266394c5017e628",
+      "mapping_method": "reviewed_battery_fluoride_39",
+      "review_path": "export/uvek_battery_fluoride_39_review.json",
+      "review_sha256": "11d80a2fa7289b11342aa9ae9313c1f9354e70945ff63f5129fd920048e19dd8",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with warnings and decision logs.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for hydrogen fluoride",
+          "reference product": "hydrogen fluoride",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for hydrogen fluoride",
+            "reference product": "hydrogen fluoride",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 13,
+          "metadata_sha256": "a39bba7ba952b3791e29ee4ee4a28d9fa918722032cf4eccec53a16ada19c75e",
+          "inventory_sha256": "9d096aba641b51b2cf61f320fbd7e82bcbc06cce3c4898da71040c5b1885a582",
+          "activity_comment_sha256": "b327ff6a8f5dbffdcaae573994c625895ca77799a0b593c23238fa7c0c575e94",
+          "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "hydrogen fluoride production",
+              "reference product": "hydrogen fluoride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 12,
+            "metadata_sha256": "4fc12eaefbeb5c2ed0392ca85d3bd65bab8443702f7d2aac53a3ffac377473f1",
+            "inventory_sha256": "a826d554648831cffdc88efcb3e47d5d6080905de7f16cd223e9e2aa9aec7d14",
+            "activity_comment_sha256": "7b58f31ae4701d62158400b4502799af7d53852229201c1ae96123f41c8a0ba7",
+            "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+          },
+          {
+            "identity": {
+              "name": "vinyl fluoride production",
+              "reference product": "hydrogen fluoride",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "ee719edeef7655305add3266b7f102c62dd656a9b93f36399ec024accedcaa8e",
+            "inventory_sha256": "ea90c484cdcd83a813c21b2dde2d448c762edc2251d41a39fb7981d11c07e9e1",
+            "activity_comment_sha256": "c9c901609a626a1fb1aabfbfbc6f5018580b69321ba4c33376a0a6563b6c8fc8",
+            "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+          },
+          {
+            "identity": {
+              "name": "rare earth oxides production, from rare earth oxide concentrate, 50% REO",
+              "reference product": "hydrogen fluoride",
+              "location": "CN-NM",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 40,
+            "metadata_sha256": "b9de04863582197ec8cc84233b267cbdc7800c44f035ad8cd1face47b2c7efa3",
+            "inventory_sha256": "cc49f69bf83ef5f04458430c6cbe11c4d45c17fee7c96a51de4fe428f656e1fa",
+            "activity_comment_sha256": "135438f22c3600558d3cbdf4199d124b15b8a638cd11e61bd2b0db4fa8567ceb",
+            "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+          },
+          {
+            "identity": {
+              "name": "hexafluoroethane production, from fluorination of tetrafluoroethane",
+              "reference product": "hydrogen fluoride",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 9,
+            "metadata_sha256": "3e1ce265c1e0ae58b72b451a7dded5759ee30f4464916875b704adbf8e24cb5b",
+            "inventory_sha256": "fdebc50737221c895031144cdc3b53097fb814561ea56dc8ba63383d7c7e6ee3",
+            "activity_comment_sha256": "0cbfe5a5a8bcfcc6755c2bb3d0a5669ad7e0878c6173034b20d1e7ae677d9203",
+            "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+          },
+          {
+            "identity": {
+              "name": "vinyl fluoride production",
+              "reference product": "hydrogen fluoride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 12,
+            "metadata_sha256": "67cadf3805de2f011cc49db8213b78129eabdeed1dbfd4dcee97395ab31ac29b",
+            "inventory_sha256": "c32809062bb31ee5533904930e69ff212d7f61e69e8586c420980a05c48257d0",
+            "activity_comment_sha256": "c9c901609a626a1fb1aabfbfbc6f5018580b69321ba4c33376a0a6563b6c8fc8",
+            "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+          }
+        ],
+        "recipe_id": "battery-39-hydrogen-fluoride-row-delivered-market",
+        "interface_counts": {
+          "technosphere": 13,
+          "biosphere": 0
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off is reviewed. Positive source references and target references have matching functional units; caller factor +1 preserves signed amounts, formulas, supported uncertainty and independent foreground emissions. Other versions, patches, system models and reverse routes gain no approval.",
+        "All source-owned interface rows retained by the recipes keep their signed amounts and supported uncertainty/formulas separately, with no normalization or second reaction-yield, purity, concentration, freight, useful-heat or loss multiplier. Complete native upstream suppliers replace the source upstream inventories; their allocation, geography, vintage, technology, uncertainty, biosphere exclusions and modelling correlations differ. Score differences remain unquantified; neither LCI/LCIA nor stochastic equivalence is established.",
+        "RoW HF market: retain all five positive original supply entries and all eight freight entries separately. Complete native fluorspar-route HF is the product-function proxy for the principal producer and the four allocated HF co-products from vinyl fluoride, rare-earth oxide and hexafluoroethane manufacture. Those four co-product shares total about 1.15%; their allocated upstream production route and burdens are replaced, not reconstructed. No avoided-product or extra HF recovery credit is added.",
+        "Native HF name/formula and production route support the kg-HF screening interpretation, but native assay is unverified and its CAS conflicts with the chemical identity; inherit the prior HF review warning. Use no assumed 37% acid, amine reagent or concentration correction. All five rail entries use complete native RER generic rail as an explicit geography/fleet proxy, including Chinese generic freight; do not substitute coal freight. All three heavy-lorry entries use the complete native RER fleet. Preserve hazardous-HF delivery distances as listed, without adding ship transport or undoing the source transport reduction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "07fe00089f6f7646bb7f209d8b629a71cc49610f5067e836ed2b4efdf1c7571e"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-1ab902a3504c50ab",
+      "mapping_method": "reviewed_battery_fluoride_39",
+      "review_path": "export/uvek_battery_fluoride_39_review.json",
+      "review_sha256": "11d80a2fa7289b11342aa9ae9313c1f9354e70945ff63f5129fd920048e19dd8",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with warnings and decision logs.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "sodium fluoride production",
+          "reference product": "sodium fluoride",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "sodium fluoride production",
+            "reference product": "sodium fluoride",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 11,
+          "metadata_sha256": "dc1cd02893283bf27d9933f705d2562c9cf4970628ad246d9d07c6d4bf768537",
+          "inventory_sha256": "ee04d948b9143eb10cf4c6399d6cdac43618761630ec2c056d1e4ff8d8fd1ea5",
+          "activity_comment_sha256": "224426e0ca490f78cda7d246418fd3b26d70642a74e24eea4915f5d190bb952e",
+          "product_information_sha256": "788b2cfb87eb19f14626c7272f5b6ea2b74eed3014c58d12826306b4cd70bb96"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": "battery-39-sodium-fluoride-reaction",
+        "interface_counts": {
+          "technosphere": 6,
+          "biosphere": 5
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off is reviewed. Positive source references and target references have matching functional units; caller factor +1 preserves signed amounts, formulas, supported uncertainty and independent foreground emissions. Other versions, patches, system models and reverse routes gain no approval.",
+        "All source-owned interface rows retained by the recipes keep their signed amounts and supported uncertainty/formulas separately, with no normalization or second reaction-yield, purity, concentration, freight, useful-heat or loss multiplier. Complete native upstream suppliers replace the source upstream inventories; their allocation, geography, vintage, technology, uncertainty, biosphere exclusions and modelling correlations differ. Score differences remain unquantified; neither LCI/LCIA nor stochastic equivalence is established.",
+        "Sodium fluoride is not sodium arsenide: remove that incorrect correspondence. Use an explicit per-kg pure-NaF reaction helper retaining inspected HF and active NaOH demand, electricity, useful natural-gas heat, organic chemical-plant infrastructure, both reagent releases, both physical Water releases and cooling-water withdrawal. The source describes HF + NaOH -> NaF + water and a 95% assumed yield. Its input amounts already embody the source assumption; apply no further yield or stoichiometric correction and do not invent a carbonate route or product-water credit.",
+        "HF uses the separately reviewed exact RER/RoW delivery helpers; caustic soda uses the retained source cell-technology mix with native allocated cells. Reuse the existing exact 3.9 global useful-natural-gas-heat recipe, including its CHP/boiler split, once per source MJ; do not replace it with fuel MJ. Source infrastructure uses the previously reviewed complete native organic chemical plant. Global medium-voltage electricity uses the complete native global grid with its own generation, losses and infrastructure. Original direct physical biosphere identities, compartments, units, signs and supported exchange uncertainty are retained against the selected canonical biosphere.",
+        "RoW HF market: retain all five positive original supply entries and all eight freight entries separately. Complete native fluorspar-route HF is the product-function proxy for the principal producer and the four allocated HF co-products from vinyl fluoride, rare-earth oxide and hexafluoroethane manufacture. Those four co-product shares total about 1.15%; their allocated upstream production route and burdens are replaced, not reconstructed. No avoided-product or extra HF recovery credit is added.",
+        "Native HF name/formula and production route support the kg-HF screening interpretation, but native assay is unverified and its CAS conflicts with the chemical identity; inherit the prior HF review warning. Use no assumed 37% acid, amine reagent or concentration correction. All five rail entries use complete native RER generic rail as an explicit geography/fleet proxy, including Chinese generic freight; do not substitute coal freight. All three heavy-lorry entries use the complete native RER fleet. Preserve hazardous-HF delivery distances as listed, without adding ship transport or undoing the source transport reduction.",
+        "Caustic soda: the official ecoinvent methodology guide, printed page 60 (PDF page 68), explains the legacy sodium-hydroxide 50%-in-water name and its active-substance reference. The new and legacy labels both refer to one kg active NaOH, supplied in a 50% solution, not one kg total mixture. Native chlor-alkali descriptions and mass allocation are consistent with that basis. Keep factor +1; do not double alkali or add solvent as a separate chemical burden.",
+        "Retain each of the seven original producer shares, selecting the corresponding native diaphragm, mercury or membrane technology, and retain all four freight entries. Native RER plants are geographic/vintage proxies for source RER, RoW and CA-QC. Preserve each complete native allocated cell inventory; allocation, electricity, brine treatment and emissions differ. Do not replace the source technology split with the native historical production mix, add chlorine/hydrogen credits, correct allocated brine coefficients stoichiometrically, or renormalize original rounded producer shares.",
+        "Global medium-voltage electricity: use one complete native global medium-voltage grid per signed source kWh. Both are delivered medium-voltage services; the source parent only groups eight lower markets and contains no separate losses or infrastructure. Native global aggregation, generation/import mix, regional weights, losses, voltage topology and upstream vintages replace that historical source internal aggregation. Retain the complete native grid inventory; do not add a second loss factor, source regional market mix, voltage transformer, plant or grid infrastructure. Caller-specific country/voltage substitutions are not approved by this global-only decision."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e694d734544798b4a4c3790f642f926220c1397a06ccd29d1d9e07400f69fad9"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-34ea0996de218042",
+      "mapping_method": "reviewed_battery_fluoride_39",
+      "review_path": "export/uvek_battery_fluoride_39_review.json",
+      "review_sha256": "11d80a2fa7289b11342aa9ae9313c1f9354e70945ff63f5129fd920048e19dd8",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with warnings and decision logs.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for sodium fluoride",
+          "reference product": "sodium fluoride",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for sodium fluoride",
+            "reference product": "sodium fluoride",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "19338aee8fea1803d8155a54c877294393bb501b09714eb19c318654e6532500",
+          "inventory_sha256": "9f08751d5fa60a5e989ab3fc62803d05e14bc254f18c785e0fdfa1866f4202bc",
+          "activity_comment_sha256": "b2ff6f1c32fdce4e2ffd7fca2ed73b86cac154eb8a73bdd39d4955661d3835dd",
+          "product_information_sha256": "788b2cfb87eb19f14626c7272f5b6ea2b74eed3014c58d12826306b4cd70bb96"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": "battery-39-sodium-fluoride-delivered-market",
+        "interface_counts": {
+          "technosphere": 5,
+          "biosphere": 0
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off is reviewed. Positive source references and target references have matching functional units; caller factor +1 preserves signed amounts, formulas, supported uncertainty and independent foreground emissions. Other versions, patches, system models and reverse routes gain no approval.",
+        "All source-owned interface rows retained by the recipes keep their signed amounts and supported uncertainty/formulas separately, with no normalization or second reaction-yield, purity, concentration, freight, useful-heat or loss multiplier. Complete native upstream suppliers replace the source upstream inventories; their allocation, geography, vintage, technology, uncertainty, biosphere exclusions and modelling correlations differ. Score differences remain unquantified; neither LCI/LCIA nor stochastic equivalence is established.",
+        "Sodium-fluoride market: retain the original unit producer entry and four finished-product freight entries separately. Use the reviewed reaction helper once, then complete native rail, barge, heavy-lorry fleet and container-ship delivery at the original tkm amounts. No sodium arsenide, extra recovery credit, market renormalization or invented delivery loss is introduced. Native regional/fleet/technology and vintage differences remain screening limitations; existing infrastructure in complete transport suppliers is not added twice.",
+        "RoW HF market: retain all five positive original supply entries and all eight freight entries separately. Complete native fluorspar-route HF is the product-function proxy for the principal producer and the four allocated HF co-products from vinyl fluoride, rare-earth oxide and hexafluoroethane manufacture. Those four co-product shares total about 1.15%; their allocated upstream production route and burdens are replaced, not reconstructed. No avoided-product or extra HF recovery credit is added.",
+        "Native HF name/formula and production route support the kg-HF screening interpretation, but native assay is unverified and its CAS conflicts with the chemical identity; inherit the prior HF review warning. Use no assumed 37% acid, amine reagent or concentration correction. All five rail entries use complete native RER generic rail as an explicit geography/fleet proxy, including Chinese generic freight; do not substitute coal freight. All three heavy-lorry entries use the complete native RER fleet. Preserve hazardous-HF delivery distances as listed, without adding ship transport or undoing the source transport reduction.",
+        "Caustic soda: the official ecoinvent methodology guide, printed page 60 (PDF page 68), explains the legacy sodium-hydroxide 50%-in-water name and its active-substance reference. The new and legacy labels both refer to one kg active NaOH, supplied in a 50% solution, not one kg total mixture. Native chlor-alkali descriptions and mass allocation are consistent with that basis. Keep factor +1; do not double alkali or add solvent as a separate chemical burden.",
+        "Retain each of the seven original producer shares, selecting the corresponding native diaphragm, mercury or membrane technology, and retain all four freight entries. Native RER plants are geographic/vintage proxies for source RER, RoW and CA-QC. Preserve each complete native allocated cell inventory; allocation, electricity, brine treatment and emissions differ. Do not replace the source technology split with the native historical production mix, add chlorine/hydrogen credits, correct allocated brine coefficients stoichiometrically, or renormalize original rounded producer shares.",
+        "Global medium-voltage electricity: use one complete native global medium-voltage grid per signed source kWh. Both are delivered medium-voltage services; the source parent only groups eight lower markets and contains no separate losses or infrastructure. Native global aggregation, generation/import mix, regional weights, losses, voltage topology and upstream vintages replace that historical source internal aggregation. Retain the complete native grid inventory; do not add a second loss factor, source regional market mix, voltage transformer, plant or grid infrastructure. Caller-specific country/voltage substitutions are not approved by this global-only decision.",
+        "Sodium fluoride is not sodium arsenide: remove that incorrect correspondence. Use an explicit per-kg pure-NaF reaction helper retaining inspected HF and active NaOH demand, electricity, useful natural-gas heat, organic chemical-plant infrastructure, both reagent releases, both physical Water releases and cooling-water withdrawal. The source describes HF + NaOH -> NaF + water and a 95% assumed yield. Its input amounts already embody the source assumption; apply no further yield or stoichiometric correction and do not invent a carbonate route or product-water credit.",
+        "HF uses the separately reviewed exact RER/RoW delivery helpers; caustic soda uses the retained source cell-technology mix with native allocated cells. Reuse the existing exact 3.9 global useful-natural-gas-heat recipe, including its CHP/boiler split, once per source MJ; do not replace it with fuel MJ. Source infrastructure uses the previously reviewed complete native organic chemical plant. Global medium-voltage electricity uses the complete native global grid with its own generation, losses and infrastructure. Original direct physical biosphere identities, compartments, units, signs and supported exchange uncertainty are retained against the selected canonical biosphere."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "90dc4357e422efe0485281b67ab947e0dbf5dba6cbafce7f63e6eb70cf5c2646"
+        }
+      ]
     }
   ],
   "superseded_operations": [

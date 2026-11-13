@@ -1784,3 +1784,28 @@ the initial page-count diagnostic used the previous project connection, so that
 baseline was discarded and no SQLite byte-reclamation delta is claimed. Routine
 mapping/LCI checks continue in memory; database writes are reserved for export
 qualification and useful review milestones. See [receipt](uvek-review-storage-cleanup-2026-11-13-batch-2.json).
+
+## Battery: sodium fluoride and exact reagent delivery
+
+Three new exact 3.9 cut-off correspondences replace the sodium-fluoride arsenide
+match and retain the NaF reaction/delivery and RoW HF delivery interfaces. Four
+new helpers preserve the reaction inputs, five direct biosphere exchanges and
+uncertainty, all final delivery, and the source's caustic-soda cell-technology
+shares. Active NaOH uses factor +1, supported by ecoinvent's documented legacy
+naming convention. Existing general alkali/electricity parents and all 1,286
+prior scopes remain unchanged; three new grants bring the count to 1,289.
+Native HF co-product, technology, geography, allocation, assay/CAS, native grid
+and vintage limitations remain warnings, without extra credits or omissions.
+
+Twenty-nine Brightpath mapping/storage cases and nine new Premise fresh/cache/
+refusal cases pass; nine existing review/drift cases also passed. Six signed
+ordinary LCIs are finite and reverse, and three independent native-demand
+inventories agree after unchanged-matrix numerical refinement, max difference
+4.55e-13. The initial small LU discrepancy and residual correction are logged;
+no physical coefficients or comparison tolerances were relaxed. No database,
+activity or processed file was written. The real battery retry clears exactly
+three rules: 188 → 185 in the inspected 3.9 cohort, with none newly unapproved.
+The next reported case is hydrated lime. Battery remains unfinished; eight of
+19 sectors remain qualified. Changes await a later batch publication. See
+[review](uvek-battery-fluoride-39-review.md) and
+[verification](uvek-battery-fluoride-39-verification.json).

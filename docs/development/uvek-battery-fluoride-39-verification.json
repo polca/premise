@@ -1,0 +1,224 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "23e932d25149990cf4237a9ae070d57c60e247bc",
+  "scope_registration": {
+    "prior_scopes": 1286,
+    "new_scopes": 1289,
+    "all_existing_operations_unchanged": true,
+    "added_scopes": [
+      {
+        "rule_id": "bp-6266394c5017e628",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2025"
+        },
+        "fingerprint": "07fe00089f6f7646bb7f209d8b629a71cc49610f5067e836ed2b4efdf1c7571e"
+      },
+      {
+        "rule_id": "bp-1ab902a3504c50ab",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2025"
+        },
+        "fingerprint": "e694d734544798b4a4c3790f642f926220c1397a06ccd29d1d9e07400f69fad9"
+      },
+      {
+        "rule_id": "bp-34ea0996de218042",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2025"
+        },
+        "fingerprint": "90dc4357e422efe0485281b67ab947e0dbf5dba6cbafce7f63e6eb70cf5c2646"
+      }
+    ],
+    "review_sha256": "11d80a2fa7289b11342aa9ae9313c1f9354e70945ff63f5129fd920048e19dd8",
+    "runtime_python_changes": []
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 9,
+    "foreground_biosphere_flows": 6,
+    "native_suppliers": 46,
+    "signed_foreground_LCI_solves": 6,
+    "independent_native_reference_LCI_solves": 3,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-6266394c5017e628",
+        "source": {
+          "location": "RoW",
+          "name": "market for hydrogen fluoride",
+          "reference product": "hydrogen fluoride",
+          "unit": "kilogram"
+        },
+        "signed_demand_kg": [
+          2.5,
+          -2.5
+        ],
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.022255213811718e-08,
+        "refined_max_abs_inventory_difference": 1.1368683772161603e-13,
+        "full_graph_residual": {
+          "residual_before": 9.426969621460007e-12,
+          "residual_after": 1.4796839583934221e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.321628878485156e-08,
+          "residual_after": 1.2073853810482787e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-1ab902a3504c50ab",
+        "source": {
+          "location": "GLO",
+          "name": "sodium fluoride production",
+          "reference product": "sodium fluoride",
+          "unit": "kilogram"
+        },
+        "signed_demand_kg": [
+          2.5,
+          -2.5
+        ],
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.8491209630155936e-07,
+        "refined_max_abs_inventory_difference": 2.842170943040401e-14,
+        "full_graph_residual": {
+          "residual_before": 2.2558897871872354e-11,
+          "residual_after": 1.523722910134551e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.212569789370344e-08,
+          "residual_after": 1.7763568394002505e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-34ea0996de218042",
+        "source": {
+          "location": "GLO",
+          "name": "market for sodium fluoride",
+          "reference product": "sodium fluoride",
+          "unit": "kilogram"
+        },
+        "signed_demand_kg": [
+          2.5,
+          -2.5
+        ],
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.3052522263024002e-07,
+        "refined_max_abs_inventory_difference": 4.547473508864641e-13,
+        "full_graph_residual": {
+          "residual_before": 1.353820701364985e-11,
+          "residual_after": 2.6367091850270993e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.3695351172306593e-08,
+          "residual_after": 9.77753847938162e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the three fluoride mapping interfaces/helper inventories and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "real_battery_retry": {
+    "before_unapproved_rule_count": 188,
+    "after_unapproved_rule_count": 185,
+    "cleared_rule_ids": [
+      "bp-1ab902a3504c50ab",
+      "bp-34ea0996de218042",
+      "bp-6266394c5017e628"
+    ],
+    "new_unapproved_rules": [],
+    "next_unapproved_rule": "bp-43b626507103b4e9",
+    "next_source": {
+      "location": "RER",
+      "name": "market for lime, hydrated, packed",
+      "reference product": "lime, hydrated, packed",
+      "unit": "kilogram"
+    },
+    "next_target": {
+      "location": "CH",
+      "name": "Lime, hydrated, packed, at plant",
+      "reference product": "Lime, hydrated, packed, at plant",
+      "unit": "kilogram"
+    },
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique correspondence rules in inspected ecoinvent 3.9 cut-off battery cohort; not datasets or all source profiles."
+  },
+  "tests": {
+    "brightpath_new_and_storage_passed": 29,
+    "brightpath_new_cases": 19,
+    "premise_new_fresh_cache_individual_refusal_passed": 9,
+    "premise_existing_review_and_drift_passed": 9,
+    "notes": "Initial Premise fixture assumed helper order; corrected to select the recipe identity. Initial independent matrix comparison exposed roundoff; iterative refinement with unchanged coefficients and tolerances passed.",
+    "black": "passed",
+    "ruff_new_files": "passed",
+    "installed_package_fresh_cache_refusal_and_prior_scope_passed": 10
+  },
+  "runtime_python_changes": [],
+  "qualified_sector_count": 8,
+  "registered_sector_count": 19,
+  "native_source_database_rows": 11947,
+  "biosphere_database_rows": 4362,
+  "database_writes": 0,
+  "qualification": "Three exact 3.9 cut-off correspondences cleared; battery preparation/update/export remain unfinished. Existing generic alkali/electricity parents and all old approvals are unchanged.",
+  "installed_wheel": {
+    "source_commit": "23e932d25149990cf4237a9ae070d57c60e247bc",
+    "wheel_sha256": "bd78725a15fc0aaab3fd2fae805a8b419ea9c3b21f46b47d7248b6b285d514fa",
+    "wheel_bytes": 43878700,
+    "packaged_files_match_committed_checkout": [
+      "brightpath/data/export/uvek_battery_fluoride_39_review.json",
+      "brightpath/data/migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "brightpath/data/migrations/RESOURCE_MANIFEST.json"
+    ],
+    "installed_package_files_match_commit": true,
+    "unused_wheel_copy_deleted_bytes": 43878700
+  }
+}
