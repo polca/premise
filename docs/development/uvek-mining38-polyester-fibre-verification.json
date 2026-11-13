@@ -1,0 +1,65 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "source_database": "BAFU:2026-reimported",
+  "source_activity_count": 11947,
+  "source_metadata_unchanged": true,
+  "review_sha256": "938bfa1f425761b8225115c292bbbb1c88ce5087599877135016da6b2acd557a",
+  "signed_helper_lcis": [
+    {
+      "recipe_id": "mining-38-pet-fibre-native-granulate-and-conversion",
+      "sign": 1,
+      "finite": true
+    },
+    {
+      "recipe_id": "mining-38-pet-fibre-native-granulate-and-conversion",
+      "sign": -1,
+      "finite": true
+    }
+  ],
+  "consistent_sign_reversal": true,
+  "adapted_helper_identities": [
+    {
+      "name": "PET fibre, native granulate and conversion-energy screening proxy, 3.8 [BrightPath UVEK conversion c68d6676] [CLIC brightpath-uvek-import-c68d6676ee3d58b3c38206c6]",
+      "reference product": "fibre, polyester",
+      "recipe_id": "mining-38-pet-fibre-native-granulate-and-conversion"
+    }
+  ],
+  "scope": "Actual harmonizer, adapter and helper-only Brightway database LCI. No full mining transformation/export or source/native score equivalence is established.",
+  "brightpath_commit": "315913ace8f998969fbb9b83da4adb07fff3a9b4",
+  "new_exact_source_scopes": 1,
+  "new_helper_recipes": 1,
+  "changed_runtime_python_modules": 0,
+  "new_migration_tests_passed": 6,
+  "high_slag_and_archive_regressions_passed": 13,
+  "premise_fresh_cache_adapter_and_cement_tests_passed": 12,
+  "archival_cleanup_commit": "c636455",
+  "archival_cleanup_tests_passed": 111,
+  "archival_cleanup_active_scope_proof": {
+    "all_executable_values_unchanged": true,
+    "active_reviews_unchanged": true,
+    "valid_scope_count": 1241
+  },
+  "scope_validation": {
+    "all_approval_scopes_valid": true,
+    "scope_count": 1242,
+    "new_scopes": 1,
+    "prior_scopes_refreshed_with_identical_effective_projection": 0,
+    "prior_operations": []
+  },
+  "wheel_review_resource_manifest_bytes_verified": true,
+  "private_mining_first_cohort_before_refused_rule_count": 3,
+  "private_mining_first_cohort_after_refused_rule_count": 2,
+  "remaining_first_cohort_cases": [
+    "Municipal-solid-waste routing",
+    "Polyacrylamide manufacture"
+  ],
+  "complete_mining_preparation_passed": false,
+  "sector_transformation_or_export_performed": false,
+  "installed_git_package_commit_verified": true,
+  "installed_git_package_fresh_cache_and_adapter_tests_passed": 3,
+  "installed_git_package_real_mining_first_cohort_unapproved_rule_ids": [
+    "bp-168324086066bce9",
+    "bp-656e502f8a1766b9"
+  ],
+  "documentation_reference_check_passed": true
+}

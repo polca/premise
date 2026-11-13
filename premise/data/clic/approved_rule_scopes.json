@@ -257491,6 +257491,53 @@
           "fingerprint": "fac505cec645cc3bec251ea1d64d569a220063bf444dd3f18aae7e683c12b560"
         }
       ]
+    },
+    {
+      "rule_id": "bp-15948a5ae97a4177",
+      "operation": "replace",
+      "mapping_method": "reviewed_mining_38_polyester_fibre",
+      "review_path": "export/uvek_mining_38_polyester_fibre_review.json",
+      "review_sha256": "938bfa1f425761b8225115c292bbbb1c88ce5087599877135016da6b2acd557a",
+      "authorization": "Standing user approval for autonomous mapping decisions, screening proxies and logged omissions with warnings for later review.",
+      "limitations": [
+        "Only the inspected ecoinvent 3.8 cut-off profile qualifies. Replace the chemically and technologically wrong glass-fibre-reinforced polyester composite match with a PET-fibre screening helper. The source explicitly describes PET-based melt-spun fibre. Combine one kg complete native amorphous PET granulate with one kg native PET-fleece conversion service. The native conversion service explicitly excludes raw materials, their transport and plant infrastructure; PET is therefore supplied separately exactly once. One kg feedstock per kg conversion is an explicit unity-net-yield approximation, not a measured source yield. The conversion service is a 1997-literature energy estimate based on polyester yarn production, not an identical modern fully oriented yarn/staple-fibre factory. Its 8.33 kWh electricity and 13.6 MJ light-fuel-oil burning service replace source conversion energy without efficiency fitting, extra source energy or a recycling-energy multiplier. The original 19.5% India/80.5% RoW producer portfolio is replaced by the native RER production/conversion model. Source gross PET demand, spinning scraps/internal recovery, lubrication, water supply/returns, separately modelled waste treatments, direct process emissions and internal uncertainty are not reconstructed by this sparse native conversion model. These omissions, geography, product form, process boundary, vintage, allocation and energy-carrier differences have unquantified score effects; no lower/upper impact bound or full inventory equivalence is claimed. No bleaching, dyeing, weaving, glass fibre, thermoset resin, avoided-production credit, source utility overlay or invented infrastructure is added. Preserve the signed caller amount, formula and supported uncertainty. Native biosphere exclusions remain inherited limitations. No other release, consequential profile or inverse correspondence is approved."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for fibre, polyester",
+            "reference product": "fibre, polyester",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "157d373d1fc6e42c84640cedc93aac4efd19e27c621333c8cfb3e144d5b172ff",
+          "comment_sha256": "4d6bef647b1f3a0a16e2fb8b5787eacd73f46edb627f30a530a869a761cf3641"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "c3f934aa93bfce1b5546923d8e1a3632a69b2514568c1f588b5cb4fc14e0a5dc"
+        }
+      ]
     }
   ],
   "superseded_operations": [

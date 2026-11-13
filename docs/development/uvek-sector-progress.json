@@ -1356,6 +1356,15 @@
         "remaining_refused_rules_in_first_source_group": 3,
         "qualification": "Actual harmonizer/adapter helper LCIs and shared cement selectors verified. Complete mining preparation, transformation, validation and export remain unfinished.",
         "brightpath_commit": "63ff74068d1c8d1145d2826eb81eb79ad936c5b8"
+      },
+      "polyester_fibre_correspondence_progress": {
+        "review": "docs/development/uvek-mining38-polyester-fibre-review.md",
+        "verification": "docs/development/uvek-mining38-polyester-fibre-verification.json",
+        "source_version": "3.8",
+        "new_scopes": 1,
+        "remaining_refused_rules_in_first_source_group": 2,
+        "brightpath_commit": "315913ace8f998969fbb9b83da4adb07fff3a9b4",
+        "qualification": "Screening proxy with explicit yield, geography, ancillary/waste/emission omissions and unquantified score effects. Complete mining preparation/update/validation/export remain unfinished."
       }
     },
     {

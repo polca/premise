@@ -68,3 +68,6 @@ the same three real mining refusals. A broader storage/schema/manifest run has
 98 passing tests and one existing failure: eight archived review cards are
 unreferenced. The exact same eight are present in the previous Brightpath
 commit; this batch adds none. Their authoring-resource cleanup remains pending.
+
+Subsequent update: the archived-card failure above is resolved in Brightpath
+`c636455`, with evidence in `uvek-mining38-polyester-fibre-review.md`.
