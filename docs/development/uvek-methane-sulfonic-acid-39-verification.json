@@ -1,0 +1,201 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "058c608fd71913ec7a2fbb47f217deb23d66d8f9",
+  "scope_registration": {
+    "prior_scopes": 1310,
+    "new_scopes": 1314,
+    "all_existing_operations_unchanged": true
+  },
+  "tests": {
+    "brightpath_mapping_and_storage_checks": 44,
+    "binding_checks_final": 8,
+    "frozen_review_checks_final": 6,
+    "premise_fresh_cached_sign_uncertainty_and_scope_checks": 20,
+    "lint": "passed",
+    "note": "Three source-3.9 MSA inventories retain all source rows using 42 existing upstream mappings; seven direct biosphere exchanges per producer retained. SO3 native geographic proxy is separately reviewed; source gas-basis limitation explicit.",
+    "notes": "44 mapping/storage checks passed; eight binding checks and six freeze/replay checks repeated after final test/evidence refinements. No runtime module changed.",
+    "installed_package_premise_checks": 20
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 12,
+    "foreground_biosphere_flows": 8,
+    "native_suppliers": 41,
+    "signed_foreground_LCI_solves": 8,
+    "independent_native_reference_LCI_solves": 4,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-b28c726fd2e15f2c",
+        "source": {
+          "location": "RER",
+          "name": "methane sulfonic acid production",
+          "reference product": "methane sulfonic acid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.7233015720848925e-08,
+        "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 7.235187883435867e-11,
+          "residual_after": 7.782403194100951e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.2501518443631736e-09,
+          "residual_after": 7.782403194100951e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-0a429fe2a73586ad",
+        "source": {
+          "location": "RoW",
+          "name": "methane sulfonic acid production",
+          "reference product": "methane sulfonic acid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 5.676912451235694e-08,
+        "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+        "full_graph_residual": {
+          "residual_before": 9.684088345098282e-11,
+          "residual_after": 7.475850578845236e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.793317718627558e-09,
+          "residual_after": 7.475850481771453e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-e757d1c18dff9ec7",
+        "source": {
+          "location": "GLO",
+          "name": "market for methane sulfonic acid",
+          "reference product": "methane sulfonic acid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.352240689011524e-08,
+        "refined_max_abs_inventory_difference": 1.7053025658242404e-13,
+        "full_graph_residual": {
+          "residual_before": 9.632456869481584e-11,
+          "residual_after": 5.125650473719948e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.502871213723445e-09,
+          "residual_after": 5.125650473719948e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-cfdaecfa011b0980",
+        "source": {
+          "location": "RoW",
+          "name": "market for sulfur trioxide",
+          "reference product": "sulfur trioxide",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.70582790512708e-08,
+        "refined_max_abs_inventory_difference": 2.7755575615628914e-17,
+        "full_graph_residual": {
+          "residual_before": 2.540618192687317e-10,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 5.7301781849486145e-09,
+          "residual_after": 2.1952304334150545e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the three MSA product interfaces and SO3 geographic proxy and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "frontier": {
+    "before_unapproved_rule_count": 167,
+    "after_unapproved_rule_count": 166,
+    "cleared_rule_ids": [
+      "bp-e757d1c18dff9ec7"
+    ],
+    "new_unapproved_rules": [],
+    "next_unapproved_rule": "bp-ef2d0f2c82b1e1b1",
+    "next_source": {
+      "location": "GLO",
+      "name": "market for mine infrastructure, open cast, ilmenite from hard-rock ore",
+      "reference product": "mine infrastructure, open cast, ilmenite from hard-rock ore",
+      "unit": "unit"
+    },
+    "next_target": {
+      "location": "GLO",
+      "name": "Open cast mine, hard coal",
+      "reference product": "Open cast mine, hard coal",
+      "unit": "unit"
+    },
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique rules in the inspected source-3.9 cut-off battery cohort, not dataset count or all source profiles. Only MSA market was pending in this cohort; both production interfaces and SO3 proxy tested independently."
+  },
+  "runtime_python_changes": [],
+  "new_recipes": 3,
+  "unchanged_existing_recipe_dependencies": 5,
+  "unchanged_existing_upstream_correspondence_scopes": 42,
+  "preserved_direct_biosphere_exchanges_per_producer": 7,
+  "source_data_limitation": "Both production routes report 0.0048772 m3 natural gas per kg acid; retain the observed feedstock basis and flag possible source error without inventing a yield correction.",
+  "direct_unique_destination_count_before": 4023,
+  "direct_unique_destination_count_after": 4022,
+  "removed_wrong_destination": "Methane, 96 vol-%, from biogas, production mix, at service station",
+  "installed_package_verification": {
+    "brightpath_commit": "058c608fd71913ec7a2fbb47f217deb23d66d8f9",
+    "installed_resources_match_commit": [
+      "export/uvek_methane_sulfonic_acid_39_review.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "migrations/RESOURCE_MANIFEST.json"
+    ],
+    "removed_unused_wheel": "brightpath-1.0.0a14-py3-none-any.whl",
+    "removed_bytes": 44161203,
+    "sha256": "30b7905fff80454c0fcdff1b15d96e58c8e65f5eaad8b33a1190ec6609e2935f"
+  }
+}

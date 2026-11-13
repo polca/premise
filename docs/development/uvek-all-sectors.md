@@ -1928,3 +1928,7 @@ Reused the exact existing production-only cut-off stock, preserving the original
 ### Ordinary MSW incineration — 13 November 2026
 
 Reviewed the existing complete Swiss native process for exact source-3.9 cut-off treatment, with explicit manganese-speciation, water/oxygen coverage, heat-basis, internal freight and recovery-boundary warnings. Rule and treatment sign factor remain unchanged. Fresh/cache sign/uncertainty tests and in-memory LCIs pass without database writes. Fresh battery preparation reduces the inspected source cohort from 168 to 167 unapproved rules; next methane sulfonic acid. Eight of nineteen sectors remain qualified. See `uvek-msw-incineration-39-review.md` and verification JSON. Queued for the next batch push.
+
+### Methane sulfonic acid — 13 November 2026
+
+Replaced three unrelated-chemical matches with retained RER/RoW acid inventories and their original market shares/delivery, using 42 unchanged upstream correspondence scopes and five existing helpers. Separately reviewed the complete native SO3 geographic proxy. All source rows and seven direct biosphere exchanges per producer remain; questionable source gas-feed basis is explicitly flagged without correction. Mapping/storage, fresh/cache sign/uncertainty checks and in-memory LCIs pass without database writes. Battery cohort falls from 167 to 166 unapproved rules, next ilmenite-mine infrastructure. Eight of nineteen sectors remain qualified. See `uvek-methane-sulfonic-acid-39-review.md` and verification JSON. Queued for the next batch push.

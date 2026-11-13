@@ -263845,6 +263845,260 @@
           "fingerprint": "64ec6808d872d6cc6fd983a60a52041c2eaa5b869adcab677cfff64e0c497a69"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-b28c726fd2e15f2c",
+      "mapping_method": "reviewed_methane_sulfonic_acid_inventory_39",
+      "review_path": "export/uvek_methane_sulfonic_acid_39_review.json",
+      "review_sha256": "914490df9bbff5b052261f8d7ea5405f02d321a306cb3a263ab2fc9273a24d2a",
+      "authorization": "Standing user approval for autonomous mapping decisions, with warnings and logged limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "methane sulfonic acid production",
+            "reference product": "methane sulfonic acid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 13,
+          "metadata_sha256": "33249eb2e47bd675ed5ae495e04ac7dc0ea9c77c2b3d1993a3a64f047ddb266e",
+          "inventory_sha256": "b2ebb4f2db4dd1bdfdacdc3eb0ab76f4bb4442efd5fb64c90231ae56d84c6e39",
+          "activity_comment_sha256": "d30e216d4732d16b4a8031f5c75cf294d49df85efeb3dbc953e90a2610db643d",
+          "product_information_sha256": "980fabdff3a355b68406190286a94d02c11111d012e3df7522bdfd9f6d48a827"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": "msa-39-production-rer"
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off MSA market and RER/RoW production routes are reviewed. All references are positive one kg of methane sulfonic acid, CAS 75-75-2, with zero declared water in the product. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership, separate emissions and credits. Do not use sulfuric acid, sodium sulphate or vehicle biogas as the acid product. Other source releases, patches, system models and reverse routes gain no approval.",
+        "Reconstruct the documented source inventories using reviewed native supplies. Keep every source regional entry separately, including six RER-route technosphere and seven direct biosphere exchanges, 33 RoW-route technosphere and seven direct biosphere exchanges. Preserve their coefficients and uncertainty, scaling only by each already reviewed supplier conversion factor. Keep the original 0.33 RER and 0.67 RoW market shares and all four final freight entries. Do not merge, renormalize or replace regional shares with an invented global chemistry model.",
+        "The source describes stoichiometric methane/SO3 sulfoxidation, estimated emissions and standard chemical-plant energy/infrastructure. Preserve the model and its quality limitations rather than claim industrial validation. In particular, both routes report total natural-gas feed 0.0048772 m3 per kg product, alongside 0.87719 kg SO3, 0.333 kWh electricity, 2 MJ chemical steam and 4e-10 plant units. The gas/feedstock basis is questionable relative to the product carbon content; preserve the observed quantities, flag possible source-data error and do not assert elemental closure or infer a gas, purity, yield, efficiency or molecular-mass correction.",
+        "All seven direct source biosphere identities, complete compartments, units, signed amounts and supported uncertainty are retained for the selected ecoinvent 3.10 biosphere. Keep emitted fossil CO2 and CH4, SO3, sulfate, water returns and cooling-water resource separately. No direct flow, source exchange, process loss or recovery credit is omitted or invented.",
+        "Native supplies inherit the existing exact-profile chemical-plant, chemical-steam, grid, gas and freight mappings and their documented geography, technology, allocation, vintage and internal-uncertainty limitations. Preserve native complete utilities once; do not duplicate source raw-material transport, infrastructure or combustion emissions on top. Caller uncertainty remains; native supplier internal uncertainty and correlations differ. Score effects remain unquantified; no source/native LCI, LCIA or stochastic equivalence is claimed.",
+        "The RoW SO3 market has one positive producer and no freight, loss or direct emissions. Native RER liquid SO3, CAS 7446-11-9, references positive one kg and shares the source oleum-distillation lineage, including the same 1.49 kg sulfuric-acid input and 0.0016 kg direct SO2. Use that complete process as a geographic/historical-data proxy. Both datasets disclose weak stoichiometric data, estimated/incomplete emissions and omitted solid wastes. Retain those limitations; do not invent missing emissions, waste treatment or an oleum/concentration multiplier."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "82f2ad22777eefbb7c68d697977eaf7b8bf2130ed541cefa9a9475b342e56b31"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-0a429fe2a73586ad",
+      "mapping_method": "reviewed_methane_sulfonic_acid_inventory_39",
+      "review_path": "export/uvek_methane_sulfonic_acid_39_review.json",
+      "review_sha256": "914490df9bbff5b052261f8d7ea5405f02d321a306cb3a263ab2fc9273a24d2a",
+      "authorization": "Standing user approval for autonomous mapping decisions, with warnings and logged limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "methane sulfonic acid production",
+            "reference product": "methane sulfonic acid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 40,
+          "metadata_sha256": "d571378eddc4098c126bba29f837bda8529771ce6db4acea08cfeea823c55ebb",
+          "inventory_sha256": "e67d0773ff492e4465307b8f78a39746361b48e77f4edd71e79b008c3c0c18a7",
+          "activity_comment_sha256": "b1f30556d62eadec6255e6c66cc0cff9def845757a9b8970cc22b03a41198f12",
+          "product_information_sha256": "980fabdff3a355b68406190286a94d02c11111d012e3df7522bdfd9f6d48a827"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": "msa-39-production-row"
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off MSA market and RER/RoW production routes are reviewed. All references are positive one kg of methane sulfonic acid, CAS 75-75-2, with zero declared water in the product. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership, separate emissions and credits. Do not use sulfuric acid, sodium sulphate or vehicle biogas as the acid product. Other source releases, patches, system models and reverse routes gain no approval.",
+        "Reconstruct the documented source inventories using reviewed native supplies. Keep every source regional entry separately, including six RER-route technosphere and seven direct biosphere exchanges, 33 RoW-route technosphere and seven direct biosphere exchanges. Preserve their coefficients and uncertainty, scaling only by each already reviewed supplier conversion factor. Keep the original 0.33 RER and 0.67 RoW market shares and all four final freight entries. Do not merge, renormalize or replace regional shares with an invented global chemistry model.",
+        "The source describes stoichiometric methane/SO3 sulfoxidation, estimated emissions and standard chemical-plant energy/infrastructure. Preserve the model and its quality limitations rather than claim industrial validation. In particular, both routes report total natural-gas feed 0.0048772 m3 per kg product, alongside 0.87719 kg SO3, 0.333 kWh electricity, 2 MJ chemical steam and 4e-10 plant units. The gas/feedstock basis is questionable relative to the product carbon content; preserve the observed quantities, flag possible source-data error and do not assert elemental closure or infer a gas, purity, yield, efficiency or molecular-mass correction.",
+        "All seven direct source biosphere identities, complete compartments, units, signed amounts and supported uncertainty are retained for the selected ecoinvent 3.10 biosphere. Keep emitted fossil CO2 and CH4, SO3, sulfate, water returns and cooling-water resource separately. No direct flow, source exchange, process loss or recovery credit is omitted or invented.",
+        "Native supplies inherit the existing exact-profile chemical-plant, chemical-steam, grid, gas and freight mappings and their documented geography, technology, allocation, vintage and internal-uncertainty limitations. Preserve native complete utilities once; do not duplicate source raw-material transport, infrastructure or combustion emissions on top. Caller uncertainty remains; native supplier internal uncertainty and correlations differ. Score effects remain unquantified; no source/native LCI, LCIA or stochastic equivalence is claimed.",
+        "The RoW SO3 market has one positive producer and no freight, loss or direct emissions. Native RER liquid SO3, CAS 7446-11-9, references positive one kg and shares the source oleum-distillation lineage, including the same 1.49 kg sulfuric-acid input and 0.0016 kg direct SO2. Use that complete process as a geographic/historical-data proxy. Both datasets disclose weak stoichiometric data, estimated/incomplete emissions and omitted solid wastes. Retain those limitations; do not invent missing emissions, waste treatment or an oleum/concentration multiplier."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c2cb799fd6e90d9cd7fa6de1d53be02523447022eae137e89a4a0a2be41961a7"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-e757d1c18dff9ec7",
+      "mapping_method": "reviewed_methane_sulfonic_acid_inventory_39",
+      "review_path": "export/uvek_methane_sulfonic_acid_39_review.json",
+      "review_sha256": "914490df9bbff5b052261f8d7ea5405f02d321a306cb3a263ab2fc9273a24d2a",
+      "authorization": "Standing user approval for autonomous mapping decisions, with warnings and logged limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for methane sulfonic acid",
+            "reference product": "methane sulfonic acid",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "0155994144b86a8879c375f18c474cc0c083930965f5d25ea693ea3b53cb90b6",
+          "inventory_sha256": "fbea2aa047d640bd8c9d2abe973440d614bde4f790b5f0a7706f6e5e5812034b",
+          "activity_comment_sha256": "02b365609df9e539d6cf33465a4825099d29dd9e7d391572b08bbd1a23233ffc",
+          "product_information_sha256": "980fabdff3a355b68406190286a94d02c11111d012e3df7522bdfd9f6d48a827"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "methane sulfonic acid production",
+              "reference product": "methane sulfonic acid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 13,
+            "metadata_sha256": "33249eb2e47bd675ed5ae495e04ac7dc0ea9c77c2b3d1993a3a64f047ddb266e",
+            "inventory_sha256": "b2ebb4f2db4dd1bdfdacdc3eb0ab76f4bb4442efd5fb64c90231ae56d84c6e39",
+            "activity_comment_sha256": "d30e216d4732d16b4a8031f5c75cf294d49df85efeb3dbc953e90a2610db643d",
+            "product_information_sha256": "980fabdff3a355b68406190286a94d02c11111d012e3df7522bdfd9f6d48a827"
+          },
+          {
+            "identity": {
+              "name": "methane sulfonic acid production",
+              "reference product": "methane sulfonic acid",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 40,
+            "metadata_sha256": "d571378eddc4098c126bba29f837bda8529771ce6db4acea08cfeea823c55ebb",
+            "inventory_sha256": "e67d0773ff492e4465307b8f78a39746361b48e77f4edd71e79b008c3c0c18a7",
+            "activity_comment_sha256": "b1f30556d62eadec6255e6c66cc0cff9def845757a9b8970cc22b03a41198f12",
+            "product_information_sha256": "980fabdff3a355b68406190286a94d02c11111d012e3df7522bdfd9f6d48a827"
+          }
+        ],
+        "recipe_id": "msa-39-market"
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off MSA market and RER/RoW production routes are reviewed. All references are positive one kg of methane sulfonic acid, CAS 75-75-2, with zero declared water in the product. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership, separate emissions and credits. Do not use sulfuric acid, sodium sulphate or vehicle biogas as the acid product. Other source releases, patches, system models and reverse routes gain no approval.",
+        "Reconstruct the documented source inventories using reviewed native supplies. Keep every source regional entry separately, including six RER-route technosphere and seven direct biosphere exchanges, 33 RoW-route technosphere and seven direct biosphere exchanges. Preserve their coefficients and uncertainty, scaling only by each already reviewed supplier conversion factor. Keep the original 0.33 RER and 0.67 RoW market shares and all four final freight entries. Do not merge, renormalize or replace regional shares with an invented global chemistry model.",
+        "The source describes stoichiometric methane/SO3 sulfoxidation, estimated emissions and standard chemical-plant energy/infrastructure. Preserve the model and its quality limitations rather than claim industrial validation. In particular, both routes report total natural-gas feed 0.0048772 m3 per kg product, alongside 0.87719 kg SO3, 0.333 kWh electricity, 2 MJ chemical steam and 4e-10 plant units. The gas/feedstock basis is questionable relative to the product carbon content; preserve the observed quantities, flag possible source-data error and do not assert elemental closure or infer a gas, purity, yield, efficiency or molecular-mass correction.",
+        "All seven direct source biosphere identities, complete compartments, units, signed amounts and supported uncertainty are retained for the selected ecoinvent 3.10 biosphere. Keep emitted fossil CO2 and CH4, SO3, sulfate, water returns and cooling-water resource separately. No direct flow, source exchange, process loss or recovery credit is omitted or invented.",
+        "Native supplies inherit the existing exact-profile chemical-plant, chemical-steam, grid, gas and freight mappings and their documented geography, technology, allocation, vintage and internal-uncertainty limitations. Preserve native complete utilities once; do not duplicate source raw-material transport, infrastructure or combustion emissions on top. Caller uncertainty remains; native supplier internal uncertainty and correlations differ. Score effects remain unquantified; no source/native LCI, LCIA or stochastic equivalence is claimed.",
+        "The RoW SO3 market has one positive producer and no freight, loss or direct emissions. Native RER liquid SO3, CAS 7446-11-9, references positive one kg and shares the source oleum-distillation lineage, including the same 1.49 kg sulfuric-acid input and 0.0016 kg direct SO2. Use that complete process as a geographic/historical-data proxy. Both datasets disclose weak stoichiometric data, estimated/incomplete emissions and omitted solid wastes. Retain those limitations; do not invent missing emissions, waste treatment or an oleum/concentration multiplier."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8b27fc36c9ac2280d0f3afc4fc6bed4ce74c3bc2cdee8feec9242e8094427cdc"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-cfdaecfa011b0980",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_methane_sulfonic_acid_39_review.json",
+      "review_sha256": "914490df9bbff5b052261f8d7ea5405f02d321a306cb3a263ab2fc9273a24d2a",
+      "authorization": "Standing user approval for autonomous mapping decisions, with warnings and logged limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for sulfur trioxide",
+            "reference product": "sulfur trioxide",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "638453eac67fa7fd38db8f7df5c0bf3600e63c5b4eb51bd98712cc47401f599a",
+          "inventory_sha256": "e078ad2f127e573c16c22becb5b8c0f444eee80473de02de446cec0cf5940428",
+          "activity_comment_sha256": "02568a7572760cf0ba579c152bd8bd3f94dadb8802fc5eebd80e53dd15d82e26",
+          "product_information_sha256": "cfd434b79874ceb2e4ae00fd633329e88674356df0d66f2c7b624422ba7fd0e5"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "sulfur trioxide production",
+              "reference product": "sulfur trioxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 13,
+            "metadata_sha256": "9eb3e2e2353419a2b46cf3780dce156b55f640984a26fb48788dbd184afed41a",
+            "inventory_sha256": "227460e939736888f8372d900ec85af94efd66dfcee8662e3258e2d34900698e",
+            "activity_comment_sha256": "98a107588c55ae5a0dc14d50337d2faae830b73910c899f0a5592ad73d1e77f4",
+            "product_information_sha256": "cfd434b79874ceb2e4ae00fd633329e88674356df0d66f2c7b624422ba7fd0e5"
+          }
+        ],
+        "recipe_id": null
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off MSA market and RER/RoW production routes are reviewed. All references are positive one kg of methane sulfonic acid, CAS 75-75-2, with zero declared water in the product. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership, separate emissions and credits. Do not use sulfuric acid, sodium sulphate or vehicle biogas as the acid product. Other source releases, patches, system models and reverse routes gain no approval.",
+        "Reconstruct the documented source inventories using reviewed native supplies. Keep every source regional entry separately, including six RER-route technosphere and seven direct biosphere exchanges, 33 RoW-route technosphere and seven direct biosphere exchanges. Preserve their coefficients and uncertainty, scaling only by each already reviewed supplier conversion factor. Keep the original 0.33 RER and 0.67 RoW market shares and all four final freight entries. Do not merge, renormalize or replace regional shares with an invented global chemistry model.",
+        "The source describes stoichiometric methane/SO3 sulfoxidation, estimated emissions and standard chemical-plant energy/infrastructure. Preserve the model and its quality limitations rather than claim industrial validation. In particular, both routes report total natural-gas feed 0.0048772 m3 per kg product, alongside 0.87719 kg SO3, 0.333 kWh electricity, 2 MJ chemical steam and 4e-10 plant units. The gas/feedstock basis is questionable relative to the product carbon content; preserve the observed quantities, flag possible source-data error and do not assert elemental closure or infer a gas, purity, yield, efficiency or molecular-mass correction.",
+        "All seven direct source biosphere identities, complete compartments, units, signed amounts and supported uncertainty are retained for the selected ecoinvent 3.10 biosphere. Keep emitted fossil CO2 and CH4, SO3, sulfate, water returns and cooling-water resource separately. No direct flow, source exchange, process loss or recovery credit is omitted or invented.",
+        "Native supplies inherit the existing exact-profile chemical-plant, chemical-steam, grid, gas and freight mappings and their documented geography, technology, allocation, vintage and internal-uncertainty limitations. Preserve native complete utilities once; do not duplicate source raw-material transport, infrastructure or combustion emissions on top. Caller uncertainty remains; native supplier internal uncertainty and correlations differ. Score effects remain unquantified; no source/native LCI, LCIA or stochastic equivalence is claimed.",
+        "The RoW SO3 market has one positive producer and no freight, loss or direct emissions. Native RER liquid SO3, CAS 7446-11-9, references positive one kg and shares the source oleum-distillation lineage, including the same 1.49 kg sulfuric-acid input and 0.0016 kg direct SO2. Use that complete process as a geographic/historical-data proxy. Both datasets disclose weak stoichiometric data, estimated/incomplete emissions and omitted solid wastes. Retain those limitations; do not invent missing emissions, waste treatment or an oleum/concentration multiplier."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ed9661385fe7cf0118cafdc0d2a19c0c492ae88e6cb58c4f5cd4ac6d5d8de1f6"
+        }
+      ]
     }
   ],
   "superseded_operations": [

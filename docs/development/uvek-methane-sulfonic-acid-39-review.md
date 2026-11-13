@@ -1,0 +1,17 @@
+# Methane sulfonic acid reconstruction — 13 November 2026
+
+The market and its two producers previously mapped to unrelated sodium sulphate, sulphuric acid and vehicle biogas. There is no matching native acid process in the inspected UVEK candidate set. Three mapping recipes now reconstruct the inspected ecoinvent 3.9 cut-off RER and RoW production inventories and their market using reviewed native supplies.
+
+Every source row is retained: 13 RER production inputs, 40 RoW production inputs and six market inputs. Each producer keeps its seven direct biosphere exchanges, including emissions, water returns and cooling-water resource. The market keeps 33% RER and 67% RoW production and four separate delivery quantities. Only existing reviewed supplier factors scale dependent exchanges; caller signed kilograms, uncertainty, formulas, ownership and separate emissions remain intact.
+
+The reconstruction reuses 42 unchanged correspondence scopes and five existing helper recipes. It separately reviews the RoW SO3 market: one positive producer, no delivery or losses, replaced by the complete European liquid-SO3 process as a geographic proxy. Source and native share the documented oleum-distillation lineage and weak-data limitations. No invented waste treatment, recovery, fuel, efficiency, yield or concentration correction is introduced.
+
+The source acid inventories themselves use an estimated stoichiometric model, standard energy/infrastructure and estimated emissions. Both report only 0.0048772 m3 natural-gas feed per kilogram of acid, alongside a product carbon content of approximately 0.125 kg/kg. This questionable gas basis is preserved and explicitly flagged as a possible source-data error. The mapping does not establish elemental closure or validate a commercial process. Supplier geography, technology, allocation, vintage, internal uncertainty and score differences remain limitations.
+
+Standing autonomous approval covers the exact inspected ecoinvent 3.9 cut-off profile. Three MSA parent rules change; the existing SO3 rule and all previous approvals remain unchanged. Other source releases, patches, system models and reverse routes remain unapproved. No runtime Python module changes. Original records, source codes and full source-interface audits remain private; the packaged review contains native-facing recipes, bounded checks and hashes.
+
+Verification: 44 Brightpath mapping/storage checks passed, with eight binding checks and six final freeze/replay checks repeated after refinements. Twenty Premise checks passed, covering signs, uncertainty, fresh/cache conversion and refusal without independent scopes. Eight signed LCIs and four independent native-demand comparisons passed in memory using 12 transient activities and 41 native suppliers, with no new Brightway databases, registered activities or processed files. Maximum refined inventory difference was below 2e-13.
+
+A fresh battery preparation retry clears this acid market. The inspected source-3.9 cohort falls from 167 to 166 unapproved rules; next is ilmenite-mine infrastructure. The two producers and SO3 proxy were tested independently but were not pending in that cohort. Eight of nineteen sectors remain qualified; battery preparation and the wider goal are unfinished.
+
+Machine-readable evidence: `uvek-methane-sulfonic-acid-39-verification.json`. Packaged decision: Brightpath `export/uvek_methane_sulfonic_acid_39_review.json`. Queued for the next coordinated batch push.
