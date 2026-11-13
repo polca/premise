@@ -1,0 +1,15 @@
+# Regional natural-gas useful-heat groups — 13 November 2026
+
+The global source heat group previously selected a Swiss heat mix directly. It now retains the original two-layer regional structure. The global group keeps its RoW/RER shares; the European group keeps its CH/Europe-without-Switzerland shares. Every observed coefficient and supported uncertainty field remains, without normalization or added freight/losses. These are original source-3.9 weights, not a claim about current heat geography.
+
+The RoW and non-Swiss European market correspondences already had exact source-3.9 approvals. Their native ENTSO-E gas-heat proxy and fingerprints are reused unchanged. The Swiss source market now explicitly uses the complete native Swiss gas-heat mix. This replaces its four-route boiler/micro-CHP portfolio: source CHP heat share is about 12.2%, versus native 19.9%, with the rest native heat-plant heat. That technology replacement and its scale, heat-grade/service-boundary, allocation, fuel, emissions, vintage and uncertainty limitations remain explicit. ENTSO-E is a broad geographic proxy and may overlap Switzerland; no inferred country subtraction is added.
+
+All references remain one positive useful MJ. Native technology coefficients sum to one. The stated 90% representativeness is a data-quality note, not an output, coverage or efficiency multiplier. Do not infer fuel/LHV conversion, change source regional weights or add an avoided-electricity credit. Existing native heat suppliers remain available to the ordinary shared Premise transformations. No separate UVEK sector engine or frozen source boiler portfolio is introduced; no runtime Python module changes.
+
+Standing autonomous approval covers the inspected ecoinvent 3.9 cut-off CH market and European/global groups. All earlier approvals remain unchanged. Other releases, patches, system models and reverse routes remain unapproved. Two small mapping recipes represent the regional wrappers; no caller exchange is omitted.
+
+Verification: 38 Brightpath mapping/storage checks and 15 Premise fresh/cache, sign, uncertainty and refusal checks passed. Six signed LCIs and three independent native-demand comparisons passed in memory, without new Brightway databases, registered activities or processed files. These establish implementation consistency with the selected screened supplies, not complete source/native LCI, LCIA or stochastic equivalence.
+
+A fresh battery preparation retry clears the global group: the inspected source-3.9 cohort falls from 163 to 162 unapproved rules. The Swiss and European interfaces were tested independently but were not pending in that cohort. Next: electric-arc-furnace dust treatment. Eight of nineteen sectors remain qualified; battery preparation and the wider integration remain unfinished.
+
+Machine-readable evidence: `uvek-natural-gas-heat-groups-39-verification.json`. Packaged decision: Brightpath `export/uvek_natural_gas_heat_groups_39_review.json`. This joins petrol and recultivation in the next six-commit coordinated batch.

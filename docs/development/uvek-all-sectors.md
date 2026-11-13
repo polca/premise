@@ -1944,3 +1944,7 @@ Replaced the older refinery-only match with complete native fossil petrol at reg
 ### Ilmenite recultivation — 13 November 2026
 
 Replaced the bauxite restoration matches with the source-explicit native Swiss limestone proxy. Retained positive m2, nominal 7.44 MJ machinery service and both matched land transformations; source site/fuel/uncertainty assumptions remain warnings. No helper, omission or runtime-module change. Mapping/storage, fresh/cache and in-memory LCI checks pass without database writes. Battery cohort falls from 164 to 163 unapproved rules; next global natural-gas heat. Eight of nineteen sectors remain qualified. See `uvek-ilmenite-recultivation-39-review.md` and verification JSON. Separate aluminium-scrap coal-freight mismatch recorded for correction before scope reuse. Queued for next batch push.
+
+### Regional useful natural-gas heat — 13 November 2026
+
+Preserved global RoW/RER and European CH/non-CH wrapper coefficients and uncertainty, reusing two existing source-3.9 native ENTSO-E supply scopes. Swiss market uses the native Swiss heat mix with explicit source/native CHP/boiler-portfolio and boundary warnings; no representativeness, fuel-efficiency or electricity-credit correction. Two mapping wrappers, no runtime module change. Mapping/storage, fresh/cache and in-memory LCI checks pass without database writes. Battery cohort falls from 163 to 162 unapproved rules, next electric-arc-furnace dust. Eight of nineteen sectors remain qualified. See `uvek-natural-gas-heat-groups-39-review.md` and verification JSON.
