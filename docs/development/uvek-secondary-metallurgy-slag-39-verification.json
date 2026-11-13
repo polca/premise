@@ -1,0 +1,123 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "b9381e91d8d79bdb10c8c491cbf375e4322f1374",
+  "scope_registration": {
+    "prior_scopes": 1336,
+    "new_scopes": 1338,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-90d430e673cde906",
+      "bp-0533e051f4ecea3d"
+    ],
+    "selected_landfill_rule_and_58_input_recipe_unchanged": true,
+    "literal_parent_recipe_omission_count": 1,
+    "new_caller_exchange_omissions": [],
+    "runtime_python_changes": []
+  },
+  "tests": {
+    "brightpath_sign_profile_uncertainty_matrix_replay_and_storage_checks": 44,
+    "premise_fresh_cache_sign_uncertainty_exact_scope_and_literal_omission_checks": 10,
+    "installed_package_premise_checks": 10,
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "foreground_biosphere_flows": 51,
+    "native_suppliers": 8,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-90d430e673cde906",
+        "source": {
+          "location": "RoW",
+          "name": "market for electric arc furnace secondary metallurgy slag",
+          "reference product": "electric arc furnace secondary metallurgy slag",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.7755575615628914e-17,
+        "refined_max_abs_inventory_difference": 1.7763568394002505e-15,
+        "full_graph_residual": {
+          "residual_before": 9.012367634136651e-12,
+          "residual_after": 2.0092497774141349e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 9.012367634136651e-12,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-0533e051f4ecea3d",
+        "source": {
+          "location": "GLO",
+          "name": "treatment of electric arc furnace secondary metallurgy slag, residual material landfill",
+          "reference product": "electric arc furnace secondary metallurgy slag",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.168404344971009e-19,
+        "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 2.6333980481372906e-11,
+          "residual_after": 3.3306690738754696e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.6333980481372906e-11,
+          "residual_after": 4.440892098500626e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the secondary-metallurgy slag market, retained landfill shares/collection and literal empty cut-off stock handoff audit and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_secondary_metallurgy_slag_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 154,
+    "current": 153,
+    "removed_rules": [
+      "bp-90d430e673cde906"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-3e5f6625beee2bab",
+    "failed_stage": "inventory preparation",
+    "battery_qualified": false,
+    "note": "Standalone landfill service reviewed independently; only the market was pending in this cohort."
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "existing_landfill_rule_and_58_input_recipe_unchanged": true,
+  "new_caller_exchange_omissions": []
+}

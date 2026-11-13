@@ -266159,6 +266159,250 @@
           "fingerprint": "c145e7d5c6c9d6d7110415094671cb442b20838702b4d2147b762bb4791d9b54"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-90d430e673cde906",
+      "mapping_method": "reviewed_additional_cutoff_waste_market_service",
+      "review_path": "export/uvek_secondary_metallurgy_slag_39_review.json",
+      "review_sha256": "5e7d4ed14c136d752e880c1055defd0d496724203ccb89cde5a7210764d19577",
+      "authorization": "Standing autonomous approval of inspected remaining mappings and exact empty cut-off handoff omissions, with explicit limitations and literal audits.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for electric arc furnace secondary metallurgy slag",
+          "reference product": "electric arc furnace secondary metallurgy slag",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for electric arc furnace secondary metallurgy slag",
+            "reference product": "electric arc furnace secondary metallurgy slag",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 12,
+          "metadata_sha256": "3c1a63d5e102480f0a4bc416b2660656101c7e25df4ddffcf2f0fc45e03197c5",
+          "inventory_sha256": "c6436ef6dc28705ad0674c5f9114cc15695ae4e6608830f8d78b1d38cc20a674",
+          "activity_comment_sha256": "251de93a73762b2297ec6ee5f33b717df85a51a2cd958344a1537bbc490b79d8",
+          "product_information_sha256": "b5348b98b0fa6cb36dd047c7ef97efdaac0f4ea86bcd9475862ff867764d2083"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of electric arc furnace secondary metallurgy slag, residual material landfill",
+              "reference product": "electric arc furnace secondary metallurgy slag",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 58,
+            "metadata_sha256": "19c8afe558315ced3678dc49b6c45b3b0b993956bc29ac047573d8cedd97fc68",
+            "inventory_sha256": "a2e2ff308e4f0f7ffc9312f41e2aedd79d03a3c16a47924a40a82aa8fd17d0e8",
+            "activity_comment_sha256": "2bf91231929d7443044e41873858279a1935011179aad62e1619c770df89bf3c",
+            "product_information_sha256": "b5348b98b0fa6cb36dd047c7ef97efdaac0f4ea86bcd9475862ff867764d2083"
+          },
+          {
+            "identity": {
+              "name": "electric arc furnace secondary metallurgy slag to market for electric arc furnace secondary metallurgy slag for recovery",
+              "reference product": "electric arc furnace secondary metallurgy slag",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 1,
+            "metadata_sha256": "7580c30c35011f0725fddf0fc90f6b1e533dfe393f27d826e488e5d82105eb18",
+            "inventory_sha256": "21ec5947fadf4ea94d52b6b50eff5fb5e9d037070e9231ff12c5a7b674e53282",
+            "activity_comment_sha256": "b36cef35e9efd06abb9ed60f16f238cabce5eff3b90948da036796c1b9345eff",
+            "product_information_sha256": "b5348b98b0fa6cb36dd047c7ef97efdaac0f4ea86bcd9475862ff867764d2083"
+          }
+        ],
+        "recipe_id": "secondary-metallurgy-slag-39-retained-landfill-collection",
+        "approved_recipe_source_omissions": {
+          "secondary-metallurgy-slag-39-retained-landfill-collection": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "name": "market for electric arc furnace secondary metallurgy slag",
+                "reference product": "electric arc furnace secondary metallurgy slag",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "34b2bd6159ca25b6ee7ab8eeec986e84f5a27ab761cf09ec3173e39782acbe94",
+              "original_index": 2,
+              "source_exchange": {
+                "name": "electric arc furnace secondary metallurgy slag to market for electric arc furnace secondary metallurgy slag for recovery",
+                "reference product": "electric arc furnace secondary metallurgy slag",
+                "location": "RoW",
+                "unit": "kilogram",
+                "amount": -0.238045738045738,
+                "uncertainty type": 0,
+                "loc": -0.238045738045738,
+                "type": "technosphere"
+              },
+              "rationale": "Omit only the exact -0.238045738045738 kg renaming handoff to positive-reference empty Recycled Content cut-off stock. The inspected -1kg handoff inventory has solely -1kg of that stock; stock has +1kg production and no nonproduction exchanges. Its source LCI is zero because of the allocation boundary, not impact-free physical recovery. Record original signed coefficient/statistics, exchange index and profile, source hash and both handoff/stock witnesses. No recovery, avoided metal, extra disposal or empty negative-reference helper is invented. Positive-stock validation remains unchanged and no nonempty/unknown service is assigned zero. Handoff inventory SHA256: 21ec5947fadf4ea94d52b6b50eff5fb5e9d037070e9231ff12c5a7b674e53282; stock inventory SHA256: eecbd4523fe54063e6ac419cb42eeceb1b244174349771eed6e66ef0b4e894d8"
+            }
+          ]
+        },
+        "landfill_effective_profile": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "recipe_id": "residual-landfill-9c5e653e8fa4cafc3cee",
+          "source_inventory_sha256": "a2e2ff308e4f0f7ffc9312f41e2aedd79d03a3c16a47924a40a82aa8fd17d0e8",
+          "frozen_source_inventory_sha256": "a2e2ff308e4f0f7ffc9312f41e2aedd79d03a3c16a47924a40a82aa8fd17d0e8",
+          "full_existing_recipe_matches_frozen_profile_inputs": true,
+          "inputs": 58,
+          "direct_biosphere_rows": 50,
+          "unchanged_rule": true
+        },
+        "recovery_handoff_control": {
+          "handoff_reference_amount": -1,
+          "handoff_nonproduction_count": 1,
+          "only_input_amount": -1,
+          "stock_identity": {
+            "name": "electric arc furnace secondary metallurgy slag, for recovery, Recycled Content cut-off",
+            "reference product": "electric arc furnace secondary metallurgy slag, for recovery",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "stock_reference_amount": 1,
+          "stock_nonproduction_count": 0,
+          "stock_inventory_sha256": "eecbd4523fe54063e6ac419cb42eeceb1b244174349771eed6e66ef0b4e894d8"
+        }
+      },
+      "limitations": [
+        "New permission covers only the inspected ecoinvent 3.9 cut-off secondary-metallurgy EAF-slag landfill and RoW collection market. Both source references are -1kg waste and target helpers +1kg treatment service. Factor -1 at each negative waste reference converts negative caller/treatment demand to positive service demand; original positive collection freight remains positive. Preserve caller signed mass, supported uncertainty/formulas, separate emissions and foreground ownership. No other version, patch, model or inverse route gains permission.",
+        "Reuse the exact existing source3.9 landfill recipe residual-landfill-9c5e653e8fa4cafc3cee without changing its 58 inputs. Current full source hash matches its frozen reviewed profile. Select the effective source3.9 profile, not the separate 105-input default recipe for another release. Retain 0.4 kg stabilization cement, three regional operating/disposal contributions, original facility demand and all 50 direct waste-specific biosphere entries. Existing complete Swiss operation/facility, cement blend/geography, hydrated-waste moisture/reference, age, upstream inventory and internal-uncertainty limitations remain. No added land, water, aftercare, capacity, treatment or recovery multiplier; no second operational, construction or direct-leachate inventory.",
+        "Retain 0.761954261954262 kg landfill service per kg market and all ten original freight entries independently: five rail, one barge, three heavy-road and one container-ship entry. Complete native RER generic rail/barge/heavy-fleet and OCE container ship are geographic, historical-traction/fleet, loading, fuel, allocation, vintage and uncertainty screening proxies. Generic rail is not coal freight. Preserve all market coefficients and supported statistics without renormalization, payload/distance correction, added vehicles or infrastructure.",
+        "Omit only the exact -0.238045738045738 kg renaming handoff to positive-reference empty Recycled Content cut-off stock. The inspected -1kg handoff inventory has solely -1kg of that stock; stock has +1kg production and no nonproduction exchanges. Its source LCI is zero because of the allocation boundary, not impact-free physical recovery. Record original signed coefficient/statistics, exchange index and profile, source hash and both handoff/stock witnesses. No recovery, avoided metal, extra disposal or empty negative-reference helper is invented. Positive-stock validation remains unchanged and no nonempty/unknown service is assigned zero.",
+        "Caller and market uncertainty are retained where supported; reused landfill internal component/source uncertainty and parameter formulas retain their existing explicitly reviewed reconstruction limitations. No source/native LCI, LCIA or stochastic equivalence is claimed; source/native score effects remain unquantified. Native full-component backgrounds and direct source releases remain separate from final collection.",
+        "Only the market source3.9 target/review metadata and two exact-profile Premise permissions change. The complete landfill rule and recipe, all other market profile decisions and the default target remain unchanged. Literal omission approval is restricted to this exact parent/profile/recipe/exchange. No runtime Python module, alternative sector engine, blanket loss permission or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3c1619ddaa861ed4c1f625ec839a3f7edc75fab2d15c451fba1e1352b2a72d6a"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-0533e051f4ecea3d",
+      "mapping_method": "reviewed_residual_landfill_service",
+      "review_path": "export/uvek_secondary_metallurgy_slag_39_review.json",
+      "review_sha256": "5e7d4ed14c136d752e880c1055defd0d496724203ccb89cde5a7210764d19577",
+      "authorization": "Standing autonomous approval of inspected remaining mappings and exact empty cut-off handoff omissions, with explicit limitations and literal audits.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "treatment of electric arc furnace secondary metallurgy slag, residual material landfill",
+          "reference product": "electric arc furnace secondary metallurgy slag",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "treatment of electric arc furnace secondary metallurgy slag, residual material landfill",
+            "reference product": "electric arc furnace secondary metallurgy slag",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 58,
+          "metadata_sha256": "19c8afe558315ced3678dc49b6c45b3b0b993956bc29ac047573d8cedd97fc68",
+          "inventory_sha256": "a2e2ff308e4f0f7ffc9312f41e2aedd79d03a3c16a47924a40a82aa8fd17d0e8",
+          "activity_comment_sha256": "2bf91231929d7443044e41873858279a1935011179aad62e1619c770df89bf3c",
+          "product_information_sha256": "b5348b98b0fa6cb36dd047c7ef97efdaac0f4ea86bcd9475862ff867764d2083"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": "residual-landfill-9c5e653e8fa4cafc3cee",
+        "approved_recipe_source_omissions": {},
+        "landfill_effective_profile": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "recipe_id": "residual-landfill-9c5e653e8fa4cafc3cee",
+          "source_inventory_sha256": "a2e2ff308e4f0f7ffc9312f41e2aedd79d03a3c16a47924a40a82aa8fd17d0e8",
+          "frozen_source_inventory_sha256": "a2e2ff308e4f0f7ffc9312f41e2aedd79d03a3c16a47924a40a82aa8fd17d0e8",
+          "full_existing_recipe_matches_frozen_profile_inputs": true,
+          "inputs": 58,
+          "direct_biosphere_rows": 50,
+          "unchanged_rule": true
+        },
+        "recovery_handoff_control": {
+          "handoff_reference_amount": -1,
+          "handoff_nonproduction_count": 1,
+          "only_input_amount": -1,
+          "stock_identity": {
+            "name": "electric arc furnace secondary metallurgy slag, for recovery, Recycled Content cut-off",
+            "reference product": "electric arc furnace secondary metallurgy slag, for recovery",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "stock_reference_amount": 1,
+          "stock_nonproduction_count": 0,
+          "stock_inventory_sha256": "eecbd4523fe54063e6ac419cb42eeceb1b244174349771eed6e66ef0b4e894d8"
+        }
+      },
+      "limitations": [
+        "New permission covers only the inspected ecoinvent 3.9 cut-off secondary-metallurgy EAF-slag landfill and RoW collection market. Both source references are -1kg waste and target helpers +1kg treatment service. Factor -1 at each negative waste reference converts negative caller/treatment demand to positive service demand; original positive collection freight remains positive. Preserve caller signed mass, supported uncertainty/formulas, separate emissions and foreground ownership. No other version, patch, model or inverse route gains permission.",
+        "Reuse the exact existing source3.9 landfill recipe residual-landfill-9c5e653e8fa4cafc3cee without changing its 58 inputs. Current full source hash matches its frozen reviewed profile. Select the effective source3.9 profile, not the separate 105-input default recipe for another release. Retain 0.4 kg stabilization cement, three regional operating/disposal contributions, original facility demand and all 50 direct waste-specific biosphere entries. Existing complete Swiss operation/facility, cement blend/geography, hydrated-waste moisture/reference, age, upstream inventory and internal-uncertainty limitations remain. No added land, water, aftercare, capacity, treatment or recovery multiplier; no second operational, construction or direct-leachate inventory.",
+        "Retain 0.761954261954262 kg landfill service per kg market and all ten original freight entries independently: five rail, one barge, three heavy-road and one container-ship entry. Complete native RER generic rail/barge/heavy-fleet and OCE container ship are geographic, historical-traction/fleet, loading, fuel, allocation, vintage and uncertainty screening proxies. Generic rail is not coal freight. Preserve all market coefficients and supported statistics without renormalization, payload/distance correction, added vehicles or infrastructure.",
+        "Omit only the exact -0.238045738045738 kg renaming handoff to positive-reference empty Recycled Content cut-off stock. The inspected -1kg handoff inventory has solely -1kg of that stock; stock has +1kg production and no nonproduction exchanges. Its source LCI is zero because of the allocation boundary, not impact-free physical recovery. Record original signed coefficient/statistics, exchange index and profile, source hash and both handoff/stock witnesses. No recovery, avoided metal, extra disposal or empty negative-reference helper is invented. Positive-stock validation remains unchanged and no nonempty/unknown service is assigned zero.",
+        "Caller and market uncertainty are retained where supported; reused landfill internal component/source uncertainty and parameter formulas retain their existing explicitly reviewed reconstruction limitations. No source/native LCI, LCIA or stochastic equivalence is claimed; source/native score effects remain unquantified. Native full-component backgrounds and direct source releases remain separate from final collection.",
+        "Only the market source3.9 target/review metadata and two exact-profile Premise permissions change. The complete landfill rule and recipe, all other market profile decisions and the default target remain unchanged. Literal omission approval is restricted to this exact parent/profile/recipe/exchange. No runtime Python module, alternative sector engine, blanket loss permission or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "efbc7b2e7f3a8778cb7856eb0894fccd69d0202a14c3034f3caf505b2f2c723f"
+        }
+      ]
     }
   ],
   "superseded_operations": [
