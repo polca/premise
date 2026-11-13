@@ -1,0 +1,178 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "93d864873444d6ddb66a4b254d315caaf3c8c9b7",
+  "scope_registration": {
+    "prior_scopes": 1352,
+    "new_scopes": 1355,
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-34f7b4af26714213",
+      "bp-7e5fcabe5aabe23c",
+      "bp-3b1193a226ec22d6"
+    ],
+    "refined_prior312_rule": "bp-7e5fcabe5aabe23c",
+    "prior312_fingerprint": "d4add1b4dc75c84d9e38a3458ae7cd775fdaef02eefc1ca4077fea3695969aa2",
+    "refined312_fingerprint": "ec5ffdecc0d148f5664ad4cb676ae0775a6c7704d0d6cde04dcab0673baf1285",
+    "prior312_physical_mapping_recipe_and_sign_entry_unchanged": true,
+    "runtime_python_changes": [],
+    "new_source_omissions": [],
+    "new_helpers": 0,
+    "reused_helpers": 1
+  },
+  "tests": {
+    "brightpath_new_and_prior312_sign_uncertainty_ownership_replay_storage_and_manifest": 81,
+    "premise_new_service_fresh_cache_scope_and_owned_polymer": 18,
+    "prior312_cache_and_approval_integrity_guards": 10,
+    "installed_package_new_and_prior312_cache_checks": 21,
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "native_suppliers": 3,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 6,
+    "independent_native_reference_LCI_solves": 3,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-34f7b4af26714213",
+        "source": {
+          "location": "RER",
+          "name": "injection moulding",
+          "reference product": "injection moulding",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+        "full_graph_residual": {
+          "residual_before": 5.188110788856937e-09,
+          "residual_after": 8.094180514075431e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 5.188110788856937e-09,
+          "residual_after": 8.094180514075448e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-7e5fcabe5aabe23c",
+        "source": {
+          "location": "GLO",
+          "name": "market for extrusion, plastic film",
+          "reference product": "extrusion, plastic film",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 1.0411525376776913e-08,
+          "residual_after": 3.2563110830529596e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.0411525376776913e-08,
+          "residual_after": 3.1535375439456503e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-3b1193a226ec22d6",
+        "source": {
+          "location": "RER",
+          "name": "polymer foaming",
+          "reference product": "polymer foaming",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 8.673617379884035e-19,
+        "full_graph_residual": {
+          "residual_before": 6.482161035824863e-09,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.482161035824863e-09,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the three plastic-processing interfaces and separate caller emissions and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_plastic_processing_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 140,
+    "current": 137,
+    "removed_rules": [
+      "bp-34f7b4af26714213",
+      "bp-3b1193a226ec22d6",
+      "bp-7e5fcabe5aabe23c"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-5a066f5db7e68d53",
+    "next_source": {
+      "location": "GLO",
+      "name": "market for glass fibre reinforced plastic, polyester resin, hand lay-up",
+      "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+      "unit": "kilogram"
+    },
+    "failed_stage": "inventory preparation",
+    "battery_qualified": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "new_source_omissions": [],
+  "new_helpers": 0,
+  "reused_helpers": 1,
+  "mapping_delta": "Only add the exact inspected source3.9 film-extrusion sign entry; default targets, existing film recipe, prior312 sign entry and other replacement rules remain unchanged. Explicitly refine prior312 fingerprint for this annotation without a physical change.",
+  "important_modelling_limits": [
+    "Injection uses complete native pigment model with limestone rather than source quicklime; no chemistry equivalence or compensating credit claimed.",
+    "Injection and foaming replace source internal water/emission modelling with complete native models; caller emissions remain unchanged.",
+    "Existing film helper retains historical heat-312 identifier/name; actual source3.9 qualification is explicitly bound to new primary evidence.",
+    "RoW/Canadian film services use native European processing with warnings."
+  ],
+  "source_reference_basis": "One kg processing of separately supplied polymer: injection yields 0.994 kg moulded output; film extrusion 0.976 kg film; foaming 1 kg expanded output. No yield multiplier added."
+}

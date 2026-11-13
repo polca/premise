@@ -134901,8 +134901,8 @@
       "rule_id": "bp-7e5fcabe5aabe23c",
       "operation": "replace",
       "mapping_method": "reviewed_heat_312_market_composition",
-      "review_path": "export/uvek_heat_312_markets_review.json",
-      "review_sha256": "8079772089b1702b8595d1ffcf1ce29c00e96cc682e14385a01890de71dbb2dd",
+      "review_path": "export/uvek_plastic_processing_39_review.json",
+      "review_sha256": "bec6d3cfe95501fd43a5189a78833c2c86b3aeedae23968a3fc5776ad8e11e96",
       "authorization": "Standing autonomous modelling approval; exact independently inspected source/service bases and complete native proxies with warnings.",
       "inspection": {
         "source": {
@@ -135036,12 +135036,185 @@
               "unit": "kilogram"
             }
           }
-        ]
+        ],
+        "profile_annotation_refinement": {
+          "prior_approval": {
+            "rule_id": "bp-7e5fcabe5aabe23c",
+            "operation": "replace",
+            "mapping_method": "reviewed_heat_312_market_composition",
+            "review_path": "export/uvek_heat_312_markets_review.json",
+            "review_sha256": "8079772089b1702b8595d1ffcf1ce29c00e96cc682e14385a01890de71dbb2dd",
+            "authorization": "Standing autonomous modelling approval; exact independently inspected source/service bases and complete native proxies with warnings.",
+            "inspection": {
+              "source": {
+                "location": "GLO",
+                "name": "market for extrusion, plastic film",
+                "reference product": "extrusion, plastic film",
+                "unit": "kilogram"
+              },
+              "target": {
+                "recipe_ref": "heat-312-market-a968a6156ac00871f1d3"
+              },
+              "conversion_factor": 1,
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_inventory_sha256": "98ac3e0269bb06bec5921525dc41f2ccd71b40d8bf8cf4dbd4a6694fb361d6f6",
+              "source_metadata_sha256": "dc2c0612bf5fe374dd9cbe082a75c1103023b1264b1e8052d409f2a5335bdde1",
+              "source_producer_witnesses": [
+                {
+                  "identity": {
+                    "name": "extrusion, plastic film",
+                    "reference product": "extrusion, plastic film",
+                    "location": "CA-QC",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "ab59f53a6cc35bd09347734b0bbbab5232e6f0597cf54e210e022cc4a5a4dcc8",
+                  "metadata_sha256": "214895ec58de38ff9d514d1226b6bbe4859ab6aab4a13d2218ddfb76c7eb745e"
+                },
+                {
+                  "identity": {
+                    "name": "extrusion, plastic film",
+                    "reference product": "extrusion, plastic film",
+                    "location": "RER",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "eaa67abfedbd9f41168eda083881d7ed488c36d1b69dff97f5957de62ed8f190",
+                  "metadata_sha256": "04db803235b5ac87489ebd102b94998d3deabcfb7dbbac9a10185a2d46cd378f"
+                },
+                {
+                  "identity": {
+                    "name": "extrusion, plastic film",
+                    "reference product": "extrusion, plastic film",
+                    "location": "RoW",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "83e6de803b560d2d67ef091a15d83226c13f7c3d7a7360c19305c49897d20d16",
+                  "metadata_sha256": "cf3f9cbc5133641bb966607582a45bb73bce214c07b72e7dffa1a8b2eec64731"
+                }
+              ],
+              "retained_input_bindings": [
+                {
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for extrusion, plastic film",
+                    "reference product": "extrusion, plastic film",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "98ac3e0269bb06bec5921525dc41f2ccd71b40d8bf8cf4dbd4a6694fb361d6f6",
+                  "original_index": 1,
+                  "kind": "complete_production_or_service_proxy",
+                  "source_identity": {
+                    "name": "extrusion, plastic film",
+                    "reference product": "extrusion, plastic film",
+                    "location": "CA-QC",
+                    "unit": "kilogram"
+                  },
+                  "target_input": {
+                    "amount": 0.00444285714285715,
+                    "uncertainty type": 0,
+                    "loc": 0.00444285714285715,
+                    "type": "technosphere",
+                    "location": "RER",
+                    "name": "Extrusion, plastic film",
+                    "reference product": "Extrusion, plastic film",
+                    "unit": "kilogram"
+                  }
+                },
+                {
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for extrusion, plastic film",
+                    "reference product": "extrusion, plastic film",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "98ac3e0269bb06bec5921525dc41f2ccd71b40d8bf8cf4dbd4a6694fb361d6f6",
+                  "original_index": 2,
+                  "kind": "complete_production_or_service_proxy",
+                  "source_identity": {
+                    "name": "extrusion, plastic film",
+                    "reference product": "extrusion, plastic film",
+                    "location": "RER",
+                    "unit": "kilogram"
+                  },
+                  "target_input": {
+                    "amount": 0.330592351639303,
+                    "uncertainty type": 0,
+                    "loc": 0.330592351639303,
+                    "type": "technosphere",
+                    "location": "RER",
+                    "name": "Extrusion, plastic film",
+                    "reference product": "Extrusion, plastic film",
+                    "unit": "kilogram"
+                  }
+                },
+                {
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for extrusion, plastic film",
+                    "reference product": "extrusion, plastic film",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "98ac3e0269bb06bec5921525dc41f2ccd71b40d8bf8cf4dbd4a6694fb361d6f6",
+                  "original_index": 3,
+                  "kind": "complete_production_or_service_proxy",
+                  "source_identity": {
+                    "name": "extrusion, plastic film",
+                    "reference product": "extrusion, plastic film",
+                    "location": "RoW",
+                    "unit": "kilogram"
+                  },
+                  "target_input": {
+                    "amount": 0.66496479121784,
+                    "uncertainty type": 0,
+                    "loc": 0.66496479121784,
+                    "type": "technosphere",
+                    "location": "RER",
+                    "name": "Extrusion, plastic film",
+                    "reference product": "Extrusion, plastic film",
+                    "unit": "kilogram"
+                  }
+                }
+              ]
+            },
+            "limitations": [
+              "Reconstruct the global film-extrusion service market retaining all three sourceproducer shares separately, without adding market freight or losses absent from its actual inventory. Source and native both explicitly define1kgservice as0.976kgextruded film and exclude the converted polymer. Map each regional service to complete native European film extrusion at factor+1kgservice/kgservice; retain the callers separate polymer inventory.",
+              "No0.976or1/0.976yield factor, extra1kgpolymer input, generic plastic product or film-mass/density/thickness conversion is added. Native auxiliary plastics/packaging, process electricity, steam/heat, waste-plastics incineration, lubricants, transport/infrastructure, geographicbackground and internal uncertainty differ and remain complete once. Native small auxiliary polymer inputs are not the callers converted polymer.",
+              "Exact inspected ecoinvent3.12cut-off profile only. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate caller emissions. Retain every original market producer share and freight entry separately with its amount and supported uncertainty; do not renormalize. Complete native production/services remain unchanged once, replacing source internal inventories as explicitly qualified screening proxies. Native biosphere exclusions, background/geography, vintage, internal uncertainty and unquantified score differences remain warnings. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+            ],
+            "scopes": [
+              {
+                "source": {
+                  "family": "ecoinvent",
+                  "version": "3.12",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "family": "uvek",
+                  "version": "2025",
+                  "system_model": "cutoff"
+                },
+                "fingerprint": "d4add1b4dc75c84d9e38a3458ae7cd775fdaef02eefc1ca4077fea3695969aa2"
+              }
+            ]
+          },
+          "additional_source_profile": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "prior_physical_mapping_and_recipe_unchanged": true,
+          "primary_source312_inventory_and_metadata_hashes_match": true,
+          "new_review": "export/uvek_plastic_processing_39_review.json"
+        }
       },
       "limitations": [
         "Reconstruct the global film-extrusion service market retaining all three sourceproducer shares separately, without adding market freight or losses absent from its actual inventory. Source and native both explicitly define1kgservice as0.976kgextruded film and exclude the converted polymer. Map each regional service to complete native European film extrusion at factor+1kgservice/kgservice; retain the callers separate polymer inventory.",
         "No0.976or1/0.976yield factor, extra1kgpolymer input, generic plastic product or film-mass/density/thickness conversion is added. Native auxiliary plastics/packaging, process electricity, steam/heat, waste-plastics incineration, lubricants, transport/infrastructure, geographicbackground and internal uncertainty differ and remain complete once. Native small auxiliary polymer inputs are not the callers converted polymer.",
-        "Exact inspected ecoinvent3.12cut-off profile only. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate caller emissions. Retain every original market producer share and freight entry separately with its amount and supported uncertainty; do not renormalize. Complete native production/services remain unchanged once, replacing source internal inventories as explicitly qualified screening proxies. Native biosphere exclusions, background/geography, vintage, internal uncertainty and unquantified score differences remain warnings. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+        "Exact inspected ecoinvent3.12cut-off profile only. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate caller emissions. Retain every original market producer share and freight entry separately with its amount and supported uncertainty; do not renormalize. Complete native production/services remain unchanged once, replacing source internal inventories as explicitly qualified screening proxies. Native biosphere exclusions, background/geography, vintage, internal uncertainty and unquantified score differences remain warnings. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred.",
+        "An independently inspected source3.9 sign annotation changes the whole-rule fingerprint only. Existing source3.12 effective target, sign, quantity, recipe and previous review are unchanged; the full prior authority and matching source primary hashes are retained in the refinement audit."
       ],
       "scopes": [
         {
@@ -135055,7 +135228,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "d4add1b4dc75c84d9e38a3458ae7cd775fdaef02eefc1ca4077fea3695969aa2"
+          "fingerprint": "ec5ffdecc0d148f5664ad4cb676ae0775a6c7704d0d6cde04dcab0673baf1285"
         }
       ]
     },
@@ -268195,6 +268368,367 @@
             "version": "2025"
           },
           "fingerprint": "83f0930d2f5a5af2d44a44e79ec0303c24405a401001af9a32ebaa8c0e02c7b8"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-34f7b4af26714213",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_plastic_processing_39_review.json",
+      "review_sha256": "bec6d3cfe95501fd43a5189a78833c2c86b3aeedae23968a3fc5776ad8e11e96",
+      "authorization": "Standing autonomous approval of remaining mappings and scoped complete-process/feedstock/geographic screening proxies, with explicit warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "injection moulding",
+            "reference product": "injection moulding",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 26,
+          "metadata_sha256": "cee5dac1d7e145e27da572932385ec854478a9fc182f6bc83f8ddbceee60772f",
+          "inventory_sha256": "74e565905a770d110f2d1a553753665efef0051dcf4cddda0b81b13df78ea9db",
+          "activity_comment_sha256": "04b158f6f0979842004e7899badc715f04e8686ff15bd7a91919722ffdb15d2d",
+          "product_information_sha256": "5ced7882e792f0182047307d94b444982576117e01c3d550e3519cb1f2358d9c"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Injection moulding",
+              "reference product": "Injection moulding",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "e3b9274c37f0f0775f3a88d793be84910ab1e954c6703cc62d6d4a87af284cf0",
+            "inventory_sha256": "f09114a18d1501db8dbc9d87b512627b090ba7dfe59889afd85661de198f2f3e",
+            "activity_comment_sha256": "c259a915138da4ecab463d7d8c4a12ef86e03ba55cebe0a21f5ef17a93f82d17",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Injection moulding",
+              "reference product": "Injection moulding",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "bfc53269cb135fe81e4546330801c41def5c24c7559bb66f6d9493b47e971976",
+            "inventory_sha256": "db5b842356f77a112c5740bb0e6ff4b255d79f066381cea0e7de37f5140c6e31",
+            "activity_comment_sha256": "c1692cc93c78898fb6fccd49d1182eca08b78cc98d3ca4e1fd0a85ba3a7d7062",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null,
+        "boundary_checks": {
+          "kg_service_per_kg_input_polymer": 1,
+          "kg_finished_polymer_per_kg_service": 0.994,
+          "source_direct_biosphere_count": 8,
+          "native_direct_biosphere_count": 5,
+          "source_quicklime_kg_per_service": 0.00378,
+          "native_limestone_in_pigment_kg_per_service": 0.00378,
+          "pigment_chemistry_equivalence": false,
+          "native_pigment_witnesses": {
+            "2025": {
+              "identity": {
+                "name": "Pigments, paper production, unspecified, at plant",
+                "reference product": "Pigments, paper production, unspecified, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 3,
+              "metadata_sha256": "849b9397e31936e8099ae7d009a5c2d90b64e1a28781c9f3ff6ccb951cd94eef",
+              "inventory_sha256": "3062b35dcb76864d667cad710e8304baa44d6cdc534de3cdaa2f882d5ca1af10",
+              "activity_comment_sha256": "fc7475ac28f445a75a5d9ff474110e72ee12898c86968179a352fb3b13663d97",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "2026": {
+              "identity": {
+                "name": "Pigments, paper production, unspecified, at plant",
+                "reference product": "Pigments, paper production, unspecified, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 3,
+              "metadata_sha256": "de45a23c10a6856e42edb97ca44ad7de7422423c5490e3d36b4f60b3e64d200d",
+              "inventory_sha256": "aee4ff0c8f8b4caf6dc6bac283908fcee0af74c7fcec8f2f4cac442f4b23426c",
+              "activity_comment_sha256": "e2d7df70c010d130e9967ce83846488ade716ddd2b0e4edbf30bb9f97d752285",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected ecoinvent 3.9 cut-off plastic-processing identity. Source and target references are positive one kg of processing service, factor +1. The principal converted polymer is excluded and must remain separately supplied by the caller. Preserve signed processing kg, supported uncertainty/formulas, foreground ownership, separate polymer/materials and caller emissions. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete corresponding native processing inventory once, including its auxiliaries, small internal polymer inputs, electricity/heat, water, waste treatment, infrastructure and internal uncertainty. Do not interpret small internal polymer purchases as the callers full converted stock or remove them, add another kg of bulk polymer, apply finished-product yield/density/thickness/expansion factors, add a blowing agent or recovery/heat credit, or duplicate machine/factory/utility burdens. Source and native processing definitions agree, but internal supply portfolios, allocation, technology sample, geography, vintage and uncertainty can differ. These are explicit screening proxies, not source/native LCI, LCIA or stochastic equivalence; score effects are unquantified.",
+        "Keep original default targets and earlier physical recipe/reference decisions unchanged. No new helper recipe, caller omission, source input deletion, runtime Python module, alternative UVEK sector engine or validation bypass. Exact new 3.9 evidence does not implicitly authorize other profiles. The existing film-market helper is reused rather than duplicated.",
+        "Injection moulding: both references describe one kg processing service with separately supplied one kg input polymer and 0.994 kg moulded output. Keep factor +1, not 0.994 or 1/0.994. Native European inventory represents its original converting-company sample. Small auxiliary PE/PP, packaging and waste-plastic quantities already inside that complete model remain; no extra principal polymer is inferred.",
+        "Known pigment chemistry difference: source filler inputs include 0.00378 kg quicklime (the source lime product explicitly means CaO), whereas the complete native pigment blend contains the same nominal 0.00378 kg limestone (CaCO3). Native pigment composition is 44% kaolin, 50% limestone, 6% malusil; the native 0.00756 kg blend replaces the source separate filler supplies. This is a disclosed complete-process technology/feedstock proxy, not a lime-to-limestone flow equivalence. Calcination/material grade and upstream burdens differ. No guessed stoichiometric multiplier, negative limestone compensation credit or invented kiln is added; score effects remain unquantified.",
+        "Direct water model differs: source has eight direct biosphere entries, native five. Both retain nominal COD, suspended solids and cooling-water withdrawal; native lacks the source separate BOD/DOC/TOC indicators and water-to-air exchange, has a different returned-water amount, and adds its original waste heat. Full native water/emission modelling replaces the source internal model without reallocating missing indicators, balancing water with invented flows or adding caller emissions again. Heat mix, voltage geography, small polymer/chemical supply, collection/treatment portfolios and internal delivery also differ; native three positive waste-treatment demands replace source negative-reference waste interfaces inside the complete service."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5893f9628133e685c04d462d3eb5922eb05c17a49d84e28214223c8d9ea21708"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-7e5fcabe5aabe23c",
+      "mapping_method": "reviewed_heat_312_market_composition",
+      "review_path": "export/uvek_plastic_processing_39_review.json",
+      "review_sha256": "bec6d3cfe95501fd43a5189a78833c2c86b3aeedae23968a3fc5776ad8e11e96",
+      "authorization": "Standing autonomous approval of remaining mappings and scoped complete-process/feedstock/geographic screening proxies, with explicit warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for extrusion, plastic film",
+            "reference product": "extrusion, plastic film",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "5555ac5efd97ce6d8c366a0fd2574eb2b16a446ec086a3e57ea721478cb05393",
+          "inventory_sha256": "537d4b33b6e701b7fd23d5b8894af5e142aa5ea27211a6fe914db143247de5d1",
+          "activity_comment_sha256": "5dad77ac4661425e19b38f664244c9e4a032b879edc2ea139ca3bc1d7e4d7808",
+          "product_information_sha256": "dd9e4fec3821ab9b67885c2d45795badfa7c3e90a8e2fe9b7ae0216621cc2d9b"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 17,
+            "metadata_sha256": "598c6424a42bc1072307d21368a771368a6c51830e96b9c46708f8570fcf2e1d",
+            "inventory_sha256": "040713256cfd93d66251f04b2c1ac69ad4192fa3b63802ee3856ba4526706290",
+            "activity_comment_sha256": "559aeb3d0cc57950778956108a8265e60647d384a739c8e5cc5b04f7a61837d9",
+            "product_information_sha256": "dd9e4fec3821ab9b67885c2d45795badfa7c3e90a8e2fe9b7ae0216621cc2d9b"
+          },
+          {
+            "identity": {
+              "name": "extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 29,
+            "metadata_sha256": "57b1422addc2b36cfce78e6e950010c6b5a1763cd4cea7cbf85ff2cc4806d1c0",
+            "inventory_sha256": "5d9c5806ad7c436422a6e8eb06bf77d1a5b2e72a29dfe79110deaf17a7a1b14c",
+            "activity_comment_sha256": "559aeb3d0cc57950778956108a8265e60647d384a739c8e5cc5b04f7a61837d9",
+            "product_information_sha256": "dd9e4fec3821ab9b67885c2d45795badfa7c3e90a8e2fe9b7ae0216621cc2d9b"
+          },
+          {
+            "identity": {
+              "name": "extrusion, plastic film",
+              "reference product": "extrusion, plastic film",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 17,
+            "metadata_sha256": "e1cbb98a0c7bf22dca65377d6cdb816feb54ebf7434f2c189f3d5922635f6f62",
+            "inventory_sha256": "547c9cf80d5b19408f1a6437588cb9d9007b29fb6406421bf5ce477b4ab32d1f",
+            "activity_comment_sha256": "559aeb3d0cc57950778956108a8265e60647d384a739c8e5cc5b04f7a61837d9",
+            "product_information_sha256": "dd9e4fec3821ab9b67885c2d45795badfa7c3e90a8e2fe9b7ae0216621cc2d9b"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Extrusion, plastic film",
+              "reference product": "Extrusion, plastic film",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 19,
+            "metadata_sha256": "66753a182ae9707890ad0c80e62510a9fd733d3a32fcac12f400abaf1313c6ae",
+            "inventory_sha256": "23e5daab6d958a50f0c603c17a9205431b3c8e499c57176ff2f5bde662a2810f",
+            "activity_comment_sha256": "e7984256bdadde9b8278bf54c5789a6d11d7e4a9d2f2802b99d2a35966a30d0b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Extrusion, plastic film",
+              "reference product": "Extrusion, plastic film",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 19,
+            "metadata_sha256": "994ce75a2f89dc5ac3d5891ec91000b47ccbba9a6de0b354dfe5816c1ffac20f",
+            "inventory_sha256": "604f0cad1952e2dc425840ae70aae39d0758798062fb62008a789e0c8eabc9d3",
+            "activity_comment_sha256": "5e951f5f8b1d072c704fbacbf5335612eef368f1bdcb46c1545a12775029a175",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "heat-312-market-a968a6156ac00871f1d3",
+        "boundary_checks": {
+          "kg_service_per_kg_input_polymer": 1,
+          "kg_finished_polymer_per_kg_service": 0.976,
+          "source_market_producer_entries": 3,
+          "existing_recipe_unchanged": true,
+          "shares_match_prior312_by_supplier_identity": true
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected ecoinvent 3.9 cut-off plastic-processing identity. Source and target references are positive one kg of processing service, factor +1. The principal converted polymer is excluded and must remain separately supplied by the caller. Preserve signed processing kg, supported uncertainty/formulas, foreground ownership, separate polymer/materials and caller emissions. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete corresponding native processing inventory once, including its auxiliaries, small internal polymer inputs, electricity/heat, water, waste treatment, infrastructure and internal uncertainty. Do not interpret small internal polymer purchases as the callers full converted stock or remove them, add another kg of bulk polymer, apply finished-product yield/density/thickness/expansion factors, add a blowing agent or recovery/heat credit, or duplicate machine/factory/utility burdens. Source and native processing definitions agree, but internal supply portfolios, allocation, technology sample, geography, vintage and uncertainty can differ. These are explicit screening proxies, not source/native LCI, LCIA or stochastic equivalence; score effects are unquantified.",
+        "Keep original default targets and earlier physical recipe/reference decisions unchanged. No new helper recipe, caller omission, source input deletion, runtime Python module, alternative UVEK sector engine or validation bypass. Exact new 3.9 evidence does not implicitly authorize other profiles. The existing film-market helper is reused rather than duplicated.",
+        "Film extrusion: source producer services and native explicitly define one kg processing of separately supplied one kg polymer as 0.976 kg extruded film. Preserve factor +1, not 0.976 or its reciprocal. Independently inspected source3.9 market shares match the earlier 3.12 recipe by supplier identity and complete deterministic quantity/statistics, although source row order differs. Retain all three CA-QC/RER/RoW shares separately in the existing canonical recipe order, without normalization or nonexistent market freight. Each regional service uses complete native European film extrusion as a geographic/technology proxy.",
+        "Reuse the unchanged existing film-market recipe: its internal heat-312 identifier, helper label and earlier evidence retain their historical 3.12 authoring lineage. Actual 3.9 qualification comes only from this new exact source profile, verified source reference and source3.9 primary witnesses. The old 3.12-only review is not a blanket permission. Add only an explicit verified 3.9 sign entry, leaving the 3.12 sign entry, quantities, recipe, default target and old review card unchanged. The previously granted 3.12 fingerprint is explicitly refined for this metadata-only extension, with its complete prior approval and matching current primary source hashes retained. No duplicate helper or cross-version fallback is introduced.",
+        "The film service retains native auxiliary polymer/packaging, process electricity, heat/steam, lubricant, waste-plastic incineration, infrastructure and water/emission boundaries. Its converted bulk polymer is excluded; smaller native polymer inputs remain within the original service. Canadian/Rest-of-World supplies become explicit European proxies; source/native internal production and utility portfolios, direct-water models, geography, age and uncertainty are not asserted equivalent."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8030c1d56191bea95935f304fe8d723b574ab99d23fe066477dd863a0b9c0163"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-3b1193a226ec22d6",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_plastic_processing_39_review.json",
+      "review_sha256": "bec6d3cfe95501fd43a5189a78833c2c86b3aeedae23968a3fc5776ad8e11e96",
+      "authorization": "Standing autonomous approval of remaining mappings and scoped complete-process/feedstock/geographic screening proxies, with explicit warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "polymer foaming",
+            "reference product": "polymer foaming",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "metadata_sha256": "4c8ae719f246d79a978f69f6d251834740f98c5ed1e05e25f882c3f8fa6fd486",
+          "inventory_sha256": "a08f9a89936b2c5d6b75ea22ec781790e4f4386a256000e75b93bfebf2623c8a",
+          "activity_comment_sha256": "1feac6a12e737224fd12a3732d3380aa2147425d23e5c021329dedd3880be3be",
+          "product_information_sha256": "1efd6f51657d24fc2803258b21959f37003839a10279227b154f5ed507a2d8de"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Foaming, expanding",
+              "reference product": "Foaming, expanding",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 8,
+            "metadata_sha256": "3a71af6e41465ead4583a35b672fccee8351a75a7035d9e5e49191850e039485",
+            "inventory_sha256": "e50454500fdd6a3d70005b2f53dec505857ec2b75494c8ebbc8a1877e8c0dd82",
+            "activity_comment_sha256": "2a62822765b7bd1569627bfb78b468a1c7e28577458d95e44108ada977dd85de",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Foaming, expanding",
+              "reference product": "Foaming, expanding",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 8,
+            "metadata_sha256": "66c9261071109bdee774e7b36a99b27afe459840058674aa875e6d8a30a15043",
+            "inventory_sha256": "6658ae5a0633475460f1cca436959d007620dae9a5d99f568d13eb4863e443a7",
+            "activity_comment_sha256": "11b6a9442bbb08d388f8f583cf591530b5c32daedae0ba5185dfa3f19b8cba71",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null,
+        "boundary_checks": {
+          "kg_service_per_kg_input_polymer": 1,
+          "kg_finished_polymer_per_kg_service": 1,
+          "pentane_kg_per_service_source_and_native": 0.015,
+          "pentane_compartment": "air / urban air close to ground",
+          "source_direct_biosphere_count": 4,
+          "native_direct_biosphere_count": 4
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected ecoinvent 3.9 cut-off plastic-processing identity. Source and target references are positive one kg of processing service, factor +1. The principal converted polymer is excluded and must remain separately supplied by the caller. Preserve signed processing kg, supported uncertainty/formulas, foreground ownership, separate polymer/materials and caller emissions. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete corresponding native processing inventory once, including its auxiliaries, small internal polymer inputs, electricity/heat, water, waste treatment, infrastructure and internal uncertainty. Do not interpret small internal polymer purchases as the callers full converted stock or remove them, add another kg of bulk polymer, apply finished-product yield/density/thickness/expansion factors, add a blowing agent or recovery/heat credit, or duplicate machine/factory/utility burdens. Source and native processing definitions agree, but internal supply portfolios, allocation, technology sample, geography, vintage and uncertainty can differ. These are explicit screening proxies, not source/native LCI, LCIA or stochastic equivalence; score effects are unquantified.",
+        "Keep original default targets and earlier physical recipe/reference decisions unchanged. No new helper recipe, caller omission, source input deletion, runtime Python module, alternative UVEK sector engine or validation bypass. Exact new 3.9 evidence does not implicitly authorize other profiles. The existing film-market helper is reused rather than duplicated.",
+        "Foaming/expanding: both references describe one kg expanded polymer from one kg separately supplied polymer, commonly polystyrene. Preserve factor +1, not volume/foam-density or expansion scaling. Native inventory represents the documented Swiss insulation-panel site as a European average, not a claim of suitability for every polymer/foam technology. Both retain 0.015 kg pentane per service kg in urban air; no extra purchased/emitted blowing agent is invented.",
+        "Foaming water/heat boundary differs: native keeps cooling-water withdrawal but changes returned-water quantity, omits the source separate atmospheric-water flow and includes its own waste heat. Source non-gas heat is a delivered-heat service; native lists separate oil-combustion energy inputs. Keep the complete native model rather than applying another fuel/heat efficiency multiplier or equating fuel MJ directly with useful heat. Electricity, diesel-service, heat/fuel technology, background supply, water consumption, allocation, vintage and internal uncertainty differences remain warnings."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1cc87a949ea6fcf3c8ead491251ba3d57501fce5b2a60b5472bae4fce561310b"
         }
       ]
     }

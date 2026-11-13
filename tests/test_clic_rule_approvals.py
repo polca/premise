@@ -3096,6 +3096,16 @@ def test_heat_312_markets_preserve_service_and_delivery_through_cache(tmp_path, 
     row = json.loads(
         (DATA_DIR / "export/uvek_heat_312_markets_review.json").read_text()
     )["records"][index]
+    review_path = "export/uvek_heat_312_markets_review.json"
+    limitations = row["limitations"]
+    if row["rule_id"] == "bp-7e5fcabe5aabe23c":
+        review_path = "export/uvek_plastic_processing_39_review.json"
+        refinement = json.loads((DATA_DIR / review_path).read_text())
+        assert refinement["superseded_prior_approval"]["limitations"] == limitations
+        assert refinement["prior_312_primary_verification"][
+            "prior_recipe_and_sign_entry_unchanged"
+        ]
+        limitations = [*limitations, refinement["prior312_refinement_note"]]
     resolved = graph(row["source"], version="3.12")
     before = copy.deepcopy(resolved.activities)
     harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
@@ -3135,9 +3145,8 @@ def test_heat_312_markets_preserve_service_and_delivery_through_cache(tmp_path, 
         assert any(
             d["code"] == "clic.compatibility_proxy_limitations"
             and d["details"]["rule_id"] == row["rule_id"]
-            and d["details"]["review_path"]
-            == "export/uvek_heat_312_markets_review.json"
-            and d["details"]["limitations"] == row["limitations"]
+            and d["details"]["review_path"] == review_path
+            and d["details"]["limitations"] == limitations
             for d in result.diagnostics
         )
     assert resolved.activities == before
