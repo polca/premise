@@ -258245,6 +258245,202 @@
           "fingerprint": "a5e3cc6a7fd63a5d8187fe95ae5d987342bf5f3092cc506e25082ae7baec88d8"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-3e3963da2137593c",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_cogen_heat_exchanger_review.json",
+      "review_sha256": "02da3a3c90820c416d962194690890ccd11374b15edff933f525996e750c45e1",
+      "authorization": "Standing autonomous approval for an independently inspected correspondence correction; inconsistent source labels and native/source inventory differences explicitly retained for later review.",
+      "inspection": {
+        "rule_id": "bp-3e3963da2137593c",
+        "source": {
+          "location": "RER",
+          "name": "heat pump production, heat and power co-generation unit, 160kW electrical",
+          "reference product": "heat pump, heat and power co-generation unit, 160kW electrical",
+          "unit": "unit"
+        },
+        "previous_target": {
+          "location": "RER",
+          "name": "Cogen unit 160kWe, common components for heat+electricity",
+          "reference product": "Cogen unit 160kWe, common components for heat+electricity",
+          "unit": "unit"
+        },
+        "target": {
+          "name": "Heat exchanger of cogen unit 160kWe",
+          "reference product": "Heat exchanger of cogen unit 160kWe",
+          "location": "RER",
+          "unit": "unit"
+        },
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "71c11716e263378556ae8354bb8c32def63e08b527aca93aabed1ae400b45a2b",
+            "inventory_sha256": "d2e1def4408a77289280fd131e6aecced313c32a50ca6712ecba621a0a4dd43b",
+            "activity_comment_sha256": "cb8eb08e6a758424e07cb5d1ce94a802a0f6f92c4a8656b3937660064cf5fa47",
+            "product_information_sha256": "41f7ac6d043bf3b0e614404c6fff1dd62e468b01d97dac216bcc6ac8e1fcdb09"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b0745a686f03bbe4fda64443372d85210f964f0fc4c46973889417e49c989fc8",
+            "inventory_sha256": "5ad7422bd4bd6308d9e3140f8e06069550de41e2b3d0bfba2863cead508eae70",
+            "activity_comment_sha256": "c284101ef505b30140a2dbc93bebdd81211ae3d57ae1be03107b745ef31ca1de",
+            "product_information_sha256": "41f7ac6d043bf3b0e614404c6fff1dd62e468b01d97dac216bcc6ac8e1fcdb09"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "8eca1365121502db6b3f897aa3239cb6d79c84c641f1ea149fe5558d931a70b1",
+            "inventory_sha256": "9e6c805a78a92f365eba535a1d5c90aaea4cb52a03644f5a5853cbc04215f99f",
+            "activity_comment_sha256": "c284101ef505b30140a2dbc93bebdd81211ae3d57ae1be03107b745ef31ca1de",
+            "product_information_sha256": "41f7ac6d043bf3b0e614404c6fff1dd62e468b01d97dac216bcc6ac8e1fcdb09"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "025155094790f924eb4af43e455edd187b1fff58b5f79544435ffec3d78d73b4",
+            "inventory_sha256": "49ce0234987eb1ef1eb2e14eea9f922f2fd5c84a8ec1c58afab78aae0f6d808e",
+            "activity_comment_sha256": "c284101ef505b30140a2dbc93bebdd81211ae3d57ae1be03107b745ef31ca1de",
+            "product_information_sha256": "41f7ac6d043bf3b0e614404c6fff1dd62e468b01d97dac216bcc6ac8e1fcdb09"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "9a13ead27e48ac6611d0a62e6a6ae818a6fd8a57c3608cda4e413e19a637d682",
+            "inventory_sha256": "6f372496230f20e37b48bffa40b02704072b0abb8ce480e7eff0eb2ca50fbdde",
+            "activity_comment_sha256": "1b8cac0a6ee5ee1f1869fe4a4d28684577ca06d6ea23b9c4b4db9390d60f0a27",
+            "product_information_sha256": "41f7ac6d043bf3b0e614404c6fff1dd62e468b01d97dac216bcc6ac8e1fcdb09"
+          }
+        ],
+        "previous_rule": {
+          "confidence": 0.313254,
+          "id": "bp-3e3963da2137593c",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RER",
+            "name": "heat pump production, heat and power co-generation unit, 160kW electrical",
+            "reference product": "heat pump, heat and power co-generation unit, 160kW electrical",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Cogen unit 160kWe, common components for heat+electricity",
+            "reference product": "Cogen unit 160kWe, common components for heat+electricity",
+            "unit": "unit"
+          }
+        },
+        "limitations": "Use the complete native heat exchanger of the same 160 kWe Jakobsberg cogeneration installation per signed unit, factor +1. The source name/product and product-information text say heat pump, but the plant description and its two 590 kg steel inputs match the native heat-exchanger component, not the shared cogeneration components. This is an explicit interpretation of inconsistent source metadata, not a generic heat-pump proxy. Retain native steel delivery, 59 tkm road and 708 tkm rail, 1.42 m3 effluent treatment and water flows: the source has the same steel masses and total effluent but different transport and water-return coverage. No capacity, lifetime, efficiency or operational-energy scaling, extra plant components or avoided-product credit. Upstream production, allocation, transport, water balance, geography and vintage remain differences with unquantified score effects; no inventory or LCIA equality is claimed. Approve only inspected cut-off 3.8–3.12; no inferred older, patch, reverse or cross-system-model scope.",
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "54df2f91df3735d848940dbe23b9f7ebffc3b8dfa72e01f398c29e928e4b343d",
+            "inventory_sha256": "94e63fd82a0c9d3a72033258e53dfff967d1bf47304e13173ada6b190cbeb214",
+            "activity_comment_sha256": "2cc59c93d7d40356f4b837247c692b32663760f5c9f45ebe5082db99968d6e99"
+          },
+          "2026": {
+            "metadata_sha256": "972e47aeca1caf1b7ff5c42bbe660c57d6de2a782fbd01c80def3f4e790846d0",
+            "inventory_sha256": "6f64ca1f98682cd112d42811d62acbe8ec67a46c96a133503b985f5fc44de26d",
+            "activity_comment_sha256": "c2b1d5894d22f2b7f3981ef92d9cf1295efb3b284c39d76385bb653cac1ee272"
+          }
+        },
+        "native_reference_amount": 1,
+        "native_2025_2026_direct_vectors_equal": true,
+        "reviewed_function": "heat-exchanger infrastructure at Jakobsberg cogeneration plant; source labels inconsistent"
+      },
+      "limitations": [
+        "Use the complete native heat exchanger of the same 160 kWe Jakobsberg cogeneration installation per signed unit, factor +1. The source name/product and product-information text say heat pump, but the plant description and its two 590 kg steel inputs match the native heat-exchanger component, not the shared cogeneration components. This is an explicit interpretation of inconsistent source metadata, not a generic heat-pump proxy. Retain native steel delivery, 59 tkm road and 708 tkm rail, 1.42 m3 effluent treatment and water flows: the source has the same steel masses and total effluent but different transport and water-return coverage. No capacity, lifetime, efficiency or operational-energy scaling, extra plant components or avoided-product credit. Upstream production, allocation, transport, water balance, geography and vintage remain differences with unquantified score effects; no inventory or LCIA equality is claimed. Approve only inspected cut-off 3.8–3.12; no inferred older, patch, reverse or cross-system-model scope."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "53e1e7ea2b0ee993adc16870f194c3c6e6071cf987a17ba8682a22ab2401e8ad"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "017b37e4d34a72bb4013105d0ed1d87b401ba0d0ee413b4d28e5040e1a2a6361"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "821fced322086c43488b9ef2542e00c02c4fb797f6111c85fa5c5c0e824c1b7a"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a5f952ea2d04c4b2bd3b486dbf23588376714943e203d55ba6c62366c61cbaf0"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6dc26e9b9cab00a82af1a5050547844d6e81211caf3039ac85e8a55e7c8ce61c"
+        }
+      ]
     }
   ],
   "superseded_operations": [

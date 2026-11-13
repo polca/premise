@@ -1,0 +1,65 @@
+{
+  "rule_id": "bp-3e3963da2137593c",
+  "prior_scope_count": 1256,
+  "current_scope_count_expected": 1261,
+  "all_prior_fingerprints_retained": true,
+  "other_operations_unchanged": true,
+  "review_sha256": "02da3a3c90820c416d962194690890ccd11374b15edff933f525996e750c45e1",
+  "date": "2026-11-13",
+  "brightpath_revision": "feff8e58f5a77eb1bf1b7b617cb78934fe2e44e2",
+  "installed_github_revision_verified": true,
+  "runtime_python_modules_changed": [],
+  "maintainer_python_changes": {
+    "scripts/review_uvek_pilot_materials.py": "11 lines: replay new JSON decision using existing authoring helper",
+    "scripts/generate_uvek_migration_resources.py": "3 lines: imports and generator call"
+  },
+  "brightpath_tests": {
+    "mapping_and_prior_pump_solvent_regressions": 95,
+    "resource_schema_isolation_and_storage": 106
+  },
+  "premise_tests": {
+    "new_fresh_cache_and_scope_cases_final": 4,
+    "other_harmonizer_and_ledger_cases": 8,
+    "new_cases_initial_failure": "Three provenance-string assertions compared Unicode to ASCII-escaped JSON. The unchanged manifest retained the warning; fix test serialization to preserve Unicode and rerun all four new cases."
+  },
+  "lint": {
+    "new_tests_and_authoring_helper": "passed",
+    "generator": "Two pre-existing I001 import-order findings also reproduced from HEAD before edits; no new lint categories. Black and diff checks passed."
+  },
+  "native_lci": {
+    "database": "BAFU:2026-reimported",
+    "name": "Heat exchanger of cogen unit 160kWe",
+    "reference_product": "Heat exchanger of cogen unit 160kWe",
+    "location": "RER",
+    "unit": "unit",
+    "positive_reference_amount": 1,
+    "signed_native_LCI_demands": [
+      2.5,
+      -2.5
+    ],
+    "finite_supply_and_inventory": true,
+    "consistent_signed_reversal": true,
+    "source_database_metadata_unchanged": true,
+    "technosphere_exchange_count": 5,
+    "biosphere": "ecoinvent-3.10-biosphere"
+  },
+  "wheel": {
+    "packaged_review_rule_and_manifest_exact": true,
+    "wheel_bytes": 43782346
+  },
+  "carbon_removal_probe": {
+    "status": "failed",
+    "exception_type": "ClicInventoryError",
+    "message": "CLIC background migration from {'biosphere': {'family': 'ecoinvent', 'version': '3.9'}, 'technosphere': {'family': 'ecoinvent', 'system_model': 'cutoff', 'version': '3.9'}} to {'technosphere': {'family': 'uvek', 'version': '2026', 'system_model': 'cutoff'}, 'biosphere': {'family': 'ecoinvent', 'version': '3.10'}} failed: Background migration failed: Compatibility rule bp-7cf08aa845443b7b requires independent review for ecoinvent 3.9 cutoff -> uvek 2025 cutoff.. Diagnostic: /Users/romain/Library/Application Support/premise/cached_files/clic/harmonized/0ab1dcf481907cf91a4562d50da954de660c0531b65bbc01b5cd2067b2541312.audit.json.gz",
+    "failed_stage": "inventory preparation",
+    "sector": "cdr",
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 38.373801750014536,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "qualified_sector_count": 7,
+  "carbon_removal_qualified": false
+}

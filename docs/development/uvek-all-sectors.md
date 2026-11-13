@@ -1471,3 +1471,29 @@ The real encrypted REMIND SSP2-NPi 2050 CDR probe passes this correspondence and
 now stops at `bp-3e3963da2137593c`, another independently scoped correspondence.
 Validation remains enabled. No CDR update/export or additional sector
 qualification is claimed; the seven-sector qualification remains unchanged.
+
+
+## Carbon-removal preparation: correct the Jakobsberg component match
+
+The former shared-cogeneration-components match for the source labeled heat
+pump is replaced by the native heat exchanger for the same 160 kWe Jakobsberg
+installation. Plant documentation, both 590 kg steel inputs and total effluent
+support that interpretation; conflicting source product text and transport/
+water differences remain explicit warnings. Use the complete native process
+per signed unit, without capacity/lifetime/operation scaling. Only independently
+inspected cut-off 3.8–3.12 scopes are registered. See
+[component review](uvek-cogen-heat-exchanger-review.md).
+
+All 1,256 prior fingerprints remain, with five additional scopes. Brightpath's
+95 mapping cases and 106 resource checks pass. Premise's four new fresh/cache/
+refusal cases and eight existing harmonizer/ledger cases pass. Actual signed
+native LCIs are finite. Runtime modules are unchanged; only the mapping-authoring
+helper and generator have small maintainer additions to replay the JSON decision.
+The [receipt](uvek-cogen-heat-exchanger-verification.json) records an initially
+failed Unicode-string test assertion and the successful corrected-test rerun,
+as well as two confirmed pre-existing generator import-order lint findings.
+
+The real encrypted REMIND CDR preparation passes the corrected component and
+now stops at the 100 kW absorption-chiller market (`bp-7cf08aa845443b7b`). Normal
+validation stays enabled. CDR remains unqualified; the seven-sector exported
+qualification is unchanged and the full integration goal remains unfinished.
