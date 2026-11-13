@@ -1,0 +1,190 @@
+{
+  "date": "2026-11-13",
+  "rule_id": "bp-8e58bbf6b2e31687",
+  "source_profiles": [
+    {
+      "family": "ecoinvent",
+      "version": "3.6",
+      "system_model": "cutoff"
+    },
+    {
+      "family": "ecoinvent",
+      "version": "3.7",
+      "system_model": "cutoff"
+    },
+    {
+      "family": "ecoinvent",
+      "version": "3.8",
+      "system_model": "cutoff"
+    },
+    {
+      "family": "ecoinvent",
+      "version": "3.9",
+      "system_model": "cutoff"
+    },
+    {
+      "family": "ecoinvent",
+      "version": "3.10",
+      "system_model": "cutoff"
+    },
+    {
+      "family": "ecoinvent",
+      "version": "3.11",
+      "system_model": "cutoff"
+    },
+    {
+      "family": "ecoinvent",
+      "version": "3.12",
+      "system_model": "cutoff"
+    }
+  ],
+  "prior_scopes": 1244,
+  "new_scopes": [
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "3ca566c438392c47377fad60ae0ae925327ec24b2622ff481436d2b9d7a45559"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "4f12b17805af453e8e6ea871ee7b98e2c1836cf1658b2a3de6d36f0011ba487e"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "199aa955a7106352ce6683ce290eef1a77e28851bbaf3576f84a149d3407d3e3"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "b233beb85f85090571ae5794a726746d9ed9530efd8ba8815f5dbc1daa444720"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.11",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "80d613523f6590f23975304681d61a41a3c1f43036aa5a099edfe4f8929bc19b"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "a38a23d9cd89c4e0234b2c700b92a31287903d0d5a930ea2e7b324993b48c096"
+    }
+  ],
+  "all_prior_fingerprints_retained": true,
+  "validated_scope_count_expected": 1250,
+  "review_sha256": "f4ccef87117d8c565dee001edecbc36487ca430d42cf0c51257b2319247ab55e",
+  "review_sha_refreshes": 5,
+  "all_other_operation_objects_unchanged_except_shared_review_hash": true,
+  "brightpath_pin": "d1b72217feeec1420f56e81c370c4f922313cf71",
+  "patch_evidence_decision": {
+    "requested_version": "3.7",
+    "inspected_version": "3.7.1",
+    "official_report_url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/change%20report_v3%207%201_20201217.pdf",
+    "basis": "Limited functional-reference inference for the unchanged named 40W Grundfos pump, using inspected 3.6, 3.7.1 and 3.8 manufacturer definitions. The published patch corrections concern iron sinter, zinc mining and ammonium paratungstate rather than a changed pump specification. Upstream supply chains and scores can change. The unpatched 3.7 inventory vector was not inspected; do not claim equality of its direct inputs or LCIA with the inspected patch.",
+    "source_context_relabelled": false
+  },
+  "installed_brightpath_commit": "d1b72217feeec1420f56e81c370c4f922313cf71",
+  "compiled_migration_resource_sha256": "d40b602481d33ae3a3a1bd2218003d093ac636f4e7515276a3eefce5fbbaa589",
+  "compiled_migration_rules_unchanged": true,
+  "validated_scope_count": 1250,
+  "packaged_review_sha_matches_ledger": true,
+  "status": "pump_correspondence_cleared_and_cdr_reaches_next_mapping",
+  "native_signed_LCI": {
+    "database": "BAFU:2026-reimported",
+    "name": "Pump 40W, at plant",
+    "reference_product": "Pump 40W, at plant",
+    "location": "CH",
+    "unit": "unit",
+    "positive_reference_amount": 1,
+    "signed_native_LCI_demands": [
+      2.5,
+      -2.5
+    ],
+    "finite_supply_and_inventory": true,
+    "consistent_signed_reversal": true,
+    "source_database_metadata_unchanged": true,
+    "technosphere_exchange_count": 11,
+    "biosphere": "ecoinvent-3.10-biosphere"
+  },
+  "tests": {
+    "brightpath_combined_review_and_scope_regressions": "115 passed before the final additional patch-isolation case",
+    "brightpath_final_pump_cases": "34 passed, including both patch-isolation refusals",
+    "premise_targeted_harmonizer_guard_and_shared_supplier_cases": "22 passed",
+    "broad_legacy_matrix": "Intentionally interrupted after 181 passed with no failures; not claimed as a completed suite. Full source-scope validation and unchanged compiled-resource hash are checked separately.",
+    "black": "pass",
+    "ruff_changed_tests": "pass"
+  },
+  "next_cdr_probe": {
+    "status": "failed",
+    "exception_type": "ClicInventoryError",
+    "message": "CLIC background migration from {'biosphere': {'family': 'ecoinvent', 'version': '3.9'}, 'technosphere': {'family': 'ecoinvent', 'system_model': 'cutoff', 'version': '3.9'}} to {'technosphere': {'family': 'uvek', 'version': '2026', 'system_model': 'cutoff'}, 'biosphere': {'family': 'ecoinvent', 'version': '3.10'}} failed: Background migration failed: Compatibility rule bp-1be0fde93275f330 requires independent review for ecoinvent 3.9 cutoff -> uvek 2025 cutoff..",
+    "failed_stage": "inventory preparation",
+    "sector": "cdr",
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 35.86056895798538,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+    "validation_disabled": false,
+    "export_performed": false,
+    "first_unreviewed_rule": "bp-1be0fde93275f330"
+  },
+  "python_runtime_module_changes": 0,
+  "public_cdr_scope_gate_opened": false,
+  "qualification_scope": "This clears the pump conversion correspondence. CDR transformation/export and the other remaining sectors are unfinished.",
+  "wheel_distribution": {
+    "review_sha256": "f4ccef87117d8c565dee001edecbc36487ca430d42cf0c51257b2319247ab55e",
+    "wheel_review_matches_checkout": true,
+    "wheel_sha256": "cdd281116391d713677572d7cc3d59d467b6180117eff2a14e42eb7725913267",
+    "wheel_bytes": 43775021,
+    "wheel_removed_after_github_install_and_resource_verification": true
+  }
+}

@@ -1427,3 +1427,25 @@ registered sectors remain unfinished. A fresh carbon-removal probe still stops
 at the 40W pump correspondence for the 3.9 cut-off source: the existing evidence
 covers 3.6 only. Review that additional source profile rather than assume that
 an approval for another version establishes the same producer specification.
+
+## Carbon-removal preparation: pump scope extension
+
+The 40 W pump correspondence now covers the inspected/explicitly inferred
+requested 3.6–3.12 cut-off profiles, including the required 3.9 case. The same
+complete native pump is used per positive unit with signed caller quantities
+and uncertainty retained. The requested 3.7 case explicitly uses 3.7.1 functional
+reference evidence; no unpatched-vector or score equivalence is claimed.
+All prior 1,244 fingerprints remain, and 1,250 scopes now validate. Brightpath's
+compiled migration resource is unchanged; no runtime Python modules change.
+
+Brightpath has 34 final pump cases passing; the earlier combined review/scoping
+checkpoint passed 115. Premise's completed targeted suite passes 22 checks.
+The broader legacy matrix was deliberately interrupted after 181 passes and is
+not reported as complete. Source scopes, review hashes and the unchanged compiled
+resource are independently verified. Actual native pump LCIs are finite for both
+signs. The new Git dependency pin and review/verification are recorded in
+[pump review](uvek-pump-profiles-review.md).
+
+The actual CDR preparation reaches the next unreviewed correspondence: CH spent
+solvent mixture to complete native hazardous incineration, with opposite reference
+signs. CDR remains unqualified, along with the other unfinished sectors.

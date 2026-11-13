@@ -18553,7 +18553,7 @@
       "operation": "replace",
       "mapping_method": "curated_legacy",
       "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
-      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "review_sha256": "f4ccef87117d8c565dee001edecbc36487ca430d42cf0c51257b2319247ab55e",
       "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
       "inspection": {
         "rule_id": "bp-c6f0c708990e4109",
@@ -18633,7 +18633,7 @@
       "operation": "replace",
       "mapping_method": "curated_legacy",
       "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
-      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "review_sha256": "f4ccef87117d8c565dee001edecbc36487ca430d42cf0c51257b2319247ab55e",
       "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
       "inspection": {
         "rule_id": "bp-90d9ae3ee389f465",
@@ -18789,7 +18789,7 @@
       "operation": "replace",
       "mapping_method": "curated_legacy",
       "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
-      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "review_sha256": "f4ccef87117d8c565dee001edecbc36487ca430d42cf0c51257b2319247ab55e",
       "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
       "inspection": {
         "rule_id": "bp-4438f1d4119c16e4",
@@ -18882,7 +18882,7 @@
       "operation": "replace",
       "mapping_method": "curated_legacy",
       "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
-      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "review_sha256": "f4ccef87117d8c565dee001edecbc36487ca430d42cf0c51257b2319247ab55e",
       "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
       "inspection": {
         "rule_id": "bp-c291034cfcb83f1c",
@@ -19091,7 +19091,7 @@
       "operation": "replace",
       "mapping_method": "curated_legacy",
       "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
-      "review_sha256": "4ce29da5ef93e01929d5a4759de24495c1a9371d5203ffddf8357e1122af5085",
+      "review_sha256": "f4ccef87117d8c565dee001edecbc36487ca430d42cf0c51257b2319247ab55e",
       "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
       "inspection": {
         "rule_id": "bp-8e58bbf6b2e31687",
@@ -19133,6 +19133,164 @@
                 "comment_sha256": "0c940b5e7af8c7d2e20b53a2e8f78315c2ebfb797a8d940a0ee7c4c186713bf0"
               }
             ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.7",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "cd7d01316c444e1c729af188ad62a3901a5bbb152439602c00a3f1d35cd0b85b",
+            "inventory_sha256": "39438ef1696f430710c9799299018415e42473fc583e07df11fe026c04304cdb",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "pump production, 40W",
+                  "reference product": "pump, 40W",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "be1d9dc152e8da89e3928726f7c38dfe1b2c124c3a734a41b343923218652287",
+                "inventory_sha256": "8e233c515d2840487fcdab39ee045c2c34a82b17ace10766978c0908648c1fd2",
+                "comment_sha256": "0c940b5e7af8c7d2e20b53a2e8f78315c2ebfb797a8d940a0ee7c4c186713bf0"
+              }
+            ],
+            "inspection_release": "3.7.1",
+            "unpatched_37_inventory_inspected": false
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "3cea1350267ab0332162249890b4a7ba0f13a116f3ea72bc47667ae42236af46",
+            "inventory_sha256": "7792ea8699db2103cdc4797f05c9aaa476f6e8eb3c4c61806df2e79583bd500e",
+            "activity_comment_sha256": "60a18eed5219b3eea92918e3dfaf4c5bec3ad5686895b92d69b474f47c5554c7",
+            "product_information_sha256": "e5117091edd0042ddd47b44afa3abc0af21d445eaca8b7ad0be46f624a04fa2c",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "pump production, 40W",
+                  "reference product": "pump, 40W",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "6686071a768d065e620ebd358cf63d7cf26111e44a39524d07aea7b8848cf374",
+                "inventory_sha256": "99ed35d3c38b8d87c8bd20f863e7468e2ac820991104ba376c06491e4204fbdc",
+                "comment_sha256": "0c940b5e7af8c7d2e20b53a2e8f78315c2ebfb797a8d940a0ee7c4c186713bf0"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4c72ecbaf555f0e06e5c5ee75f28f208e0b8b32a95056641a75ffd82edfcfac9",
+            "inventory_sha256": "478a5a3aee71a37af051c610b8ffec1c72919f6922ebeed57fd7b853b1627c5c",
+            "activity_comment_sha256": "3d1e04c8adb28bb382850c0e85e66cf0f61cd6692f4540bcd5b54ae32be982ca",
+            "product_information_sha256": "e5117091edd0042ddd47b44afa3abc0af21d445eaca8b7ad0be46f624a04fa2c",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "pump production, 40W",
+                  "reference product": "pump, 40W",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "756e362f01d069e84294247d829dcf75797a53c6dfeebec62f0cfc5e683854b7",
+                "inventory_sha256": "dd65e8d08424e87449b7777e8436b1133069096e7aaed2722984e61c09640a4d",
+                "comment_sha256": "355f0716d72f87a55db4a30ee1deaf6915970e82b9a69d358ce147767419eca6"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "6ab6f8a9991b00048cec7f13f60a97b51bfd9b7715749be00962b886b4578fd3",
+            "inventory_sha256": "36235e548eab9b1dd7ff8e74b7830216f490f897aebfb3a78919569de6d7576c",
+            "activity_comment_sha256": "3d1e04c8adb28bb382850c0e85e66cf0f61cd6692f4540bcd5b54ae32be982ca",
+            "product_information_sha256": "e5117091edd0042ddd47b44afa3abc0af21d445eaca8b7ad0be46f624a04fa2c",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "pump production, 40W",
+                  "reference product": "pump, 40W",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "35c3fa3cdb76970cd6577966c354e3e1828c37e250e1b4e643306cce16193515",
+                "inventory_sha256": "2ebf28b8f3c6f05608d2c8e39dbd03cc5d428609d03f1a4e6f19952368be16a1",
+                "comment_sha256": "355f0716d72f87a55db4a30ee1deaf6915970e82b9a69d358ce147767419eca6"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "063e4865d95a4321bdec1c5a03b358f90297c721ff0ec75b330ce81ee31bbc9b",
+            "inventory_sha256": "c3f59a69fb7af2b57a0039872e517a2405bef57582074ffa95288dc3a3960ad5",
+            "activity_comment_sha256": "3d1e04c8adb28bb382850c0e85e66cf0f61cd6692f4540bcd5b54ae32be982ca",
+            "product_information_sha256": "e5117091edd0042ddd47b44afa3abc0af21d445eaca8b7ad0be46f624a04fa2c",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "pump production, 40W",
+                  "reference product": "pump, 40W",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "84e5095d51c4e86a34d258ee314c8b8cf54de612da869e03199f1213a57ef689",
+                "inventory_sha256": "ea9ac89545cfaaf5a2b6ad98069988e27e841d278342cd4f4afaa984541c1ae1",
+                "comment_sha256": "355f0716d72f87a55db4a30ee1deaf6915970e82b9a69d358ce147767419eca6"
+              }
+            ]
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "57aeb61cc1e4ceec1d0b64411126c47a2558cd5c946615e8975571a284cf2357",
+            "inventory_sha256": "24154f06794634a7448eb9870aac97a8a893cd3923a0cf0f036f30250554031b",
+            "activity_comment_sha256": "5ab72861e474014f01f17c53fe29ed9d804428ad8057e9cafe08cb2598860313",
+            "product_information_sha256": "e5117091edd0042ddd47b44afa3abc0af21d445eaca8b7ad0be46f624a04fa2c",
+            "producer_definitions": [
+              {
+                "identity": {
+                  "name": "pump production, 40W",
+                  "reference product": "pump, 40W",
+                  "location": "RoW",
+                  "unit": "unit"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "038a0c699f11e8ddeb4e971f283e4294c457f303cc305404ac9c010242e1d17d",
+                "inventory_sha256": "cc50f1e4731a58ba4d8eb44d317f0b9ece187e4ef558cce9de0c0221bf354055",
+                "comment_sha256": "91b210a22a090b1a36c2e93e6d31c9aaba6425528c83d0c563ae4f3a7774ca0c"
+              }
+            ]
           }
         ],
         "native_references": {
@@ -19155,13 +19313,91 @@
         },
         "conversion_factor": 1,
         "native_direct_technosphere_coordinates_match": true,
-        "boundary": "Same40WGrundfosUP15-35x20water-circulation pump for one-family solar heat-collector systems. Both describe production/disposal including materials while excluding production energy and factory infrastructure;this is not pump operation or a larger process pump. Preserve one pump unit without a W/kW,flow-rate,capacity or lifetime factor,extra pump/electricity demand or factory reconstruction. Retain the native directly-weighed-component model,common omissions and geography/vintage/market limits."
+        "boundary": "Same40WGrundfosUP15-35x20water-circulation pump for one-family solar heat-collector systems. Both describe production/disposal including materials while excluding production energy and factory infrastructure;this is not pump operation or a larger process pump. Preserve one pump unit without a W/kW,flow-rate,capacity or lifetime factor,extra pump/electricity demand or factory reconstruction. Retain the native directly-weighed-component model,common omissions and geography/vintage/market limits.",
+        "source_profile_extension_review": {
+          "date": "2026-11-13",
+          "trigger": "Carbon-removal preparation currently uses the 3.9 cut-off market. Other locally available supported inventory versions were inspected together to avoid repeatedly extrapolating the same equipment review.",
+          "profiles": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.7",
+                "system_model": "cutoff"
+              },
+              "producer_input_coordinates": 18,
+              "aggregate_product_quantities_match_reviewed_36_after_documented_label_updates": true
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.8",
+                "system_model": "cutoff"
+              },
+              "producer_input_coordinates": 18,
+              "aggregate_product_quantities_match_reviewed_36_after_documented_label_updates": true
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "producer_input_coordinates": 18,
+              "aggregate_product_quantities_match_reviewed_36_after_documented_label_updates": true
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.10",
+                "system_model": "cutoff"
+              },
+              "producer_input_coordinates": 18,
+              "aggregate_product_quantities_match_reviewed_36_after_documented_label_updates": true
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.11",
+                "system_model": "cutoff"
+              },
+              "producer_input_coordinates": 18,
+              "aggregate_product_quantities_match_reviewed_36_after_documented_label_updates": true
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "producer_input_coordinates": 24,
+              "aggregate_product_quantities_match_reviewed_36_after_documented_label_updates": true
+            }
+          ],
+          "boundary": "All inspected markets supply exactly one positive-reference unit of the same 40W Grundfos UP 15-35x20 solar-heat circulation pump for a one-family dwelling. Production/disposal materials are included; production energy and factory infrastructure are explicitly excluded. Preserve the complete native component model once at factor +1. No operation demand, capacity/lifetime scaling, extra pump or recovery credit is introduced. The review does not cover another process-pump model.",
+          "source_label_updates": [
+            "The 0.25 kg copper supply is labelled copper, cathode in later profiles rather than copper.",
+            "Later profiles spell polyvinyl chloride with a space; emulsion and suspension polymers remain separate products."
+          ],
+          "geographic_disposal_change": "3.12 has 24 direct inputs rather than 18 because of additional disposal-market geography entries. Aggregated signed product quantities remain the same within 1e-12 relative tolerance; do not claim identical supply chains or LCIA.",
+          "native_2026_reimported_input_coordinates": 11,
+          "native_2026_inventory_sha256": "03b0a705a2d3c7c6d623a2a21ddb228a60c6fa2b3c2003c17ac72954a26c9f4a",
+          "limitations": "Source/native upstream backgrounds, market delivery, disposal geography, allocation, vintage and excluded biosphere coverage differ. Keep existing screening warnings and unquantified score effects. Only enumerated exact cut-off versions are added; no consequential or uninspected patch profile is approved. Requested 3.7 uses the explicitly documented 3.7.1 functional-reference evidence, not an inspected unpatched 3.7 vector; its exact coefficient and score equivalence remain unverified.",
+          "native_2026_direct_quantities_match_prior_review": true,
+          "patch_evidence_decision": {
+            "requested_version": "3.7",
+            "inspected_version": "3.7.1",
+            "official_report_url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/change%20report_v3%207%201_20201217.pdf",
+            "basis": "Limited functional-reference inference for the unchanged named 40W Grundfos pump, using inspected 3.6, 3.7.1 and 3.8 manufacturer definitions. The published patch corrections concern iron sinter, zinc mining and ammonium paratungstate rather than a changed pump specification. Upstream supply chains and scores can change. The unpatched 3.7 inventory vector was not inspected; do not claim equality of its direct inputs or LCIA with the inspected patch.",
+            "source_context_relabelled": false
+          }
+        }
       },
       "limitations": [
         "Same40WGrundfosUP15-35x20water-circulation pump for one-family solar heat-collector systems. Both describe production/disposal including materials while excluding production energy and factory infrastructure;this is not pump operation or a larger process pump. Preserve one pump unit without a W/kW,flow-rate,capacity or lifetime factor,extra pump/electricity demand or factory reconstruction. Retain the native directly-weighed-component model,common omissions and geography/vintage/market limits.",
         "Standing independently inspected same whole-material/function/unit and geographic supply-proxy approval applies only after the enumerated source/native specifications and stage boundaries have been checked. Preserve signed kg or manufactured-module units atfactor+1,with uncertainty,formulas,caller ownership and separate materials/transport/emissions.",
         "Retain the complete selected native inventory and its existing common omissions/limitations once. Do not add processing,manufacturing/operation energy,disposal,capacity/lifetime factors or recovery credits. Source/native market shares,delivery,background,allocation,geography and vintage differ;exact grade/inventory/LCIA equivalence is not established and score effects are unquantified.",
-        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes."
+        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes.",
+        "Source/native upstream backgrounds, market delivery, disposal geography, allocation, vintage and excluded biosphere coverage differ. Keep existing screening warnings and unquantified score effects. Only enumerated exact cut-off versions are added; no consequential or uninspected patch profile is approved. Requested 3.7 uses the explicitly documented 3.7.1 functional-reference evidence, not an inspected unpatched 3.7 vector; its exact coefficient and score equivalence remain unverified."
       ],
       "scopes": [
         {
@@ -19176,6 +19412,84 @@
             "system_model": "cutoff"
           },
           "fingerprint": "759ca45164985801ee929e4614e8bb3635a8469152895f1e2ceb7d830c364579"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3ca566c438392c47377fad60ae0ae925327ec24b2622ff481436d2b9d7a45559"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4f12b17805af453e8e6ea871ee7b98e2c1836cf1658b2a3de6d36f0011ba487e"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "199aa955a7106352ce6683ce290eef1a77e28851bbaf3576f84a149d3407d3e3"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b233beb85f85090571ae5794a726746d9ed9530efd8ba8815f5dbc1daa444720"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "80d613523f6590f23975304681d61a41a3c1f43036aa5a099edfe4f8929bc19b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a38a23d9cd89c4e0234b2c700b92a31287903d0d5a930ea2e7b324993b48c096"
         }
       ]
     },
