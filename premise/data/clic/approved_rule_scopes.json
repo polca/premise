@@ -269245,6 +269245,194 @@
           "fingerprint": "becffcd5204b34694ab261060b8590fa67d7555e87cc7a22101dc7281266ceae"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-270bf2428cce37a2",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_metal_services_39_review.json",
+      "review_sha256": "488e3b1164076e102694d1491c31f8aa2e617e366f04f8f0be73be8540714b54",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings and complete native service proxies with explicit warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "metal working factory construction",
+            "reference product": "metal working factory",
+            "location": "RER",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "metadata_sha256": "b57f2faac7a59f556cb89e4a664ef59052ea3c5d0a7bfc7816636bacb2a004f6",
+          "inventory_sha256": "e714445c5c80fd56896c6a56e6ac2d343eda00a1feceb98e7cf94642e3792f4d",
+          "activity_comment_sha256": "4a318a477540548dbb9f1a3531d0abca4b474aa8aed9bff7ec0f04f2a98f23ca",
+          "product_information_sha256": "e0be1e47f9fbe7750e1e48d2e9f286a0bfa3c7fdc5987fcb7101590485defce0"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Metal working factory",
+              "reference product": "Metal working factory",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 9,
+            "metadata_sha256": "e9e87f1d065e23d5ac5c25a31828c1990b7f2bb5b18618c28e4267a83205f921",
+            "inventory_sha256": "536c8def5e8f8b70b71e3ed8f4b0a53e91bbce7c06e58580fa1dd13a1eec3d63",
+            "activity_comment_sha256": "6da61d9ffdae99b88147161fbcc74996cc468a545930ff5d2a8f9ed850e62a1d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Metal working factory",
+              "reference product": "Metal working factory",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 9,
+            "metadata_sha256": "5a6c9f0b488fef45ec33a954ffb7c82011b92bc9bc3f2af27e34b81912d71e5d",
+            "inventory_sha256": "c3014219f4183bd23189265ebf8ba486a1f875b7be1f6b0a123f5a701d00232f",
+            "activity_comment_sha256": "16977fdd5a8ea37cbf597f256e52ba8d5acc241cc2cf8692f32f0e069af30b68",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_factory_infrastructure",
+          "reference_factory_units": 1,
+          "hall_m2": 274000,
+          "internal_road_m2_year": 16200000,
+          "industrial_occupation_m2_year": 34600000,
+          "transformation_to_industry_m2": 692000,
+          "caller_factory_per_kg_or_lifetime_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "Approval covers only the independently inspected exact ecoinvent 3.9 cut-off European source identity. Source and native service references are positive one of their declared functional unit, requiring factor +1. Preserve signed caller amount, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. No physical absolute value, product yield, lifetime, capacity, mass, energy or wet/dry multiplier is invented. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Use the complete native service inventory once. Its internal background materials, utilities, treatment, infrastructure, direct emissions, allocation, vintage and uncertainty replace the complete source supply chain. Internal waste-reference sign differences do not reverse the positive service reference or authorize negative avoided-production credits. Do not reconstruct selected source internals over the complete native inventory. Shared Premise transformations continue to operate on explicit eligible native suppliers in the usual way; no alternative sector engine or runtime change is introduced. Source/native inventory, impact and stochastic equivalence are not established and score effects remain unquantified.",
+        "Existing rule, default target and all earlier exact-profile approval fingerprints remain unchanged. No new helper, recipe, source omission, broad chemical correspondence, validation bypass or cross-system permission. The background supplier substitution leaves the caller-owned foreground process and its independent materials/emissions intact.",
+        "The functional unit is one complete metal-working factory infrastructure, including buildings, internal roads/parking and land occupation, not one kg of metalworking or factory operation. Source documents 43,675 tonnes annual output and a 50-year lifetime; the stated 4.58e-10 factory units per kg belongs to the caller allocation, not another multiplier when replacing its factory-unit demand. Do not multiply/divide by lifetime, annual output, land area or that per-kg factor again, and do not add machine processing, operation or infrastructure already present.",
+        "Primary source and both native releases share 274,000 m2 hall, 16,200,000 m2-year internal road service, 34,600,000 m2-year industrial occupation and 692,000 m2 transformation to industrial area. Native split land entries sum to the source aggregated entries; preserve its complete native inventory without treating those splits as duplicate occupation. Source global building/road supply becomes native Swiss supply despite the European factory label. Native transformation-from-unknown versus source-from-unspecified is retained as an internal land-class difference, not a general biosphere-flow equivalence. Building/road composition, geography, emissions, age and uncertainty can differ."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "691fbb123d4cd8a69d9da9c74cb71d24275173a00dc1bcf57499308131bc10e8"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-cc63c9f08414f90f",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_metal_services_39_review.json",
+      "review_sha256": "488e3b1164076e102694d1491c31f8aa2e617e366f04f8f0be73be8540714b54",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings and complete native service proxies with explicit warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "sheet rolling, steel",
+            "reference product": "sheet rolling, steel",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 56,
+          "metadata_sha256": "2c5aafec89a2b81e105d36c0e17cf81bf58101d9fd9823b7ed7b6ecf2969a361",
+          "inventory_sha256": "d7f803f1a81e09e81f82337e9f7b471ebaa0c54077f8dac4c8733d075889cd86",
+          "activity_comment_sha256": "5b97852a42fd265876d802137335eb1e6e536e97047ca5b9951b3929a4490094",
+          "product_information_sha256": "4fae7cd7694c49cf5036ec3b05a1fab242d04ed656d5cc071ca8ecbcf74c12c9"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Sheet rolling, steel",
+              "reference product": "Sheet rolling, steel",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 55,
+            "metadata_sha256": "79ab2e53b044bd0b4aa821da2c1678682136853f92072c2542738c43fdaf57a6",
+            "inventory_sha256": "2c66daff9aed2e1b59ace0ab2c877e3a82da1aadee0c1ca734a032032d266954",
+            "activity_comment_sha256": "4af48dea26db639ea2db9d5fd35e320ff87adc16b2cf76e2fa3c32962d515e4d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Sheet rolling, steel",
+              "reference product": "Sheet rolling, steel",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 56,
+            "metadata_sha256": "52c83e95cb83ea4b2b7814cd0718d933ebfd1e053fd86c7005179116e4022743",
+            "inventory_sha256": "927d54474af0878026e4e9f4a3b86ba56f0ffb959c659112c6f9ba73235de869",
+            "activity_comment_sha256": "1bdc7dd5cdd0532f5fb6d299c34330866f9a4b32e8f7f214c810ec985fdd69d9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_cold_sheet_rolling_service",
+          "reference_processed_kg": 1,
+          "main_steel_blank_excluded": true,
+          "auxiliary_unalloyed_steel_kg": 0.0855,
+          "auxiliary_low_alloy_steel_kg": 0.000236,
+          "rolling_mill_units": 1.62e-09,
+          "native_electricity_kWh": 0.223,
+          "native_gas_combustion_MJ": 0.912,
+          "native_purchased_heat_MJ": 0.171,
+          "native_waste_heat_MJ": 0.804,
+          "internal_acid_concentration_difference_retained_as_warning": true,
+          "extra_main_steel_or_heat_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "Approval covers only the independently inspected exact ecoinvent 3.9 cut-off European source identity. Source and native service references are positive one of their declared functional unit, requiring factor +1. Preserve signed caller amount, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. No physical absolute value, product yield, lifetime, capacity, mass, energy or wet/dry multiplier is invented. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Use the complete native service inventory once. Its internal background materials, utilities, treatment, infrastructure, direct emissions, allocation, vintage and uncertainty replace the complete source supply chain. Internal waste-reference sign differences do not reverse the positive service reference or authorize negative avoided-production credits. Do not reconstruct selected source internals over the complete native inventory. Shared Premise transformations continue to operate on explicit eligible native suppliers in the usual way; no alternative sector engine or runtime change is introduced. Source/native inventory, impact and stochastic equivalence are not established and score effects remain unquantified.",
+        "Existing rule, default target and all earlier exact-profile approval fingerprints remain unchanged. No new helper, recipe, source omission, broad chemical correspondence, validation bypass or cross-system permission. The background supplier substitution leaves the caller-owned foreground process and its independent materials/emissions intact.",
+        "This is the complete cold-sheet-rolling service for unalloyed/low-alloyed steel per kg, including pickling, cold rolling, annealing, tempering, finishing, packing and roll maintenance. Source and native2026 documentation exclude the main metal blank being rolled; the shorter native2025 comment identifies the same cold-rolling service and its inventory has only the matching small auxiliary steel quantities: keep the caller supplied steel separately. Small internal replacement/auxiliary steel quantities (0.0855 kg unalloyed and 0.000236 kg low-alloyed) and 1.62e-9 rolling-mill units remain inside the complete service; do not mistake them for the main blank or subtract/add another kg. This permission does not cover high-alloy steel, aluminium rolling or sale of a finished steel sheet.",
+        "Native uses 0.223 kWh ENTSO-E electricity, 0.912 MJ natural-gas combustion and 0.171 MJ unspecific chemical-plant heat, with 0.804 MJ waste heat. Source uses 0.22438168 kWh electricity and 0.99636 plus 0.0725382 MJ useful-heat supplies. Fuel-input MJ and purchased useful-heat MJ have different reference boundaries: no efficiency ratio or extra energy/emission correction is inferred. Native European/Swiss utilities, internal freight, treatment and vintage are screening approximations.",
+        "Both source/native list 0.000397 kg of their own hydrochloric-acid input, but source labels kg acid without water in solution and native labels 30% aqueous product. This complete-service proxy retains that internal concentration-boundary difference explicitly; it does not approve standalone acid kg equivalence, silently correct its inventory, or add solution water/acid on top. Sludge, steel-bearing shredder residue, furnace wastes, waste oil and packaging use native complete treatment portfolios, with different moisture/geography/allocation and internal signs. Keep those original native quantities without a recovery credit. Direct emissions/water and internal uncertainty can differ; effects remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1b71faa4a5833c755f9390707f3f7a61cba4bd13c3ac701df98ffc91bc101c39"
+        }
+      ]
     }
   ],
   "superseded_operations": [

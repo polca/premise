@@ -1,0 +1,134 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "2900b4c0965e9f2a37925f12952a94072aee47d8",
+  "scope_registration": {
+    "prior_scopes": 1363,
+    "new_scopes": 1365,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-270bf2428cce37a2",
+      "bp-cc63c9f08414f90f"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_sign_uncertainty_exact_scope_and_reference_boundary": 28,
+    "premise_signed_uncertainty_fresh_cache_exact_scope_and_existing_factory37": 11,
+    "installed_package_premise_checks": 11,
+    "installed_package_existing_integrity_drift_guards": 8,
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 2,
+    "native_suppliers": 2,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-270bf2428cce37a2",
+        "source": {
+          "location": "RER",
+          "name": "metal working factory construction",
+          "reference product": "metal working factory",
+          "unit": "unit"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "unit",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 5.820766091346741e-11,
+        "full_graph_residual": {
+          "residual_before": 0.33981869890881417,
+          "residual_after": 2.2894770999078783e-08,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 0.33981869890881417,
+          "residual_after": 2.2894770999078783e-08,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-cc63c9f08414f90f",
+        "source": {
+          "location": "RER",
+          "name": "sheet rolling, steel",
+          "reference product": "sheet rolling, steel",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "refined_max_abs_inventory_difference": 3.469446951953614e-18,
+        "full_graph_residual": {
+          "residual_before": 1.1353610886155522e-10,
+          "residual_after": 3.2807788332821913e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.1353610886155522e-10,
+          "residual_after": 3.2807788332821913e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the complete factory-unit and cold-sheet-rolling service interfaces and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_metal_services_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 134,
+    "current": 132,
+    "removed_rules": [
+      "bp-270bf2428cce37a2",
+      "bp-cc63c9f08414f90f"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-1d02d57e06e24b45",
+    "next_source": {
+      "location": "RER",
+      "name": "market for nylon 6",
+      "reference product": "nylon 6",
+      "unit": "kilogram"
+    },
+    "failed_stage": "inventory preparation",
+    "battery_qualified": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "migration_resource_changes": [],
+  "existing_rule_default_target_and_fingerprints_unchanged": true,
+  "new_helpers": 0,
+  "new_source_omissions": [],
+  "important_limit": "Factory infrastructure uses factory units, without repeating caller per-kg/lifetime allocation. Rolling is kg processing service with main metal blank separately supplied; complete native internal utilities, acid concentration, treatment, direct emissions, geography and vintage remain screening differences."
+}
