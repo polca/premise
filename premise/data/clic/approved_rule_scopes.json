@@ -265659,6 +265659,206 @@
           "fingerprint": "3724d1db24e5074bd3066f5ec62185bdaa573c9fd3467a7e2d43b19acc8e582f"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-b415c79ef3395000",
+      "mapping_method": "reviewed_ammonium_sulfate_nitrogen_basis",
+      "review_path": "export/uvek_ammonium_sulfate_39_review.json",
+      "review_sha256": "49e70490e0bb37476aa40325863237c2af209253181cd5d84f13cd4086ccdc1e",
+      "authorization": "Standing user approval of autonomous remaining mapping resolution and similar cases, with documented screening limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonium sulfate",
+            "reference product": "ammonium sulfate",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 15,
+          "metadata_sha256": "706a78fc31d81ef43644794a068f1fb882723489d153c4685b216e38324dc76d",
+          "inventory_sha256": "7bb0f38fd76d30e87a0fe27ac00f25571ee594f746b344cd34cd85de65666120",
+          "activity_comment_sha256": "ca1662762f0b4786399a5fe93c5e6c889b6beb7519ff800c0ba750a0efa17574",
+          "product_information_sha256": "2bec157d6b6bb1866a218fd0324a350b4ee9b464c5e3f84eef58aa448721c54a"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "cobalt production",
+              "reference product": "ammonium sulfate",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 290,
+            "metadata_sha256": "7a064234a51c7f6a0062867a555424915867b8c6c5bee421a231a0740dd525b0",
+            "inventory_sha256": "cec0a9653eb863958ac1d1e1dbba5dcf0e850360ab6d66c33466a401068cee5b",
+            "activity_comment_sha256": "efce730b35d8cf62b817658de2cf9952933c32ab14e9366e999abd2c4fccc8c5",
+            "product_information_sha256": "2bec157d6b6bb1866a218fd0324a350b4ee9b464c5e3f84eef58aa448721c54a"
+          },
+          {
+            "identity": {
+              "name": "ammonium sulfate production",
+              "reference product": "ammonium sulfate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 20,
+            "metadata_sha256": "90a50729cc26bd22bdb7629dd10a7816c93f930dad59fb0de27044ec92e6445d",
+            "inventory_sha256": "35dee40478ed8015594954010979795a78f0e08d62ee2d9cfd0d651a1b2b2676",
+            "activity_comment_sha256": "2db3fd875212e3a603ffd97f97570ba6a2f54b8d34d7d529fd04ae4e3ef1523f",
+            "product_information_sha256": "2bec157d6b6bb1866a218fd0324a350b4ee9b464c5e3f84eef58aa448721c54a"
+          },
+          {
+            "identity": {
+              "name": "smelting and refining of nickel concentrate, 16% Ni",
+              "reference product": "ammonium sulfate",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 51,
+            "metadata_sha256": "162867e3cf6abc2c7da7924bc427c31cb600eb05bde4c970738c79ac7d31c2bb",
+            "inventory_sha256": "0a9bd832b564a80a42fbaa54f8895cddd2d5231f7751de16fc6af6dd75ea5db7",
+            "activity_comment_sha256": "6f6cf7a567b431875a5422e3534a2332cf0331af782183e58e900dc98550a6b2",
+            "product_information_sha256": "2bec157d6b6bb1866a218fd0324a350b4ee9b464c5e3f84eef58aa448721c54a"
+          },
+          {
+            "identity": {
+              "name": "smelting and refining of nickel concentrate, 7% Ni",
+              "reference product": "ammonium sulfate",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 35,
+            "metadata_sha256": "5087eef2501a026a716699f64806fc1c9623182317e50ffb8ae20162677cf68f",
+            "inventory_sha256": "e3ea369ca8dbed5110c698fc81dd9752892c27b8e01ef738b4a9dc864c94f37e",
+            "activity_comment_sha256": "342495e85a81d8cb0addddb06f9d741ab26df2fb5b54b354ffa55d2e42d4e12d",
+            "product_information_sha256": "2bec157d6b6bb1866a218fd0324a350b4ee9b464c5e3f84eef58aa448721c54a"
+          },
+          {
+            "identity": {
+              "name": "primary zinc production from concentrate",
+              "reference product": "ammonium sulfate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 383,
+            "metadata_sha256": "a55817272a871e924a04c2a6a5d10e3f8cf000de26b1d1124356f6c500159535",
+            "inventory_sha256": "692df1e6d06092c89ff3d6c00e828271c0450161b78b743a5bb8558b1e26ef80",
+            "activity_comment_sha256": "553109b8267ecebad623ec570a82c9978bb33b8669084e03e2d0ce0390113c38",
+            "product_information_sha256": "2bec157d6b6bb1866a218fd0324a350b4ee9b464c5e3f84eef58aa448721c54a"
+          }
+        ],
+        "recipe_id": null
+      },
+      "limitations": [
+        "Only inspected ecoinvent 3.9 cut-off ammonium-sulfate markets receive independent approval. Source is positive one kg compound; complete native regional-storehouse supplier references positive one kg N at documented 21.0% N grade. Factor +0.21 kg native N per signed kg source product preserves the nominal compound-mass supply basis. Use explicit grade 0.21, not 1/4.76 from rounded explanatory mass or an invented solution/concentration multiplier. Preserve signs, supported uncertainty/formulas, foreground ownership and separately listed emissions. Other source versions, patches, system models and reverse routes require independent approval.",
+        "Source and native CAS are 007783-20-2, ammonium sulfate (NH4)2SO4. Cobalt sulfate is a different compound and is rejected. The RER market also previously used the native N-reference product at factor one, incorrectly treating one kg compound as one kg nitrogen. Correct the candidate identities/factors for both market identities; only exact source3.9 approval is granted. Neither rule has a prior approval, and no existing recipe embeds the rejected cobalt supplier.",
+        "This is a whole delivered-commodity screening proxy, not reconstruction of the source production portfolio. Source is modelled as pure substance with nominal fertilizer label 21-0-0; native documents 21.0% N. That grade and rounded declared mass are not proof of analytical stoichiometric composition equivalence. No purity, sulfur balance, additional nitrogen or moisture correction is invented. Warnings retain grade/reference-basis and unquantified score differences.",
+        "The inspected RoW source market combines primary ammonia/sulfuric-acid synthesis and allocated cobalt, nickel and zinc co-products; the European market has its own supply/delivery portfolio. Native complete European inventory uses uncertain caprolactam/nylon by-product energy and allocation assumptions and regional storage/delivery. These technology, feedstock, co-product allocation, heat/feedstock-energy, geography, age, infrastructure, freight and internal-uncertainty differences are explicit. Primary source synthesis is exothermic and states no external heat; do not infer that native complete by-product energy is the same process or balance it away.",
+        "Replace the source market supply/delivery portfolio by the complete native delivered supply once. Do not append source freight, recover metal, add caprolactam/avoided-product credit, reconstruct source producer shares or add another fertilizer plant. Source/native LCI, LCIA and stochastic equivalence are not claimed. Caller compound mass and supported uncertainty are scaled consistently to native kg N; native internal inventory remains intact.",
+        "Use a direct native correspondence, without a helper. Brightpath mapping data, review evidence and exact-profile Premise approval change; no runtime Python module, alternative sector engine, source-exchange omission or validation bypass. Global candidate target/factor is corrected for the named compounds, while sign-review verification and new permission are restricted to the inspected profile."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6f882bf10d01ff2562a2a96de5da4d7151746a90b60c937151de0dbfdbc9a6ec"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-46185417341f0cf5",
+      "mapping_method": "reviewed_ammonium_sulfate_nitrogen_basis",
+      "review_path": "export/uvek_ammonium_sulfate_39_review.json",
+      "review_sha256": "49e70490e0bb37476aa40325863237c2af209253181cd5d84f13cd4086ccdc1e",
+      "authorization": "Standing user approval of autonomous remaining mapping resolution and similar cases, with documented screening limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonium sulfate",
+            "reference product": "ammonium sulfate",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "44ad5d770eb54255c9f9d78083489fa4b793c5f0e477583722e3f885017ac172",
+          "inventory_sha256": "c3d99ef551acdc82003562b8cdc2fb09ff2744d3c23722e07203695ae430d812",
+          "activity_comment_sha256": "b24e669733077bff052bfd4acc14ad6ffc1fdf85e2cfe1442bad36627e862485",
+          "product_information_sha256": "2bec157d6b6bb1866a218fd0324a350b4ee9b464c5e3f84eef58aa448721c54a"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ammonium sulfate production",
+              "reference product": "ammonium sulfate",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 8,
+            "metadata_sha256": "4d7ec25ee792978a883f952741e702d452ba973afe6f946181156954c2d70176",
+            "inventory_sha256": "a5df5c2b30a54abd81ebc8c69a17d0425ce0c822f60d62a56b5a6704bdc46533",
+            "activity_comment_sha256": "f305ba23ae212184bb96a198f84aff7f6a5b496504593b7a631a8a0e7570a964",
+            "product_information_sha256": "2bec157d6b6bb1866a218fd0324a350b4ee9b464c5e3f84eef58aa448721c54a"
+          }
+        ],
+        "recipe_id": null
+      },
+      "limitations": [
+        "Only inspected ecoinvent 3.9 cut-off ammonium-sulfate markets receive independent approval. Source is positive one kg compound; complete native regional-storehouse supplier references positive one kg N at documented 21.0% N grade. Factor +0.21 kg native N per signed kg source product preserves the nominal compound-mass supply basis. Use explicit grade 0.21, not 1/4.76 from rounded explanatory mass or an invented solution/concentration multiplier. Preserve signs, supported uncertainty/formulas, foreground ownership and separately listed emissions. Other source versions, patches, system models and reverse routes require independent approval.",
+        "Source and native CAS are 007783-20-2, ammonium sulfate (NH4)2SO4. Cobalt sulfate is a different compound and is rejected. The RER market also previously used the native N-reference product at factor one, incorrectly treating one kg compound as one kg nitrogen. Correct the candidate identities/factors for both market identities; only exact source3.9 approval is granted. Neither rule has a prior approval, and no existing recipe embeds the rejected cobalt supplier.",
+        "This is a whole delivered-commodity screening proxy, not reconstruction of the source production portfolio. Source is modelled as pure substance with nominal fertilizer label 21-0-0; native documents 21.0% N. That grade and rounded declared mass are not proof of analytical stoichiometric composition equivalence. No purity, sulfur balance, additional nitrogen or moisture correction is invented. Warnings retain grade/reference-basis and unquantified score differences.",
+        "The inspected RoW source market combines primary ammonia/sulfuric-acid synthesis and allocated cobalt, nickel and zinc co-products; the European market has its own supply/delivery portfolio. Native complete European inventory uses uncertain caprolactam/nylon by-product energy and allocation assumptions and regional storage/delivery. These technology, feedstock, co-product allocation, heat/feedstock-energy, geography, age, infrastructure, freight and internal-uncertainty differences are explicit. Primary source synthesis is exothermic and states no external heat; do not infer that native complete by-product energy is the same process or balance it away.",
+        "Replace the source market supply/delivery portfolio by the complete native delivered supply once. Do not append source freight, recover metal, add caprolactam/avoided-product credit, reconstruct source producer shares or add another fertilizer plant. Source/native LCI, LCIA and stochastic equivalence are not claimed. Caller compound mass and supported uncertainty are scaled consistently to native kg N; native internal inventory remains intact.",
+        "Use a direct native correspondence, without a helper. Brightpath mapping data, review evidence and exact-profile Premise approval change; no runtime Python module, alternative sector engine, source-exchange omission or validation bypass. Global candidate target/factor is corrected for the named compounds, while sign-review verification and new permission are restricted to the inspected profile."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "76fb8417b90b0abb6298426f98e983a8254897e2cb8ced105d36728523c84f84"
+        }
+      ]
     }
   ],
   "superseded_operations": [

@@ -1968,3 +1968,7 @@ Retained original producer shares, finishing utilities and delivery rather than 
 ### Spent-solvent hazardous-waste incineration — 13 November 2026
 
 Reviewed the existing exact waste/16.5%-water native service without changing its mapping or -1 treatment factor. All 51 source direct biosphere exchanges match native2026; two native-only waste-heat emissions and reversed energy labels in native prose are explicit warnings. No energy-recovery credit inferred. Signed/uncertainty/profile/cache checks and in-memory LCIs pass without database writes. Battery cohort falls from 157 to 156 pending source-3.9 rules; next ammonium sulfate. Eight of nineteen sectors remain qualified. See `uvek-spent-solvent-39-review.md` and verification JSON. Queued for next batch push.
+
+### Ammonium sulfate nitrogen-reference correction — 13 November 2026
+
+Replaced RoW ammonium-sulfate → cobalt-sulfate mismatch and corrected the European market's factor-one nitrogen-basis error. Native same-CAS delivered supply now uses documented factor +0.21 kg N/kg nominal compound. Whole supply/grade/allocation differences remain explicit proxies; no extra freight, helper, credit or runtime Python module. Mapping/storage, fresh/cache and signed in-memory LCI checks pass without database writes. Battery cohort falls from 156 to 155 unapproved source-3.9 rules; next liquid argon. Eight of nineteen sectors remain qualified. See `uvek-ammonium-sulfate-39-review.md` and verification JSON.
