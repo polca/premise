@@ -1,0 +1,234 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "ecbdb16a59f8209293c3e2571c26898bb6befb37",
+  "scope_registration": {
+    "prior_scopes": 1360,
+    "new_scopes": 1363,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-c262dc4d9b1cac43",
+      "bp-197e33c3bd9a8c05",
+      "bp-196c97185a9ac94e"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_sign_uncertainty_exact_profile_atomic_replay_and_resource_storage": 55,
+    "premise_signed_uncertainty_fresh_cache_and_scope_refusal": 15,
+    "installed_package_premise_checks": 15,
+    "lint": "passed"
+  },
+  "fresh_primary_checks": [
+    {
+      "identity": {
+        "name": "market for battery cell, Li-ion, LiMn2O4",
+        "reference product": "battery cell, Li-ion, LiMn2O4",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "project": "ecoinvent-3.9-cutoff",
+      "all_primary_hashes_and_reference_exchanges_unchanged": true
+    },
+    {
+      "identity": {
+        "name": "battery cell production, Li-ion, LiMn2O4",
+        "reference product": "battery cell, Li-ion, LiMn2O4",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "project": "ecoinvent-3.9-cutoff",
+      "all_primary_hashes_and_reference_exchanges_unchanged": true
+    },
+    {
+      "identity": {
+        "name": "battery cell production, Li-ion, LiMn2O4",
+        "reference product": "battery cell, Li-ion, LiMn2O4",
+        "location": "CN",
+        "unit": "kilogram"
+      },
+      "project": "ecoinvent-3.9-cutoff",
+      "all_primary_hashes_and_reference_exchanges_unchanged": true
+    },
+    {
+      "identity": {
+        "name": "market group for transport, freight train",
+        "reference product": "transport, freight train",
+        "location": "GLO",
+        "unit": "ton kilometer"
+      },
+      "project": "ecoinvent-3.9-cutoff",
+      "all_primary_hashes_and_reference_exchanges_unchanged": true
+    },
+    {
+      "identity": {
+        "name": "market group for transport, freight, lorry, unspecified",
+        "reference product": "transport, freight, lorry, unspecified",
+        "location": "GLO",
+        "unit": "ton kilometer"
+      },
+      "project": "ecoinvent-3.9-cutoff",
+      "all_primary_hashes_and_reference_exchanges_unchanged": true
+    },
+    {
+      "identity": {
+        "name": "Single cell, lithium-ion battery, lithium manganese oxide/graphite, at plant",
+        "reference product": "Single cell, lithium-ion battery, lithium manganese oxide/graphite, at plant",
+        "location": "CN",
+        "unit": "kilogram"
+      },
+      "project": "clic-bafu-2025-ef31",
+      "all_primary_hashes_and_reference_exchanges_unchanged": true
+    },
+    {
+      "identity": {
+        "name": "Single cell, lithium-ion battery, lithium manganese oxide/graphite, at plant",
+        "reference product": "Single cell, lithium-ion battery, lithium manganese oxide/graphite, at plant",
+        "location": "CN",
+        "unit": "kilogram"
+      },
+      "project": "bafu-2026-ecospold2-biosphere-310",
+      "all_primary_hashes_and_reference_exchanges_unchanged": true
+    }
+  ],
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 3,
+    "signed_foreground_LCI_solves": 6,
+    "independent_native_reference_LCI_solves": 3,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-c262dc4d9b1cac43",
+        "source": {
+          "location": "GLO",
+          "name": "market for battery cell, Li-ion, LiMn2O4",
+          "reference product": "battery cell, Li-ion, LiMn2O4",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.2605067796539515e-09,
+        "refined_max_abs_inventory_difference": 4.547473508864641e-13,
+        "full_graph_residual": {
+          "residual_before": 2.056780659703245e-08,
+          "residual_after": 1.7779114653909495e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.7295679091603085e-08,
+          "residual_after": 3.4458317000478144e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-197e33c3bd9a8c05",
+        "source": {
+          "location": "RoW",
+          "name": "battery cell production, Li-ion, LiMn2O4",
+          "reference product": "battery cell, Li-ion, LiMn2O4",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 5.169878828456423e-26,
+        "full_graph_residual": {
+          "residual_before": 1.4861150946783393e-08,
+          "residual_after": 3.77828525506618e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.4861150946783393e-08,
+          "residual_after": 3.77828525506618e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-196c97185a9ac94e",
+        "source": {
+          "location": "CN",
+          "name": "battery cell production, Li-ion, LiMn2O4",
+          "reference product": "battery cell, Li-ion, LiMn2O4",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 5.169878828456423e-26,
+        "full_graph_residual": {
+          "residual_before": 1.4861150946783393e-08,
+          "residual_after": 3.77828525506618e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.4861150946783393e-08,
+          "residual_after": 3.77828525506618e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the LMO complete-cell and retained market delivery interfaces and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_lmo_cell_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 135,
+    "current": 134,
+    "removed_rules": [
+      "bp-c262dc4d9b1cac43"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-1d02d57e06e24b45",
+    "next_source": {
+      "location": "RER",
+      "name": "market for nylon 6",
+      "reference product": "nylon 6",
+      "unit": "kilogram"
+    },
+    "failed_stage": "inventory preparation",
+    "battery_qualified": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "new_helpers": 1,
+  "new_source_omissions": [],
+  "scope_limit": "Three exact source-3.9 cut-off identities: LMO cell market and its CN/RoW producers. Other profiles retain unresolved sign status; the candidate chemistry is corrected without granting new permission.",
+  "important_limit": "Nominal component/assembly-energy agreement does not establish identical upstream supply, waste treatment, geographical representativeness, inventory, uncertainty or impacts."
+}

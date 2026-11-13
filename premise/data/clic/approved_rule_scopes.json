@@ -269058,6 +269058,193 @@
           "fingerprint": "4e91a8dd9031dbf755483c7fb0e76fd13c7b8bc533ab64c7ad1d808d19ef1f73"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-c262dc4d9b1cac43",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_lmo_cell_39_review.json",
+      "review_sha256": "303632e131cfc2397bfa47e0e975294167fe42089c743fb6827c631f0226ae21",
+      "authorization": "Standing autonomous approval of remaining mapping corrections and complete native screening proxies, with warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for battery cell, Li-ion, LiMn2O4",
+            "reference product": "battery cell, Li-ion, LiMn2O4",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "da080fad9d2c1b621b466cad6ed78d1a171aedba34483e54083a4f44be00f42b",
+          "inventory_sha256": "46fb86ee79ad3da466aa61031aae027acb1fbc187a20b3a6d3361f17ac72a300",
+          "activity_comment_sha256": "397d1f182f24659f7c3e213826d1b25385efc6913a80c7ad70762c64061a5cdd",
+          "product_information_sha256": "af2eb02b9633e6d79f2d945541980b1daa181ed25e217c8e5074231f7f6a44ae"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "battery cell production, Li-ion, LiMn2O4",
+              "reference product": "battery cell, Li-ion, LiMn2O4",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 60,
+            "metadata_sha256": "6994edf9faf2ac7909cbc068a5ec8970e4bde0eaf3a42837adf64fb8fa3d9cec",
+            "inventory_sha256": "f845d4e5e70ff08d0fb94d5e2b27cf2154d0c46217185248a1b420b2dde85cf3",
+            "activity_comment_sha256": "714006fd295a8d548ac8f5a99d2cac090c3af2a035f97811ff5c01539239a154",
+            "product_information_sha256": "af2eb02b9633e6d79f2d945541980b1daa181ed25e217c8e5074231f7f6a44ae"
+          },
+          {
+            "identity": {
+              "name": "battery cell production, Li-ion, LiMn2O4",
+              "reference product": "battery cell, Li-ion, LiMn2O4",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "87f3db4708b5dbaeb94edb20dc95274ef7ee10866ea5cac2c027085c19034d22",
+            "inventory_sha256": "e43150dd39dd0664e6c7abb22ef57792566772a25a3579a2600c357d52ee0d09",
+            "activity_comment_sha256": "714006fd295a8d548ac8f5a99d2cac090c3af2a035f97811ff5c01539239a154",
+            "product_information_sha256": "af2eb02b9633e6d79f2d945541980b1daa181ed25e217c8e5074231f7f6a44ae"
+          }
+        ],
+        "recipe_id": "lmo-cell-39-retained-supply-and-delivery"
+      },
+      "limitations": [
+        "Only independently inspected ecoinvent 3.9 cut-off lithium-manganese-oxide/graphite complete single-cell identities are approved. Correct the earlier heuristic NMC111 target: LMO is not nickel-manganese-cobalt chemistry. Source and native references are positive one kg of assembled cell, not one cathode, kWh of storage, battery pack or battery management system. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions with factor +1. No Wh/kg, voltage, capacity, lifetime, density or yield multiplier is inferred. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Use the complete native Single cell, lithium-ion battery, lithium manganese oxide/graphite, at plant once. Primary records describe calendared cathode/anode/separator, aluminium tab, LiPF6 in ethylene-carbonate electrolyte and polyethylene envelope with chemical-plant infrastructure. Their misleading opening cathode sentence does not override the complete-cell reference and assembly inventory. Do not add electrodes, electrolyte, envelope, assembly energy, plant, pack or BMS a second time, or remove independent caller-owned materials.",
+        "Both source producers and native releases retain nominal 0.4011 kg graphite anode, 0.32686 kg LMO cathode, 0.053655 kg separator, 0.15957 kg ethylene carbonate, 0.019037 kg LiPF6, 0.1056 kWh assembly electricity and 0.065234 MJ purchased assembly heat per cell kg. Agreement is a boundary check, not source/native LCI or stochastic equivalence. Complete native upstream materials, internal freight, electricity/heat supplies, allocation and uncertainty replace their source counterparts. Source RoW electricity and heat country portfolios become native CN electricity and Swiss industrial-gas heat; no second utility demand or invented energy correction is added.",
+        "The native inventory includes 0.0525 kg complete mixed Li-ion battery disposal per cell kg, versus source negative-reference used-battery demand of the same magnitude. Preserve these internal conventions inside each complete model, without interpreting the source negative demand as avoided cell production or adding recovery credits. Source producers list no direct biosphere exchanges; native includes 0.38016 MJ waste heat. Keep that boundary difference explicit rather than deleting native emissions or adding an offset. Score effects remain unquantified.",
+        "The native cell is labelled CN, but the original location documentation is null and the inventory relies on patents/measurements of undefined vintage with European upstream supplies. CN labelling alone does not prove representative Chinese manufacture; using it for RoW is a geographic screening proxy. Cell form factor, performance, supplier mix, allocation, vintage, native-source import exclusions and internal uncertainty can differ. No chemistry, geographical or LCIA equivalence is claimed beyond the documented reference and nominal component checks.",
+        "No source exchange omission, runtime Python module, alternative sector engine or validation bypass. Existing unrelated rules and approval fingerprints remain unchanged. Other profiles keep unresolved reference-sign status; their candidate identity is corrected to LMO without granting conversion permission.",
+        "Retain the market two producer shares separately: 0.950627953362496 kg RoW and 0.0493720466375044 kg CN per kg, each represented by the complete native CN-labelled LMO cell. Retain 0.02 tkm rail and 0.02 tkm heavy-road final delivery using the independently reviewed complete European freight services. Do not merge/renormalize producer shares or add sea delivery, distances, losses, vehicles or infrastructure. Complete-cell internal material freight remains distinct from retained market final delivery. Source global freight fleets are approximated by native European fleets; country, fuel, duty, allocation and vintage differences remain warnings."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2b8bdc165e92dd4ef0c96e57116bae14a3af7d7e9e75314457e0603cbf300782"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-197e33c3bd9a8c05",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_lmo_cell_39_review.json",
+      "review_sha256": "303632e131cfc2397bfa47e0e975294167fe42089c743fb6827c631f0226ae21",
+      "authorization": "Standing autonomous approval of remaining mapping corrections and complete native screening proxies, with warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "battery cell production, Li-ion, LiMn2O4",
+            "reference product": "battery cell, Li-ion, LiMn2O4",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 60,
+          "metadata_sha256": "6994edf9faf2ac7909cbc068a5ec8970e4bde0eaf3a42837adf64fb8fa3d9cec",
+          "inventory_sha256": "f845d4e5e70ff08d0fb94d5e2b27cf2154d0c46217185248a1b420b2dde85cf3",
+          "activity_comment_sha256": "714006fd295a8d548ac8f5a99d2cac090c3af2a035f97811ff5c01539239a154",
+          "product_information_sha256": "af2eb02b9633e6d79f2d945541980b1daa181ed25e217c8e5074231f7f6a44ae"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": null
+      },
+      "limitations": [
+        "Only independently inspected ecoinvent 3.9 cut-off lithium-manganese-oxide/graphite complete single-cell identities are approved. Correct the earlier heuristic NMC111 target: LMO is not nickel-manganese-cobalt chemistry. Source and native references are positive one kg of assembled cell, not one cathode, kWh of storage, battery pack or battery management system. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions with factor +1. No Wh/kg, voltage, capacity, lifetime, density or yield multiplier is inferred. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Use the complete native Single cell, lithium-ion battery, lithium manganese oxide/graphite, at plant once. Primary records describe calendared cathode/anode/separator, aluminium tab, LiPF6 in ethylene-carbonate electrolyte and polyethylene envelope with chemical-plant infrastructure. Their misleading opening cathode sentence does not override the complete-cell reference and assembly inventory. Do not add electrodes, electrolyte, envelope, assembly energy, plant, pack or BMS a second time, or remove independent caller-owned materials.",
+        "Both source producers and native releases retain nominal 0.4011 kg graphite anode, 0.32686 kg LMO cathode, 0.053655 kg separator, 0.15957 kg ethylene carbonate, 0.019037 kg LiPF6, 0.1056 kWh assembly electricity and 0.065234 MJ purchased assembly heat per cell kg. Agreement is a boundary check, not source/native LCI or stochastic equivalence. Complete native upstream materials, internal freight, electricity/heat supplies, allocation and uncertainty replace their source counterparts. Source RoW electricity and heat country portfolios become native CN electricity and Swiss industrial-gas heat; no second utility demand or invented energy correction is added.",
+        "The native inventory includes 0.0525 kg complete mixed Li-ion battery disposal per cell kg, versus source negative-reference used-battery demand of the same magnitude. Preserve these internal conventions inside each complete model, without interpreting the source negative demand as avoided cell production or adding recovery credits. Source producers list no direct biosphere exchanges; native includes 0.38016 MJ waste heat. Keep that boundary difference explicit rather than deleting native emissions or adding an offset. Score effects remain unquantified.",
+        "The native cell is labelled CN, but the original location documentation is null and the inventory relies on patents/measurements of undefined vintage with European upstream supplies. CN labelling alone does not prove representative Chinese manufacture; using it for RoW is a geographic screening proxy. Cell form factor, performance, supplier mix, allocation, vintage, native-source import exclusions and internal uncertainty can differ. No chemistry, geographical or LCIA equivalence is claimed beyond the documented reference and nominal component checks.",
+        "No source exchange omission, runtime Python module, alternative sector engine or validation bypass. Existing unrelated rules and approval fingerprints remain unchanged. Other profiles keep unresolved reference-sign status; their candidate identity is corrected to LMO without granting conversion permission."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "dba27c8d27197d6067bda439c214d6cc8cae72d84d7b301e450333af364f747c"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-196c97185a9ac94e",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_lmo_cell_39_review.json",
+      "review_sha256": "303632e131cfc2397bfa47e0e975294167fe42089c743fb6827c631f0226ae21",
+      "authorization": "Standing autonomous approval of remaining mapping corrections and complete native screening proxies, with warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "battery cell production, Li-ion, LiMn2O4",
+            "reference product": "battery cell, Li-ion, LiMn2O4",
+            "location": "CN",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 14,
+          "metadata_sha256": "87f3db4708b5dbaeb94edb20dc95274ef7ee10866ea5cac2c027085c19034d22",
+          "inventory_sha256": "e43150dd39dd0664e6c7abb22ef57792566772a25a3579a2600c357d52ee0d09",
+          "activity_comment_sha256": "714006fd295a8d548ac8f5a99d2cac090c3af2a035f97811ff5c01539239a154",
+          "product_information_sha256": "af2eb02b9633e6d79f2d945541980b1daa181ed25e217c8e5074231f7f6a44ae"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": null
+      },
+      "limitations": [
+        "Only independently inspected ecoinvent 3.9 cut-off lithium-manganese-oxide/graphite complete single-cell identities are approved. Correct the earlier heuristic NMC111 target: LMO is not nickel-manganese-cobalt chemistry. Source and native references are positive one kg of assembled cell, not one cathode, kWh of storage, battery pack or battery management system. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions with factor +1. No Wh/kg, voltage, capacity, lifetime, density or yield multiplier is inferred. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Use the complete native Single cell, lithium-ion battery, lithium manganese oxide/graphite, at plant once. Primary records describe calendared cathode/anode/separator, aluminium tab, LiPF6 in ethylene-carbonate electrolyte and polyethylene envelope with chemical-plant infrastructure. Their misleading opening cathode sentence does not override the complete-cell reference and assembly inventory. Do not add electrodes, electrolyte, envelope, assembly energy, plant, pack or BMS a second time, or remove independent caller-owned materials.",
+        "Both source producers and native releases retain nominal 0.4011 kg graphite anode, 0.32686 kg LMO cathode, 0.053655 kg separator, 0.15957 kg ethylene carbonate, 0.019037 kg LiPF6, 0.1056 kWh assembly electricity and 0.065234 MJ purchased assembly heat per cell kg. Agreement is a boundary check, not source/native LCI or stochastic equivalence. Complete native upstream materials, internal freight, electricity/heat supplies, allocation and uncertainty replace their source counterparts. Source RoW electricity and heat country portfolios become native CN electricity and Swiss industrial-gas heat; no second utility demand or invented energy correction is added.",
+        "The native inventory includes 0.0525 kg complete mixed Li-ion battery disposal per cell kg, versus source negative-reference used-battery demand of the same magnitude. Preserve these internal conventions inside each complete model, without interpreting the source negative demand as avoided cell production or adding recovery credits. Source producers list no direct biosphere exchanges; native includes 0.38016 MJ waste heat. Keep that boundary difference explicit rather than deleting native emissions or adding an offset. Score effects remain unquantified.",
+        "The native cell is labelled CN, but the original location documentation is null and the inventory relies on patents/measurements of undefined vintage with European upstream supplies. CN labelling alone does not prove representative Chinese manufacture; using it for RoW is a geographic screening proxy. Cell form factor, performance, supplier mix, allocation, vintage, native-source import exclusions and internal uncertainty can differ. No chemistry, geographical or LCIA equivalence is claimed beyond the documented reference and nominal component checks.",
+        "No source exchange omission, runtime Python module, alternative sector engine or validation bypass. Existing unrelated rules and approval fingerprints remain unchanged. Other profiles keep unresolved reference-sign status; their candidate identity is corrected to LMO without granting conversion permission."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "becffcd5204b34694ab261060b8590fa67d7555e87cc7a22101dc7281266ceae"
+        }
+      ]
     }
   ],
   "superseded_operations": [
