@@ -1,0 +1,173 @@
+{
+  "status": "standard_combined_six_sectors_export_and_mining_audit_passed",
+  "database": "BAFU:2026-REMIND-SSP2-NPi-2050-combined-six-mining-20261113-055256",
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement",
+    "steel",
+    "mining"
+  ],
+  "public_scope_gate_bypassed": false,
+  "validation_disabled": false,
+  "activities": 14783,
+  "native_consumer_count": 57,
+  "regional_market_checks": [
+    {
+      "region": "CAZ",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "CHA",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "EUR",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "IND",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "JPN",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "LAM",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "NEU",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "OAS",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "REF",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "SSA",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "USA",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    },
+    {
+      "region": "World",
+      "treatment_inputs": 4,
+      "market_reference_amount": -1,
+      "native_forwarder_reference_amount": 1,
+      "native_to_market_factor": -1,
+      "all_77_native_biosphere_exchanges_and_uncertainty_match_source": true,
+      "all_four_declared_shares_match_original_scenario_configuration": true
+    }
+  ],
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "source_database": "BAFU:2026-reimported",
+  "biosphere": "ecoinvent-3.10-biosphere",
+  "native_source_codes_retained": 11947,
+  "source_database_metadata_unchanged": true,
+  "native_consumer_quantity_and_uncertainty_preserved": true,
+  "signed_mining_LCI_checks": 144,
+  "strict_processed_weighted_market_identity_checks": 12,
+  "forwarder_lci_equals_market_lci": true,
+  "max_raw_matrix_residual": 2.3150364141552932e-11,
+  "max_independently_refined_matrix_residual": 2.220446049250313e-16,
+  "matrix_precision_note": "Installed bw_processing iterator serialization stores amounts at float32 precision. Brightway exchange records retain declared shares; processed coefficients match their float32 representations. Algebraic LCI identities use the actual processed coefficients, with no runtime export change or share renormalization.",
+  "solver_note": "Raw signed LCIs are finite and reverse exactly. SuperLU cancellation produced small residuals on these mixed-scale matrices; two independent iterative-refinement steps reduced linear-system residuals below 1e-12. Strict provider/market/forwarder identities are verified on those refined solutions and directly on exported matrix columns. No runtime or validation tolerance changed.",
+  "coupled_market_presence_and_links": {
+    "market_counts": {
+      "market for lignocellulosic biomass, used as fuel": 13,
+      "market group for electricity, high voltage": 13,
+      "market group for electricity, medium voltage": 13,
+      "market group for electricity, low voltage": 13,
+      "market for heat, for buildings": 13,
+      "market for heat, district or industrial": 13,
+      "market for heat, secondary, district or industrial": 13,
+      "market for clinker": 13,
+      "Steel, low-alloyed, at plant": 13,
+      "market for sulfidic tailings, generic": 12
+    },
+    "all_internal_technosphere_links_resolved": true,
+    "technosphere_edges": 144989,
+    "selected_biosphere_edges": 312691,
+    "external_dependencies": [
+      "ecoinvent-3.10-biosphere"
+    ]
+  },
+  "additional_sampled_signed_LCIs": 20,
+  "normal_scenario_and_change_reports_generated": true,
+  "qualification_scope": "This actual REMIND scenario and the reviewed source import; no claim of all IAM models/pathways or source/native LCIA equivalence.",
+  "remaining_work": "Fuels and the other twelve registered sectors remain unqualified; the full integration goal remains active.",
+  "checks": {
+    "mapping_database_validation_regressions_passed": 194,
+    "mining_export_storage_MSW_regressions_passed": 103,
+    "test_groups_overlap": true,
+    "black": "pass",
+    "new_test_ruff": "pass",
+    "new_runtime_ruff_findings": 0,
+    "documentation_reference_check": "pass"
+  },
+  "task_cache_cleanup_bytes": 1504732378
+}

@@ -205,3 +205,18 @@ original three-sector example remains valid. The checked four-sector export has
 for retained quantities/uncertainty, LCIs and remaining warnings. Other sector
 updates and other IAM models are still being qualified; this does not extend
 support to conversions between system models.
+
+The qualified REMIND workflow also includes steel and mining. To exercise all
+six currently qualified sectors, use:
+
+```python
+ndb.update(["biomass", "electricity", "heat", "cement", "steel", "mining"])
+```
+
+Then export using the notebook's existing `write_db_to_brightway` call. The
+three-sector example remains the default. Steel preserves distinct native grades
+and processing inventories; mining creates the configured regional tailings
+markets and connects native disposal-service consumers without changing their
+quantities. See [steel review](uvek-steel-other-producer-audit.md) and
+[mining review](uvek-mining-market-review.md) for screening limits and verification.
+Fuels and the remaining sectors are still being qualified.

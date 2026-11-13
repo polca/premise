@@ -1376,3 +1376,30 @@ and continue the broader mapping/sector work. The full goal remains active.
 See the [HDPE receipt](uvek-packaging-hdpe-preparation-verification.json),
 [packaging review](uvek-fuels-38-packaging-review.md) and updated
 [whole-cohort queue](uvek-fuels-all-cohort-preparation-diagnostic.json).
+
+## Mining: regional markets and native-consumer handoff qualified
+
+The optional YAML market template now connects positive native disposal services
+to the unchanged negative-waste treatment mixer. A distinct complete native
+impoundment supplier preserves its 77 biosphere exchanges, while positive native
+service identities forward consumers to the ordinary regional fate mixes. The
+shared mixer AST, original treatment shares and ecoinvent filters are unchanged.
+YAML alone could not supply a missing market or bridge the reference conventions;
+the necessary helpers remain in the existing Mining class.
+
+The ordinary six-sector REMIND SSP2-NPi 2050 update/export passes without gate or
+validation bypass: 14,783 activities, 12 tailings markets, all 57 native callers
+retained, 144 signed mining LCIs and 20 additional combined-market signed samples.
+The numerical identity audit accounts for installed float32 matrix serialization
+and independently corrects solver residuals, without changing runtime data or
+validation tolerances. The default three-sector call remains unchanged.
+See [mining review](uvek-mining-market-review.md) and
+[combined qualification](uvek-mining-combined-qualification.json).
+
+The next renewable probe correctly fails target coverage: its hardcoded
+ecoinvent selectors match none of seven reviewed native wind generators.
+This is an unfinished filter/mapping integration, not IAM inapplicability.
+[The frontier receipt](uvek-renewable-filter-frontier.json) records those exact
+identities. Fuels and the other twelve sectors remain unfinished. Removed
+1,504,732,378 bytes of obsolete task-owned heat diagnostic snapshots, retaining
+current databases, scripts and aggregate verification receipts.

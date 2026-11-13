@@ -168,8 +168,9 @@ def test_uvek_scope_defaults_to_pilot_and_refuses_unverified_sectors():
     assert validate_uvek_scope("heat") == ["heat"]
     assert validate_uvek_scope("cement") == ["cement"]
     assert validate_uvek_scope("steel") == ["steel"]
-    with pytest.raises(ValueError, match="unsupported sectors.*mining"):
-        validate_uvek_scope(["electricity", "mining"])
+    assert validate_uvek_scope(["electricity", "mining"]) == ["electricity", "mining"]
+    with pytest.raises(ValueError, match="unsupported sectors.*fuels"):
+        validate_uvek_scope(["electricity", "fuels"])
 
 
 def test_uvek_release_never_uses_ecoinvent_biosphere_fallback():

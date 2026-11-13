@@ -64,3 +64,17 @@ without modifying Premise, Brightway, exported data or validation tolerances.
 
 The earlier family-handoff receipt remains historical: its zero-market result
 predates this work. Qualification of other sectors and scenarios remains separate.
+
+The normal six-sector call (biomass, electricity, heat, cement, steel and mining)
+now passes with encrypted REMIND SSP2-NPi 2050 and exports 14,783 activities,
+including the normal scenario and change reports. No support gate or validation
+is bypassed. All 11,947 source codes remain. All 57 original native consumers keep
+their signed quantities and uncertainty and reach regional forwarding services.
+Twelve configured tailings markets each retain all four original shares and the
+complete native 77-flow impoundment inventory. All 144 signed mining LCIs pass,
+as do strict processed-weighted market and forwarding identities. Twenty further
+signed samples across the combined sector markets pass; all internal links and
+the selected biosphere are checked. See
+[combined qualification](uvek-mining-combined-qualification.json). Mining is now
+accepted by the ordinary support gate; the default three-sector call stays the
+same. Remaining sectors are not qualified by these checks.

@@ -1,0 +1,86 @@
+{
+  "status": "reproduced_unfinished_renewable_filter_integration",
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "failure": {
+    "status": "failed",
+    "exception_type": "PremiseValidationError",
+    "message": "Inventory validation failed with 1 unsuppressed error(s) [METHOD.RENEWABLE.TARGET_COVERAGE=1]: METHOD.RENEWABLE.TARGET_COVERAGE: Applicable sector transformation declared no validation targets. (expected='>= 1 target', actual=0)",
+    "failed_stage": "sector update",
+    "sector": "renewable",
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 64.86511941708159,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "native_reviewed_wind_generator_count": 7,
+  "native_reviewed_wind_generator_identities": [
+    {
+      "name": "Electricity, at 100MW wind farm, onshore, 4.5 MW turbines",
+      "product": "Electricity, at 100MW wind farm, onshore, 4.5 MW turbines",
+      "location": "RER",
+      "unit": "kilowatt hour",
+      "reference": [
+        1.0
+      ]
+    },
+    {
+      "name": "Electricity, at 100MW wind farm, onshore, 2.3MW turbines",
+      "product": "Electricity, at 100MW wind farm, onshore, 2.3MW turbines",
+      "location": "RER",
+      "unit": "kilowatt hour",
+      "reference": [
+        1.0
+      ]
+    },
+    {
+      "name": "Electricity, at 150MW wind farm, offshore, 5MW turbines",
+      "product": "Electricity, at 150MW wind farm, offshore, 5MW turbines",
+      "location": "RER",
+      "unit": "kilowatt hour",
+      "reference": [
+        1.0
+      ]
+    },
+    {
+      "name": "Electricity, at 200MW wind farm, onshore, 3.4MW turbines",
+      "product": "Electricity, at 200MW wind farm, onshore, 3.4MW turbines",
+      "location": "RER",
+      "unit": "kilowatt hour",
+      "reference": [
+        1.0
+      ]
+    },
+    {
+      "name": "Electricity, at 740MW wind farm, offshore, 10MW turbines",
+      "product": "Electricity, at 740MW wind farm, offshore, 10MW turbines",
+      "location": "RER",
+      "unit": "kilowatt hour",
+      "reference": [
+        1.0
+      ]
+    },
+    {
+      "name": "Electricity, at 100MW wind farm, onshore, 6.2MW turbines",
+      "product": "Electricity, at 100MW wind farm, onshore, 6.2MW turbines",
+      "location": "RER",
+      "unit": "kilowatt hour",
+      "reference": [
+        1.0
+      ]
+    },
+    {
+      "name": "Electricity, at 1005MW wind farm, offshore, 15MW turbines",
+      "product": "Electricity, at 1005MW wind farm, offshore, 15MW turbines",
+      "location": "RER",
+      "unit": "kilowatt hour",
+      "reference": [
+        1.0
+      ]
+    }
+  ],
+  "native_wind_names_matching_shared_hardcoded_terms": [],
+  "finding": "The existing hardcoded ecoinvent name terms select none of the seven reviewed native wind generators. No targets are created, and target-coverage validation correctly refuses the update. This is a mapping/filter gap, not missing wind IAM data or legitimate inapplicability.",
+  "next_work": "Extend explicit mapping filters for the variant templates and their construction links through the existing renewable transformation; verify linked variant dependencies and the family/biosphere handoff. Preserve shared algorithm and default ecoinvent selection; do not label unchanged unrelated native inputs as direct-drive components. No renewable support gate is opened by this receipt."
+}
