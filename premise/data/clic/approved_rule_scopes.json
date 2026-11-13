@@ -257397,6 +257397,100 @@
           "fingerprint": "6f875a9c6bbef0eb4e61ff11397c50ee47c21f729db6d41ecef198609f8d7bc9"
         }
       ]
+    },
+    {
+      "rule_id": "bp-c9f024938fe71f89",
+      "operation": "replace",
+      "mapping_method": "reviewed_mining_38_high_slag",
+      "review_path": "export/uvek_mining_38_high_slag_review.json",
+      "review_sha256": "aa06802751483780d09adedace01bcecad9b2ea8e5a3c3046accdce93e2e0166",
+      "authorization": "Standing user approval to resolve remaining cases autonomously with logged decisions and warnings.",
+      "limitations": [
+        "Only ecoinvent 3.8 cut-off to UVEK qualifies. Preserve signed caller quantities and supported uncertainty. No consequential, inverse or other-release approval is inferred. These are screening proxies with unquantified score effects; native biosphere exclusions and historical technology/allocation/uncertainty remain limitations. Construct a fixed one-kg 85%-slag variant of the complete native CEM III/B no-burdens cement finishing inventory. Retain source 0.85 kg delivered GGBFS, 0.1425 kg clinker and 0.0075 kg delivered mineral gypsum, including their source formulas and supported uncertainty. Their central binder mass sums to one kg; no claim of sampled compositional closure is made. Remove only the native prototype incoming road/rail delivery rows, which the two replacement material-market helpers supply. Retain native finishing fuel, electricity quantity, waste heat, grinding aid, steel, plant and uncertainty; rebind the site medium-voltage electricity to US. Native 0.2336 MJ fuel-burning service is not equated to source 0.272 MJ useful heat; do not add source finishing energy or an efficiency correction. Native finishing performance, clinker geography, grade/strength, allocation, vintage and internal uncertainty are proxies. Cement parameter is fixed at one kg to retain the source binder formulas. This is a source-composition variant, not an assertion of identical cement performance."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "cement production, blast furnace slag 70-100%",
+            "reference product": "cement, blast furnace slag 70-100%",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "c003444caa98684c8ea231b415df0dbc0cb814ed6d06f1ad7f4c27555c781f14",
+          "comment_sha256": "2661c39b38cededbb80d339698aaf70ec1a92b401da9691d554db15037b8286c"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "56a46adbf7a69e6b595a95573148421203d60de0bcfafaaccee8ec223a5b8f2d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-dc22c7fb969d8fa6",
+      "operation": "replace",
+      "mapping_method": "reviewed_mining_38_high_slag",
+      "review_path": "export/uvek_mining_38_high_slag_review.json",
+      "review_sha256": "aa06802751483780d09adedace01bcecad9b2ea8e5a3c3046accdce93e2e0166",
+      "authorization": "Standing user approval to resolve remaining cases autonomously with logged decisions and warnings.",
+      "limitations": [
+        "Only ecoinvent 3.8 cut-off to UVEK qualifies. Preserve signed caller quantities and supported uncertainty. No consequential, inverse or other-release approval is inferred. These are screening proxies with unquantified score effects; native biosphere exclusions and historical technology/allocation/uncertainty remain limitations. The inspected upstream molten-slag handover is burden-free in cut-off. Use the complete native no-burdens GGBFS process, including quenching, drying and grinding, rather than the iron-production-burdened variant. Its complete native upstream processing, raw-slag transport, losses and uncertainty replace the source factory model, including the source raw-slag market freight; no extra raw-slag freight is added. Retain the final ground-slag market road delivery separately at 0.2 tkm/kg with its source uncertainty and pedigree. US supply uses a RER production/fleet proxy without payload, mass-yield or distance corrections."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for ground granulated blast furnace slag",
+            "reference product": "ground granulated blast furnace slag",
+            "location": "US",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "f4f314d524aa7b6c874ca12c0b3bf48637fd280909b9423b0d9fc6e19c590b39",
+          "comment_sha256": "cd0faf49ad794d28df2f559fc8c89d4442f749d8c14b5638695187d48fb9f2f7"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "fac505cec645cc3bec251ea1d64d569a220063bf444dd3f18aae7e683c12b560"
+        }
+      ]
     }
   ],
   "superseded_operations": [

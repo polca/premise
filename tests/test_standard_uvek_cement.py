@@ -45,7 +45,7 @@ def test_native_producer_pairs_include_grades_and_exclude_false_matches():
         activity({"name": "Cement factory", "reference product": "factory"}),
     ]
     obj = cement(producers + decoys)
-    assert len(producers) == 14
+    assert len(producers) == 15
     assert obj._cement_production_datasets() == producers
     original = activity(
         {"name": "cement production, Portland", "reference product": "cement, Portland"}

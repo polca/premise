@@ -1,0 +1,110 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "source_database": "BAFU:2026-reimported",
+  "source_activity_count": 11947,
+  "source_metadata_unchanged": true,
+  "review_sha256": "aa06802751483780d09adedace01bcecad9b2ea8e5a3c3046accdce93e2e0166",
+  "signed_helper_lcis": [
+    {
+      "recipe_id": "mining-38-us-delivered-ground-slag",
+      "sign": 1,
+      "finite": true
+    },
+    {
+      "recipe_id": "mining-38-us-delivered-ground-slag",
+      "sign": -1,
+      "finite": true
+    },
+    {
+      "recipe_id": "mining-38-us-high-slag-cement-85",
+      "sign": 1,
+      "finite": true
+    },
+    {
+      "recipe_id": "mining-38-us-high-slag-cement-85",
+      "sign": -1,
+      "finite": true
+    },
+    {
+      "recipe_id": "mining-38-row-delivered-mineral-gypsum",
+      "sign": 1,
+      "finite": true
+    },
+    {
+      "recipe_id": "mining-38-row-delivered-mineral-gypsum",
+      "sign": -1,
+      "finite": true
+    }
+  ],
+  "consistent_sign_reversal": true,
+  "adapted_helper_identities": [
+    {
+      "name": "Ground granulated slag, cut-off supply and retained delivery, 3.8 [BrightPath UVEK conversion 04ac990b] [CLIC brightpath-uvek-import-04ac990b4ce829e2d284f1e8]",
+      "reference product": "ground granulated blast furnace slag",
+      "recipe_id": "mining-38-us-delivered-ground-slag"
+    },
+    {
+      "name": "High-slag cement production, 85 percent slag, native finishing, 3.8 [BrightPath UVEK conversion 15c96dc7] [CLIC brightpath-uvek-import-15c96dc78cbad3efc80c552b]",
+      "reference product": "cement, blast furnace slag 70-100%",
+      "recipe_id": "mining-38-us-high-slag-cement-85"
+    },
+    {
+      "name": "Mineral gypsum, native stock and retained delivery, 3.8 [BrightPath UVEK conversion a24093a7] [CLIC brightpath-uvek-import-a24093a70f4842d751806913]",
+      "reference product": "gypsum, mineral",
+      "recipe_id": "mining-38-row-delivered-mineral-gypsum"
+    }
+  ],
+  "scope": "Actual harmonizer, adapter and helper-only Brightway database LCI. No full mining transformation/export or source/native score equivalence is established.",
+  "brightpath_commit": "63ff74068d1c8d1145d2826eb81eb79ad936c5b8",
+  "new_exact_source_scopes": 2,
+  "new_helper_recipes": 3,
+  "changed_runtime_python_modules": 0,
+  "brightpath_tests_passed": 39,
+  "premise_fresh_cache_and_adapter_tests_passed": 7,
+  "shared_cement_tests_passed": 9,
+  "scope_validation": {
+    "all_approval_scopes_valid": true,
+    "scope_count": 1241,
+    "new_scopes": 2,
+    "prior_scopes_refreshed_with_identical_effective_projection": 0,
+    "prior_operations": []
+  },
+  "wheel_review_resource_manifest_bytes_verified": true,
+  "private_mining_first_cohort_before_refused_rule_count": 4,
+  "private_mining_first_cohort_after_refused_rule_count": 3,
+  "remaining_first_cohort_cases": [
+    "Municipal-solid-waste routing",
+    "Polyacrylamide manufacture",
+    "Polyester-fibre manufacture"
+  ],
+  "complete_mining_preparation_passed": false,
+  "sector_transformation_or_export_performed": false,
+  "documentation_reference_check_passed": true,
+  "installed_git_package_commit_verified": true,
+  "installed_git_package_public_cache_adapter_and_cement_tests_passed": 11,
+  "installed_git_package_real_mining_first_cohort_unapproved_rule_ids": [
+    "bp-168324086066bce9",
+    "bp-656e502f8a1766b9",
+    "bp-15948a5ae97a4177"
+  ],
+  "resource_regression_tests": {
+    "passed": 98,
+    "failed": 1,
+    "failure_analysis": {
+      "baseline_commit": "10307a81785cd60c7aa280c88e438ca5434bf199",
+      "same_preexisting_unused_review_refs": [
+        "r-49819d661eedaba3",
+        "r-61602ef58b14c067",
+        "r-641686825888294c",
+        "r-82ba2fd8b7c6a2b9",
+        "r-96de9bbf4a0e344a",
+        "r-9bd5e7ea09a5c1a3",
+        "r-cb197fda1f8ebc5b",
+        "r-ec34db299047f787"
+      ],
+      "preexisting_failure_confirmed": true,
+      "test": "tests/test_uvek_resource_storage.py::test_both_packaged_uvek_resources_use_one_schema",
+      "new_unused_reviews": 0
+    }
+  }
+}

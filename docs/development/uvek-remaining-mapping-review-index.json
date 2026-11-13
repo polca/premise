@@ -246,6 +246,16 @@
         }
       ],
       "review": "docs/development/uvek-mining38-material-supplier-review.md"
+    },
+    {
+      "rule_id": "bp-c9f024938fe71f89",
+      "source_version": "3.8",
+      "review": "docs/development/uvek-mining38-high-slag-review.md"
+    },
+    {
+      "rule_id": "bp-dc22c7fb969d8fa6",
+      "source_version": "3.8",
+      "review": "docs/development/uvek-mining38-high-slag-review.md"
     }
   ],
   "rules": [

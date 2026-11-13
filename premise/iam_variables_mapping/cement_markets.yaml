@@ -38,6 +38,9 @@ uvek:
     reference product: Portland cement, strength class Z 52.5, at plant
   - name: Portland slag sand cement, at plant
     reference product: Portland slag sand cement, at plant
+  # Reviewed source-composition variant; the ordinary shared clinker transformation applies.
+  - name: High-slag cement production, 85 percent slag, native finishing, 3.8 [BrightPath UVEK conversion 15c96dc7] [CLIC brightpath-uvek-import-15c96dc78cbad3efc80c552b]
+    reference product: cement, blast furnace slag 70-100%
   limitations:
   - The native Swiss clinker inventory is a rotary-kiln industry average with a positive one-kg clinker
     reference. Use it as the baseline clinker template for the existing shared IAM route transformations;
@@ -50,3 +53,7 @@ uvek:
     ordinary regional clinker market, preserving signed quantity, formula and uncertainty. The source
     has no separate cement market tier; do not invent one. Existing positive/negative slag allocations
     and grade distinctions remain.
+  - The optional reviewed 85-percent-slag CLIC factory variant is also a cement producer.
+    Preserve its fixed binder composition, delivered-material inputs and native finishing model;
+    apply the same ordinary clinker-market replacement and regionalization as native factories.
+    Its exact helper identity is tied to the reviewed recipe; delivery helpers are not cement factories.

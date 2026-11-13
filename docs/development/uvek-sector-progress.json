@@ -1347,6 +1347,15 @@
         "new_scopes": 12,
         "remaining_refused_rules_in_first_source_group": 4,
         "qualification": "This group only; complete mining inventories, shared update, validation and export remain unfinished."
+      },
+      "high_slag_correspondence_progress": {
+        "review": "docs/development/uvek-mining38-high-slag-review.md",
+        "verification": "docs/development/uvek-mining38-high-slag-verification.json",
+        "source_version": "3.8",
+        "new_scopes": 2,
+        "remaining_refused_rules_in_first_source_group": 3,
+        "qualification": "Actual harmonizer/adapter helper LCIs and shared cement selectors verified. Complete mining preparation, transformation, validation and export remain unfinished.",
+        "brightpath_commit": "63ff74068d1c8d1145d2826eb81eb79ad936c5b8"
       }
     },
     {
