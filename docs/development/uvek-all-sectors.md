@@ -1449,3 +1449,25 @@ signs. The new Git dependency pin and review/verification are recorded in
 The actual CDR preparation reaches the next unreviewed correspondence: CH spent
 solvent mixture to complete native hazardous incineration, with opposite reference
 signs. CDR remains unqualified, along with the other unfinished sectors.
+
+
+## Carbon-removal preparation: wet spent-solvent scope extension
+
+The spent-solvent correspondence now includes the required 3.9 cut-off source
+and requested 3.6–3.12 scopes. The complete native hazardous-incineration service
+matches all 42 documented wet-composition coordinates. The existing factor −1
+converts the negative waste reference to positive native treatment demand once;
+wet mass, real credits, formulas and uncertainty retain their meaning. Requested
+3.7 explicitly uses limited 3.7.1 functional-reference evidence, without claiming
+inspection of unpatched coefficients.
+
+All 1,250 prior fingerprints remain; six additional scopes are registered.
+Brightpath's 34 tests and Premise's 17 targeted tests pass. Native signed LCIs
+are finite, source metadata are unchanged, and packaged wheel evidence matches.
+No runtime Python modules or compiled conversion rules change. See
+[solvent review](uvek-spent-solvent-profiles-review.md) and its verification receipt.
+
+The real encrypted REMIND SSP2-NPi 2050 CDR probe passes this correspondence and
+now stops at `bp-3e3963da2137593c`, another independently scoped correspondence.
+Validation remains enabled. No CDR update/export or additional sector
+qualification is claimed; the seven-sector qualification remains unchanged.

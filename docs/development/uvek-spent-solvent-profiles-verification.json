@@ -1,0 +1,58 @@
+{
+  "rule_id": "bp-1be0fde93275f330",
+  "prior_scope_count": 1250,
+  "new_scope_count": 1256,
+  "all_prior_fingerprints_retained": true,
+  "other_operations_unchanged": true,
+  "compiled_resource_unchanged_sha256": "e463d1f28fe5a1b22c1dab3db3338b940b2b5aa6f403cc29fb2f97fa7de6f6ff",
+  "review_sha256": "fc1643e1e4a27f52d557e1db993ff1b5e4c276056e815636c11dccf5e1813386",
+  "date": "2026-11-13",
+  "brightpath_revision": "7d9ba25f672dfcb7b606346ee6f3df2f8cbf9b79",
+  "runtime_python_modules_changed": [],
+  "brightpath_tests": {
+    "passed": 34,
+    "log": "test-spent-solvent-bp.log"
+  },
+  "premise_tests": {
+    "passed": 17,
+    "warnings": 1,
+    "log": "test-spent-solvent-premise.log"
+  },
+  "native_lci": {
+    "database": "BAFU:2026-reimported",
+    "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+    "reference_product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+    "location": "CH",
+    "unit": "kilogram",
+    "positive_reference_amount": 1,
+    "signed_native_LCI_demands": [
+      2.5,
+      -2.5
+    ],
+    "finite_supply_and_inventory": true,
+    "consistent_signed_reversal": true,
+    "source_database_metadata_unchanged": true,
+    "technosphere_exchange_count": 20,
+    "biosphere": "ecoinvent-3.10-biosphere"
+  },
+  "wheel": {
+    "packaged_review_exact": true,
+    "review_sha256": "fc1643e1e4a27f52d557e1db993ff1b5e4c276056e815636c11dccf5e1813386",
+    "wheel_bytes": 43779138
+  },
+  "carbon_removal_probe": {
+    "status": "failed",
+    "exception_type": "ClicInventoryError",
+    "message": "CLIC background migration from {'biosphere': {'family': 'ecoinvent', 'version': '3.9'}, 'technosphere': {'family': 'ecoinvent', 'system_model': 'cutoff', 'version': '3.9'}} to {'technosphere': {'family': 'uvek', 'version': '2026', 'system_model': 'cutoff'}, 'biosphere': {'family': 'ecoinvent', 'version': '3.10'}} failed: Background migration failed: Compatibility rule bp-3e3963da2137593c requires independent review for ecoinvent 3.9 cutoff -> uvek 2025 cutoff.. Diagnostic: /Users/romain/Library/Application Support/premise/cached_files/clic/harmonized/364ba2a2745dd5897e2bfee370b073668cd89a9bcd35656b267b649494de1bfc.audit.json.gz",
+    "failed_stage": "inventory preparation",
+    "sector": "cdr",
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 36.32951499999035,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "qualified_sector_count": 7,
+  "carbon_removal_qualified": false
+}

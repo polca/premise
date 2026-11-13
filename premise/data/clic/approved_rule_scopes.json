@@ -1617,44 +1617,265 @@
       "rule_id": "bp-1be0fde93275f330",
       "operation": "replace",
       "mapping_method": "heuristic_similarity",
-      "review_path": "export/uvek_dedicated_disposal_review.json",
-      "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
-      "authorization": "Standing independently inspected matching-material/function/unit disposal approval, reused only for enumerated CH ecoinvent 3.6 cut-off services after checking the full documented wet composition, treatment route and signed reference coordinates. No new material, disposal route, moisture basis or recovery model is introduced.",
+      "review_path": "export/uvek_spent_solvent_profiles_review.json",
+      "review_sha256": "fc1643e1e4a27f52d557e1db993ff1b5e4c276056e815636c11dccf5e1813386",
+      "authorization": "Standing auto-approval of independently inspected matching waste material, complete treatment function and wet-kg basis, extended to the enumerated source profiles. This reuses the existing dedicated 3.6 solvent-disposal decision; no new material, disposal route, moisture basis, allocation model or recovery credit is introduced.",
       "limitations": [
-        "The complete native UVEK treatment inventory retains its own technology, vintage, energy recovery, allocation and emissions; matching documented waste composition and treatment function do not establish equal LCIA results.",
-        "Preserve the signed wet-kg demand using the inspected reference-sign factor; add no moisture or heating-value scaling and no reconstructed source-specific recovery credit.",
-        "Full wet composition is independently matched in native UVEK 2026. The UVEK 2025 bridge has the same named waste class, route and reference coordinate, but its local comment does not contain the full composition. Upstream exclusions in the imported UVEK biosphere bundle remain unchanged."
+        "Use the complete native CH hazardous-incineration service per signed wet kg. Source and native 2026 match all 42 documented wet-composition coordinates, including 16.5% water, and the same wet-scrubber/SCR treatment route. Native technology, emission coverage, upstream background and vintage remain screening limitations with unquantified score effects; no exact LCIA equivalence is established.",
+        "Source waste reference -1 kg and native treatment-service reference +1 kg require factor -1 once. Preserve the magnitude of caller wet mass and scale uncertainty/formula consistently; do not introduce dry-matter, heating-value, density or recovery-credit multipliers. Both documented models allocate all incineration burdens to disposal without substitution or expansion.",
+        "Keep the native auxiliary fuel, flue-gas cleaning, infrastructure, residue/solidification and landfill inventories complete. Source useful-heat purchases and native fuel-combustion inputs have different reference bases; their displayed MJ quantities are not a factor for the whole disposal service. Older prose swaps thermal/electric energy labels; use stored exchanges, without inventing an energy correction or avoided-energy credit.",
+        "The 2025 bridge has the same named wet-waste class and positive reference, and its 20 direct technosphere coordinates match native 2026; its short local comment lacks the full composition. The independently matched 2026 definition supports the final destination. Native biosphere coverage differs; no biosphere-vector equality is claimed.",
+        "Requested 3.7 uses inspected 3.7.1 functional-reference evidence and matching adjacent 3.6/3.8 treatment definitions. Unpatched 3.7 coefficients were not inspected, source context is retained, and direct-vector/score equivalence is unverified. Only enumerated cut-off scopes are approved; no implicit patch-profile or cross-system-model conversion."
       ],
       "inspection": {
-        "source": {
-          "location": "CH",
-          "name": "treatment of spent solvent mixture, hazardous waste incineration",
-          "reference product": "spent solvent mixture",
-          "unit": "kilogram"
-        },
-        "target": {
-          "location": "CH",
-          "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
-          "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
-          "unit": "kilogram"
-        },
-        "source_metadata_sha256": "3cc5eef4a4929f984002b9acdde3fea3b954cf6566668533d69ea0479d086355",
-        "source_reference_amount": -1,
-        "native_references": {
-          "2025": {
-            "metadata_sha256": "026522d6e7b7cb553fa93b51ae80a9c871aa8611cc1e812469d73f8cd1f62f79",
-            "reference_amount": 1
+        "schema_version": 1,
+        "authorization": "Standing auto-approval of independently inspected matching waste material, complete treatment function and wet-kg basis, extended to the enumerated source profiles. This reuses the existing dedicated 3.6 solvent-disposal decision; no new material, disposal route, moisture basis, allocation model or recovery credit is introduced.",
+        "rule_id": "bp-1be0fde93275f330",
+        "rule": {
+          "confidence": 0.394091,
+          "conversion_factor": -1,
+          "id": "bp-1be0fde93275f330",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-1be0fde93275f330"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
           },
-          "2026": {
-            "metadata_sha256": "acba5083e28b0f3fafee87d29f6cbb35591da3becb06cc35f0795c650c3053c9",
-            "reference_amount": 1
+          "source": {
+            "location": "CH",
+            "name": "treatment of spent solvent mixture, hazardous waste incineration",
+            "reference product": "spent solvent mixture",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+            "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+            "unit": "kilogram"
           }
         },
-        "native_2026_wet_composition_matches_source": true,
-        "compared_composition_coordinates": 42,
-        "treatment_route": "hazardous waste incineration",
-        "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
-        "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+        "source_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": -1,
+            "unit": "kilogram",
+            "wet_composition_coordinates_compared": 42,
+            "wet_composition_matches_native_2026": true,
+            "metadata_sha256": "3cc5eef4a4929f984002b9acdde3fea3b954cf6566668533d69ea0479d086355",
+            "inventory_sha256": "c101ca7b87c22d26a8cb9f0d25974fd21a0c5bafea55b065874394d6d6f62fd2",
+            "activity_comment_sha256": "a0e89a16c870a34d1c9a6b448f47cd96731b1bbf34dafa7f5c1897876d5d633d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.7",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": -1,
+            "unit": "kilogram",
+            "wet_composition_coordinates_compared": 42,
+            "wet_composition_matches_native_2026": true,
+            "metadata_sha256": "af7508da289832a146f8e957d5e4bd86a68745000c4abc6ad2361a140b3ebe34",
+            "inventory_sha256": "6965c9e654246632119545c9dc8d45db0c8290a52e43fd5d35f9c124745d50fc",
+            "activity_comment_sha256": "b9d91976a744f2a6948f354ac5c5d8a8d42227bf22e8ea2078027ca9472ba798",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "inspection_release": "3.7.1",
+            "unpatched_37_inventory_inspected": false
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": -1,
+            "unit": "kilogram",
+            "wet_composition_coordinates_compared": 42,
+            "wet_composition_matches_native_2026": true,
+            "metadata_sha256": "ed16a955e56811b153782ce048872fc58db6bc0f52f520a2d25515f3b475cd5f",
+            "inventory_sha256": "ef3522fa90b3bfa27813f9b7002e2a9815ea2a917ae533c588a86b38bc377db3",
+            "activity_comment_sha256": "2f300d7fb264eb70f821dc031fcb4b741e5bcc29f26de2a8fc20ffa886d05e75",
+            "product_information_sha256": "8830ac5ef48a1fe9520ad172cea12139c59630b8468912da031161416819ea77"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": -1,
+            "unit": "kilogram",
+            "wet_composition_coordinates_compared": 42,
+            "wet_composition_matches_native_2026": true,
+            "metadata_sha256": "6f2a3615c18384efabb403f676b34b9a3a4b21f54c902eba662e3c500569a564",
+            "inventory_sha256": "0d71cb1999a8caf774e78b27fb545a8891be80f86c6981a8e7cc7e9ee8e1acc8",
+            "activity_comment_sha256": "2f300d7fb264eb70f821dc031fcb4b741e5bcc29f26de2a8fc20ffa886d05e75",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": -1,
+            "unit": "kilogram",
+            "wet_composition_coordinates_compared": 42,
+            "wet_composition_matches_native_2026": true,
+            "metadata_sha256": "a452fa47b4539f190ecfaed98429b4bb8d14fefb94e9d7794e0381c495f76762",
+            "inventory_sha256": "91d969ecacbbf5ca2d350e692e66a7994a8195e88d468cee0e893fb9d0ec6fc5",
+            "activity_comment_sha256": "2f300d7fb264eb70f821dc031fcb4b741e5bcc29f26de2a8fc20ffa886d05e75",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": -1,
+            "unit": "kilogram",
+            "wet_composition_coordinates_compared": 42,
+            "wet_composition_matches_native_2026": true,
+            "metadata_sha256": "8e7ac71e0ec6a4e09d7bec9bbb5e77f5ed7d222599bed12ad051c7286a166205",
+            "inventory_sha256": "147f3d1dd4869eb92e8f51c5827f02ff71772724c746f15493d5705898df95de",
+            "activity_comment_sha256": "2f300d7fb264eb70f821dc031fcb4b741e5bcc29f26de2a8fc20ffa886d05e75",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "source_reference_amount": -1,
+            "unit": "kilogram",
+            "wet_composition_coordinates_compared": 42,
+            "wet_composition_matches_native_2026": true,
+            "metadata_sha256": "bdb1b1d7f3c162bd3df692deb4f070e98a3379a11bfb55e44b8af3e8285362e2",
+            "inventory_sha256": "62bc7f727202eb65b5f949d254b82f2f71f4a5a19ded147ee755b71afbb718a7",
+            "activity_comment_sha256": "35fb25d17ce524d832f1f92d3c3a2f2691285428bcc39010f3d7cbfcd731c105",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          }
+        ],
+        "bridge_target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "native_references": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "026522d6e7b7cb553fa93b51ae80a9c871aa8611cc1e812469d73f8cd1f62f79",
+            "inventory_sha256": "21fde9602a5331dcf170d88623bdaad806a676c551565466be03caf087e30bfc",
+            "activity_comment_sha256": "4391ca3853b1d56e8aeb5fbb9486701d9ebf30e6dddf56ee48e1b291dcc91e07",
+            "direct_technosphere_coordinates": 20,
+            "direct_biosphere_coordinates": 52,
+            "full_wet_composition_available": false
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "metadata_sha256": "610bc91c27c6da6b67267088adea0b63cdd415988a88afa45ff8f6febfe33dcf",
+            "inventory_sha256": "6c836daf77834b88301c24b714dd5ddd6ada9db10b56cbe92faafc70618a3bdf",
+            "activity_comment_sha256": "90e6290de4b5a6a3b8e989183928bb0c123b0af80da124ae362929898339d850",
+            "direct_technosphere_coordinates": 20,
+            "direct_biosphere_coordinates": 53,
+            "full_wet_composition_available": true
+          }
+        },
+        "conversion_factor": -1,
+        "source_water_fraction_wet_basis": 0.165,
+        "source_and_native_2026_composition_matches": 42,
+        "native_2025_2026_direct_technosphere_vectors_equal": true,
+        "allocation": "100% to waste-disposal function; no substitution or system expansion",
+        "prior_premise_36_decision": {
+          "review_path": "export/uvek_dedicated_disposal_review.json",
+          "review_sha256": "bb7bddc0dfdfef93d07f22013171e148755bcb10daa48f535e0674f411d5f445",
+          "inspection": {
+            "source": {
+              "location": "CH",
+              "name": "treatment of spent solvent mixture, hazardous waste incineration",
+              "reference product": "spent solvent mixture",
+              "unit": "kilogram"
+            },
+            "target": {
+              "location": "CH",
+              "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "unit": "kilogram"
+            },
+            "source_metadata_sha256": "3cc5eef4a4929f984002b9acdde3fea3b954cf6566668533d69ea0479d086355",
+            "source_reference_amount": -1,
+            "native_references": {
+              "2025": {
+                "metadata_sha256": "026522d6e7b7cb553fa93b51ae80a9c871aa8611cc1e812469d73f8cd1f62f79",
+                "reference_amount": 1
+              },
+              "2026": {
+                "metadata_sha256": "acba5083e28b0f3fafee87d29f6cbb35591da3becb06cc35f0795c650c3053c9",
+                "reference_amount": 1
+              }
+            },
+            "native_2026_wet_composition_matches_source": true,
+            "compared_composition_coordinates": 42,
+            "treatment_route": "hazardous waste incineration",
+            "native_2025_definition": "Same named wet-waste class, treatment route and wet-kg reference. Full composition not available in the local 2025 comment.",
+            "boundary": "Whole native treatment service; no additional allocation, moisture, heating-value or recovery-credit adjustment."
+          },
+          "scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "1e0b03923ed87f3516f6ab68be5aa57177d8f181215d4b92d66ee02871b97ae1"
+            }
+          ]
+        },
+        "patch_evidence_decision": {
+          "requested_version": "3.7",
+          "inspected_version": "3.7.1",
+          "source_context_relabelled": false,
+          "unpatched_37_inventory_inspected": false,
+          "official_report_url": "https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/change%20report_v3%207%201_20201217.pdf",
+          "basis": "Limited treatment-function and reference inference for the unchanged named waste outside the reported patch corrections; no equality of unpatched inventories or scores."
+        },
+        "limitations": [
+          "Use the complete native CH hazardous-incineration service per signed wet kg. Source and native 2026 match all 42 documented wet-composition coordinates, including 16.5% water, and the same wet-scrubber/SCR treatment route. Native technology, emission coverage, upstream background and vintage remain screening limitations with unquantified score effects; no exact LCIA equivalence is established.",
+          "Source waste reference -1 kg and native treatment-service reference +1 kg require factor -1 once. Preserve the magnitude of caller wet mass and scale uncertainty/formula consistently; do not introduce dry-matter, heating-value, density or recovery-credit multipliers. Both documented models allocate all incineration burdens to disposal without substitution or expansion.",
+          "Keep the native auxiliary fuel, flue-gas cleaning, infrastructure, residue/solidification and landfill inventories complete. Source useful-heat purchases and native fuel-combustion inputs have different reference bases; their displayed MJ quantities are not a factor for the whole disposal service. Older prose swaps thermal/electric energy labels; use stored exchanges, without inventing an energy correction or avoided-energy credit.",
+          "The 2025 bridge has the same named wet-waste class and positive reference, and its 20 direct technosphere coordinates match native 2026; its short local comment lacks the full composition. The independently matched 2026 definition supports the final destination. Native biosphere coverage differs; no biosphere-vector equality is claimed.",
+          "Requested 3.7 uses inspected 3.7.1 functional-reference evidence and matching adjacent 3.6/3.8 treatment definitions. Unpatched 3.7 coefficients were not inspected, source context is retained, and direct-vector/score equivalence is unverified. Only enumerated cut-off scopes are approved; no implicit patch-profile or cross-system-model conversion."
+        ]
       },
       "scopes": [
         {
@@ -1665,10 +1886,88 @@
           },
           "target": {
             "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
+            "system_model": "cutoff",
+            "version": "2025"
           },
           "fingerprint": "1e0b03923ed87f3516f6ab68be5aa57177d8f181215d4b92d66ee02871b97ae1"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a8657b372652cab8cd5f47cd743836bb310279185d4a11dc7c1e46c35f9461c3"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0f74771945ec5f4c40a81d4c292a77a0b9dc5b461437699d24583cec06ccd48e"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "95bba8090e2329f97382abe42b915c5261e6f2dba26ca7789b2ae45d6867ad65"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a7d2fe172fd1258551d47d941a247584e7f13a01a4c3e437046d8be631d0b5b9"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1734a4ffdf2bc9bc00c5787f225664a0faad783fb00119f1ec02a3ca731c801b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e76d184847f04ca056be0332dba1ba7588c2b0bb8e1b4e873926a205019b7dc0"
         }
       ]
     },
