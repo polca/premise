@@ -263295,6 +263295,206 @@
           "fingerprint": "532ff96d1d38a07b9d17c3968e899a62e7140676c5f50d6aac7317f3f32c8c1d"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-7a3bce81ec325a28",
+      "mapping_method": "reviewed_lcd_module_39",
+      "review_path": "export/uvek_lcd_module_39_review.json",
+      "review_sha256": "23e215af737bd058b4fb94c48585446867cb0a5fc53d7e4c4fc83716e2f886f3",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with warnings and decisions logged for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "liquid crystal display production, unmounted",
+            "reference product": "liquid crystal display, unmounted",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 18,
+          "metadata_sha256": "bc8455ea908a7adf343d0a5020abb819609b661b6d63a062c4321cf0cc6dfa5d",
+          "inventory_sha256": "82fdfa57172616f3425f9544d677fff08afdce385e9433358df99a98cfded638",
+          "activity_comment_sha256": "ef3db6b1877296431d1a9bac1ab1c244c9ea9e26af6e42de1bfc35204fe17e9e",
+          "product_information_sha256": "e18fc456868d04a6b6f700d6b34460b213ef0e39569dd8d82da6d9f96e52408d"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "liquid crystal display production, unmounted",
+              "reference product": "liquid crystal display, unmounted",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 18,
+            "metadata_sha256": "bc8455ea908a7adf343d0a5020abb819609b661b6d63a062c4321cf0cc6dfa5d",
+            "inventory_sha256": "82fdfa57172616f3425f9544d677fff08afdce385e9433358df99a98cfded638",
+            "activity_comment_sha256": "ef3db6b1877296431d1a9bac1ab1c244c9ea9e26af6e42de1bfc35204fe17e9e",
+            "product_information_sha256": "e18fc456868d04a6b6f700d6b34460b213ef0e39569dd8d82da6d9f96e52408d"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "LCD module, at plant",
+              "reference product": "LCD module, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "fe6773dda0dce083809f06a9a12022cb92fac11f2a29c85088c943684ed44c4e",
+            "inventory_sha256": "076c50a060536b332d4d5a170789481a22e163d9cb3c5593cdc7526915c6ac0f",
+            "activity_comment_sha256": "14a422747f96c909c6615eb9db4b960b6589f6a4898a04ff21776531dbbf8437",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "LCD module, at plant",
+              "reference product": "LCD module, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "1fab8758ae3571e926d14fe4dedf39af0fc8ad5397c5620cfac6812bbabdfc5d",
+            "inventory_sha256": "e6f52e41a064e5baee46593496f6ec7881e68bf2171dca26a0a9d038225b5e7f",
+            "activity_comment_sha256": "d21a69729a93a2f6e087eb814ac23b536c621923a39ca384f24305edd2fafd00",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off source profile is reviewed. Both products reference positive one kg of an unmounted TFT-LCD module, including glass, backlight, driver electronics and module assembly. Use the complete native LCD module once, factor +1; preserve signed caller quantities, uncertainty, formulas and separate foreground emissions. Do not use mercury, a mounted monitor, the distinct LCD screen assembly service, an equipment unit or a guessed kg-per-screen factor.",
+        "Source and native share the late-1990s 15-inch EPA component lineage: backlight 0.4307 kg, glass 0.2965 kg, logic IC 0.0082 kg, polycarbonate and injection moulding 0.0938 kg each. Source nylon regional shares total 0.0063 kg and four populated-board shares total 0.0438 kg, matching native aggregate masses. Native retains the complete assembly inventory. It replaces, rather than duplicates, source component production and internal uncertainty/correlations. This is a screening proxy, not equal LCI, LCIA or uncertainty.",
+        "Native regional component supply, populated-board mounting/solder mix, upstream energy, allocation, vintage and biosphere exclusions differ. Retain the complete native product without reconstructing internal mixes, adding component or assembly burdens, correcting yield, or adding a use/disposal stage. Score differences remain unquantified.",
+        "The source market retains one kg producer supply and its original 0.02 tkm rail and 0.02 tkm generic lorry final delivery, each with its supported source uncertainty. Complete native RER rail and RER lorry fleet are explicit geographic/fleet proxies for global market groups. No coal freight, added product losses, payload scaling or duplicate infrastructure. Other source releases, system models and reverse routes gain no scope."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e6ef0ee68e534da2c30246bed2d5ce1c9b60a0b42ceb479fe74dd74f12ddd485"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-35d5814b156beee8",
+      "mapping_method": "reviewed_lcd_module_39",
+      "review_path": "export/uvek_lcd_module_39_review.json",
+      "review_sha256": "23e215af737bd058b4fb94c48585446867cb0a5fc53d7e4c4fc83716e2f886f3",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with warnings and decisions logged for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for liquid crystal display, unmounted",
+            "reference product": "liquid crystal display, unmounted",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "3faa73df04766aa5fbb80510a39ed68de7f1ca185762cbca503663b1c29b7bfe",
+          "inventory_sha256": "37ad18da513d6573e9a9a35bae742ad6fe5d195c9a08930fb9eff2ebfcb00d1f",
+          "activity_comment_sha256": "26e0d04a9642ddfa4cca11600f54e0327b1275f0ec57a259fca07ed9fbf6c3f7",
+          "product_information_sha256": "e18fc456868d04a6b6f700d6b34460b213ef0e39569dd8d82da6d9f96e52408d"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "liquid crystal display production, unmounted",
+              "reference product": "liquid crystal display, unmounted",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 18,
+            "metadata_sha256": "bc8455ea908a7adf343d0a5020abb819609b661b6d63a062c4321cf0cc6dfa5d",
+            "inventory_sha256": "82fdfa57172616f3425f9544d677fff08afdce385e9433358df99a98cfded638",
+            "activity_comment_sha256": "ef3db6b1877296431d1a9bac1ab1c244c9ea9e26af6e42de1bfc35204fe17e9e",
+            "product_information_sha256": "e18fc456868d04a6b6f700d6b34460b213ef0e39569dd8d82da6d9f96e52408d"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "LCD module, at plant",
+              "reference product": "LCD module, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "fe6773dda0dce083809f06a9a12022cb92fac11f2a29c85088c943684ed44c4e",
+            "inventory_sha256": "076c50a060536b332d4d5a170789481a22e163d9cb3c5593cdc7526915c6ac0f",
+            "activity_comment_sha256": "14a422747f96c909c6615eb9db4b960b6589f6a4898a04ff21776531dbbf8437",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "LCD module, at plant",
+              "reference product": "LCD module, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "1fab8758ae3571e926d14fe4dedf39af0fc8ad5397c5620cfac6812bbabdfc5d",
+            "inventory_sha256": "e6f52e41a064e5baee46593496f6ec7881e68bf2171dca26a0a9d038225b5e7f",
+            "activity_comment_sha256": "d21a69729a93a2f6e087eb814ac23b536c621923a39ca384f24305edd2fafd00",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "lcd-39-native-module-market"
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off source profile is reviewed. Both products reference positive one kg of an unmounted TFT-LCD module, including glass, backlight, driver electronics and module assembly. Use the complete native LCD module once, factor +1; preserve signed caller quantities, uncertainty, formulas and separate foreground emissions. Do not use mercury, a mounted monitor, the distinct LCD screen assembly service, an equipment unit or a guessed kg-per-screen factor.",
+        "Source and native share the late-1990s 15-inch EPA component lineage: backlight 0.4307 kg, glass 0.2965 kg, logic IC 0.0082 kg, polycarbonate and injection moulding 0.0938 kg each. Source nylon regional shares total 0.0063 kg and four populated-board shares total 0.0438 kg, matching native aggregate masses. Native retains the complete assembly inventory. It replaces, rather than duplicates, source component production and internal uncertainty/correlations. This is a screening proxy, not equal LCI, LCIA or uncertainty.",
+        "Native regional component supply, populated-board mounting/solder mix, upstream energy, allocation, vintage and biosphere exclusions differ. Retain the complete native product without reconstructing internal mixes, adding component or assembly burdens, correcting yield, or adding a use/disposal stage. Score differences remain unquantified.",
+        "The source market retains one kg producer supply and its original 0.02 tkm rail and 0.02 tkm generic lorry final delivery, each with its supported source uncertainty. Complete native RER rail and RER lorry fleet are explicit geographic/fleet proxies for global market groups. No coal freight, added product losses, payload scaling or duplicate infrastructure. Other source releases, system models and reverse routes gain no scope."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9d5f97ee2728bd1893d85b2b24587b7f386278535350f08243dc0a7fac3d867f"
+        }
+      ]
     }
   ],
   "superseded_operations": [

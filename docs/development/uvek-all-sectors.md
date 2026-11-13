@@ -1912,3 +1912,7 @@ CDR milestone retained. The project now has 63 registered databases.
 No VACUUM ran. SQLite gained 2,818,109,440 reusable bytes internally while its
 physical file size remains unchanged. Routine mapping checks continue in memory.
 See [receipt](uvek-review-storage-cleanup-2026-11-13-batch-3.json).
+
+### LCD module correspondence — 13 November 2026
+
+Corrected both mercury matches to the complete native unmounted LCD module, retaining market delivery. Mapping and Premise cache/sign checks pass, as do in-memory LCIs without database writes. The fresh source-3.9 battery cohort has 170 unapproved rules (previously 171), next Swiss waste polyvinylfluoride. Eight of nineteen sectors remain qualified. See `uvek-lcd-module-39-review.md` and its verification JSON. Queued for the next batch push.

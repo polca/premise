@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "d029f6fc0dffdca267a3f65ef84f937c3499c32e",
+  "scope_registration": {
+    "prior_scopes": 1304,
+    "new_scopes": 1306,
+    "all_existing_operations_unchanged": true
+  },
+  "tests": {
+    "brightpath_mapping_and_other_storage_checks": 31,
+    "updated_storage_destination_count_check": 1,
+    "premise_fresh_cached_sign_uncertainty_and_scope_checks": 10,
+    "lint": "passed",
+    "note": "Initial storage snapshot expected 4022 distinct direct destinations; the new module adds one, now 4023. Updated the expectation and reran that check successfully.",
+    "installed_package_premise_checks": 10
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 3,
+    "native_suppliers": 3,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-7a3bce81ec325a28",
+        "source": {
+          "location": "GLO",
+          "name": "liquid crystal display production, unmounted",
+          "reference product": "liquid crystal display, unmounted",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 2.4636523467854408e-28,
+        "full_graph_residual": {
+          "residual_before": 3.840641797380597e-09,
+          "residual_after": 1.1688729411457599e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.840641797380597e-09,
+          "residual_after": 1.1688729411457599e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-35d5814b156beee8",
+        "source": {
+          "location": "GLO",
+          "name": "market for liquid crystal display, unmounted",
+          "reference product": "liquid crystal display, unmounted",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.7763568394002505e-15,
+        "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+        "full_graph_residual": {
+          "residual_before": 7.486421869213635e-08,
+          "residual_after": 2.5938323636354017e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.486421869213635e-08,
+          "residual_after": 2.5938323636354017e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the two LCD module production/market interfaces and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "frontier": {
+    "before_unapproved_rule_count": 171,
+    "after_unapproved_rule_count": 170,
+    "cleared_rule_ids": [
+      "bp-35d5814b156beee8"
+    ],
+    "new_unapproved_rules": [],
+    "next_unapproved_rule": "bp-5e4bb7a43763f0eb",
+    "next_source": {
+      "location": "CH",
+      "name": "market for waste polyvinylfluoride",
+      "reference product": "waste polyvinylfluoride",
+      "unit": "kilogram"
+    },
+    "next_target": {
+      "location": "CH",
+      "name": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+      "reference product": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+      "unit": "kilogram"
+    },
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique rules in the inspected source-3.9 cut-off battery cohort, not dataset count or all source profiles. Production counterpart also tested independently; not pending in this cohort."
+  },
+  "runtime_python_changes": [],
+  "installed_package_verification": {
+    "brightpath_commit": "d029f6fc0dffdca267a3f65ef84f937c3499c32e",
+    "installed_resources_match_commit": [
+      "export/uvek_lcd_module_39_review.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "migrations/RESOURCE_MANIFEST.json"
+    ],
+    "removed_unused_wheel": "brightpath-1.0.0a14-py3-none-any.whl",
+    "removed_bytes": 44096466,
+    "sha256": "68d075ee0e78243a98da83747a41be8bd17cc289324483ecbb99c76b003dc52b"
+  }
+}
