@@ -35,8 +35,8 @@ Ten fresh/cache and individual-scope refusal tests pass. Four ordinary signed
 in-memory LCIs are finite and reverse correctly; two independently flattened
 native-demand inventories also agree after unchanged-matrix numerical refinement.
 No database, activity or processed file is created. Source/biosphere metadata
-and registered database names remain unchanged. The next combined battery retry
-will check these scopes together with the seven material correspondences under
-review. Battery remains unfinished; eight of 19 sectors remain qualified.
+and registered database names remain unchanged. The combined battery retry clears both
+services and the seven new material rules, 185 → 176 in this source cohort, with
+none newly unapproved. Battery remains unfinished; eight of 19 sectors remain qualified.
 
 See [verification](uvek-battery-reused-services-39-verification.json).

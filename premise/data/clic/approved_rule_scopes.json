@@ -261077,6 +261077,1172 @@
           "fingerprint": "4de31b0ca9b357c97cdf812ba39e28ad4572aa536f45a364651ff9cac2252d82"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-43b626507103b4e9",
+      "mapping_method": "reviewed_battery_native_material_39",
+      "review_path": "export/uvek_battery_native_materials_39_review.json",
+      "review_sha256": "30c69b49ee3e1978818b684ba23c178cf91a4ae742156baf95383b0a646ef583",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warnings and logged decisions.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for lime, hydrated, packed",
+          "reference product": "lime, hydrated, packed",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for lime, hydrated, packed",
+            "reference product": "lime, hydrated, packed",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "ef46d1ffc0f23a11ee9ad2a3e4fbc1519a77a219440cc81b8c0fab1c31fcf80a",
+          "inventory_sha256": "5d6b99974cf09745f30d9d5524c31e25e41f8d208c288a5ffa8be50986ef525e",
+          "activity_comment_sha256": "209d0f1abc8343dbfd25075c4484d0e81ea66189ca90cf0aabad00e3a5c3843a",
+          "product_information_sha256": "53e39dbc090e0f2480eda535423c2f65b116f782c45b6e7af0e5438b0b81d3f7"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "lime production, hydrated, packed",
+              "reference product": "lime, hydrated, packed",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "433e0e0d08bbce2cf250d5cc18aeb0bbe4a1c4b74f144bab64b63c86621944ab",
+            "inventory_sha256": "8c78e8ee26d03571543494b428c0b544c29e6f71c4aa6dd705585a643a1eedfd",
+            "activity_comment_sha256": "0c9aa061969a90420559db8286cb38922e8b915dba60ee762acc1abfd3a0b360",
+            "product_information_sha256": "53e39dbc090e0f2480eda535423c2f65b116f782c45b6e7af0e5438b0b81d3f7"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lime, hydrated, packed, at plant",
+              "reference product": "Lime, hydrated, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "caf87295659106bc5219e6f9c1290ba589533242b72c758ddff58e8a88e150f5",
+            "inventory_sha256": "08f1cc184c46501d0109fa0cb702b6106d58f51046b442afef1a6d3cea3119e4",
+            "activity_comment_sha256": "fba328a58f8c4815370ad54f93b012a63b20c88185da5f8d5b1a1f6d08dbee02",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lime, hydrated, packed, at plant",
+              "reference product": "Lime, hydrated, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "ee97d1ad63eb5c13d7016913389b1331e41794617ba5a57eee67d5d5a634ca62",
+            "inventory_sha256": "25546c0e0f71afbf0dfe8852b7e0d53465775d875d567c72199a0479e77395ce",
+            "activity_comment_sha256": "2eeceda6d59d440de0f3abccd1b2fa4d777b6a335fdfb61514b6e0efcf490a22",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "battery-39-native-material-market-43b626507103b4e9",
+        "market_interfaces": [
+          {
+            "kind": "producer",
+            "amount": 1.0,
+            "source_location": "CH",
+            "target": {
+              "location": "CH",
+              "name": "Lime, hydrated, packed, at plant",
+              "reference product": "Lime, hydrated, packed, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.007513945,
+            "source_location": "RER",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.001513088,
+            "source_location": "RER",
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.075702611,
+            "source_location": "RER",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent 3.9 cut-off profile is reviewed. Source and complete native product references are positive one matching kg, metre or equipment unit as applicable. Factor +1 preserves signed caller quantities, supported uncertainty, formulas, foreground ownership and separate emissions; other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete native production inventory once; it replaces the source upstream production model, including its internal uncertainty/formulas. Technology, allocation, regional supply, upstream energy, vintage, native biosphere exclusions and modelling correlations differ. Score differences remain unquantified; no LCI, LCIA or stochastic equivalence is established.",
+        "Market wrappers retain every original producer entry/share and finished-product freight quantity, with supported exchange uncertainty, separately and without renormalization. Complete native product replaces each original producer. Internal producer distributions are not reconstructed. Whole native freight includes operation and relevant infrastructure; final delivery is distinct from raw-material freight inside native production. No second vehicle, port, infrastructure, product loss, payload, yield, purity, lifetime or efficiency multiplier is added.",
+        "Packed hydrated lime is Ca(OH)2, not quicklime/CaO or loose lime. The exact source market has one positive kg of the inspected Swiss packed producer and three final freight entries. Use complete packed native lime once, with its existing loose-lime input, packing and heat. Do not add packing again or convert by CaO/Ca(OH)2 molar mass. Native CH is retained for source CH; regional delivery fleets and upstream releases differ."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9bd138c1d55f605f1b5faa49bcfca25b60be7a190f1ee4c997d015cda8420fb9"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-e1e1fd673ebb9025",
+      "mapping_method": "reviewed_battery_native_material_39",
+      "review_path": "export/uvek_battery_native_materials_39_review.json",
+      "review_sha256": "30c69b49ee3e1978818b684ba23c178cf91a4ae742156baf95383b0a646ef583",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warnings and logged decisions.",
+      "inspection": {
+        "source": {
+          "location": "CH",
+          "name": "lime production, hydrated, packed",
+          "reference product": "lime, hydrated, packed",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "lime production, hydrated, packed",
+            "reference product": "lime, hydrated, packed",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "433e0e0d08bbce2cf250d5cc18aeb0bbe4a1c4b74f144bab64b63c86621944ab",
+          "inventory_sha256": "8c78e8ee26d03571543494b428c0b544c29e6f71c4aa6dd705585a643a1eedfd",
+          "activity_comment_sha256": "0c9aa061969a90420559db8286cb38922e8b915dba60ee762acc1abfd3a0b360",
+          "product_information_sha256": "53e39dbc090e0f2480eda535423c2f65b116f782c45b6e7af0e5438b0b81d3f7"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lime, hydrated, packed, at plant",
+              "reference product": "Lime, hydrated, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "caf87295659106bc5219e6f9c1290ba589533242b72c758ddff58e8a88e150f5",
+            "inventory_sha256": "08f1cc184c46501d0109fa0cb702b6106d58f51046b442afef1a6d3cea3119e4",
+            "activity_comment_sha256": "fba328a58f8c4815370ad54f93b012a63b20c88185da5f8d5b1a1f6d08dbee02",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lime, hydrated, packed, at plant",
+              "reference product": "Lime, hydrated, packed, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "ee97d1ad63eb5c13d7016913389b1331e41794617ba5a57eee67d5d5a634ca62",
+            "inventory_sha256": "25546c0e0f71afbf0dfe8852b7e0d53465775d875d567c72199a0479e77395ce",
+            "activity_comment_sha256": "2eeceda6d59d440de0f3abccd1b2fa4d777b6a335fdfb61514b6e0efcf490a22",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null,
+        "market_interfaces": [],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent 3.9 cut-off profile is reviewed. Source and complete native product references are positive one matching kg, metre or equipment unit as applicable. Factor +1 preserves signed caller quantities, supported uncertainty, formulas, foreground ownership and separate emissions; other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete native production inventory once; it replaces the source upstream production model, including its internal uncertainty/formulas. Technology, allocation, regional supply, upstream energy, vintage, native biosphere exclusions and modelling correlations differ. Score differences remain unquantified; no LCI, LCIA or stochastic equivalence is established.",
+        "Market wrappers retain every original producer entry/share and finished-product freight quantity, with supported exchange uncertainty, separately and without renormalization. Complete native product replaces each original producer. Internal producer distributions are not reconstructed. Whole native freight includes operation and relevant infrastructure; final delivery is distinct from raw-material freight inside native production. No second vehicle, port, infrastructure, product loss, payload, yield, purity, lifetime or efficiency multiplier is added.",
+        "Packed hydrated lime: source and native describe the same Swiss KFN packing lineage, including one kg loose hydrated lime and one packing service. Source useful packing/administration heat is 0.00141 MJ; native uses 0.0015 MJ of light fuel oil in a boiler service. Those thermal reference boundaries differ; retain the complete native process, without applying a heat ratio to the kg of product or adding source useful heat/packing a second time."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3f8d2eabab2b8440d67a8693eb3bd344b1285fc1cb4a99d3f0a78f255abd36c8"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-855426f2360906db",
+      "mapping_method": "reviewed_battery_native_material_39",
+      "review_path": "export/uvek_battery_native_materials_39_review.json",
+      "review_sha256": "30c69b49ee3e1978818b684ba23c178cf91a4ae742156baf95383b0a646ef583",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warnings and logged decisions.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for phosphorus pentachloride",
+          "reference product": "phosphorus pentachloride",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for phosphorus pentachloride",
+            "reference product": "phosphorus pentachloride",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "5ea327b0906a03309a3d65727f8311cd4792c4e1d89b8cc60d56660d4b8d70a9",
+          "inventory_sha256": "bbac48b199e411085699f7ca41e9c252c201b1f0e973f8ef3665f3c11c90a26a",
+          "activity_comment_sha256": "71f8c18373d970c364a98212025c67e01ad055ed2646f1d1ed95d2bd6aad02a2",
+          "product_information_sha256": "2f55010a4b975d82c03779f8770c52897d829ab4d408bcec44d9bbc93dd5e3aa"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "phosphorus pentachloride production",
+              "reference product": "phosphorus pentachloride",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 7,
+            "metadata_sha256": "6f08ed8bb8972fa6f08ee5925fd1052c8e7025c432f12987a40d3af9d4ebcc38",
+            "inventory_sha256": "9aadeec0be15609809ea474267dbd558ca598ee888776008f6d1d75cc0bd05e7",
+            "activity_comment_sha256": "032d4c888f64b54652e768c1bf055eeda0b64f3526866e157ed62bea8dd5c999",
+            "product_information_sha256": "2f55010a4b975d82c03779f8770c52897d829ab4d408bcec44d9bbc93dd5e3aa"
+          },
+          {
+            "identity": {
+              "name": "phosphorus pentachloride production",
+              "reference product": "phosphorus pentachloride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 54,
+            "metadata_sha256": "e91bfb2c9d517ccd242eb4bcca5f8df034a53c0110961187ce67a8078ca3a867",
+            "inventory_sha256": "382157b1a602733a04b2c2f1f3edbb45e77b75d271972fbcc684f736c7ea1e3a",
+            "activity_comment_sha256": "032d4c888f64b54652e768c1bf055eeda0b64f3526866e157ed62bea8dd5c999",
+            "product_information_sha256": "2f55010a4b975d82c03779f8770c52897d829ab4d408bcec44d9bbc93dd5e3aa"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Phosphorous pentachloride, at plant",
+              "reference product": "Phosphorous pentachloride, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "af335d4d9e4cac9a5c6d7701da4dc1c3d911333224011bd6cec23ab271c9d402",
+            "inventory_sha256": "1a94a0e7396e6a279d98ed33d1c04bacd65b1b2528e77ee62c9d76bc6083990e",
+            "activity_comment_sha256": "a3bf53bf35aa0703219106015598e93666814df1b8a6eaf8f7a1dbf6734be444",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Phosphorous pentachloride, at plant",
+              "reference product": "Phosphorous pentachloride, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "5141823d2e8137edc1595d2507af17352318f3e5cf2c755f79bf3f373293ad38",
+            "inventory_sha256": "e3ceeb55c3ed785750e98d99e6aebb0d922d9e9fc6d94f4a8bbed614ab12c42f",
+            "activity_comment_sha256": "872bcbc52720059d6892e589c548e0058332fa28f4eb0bc1494abd009fc42185",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "battery-39-native-material-market-855426f2360906db",
+        "market_interfaces": [
+          {
+            "kind": "producer",
+            "amount": 0.0493720466375044,
+            "source_location": "CN",
+            "target": {
+              "location": "CN",
+              "name": "Phosphorous pentachloride, at plant",
+              "reference product": "Phosphorous pentachloride, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "producer",
+            "amount": 0.950627953362496,
+            "source_location": "RoW",
+            "target": {
+              "location": "CN",
+              "name": "Phosphorous pentachloride, at plant",
+              "reference product": "Phosphorous pentachloride, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.3091,
+            "source_location": "GLO",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.0246,
+            "source_location": "GLO",
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.2088,
+            "source_location": "GLO",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.599,
+            "source_location": "GLO",
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent 3.9 cut-off profile is reviewed. Source and complete native product references are positive one matching kg, metre or equipment unit as applicable. Factor +1 preserves signed caller quantities, supported uncertainty, formulas, foreground ownership and separate emissions; other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete native production inventory once; it replaces the source upstream production model, including its internal uncertainty/formulas. Technology, allocation, regional supply, upstream energy, vintage, native biosphere exclusions and modelling correlations differ. Score differences remain unquantified; no LCI, LCIA or stochastic equivalence is established.",
+        "Market wrappers retain every original producer entry/share and finished-product freight quantity, with supported exchange uncertainty, separately and without renormalization. Complete native product replaces each original producer. Internal producer distributions are not reconstructed. Whole native freight includes operation and relevant infrastructure; final delivery is distinct from raw-material freight inside native production. No second vehicle, port, infrastructure, product loss, payload, yield, purity, lifetime or efficiency multiplier is added.",
+        "Phosphorus pentachloride: native spelling Phosphorous identifies PCl5, CAS 10026-13-8, not phosphorus trichloride. Both describe the patent-based PCl3/chlorine autoclave route with the same stated conversion. Use native complete PCl5 once for each original CN/RoW producer share, retaining all four freight entries. Native global label represents a European-data proxy; upstream energy, geography, allocation and vintage differ. Do not reapply the stated 93.9% conversion, add PCl3/chlorine inputs, emissions or chemical-plant infrastructure, or infer a purity correction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "493a9737b527b8f0eac559b917f77889aff02f60fc31a3fec66fc5f5bd43bb4a"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-f0e4cb1e4047a1ca",
+      "mapping_method": "reviewed_battery_native_material_39",
+      "review_path": "export/uvek_battery_native_materials_39_review.json",
+      "review_sha256": "30c69b49ee3e1978818b684ba23c178cf91a4ae742156baf95383b0a646ef583",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warnings and logged decisions.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for cable, data cable in infrastructure",
+          "reference product": "cable, data cable in infrastructure",
+          "unit": "meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for cable, data cable in infrastructure",
+            "reference product": "cable, data cable in infrastructure",
+            "location": "GLO",
+            "unit": "meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "f9f83ebd721cbeb9515987fffd4df09fde4ec06781e92fd712e30c37f0a7c403",
+          "inventory_sha256": "02807ecde6f904445dd722c3f723b90d9183ce8e5aa315b3bd5bb31b5fdfa218",
+          "activity_comment_sha256": "769a0e7b7da7c6c22a97788d93295413f107341612fc35ee36416866ab22f0ba",
+          "product_information_sha256": "e5a79ae0cb41f83f665fd0743514137569522db093c79c1cda544d9f4e016219"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "cable production, data cable in infrastructure",
+              "reference product": "cable, data cable in infrastructure",
+              "location": "GLO",
+              "unit": "meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "516708b77bdb32f76a9876f44068d6df44215ad71862f219a01d684aa5523888",
+            "inventory_sha256": "6ed5e7ac5e63254f0759d5a196b08b20db8a27b2c5e43ec26bdb9e3cf6566cbe",
+            "activity_comment_sha256": "2c8f3f68f2fb23dcc3ded8cf16b997f4f3c046b76a126e33b136e32824dd5d9d",
+            "product_information_sha256": "e5a79ae0cb41f83f665fd0743514137569522db093c79c1cda544d9f4e016219"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Cable, data cable in infrastructure, at plant",
+              "reference product": "Cable, data cable in infrastructure, at plant",
+              "location": "GLO",
+              "unit": "meter"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 8,
+            "metadata_sha256": "af1faafd41f189ee85521feae17d03667b42210debd6e56211c47695c6d02832",
+            "inventory_sha256": "7d53368f76c69ee9ba2a0a037a42da4268402a93f30061f5fa026ab782479376",
+            "activity_comment_sha256": "046f11731b3b9fb91b925823eb05ea3b7fbc006676c602296ff36283d162feb8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Cable, data cable in infrastructure, at plant",
+              "reference product": "Cable, data cable in infrastructure, at plant",
+              "location": "GLO",
+              "unit": "meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 8,
+            "metadata_sha256": "7417ae2a55c3146ce03d2e7a8864d80d8177dd8323cf0bb0549839e39b4c6af0",
+            "inventory_sha256": "ce1d5fc97a9ea4325ea200e4ec60d30dc97f91747b6ef431a5c2a8ebbbc9c3ea",
+            "activity_comment_sha256": "1c00aa46d7f58bc513e99f13e716278205f8075b6bdf74dd6401e7fef6224e5f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "battery-39-native-material-market-f0e4cb1e4047a1ca",
+        "market_interfaces": [
+          {
+            "kind": "producer",
+            "amount": 1.0,
+            "source_location": "GLO",
+            "target": {
+              "location": "GLO",
+              "name": "Cable, data cable in infrastructure, at plant",
+              "reference product": "Cable, data cable in infrastructure, at plant",
+              "unit": "meter"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.0017696,
+            "source_location": "GLO",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.001106,
+            "source_location": "GLO",
+            "target": {
+              "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+              "location": "CH",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.0357712,
+            "source_location": "GLO",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.087848,
+            "source_location": "GLO",
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent 3.9 cut-off profile is reviewed. Source and complete native product references are positive one matching kg, metre or equipment unit as applicable. Factor +1 preserves signed caller quantities, supported uncertainty, formulas, foreground ownership and separate emissions; other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete native production inventory once; it replaces the source upstream production model, including its internal uncertainty/formulas. Technology, allocation, regional supply, upstream energy, vintage, native biosphere exclusions and modelling correlations differ. Score differences remain unquantified; no LCI, LCIA or stochastic equivalence is established.",
+        "Market wrappers retain every original producer entry/share and finished-product freight quantity, with supported exchange uncertainty, separately and without renormalization. Complete native product replaces each original producer. Internal producer distributions are not reconstructed. Whole native freight includes operation and relevant infrastructure; final delivery is distinct from raw-material freight inside native production. No second vehicle, port, infrastructure, product loss, payload, yield, purity, lifetime or efficiency multiplier is added.",
+        "Data cable: retain one metre, not one kg, of the complete average metallic/glass-fibre data cable. Source and native material coefficients for copper, glass fibre, HDPE, extrusion, wire drawing and rolling infrastructure have shared legacy lineage. Native documentation describes a 50:50 mix but also contains contradictory three-conductor boilerplate and historical metre-weight information; no detailed bandwidth, cable-category or weight equivalence is established and no mass-per-metre multiplier is applied.",
+        "Native production includes estimated manufacture/infrastructure and its own raw-material freight. Keep it once plus all four original final-delivery entries. Light-commercial delivery uses complete native CH 3.5t fleet as an explicit geography/fuel/vehicle proxy; generic heavy freight uses complete native RER fleet. Do not merge light/heavy delivery, select coal freight, add source material/rolling-mill inputs again, or invent missing production air/water/waste inventories."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f1781e05e7af5f07d5eb613290b8f80997bd94f24d247727d63bd9f78135b7f4"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-8be404e7d5db36be",
+      "mapping_method": "reviewed_battery_native_material_39",
+      "review_path": "export/uvek_battery_native_materials_39_review.json",
+      "review_sha256": "30c69b49ee3e1978818b684ba23c178cf91a4ae742156baf95383b0a646ef583",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warnings and logged decisions.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for inverter, 500kW",
+          "reference product": "inverter, 500kW",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for inverter, 500kW",
+            "reference product": "inverter, 500kW",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "a4f18875f3c748a01f7fc48fb900bfcf07510a8e45276b5fc4cbcd3542b19fbb",
+          "inventory_sha256": "8fb587041d6b73492abb7b68f73b7ecec0d22cd9cf902f059d202a644cdbc974",
+          "activity_comment_sha256": "0fce7932e79f85c45dc6b8009904d1f92601ba4e992429f9d1de13b70b466f06",
+          "product_information_sha256": "5fd5b15307cef8b8e21a04c5a82b7c6c11b2339cd7e85d63403dc8355e61e8f4"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "inverter production, 500kW",
+              "reference product": "inverter, 500kW",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 35,
+            "metadata_sha256": "bdeea2282fffc104dc25a27cd506ea0ae759ab66448ab0be6fe02188425d1a2f",
+            "inventory_sha256": "e3ea583c1ecb08f147338fb2376465bbf171f58c4a885590c2df8e1d536428e9",
+            "activity_comment_sha256": "b5d71c0a1cdff204805e2c350b7ebd74e639202df53c7988ea45b6c4d2d106a7",
+            "product_information_sha256": "5fd5b15307cef8b8e21a04c5a82b7c6c11b2339cd7e85d63403dc8355e61e8f4"
+          },
+          {
+            "identity": {
+              "name": "inverter production, 500kW",
+              "reference product": "inverter, 500kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 53,
+            "metadata_sha256": "c3977490c21e8a286a005810d5c0d7dbc54e30570da30fac3d1293f0b946af38",
+            "inventory_sha256": "fdc9ef8ea019ddb2048c6d9ffb56d7abe320c3c599aa0e35328d945d955491df",
+            "activity_comment_sha256": "b5d71c0a1cdff204805e2c350b7ebd74e639202df53c7988ea45b6c4d2d106a7",
+            "product_information_sha256": "5fd5b15307cef8b8e21a04c5a82b7c6c11b2339cd7e85d63403dc8355e61e8f4"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Inverter, 500kW, at plant",
+              "reference product": "Inverter, 500kW, at plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 37,
+            "metadata_sha256": "6f9234da4855f8eb5dd0369d3a6389b065fd54beac0dbabed18916ecb9ececcd",
+            "inventory_sha256": "034c05a651717e1b0922e82390f5c614525f53188e8c813f87ef3bfcae1edb5d",
+            "activity_comment_sha256": "c40aa5f202bfcb669d2ca1a9db9e058edbb57f97e0dea981caead70f2d271934",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Inverter, 500kW, at plant",
+              "reference product": "Inverter, 500kW, at plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 37,
+            "metadata_sha256": "6b219512e381e1657c284b3b8012faafcd02c5f705927f95d5aa9c3d4503124a",
+            "inventory_sha256": "4df20647aed07ab39f5ef4d7e3b429fd1e33c1ff6ba3f5c09ca2e66dc6bcb415",
+            "activity_comment_sha256": "39bf9b713b10809108e3c75ea1188ba0b85f0c0bf89755a4f2a55943a4df7992",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "battery-39-native-material-market-8be404e7d5db36be",
+        "market_interfaces": [
+          {
+            "kind": "producer",
+            "amount": 0.330592351639303,
+            "source_location": "RER",
+            "target": {
+              "location": "RER",
+              "name": "Inverter, 500kW, at plant",
+              "reference product": "Inverter, 500kW, at plant",
+              "unit": "unit"
+            }
+          },
+          {
+            "kind": "producer",
+            "amount": 0.669407648360697,
+            "source_location": "RoW",
+            "target": {
+              "location": "RER",
+              "name": "Inverter, 500kW, at plant",
+              "reference product": "Inverter, 500kW, at plant",
+              "unit": "unit"
+            }
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent 3.9 cut-off profile is reviewed. Source and complete native product references are positive one matching kg, metre or equipment unit as applicable. Factor +1 preserves signed caller quantities, supported uncertainty, formulas, foreground ownership and separate emissions; other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete native production inventory once; it replaces the source upstream production model, including its internal uncertainty/formulas. Technology, allocation, regional supply, upstream energy, vintage, native biosphere exclusions and modelling correlations differ. Score differences remain unquantified; no LCI, LCIA or stochastic equivalence is established.",
+        "Market wrappers retain every original producer entry/share and finished-product freight quantity, with supported exchange uncertainty, separately and without renormalization. Complete native product replaces each original producer. Internal producer distributions are not reconstructed. Whole native freight includes operation and relevant infrastructure; final delivery is distinct from raw-material freight inside native production. No second vehicle, port, infrastructure, product loss, payload, yield, purity, lifetime or efficiency multiplier is added.",
+        "Inverter: source and native both reference one complete 500kW PV grid-connected inverter, about 3000 kg, with the same stated 95.4% efficiency lineage. This is an equipment unit, not a kW, kg or kWh service. Retain both original RER/RoW producer entries using the complete native RER inventory as a geographic/vintage proxy. Source market has no separate freight: add none. Production already includes materials, packaging, manufacture and end-of-life; no second disposal, lifetime/capacity scaling or inverse-efficiency multiplier is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ffaac9a8cb1e60a614821396b1cb201fc269f196bf524445e7a3fb949fd54609"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-a03bddee5eee2616",
+      "mapping_method": "reviewed_battery_native_material_39",
+      "review_path": "export/uvek_battery_native_materials_39_review.json",
+      "review_sha256": "30c69b49ee3e1978818b684ba23c178cf91a4ae742156baf95383b0a646ef583",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warnings and logged decisions.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for methylchloride",
+          "reference product": "methylchloride",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for methylchloride",
+            "reference product": "methylchloride",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 11,
+          "metadata_sha256": "bcd7db779d237a766707a02023b70ff8c37fa4d882d2be5717f3ff3e832311a2",
+          "inventory_sha256": "cdc31fefc4d79091f187f1b7c20236c8eefe6ad895c802adf7c5f5763f89a008",
+          "activity_comment_sha256": "e7e9cd94f3523dc63427e9eeb046129cb78ebfa9a1158b0645a5465cc570de87",
+          "product_information_sha256": "b4edefea29aa02eec21a6207c187342b7dac87f59389e700657f1910f9625821"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "methylchloride production",
+              "reference product": "methylchloride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 197,
+            "metadata_sha256": "baad991bc0204e673987a112e9eb7d461a791a3a75b5e7b7b2c3efdb5adcd7e3",
+            "inventory_sha256": "adebc4b231c0a520a8a43dfbe0e60ca7f7dd2e6e5722648b7871597f2f8ed536",
+            "activity_comment_sha256": "646dfb13cec9ef1226bffa07f731ccc0cf4ea4dc8081805210170a985df1d5b6",
+            "product_information_sha256": "b4edefea29aa02eec21a6207c187342b7dac87f59389e700657f1910f9625821"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Methylchloride, at plant",
+              "reference product": "Methylchloride, at plant",
+              "location": "WEU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 94,
+            "metadata_sha256": "851d3b8e3e1f32b00ca27b3f1172b11b563ef67aa68c2aa7530e7481d1771e66",
+            "inventory_sha256": "c27ca0172675379acf76f353d1c57ee8dcb723aa1676bde2e641c28ea69e4f3e",
+            "activity_comment_sha256": "f1e3d29dc0be0ab6cefb8153216667a0dd531771710869bf50a1209f058ae685",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Methylchloride, at plant",
+              "reference product": "Methylchloride, at plant",
+              "location": "WEU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 98,
+            "metadata_sha256": "aefe2b4ac63d7755f58a80f5cd67954b73a78776212131f8eb032930cc70d941",
+            "inventory_sha256": "5d5f416f2afb6382f39430b28710fb7fd656d0cfb6a027f11a7326586394bff1",
+            "activity_comment_sha256": "7e20042471c710329e9afd4fb152cd5a92a1ccddf9b6952c60dae5906b7e5fe8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "battery-39-native-material-market-a03bddee5eee2616",
+        "market_interfaces": [
+          {
+            "kind": "producer",
+            "amount": 1.0,
+            "source_location": "RoW",
+            "target": {
+              "location": "WEU",
+              "name": "Methylchloride, at plant",
+              "reference product": "Methylchloride, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.0224231473350459,
+            "source_location": "IN",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.08093386943083909,
+            "source_location": "CN",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.0056780093482361425,
+            "source_location": "ZA",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.11165767412994829,
+            "source_location": "RoW",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.08840729975593056,
+            "source_location": "US",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.0246,
+            "source_location": "RoW",
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.0037411136550834123,
+            "source_location": "ZA",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.18116364249000133,
+            "source_location": "RoW",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.02389524385491526,
+            "source_location": "BR",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.599,
+            "source_location": "GLO",
+            "target": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent 3.9 cut-off profile is reviewed. Source and complete native product references are positive one matching kg, metre or equipment unit as applicable. Factor +1 preserves signed caller quantities, supported uncertainty, formulas, foreground ownership and separate emissions; other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete native production inventory once; it replaces the source upstream production model, including its internal uncertainty/formulas. Technology, allocation, regional supply, upstream energy, vintage, native biosphere exclusions and modelling correlations differ. Score differences remain unquantified; no LCI, LCIA or stochastic equivalence is established.",
+        "Market wrappers retain every original producer entry/share and finished-product freight quantity, with supported exchange uncertainty, separately and without renormalization. Complete native product replaces each original producer. Internal producer distributions are not reconstructed. Whole native freight includes operation and relevant infrastructure; final delivery is distinct from raw-material freight inside native production. No second vehicle, port, infrastructure, product loss, payload, yield, purity, lifetime or efficiency multiplier is added.",
+        "Methylchloride is CH3Cl, CAS 74-87-3, per positive kg, not methylene chloride/dichloromethane or another chlorinated chemical. Source and native use the Boustead cumulative-system lineage. Native WEU replaces RoW production as an explicit geographic/historical-technology proxy, with all ten original final freight entries retained separately, including five generic rail entries using complete RER rail rather than Chinese coal freight. Native cumulative production already includes upstream energy/raw-material logistics; add no duplicate source utilities.",
+        "The cumulative source/native production documentation excludes main-process infrastructure and land-use information and lacks internal uncertainty assessment; IAM updates cannot recreate unlisted internal energy dependencies. Preserve that coverage limitation and caller uncertainty without inventing missing land, plant infrastructure, waste treatment or a recovery credit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a3ff39ffaaf180ec91881b238963f0246e4cba19b0094d79354fa89ba1fba9bd"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-312bd6bf4beef9a9",
+      "mapping_method": "reviewed_battery_native_material_39",
+      "review_path": "export/uvek_battery_native_materials_39_review.json",
+      "review_sha256": "30c69b49ee3e1978818b684ba23c178cf91a4ae742156baf95383b0a646ef583",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warnings and logged decisions.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for methylchloride",
+          "reference product": "methylchloride",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for methylchloride",
+            "reference product": "methylchloride",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "90c10915f9045c5598703d67b1564714fcc1da61fb46e9d9c92973e40ed3c593",
+          "inventory_sha256": "342ecc9498da43052bb5cb50f698e01b7a0f855bbe12af92c0460691f68b5611",
+          "activity_comment_sha256": "647953bca556b4cf51280458b6b70e1ce344e8ae4e4a6430c7022924f2b896d2",
+          "product_information_sha256": "b4edefea29aa02eec21a6207c187342b7dac87f59389e700657f1910f9625821"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "methylchloride production",
+              "reference product": "methylchloride",
+              "location": "WEU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 113,
+            "metadata_sha256": "e3cd7afbef84e9ea80bfea1aa5dd0a5b3aaa93661d6d64f50ca73bd6a93d719e",
+            "inventory_sha256": "aeccc4b207236c402e76c2678d56141bef724287295dc120b6d7537b1be3149d",
+            "activity_comment_sha256": "646dfb13cec9ef1226bffa07f731ccc0cf4ea4dc8081805210170a985df1d5b6",
+            "product_information_sha256": "b4edefea29aa02eec21a6207c187342b7dac87f59389e700657f1910f9625821"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Methylchloride, at plant",
+              "reference product": "Methylchloride, at plant",
+              "location": "WEU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 94,
+            "metadata_sha256": "851d3b8e3e1f32b00ca27b3f1172b11b563ef67aa68c2aa7530e7481d1771e66",
+            "inventory_sha256": "c27ca0172675379acf76f353d1c57ee8dcb723aa1676bde2e641c28ea69e4f3e",
+            "activity_comment_sha256": "f1e3d29dc0be0ab6cefb8153216667a0dd531771710869bf50a1209f058ae685",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Methylchloride, at plant",
+              "reference product": "Methylchloride, at plant",
+              "location": "WEU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 98,
+            "metadata_sha256": "aefe2b4ac63d7755f58a80f5cd67954b73a78776212131f8eb032930cc70d941",
+            "inventory_sha256": "5d5f416f2afb6382f39430b28710fb7fd656d0cfb6a027f11a7326586394bff1",
+            "activity_comment_sha256": "7e20042471c710329e9afd4fb152cd5a92a1ccddf9b6952c60dae5906b7e5fe8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "battery-39-native-material-market-312bd6bf4beef9a9",
+        "market_interfaces": [
+          {
+            "kind": "producer",
+            "amount": 1.0,
+            "source_location": "WEU",
+            "target": {
+              "location": "WEU",
+              "name": "Methylchloride, at plant",
+              "reference product": "Methylchloride, at plant",
+              "unit": "kilogram"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.0438,
+            "source_location": "RER",
+            "target": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.0219,
+            "source_location": "RER",
+            "target": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          },
+          {
+            "kind": "freight",
+            "amount": 0.1713,
+            "source_location": "RER",
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            }
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent 3.9 cut-off profile is reviewed. Source and complete native product references are positive one matching kg, metre or equipment unit as applicable. Factor +1 preserves signed caller quantities, supported uncertainty, formulas, foreground ownership and separate emissions; other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete native production inventory once; it replaces the source upstream production model, including its internal uncertainty/formulas. Technology, allocation, regional supply, upstream energy, vintage, native biosphere exclusions and modelling correlations differ. Score differences remain unquantified; no LCI, LCIA or stochastic equivalence is established.",
+        "Market wrappers retain every original producer entry/share and finished-product freight quantity, with supported exchange uncertainty, separately and without renormalization. Complete native product replaces each original producer. Internal producer distributions are not reconstructed. Whole native freight includes operation and relevant infrastructure; final delivery is distinct from raw-material freight inside native production. No second vehicle, port, infrastructure, product loss, payload, yield, purity, lifetime or efficiency multiplier is added.",
+        "Methylchloride: retain the original positive WEU producer share and all three final freight quantities. Native WEU supplies the same CH3Cl kg function, with its complete historical cumulative production inventory; no molecular-mass, density, concentration, yield or energy multiplier is inferred. Source and native cumulative-system coverage, upstream allocation, vintage, regional delivery fleets and internal uncertainty differ. Main-process infrastructure and land-use omissions and absent internal uncertainty assessment remain explicit; no new omissions or invented compensating exchanges are introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2a6d3b009924d22be4472af4cb3a9313c4aa951f91eb487fa0f341dd76c75785"
+        }
+      ]
     }
   ],
   "superseded_operations": [

@@ -346,7 +346,18 @@
   },
   "runtime_python_changes": [],
   "brightpath_parent_changes_for_these_services": false,
-  "real_battery_retry": "Pending next combined retry with seven native-material cases; no battery qualification is claimed.",
+  "real_battery_retry": {
+    "joint_retry": "uvek-battery-native-materials-39-verification.json",
+    "both_service_rules_cleared_in_real_39_cohort": true,
+    "cleared_service_rule_ids": [
+      "bp-15ef78b8ed5991f1",
+      "bp-25557ccca7d5a61f"
+    ],
+    "joint_cohort_before": 185,
+    "joint_cohort_after": 176,
+    "inventory_preparation_complete": false,
+    "export_performed": false
+  },
   "qualified_sectors": 8,
   "registered_sectors": 19
 }

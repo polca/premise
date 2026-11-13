@@ -1824,3 +1824,27 @@ no database write or runtime module change. The next joint battery retry will
 verify these grants alongside the seven new material cases. See
 [review](uvek-battery-reused-services-39-review.md) and
 [verification](uvek-battery-reused-services-39-verification.json).
+
+## Battery: seven native-material and delivery reviews
+
+Hydrated packed lime (production and market), PCl5, metre-based data cable,
+unit-based 500kW inverter and two methylchloride markets now have exact reviewed
+3.9 correspondences. Six market wrappers retain source producer entries and final
+freight separately, including a distinct light-commercial cable-delivery entry.
+Native complete products retain packing, raw-material freight and equipment
+end-of-life where already included. Explicit warnings cover chemical/function
+bases, thermal boundaries, native text inconsistencies, historical cumulative
+coverage, geography, allocation, internal uncertainty, vintage and unquantified
+score differences. No physical omission or runtime module change is introduced.
+
+Forty-one Brightpath mapping/storage tests and 34 Premise material/service/scope
+regressions pass. Fourteen signed transient LCIs plus seven independent native
+reference comparisons pass without a database write; unchanged-matrix numerical
+refinement and its initial roundoff are documented. Seven new scopes append to
+1,291 prior scopes without changing them, giving 1,298. The real joint battery
+retry clears these seven rules and both barge/steel-processing services: 185 →
+176 unreviewed correspondences in this 3.9 cohort, with none newly added. Next is
+an incorrect unspecified-cable → capacitor match, which remains refused.
+Battery is unfinished; eight of 19 sectors remain qualified. See
+[review](uvek-battery-native-materials-39-review.md) and
+[verification](uvek-battery-native-materials-39-verification.json).
