@@ -1875,3 +1875,27 @@ Next is WEEE shredding; battery remains unfinished. Eight of 19 sectors remain
 qualified. No runtime module changed. See
 [review](uvek-generic-cable-39-review.md) and
 [verification](uvek-generic-cable-39-verification.json).
+
+## Battery: WEEE shredding and native Euro V freight
+
+WEEE uses factor -1 from negative waste reference to the complete positive native
+kg service. Its mechanical chain, facility coefficient and all 15 direct air
+emissions match, while electricity, native freight, waste heat, geography and
+internal uncertainty differ and remain explicit proxy warnings. The freight
+refinement uses nine matching native Euro V diesel size/duty suppliers, weighted
+by the existing native fleet conditional on Euro V. Caller tkm remains unchanged;
+native size/journey distributions, model provenance and operating intensities are
+proxies with unquantified score differences. The earlier unconditioned fleet
+draft missed Roman-numeral EURO-V names, was withdrawn before publication and has
+no active grant. No source exchange omission or runtime module change is added.
+
+The final mapping/storage run passes 29 Brightpath cases, followed by eight
+profile guards for both models (four overlap), and 13 Premise cache/sign/scope/
+drift cases pass. Four signed transient LCIs and two independent native-demand
+comparisons pass using the final Euro V helper, without a database write.
+Two final scopes append to all 1,302 unchanged prior scopes, giving 1,304.
+A fresh battery retry after the refinement confirms exactly both rules cleared:
+173 → 171 in this 3.9 cohort, with none newly unapproved. Next is an unsafe
+unmounted LCD → mercury match. Battery is unfinished; eight of 19 sectors remain
+qualified. See [review](uvek-weee-freight-39-review.md) and
+[verification](uvek-weee-freight-39-verification.json).

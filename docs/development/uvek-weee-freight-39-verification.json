@@ -1,0 +1,199 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "c7f335fe985c1fde94ebcd1552ac3272c93b819d",
+  "scope_registration": {
+    "prior_scopes": 1302,
+    "new_scopes": 1304,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "added_scopes": [
+      {
+        "rule_id": "bp-f743734fc76a50a2",
+        "review_path": "export/uvek_weee_freight_39_review.json",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2025"
+        },
+        "fingerprint": "ed98cbc71ec8f8b0ba1c0830ed2eaa4e5122b867b46f3dfff272fd0748e0aa9e"
+      },
+      {
+        "rule_id": "bp-4ed938d6a37fd1e3",
+        "review_path": "export/uvek_euro_v_freight_39_review.json",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "target": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2025"
+        },
+        "fingerprint": "532ff96d1d38a07b9d17c3968e899a62e7140676c5f50d6aac7317f3f32c8c1d"
+      }
+    ],
+    "withdrawn_fleet_average_draft_scope_inactive": true,
+    "final_freight_mapping": "Nine same-class Euro-V services with positive native conditional size/duty shares.",
+    "runtime_python_changes": []
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 3,
+    "native_suppliers": 10,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-f743734fc76a50a2",
+        "source": {
+          "location": "GLO",
+          "name": "treatment of waste electric and electronic equipment, shredding",
+          "reference product": "waste electric and electronic equipment",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.0921891104194448e-12,
+        "refined_max_abs_inventory_difference": 3.3881317890172014e-21,
+        "full_graph_residual": {
+          "residual_before": 1.7927274915379792e-11,
+          "residual_after": 3.952587909128143e-18,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.711634091612813e-11,
+          "residual_after": 3.952587909128143e-18,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-4ed938d6a37fd1e3",
+        "source": {
+          "location": "RER",
+          "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+          "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+          "unit": "ton kilometer"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "ton kilometer",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.8111202254876844e-10,
+        "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+        "full_graph_residual": {
+          "residual_before": 1.7388670732848298e-11,
+          "residual_after": 5.551115123125783e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.0426803915203725e-10,
+          "residual_after": 3.960565585083526e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the two whole shredding/freight service interfaces and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "real_battery_retry": {
+    "before_unapproved_rule_count": 173,
+    "after_unapproved_rule_count": 171,
+    "cleared_rule_ids": [
+      "bp-4ed938d6a37fd1e3",
+      "bp-f743734fc76a50a2"
+    ],
+    "new_unapproved_rules": [],
+    "freight_model": "Final nine-supplier native Euro V conditional size/duty helper; previous all-standards draft has no active grant.",
+    "final_fresh_retry_after_Euro_V_refinement": true,
+    "next_unapproved_rule": "bp-35d5814b156beee8",
+    "next_source": {
+      "location": "GLO",
+      "name": "market for liquid crystal display, unmounted",
+      "reference product": "liquid crystal display, unmounted",
+      "unit": "kilogram"
+    },
+    "next_target": {
+      "location": "GLO",
+      "name": "Mercury, liquid, at plant",
+      "reference product": "Mercury, liquid, at plant",
+      "unit": "kilogram"
+    },
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique rules in inspected source-3.9 cut-off battery cohort, not datasets or all other source profiles."
+  },
+  "tests": {
+    "brightpath_final_mapping_storage_run_passed": 29,
+    "both_services_profile_guard_followup_passed": 8,
+    "profile_guard_overlap_with_mapping_run": 4,
+    "premise_final_fresh_cache_sign_refusal_and_drift_passed": 13,
+    "premise_new_cases": 10,
+    "premise_prior_scope_drift_cases": 3,
+    "black": "passed",
+    "ruff_new_files": "passed",
+    "final_installed_package_fresh_cache_sign_refusal_and_prior_scope_passed": 11
+  },
+  "new_source_omissions": [],
+  "final_freight_model": {
+    "native_suppliers": 9,
+    "emission_standard": "Euro V only",
+    "size_shares": {
+      "18t": 0.20488408558235982,
+      "26t": 0.28551833046612485,
+      "32t": 0.5095975839515153
+    },
+    "duty_shares": {
+      "long_haul": 0.8,
+      "regional_delivery": 0.1,
+      "urban_delivery": 0.1
+    },
+    "normalization": "Existing native positive Euro V weights conditional on Euro V; caller tkm unchanged.",
+    "native_reference_releases_checked": [
+      "2025",
+      "2026"
+    ],
+    "unpublished_all_standards_draft": "withdrawn; no active grant"
+  },
+  "brightpath_changes": "One source-3.9 freight mapping/helper refined to available native Euro V suppliers; WEEE mapping and factor unchanged.",
+  "runtime_python_changes": [],
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "qualification": "Only enumerated exact 3.9 correspondence cases are reviewed; battery preparation/update/export and other source-cohort coverage remain unfinished.",
+  "installed_wheel": {
+    "source_commit": "c7f335fe985c1fde94ebcd1552ac3272c93b819d",
+    "wheel_sha256": "7e663545e3915a20dfd1376d60a088d722e03d234ef1efa7728d7bd2b488a368",
+    "wheel_bytes": 44089175,
+    "packaged_files_match_committed_checkout": [
+      "brightpath/data/export/uvek_weee_freight_39_review.json",
+      "brightpath/data/export/uvek_euro_v_freight_39_review.json",
+      "brightpath/data/migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "brightpath/data/migrations/RESOURCE_MANIFEST.json"
+    ],
+    "installed_package_files_match_commit": true,
+    "unused_final_and_superseded_wheel_copies_removed_bytes": 88168688
+  }
+}

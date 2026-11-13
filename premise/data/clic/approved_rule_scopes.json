@@ -262733,6 +262733,568 @@
           "fingerprint": "c3cdb242d7a23daf5f6e7b23a060ec265c32fde89ce2ca9a504615bcf61b5a84"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-f743734fc76a50a2",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_weee_freight_39_review.json",
+      "review_sha256": "a0e6e30c71f612b1f9db763c29f744a3bf640cd983fd5f653d9a1aaaf2168e6a",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously, auto-approve modelling decisions with explicit warnings, and log them for later review.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "treatment of waste electric and electronic equipment, shredding",
+            "reference product": "waste electric and electronic equipment",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 17,
+          "metadata_sha256": "25ec0848e15bb7a9e2aa4320dc9249115b822a62a57c417063c961ed4834a774",
+          "inventory_sha256": "1ed5582f8efc4ed7d7440cd1baa432985c39e4c343b981c745d6f67cbfb6e809",
+          "activity_comment_sha256": "7c74a262e72c563f1147bb967771036550b94f2f2c9bef8e8cc35a2fbefbe361"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Shredding, electrical and electronic scrap",
+              "reference product": "Shredding, electrical and electronic scrap",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 20,
+            "metadata_sha256": "e6a456e941ef5a2f10639ccfe025fdb321c56481810f0cf3d9746993bfc832a3",
+            "inventory_sha256": "4ab56e6aeec0d02306bde65f1bd929870eb2a2d820feb83895f76557cbcfae52",
+            "activity_comment_sha256": "471986273586b2986274ea51cb591d081025f22ffca1920772a6a0d7ee45d10a"
+          },
+          "2026": {
+            "identity": {
+              "name": "Shredding, electrical and electronic scrap",
+              "reference product": "Shredding, electrical and electronic scrap",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 20,
+            "metadata_sha256": "63191ba5e561b42ec8d8c02735ed9b1a8e85e358db3d47a1d79e63faf5274a36",
+            "inventory_sha256": "e777a0ab6f09cc31142333903c55e22cf04a22e81ee6e488086e75b6b5566ac2",
+            "activity_comment_sha256": "bbfb7b8917e2b576a72d2689a2915aae406276d9c829d9735b5d1f93969f913f"
+          }
+        },
+        "conversion_factor": -1,
+        "source": {
+          "location": "GLO",
+          "name": "treatment of waste electric and electronic equipment, shredding",
+          "reference product": "waste electric and electronic equipment",
+          "unit": "kilogram"
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off WEEE shredding is reviewed, per source negative one kg of waste and native positive one kg shredding service. The same documented mechanical chain has two shredding, two magnetic-separation and two eddy-current-separation stages. Source and native use the same 8e-10 facility-unit coefficient. All 15 source direct air emissions match native2026 by publisher UUID, full receiving compartment, unit and amount. Factor -1 converts negative source waste demand to positive native treatment demand once, retaining signed caller quantities, supported uncertainty/formulas, foreground ownership and separate caller emissions.",
+        "Use the complete native CH shredding process once. Source uses 0.066 kWh of global medium-voltage electricity per kg; native uses 0.02 kWh of Swiss supply and lists 0.014535 tkm Swiss rail and 0.028215 tkm Swiss 16-32t lorry freight. Native also reports 0.2376 MJ waste heat absent from the source inventory. These operating, geography, electricity, transport, heat-reporting, vintage, infrastructure/upstream and internal-uncertainty differences are explicit screening limitations with unquantified score effects. The complete native model replaces the original source internal model; no numerical LCI/LCIA/stochastic equivalence is claimed.",
+        "The facility/mass-processing function is the basis; no 3.3 electricity ratio, heat-balance, payload, lifetime, capacity or energy-efficiency correction is applied to the kg of treatment or direct emission vector. Add no source electricity, duplicate facility/freight, avoided virgin-metal credit, extra recovered-metal output, invented residue treatment or extra heat credit. Caller-listed recovery inputs/credits and emissions remain independent and unchanged. Other source versions, patches, system models or reverse routes gain no approval."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ed98cbc71ec8f8b0ba1c0830ed2eaa4e5122b867b46f3dfff272fd0748e0aa9e"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-4ed938d6a37fd1e3",
+      "mapping_method": "reviewed_euro_v_conditional_fleet_39",
+      "review_path": "export/uvek_euro_v_freight_39_review.json",
+      "review_sha256": "36c2ed0bc62523a39ed9d06f669e1f9f6c1822b07965cb5c6ed5079087c695c9",
+      "authorization": "Standing autonomous user approval with warnings; refine to available matching Euro V services before publication.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+          "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+          "unit": "ton kilometer"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO5",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "eda5b8672107803078e94d8cb25f92ddc3d0006e0022ab169e58f6a9d33106f4",
+          "inventory_sha256": "a7d5e82742c44a6dbdd1bd63d4bf5986699e882bd0082807ace7e18a15719fb9",
+          "nonproduction_count": 1
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "transport, freight, lorry 16-32 metric ton, EURO5",
+              "reference product": "transport, freight, lorry 16-32 metric ton, EURO5",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ff3a8a1e8bf6c7224a230e2e0490a463eb6e8182215492c26d976fab31b47de4",
+            "inventory_sha256": "1cb7bd610c5ba87a847d24bd4ccae676a2e4e55928527a1b91e540054ce9363d",
+            "nonproduction_count": 42
+          }
+        ],
+        "recipe_id": "euro-v-39-native-16-32t-conditional-fleet",
+        "native_Euro_V_subset_total": 0.23373022409705543,
+        "conditional_size_shares": {
+          "18": 0.20488408558235982,
+          "26": 0.28551833046612485,
+          "32": 0.5095975839515153
+        },
+        "conditional_duty_shares": {
+          "long haul": 0.7999999999999998,
+          "regional delivery": 0.10000000000000012,
+          "urban delivery": 0.10000000000000012
+        },
+        "native_supplier_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_native_fleet_weight": 0.0383100825896682,
+            "conditional_Euro_V_weight": 0.16390726846588788,
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "36f424324a00b526700c18dca1497c77c086e2171560ea7630f745f5c6ef7c4b",
+                "inventory_sha256": "660579bac1ac5f380ab0e61d2c6380cdf1b5b7c78b9783cf2763f4b72bf6b3a0",
+                "activity_comment_sha256": "e118868480668ce7d687c66d4a518be5b5e1f8b3af05ac111b708259de0d3485",
+                "nonproduction_count": 47
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "103125389fe5be62c482cc07fddb436a924a794de7f2cc33997759eac590a500",
+                "inventory_sha256": "caaaa86acfb27b3ce569db455cf6236ec40a82fe1de098c063195d6de852d27e",
+                "activity_comment_sha256": "e96f1cbee10246664d140a01543279d9dc1244d4e024c30b7154ff63a79fb65a",
+                "nonproduction_count": 47
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, regional delivery",
+              "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, regional delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_native_fleet_weight": 0.00478876032370852,
+            "conditional_Euro_V_weight": 0.02048840855823596,
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "264afc40110159d373320d2076373144217670263349f2211fded1f1a0380282",
+                "inventory_sha256": "1fbab4e6e73e8f7261af8254f0de78b061c8eae1811222f8b683f6ae6ea9e99e",
+                "activity_comment_sha256": "629acb8e99823da6c7b489cff2381ca39beb4c4ccc89b5a2898052b0f69fa4b0",
+                "nonproduction_count": 111
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "e42ebdfd0773aabedf543fe2f585c6af01fa9bf2bc840e2dca94fd719d1b2891",
+                "inventory_sha256": "a41244141b227e0434254cdac3164aa4afa00e2a036baf6d568504803e018435",
+                "activity_comment_sha256": "7a267bfe2cc5df79b3434436b9212601a5dd99c53ad8581e43c4007f586e8c2d",
+                "nonproduction_count": 111
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, urban delivery",
+              "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, urban delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_native_fleet_weight": 0.00478876032370852,
+            "conditional_Euro_V_weight": 0.02048840855823596,
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "be952a33c8b16cd1b0424e7ae4a1619f92900aadd6e8f1a0efb72dc6ac3ed9fa",
+                "inventory_sha256": "07d71de2c8276295bada85d6c8f9822b4436f6d6f45a04e076800c4920ad5f43",
+                "activity_comment_sha256": "56268d73131f9a78a349fc1f512df4bbee095433e890a605098a52961caeb2c4",
+                "nonproduction_count": 47
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2010, EURO-V, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "b6302dd2890415f12cd5776cc63a8343a93ffc89a0c5c37282ebcd6c26d18739",
+                "inventory_sha256": "252088cddd1d228046dd2eb51cb98af76150dffc1373a48e6d3293496b19b51c",
+                "activity_comment_sha256": "d7d0799f8208211ebed52894b7eb50c7768ff86d0bc5594626fb6c295aaf5232",
+                "nonproduction_count": 47
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_native_fleet_weight": 0.0533874106909316,
+            "conditional_Euro_V_weight": 0.22841466437289992,
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "44c93df288e6cdd167eed53720c44c9a01a76e0fa07ffd6608a8f57dcfc66ed6",
+                "inventory_sha256": "5421e28c155dfc90a04b407980adb80fd9b3b5fcadd079657e2ac5b06108e14c",
+                "activity_comment_sha256": "fea1c18c9bf29ac476e5f4169db790593c4ec73c36d65e7974f3ec6fdc9084c3",
+                "nonproduction_count": 47
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "66bfd73edc5619a1e3ead67a7fabb50a807e4610df33b700e05c4d7c779978bb",
+                "inventory_sha256": "fdda785d9fce236315d089b3968a885c6c11d7e1ca40729b8558cda7a137c227",
+                "activity_comment_sha256": "6a2483d9f75812b9639dbe13b3a0835fe9c06369a704e6bddbc9f2b14f991729",
+                "nonproduction_count": 47
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, regional delivery",
+              "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, regional delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_native_fleet_weight": 0.00667342633636645,
+            "conditional_Euro_V_weight": 0.02855183304661249,
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "948f945f3d6be288b29b60537793fa699dd9845d2d1d6199d0515f8465aa2b7e",
+                "inventory_sha256": "ac954fab60f264e70df28614e3cefad98e10e66b3c4c63971869f4acd485cfa6",
+                "activity_comment_sha256": "a2062ad94926bf757e205588b4cf4bf4304e2717e2737932d66797ea61856155",
+                "nonproduction_count": 111
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "200f5573a18638e60bb0283f6e1eae4b56b419c3b25b0ed559c37f350494966f",
+                "inventory_sha256": "e38a7ec436a20fac55855b6eedd7f88aee17b0f648b966e6d1f7065ec27a8f56",
+                "activity_comment_sha256": "8a86c0041b2021b001b7af6a7f32c19bb7951a4afb3f34f4d5607bd5957be825",
+                "nonproduction_count": 111
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, urban delivery",
+              "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, urban delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_native_fleet_weight": 0.00667342633636645,
+            "conditional_Euro_V_weight": 0.02855183304661249,
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "213047a86aa3d98cd45e473a5e8c4584bda2f48e8437f50081e79c5abfde6988",
+                "inventory_sha256": "0190ff2005b8d99d2ad5205c59ef949d597a0f03fe82fec04f1238f6b4950ba2",
+                "activity_comment_sha256": "f09a32fb50685b79aca2f40b25463fedf3f7773bdd83a826fd3381d12e4a271c",
+                "nonproduction_count": 47
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2010, EURO-V, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "b9f884b06140bbf4a2da2cb4023fe83e751be212f45d5c67971c0fcb76cc9ba7",
+                "inventory_sha256": "37d13c3c19c503391c3e4c1f7bb419c864ae99f367ddaf3fa3caf627b41026f5",
+                "activity_comment_sha256": "09d1967c3e2bfcef7893f00e23de0dc97b1e41c470e11358e04dbed731a389de",
+                "nonproduction_count": 47
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_native_fleet_weight": 0.0952866859970445,
+            "conditional_Euro_V_weight": 0.407678067161212,
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "c41c444008909a23aba5072231d0363da60644ddedda63cb2639184c0ca0001a",
+                "inventory_sha256": "a87758788838d834be9dbfe443d36271a2a666fa914163a139799db06e239fe6",
+                "activity_comment_sha256": "56c858540fe6b0e06d912f27cf5d62926fbf47b667677bf211e4b10094f3064f",
+                "nonproduction_count": 47
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "043f84b89c4eeeea428d510f82e15e26375aa28bc44de8846e9f1cd23fe8694d",
+                "inventory_sha256": "420dc722ba7f4ecaaaf5766bcbaf3c3776fd58516fce588af89259207bb31969",
+                "activity_comment_sha256": "0267766cdd04973fdcbb88a375e71d3227df52d19a8757d8c3eff3e9a08df4a0",
+                "nonproduction_count": 47
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, regional delivery",
+              "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, regional delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_native_fleet_weight": 0.0119108357496306,
+            "conditional_Euro_V_weight": 0.05095975839515166,
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "29ee6ae51fc7f8fc21e152d77101a5a63294ce5e34df67203769ee13af59eea9",
+                "inventory_sha256": "4be8d1d927386572587483bf33c7ccf22661433d1d8c6f6fffceeaac5d072d81",
+                "activity_comment_sha256": "a511b21caad90fd4c94fa52c7e8766b0d8bb90c3d165fbb6b5f8526ca0535323",
+                "nonproduction_count": 111
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "f026132a9c6d9f25823b89d4ba171e186855ee503599479fa82ffffd01816de7",
+                "inventory_sha256": "a1f0eb24feb7af62f0fdd74b8c862ac2848f977c0367da10cd93f6af7b141e04",
+                "activity_comment_sha256": "afc157f30880a9710630fdb661fbf47b99feb079b0947db1bca29d8db20b2b91",
+                "nonproduction_count": 111
+              }
+            }
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, urban delivery",
+              "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, urban delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "original_native_fleet_weight": 0.0119108357496306,
+            "conditional_Euro_V_weight": 0.05095975839515166,
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "d80744b5ad6e58fa19bb70d8551d49b98759189cd37f181c1d756663e8d07f50",
+                "inventory_sha256": "a494023c29ee468ce3210b5c21a3334cbf6c5a2934c73dbb1043f7db20006de6",
+                "activity_comment_sha256": "3da0c4b7f224a4f3ba17d6d2bec02ff001ce06f35b4311c8f55a45204dec4b1c",
+                "nonproduction_count": 47
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2010, EURO-V, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "metadata_sha256": "282bb4378bb281700374a182d7389ba33b48a7ecf5609feb5342624f1472e05b",
+                "inventory_sha256": "4b0b82b4dc691f5dae0898a34f97926f219c3dc83acb5e66e286e18155926444",
+                "activity_comment_sha256": "1a79bc6c21a8e1e0a504dd913bd4554716c396b13800732946d2e40827a24873",
+                "nonproduction_count": 47
+              }
+            }
+          }
+        ],
+        "superseded_draft": {
+          "review_path": "export/uvek_weee_freight_39_review.json",
+          "review_sha256": "a0e6e30c71f612b1f9db763c29f744a3bf640cd983fd5f653d9a1aaaf2168e6a",
+          "rule_id": "bp-4ed938d6a37fd1e3",
+          "reason": "The first decimal-5 name search missed Roman-numeral EURO-V models. Full name/comment search found matching native services; the unpublished all-standards draft grant was removed before this refinement. WEEE review remains unchanged."
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the exact inspected ecoinvent 3.9 cut-off RER 16-32t Euro V freight market is reviewed. Source market contains one positive unit share of its full RER service. Source and target supply one tkm of complete transport life cycle, not vehicle-km, vehicle manufacture alone or a kg of truck. Factor +1 preserves signed caller tkm, supported uncertainty/formulas, foreground ownership and separately listed emissions/credits; no other source version, patch, inverse or cross-system-model route gains approval.",
+        "Use only the nine available native RER Euro-V diesel services: 18t, 26t and 32t rated gross weight crossed with long haul, regional delivery and urban delivery. Each complete service has a positive one-tkm reference in native2025 and native2026. Their size/duty weights are the existing native 16-32t fleet coefficients conditional on Euro V and normalized within that subset. The inspected 2025/2026 nominal subset and coefficients are identical. This normalizes native proxy evidence, not the source inventory or caller tkm; no Euro III/IV/VI or electric/hybrid supply is included.",
+        "The Swiss2020 native conditional size/duty distribution is a screening proxy because the source supplies only an average 16-32t Euro V service and does not resolve these weights. Native RER labels retain Swiss model/fleet provenance; original German/European HBEFA3.1 source emissions, payloads, routes, SCR/EGR mixture, upstream fuel, infrastructure, vintage and internal uncertainty can differ. Technology-year2010 labels identify the available native Euro-V models, not an IAM fleet forecast. Source/native numerical LCI, LCIA and stochastic equivalence and quantified score effects are not established.",
+        "Retain complete native suppliers once and the original source one-tkm demand. Add no source operating emissions, fuel, truck, road, maintenance or end-of-life burden on top; do not scale by gross vehicle weight, payload, distance, fuel consumption, EURO-class emission ratio, capacity or lifetime. The previous unconditioned all-standards fleet-average draft is superseded and has no active source-3.9 Premise grant."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "532ff96d1d38a07b9d17c3968e899a62e7140676c5f50d6aac7317f3f32c8c1d"
+        }
+      ]
     }
   ],
   "superseded_operations": [
