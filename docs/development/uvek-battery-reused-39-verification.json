@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "48fb09e2ffe8de1d2036e978c5f941f6016cd469",
+  "prior_scopes": 1284,
+  "new_scopes": 1286,
+  "all_existing_operations_unchanged": true,
+  "added_scopes": [
+    {
+      "rule_id": "bp-cd8dc6a127ecae94",
+      "source": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.9"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "238b435f615ac3cb51c05dc234d655d8684c4fbd32f171bdbda128100323569f"
+    },
+    {
+      "rule_id": "bp-46a8f88f9ecae2d1",
+      "source": {
+        "family": "ecoinvent",
+        "system_model": "cutoff",
+        "version": "3.9"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "d020135792cf1c2dc096a16180e4926a664b2d2a6cf2a77d66737028991ad3a3"
+    }
+  ],
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 5,
+    "foreground_biosphere_flows": 3,
+    "native_suppliers": 6,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-cd8dc6a127ecae94",
+        "source": {
+          "location": "GLO",
+          "name": "market for copper scrap, sorted, pressed",
+          "reference product": "copper scrap, sorted, pressed",
+          "unit": "kilogram"
+        },
+        "signed_caller_amounts": [
+          2.5,
+          -2.5
+        ],
+        "unit": "kilogram",
+        "signed_LCIs_finite": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions": true,
+        "max_abs_inventory_difference": 0.0
+      },
+      {
+        "rule_id": "bp-46a8f88f9ecae2d1",
+        "source": {
+          "location": "RoW",
+          "name": "steam production, as energy carrier, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "unit": "megajoule"
+        },
+        "signed_caller_amounts": [
+          2.5,
+          -2.5
+        ],
+        "unit": "megajoule",
+        "signed_LCIs_finite": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions": true,
+        "max_abs_inventory_difference": 6.776263578034403e-21
+      }
+    ],
+    "qualification_limit": "Verifies the two exact 3.9 mapping interfaces/helper inventories and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "real_battery_retry": {
+    "before_unapproved_rule_count": 190,
+    "after_unapproved_rule_count": 188,
+    "cleared_rule_ids": [
+      "bp-46a8f88f9ecae2d1",
+      "bp-cd8dc6a127ecae94"
+    ],
+    "new_unapproved_rules": [],
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique correspondence rules in the inspected ecoinvent 3.9 cut-off battery cohort, not dataset counts or all source cohorts."
+  },
+  "tests": {
+    "new_fresh_cache_and_refusal_cases_passed": 6,
+    "black": "passed",
+    "ruff": "passed",
+    "combined_new_prior_material_and_approval_regressions_passed": 25,
+    "regression_log": "test-battery-reused-39-regressions.log"
+  },
+  "runtime_python_changes": [],
+  "brightpath_resource_changes": false,
+  "qualified_sectors": 8,
+  "registered_sectors": 19
+}

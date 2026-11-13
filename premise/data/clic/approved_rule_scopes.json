@@ -260394,6 +260394,186 @@
           "fingerprint": "d1c08afc8fd7558c0559f42f6037ce5705888001bac0d945a0c59bfb4ad4c9ab"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-cd8dc6a127ecae94",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_whole_freight_review.json",
+      "review_sha256": "09bc666f77114e62e0205f1e6ccfafe332cbfd5e3c74e6f27db57b34933211a4",
+      "authorization": "Standing autonomous modelling approval with warnings; independently inspected exact 3.9 interfaces reuse existing frozen Brightpath recipes.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for copper scrap, sorted, pressed",
+          "reference product": "copper scrap, sorted, pressed",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9"
+        },
+        "selected_recipe_id": "whole-freight-market-composition-93435fe40fb2280e0903",
+        "source_inventory_sha256": "ed0712d1076c5d85387293c3278cdbda0c733971bf1f23139dcb839115c427ec",
+        "source_production_reference": 1,
+        "source_nonproduction_count": 5,
+        "source_empty_stock_witnesses": [
+          {
+            "identity": {
+              "name": "copper scrap, sorted, pressed, Recycled Content cut-off",
+              "product": "copper scrap, sorted, pressed",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "production_reference": 1.0,
+            "nonproduction_count": 0,
+            "inventory_sha256": "aa8846cabb219da50e71e4bbf7dac7e7033ff3dc86f855dd2322267d0471c5eb"
+          }
+        ],
+        "native_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "production_reference": 1,
+            "nonproduction_inputs": 66,
+            "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476",
+            "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81"
+          },
+          {
+            "identity": {
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "production_reference": 1,
+            "nonproduction_inputs": 43,
+            "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3",
+            "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0"
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "production_reference": 1,
+            "nonproduction_inputs": 4,
+            "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35",
+            "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd"
+          },
+          {
+            "identity": {
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "production_reference": 1,
+            "nonproduction_inputs": 36,
+            "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce",
+            "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44"
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent 3.9 cut-off copper-scrap market only. Independently inspected upstream Recycled Content cut-off stock has one positive kg production and no nonproduction exchanges; retain its signed quantity as an explicit allocated-stock helper. This does not represent zero-burden physical recycling or authorize dropping any recycling treatment. Retain all four source freight coefficients separately, without renormalization, payload scaling or an avoided virgin-metal credit.",
+        "Complete native RER rail, barge and heavy-lorry fleet and OCE container ship are screening proxies for global source delivery. Regional fleet, fuel, payload, technology, vintage and infrastructure boundaries differ. Source internal freight/market uncertainty and formulas are not reconstructed. Caller uncertainty, formulas, signed quantities, foreground ownership and separate emissions remain unchanged; all returned helpers must be included. No LCIA equivalence or reverse/system-model conversion is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "238b435f615ac3cb51c05dc234d655d8684c4fbd32f171bdbda128100323569f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-46a8f88f9ecae2d1",
+      "mapping_method": "reviewed_chemical_heat_with_retained_water",
+      "review_path": "export/uvek_chemical_heat_review.json",
+      "review_sha256": "3c2b46a01a45020f2c5c02c3496610b7a9319fcd7327994f8c0aab98c961a6af",
+      "authorization": "Standing autonomous modelling approval with warnings; independently inspected exact 3.9 interfaces reuse existing frozen Brightpath recipes.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "steam production, as energy carrier, in chemical industry",
+          "reference product": "heat, from steam, in chemical industry",
+          "unit": "megajoule"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9"
+        },
+        "selected_recipe_id": "chemical-heat-water-8a841bd2e16662e9e3a9",
+        "source_inventory_sha256": "cbb174083a211dd822e3a2540f6ea23e067bfff36bab335519e836b8387b7036",
+        "source_production_reference": 1,
+        "source_nonproduction_count": 18,
+        "source_empty_stock_witnesses": [],
+        "native_witnesses": [
+          {
+            "identity": {
+              "name": "Heat, unspecific, in chemical plant",
+              "reference product": "Heat, unspecific, in chemical plant",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "production_reference": 1,
+            "nonproduction_inputs": 4,
+            "metadata_sha256": "b5a55e6d5341469b69c4b120b46f52ad396652fc2862f7c2eace06e27351300c",
+            "inventory_sha256": "b2f85598c121d92b02aae741900d1364bec7ff558185b37ee039be4474c30d81"
+          },
+          {
+            "identity": {
+              "name": "Tap water, at user",
+              "reference product": "Tap water, at user",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "production_reference": 1,
+            "nonproduction_inputs": 23,
+            "metadata_sha256": "ad98c9fb82ddf2998b331e8cf31a60ebeea85d7138a6b10432110ef247ae3421",
+            "inventory_sha256": "083c7cc443330c6724d7bfe46b25b001ed03c3e78dfa3492264a7c756c1d37ca"
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Exact ecoinvent 3.9 cut-off RoW chemical-heat service only. Source and native heat references are positive one MJ. Reuse the existing exact 3.9 helper, not the default rule helper or the separately approved 3.8 water coefficients. The native heat core excludes make-up water: retain all seven source water-provider amounts separately and both physical Water releases with their exact air/water compartments, cubic-metre units and signs. No kg-steam conversion, rounded 0.36 kg/MJ factor, additional fuel/electricity input or water-balance correction is introduced.",
+        "Native complete RER chemical heat and CH delivered tap water are screening technology/geography/vintage proxies. Fuel mix, efficiencies, allocation, infrastructure and native water supply differ. Internal source uncertainty and formulas, including uncertainty on retained water releases, are not reconstructed by the existing deterministic helper; this is a documented limitation, not stochastic equivalence. Caller uncertainty, formulas, signed MJ, foreground suppliers and separate emissions remain unchanged. No LCIA equivalence or reverse/system-model conversion is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "system_model": "cutoff",
+            "version": "3.9"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d020135792cf1c2dc096a16180e4926a664b2d2a6cf2a77d66737028991ad3a3"
+        }
+      ]
     }
   ],
   "superseded_operations": [

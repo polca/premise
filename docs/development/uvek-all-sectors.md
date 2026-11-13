@@ -1752,3 +1752,22 @@ unsafe sodium-fluoride → sodium-arsenide match, which remains refused pending
 correction. Battery preparation, update, export and wider coverage are unfinished.
 Eight of 19 sectors remain qualified. See [review](uvek-battery-first-materials-39-review.md)
 and [verification](uvek-battery-first-materials-39-verification.json).
+
+## Battery: two exact 3.9 reviews reused
+
+Independent source/native inspection confirms the existing copper-scrap market
+and RoW chemical-heat helpers. Two new scoped Premise grants leave all previous
+operations and Brightpath resources unchanged. Copper retains its production-only
+allocated cut-off stock and all freight; heat retains its seven make-up-water
+quantities and both physical water releases around one native MJ heat service.
+Internal source uncertainty/formulas are not reconstructed; caller signs, units,
+uncertainty/formulas and separate emissions are preserved. Geographic, technology
+and vintage differences remain explicit warnings. No runtime module changes.
+
+Six new fresh/cache/refusal tests and four signed transient LCIs plus two native
+reference LCIs pass without a database write. The actual battery retry clears
+exactly two rules, 190 → 188 in the inspected 3.9 cohort, with none newly added.
+Aluminium's generic-Chinese-rail → coal-freight match and the incorrect sodium
+fluoride → sodium arsenide match remain unapproved. Battery remains unfinished;
+eight of 19 sectors are qualified. See [review](uvek-battery-reused-39-review.md)
+and [verification](uvek-battery-reused-39-verification.json).
