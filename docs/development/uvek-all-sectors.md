@@ -1848,3 +1848,30 @@ an incorrect unspecified-cable → capacitor match, which remains refused.
 Battery is unfinished; eight of 19 sectors remain qualified. See
 [review](uvek-battery-native-materials-39-review.md) and
 [verification](uvek-battery-native-materials-39-verification.json).
+
+## Battery: generic cable with retained regional waste services
+
+The capacitor mismatches for generic cable production/market are replaced by
+explicit native fabrication and original water, waste and delivery quantities.
+The European mixed-plastic group retains country treatment mixes and collection
+freight. Forty-five new helpers reuse 23 frozen reviewed dependencies, preserving
+uncontrolled open-burning/dump/unsanitary-climate inventories instead of replacing
+them with Swiss controlled disposal. Controlled native services and the newly
+screened ordinary-incinerator proxy for CH fly-ash extraction retain explicit
+technology, ash/recovery, carbon-metadata, geography, allocation and score warnings.
+Only the two cable scopes carry forward the four existing trace HDPE omissions;
+no new exchange omission is approved. A fourth scope independently inspects the
+unchanged source-3.9 rolling-mill capital service, without output/lifetime scaling.
+All 1,298 old scopes remain unchanged; the count is now 1,302.
+
+Thirty-five Brightpath mapping/storage and 16 Premise sign/cache/scope/omission-
+gate tests pass. Eight signed transient LCIs and four independent native-demand
+comparisons pass with no database write. The corrected diagnostic includes direct
+foreground biosphere definitions absent from native emissions; matrices and
+comparison tolerances are unchanged. The real battery retry clears exactly three
+pending roots: 176 → 173 in the inspected 3.9 cohort, with none newly added.
+Standalone cable production is also verified but was not a pending root there.
+Next is WEEE shredding; battery remains unfinished. Eight of 19 sectors remain
+qualified. No runtime module changed. See
+[review](uvek-generic-cable-39-review.md) and
+[verification](uvek-generic-cable-39-verification.json).

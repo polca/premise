@@ -1,0 +1,287 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "aeb1c443aad606a087c8fb3c59049df9c22fda33",
+  "scope_registration": {
+    "prior_scopes": 1298,
+    "new_scopes": 1302,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "added_scopes": [
+      {
+        "rule_id": "bp-5cf391e403d6bc65",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "recipe_id": "cable-39-unspecified-production",
+        "conversion_factor": 1,
+        "approved_recipe_source_omission_count": 4,
+        "target": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2025"
+        },
+        "fingerprint": "b3ea28280cdd32c73f2055627b807cf98cd139b0eac64ac7f7dfb7a0a66ffb6a"
+      },
+      {
+        "rule_id": "bp-9a89a1def5ba6bba",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "recipe_id": "cable-39-unspecified-delivered-market",
+        "conversion_factor": 1,
+        "approved_recipe_source_omission_count": 4,
+        "target": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2025"
+        },
+        "fingerprint": "05c7458bf83631e81e29d95c3e135b8f39c73d9634221449738174d3a5f9ad48"
+      },
+      {
+        "rule_id": "bp-735e189847cfb1be",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "recipe_id": "cable-39-plastic-service-691764535da06cb10e27",
+        "conversion_factor": -1,
+        "approved_recipe_source_omission_count": 0,
+        "target": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2025"
+        },
+        "fingerprint": "04bc688ca666451f9b0fceac6f92fb4f06624ac01a82d704c58e6c786564f149"
+      },
+      {
+        "rule_id": "bp-479b3316baa53263",
+        "source": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "recipe_id": null,
+        "conversion_factor": 1,
+        "approved_recipe_source_omission_count": 0,
+        "target": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2025"
+        },
+        "fingerprint": "c3cdb242d7a23daf5f6e7b23a060ec265c32fde89ce2ca9a504615bcf61b5a84"
+      }
+    ],
+    "review_sha256": "3d41d12abad739c0da8768efb69012e5875225ca41761c0283fa9de2ea0a73bf",
+    "runtime_python_changes": []
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 72,
+    "foreground_biosphere_flows": 215,
+    "native_suppliers": 16,
+    "signed_foreground_LCI_solves": 8,
+    "independent_native_reference_LCI_solves": 4,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-5cf391e403d6bc65",
+        "source": {
+          "location": "GLO",
+          "name": "cable production, unspecified",
+          "reference product": "cable, unspecified",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.4210854715202004e-14,
+        "refined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "full_graph_residual": {
+          "residual_before": 2.13577285898168e-08,
+          "residual_after": 2.5721049313293695e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.13577285898168e-08,
+          "residual_after": 2.5706694660793516e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-9a89a1def5ba6bba",
+        "source": {
+          "location": "GLO",
+          "name": "market for cable, unspecified",
+          "reference product": "cable, unspecified",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.6714133127825335e-09,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 1.5075539015347675e-08,
+          "residual_after": 1.3089664438521701e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 8.629365983166788e-09,
+          "residual_after": 1.3089664438521701e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-735e189847cfb1be",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market group for waste plastic, mixture",
+          "reference product": "waste plastic, mixture",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.089595696475044e-08,
+        "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 2.592097727916211e-10,
+          "residual_after": 3.062911089407841e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.6052903881406878e-10,
+          "residual_after": 3.791467817794008e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-479b3316baa53263",
+        "source": {
+          "location": "GLO",
+          "name": "market for rolling mill",
+          "reference product": "rolling mill",
+          "unit": "unit"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "unit",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 6.776263578034403e-21,
+        "full_graph_residual": {
+          "residual_before": 0.0007996845966408069,
+          "residual_after": 1.6628493113259612e-11,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 0.0007996845966408069,
+          "residual_after": 1.6628493113259612e-11,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the three generic-cable/regional-waste interfaces and one rolling-mill interface and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "real_battery_retry": {
+    "before_unapproved_rule_count": 176,
+    "after_unapproved_rule_count": 173,
+    "cleared_rule_ids": [
+      "bp-479b3316baa53263",
+      "bp-735e189847cfb1be",
+      "bp-9a89a1def5ba6bba"
+    ],
+    "new_unapproved_rules": [],
+    "standalone_cable_production_rule_also_verified_but_not_present_in_this_cohort": "bp-5cf391e403d6bc65",
+    "next_unapproved_rule": "bp-f743734fc76a50a2",
+    "next_source": {
+      "location": "GLO",
+      "name": "treatment of waste electric and electronic equipment, shredding",
+      "reference product": "waste electric and electronic equipment",
+      "unit": "kilogram"
+    },
+    "next_target": {
+      "location": "CH",
+      "name": "Shredding, electrical and electronic scrap",
+      "reference product": "Shredding, electrical and electronic scrap",
+      "unit": "kilogram"
+    },
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique correspondence rules in the inspected ecoinvent 3.9 cut-off battery cohort, not dataset counts or all other source profiles."
+  },
+  "tests": {
+    "brightpath_mapping_and_storage_passed": 35,
+    "brightpath_new_cases": 25,
+    "premise_fresh_cache_sign_scope_and_literal_omission_gate_passed": 16,
+    "black": "passed",
+    "ruff_new_files": "passed",
+    "installed_package_mapping_cache_omission_gate_and_prior_scope_passed": 17
+  },
+  "model_counts": {
+    "new_helpers": 45,
+    "unchanged_frozen_dependencies": 23,
+    "new_regional_plastic_market_layers": 43,
+    "changed_brightpath_parent_rules": 3,
+    "new_premise_scopes": 4
+  },
+  "prior_HDPE_omissions": {
+    "count": 4,
+    "total_per_kg_HDPE": 1.173141240030732e-13,
+    "total_per_kg_cable": 3.9699246205294974e-14,
+    "current_inspected_39_inventory_matches_prior_pins": true,
+    "new_source_exchange_omissions": 0,
+    "score_effect": "unquantified"
+  },
+  "new_fly_ash_extraction_proxy": "Complete ordinary native mixed-plastic incinerator per same wet kg, with explicit ash/recovery/carbon-metadata/energy/allocation/technology warnings and no added recovery credit.",
+  "controlled_source_waste_properties": "Publisher flow UUID and wet/dry mass, included water and net heating value match. Full property sets differ; no chemical/carbon/LHV correction is inferred.",
+  "runtime_python_changes": [],
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "qualification": "Only enumerated exact 3.9 correspondence cases are reviewed. Battery inventory preparation and sector qualification remain unfinished.",
+  "installed_wheel": {
+    "source_commit": "aeb1c443aad606a087c8fb3c59049df9c22fda33",
+    "wheel_sha256": "b770b4d5143b00527742e089e968b59fbd14a76111b2a8d0843522d1c04d7b5c",
+    "wheel_bytes": 44075465,
+    "packaged_files_match_committed_checkout": [
+      "brightpath/data/export/uvek_generic_cable_39_review.json",
+      "brightpath/data/migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "brightpath/data/migrations/RESOURCE_MANIFEST.json"
+    ],
+    "installed_package_files_match_commit": true,
+    "unused_wheel_copy_deleted_bytes": 44075465
+  }
+}

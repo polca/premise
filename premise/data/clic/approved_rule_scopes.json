@@ -262243,6 +262243,496 @@
           "fingerprint": "2a6d3b009924d22be4472af4cb3a9313c4aa951f91eb487fa0f341dd76c75785"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-5cf391e403d6bc65",
+      "mapping_method": "reviewed_generic_cable_regional_wastes_39",
+      "review_path": "export/uvek_generic_cable_39_review.json",
+      "review_sha256": "3d41d12abad739c0da8768efb69012e5875225ca41761c0283fa9de2ea0a73bf",
+      "authorization": "Standing user approval to resolve all remaining cases autonomously, auto-approve modelling decisions with warnings, and log them for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "cable production, unspecified",
+          "reference product": "cable, unspecified",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "cable production, unspecified",
+            "reference product": "cable, unspecified",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 19,
+          "inventory_sha256": "0ec1035a646120d40f8dbba00eb517d4cfaa1d0da25ca637c99966adc66a1663",
+          "metadata_sha256": "2f877c407fc9c44e3d73872941291def6cdf9f9dff098e836058dcf3f4366702"
+        },
+        "recipe_id": "cable-39-unspecified-production",
+        "complete_reachable_recipe_count": 67,
+        "approved_recipe_source_omissions": {
+          "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69": [
+            {
+              "original_index": 1,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "US",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 2,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "CH",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 3,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "RoW",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 6,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "Europe without Switzerland",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ]
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the enumerated exact ecoinvent 3.9 cut-off source profiles qualify. Cable has positive kg reference; waste markets have negative kg reference and target positive one-kg treatment service. Preserve signed caller quantities, supported uncertainty/formulas, foreground ownership and separately listed emissions. No inverse, other source profile or cross-system-model route is inferred.",
+        "Source material/fabrication, factory water/releases, rolling infrastructure, waste/country shares and collection/final freight remain at their original quantities. Negative inputs to negative waste references become positive treatment demand, not avoided-treatment credits. Retain market share uncertainty and all supported sign scaling, without normalization or a new loss/recovery credit. Complete native fabrication and controlled-treatment suppliers replace their source internal models, so technology, geography, allocation, vintage, distributions/formulas, correlations and native biosphere coverage differ; score effects remain unquantified and no LCI/LCIA/stochastic equivalence is claimed.",
+        "Uncontrolled open-burning/open-dump/unsanitary branches reuse the exact independently inspected 3.9 source-treatment recipes and source inventory hashes from the prior uncontrolled-market review, preserving climate, physical emissions/resources, fossil split and canonical compartments. Do not replace those routes with Swiss controlled disposal or an empty stock. Existing native diesel/excavation proxies retain their prior technology/operating limitations and canonical biosphere label/CAS warnings.",
+        "Controlled municipal-incineration/sanitary-landfill fractions use complete native CH services for the same 15.3%-water mixed-plastic wet-kg waste. The source controlled processes share the reference-flow UUID, wet/dry mass, water-in-wet-mass and net-heating-value basis. The fly-ash-extraction reference has more elemental metadata, a slightly different carbon fraction/allocation and rounded water-content ratio; these differences are recorded, not rescaled away. Geography, leachate/ash management, energy recovery/allocation, emissions and vintage differ. The CH fly-ash-extraction process is newly screened with ordinary native incineration: ash extraction, recovered zinc-bearing sludge and associated burdens/credits are not reconstructed. Do not add an invented metal credit, source energy credit, or extra ash/residue treatment on top of complete native disposal.",
+        "Freight uses complete RER rail, barge and heavy-diesel fleet, CH 3.5t light-commercial fleet or OCE container ship as explicit same-mode/vehicle-class geographic/vintage proxies. Preserve every original tkm, including Chinese generic rail through generic RER rail rather than coal freight. Vehicle, port and infrastructure already in complete transport services are not added twice.",
+        "Cable source product information describes about 66% copper/34% plastic. Retain its actual 0.65977935 kg copper, 0.33840125 kg HDPE and corresponding wire drawing/extrusion coefficients, not rounded composition percentages. Native per-metre GKN/ribbon/data cable products have different construction/material mixes and do not justify a mass-per-length scalar. Keep original rolling-mill coefficient and factory water; no geometry, grade, conductivity, material-balance, product-mass, yield or lifetime correction is invented.",
+        "Native copper at regional storage, fabrication, rolling mill and CH tap-water functions reuse the independently inspected component mappings on their actual reference units. They replace source upstream production/market mixes as regional/technology/vintage proxies, without adding their source upstream burdens a second time. The two direct Water releases retain their exact air/water compartments and cubic-metre quantities.",
+        "The existing exact 3.9 HDPE dependency carries four previously user-approved positive trace recyclate omissions, total 1.173141240030732e-13 kg per kg HDPE, with unquantified score effect. At source 0.33840125 kg HDPE/kg cable, their combined quantity is about 3.97e-14 kg/kg cable. Preserve every literal omission entry in the audit, do not replace them with empty recycling/virgin supply, and do not renormalize retained virgin shares or freight. No new source input omission is approved here."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b3ea28280cdd32c73f2055627b807cf98cd139b0eac64ac7f7dfb7a0a66ffb6a"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-9a89a1def5ba6bba",
+      "mapping_method": "reviewed_generic_cable_regional_wastes_39",
+      "review_path": "export/uvek_generic_cable_39_review.json",
+      "review_sha256": "3d41d12abad739c0da8768efb69012e5875225ca41761c0283fa9de2ea0a73bf",
+      "authorization": "Standing user approval to resolve all remaining cases autonomously, auto-approve modelling decisions with warnings, and log them for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for cable, unspecified",
+          "reference product": "cable, unspecified",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for cable, unspecified",
+            "reference product": "cable, unspecified",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "inventory_sha256": "a47f1e7aed0785112c4d27f2a0fa54c7be406d269a977111d656f9f3242ffd12",
+          "metadata_sha256": "3cfd7de8f14d525e2b7052b9648bf74c6df9bb167497722a27f11ae09730a265"
+        },
+        "recipe_id": "cable-39-unspecified-delivered-market",
+        "complete_reachable_recipe_count": 68,
+        "approved_recipe_source_omissions": {
+          "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69": [
+            {
+              "original_index": 1,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "US",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 2,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "CH",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 3,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "RoW",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 6,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "Europe without Switzerland",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ]
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the enumerated exact ecoinvent 3.9 cut-off source profiles qualify. Cable has positive kg reference; waste markets have negative kg reference and target positive one-kg treatment service. Preserve signed caller quantities, supported uncertainty/formulas, foreground ownership and separately listed emissions. No inverse, other source profile or cross-system-model route is inferred.",
+        "Source material/fabrication, factory water/releases, rolling infrastructure, waste/country shares and collection/final freight remain at their original quantities. Negative inputs to negative waste references become positive treatment demand, not avoided-treatment credits. Retain market share uncertainty and all supported sign scaling, without normalization or a new loss/recovery credit. Complete native fabrication and controlled-treatment suppliers replace their source internal models, so technology, geography, allocation, vintage, distributions/formulas, correlations and native biosphere coverage differ; score effects remain unquantified and no LCI/LCIA/stochastic equivalence is claimed.",
+        "Uncontrolled open-burning/open-dump/unsanitary branches reuse the exact independently inspected 3.9 source-treatment recipes and source inventory hashes from the prior uncontrolled-market review, preserving climate, physical emissions/resources, fossil split and canonical compartments. Do not replace those routes with Swiss controlled disposal or an empty stock. Existing native diesel/excavation proxies retain their prior technology/operating limitations and canonical biosphere label/CAS warnings.",
+        "Controlled municipal-incineration/sanitary-landfill fractions use complete native CH services for the same 15.3%-water mixed-plastic wet-kg waste. The source controlled processes share the reference-flow UUID, wet/dry mass, water-in-wet-mass and net-heating-value basis. The fly-ash-extraction reference has more elemental metadata, a slightly different carbon fraction/allocation and rounded water-content ratio; these differences are recorded, not rescaled away. Geography, leachate/ash management, energy recovery/allocation, emissions and vintage differ. The CH fly-ash-extraction process is newly screened with ordinary native incineration: ash extraction, recovered zinc-bearing sludge and associated burdens/credits are not reconstructed. Do not add an invented metal credit, source energy credit, or extra ash/residue treatment on top of complete native disposal.",
+        "Freight uses complete RER rail, barge and heavy-diesel fleet, CH 3.5t light-commercial fleet or OCE container ship as explicit same-mode/vehicle-class geographic/vintage proxies. Preserve every original tkm, including Chinese generic rail through generic RER rail rather than coal freight. Vehicle, port and infrastructure already in complete transport services are not added twice.",
+        "Cable source product information describes about 66% copper/34% plastic. Retain its actual 0.65977935 kg copper, 0.33840125 kg HDPE and corresponding wire drawing/extrusion coefficients, not rounded composition percentages. Native per-metre GKN/ribbon/data cable products have different construction/material mixes and do not justify a mass-per-length scalar. Keep original rolling-mill coefficient and factory water; no geometry, grade, conductivity, material-balance, product-mass, yield or lifetime correction is invented.",
+        "Native copper at regional storage, fabrication, rolling mill and CH tap-water functions reuse the independently inspected component mappings on their actual reference units. They replace source upstream production/market mixes as regional/technology/vintage proxies, without adding their source upstream burdens a second time. The two direct Water releases retain their exact air/water compartments and cubic-metre quantities.",
+        "The existing exact 3.9 HDPE dependency carries four previously user-approved positive trace recyclate omissions, total 1.173141240030732e-13 kg per kg HDPE, with unquantified score effect. At source 0.33840125 kg HDPE/kg cable, their combined quantity is about 3.97e-14 kg/kg cable. Preserve every literal omission entry in the audit, do not replace them with empty recycling/virgin supply, and do not renormalize retained virgin shares or freight. No new source input omission is approved here."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "05c7458bf83631e81e29d95c3e135b8f39c73d9634221449738174d3a5f9ad48"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-735e189847cfb1be",
+      "mapping_method": "reviewed_generic_cable_regional_wastes_39",
+      "review_path": "export/uvek_generic_cable_39_review.json",
+      "review_sha256": "3d41d12abad739c0da8768efb69012e5875225ca41761c0283fa9de2ea0a73bf",
+      "authorization": "Standing user approval to resolve all remaining cases autonomously, auto-approve modelling decisions with warnings, and log them for later review.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market group for waste plastic, mixture",
+          "reference product": "waste plastic, mixture",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for waste plastic, mixture",
+            "reference product": "waste plastic, mixture",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 35,
+          "inventory_sha256": "5554034faa48e06171aab402d3ceaeaa9d1a6dc7c950d63e6afe884442c53109",
+          "metadata_sha256": "c88fa767a349034689615d4142268d6bf2f22cda8ed1b4c9ef7f00b360d8b345"
+        },
+        "recipe_id": "cable-39-plastic-service-691764535da06cb10e27",
+        "complete_reachable_recipe_count": 45,
+        "approved_recipe_source_omissions": {},
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the enumerated exact ecoinvent 3.9 cut-off source profiles qualify. Cable has positive kg reference; waste markets have negative kg reference and target positive one-kg treatment service. Preserve signed caller quantities, supported uncertainty/formulas, foreground ownership and separately listed emissions. No inverse, other source profile or cross-system-model route is inferred.",
+        "Source material/fabrication, factory water/releases, rolling infrastructure, waste/country shares and collection/final freight remain at their original quantities. Negative inputs to negative waste references become positive treatment demand, not avoided-treatment credits. Retain market share uncertainty and all supported sign scaling, without normalization or a new loss/recovery credit. Complete native fabrication and controlled-treatment suppliers replace their source internal models, so technology, geography, allocation, vintage, distributions/formulas, correlations and native biosphere coverage differ; score effects remain unquantified and no LCI/LCIA/stochastic equivalence is claimed.",
+        "Uncontrolled open-burning/open-dump/unsanitary branches reuse the exact independently inspected 3.9 source-treatment recipes and source inventory hashes from the prior uncontrolled-market review, preserving climate, physical emissions/resources, fossil split and canonical compartments. Do not replace those routes with Swiss controlled disposal or an empty stock. Existing native diesel/excavation proxies retain their prior technology/operating limitations and canonical biosphere label/CAS warnings.",
+        "Controlled municipal-incineration/sanitary-landfill fractions use complete native CH services for the same 15.3%-water mixed-plastic wet-kg waste. The source controlled processes share the reference-flow UUID, wet/dry mass, water-in-wet-mass and net-heating-value basis. The fly-ash-extraction reference has more elemental metadata, a slightly different carbon fraction/allocation and rounded water-content ratio; these differences are recorded, not rescaled away. Geography, leachate/ash management, energy recovery/allocation, emissions and vintage differ. The CH fly-ash-extraction process is newly screened with ordinary native incineration: ash extraction, recovered zinc-bearing sludge and associated burdens/credits are not reconstructed. Do not add an invented metal credit, source energy credit, or extra ash/residue treatment on top of complete native disposal.",
+        "Freight uses complete RER rail, barge and heavy-diesel fleet, CH 3.5t light-commercial fleet or OCE container ship as explicit same-mode/vehicle-class geographic/vintage proxies. Preserve every original tkm, including Chinese generic rail through generic RER rail rather than coal freight. Vehicle, port and infrastructure already in complete transport services are not added twice.",
+        "European waste-plastic group preserves its original country market shares through complete nested country treatment mixes, including source collection freight, uncontrolled climate branches, controlled disposal and explicitly screened CH ash-extraction technology. No Europe-to-CH-only disposal collapse, nationality cloning or geographic renormalization is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "04bc688ca666451f9b0fceac6f92fb4f06624ac01a82d704c58e6c786564f149"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-479b3316baa53263",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_generic_cable_39_review.json",
+      "review_sha256": "3d41d12abad739c0da8768efb69012e5875225ca41761c0283fa9de2ea0a73bf",
+      "authorization": "Standing user approval to resolve all remaining cases autonomously, auto-approve modelling decisions with warnings, and log them for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for rolling mill",
+          "reference product": "rolling mill",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for rolling mill",
+            "reference product": "rolling mill",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "inventory_sha256": "6d585329c520019c49bedafe48cf79881990a9917fb622e18ab2be01d420574f",
+          "metadata_sha256": "41ad8c3bee10c46818677e62e64a6e861c6bbdc178a22c5fa90951f8d3b49d6f"
+        },
+        "recipe_id": null,
+        "complete_reachable_recipe_count": 0,
+        "approved_recipe_source_omissions": {},
+        "new_source_omissions": [],
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "rolling mill production",
+              "reference product": "rolling mill",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "ba7e81336ef2997518cb5066ad51ae3c49f58b6e87d01d2ec4b83b3b17953013",
+            "metadata_sha256": "67a22836ca4817f163d1211cff81720301060622ad2783f6d0f835f0cced5932"
+          },
+          {
+            "identity": {
+              "name": "rolling mill production",
+              "reference product": "rolling mill",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "inventory_sha256": "d536737fdda237c44910ef097baf08f72275dcaa58f5c151c0aaa9b9b798320e",
+            "metadata_sha256": "fa4a6efad2d15e947f588e6d7cb98ca05d83553142240785fdbeb7dd7e31e7e6"
+          }
+        ]
+      },
+      "limitations": [
+        "Only the exact independently inspected ecoinvent 3.9 cut-off global rolling-mill capital market is approved. Its two RER/RoW positive construction-unit shares sum to one within source rounding. Source and native describe the same Gerlafingen plant lineage (616000 tonnes formed steel in 2002, 50-year buildings/routes and 25-year machinery/furnaces). This is one complete infrastructure unit, not a kg of rolled metal or an annual operation service. Factor +1 preserves signed caller units, supported uncertainty/formulas, foreground ownership and separate emissions.",
+        "Use complete native RER rolling mill as a geographic/vintage/upstream-material proxy for the original two source capital suppliers. Source regional internal production and uncertainty are not reconstructed; do not multiply or divide by annual output, lifetime, machinery mass or factory area, add a second plant/dismantling/land-use burden, or infer operating energy. Native biosphere coverage, upstream allocation and score differences remain limitations; no LCIA/stochastic equivalence, other source version, inverse or system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c3cdb242d7a23daf5f6e7b23a060ec265c32fde89ce2ca9a504615bcf61b5a84"
+        }
+      ]
     }
   ],
   "superseded_operations": [
