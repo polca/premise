@@ -6829,8 +6829,8 @@
       "rule_id": "bp-1d02d57e06e24b45",
       "operation": "replace",
       "mapping_method": "heuristic_similarity",
-      "review_path": "export/uvek_pilot_polymer_service_review.json",
-      "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+      "review_path": "export/uvek_nylon6_39_review.json",
+      "review_sha256": "be800929781ce1bcc1a17b43480862a2611522fcd6e14a1231e87bcd6707955c",
       "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
       "inspection": {
         "rule_id": "bp-1d02d57e06e24b45",
@@ -6884,13 +6884,107 @@
         },
         "native_direct_technosphere_coordinates_unchanged": 8,
         "conversion_factor": 1,
-        "boundary": "Same Nylon 6 polymer from caprolactam, not Nylon 66 or fabricated nylon parts. Retain the complete native polymer inventory per kg without adding a converting operation."
+        "boundary": "Same Nylon 6 polymer from caprolactam, not Nylon 66 or fabricated nylon parts. Retain the complete native polymer inventory per kg without adding a converting operation.",
+        "profile_annotation_refinement": {
+          "prior_approval": {
+            "rule_id": "bp-1d02d57e06e24b45",
+            "operation": "replace",
+            "mapping_method": "heuristic_similarity",
+            "review_path": "export/uvek_pilot_polymer_service_review.json",
+            "review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+            "authorization": "Standing independently inspected whole-material/function, mass-unit and geographic supply-proxy authorizations, reused only after checking the enumerated pilot chemical/polymer identities, physical form and process reference coordinates. No solution-basis conversion, new material grade, reconstructed production mix, extra forming step or disposal endpoint is introduced. The separately pending equipment proposals and geothermal decision remain pending.",
+            "inspection": {
+              "rule_id": "bp-1d02d57e06e24b45",
+              "source": {
+                "location": "RER",
+                "name": "market for nylon 6",
+                "reference product": "nylon 6",
+                "unit": "kilogram"
+              },
+              "target": {
+                "location": "RER",
+                "name": "Nylon 6, at plant",
+                "reference product": "Nylon 6, at plant",
+                "unit": "kilogram"
+              },
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_reference_amount": 1,
+              "source_metadata_sha256": "e2c3ff681cc97811958b4a01f49077f447fc5bcb76bd88b39fe48726ff8d9954",
+              "source_inventory_sha256": "6c9108a1d24e9921411576ead4c71427edfc254120840929b96ac30b87c5c8f8",
+              "source_activity_comment_sha256": "2d85e262f3fd52c9dc33c70fd1e3c6137cc24990986b52aa89754962333c7c18",
+              "source_product_information_sha256": "77585b5ee1afabb70289bd8fa5fa2155c71840e732f86d39d87caf7aeb59115b",
+              "source_neat_dry_kg_basis": true,
+              "source_producers": [
+                {
+                  "identity": {
+                    "name": "nylon 6 production",
+                    "reference product": "nylon 6",
+                    "location": "RER",
+                    "unit": "kilogram"
+                  },
+                  "comment_sha256": "2da8968d76d1477948e557ad9076f9b03be89730f4f68e96598922d9d48b7a07"
+                }
+              ],
+              "native_references": {
+                "2025": {
+                  "metadata_sha256": "5a149fc66e220b4708e20a4b71cf66e89dc4c53537670a15091bfd6d375625a3",
+                  "inventory_sha256": "6bcd7488d2f2a4a553e4c65c81bbf81631306bbb6d327a25d237215f672b1e9d",
+                  "activity_comment_sha256": "3005ad6d7a70a4645c11242e023820d227cc059a681adfa1b4e958b3a7b28009",
+                  "reference_amount": 1
+                },
+                "2026": {
+                  "metadata_sha256": "481773ab4423e1f65e87895e368cd6c59698a446ade1a10d326c9ac023f417dc",
+                  "inventory_sha256": "136028d26601c34bb7aa1fa8a7daa93723461405ce1a0591b6e38b52b07a7dc4",
+                  "activity_comment_sha256": "d1a8e5f94e279320edc50cbb2b53fdda9dd7f9c4aee1b067f109938b13e1091c",
+                  "reference_amount": 1
+                }
+              },
+              "native_direct_technosphere_coordinates_unchanged": 8,
+              "conversion_factor": 1,
+              "boundary": "Same Nylon 6 polymer from caprolactam, not Nylon 66 or fabricated nylon parts. Retain the complete native polymer inventory per kg without adding a converting operation."
+            },
+            "limitations": [
+              "Same Nylon 6 polymer from caprolactam, not Nylon 66 or fabricated nylon parts. Retain the complete native polymer inventory per kg without adding a converting operation.",
+              "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
+              "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
+              "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+            ],
+            "scopes": [
+              {
+                "source": {
+                  "family": "ecoinvent",
+                  "version": "3.12",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "family": "uvek",
+                  "version": "2025",
+                  "system_model": "cutoff"
+                },
+                "fingerprint": "7e608699e53b3098d132fe95ffa32d09c861862038d98bdd186230bb6d6fd125"
+              }
+            ]
+          },
+          "new_exact_source_profile": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "old_at_plant_physical_mapping_unchanged": true,
+          "reference_annotations_verified_against_current_primary": true,
+          "new_review": "export/uvek_nylon6_39_review.json"
+        }
       },
       "limitations": [
         "Same Nylon 6 polymer from caprolactam, not Nylon 66 or fabricated nylon parts. Retain the complete native polymer inventory per kg without adding a converting operation.",
         "Use each complete native material or forming service per signed source kg with factor +1; preserve caller uncertainty, formulas, foreground ownership, separately listed polymer, transport and direct emissions.",
         "Where the source is a delivered market, its supplier shares, delivery freight and losses are not reconstructed from the at-plant proxy. Native internal freight and complete upstream inventories remain included once. Source global/RoW supply is approximated by the declared native European supply; source and target geography, technology mix, vintage, allocation, emission coverage and data quality differ. Equal inventories or LCIA scores are not established.",
-        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred."
+        "All inspected native 2025 and 2026 suppliers have positive one-kg references and unchanged direct technosphere identities and quantities across these releases. Native 2025 forming-service comments state the matching yield but omit the full bulk-polymer exclusion text present in 2026; unchanged direct technosphere vectors support the same service boundary. Native biosphere differences and the imported upstream exclusions remain in force. Only the exact enumerated source profiles are registered; other profiles, reverse routes and cross-system-model conversions are not inferred.",
+        "Exact source3.9 retained-delivery profile added after independent inspection. Earlier source3.8/3.12 at-plant target, +1 factor, kg basis and original delivery/industry-model limitations are retained; positive references and all previously recorded primary hashes still match. New fingerprints explicitly bind the extended rule, verified old-profile reference annotations and profile-qualified recipe review card; complete prior approvals remain in this frozen review."
       ],
       "scopes": [
         {
@@ -6904,7 +6998,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "7e608699e53b3098d132fe95ffa32d09c861862038d98bdd186230bb6d6fd125"
+          "fingerprint": "474f1f23be4064af850a4ea165999fa45d976f0690cb38fb07c326bfdcbd9191"
         }
       ]
     },
@@ -258773,11 +258867,12 @@
       "rule_id": "bp-1d02d57e06e24b45",
       "operation": "replace",
       "mapping_method": "heuristic_similarity",
-      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
-      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "review_path": "export/uvek_nylon6_39_review.json",
+      "review_sha256": "be800929781ce1bcc1a17b43480862a2611522fcd6e14a1231e87bcd6707955c",
       "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
       "limitations": [
-        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Nylon6 market to complete European Nylon6at-plant material per signedkg. Match polycaprolactam, not Nylon66, glass-reinforced polymer or an engineering-service unit. Source/native market-delivery, polymer process, grade, energy and vintage differences remain; no yield, density or fibre-conversion multiplier."
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Nylon6 market to complete European Nylon6at-plant material per signedkg. Match polycaprolactam, not Nylon66, glass-reinforced polymer or an engineering-service unit. Source/native market-delivery, polymer process, grade, energy and vintage differences remain; no yield, density or fibre-conversion multiplier.",
+        "Exact source3.9 retained-delivery profile added after independent inspection. Earlier source3.8/3.12 at-plant target, +1 factor, kg basis and original delivery/industry-model limitations are retained; positive references and all previously recorded primary hashes still match. New fingerprints explicitly bind the extended rule, verified old-profile reference annotations and profile-qualified recipe review card; complete prior approvals remain in this frozen review."
       ],
       "inspection": {
         "source_profile": {
@@ -258798,7 +258893,64 @@
           "normalized_inventory_sha256": "e0b0f98e2254428d97cd2b9a3e1775e5e66a799cd559928b3a108c374113f2a0",
           "comment_sha256": "36101500fcf614595d1c26636694f7a132070caa2442f8c0f4b2cee6fa1ccc73"
         },
-        "conversion_factor": 1
+        "conversion_factor": 1,
+        "profile_annotation_refinement": {
+          "prior_approval": {
+            "rule_id": "bp-1d02d57e06e24b45",
+            "operation": "replace",
+            "mapping_method": "heuristic_similarity",
+            "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+            "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+            "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+            "limitations": [
+              "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Nylon6 market to complete European Nylon6at-plant material per signedkg. Match polycaprolactam, not Nylon66, glass-reinforced polymer or an engineering-service unit. Source/native market-delivery, polymer process, grade, energy and vintage differences remain; no yield, density or fibre-conversion multiplier."
+            ],
+            "inspection": {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.8",
+                "system_model": "cutoff"
+              },
+              "source_witness": {
+                "identity": {
+                  "name": "market for nylon 6",
+                  "reference product": "nylon 6",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "normalized_inventory_sha256": "e0b0f98e2254428d97cd2b9a3e1775e5e66a799cd559928b3a108c374113f2a0",
+                "comment_sha256": "36101500fcf614595d1c26636694f7a132070caa2442f8c0f4b2cee6fa1ccc73"
+              },
+              "conversion_factor": 1
+            },
+            "scopes": [
+              {
+                "source": {
+                  "family": "ecoinvent",
+                  "version": "3.8",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "family": "uvek",
+                  "version": "2025",
+                  "system_model": "cutoff"
+                },
+                "fingerprint": "591d51c2b31ce21b7569fd3fdd91d819095a950c6514e141f547dddf2e9e4d51"
+              }
+            ]
+          },
+          "new_exact_source_profile": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "old_at_plant_physical_mapping_unchanged": true,
+          "reference_annotations_verified_against_current_primary": true,
+          "new_review": "export/uvek_nylon6_39_review.json"
+        }
       },
       "scopes": [
         {
@@ -258812,7 +258964,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "591d51c2b31ce21b7569fd3fdd91d819095a950c6514e141f547dddf2e9e4d51"
+          "fingerprint": "83236ad3974475fb78b624cdac139eceb4ebfcb0c0283ee0dce652bd26ab4733"
         }
       ]
     },
@@ -269431,6 +269583,205 @@
             "version": "2025"
           },
           "fingerprint": "1b71faa4a5833c755f9390707f3f7a61cba4bd13c3ac701df98ffc91bc101c39"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-1d02d57e06e24b45",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_nylon6_39_review.json",
+      "review_sha256": "be800929781ce1bcc1a17b43480862a2611522fcd6e14a1231e87bcd6707955c",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings, complete native polymer proxies and retained-delivery helpers, with warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nylon 6",
+            "reference product": "nylon 6",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "0d901976ff6529ee1d32e750bb4e56e062922b0d2ba0317602fc3a5abfc13503",
+          "inventory_sha256": "cb11d420421a80502c480d5c51e74415fdee46fee5138586def4fe84785031f1",
+          "activity_comment_sha256": "36101500fcf614595d1c26636694f7a132070caa2442f8c0f4b2cee6fa1ccc73",
+          "product_information_sha256": "77585b5ee1afabb70289bd8fa5fa2155c71840e732f86d39d87caf7aeb59115b"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "nylon 6 production",
+              "reference product": "nylon 6",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 152,
+            "metadata_sha256": "19d7466f01ee1b8a18c7106c6dec4f7848204b5155646f787c65d9e5b385d596",
+            "inventory_sha256": "ae4172ea378a0763a6144a4e9f503878ee771832975fd62d161b5d5db8df365e",
+            "activity_comment_sha256": "34d2505f3318a26a4e057cbff7bf47f2309e8cb5a478a8fe0cb616e80d89f5f4",
+            "product_information_sha256": "77585b5ee1afabb70289bd8fa5fa2155c71840e732f86d39d87caf7aeb59115b"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Nylon 6, at plant",
+              "reference product": "Nylon 6, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 147,
+            "metadata_sha256": "5a149fc66e220b4708e20a4b71cf66e89dc4c53537670a15091bfd6d375625a3",
+            "inventory_sha256": "6bcd7488d2f2a4a553e4c65c81bbf81631306bbb6d327a25d237215f672b1e9d",
+            "activity_comment_sha256": "3005ad6d7a70a4645c11242e023820d227cc059a681adfa1b4e958b3a7b28009",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Nylon 6, at plant",
+              "reference product": "Nylon 6, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 153,
+            "metadata_sha256": "f3a009af408fe5709a0319c6bfe8556414c873fd90a66af6c20a698360d230ba",
+            "inventory_sha256": "3c80aec19249723858115c93f3775cd1bd8bbeefc6863717d067b6e3aef68232",
+            "activity_comment_sha256": "d1a8e5f94e279320edc50cbb2b53fdda9dd7f9c4aee1b067f109938b13e1091c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "nylon6-39-retained-polymer-and-delivery",
+        "boundary_checks": {
+          "kind": "delivered_virgin_nylon6_polymer",
+          "source_producer_entries": 1,
+          "retained_final_delivery_entries": 3,
+          "native_explicit_energy_purchases": 0,
+          "embedded_energy_updatable_by_supplier_relinking": false
+        }
+      },
+      "limitations": [
+        "New permission covers only independently inspected ecoinvent 3.9 cut-off European nylon-6 market and production. Source is virgin nylon6/polycaprolactam, not Nylon66, another polyamide, glass-reinforced grade, a fabricated part or a polymer-forming service. Source/native positive one-kg polymer references require factor +1: preserve signed caller material kg, supported uncertainty/formulas, foreground ownership and separate materials/emissions. Do not add melt processing, fibre spinning, extrusion, glass fibre, drying, yield, density or recycled-content multipliers. Other patches, system models and reverse routes receive no new approval.",
+        "Use the complete native European Nylon6 at-plant inventory once. Source/native describe aggregated PlasticsEurope-type raw-material-extraction-through-at-plant polymer inventories, including feedstock/energy/emissions and process-waste treatment. Native2026 has eight technosphere treatment entries and 145 biosphere entries; native2025 has eight and 139. Source3.9 producer has nine treatment entries and 143 biosphere entries. Complete source/native vectors are not asserted equal. Regional samples, polymer grade, industry model, water/emission coverage, allocation, age, waste moisture/geography, treatment supply and internal uncertainty differ; score effects remain unquantified. Do not add caprolactam, energy, factory or treatment a second time, or infer physical balances from missing industry-detail flows.",
+        "Source process-waste inputs use negative waste references while native uses positive disposal services, within their respective complete models. These internal signs do not change the positive polymer kg reference or create recovery credits. The source two hazardous-waste regional entries become the native complete Swiss service at its original total quantity; this is a complete-polymer model proxy, not a separately authorized treatment-flow conversion. No source exchange is omitted by this review.",
+        "Native upstream energy is embedded in its aggregated biosphere inventory, with no explicit electricity/heat purchases. Ordinary Premise electricity/heat supplier relinking cannot decarbonize that embedded portion. Preserve and report this native-data limitation, rather than claiming physically zero energy, complete scenario decarbonization, inventing a grid demand or deaggregating confidential industry burdens. Explicit eligible suppliers elsewhere retain shared Premise transformations.",
+        "Existing default target and earlier 3.8/3.12 physical at-plant mappings remain unchanged. Those earlier market proxies still do not reconstruct final delivery; their original warnings remain. The new retained-delivery helper applies only to source3.9. Both prior approvals and matching current primary hashes are frozen; their fingerprints are explicitly refined to bind the new exact-profile annotations, not blindly refreshed. Other existing operations are unchanged. No runtime Python, alternative sector engine, source omission or validation bypass.",
+        "Retain one kg European producer supply, 0.0438 tkm rail, 0.0219 tkm inland barge and 0.1713 tkm heavy-road final delivery per market kg, with original uncertainty/formulas. Reuse independently reviewed complete European freight services. Keep rail/barge/heavy-road modes distinct, with their full vehicles, maintenance, disposal and transport infrastructure once. Fleet, fuel, load, delivery technology, geography, allocation, vintage and internal uncertainty remain screening limitations. No added sea freight, distance, loading, loss multiplier, share renormalization or second infrastructure. Native at-plant upstream burdens are separate from the retained final-market delivery."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2550a6ec271899cccb1c2651b9764dd23169b463de8db4ce4b7ea5f4c5c7ae8c"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-905df7dafb74ea5d",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_nylon6_39_review.json",
+      "review_sha256": "be800929781ce1bcc1a17b43480862a2611522fcd6e14a1231e87bcd6707955c",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings, complete native polymer proxies and retained-delivery helpers, with warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "nylon 6 production",
+            "reference product": "nylon 6",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 152,
+          "metadata_sha256": "19d7466f01ee1b8a18c7106c6dec4f7848204b5155646f787c65d9e5b385d596",
+          "inventory_sha256": "ae4172ea378a0763a6144a4e9f503878ee771832975fd62d161b5d5db8df365e",
+          "activity_comment_sha256": "34d2505f3318a26a4e057cbff7bf47f2309e8cb5a478a8fe0cb616e80d89f5f4",
+          "product_information_sha256": "77585b5ee1afabb70289bd8fa5fa2155c71840e732f86d39d87caf7aeb59115b"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Nylon 6, at plant",
+              "reference product": "Nylon 6, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 147,
+            "metadata_sha256": "5a149fc66e220b4708e20a4b71cf66e89dc4c53537670a15091bfd6d375625a3",
+            "inventory_sha256": "6bcd7488d2f2a4a553e4c65c81bbf81631306bbb6d327a25d237215f672b1e9d",
+            "activity_comment_sha256": "3005ad6d7a70a4645c11242e023820d227cc059a681adfa1b4e958b3a7b28009",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Nylon 6, at plant",
+              "reference product": "Nylon 6, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 153,
+            "metadata_sha256": "f3a009af408fe5709a0319c6bfe8556414c873fd90a66af6c20a698360d230ba",
+            "inventory_sha256": "3c80aec19249723858115c93f3775cd1bd8bbeefc6863717d067b6e3aef68232",
+            "activity_comment_sha256": "d1a8e5f94e279320edc50cbb2b53fdda9dd7f9c4aee1b067f109938b13e1091c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null,
+        "boundary_checks": {
+          "kind": "complete_virgin_nylon6_polymer",
+          "native_explicit_energy_purchases": 0,
+          "embedded_energy_updatable_by_supplier_relinking": false,
+          "forming_or_purity_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "New permission covers only independently inspected ecoinvent 3.9 cut-off European nylon-6 market and production. Source is virgin nylon6/polycaprolactam, not Nylon66, another polyamide, glass-reinforced grade, a fabricated part or a polymer-forming service. Source/native positive one-kg polymer references require factor +1: preserve signed caller material kg, supported uncertainty/formulas, foreground ownership and separate materials/emissions. Do not add melt processing, fibre spinning, extrusion, glass fibre, drying, yield, density or recycled-content multipliers. Other patches, system models and reverse routes receive no new approval.",
+        "Use the complete native European Nylon6 at-plant inventory once. Source/native describe aggregated PlasticsEurope-type raw-material-extraction-through-at-plant polymer inventories, including feedstock/energy/emissions and process-waste treatment. Native2026 has eight technosphere treatment entries and 145 biosphere entries; native2025 has eight and 139. Source3.9 producer has nine treatment entries and 143 biosphere entries. Complete source/native vectors are not asserted equal. Regional samples, polymer grade, industry model, water/emission coverage, allocation, age, waste moisture/geography, treatment supply and internal uncertainty differ; score effects remain unquantified. Do not add caprolactam, energy, factory or treatment a second time, or infer physical balances from missing industry-detail flows.",
+        "Source process-waste inputs use negative waste references while native uses positive disposal services, within their respective complete models. These internal signs do not change the positive polymer kg reference or create recovery credits. The source two hazardous-waste regional entries become the native complete Swiss service at its original total quantity; this is a complete-polymer model proxy, not a separately authorized treatment-flow conversion. No source exchange is omitted by this review.",
+        "Native upstream energy is embedded in its aggregated biosphere inventory, with no explicit electricity/heat purchases. Ordinary Premise electricity/heat supplier relinking cannot decarbonize that embedded portion. Preserve and report this native-data limitation, rather than claiming physically zero energy, complete scenario decarbonization, inventing a grid demand or deaggregating confidential industry burdens. Explicit eligible suppliers elsewhere retain shared Premise transformations.",
+        "Existing default target and earlier 3.8/3.12 physical at-plant mappings remain unchanged. Those earlier market proxies still do not reconstruct final delivery; their original warnings remain. The new retained-delivery helper applies only to source3.9. Both prior approvals and matching current primary hashes are frozen; their fingerprints are explicitly refined to bind the new exact-profile annotations, not blindly refreshed. Other existing operations are unchanged. No runtime Python, alternative sector engine, source omission or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1a3bb2dd7caba5ebd70c7d76dbf56aa9eb6f3363baf22c786db971ab97fc2fef"
         }
       ]
     }
