@@ -2299,29 +2299,35 @@
       },
       "current_mapping_frontier": {
         "date": "2026-11-13",
-        "status": "inventory_preparation_requires_independent_correspondence_review",
+        "status": "first_five_39_material_correspondences_verified_inventory_preparation_incomplete",
         "verified_after_CDR_export_writer_exited": true,
         "source_profile": {
           "family": "ecoinvent",
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-0bbfeb07da304c0c",
+        "rule_id": "bp-1ab902a3504c50ab",
         "source": {
-          "location": "RER",
-          "name": "market for hydrogen fluoride",
-          "reference product": "hydrogen fluoride",
+          "location": "GLO",
+          "name": "sodium fluoride production",
+          "reference product": "sodium fluoride",
           "unit": "kilogram"
         },
         "current_unapproved_target": {
           "location": "GLO",
-          "name": "Hydrogen fluoride, at plant",
-          "reference product": "Hydrogen fluoride, at plant",
+          "name": "Sodium arsenide, at plant",
+          "reference product": "Sodium arsenide, at plant",
           "unit": "kilogram"
         },
-        "next_action": "Inspect source and native production references, chemical/solution concentration basis, market delivery and allocation/geography; then replace or scope the correspondence with explicit limitations.",
+        "next_action": "Correct the sodium-fluoride to sodium-arsenide mismatch after inspecting native alternatives and reaction/reference basis. Resolve further correspondences in reviewed groups.",
         "export_performed": false,
-        "earlier_overlapping_probe": "Construction hit the active CDR export SQL writer and is not mapping evidence."
+        "earlier_overlapping_probe": "Construction hit the active CDR export SQL writer and is not mapping evidence.",
+        "completed_reviews": [
+          "docs/development/uvek-battery-first-materials-39-review.md"
+        ],
+        "verification": "docs/development/uvek-battery-first-materials-39-verification.json",
+        "unapproved_correspondence_count_in_current_39_cohort": 190,
+        "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles."
       }
     },
     {

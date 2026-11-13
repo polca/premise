@@ -1722,3 +1722,33 @@ retried and now reaches an actual mapping decision: exact 3.9 cut-off
 `market for hydrogen fluoride` (RER) to native `Hydrogen fluoride, at plant`
 (GLO), rule `bp-0bbfeb07da304c0c`. Product/solution basis, production boundary
 and market delivery need inspection before this correspondence can be approved.
+
+## Battery: first five source-3.9 material decisions
+
+Five exact cut-off correspondences are now independently reviewed: HF and TCE
+markets, ultrapure-water production, glass fibre and electronic-grade silicon.
+The two market wrappers retain all original final-delivery quantities and
+producer entries separately; the other inputs use complete native products.
+Reference signs/units, caller uncertainty/formulas and separate foreground
+emissions remain intact. Native HF's inconsistent CAS, unverified assay, TCE's
+historical cumulative boundary and missing infrastructure/land use, water
+recovery and equipment differences, glass feedstock/heat boundaries and silicon
+allocation/concentration conventions are explicit screening limitations.
+There is no added caller-exchange omission or runtime Python change.
+
+The 37 Brightpath mapping/storage cases and 25 Premise fresh/cache/refusal and
+existing-approval regressions pass. Ten signed transient LCIs and five independent
+native-reference LCIs pass; maximum absolute inventory difference is 8.21e-10.
+No Brightway database, activity or processed file is created. All previous approval operations and 1,279
+scope fingerprints remain unchanged; five scoped grants bring the
+set to 1,284. The verified committed-source wheel is installed, and its unused
+43,843,967-byte binary copy was removed. Running notebook kernels need a restart
+to load the updated data. The colleague install pin is updated for the next batch.
+
+The actual battery retry clears all five cases and adds no new unapproved rule
+in that cohort: 195 becomes 190 unique unreviewed correspondence rules. Those
+are not dataset counts or all remaining source profiles. The next error is an
+unsafe sodium-fluoride → sodium-arsenide match, which remains refused pending
+correction. Battery preparation, update, export and wider coverage are unfinished.
+Eight of 19 sectors remain qualified. See [review](uvek-battery-first-materials-39-review.md)
+and [verification](uvek-battery-first-materials-39-verification.json).

@@ -259783,6 +259783,617 @@
           "fingerprint": "30984a1f1f4ac812fa9454e5963333f86a0b7f807a7745dd048818690239278e"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-0bbfeb07da304c0c",
+      "mapping_method": "reviewed_battery_material_boundary_39",
+      "review_path": "export/uvek_battery_first_materials_39_review.json",
+      "review_sha256": "94035d83c252af818b9fb0eb0292f183f98131e21990f2191e430c7ca24ac19f",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warning and decision logs.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for hydrogen fluoride",
+          "reference product": "hydrogen fluoride",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for hydrogen fluoride",
+            "reference product": "hydrogen fluoride",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "f4ea6b75dd48bc9721dbfcfeae986c86e532ca2bfede79e7b84d75f4b05de209",
+          "inventory_sha256": "32357cf2a498bd40afa97cc65ce4fb829671c397903fc62d4a7104eecbe2b5dc",
+          "activity_comment_sha256": "a455b41e6f22eca0dea2f8e588c03daa28c1d2bdd3f5d53abbca7b34c8c33adf",
+          "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "hydrogen fluoride production",
+              "reference product": "hydrogen fluoride",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "f3ac0e02b061552b090cf19eaeb4ecf7153fe3ea424b3cf8e6c61b2f677f1009",
+            "inventory_sha256": "8d47e2dcfbd05faedb3ad4a60ec1aa1ad6b02a370e7bfd75646596a695e64836",
+            "activity_comment_sha256": "1820f8d0ed5d73179ad1d3ce782e4268c194719ff8b8d7959976b7737b7cc04a",
+            "product_information_sha256": "d84ccea451f1232537d030ecd10603624e205744f2c2dbc98061f90195d1dfe8"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Hydrogen fluoride, at plant",
+              "reference product": "Hydrogen fluoride, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 9,
+            "metadata_sha256": "4c7e39dd422c2dccef623323e7f952f9c24a1bb7b2e6be50168cb9629e22ef92",
+            "inventory_sha256": "3fee1c7006caa7aa55fb27f7c64e76923684552ce521676cd3cfc5305c0d43c5",
+            "activity_comment_sha256": "d2c6b0a32ffe40485c6f041584ce926f96db5befb60778e4031772899ae073af",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Hydrogen fluoride, at plant",
+              "reference product": "Hydrogen fluoride, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 9,
+            "metadata_sha256": "44ee04f14df0e356ffef7c3e8103e57e2232d03a9e64f3c7c5942f3d33539738",
+            "inventory_sha256": "f7cf905e883a01c43965b50a1aec4fcff8d9e4226ed87ba9ccd18987fd7d86b4",
+            "activity_comment_sha256": "3751d57d0b05fc83d433078bf08361260f66fa5c887bc204469450565fec1275",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "battery-39-hydrogen-fluoride-delivered-market",
+        "market_interfaces": [
+          {
+            "kind": "producer",
+            "source_region": "RER",
+            "amount": 1.0
+          },
+          {
+            "kind": "freight",
+            "native_target": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "amount": 0.0131
+          },
+          {
+            "kind": "freight",
+            "native_target": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "amount": 0.0514
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off is reviewed. Source and native product references are positive one kg; caller factor +1 preserves signed kg, supported uncertainty, formulas and separately listed foreground emissions. Other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete available native product inventory once on its stated reference basis. Geography, technology, allocation, vintage, native biosphere exclusions and internal uncertainty differ; no source/native LCI or LCIA equivalence is claimed and score effects remain unquantified. Caller uncertainty is retained; native internal distributions replace source production distributions without quantifying modelling uncertainty or correlations.",
+        "HF: source product information explicitly references pure hydrogen fluoride, CAS 7664-39-3. Native name, formula HF, fluorspar/sulphuric-acid route and positive kg reference identify hydrogen fluoride, but its stated CAS 73602-61-6 conflicts with those facts and is associated with a triethylamine fluoride reagent. Do not use that inconsistent CAS as chemical identity or infer a 37% HF mixture, triethylamine input or concentration multiplier. Native assay is not independently established; the functional kg-HF basis is a documented screening interpretation, not a measured purity certificate. Original native metadata stay unchanged.",
+        "HF: source and native both use 2.053 kg of 97% fluorspar per reference kg. Native electricity is 2.5592 rather than source 0.25 kWh, sulphuric acid is 5.5 rather than 2.5 kg, and thermal-energy services have different boundaries. Retain the complete native model, including its own raw-material freight and waste heat, without correcting reagents, adding the source utilities or inventing a yield, gypsum credit or missing residue treatment. These inventory differences have unquantified score effects.",
+        "For these market wrappers, retain every original source producer entry and finished-product freight quantity and its supported uncertainty separately. The available native product replaces the source production model; internal source producer distributions are not reconstructed. No source market loss or self-input is present. Add no renormalization or delivery-loss factor.",
+        "Retain source rail, lorry, barge and container-ship tkm as applicable, using complete native services at positive one tkm. Native RER/Swiss fleet, traction, fuel/technology, geography, emissions, infrastructure and vintage are screening proxies for the original regional/global transport mixes. Native container transport already includes vessel operation and two-port infrastructure; add no second port, ship or infrastructure burden. Finished-product delivery is distinct from raw-material logistics already inside the complete native production process."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "850f7ce9963ddc8bfbd97773ccd305530050b40add35f660755bff4bab1858f6"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-d3f9737d70620971",
+      "mapping_method": "reviewed_battery_material_boundary_39",
+      "review_path": "export/uvek_battery_first_materials_39_review.json",
+      "review_sha256": "94035d83c252af818b9fb0eb0292f183f98131e21990f2191e430c7ca24ac19f",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warning and decision logs.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for trichloroethylene",
+          "reference product": "trichloroethylene",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for trichloroethylene",
+            "reference product": "trichloroethylene",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "fc6f1ffc9936f7f51ba80155ced657ba9458e687c422cd2349254f0279143868",
+          "inventory_sha256": "3cf8f2915ccafb7be24b8c157be9a480ebb91b9c033ddfdc24936975adf69b86",
+          "activity_comment_sha256": "8483e748f791660254baac85bca89c2c1fc758a10074c5dfaabf259e22487df5",
+          "product_information_sha256": "09566e3fc5449d32edd12865098fae08047be2d1c996e8592aa4f0ab804fd54e"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "trichloroethylene production",
+              "reference product": "trichloroethylene",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 18,
+            "metadata_sha256": "e586ee2ea1e6db473659670fc81c304799fb993a188aec6d2d54c99e8c0e2a91",
+            "inventory_sha256": "0dc895e586a617dd0c6f2801e72f361c148662c1f243192ca3f611dc9f95a128",
+            "activity_comment_sha256": "45ff18d1e332cda0d5981012052ce7e28811ea35ec079f48ade2610435377be9",
+            "product_information_sha256": "09566e3fc5449d32edd12865098fae08047be2d1c996e8592aa4f0ab804fd54e"
+          },
+          {
+            "identity": {
+              "name": "trichloroethylene production",
+              "reference product": "trichloroethylene",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 31,
+            "metadata_sha256": "28ff5d4d5eb71ccf432521c9664c3d54cba4c65e26eff8a61d9c7ce229fb78bd",
+            "inventory_sha256": "7c80e6a63b1beb8526214a25dde49456d8b8f10fd5e152cda7ed123d82da0749",
+            "activity_comment_sha256": "ec3caee4b6dc5d885bc9b23ab11f1ccfe84e0f8e507fdcce60ef1b5b89b8560f",
+            "product_information_sha256": "09566e3fc5449d32edd12865098fae08047be2d1c996e8592aa4f0ab804fd54e"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Trichloroethylene, at plant",
+              "reference product": "Trichloroethylene, at plant",
+              "location": "WEU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 95,
+            "metadata_sha256": "7e01e42ae4e914cbfc8d09f42c57f9715c7e5c3d3508ac306f0c294e19184819",
+            "inventory_sha256": "3a9554c0882717b5441996b3bb02d265fe6fc47feb1d87680920e152415d3c74",
+            "activity_comment_sha256": "cf3478fdd77c89cdb3358beacf1c2a23d135f0ca6680919171886afec7d1966c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Trichloroethylene, at plant",
+              "reference product": "Trichloroethylene, at plant",
+              "location": "WEU",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 99,
+            "metadata_sha256": "098bbe1fd98571dc51de3b2f1d21d01fc636773c271c80aba15e9efb4d5ee2e6",
+            "inventory_sha256": "c3c7fd75a61e625bb0cb9b23c64be19c6e1c55c9d3444f6e708f1b17d2c37d26",
+            "activity_comment_sha256": "226bb2aa00c1331ede6ddfa5867185f75d6b89912e9259274688d8096f33ebc1",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "battery-39-trichloroethylene-delivered-market",
+        "market_interfaces": [
+          {
+            "kind": "freight",
+            "native_target": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "amount": 0.3091
+          },
+          {
+            "kind": "freight",
+            "native_target": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "amount": 0.0246
+          },
+          {
+            "kind": "freight",
+            "native_target": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "amount": 0.2088
+          },
+          {
+            "kind": "freight",
+            "native_target": {
+              "location": "OCE",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "unit": "ton kilometer"
+            },
+            "amount": 0.599
+          },
+          {
+            "kind": "producer",
+            "source_region": "RER",
+            "amount": 0.1581818181818183
+          },
+          {
+            "kind": "producer",
+            "source_region": "RoW",
+            "amount": 0.8418181818181817
+          }
+        ],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off is reviewed. Source and native product references are positive one kg; caller factor +1 preserves signed kg, supported uncertainty, formulas and separately listed foreground emissions. Other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete available native product inventory once on its stated reference basis. Geography, technology, allocation, vintage, native biosphere exclusions and internal uncertainty differ; no source/native LCI or LCIA equivalence is claimed and score effects remain unquantified. Caller uncertainty is retained; native internal distributions replace source production distributions without quantifying modelling uncertainty or correlations.",
+        "TCE: both product identities specify trichloroethylene C2HCl3, CAS 79-01-6, per positive kg. Source 3.9 uses a modern ethylene/chlorination model with hydrochloric-acid co-production; native WEU is a historical cumulative European system inventory covering averaged production routes. Use that complete available native system inventory for each original producer share, keeping the two source shares separate. Do not add source upstream energy, feedstocks, infrastructure or an extra hydrochloric-acid credit.",
+        "TCE: native documentation explicitly lacks main-process infrastructure and land-use information and cannot assess internal uncertainty. Its cumulative elementary-resource/emission representation limits subsequent IAM updating of internal energy and upstream routes. Source and native emissions, allocation, coproducts, technology, coverage and vintage differ; the WEU inventory is a geographic proxy for both original RER and RoW producers, not their measured global blend.",
+        "For these market wrappers, retain every original source producer entry and finished-product freight quantity and its supported uncertainty separately. The available native product replaces the source production model; internal source producer distributions are not reconstructed. No source market loss or self-input is present. Add no renormalization or delivery-loss factor.",
+        "Retain source rail, lorry, barge and container-ship tkm as applicable, using complete native services at positive one tkm. Native RER/Swiss fleet, traction, fuel/technology, geography, emissions, infrastructure and vintage are screening proxies for the original regional/global transport mixes. Native container transport already includes vessel operation and two-port infrastructure; add no second port, ship or infrastructure burden. Finished-product delivery is distinct from raw-material logistics already inside the complete native production process."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "92f159351a26877ebc7f23f5198275fe3dac85a0ea51b92b42fa88a2500e96fc"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-7a19b8bce18972c5",
+      "mapping_method": "reviewed_battery_material_boundary_39",
+      "review_path": "export/uvek_battery_first_materials_39_review.json",
+      "review_sha256": "94035d83c252af818b9fb0eb0292f183f98131e21990f2191e430c7ca24ac19f",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warning and decision logs.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "water production, ultrapure",
+          "reference product": "water, ultrapure",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "water production, ultrapure",
+            "reference product": "water, ultrapure",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 31,
+          "metadata_sha256": "7925cd1cf5f71b2f0cae5c5e654b37300f3534783e9d9ce84259698b3b728460",
+          "inventory_sha256": "bd42741eba09ac4b2114f34518c80ce923196340e1d860d4f83a94625a3e6357",
+          "activity_comment_sha256": "c3132299a103b514d7718b8ae531731cfcc738b8d955a0a34f861b48c916b285",
+          "product_information_sha256": "95f55898bb5a7abbf00e91f030fe28a8a6db9ff959bd1475efd27e846e9dafb0"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Water, ultrapure, at plant",
+              "reference product": "Water, ultrapure, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 13,
+            "metadata_sha256": "1345ec547311f29e920751e7c95c7e5d5a95c7bc15edaf85b3133c9081275a8c",
+            "inventory_sha256": "45afb411db418d4f4113df7d833c855d3847d4a0085ca79ba9ae74987753505c",
+            "activity_comment_sha256": "e6b5f1eec724b57ed87d3575fc41e7b7a52aa9eaca58d428e5e5afc9249aee42",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Water, ultrapure, at plant",
+              "reference product": "Water, ultrapure, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "43be0a571608f080757c00cfa7ceeb8e74b889752d772580847f5a7dd4f95188",
+            "inventory_sha256": "2dcb8e17af6b320835ceda2fb6624728c6f5f5274ac07026e12239608e12a0b9",
+            "activity_comment_sha256": "3639fec223c79cb2caac488a9bdf34910a1c9fe95a3a82c76b30df70f5040af7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null,
+        "market_interfaces": [],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off is reviewed. Source and native product references are positive one kg; caller factor +1 preserves signed kg, supported uncertainty, formulas and separately listed foreground emissions. Other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete available native product inventory once on its stated reference basis. Geography, technology, allocation, vintage, native biosphere exclusions and internal uncertainty differ; no source/native LCI or LCIA equivalence is claimed and score effects remain unquantified. Caller uncertainty is retained; native internal distributions replace source production distributions without quantifying modelling uncertainty or correlations.",
+        "Ultrapure water: source and native describe electrodeionization and positive kg ultrapure-water output, not drinking water or an m3 service. Source includes reverse-osmosis pretreatment, UV, degassing, membranes, infrastructure and wastewater; native is an estimated simpler complete production model. Equal detailed resistivity, contaminant or semiconductor-grade specifications are not established.",
+        "Ultrapure water: source uses 1.5 kg tap water and 0.00546 kWh per kg product, native uses 1.0006 kg and 0.0005 kWh. Retain the complete native water/energy/emission model once. Its recovery, treatment train, equipment, reject-water, water-stress and emission differences replace the source internal model. Add no source wastewater service, make-up water, loss correction, density conversion, infrastructure or energy adjustment. Caller product kg remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ab313a79d05fb54651bc80c0712884c0e9ea927a5bc8804f6db79610f9177a55"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-91dd24e733bdeb2c",
+      "mapping_method": "reviewed_battery_material_boundary_39",
+      "review_path": "export/uvek_battery_first_materials_39_review.json",
+      "review_sha256": "94035d83c252af818b9fb0eb0292f183f98131e21990f2191e430c7ca24ac19f",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warning and decision logs.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "glass fibre production",
+          "reference product": "glass fibre",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "glass fibre production",
+            "reference product": "glass fibre",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 35,
+          "metadata_sha256": "26e0fad7205d0eac7c4214f67cf81cee50dea0bca608b981837dc1062c7fb6f9",
+          "inventory_sha256": "c218bbfafb5676eda9abe5916562bb3e700f177a59785759230be857ad9d6072",
+          "activity_comment_sha256": "24452205eecef5b1d151dc0e659b32460f2763b419e50079238fd2e846e83707",
+          "product_information_sha256": "f8e1d3b000b0409900c6f95fd9f33a5729e625cdae7cb5fe88a51f0921719942"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Glass fibre, at plant",
+              "reference product": "Glass fibre, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 32,
+            "metadata_sha256": "ebf3d11c99ba774851e56d90bca4950010d5f096130a76fb3b3fbb1c58dd7e76",
+            "inventory_sha256": "d2c87b46ee71f2dff942938e1b6100b300f1c5104d1f355a5be802b1e3e546ea",
+            "activity_comment_sha256": "cab922e6a2717b2a393e375e94f9c8cabb0b8826168389ff6d084606af7c2e8c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Glass fibre, at plant",
+              "reference product": "Glass fibre, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 33,
+            "metadata_sha256": "f51da115f7178eded4b18c0b54e66afac46bafd9c637a26ef139ab7053b5b29a",
+            "inventory_sha256": "d2b121166b0c7618cafcc0c109e5f2729127ddc0815e4fe1dd9af978128b9482",
+            "activity_comment_sha256": "a0121454c964787e20ae9b94ff61f0c558226a22faec73664e937b7fbb5cfea9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null,
+        "market_interfaces": [],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off is reviewed. Source and native product references are positive one kg; caller factor +1 preserves signed kg, supported uncertainty, formulas and separately listed foreground emissions. Other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete available native product inventory once on its stated reference basis. Geography, technology, allocation, vintage, native biosphere exclusions and internal uncertainty differ; no source/native LCI or LCIA equivalence is claimed and score effects remain unquantified. Caller uncertainty is retained; native internal distributions replace source production distributions without quantifying modelling uncertainty or correlations.",
+        "Glass fibre: both describe the same broad European glass-fibre furnace family, with literature ranges from 26 furnaces at 12 sites, per positive kg of fibre including the native sizing inputs. Use complete native glass fibre, not flat glass, mineral-wool waste or a fibre-reinforced-plastic product. A particular fibre specification or strength equivalence is not established.",
+        "Glass fibre: native feed uses limestone where source lists lime; the calcination/feedstock boundary differs. Native fuel-energy and source useful-heat labels also differ; infer no furnace efficiency multiplier. Native raw-material freight, wastewater, waste routing, direct emissions, upstream allocation, geography, internal uncertainty and vintage replace the source model. Keep the whole native batch and auxiliaries once; do not add source lime, fuel, furnace, wastewater, sizing, freight or disposal on top or claim a correction to the original source."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2a2286c7b1a98a6559b5f78c796e1d806627eb46d57ce9193e3faf9232d1ecfe"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-62c56bf9797d2742",
+      "mapping_method": "reviewed_battery_material_boundary_39",
+      "review_path": "export/uvek_battery_first_materials_39_review.json",
+      "review_sha256": "94035d83c252af818b9fb0eb0292f183f98131e21990f2191e430c7ca24ac19f",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warning and decision logs.",
+      "inspection": {
+        "source": {
+          "location": "DE",
+          "name": "silicon production, electronics grade",
+          "reference product": "silicon, electronics grade",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "silicon production, electronics grade",
+            "reference product": "silicon, electronics grade",
+            "location": "DE",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 28,
+          "metadata_sha256": "71acbf530076cd1a9471641a382380f14cecd5a5c0005ce820006691c64df996",
+          "inventory_sha256": "b12419f583ffd620f6ff84a821fa0feeda462a61aef05619c3125ae3e7774e8f",
+          "activity_comment_sha256": "16f91add0cbee36c61d6b63eb0f50f572076751cad1df3499af37e0bc904a54e",
+          "product_information_sha256": "ccfc48e928daa1e1700e06d6940993767ed1359fa2b7bc4eee1c6accc0d71aac"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Silicon, electronic grade, at plant",
+              "reference product": "Silicon, electronic grade, at plant",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 29,
+            "metadata_sha256": "92acdc75982615c939e89651f1d8f6472cfa967a5dbf2bb743163b498276be13",
+            "inventory_sha256": "ca954aaeef04ff260327cb900fca88db7fab809e976a9f42d85363a914580297",
+            "activity_comment_sha256": "a428c935ca632ad5a446456a617ea1271bfe0ff61a46e0b6e3f812054576707f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Silicon, electronic grade, at plant",
+              "reference product": "Silicon, electronic grade, at plant",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 30,
+            "metadata_sha256": "4f6754e37032f45459a3efee8087ee358fed14e49d80c1649e52b9e9ce590b64",
+            "inventory_sha256": "dbe8c61384f2480c41ec56c49ed2186f45e789582dd791669cb7d55977dc04a3",
+            "activity_comment_sha256": "721b3c7e42db3b6cb55de1f570b05806700cdb7ab546eb3e0e7f3009d5226176",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null,
+        "market_interfaces": [],
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only exact ecoinvent 3.9 cut-off is reviewed. Source and native product references are positive one kg; caller factor +1 preserves signed kg, supported uncertainty, formulas and separately listed foreground emissions. Other versions, patches, system models and reverse routes gain no approval.",
+        "Use each complete available native product inventory once on its stated reference basis. Geography, technology, allocation, vintage, native biosphere exclusions and internal uncertainty differ; no source/native LCI or LCIA equivalence is claimed and score effects remain unquantified. Caller uncertainty is retained; native internal distributions replace source production distributions without quantifying modelling uncertainty or correlations.",
+        "Electronic silicon: source and native both reference positive kg electronic-grade silicon from MG-silicon purification via chlorosilane chemistry, distillation and deposition, with silicon/off-grade silicon/silicon-tetrachloride co-production. Use the allocated native electronic-grade product, not MG-silicon, solar-grade silicon or a finished wafer. Generic source greater-than-98% metadata do not establish a measured semiconductor purity grade and are not a purity multiplier.",
+        "Electronic silicon: source and native allocation bases, coproduct labels/prices, MG-silicon inputs, acid and alkali concentration conventions, CHP/grid/hydro electricity, useful-heat boundaries, treatment, transport, water, emissions and vintage differ. Preserve the complete native allocation and inventory once; add no silicon-tetrachloride credit, source feedstock/utility, purity, recovery or yield correction. Do not scale caller kg by differing allocated MG-silicon input coefficients. Native DE is a regional historical plant proxy, not exact source-inventory equivalence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d1c08afc8fd7558c0559f42f6037ce5705888001bac0d945a0c59bfb4ad4c9ab"
+        }
+      ]
     }
   ],
   "superseded_operations": [
