@@ -1899,3 +1899,16 @@ A fresh battery retry after the refinement confirms exactly both rules cleared:
 unmounted LCD → mercury match. Battery is unfinished; eight of 19 sectors remain
 qualified. See [review](uvek-weee-freight-39-review.md) and
 [verification](uvek-weee-freight-39-verification.json).
+
+## Third bounded storage cleanup
+
+Five more superseded task exports were deleted after a fresh retention audit,
+including actual and declared metadata dependencies and current notebook
+references: 69,496 activity rows and 96,704,977 processed-cache bytes removed.
+All other existing database names and native/biosphere metadata are preserved;
+independent read-only SQL confirms no remaining rows/links to the retired names,
+11,947 native source and 4,362 biosphere rows, and the 15,137-activity eight-sector
+CDR milestone retained. The project now has 63 registered databases.
+No VACUUM ran. SQLite gained 2,818,109,440 reusable bytes internally while its
+physical file size remains unchanged. Routine mapping checks continue in memory.
+See [receipt](uvek-review-storage-cleanup-2026-11-13-batch-3.json).

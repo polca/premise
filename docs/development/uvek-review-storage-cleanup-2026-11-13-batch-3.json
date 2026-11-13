@@ -1,0 +1,61 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "max_batch": 5,
+  "deleted": [
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261110-205151",
+      "activity_rows_removed": 13695,
+      "processed_cache_bytes_removed": 19172870,
+      "seconds": 11.280372375040315
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261110-205617",
+      "activity_rows_removed": 13695,
+      "processed_cache_bytes_removed": 19172999,
+      "seconds": 9.912417125073262
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261111-113907",
+      "activity_rows_removed": 13695,
+      "processed_cache_bytes_removed": 19172999,
+      "seconds": 9.923966458067298
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-four-sector-review-20261111-115842",
+      "activity_rows_removed": 13694,
+      "processed_cache_bytes_removed": 19172893,
+      "seconds": 9.35437608405482
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-five-sector-handover-review-20261111-143447",
+      "activity_rows_removed": 14717,
+      "processed_cache_bytes_removed": 20013216,
+      "seconds": 10.046789374900982
+    }
+  ],
+  "deferred": [],
+  "vacuum_performed": false,
+  "protected_plan_count": 38,
+  "source_and_biosphere_preserved": true,
+  "storage_before": {
+    "file_bytes": 71805771776,
+    "page_count": 17530706,
+    "free_pages": 654676,
+    "page_size": 4096
+  },
+  "all_other_preexisting_database_names_preserved": true,
+  "storage_after": {
+    "file_bytes": 71805771776,
+    "page_count": 17530706,
+    "free_pages": 1342691,
+    "page_size": 4096
+  },
+  "total_seconds": 74.60120829194784,
+  "registered_after": 63,
+  "independent_readonly_sql_confirmation": true,
+  "activity_rows_removed": 69496,
+  "processed_cache_bytes_removed": 96704977,
+  "sqlite_additional_reusable_bytes": 2818109440,
+  "retention_policy": "Fresh audit protects source, biosphere, user/non-task names, notebook references, calculation setups, parameters, actual exchanges, declared metadata dependencies, newest family members and named qualification milestones. Recheck dependencies and current notebook references before each deletion; skip busy SQLite; no VACUUM.",
+  "sqlite_space_note": "Deleted pages are reusable inside the shared SQLite file; its physical size is unchanged without VACUUM."
+}
