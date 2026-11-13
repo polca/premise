@@ -14007,11 +14007,28 @@
       "rule_id": "bp-7cf08aa845443b7b",
       "operation": "replace",
       "mapping_method": "heuristic_similarity",
-      "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
-      "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
-      "authorization": "Standing independently inspected same whole-material/component/function, unit and geographic supply-proxy approvals, reused only for the enumerated actual pilot profiles after checking physical/reference quantities, generic-average versus identified-product definitions, complete producer inventories and equipment/component processing boundaries. No new material grade, physical mixture, equipment model, helper, omitted process, unit conversion or lifetime normalization is introduced. The already excluded final control-unit assembly boundary is retained explicitly. Pending equipment and geothermal decisions remain pending.",
+      "review_path": "export/uvek_cdr_equipment_profiles_review.json",
+      "review_sha256": "baef94e8bb1df737386ad4ace07e55111a76efc369ef97ccbd0bcb3e54373728",
+      "authorization": "Standing autonomous approval for independently inspected equipment construction correspondences, extending the existing reviewed 3.6 decisions to enumerated cut-off profiles without changing supplier rules or factors.",
       "inspection": {
         "rule_id": "bp-7cf08aa845443b7b",
+        "rule": {
+          "confidence": 0.837368,
+          "id": "bp-7cf08aa845443b7b",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "GLO",
+            "name": "market for absorption chiller, 100kW",
+            "reference product": "absorption chiller, 100kW",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Absorption chiller 100kW",
+            "reference product": "Absorption chiller 100kW",
+            "unit": "unit"
+          }
+        },
         "source": {
           "location": "GLO",
           "name": "market for absorption chiller, 100kW",
@@ -14024,6 +14041,7 @@
           "reference product": "Absorption chiller 100kW",
           "unit": "unit"
         },
+        "conversion_factor": 1,
         "source_profiles": [
           {
             "source_profile": {
@@ -14036,48 +14054,280 @@
             "inventory_sha256": "5d1bd8725b2ca6bb88facf99b77854d1737ad76975a90f58338049b76f6cae8c",
             "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "inspected_producers": [
-              {
-                "identity": {
-                  "name": "absorption chiller production, 100kW",
-                  "reference product": "absorption chiller, 100kW",
-                  "location": "RoW",
-                  "unit": "unit"
-                },
-                "metadata_sha256": "f4175d05087b3173c160d06586601138d0213de5f48c1f3875fbd575d0e9d965",
-                "inventory_sha256": "b06aaa2359b3c8fb678e519c94568e2a705cfea7a0c36891bfb7a14eabdf91cb",
-                "comment_sha256": "f5a0ebf93f8a7e0a511eca3dcd503f10347152aba4a346481fcd174439a2e353"
-              }
-            ]
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "absorption chiller production, 100kW",
+              "product": "absorption chiller, 100kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "f4175d05087b3173c160d06586601138d0213de5f48c1f3875fbd575d0e9d965",
+              "inventory_sha256": "b06aaa2359b3c8fb678e519c94568e2a705cfea7a0c36891bfb7a14eabdf91cb",
+              "activity_comment_sha256": "f5a0ebf93f8a7e0a511eca3dcd503f10347152aba4a346481fcd174439a2e353",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 8,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "eb010bcd119001c3d6e8437d60186ff5a808d5527545c29f7ca6a7c0d3e2f773",
+            "inventory_sha256": "7652d786e6cf66de27dbd93fb1272264f96fb5d47a6b95f0784dfe0c8aca8eb4",
+            "activity_comment_sha256": "36b867013b575fc6130939cdd50eba03db99282f1eb8d912d03910600533fb6e",
+            "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "absorption chiller production, 100kW",
+              "product": "absorption chiller, 100kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "fddbd8eb5c5ace94c50c4a8efcab042c6de8b8ccb608a0df0eb14e2f2a5fd81c",
+              "inventory_sha256": "a5d4ad4061e923253110a60ce3ddc6b577de89e4ef7344de18aef6c67ce0fb2e",
+              "activity_comment_sha256": "52bca571f35d38720ff4fb99002dea8463c2a6a5ab4bcec3221e66956566b736",
+              "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 8,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5e0790a6ca5689076b447f5f3934e8bbfa6ef223313b17c69a81953f8e78cddc",
+            "inventory_sha256": "a4d70ce61fac8eb9c79c4c466f086da233beb7aa7a2af2e8e8bf58e99e25a9c5",
+            "activity_comment_sha256": "3420cd386c57978c82413420cadbbab3ee00c254435d6680175ef601f20eb49c",
+            "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "absorption chiller production, 100kW",
+              "product": "absorption chiller, 100kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "f3d643ac6491a2add742773e3e7953b408e52f3598a8a064e8c56841cc007a7b",
+              "inventory_sha256": "93d35b5246a4186a040d4971b0eed345c45ba79f839b32796fbd5815d4d93149",
+              "activity_comment_sha256": "52bca571f35d38720ff4fb99002dea8463c2a6a5ab4bcec3221e66956566b736",
+              "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 8,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "e1d4b154510977dd614123ee515e28573c3f8423cc653317920d614bbffd7685",
+            "inventory_sha256": "3199087bda2cc1eae3fbf7dfa9903950782a93a3492cb311bcb883edc4d9013a",
+            "activity_comment_sha256": "3420cd386c57978c82413420cadbbab3ee00c254435d6680175ef601f20eb49c",
+            "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "absorption chiller production, 100kW",
+              "product": "absorption chiller, 100kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "f5a86da8209489c416144c3221e2335ec8c5d2273600741e948b6b3ec6509303",
+              "inventory_sha256": "b9fee19e5887c0422021c045234499317571da7299e5d38b1c91f0e7268638d2",
+              "activity_comment_sha256": "52bca571f35d38720ff4fb99002dea8463c2a6a5ab4bcec3221e66956566b736",
+              "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 8,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "54fcfdb0a358606948bdcb8ccf295d31e80a2d1a6f42133e15d6bde6b982de42",
+            "inventory_sha256": "6c1265271b3c8c2331d964de518d25e516cebe485f8a4711f731d92a1e7150b8",
+            "activity_comment_sha256": "3420cd386c57978c82413420cadbbab3ee00c254435d6680175ef601f20eb49c",
+            "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "absorption chiller production, 100kW",
+              "product": "absorption chiller, 100kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "a5999b9449395144e46de057c33ed6a057dcb09f05dc71e4d61da8018192cb01",
+              "inventory_sha256": "970a38297d61ed769fe32a827e28b59168c79568e4ed24cf54b939248ff3908d",
+              "activity_comment_sha256": "52bca571f35d38720ff4fb99002dea8463c2a6a5ab4bcec3221e66956566b736",
+              "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 8,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "fbfcf4748b2e56702ee53fd446d8a3b4355997b51769ab9e4d592415f868329e",
+            "inventory_sha256": "74bb0d81e2602acd8fd4ee3dbdf5cfde19028a475432d2b70b34a7f0b4ce671e",
+            "activity_comment_sha256": "ecbea803bc487156abd6f3a7d02e87960ca8f8b5f2dee91c58333e17e7a1558b",
+            "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "absorption chiller production, 100kW",
+              "product": "absorption chiller, 100kW",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "ab9603910ac2b8f1f1297b598b2a2f1b9f3b863895d55feac480bd3e58861900",
+              "inventory_sha256": "7f6fa401b4806d0b621d24450db726ece493513a38dede9f392d07d33527cb9f",
+              "activity_comment_sha256": "4d6866b78869edd8039a4ea49a389afad9e3f70533069b65ebff9c878f112c49",
+              "product_information_sha256": "b42e25f9e94b906e1399c91e3feedbbb019372e3ee7eb739e97f7da14abfcc6a"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 8,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
           }
         ],
         "native_references": {
           "2025": {
-            "reference_amount": 1,
-            "unit": "unit",
             "metadata_sha256": "3239737afda7694b94162c272c77651fb325f0a7f37cfc8e8fd353dd6989cd99",
             "inventory_sha256": "e7bdb1fd77a0bb1930832de866d239628cd983db303d0e905f1b6e7cee8e2846",
             "activity_comment_sha256": "63e3545b05ebce8dc6861a5d827790a468e9418e50204abc7abfce267febc896",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "unit": "unit",
             "direct_technosphere_coordinates": 31
           },
           "2026": {
+            "metadata_sha256": "82113c69f1140eede12b645b84357cb531fa0f7179cc008949c0d44b2a0b334b",
+            "inventory_sha256": "e49e9557291664de9151804321c7e76ae329e5f93d2701f7742c50bb0c25784d",
+            "activity_comment_sha256": "b0c1ba5fe8f627205864d1ae41fe30b0056094f6f23c52fcd7c247e613e12fce",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "reference_amount": 1,
             "unit": "unit",
-            "metadata_sha256": "922b6eea5ccf31022548e3a239130a2491721d9fef0a91fc85d4445ae51136e3",
-            "inventory_sha256": "7aefa967faef71598989d8ad3ab5cdf311bc3fff3214a056983b6780f92a986b",
-            "activity_comment_sha256": "b0c1ba5fe8f627205864d1ae41fe30b0056094f6f23c52fcd7c247e613e12fce",
             "direct_technosphere_coordinates": 31
           }
         },
-        "conversion_factor": 1,
-        "native_direct_technosphere_coordinates_match": true,
-        "boundary": "Same complete100kW single-stage water/ammonia absorption chiller with250kW hybrid air cooler and40m piping, per equipment unit. Source and native have the same documented component boundary and estimated manufacture/planning/engineering/raw-material transport. Retain the native20-year equipment inventory once; no additional cooler, pipe or chiller is added. Do not rescale the unit by capacity, coefficient of performance or operating lifetime, and do not insert operating heat/electricity, water or refrigerant emissions. Source RoW/global supply is approximated by native central-European manufacture; construction data, background supply and vintage differ."
+        "native_2025_2026_direct_technosphere_vectors_equal": true,
+        "boundary": "Same complete100kW single-stage water/ammonia absorption chiller with250kW hybrid air cooler and40m piping, per equipment unit. Source and native have the same documented component boundary and estimated manufacture/planning/engineering/raw-material transport. Retain the native20-year equipment inventory once; no additional cooler, pipe or chiller is added. Do not rescale the unit by capacity, coefficient of performance or operating lifetime, and do not insert operating heat/electricity, water or refrigerant emissions. Source RoW/global supply is approximated by native central-European manufacture; construction data, background supply and vintage differ.",
+        "limitations": [
+          "Same complete100kW single-stage water/ammonia absorption chiller with250kW hybrid air cooler and40m piping, per equipment unit. Source and native have the same documented component boundary and estimated manufacture/planning/engineering/raw-material transport. Retain the native20-year equipment inventory once; no additional cooler, pipe or chiller is added. Do not rescale the unit by capacity, coefficient of performance or operating lifetime, and do not insert operating heat/electricity, water or refrigerant emissions. Source RoW/global supply is approximated by native central-European manufacture; construction data, background supply and vintage differ.",
+          "Only enumerated cut-off source versions 3.6 and 3.8–3.12 are approved. The available reference project labeled 3.7 is actually 3.7.1; neither profile receives a new approval here. Preserve signed equipment units and uncertainty/formulas with factor +1; no reverse or cross-system-model scope.",
+          "Source markets contain exactly one unit of a single producer and no extra delivery/loss exchanges. Producer principal material quantities match the reviewed construction reference in each inspected version; this does not establish inventory/LCIA equality. Native complete construction, manufacturing energy, auxiliary services, transport, allocation, geography and vintage remain screening differences with unquantified score effects.",
+          "Retain the native single-stage water-ammonia chiller, 250 kW hybrid air cooler and 40 m piping once. Source engineering passenger travel is 2000 km versus native 1250 km, and source useful-heat purchases and native burned-fuel inputs use different reference bases. Native disposal/water/refrigerant coverage and source country supply splits differ. Do not add cooler, piping, operating heat/electricity or a COP/lifetime multiplier."
+        ],
+        "prior_premise_36_decision": {
+          "review_path": "export/uvek_pilot_generic_chemical_equipment_review.json",
+          "review_sha256": "4157817777848aeaa543b9f6c986ab795690081ad4cbf8458bccfe628d0ed562",
+          "inspection": {
+            "rule_id": "bp-7cf08aa845443b7b",
+            "source": {
+              "location": "GLO",
+              "name": "market for absorption chiller, 100kW",
+              "reference product": "absorption chiller, 100kW",
+              "unit": "unit"
+            },
+            "target": {
+              "location": "CH",
+              "name": "Absorption chiller 100kW",
+              "reference product": "Absorption chiller 100kW",
+              "unit": "unit"
+            },
+            "source_profiles": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.6",
+                  "system_model": "cutoff"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "630b852f99ffeb0793312ad72060b35a1d7da7f6894a53ef4571bc333ccc9fb6",
+                "inventory_sha256": "5d1bd8725b2ca6bb88facf99b77854d1737ad76975a90f58338049b76f6cae8c",
+                "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "inspected_producers": [
+                  {
+                    "identity": {
+                      "name": "absorption chiller production, 100kW",
+                      "reference product": "absorption chiller, 100kW",
+                      "location": "RoW",
+                      "unit": "unit"
+                    },
+                    "metadata_sha256": "f4175d05087b3173c160d06586601138d0213de5f48c1f3875fbd575d0e9d965",
+                    "inventory_sha256": "b06aaa2359b3c8fb678e519c94568e2a705cfea7a0c36891bfb7a14eabdf91cb",
+                    "comment_sha256": "f5a0ebf93f8a7e0a511eca3dcd503f10347152aba4a346481fcd174439a2e353"
+                  }
+                ]
+              }
+            ],
+            "native_references": {
+              "2025": {
+                "reference_amount": 1,
+                "unit": "unit",
+                "metadata_sha256": "3239737afda7694b94162c272c77651fb325f0a7f37cfc8e8fd353dd6989cd99",
+                "inventory_sha256": "e7bdb1fd77a0bb1930832de866d239628cd983db303d0e905f1b6e7cee8e2846",
+                "activity_comment_sha256": "63e3545b05ebce8dc6861a5d827790a468e9418e50204abc7abfce267febc896",
+                "direct_technosphere_coordinates": 31
+              },
+              "2026": {
+                "reference_amount": 1,
+                "unit": "unit",
+                "metadata_sha256": "922b6eea5ccf31022548e3a239130a2491721d9fef0a91fc85d4445ae51136e3",
+                "inventory_sha256": "7aefa967faef71598989d8ad3ab5cdf311bc3fff3214a056983b6780f92a986b",
+                "activity_comment_sha256": "b0c1ba5fe8f627205864d1ae41fe30b0056094f6f23c52fcd7c247e613e12fce",
+                "direct_technosphere_coordinates": 31
+              }
+            },
+            "conversion_factor": 1,
+            "native_direct_technosphere_coordinates_match": true,
+            "boundary": "Same complete100kW single-stage water/ammonia absorption chiller with250kW hybrid air cooler and40m piping, per equipment unit. Source and native have the same documented component boundary and estimated manufacture/planning/engineering/raw-material transport. Retain the native20-year equipment inventory once; no additional cooler, pipe or chiller is added. Do not rescale the unit by capacity, coefficient of performance or operating lifetime, and do not insert operating heat/electricity, water or refrigerant emissions. Source RoW/global supply is approximated by native central-European manufacture; construction data, background supply and vintage differ."
+          },
+          "scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "9d1e158d4d1e9eb448775512c73099d12f32dda12bf7a04089868649461e3c0f"
+            }
+          ]
+        }
       },
       "limitations": [
         "Same complete100kW single-stage water/ammonia absorption chiller with250kW hybrid air cooler and40m piping, per equipment unit. Source and native have the same documented component boundary and estimated manufacture/planning/engineering/raw-material transport. Retain the native20-year equipment inventory once; no additional cooler, pipe or chiller is added. Do not rescale the unit by capacity, coefficient of performance or operating lifetime, and do not insert operating heat/electricity, water or refrigerant emissions. Source RoW/global supply is approximated by native central-European manufacture; construction data, background supply and vintage differ.",
-        "Preserve signed kg, metre, square-metre or equipment-unit demands with factor +1, including uncertainty, formulas and caller ownership. Keep separately listed caller materials, transport, water, operating fuel/electricity and direct emissions. No density, example device-weight, capacity, lifetime, concentration, yield or allocation factor is applied.",
-        "Use complete selected native products, equipment, generic proxy averages or the same declared control-unit component-bundle boundary once. Generic averages do not establish an identified chemical, physical formulation, purity or grade. Source market/coproduct supplier shares and delivery are not reconstructed; native background, regionalization, allocation, manufacturing technology, vintage, exclusions and emissions differ. Inventory/LCIA equivalence and specific component performance are not established.",
-        "Native direct technosphere vectors match2025/2026 within relative tolerance1e-12; no coefficient is changed. Native biosphere exclusions remain explicit. Only the enumerated cut-off source profiles are admitted; no independent inverse, cross-system-model mapping, pending10MW gas turbine, heat-exchanger/helicopter or geothermal choice is authorized."
+        "Only enumerated cut-off source versions 3.6 and 3.8–3.12 are approved. The available reference project labeled 3.7 is actually 3.7.1; neither profile receives a new approval here. Preserve signed equipment units and uncertainty/formulas with factor +1; no reverse or cross-system-model scope.",
+        "Source markets contain exactly one unit of a single producer and no extra delivery/loss exchanges. Producer principal material quantities match the reviewed construction reference in each inspected version; this does not establish inventory/LCIA equality. Native complete construction, manufacturing energy, auxiliary services, transport, allocation, geography and vintage remain screening differences with unquantified score effects.",
+        "Retain the native single-stage water-ammonia chiller, 250 kW hybrid air cooler and 40 m piping once. Source engineering passenger travel is 2000 km versus native 1250 km, and source useful-heat purchases and native burned-fuel inputs use different reference bases. Native disposal/water/refrigerant coverage and source country supply splits differ. Do not add cooler, piping, operating heat/electricity or a COP/lifetime multiplier."
       ],
       "scopes": [
         {
@@ -14088,10 +14338,75 @@
           },
           "target": {
             "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
+            "system_model": "cutoff",
+            "version": "2025"
           },
           "fingerprint": "9d1e158d4d1e9eb448775512c73099d12f32dda12bf7a04089868649461e3c0f"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2f5d2a943b1950d79fc4cbe2444d5aeb7f27d2be5ecc451dc8dcedd46ac5597c"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d761e0bf3b823c94831276feffd365b36fc0207b5917a382b1ad28ac08636102"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e23f6109dca6f1769e4cc1b3f79e3e5548f9c98a6a39501b0ea9ea4f42516863"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6f5eed70da175c265512fc26dd261ef195e09f7426aa2cd6b0a99dd19597a133"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "11a55d9848e373ef644a584875a8eadc9ced7c5bebac65e274e13539795df5e2"
         }
       ]
     },
@@ -19087,11 +19402,28 @@
       "rule_id": "bp-4438f1d4119c16e4",
       "operation": "replace",
       "mapping_method": "curated_legacy",
-      "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
-      "review_sha256": "f4ccef87117d8c565dee001edecbc36487ca430d42cf0c51257b2319247ab55e",
-      "authorization": "Standing auto-approval of independently inspected matching whole-material/component/function,unit and geographic supply proxies,reused only for the five enumerated specifications:barite mining/processing,cast iron withmatching35/65EAFandcasting,nominal10MWe turbine construction,identicalfour-tank16000m3module andidentical40Wsolar pump. No new material grade,manufacturing stage,capacity model,unit conversion,helper or recovery/omission choice is introduced.",
+      "review_path": "export/uvek_cdr_equipment_profiles_review.json",
+      "review_sha256": "baef94e8bb1df737386ad4ace07e55111a76efc369ef97ccbd0bcb3e54373728",
+      "authorization": "Standing autonomous approval for independently inspected equipment construction correspondences, extending the existing reviewed 3.6 decisions to enumerated cut-off profiles without changing supplier rules or factors.",
       "inspection": {
         "rule_id": "bp-4438f1d4119c16e4",
+        "rule": {
+          "confidence": 1.0,
+          "id": "bp-4438f1d4119c16e4",
+          "mapping_method": "curated_legacy",
+          "source": {
+            "location": "GLO",
+            "name": "market for gas turbine, 10MW electrical",
+            "reference product": "gas turbine, 10MW electrical",
+            "unit": "unit"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Gas turbine, 10MWe, at production plant",
+            "reference product": "Gas turbine, 10MWe, at production plant",
+            "unit": "unit"
+          }
+        },
         "source": {
           "location": "GLO",
           "name": "market for gas turbine, 10MW electrical",
@@ -19104,6 +19436,7 @@
           "reference product": "Gas turbine, 10MWe, at production plant",
           "unit": "unit"
         },
+        "conversion_factor": 1,
         "source_profiles": [
           {
             "source_profile": {
@@ -19116,49 +19449,281 @@
             "inventory_sha256": "8012ff2d252afa772b1988bca4bd4acee8b1de8cabfe23de7b0b8a754978cda7",
             "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "producer_definitions": [
-              {
-                "identity": {
-                  "name": "gas turbine construction, 10MW electrical",
-                  "reference product": "gas turbine, 10MW electrical",
-                  "location": "RoW",
-                  "unit": "unit"
-                },
-                "reference_amount": 1,
-                "metadata_sha256": "1ee8bfaddda6be6f801be5a748f3b17d426fb9d00d74aab4937d4ed77b16eb94",
-                "inventory_sha256": "c361db12c1538e20215be12be0adc35d06ab42ec4ce0a1d9cbbc63e9e4b7d193",
-                "comment_sha256": "d4c08b58ca97707c93612b8c26ac00ec4df230c39e4a4415f153b66ae56d8079"
-              }
-            ]
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "gas turbine construction, 10MW electrical",
+              "product": "gas turbine, 10MW electrical",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "1ee8bfaddda6be6f801be5a748f3b17d426fb9d00d74aab4937d4ed77b16eb94",
+              "inventory_sha256": "c361db12c1538e20215be12be0adc35d06ab42ec4ce0a1d9cbbc63e9e4b7d193",
+              "activity_comment_sha256": "d4c08b58ca97707c93612b8c26ac00ec4df230c39e4a4415f153b66ae56d8079",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 5,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "d5bbd0ba12e82616982c5f782c7829b860394c9c2aad2230bae4b4aae455fee3",
+            "inventory_sha256": "b9c4faecc2064f6780d5299a49a9765a57e22ffb97e221daf67275ff3a3a4352",
+            "activity_comment_sha256": "802dcaba8be7d1614a58f73e16bf9e2af65f7d550b4ad485f7034c014946d22c",
+            "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "gas turbine construction, 10MW electrical",
+              "product": "gas turbine, 10MW electrical",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "8ef8808e0cc6b02bb8435b6bffaaeb15e4f19da5697ad78465b7f93cba33454d",
+              "inventory_sha256": "2f92c3509b4a791a84863e55ef9bd897de27413c552b38cb4e10a74d2b8c5446",
+              "activity_comment_sha256": "d4c08b58ca97707c93612b8c26ac00ec4df230c39e4a4415f153b66ae56d8079",
+              "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 5,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "3c29d92e88d9bffd2637f01e3d1e0e6f6ad08021685542ac2402902521c82c29",
+            "inventory_sha256": "f32cc72ede61228c21d3881b0a2784494785cde1440f58c24fe270dacd3c3b3f",
+            "activity_comment_sha256": "d667c3d04e35b5aacb0a9241c61ba95c6d65a433711026b4b2d58e21a320a471",
+            "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "gas turbine construction, 10MW electrical",
+              "product": "gas turbine, 10MW electrical",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "32b67ed2055557db9dd416cd14b1cbea2fd7ea7960e724630e9d4aeae36d41d6",
+              "inventory_sha256": "a532492d5524e524714dab77cca72acd4b1ef40baff6cc1743fb9ecd2d537a43",
+              "activity_comment_sha256": "d4c08b58ca97707c93612b8c26ac00ec4df230c39e4a4415f153b66ae56d8079",
+              "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 5,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "b2beb30383d8ad2f1923813c8fbd0035cd83b6f52124bd691093e66adaadec7a",
+            "inventory_sha256": "c3c4bf8ec24c7e80737baefdd93539aae93b12cbd2e2a0edf8a455d15a7364e7",
+            "activity_comment_sha256": "d667c3d04e35b5aacb0a9241c61ba95c6d65a433711026b4b2d58e21a320a471",
+            "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "gas turbine construction, 10MW electrical",
+              "product": "gas turbine, 10MW electrical",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "4ddc5b830c7346c3f31b4c2ea1e26545aa7c1cf4edae8f6c00c0b0f44dae756a",
+              "inventory_sha256": "c7b58bd0ef5b2ff5b25cfda5ba99d5cc6e1bbdda1e9767752f255555207d2936",
+              "activity_comment_sha256": "d4c08b58ca97707c93612b8c26ac00ec4df230c39e4a4415f153b66ae56d8079",
+              "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 5,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "4a2b759f1dced8bb55917b1aae011f3a6bb2b5d7b5ed3943d501f7efcfc49071",
+            "inventory_sha256": "20b37d7de83bb3ffb3d5996db58e00935add7706cb7544d3a80dd8f79937c7f3",
+            "activity_comment_sha256": "d667c3d04e35b5aacb0a9241c61ba95c6d65a433711026b4b2d58e21a320a471",
+            "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "gas turbine construction, 10MW electrical",
+              "product": "gas turbine, 10MW electrical",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "ef53653537b81da24d7f67b1de8b286fd29ea90161df5846072530481fcf007d",
+              "inventory_sha256": "fe23d910d4a2410a1d22255e2fcd42c58d2297e81c6d82edd9b7acc948b4ff81",
+              "activity_comment_sha256": "d4c08b58ca97707c93612b8c26ac00ec4df230c39e4a4415f153b66ae56d8079",
+              "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 5,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "99995509743edd7cbd102f03266974c111b3ad9996c5782e24ba445adf2fb0fe",
+            "inventory_sha256": "2c7de49fd01221310880b7abc809bc672d1dfa7f324192159f2797325b5efffa",
+            "activity_comment_sha256": "1778780e370ecf9b24c185006388448f73d9de0e3f7231e8f1d9951018f1b4e9",
+            "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12",
+            "producer_reference_amount": 1,
+            "producer_identity": {
+              "name": "gas turbine construction, 10MW electrical",
+              "product": "gas turbine, 10MW electrical",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "producer_evidence": {
+              "metadata_sha256": "b1aa7cb75cd770d5059411c047b17e56085b3703aea42e6b22c2b78286d04310",
+              "inventory_sha256": "94cd72ac5ff8a8676534e464374b129122420d1db0747bd5057124f9305a4827",
+              "activity_comment_sha256": "44a76bd0797100ca42eb41a6017ed69b7406ea79a5946a09f1f667dcde6211f9",
+              "product_information_sha256": "0acbe29a28a5b32a90fa61b20c56c63e711ccf70bea06c7a2274956cf91c4b12"
+            },
+            "principal_material_totals_match_reviewed_reference": true,
+            "principal_material_coordinates_compared": 5,
+            "one_unit_market_to_producer_without_additional_delivery_or_loss": true
           }
         ],
         "native_references": {
           "2025": {
-            "reference_amount": 1,
-            "unit": "unit",
             "metadata_sha256": "7f6dec96fd2b93374e8a354429cbc92021443199623e22f1aed5742d48d2d71d",
             "inventory_sha256": "52a1b3439030b7d620763527565f8a43e5996434c45dad8d75331d1abe5b804b",
             "activity_comment_sha256": "78f6b93fe35c1576b0008e95b67aa2042cc650745c8397c3ed8d5519c47755f6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "unit": "unit",
             "direct_technosphere_coordinates": 8
           },
           "2026": {
+            "metadata_sha256": "e5dba5c8fc3c3b788fcf5295f131f5eef2471cd34e69e9196c48604dc4ac143d",
+            "inventory_sha256": "3c5c64c7bff69ff76a69e732c01fa9009354ab4a7080279a5691a20dd11aec51",
+            "activity_comment_sha256": "cd8061e82d918298e4a60ad24d7494972dd12007cf554ca9cbbb0d4459f6b595",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "reference_amount": 1,
             "unit": "unit",
-            "metadata_sha256": "af64732458c295260a702f235902a8a3213ec8438466412b87d71ffa55f2b21b",
-            "inventory_sha256": "7216b98b0a8c365bffee3c6334fe21ac81a1601cdac7b5eefce9e76c6aa8338b",
-            "activity_comment_sha256": "cd8061e82d918298e4a60ad24d7494972dd12007cf554ca9cbbb0d4459f6b595",
             "direct_technosphere_coordinates": 8
           }
         },
-        "conversion_factor": 1,
-        "native_direct_technosphere_coordinates_match": true,
-        "boundary": "Same construction of one nominal10MWe gas turbine, including principal materials and construction energy with transport implicitly represented in that energy estimate. Both describe average European plant conditions and80000h assumed operating life. This is a manufactured turbine unit, not an operating electricity/heat service or a complete combined-cycle plant. Preserve one unit without an MW,efficiency,operating-hour or lifetime factor, added generator/heat-recovery block or operational fuel. Retain the complete native construction inventory and its original estimates; source market delivery/background and geography/vintage differ."
+        "native_2025_2026_direct_technosphere_vectors_equal": true,
+        "boundary": "Same construction of one nominal10MWe gas turbine, including principal materials and construction energy with transport implicitly represented in that energy estimate. Both describe average European plant conditions and80000h assumed operating life. This is a manufactured turbine unit, not an operating electricity/heat service or a complete combined-cycle plant. Preserve one unit without an MW,efficiency,operating-hour or lifetime factor, added generator/heat-recovery block or operational fuel. Retain the complete native construction inventory and its original estimates; source market delivery/background and geography/vintage differ.",
+        "limitations": [
+          "Same construction of one nominal10MWe gas turbine, including principal materials and construction energy with transport implicitly represented in that energy estimate. Both describe average European plant conditions and80000h assumed operating life. This is a manufactured turbine unit, not an operating electricity/heat service or a complete combined-cycle plant. Preserve one unit without an MW,efficiency,operating-hour or lifetime factor, added generator/heat-recovery block or operational fuel. Retain the complete native construction inventory and its original estimates; source market delivery/background and geography/vintage differ.",
+          "Only enumerated cut-off source versions 3.6 and 3.8–3.12 are approved. The available reference project labeled 3.7 is actually 3.7.1; neither profile receives a new approval here. Preserve signed equipment units and uncertainty/formulas with factor +1; no reverse or cross-system-model scope.",
+          "Source markets contain exactly one unit of a single producer and no extra delivery/loss exchanges. Producer principal material quantities match the reviewed construction reference in each inspected version; this does not establish inventory/LCIA equality. Native complete construction, manufacturing energy, auxiliary services, transport, allocation, geography and vintage remain screening differences with unquantified score effects.",
+          "Retain the native nominal 10 MWe turbine construction inventory once, including construction energy and its embedded transport estimate. Source useful heat and native burned-fuel inputs use different reference bases. Do not add operational gas, generator or heat-recovery equipment, or introduce MW/efficiency/80000-hour scaling."
+        ],
+        "prior_premise_36_decision": {
+          "review_path": "export/uvek_pilot_matching_legacy_supplier_review.json",
+          "review_sha256": "f4ccef87117d8c565dee001edecbc36487ca430d42cf0c51257b2319247ab55e",
+          "inspection": {
+            "rule_id": "bp-4438f1d4119c16e4",
+            "source": {
+              "location": "GLO",
+              "name": "market for gas turbine, 10MW electrical",
+              "reference product": "gas turbine, 10MW electrical",
+              "unit": "unit"
+            },
+            "target": {
+              "location": "RER",
+              "name": "Gas turbine, 10MWe, at production plant",
+              "reference product": "Gas turbine, 10MWe, at production plant",
+              "unit": "unit"
+            },
+            "source_profiles": [
+              {
+                "source_profile": {
+                  "family": "ecoinvent",
+                  "version": "3.6",
+                  "system_model": "cutoff"
+                },
+                "reference_amount": 1,
+                "metadata_sha256": "a08801dccb0e70a0ffbd7d511860d5cfe265d2bf8297869d640b24e354e4d574",
+                "inventory_sha256": "8012ff2d252afa772b1988bca4bd4acee8b1de8cabfe23de7b0b8a754978cda7",
+                "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "producer_definitions": [
+                  {
+                    "identity": {
+                      "name": "gas turbine construction, 10MW electrical",
+                      "reference product": "gas turbine, 10MW electrical",
+                      "location": "RoW",
+                      "unit": "unit"
+                    },
+                    "reference_amount": 1,
+                    "metadata_sha256": "1ee8bfaddda6be6f801be5a748f3b17d426fb9d00d74aab4937d4ed77b16eb94",
+                    "inventory_sha256": "c361db12c1538e20215be12be0adc35d06ab42ec4ce0a1d9cbbc63e9e4b7d193",
+                    "comment_sha256": "d4c08b58ca97707c93612b8c26ac00ec4df230c39e4a4415f153b66ae56d8079"
+                  }
+                ]
+              }
+            ],
+            "native_references": {
+              "2025": {
+                "reference_amount": 1,
+                "unit": "unit",
+                "metadata_sha256": "7f6dec96fd2b93374e8a354429cbc92021443199623e22f1aed5742d48d2d71d",
+                "inventory_sha256": "52a1b3439030b7d620763527565f8a43e5996434c45dad8d75331d1abe5b804b",
+                "activity_comment_sha256": "78f6b93fe35c1576b0008e95b67aa2042cc650745c8397c3ed8d5519c47755f6",
+                "direct_technosphere_coordinates": 8
+              },
+              "2026": {
+                "reference_amount": 1,
+                "unit": "unit",
+                "metadata_sha256": "af64732458c295260a702f235902a8a3213ec8438466412b87d71ffa55f2b21b",
+                "inventory_sha256": "7216b98b0a8c365bffee3c6334fe21ac81a1601cdac7b5eefce9e76c6aa8338b",
+                "activity_comment_sha256": "cd8061e82d918298e4a60ad24d7494972dd12007cf554ca9cbbb0d4459f6b595",
+                "direct_technosphere_coordinates": 8
+              }
+            },
+            "conversion_factor": 1,
+            "native_direct_technosphere_coordinates_match": true,
+            "boundary": "Same construction of one nominal10MWe gas turbine, including principal materials and construction energy with transport implicitly represented in that energy estimate. Both describe average European plant conditions and80000h assumed operating life. This is a manufactured turbine unit, not an operating electricity/heat service or a complete combined-cycle plant. Preserve one unit without an MW,efficiency,operating-hour or lifetime factor, added generator/heat-recovery block or operational fuel. Retain the complete native construction inventory and its original estimates; source market delivery/background and geography/vintage differ."
+          },
+          "scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "da9ffc23aa02b5f46a3f9e254ce954bb6549eb46f1c64bd5fabce5602557e977"
+            }
+          ]
+        }
       },
       "limitations": [
         "Same construction of one nominal10MWe gas turbine, including principal materials and construction energy with transport implicitly represented in that energy estimate. Both describe average European plant conditions and80000h assumed operating life. This is a manufactured turbine unit, not an operating electricity/heat service or a complete combined-cycle plant. Preserve one unit without an MW,efficiency,operating-hour or lifetime factor, added generator/heat-recovery block or operational fuel. Retain the complete native construction inventory and its original estimates; source market delivery/background and geography/vintage differ.",
-        "Standing independently inspected same whole-material/function/unit and geographic supply-proxy approval applies only after the enumerated source/native specifications and stage boundaries have been checked. Preserve signed kg or manufactured-module units atfactor+1,with uncertainty,formulas,caller ownership and separate materials/transport/emissions.",
-        "Retain the complete selected native inventory and its existing common omissions/limitations once. Do not add processing,manufacturing/operation energy,disposal,capacity/lifetime factors or recovery credits. Source/native market shares,delivery,background,allocation,geography and vintage differ;exact grade/inventory/LCIA equivalence is not established and score effects are unquantified.",
-        "Native2025/2026directtechnospherevectors match within1e-12relative tolerance;shorter documentation and importedbiosphereexclusions remain warnings. Only enumerated exactcutoff profiles are admitted. Converter-steel target rolling/mix differences and lubricating-oil additive formulation are excluded from this decision,as are other versions,inverse andcross-system-model routes."
+        "Only enumerated cut-off source versions 3.6 and 3.8–3.12 are approved. The available reference project labeled 3.7 is actually 3.7.1; neither profile receives a new approval here. Preserve signed equipment units and uncertainty/formulas with factor +1; no reverse or cross-system-model scope.",
+        "Source markets contain exactly one unit of a single producer and no extra delivery/loss exchanges. Producer principal material quantities match the reviewed construction reference in each inspected version; this does not establish inventory/LCIA equality. Native complete construction, manufacturing energy, auxiliary services, transport, allocation, geography and vintage remain screening differences with unquantified score effects.",
+        "Retain the native nominal 10 MWe turbine construction inventory once, including construction energy and its embedded transport estimate. Source useful heat and native burned-fuel inputs use different reference bases. Do not add operational gas, generator or heat-recovery equipment, or introduce MW/efficiency/80000-hour scaling."
       ],
       "scopes": [
         {
@@ -19169,10 +19734,75 @@
           },
           "target": {
             "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
+            "system_model": "cutoff",
+            "version": "2025"
           },
           "fingerprint": "da9ffc23aa02b5f46a3f9e254ce954bb6549eb46f1c64bd5fabce5602557e977"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a28222445aed0b8939b6c182d3033f55e97e7a529849c371c803460eae70cd87"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0d5249c208abd7b8239a9881b39673c1db234afbcca0beb710876ef11a725c92"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5b7cea86db29b6deeb6f7fa303d1779404d06bf5b643809e528266a1a0b7f12b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fe8e41639c1e62d116b49586a7b3859ba2e7d202f74e021071dbae308fcb057e"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "436c9d850ee60d9550b2337f732e20b7367d4afc0eed6256824f99ad111f5d24"
         }
       ]
     },

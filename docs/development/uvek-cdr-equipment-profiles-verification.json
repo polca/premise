@@ -1,0 +1,68 @@
+{
+  "rule_ids": [
+    "bp-4438f1d4119c16e4",
+    "bp-7cf08aa845443b7b"
+  ],
+  "prior_scope_count": 1261,
+  "current_scope_count": 1271,
+  "all_prior_fingerprints_retained": true,
+  "other_operations_unchanged": true,
+  "compiled_resource_unchanged_portable_sha256": "5763d867592f7f185e899ae3b4c00d03a5012993fa7d78b64f9f00518ae199c1",
+  "review_sha256": "baef94e8bb1df737386ad4ace07e55111a76efc369ef97ccbd0bcb3e54373728",
+  "unpatched_37_and_patch_371_unapproved": true,
+  "date": "2026-11-13",
+  "brightpath_revision": "4ec9c53f05d5ed7ee2d8a55861d236fb58f3c907",
+  "runtime_python_changes": [],
+  "brightpath_tests_passed": 60,
+  "premise_tests_passed": 16,
+  "native_lci": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "database": "BAFU:2026-reimported",
+    "source_metadata_unchanged": true,
+    "activities": [
+      {
+        "name": "Absorption chiller 100kW",
+        "reference_product": "Absorption chiller 100kW",
+        "location": "CH",
+        "unit": "unit",
+        "reference_amount": 1,
+        "signed_LCI_demands": [
+          2.5,
+          -2.5
+        ],
+        "finite_and_signed_reversal_verified": true
+      },
+      {
+        "name": "Gas turbine, 10MWe, at production plant",
+        "reference_product": "Gas turbine, 10MWe, at production plant",
+        "location": "RER",
+        "unit": "unit",
+        "reference_amount": 1,
+        "signed_LCI_demands": [
+          2.5,
+          -2.5
+        ],
+        "finite_and_signed_reversal_verified": true
+      }
+    ]
+  },
+  "wheel": {
+    "packaged_review_exact": true,
+    "wheel_bytes": 43789216
+  },
+  "carbon_removal_probe": {
+    "status": "failed",
+    "exception_type": "ClicInventoryError",
+    "message": "CLIC background migration from {'biosphere': {'family': 'ecoinvent', 'version': '3.12'}, 'technosphere': {'family': 'ecoinvent', 'system_model': 'cutoff', 'version': '3.12'}} to {'technosphere': {'family': 'uvek', 'version': '2026', 'system_model': 'cutoff'}, 'biosphere': {'family': 'ecoinvent', 'version': '3.10'}} failed: Background migration failed: Compatibility rule bp-0c3c05a7a1c1e60a requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.. Diagnostic: /Users/romain/Library/Application Support/premise/cached_files/clic/harmonized/85864e4c626261a781950370ceb3d70d872c126e1b1863e148b953306e915e63.audit.json.gz",
+    "failed_stage": "inventory preparation",
+    "sector": "cdr",
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 38.72533787495922,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "carbon_removal_qualified": false,
+  "qualified_sectors": 7
+}

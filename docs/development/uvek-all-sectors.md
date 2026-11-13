@@ -1497,3 +1497,19 @@ The real encrypted REMIND CDR preparation passes the corrected component and
 now stops at the 100 kW absorption-chiller market (`bp-7cf08aa845443b7b`). Normal
 validation stays enabled. CDR remains unqualified; the seven-sector exported
 qualification is unchanged and the full integration goal remains unfinished.
+
+
+## Carbon-removal preparation: chiller and turbine profile reviews
+
+Two existing 3.6 construction correspondences now cover directly inspected
+cut-off 3.8–3.12. Complete native 100 kW absorption-chiller and 10 MWe turbine
+inventories are retained per signed unit, without operational energy, capacity,
+lifetime or additional equipment factors. Source/native travel, useful-heat
+basis, geography and background differences remain warnings. Unpatched 3.7 and
+3.7.1 are not newly approved. See [equipment review](uvek-cdr-equipment-profiles-review.md).
+
+All 1,261 prior scopes remain; ten are added. Brightpath's 60 mapping tests and
+Premise's 16 targeted checks pass, native signed LCIs are finite, and the compiled
+migration resource and runtime Python remain unchanged. The real CDR probe now
+reaches a 3.12 correspondence (`bp-0c3c05a7a1c1e60a`). CDR stays unqualified;
+no additional sector export is claimed.
