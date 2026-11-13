@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-13",
+  "status": "Municipal-disposal mapping qualified; real mining preparation/update now return, but mining sector/export qualification is unfinished.",
+  "brightpath_commit": "8bd600888372a94e21fab8546b4a887f1d3b32a8",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.8",
+    "system_model": "cutoff"
+  },
+  "rule_id": "bp-168324086066bce9",
+  "review_sha256": "75463a6dcd949329ba3baf73ed0efa67d747d5121cb3881f8a334124377a73c7",
+  "source_database_modified": false,
+  "runtime_python_modules_changed": false,
+  "signed_helper_lci": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "source_database": "BAFU:2026-reimported",
+    "source_activity_count": 11947,
+    "source_metadata_unchanged": true,
+    "review_sha256": "75463a6dcd949329ba3baf73ed0efa67d747d5121cb3881f8a334124377a73c7",
+    "signed_helper_lcis": [
+      {
+        "recipe_id": "mining-38-msw-unsanitary-moist",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-unsanitary-moist",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-unsanitary-very-wet",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-unsanitary-very-wet",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "cutoff-stock-f7f6921e17b3a8acac22",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-burning",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-burning",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "cutoff-stock-e2251f7d5846a932a06e",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "cutoff-stock-e2251f7d5846a932a06e",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-dump-dry",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-dump-dry",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-dump-moist",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-dump-moist",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-unsanitary-wet",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-unsanitary-wet",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-dump-wet",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-dump-wet",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-dump-very-wet",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-open-dump-very-wet",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-unsanitary-dry",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-unsanitary-dry",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-europe-collection-and-treatment",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "recipe_id": "mining-38-msw-europe-collection-and-treatment",
+        "sign": -1,
+        "finite": true
+      }
+    ],
+    "consistent_sign_reversal": true,
+    "adapted_helper_identities": [
+      {
+        "name": "MSW unsanitary-moist, public model, 3.8 [BrightPath UVEK conversion 2cff08cf] [CLIC brightpath-uvek-import-2cff08cfb189fc2eb95e5052]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-unsanitary-moist"
+      },
+      {
+        "name": "MSW unsanitary-very-wet, public model, 3.8 [BrightPath UVEK conversion 2f560f88] [CLIC brightpath-uvek-import-2f560f889699c691ede37973]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-unsanitary-very-wet"
+      },
+      {
+        "name": "Allocated cut-off stock, copper scrap, sorted, pressed, GLO [BrightPath UVEK conversion 3a238560] [CLIC brightpath-uvek-import-3a238560c581b67afb0776f8]",
+        "reference product": "copper scrap, sorted, pressed",
+        "recipe_id": "cutoff-stock-f7f6921e17b3a8acac22"
+      },
+      {
+        "name": "MSW open-burning, public model, 3.8 [BrightPath UVEK conversion 4f65260f] [CLIC brightpath-uvek-import-4f65260f72bbabd6ca0d1dc1]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-open-burning"
+      },
+      {
+        "name": "Allocated cut-off stock, iron scrap, sorted, pressed, GLO [BrightPath UVEK conversion 6cc1e247] [CLIC brightpath-uvek-import-6cc1e24756ee9fff82eb9337]",
+        "reference product": "iron scrap, sorted, pressed",
+        "recipe_id": "cutoff-stock-e2251f7d5846a932a06e"
+      },
+      {
+        "name": "MSW open-dump-dry, public model, 3.8 [BrightPath UVEK conversion 858e3d3d] [CLIC brightpath-uvek-import-858e3d3dc181c22a5c3e935a]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-open-dump-dry"
+      },
+      {
+        "name": "MSW open-dump-moist, public model, 3.8 [BrightPath UVEK conversion a1f293e4] [CLIC brightpath-uvek-import-a1f293e448dedc968a446f92]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-open-dump-moist"
+      },
+      {
+        "name": "MSW unsanitary-wet, public model, 3.8 [BrightPath UVEK conversion a395d75b] [CLIC brightpath-uvek-import-a395d75b18fcc6afae49be0e]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-unsanitary-wet"
+      },
+      {
+        "name": "MSW open-dump-wet, public model, 3.8 [BrightPath UVEK conversion b03a4328] [CLIC brightpath-uvek-import-b03a43289e6626a472d7d910]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-open-dump-wet"
+      },
+      {
+        "name": "MSW open-dump-very-wet, public model, 3.8 [BrightPath UVEK conversion b6fa37cb] [CLIC brightpath-uvek-import-b6fa37cb077b95e01344352f]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-open-dump-very-wet"
+      },
+      {
+        "name": "MSW unsanitary-dry, public model, 3.8 [BrightPath UVEK conversion f5e02b16] [CLIC brightpath-uvek-import-f5e02b1639eec1c6d09c7e29]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-unsanitary-dry"
+      },
+      {
+        "name": "Municipal solid waste disposal portfolio, Europe excluding Switzerland, 3.8 [BrightPath UVEK conversion fe1b25f7] [CLIC brightpath-uvek-import-fe1b25f7d125b43177755fd8]",
+        "reference product": "municipal solid waste treatment service",
+        "recipe_id": "mining-38-msw-europe-collection-and-treatment"
+      }
+    ],
+    "scope": "Actual harmonizer, adapter and helper-only Brightway database LCI. No full mining transformation/export or source/native score equivalence is established."
+  },
+  "scope_verification": {
+    "all_approval_scopes_valid": true,
+    "scope_count": 1244,
+    "new_scopes": 1,
+    "prior_scopes_refreshed_with_identical_effective_projection": 0,
+    "prior_operations": []
+  },
+  "offline_tests": {
+    "brightpath_final_focused_tests": 21,
+    "prior_pam_regression_tests": 8,
+    "additional_atomic_replay_check_passed": 5,
+    "premise_focused_tests": 3,
+    "new_mapping_files_ruff": "passed",
+    "new_mapping_files_black": "passed",
+    "generator_lint_baseline_findings_unchanged": true,
+    "migration_manifest_and_archive_checks": "passed",
+    "wheel_resource_equality": "passed",
+    "broader_approval_matrix": "100 tests passed before intentional interruption; do not report the entire parameterized matrix as complete."
+  },
+  "real_mining_run": {
+    "inventory_preparation": "passed",
+    "shared_sector_update": "returned",
+    "exhaustive_validation": "failed",
+    "error_rule": "GRAPH.NEW_FORBIDDEN_CYCLE",
+    "error_count": 1,
+    "export_performed": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false
+  },
+  "cycle_and_coverage_diagnostic": {
+    "date": "2026-11-13",
+    "diagnostic_only": true,
+    "runtime_or_mapping_changes_in_this_audit": false,
+    "source_database_modified": false,
+    "reported_component_members": 4156,
+    "corresponding_baseline_component_members": 4156,
+    "different_semantic_labels_each_direction": 232,
+    "private_snapshot_product_alias_normalizations": 405,
+    "normalization_changes_amounts": false,
+    "cycles_after_private_copy_normalization_equal_baseline": true,
+    "new_components_after_private_copy_normalization": 0,
+    "current_cycle_count": 57,
+    "baseline_cycle_count": 57,
+    "tailings_market_records": 0,
+    "imported_treatment_roles": [
+      {
+        "name": "treatment of sulfidic tailings, flocculation-flotation process",
+        "reference product": "sulfidic tailings, generic",
+        "location": "GLO",
+        "production_amounts": [
+          -1.0
+        ]
+      },
+      {
+        "name": "treatment of sulfidic tailings, generic, backfilling",
+        "reference product": "sulfidic tailings, generic",
+        "location": "GLO",
+        "production_amounts": [
+          -1.0
+        ]
+      },
+      {
+        "name": "treatment of sulfidic tailings, roasting and leaching",
+        "reference product": "sulfidic tailings, generic",
+        "location": "GLO",
+        "production_amounts": [
+          -1.0
+        ]
+      }
+    ],
+    "regional_treatment_clone_count": 36,
+    "finding": "The mining update uses the default ecoinvent family, so it does not apply UVEK product aliases. The validation baseline applies those aliases regardless. The reported cycle differs only in electricity reference-product labels; a private copy normalized through the existing UVEK alias function has no new cycle. Mining also needs an explicit source-filter and native-tailings-market coverage audit before public qualification.",
+    "next_action": "Pass the declared family/biosphere through the existing shared mining constructor, supply reviewed UVEK mapping aliases, and verify market/fate coverage. Do not suppress the cycle check or count the current run as a qualified export."
+  },
+  "remaining": [
+    "Pass the declared UVEK family/biosphere through the existing shared mining handoff; the current default ecoinvent family causes inconsistent electricity product labels against the baseline.",
+    "Audit and extend source filters, impoundment coverage and native tailings-market/fate handling. Current outputs have 36 regional treatment clones but zero sulfidic-tailings markets.",
+    "Keep normal Premise transformation logic, both waste-reference conventions, original native source data and validation checks.",
+    "Rerun real update, exhaustive validation, export and signed LCIs; public mining remains unsupported until those and coverage checks pass.",
+    "Qualify the remaining registered sectors; the full integration goal is not complete."
+  ],
+  "installed_package_verification": {
+    "installed_brightpath_commit": "8bd600888372a94e21fab8546b4a887f1d3b32a8",
+    "review_sha256": "75463a6dcd949329ba3baf73ed0efa67d747d5121cb3881f8a334124377a73c7",
+    "installed_review_and_rule_match_checkout": true,
+    "focused_installed_package_tests": 3,
+    "public_mining_scope_refusal_verified": true,
+    "installed_real_mining_preparation": "Public scope guard intentionally refused before inventory preparation; real private-bypass preparation/update evidence comes from the prior checkout run.",
+    "sector_transformation_or_export_claimed": false
+  }
+}

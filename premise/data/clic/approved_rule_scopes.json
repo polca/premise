@@ -257585,6 +257585,53 @@
           "fingerprint": "dd653c8404e29cd75b53de0482b7c40f808c9eb7a9b6a403fee9cf58101beac5"
         }
       ]
+    },
+    {
+      "rule_id": "bp-168324086066bce9",
+      "operation": "replace",
+      "mapping_method": "reviewed_mining_38_msw_portfolio",
+      "review_path": "export/uvek_mining_38_msw_portfolio_review.json",
+      "review_sha256": "75463a6dcd949329ba3baf73ed0efa67d747d5121cb3881f8a334124377a73c7",
+      "authorization": "Standing user approval for autonomous modelling decisions with explicit warnings and a later-review decision log.",
+      "limitations": [
+        "Only the inspected ecoinvent 3.8 cut-off European municipal-solid-waste market group qualifies. Preserve the complete deterministic collection/disposal routing as a positive one-kg treatment-service helper, at caller factor -1 exactly once because the source waste reference is -1 kg. Retain every one of the 30 terminal supplier shares and all 35 collection-freight entries; deterministically sum repeat paths to the same original supplier or parent before scaling its own exchange. No route, residual, moisture, loss or share normalization is introduced. The retained treatment activity sum is 0.9999998698370718, not artificially forced to one. Use the complete native Swiss municipal incinerator for the 20 original incinerator suppliers, and the complete native Swiss sanitary landfill only for the original sanitary-landfill supplier. These are whole-function screening proxies: country mixes, combustion/gas capture, recovery, residues, leachate, infrastructure, allocation, electricity/heat use, composition/trace-metal differences, internal uncertainty, vintage and native upstream biosphere exclusions remain explicit limitations with unquantified score effects. Preserve the source as-received kg without fitting carbon, water, density or recovered-energy outputs. No separate energy/recovered-metal/gypsum credit, source residue disposal or second native treatment-internal burden is added to those complete engineered proxies. Do not use them for uncontrolled treatment. For four unsanitary and four open-dump climates plus open burning, use independently recalculated public Doka 2017 models, calibrated against the exact inspected profiles: retain all 1008 direct biosphere exchanges with source-matching rounded means, signed quantities, marginal lognormal uncertainty, pedigree and complete receiving compartments. Preserve fossil/non-fossil carbon and near-/long-term groundwater separately. Existing exact publisher synonyms cover groundwater potassium/nickel; no new ionic-mass or compartment proxy is introduced. Retain both public operating demands in every unsanitary case, using complete native RER skid-steer excavation per m3 and CH average building-machine diesel combustion per MJ. The excavator includes its own operation; the separately listed diesel is retained as the public model additional demand, without adding further fuel or infrastructure. These whole-function services replace the historical global service portfolios; technology/fleet, engine exclusions, fuel supply, geography and vintage differ. Retain the two public recovered-metal outputs in open burning at their original negative input signs, using only the existing exact 3.8 production-only Recycled Content cut-off stock helpers. Their source suppliers were rechecked as positive-reference production-only records, so no charged processing, collection, remelting or avoided-primary-production burden is invented. Recovery rates are iron/copper 95%, aluminium zero, with industrial soil and urban-air releases. Native RER fleet-average freight replaces the source generic global lorry-service portfolio, preserving every original signed tkm and supported uncertainty/pedigree after deterministic path scaling. Freight fleet/fuel/loading, road/network/infrastructure and country representation differ; no distance, payload or traction multiplier is introduced. No physical exchange omission, consequential/inverse/other-release approval, source/native full inventory equivalence, LCIA equivalence or impact bound is established."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for municipal solid waste",
+            "reference product": "municipal solid waste",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "normalized_inventory_sha256": "295923530c1393d6a93fe1744a4fa8842dbbc2881bf8b035f0a7d51710a5c982",
+          "comment_sha256": "cf16beb21867c39a81d53cdfcc55207eddb6b4d8fee487b8bff8998e450b77dc"
+        },
+        "conversion_factor": -1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a5e3cc6a7fd63a5d8187fe95ae5d987342bf5f3092cc506e25082ae7baec88d8"
+        }
+      ]
     }
   ],
   "superseded_operations": [
