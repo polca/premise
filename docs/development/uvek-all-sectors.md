@@ -1916,3 +1916,7 @@ See [receipt](uvek-review-storage-cleanup-2026-11-13-batch-3.json).
 ### LCD module correspondence — 13 November 2026
 
 Corrected both mercury matches to the complete native unmounted LCD module, retaining market delivery. Mapping and Premise cache/sign checks pass, as do in-memory LCIs without database writes. The fresh source-3.9 battery cohort has 170 unapproved rules (previously 171), next Swiss waste polyvinylfluoride. Eight of nineteen sectors remain qualified. See `uvek-lcd-module-39-review.md` and its verification JSON. Queued for the next batch push.
+
+### PVF treatment and collection — 13 November 2026
+
+Retained Swiss PVF collection freight and reviewed the complete native incinerator as a warned proxy for fly-ash-extraction treatment. Negative waste references convert to positive treatment demand; source-matrix balance, sign/uncertainty/cache checks and in-memory LCIs pass without database writes. The fresh source-3.9 battery cohort falls from 170 to 169 unapproved rules; next unsorted iron scrap. Eight of nineteen sectors remain qualified. See `uvek-pvf-treatment-39-review.md` and verification JSON. Queued for the next batch push.

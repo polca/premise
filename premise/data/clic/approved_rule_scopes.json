@@ -263495,6 +263495,206 @@
           "fingerprint": "9d5f97ee2728bd1893d85b2b24587b7f386278535350f08243dc0a7fac3d867f"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-b103f5a6e7a6ca60",
+      "mapping_method": "reviewed_pvf_treatment_39",
+      "review_path": "export/uvek_pvf_treatment_39_review.json",
+      "review_sha256": "f74333c92399a7659d00909ecd44fabade9ceebd22b98106b88daf6070a4f7eb",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with warnings and decisions logged for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of waste polyvinylfluoride, municipal incineration with fly ash extraction",
+            "reference product": "waste polyvinylfluoride",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 134,
+          "metadata_sha256": "928b6a15636cd152ceefe2afd8c3b9061577cb97f15544809211885880805ab6",
+          "inventory_sha256": "4488e544c85a063856924ed4bc0faa33ccfc4447fad90a0a91f54c7464829b59",
+          "activity_comment_sha256": "9714f09fca696a94f654294b46bd599a6e7d8c230db12c4b6434ae16169394af",
+          "product_information_sha256": "53c9c0b9cb3cc7607a63de674846089aaa39b631a7f1fd8be93353e8cfc64e9d"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste polyvinylfluoride, municipal incineration with fly ash extraction",
+              "reference product": "waste polyvinylfluoride",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 134,
+            "metadata_sha256": "928b6a15636cd152ceefe2afd8c3b9061577cb97f15544809211885880805ab6",
+            "inventory_sha256": "4488e544c85a063856924ed4bc0faa33ccfc4447fad90a0a91f54c7464829b59",
+            "activity_comment_sha256": "9714f09fca696a94f654294b46bd599a6e7d8c230db12c4b6434ae16169394af",
+            "product_information_sha256": "53c9c0b9cb3cc7607a63de674846089aaa39b631a7f1fd8be93353e8cfc64e9d"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+              "reference product": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 123,
+            "metadata_sha256": "86864d6e4c4ddf2c9c0fa214a96d6ef748b3f2a07708cf59d0f84842d6ddf96c",
+            "inventory_sha256": "556df58a28ffabc65d26fab1bf38d7f87a7f8b7600b994882a73f40a5410f42a",
+            "activity_comment_sha256": "7534de6b81c92ab1686e1aa543f23bf63c0a01811a853a4cbc02aa7df2a5fee6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+              "reference product": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 124,
+            "metadata_sha256": "8e1c83fc50b091a264941216a6efef1b40c1d1255820526ddf039753bba2d7f4",
+            "inventory_sha256": "32fda66c6521a3bcb069cfb52018e6a276e01f29c454be48a915b1c12129e7db",
+            "activity_comment_sha256": "cd6ae2408e7ec847d10e015ea074ca47e0517f024464548d93bebb0ed3723c93",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off Swiss waste-PVF market and fly-ash-extraction treatment profiles are reviewed. Source production references are negative one kg of waste; native disposal is positive one kg of service. Factor -1 converts negative waste inputs into positive treatment demand, preserving supported caller uncertainty, formulas and separate emissions. Do not clamp exchange signs or confuse PVF disposal with polymer production.",
+        "The complete native Swiss PVF incinerator is a screening proxy: the same 0.2% water, upper/lower heating values 28.09/27.89 MJ per kg and documented net energy 3.53 MJ electricity and 6.9 MJ heat. Retain the complete native treatment once; no energy, combustion, infrastructure or ash treatment is added a second time.",
+        "The source includes fly-ash extraction and 0.00915 kg dry hydroxide sludge recovered for zinc furnaces per kg waste. Native ordinary incineration lacks that recovery and has different residue/solidification inventories: source bottom ash/residues/cement 0.308/0.1782/0.07127 kg versus native slag/residues/cement 0.3223/0.3313/0.1325 kg. Source/native carbon composition also differs slightly. Preserve warnings for missing ash extraction and recovery, changed disposal burdens, emissions, allocation, vintage, native biosphere exclusions, internal uncertainty and unquantified score differences. Do not invent a recovery credit, separate source residue stages or an efficiency multiplier.",
+        "The market retains original collection: 0.00356 tkm rail and 0.02577 tkm generic lorry per kg treated, including supported uncertainty. These positive inputs remain positive after normalizing the market to a positive treatment-service reference; the original negative waste-treatment input becomes positive native treatment. Complete RER rail and lorry fleet are explicit geography/fleet proxies for Swiss collection. No collection loss, payload, fuel or route correction is introduced. Other source releases, system models and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4e8897287a0ff5ec8f127fe714cd45d430ba7f57d283577500cf4af9126e515b"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-5e4bb7a43763f0eb",
+      "mapping_method": "reviewed_pvf_treatment_39",
+      "review_path": "export/uvek_pvf_treatment_39_review.json",
+      "review_sha256": "f74333c92399a7659d00909ecd44fabade9ceebd22b98106b88daf6070a4f7eb",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with warnings and decisions logged for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for waste polyvinylfluoride",
+            "reference product": "waste polyvinylfluoride",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "ced2ad72a834d402294ca6191c2019a077619868454840d01b62941139c078ae",
+          "inventory_sha256": "608ff2710a5b1010c287471c1c917437bb98975f923f0805fc6109c529991b6b",
+          "activity_comment_sha256": "52fce822462e10a5397a572e8e9f399fb845c377a9ea15adb1246c5678f3ad1d",
+          "product_information_sha256": "53c9c0b9cb3cc7607a63de674846089aaa39b631a7f1fd8be93353e8cfc64e9d"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of waste polyvinylfluoride, municipal incineration with fly ash extraction",
+              "reference product": "waste polyvinylfluoride",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 134,
+            "metadata_sha256": "928b6a15636cd152ceefe2afd8c3b9061577cb97f15544809211885880805ab6",
+            "inventory_sha256": "4488e544c85a063856924ed4bc0faa33ccfc4447fad90a0a91f54c7464829b59",
+            "activity_comment_sha256": "9714f09fca696a94f654294b46bd599a6e7d8c230db12c4b6434ae16169394af",
+            "product_information_sha256": "53c9c0b9cb3cc7607a63de674846089aaa39b631a7f1fd8be93353e8cfc64e9d"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+              "reference product": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 123,
+            "metadata_sha256": "86864d6e4c4ddf2c9c0fa214a96d6ef748b3f2a07708cf59d0f84842d6ddf96c",
+            "inventory_sha256": "556df58a28ffabc65d26fab1bf38d7f87a7f8b7600b994882a73f40a5410f42a",
+            "activity_comment_sha256": "7534de6b81c92ab1686e1aa543f23bf63c0a01811a853a4cbc02aa7df2a5fee6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+              "reference product": "Disposal, polyvinylfluoride, 0.2% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 124,
+            "metadata_sha256": "8e1c83fc50b091a264941216a6efef1b40c1d1255820526ddf039753bba2d7f4",
+            "inventory_sha256": "32fda66c6521a3bcb069cfb52018e6a276e01f29c454be48a915b1c12129e7db",
+            "activity_comment_sha256": "cd6ae2408e7ec847d10e015ea074ca47e0517f024464548d93bebb0ed3723c93",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": "pvf-39-native-treatment-market"
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off Swiss waste-PVF market and fly-ash-extraction treatment profiles are reviewed. Source production references are negative one kg of waste; native disposal is positive one kg of service. Factor -1 converts negative waste inputs into positive treatment demand, preserving supported caller uncertainty, formulas and separate emissions. Do not clamp exchange signs or confuse PVF disposal with polymer production.",
+        "The complete native Swiss PVF incinerator is a screening proxy: the same 0.2% water, upper/lower heating values 28.09/27.89 MJ per kg and documented net energy 3.53 MJ electricity and 6.9 MJ heat. Retain the complete native treatment once; no energy, combustion, infrastructure or ash treatment is added a second time.",
+        "The source includes fly-ash extraction and 0.00915 kg dry hydroxide sludge recovered for zinc furnaces per kg waste. Native ordinary incineration lacks that recovery and has different residue/solidification inventories: source bottom ash/residues/cement 0.308/0.1782/0.07127 kg versus native slag/residues/cement 0.3223/0.3313/0.1325 kg. Source/native carbon composition also differs slightly. Preserve warnings for missing ash extraction and recovery, changed disposal burdens, emissions, allocation, vintage, native biosphere exclusions, internal uncertainty and unquantified score differences. Do not invent a recovery credit, separate source residue stages or an efficiency multiplier.",
+        "The market retains original collection: 0.00356 tkm rail and 0.02577 tkm generic lorry per kg treated, including supported uncertainty. These positive inputs remain positive after normalizing the market to a positive treatment-service reference; the original negative waste-treatment input becomes positive native treatment. Complete RER rail and lorry fleet are explicit geography/fleet proxies for Swiss collection. No collection loss, payload, fuel or route correction is introduced. Other source releases, system models and reverse routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5950e019a69efdf6f83166050ba33158b5857e72f2c9693043c5805742aea909"
+        }
+      ]
     }
   ],
   "superseded_operations": [
