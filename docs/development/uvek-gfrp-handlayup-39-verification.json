@@ -1,0 +1,205 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "db5d7f6d9c0282154227163306026d3f5f67fbbb",
+  "scope_registration": {
+    "prior_scopes": 1355,
+    "new_scopes": 1359,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-5a066f5db7e68d53",
+      "bp-701e43f092361881",
+      "bp-b451f828bd9ef7d1",
+      "bp-c779db99d058b8f8"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_sign_uncertainty_exact_scope_atomic_replay_delivery_storage_and_manifest": 70,
+    "premise_fresh_cache_signed_uncertainty_and_exact_scope": 20,
+    "installed_package_premise_checks": 20,
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 5,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 4,
+    "signed_foreground_LCI_solves": 8,
+    "independent_native_reference_LCI_solves": 4,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-5a066f5db7e68d53",
+        "source": {
+          "location": "GLO",
+          "name": "market for glass fibre reinforced plastic, polyester resin, hand lay-up",
+          "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.7601223589736037e-08,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 6.267753218893563e-08,
+          "residual_after": 6.308273025666759e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.7128613498381964e-09,
+          "residual_after": 6.315211919570666e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-701e43f092361881",
+        "source": {
+          "location": "RER",
+          "name": "glass fibre reinforced plastic production, polyester resin, hand lay-up",
+          "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "refined_max_abs_inventory_difference": 3.469446951953614e-18,
+        "full_graph_residual": {
+          "residual_before": 9.752618649315641e-08,
+          "residual_after": 2.687083276156285e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 9.752618649315641e-08,
+          "residual_after": 2.687083276156285e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-b451f828bd9ef7d1",
+        "source": {
+          "location": "RoW",
+          "name": "glass fibre reinforced plastic production, polyester resin, hand lay-up",
+          "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "refined_max_abs_inventory_difference": 3.469446951953614e-18,
+        "full_graph_residual": {
+          "residual_before": 9.752618649315641e-08,
+          "residual_after": 2.687083276156285e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 9.752618649315641e-08,
+          "residual_after": 2.687083276156285e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-c779db99d058b8f8",
+        "source": {
+          "location": "GLO",
+          "name": "market group for transport, freight, light commercial vehicle",
+          "reference product": "transport, freight, light commercial vehicle",
+          "unit": "ton kilometer"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "ton kilometer",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 1.5497422399347265e-28,
+        "full_graph_residual": {
+          "residual_before": 1.7201987246610472e-10,
+          "residual_after": 7.908214786276213e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.7201987246610472e-10,
+          "residual_after": 7.908214786276213e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the composite material/supply and whole light-commercial-freight interfaces and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_gfrp_handlayup_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 137,
+    "current": 136,
+    "removed_rules": [
+      "bp-5a066f5db7e68d53"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-8693559c1c84259d",
+    "next_source": {
+      "location": "RER",
+      "name": "ethylene glycol production",
+      "reference product": "ethylene glycol",
+      "unit": "kilogram"
+    },
+    "failed_stage": "inventory preparation",
+    "battery_qualified": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false,
+    "note": "Two producer identities and the light-commercial freight group independently reviewed alongside the market; only the market was pending in this first cohort."
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "new_source_omissions": [],
+  "new_helpers": 1,
+  "default_targets_and_other_profile_entries_unchanged": true,
+  "material_basis": "One kg finished glass-fibre/unsaturated-polyester hand-lay-up composite including its resin and glass inputs; not a bare processing service.",
+  "retained_market_interfaces": {
+    "separate_regional_producer_shares": [
+      0.330592351639303,
+      0.669407648360697
+    ],
+    "light_commercial_delivery_tkm": 0.0246,
+    "heavy_road_delivery_tkm": 0.3857,
+    "container_sea_delivery_tkm": 1.1439
+  },
+  "inherited_energy_limitation": "Both source and native records lack measured direct process-energy data. Absence is not a physical zero-energy claim; no invented energy input or credit added.",
+  "initial_inspection_script_correction": "The light-freight rule default sign status is unresolved; its exact3.9 profile is verified. The inspection script was corrected to check that selected profile and its explicit entry, without changing the rule or weakening sign validation."
+}

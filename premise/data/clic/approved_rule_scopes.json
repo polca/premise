@@ -268731,6 +268731,238 @@
           "fingerprint": "1cc87a949ea6fcf3c8ead491251ba3d57501fce5b2a60b5472bae4fce561310b"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-5a066f5db7e68d53",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_gfrp_handlayup_39_review.json",
+      "review_sha256": "8dfae66477419481bc18d0bde47803992a3e5bc087f92cd0239283db15bd120e",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-material/fleet/geographic proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for glass fibre reinforced plastic, polyester resin, hand lay-up",
+            "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "12045e481cbe5f5519e52f8a8dc6109faa2f96b621a0d83107ce3bbc6832564b",
+          "inventory_sha256": "6dcdae4511ba8f4be039669f579f8523afb2709acf028c0a46d2891340b57b91",
+          "activity_comment_sha256": "7d0a4ffd91948c4349af612df83511ab4317f81afa517185c710be903531473d",
+          "product_information_sha256": "02be09eec633f4ad3b479b9789c1cabcc99d0b25349601c9107a9972dedd1359"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "glass fibre reinforced plastic production, polyester resin, hand lay-up",
+              "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "0ca835ff7ef044f1e1311f587e3bc4e0644c124ff56c2b69abef332a3c646756",
+            "inventory_sha256": "c2fc7f1b2a10ac46250f148bb86ff85654c740eb7f299a52aa5358643e5bbe32",
+            "activity_comment_sha256": "c9a1bb691d738d79104b3665a66412fd6cb21bb82a6d1e591e99c3317aaa549c",
+            "product_information_sha256": "02be09eec633f4ad3b479b9789c1cabcc99d0b25349601c9107a9972dedd1359"
+          },
+          {
+            "identity": {
+              "name": "glass fibre reinforced plastic production, polyester resin, hand lay-up",
+              "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "a2d7b3be4c3f3b40528efe8510138a474caf247a27aea4703a647510c8118948",
+            "inventory_sha256": "b8606362f191462ec6ff753d81c8b9bea1f8cb7d0a7010f0aff090dd59e2bda0",
+            "activity_comment_sha256": "c9a1bb691d738d79104b3665a66412fd6cb21bb82a6d1e591e99c3317aaa549c",
+            "product_information_sha256": "02be09eec633f4ad3b479b9789c1cabcc99d0b25349601c9107a9972dedd1359"
+          }
+        ],
+        "recipe_id": "gfrp-polyester-handlayup-39-retained-supply-and-delivery"
+      },
+      "limitations": [
+        "Approval is limited to independently inspected ecoinvent 3.9 cut-off hand-lay-up glass-fibre/unsaturated-polyester material and the separately reviewed light-commercial-freight identity. Composite references are positive one kg manufactured material, not a polymer-processing service; the material includes glass fibre and resin. Preserve signed caller material kg, supported uncertainty/formulas, foreground ownership and separate caller emissions/materials at factor +1. Do not add resin/glass again or remove caller-owned independent inputs. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Use the complete native European hand-lay-up composite once per kg. Both inspected source producers and native releases use nominal 0.632 kg glass fibre, 0.421 kg unsaturated polyester resin and 0.025 kg organic chemicals, with 0.0526 kg mineral-wool waste and 6.25e-5 kg aromatic hydrocarbon emission. These are input/auxiliary quantities, not an inferred finished-product resin/fibre percentage. No density, purity, curing, moisture, material-loss or mass-balance multiplier is invented; do not normalize the input recipe to one kg or add a recovery credit. Source negative-reference waste demand and native positive treatment demand are internal to their complete models; the positive composite reference remains factor +1.",
+        "Both records explicitly lack direct process-energy data and rely on material-use assumptions from a limited manufacturer sample. Keep that inherited incompleteness visible: absence of an energy exchange is not evidence of physically zero energy. No invented oven, electricity, heat or energy credit is added. The complete native inventory replaces source upstream glass/resin/chemical supply, raw-material transport, waste-treatment geography/moisture/allocation, vintage and internal uncertainty. Nominal material/emission agreement does not establish source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified. Native raw-material freight is separate from the markets retained final delivery.",
+        "No new source omission, runtime Python module, alternative UVEK sector engine or validation bypass. Other existing profile entries/default targets and all earlier approval fingerprints remain unchanged. Exact component permissions do not authorize another resin, composite technology, freight mode or source profile.",
+        "Retain both original RER/RoW producer shares separately (0.330592351639303 and 0.669407648360697 kg) and all original final delivery: 0.0246 light-commercial, 0.3857 heavy-road and 1.1439 container-sea tkm per kg. Do not normalize/merge away source shares or add distances, freight loss or loading multipliers. Both producer supplies use complete native European composite as screened proxies; native internal raw-material freight remains unchanged in addition to separately retained final delivery.",
+        "Light-commercial delivery uses complete native Swiss 3.5t-gross light fleet, heavy unspecified road freight reuses its reviewed European heavy-fleet correspondence, and container sea freight reuses its reviewed ocean service. Light versus heavy mode/vehicle class stays distinct; each service includes its own vehicle, maintenance, disposal and road/port infrastructure. Country/fuel/load/duty/age/fleet and geographic differences, including the Swiss light fleet versus global source supply and container-ship portfolio, remain warnings. No duplicate vehicle, fuel, infrastructure or payload conversion is added."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f9b6ddeee29a5c0e0d5cab68377c6b02e39e40827c7c0209541932678edf4e10"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-701e43f092361881",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_gfrp_handlayup_39_review.json",
+      "review_sha256": "8dfae66477419481bc18d0bde47803992a3e5bc087f92cd0239283db15bd120e",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-material/fleet/geographic proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "glass fibre reinforced plastic production, polyester resin, hand lay-up",
+            "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "0ca835ff7ef044f1e1311f587e3bc4e0644c124ff56c2b69abef332a3c646756",
+          "inventory_sha256": "c2fc7f1b2a10ac46250f148bb86ff85654c740eb7f299a52aa5358643e5bbe32",
+          "activity_comment_sha256": "c9a1bb691d738d79104b3665a66412fd6cb21bb82a6d1e591e99c3317aaa549c",
+          "product_information_sha256": "02be09eec633f4ad3b479b9789c1cabcc99d0b25349601c9107a9972dedd1359"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": null
+      },
+      "limitations": [
+        "Approval is limited to independently inspected ecoinvent 3.9 cut-off hand-lay-up glass-fibre/unsaturated-polyester material and the separately reviewed light-commercial-freight identity. Composite references are positive one kg manufactured material, not a polymer-processing service; the material includes glass fibre and resin. Preserve signed caller material kg, supported uncertainty/formulas, foreground ownership and separate caller emissions/materials at factor +1. Do not add resin/glass again or remove caller-owned independent inputs. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Use the complete native European hand-lay-up composite once per kg. Both inspected source producers and native releases use nominal 0.632 kg glass fibre, 0.421 kg unsaturated polyester resin and 0.025 kg organic chemicals, with 0.0526 kg mineral-wool waste and 6.25e-5 kg aromatic hydrocarbon emission. These are input/auxiliary quantities, not an inferred finished-product resin/fibre percentage. No density, purity, curing, moisture, material-loss or mass-balance multiplier is invented; do not normalize the input recipe to one kg or add a recovery credit. Source negative-reference waste demand and native positive treatment demand are internal to their complete models; the positive composite reference remains factor +1.",
+        "Both records explicitly lack direct process-energy data and rely on material-use assumptions from a limited manufacturer sample. Keep that inherited incompleteness visible: absence of an energy exchange is not evidence of physically zero energy. No invented oven, electricity, heat or energy credit is added. The complete native inventory replaces source upstream glass/resin/chemical supply, raw-material transport, waste-treatment geography/moisture/allocation, vintage and internal uncertainty. Nominal material/emission agreement does not establish source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified. Native raw-material freight is separate from the markets retained final delivery.",
+        "No new source omission, runtime Python module, alternative UVEK sector engine or validation bypass. Other existing profile entries/default targets and all earlier approval fingerprints remain unchanged. Exact component permissions do not authorize another resin, composite technology, freight mode or source profile.",
+        "European source and native regional labels do not establish identical glass-fibre/resin grades, chemical auxiliaries, energy/transport backgrounds or treatment portfolios. Source regional mineral-wool disposal shares become native construction-waste-landfill supply at its original nominal quantity, without a second treatment or moisture correction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "99fd8c8d9262a5b89270e40d8c2ed8f956a1af779e4126323278a2b1e27cb9b9"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-b451f828bd9ef7d1",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_gfrp_handlayup_39_review.json",
+      "review_sha256": "8dfae66477419481bc18d0bde47803992a3e5bc087f92cd0239283db15bd120e",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-material/fleet/geographic proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "glass fibre reinforced plastic production, polyester resin, hand lay-up",
+            "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "a2d7b3be4c3f3b40528efe8510138a474caf247a27aea4703a647510c8118948",
+          "inventory_sha256": "b8606362f191462ec6ff753d81c8b9bea1f8cb7d0a7010f0aff090dd59e2bda0",
+          "activity_comment_sha256": "c9a1bb691d738d79104b3665a66412fd6cb21bb82a6d1e591e99c3317aaa549c",
+          "product_information_sha256": "02be09eec633f4ad3b479b9789c1cabcc99d0b25349601c9107a9972dedd1359"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": null
+      },
+      "limitations": [
+        "Approval is limited to independently inspected ecoinvent 3.9 cut-off hand-lay-up glass-fibre/unsaturated-polyester material and the separately reviewed light-commercial-freight identity. Composite references are positive one kg manufactured material, not a polymer-processing service; the material includes glass fibre and resin. Preserve signed caller material kg, supported uncertainty/formulas, foreground ownership and separate caller emissions/materials at factor +1. Do not add resin/glass again or remove caller-owned independent inputs. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Use the complete native European hand-lay-up composite once per kg. Both inspected source producers and native releases use nominal 0.632 kg glass fibre, 0.421 kg unsaturated polyester resin and 0.025 kg organic chemicals, with 0.0526 kg mineral-wool waste and 6.25e-5 kg aromatic hydrocarbon emission. These are input/auxiliary quantities, not an inferred finished-product resin/fibre percentage. No density, purity, curing, moisture, material-loss or mass-balance multiplier is invented; do not normalize the input recipe to one kg or add a recovery credit. Source negative-reference waste demand and native positive treatment demand are internal to their complete models; the positive composite reference remains factor +1.",
+        "Both records explicitly lack direct process-energy data and rely on material-use assumptions from a limited manufacturer sample. Keep that inherited incompleteness visible: absence of an energy exchange is not evidence of physically zero energy. No invented oven, electricity, heat or energy credit is added. The complete native inventory replaces source upstream glass/resin/chemical supply, raw-material transport, waste-treatment geography/moisture/allocation, vintage and internal uncertainty. Nominal material/emission agreement does not establish source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified. Native raw-material freight is separate from the markets retained final delivery.",
+        "No new source omission, runtime Python module, alternative UVEK sector engine or validation bypass. Other existing profile entries/default targets and all earlier approval fingerprints remain unchanged. Exact component permissions do not authorize another resin, composite technology, freight mode or source profile.",
+        "Rest-of-World composite production is represented by the complete European hand-lay-up process at unchanged kg, with explicit geographic glass/resin/chemical production, internal delivery, disposal mix, technology sample and age limitations. No Rest-of-World supply accuracy is implied."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "71f8bdd9cacac28b98bec0ae4276982e64dfe93ba1cd6ecbd02acaba53a7bc19"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-c779db99d058b8f8",
+      "mapping_method": "pairwise_review",
+      "review_path": "export/uvek_gfrp_handlayup_39_review.json",
+      "review_sha256": "8dfae66477419481bc18d0bde47803992a3e5bc087f92cd0239283db15bd120e",
+      "authorization": "Standing autonomous approval of remaining mappings and similar complete-material/fleet/geographic proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market group for transport, freight, light commercial vehicle",
+            "reference product": "transport, freight, light commercial vehicle",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "698c6869c94632b8360053243334c1d1b158f53a79f75e7459c583cf38441031",
+          "inventory_sha256": "8780804abe84d6b62b8ddf87866ea4e9c0c9d954450a30df4bad65b2e3e1b187",
+          "activity_comment_sha256": "cb9915a8b4ada53460e692e0aa520444ab2d5044320a2b27741c77c5655f7e8b",
+          "product_information_sha256": "12986f41f9247add8e2d5e206624564983a8b13755d5ac4171cf2ae026407c34"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": null
+      },
+      "limitations": [
+        "Independently inspected ecoinvent3.9 cut-off global light-commercial-freight market group has a positive one-tkm reference, matching the complete native Swiss 3.5t-gross fleet reference. Factor +1 preserves signed freight tkm, supported uncertainty/formulas, caller-owned foreground and separate emissions. Source group combines RoW, South Africa and Europe; native Swiss light-duty fleet is an explicit geographic/fuel/duty/vintage screening proxy. Other releases, patches, system models and reverse directions receive no new approval.",
+        "Reuse the existing complete light-freight correspondence unchanged. Keep light-commercial freight separate from the heavy-lorry fleet and passenger transport; do not divide by 3.5t, payload, loading, passenger-km or vehicle-km. Native fleet includes its complete vehicle production, maintenance, disposal and road infrastructure once; its mixed fuel/powertrain portfolio replaces the historical source light fleet. Do not add a second vehicle, fuel, road, trip or loading correction. Native/source inventory, LCIA and stochastic equivalence is not claimed and score differences remain unquantified.",
+        "This exact-profile approval also supports the retained GFRP material delivery input. No new transport helper, source omission, runtime Python, alternative engine or validation bypass. Existing default target/sign review and previous global freight decisions remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e684665ef8c74a23f39c0ec1483fc7d4fbb0b9eec80a52ab1c5622e9d6d01c87"
+        }
+      ]
     }
   ],
   "superseded_operations": [

@@ -2305,19 +2305,19 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-5a066f5db7e68d53",
+        "rule_id": "bp-8693559c1c84259d",
         "source": {
-          "location": "GLO",
-          "name": "market for glass fibre reinforced plastic, polyester resin, hand lay-up",
-          "reference product": "glass fibre reinforced plastic, polyester resin, hand lay-up",
+          "location": "RER",
+          "name": "ethylene glycol production",
+          "reference product": "ethylene glycol",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 137,
+        "unapproved_correspondence_count_in_current_39_cohort": 136,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-plastic-processing-39-verification.json",
+        "verification": "docs/development/uvek-gfrp-handlayup-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Inspect the glass-fibre/polyester hand-lay-up material market: resin/fibre composition, product basis, producer shares and delivery; preserve separately supplied processing/material ownership. Cobalt-industry power portfolio remains separately under review."
+        "next_action": "Inspect pure ethylene-glycol production against the native chemical and reference basis. Keep ethylene-glycol dimethyl ether as a distinct chemical; do not infer equivalence from the shared name fragment. Cobalt-industry electricity remains separately under review."
       }
     },
     {
@@ -3628,6 +3628,6 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-plastic-processing-39-verification.json"
+    "latest_mapping_review": "docs/development/uvek-gfrp-handlayup-39-verification.json"
   }
 }
