@@ -1,0 +1,54 @@
+{
+  "status": "exported_mining_markets_and_signed_lcis_verified",
+  "date": "2026-11-13",
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "database": "BAFU:2026-REMIND-SSP2-NPi-2050-mining-market-pilot-20261113-053556",
+  "source_database": "BAFU:2026-reimported",
+  "biosphere": "ecoinvent-3.10-biosphere",
+  "activities": 12050,
+  "native_source_codes_retained": 11947,
+  "source_database_metadata_unchanged": true,
+  "native_consumer_count": 57,
+  "native_consumer_quantity_and_uncertainty_preserved": true,
+  "native_consumer_regions": {
+    "EUR": 12,
+    "CHA": 9,
+    "SSA": 7,
+    "LAM": 6,
+    "USA": 3,
+    "World": 9,
+    "OAS": 4,
+    "REF": 5,
+    "CAZ": 2
+  },
+  "market_lci_equals_processed_weighted_provider_lcis": true,
+  "forwarder_lci_equals_market_lci": true,
+  "matrix_precision_note": "Installed bw_processing iterator serialization stores amounts at float32 precision. Brightway exchange records retain declared shares; processed coefficients match their float32 representations. Algebraic LCI identities use the actual processed coefficients, with no runtime export change or share renormalization.",
+  "solver_note": "Raw signed LCIs are finite and reverse exactly. SuperLU cancellation produced small residuals on these mixed-scale matrices; two independent iterative-refinement steps reduced linear-system residuals below 1e-12. Strict provider/market/forwarder identities are verified on those refined solutions and directly on exported matrix columns. No runtime or validation tolerance changed.",
+  "export_performed": true,
+  "public_scope_gate_bypassed_for_construction_only": true,
+  "validation_disabled": false,
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "regional_markets": 12,
+  "regional_positive_native_forwarders": 12,
+  "signed_finite_lci_checks": 144,
+  "strict_processed_weighted_market_identity_checks": 12,
+  "max_raw_matrix_residual": 9.873476618989194e-11,
+  "max_independently_refined_matrix_residual": 2.220446049250313e-16,
+  "original_logic": {
+    "shared_mixer_AST_unchanged": true,
+    "shared_mixer_AST_sha256": "5b0fab46483e3e8c758cc51cf16c18d08fe3057a81d0005ca9432ca089be772b",
+    "all_original_shares_and_ecoinvent_filters_unchanged": true
+  },
+  "checks": [
+    "194 mapping, scope, requirements, database and validation regressions passed.",
+    "103 mining, scope, export, compact-store and MSW regressions passed after explicit screening warning was added; test groups overlap.",
+    "Black passes; new tests pass Ruff; runtime introduces no new Ruff findings (one pre-existing unused copy import remains).",
+    "Documentation references regenerated and --check passed."
+  ],
+  "limitations": [
+    "This standalone mining receipt bypasses only the public sector availability gate; it does not disable validation.",
+    "Coupled-sector qualification and support-gate update are recorded separately.",
+    "Central finite LCIs and sign identities do not establish source/native LCIA or full joint uncertainty equivalence."
+  ]
+}

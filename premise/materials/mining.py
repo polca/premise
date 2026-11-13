@@ -5,6 +5,7 @@ Integrates projections regarding tailings treatment.
 import yaml
 import copy
 import uuid
+import warnings
 import xarray as xr
 import numpy as np
 from collections import defaultdict
@@ -22,7 +23,8 @@ from ..inventory.inventory_store import (
     replace_scenario_inventory,
 )
 from ..iam.geomap import Geomap
-from ..inventory.activity_maps import InventorySet
+from ..inventory.activity_maps import InventorySet, get_mapping
+from ..inventory.inventory_copy import clone_inventory_dataset
 
 logger = create_logger("mining")
 
@@ -47,7 +49,9 @@ def _update_mining(
         biosphere_version=biosphere_version,
     )
 
+    mining.prepare_market_templates()
     mining.update_tailings_treatment()
+    mining.forward_market_consumers()
     mining.relink_datasets()
     replace_scenario_inventory(scenario, mining.database)
     scenario["cache"] = mining.cache
@@ -183,6 +187,182 @@ class Mining(BaseTransformation):
             database=database, version=version, model=model, family=self.family
         )
         self.mining_map = inv.generate_mining_waste_map()
+
+    def _market_template_copy(self, source, identity, reference, role, config):
+        """Copy a mapped template; change only its declared reference convention."""
+        dataset = clone_inventory_dataset(source)
+        dataset.update(identity)
+        dataset["code"] = uuid.uuid4().hex
+        dataset["premise mining role"] = role
+        dataset["comment"] = (
+            config["limitations"]
+            + "\nOriginal source documentation:\n"
+            + source.get("comment", "")
+        )
+        for exchange in ws.production(dataset):
+            exchange.update(
+                name=dataset["name"],
+                product=dataset["reference product"],
+                amount=reference,
+                loc=reference,
+            )
+            if "reference product" in exchange:
+                exchange["reference product"] = dataset["reference product"]
+            if "negative" in exchange:
+                exchange["negative"] = reference < 0
+            exchange.pop("input", None)
+            exchange.pop("output", None)
+        return dataset
+
+    @staticmethod
+    def _market_template_reference(dataset):
+        references = list(ws.production(dataset))
+        if (
+            len(references) != 1
+            or references[0]["amount"] not in (-1, 1)
+            or isinstance(references[0]["amount"], (bool, np.bool_))
+            or references[0].get("uncertainty type", 0) != 0
+            or references[0].get("formula")
+            or references[0].get("unit", dataset["unit"]) != dataset["unit"]
+        ):
+            raise ValueError(
+                "Mining market template requires one deterministic +/-1 reference in the dataset unit."
+            )
+        return references[0]["amount"]
+
+    def prepare_market_templates(self):
+        """Supply missing market templates from explicit family YAML bindings.
+
+        The shared mixer consumes negative-reference waste suppliers. Preserve
+        the complete service inventory in a distinct, sign-converted copy so
+        its original identity can later forward consumers to the regional mix.
+        """
+        self.market_template_bindings = []
+        for role, aliases in get_mapping(
+            TAILINGS_WASTE_SHARES, f"{self.family}_aliases"
+        ).items():
+            config = aliases.get("market_template")
+            if config is None:
+                continue
+            warnings.warn(config["limitations"], UserWarning, stacklevel=2)
+            source = ws.get_one(
+                self.database,
+                *[ws.equals(key, value) for key, value in config["source"].items()],
+            )
+            if (
+                self._market_template_reference(source)
+                != config["source_reference_amount"]
+                or config["source_reference_amount"] != 1
+                or config["target_reference_amount"] != -1
+                or any(
+                    config[key]["unit"] != source["unit"]
+                    for key in ("supplier", "market")
+                )
+            ):
+                raise ValueError(
+                    "Mining market template requires a deterministic +1 service and a same-unit -1 waste reference."
+                )
+            supplier_identity = {**config["supplier"], "location": source["location"]}
+            market_identity = {**config["market"], "location": source["location"]}
+            markets = list(
+                ws.get_many(
+                    self.database,
+                    *[ws.equals(key, value) for key, value in market_identity.items()],
+                )
+            )
+            if markets and (
+                len(markets) != 1
+                or markets[0].get("premise mining role") != "market template"
+                or self._market_template_reference(markets[0]) != -1
+            ):
+                raise ValueError(
+                    f"Mining market {market_identity!r} requires declared template provenance and a deterministic -1 reference."
+                )
+            existing = list(
+                ws.get_many(
+                    self.database,
+                    *[
+                        ws.equals(key, value)
+                        for key, value in supplier_identity.items()
+                    ],
+                )
+            )
+            if existing:
+                if (
+                    len(existing) != 1
+                    or existing[0].get("premise mining role") != "impoundment supplier"
+                    or self._market_template_reference(existing[0]) != -1
+                ):
+                    raise ValueError(
+                        f"Mining supplier {supplier_identity!r} requires declared template provenance and a deterministic -1 reference."
+                    )
+                supplier = existing[0]
+            else:
+                if source.get("premise mining role") == "market forwarder":
+                    raise ValueError(
+                        "Cannot recover the impoundment inventory from an already forwarded service."
+                    )
+                supplier = self._market_template_copy(
+                    source, supplier_identity, -1, "impoundment supplier", config
+                )
+                self.database.append(supplier)
+                self.add_to_index(supplier)
+                self.write_log(supplier, "created")
+            self.mining_map[role] = [supplier]
+            if not markets:
+                market = self._market_template_copy(
+                    source, market_identity, -1, "market template", config
+                )
+                market["exchanges"] = list(ws.production(market)) + [
+                    {
+                        "name": supplier["name"],
+                        "product": supplier["reference product"],
+                        "location": supplier["location"],
+                        "unit": supplier["unit"],
+                        "amount": -1,
+                        "type": "technosphere",
+                        "uncertainty type": 0,
+                    }
+                ]
+                self.database.append(market)
+                self.add_to_index(market)
+                self.write_log(market, "created")
+            self.market_template_bindings.append((source, config))
+
+    def forward_market_consumers(self):
+        """Retain native service identities while forwarding to shared IAM mixes."""
+        regions = [r for r in self.regions if r in self.tailings_shares.region.values]
+        for source, config in self.market_template_bindings:
+            forwarders = self.fetch_proxies([source], relink=False, regions=regions)
+            for region, dataset in forwarders.items():
+                dataset["premise mining role"] = "market forwarder"
+                dataset["comment"] = config["limitations"]
+                dataset["exchanges"] = list(ws.production(dataset)) + [
+                    {
+                        "name": config["market"]["name"],
+                        "product": config["market"]["reference product"],
+                        "location": region,
+                        "unit": config["market"]["unit"],
+                        "amount": -1,
+                        "type": "technosphere",
+                        "uncertainty type": 0,
+                    }
+                ]
+                self.database.append(dataset)
+                self.add_to_index(dataset)
+                self.write_log(dataset, "created")
+            self.empty_original_datasets(
+                [source],
+                production_shares={},
+                loc_map={
+                    source["location"]: self.ecoinvent_to_iam_loc[source["location"]]
+                },
+                regions=regions,
+                target=config["market"],
+                conversion_factor=-1,
+            )
+            source["premise mining role"] = "market forwarder"
+            source["comment"] = config["limitations"]
 
     def update_tailings_treatment(self):
 
