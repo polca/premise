@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-13",
+  "status": "Public MSW direct-biosphere calculations verified; mining disposal-market conversion remains unfinished.",
+  "brightpath_commit": "f30958d58e21acd07f0bacccbcdcd0f9f28f8008",
+  "calculation_resource": "brightpath/data/export/uvek_msw_public_treatment_calculation.json",
+  "calculation_sha256": "97262dbc8cab30aaf5da4a12b337dd4a1bbc2c1891d3793061c9dce041aa7c37",
+  "runtime_mapping_changed": false,
+  "python_transformation_modules_changed": false,
+  "source_database_modified": false,
+  "biosphere": "ecoinvent-3.10-biosphere",
+  "tests": {
+    "focused_brightpath_tests_passed": 7,
+    "ruff": "passed",
+    "black": "passed",
+    "wheel_resource_matches_checkout": true
+  },
+  "cases": [
+    {
+      "case": "open-burning",
+      "nonzero_source_biosphere_coordinates": 88,
+      "rounded_mean_matches": 88,
+      "base_variance_matches": 88,
+      "total_variance_matches": 88,
+      "log_location_matches": 88,
+      "registered_biosphere_definitions": 88,
+      "source_inventory_modified": false
+    },
+    {
+      "case": "open-dump-dry",
+      "nonzero_source_biosphere_coordinates": 115,
+      "rounded_mean_matches": 115,
+      "base_variance_matches": 115,
+      "total_variance_matches": 115,
+      "log_location_matches": 115,
+      "registered_biosphere_definitions": 115,
+      "source_inventory_modified": false
+    },
+    {
+      "case": "open-dump-moist",
+      "nonzero_source_biosphere_coordinates": 115,
+      "rounded_mean_matches": 115,
+      "base_variance_matches": 115,
+      "total_variance_matches": 115,
+      "log_location_matches": 115,
+      "registered_biosphere_definitions": 115,
+      "source_inventory_modified": false
+    },
+    {
+      "case": "open-dump-very-wet",
+      "nonzero_source_biosphere_coordinates": 115,
+      "rounded_mean_matches": 115,
+      "base_variance_matches": 115,
+      "total_variance_matches": 115,
+      "log_location_matches": 115,
+      "registered_biosphere_definitions": 115,
+      "source_inventory_modified": false
+    },
+    {
+      "case": "open-dump-wet",
+      "nonzero_source_biosphere_coordinates": 115,
+      "rounded_mean_matches": 115,
+      "base_variance_matches": 115,
+      "total_variance_matches": 115,
+      "log_location_matches": 115,
+      "registered_biosphere_definitions": 115,
+      "source_inventory_modified": false
+    },
+    {
+      "case": "unsanitary-dry",
+      "nonzero_source_biosphere_coordinates": 115,
+      "rounded_mean_matches": 115,
+      "base_variance_matches": 115,
+      "total_variance_matches": 115,
+      "log_location_matches": 115,
+      "registered_biosphere_definitions": 115,
+      "source_inventory_modified": false
+    },
+    {
+      "case": "unsanitary-moist",
+      "nonzero_source_biosphere_coordinates": 115,
+      "rounded_mean_matches": 115,
+      "base_variance_matches": 115,
+      "total_variance_matches": 115,
+      "log_location_matches": 115,
+      "registered_biosphere_definitions": 115,
+      "source_inventory_modified": false
+    },
+    {
+      "case": "unsanitary-very-wet",
+      "nonzero_source_biosphere_coordinates": 115,
+      "rounded_mean_matches": 115,
+      "base_variance_matches": 115,
+      "total_variance_matches": 115,
+      "log_location_matches": 115,
+      "registered_biosphere_definitions": 115,
+      "source_inventory_modified": false
+    },
+    {
+      "case": "unsanitary-wet",
+      "nonzero_source_biosphere_coordinates": 115,
+      "rounded_mean_matches": 115,
+      "base_variance_matches": 115,
+      "total_variance_matches": 115,
+      "log_location_matches": 115,
+      "registered_biosphere_definitions": 115,
+      "source_inventory_modified": false
+    }
+  ],
+  "remaining": [
+    "Qualify native engineered incineration and sanitary-landfill proxies inside this exact portfolio.",
+    "Bind unsanitary landfill operating services and preserve open-burning cut-off scrap handovers.",
+    "Retain all disposal-route weights and original collection freight, including uncertainty and sign conventions.",
+    "Register the exact-profile recipe and approval scope, run migration/cache and signed-LCI checks, then rerun real mining preparation, transformation, validation and Brightway export.",
+    "Continue remaining inventory cohorts and sector updates; this receipt does not qualify mining or expand the public sector gate."
+  ]
+}
