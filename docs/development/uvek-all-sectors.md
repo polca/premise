@@ -1948,3 +1948,7 @@ Replaced the bauxite restoration matches with the source-explicit native Swiss l
 ### Regional useful natural-gas heat — 13 November 2026
 
 Preserved global RoW/RER and European CH/non-CH wrapper coefficients and uncertainty, reusing two existing source-3.9 native ENTSO-E supply scopes. Swiss market uses the native Swiss heat mix with explicit source/native CHP/boiler-portfolio and boundary warnings; no representativeness, fuel-efficiency or electricity-credit correction. Two mapping wrappers, no runtime module change. Mapping/storage, fresh/cache and in-memory LCI checks pass without database writes. Battery cohort falls from 163 to 162 unapproved rules, next electric-arc-furnace dust. Eight of nineteen sectors remain qualified. See `uvek-natural-gas-heat-groups-39-review.md` and verification JSON.
+
+### Electric-arc-furnace dust market — 13 November 2026
+
+Retained both reviewed landfill shares and all eight collection-freight entries. Explicitly audited the two allocated-empty clinker waste interfaces; no invented treatment burden or recovery credit. Source sign/uncertainty and exact omission-scope checks pass, with finite signed in-memory LCIs and no database writes. Fresh battery preparation reduces the inspected source-3.9 cohort from 162 to 161 unapproved rules; next electric-arc-furnace slag. Eight of nineteen sectors remain qualified. See `uvek-eaf-dust-market-39-review.md` and verification JSON. Queued for the next batch push.

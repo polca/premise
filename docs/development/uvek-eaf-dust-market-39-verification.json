@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "3d023678e8da140a81fd7d2de8aa212dac69d9ff",
+  "scope_registration": {
+    "prior_scopes": 1323,
+    "new_scopes": 1324,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_id": "bp-48a25254b225ab37",
+    "literal_source_recipe_omission_count": 2,
+    "omission_recipe_id": "eaf-dust-39-row-retained-landfill-collection",
+    "clinker_interface_fraction": 0.0663724340807961,
+    "new_caller_exchange_omissions": [],
+    "runtime_python_changes": []
+  },
+  "tests": {
+    "brightpath_mapping_and_storage_checks": 30,
+    "premise_fresh_cache_sign_uncertainty_and_literal_scope_checks": 9,
+    "lint": "passed",
+    "installed_package_premise_checks": 9
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "foreground_biosphere_flows": 61,
+    "native_suppliers": 7,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-48a25254b225ab37",
+        "source": {
+          "location": "RoW",
+          "name": "market for electric arc furnace dust",
+          "reference product": "electric arc furnace dust",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 5.95790083934844e-11,
+        "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 1.6628758052598978e-10,
+          "residual_after": 4.440892098500626e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.3171801605984368e-10,
+          "residual_after": 4.440892098500626e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the EAF-dust market, retained landfill shares/collection and literal allocated-empty co-processing audit and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 162,
+    "current": 161,
+    "removed_rules": [
+      "bp-48a25254b225ab37"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-fa554a8b5b5e0804",
+    "stage": "inventory preparation",
+    "battery_qualified": false
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_eaf_dust_market_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ]
+}

@@ -264745,6 +264745,232 @@
           "fingerprint": "1ef27e140e4c0dc32b420c134aa4a3d15e59a0e814d0ad14ce7251b177035857"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-48a25254b225ab37",
+      "mapping_method": "reviewed_resolved_child_market_service",
+      "review_path": "export/uvek_eaf_dust_market_39_review.json",
+      "review_sha256": "523cfe408312c1393039e760d2d14f0118bbf404d59a1ba2c5affd99dc04ad4b",
+      "authorization": "Standing autonomous user approval of inspected mappings and explicit warning/audit omissions, including similar observed allocated-empty clinker branches.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for electric arc furnace dust",
+          "reference product": "electric arc furnace dust",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for electric arc furnace dust",
+            "reference product": "electric arc furnace dust",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 12,
+          "metadata_sha256": "3b57f477f970bddd822fe3f954a29dfee76f096f0bb8cded0a6cd86a0ad45b6e",
+          "inventory_sha256": "06968bca3e5094714b2b49a43cb9d89ec439f86f360bba82511ae95b3e4e4095",
+          "activity_comment_sha256": "b8868c249e2483ea15288686c50a15aa21300e6accb35248a2c87bf60ee5148b",
+          "product_information_sha256": "01968ed4ff41cfbfdb17b3dfd24399891a3d6530539dda171524ed37d5ccf1c2"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of electric arc furnace dust, residual material landfill",
+              "reference product": "electric arc furnace dust",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 74,
+            "metadata_sha256": "c00ca21b707a2bc437e391d4ff5405a4136dfddb3df71b095be209ec83768ec3",
+            "inventory_sha256": "203e36bba7c2a6dce60fbf61435aa27ae28409c5e246b7b6e487f52a1e0764d4",
+            "activity_comment_sha256": "2bf77d89ec5cc05f257cbf40c72c5f98007943ea82be0913189ba61312b6e699",
+            "product_information_sha256": "01968ed4ff41cfbfdb17b3dfd24399891a3d6530539dda171524ed37d5ccf1c2"
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "electric arc furnace dust",
+              "location": "BR",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "c8857e3a0fe8442790ae6e0f9605f79fd2f7c6aa26487030aa9a88fabc0993b7",
+            "inventory_sha256": "4c8d6d793cd39500dd78cda2a20c8c31fd623619c4fb5685eee7c4ebdaa1c7bc",
+            "activity_comment_sha256": "c4c170ee3692e057757683b817f1f6bfeed9876653b399d53b29a50f6bdf1bdb",
+            "product_information_sha256": "01968ed4ff41cfbfdb17b3dfd24399891a3d6530539dda171524ed37d5ccf1c2"
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "electric arc furnace dust",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "e3f849bfb63c4e01790e6940aa97626efc90ad2db9b1bd582d983e2c5d78389a",
+            "inventory_sha256": "b257de12adab2264449e7ca495d42bf6c27654ed3d83d80cffcd73f14964bf84",
+            "activity_comment_sha256": "ab6563bc5de9bd8c32bfeb9b271dbb8a032cea6b4d81f62bd38d27590e6b1cda",
+            "product_information_sha256": "01968ed4ff41cfbfdb17b3dfd24399891a3d6530539dda171524ed37d5ccf1c2"
+          },
+          {
+            "identity": {
+              "name": "treatment of electric arc furnace dust, residual material landfill",
+              "reference product": "electric arc furnace dust",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 64,
+            "metadata_sha256": "712aec2cb399b688de15e4bc444aeafa2bfd5f3dafac5e1667b5927b3532775e",
+            "inventory_sha256": "0130e8d7b55d55063d97dc3c38663e4f165724f3bb487a76291f6af311006632",
+            "activity_comment_sha256": "2bf77d89ec5cc05f257cbf40c72c5f98007943ea82be0913189ba61312b6e699",
+            "product_information_sha256": "01968ed4ff41cfbfdb17b3dfd24399891a3d6530539dda171524ed37d5ccf1c2"
+          }
+        ],
+        "recipe_id": "eaf-dust-39-row-retained-landfill-collection",
+        "approved_recipe_source_omissions": {
+          "eaf-dust-39-row-retained-landfill-collection": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "name": "market for electric arc furnace dust",
+                "reference product": "electric arc furnace dust",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "acadd5b5970b2f3e59e0a32246b0754aa59e81af36369d47e33071c0198f9d50",
+              "original_index": 2,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "electric arc furnace dust",
+                "location": "BR",
+                "unit": "kilogram",
+                "amount": -0.0177308318136209,
+                "uncertainty type": 0,
+                "loc": -0.0177308318136209,
+                "type": "technosphere"
+              },
+              "rationale": "Exact audited omission of this allocated source3.9cutoff clinker waste function only. Its waste reference is -1kg and complete inventory has no nonproduction exchanges; the same publisher activity/location has a nonempty positive clinker-output inventory. Omitting the explicit waste interface removes no source LCI burden, but does not claim real kiln treatment is impact-free. Record the original signed amount, uncertainty, position, source profile and allocation witnesses. Do not add clinker-production burden, recovery credit or renormalize the retained treatment shares. Unknown or nonempty services are not covered; the positive-reference cut-off-stock guard is unchanged. Waste-inventory SHA256: 4c8d6d793cd39500dd78cda2a20c8c31fd623619c4fb5685eee7c4ebdaa1c7bc; positive-clinker inventory SHA256: 3750d214ed1f04e9b0ff16be22d130104f7fffcce0c59e3723c87d7637557c86"
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "name": "market for electric arc furnace dust",
+                "reference product": "electric arc furnace dust",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "acadd5b5970b2f3e59e0a32246b0754aa59e81af36369d47e33071c0198f9d50",
+              "original_index": 3,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "electric arc furnace dust",
+                "location": "RoW",
+                "unit": "kilogram",
+                "amount": -0.0486416022671752,
+                "uncertainty type": 0,
+                "loc": -0.0486416022671752,
+                "type": "technosphere"
+              },
+              "rationale": "Exact audited omission of this allocated source3.9cutoff clinker waste function only. Its waste reference is -1kg and complete inventory has no nonproduction exchanges; the same publisher activity/location has a nonempty positive clinker-output inventory. Omitting the explicit waste interface removes no source LCI burden, but does not claim real kiln treatment is impact-free. Record the original signed amount, uncertainty, position, source profile and allocation witnesses. Do not add clinker-production burden, recovery credit or renormalize the retained treatment shares. Unknown or nonempty services are not covered; the positive-reference cut-off-stock guard is unchanged. Waste-inventory SHA256: b257de12adab2264449e7ca495d42bf6c27654ed3d83d80cffcd73f14964bf84; positive-clinker inventory SHA256: 9a746462cb0396935c8b5f6efa33ee4d6e06153da2a89c7f14ef365b6907c363"
+            }
+          ]
+        },
+        "clinker_allocation_controls": [
+          {
+            "location": "BR",
+            "same_publisher_activity": true,
+            "waste_reference": {
+              "reference_product": "electric arc furnace dust",
+              "reference_amounts": [
+                -1.0
+              ],
+              "nonproduction_count": 0,
+              "inventory_sha256": "4c8d6d793cd39500dd78cda2a20c8c31fd623619c4fb5685eee7c4ebdaa1c7bc"
+            },
+            "clinker_reference": {
+              "reference_product": "clinker",
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 59,
+              "inventory_sha256": "3750d214ed1f04e9b0ff16be22d130104f7fffcce0c59e3723c87d7637557c86"
+            }
+          },
+          {
+            "location": "RoW",
+            "same_publisher_activity": true,
+            "waste_reference": {
+              "reference_product": "electric arc furnace dust",
+              "reference_amounts": [
+                -1.0
+              ],
+              "nonproduction_count": 0,
+              "inventory_sha256": "b257de12adab2264449e7ca495d42bf6c27654ed3d83d80cffcd73f14964bf84"
+            },
+            "clinker_reference": {
+              "reference_product": "clinker",
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 245,
+              "inventory_sha256": "9a746462cb0396935c8b5f6efa33ee4d6e06153da2a89c7f14ef365b6907c363"
+            }
+          }
+        ],
+        "new_caller_exchange_omissions": []
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off RoW electric-arc-furnace-dust market is newly reviewed. Source references -1kg waste; target helper references +1kg treatment service. Factor -1 turns negative source waste demand into positive target service demand. Normalize each negative-reference landfill supplier separately; keep original positive collection freight positive. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership, separate emissions and credits. Other unreviewed source releases, patches, system models and reverse routes gain no approval.",
+        "Retain both landfill branches at their original source masses: RoW 0.932628099547659 and CH 0.000999466371545205 kg/kg waste, without renormalization. Both full current source vectors match the prior independently approved source3.9 landfill witnesses using the same canonical JSON hash method. Reuse those exact waste-specific helpers, their direct releases, stabilization, operation, construction, uncertainty and native2026 biosphere bindings unchanged; the parent default modern-version landfill-only recipe is not used for source3.9.",
+        "The BR and RoW clinker co-processing branches are observed production-only negative-reference waste functions. Both share publisher activity and location with nonempty positive clinker-output inventories. Omit only these two explicit allocated waste interfaces, respectively 0.0177308318136209 and 0.0486416022671752 kg/kg, with literal source-exchange, profile, index and allocation audit. Their original allocated source LCI contribution is zero for every demand because they have no nonproduction exchanges. The physical 6.637243408% co-processing share is not represented by a target supplier; no claim that real co-processing has zero impact is made. No nonempty/unknown route is assigned zero, no avoided-mineral credit or clinker manufacturing burden is invented, and positive cut-off-stock rules are not weakened.",
+        "Retain all eight collection entries separately with original signed quantities and supported source uncertainty: four rail, one inland barge and three unspecified heavy-road entries. Generic collection rail uses complete native RER rail, not coal-specific freight; barge and road use complete RER same-mode services. Source countries, steam/electric/diesel history, gauge, payload, fleet classes, fuel, vintage and native internal uncertainty differ. The whole generic-rail market is a geographic/traction screening proxy; no exact steam traction is claimed or separately modelled. Do not convert tkm to fuel, adjust distance/payload/capacity, omit steam-era source freight or duplicate vehicles, infrastructure or operation.",
+        "Reused landfill components retain their previous Swiss-operation/facility, cement blend and disposal moisture, geographic, allocation, long-term-water/land, speciation and uncertainty limitations. Keep the exact source-specific releases and quantities through their existing reviewed bindings; no new water balance, dilution, moisture, area, metal recovery or aftercare multiplier is introduced. Source/native scores remain unquantified; no full LCI, LCIA or stochastic equivalence is claimed beyond the observed zero inventories of the two audited co-products.",
+        "Only the exact source3.9 profile target and its supporting review metadata change. Existing verified modern-profile targets/coefficients and other pending profile decisions remain unchanged. New omission approval is tied to this exact parent/profile/recipe and does not authorize omissions elsewhere. Use existing recipe-loss reporting and Premise approval checks; no runtime Python module, alternative conversion engine or validation bypass is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "da274f4cf43b860bbd3db7ec0a953e34f5dc50de21183348c7e3c5bb2222687d"
+        }
+      ]
     }
   ],
   "superseded_operations": [
