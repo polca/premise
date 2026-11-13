@@ -265575,6 +265575,90 @@
           "fingerprint": "546ada0f3c26d2b47523e966a20c796155414b871d7a5f02a4606eb9892e244d"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-290930deee99d0e9",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_spent_solvent_39_review.json",
+      "review_sha256": "30ca16fce211fb86cdb66942ef4b4d399b57fb4004290abd81993a163284a589",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with logged screening proxies and explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+            "reference product": "spent solvent mixture",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 84,
+          "metadata_sha256": "7b1e6f173adfec5ad1e167971c808e7a8c90085325c16d6234e78bd1d3e5ea1d",
+          "inventory_sha256": "c45e52cf92f71c0cad643102d9f19ad63549cb324577ff33603838d36c3e4b7e",
+          "activity_comment_sha256": "539625dd73814cf156b8e54b5438ffa11b6820933c6dbbd54cde0562c6892cc7",
+          "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 72,
+            "metadata_sha256": "026522d6e7b7cb553fa93b51ae80a9c871aa8611cc1e812469d73f8cd1f62f79",
+            "inventory_sha256": "21fde9602a5331dcf170d88623bdaad806a676c551565466be03caf087e30bfc",
+            "activity_comment_sha256": "4391ca3853b1d56e8aeb5fbb9486701d9ebf30e6dddf56ee48e1b291dcc91e07",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "reference product": "Disposal, solvents mixture, 16.5% water, to hazardous waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 73,
+            "metadata_sha256": "610bc91c27c6da6b67267088adea0b63cdd415988a88afa45ff8f6febfe33dcf",
+            "inventory_sha256": "6c836daf77834b88301c24b714dd5ddd6ada9db10b56cbe92faafc70618a3bdf",
+            "activity_comment_sha256": "90e6290de4b5a6a3b8e989183928bb0c123b0af80da124ae362929898339d850",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent 3.9 cut-off RoW spent-solvent-mixture treatment is newly approved. Source -1kg waste reference and native +1kg disposal-service reference require the existing factor -1. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership and separately listed emissions or recovery exchanges. No concentration, dry-mass, heating-value, efficiency or allocation multiplier is applied to the complete waste service. Other profiles/system models and inverse routes gain no approval.",
+        "Complete native hazardous-waste incineration matches the source documented solvent mixture, 16.5% water, fossil-carbon content and halogen composition, HHV 23.68/LHV 21.7 MJ/kg and 0.07563 kg residues. Both describe Swiss 2000 wet scrubbing/low-dust SCR technology. Use that complete service once, including native incineration, process energy, reagents, stabilization, landfill releases, plant and landfill operation/construction. Do not add collection, another ash-treatment inventory, metal recovery, recovered-material or avoided-energy credit.",
+        "All 51 source direct biosphere exchanges match native2026 exactly on publisher UUID, full compartment, unit and signed amount. Native additionally lists waste heat 3.2859 MJ to surface water and 17.147 MJ to urban air close to ground. Retain those native emissions without balancing them against recoverable-energy prose or inventing an avoided-heat exchange; their score effect and native internal uncertainty differences remain unquantified. No full upstream LCI, LCIA or stochastic equivalence is claimed.",
+        "Both process descriptions allocate 100% of burdens to disposal with no energy substitution or expansion. Source describes 17.11 MJ thermal and 1.27 MJ electrical energy; native prose reverses those two labels. Neither recorded inventory has an exported recovered-energy credit or co-product production exchange. Native contains no negative technosphere exchange; source has only negative hydrated-waste-cement disposal, not an energy credit. Treat the reversed native labels as an unresolved documentation inconsistency: do not infer new coefficients, correct the source data or turn recovered energy into a credit.",
+        "Source regional raw-material/energy supply groups are replaced by the complete native Swiss/European background. Source useful light-oil heat 1.222 MJ and useful gas heat 0.184428 MJ differ in reference basis from native 1.3 MJ boiler fuel and 0.20492 MJ industrial-furnace fuel. Source and native total solidification cement are both 0.030252 kg; source negative 0.07563 kg waste-cement disposal becomes the native positive service inside their own inventories. Native CH/RER lorry/rail and upstream chemical/geographic/solution-reference, energy, allocation, age, infrastructure and uncertainty differences remain screening warnings. Do not copy source utilities/reagents or apply assumed solution conversions on top of the native complete inventory.",
+        "The Brightpath replacement rule, target identity, treatment factor and migration resources remain unchanged. This review adds an exact-profile Premise approval and packaged evidence only; no helper, source omission, runtime Python module, alternative sector engine or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3724d1db24e5074bd3066f5ec62185bdaa573c9fd3467a7e2d43b19acc8e582f"
+        }
+      ]
     }
   ],
   "superseded_operations": [

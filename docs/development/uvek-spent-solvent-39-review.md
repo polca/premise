@@ -1,0 +1,13 @@
+# Spent-solvent hazardous-waste incineration — 13 November 2026
+
+The existing mapping selects the complete native process for solvent mixture with 16.5% water. Its documented waste composition, heating values and residue quantity match the inspected ecoinvent 3.9 cut-off source. The source waste reference is negative one kg; native disposal service is positive one kg. The existing factor -1 correctly converts negative waste demand into positive treatment demand, preserving signs, supported uncertainty and separate caller emissions.
+
+All 51 source direct biosphere exchanges match native 2026 by publisher flow identifier, full compartment, unit and signed amount. Native additionally lists two waste-heat emissions: 3.2859 MJ to surface water and 17.147 MJ to urban air. These remain part of the complete native inventory. Upstream regional supplies, chemicals, energy-reference bases, transport, age and uncertainty differ, so complete source/native scores are not claimed equivalent.
+
+Both descriptions allocate all burden to waste disposal without energy substitution or expansion. The source reports 17.11 MJ recovered heat and 1.27 MJ electricity; native prose reverses those labels. Neither actual inventory books an exported recovered-energy credit. The native inconsistency is explicitly flagged; no new energy coefficients, credit or balancing heat exchange is inferred from prose. Source negative hydrated-cement-waste demand is residue disposal, not energy recovery.
+
+The complete native service includes its plant, process energy, reagents, stabilization and landfill chain. No second ash-treatment, transport, infrastructure, reagent-concentration correction, recovery credit or helper is added. Only the exact source-3.9 profile approval and review evidence are new. The replacement rule, treatment factor, migration resources and runtime Python modules are unchanged. Detailed composition, emission and energy-documentation comparison concerns native 2026; the retained native-2025 witness records identity/reference only.
+
+Fourteen Brightpath checks and five Premise fresh/cache sign, uncertainty and scope checks passed. Signed LCIs and an independent native-demand comparison passed in memory, without new Brightway databases, activities or processed files. Fresh battery preparation clears this case: the inspected source-3.9 cohort falls from 157 to 156 unapproved correspondence rules. Next ammonium sulfate; eight of nineteen sectors remain qualified, and battery remains unfinished.
+
+Evidence: `uvek-spent-solvent-39-verification.json`; packaged decision: Brightpath `export/uvek_spent_solvent_39_review.json`. Held for the next coordinated batch push.

@@ -1964,3 +1964,7 @@ Retained three sorted-iron producer shares and all market delivery, with explici
 ### Sodium sulfate production and market — 13 November 2026
 
 Retained original producer shares, finishing utilities and delivery rather than replacing the market by the different native powder mix. Complete same-chemistry Mannheim/natural-source proxies have explicit allocation, energy, resource/water and uncertainty warnings. Five existing utility/freight scopes and the regional heat recipe remain unchanged. Mapping/storage and in-memory signed LCIs pass without database writes. Fresh battery cohort falls from 158 to 157 unapproved source-3.9 rules; two producer interfaces were tested independently. Next spent-solvent treatment; eight of nineteen sectors remain qualified. See `uvek-sodium-sulfate-39-review.md` and verification JSON. Held for the next batch push.
+
+### Spent-solvent hazardous-waste incineration — 13 November 2026
+
+Reviewed the existing exact waste/16.5%-water native service without changing its mapping or -1 treatment factor. All 51 source direct biosphere exchanges match native2026; two native-only waste-heat emissions and reversed energy labels in native prose are explicit warnings. No energy-recovery credit inferred. Signed/uncertainty/profile/cache checks and in-memory LCIs pass without database writes. Battery cohort falls from 157 to 156 pending source-3.9 rules; next ammonium sulfate. Eight of nineteen sectors remain qualified. See `uvek-spent-solvent-39-review.md` and verification JSON. Queued for next batch push.
