@@ -1528,3 +1528,23 @@ qualification are not yet claimed. See [review](uvek-cdr-312-steel-wastewater-re
 
 The small-boiler heat, European delivered-water and MDEA correspondences are
 still under review. CDR remains gated, with no update/export qualification.
+
+
+## Carbon-removal preparation: small biomethane useful-heat correction
+
+The source below-100-kW condensing/modulating biomethane heat service now uses
+the native 50 kW useful-heat service instead of the prior 300 kW match. Both
+reference 1 MJ useful heat, so the signed factor is +1. Keep the complete native
+inventory and its estimated 109.5% LHV efficiency at 30% load; warn about those
+operating assumptions, temperature, emissions, fuel supply and geography.
+Only the inspected cut-off 3.12 scope is verified. No extra fuel/boiler/electricity
+or operating-hours multiplier is added. See [review](uvek-cdr-small-biomethane-heat-review.md).
+
+The single compiled supplier rule and manifest change; runtime Python does not.
+The existing authoring helper gains an 11-line replay wrapper and three generator
+import/call lines. All 1,273 old approval fingerprints remain and one is added.
+The 26 Brightpath and 16 Premise combined checks pass using local source imports;
+the built wheel contains the exact reviewed resources. Actual native signed
+LCIs are finite. A real diagnostic passes heat, steel and wastewater and now
+stops at European tap water; the unrelated-alcohol MDEA correspondence is also
+still unapproved. CDR stays gated, with no sector update/export qualification.

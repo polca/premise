@@ -2209,15 +2209,14 @@
           "docs/development/uvek-pump-profiles-review.md",
           "docs/development/uvek-spent-solvent-profiles-review.md",
           "docs/development/uvek-cogen-heat-exchanger-review.md",
-          "docs/development/uvek-cdr-equipment-profiles-review.md"
+          "docs/development/uvek-cdr-equipment-profiles-review.md",
+          "docs/development/uvek-cdr-312-steel-wastewater-review.md",
+          "docs/development/uvek-cdr-small-biomethane-heat-review.md"
         ],
         "next_source_profile": "ecoinvent 3.12 cut-off",
         "pending_cases": [
-          "small biomethane boiler heat",
-          "delivered tap-water market",
-          "methyldiethanolamine market (incorrect existing alcohol match)",
-          "chromium steel 18/8 production",
-          "average wastewater treatment"
+          "delivered European tap-water market: closer native RER supplier under review",
+          "methyldiethanolamine market: incorrect alcohol match; native feedstocks identified"
         ],
         "scope_gate": "Intentionally closed until standard update/export and filters are verified."
       }

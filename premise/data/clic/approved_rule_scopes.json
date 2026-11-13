@@ -259267,6 +259267,104 @@
           "fingerprint": "9aa4d402eb26c5f071a000d1ba9c60aa883d6d5f97cae5cca8833796408b5b05"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-0c3c05a7a1c1e60a",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_cdr_small_biomethane_heat_review.json",
+      "review_sha256": "0c09ba9540db167307a7a89b130061df98ac571a15f7de69bd5913ebbb79510d",
+      "authorization": "Standing autonomous approval after exact source/function/reference and closer native capacity-class inspection. Native operating assumptions and score differences remain explicit warnings; only the inspected cut-off profile is reviewed.",
+      "inspection": {
+        "rule_id": "bp-0c3c05a7a1c1e60a",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "heat production, biomethane, at boiler condensing modulating <100kW",
+          "reference product": "heat, central or small-scale, biomethane",
+          "unit": "megajoule"
+        },
+        "target": {
+          "name": "Heat, biomethane, at boiler condensing modulating 50kW",
+          "reference product": "Heat, biomethane, at boiler condensing modulating 50kW",
+          "location": "CH",
+          "unit": "megajoule"
+        },
+        "previous_target": {
+          "location": "CH",
+          "name": "Heat, biomethane, at boiler condensing modulating 300kW",
+          "reference product": "Heat, biomethane, at boiler condensing modulating 300kW",
+          "unit": "megajoule"
+        },
+        "previous_rule": {
+          "confidence": 0.424433,
+          "id": "bp-0c3c05a7a1c1e60a",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "heat production, biomethane, at boiler condensing modulating <100kW",
+            "reference product": "heat, central or small-scale, biomethane",
+            "unit": "megajoule"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Heat, biomethane, at boiler condensing modulating 300kW",
+            "reference product": "Heat, biomethane, at boiler condensing modulating 300kW",
+            "unit": "megajoule"
+          }
+        },
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "21b47629de73bf26a32de042e48f8c0c2c16261dc3d37c0eefa4c47dc04dafe1",
+            "inventory_sha256": "819c3a1f65ad495d79db0039abea5100b7d58b0055c5749b5ecc5d3cce41495e",
+            "activity_comment_sha256": "1eabadb8c72ff9468cf9d8c4f5ac90f46f44a59d7e837cd884a9d2428ee71d64",
+            "product_information_sha256": "9db119270df764f4f27faf8b92fbe5966e73b4c965747773734d0d5c964bff42"
+          }
+        ],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "bbd797a3ab00944491a33f74ea832c89d58cea62df1f313379fa9e35ce7fcebb",
+            "inventory_sha256": "b91b8a98b73dedf0879651a40f9abcfc5e2734101dc422f5eff40bf18c723b03",
+            "activity_comment_sha256": "fb693cee15e14a0751c10a115d39723b5dd67595c4d49c3ce0bc17824e125c9c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "metadata_sha256": "063500c62621c1c1cd831414b3871416cb55cb4abc0fd461a484ee37bf073f01",
+            "inventory_sha256": "f75d950b1b206f2cdcf64a7de4d10cee8a20f0986b1cc8ecc404d45336d28978",
+            "activity_comment_sha256": "df9c07fbe472cd15664108357ee1c82727ab91ac3c029c18e31ffdadb89367c7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "native_reference_amount": 1,
+        "native_heat_burner_input_MJ_per_MJ_heat": 0.91324,
+        "native_2025_2026_direct_vectors_equal": true,
+        "limitations": "Use the complete native CH 50 kW condensing/modulating biomethane-boiler heat service per signed MJ of useful heat, factor +1, for the inspected source <100 kW useful-heat service. Both include fuel, boiler infrastructure, operating electricity and combustion emissions, without heat distribution. The native 50 kW size lies inside the source capacity class and replaces the prior 300 kW correspondence. Native heat uses 0.91324 MJ of the complete 50 kW burner per MJ of heat; its documentation estimates 109.5% efficiency on a lower-heating-value basis at 30% partial load and 2100 operating hours. These conditions are not established for the source. Retain the native complete heat inventory once; do not add a separate boiler/burner/electricity inventory or a capacity, fuel-demand, efficiency or operating-hours multiplier. Fuel pathway and pressure, measured versus modelled emissions, part load, delivery temperature, infrastructure, geography, vintage and background remain screening differences with unquantified score effects. No inventory or LCIA equality is claimed."
+      },
+      "limitations": [
+        "Use the complete native CH 50 kW condensing/modulating biomethane-boiler heat service per signed MJ of useful heat, factor +1, for the inspected source <100 kW useful-heat service. Both include fuel, boiler infrastructure, operating electricity and combustion emissions, without heat distribution. The native 50 kW size lies inside the source capacity class and replaces the prior 300 kW correspondence. Native heat uses 0.91324 MJ of the complete 50 kW burner per MJ of heat; its documentation estimates 109.5% efficiency on a lower-heating-value basis at 30% partial load and 2100 operating hours. These conditions are not established for the source. Retain the native complete heat inventory once; do not add a separate boiler/burner/electricity inventory or a capacity, fuel-demand, efficiency or operating-hours multiplier. Fuel pathway and pressure, measured versus modelled emissions, part load, delivery temperature, infrastructure, geography, vintage and background remain screening differences with unquantified score effects. No inventory or LCIA equality is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "57871eb520adb419715d20908905f605b6b524beb80c8bae0727830fc48fc1b0"
+        }
+      ]
     }
   ],
   "superseded_operations": [
