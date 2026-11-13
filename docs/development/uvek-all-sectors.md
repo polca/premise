@@ -1988,3 +1988,7 @@ The standard public update passed from a clean checkout of committed code, exclu
 ### Secondary-metallurgy slag — 13 November 2026
 
 Reused the exact selected source-3.9 landfill rule/58-input recipe unchanged; retained original landfill share and all ten freight entries. Audited only the observed empty cut-off recovery handoff, without renormalization or recovery credit. Reference-sign, uncertainty, source-matrix, literal-permission, replay/storage and in-memory LCI checks passed; no runtime Python module or Brightway database write. Fresh battery cohort falls from 154 to 153 pending source-3.9 rules; next ZA low-voltage electricity. Eight of nineteen sectors remain qualified. See `uvek-secondary-metallurgy-slag-39-review.md` and verification JSON.
+
+### Delivered-electricity grids — 13 November 2026
+
+Reviewed exact source-3.9 South African LV and Chinese MV supply and corrected the European HV group from Switzerland to the existing RER grid. Complete grids retain their own upstream losses/assets; no duplicate loss multiplier or helper. Signed uncertainty, own-scope permissions, previous Chinese source-3.6 approval, cache and in-memory LCI checks pass; no runtime module or Brightway write. Battery preparation removes exactly three rules, reducing this cohort from 153 to 150; next high-carbon ferrochromium. Eight of nineteen sectors remain qualified. The cobalt-industry power portfolio remains separately under review. See [review](uvek-electricity-grids-39-review.md) and [verification](uvek-electricity-grids-39-verification.json).

@@ -266403,6 +266403,276 @@
           "fingerprint": "efbc7b2e7f3a8778cb7856eb0894fccd69d0202a14c3034f3caf505b2f2c723f"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-3e5f6625beee2bab",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_electricity_grids_39_review.json",
+      "review_sha256": "e6727a3b090072e7824cb200a3e690a8c28e4322cc07fa796293a0a0d897645a",
+      "authorization": "Standing autonomous approval of inspected remaining mappings and similar complete-grid/geographic proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for electricity, low voltage",
+            "reference product": "electricity, low voltage",
+            "location": "ZA",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "19aa7d72426597287841796155e00ff8834bb0cbc863218ee656852b3f528faa",
+          "inventory_sha256": "ec9b06c9b656be10fdfb47cc78074de4a2116ffb77e454f063a917e19a447b7d",
+          "activity_comment_sha256": "cecf0ce4bef8c8694b0183cf16fb45e2e2ed4a128882e2e0a8b6c31e3a4f9e7f",
+          "product_information_sha256": "09dde47a05de24f984925aa84ad7021cd79b3b29e9e2da0206ae98d9e515cef6"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "ZA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "e1bc75d0117a5a3cda3626148d51464d90d973ec8dfe2c41e1041ecd54ce1850",
+            "inventory_sha256": "7e77f998c822c781481f3d98ecd73ecc80b3175dc2ed657bf0aeaa052dfbe214",
+            "activity_comment_sha256": "5ac7469195fa3dc0015ab869c48c92d695715d379f574beaa3d006bd0ab04164",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, low voltage, at grid",
+              "reference product": "Electricity, low voltage, at grid",
+              "location": "ZA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "903f2dcf7ffcd6ce108923f9f9a8bbe12fbe492a55b118115fe233b4a1b108b1",
+            "inventory_sha256": "2a2001235fb9c234daa3f7a9f4523094e64b5530ef6e922963ee1abcb53eea92",
+            "activity_comment_sha256": "a4759707b9222a90c8386638c5c1ceab0660432e4b465196d25ecaf12e5f7322",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "native_2026_upstream_electricity": [
+          {
+            "name": "Electricity, medium voltage, at grid",
+            "location": "ZA",
+            "amount": 1.08913377604687,
+            "unit": "kilowatt hour"
+          }
+        ]
+      },
+      "limitations": [
+        "New approval covers only the inspected ecoinvent 3.9 cut-off electricity-market identity. Source and native references are positive one delivered kWh at the same voltage level; factor +1 preserves signed caller kWh, supported uncertainty/formulas, foreground ownership and separate emissions. Negative caller electricity remains a credit, without a waste-treatment sign inversion. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete native voltage-specific grid once. Native voltage-grid documentation uses 2023 annual averages. The inspected national-grid documentation excludes electricity trade between countries; the regional RER grid retains its complete upstream regional mix. Source market/production, national/regional shares, imports, vintage, technology and allocation differ. Upstream generation, voltage transformation, losses, grid assets, SF6 and other emissions, native waste heat and internal uncertainty replace the source internal model. This is a screened delivered-electricity correspondence, not exact source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified.",
+        "Native losses remain in upstream electricity coefficients, so absence of a same-node self-input does not imply zero losses. Do not copy source self-consumption, transform/country splits, local PV, network/SF6 inputs or emissions on top of complete native supply, add another loss/efficiency multiplier or invent a generation/energy-recovery credit. Caller-owned quantities and separately listed foreground emissions/freight remain unchanged. Native supplies remain available to ordinary shared Premise electricity transformations.",
+        "This review changes no runtime Python module, sector engine, target unit, source omission or helper dataset. The South African and Chinese replacement rules are unchanged. Chinese source3.6 permission remains unchanged; this adds source3.9 evidence rather than extending it implicitly. The formerly Swiss target for the European group is corrected only after verifying the native regional high-voltage supply; new permission is exact source3.9 only.",
+        "Same-country South African low-voltage final supply. Source market includes a 0.0392574662 kWh LV self-input, a local photovoltaic branch and medium-to-low-voltage transformation. Native LV instead draws 1.0891337760 kWh MV per delivered kWh, with its own network, SF6 and waste-heat amounts. Source transformer/upstream losses also matter; do not equate the standalone source self-input with total network losses. Native production-busbar PV/topology and its broader generation mix replace the source LV-PV branch; no extra PV burden, reconstructed low-voltage generation branch or re-applied source loss loop."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "912a490b06e027af70efaddc9080cf71fcfb0e18f5758c0c639997d949e2ea5e"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-296624bc97644b88",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_electricity_grids_39_review.json",
+      "review_sha256": "e6727a3b090072e7824cb200a3e690a8c28e4322cc07fa796293a0a0d897645a",
+      "authorization": "Standing autonomous approval of inspected remaining mappings and similar complete-grid/geographic proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "CN",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "ca5e35d4f11af2b027490597fa7ac19a86a51787bbb6b95393b064f72078dcc8",
+          "inventory_sha256": "a64a7b2e8e8f328b5ae39fa902fa9dbcb00fa19c34fbbc2d69810bbfcdd8f2cb",
+          "activity_comment_sha256": "85489f9120b6f5b16c15cb977bc08e4271d4d4505f74fc45a981db63b190b68c",
+          "product_information_sha256": "5e49b8e40b1f1d56d0d565246998394fd12d3368c82481820483bde6cbe51539"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "45eee534096f93abbdc218d3422343ff11936fb6061529271f9699659c900d68",
+            "inventory_sha256": "cc50bbf88869a29a7e9a2281b396bb963fbb8e84a3775ba9bd0a01545e930522",
+            "activity_comment_sha256": "ff9e65abeed617cb90769f540734050526ade434c102aa21114d0db25692fc08",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "146bd631115de78f3e7544753f4a1bb729d1af7d4ead953e9b1a61ebaa467464",
+            "inventory_sha256": "ab09bc035206944535bb2c5766b1682d03634d89ceaa2d03ae0e2915794aee54",
+            "activity_comment_sha256": "03cfe4b635d9dc39b5fd38c7856acc5ac6d4f9d3d26aa417d37f56be9ad7b38d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "native_2026_upstream_electricity": [
+          {
+            "name": "Electricity, high voltage, at grid",
+            "location": "CN",
+            "amount": 1.00476748161128,
+            "unit": "kilowatt hour"
+          }
+        ]
+      },
+      "limitations": [
+        "New approval covers only the inspected ecoinvent 3.9 cut-off electricity-market identity. Source and native references are positive one delivered kWh at the same voltage level; factor +1 preserves signed caller kWh, supported uncertainty/formulas, foreground ownership and separate emissions. Negative caller electricity remains a credit, without a waste-treatment sign inversion. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete native voltage-specific grid once. Native voltage-grid documentation uses 2023 annual averages. The inspected national-grid documentation excludes electricity trade between countries; the regional RER grid retains its complete upstream regional mix. Source market/production, national/regional shares, imports, vintage, technology and allocation differ. Upstream generation, voltage transformation, losses, grid assets, SF6 and other emissions, native waste heat and internal uncertainty replace the source internal model. This is a screened delivered-electricity correspondence, not exact source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified.",
+        "Native losses remain in upstream electricity coefficients, so absence of a same-node self-input does not imply zero losses. Do not copy source self-consumption, transform/country splits, local PV, network/SF6 inputs or emissions on top of complete native supply, add another loss/efficiency multiplier or invent a generation/energy-recovery credit. Caller-owned quantities and separately listed foreground emissions/freight remain unchanged. Native supplies remain available to ordinary shared Premise electricity transformations.",
+        "This review changes no runtime Python module, sector engine, target unit, source omission or helper dataset. The South African and Chinese replacement rules are unchanged. Chinese source3.6 permission remains unchanged; this adds source3.9 evidence rather than extending it implicitly. The formerly Swiss target for the European group is corrected only after verifying the native regional high-voltage supply; new permission is exact source3.9 only.",
+        "Same-country Chinese medium-voltage final supply. Source group splits 0.1728190004 CN-CSG and 0.8271809996 CN-SGCC delivered electricity; complete native national CN supply replaces those two regional models. Native MV draws 1.0047674816 kWh HV per delivered kWh plus its own network/SF6/waste heat. No preservation of the source subregional power portfolio or imports is claimed; do not combine source regional quantities with another full national grid."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9cc1afac3d4bb2bc7b1ceb6cdf27ecb7c8cfe566487e76b8250866b1ec36beba"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-8fa566fae67d3289",
+      "mapping_method": "reviewed_european_high_voltage_grid_proxy",
+      "review_path": "export/uvek_electricity_grids_39_review.json",
+      "review_sha256": "e6727a3b090072e7824cb200a3e690a8c28e4322cc07fa796293a0a0d897645a",
+      "authorization": "Standing autonomous approval of inspected remaining mappings and similar complete-grid/geographic proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market group for electricity, high voltage",
+            "reference product": "electricity, high voltage",
+            "location": "Europe without Switzerland",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 39,
+          "metadata_sha256": "3359772eb8cd3037f16e9620753b8a3172201a56b560f69efdcf4587939e5cc4",
+          "inventory_sha256": "7e2ea56e97951a5517b7769cd3d3bf8e10a2eca61c3038be1fb212440c46464a",
+          "activity_comment_sha256": "da806e5cdbeecfcecfd291f1115f58b12ebdf9d518a309d07508ca337856a1b9",
+          "product_information_sha256": "ef36ebdcd27fad8ce2d243bfb232cb102643639c6696076b9cc03c9800efac84"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "251853b53c4ea42da49526bb81f65c297f32aebcd4d79369f53f3aaf5048fe90",
+            "inventory_sha256": "b117240826f0bc6ccb8abf37d1692af3a38b054ebb225848a53050dbe1197dfa",
+            "activity_comment_sha256": "7fe50835508d7bf1a6fb826633f542025b6f4dd48ba3239a6790ceef5e37a7ba",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "9cda4cbde2a99b7b9327163b2f5472f9b301398e2f21b7ece961c696723c8256",
+            "inventory_sha256": "15a4fb30ba110b8461518e150ddcd54d715d611eb1b1e2ce8fc8205870f43918",
+            "activity_comment_sha256": "65b82ce8104d1a76ef8cb23905328e21c89f4f88f616e4ccc138f2f7c70f5a10",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "native_2026_upstream_electricity": [
+          {
+            "name": "Electricity mix",
+            "location": "RER",
+            "amount": 1.03510721484527,
+            "unit": "kilowatt hour"
+          }
+        ]
+      },
+      "limitations": [
+        "New approval covers only the inspected ecoinvent 3.9 cut-off electricity-market identity. Source and native references are positive one delivered kWh at the same voltage level; factor +1 preserves signed caller kWh, supported uncertainty/formulas, foreground ownership and separate emissions. Negative caller electricity remains a credit, without a waste-treatment sign inversion. Other releases, patches, system models and reverse routes receive no new approval.",
+        "Use the complete native voltage-specific grid once. Native voltage-grid documentation uses 2023 annual averages. The inspected national-grid documentation excludes electricity trade between countries; the regional RER grid retains its complete upstream regional mix. Source market/production, national/regional shares, imports, vintage, technology and allocation differ. Upstream generation, voltage transformation, losses, grid assets, SF6 and other emissions, native waste heat and internal uncertainty replace the source internal model. This is a screened delivered-electricity correspondence, not exact source/native LCI, LCIA or stochastic equivalence; score effects remain unquantified.",
+        "Native losses remain in upstream electricity coefficients, so absence of a same-node self-input does not imply zero losses. Do not copy source self-consumption, transform/country splits, local PV, network/SF6 inputs or emissions on top of complete native supply, add another loss/efficiency multiplier or invent a generation/energy-recovery credit. Caller-owned quantities and separately listed foreground emissions/freight remain unchanged. Native supplies remain available to ordinary shared Premise electricity transformations.",
+        "This review changes no runtime Python module, sector engine, target unit, source omission or helper dataset. The South African and Chinese replacement rules are unchanged. Chinese source3.6 permission remains unchanged; this adds source3.9 evidence rather than extending it implicitly. The formerly Swiss target for the European group is corrected only after verifying the native regional high-voltage supply; new permission is exact source3.9 only.",
+        "The source Europe-without-Switzerland HV group is not a Swiss electricity market. Correct the candidate from CH to complete native RER high-voltage regional supply. This is a broader geographic/production-mix screening proxy: the original 39-country mix and country-specific losses/imports are replaced, and exclusion of Switzerland or exact national shares is not reconstructed. Native RER HV draws 1.0351072148 kWh production mix per delivered kWh. Do not infer/subtract a Swiss share from technology supplier locations, add country networks or reconstruct a redundant regional dataset. The existing native regional grid is used directly."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3dc2b1b0907db5538a0a3f8cad234d75ac57d8219873437adf465920f7ef5357"
+        }
+      ]
     }
   ],
   "superseded_operations": [

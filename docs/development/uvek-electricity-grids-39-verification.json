@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "eb5f3df1584260630d97d23b117b978e3c6f4b63",
+  "scope_registration": {
+    "prior_scopes": 1338,
+    "new_scopes": 1341,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-3e5f6625beee2bab",
+      "bp-296624bc97644b88",
+      "bp-8fa566fae67d3289"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_sign_uncertainty_exact_scope_and_atomic_replay": 44,
+    "brightpath_resource_storage_and_manifest": 11,
+    "premise_fresh_cache_signed_uncertainty_exact_scope_and_existing_source36": 16,
+    "installed_package_premise_checks": 16,
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 3,
+    "native_suppliers": 3,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 6,
+    "independent_native_reference_LCI_solves": 3,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-3e5f6625beee2bab",
+        "source": {
+          "location": "ZA",
+          "name": "market for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilowatt hour",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "refined_max_abs_inventory_difference": 1.734723475976807e-18,
+        "full_graph_residual": {
+          "residual_before": 5.90228815055766e-10,
+          "residual_after": 3.552713678800501e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 5.90228815055766e-10,
+          "residual_after": 3.552713678800501e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-296624bc97644b88",
+        "source": {
+          "location": "CN",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilowatt hour",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 2.168404344971009e-19,
+        "full_graph_residual": {
+          "residual_before": 1.583299632814831e-10,
+          "residual_after": 1.3503865113249046e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.583299632814831e-10,
+          "residual_after": 1.3503865113249046e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-8fa566fae67d3289",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market group for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilowatt hour",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 4.0389678347315804e-28,
+        "full_graph_residual": {
+          "residual_before": 2.74237662517669e-10,
+          "residual_after": 2.406215931083495e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.74237662517669e-10,
+          "residual_after": 2.406215931083495e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies delivered-electricity interfaces, complete-grid point-estimate consistency and signed demands. Does not prove source/native LCI, LCIA or stochastic equivalence, battery completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_electricity_grids_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 153,
+    "current": 150,
+    "removed_rules": [
+      "bp-296624bc97644b88",
+      "bp-3e5f6625beee2bab",
+      "bp-8fa566fae67d3289"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-20d6cc6fceb46d84",
+    "next_source": {
+      "location": "GLO",
+      "name": "market for ferrochromium, high-carbon, 68% Cr",
+      "reference product": "ferrochromium, high-carbon, 68% Cr",
+      "unit": "kilogram"
+    },
+    "failed_stage": "inventory preparation",
+    "battery_qualified": false
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "new_source_omissions": [],
+  "new_helper_datasets": 0
+}

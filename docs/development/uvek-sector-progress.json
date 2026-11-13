@@ -2299,35 +2299,25 @@
       },
       "current_mapping_frontier": {
         "date": "2026-11-13",
-        "status": "first_five_39_material_correspondences_verified_inventory_preparation_incomplete",
-        "verified_after_CDR_export_writer_exited": true,
+        "status": "inventory_preparation_incomplete",
         "source_profile": {
           "family": "ecoinvent",
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-1ab902a3504c50ab",
+        "rule_id": "bp-20d6cc6fceb46d84",
         "source": {
           "location": "GLO",
-          "name": "sodium fluoride production",
-          "reference product": "sodium fluoride",
+          "name": "market for ferrochromium, high-carbon, 68% Cr",
+          "reference product": "ferrochromium, high-carbon, 68% Cr",
           "unit": "kilogram"
         },
-        "current_unapproved_target": {
-          "location": "GLO",
-          "name": "Sodium arsenide, at plant",
-          "reference product": "Sodium arsenide, at plant",
-          "unit": "kilogram"
-        },
-        "next_action": "Correct the sodium-fluoride to sodium-arsenide mismatch after inspecting native alternatives and reaction/reference basis. Resolve further correspondences in reviewed groups.",
+        "unapproved_correspondence_count_in_current_39_cohort": 150,
+        "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
+        "verification": "docs/development/uvek-electricity-grids-39-verification.json",
         "export_performed": false,
-        "earlier_overlapping_probe": "Construction hit the active CDR export SQL writer and is not mapping evidence.",
-        "completed_reviews": [
-          "docs/development/uvek-battery-first-materials-39-review.md"
-        ],
-        "verification": "docs/development/uvek-battery-first-materials-39-verification.json",
-        "unapproved_correspondence_count_in_current_39_cohort": 190,
-        "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles."
+        "validation_disabled": false,
+        "next_action": "Inspect the high-carbon ferrochromium grade/basis and native supplier. Continue cobalt-industry portfolio investigation separately; do not authorize its aluminium-industry candidate without physical review."
       }
     },
     {
@@ -3637,6 +3627,7 @@
     "remaining_unqualified_sector_count": 11,
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
-    "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification."
+    "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
+    "latest_mapping_review": "docs/development/uvek-electricity-grids-39-verification.json"
   }
 }
