@@ -266673,6 +266673,153 @@
           "fingerprint": "3dc2b1b0907db5538a0a3f8cad234d75ac57d8219873437adf465920f7ef5357"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-20d6cc6fceb46d84",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_ferrochromium_39_review.json",
+      "review_sha256": "a2171d978e3a7bd6b13cb974e06e033e17040bde96740f34f3a2d37a0c057d2c",
+      "authorization": "Standing user approval of autonomous remaining mapping resolution with logged screening proxies and warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ferrochromium, high-carbon, 68% Cr",
+            "reference product": "ferrochromium, high-carbon, 68% Cr",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "8029ffbc9ad3e8dfb43aa127bf17ce0d97f39771eebe8e75e8be8b784e63ed33",
+          "inventory_sha256": "4cb54d6efc9a97073b3277140479e51676957e72d07e5ade6e3fd6c9e04e0dd1",
+          "activity_comment_sha256": "50754700c7935cb69d38a211d87e64dd877c165f22d5320918751322c7b7b01e",
+          "product_information_sha256": "03e34eeb2455614337d450a5fced5698d4ea8b1f31461050d804a8a86973bcf6"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ferrochromium production, high-carbon, 68% Cr",
+              "reference product": "ferrochromium, high-carbon, 68% Cr",
+              "location": "KZ",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 28,
+            "metadata_sha256": "f9131864b2fad2237ce8bf38f9adb0c6dd08bd425d700bd2f20230b16034a9df",
+            "inventory_sha256": "b44ce3c010df6c78185b885845504bb5fb9d0070bd02fa042a70638613e49b1b",
+            "activity_comment_sha256": "63034d2b6c2512c575b63a5df73047856f298d43e349e1591f6ebf98017f80b6",
+            "product_information_sha256": "03e34eeb2455614337d450a5fced5698d4ea8b1f31461050d804a8a86973bcf6"
+          },
+          {
+            "identity": {
+              "name": "ferrochromium production, high-carbon, 68% Cr",
+              "reference product": "ferrochromium, high-carbon, 68% Cr",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 77,
+            "metadata_sha256": "b2a6c32f5f956672eeae8b68d6c20b5c35ddef4444c4ca11e6f8c52da5a21201",
+            "inventory_sha256": "06df7bef2afc4fe31a8eb42bca3a1d7d3fa8e4faedc8eb74e9a9987bdc5f7138",
+            "activity_comment_sha256": "341cfcc3268a9d152590a5631ce7cea052901d6fe3a5af2842243f54b03260c4",
+            "product_information_sha256": "03e34eeb2455614337d450a5fced5698d4ea8b1f31461050d804a8a86973bcf6"
+          }
+        ],
+        "recipe_id": "ferrochromium-high-carbon-39-retained-supply-and-delivery"
+      },
+      "limitations": [
+        "New approval covers only the inspected ecoinvent 3.9 cut-off global high-carbon ferrochromium market, positive one kg of 68%-Cr alloy. The native reference is positive one kg of the same named high-carbon 68%-Cr ferrochromium, factor +1. Preserve signed caller alloy kg, supported uncertainty/formulas, foreground ownership and separate emissions. Do not multiply by 0.68 or its reciprocal: neither reference is a kg of contained chromium. Other releases, patches, system models and reverse routes receive no approval.",
+        "Retain the two source producer entries separately at 0.25 and 0.75 kg, using the complete global native high-carbon 68%-Cr producer for each. This is a screening proxy, replacing the KZ/RoW source production technologies, raw materials, electricity, reductants, alloy-processing emissions, residues, allocation and internal uncertainty. Source producers cite a 2017 BAT assessment applied to Kazakhstan, with RoW copied from Kazakhstan. Native documentation includes ore pretreatment and carbon reduction to high-carbon alloy, with a 1994 worldwide basis and a 50/50 ordinary/newer submerged-arc technology portfolio. Its opening chromite description alone is misleading; the verified full native2026 boundary includes alloy production. No secondary chromium source, recovery credit, invented composition correction or separate smelter is added. Native/source LCI, LCIA and stochastic equivalence are not claimed; score effects remain unquantified.",
+        "Although source market prose says no transport, its actual inventory contains four delivery entries: 0.1903 rail, 0.0201 barge, 0.2065 road and 0.4409 dry-bulk sea tkm per kg. Retain each original quantity and supported uncertainty through three existing exact source3.9 freight correspondences and the separately inspected dry-bulk-sea proxy. Native regional/worldwide fleet, traction, road class, fuel, geography, emissions and vintage differences remain explicit screening limitations. Do not omit listed freight, normalize producer weights, add a new route, loading/distance multiplier or duplicate internal native raw-material transport.",
+        "Default target, unrelated source profile entries and three previously approved freight permissions remain unchanged. The on-demand market helper retains six inputs and has no direct biosphere or omission. No runtime Python module, alternative Premise sector engine or validation bypass is added. The complete native producer remains available to normal shared Premise processing."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "eed11dca440e1a7e5c17b372707e5a4228daee6bd61cbe93505572961720d3a7"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-6b465f371713f763",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_ferrochromium_39_review.json",
+      "review_sha256": "a2171d978e3a7bd6b13cb974e06e033e17040bde96740f34f3a2d37a0c057d2c",
+      "authorization": "Standing user approval of autonomous remaining mapping resolution with logged screening proxies and warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, sea, bulk carrier for dry goods",
+            "reference product": "transport, freight, sea, bulk carrier for dry goods",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "7c25d09e68b2a40e6911bbca5f5515990baf1a6720cc11ebb51930144c55e3d9",
+          "inventory_sha256": "ce9d7c290539c9f552ef94da295dd39229cf8bfe8f10f3bbdcd8d99c6643b454",
+          "activity_comment_sha256": "09e1ebbdc0a77782eab82a4e76d2956d3c28752744e9f6e397c2c685009b3d1d",
+          "product_information_sha256": "afede2950feef726fdd9ee20c202e5c48edbbc6e96db44ba501084ae3d70a307"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "transport, freight, sea, bulk carrier for dry goods",
+              "reference product": "transport, freight, sea, bulk carrier for dry goods",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 42,
+            "metadata_sha256": "ff05d6df06e988abff105caad1af611c90955765a3dcbbe479642bf46353a90b",
+            "inventory_sha256": "fb27e585df86370df2acc9bd5348794c75e32ba99c2592702dca3be7658b5d99",
+            "activity_comment_sha256": "57103651938a2dbbe8050f2b8828151a18697a4667fb4f55647fae5606adc44d",
+            "product_information_sha256": "afede2950feef726fdd9ee20c202e5c48edbbc6e96db44ba501084ae3d70a307"
+          }
+        ],
+        "recipe_id": null
+      },
+      "limitations": [
+        "New approval covers only the inspected ecoinvent 3.9 cut-off global dry-goods bulk-carrier market, positive one tonne-kilometre. Its sole input is one tkm of the matching dry-bulk transport service. Use complete native OCE transoceanic freight at factor +1, preserving signed caller tkm, supported uncertainty/formulas and separately listed emissions. No kg-to-tonne or distance multiplier: both reference units already represent one tonne moved one kilometre. Other releases, patches, system models and reverse routes receive no approval.",
+        "This is a complete ocean-freight screening proxy, not an exact dry-bulk fleet match. Source service documentation describes roughly 51000 DWT vessels, fleet data from 2007-2012, weighted fuel/emissions, speed reduction, capacity utilization including empty trips, and vessel/maintenance/port burdens. Native documentation allocates vessel production on 75148 DWT and lifetime travel, with complete vessel/port construction, operation, maintenance, disposal, energy and emissions. Preserve the native complete service once. Vessel class/cargo specialization, loading/empty trips, speed, fuel quality, ECA/port fractions, port handling/storage, emissions, allocation, geography, vintage and internal uncertainty differ; source/native LCI, LCIA or stochastic equivalence is not claimed and score effects are unquantified.",
+        "No extra vessel, port, fuel, empty-return trip, infrastructure, utilization correction, avoided burden, maritime credit, omission or helper is added for the direct shipping service. Its replacement rule and default target remain unchanged. This exact source3.9 permission is also bound as a component of the separately reviewed ferrochromium supply/delivery recipe. No runtime Python module, alternative Premise engine or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b08b3ffaa0281a0e154ec2f618c3a1c27942030760496f56bf32c64d681629bc"
+        }
+      ]
     }
   ],
   "superseded_operations": [
