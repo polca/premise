@@ -265263,6 +265263,173 @@
           "fingerprint": "e4f5247d8ead00727d9da6f94ee0ebdc2f62ef53896d777836d2dbe638dd7a58"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-e4d29736d626d202",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_scrap_delivery_39_review.json",
+      "review_sha256": "f1187519f5d0b6d1eab90d38960ae2a2bccfbf2f9cdcf4ec82436090e80377ef",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with logged screening proxies and explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for iron scrap, sorted, pressed",
+            "reference product": "iron scrap, sorted, pressed",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 13,
+          "metadata_sha256": "2570973ac5a45c4cc7adae2e459d9918a0a9d60615878d0e0aa2e51944d96c7e",
+          "inventory_sha256": "c83a39106ef18c0db7050d07f98f06d60d48352c4c9b965ce61dd030170fdbff",
+          "activity_comment_sha256": "62f9330cb240e60d73795324ea7f2bd1fc024bbf3956cbfca3f9095b46944a51",
+          "product_information_sha256": "4aa8f2cafcba82e021d76de08c926f26aaba8202b16fa9af61d06fa93625e556"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of metal scrap, mixed, for recycling, unsorted, sorting",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 13,
+            "metadata_sha256": "f6dfdf81e09c377ec74ab26f83577051c911c7cc580409148c618a24787244bc",
+            "inventory_sha256": "ff8e3925f3cc9a4efbbf47016d2c4394783cb3e9a74efc3a2a75ab189252eeaf",
+            "activity_comment_sha256": "1293946fc6d790fba2d007e771645fbf2d3abad0850e299c2eb0aceb89232dad",
+            "product_information_sha256": "4aa8f2cafcba82e021d76de08c926f26aaba8202b16fa9af61d06fa93625e556"
+          },
+          {
+            "identity": {
+              "name": "sorting and pressing of iron scrap",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 9,
+            "metadata_sha256": "60a6503e8a66ed709ee90642aa398fcbc17911947fc3170b4ccc27af0ab01e5c",
+            "inventory_sha256": "9d2e067da86bc27a17901b84a818f93c61bdae8856d32252e3a754f65de6f597",
+            "activity_comment_sha256": "d4b403949c43d02e6e511b6f80ed320bcc3f2197cbf7c371db5b749767c63d1f",
+            "product_information_sha256": "4aa8f2cafcba82e021d76de08c926f26aaba8202b16fa9af61d06fa93625e556"
+          },
+          {
+            "identity": {
+              "name": "tinplate scrap, sorted to generic market for iron scrap, sorted, pressed",
+              "reference product": "iron scrap, sorted, pressed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 1,
+            "metadata_sha256": "acee2eb20d1ec13e7e0d0a5441d27767fe0aa98786b9a2a4754f8fd6d6ba3754",
+            "inventory_sha256": "405309b540a4b6bd325fc93c5143f87f6d03e0719c2678b9fdf10508d4c655fd",
+            "activity_comment_sha256": "af1428c563e28d8d004bb34568e66c3fa91dbed16b34c9e4644fe196f6cb43bb",
+            "product_information_sha256": "4aa8f2cafcba82e021d76de08c926f26aaba8202b16fa9af61d06fa93625e556"
+          }
+        ],
+        "recipe_id": "sorted-iron-scrap-39-supply-and-delivery"
+      },
+      "limitations": [
+        "Only the inspected ecoinvent 3.9 cut-off market is newly reviewed. Keep positive one kg reference and factor +1, signed caller mass, supported uncertainty/formulas, foreground ownership and separately listed emissions. Other versions, patches, system models and reverse routes receive no approval. Do not renormalize source producer shares or delivery quantities.",
+        "Retain every market supply/delivery entry separately with its original coefficient and supported uncertainty. Complete native RER generic rail, inland barge, heavy-lorry fleet and OCE container ship are whole-service geographic, traction/fleet, fuel, vintage and allocation screening proxies. Generic freight must not use coal-specific rail. Preserve source tkm without payload, distance, loss or capacity multipliers and without adding another operation or vehicle inventory. Historical steam traction is not claimed equivalent; native internal uncertainty and emissions differ. No full source/native LCI, LCIA or stochastic equivalence is claimed; score effects remain unquantified.",
+        "Only the source3.9 profile target and supporting review metadata change; default target and all other existing profile entries remain unchanged. No source exchange omission, recovery credit, runtime Python module, alternative sector engine or validation bypass is introduced.",
+        "Use complete native European Iron scrap, at plant, whose documentation explicitly includes collecting new/old iron scrap, transport to scrap-yard, sorting and pressing to blocks. Retain the three source producer shares separately: mixed-scrap sorting 0.000519541957317269, ordinary sorting/pressing 0.995905325297607, and tinplate handoff 0.00357513274507606 kg/kg. All three use the complete native process as a screening proxy, not a zero stock or unsorted scrap. Native RER production is preferred to the previous Swiss producer for this non-Swiss market.",
+        "The main source sorting/pressing route and native process both use 0.1 MJ diesel, 0.01 kWh electricity and 1e-9 preparation facility units per kg. Source regional electricity/facility definitions and native ENTSO-E/European assumptions differ. Native collection is 0.1 road and 0.2 rail tkm and includes 0.036 MJ waste heat; this replaces source upstream unsorted-stock collection and internal allocation, rather than adding a second reconstructed source sorting inventory. Retained final-market delivery remains a separate boundary. Do not subtract native internal collection or invent a balancing heat/energy credit.",
+        "The two minor producer routes are not identical technologies: mixed scrap has different diesel/yield/waste-treatment/facility allocation; the tinplate route hands off tinplate scrap and may carry different sorting, tin and recycling-allocation burdens. Replacing both complete internal supply models with native collected/sorted/pressed ferrous scrap is an explicit feedstock, yield, treatment and allocation proxy. Their combined source share is approximately 0.4095%; retain each original share and supported caller uncertainty, without asserting impact insignificance or chemical equivalence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2cec076d09540724876d1bc78f33a54bc50bdbb724068a184b4395d08ef860ca"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-6206d7098aaa1c8e",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_scrap_delivery_39_review.json",
+      "review_sha256": "f1187519f5d0b6d1eab90d38960ae2a2bccfbf2f9cdcf4ec82436090e80377ef",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with logged screening proxies and explicit warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium scrap, new",
+            "reference product": "aluminium scrap, new",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 11,
+          "metadata_sha256": "327e6d57dc8bc029df1450304bc74d348824d8a6999af46c5e8f3a9ce2505290",
+          "inventory_sha256": "f8ded64dfbad919d975cea42a3a96aa991625f47a3458f0c58d9fc0d01d15a3b",
+          "activity_comment_sha256": "a210124cf841f554438d52f4ce89ff9a3c8234b8032fed47b96d30af7b4752eb",
+          "product_information_sha256": "caf57a10b6c6e4e5b35ef3844cd94245b45c4fff4c7416adae9fa44b67a26dae"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "aluminium scrap, new, Recycled Content cut-off",
+              "reference product": "aluminium scrap, new",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "67d43442d761f1e27e7501aed73caafe0a09cfd43017fac314ea6668861ab7c1",
+            "inventory_sha256": "887d2d84ba21f2eabb5b319ef17cc9b630ccaff6e0fad3ad61d889e7fe7d98c2",
+            "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "product_information_sha256": "caf57a10b6c6e4e5b35ef3844cd94245b45c4fff4c7416adae9fa44b67a26dae"
+          }
+        ],
+        "recipe_id": "new-aluminium-scrap-39-stock-and-delivery"
+      },
+      "limitations": [
+        "Only the inspected ecoinvent 3.9 cut-off market is newly reviewed. Keep positive one kg reference and factor +1, signed caller mass, supported uncertainty/formulas, foreground ownership and separately listed emissions. Other versions, patches, system models and reverse routes receive no approval. Do not renormalize source producer shares or delivery quantities.",
+        "Retain every market supply/delivery entry separately with its original coefficient and supported uncertainty. Complete native RER generic rail, inland barge, heavy-lorry fleet and OCE container ship are whole-service geographic, traction/fleet, fuel, vintage and allocation screening proxies. Generic freight must not use coal-specific rail. Preserve source tkm without payload, distance, loss or capacity multipliers and without adding another operation or vehicle inventory. Historical steam traction is not claimed equivalent; native internal uncertainty and emissions differ. No full source/native LCI, LCIA or stochastic equivalence is claimed; score effects remain unquantified.",
+        "Only the source3.9 profile target and supporting review metadata change; default target and all other existing profile entries remain unchanged. No source exchange omission, recovery credit, runtime Python module, alternative sector engine or validation bypass is introduced.",
+        "Reuse the exact existing positive-reference empty new-aluminium Recycled Content cut-off stock and its direct-supplier binding. Current source stock and market hashes match frozen earlier witnesses. This preserves an observed source allocation boundary, not a statement that recycling is impact-free. No unreviewed or nonempty process receives zero burden, and no native aluminium-recycling or primary-metal process is added.",
+        "Correct the older source3.9 recipe that used coal-specific rail for a generic CN freight entry and dropped internal uncertainty fields. Preserve one kg stock and all ten market delivery entries, including five rail country entries, inland barge, three road entries and container shipping. Use complete same-mode generic supplies with explicit geographic/traction/fleet warnings; the source stock and every delivery coefficient remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "34af78c29aa066f59c0006eea3f388279699bb7c515fcc796dd48f14d5ecd3ce"
+        }
+      ]
     }
   ],
   "superseded_operations": [

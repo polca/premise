@@ -1,0 +1,13 @@
+# Sorted iron and new aluminium scrap — 13 November 2026
+
+Sorted iron scrap now uses the complete native European collection, sorting and pressing process. The main source sorting route and native process both use 0.1 MJ diesel, 0.01 kWh electricity and 1e-9 preparation-facility units per kg. The native process replaces source internal collection and sorting; final-market delivery remains separate. Its different collection distances, electricity geography, waste heat, vintage and uncertainty remain explicit warnings.
+
+All three source producer shares remain separate and unchanged. The mixed-scrap and tinplate routes together account for about 0.4095% by mass and use the same complete native process as screening proxies. Their feedstock, yield, waste-treatment, tin and allocation differences are warnings; small mass does not establish a small score effect. Neither nonempty route is replaced by empty stock.
+
+New aluminium scrap retains its independently verified positive-reference empty Recycled Content cut-off stock. Current source stock and market hashes match the earlier inspected witnesses. The previous source-3.9 recipe wrongly used coal-specific rail for generic CN scrap freight. The new wrapper uses complete generic rail and retains all ten delivery entries and supported uncertainty fields. No primary-metal or recycling burden, recovery credit or invented treatment is added to the cut-off stock.
+
+Both markets retain every original supply/delivery coefficient and supported uncertainty, without renormalization, omission or added distance/payload/loss multipliers. European rail, barge and lorry services and ocean container shipping carry explicit country, historical traction, fleet and vintage warnings. All other existing profile entries and default targets remain unchanged; only the inspected source-3.9 cut-off profiles receive approval. No runtime Python modules changed.
+
+Forty-three Brightpath mapping/storage checks and ten Premise fresh/cache sign, uncertainty and scope checks passed. Four signed LCIs and two independently flattened native-demand comparisons passed in memory, without new Brightway databases, registered activities or processed files. These verify implementation consistency, not complete source/native LCI, LCIA or stochastic equivalence.
+
+Fresh battery preparation clears both mappings: the inspected source-3.9 cohort falls from 160 to 158 unapproved correspondence rules, with none added. Next is sodium sulfate. Eight of nineteen sectors remain qualified; battery remains unfinished. See `uvek-scrap-delivery-39-verification.json`. Packaged decision: Brightpath `export/uvek_scrap_delivery_39_review.json`.

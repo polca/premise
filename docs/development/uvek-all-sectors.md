@@ -1956,3 +1956,7 @@ Retained both reviewed landfill shares and all eight collection-freight entries.
 ### Electric-arc-furnace slag market — 13 November 2026
 
 Retained both previously reviewed landfill inventories/shares and all eight collection-freight entries. Audited the exact recovery handoff into empty cut-off stock, without a recovery credit or invented zero-service helper. Mapping/storage, fresh/cache sign and literal-omission checks and in-memory LCIs pass without database writes. Fresh battery preparation reduces the inspected source-3.9 cohort from 161 to 160 unapproved rules; next sorted, pressed iron scrap. Eight of nineteen sectors remain qualified. See `uvek-eaf-slag-market-39-review.md` and verification JSON. Queued for next batch push.
+
+### Sorted iron and new aluminium scrap — 13 November 2026
+
+Retained three sorted-iron producer shares and all market delivery, with explicit complete-native sorting/collection proxies. Preserved exact empty new-aluminium cut-off stock; corrected coal-specific rail and restored source delivery uncertainty. Mapping/storage, fresh/cache and signed in-memory LCIs pass with no database writes or runtime Python module changes. Fresh battery cohort falls from 160 to 158 unapproved source-3.9 rules; next sodium sulfate. Eight of nineteen sectors remain qualified. See `uvek-scrap-delivery-39-review.md` and verification JSON.
