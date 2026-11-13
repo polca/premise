@@ -1596,3 +1596,27 @@ Use non-exporting graph checks and selected in-memory LCIs between qualification
 milestones, reserving new Brightway exports for meaningful integration/export
 checks. The colleague notebook remains unchanged. The full goal is active,
 with European water and MDEA next in the current CDR inventory.
+
+
+## European delivered-water correction, checked without a new database
+
+The exact Europe-without-Switzerland source market now uses complete native
+RER delivered water rather than CH. Preserve signed kg once. Source fresh
+producers sum to 1 kg and a separate self-market input is 0.12867 kg; 1.12867
+is therefore not a simple producer-only loss coefficient to add to the native
+model. Native treatment mix, water balance, pressure, abstraction geography,
+electricity and vintage remain proxy limitations. See [review](uvek-european-delivered-water-review.md).
+
+Three old CH-target fingerprints are retired explicitly and seven source-profile
+grants are registered; all 1,271 non-water scopes/operations are unchanged.
+Unpatched 3.7 coefficients remain unavailable and unverified; its retained
+permission uses an explicitly limited 3.7.1 functional witness. Exact patch and
+cross-model callers are refused. The compiled supplier/manifest and maintainer
+replay change, with no runtime Python edits. The 90 Brightpath, 23 primary
+Premise, six related scope and 12 installed-wheel checks pass (overlapping groups).
+
+A transient-foreground LCI matches native RER water exactly for both signs,
+without a new Brightway database, activity or processed file. The real CDR probe
+passes water and stops at MDEA; no CDR update/export is claimed. Commits and the
+GitHub dependency pin await the next publication batch; the local environment
+uses the verified committed-source wheel. Seven sectors remain qualified.

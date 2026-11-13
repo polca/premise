@@ -1,0 +1,164 @@
+{
+  "prior_scope_count": 1274,
+  "current_scope_count_expected": 1278,
+  "changed_rule": "bp-18e8ed0207bbd5f8",
+  "retired_CH_target_fingerprints": [
+    "6b69e8d138b70d31d9bcb644f626774ce57eb2e327e11c541bf23b90cb144d87",
+    "d1e51490532f312048f50a30a7394cf3e4cd8bc1969b40766130453927c8ae75",
+    "f3a75895ca05d49b1b3369279840f0e07747329676756e47f2eb0ecf4d90b6ee"
+  ],
+  "new_RER_target_fingerprints": [
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.6",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "f60f6a9e84011f98dd24f6335f70110db228dd1b6698171d35033e5139bea3a2"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.7",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "b359fb9a423e4351de58532c81ce8dff71cadacc1c78174edf708cf16b34591f"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "cf372fba2120596628f628d25f00c1af3289bc943a32c00ad5148dc0d0e742b8"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "8702f3c8c04f05dc2ba674823fb65587c7d1d3b5f8ded709b11ad319a1407816"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "a820b568e574928ec921b8612fd55772ac2717b448bb88a7e1e0006de4196a42"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.11",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "2d48c29fbb94ed47b18cfb613d9826b3bdd41d3bc80c31bed20667f425a3381b"
+    },
+    {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "aa976ea4fbc019df65aef6737175f04b825c551caa507fb628b1032e93684154"
+    }
+  ],
+  "all_1271_non_water_fingerprints_retained": true,
+  "all_other_operations_exactly_unchanged": true,
+  "old_water_operations_preserved_in_packaged_review": true,
+  "review_sha256": "a92711714a1ca5cae9d893172ec239b8c9a98430e0beb7dfccc85fb14397aaec",
+  "runtime_python_changes": [],
+  "date": "2026-11-13",
+  "brightpath_source_commit": "8d606e70f38e2a54ae93afde91031c4f96d9f935",
+  "brightpath_tests_passed": 90,
+  "premise_primary_checks_passed": 23,
+  "premise_related_scope_regressions_passed": 6,
+  "installed_local_wheel_checks_passed": 12,
+  "installed_artifact": "Local wheel from the committed source, verified against packaged review/resource bytes; not a GitHub install of the pending revision.",
+  "wheel": {
+    "source_commit": "8d606e70f38e2a54ae93afde91031c4f96d9f935",
+    "resources_exact": true,
+    "wheel_bytes": 43804493,
+    "wheel_sha256": "9ecabf756e8c31be56c16d64eabdd810f0997ba4aba9dc369858ca18453d0803"
+  },
+  "in_memory_lci": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "check": "Actual reviewed 3.12-to-UVEK European delivered-water migration and signed native LCI using transient foreground matrix columns",
+    "native_source_read_only": true,
+    "foreground_datapackage_filesystem": "memory",
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "database_registry_unchanged": true,
+    "source_and_biosphere_metadata_unchanged": true,
+    "native_demand_kg": [
+      2.5,
+      -2.5
+    ],
+    "finite_supply_and_inventory": true,
+    "matches_native_reference_and_signed_reversal": true,
+    "max_abs_inventory_difference": 0.0,
+    "qualification_limit": "Proves the no-write mapping/LCI check path, not a new sector update or Brightway export."
+  },
+  "real_cdr_preparation_probe": {
+    "status": "failed",
+    "exception_type": "ClicInventoryError",
+    "message": "CLIC background migration from {'biosphere': {'family': 'ecoinvent', 'version': '3.12'}, 'technosphere': {'family': 'ecoinvent', 'system_model': 'cutoff', 'version': '3.12'}} to {'technosphere': {'family': 'uvek', 'version': '2026', 'system_model': 'cutoff'}, 'biosphere': {'family': 'ecoinvent', 'version': '3.10'}} failed: Background migration failed: Compatibility rule bp-05e536a8f677ffd7 requires independent review for ecoinvent 3.12 cutoff -> uvek 2025 cutoff.. Diagnostic: /Users/romain/Library/Application Support/premise/cached_files/clic/harmonized/b04deaf741047346743d758a167cf67ebef4ec570afa21e9ad6e0ae654ed3e79.audit.json.gz",
+    "failed_stage": "inventory preparation",
+    "sector": "cdr",
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 44.42819258396048,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "licensed_check_limitations": {
+    "unpatched_ecoinvent_37": "Not inspected. Requested 3.7 retains a limited functional-reference proxy using the 3.7.1 witness; no vector/score equality or implicit 3.7.1 permission."
+  },
+  "authoring_python_changes": {
+    "scripts/review_uvek_pilot_materials.py": "11-line wrapper around existing data-review helper",
+    "scripts/generate_uvek_migration_resources.py": "3 import/call lines, after earlier profile stages"
+  },
+  "initial_test_fixture_issue": "The authoring drift check initially set the kg target to kg, causing no drift. Changing its test mutation to MJ exercises invalid units; the final 90 checks pass.",
+  "qualified_sector_count": 7,
+  "carbon_removal_qualified": false,
+  "pending_batch_publication": true
+}

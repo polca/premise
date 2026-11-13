@@ -1434,6 +1434,15 @@ def test_existing_material_review_does_not_broaden_pilot_source_profiles(
             "3.10",
             fingerprint,
         )
+    if version == "3.10" and rule_id == "bp-18e8ed0207bbd5f8":
+        # Only the independent European-water review grants this later source profile.
+        remove_separate_review_for_negative_control(
+            monkeypatch,
+            rule_id,
+            "export/uvek_european_delivered_water_review.json",
+            "3.10",
+            fingerprint,
+        )
     assert fingerprint not in approved_compatibility_rule_scopes(
         resolve_inventory_target("2026", family="uvek")
     )
@@ -2907,6 +2916,16 @@ def test_heat_38_profiles_scope_and_limitations_survive_cache(tmp_path, index):
         (DATA_DIR / "export/uvek_heat_38_profiles_review.json").read_text()
     )
     row = review["records"][index]
+    expected_review_path = "export/uvek_heat_38_profiles_review.json"
+    if row["rule_id"] == "bp-18e8ed0207bbd5f8":
+        # The frozen historical CH target has an independent European-supplier review.
+        expected_review_path = "export/uvek_european_delivered_water_review.json"
+        water = json.loads((DATA_DIR / expected_review_path).read_text())["rules"][0]
+        row = {
+            **row,
+            "target": water["target"],
+            "limitations": water["limitation_items"],
+        }
     resolved = graph(row["source"], version="3.8")
     before = copy.deepcopy(resolved.activities)
     harmonizer = ClicHarmonizer(tmp_path, catalog_provider=PackageCatalogProvider())
@@ -2921,8 +2940,7 @@ def test_heat_38_profiles_scope_and_limitations_survive_cache(tmp_path, index):
             for d in result.diagnostics
             if d["code"] == "clic.compatibility_proxy_limitations"
             and d["details"]["rule_id"] == row["rule_id"]
-            and d["details"]["review_path"]
-            == "export/uvek_heat_38_profiles_review.json"
+            and d["details"]["review_path"] == expected_review_path
         ]
         assert diagnostics
         assert all(

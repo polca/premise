@@ -16690,12 +16690,12 @@
       ]
     },
     {
-      "rule_id": "bp-18e8ed0207bbd5f8",
       "operation": "replace",
-      "mapping_method": "heuristic_similarity",
-      "review_path": "export/uvek_pilot_tap_water_review.json",
-      "review_sha256": "ad79db35ea2c0bd7b7dab64755aa717b741f478d274ce284137555e930b961d8",
-      "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy approvals, applied only to enumerated delivered tap-water markets after checking positive kg references, source distribution boundaries and native treatment/pumping/storage/network coverage. No new water grade, reconstruction, helper, unit conversion or change to native water balances is introduced.",
+      "rule_id": "bp-18e8ed0207bbd5f8",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_european_delivered_water_review.json",
+      "review_sha256": "a92711714a1ca5cae9d893172ec239b8c9a98430e0beb7dfccc85fb14397aaec",
+      "authorization": "Standing autonomous approval of a closer native geographical whole-supply screening proxy after exact reference, network/treatment boundary and source recursion inspection. Earlier CH-target grants are explicitly superseded, not silently rehashed.",
       "inspection": {
         "rule_id": "bp-18e8ed0207bbd5f8",
         "source": {
@@ -16704,13 +16704,56 @@
           "reference product": "tap water",
           "unit": "kilogram"
         },
-        "target": {
+        "previous_target": {
           "location": "CH",
           "name": "Tap water, at user",
           "reference product": "Tap water, at user",
           "unit": "kilogram"
         },
-        "source_profiles": [
+        "previous_rule": {
+          "confidence": 0.51,
+          "id": "bp-18e8ed0207bbd5f8",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for tap water",
+            "reference product": "tap water",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Tap water, at user",
+            "reference product": "Tap water, at user",
+            "unit": "kilogram"
+          }
+        },
+        "target": {
+          "name": "Tap water, at user",
+          "reference product": "Tap water, at user",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_reference_amount": 1,
+        "native_reference_amount": 1,
+        "profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "df7570730d2c2d8104be547729e13d1893463fed16eef277a68bcfef3f0a211d",
+            "inventory_sha256": "e27613ffe35b8886a412b47115e0ff6c9af331af27744b58c3ef63b7e383a0e2",
+            "activity_comment_sha256": "ffa9cc0a13233b13b0d145242e7e68a44c03cf995e5125650f5ccdc0a5874c76",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "direct_fresh_producer_count": 8,
+            "direct_fresh_producer_kg_per_reference_kg": 0.9999999999999998,
+            "recursive_self_market_kg_per_reference_kg": 0.12867,
+            "sum_of_water_input_coefficients_is_not_a_loss_multiplier": true,
+            "inspection_release": "3.6"
+          },
           {
             "source_profile": {
               "family": "ecoinvent",
@@ -16722,90 +16765,29 @@
             "inventory_sha256": "e6975eefffbc4c2e4836298cefc2c903e7ce1cc35ae6cdfee33aec307a5347e8",
             "activity_comment_sha256": "ffa9cc0a13233b13b0d145242e7e68a44c03cf995e5125650f5ccdc0a5874c76",
             "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "kg_producer_water_per_kg_delivered": 1.1286699999999998,
-            "producer_definitions": [
-              {
-                "identity": {
-                  "name": "market for tap water",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "ffa9cc0a13233b13b0d145242e7e68a44c03cf995e5125650f5ccdc0a5874c76"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, direct filtration treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "b0f7351d80e23659fa1c6984570cc22ef54d2ef5083ea544788285660f6197cd"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, microstrainer treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "747771f4bb57112b8badeddf7522624ab94669b7bc2a7480076ab8ee9e9c04b3"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, ultrafiltration treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "630d9e8a4ce79273dd5d5a566447d18189c721d8bbafe9b4ef2231befd50469b"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, underground water with chemical treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "d082be80cdb1c74bdfae2344b11067fc4a0fbb9e1e170bfc93579708442a4742"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, underground water with disinfection",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "42d35031f07c4c00b67a73b3143949b529a04fee2f7cbb8a6dd03a1d16db66a7"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, underground water without treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "c15c28de4d38797107f601788cd3821a09185b7927d9876ac758afd3597b44b8"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, conventional treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "56d4ada4bbffef1834945bbe61f471c22068b5efee31ab92b2c16ca7a022b93d"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, conventional with biological treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "1667590808c05b3fd33f25ce10b8ccfee95a52d4531f9542455ab4d79c19870f"
-              }
-            ]
+            "direct_fresh_producer_count": 8,
+            "direct_fresh_producer_kg_per_reference_kg": 0.9999999999999998,
+            "recursive_self_market_kg_per_reference_kg": 0.12867,
+            "sum_of_water_input_coefficients_is_not_a_loss_multiplier": true,
+            "inspection_release": "3.7.1",
+            "unpatched_37_inventory_inspected": false
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.8",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5ac8b0e1144d1809e72875471b19360aaa99425c0d07085191ac301713478cb4",
+            "inventory_sha256": "282d3a37863bc1a2e37f2db9281c78204086401fda51dbf356505d545f54889d",
+            "activity_comment_sha256": "06e09a93ed319713a504e3d6557b7e3c07f8ff564a117cc6a085c08d0d79db74",
+            "product_information_sha256": "4c5d170c54817049ef07fe959e62faefc8d75b12979ef88be0f551cac53789a6",
+            "direct_fresh_producer_count": 8,
+            "direct_fresh_producer_kg_per_reference_kg": 0.9999999999999998,
+            "recursive_self_market_kg_per_reference_kg": 0.12867,
+            "sum_of_water_input_coefficients_is_not_a_loss_multiplier": true,
+            "inspection_release": "3.8"
           },
           {
             "source_profile": {
@@ -16818,124 +16800,559 @@
             "inventory_sha256": "263563c5bc44fcd65521d8e681b25b37d80427fa9b852c076d9b586e281bab12",
             "activity_comment_sha256": "2050a62e456ff362c291489e48ea20077cf6264f90eaafcab5c55c55b817a100",
             "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
-            "kg_producer_water_per_kg_delivered": 1.1286699999999998,
-            "producer_definitions": [
-              {
-                "identity": {
-                  "name": "tap water production, direct filtration treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "8036fb7a575ad09ace5a888b85baf00a9e847795699869ce358d8b6d099b6e8d"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, microstrainer treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "e01c689ff47278c86d85a645c5567da4e2b04c6101566e31b02e0a900eb42615"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, underground water without treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "50b5e617388fd71ec4b50f87934e0fd1e196cd4bcea13d1b6f17b41338e4c586"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, conventional treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "2ad82ef23ea179266ec0409a3952b7aa1f528344bfdf5b9bbcceb7cdcf2e4462"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, underground water with chemical treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "6f74a7958009ae25c620a58254dd8155f476675dc7089df484480bf98d208022"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, underground water with disinfection",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "3f9576809a8be1b13daf9afda149fd26e8230c1aa74a9210f339fa783d50d4b7"
-              },
-              {
-                "identity": {
-                  "name": "market for tap water",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "2050a62e456ff362c291489e48ea20077cf6264f90eaafcab5c55c55b817a100"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, ultrafiltration treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "ce4a1a9889a1f61313911ca37b4b63f41424efe763c4b1af4315b57fdc0a1f0c"
-              },
-              {
-                "identity": {
-                  "name": "tap water production, conventional with biological treatment",
-                  "reference product": "tap water",
-                  "location": "Europe without Switzerland",
-                  "unit": "kilogram"
-                },
-                "comment_sha256": "d7e9e01d4189f998df275f92ed371fa289f11240870fc5e1ec269736da561a6d"
-              }
-            ]
+            "direct_fresh_producer_count": 8,
+            "direct_fresh_producer_kg_per_reference_kg": 0.9999999999999998,
+            "recursive_self_market_kg_per_reference_kg": 0.12867,
+            "sum_of_water_input_coefficients_is_not_a_loss_multiplier": true,
+            "inspection_release": "3.9"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.10",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "941f3a86142ade385715b772a872198222603f1a9ea5b135479b2f675d5bf07a",
+            "inventory_sha256": "8bf1359b123230f0aaaa15af8bb9e6d7036a6f1ffd466c2deecffbd99eea0142",
+            "activity_comment_sha256": "2050a62e456ff362c291489e48ea20077cf6264f90eaafcab5c55c55b817a100",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "direct_fresh_producer_count": 8,
+            "direct_fresh_producer_kg_per_reference_kg": 0.9999999999999998,
+            "recursive_self_market_kg_per_reference_kg": 0.12867,
+            "sum_of_water_input_coefficients_is_not_a_loss_multiplier": true,
+            "inspection_release": "3.10"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.11",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "5978228694c76912a5b032695a116a1d7e1a00d01cfd169be4f34eeccaaa65be",
+            "inventory_sha256": "a52656129f6131910bc7b2f20d41c85349d82e6001bf3a9728ffa90a71f7058a",
+            "activity_comment_sha256": "2050a62e456ff362c291489e48ea20077cf6264f90eaafcab5c55c55b817a100",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "direct_fresh_producer_count": 8,
+            "direct_fresh_producer_kg_per_reference_kg": 0.9999999999999998,
+            "recursive_self_market_kg_per_reference_kg": 0.12867,
+            "sum_of_water_input_coefficients_is_not_a_loss_multiplier": true,
+            "inspection_release": "3.11"
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.12",
+              "system_model": "cutoff"
+            },
+            "reference_amount": 1,
+            "metadata_sha256": "7a8a1d80ca1f5c4fdc0cac563c904f3cd22c2042bc704d4dede82e12658baf58",
+            "inventory_sha256": "3984fc77ced826bbdb6b1a3a67eb149b2b12bed7956d0d87c7b19ada447ac50c",
+            "activity_comment_sha256": "203a4a4246c7a07543e61f37f7732e4a663e6b513c15838b4f344ba5c450dfa1",
+            "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+            "direct_fresh_producer_count": 8,
+            "direct_fresh_producer_kg_per_reference_kg": 0.9999999999999998,
+            "recursive_self_market_kg_per_reference_kg": 0.12867,
+            "sum_of_water_input_coefficients_is_not_a_loss_multiplier": true,
+            "inspection_release": "3.12"
           }
         ],
-        "conversion_factor": 1,
         "native_references": {
           "2025": {
             "reference_amount": 1,
             "unit": "kilogram",
-            "metadata_sha256": "2df6257a30aae3002588c798b2fb2382dd30e1da0bf8a670a2127c56fff98dae",
-            "inventory_sha256": "e82e54cf92490c82a2cb0618b651b268abe22657daf0ca724799b6040e6cc011",
-            "activity_comment_sha256": "fa58ab5e374362c871b1a30e20d4637d0c913f836dda8cd06f8003061cdac798",
-            "direct_technosphere_coordinates": 14,
-            "includes_water_works_pumping_storage_network": true
+            "metadata_sha256": "dc085ea6852d9af61f56aef543d02ea02ca102a7365bc31d581bcec6da173e02",
+            "inventory_sha256": "2c5f9fd380578e5019a542c6b65bf126f7389ef2b66f8b813a4b07db0126cefe",
+            "activity_comment_sha256": "89f48d6ea866860498eb51637b0bdd764f69def0889e599ceeba3590413d1962",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
           },
           "2026": {
             "reference_amount": 1,
             "unit": "kilogram",
-            "metadata_sha256": "4a84776ad668ee971da94272a8031bcd699593111474e4045970f82e3643f340",
-            "inventory_sha256": "a1398822a40bf793d2a22d27ce3608174c8ca43b390c446ae626c76a0627ded4",
-            "activity_comment_sha256": "567d6cde5eb8e60e861af5a3eeda4d6fbceea4c2de3d6a587f3e41e3d2bf5466",
-            "direct_technosphere_coordinates": 14,
-            "includes_water_works_pumping_storage_network": true
+            "metadata_sha256": "d977a393cc1fcb11e9e2535834d668aa8283c03fe2d89b75ff2213cad24cedf2",
+            "inventory_sha256": "8029100ffd65106d0636501f6bde661e971f159f4f70cd16758a3e1941f08684",
+            "activity_comment_sha256": "508f8af6ec31ef58ade2a4ea0a8d4ca8c06885eaa64896f0986f4a5fb5d419be",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
           }
         },
-        "native_direct_technosphere_coordinates_match": true,
-        "boundary": "Same tap water delivered at the consumer per kg, using the complete native Swiss treatment-and-distribution inventory as a geographic whole-supply screening proxy. Source treatment shares and distribution water losses differ. Do not multiply the delivered-kg demand by a source producer-water or loss coefficient; this would combine source losses with the complete native water balance. Preserve native internal supply and separately listed caller demands once."
+        "native_2025_2026_technosphere_vectors_equal": true,
+        "limitations": "Use the complete native RER tap-water inventory per signed kg delivered to the consumer, factor +1, replacing the earlier CH supplier for this Europe-without-Switzerland market. Native RER is itself a CH/DE-based approximation extrapolated to Europe, not an exact country or regional resource model. It includes treatment chemicals, electricity, water works, pumping/storage/network infrastructure, transport, wastewater and direct water flows; preserve the whole native model once. The inspected source has eight direct water producers summing to 1 kg and a separate 0.12867 kg recursive input from the same market. The sum 1.12867 kg is not a direct producer-only loss coefficient. Do not multiply the delivered-kg demand by a source water-production, recursive-supply or distribution-loss factor, and do not append the source loop or add another native network/withdrawal/treatment step. Source recursion and native own water balance differ, with unquantified score effects. Preserve caller signs, supported uncertainty, formulas and ownership. The reference is kg of delivered potable water, not cubic metres of abstraction or a treatment-only service. No density conversion or water-balance correction is introduced; separately listed caller water, transport and emissions remain separate. Source treatment shares, pressure assumptions, resource/return geography, losses, network, electricity, allocation, vintage and uncertainty differ. Native RER uses 0.00039 kWh of European electricity per kg; the earlier CH supplier uses 0.00042889 kWh of Swiss electricity. Regionalized water-stress or LCIA equivalence is not established; native biosphere exclusions and unquantified score effects remain warnings. The requested 3.7 permission is retained using the inspected 3.7.1 functional-reference witness and matching adjacent definitions. Unpatched 3.7 coefficients were not inspected, source contexts are not relabeled, and no coefficient or impact equality is claimed. Exact 3.7.1/other patch callers, inverse correspondences and cross-system-model conversions are not implicitly approved.",
+        "limitation_items": [
+          "Use the complete native RER tap-water inventory per signed kg delivered to the consumer, factor +1, replacing the earlier CH supplier for this Europe-without-Switzerland market. Native RER is itself a CH/DE-based approximation extrapolated to Europe, not an exact country or regional resource model. It includes treatment chemicals, electricity, water works, pumping/storage/network infrastructure, transport, wastewater and direct water flows; preserve the whole native model once.",
+          "The inspected source has eight direct water producers summing to 1 kg and a separate 0.12867 kg recursive input from the same market. The sum 1.12867 kg is not a direct producer-only loss coefficient. Do not multiply the delivered-kg demand by a source water-production, recursive-supply or distribution-loss factor, and do not append the source loop or add another native network/withdrawal/treatment step. Source recursion and native own water balance differ, with unquantified score effects.",
+          "Preserve caller signs, supported uncertainty, formulas and ownership. The reference is kg of delivered potable water, not cubic metres of abstraction or a treatment-only service. No density conversion or water-balance correction is introduced; separately listed caller water, transport and emissions remain separate.",
+          "Source treatment shares, pressure assumptions, resource/return geography, losses, network, electricity, allocation, vintage and uncertainty differ. Native RER uses 0.00039 kWh of European electricity per kg; the earlier CH supplier uses 0.00042889 kWh of Swiss electricity. Regionalized water-stress or LCIA equivalence is not established; native biosphere exclusions and unquantified score effects remain warnings.",
+          "The requested 3.7 permission is retained using the inspected 3.7.1 functional-reference witness and matching adjacent definitions. Unpatched 3.7 coefficients were not inspected, source contexts are not relabeled, and no coefficient or impact equality is claimed. Exact 3.7.1/other patch callers, inverse correspondences and cross-system-model conversions are not implicitly approved."
+        ],
+        "superseded_premise_operations": [
+          {
+            "rule_id": "bp-18e8ed0207bbd5f8",
+            "operation": "replace",
+            "mapping_method": "heuristic_similarity",
+            "review_path": "export/uvek_pilot_tap_water_review.json",
+            "review_sha256": "ad79db35ea2c0bd7b7dab64755aa717b741f478d274ce284137555e930b961d8",
+            "authorization": "Standing independently inspected matching whole-material/function/unit and geographic supply-proxy approvals, applied only to enumerated delivered tap-water markets after checking positive kg references, source distribution boundaries and native treatment/pumping/storage/network coverage. No new water grade, reconstruction, helper, unit conversion or change to native water balances is introduced.",
+            "inspection": {
+              "rule_id": "bp-18e8ed0207bbd5f8",
+              "source": {
+                "location": "Europe without Switzerland",
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "unit": "kilogram"
+              },
+              "target": {
+                "location": "CH",
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "unit": "kilogram"
+              },
+              "source_profiles": [
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.7",
+                    "system_model": "cutoff"
+                  },
+                  "reference_amount": 1,
+                  "metadata_sha256": "0fae7b9dbddc1ce1e6a3195dcab4f5a2531165e5b90434c726bc2b885521122a",
+                  "inventory_sha256": "e6975eefffbc4c2e4836298cefc2c903e7ce1cc35ae6cdfee33aec307a5347e8",
+                  "activity_comment_sha256": "ffa9cc0a13233b13b0d145242e7e68a44c03cf995e5125650f5ccdc0a5874c76",
+                  "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "kg_producer_water_per_kg_delivered": 1.1286699999999998,
+                  "producer_definitions": [
+                    {
+                      "identity": {
+                        "name": "market for tap water",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "ffa9cc0a13233b13b0d145242e7e68a44c03cf995e5125650f5ccdc0a5874c76"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, direct filtration treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "b0f7351d80e23659fa1c6984570cc22ef54d2ef5083ea544788285660f6197cd"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, microstrainer treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "747771f4bb57112b8badeddf7522624ab94669b7bc2a7480076ab8ee9e9c04b3"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, ultrafiltration treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "630d9e8a4ce79273dd5d5a566447d18189c721d8bbafe9b4ef2231befd50469b"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, underground water with chemical treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "d082be80cdb1c74bdfae2344b11067fc4a0fbb9e1e170bfc93579708442a4742"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, underground water with disinfection",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "42d35031f07c4c00b67a73b3143949b529a04fee2f7cbb8a6dd03a1d16db66a7"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, underground water without treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "c15c28de4d38797107f601788cd3821a09185b7927d9876ac758afd3597b44b8"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, conventional treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "56d4ada4bbffef1834945bbe61f471c22068b5efee31ab92b2c16ca7a022b93d"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, conventional with biological treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "1667590808c05b3fd33f25ce10b8ccfee95a52d4531f9542455ab4d79c19870f"
+                    }
+                  ]
+                },
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.9",
+                    "system_model": "cutoff"
+                  },
+                  "reference_amount": 1,
+                  "metadata_sha256": "3f658839afab935dc45f58b20ff4f3e04c8300cd44018c647ea43fb46824fcb5",
+                  "inventory_sha256": "263563c5bc44fcd65521d8e681b25b37d80427fa9b852c076d9b586e281bab12",
+                  "activity_comment_sha256": "2050a62e456ff362c291489e48ea20077cf6264f90eaafcab5c55c55b817a100",
+                  "product_information_sha256": "a4737579d5cfb475d539f9e522d803e7e3b7496df1992921f61bca372abc5be5",
+                  "kg_producer_water_per_kg_delivered": 1.1286699999999998,
+                  "producer_definitions": [
+                    {
+                      "identity": {
+                        "name": "tap water production, direct filtration treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "8036fb7a575ad09ace5a888b85baf00a9e847795699869ce358d8b6d099b6e8d"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, microstrainer treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "e01c689ff47278c86d85a645c5567da4e2b04c6101566e31b02e0a900eb42615"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, underground water without treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "50b5e617388fd71ec4b50f87934e0fd1e196cd4bcea13d1b6f17b41338e4c586"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, conventional treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "2ad82ef23ea179266ec0409a3952b7aa1f528344bfdf5b9bbcceb7cdcf2e4462"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, underground water with chemical treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "6f74a7958009ae25c620a58254dd8155f476675dc7089df484480bf98d208022"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, underground water with disinfection",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "3f9576809a8be1b13daf9afda149fd26e8230c1aa74a9210f339fa783d50d4b7"
+                    },
+                    {
+                      "identity": {
+                        "name": "market for tap water",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "2050a62e456ff362c291489e48ea20077cf6264f90eaafcab5c55c55b817a100"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, ultrafiltration treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "ce4a1a9889a1f61313911ca37b4b63f41424efe763c4b1af4315b57fdc0a1f0c"
+                    },
+                    {
+                      "identity": {
+                        "name": "tap water production, conventional with biological treatment",
+                        "reference product": "tap water",
+                        "location": "Europe without Switzerland",
+                        "unit": "kilogram"
+                      },
+                      "comment_sha256": "d7e9e01d4189f998df275f92ed371fa289f11240870fc5e1ec269736da561a6d"
+                    }
+                  ]
+                }
+              ],
+              "conversion_factor": 1,
+              "native_references": {
+                "2025": {
+                  "reference_amount": 1,
+                  "unit": "kilogram",
+                  "metadata_sha256": "2df6257a30aae3002588c798b2fb2382dd30e1da0bf8a670a2127c56fff98dae",
+                  "inventory_sha256": "e82e54cf92490c82a2cb0618b651b268abe22657daf0ca724799b6040e6cc011",
+                  "activity_comment_sha256": "fa58ab5e374362c871b1a30e20d4637d0c913f836dda8cd06f8003061cdac798",
+                  "direct_technosphere_coordinates": 14,
+                  "includes_water_works_pumping_storage_network": true
+                },
+                "2026": {
+                  "reference_amount": 1,
+                  "unit": "kilogram",
+                  "metadata_sha256": "4a84776ad668ee971da94272a8031bcd699593111474e4045970f82e3643f340",
+                  "inventory_sha256": "a1398822a40bf793d2a22d27ce3608174c8ca43b390c446ae626c76a0627ded4",
+                  "activity_comment_sha256": "567d6cde5eb8e60e861af5a3eeda4d6fbceea4c2de3d6a587f3e41e3d2bf5466",
+                  "direct_technosphere_coordinates": 14,
+                  "includes_water_works_pumping_storage_network": true
+                }
+              },
+              "native_direct_technosphere_coordinates_match": true,
+              "boundary": "Same tap water delivered at the consumer per kg, using the complete native Swiss treatment-and-distribution inventory as a geographic whole-supply screening proxy. Source treatment shares and distribution water losses differ. Do not multiply the delivered-kg demand by a source producer-water or loss coefficient; this would combine source losses with the complete native water balance. Preserve native internal supply and separately listed caller demands once."
+            },
+            "limitations": [
+              "Same tap water delivered at the consumer per kg, using the complete native Swiss treatment-and-distribution inventory as a geographic whole-supply screening proxy. Source treatment shares and distribution water losses differ. Do not multiply the delivered-kg demand by a source producer-water or loss coefficient; this would combine source losses with the complete native water balance. Preserve native internal supply and separately listed caller demands once.",
+              "Preserve signed kg of water delivered at the user with factor +1, including uncertainty, formulas and caller ownership. The source reference is not a cubic-metre withdrawal, dry material or treatment-only service. Do not apply a kg-to-litre/m3 factor or multiply by source water-production or distribution-loss coefficients.",
+              "Use the complete native Swiss tap-water inventory once, including abstraction, treatment chemicals, electricity, water works, pump/storage/network infrastructure, internal logistics, wastewater and its own water balance. Preserve separately listed caller water, transport and emissions; add no duplicate network, water withdrawal or treatment step.",
+              "The source markets use different treatment mixes and distribution losses. The native record is documented as a rough Swiss estimation. Source Europe-without-Switzerland, RoW and South-African supply conditions, water-resource geography, network losses, energy and infrastructure are not reconstructed. Regionalized water-stress or LCIA equivalence is not established and score effects are unquantified.",
+              "Retain native vintage, background, biosphere exclusions and shorter 2025 documentation as explicit limitations. Approve only the enumerated cut-off source profiles for the exact UVEK 2026 pilot; no other version, inverse correspondence or cross-system-model route is implied."
+            ],
+            "scopes": [
+              {
+                "source": {
+                  "family": "ecoinvent",
+                  "version": "3.7",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "family": "uvek",
+                  "version": "2025",
+                  "system_model": "cutoff"
+                },
+                "fingerprint": "6b69e8d138b70d31d9bcb644f626774ce57eb2e327e11c541bf23b90cb144d87"
+              },
+              {
+                "source": {
+                  "family": "ecoinvent",
+                  "version": "3.9",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "family": "uvek",
+                  "version": "2025",
+                  "system_model": "cutoff"
+                },
+                "fingerprint": "f3a75895ca05d49b1b3369279840f0e07747329676756e47f2eb0ecf4d90b6ee"
+              }
+            ]
+          },
+          {
+            "rule_id": "bp-18e8ed0207bbd5f8",
+            "operation": "replace",
+            "mapping_method": "heuristic_similarity",
+            "review_path": "export/uvek_heat_38_profiles_review.json",
+            "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
+            "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
+            "inspection": {
+              "source": {
+                "location": "Europe without Switzerland",
+                "name": "market for tap water",
+                "reference product": "tap water",
+                "unit": "kilogram"
+              },
+              "target": {
+                "location": "CH",
+                "name": "Tap water, at user",
+                "reference product": "Tap water, at user",
+                "unit": "kilogram"
+              },
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.8",
+                "system_model": "cutoff"
+              },
+              "source_reference_amount": 1,
+              "target_reference_amount": 1,
+              "conversion_factor": 1,
+              "source_inventory_sha256": "282d3a37863bc1a2e37f2db9281c78204086401fda51dbf356505d545f54889d",
+              "source_metadata_sha256": "5ac8b0e1144d1809e72875471b19360aaa99425c0d07085191ac301713478cb4",
+              "source_producer_witnesses": [
+                {
+                  "identity": {
+                    "name": "market for tap water",
+                    "reference product": "tap water",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "282d3a37863bc1a2e37f2db9281c78204086401fda51dbf356505d545f54889d",
+                  "metadata_sha256": "5ac8b0e1144d1809e72875471b19360aaa99425c0d07085191ac301713478cb4"
+                },
+                {
+                  "identity": {
+                    "name": "tap water production, conventional treatment",
+                    "reference product": "tap water",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "eae207c0304ece12e65df58ac1a77fe445e37755c50b29ee2d51eaa5270f7bae",
+                  "metadata_sha256": "3dede8dff4244b01daa384af23f8a26cb47767224336e8c09dfcb5881dc53a5c"
+                },
+                {
+                  "identity": {
+                    "name": "tap water production, conventional with biological treatment",
+                    "reference product": "tap water",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "6515c46a6b2066e2a89312c427d15046d055bd5a40e8bc5cf9261e875ac6de65",
+                  "metadata_sha256": "f373f3226a9d2ff13d5ed936307bcef37d1e6d3777b5b44101e23f4d9f36b533"
+                },
+                {
+                  "identity": {
+                    "name": "tap water production, direct filtration treatment",
+                    "reference product": "tap water",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "583f5e1c92a9a4e415a4a658e7689e9915b88377265769b2f1955b5d998de8c9",
+                  "metadata_sha256": "da53a30f05aefcbae6c4df9d0a38fa3b22f7a069a1fdebcbb735184b5ac63c8d"
+                },
+                {
+                  "identity": {
+                    "name": "tap water production, microstrainer treatment",
+                    "reference product": "tap water",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "1e3abe265b31dad926656983f189c0f8ff613e33d6f143120e671f3366ea327f",
+                  "metadata_sha256": "0b849ddfb2ee08d40be427868ce4bcb3d93d697210d8bc8a9f43182b1b6e7796"
+                },
+                {
+                  "identity": {
+                    "name": "tap water production, ultrafiltration treatment",
+                    "reference product": "tap water",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "48b5b9bc497abfcdee285c5cdd2633e0105f6213d79d0e5e3a3e409a4ae666c8",
+                  "metadata_sha256": "1e8a94f22011fd1036ffba0cd83663009ea1513e56ac1ae55fa2344fb7b90b9b"
+                },
+                {
+                  "identity": {
+                    "name": "tap water production, underground water with chemical treatment",
+                    "reference product": "tap water",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "8bd6a3a1ecc7cc9d06ba959a5f7a84e6de116fd7015d26d96a669999d901f4a5",
+                  "metadata_sha256": "433b5542e95684244cb1af9b2f35a94a356f979bcecb43b3a1793980ac25bce6"
+                },
+                {
+                  "identity": {
+                    "name": "tap water production, underground water with disinfection",
+                    "reference product": "tap water",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "74c498aeddbf47641382fb9e64a15c5d63205ee2a3b40248e81e36862a3f60d6",
+                  "metadata_sha256": "3681efa149ce2c57ed63027ea6372d633174a459b7c6150099588d0bad5a15cb"
+                },
+                {
+                  "identity": {
+                    "name": "tap water production, underground water without treatment",
+                    "reference product": "tap water",
+                    "location": "Europe without Switzerland",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "d3063d87df7f92a810bfea0e5bd964c47d5110614a87e4ba8707ddd602c85452",
+                  "metadata_sha256": "26a9d2166a445ef5e9e01d0a1d732c8d6b8574efd14741b345f4147427d3b139"
+                }
+              ],
+              "native_references": {
+                "2025": {
+                  "reference_amount": 1,
+                  "identity": {
+                    "location": "CH",
+                    "name": "Tap water, at user",
+                    "reference product": "Tap water, at user",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "e82e54cf92490c82a2cb0618b651b268abe22657daf0ca724799b6040e6cc011",
+                  "metadata_sha256": "2df6257a30aae3002588c798b2fb2382dd30e1da0bf8a670a2127c56fff98dae"
+                },
+                "2026": {
+                  "reference_amount": 1,
+                  "identity": {
+                    "location": "CH",
+                    "name": "Tap water, at user",
+                    "reference product": "Tap water, at user",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "a1398822a40bf793d2a22d27ce3608174c8ca43b390c446ae626c76a0627ded4",
+                  "metadata_sha256": "4a84776ad668ee971da94272a8031bcd699593111474e4045970f82e3643f340"
+                }
+              }
+            },
+            "limitations": [
+              "The source3.8European-without-Switzerland delivered-water market includes eight treatment/groundwater producer types, distribution infrastructure and a0.12867kgrecursive water input per deliveredkg. Use the complete reviewed Swiss native tap-water service per signed kg, including its actual chemicals, electricity, treatment, water abstraction/returns and supply network. Native prose emphasizes infrastructure, but its actual inventory also contains treatment inputs and direct water flows.",
+              "The Swiss supply is an explicit geographic and treatment-portfolio screening proxy for this European market. Native intake, treatment, pressure, distribution/loss allocation, water returns, infrastructure, geography, vintage and uncertainty differ. Do not add the source supply loop, assume a1/(1-.12867)loss multiplier, infer river/lake shares, convert kgto m3using guessed density or apply a water-balance correction.",
+              "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
+            ],
+            "scopes": [
+              {
+                "source": {
+                  "family": "ecoinvent",
+                  "version": "3.8",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "family": "uvek",
+                  "version": "2025",
+                  "system_model": "cutoff"
+                },
+                "fingerprint": "d1e51490532f312048f50a30a7394cf3e4cd8bc1969b40766130453927c8ae75"
+              }
+            ]
+          }
+        ],
+        "reference_basis_note": "Fresh producers sum to 1; a distinct 0.12867 self-market recursion is part of the source model, not an extra coefficient for the native delivered-water model."
       },
       "limitations": [
-        "Same tap water delivered at the consumer per kg, using the complete native Swiss treatment-and-distribution inventory as a geographic whole-supply screening proxy. Source treatment shares and distribution water losses differ. Do not multiply the delivered-kg demand by a source producer-water or loss coefficient; this would combine source losses with the complete native water balance. Preserve native internal supply and separately listed caller demands once.",
-        "Preserve signed kg of water delivered at the user with factor +1, including uncertainty, formulas and caller ownership. The source reference is not a cubic-metre withdrawal, dry material or treatment-only service. Do not apply a kg-to-litre/m3 factor or multiply by source water-production or distribution-loss coefficients.",
-        "Use the complete native Swiss tap-water inventory once, including abstraction, treatment chemicals, electricity, water works, pump/storage/network infrastructure, internal logistics, wastewater and its own water balance. Preserve separately listed caller water, transport and emissions; add no duplicate network, water withdrawal or treatment step.",
-        "The source markets use different treatment mixes and distribution losses. The native record is documented as a rough Swiss estimation. Source Europe-without-Switzerland, RoW and South-African supply conditions, water-resource geography, network losses, energy and infrastructure are not reconstructed. Regionalized water-stress or LCIA equivalence is not established and score effects are unquantified.",
-        "Retain native vintage, background, biosphere exclusions and shorter 2025 documentation as explicit limitations. Approve only the enumerated cut-off source profiles for the exact UVEK 2026 pilot; no other version, inverse correspondence or cross-system-model route is implied."
+        "Use the complete native RER tap-water inventory per signed kg delivered to the consumer, factor +1, replacing the earlier CH supplier for this Europe-without-Switzerland market. Native RER is itself a CH/DE-based approximation extrapolated to Europe, not an exact country or regional resource model. It includes treatment chemicals, electricity, water works, pumping/storage/network infrastructure, transport, wastewater and direct water flows; preserve the whole native model once.",
+        "The inspected source has eight direct water producers summing to 1 kg and a separate 0.12867 kg recursive input from the same market. The sum 1.12867 kg is not a direct producer-only loss coefficient. Do not multiply the delivered-kg demand by a source water-production, recursive-supply or distribution-loss factor, and do not append the source loop or add another native network/withdrawal/treatment step. Source recursion and native own water balance differ, with unquantified score effects.",
+        "Preserve caller signs, supported uncertainty, formulas and ownership. The reference is kg of delivered potable water, not cubic metres of abstraction or a treatment-only service. No density conversion or water-balance correction is introduced; separately listed caller water, transport and emissions remain separate.",
+        "Source treatment shares, pressure assumptions, resource/return geography, losses, network, electricity, allocation, vintage and uncertainty differ. Native RER uses 0.00039 kWh of European electricity per kg; the earlier CH supplier uses 0.00042889 kWh of Swiss electricity. Regionalized water-stress or LCIA equivalence is not established; native biosphere exclusions and unquantified score effects remain warnings.",
+        "The requested 3.7 permission is retained using the inspected 3.7.1 functional-reference witness and matching adjacent definitions. Unpatched 3.7 coefficients were not inspected, source contexts are not relabeled, and no coefficient or impact equality is claimed. Exact 3.7.1/other patch callers, inverse correspondences and cross-system-model conversions are not implicitly approved."
       ],
       "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.6",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f60f6a9e84011f98dd24f6335f70110db228dd1b6698171d35033e5139bea3a2"
+        },
         {
           "source": {
             "family": "ecoinvent",
@@ -16944,10 +17361,23 @@
           },
           "target": {
             "family": "uvek",
-            "version": "2025",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b359fb9a423e4351de58532c81ce8dff71cadacc1c78174edf708cf16b34591f"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
             "system_model": "cutoff"
           },
-          "fingerprint": "6b69e8d138b70d31d9bcb644f626774ce57eb2e327e11c541bf23b90cb144d87"
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "cf372fba2120596628f628d25f00c1af3289bc943a32c00ad5148dc0d0e742b8"
         },
         {
           "source": {
@@ -16957,10 +17387,49 @@
           },
           "target": {
             "family": "uvek",
-            "version": "2025",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8702f3c8c04f05dc2ba674823fb65587c7d1d3b5f8ded709b11ad319a1407816"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.10",
             "system_model": "cutoff"
           },
-          "fingerprint": "f3a75895ca05d49b1b3369279840f0e07747329676756e47f2eb0ecf4d90b6ee"
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a820b568e574928ec921b8612fd55772ac2717b448bb88a7e1e0006de4196a42"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.11",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2d48c29fbb94ed47b18cfb613d9826b3bdd41d3bc80c31bed20667f425a3381b"
+        },
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "aa976ea4fbc019df65aef6737175f04b825c551caa507fb628b1032e93684154"
         }
       ]
     },
@@ -130598,174 +131067,6 @@
             "system_model": "cutoff"
           },
           "fingerprint": "ae7fda8bec8c4cc277dce60ca5e4b9d7803ef44368b46a267e3312d6d11d2435"
-        }
-      ]
-    },
-    {
-      "rule_id": "bp-18e8ed0207bbd5f8",
-      "operation": "replace",
-      "mapping_method": "heuristic_similarity",
-      "review_path": "export/uvek_heat_38_profiles_review.json",
-      "review_sha256": "9a5829fb520f662169f6fd2cbd18ff980e88a030581f47e843809e4ef9b8357e",
-      "authorization": "Standing autonomous approval of independently inspected similar complete-product/service proxies, with explicit warnings and later review.",
-      "inspection": {
-        "source": {
-          "location": "Europe without Switzerland",
-          "name": "market for tap water",
-          "reference product": "tap water",
-          "unit": "kilogram"
-        },
-        "target": {
-          "location": "CH",
-          "name": "Tap water, at user",
-          "reference product": "Tap water, at user",
-          "unit": "kilogram"
-        },
-        "source_profile": {
-          "family": "ecoinvent",
-          "version": "3.8",
-          "system_model": "cutoff"
-        },
-        "source_reference_amount": 1,
-        "target_reference_amount": 1,
-        "conversion_factor": 1,
-        "source_inventory_sha256": "282d3a37863bc1a2e37f2db9281c78204086401fda51dbf356505d545f54889d",
-        "source_metadata_sha256": "5ac8b0e1144d1809e72875471b19360aaa99425c0d07085191ac301713478cb4",
-        "source_producer_witnesses": [
-          {
-            "identity": {
-              "name": "market for tap water",
-              "reference product": "tap water",
-              "location": "Europe without Switzerland",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "282d3a37863bc1a2e37f2db9281c78204086401fda51dbf356505d545f54889d",
-            "metadata_sha256": "5ac8b0e1144d1809e72875471b19360aaa99425c0d07085191ac301713478cb4"
-          },
-          {
-            "identity": {
-              "name": "tap water production, conventional treatment",
-              "reference product": "tap water",
-              "location": "Europe without Switzerland",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "eae207c0304ece12e65df58ac1a77fe445e37755c50b29ee2d51eaa5270f7bae",
-            "metadata_sha256": "3dede8dff4244b01daa384af23f8a26cb47767224336e8c09dfcb5881dc53a5c"
-          },
-          {
-            "identity": {
-              "name": "tap water production, conventional with biological treatment",
-              "reference product": "tap water",
-              "location": "Europe without Switzerland",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "6515c46a6b2066e2a89312c427d15046d055bd5a40e8bc5cf9261e875ac6de65",
-            "metadata_sha256": "f373f3226a9d2ff13d5ed936307bcef37d1e6d3777b5b44101e23f4d9f36b533"
-          },
-          {
-            "identity": {
-              "name": "tap water production, direct filtration treatment",
-              "reference product": "tap water",
-              "location": "Europe without Switzerland",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "583f5e1c92a9a4e415a4a658e7689e9915b88377265769b2f1955b5d998de8c9",
-            "metadata_sha256": "da53a30f05aefcbae6c4df9d0a38fa3b22f7a069a1fdebcbb735184b5ac63c8d"
-          },
-          {
-            "identity": {
-              "name": "tap water production, microstrainer treatment",
-              "reference product": "tap water",
-              "location": "Europe without Switzerland",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "1e3abe265b31dad926656983f189c0f8ff613e33d6f143120e671f3366ea327f",
-            "metadata_sha256": "0b849ddfb2ee08d40be427868ce4bcb3d93d697210d8bc8a9f43182b1b6e7796"
-          },
-          {
-            "identity": {
-              "name": "tap water production, ultrafiltration treatment",
-              "reference product": "tap water",
-              "location": "Europe without Switzerland",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "48b5b9bc497abfcdee285c5cdd2633e0105f6213d79d0e5e3a3e409a4ae666c8",
-            "metadata_sha256": "1e8a94f22011fd1036ffba0cd83663009ea1513e56ac1ae55fa2344fb7b90b9b"
-          },
-          {
-            "identity": {
-              "name": "tap water production, underground water with chemical treatment",
-              "reference product": "tap water",
-              "location": "Europe without Switzerland",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "8bd6a3a1ecc7cc9d06ba959a5f7a84e6de116fd7015d26d96a669999d901f4a5",
-            "metadata_sha256": "433b5542e95684244cb1af9b2f35a94a356f979bcecb43b3a1793980ac25bce6"
-          },
-          {
-            "identity": {
-              "name": "tap water production, underground water with disinfection",
-              "reference product": "tap water",
-              "location": "Europe without Switzerland",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "74c498aeddbf47641382fb9e64a15c5d63205ee2a3b40248e81e36862a3f60d6",
-            "metadata_sha256": "3681efa149ce2c57ed63027ea6372d633174a459b7c6150099588d0bad5a15cb"
-          },
-          {
-            "identity": {
-              "name": "tap water production, underground water without treatment",
-              "reference product": "tap water",
-              "location": "Europe without Switzerland",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "d3063d87df7f92a810bfea0e5bd964c47d5110614a87e4ba8707ddd602c85452",
-            "metadata_sha256": "26a9d2166a445ef5e9e01d0a1d732c8d6b8574efd14741b345f4147427d3b139"
-          }
-        ],
-        "native_references": {
-          "2025": {
-            "reference_amount": 1,
-            "identity": {
-              "location": "CH",
-              "name": "Tap water, at user",
-              "reference product": "Tap water, at user",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "e82e54cf92490c82a2cb0618b651b268abe22657daf0ca724799b6040e6cc011",
-            "metadata_sha256": "2df6257a30aae3002588c798b2fb2382dd30e1da0bf8a670a2127c56fff98dae"
-          },
-          "2026": {
-            "reference_amount": 1,
-            "identity": {
-              "location": "CH",
-              "name": "Tap water, at user",
-              "reference product": "Tap water, at user",
-              "unit": "kilogram"
-            },
-            "inventory_sha256": "a1398822a40bf793d2a22d27ce3608174c8ca43b390c446ae626c76a0627ded4",
-            "metadata_sha256": "4a84776ad668ee971da94272a8031bcd699593111474e4045970f82e3643f340"
-          }
-        }
-      },
-      "limitations": [
-        "The source3.8European-without-Switzerland delivered-water market includes eight treatment/groundwater producer types, distribution infrastructure and a0.12867kgrecursive water input per deliveredkg. Use the complete reviewed Swiss native tap-water service per signed kg, including its actual chemicals, electricity, treatment, water abstraction/returns and supply network. Native prose emphasizes infrastructure, but its actual inventory also contains treatment inputs and direct water flows.",
-        "The Swiss supply is an explicit geographic and treatment-portfolio screening proxy for this European market. Native intake, treatment, pressure, distribution/loss allocation, water returns, infrastructure, geography, vintage and uncertainty differ. Do not add the source supply loop, assume a1/(1-.12867)loss multiplier, infer river/lake shares, convert kgto m3using guessed density or apply a water-balance correction.",
-        "Only independently inspected exactecoinvent3.8cutoff is newly qualified to nativeUVEK2026 through the existing2025edge. Preserve foreground ownership, signed caller quantities, formulas, supported uncertainty and separate caller emissions. Complete native inventories remain unchanged. Native upstream biosphere exclusions and unquantified score differences remain explicit; no LCIA equivalence, impact completeness, inverse, unreviewed version or cross-system-model approval is inferred. Earlier effective profile decisions, shared reviews and recipe closures are preserved."
-      ],
-      "scopes": [
-        {
-          "source": {
-            "family": "ecoinvent",
-            "version": "3.8",
-            "system_model": "cutoff"
-          },
-          "target": {
-            "family": "uvek",
-            "version": "2025",
-            "system_model": "cutoff"
-          },
-          "fingerprint": "d1e51490532f312048f50a30a7394cf3e4cd8bc1969b40766130453927c8ae75"
         }
       ]
     },
