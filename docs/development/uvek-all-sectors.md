@@ -1924,3 +1924,7 @@ Retained Swiss PVF collection freight and reviewed the complete native incinerat
 ### Unsorted iron scrap market — 13 November 2026
 
 Reused the exact existing production-only cut-off stock, preserving the original market rail/lorry freight and uncertainty. Avoided introducing BAFU sorting/pressing burdens into unsorted stock supply. Profile/dependency guards, fresh/cache sign checks and in-memory LCIs pass without database writes. The source-3.9 battery cohort falls from 169 to 168 unapproved rules; next Swiss municipal-waste incineration. Sorted scrap remains a separate nonempty supply. Eight of nineteen sectors remain qualified. See `uvek-unsorted-iron-scrap-39-review.md` and verification JSON.
+
+### Ordinary MSW incineration — 13 November 2026
+
+Reviewed the existing complete Swiss native process for exact source-3.9 cut-off treatment, with explicit manganese-speciation, water/oxygen coverage, heat-basis, internal freight and recovery-boundary warnings. Rule and treatment sign factor remain unchanged. Fresh/cache sign/uncertainty tests and in-memory LCIs pass without database writes. Fresh battery preparation reduces the inspected source cohort from 168 to 167 unapproved rules; next methane sulfonic acid. Eight of nineteen sectors remain qualified. See `uvek-msw-incineration-39-review.md` and verification JSON. Queued for the next batch push.

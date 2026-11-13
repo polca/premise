@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "8b8cb8022a6f55843be23058c751f79e0b6cabd8",
+  "scope_registration": {
+    "prior_scopes": 1309,
+    "new_scopes": 1310,
+    "all_existing_operations_unchanged": true
+  },
+  "tests": {
+    "brightpath_mapping_checks": 14,
+    "premise_fresh_cached_sign_uncertainty_and_scope_checks": 5,
+    "lint": "passed",
+    "note": "Whole native ordinary MSW service retains treatment basis and source caller fields; documented direct coverage and upstream model differences remain warnings.",
+    "installed_package_premise_checks": 5
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 1,
+    "native_suppliers": 1,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-44fac4cd9c9b9108",
+        "source": {
+          "location": "CH",
+          "name": "treatment of municipal solid waste, incineration",
+          "reference product": "municipal solid waste",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 6.938893903907228e-18,
+        "full_graph_residual": {
+          "residual_before": 3.5633592311240577e-11,
+          "residual_after": 1.653908698270135e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.5633592311240577e-11,
+          "residual_after": 1.653908698270135e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the single ordinary municipal-waste treatment interface and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "frontier": {
+    "before_unapproved_rule_count": 168,
+    "after_unapproved_rule_count": 167,
+    "cleared_rule_ids": [
+      "bp-44fac4cd9c9b9108"
+    ],
+    "new_unapproved_rules": [],
+    "next_unapproved_rule": "bp-e757d1c18dff9ec7",
+    "next_source": {
+      "location": "GLO",
+      "name": "market for methane sulfonic acid",
+      "reference product": "methane sulfonic acid",
+      "unit": "kilogram"
+    },
+    "next_target": {
+      "location": "GLO",
+      "name": "Sodium sulphate from sulfuric acid digestion of spodumene",
+      "reference product": "Sodium sulphate from sulfuric acid digestion of spodumene",
+      "unit": "kilogram"
+    },
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique rules in the inspected source-3.9 cut-off battery cohort, not dataset count or all source profiles. Existing source-3.6 approval and Brightpath mapping/sign factor remain unchanged."
+  },
+  "runtime_python_changes": [],
+  "installed_package_verification": {
+    "brightpath_commit": "8b8cb8022a6f55843be23058c751f79e0b6cabd8",
+    "installed_resources_match_commit": [
+      "export/uvek_msw_incineration_39_review.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "migrations/RESOURCE_MANIFEST.json"
+    ],
+    "removed_unused_wheel": "brightpath-1.0.0a14-py3-none-any.whl",
+    "removed_bytes": 44116161,
+    "sha256": "faaadbfbf1a84d07d1c66b91fa184af823c01b866fa3ccb17403201042f2d597"
+  },
+  "mapping_resources_unchanged": true,
+  "existing_source_36_approval_unchanged": true
+}

@@ -263761,6 +263761,90 @@
           "fingerprint": "083e069b54ec88f3454267cd253089ea03fa2f1b6a7b6ad3d52f136d5c00a79a"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-44fac4cd9c9b9108",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_msw_incineration_39_review.json",
+      "review_sha256": "558a27745da1d1838567ff02b4d44741b2dc9e7e2e03a0c4046c658e67cf7d1f",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously with explicit warnings and logged decisions.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of municipal solid waste, incineration",
+            "reference product": "municipal solid waste",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 154,
+          "metadata_sha256": "65fd84fdd20adc4f7db22167eaac8c313ddba76369ed027a5abbc7e4da4178d7",
+          "inventory_sha256": "c58295129d3b735bdf5b19d0099845596c8f5ef74608eae2a1bf672c691df735",
+          "activity_comment_sha256": "cd963df3059557673f1d347327e1e4c67b5236bfebda58657c0f773e7aaf5081",
+          "product_information_sha256": "b3ebe00f99481065816db2297081d790fbe77f3ded0e19bbdb24d38c383b2917"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, municipal solid waste, 22.9% water, to municipal incineration",
+              "reference product": "Disposal, municipal solid waste, 22.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 147,
+            "metadata_sha256": "9a0833691b7e4ad3344900349497dfc4dfc69697a6cdeaef1cb0c5500499cdac",
+            "inventory_sha256": "b25803f9945c6b1ddbe5d5e07f48e3d0f469f724cf6fe08ee4a8c1f1b2659a10",
+            "activity_comment_sha256": "86e49d0e31f9eb34ff533c98124b8a68db8aaec515ba00539df3bca02069ebfb",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, municipal solid waste, 22.9% water, to municipal incineration",
+              "reference product": "Disposal, municipal solid waste, 22.9% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 149,
+            "metadata_sha256": "b15b1bc9be85e45928a0569ebb7efa65ca0aef109fd626c09431358775e8176b",
+            "inventory_sha256": "61ea590dbfaa53a67974f11d92f9518524cf3cacf23fb6247f1c9b0c51b6a70b",
+            "activity_comment_sha256": "56210ae1d0e19e1c7a4cb16b58db792e8f266b5fe374b06ecc0bde72d6da6c1b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      },
+      "limitations": [
+        "Only exact inspected ecoinvent 3.9 cut-off Swiss treatment of ordinary municipal solid waste is reviewed: negative one kg waste reference versus native positive one kg treatment service, factor -1. Preserve signed caller quantities, supported uncertainty and formulas, foreground ownership, separate emissions and credits. Use the complete native service once; other source releases, patches, system models and reverse routes gain no approval.",
+        "The same documented Swiss 2010 average mixed-waste incineration function has matching composition, heating-value, carbon and residue facts, including 0.2221 kg slag, 0.02224 kg residues and 0.008896 kg solidification cement per kg waste. This is ordinary mixed municipal waste, not fly-ash-extraction treatment or a substitute for a specified single waste material. Do not add another ash stage, recovery, combustion, plant or landfill infrastructure, energy output or avoided-material credit.",
+        "Of 132 source direct biosphere exchanges, 127 match the native 2026 export exactly by publisher UUID, full compartment, unit and amount. Native generic Manganese replaces source Manganese II at the same signed kg and exact receiving compartments: 0.00024822 kg to long-term groundwater and 1.8522e-8 kg to surface water. This ionic-speciation proxy has unquantified score effects; no manganese mass, compartment or oxidation correction is introduced.",
+        "The native export lacks three listed source flows: 0.001459 m3 Water to urban air close to ground, 0.00046375 m3 Water to surface water, and 1.3366 kg Oxygen from natural resource/in air. Those are documented native coverage differences, not caller-exchange omissions. Do not infer water balance or add compensating oxygen or emissions. The complete native inventory replaces source internal uncertainty and correlations; no LCI, LCIA or stochastic equivalence is claimed.",
+        "Source has 0.13071 MJ district/industrial natural-gas heat; native uses 0.13071 MJ natural gas burned in an industrial furnace. These energy references differ, so do not infer exact fuel draw or efficiency. Source internal lorry freight is 0.0097129 tkm; native has 0.013959 tkm lorry and 0.0063182 tkm rail. Retain the whole native heat and freight models without copying source utilities or delivery a second time. Warnings cover useful-heat/fuel basis, geography, fleet, allocation, upstream supplies, vintage, internal uncertainty and unquantified score differences.",
+        "Source separately names recovered Al, Cu and Fe cut-off-stock outputs at -0.0012162, -0.00012319 and -0.0097909 kg per kg waste. Native documentation reports the same recovery quantities without those separate stock edges. Preserve the native complete cut-off boundary without inventing avoided virgin-metal credits or extra collection/sorting burdens; independently listed caller recovery remains unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "64ec6808d872d6cc6fd983a60a52041c2eaa5b869adcab677cfff64e0c497a69"
+        }
+      ]
     }
   ],
   "superseded_operations": [
