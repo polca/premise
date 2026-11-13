@@ -1513,3 +1513,18 @@ Premise's 16 targeted checks pass, native signed LCIs are finite, and the compil
 migration resource and runtime Python remain unchanged. The real CDR probe now
 reaches a 3.12 correspondence (`bp-0c3c05a7a1c1e60a`). CDR stays unqualified;
 no additional sector export is claimed.
+
+
+## Carbon-removal preparation: exact 3.12 steel and wastewater scopes
+
+Two additional source scopes are registered without changing compiled rules.
+Native rolled 18/8 steel is retained per signed kg. Complete native class-1
+municipal treatment is a screening proxy per m3 with factor -1; the source COD
+0.42534 versus native 0.1556 kg/m3 and regional stage/sludge differences remain
+explicit warnings. All 1,271 prior scopes and operations remain unchanged.
+Brightpath's 16 and Premise's seven focused cases pass using the local Brightpath
+checkout; native signed LCIs are finite. Publication and installed-package
+qualification are not yet claimed. See [review](uvek-cdr-312-steel-wastewater-review.md).
+
+The small-boiler heat, European delivered-water and MDEA correspondences are
+still under review. CDR remains gated, with no update/export qualification.

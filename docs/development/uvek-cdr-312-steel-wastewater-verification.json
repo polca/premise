@@ -1,0 +1,72 @@
+{
+  "prior_scope_count": 1271,
+  "current_scope_count_expected": 1273,
+  "all_prior_fingerprints_retained": true,
+  "previous_operations_unchanged": true,
+  "compiled_migration_resource_unchanged": true,
+  "review_sha256": "5873237eee57b677fb7316aab0ab82f71445ff612afa12911516b92b3d7e9d28",
+  "source_profile": "ecoinvent 3.12 cut-off",
+  "runtime_python_changes": [],
+  "date": "2026-11-13",
+  "brightpath_revision": "649e79c22a4174375f0ef5ad4923cac1e1e6c239",
+  "brightpath_tests_passed": 16,
+  "premise_tests_passed": 7,
+  "verification_imports": "Local Brightpath checkout for the new packaged review; no installed-package or public CDR qualification claim.",
+  "native_lci": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "database": "BAFU:2026-reimported",
+    "source_metadata_unchanged": true,
+    "activities": [
+      {
+        "name": "Chromium steel 18/8, at plant",
+        "reference_product": "Chromium steel 18/8, at plant",
+        "location": "RER",
+        "unit": "kilogram",
+        "reference_amount": 1,
+        "signed_LCI_demands": [
+          2.5,
+          -2.5
+        ],
+        "finite_and_signed_reversal_verified": true
+      },
+      {
+        "name": "Treatment, sewage, to wastewater treatment, class 1",
+        "reference_product": "Treatment, sewage, to wastewater treatment, class 1",
+        "location": "CH",
+        "unit": "cubic meter",
+        "reference_amount": 1,
+        "signed_LCI_demands": [
+          2.5,
+          -2.5
+        ],
+        "finite_and_signed_reversal_verified": true
+      },
+      {
+        "name": "Heat, biomethane, at boiler condensing modulating 50kW",
+        "reference_product": "Heat, biomethane, at boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule",
+        "reference_amount": 1,
+        "signed_LCI_demands": [
+          2.5,
+          -2.5
+        ],
+        "finite_and_signed_reversal_verified": true
+      },
+      {
+        "name": "Tap water, at user",
+        "reference_product": "Tap water, at user",
+        "location": "RER",
+        "unit": "kilogram",
+        "reference_amount": 1,
+        "signed_LCI_demands": [
+          2.5,
+          -2.5
+        ],
+        "finite_and_signed_reversal_verified": true
+      }
+    ]
+  },
+  "pending_batch_publication": true,
+  "carbon_removal_qualified": false
+}

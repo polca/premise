@@ -259071,6 +259071,202 @@
           "fingerprint": "6dc26e9b9cab00a82af1a5050547844d6e81211caf3039ac85e8a55e7c8ce61c"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-7b718a88076307fe",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_cdr_312_steel_wastewater_review.json",
+      "review_sha256": "5873237eee57b677fb7316aab0ab82f71445ff612afa12911516b92b3d7e9d28",
+      "authorization": "Standing autonomous approval of documented screening correspondences and treatment-sign conventions after inspecting the exact source profile; native and source differences remain explicit warnings.",
+      "inspection": {
+        "rule_id": "bp-7b718a88076307fe",
+        "rule": {
+          "confidence": 0.48,
+          "id": "bp-7b718a88076307fe",
+          "mapping_method": "heuristic_similarity",
+          "source": {
+            "location": "RER",
+            "name": "steel production, chromium steel 18/8, hot rolled",
+            "reference product": "steel, chromium steel 18/8, hot rolled",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "RER",
+            "name": "Chromium steel 18/8, at plant",
+            "reference product": "Chromium steel 18/8, at plant",
+            "unit": "kilogram"
+          }
+        },
+        "source": {
+          "location": "RER",
+          "name": "steel production, chromium steel 18/8, hot rolled",
+          "reference product": "steel, chromium steel 18/8, hot rolled",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Chromium steel 18/8, at plant",
+          "reference product": "Chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "target_reference_amount": 1,
+        "conversion_factor": 1,
+        "source_evidence": {
+          "metadata_sha256": "2e0774d55f9073ecce7542dfd0b196a68edd9d563f40700773b3396705789934",
+          "inventory_sha256": "994ddee5e6a5e553187acdc07b223ceb9a51572f1df5685e32ef757e09b567b1",
+          "activity_comment_sha256": "a12b7f86ddc1306765a825791142db19ae35d59344aa969cdcd45c8889b6411d",
+          "product_information_sha256": "6a581ee924a9bd361790b1243e29172519051e6ba53484fa328153485fd49ccd"
+        },
+        "producer_evidence": [],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "11c6f799714d601ae7d7a305b361c69715d761fcc386d8423d116ecb8272977b",
+            "inventory_sha256": "65ff1698deb6608843bd5f9228d54d8435bb0ddc09c0d44a86a8f367cdbb1ecc",
+            "activity_comment_sha256": "1f0ee86df6a098c1e2b0ebb80325866bfdeb398a88af13d9d927d375de2dd894",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "metadata_sha256": "419e2ed7946b70fc6c74b9c0455dc484c9af1df32ac62c88b3a3945afe59c787",
+            "inventory_sha256": "023bcbab129960e97800dee9f230256da1b34ae7b2efdec2c541b75e52204464",
+            "activity_comment_sha256": "83c5d3acd0469df50cfed08132a9d8d94e0b368974c806c4c20320791dee2f2b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "native_2025_2026_technosphere_vectors_equal": true,
+        "limitations": [
+          "Use complete native RER chromium steel 18/8 at plant per signed kg. Both source and native describe a mix of world/European steel production and hot rolling for European consumption. Preserve the caller mass and include the native rolling inventory once; no extra rolling process, alloy-content multiplier, recycled-content normalization or recovery credit. Steelmaking shares, upstream allocation, electricity, scrap boundaries, geography and vintage differ, with unquantified score effects.",
+          "This approves only the exact inspected 3.12 cut-off source profile and existing directional rule. No older, patch, reverse or cross-system-model approval is inferred; no inventory/LCIA equivalence is claimed."
+        ]
+      },
+      "limitations": [
+        "Use complete native RER chromium steel 18/8 at plant per signed kg. Both source and native describe a mix of world/European steel production and hot rolling for European consumption. Preserve the caller mass and include the native rolling inventory once; no extra rolling process, alloy-content multiplier, recycled-content normalization or recovery credit. Steelmaking shares, upstream allocation, electricity, scrap boundaries, geography and vintage differ, with unquantified score effects.",
+        "This approves only the exact inspected 3.12 cut-off source profile and existing directional rule. No older, patch, reverse or cross-system-model approval is inferred; no inventory/LCIA equivalence is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a14b73589be28eae06187d4a2913a40d88d1e6927364f557a86f60abe5889e97"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-14c85826881a6371",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_cdr_312_steel_wastewater_review.json",
+      "review_sha256": "5873237eee57b677fb7316aab0ab82f71445ff612afa12911516b92b3d7e9d28",
+      "authorization": "Standing autonomous approval of documented screening correspondences and treatment-sign conventions after inspecting the exact source profile; native and source differences remain explicit warnings.",
+      "inspection": {
+        "rule_id": "bp-14c85826881a6371",
+        "rule": {
+          "confidence": 0.307692,
+          "conversion_factor": -1,
+          "id": "bp-14c85826881a6371",
+          "mapping_method": "heuristic_similarity",
+          "reference_flow_sign_review": {
+            "evidence": [
+              "brightpath/data/export/uvek_reference_flow_sign_review.json#ecoinvent-3.x-to-uvek-2025-technosphere/bp-14c85826881a6371"
+            ],
+            "reason": "Ecoinvent's negative waste reference and UVEK's positive treatment-service reference require opposite exchange signs.",
+            "source_sign": -1,
+            "status": "verified",
+            "target_sign": 1
+          },
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "treatment of wastewater, average, wastewater treatment",
+            "reference product": "wastewater, average",
+            "unit": "cubic meter"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Treatment, sewage, to wastewater treatment, class 1",
+            "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+            "unit": "cubic meter"
+          }
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "treatment of wastewater, average, wastewater treatment",
+          "reference product": "wastewater, average",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Treatment, sewage, to wastewater treatment, class 1",
+          "reference product": "Treatment, sewage, to wastewater treatment, class 1",
+          "unit": "cubic meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "target_reference_amount": 1,
+        "conversion_factor": -1,
+        "source_evidence": {
+          "metadata_sha256": "d49a3598b4a40d92652b754a261e2bdb9b60a3d4e3b002e1d16a45ba391a4531",
+          "inventory_sha256": "1eed62ada265d5158ccf455fe4b0df69490beaf24bb51cac3f1d5e8ee78c44d7",
+          "activity_comment_sha256": "f4b29ba367a27ba67765d486ec89cb24bfe23abf6e573db608d958937f92cbb4",
+          "product_information_sha256": "4431464937150ef5c60501809b06f57af46126b2d3072c585f9f99b86f9445bc"
+        },
+        "producer_evidence": [],
+        "native_references": {
+          "2025": {
+            "metadata_sha256": "9f594f4139d789ec83bb14819ba02dd891f77e2259a819508c2fa490a2f9da37",
+            "inventory_sha256": "325deffc585f7e9186114d29a52ef831e90c393a5246ccdba4d7b8fe699ba1e2",
+            "activity_comment_sha256": "dd1229fb80187e0f4b2f9ebb237cd092bb1e4cbb046bd154f237e3d1d95d9dda",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "metadata_sha256": "fbc6ab22e985e6f180384a74c8a1814b33455987efe17cfdccd9ef7637468cc8",
+            "inventory_sha256": "c4c564a533c3f8618d5158e03770e7bffbb6a0dc2801fe116f4e3e13dab0be9c",
+            "activity_comment_sha256": "db5fcf4c9e4e5057481df255046c8064091ecdfa8fb819b301af0ed6c1fce7c9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "native_2025_2026_technosphere_vectors_equal": true,
+        "limitations": [
+          "Use the complete native CH large municipal class-1 sewage treatment service per signed cubic metre as an explicit screening proxy for average wastewater treatment in Europe without Switzerland. Source waste reference -1 m3 and native service +1 m3 require factor -1 once. Native has three-stage treatment and sludge digestion; source represents a regional one/two/three-stage portfolio and different sludge/energy use. Source COD 0.42534 kg/m3 differs from documented native 0.1556 kg/m3. Do not rescale volume by COD, capacity or energy recovery. Keep native complete treatment and caller-owned sewering/direct emissions separate, without adding sewers, extra direct release, new energy credits or forcing all negative callers positive. Influent composition, nutrient/metal loads, stage mix, sludge/energy allocation, infrastructure, geography and vintage remain differences with unquantified score effects.",
+          "This approves only the exact inspected 3.12 cut-off source profile and existing directional rule. No older, patch, reverse or cross-system-model approval is inferred; no inventory/LCIA equivalence is claimed."
+        ]
+      },
+      "limitations": [
+        "Use the complete native CH large municipal class-1 sewage treatment service per signed cubic metre as an explicit screening proxy for average wastewater treatment in Europe without Switzerland. Source waste reference -1 m3 and native service +1 m3 require factor -1 once. Native has three-stage treatment and sludge digestion; source represents a regional one/two/three-stage portfolio and different sludge/energy use. Source COD 0.42534 kg/m3 differs from documented native 0.1556 kg/m3. Do not rescale volume by COD, capacity or energy recovery. Keep native complete treatment and caller-owned sewering/direct emissions separate, without adding sewers, extra direct release, new energy credits or forcing all negative callers positive. Influent composition, nutrient/metal loads, stage mix, sludge/energy allocation, infrastructure, geography and vintage remain differences with unquantified score effects.",
+        "This approves only the exact inspected 3.12 cut-off source profile and existing directional rule. No older, patch, reverse or cross-system-model approval is inferred; no inventory/LCIA equivalence is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9aa4d402eb26c5f071a000d1ba9c60aa883d6d5f97cae5cca8833796408b5b05"
+        }
+      ]
     }
   ],
   "superseded_operations": [

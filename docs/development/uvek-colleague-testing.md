@@ -45,7 +45,7 @@ already belongs to an environment you need, register a different name and select
 it manually in JupyterLab. Registering a kernel does not move Brightway projects.
 
 Premise installs Brightpath directly from GitHub at
-`4ec9c53f05d5ed7ee2d8a55861d236fb58f3c907`. Installing only the published
+`649e79c22a4174375f0ef5ad4923cac1e1e6c239`. Installing only the published
 Brightpath alpha14 package is insufficient. Internet access is needed for the
 installation, biosphere installation and first CLIC inventory download.
 
@@ -53,7 +53,7 @@ If you previously installed another GitHub revision, the unchanged alpha14
 version number can make pip keep it. To update that existing environment explicitly:
 
 ```bash
-python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@4ec9c53f05d5ed7ee2d8a55861d236fb58f3c907"
+python -m pip install --force-reinstall --no-deps "brightpath @ git+https://github.com/romainsacchi/brightpath.git@649e79c22a4174375f0ef5ad4923cac1e1e6c239"
 ```
 
 Restart the notebook kernel after upgrading. A fresh environment uses the pinned
@@ -231,7 +231,8 @@ remaining sectors are still being qualified.
 ## Fresh notebook check: 13 November 2026
 
 All nine example code cells ran in order in the registered `premise` Jupyter
-kernel, using the installed GitHub Brightpath revision listed above. Only the
+kernel, using installed GitHub Brightpath revision
+`4ec9c53f05d5ed7ee2d8a55861d236fb58f3c907`. Only the
 password prompt was automated in a private execution copy; the published
 notebook keeps the interactive prompt and remains unchanged, with no outputs
 or execution counts. No sector gate or validation was bypassed.
