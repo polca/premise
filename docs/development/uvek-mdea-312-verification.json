@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "6b6aa3523a21c00f13062c25f6bb6f986848abf7",
+  "rule_id": "bp-05e536a8f677ffd7",
+  "scope_registration": {
+    "prior_scope_count": 1278,
+    "new_scope_count": 1279,
+    "added_scope": {
+      "source": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "target": {
+        "family": "uvek",
+        "system_model": "cutoff",
+        "version": "2025"
+      },
+      "fingerprint": "30984a1f1f4ac812fa9454e5963333f86a0b7f807a7745dd048818690239278e"
+    },
+    "all_other_operations_exactly_unchanged": true,
+    "review_sha256": "71ac2c95c2007dfccc7cbe372acd3212c9a5332b73c625f2e7f7017987906837",
+    "runtime_python_changes": []
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "native_supplier_bindings": 9,
+    "exact_310_biosphere_bindings": 15,
+    "native_source_read_only": true,
+    "signed_demand_kg": [
+      2.5,
+      -2.5
+    ],
+    "finite_supply_and_inventory": true,
+    "agrees_with_independently_flattened_native_demand_and_direct_emissions": true,
+    "max_abs_inventory_difference": 1.4210854715202004e-14,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "database_registry_unchanged": true,
+    "source_and_biosphere_metadata_unchanged": true,
+    "qualification_limit": "Mapping/helper closure and numerical consistency only; no MDEA source-equivalence, LCIA/toxicity equivalence or CDR-sector/export qualification."
+  },
+  "packaged_wheel": {
+    "source_commit": "6b6aa3523a21c00f13062c25f6bb6f986848abf7",
+    "wheel_sha256": "93fbb346df845365cf1daf3586e3102bbffd26fbb054de9c723a366a1d1aa50a",
+    "wheel_bytes": 43819049,
+    "packaged_files_match_checkout": [
+      "brightpath/data/export/uvek_mdea_312_review.json",
+      "brightpath/data/migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "brightpath/data/migrations/RESOURCE_MANIFEST.json"
+    ],
+    "artifact_type": "local wheel from committed source; GitHub installation awaits coordinated batch publication"
+  },
+  "tests": {
+    "brightpath_mapping": {
+      "passed": 17,
+      "log": "test-mdea-brightpath.log"
+    },
+    "brightpath_resource_storage": {
+      "passed": 10,
+      "log": "test-mdea-resource-storage.log"
+    },
+    "premise_mdea_and_existing_water_regression": {
+      "passed": 14,
+      "log": "test-mdea-premise.log"
+    },
+    "black_and_focused_ruff": "passed; generator baseline import-sorting findings are unchanged",
+    "installed_local_wheel_mdea": {
+      "passed": 3,
+      "log": "test-mdea-installed-wheel.log",
+      "overlaps_primary_premise_cases": true
+    }
+  },
+  "runtime_python_changes": [],
+  "real_CDR_probe": {
+    "status": "failed",
+    "exception_type": "PremiseValidationError",
+    "message": "Inventory validation failed with 1 unsuppressed error(s) [GRAPH.NEW_FORBIDDEN_CYCLE=1]: GRAPH.NEW_FORBIDDEN_CYCLE: Transformation introduced a technosphere cycle absent from the baseline. (activity=('1,1-difluoroethane, HFC-152a, at plant', '1,1-difluoroethane, HFC-152a, at plant', 'US'), expected='baseline cycle or acyclic graph', actual=[['1,1-difluoroethane, HFC-152a, at plant', '1,1-difluoroethane, HFC-152a, at plant', 'US'], ['1-butanol, propylene hydroformylation, at plant', '1-butanol, ...)",
+    "failed_stage": "exhaustive graph validation",
+    "sector": "cdr",
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 53.510997500037774,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "publication": "Queued with prior water/storage commits for a coordinated batch; installed local wheel matches committed Brightpath source.",
+  "qualification": "MDEA helper graph and inventory preparation pass. Standalone CDR exhaustive validation reports a cycle because its electricity product labels differ from the normalized baseline; no new CDR internal edge creates that component. Normalization/filter alignment and full sector qualification remain unfinished.",
+  "next_blocker_diagnosis": "docs/development/uvek-cdr-cycle-alias-diagnostic.json"
+}

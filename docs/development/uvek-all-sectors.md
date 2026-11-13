@@ -1620,3 +1620,41 @@ without a new Brightway database, activity or processed file. The real CDR probe
 passes water and stops at MDEA; no CDR update/export is claimed. Commits and the
 GitHub dependency pin await the next publication batch; the local environment
 uses the verified committed-source wheel. Seven sectors remain qualified.
+
+## MDEA reconstruction and the next CDR graph check
+
+The wrong alcohol match for the exact 3.12 cut-off MDEA market is replaced by
+a native-derived screening reaction model plus retained finished-product delivery.
+The audited methylamine/ethylene-oxide feeds, electricity and MJ heat are kept;
+existing chemical-plant MJ heat is reused rather than treating kg of steam as MJ.
+Native processing/emission assumptions, the missing MDEA-specific 3.10 biosphere
+release, uncertain loss fates, allocation, purification and unquantified score/toxicity
+differences are explicit warnings. This is not an exact MDEA plant model.
+See [review](uvek-mdea-312-review.md) and [verification](uvek-mdea-312-verification.json).
+
+One scoped grant is added; all 1,278 previous grants are unchanged. The 17 mapping,
+10 resource-storage and 14 Premise mapping/cache regression checks pass. The
+in-memory helper graph binds nine native suppliers and 15 exact biosphere flows;
+both signed LCIs are finite and agree with independently flattened native demand
+plus direct emissions to a maximum absolute difference of 1.43e-14. There are no
+new Brightway databases, registered activities or processed files, and no runtime
+Python edits. The frozen review and minimal maintainer replay/generator hook,
+compiled mappings, Premise approval data, tests and notes are the changes.
+
+The encrypted REMIND CDR diagnostic now passes inventory preparation and returns
+from the shared CDR update. Exhaustive validation then reports one
+`GRAPH.NEW_FORBIDDEN_CYCLE` component. The public CDR gate stays closed; no CDR
+export or sector qualification is claimed. The next check traces its introduced
+edges against both the prepared inventory and raw-source baseline. Seven of 19
+sectors remain qualified. Changes await the next coordinated publication batch;
+the installed local Brightpath wheel matches committed source after kernel restart.
+
+The subsequent edge trace finds that this flagged component already exists in
+the prepared graph; CDR introduces no internal edge or node into it. All 232
+differing component identities are explained by native versus canonical
+electricity product aliases. With the existing aliases applied to the identity
+comparison, the component is contained in the known baseline. See the
+[diagnostic](uvek-cdr-cycle-alias-diagnostic.json). Next: align the standalone
+CDR family normalization and filters, then verify exhaustive validation and
+actual technology coverage. Do not suppress the cycle rule. Three installed
+local-wheel MDEA checks also pass (overlap with the primary Premise cases).

@@ -259666,6 +259666,123 @@
           "fingerprint": "57871eb520adb419715d20908905f605b6b524beb80c8bae0727830fc48fc1b0"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-05e536a8f677ffd7",
+      "mapping_method": "reviewed_mdea_native_derived_screening",
+      "review_path": "export/uvek_mdea_312_review.json",
+      "review_sha256": "71ac2c95c2007dfccc7cbe372acd3212c9a5332b73c625f2e7f7017987906837",
+      "authorization": "Standing user approval to resolve remaining mappings autonomously and log modelling decisions with warnings.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "market for methyldiethanolamine",
+          "reference product": "methyldiethanolamine",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for methyldiethanolamine",
+            "reference product": "methyldiethanolamine",
+            "unit": "kilogram",
+            "location": "RER"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "1ded4c1ae39c09c4304f2d4b28d5b28fd632cc8c61bf4647b73967eed574ea15",
+          "inventory_sha256": "d1af838d18e0064e1e78254e4266166e890a08df84422b3d549677f25be8883b",
+          "activity_comment_sha256": "4059934bcc3b19886ca958b70a6a988ea69470014c9348c08b961ccf94ae5d13",
+          "product_information_sha256": "e50fa3e7919ead560d32ce79a764ce323721eef0b8cd05e5533ea68cf42d8175"
+        },
+        "producer_witness": {
+          "identity": {
+            "name": "methyldiethanolamine production, from ethoxylation of methylamine",
+            "reference product": "methyldiethanolamine",
+            "unit": "kilogram",
+            "location": "RER"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "c433d0ce08a72a5daec21ee843db6f716c06aa5ce6f1710b5ad8adb90674aec8",
+          "inventory_sha256": "8ff7cc0dbd2f82fca051aacb0ca9c502b80d876fd2b7892720b749f21937322d",
+          "activity_comment_sha256": "9179ac052349e30497007c51447bd7f34a66b1007c220d221ebdc01e894da664",
+          "product_information_sha256": "e50fa3e7919ead560d32ce79a764ce323721eef0b8cd05e5533ea68cf42d8175"
+        },
+        "recipe_id": "mdea-312-rer-delivered-market",
+        "production_recipe_id": "mdea-312-native-derived-ethoxylation",
+        "derived_checks": {
+          "atomic_weights_g_per_mol": {
+            "C": 12.011,
+            "H": 1.008,
+            "N": 14.007,
+            "O": 15.999
+          },
+          "molecular_weights_g_per_mol": {
+            "methylamine": 31.058,
+            "ethylene oxide": 44.053,
+            "MDEA": 119.16399999999999
+          },
+          "reactants_kg": {
+            "methylamine": 0.277102747869839,
+            "ethylene oxide": 0.786108042926247
+          },
+          "feed_MA_to_EO_molar_ratio": 2.0000433263209265,
+          "implied_reaction_yield_MA": 0.9405623284636406,
+          "implied_reaction_yield_EO": 0.9405419533523827,
+          "scaling": {
+            "reactant_mass": 0.6472100555139437,
+            "reactant_carbon": 1.1495984795192413,
+            "reactant_nitrogen": 0.1928329646779755,
+            "waste_heat": 1.075075075075075
+          },
+          "elemental_kg_per_kg_product": {
+            "carbon_feed": 0.5358263226116856,
+            "carbon_feed_minus_product": 0.0318570030185199,
+            "represented_carbon_release": 0.019343015944507862,
+            "nitrogen_feed": 0.12497192959665256,
+            "nitrogen_feed_minus_product": 0.007428040502630864,
+            "represented_nitrogen_release": 0.0010087547924474624
+          },
+          "complete_atom_balance": false
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Screening reconstruction, not a measured MDEA plant or LCIA-equivalent replacement. Only exact ecoinvent 3.12 cut-off is reviewed; no other version, patch, reverse or cross-system-model approval.",
+        "Product basis is 1 kg of pure methyldiethanolamine (CAS 105-59-9, C5H13NO2), not 2-methyl-2-butanol, diethanolamine or a diluted solution. Preserve the audited methylamine and ethylene-oxide feed quantities, without correcting their implied approximately 94.06% stoichiometric yield to the documented stated 95% estimate; apply no second yield or concentration factor.",
+        "Retain the audited 0.358 kWh electricity, 3.72 MJ chemical-process heat and 4e-10 chemical-factory units once. Reuse the already-reviewed complete native chemical-plant MJ heat service with its retained water exchanges. Never convert MJ to kg of fresh steam without an established enthalpy basis or add native diethanolamine heat/electricity again.",
+        "Remaining overhead and direct emissions are derived from native diethanolamine processing, whose historical estimated inventory and mass-allocated ethanolamine co-production do not describe MDEA selectivity, recycling, distillation or purification. No co-product or recovered-amine credit is added.",
+        "Replace native ammonia feed by methylamine. For estimated air releases use the native documented 0.2% raw-reactant rule for methylamine and ethylene oxide. Scale native ethylene-oxide water release by EO input, nitrogen-species releases by reactant nitrogen and carbon indicators/CO2 by reactant carbon. These are explicit screening assumptions, not measured MDEA emissions or a toxicity equivalence.",
+        "Scale native raw-material road/rail freight by total reactant mass to retain its implied transport distances. Keep native process/cooling water quantities and returns per kg of product; scale native waste heat by the electricity ratio. These utilities, water and wastewater assumptions replace the source internal water and wastewater model, without adding a second wastewater treatment service.",
+        "The source-specific Methydiethanolamine water release (0.00025 kg/kg) has no established ecoinvent 3.10 biosphere definition and is not represented by this processing proxy. No other substance is silently substituted and no flow is invented. Source VOC, COD, DOC, nutrient, treatment and residue coverage differ; toxicity and score effects are unquantified. This is an internal model difference, not permission to omit foreground emissions.",
+        "Carbon and nitrogen screening checks only bound represented elemental releases below feed-minus-product excess. Unrepresented loss fates remain unresolved; this is not complete atom balance. DOC and TOC describe overlapping carbon, while COD/BOD are oxygen-demand indicators; do not add them as independent carbon masses.",
+        "Use complete native methylamine and ethylene-oxide production on their verified positive kg references. Native upstream allocation, technology, energy, geography, vintage, biosphere exclusions and internal uncertainty replace the source backgrounds. No purity multiplier or new fuel-production burden is inferred.",
+        "Preserve all three original finished-product delivery entries separately at their original signed tkm quantities and uncertainty; native barge, fleet-average lorry and rail are technology/geography proxies. Do not renormalize or double count delivery and raw-material freight.",
+        "Preserve caller signed kg, supported uncertainty, formulas and separately listed emissions. Native/source exchange distributions are retained or scaled consistently where used, but added modelling uncertainty and correlations are not quantified. The model is not suitable for asserting comparative toxicity or exact score equivalence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "30984a1f1f4ac812fa9454e5963333f86a0b7f807a7745dd048818690239278e"
+        }
+      ]
     }
   ],
   "superseded_operations": [

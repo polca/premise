@@ -1,0 +1,29 @@
+{
+  "prepared_component_size": 4144,
+  "baseline_component_size": 4156,
+  "shared_keys": 3912,
+  "electricity_product_aliases_explain_entire_prepared_difference": true,
+  "normalized_prepared_component_contained_in_existing_baseline": true,
+  "prepared_only_key_count": 232,
+  "baseline_additional_nodes_after_normalization": 12,
+  "interpretation": "The reported component is not new CDR feedback: existing electricity product aliases are applied to the baseline but absent from the standalone CDR graph. Baseline also keeps zero-quantity connectivity.",
+  "scenario": "encrypted REMIND SSP2-NPi 2050; standalone CDR private diagnostic",
+  "prepared_activity_count": 12000,
+  "updated_activity_count": 12214,
+  "flagged_component_new_nodes_during_CDR_update": 0,
+  "flagged_component_new_internal_edges_during_CDR_update": 0,
+  "sample_prepared_key": [
+    "Electricity mix",
+    "Electricity mix",
+    "AR"
+  ],
+  "sample_baseline_key": [
+    "Electricity mix",
+    "electricity, high voltage",
+    "AR"
+  ],
+  "validation_suppressed": false,
+  "runtime_code_changed": false,
+  "export_performed": false,
+  "next_action": "Align the standalone CDR workflow with the existing family-aware normalization and alias/filter mappings, then rerun exhaustive validation and audit actual CDR technology coverage. Do not suppress the cycle rule or infer whole-sector qualification."
+}

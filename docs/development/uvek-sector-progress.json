@@ -2204,7 +2204,7 @@
       },
       "current_mapping_frontier": {
         "date": "2026-11-13",
-        "status": "inventory_preparation_incomplete_no_CDR_update_or_export",
+        "status": "inventory_preparation_and_update_returned_exhaustive_graph_validation_failed_no_export",
         "completed_reviews": [
           "docs/development/uvek-pump-profiles-review.md",
           "docs/development/uvek-spent-solvent-profiles-review.md",
@@ -2212,13 +2212,16 @@
           "docs/development/uvek-cdr-equipment-profiles-review.md",
           "docs/development/uvek-cdr-312-steel-wastewater-review.md",
           "docs/development/uvek-cdr-small-biomethane-heat-review.md",
-          "docs/development/uvek-european-delivered-water-review.md"
+          "docs/development/uvek-european-delivered-water-review.md",
+          "docs/development/uvek-mdea-312-review.md"
         ],
-        "next_source_profile": "ecoinvent 3.12 cut-off",
         "pending_cases": [
-          "methyldiethanolamine market: incorrect alcohol match; native ethoxylation reconstruction under review"
+          "Standalone CDR retains native electricity product labels while validation baseline uses existing canonical aliases: all 232 differing prepared component keys are explained by this mismatch. Align existing family normalization/filter mappings and rerun exhaustive validation without suppressions.",
+          "Audit actual CDR technology/filter coverage and physical invariants, then standard public update and export; inventory preparation alone does not qualify this sector."
         ],
-        "scope_gate": "Intentionally closed until standard update/export and filters are verified."
+        "scope_gate": "Intentionally closed until standard update/export and filters are verified.",
+        "latest_probe": "docs/development/uvek-mdea-312-verification.json",
+        "cycle_diagnostic": "docs/development/uvek-cdr-cycle-alias-diagnostic.json"
       }
     },
     {
