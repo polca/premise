@@ -268963,6 +268963,101 @@
           "fingerprint": "e684665ef8c74a23f39c0ec1483fc7d4fbb0b9eec80a52ab1c5622e9d6d01c87"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-8693559c1c84259d",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_ethylene_glycol_39_review.json",
+      "review_sha256": "4e38d88494975ce8a08948e1e5bf7bd6d493dc832b76995fbae64572b2fd8dbe",
+      "authorization": "Standing autonomous approval of remaining mapping decisions and complete native named-product screening proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "ethylene glycol production",
+            "reference product": "ethylene glycol",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 10,
+          "metadata_sha256": "34168faa5c512cce8d34c771e262933d23355fd46aa7053971dee3b19be8522f",
+          "inventory_sha256": "102d249e6044d7ce90d276b3443d4a31288189407a73e0cfc754cfd2ec354dba",
+          "activity_comment_sha256": "476eb33c197ff692d83c8640fd7af5e2877a4a83b2f2b6aec30b8210bdd7a201",
+          "product_information_sha256": "857b9e524491c6804e84675d60d6459e19f6a44fe08b77c21d85c5fedbfd812a"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Ethylene glycol, at plant",
+              "reference product": "Ethylene glycol, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 349,
+            "metadata_sha256": "a6a6402a32fe83763b1d93fde73347705c0e3a3060d4a3eb401551f3db6d249e",
+            "inventory_sha256": "1e5b6f631b97d37afdd034de2b0c44cb456df87527737eed64b948791c7a7239",
+            "activity_comment_sha256": "183d449eb636e420f4c53f236c879b6eb9df2b64c28b5d2e76d69b753ee0cd89",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Ethylene glycol, at plant",
+              "reference product": "Ethylene glycol, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 362,
+            "metadata_sha256": "7453acfeee8d1a180cc0ed0bac4b25d859532421132c2d2e890f6fb5b8ce3b77",
+            "inventory_sha256": "bfd15e361d9048f5cf93bd66c27fa5333ba43153fe06de5fed69087183d83621",
+            "activity_comment_sha256": "248d67a4cac33eb5714c4965574c022474ee72ddd313e0171e33a39d84de633d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_CAS": "107-21-1",
+          "source_formula": "C2H6O2",
+          "source_pure_substance": true,
+          "native_exact_assay_independently_specified": false,
+          "native_named_product": "monoethylene glycol",
+          "coproduct_yield_or_purity_multiplier_added": false,
+          "extra_source_feedstock_or_energy_added": false,
+          "native2026_technosphere_entries": 8,
+          "native2026_biosphere_entries": 354,
+          "native_explicit_electricity_or_heat_purchase_entries": 0,
+          "embedded_upstream_energy_can_be_updated_by_ordinary_supplier_substitution": false
+        }
+      },
+      "limitations": [
+        "New approval covers only independently inspected ecoinvent 3.9 cut-off European ethylene-glycol production. Source is pure ethane-1,2-diol/monoethylene glycol, CAS107-21-1, C2H6O2, not ethylene-glycol dimethyl ether, DEG/TEG, polyethylene glycol or an aqueous antifreeze mix. Source and native named monoethylene-glycol product references are positive one kg at plant; factor +1 preserves signed caller chemical kg, supported uncertainty/formulas, foreground ownership and separate materials/emissions. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Use the complete native European ethylene-glycol product inventory once. Source describes separated 100%-basis glycol coproducts from ethylene-oxide hydration; native describes integrated EO/glycol industry modelling with MEG as its principal glycol product. The reference has no solution/concentration qualifier, but native exact assay is not independently specified in the inspected metadata. This is a named-product kg screening correspondence, not proof of identical grade, assay or coproduction allocation. Do not infer purity from the reaction-mixture MEG percentage or apply the stated process yield, 67%, 70-95% coproduct mix, molecular-weight, density, water or allocation ratios as another product multiplier. No DEG/TEG displacement credit, extra solvent or water dilution is invented.",
+        "Native supply is an aggregated cradle-to-gate industry inventory that already includes upstream feedstock, energy, emissions and process-waste treatment. Source instead purchases ethylene oxide and electricity explicitly with a plant contribution and seven direct biosphere entries. Native2026 has eight technosphere entries (plant/waste services) and 354 biosphere entries; its 2025 predecessor has eight and 341. Do not add source EO, electricity, fuel, water, plant or waste burdens on top of the complete native inventory, or force a source/native stoichiometric balance. Native internal feedstock, allocation, emissions, treatment, water, background, European geography, industry model and vintage replace the source supply chain. Source/native LCI, LCIA and stochastic equivalence are not claimed; score effects remain unquantified.",
+        "Scenario limitation: native upstream energy is embedded in its aggregated inventory rather than explicit electricity/heat technosphere links. Ordinary Premise electricity/fuel supplier substitutions cannot update that embedded portion; a successful scenario run must not be described as fully decarbonizing this chemical. Absence of explicit energy purchases does not mean physically zero energy. Preserve the native boundary and report this source-data limitation; do not fabricate an electricity/heat demand, subtract an unknown historical grid, deaggregate confidential industry burdens or introduce another transformation engine.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No new helper, recipe, omitted exchange, runtime Python module, cross-system route or validation bypass. The caller retains its own separate exchanges; the background-supplier substitution does not replace a caller-owned foreground chemical process definition."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4e91a8dd9031dbf755483c7fb0e76fd13c7b8bc533ab64c7ad1d808d19ef1f73"
+        }
+      ]
     }
   ],
   "superseded_operations": [

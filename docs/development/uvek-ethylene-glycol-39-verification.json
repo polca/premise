@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "7c85177c63bfbff6c192694dd2fe50cadfbc0152",
+  "scope_registration": {
+    "prior_scopes": 1359,
+    "new_scopes": 1360,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-8693559c1c84259d"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_sign_uncertainty_exact_scope_chemical_distinction_and_energy_boundary": 15,
+    "premise_fresh_cache_signed_uncertainty_own_scope_and_distinct_ether_refusal": 6,
+    "installed_package_premise_checks": 6,
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 1,
+    "native_suppliers": 1,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-8693559c1c84259d",
+        "source": {
+          "location": "RER",
+          "name": "ethylene glycol production",
+          "reference product": "ethylene glycol",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 2.069309745332126e-29,
+        "full_graph_residual": {
+          "residual_before": 4.441659588130959e-10,
+          "residual_after": 1.8553500795772546e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.441659588130959e-10,
+          "residual_after": 1.8553500795772546e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the ethylene-glycol named-product interface including its embedded upstream inventory and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_ethylene_glycol_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_retry": {
+    "prior_unapproved_source_39_rules": 136,
+    "current": 135,
+    "removed_rules": [
+      "bp-8693559c1c84259d"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-c262dc4d9b1cac43",
+    "next_source": {
+      "location": "GLO",
+      "name": "market for battery cell, Li-ion, LiMn2O4",
+      "reference product": "battery cell, Li-ion, LiMn2O4",
+      "unit": "kilogram"
+    },
+    "failed_stage": "inventory preparation",
+    "battery_qualified": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "validation_disabled": false,
+    "export_performed": false
+  },
+  "qualified_sectors": 8,
+  "registered_sectors": 19,
+  "runtime_python_changes": [],
+  "migration_resource_changes": [],
+  "existing_rule_default_target_and_fingerprints_unchanged": true,
+  "new_helpers": 0,
+  "new_source_omissions": [],
+  "source_reference": "One kg pure monoethylene glycol (ethane-1,2-diol), CAS107-21-1, C2H6O2.",
+  "target_reference": "One kg named monoethylene-glycol product at plant; no solution qualifier. Exact native assay is not independently specified.",
+  "important_limit": "The native cradle-to-gate industry inventory embeds upstream energy in aggregated biosphere entries. Ordinary electricity/heat supplier substitutions cannot update that embedded portion; complete scenario decarbonization is not claimed. Do not add source EO/electricity or yield/purity factors on top."
+}
