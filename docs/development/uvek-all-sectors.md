@@ -1952,3 +1952,7 @@ Preserved global RoW/RER and European CH/non-CH wrapper coefficients and uncerta
 ### Electric-arc-furnace dust market — 13 November 2026
 
 Retained both reviewed landfill shares and all eight collection-freight entries. Explicitly audited the two allocated-empty clinker waste interfaces; no invented treatment burden or recovery credit. Source sign/uncertainty and exact omission-scope checks pass, with finite signed in-memory LCIs and no database writes. Fresh battery preparation reduces the inspected source-3.9 cohort from 162 to 161 unapproved rules; next electric-arc-furnace slag. Eight of nineteen sectors remain qualified. See `uvek-eaf-dust-market-39-review.md` and verification JSON. Queued for the next batch push.
+
+### Electric-arc-furnace slag market — 13 November 2026
+
+Retained both previously reviewed landfill inventories/shares and all eight collection-freight entries. Audited the exact recovery handoff into empty cut-off stock, without a recovery credit or invented zero-service helper. Mapping/storage, fresh/cache sign and literal-omission checks and in-memory LCIs pass without database writes. Fresh battery preparation reduces the inspected source-3.9 cohort from 161 to 160 unapproved rules; next sorted, pressed iron scrap. Eight of nineteen sectors remain qualified. See `uvek-eaf-slag-market-39-review.md` and verification JSON. Queued for next batch push.

@@ -264971,6 +264971,298 @@
           "fingerprint": "da274f4cf43b860bbd3db7ec0a953e34f5dc50de21183348c7e3c5bb2222687d"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-fa554a8b5b5e0804",
+      "mapping_method": "reviewed_additional_cutoff_waste_market_service",
+      "review_path": "export/uvek_eaf_slag_market_39_review.json",
+      "review_sha256": "f12c26fbc582be7fbcdc99ef8e78d202b6f69c5b5118753f80b3a4885dcb8cac",
+      "authorization": "Standing autonomous user approval of inspected mappings and exact empty cut-off handoff omissions with explicit warnings and literal audit.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for electric arc furnace slag",
+          "reference product": "electric arc furnace slag",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for electric arc furnace slag",
+            "reference product": "electric arc furnace slag",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 11,
+          "metadata_sha256": "936c6288ff0de2d5cf07f4b03dd8006a6e2739ba04bdb40396cfd53103837415",
+          "inventory_sha256": "8a505efe4e2c23a858f4873e4220bd24d33c1052f8e5d701ff696b08b196469b",
+          "activity_comment_sha256": "cd7c3ed082cfea8bdc11e89211a1e99fd3b7fb5225cb530f372c4686917137e5",
+          "product_information_sha256": "7470046733d840fec4598bf3fc27010bd6220e0f717bebe458ad8804b602dc54"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of electric arc furnace slag, residual material landfill",
+              "reference product": "electric arc furnace slag",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 82,
+            "metadata_sha256": "76d9ec4ca773c4e8dbb97ffc98ee5305a2f4abd679297c98693eb14702c3fab9",
+            "inventory_sha256": "0135008eed6d7bc1280fb7f2b4f53d72cb89f36b51e0d7b81082091bf05f7315",
+            "activity_comment_sha256": "fce3a4fa7e384481fa38be3e2c5f6791b3dae806895af0c21b3ef910ed5465f5",
+            "product_information_sha256": "7470046733d840fec4598bf3fc27010bd6220e0f717bebe458ad8804b602dc54"
+          },
+          {
+            "identity": {
+              "name": "electric arc furnace slag to market for electric arc furnace slag, for recovery",
+              "reference product": "electric arc furnace slag",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 1,
+            "metadata_sha256": "ef7b88890cc1f98fc69972b661e91eb7eddb93033d48f9851eb8449dbb05a6c1",
+            "inventory_sha256": "f8e238939c0ab51738a56a1585a70f0d2534878534e15e45e3c19b7077205572",
+            "activity_comment_sha256": "662b2e3ef5b671257acaf17559fb3e33b1c7707ecc3ea21f64c3e62c1fedcc62",
+            "product_information_sha256": "7470046733d840fec4598bf3fc27010bd6220e0f717bebe458ad8804b602dc54"
+          },
+          {
+            "identity": {
+              "name": "treatment of electric arc furnace slag, residual material landfill",
+              "reference product": "electric arc furnace slag",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 72,
+            "metadata_sha256": "3439c4a7248a91ebadf2ee5edb0054bb3966d97ef3dfc4900757e18ef7f13478",
+            "inventory_sha256": "fe6b4249723a95a88bf0ba3507d57c4869989e2fc02496b279fcab2f4203d1b2",
+            "activity_comment_sha256": "fce3a4fa7e384481fa38be3e2c5f6791b3dae806895af0c21b3ef910ed5465f5",
+            "product_information_sha256": "7470046733d840fec4598bf3fc27010bd6220e0f717bebe458ad8804b602dc54"
+          },
+          {
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "CN",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "5eec92f28619a465ce59cbbbe58bba9499d8a8475c5561584dcc6c13f4d47a7a",
+            "inventory_sha256": "3c28b1e438bb511e15353f4199305e3a02619cb4fcc5a07bd26effc9254ceef6",
+            "activity_comment_sha256": "1b8dfc527df0b991aa6d6e15904be75854c029c6e52bde977f64924cfecd7c86",
+            "product_information_sha256": "00d2c4fb04400ff490f8ac06754a81272689264f63af1510d40cbbc662a2cf4b"
+          },
+          {
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 2,
+            "metadata_sha256": "3bc5d719214ed513eddb1f3263ffee6467f3380de745db3164d20746da65f0f9",
+            "inventory_sha256": "67d3a561f43de59c8b3b483db80f4ca1f9abe9e603c42c1b3d7886f9f6f6a579",
+            "activity_comment_sha256": "f68aeeee8f09487a80c825938bec08ac2740a1603dd43b8999c96d36c6aa6350",
+            "product_information_sha256": "00d2c4fb04400ff490f8ac06754a81272689264f63af1510d40cbbc662a2cf4b"
+          },
+          {
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "9242044d72ee67df879c1ce100501eb5bb9c534759f95c078b9c25e745c3897a",
+            "inventory_sha256": "5ac20dbc0e8c4c4569e64ce7ff03a4673924f8e0f8cdf9a19becd1f6ec8f16da",
+            "activity_comment_sha256": "2603ed78177347d1ae3dc6c3a8353d7935892f0b512ccbc9955191309c06ee15",
+            "product_information_sha256": "00d2c4fb04400ff490f8ac06754a81272689264f63af1510d40cbbc662a2cf4b"
+          },
+          {
+            "identity": {
+              "name": "market for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "US",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 1,
+            "metadata_sha256": "6bdd38a9de2e0bb427c64623a8de9d7bbc03ff96a3a946c89aafa18366d60169",
+            "inventory_sha256": "eff4aa8da2ab2ba685be7955d6c66a23aeb987934a65d6fd66243553be0f516e",
+            "activity_comment_sha256": "b1a2ae458e42b502b6990da2238218d6c2bbcce781af55f71536265e329610fe",
+            "product_information_sha256": "00d2c4fb04400ff490f8ac06754a81272689264f63af1510d40cbbc662a2cf4b"
+          },
+          {
+            "identity": {
+              "name": "market for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 1,
+            "metadata_sha256": "d229aca0284d9a30651adbb54e30ecbd99b17e4763521900d8d16a30b1253993",
+            "inventory_sha256": "de9bc1051f0af2ac9c543e7949f96b53affee0bdea262b9e94d4db375d4aa277",
+            "activity_comment_sha256": "5045b54901adab0153a50ac05002219fe2ecaf2f4b1aa45b0dd32138de2a6f98",
+            "product_information_sha256": "93a87838b4d0496703a5d8b224f836cd18bd9ce4f04327264ab85d6bda623acc"
+          },
+          {
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "ZA",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "291bc540633513fe3d1341e31fa63d87624ee1b8c03dbcf52f97a71e9daf6270",
+            "inventory_sha256": "5d63ba039a6eb078230a4bd26fda48d2d3567f593d8136aa50bc51a30ff9d0bd",
+            "activity_comment_sha256": "da2fe4464109e7703159e8cdd5c45f6b2642eaee1532d38e94afcb0d8aa5745f",
+            "product_information_sha256": "d0680a1b6e2e9a6d7657b3d3bae1bb2c9036d067a69fb5f2dea8e04194e49fe0"
+          },
+          {
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 4,
+            "metadata_sha256": "ee4483351124f67842363308e01fd9a0d8a5081b3b16f128978938eab15fbd14",
+            "inventory_sha256": "8091673d53531942ff0716d8fdf3b6594a5264de58d13074f49aac7be049924e",
+            "activity_comment_sha256": "67a5cca047fd391f4aa20bfac6e8bb20509497f3c71edb6d2e125322bc662382",
+            "product_information_sha256": "d0680a1b6e2e9a6d7657b3d3bae1bb2c9036d067a69fb5f2dea8e04194e49fe0"
+          },
+          {
+            "identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "BR",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "95cb1dc98af9189e31e2dd9aae1a97f50db830f32b0b3073ccdfe697f7b5c8ba",
+            "inventory_sha256": "999dcbf65753e116027a726bf5204b3a97ffd00f0a12b4688e9a7a3aa037de11",
+            "activity_comment_sha256": "4d49223f732d9bdca9783b3ae8cef432088bdc775d2e409bb7c1fdcd0c1e6f82",
+            "product_information_sha256": "d0680a1b6e2e9a6d7657b3d3bae1bb2c9036d067a69fb5f2dea8e04194e49fe0"
+          }
+        ],
+        "recipe_id": "eaf-slag-39-row-retained-landfill-collection",
+        "approved_recipe_source_omissions": {
+          "eaf-slag-39-row-retained-landfill-collection": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "name": "market for electric arc furnace slag",
+                "reference product": "electric arc furnace slag",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "13cd29e6706452ee92c45560e28cd93a6b22f609e24328bc3473505b8702e8a4",
+              "original_index": 2,
+              "source_exchange": {
+                "name": "electric arc furnace slag to market for electric arc furnace slag, for recovery",
+                "reference product": "electric arc furnace slag",
+                "location": "RoW",
+                "unit": "kilogram",
+                "amount": -0.0393374741200828,
+                "uncertainty type": 0,
+                "loc": -0.0393374741200828,
+                "type": "technosphere"
+              },
+              "rationale": "Omit only this exact inspected source3.9cutoff renaming handoff to positive-reference empty Recycled Content cut-off stock. Handoff is -1kg waste and has solely -1kg of burden-free stock; no nonempty treatment, material production or recovery processing is omitted. Retain original signed coefficient and uncertainty in the literal source-exchange audit. No recovery/displacement credit, invented zero service or share renormalization. This reflects the source allocation boundary, not impact-free physical recovery. Handoff inventory SHA256: f8e238939c0ab51738a56a1585a70f0d2534878534e15e45e3c19b7077205572; stock inventory SHA256: 36c0b27403f198c96dd8e5bf1a47f2d15fabcdcd05700ec7227531b8bce9d2cd"
+            }
+          ]
+        },
+        "recovery_handoff_control": {
+          "handoff_identity": {
+            "name": "electric arc furnace slag to market for electric arc furnace slag, for recovery",
+            "reference product": "electric arc furnace slag",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "handoff_reference_amount": -1,
+          "handoff_nonproduction_count": 1,
+          "handoff_inventory_sha256": "f8e238939c0ab51738a56a1585a70f0d2534878534e15e45e3c19b7077205572",
+          "only_input_amount": -1,
+          "stock_identity": {
+            "name": "electric arc furnace slag, for recovery, Recycled Content cut-off",
+            "reference product": "electric arc furnace slag, for recovery",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "stock_reference_amount": 1,
+          "stock_nonproduction_count": 0,
+          "stock_inventory_sha256": "36c0b27403f198c96dd8e5bf1a47f2d15fabcdcd05700ec7227531b8bce9d2cd",
+          "source_LCI_of_handoff_is_zero_due_to_empty_cutoff_stock": true
+        },
+        "new_caller_exchange_omissions": []
+      },
+      "limitations": [
+        "Only inspected ecoinvent 3.9 cut-off RoW EAF-slag waste-market conversion is newly reviewed. Source -1kg waste becomes target +1kg service with factor -1; normalize negative-reference landfill suppliers individually and keep original positive freight positive. Preserve signed caller mass, supported uncertainty/formulas, foreground ownership, separate emissions and credits. No other release, patch, system model or reverse route receives approval.",
+        "Retain the exact RoW 0.959063379369458 and CH 0.00159914651045934 kg landfill shares, without renormalization. Both full current source vectors exactly match prior independently approved source3.9 landfill witnesses under the same canonical JSON hash method. Reuse those complete source-specific landfill recipes, direct releases, operation, stabilization, construction and native2026 biosphere bindings unchanged.",
+        "Omit only the inspected -0.0393374741200828 kg renaming handoff, whose -1kg waste function contains solely -1kg of positive-reference empty Recycled Content cut-off stock. Its source LCI is zero by that explicit allocation boundary, not because physical recovery is impact-free. Record original source profile, inventory hash, exchange index, signed coefficient/uncertainty and full handoff/stock witnesses. Do not add stock production, recovery processing, avoided material or disposal credit, invent a zero service or renormalize the retained landfill fractions. No nonempty or unknown service is covered; positive-stock validation is unchanged.",
+        "Retain all eight collection entries separately: four rail, one inland barge and three unspecified heavy lorries, with all original quantities and supported uncertainty/formulas. Use complete native RER generic rail, barge and heavy-fleet services, never coal-specific rail. Country, steam/electric/diesel historical traction, gauge, payload, EURO fleet, fuel, vintage and internal uncertainty differ. These are whole-service geographic/traction proxies, not an exact steam mapping. No fuel, distance, capacity or payload rescaling; no duplicated vehicles, infrastructure or operation.",
+        "Reused waste-specific landfill helpers retain existing limits on native component geography, cement/disposal moisture, allocation, long-term water, land class, speciation and uncertainty. No new chemistry, moisture, dilution, recovery, land area, water-balance or aftercare assumption. Implementation LCIs are not evidence of source/native LCIA or stochastic equivalence; score effects remain unquantified.",
+        "Change only the exact source3.9 profile target and supporting review metadata. All other profile targets/decisions and the default target remain. Literal omission approval is restricted to this parent/profile/recipe. Use existing recipe-loss reporting and Premise approval gates; no runtime Python modules, alternative sector engine or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e4f5247d8ead00727d9da6f94ee0ebdc2f62ef53896d777836d2dbe638dd7a58"
+        }
+      ]
     }
   ],
   "superseded_operations": [
