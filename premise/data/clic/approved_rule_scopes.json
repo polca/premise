@@ -51200,7 +51200,27 @@
             "original_fingerprint": "aa671f9ee7f484f2a8923277823c987c472c6fc484d4e0fb4a5b8ab286e5588f",
             "selected_source_target_factor_reference_review_and_recipe_closure_unchanged": true
           }
-        ]
+        ],
+        "profile_preserving_scope_refresh": {
+          "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+          "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+          "previous_scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "0a6041f5e283a8e9eef4b346818dc86693f6a0ebb48c78a05ff69b1a8ce35d52"
+            }
+          ],
+          "exact_profile_projection_equality_verified": true
+        }
       },
       "limitations": [
         "Explicit user reply: Approve screening proxies with warnings. Only seven exact ecoinvent3.9cutoff water markets required by the electricity pilot qualify. Six national markets(IN,BR,CA-QC,CO,PE,ZA) use one kg of complete native RER Tapwater atuser per original signedkg, as explicit European geographic screening proxies. The European group retains its original two separate CH/nonCHshares(.002087020385985745 and.9979129796140143kg), supporteduncertainty and source order through complete nativeCH/RERdeliveredwater. This substitutes the whole native utility model: source internal treatment mix, supply feedback/selfpurchases, loss assumptions, network quantities, direct waterreturns and internal uncertainty are replaced, not reconstructed. Source closure has48waterprocesses67internal links8selflinks24parameterdefinitions; those source uncertain cycles are not algebraically flattened or represented by a native supplier multiplier. Retain each complete native treatment, chemical, energy, network/infrastructure, delivery, maintenance, disposal, elementary-flow and uncertainty model once. Do not add source network purchases or waterreturns on top, no source selfloop/lossfactor, density/moisture multiplier, invented embodiedwater/returnflow correction or recoverycredit. Native historical Swiss/German design and geography differ from country treatment, electricity, waterwithdrawal/resource mix, returncompartments, allocation, vintage and sourceuncertainty. Direct nativeRERresourcewater .00112866m3/kg and returns .0008567565m3/kg differ from source European watersubsystem .0011680891035171265 and .00014767300888938914m3/kg; these exclude other upstreamsupplier water use and are not comparativeLCIA. Embodiedwater/accounting and geographic differences can materially affect water-related results; all scoreeffects remain unquantified. Countrylabelled MoeKprocesses are not silently substituted or repaired: they have separate caller embodiedwater requirements, missing exactPE/CA-QCidentities, COusesPEelectricity and a different recordedRERreturn. Preserve original caller signed quantities, formulas, uncertainty, ownership, foregroundsuppliers and every separately listed caller emission, wastewater and waterpurchase. No source input is removed from the caller. Native upstream biosphereexclusions remain warnings. Only these exact3.9cutoff parents qualify, not standalone source waterproductions/network/chemicals, otherreleases, reverse or cross-system-modelroutes. Full pilot scenario/certification/export and LCIA equivalence are not established by these component correspondences."
@@ -51217,7 +51237,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "0a6041f5e283a8e9eef4b346818dc86693f6a0ebb48c78a05ff69b1a8ce35d52"
+          "fingerprint": "090b4a01511c75c8dca55ff4898c9a65ba33b9fe3d65b620eab69f6161f3ab12"
         }
       ]
     },
@@ -110602,7 +110622,53 @@
             "metadata_sha256": "739aa5f7f6ca2397ff51be1a7b8a1e1809b1a12b4a1a5297b0ca949ae309a6a8"
           }
         ],
-        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Complete native liquid lubricating oil is a hydrocracking/distillation/dewaxing screening proxy, documented75%yield with theoretical process data and incomplete air/water emissions and omitted solid wastes. Native1.33kgdiesel/kg already represents its yield; do not divide caller demand by0.75. It replaces the source European delivered market, including its production technology and source0.1713road/0.0438rail/0.0219bargetkm perkg rather than reconstructing those freight legs. Lubricant formulation, additives, production routes, delivery, emission completeness, geography, vintage and internal uncertainty differ."
+        "limitations": "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Complete native liquid lubricating oil is a hydrocracking/distillation/dewaxing screening proxy, documented75%yield with theoretical process data and incomplete air/water emissions and omitted solid wastes. Native1.33kgdiesel/kg already represents its yield; do not divide caller demand by0.75. It replaces the source European delivered market, including its production technology and source0.1713road/0.0438rail/0.0219bargetkm perkg rather than reconstructing those freight legs. Lubricant formulation, additives, production routes, delivery, emission completeness, geography, vintage and internal uncertainty differ.",
+        "profile_preserving_scope_refresh": {
+          "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+          "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+          "previous_scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "e0b7747620754dd9b274058a0559fe1e7fc7e676f1b009de85cd2dedc9a51a4d"
+            },
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "399b12f31a9a07c18e0a7439594d2ec0f06a4eec2c5f09ca53aecb2245dbc0a4"
+            },
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "decaef66b5001e147ca97625832fcfd44f193eaa85e1873af5b52cead02a83a3"
+            }
+          ],
+          "exact_profile_projection_equality_verified": true
+        }
       },
       "limitations": [
         "User auto-approved coming modelling decisions and requested proceeding with the deferred UVEK electricity work. This is a complete native functional screening proxy in the exact inspected cut-off source profiles, not an LCIA-equivalence finding. Preserve signed caller quantities, formulas, uncertainty and separate exchanges at factor+1. Both actual source and native2026 reference outputs are positive1 in the same declared unit. Complete native upstream inventory and internal uncertainty replace the source supplier boundary once; native vintage/geography/allocation, the2991upstreambiosphere exclusions and unquantified score differences remain explicit. Other source releases, reverse and cross-system-model conversions are not approved by this review. Complete native liquid lubricating oil is a hydrocracking/distillation/dewaxing screening proxy, documented75%yield with theoretical process data and incomplete air/water emissions and omitted solid wastes. Native1.33kgdiesel/kg already represents its yield; do not divide caller demand by0.75. It replaces the source European delivered market, including its production technology and source0.1713road/0.0438rail/0.0219bargetkm perkg rather than reconstructing those freight legs. Lubricant formulation, additives, production routes, delivery, emission completeness, geography, vintage and internal uncertainty differ."
@@ -110619,7 +110685,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "e0b7747620754dd9b274058a0559fe1e7fc7e676f1b009de85cd2dedc9a51a4d"
+          "fingerprint": "e76d8c7e44c34c6de59e4a5b6cf96384f0be620b5390525c624a37d38a9015c0"
         },
         {
           "source": {
@@ -110632,7 +110698,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "399b12f31a9a07c18e0a7439594d2ec0f06a4eec2c5f09ca53aecb2245dbc0a4"
+          "fingerprint": "5b5d95125c157f772cbe9258ac0bd72a180fa85a4a7b7f1dcbfebfda19dc25c3"
         },
         {
           "source": {
@@ -110645,7 +110711,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "decaef66b5001e147ca97625832fcfd44f193eaa85e1873af5b52cead02a83a3"
+          "fingerprint": "01083a8afe00bc2b88fbe2924b2da559e4d9cdf235c5af1f108d4eb9ef41bf29"
         }
       ]
     },
@@ -136178,7 +136244,27 @@
             }
           }
         ],
-        "physical_omissions": []
+        "physical_omissions": [],
+        "profile_preserving_scope_refresh": {
+          "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+          "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+          "previous_scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "f09e7408494eecdb3ef0df8e60d2df3fada2f7346222f9cfbe3dbee98ad65a8f"
+            }
+          ],
+          "exact_profile_projection_equality_verified": true
+        }
       },
       "limitations": [
         "Actual 3.12 European tap-water market group has exactly two positive-kg CH/non-CH inputs and no direct biosphere flows. Retain their original order, quantities and supported uncertainty through complete native CH/RER delivered-water services. The top-level portfolio is unchanged from inspected 3.9, but this is a separate exact-profile review. Internal treatment mix, feedback/loss assumptions, network, water returns, allocation and vintage are replaced by the native whole utilities; no self-loop/loss multiplier, double infrastructure, water-balance correction or recovery credit is inferred. Native CH/DE models are geographic/technology screening proxies, with unquantified score effects.",
@@ -136196,7 +136282,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "f09e7408494eecdb3ef0df8e60d2df3fada2f7346222f9cfbe3dbee98ad65a8f"
+          "fingerprint": "2da90ffbe6d7b7975a1bcc39bc1f1ad9f2fa7958212e31cb7b564f0424a557b5"
         }
       ]
     },
@@ -199691,7 +199777,27 @@
             "metadata_sha256": "0be433f1b03a7238b6d1ac3d83439e3e83e07264d82bccf1dbdd75ca0fc5de77",
             "inventory_sha256": "654db62551cfb6cc0dfb806868c4e112f2103cb38ac5da0563484c54af1c9258"
           }
-        ]
+        ],
+        "profile_preserving_scope_refresh": {
+          "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+          "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+          "previous_scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.7",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "050a0ad70e72de20a220e704e8409e50f58f3c8706561800f763a2c91bbeee0f"
+            }
+          ],
+          "exact_profile_projection_equality_verified": true
+        }
       },
       "limitations": [
         "Complete native liquid lubricating oil per kg, not spent oil, lubricant application or a litre. Native hydrocracking/distillation/dewaxing is a theoretical screening model with 75 percent process yield already represented internally; no extra yield or density factor. Native production emissions are incomplete and solid wastes omitted. Native at-plant supply replaces the European delivered market, including its original road, rail and barge delivery rather than reconstructing them. Formulation, additives, route and delivery differences remain unquantified.",
@@ -199710,7 +199816,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "050a0ad70e72de20a220e704e8409e50f58f3c8706561800f763a2c91bbeee0f"
+          "fingerprint": "c418b2a688c38e0ce24fdd81999d557ccfcf7bc482f8c69e8674d1e91b86bd97"
         }
       ]
     },
@@ -248386,7 +248492,27 @@
         ],
         "conversion_factor": 1,
         "new_helpers": 1,
-        "quantity_basis": "kg nominal source product -> kg nominal native product"
+        "quantity_basis": "kg nominal source product -> kg nominal native product",
+        "profile_preserving_scope_refresh": {
+          "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+          "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+          "previous_scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "4f88b98fd3585932046b654c6972d83b5fb22e9d5a9594d496015ad0338d42f0"
+            }
+          ],
+          "exact_profile_projection_equality_verified": true
+        }
       },
       "limitations": [
         "Exact3.9cutoff RER fossil ethanol-from-ethylene market reconstruction. Correct the existing biomass-distillation match to complete native RER direct ethylene-hydration production, retaining its mass-allocated ether co-product boundary. Source market positive1kg reference explicitly has1kgdry ethanol without water in99.7%solution state; native positive1kg legacy ethanol chemical reference follows active-substance quantity conventions. Apply factor+1 perkgactive ethanol, not1/0.997 or an elemental-carbon/energy multiplier. Source/native ethylene inputs0.6117015045477244and0.62193kg/kg differ because process/yield/allocation/vintage models differ; no feedstock-fitting correction is introduced. Preserve one source producer and three original final-product freight rows separately, with signed quantities, supported uncertainties/formulas, rail/barge/heavy-lorry modes and tonne-km, without renormalization. Native production includes precursor/internal transport; original final delivery is added once. Native raw-material origins, hydration efficiency, allocation, energy, emissions, internal uncertainty, geography/vintage and biosphere exclusions differ, with unquantified score/carbon effects. RER transport uses complete native rail/barge/fleet services with traction, fleet/load, fuel and technology warnings. Add no biogenic ethanol, biogenic uptake, denaturing chemical, fuel-distribution loss or invented carbon/water/purity/efficiency correction. Separate caller emissions and carbon-resource exchanges remain unchanged. Only independently inspected exact3.9cutoff RER qualifies. RoW coal-Fischer-Tropsch ethanol supply is not represented by ethylene hydration and remains unapproved pending separate reconstruction. No source omission, consequential/reverse or other-version approval is introduced. Ether-derived water, PCC, pulp heat and steel export remain unfinished."
@@ -248403,7 +248529,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "4f88b98fd3585932046b654c6972d83b5fb22e9d5a9594d496015ad0338d42f0"
+          "fingerprint": "460ef07a17b1c545bbdc259b9c17e527525a61013ce4ac8a53f80d039c47d3d5"
         }
       ]
     },
@@ -256705,6 +256831,570 @@
             "system_model": "cutoff"
           },
           "fingerprint": "c058acdcfab442ea04eefd28b396bfb1d0ff7abdd0bce110998a08bd29de894d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a873c926397e2bb9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Low-pressure vehicle-grade gas: source and native station both compress gas from a below0.1bar network. Use complete Swiss compression, electricity, infrastructure and losses per original signedkg; RoW geography, gas composition, vintage and performance are proxies. No density, delivered-heating-value, compression-efficiency or extra loss multiplier is added."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "natural gas production, low pressure, vehicle grade",
+            "reference product": "natural gas, low pressure, vehicle grade",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "f47a748b955e2d917369af964cee0c729536867facdb145fe9a0ebc3c49dfcdb",
+          "comment_sha256": "dc63d169c78ef756d96cb654dc048e832528211d455b2c2071f96b9a2d0bdda8"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "669626e170461a1b99f7797cb4f46b3aac00349ae806e0f38b15bde3a9f2fcf2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4d98066a982c4bda",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Refinery-sludge incineration: source waste reference is-1kg and native service reference+1kg. Apply factor-1 exactly once, preserving the caller waste convention. Retain the complete native89.5%-water hazardous-waste incinerator. Moisture, recovery/allocation, geography, emissions and vintage differences remain; no water-ratio, added treatment or recovery credit."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "treatment of refinery sludge, hazardous waste incineration",
+            "reference product": "refinery sludge",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "normalized_inventory_sha256": "b3e062329bfdce272fbf329cb651b1ad87a05689490fa358c9f397050c4a6704",
+          "comment_sha256": "d9db2cfdc44db56927b7fab59d704e6b248cf58b2435c8cbeccfed7549e9da4d"
+        },
+        "conversion_factor": -1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7c1ac4f7bee642ca6f1db8952fc6c8d7020ce27ae0abaeb2fa45b8776e377a0c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-385650baf6c0e83b",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Delivered diesel market proxy: use complete native European regional storage per signedkg. Native distribution, refinery/fuel mix, infrastructure, losses and uncertainty replace the source historical supply model. Do not add source freight again or apply a heating-value correction. Explicit production-only suppliers remain separate."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for diesel",
+            "reference product": "diesel",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "5a5db69c8ae5f12895f6c9279840208a4ec8b2bcb1a03e0166b6de1f543ab0af",
+          "comment_sha256": "af5716a3061819aa276b33dac47ed803816285d53bdf7b1d3c3cc99274ca08ae"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "05fb43068651390c3f484fe883e3e1a3313da921b7dc633df7e34f5e15e8c170"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4f69327dbf9d3e42",
+      "operation": "replace",
+      "mapping_method": "reviewed_deferred_materials",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Lubricating-oil market to complete European at-plant product per signedkg. Native product/additive composition, internal supply and delivery replace the source market model. No lubricant recovery credit, fuel reclassification or carbon multiplier is introduced. Prior exact-profile projections remain unchanged."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for lubricating oil",
+            "reference product": "lubricating oil",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "7c7d475dcd96325ee7b597588aef4bc6d3cc87d379f6eb8487f39adf10484db3",
+          "comment_sha256": "7dc5ea0a6a96444e745a995d2368ba3805f7f252ed4685f5def206878d0f9960"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ee194fadfb7b1044f81f6b5e7a6f87846a5bbd4969d84d32fbaeecb9df170b34"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1d02d57e06e24b45",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Nylon6 market to complete European Nylon6at-plant material per signedkg. Match polycaprolactam, not Nylon66, glass-reinforced polymer or an engineering-service unit. Source/native market-delivery, polymer process, grade, energy and vintage differences remain; no yield, density or fibre-conversion multiplier."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for nylon 6",
+            "reference product": "nylon 6",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "e0b0f98e2254428d97cd2b9a3e1775e5e66a799cd559928b3a108c374113f2a0",
+          "comment_sha256": "36101500fcf614595d1c26636694f7a132070caa2442f8c0f4b2cee6fa1ccc73"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "591d51c2b31ce21b7569fd3fdd91d819095a950c6514e141f547dddf2e9e4d51"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-bb4f40528bc8819a",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Packed milled quicklime proxy: both are commercial CaOproducts, not limestone or hydrated lime. Use the complete Swiss packed material per signedkg, retaining its own milling and packaging. Purity, bagging, supply, allocation and geography differences are unquantified; no assumed pure-CaO or packaging mass multiplier."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for quicklime, milled, packed",
+            "reference product": "quicklime, milled, packed",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "dc390299c47f310204f81724b2ec2992e86500393103c08e5e5d8a39db9a5377",
+          "comment_sha256": "b63b20d9c537506280ba44d7316fb7109f87265017d8cd342e1acf742a02c365"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "190938b82344b4e5fb8c4af92238648f43d1da7e75ce63a8b6af8e16a58382f2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-495f5d0604658b3c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Anhydrous liquid-ammonia market proxy: complete native liquid NH3at regional storehouse per signedkg; no dilute ammonia solution or gas-volume conversion. Native85%steam-reforming/15%heavy-oil-oxidation production, transport and storage replace the source supply mix. No carbon or purity correction is invented."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "12605ca41519170077d789d3b98bb1b8d6737645ea07a9594bbfafdb706192ef",
+          "comment_sha256": "75786145cc07fa33e2f1025b4f3bb2b5bd3d9dea4691d71bad180dda4f686cd3"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ec2ba964a1efe0d8a4fe06382f9068bbfa8ae98325acfd3a09d7f655ef116d5e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4c36ad8aa71acca8",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Ammonium-carbonate market proxy: native reference is1kg solid anhydrous ammonium-carbonate flakes, formulaCH8O3N2. Use per signed sourcekg; do not substitute ammonia solution, bicarbonate or an aqueous mixture. Native production explicitly has weak process/emission data; retain that limitation and incomplete source flow coverage rather than claim impact completeness."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonium carbonate",
+            "reference product": "ammonium carbonate",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "8eb7103f5bcb36a4de9fbe8c2eaa68913371536272c58e566cb2eaee88fd8d1c",
+          "comment_sha256": "63287d34b256afa9ce9d6500e6eee0842b7a4dd93297a42c4de910f0768e637f"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "59383e08a92cdcf04ff974067f1b7fe9dde199ff5a91f0b7ef47d45ad2eeee2c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f44ccb0394f2d921",
+      "operation": "replace",
+      "mapping_method": "reviewed_mining_38_material_suppliers",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Correct petroleum coke to complete native recovered elemental sulphur from petroleum refining, per1kg sulphur. The native comment describing refinery throughput concerns the multioutput parent; its actual product reference is+1kg sulphur. Source/native refinery crude slate, sulfur recovery, flow-specific/economic allocation, internal energy and emissions differ. No crude-throughput fitting, stoichiometric multiplier, avoided petroleum coke or recovery credit is introduced."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "sulfur production, petroleum refinery operation",
+            "reference product": "sulfur",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "0f94ba8775d8631965394bd8145ee96b95416d6207fd0fbca979da56f43c832a",
+          "comment_sha256": "0ec4951036f15cfde7f100c30aea94f88bfe70aa32e133637516f40467169c5e"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "bd42c2550fd427f121bb6216cfb71d79896b45639a1c3641a44917925b11838f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fe711136ab4271bf",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_nitrate_water",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. European tap-water screening proxy: retain the two original deterministic CH/non-CHsupplier amounts separately. Replace each whole national treatment/network model with complete native CH/RERdelivered tapwater, including its own withdrawals, returns, infrastructure, internal supply and uncertainty. Source cycles, delivery losses, treatment mix, returns and internal uncertainty are not reconstructed. Add no source network, self-loop factor, return-water correction, density multiplier or water credit. Prior3.9/3.12exact-profile conversions and recipes remain unchanged."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for tap water",
+            "reference product": "tap water",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "73c817c949423112b861dfda946b5ba7c3d81410a4a2360af13cb8a73bd21568",
+          "comment_sha256": "55608f0457308ef955d707985705544902730c0cf3bbefdf1c211965b516d908"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3558ce132583a2373efb6070fd20c555046716084ad6d1c9ca8221fff096ed32"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-533134d2fbe5ce77",
+      "operation": "replace",
+      "mapping_method": "reviewed_ether_ethanol_rer",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Fossil ethanol-from-ethylene market: source reference explicitly supplies1kg ethanol without water in99.7%solution state; the inspected native legacy chemical reference follows active-substance convention. Use complete native ethylene hydration per1kg active ethanol, not biomass distillation, and no1/0.997 multiplier. Preserve all three original rail/barge/heavy-road delivery quantities and uncertainty/pedigree fields separately. Do not fit source ethylene demand, add water, renormalize delivery or infer biogenic carbon. Prior3.9conversion remains unchanged."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for ethanol, without water, in 99.7% solution state, from ethylene",
+            "reference product": "ethanol, without water, in 99.7% solution state, from ethylene",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "a9e7e8ac7805df8398af3cb3065966880c3cd5a324f87db1e04b465a362e9a41",
+          "comment_sha256": "68e85aa90835ca9f41c0bd0fffed514ac47026525eae1ee0c3e55f082616bc67"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "cef8f0230eb60039fa6f25ed253ab73d3b6865465a11700f1d9dc8122ebe8921"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2636fda034da7300",
+      "operation": "replace",
+      "mapping_method": "reviewed_mining_38_material_suppliers",
+      "review_path": "export/uvek_mining_38_material_suppliers_review.json",
+      "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+      "authorization": "Standing user approval to resolve remaining cases autonomously, with explicit proxy/helper decisions and warnings for review.",
+      "limitations": [
+        "Only the independently inspected ecoinvent3.8cutoff profile qualifies. Preserve signed caller quantities, formulas, supported uncertainty and separately listed exchanges. Complete native processes replace source technology, allocation, upstream supply, internal uncertainty, geography and vintage; score effects are unquantified. Native source biosphere exclusions remain inherited limitations. No inverse, consequential or other-release approval is inferred. Correct ordinary Portland cement to the complete native CEMI42.5product, not slag-blended cement. Source CEMIlabel specifies95–100%clinker; native historical recipe states90%clinker,5%gypsum and5%milling substances. This explicit composition/strength/vintage proxy is not an identical grade and no clinker-fitting multiplier is applied. Retain all original light-commercial, rail and heavy-road freight rows independently, with uncertainty and pedigree, outside the native at-plant cement once. Light-commercial freight uses complete native3.5t fleet service rather than generic heavy-lorry average. Native class, traction, loading, fuel, geography and fleet vintage differ; add no vehicle, payload/gross-weight or distance correction."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for cement, Portland",
+            "reference product": "cement, Portland",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "84b811aa071109475a00d2e54f8b25eb509389b1c432bfb35e8d1afe772dbfbe",
+          "comment_sha256": "10e0cddd5e7d40c2455668d3a19ff58a7316033aad421056d543fc2dd699b14d"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "6f875a9c6bbef0eb4e61ff11397c50ee47c21f729db6d41ecef198609f8d7bc9"
         }
       ]
     }

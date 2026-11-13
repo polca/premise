@@ -1,0 +1,230 @@
+{
+  "brightpath_commit": "10307a81785cd60c7aa280c88e438ca5434bf199",
+  "new_exact_source_scopes": 12,
+  "new_helper_recipes": 3,
+  "changed_runtime_python_modules": 0,
+  "migration_tests_passed": 30,
+  "historical_authoring_replay_tests_passed": 10,
+  "premise_fresh_cache_profile_tests_passed": 5,
+  "fresh_cache_source_versions": [
+    "3.6",
+    "3.7",
+    "3.8",
+    "3.9",
+    "3.12"
+  ],
+  "scope_validation": {
+    "all_approval_scopes_valid": true,
+    "scope_count": 1239,
+    "new_scopes": 12,
+    "prior_scopes_refreshed_with_identical_effective_projection": 7,
+    "prior_operations": [
+      {
+        "rule_id": "bp-fe711136ab4271bf",
+        "source_versions": [
+          "3.9"
+        ]
+      },
+      {
+        "rule_id": "bp-4f69327dbf9d3e42",
+        "source_versions": [
+          "3.6",
+          "3.9",
+          "3.12"
+        ]
+      },
+      {
+        "rule_id": "bp-fe711136ab4271bf",
+        "source_versions": [
+          "3.12"
+        ]
+      },
+      {
+        "rule_id": "bp-4f69327dbf9d3e42",
+        "source_versions": [
+          "3.7"
+        ]
+      },
+      {
+        "rule_id": "bp-533134d2fbe5ce77",
+        "source_versions": [
+          "3.9"
+        ]
+      }
+    ]
+  },
+  "native_lci": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "source_database": "BAFU:2026-reimported",
+    "source_activity_count": 11947,
+    "source_database_metadata_unchanged": true,
+    "review_sha256": "bf8c5806f7507a274dcf86f3d70dfab70685dafb9b6c3fce8cdf6f895c8b3b0e",
+    "signed_native_lci_checks": [
+      {
+        "case": "mining-38-rer-delivered-water",
+        "kind": "composite_native_demand",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "mining-38-rer-delivered-water",
+        "kind": "composite_native_demand",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "mining-38-rer-fossil-ethanol-delivery",
+        "kind": "composite_native_demand",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "mining-38-rer-fossil-ethanol-delivery",
+        "kind": "composite_native_demand",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "mining-38-european-portland-cement-delivery",
+        "kind": "composite_native_demand",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "mining-38-european-portland-cement-delivery",
+        "kind": "composite_native_demand",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-a873c926397e2bb9",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-a873c926397e2bb9",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-4d98066a982c4bda",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-4d98066a982c4bda",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-385650baf6c0e83b",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-385650baf6c0e83b",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-4f69327dbf9d3e42",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-4f69327dbf9d3e42",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-1d02d57e06e24b45",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-1d02d57e06e24b45",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-bb4f40528bc8819a",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-bb4f40528bc8819a",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-495f5d0604658b3c",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-495f5d0604658b3c",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-4c36ad8aa71acca8",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-4c36ad8aa71acca8",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      },
+      {
+        "case": "bp-f44ccb0394f2d921",
+        "kind": "complete_native_process",
+        "sign": 1,
+        "finite": true
+      },
+      {
+        "case": "bp-f44ccb0394f2d921",
+        "kind": "complete_native_process",
+        "sign": -1,
+        "finite": true
+      }
+    ],
+    "consistent_sign_reversal": true,
+    "limitation": "Composite complete-native functional demands and direct native processes checked read-only. This does not establish source/native score equivalence, exact joint uncertainty propagation or sector export."
+  },
+  "wheel_review_resource_manifest_bytes_verified": true,
+  "private_mining_first_cohort_before_refused_rule_count": 16,
+  "private_mining_first_cohort_after_refused_rule_count": 4,
+  "remaining_first_cohort_cases": [
+    "Municipal-solid-waste routing",
+    "Polyacrylamide manufacture",
+    "Polyester-fibre manufacture",
+    "High-slag cement composition"
+  ],
+  "complete_mining_preparation_passed": false,
+  "public_mining_gate_bypassed_only_for_private_preparation_diagnostic": true,
+  "sector_transformation_or_export_performed": false,
+  "limitations": [
+    "Later source groups can expose further unfinished work.",
+    "Finite native LCI and profile-preservation checks do not establish source/native score equivalence or exact joint uncertainty propagation.",
+    "Complete licensed ecoinvent scenario build not run for this mapping-data batch."
+  ],
+  "installed_git_package_preparation_reproduces_four_remaining_refusals": true,
+  "installed_git_package_fresh_cache_profile_tests_passed": 5
+}
