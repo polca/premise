@@ -1365,6 +1365,15 @@
         "remaining_refused_rules_in_first_source_group": 2,
         "brightpath_commit": "315913ace8f998969fbb9b83da4adb07fff3a9b4",
         "qualification": "Screening proxy with explicit yield, geography, ancillary/waste/emission omissions and unquantified score effects. Complete mining preparation/update/validation/export remain unfinished."
+      },
+      "polyacrylamide_correspondence_progress": {
+        "review": "docs/development/uvek-mining38-pam-public-review.md",
+        "verification": "docs/development/uvek-mining38-pam-public-verification.json",
+        "source_version": "3.8",
+        "new_scopes": 1,
+        "remaining_refused_rules_in_first_source_group": 1,
+        "brightpath_commit": "e9cf7106cf7bdb6f00ee04773d38ae3d9527897a",
+        "qualification": "Rounded public reactants with source production services and delivery retained; exact 3.8 cut-off only. Complete mining preparation/update/validation/export remain unfinished."
       }
     },
     {

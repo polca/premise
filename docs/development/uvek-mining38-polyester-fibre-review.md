@@ -69,3 +69,7 @@ Its formulation, product basis, drying and auxiliary disposal boundaries need
 checking before use for the source's water-treatment homopolymer. The paper's
 exergy totals must not be entered as purchased heat or fuel quantities. This
 is an investigation lead, not an approved mapping or a zero-burden omission.
+
+Subsequent update: the 3.8 polyacrylamide correspondence is qualified using a
+different public reactant model, with retained source production services. See
+`uvek-mining38-pam-public-review.md`; the 2021 oil-recovery recipe was not used.

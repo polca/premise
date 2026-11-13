@@ -261,6 +261,11 @@
       "rule_id": "bp-15948a5ae97a4177",
       "source_version": "3.8",
       "review": "docs/development/uvek-mining38-polyester-fibre-review.md"
+    },
+    {
+      "rule_id": "bp-656e502f8a1766b9",
+      "source_version": "3.8",
+      "review": "docs/development/uvek-mining38-pam-public-review.md"
     }
   ],
   "rules": [

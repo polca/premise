@@ -1,0 +1,122 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "source_database": "BAFU:2026-reimported",
+  "source_activity_count": 11947,
+  "source_metadata_unchanged": true,
+  "review_sha256": "fd95d97a44f52dc05d51b0456a1fc60a710ead1d624388a1dfd04fcc2527ca8c",
+  "signed_helper_lcis": [
+    {
+      "recipe_id": "mining-38-pam-market-retained-delivery",
+      "sign": 1,
+      "finite": true
+    },
+    {
+      "recipe_id": "mining-38-pam-market-retained-delivery",
+      "sign": -1,
+      "finite": true
+    },
+    {
+      "recipe_id": "fuels-38-chemical-heat-uq-b79ce56ce460b47414a9",
+      "sign": 1,
+      "finite": true
+    },
+    {
+      "recipe_id": "fuels-38-chemical-heat-uq-b79ce56ce460b47414a9",
+      "sign": -1,
+      "finite": true
+    },
+    {
+      "recipe_id": "chemical-heat-water-1ced12d9ab9a80752fd2",
+      "sign": 1,
+      "finite": true
+    },
+    {
+      "recipe_id": "chemical-heat-water-1ced12d9ab9a80752fd2",
+      "sign": -1,
+      "finite": true
+    },
+    {
+      "recipe_id": "mining-38-pam-reactants-and-production-services",
+      "sign": 1,
+      "finite": true
+    },
+    {
+      "recipe_id": "mining-38-pam-reactants-and-production-services",
+      "sign": -1,
+      "finite": true
+    }
+  ],
+  "consistent_sign_reversal": true,
+  "adapted_helper_identities": [
+    {
+      "name": "Polyacrylamide screening market, retained production and delivery, 3.8 [BrightPath UVEK conversion 1c84c0fb] [CLIC brightpath-uvek-import-1c84c0fb66097585c6b9f723]",
+      "reference product": "polyacrylamide",
+      "recipe_id": "mining-38-pam-market-retained-delivery"
+    },
+    {
+      "name": "Chemical-steam heat, source 3.8 RoW water quantities and uncertainty retained [BrightPath UVEK conversion 99afbcc4] [CLIC brightpath-uvek-import-99afbcc47e29f7787cec0372]",
+      "reference product": "heat, from steam, in chemical industry",
+      "recipe_id": "fuels-38-chemical-heat-uq-b79ce56ce460b47414a9"
+    },
+    {
+      "name": "market for heat, from steam, in chemical industry, composed from resolved suppliers, RER [BrightPath UVEK conversion a25e6029] [CLIC brightpath-uvek-import-a25e6029e270c133b73bf767]",
+      "reference product": "heat, from steam, in chemical industry",
+      "recipe_id": "chemical-heat-water-1ced12d9ab9a80752fd2"
+    },
+    {
+      "name": "Polyacrylamide, public reactants and retained production services, 3.8 [BrightPath UVEK conversion c4023701] [CLIC brightpath-uvek-import-c40237014d2d0c6a5820bf7a]",
+      "reference product": "polyacrylamide",
+      "recipe_id": "mining-38-pam-reactants-and-production-services"
+    }
+  ],
+  "scope": "Actual harmonizer, adapter and helper-only Brightway database LCI. No full mining transformation/export or source/native score equivalence is established.",
+  "brightpath_commit": "e9cf7106cf7bdb6f00ee04773d38ae3d9527897a",
+  "new_exact_source_scopes": 1,
+  "new_helper_recipes": 2,
+  "reused_heat_helper_recipes": 2,
+  "changed_runtime_python_modules": 0,
+  "new_migration_tests_passed": 8,
+  "fibre_and_archive_regressions_passed": 10,
+  "premise_fresh_cache_and_adapter_tests_passed": 4,
+  "scope_validation": {
+    "all_approval_scopes_valid": true,
+    "scope_count": 1243,
+    "new_scopes": 1,
+    "prior_scopes_refreshed_with_identical_effective_projection": 0,
+    "prior_operations": []
+  },
+  "native_processing_comparison": {
+    "method": [
+      "EF v3.1",
+      "climate change",
+      "global warming potential (GWP100)"
+    ],
+    "unit": "kg CO2-Eq",
+    "functional_unit": "1 kg active polymer at the production helper, without final-market delivery",
+    "raw_reactants_only_counterfactual": 2.32595670853651,
+    "retained_production_services_model": 2.7734867688635267,
+    "difference": 0.4475300603270167,
+    "relative_increase_percent": 19.240687442054853,
+    "interpretation": "Native-model comparison only: final production helper versus its two reactant demands alone. The difference includes retained plant, electricity, both chemical-steam heat services and their utility-water inventory. No source/native score equivalence, true process completeness or uncertainty/impact bound is established."
+  },
+  "wheel_review_resource_manifest_bytes_verified": true,
+  "private_mining_first_cohort_before_refused_rule_count": 2,
+  "private_mining_first_cohort_after_refused_rule_count": 1,
+  "remaining_first_cohort_cases": [
+    "Municipal-solid-waste routing"
+  ],
+  "complete_mining_preparation_passed": false,
+  "sector_transformation_or_export_performed": false,
+  "installed_git_package_commit_verified": true,
+  "installed_git_package_cache_and_adapter_tests_passed": 4,
+  "installed_git_package_real_mining_first_cohort_unapproved_rule_ids": [
+    "bp-168324086066bce9"
+  ],
+  "documentation_reference_check_passed": true,
+  "retired_install_cache_cleanup": {
+    "retired_git_wheels_removed": 12,
+    "bytes_reclaimed": 503215665,
+    "current_commit_kept": "e9cf7106cf7bdb6f00ee04773d38ae3d9527897a",
+    "installed_packages_unchanged": true
+  }
+}

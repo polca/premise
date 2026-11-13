@@ -257538,6 +257538,53 @@
           "fingerprint": "c3f934aa93bfce1b5546923d8e1a3632a69b2514568c1f588b5cb4fc14e0a5dc"
         }
       ]
+    },
+    {
+      "rule_id": "bp-656e502f8a1766b9",
+      "operation": "replace",
+      "mapping_method": "reviewed_mining_38_pam_public_screening",
+      "review_path": "export/uvek_mining_38_pam_public_review.json",
+      "review_sha256": "fd95d97a44f52dc05d51b0456a1fc60a710ead1d624388a1dfd04fcc2527ca8c",
+      "authorization": "Standing user approval for autonomous screening-proxy and omission decisions, with explicit warnings and a decision log for review.",
+      "limitations": [
+        "Only the inspected ecoinvent 3.8 cut-off profile qualifies. Replace the generic-organic-chemical average with a polyacrylamide screening recipe using the rounded public reactant baseline of Gross et al. (2015), DEMEAU D51.1, section 4.4.2.4/Table 4-7, printed page 71: 0.75 kg Sohio acrylonitrile plus 0.25 kg tap water per kg active polymer. These are rounded reactant coefficients, not an atomically exact synthesis yield. Water is incorporated into the acrylamide repeat unit; do not interpret it as 25% free moisture or apply a dilution/dry-mass multiplier. Complete native RER monomer and delivered tap water replace the source monomer supply mix, deionised-water portfolio and internal reactant uncertainty. Retain the inspected source production-service quantities and supported uncertainty/pedigree separately: organic chemical plant units, global medium-voltage electricity and both RER/RoW MJ heat purchases. The existing exact-profile chemical-steam heat helpers retain useful heat, source make-up water and physical water releases; freeze their recipes and dependencies unchanged. Do not convert MJ to kg steam, invent an efficiency, fit energy or omit the factory energy. Reaction water and utility make-up water serve different purposes and are not duplicated. The native chemical plant has different capacity, lifetime, technology, geography and vintage; retain the original unit dose without a capacity-fitting multiplier. Native GLO electricity and native RER chemical heat replace historical grid/fuel/combustion/allocation boundaries. The sparse source factory model already excludes enzymes/catalysts, wastes and direct emissions; these remain unrepresented, not physically zero or negligible. This is not a complete industrial recipe, source/native score equivalence or an impact bound. Native Sohio mass allocation, water quality, reactant rounding, historical technology and native biosphere exclusions remain explicit limitations with unquantified score effects. Retain all four final-market freight rows, quantities and supported uncertainty/pedigree separately, with native RER rail/barge/lorry and OCE transoceanic services. National/mode, vessel/container, fleet/loading and vintage differences remain proxies without payload or distance corrections. Preserve signed caller quantities, formula and supported uncertainty at factor +1. No oil-recovery-polymer formulation, average-chemical/PAN substitution, recovery credit, consequential, other-release or inverse approval is introduced."
+      ],
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polyacrylamide",
+            "reference product": "polyacrylamide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "normalized_inventory_sha256": "f6f8f1f29f54726c9db5f5327f8fe21d612b7367a79eb3d1835a0dc84a4cc7ce",
+          "comment_sha256": "0c8b3c83f2ffcfec1a74b0a9d12443348f84606f5bcefe7892af1b5be5f4b98f"
+        },
+        "conversion_factor": 1
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "dd653c8404e29cd75b53de0482b7c40f808c9eb7a9b6a403fee9cf58101beac5"
+        }
+      ]
     }
   ],
   "superseded_operations": [
