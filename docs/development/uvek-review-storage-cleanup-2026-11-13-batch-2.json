@@ -1,0 +1,59 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "max_batch": 5,
+  "deleted": [
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-191457",
+      "activity_rows_removed": 13417,
+      "processed_cache_bytes_removed": 19007046,
+      "seconds": 11.18236091604922
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-192147",
+      "activity_rows_removed": 13417,
+      "processed_cache_bytes_removed": 19007046,
+      "seconds": 9.404540917021222
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-192331",
+      "activity_rows_removed": 13430,
+      "processed_cache_bytes_removed": 19008983,
+      "seconds": 10.930922125000507
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-review-20261110-192901",
+      "activity_rows_removed": 13430,
+      "processed_cache_bytes_removed": 19008983,
+      "seconds": 9.740565790911205
+    },
+    {
+      "name": "BAFU:2026-remind-SSP2-NPi-2050-cement-review-20261110-204729",
+      "activity_rows_removed": 12218,
+      "processed_cache_bytes_removed": 18127011,
+      "seconds": 9.753195042023435
+    }
+  ],
+  "deferred": [],
+  "vacuum_performed": false,
+  "protected_plan_count": 38,
+  "source_and_biosphere_preserved": true,
+  "storage_before": {
+    "file_bytes": 71805771776,
+    "page_counts_available": false,
+    "reason": "Initial diagnostic page query used the previous project connection; discarded rather than infer a pre-deletion baseline."
+  },
+  "all_other_preexisting_database_names_preserved": true,
+  "storage_after": {
+    "file_bytes": 71805771776,
+    "page_count": 17530706,
+    "free_pages": 654676,
+    "page_size": 4096
+  },
+  "total_seconds": 72.12771529203746,
+  "registered_after": 68,
+  "independent_readonly_sql_confirmation": true,
+  "activity_rows_removed": 65912,
+  "processed_cache_bytes_removed": 94159069,
+  "retention_policy": "Delete only superseded same-purpose task exports. Protect native/biosphere/user databases, current notebook references, calculation setups, parameters, retained-database dependencies, newest family members and named qualification milestones. Routine verification uses memory; writes are export qualification or review milestones.",
+  "sqlite_space_note": "Shared SQLite file size is unchanged without VACUUM. Existing free pages are reusable; this batch has no valid pre-deletion page baseline, so no byte-reclamation delta is claimed."
+}

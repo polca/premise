@@ -1771,3 +1771,16 @@ Aluminium's generic-Chinese-rail → coal-freight match and the incorrect sodium
 fluoride → sodium arsenide match remain unapproved. Battery remains unfinished;
 eight of 19 sectors are qualified. See [review](uvek-battery-reused-39-review.md)
 and [verification](uvek-battery-reused-39-verification.json).
+
+## Second bounded storage cleanup
+
+Five more superseded task exports were deleted after a fresh retention/dependency
+audit: 65,912 activity rows and 94,159,069 bytes of processed cache files. The
+project now has 68 databases. All other existing database names and source/biosphere
+metadata are preserved; independent read-only SQL confirms the deleted rows are
+absent and the native/biosphere counts remain 11,947/4,362. No VACUUM was run.
+The shared SQLite file has reusable free pages but does not shrink automatically;
+the initial page-count diagnostic used the previous project connection, so that
+baseline was discarded and no SQLite byte-reclamation delta is claimed. Routine
+mapping/LCI checks continue in memory; database writes are reserved for export
+qualification and useful review milestones. See [receipt](uvek-review-storage-cleanup-2026-11-13-batch-2.json).
