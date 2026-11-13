@@ -265430,6 +265430,151 @@
           "fingerprint": "34af78c29aa066f59c0006eea3f388279699bb7c515fcc796dd48f14d5ecd3ce"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-501714855d082f7e",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_sodium_sulfate_39_review.json",
+      "review_sha256": "ac3b7fbbd1ad424daeed57ff9dd9c6ac27a1627a0713939d8e79e142e5a2daf1",
+      "authorization": "Standing user approval of autonomous remaining mapping resolution with logged screening proxies and warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for sodium sulfate, anhydrite",
+            "reference product": "sodium sulfate, anhydrite",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "metadata_sha256": "b17da32884e8ed1929a982ed2766a210c9ba75ad450e76aa5d5d8613d24d08cc",
+          "inventory_sha256": "8f878fefe3b43b7c63db998f317531f6f8761357ce98ff71a5d76e52fdaab4e8",
+          "activity_comment_sha256": "aa700819ff35c953325e4c5fc263ad06c94e47874f67bb569ed02f97d94dd027",
+          "product_information_sha256": "fa5c56878e673a9d0b2f66cecb8807652957c8bc8e28aaa9b4a31c894a51557b"
+        },
+        "recipe_id": "sodium-sulfate-39-retained-production-and-delivery"
+      },
+      "limitations": [
+        "New approval is limited to independently inspected ecoinvent 3.9 cut-off production/market identities. Source and native references are positive one kg of sodium sulfate, with factor +1. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership and separately listed emissions. No solution, hydration, yield, moisture or allocation multiplier is inferred. Other releases, patches, system models and reverse routes receive no approval.",
+        "Both production routes are complete native screening proxies for the same named chemistry, not reconstructed exact source inventories. Native internal raw-material supply/delivery, allocation, heat and electricity, emissions, water, waste heat, age and uncertainty replace the source internal model. No extra HCl recovery/displacement credit, avoided burden, waste-treatment omission or energy balancing correction is added. Source/native LCI, LCIA and stochastic equivalence are not claimed; score effects remain unquantified.",
+        "Default targets and all other existing profile entries remain unchanged. No new source omissions, runtime Python modules, alternative sector engine or validation bypass. Complete native suppliers remain available to ordinary Premise transformations.",
+        "Retain all seven original market inputs and supported uncertainty: 0.333 kWh electricity, 1.9 MJ useful natural-gas heat, Mannheim/natural sodium-sulfate shares 0.930563075257174/0.0694369247428263, and original 0.3091 rail, 0.0246 barge and 0.2088 road tkm. Use the two reviewed same-chemistry native producers. Native powder mix is deliberately not substituted: its observed inventory contains only 0.15 Mannheim +0.60 natural kg per reference kg and a different source portfolio. No missing 0.25 kg supply, implicit share normalization or credit is inferred.",
+        "Reuse exact existing source3.9 electricity, useful industrial-gas heat and three freight correspondence scopes unchanged. Heat retains its reviewed regional producer-composition recipe; do not replace useful heat by a fuel input. Market utilities are separate finishing/delivery inputs, retained in addition to complete allocated producers. Original final delivery remains distinct from internal native raw-material transport. Native geographic/fleet, allocation, energy and emissions limitations from existing scopes remain. Do not add a second utility, distance, vehicle, heat credit or loss multiplier."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e45a12f1f8c72e28b445c5d8656f023f48c3e71a2ec9283a1240ea8bbbdabc0f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-40bb8ddf151ac8e5",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_sodium_sulfate_39_review.json",
+      "review_sha256": "ac3b7fbbd1ad424daeed57ff9dd9c6ac27a1627a0713939d8e79e142e5a2daf1",
+      "authorization": "Standing user approval of autonomous remaining mapping resolution with logged screening proxies and warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "Mannheim process",
+            "reference product": "sodium sulfate, anhydrite",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 14,
+          "metadata_sha256": "7393530f06393321685dca53dc5cb1a4f5f0d558aab377d521a4db5fac39f906",
+          "inventory_sha256": "ef250cfb262ca5848ee85cab21a50c99c340a4dd836711c194587504d179bdd8",
+          "activity_comment_sha256": "305af0ded12e0c7e72450857d90e9bf7a22be1a63152a466e98187131a6f7c6d",
+          "product_information_sha256": "fa5c56878e673a9d0b2f66cecb8807652957c8bc8e28aaa9b4a31c894a51557b"
+        },
+        "recipe_id": null
+      },
+      "limitations": [
+        "New approval is limited to independently inspected ecoinvent 3.9 cut-off production/market identities. Source and native references are positive one kg of sodium sulfate, with factor +1. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership and separately listed emissions. No solution, hydration, yield, moisture or allocation multiplier is inferred. Other releases, patches, system models and reverse routes receive no approval.",
+        "Both production routes are complete native screening proxies for the same named chemistry, not reconstructed exact source inventories. Native internal raw-material supply/delivery, allocation, heat and electricity, emissions, water, waste heat, age and uncertainty replace the source internal model. No extra HCl recovery/displacement credit, avoided burden, waste-treatment omission or energy balancing correction is added. Source/native LCI, LCIA and stochastic equivalence are not claimed; score effects remain unquantified.",
+        "Default targets and all other existing profile entries remain unchanged. No new source omissions, runtime Python modules, alternative sector engine or validation bypass. Complete native suppliers remain available to ordinary Premise transformations.",
+        "Both source and native co-produce sodium sulfate and hydrochloric acid by the Mannheim process. Allocation/raw-material bases differ: source NaCl 0.6457363 kg and sulfuric acid 0.5420904 kg versus native 0.34034 and 0.71173 kg per kg sodium sulfate. These are allocated inventories, not unallocated stoichiometric recipes. Do not force reagent balances, infer solution concentrations, remove HCl-related burdens or multiply by an allocation ratio. Native documentation reports price/raw-material-stoichiometric allocation, uncertain literature data and omitted solid wastes; preserve that complete native boundary with warnings for source/direct-water and energy differences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bd34dae93ccf83e83a4a9271a3f6edd4c6ca1bbb6f4fae6e5ab74e5b9b59cb79"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-61027fe0527d5950",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_sodium_sulfate_39_review.json",
+      "review_sha256": "ac3b7fbbd1ad424daeed57ff9dd9c6ac27a1627a0713939d8e79e142e5a2daf1",
+      "authorization": "Standing user approval of autonomous remaining mapping resolution with logged screening proxies and warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "sodium sulfate production, from natural sources",
+            "reference product": "sodium sulfate, anhydrite",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "metadata_sha256": "bca83858d506a48b86221dae591bd407e4ea1ecba01d83f805c75bc891606e0d",
+          "inventory_sha256": "05c19a1a43334ad5e8476b88cef4258f517d67ec9a963c39b8e8c37ca1037c7c",
+          "activity_comment_sha256": "a375c2d5ffc62a2c553310e13760f692c1e6acf4d666829e5fa49dc9884340a1",
+          "product_information_sha256": "fa5c56878e673a9d0b2f66cecb8807652957c8bc8e28aaa9b4a31c894a51557b"
+        },
+        "recipe_id": null
+      },
+      "limitations": [
+        "New approval is limited to independently inspected ecoinvent 3.9 cut-off production/market identities. Source and native references are positive one kg of sodium sulfate, with factor +1. Preserve signed caller kg, supported uncertainty/formulas, foreground ownership and separately listed emissions. No solution, hydration, yield, moisture or allocation multiplier is inferred. Other releases, patches, system models and reverse routes receive no approval.",
+        "Both production routes are complete native screening proxies for the same named chemistry, not reconstructed exact source inventories. Native internal raw-material supply/delivery, allocation, heat and electricity, emissions, water, waste heat, age and uncertainty replace the source internal model. No extra HCl recovery/displacement credit, avoided burden, waste-treatment omission or energy balancing correction is added. Source/native LCI, LCIA and stochastic equivalence are not claimed; score effects remain unquantified.",
+        "Default targets and all other existing profile entries remain unchanged. No new source omissions, runtime Python modules, alternative sector engine or validation bypass. Complete native suppliers remain available to ordinary Premise transformations.",
+        "Source documentation explicitly describes commercial anhydrous sodium sulfate exploitation rather than Glauber decahydrate; native reference is one kg naturally occurring sodium sulfate exploitation. Both inventories use 1.05 kg resource, 0.17 kWh electricity, 0.00428 MJ machinery diesel and 2e-10 chemical-plant units. Source 0.18145 MJ useful other-fuel heat is replaced by native 0.191 MJ light-oil combustion within the complete native inventory, without an extra efficiency multiplier. Source -0.03 kg inert-waste service corresponds to native +0.03 kg disposal demand; do not reverse the complete producer reference or add another disposal. Native extraction, water/resource labels, heat waste, geography, energy allocation and uncertainty remain screening limitations."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "546ada0f3c26d2b47523e966a20c796155414b871d7a5f02a4606eb9892e244d"
+        }
+      ]
     }
   ],
   "superseded_operations": [

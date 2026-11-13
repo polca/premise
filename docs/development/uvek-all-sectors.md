@@ -1960,3 +1960,7 @@ Retained both previously reviewed landfill inventories/shares and all eight coll
 ### Sorted iron and new aluminium scrap — 13 November 2026
 
 Retained three sorted-iron producer shares and all market delivery, with explicit complete-native sorting/collection proxies. Preserved exact empty new-aluminium cut-off stock; corrected coal-specific rail and restored source delivery uncertainty. Mapping/storage, fresh/cache and signed in-memory LCIs pass with no database writes or runtime Python module changes. Fresh battery cohort falls from 160 to 158 unapproved source-3.9 rules; next sodium sulfate. Eight of nineteen sectors remain qualified. See `uvek-scrap-delivery-39-review.md` and verification JSON.
+
+### Sodium sulfate production and market — 13 November 2026
+
+Retained original producer shares, finishing utilities and delivery rather than replacing the market by the different native powder mix. Complete same-chemistry Mannheim/natural-source proxies have explicit allocation, energy, resource/water and uncertainty warnings. Five existing utility/freight scopes and the regional heat recipe remain unchanged. Mapping/storage and in-memory signed LCIs pass without database writes. Fresh battery cohort falls from 158 to 157 unapproved source-3.9 rules; two producer interfaces were tested independently. Next spent-solvent treatment; eight of nineteen sectors remain qualified. See `uvek-sodium-sulfate-39-review.md` and verification JSON. Held for the next batch push.
