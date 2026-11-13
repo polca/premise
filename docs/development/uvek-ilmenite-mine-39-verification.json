@@ -1,0 +1,167 @@
+{
+  "date": "2026-11-13",
+  "brightpath_commit": "d3a05e948a817fdd3bf1aa17439710e8cf757035",
+  "scope_registration": {
+    "prior_scopes": 1314,
+    "new_scopes": 1317,
+    "all_existing_operations_unchanged": true
+  },
+  "tests": {
+    "brightpath_mapping_and_storage_checks": 38,
+    "premise_fresh_cached_sign_uncertainty_and_scope_checks": 15,
+    "lint": "passed",
+    "note": "Built-site asset, one-producer market and two-share building market retain all rows; five land flows unchanged. Existing hall mapping reused; source/native lifetime conventions explicitly warned.",
+    "installed_package_premise_checks": 15
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 6,
+    "foreground_biosphere_flows": 6,
+    "native_suppliers": 2,
+    "signed_foreground_LCI_solves": 6,
+    "independent_native_reference_LCI_solves": 3,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-03f7ef8484d90cd9",
+        "source": {
+          "location": "GLO",
+          "name": "mine construction, open cast, ilmenite from hard-rock ore",
+          "reference product": "mine infrastructure, open cast, ilmenite from hard-rock ore",
+          "unit": "unit"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "unit",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 5.820766091346741e-11,
+        "refined_max_abs_inventory_difference": 1.4901161193847656e-08,
+        "full_graph_residual": {
+          "residual_before": 0.030307150092237178,
+          "residual_after": 1.7808814404601445e-08,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 0.030307150092237178,
+          "residual_after": 1.7808814404601445e-08,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-1a960033d07f1ebd",
+        "source": {
+          "location": "GLO",
+          "name": "market for building, multi-storey",
+          "reference product": "building, multi-storey",
+          "unit": "cubic meter"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "cubic meter",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 1.4551915228366852e-11,
+        "full_graph_residual": {
+          "residual_before": 8.235407828815779e-07,
+          "residual_after": 5.816028710722572e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 8.235407828815779e-07,
+          "residual_after": 5.81607031460383e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-ef2d0f2c82b1e1b1",
+        "source": {
+          "location": "GLO",
+          "name": "market for mine infrastructure, open cast, ilmenite from hard-rock ore",
+          "reference product": "mine infrastructure, open cast, ilmenite from hard-rock ore",
+          "unit": "unit"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "unit",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 5.820766091346741e-11,
+        "refined_max_abs_inventory_difference": 1.4901161193847656e-08,
+        "full_graph_residual": {
+          "residual_before": 0.030307150092237178,
+          "residual_after": 1.7808814404601445e-08,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 0.030307150092237178,
+          "residual_after": 1.7808814404601445e-08,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the built-mine asset, its market and multi-storey-building market and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "frontier": {
+    "before_unapproved_rule_count": 166,
+    "after_unapproved_rule_count": 165,
+    "cleared_rule_ids": [
+      "bp-ef2d0f2c82b1e1b1"
+    ],
+    "new_unapproved_rules": [],
+    "next_unapproved_rule": "bp-a3c515458cd0a130",
+    "next_source": {
+      "location": "RoW",
+      "name": "market for petrol, unleaded",
+      "reference product": "petrol, unleaded",
+      "unit": "kilogram"
+    },
+    "next_target": {
+      "location": "CH",
+      "name": "xxx Petrol, unleaded, at refinery",
+      "reference product": "xxx Petrol, unleaded, at refinery",
+      "unit": "kilogram"
+    },
+    "inventory_preparation_complete": false,
+    "export_performed": false,
+    "scope": "Unique rules in the inspected source-3.9 cut-off battery cohort, not dataset count or all source profiles. Only mine market was pending in this cohort; asset and building market tested independently."
+  },
+  "runtime_python_changes": [],
+  "installed_package_verification": {
+    "brightpath_commit": "d3a05e948a817fdd3bf1aa17439710e8cf757035",
+    "installed_resources_match_commit": [
+      "export/uvek_ilmenite_mine_39_review.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "migrations/RESOURCE_MANIFEST.json"
+    ],
+    "removed_unused_wheel": "brightpath-1.0.0a14-py3-none-any.whl",
+    "removed_bytes": 44175585,
+    "sha256": "d42dec8aba7ab6a9cb90dcd750cb4769f1ce12aace8f3c5f062d0fb9f0b6b1c3"
+  },
+  "source_row_counts_retained": [
+    7,
+    2,
+    1
+  ],
+  "unchanged_hall_correspondence_scopes": 1,
+  "retained_direct_land_flows": 5
+}

@@ -1932,3 +1932,7 @@ Reviewed the existing complete Swiss native process for exact source-3.9 cut-off
 ### Methane sulfonic acid — 13 November 2026
 
 Replaced three unrelated-chemical matches with retained RER/RoW acid inventories and their original market shares/delivery, using 42 unchanged upstream correspondence scopes and five existing helpers. Separately reviewed the complete native SO3 geographic proxy. All source rows and seven direct biosphere exchanges per producer remain; questionable source gas-feed basis is explicitly flagged without correction. Mapping/storage, fresh/cache sign/uncertainty checks and in-memory LCIs pass without database writes. Battery cohort falls from 167 to 166 unapproved rules, next ilmenite-mine infrastructure. Eight of nineteen sectors remain qualified. See `uvek-methane-sulfonic-acid-39-review.md` and verification JSON. Queued for the next batch push.
+
+### Ilmenite built-site infrastructure — 13 November 2026
+
+Reconstructed the original built-site buildings and five land-use flows, replacing the complete hard-coal-mine match. Preserved the asset market and two building producer shares; source site/building lifetime conventions and geographic/old-building proxies remain warnings. Mapping/storage, fresh/cache sign/uncertainty tests and in-memory LCIs pass without database writes. Battery cohort falls from 166 to 165 unapproved rules, next RoW unleaded petrol. Eight of nineteen sectors remain qualified. See `uvek-ilmenite-mine-39-review.md` and verification JSON.
