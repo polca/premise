@@ -51,5 +51,8 @@ finite, and signed reversals agree. No Brightway database, activity or processed
 file is created by those checks. This does not establish source-emission or
 LCIA equivalence, model completeness or stochastic uncertainty equivalence.
 
-The public CDR gate remains closed pending the combined-sector check, actual
-export and milestone qualification. See [verification](uvek-cdr-family-verification.json).
+The public CDR gate is now enabled after the combined eight-sector run,
+actual export and 168 signed checks of the written CDR activities and markets.
+See the [standalone verification](uvek-cdr-family-verification.json) and
+[combined export qualification](uvek-cdr-qualification.json). The default
+three-sector notebook update remains unchanged.

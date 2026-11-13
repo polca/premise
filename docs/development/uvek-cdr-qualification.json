@@ -1,0 +1,1516 @@
+{
+  "status": "public_eight_sector_update_exhaustive_validation_export_and_signed_LCIs_passed",
+  "database": "BAFU:2026-REMIND-SSP2-NPi-2050-eight-cdr-20261113-120504",
+  "activities": 15137,
+  "native_codes_retained": 11947,
+  "technosphere_destination_databases": {
+    "BAFU:2026-REMIND-SSP2-NPi-2050-eight-cdr-20261113-120504": 148624
+  },
+  "biosphere_destination_databases": {
+    "ecoinvent-3.10-biosphere": 313139
+  },
+  "cdr_market_count": 11,
+  "CDR_market_locations": [
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "USA"
+  ],
+  "written_regional_CDR_activities_and_markets_checked": 84,
+  "written_signed_LCI_solves": 168,
+  "all_written_LCIs_finite": true,
+  "all_written_signed_reversals_match": true,
+  "exhaustive_validation_errors": 0,
+  "exported_activity_checks": [
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+      "reference product": "carbon dioxide, captured",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "market for carbon dioxide removal",
+      "reference product": "carbon dioxide, captured and stored",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+      "reference product": "carbon dioxide, captured",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "World",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+      "reference product": "carbon dioxide, captured",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    },
+    {
+      "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+      "reference product": "carbon dioxide, captured",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signs_finite": true,
+      "signed_reversal_matches": true
+    }
+  ],
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement",
+    "steel",
+    "mining",
+    "renewable",
+    "cdr"
+  ],
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "elapsed_seconds": 489.1186834999826,
+  "native_source_and_biosphere_metadata_preserved": true,
+  "validation_disabled": false,
+  "public_gate_bypassed": false,
+  "registered_databases_added": [
+    "BAFU:2026-REMIND-SSP2-NPi-2050-eight-cdr-20261113-120504"
+  ],
+  "qualification_limit": "Inspected REMIND scenario and complete reviewed source inventories with documented screening limitations; not universal IAM technology coverage, emission completeness or LCIA equivalence.",
+  "date": "2026-11-13",
+  "runtime_commit_before_public_gate": "476dba99a89aed43256a6c175d421f3b1a17825e",
+  "brightpath_commit": "6b6aa3523a21c00f13062c25f6bb6f986848abf7",
+  "gate_source_sha256": "d42af3d25531466548f7c4506bc567788af3ceeef6f4e056853040ee01e268d9",
+  "standalone_filter_and_energy_evidence": "docs/development/uvek-cdr-family-verification.json",
+  "combined_no_write": {
+    "status": "combined_eight_update_and_exhaustive_validation_passed",
+    "activities": 15137,
+    "cdr_market_count": 11,
+    "CDR_market_locations": [
+      "CAZ",
+      "CHA",
+      "EUR",
+      "IND",
+      "JPN",
+      "LAM",
+      "MEA",
+      "NEU",
+      "OAS",
+      "REF",
+      "USA"
+    ],
+    "exhaustive_validation_errors": 0,
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr"
+    ],
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 161.47954320907593,
+    "new_brightway_databases": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "validation_disabled": false,
+    "public_gate_bypassed_for_diagnostic_only": true,
+    "export_performed": false
+  },
+  "combined_complete_transient_LCI": {
+    "scenario": "encrypted REMIND SSP2-NPi 2050; combined eight sectors with CDR",
+    "all_transformed_activities": 15137,
+    "linked_technosphere_exchanges": 148624,
+    "transient_technosphere_coordinates": 150704,
+    "transient_biosphere_coordinates": 278813,
+    "matrix_boundary": "Complete transformed point-estimate graph; no unchanged native technosphere overlay.",
+    "foreground_datapackage_filesystem": "memory",
+    "selected_regional_CDR_activities_and_markets": 84,
+    "signed_LCI_solves": 168,
+    "all_LCIs_finite": true,
+    "all_signed_reversals_match": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "source_and_biosphere_preserved": true,
+    "database_registry_unchanged": true,
+    "qualification_limit": "Deterministic numerical and linking checks; not LCIA equivalence, source emission completeness, uncertainty simulation, or Brightway export qualification.",
+    "checks": [
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "CAZ",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "CHA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "EUR",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "IND",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "JPN",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "LAM",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "MEA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "NEU",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "OAS",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "REF",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "SSA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "USA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m",
+        "reference product": "carbon dioxide, captured",
+        "location": "World",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "CAZ",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "CHA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "EUR",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "IND",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "JPN",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "LAM",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "MEA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "NEU",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "OAS",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "REF",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "SSA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2",
+        "reference product": "carbon dioxide, captured",
+        "location": "USA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "CAZ",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "CHA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "EUR",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "IND",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "JPN",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "LAM",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "MEA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "NEU",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "OAS",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "REF",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "SSA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with industrial steam heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "USA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "CAZ",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "CHA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "EUR",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "IND",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "JPN",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "LAM",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "MEA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "NEU",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "OAS",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "REF",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "SSA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a solvent-based direct air capture system, 1MtCO2, with hydrogen heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "USA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "CAZ",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "CHA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "EUR",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "IND",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "JPN",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "LAM",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "MEA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "NEU",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "OAS",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "REF",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "SSA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, with a sorbent-based direct air capture system, 100ktCO2, with heat pump heat, and grid electricity",
+        "reference product": "carbon dioxide, captured",
+        "location": "USA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "CAZ",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "CHA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "EUR",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "IND",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "JPN",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "LAM",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "MEA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "NEU",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "OAS",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "REF",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "SSA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane",
+        "reference product": "carbon dioxide, captured",
+        "location": "USA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "CAZ",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "CHA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "EUR",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "IND",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "JPN",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "LAM",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "MEA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "NEU",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "OAS",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "REF",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      },
+      {
+        "name": "market for carbon dioxide removal",
+        "reference product": "carbon dioxide, captured and stored",
+        "location": "USA",
+        "unit": "kilogram",
+        "both_signs_finite": true,
+        "signed_reversal_matches": true
+      }
+    ]
+  },
+  "unused_snapshot_cleanup": {
+    "removed": [
+      {
+        "name": "cdr-scenario-no-write.private.pkl",
+        "bytes": 204431043
+      },
+      {
+        "name": "eight-cdr-scenario-no-write.private.pkl",
+        "bytes": 950218926
+      }
+    ],
+    "bytes_removed": 1154649969,
+    "reason": "Complete transient LCI and filter checks finished; receipts and scripts retained. Fresh public export run constructs its own graph and does not read these snapshots.",
+    "brightway_databases_deleted": 0,
+    "source_databases_and_biosphere_preserved": true
+  },
+  "checks": {
+    "family_and_energy": {
+      "passed": 41
+    },
+    "requirements_hybrid_and_activity_maps": {
+      "passed": 64
+    },
+    "existing_standard_sector_and_background": {
+      "passed": 87
+    },
+    "public_scope_and_existing_fuel_axis_regressions": {
+      "passed": 31
+    },
+    "interpretation": "Groups overlap; these counts must not be added as unique tests.",
+    "black": "passed",
+    "ruff": "public gate/tests and new CDR tests/generator pass; four pre-existing unused CDR imports preserved",
+    "documentation_reference_regenerated_and_checked": true
+  },
+  "preserved_behavior": {
+    "no_argument_default_sectors": [
+      "biomass",
+      "electricity",
+      "heat"
+    ],
+    "shared_CDR_algorithms_unchanged": true,
+    "unsupported_sectors_still_refused": true,
+    "no_notebook_edits": true
+  },
+  "publication": "New CDR commits are queued for a later batch.",
+  "public_default_checkpoint_persistence_check": {
+    "status": "diagnostic_update_and_graph_checks_passed",
+    "activities": 12214,
+    "source_database_metadata_unchanged": true,
+    "sector": "cdr",
+    "scenario": "encrypted REMIND SSP2-NPi 2050",
+    "elapsed_seconds": 47.796782332938164,
+    "public_scope_gate_bypassed_for_diagnostic_only": false,
+    "automatic_report_artifacts_suppressed_in_this_private_probe": true,
+    "validation_disabled": false,
+    "export_performed": false,
+    "default_scenario_checkpoint_persistence": true
+  }
+}

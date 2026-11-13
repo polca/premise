@@ -269,3 +269,21 @@ nine-cell run above remains the complete notebook/export evidence.
 For a reliable export, finish other database writes and release open transactions
 in the same Brightway project first. The example code and user workflow are
 unchanged. Local notebook edits and unrelated worktree changes were not staged.
+
+## Optional combined CDR check
+
+The regular notebook's three-sector update remains the default. To exercise the
+eight sectors qualified for the inspected REMIND SSP2-NPi 2050 scenario, restart
+the kernel and run the notebook in order with this replacement update cell,
+before its export cell:
+
+```python
+ndb.update([
+    "biomass", "electricity", "heat", "cement", "steel", "mining", "renewable", "cdr"
+])
+```
+
+This uses the same source project, BAFU database, biosphere and export workflow.
+CDR adds regional removal markets and the corresponding capture/storage activities.
+The qualification and remaining modelling limits are recorded in
+[`uvek-cdr-qualification.json`](uvek-cdr-qualification.json).

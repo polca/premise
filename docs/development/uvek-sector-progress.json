@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining and renewable. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
+  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable and cdr. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
   "sectors": [
     {
       "sector": "biomass",
@@ -2110,13 +2110,96 @@
     },
     {
       "sector": "cdr",
-      "status": "audited_not_operational",
+      "status": "public_update_exhaustive_validation_export_and_signed_LCI_qualified_for_inspected_REMIND_scenario",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
-      "native_mapping_coverage": {
+      "decisions": [],
+      "implementation_commits": [
+        "476dba99a89aed43256a6c175d421f3b1a17825e"
+      ],
+      "tests": [],
+      "integration_exports": [
+        {
+          "database": "BAFU:2026-REMIND-SSP2-NPi-2050-eight-cdr-20261113-120504",
+          "scenario": "encrypted REMIND SSP2-NPi 2050",
+          "verification": "docs/development/uvek-cdr-qualification.json"
+        }
+      ],
+      "static_audit": {
+        "callback": "_update_cdr",
+        "module": "premise/emissions/carbon_dioxide_removal.py",
+        "module_sha256": "0a82d8cde45f29050aebfde001579d4e2458817c5e51613a831e032a208090bd",
+        "update_function_line": 64,
+        "declared_arguments": [
+          "scenario",
+          "version",
+          "system_model"
+        ],
+        "inventory_set_calls": [
+          {
+            "line": 135,
+            "family_keyword_supplied": false
+          }
+        ],
+        "biosphere_dictionary_calls": [],
+        "version_assumption_lines_to_review": [],
+        "role_files": [
+          "carbon_dioxide_removal.yaml"
+        ],
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+      },
+      "production_heat_correspondence_review": {
+        "review": "docs/development/uvek-production-heat-boundary-review.md",
+        "verification": "docs/development/uvek-production-heat-boundary-verification.json",
+        "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
+      },
+      "current_mapping_frontier": {
+        "date": "2026-11-13",
+        "status": "qualified_for_inspected_REMIND_SSP2_NPi_2050",
+        "completed_reviews": [
+          "docs/development/uvek-pump-profiles-review.md",
+          "docs/development/uvek-spent-solvent-profiles-review.md",
+          "docs/development/uvek-cogen-heat-exchanger-review.md",
+          "docs/development/uvek-cdr-equipment-profiles-review.md",
+          "docs/development/uvek-cdr-312-steel-wastewater-review.md",
+          "docs/development/uvek-cdr-small-biomethane-heat-review.md",
+          "docs/development/uvek-european-delivered-water-review.md",
+          "docs/development/uvek-mdea-312-review.md",
+          "docs/development/uvek-cdr-family-review.md"
+        ],
+        "pending_cases": [],
+        "scope_gate": "Public cdr update enabled after real combined-eight-sector qualification; default remains three sectors. Other IAM scenarios and eligible technologies require separate qualification.",
+        "latest_probe": "docs/development/uvek-mdea-312-verification.json",
+        "cycle_diagnostic": "docs/development/uvek-cdr-cycle-alias-diagnostic.json",
+        "latest_runtime_evidence": "docs/development/uvek-cdr-qualification.json"
+      },
+      "historical_initial_audit_blockers": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/emissions/carbon_dioxide_removal.py:64",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/emissions/carbon_dioxide_removal.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ],
+      "blockers": [],
+      "historical_initial_native_mapping_coverage": {
         "kind": "static_declarations_only",
         "files": [
           {
@@ -2148,82 +2231,15 @@
         ],
         "runtime_verified": false
       },
-      "blockers": [
-        {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
-        },
-        {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/emissions/carbon_dioxide_removal.py:64",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/emissions/carbon_dioxide_removal.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
-        }
-      ],
-      "decisions": [],
-      "implementation_commits": [],
-      "tests": [],
-      "integration_exports": [],
-      "static_audit": {
-        "callback": "_update_cdr",
-        "module": "premise/emissions/carbon_dioxide_removal.py",
-        "module_sha256": "0a82d8cde45f29050aebfde001579d4e2458817c5e51613a831e032a208090bd",
-        "update_function_line": 64,
-        "declared_arguments": [
-          "scenario",
-          "version",
-          "system_model"
-        ],
-        "inventory_set_calls": [
-          {
-            "line": 135,
-            "family_keyword_supplied": false
-          }
-        ],
-        "biosphere_dictionary_calls": [],
-        "version_assumption_lines_to_review": [],
-        "role_files": [
-          "carbon_dioxide_removal.yaml"
-        ],
-        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
-      },
-      "production_heat_correspondence_review": {
-        "review": "docs/development/uvek-production-heat-boundary-review.md",
-        "verification": "docs/development/uvek-production-heat-boundary-verification.json",
-        "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
-      },
-      "current_mapping_frontier": {
-        "date": "2026-11-13",
-        "status": "standalone_update_exhaustive_graph_and_signed_LCI_checks_passed_combined_and_export_pending",
-        "completed_reviews": [
-          "docs/development/uvek-pump-profiles-review.md",
-          "docs/development/uvek-spent-solvent-profiles-review.md",
-          "docs/development/uvek-cogen-heat-exchanger-review.md",
-          "docs/development/uvek-cdr-equipment-profiles-review.md",
-          "docs/development/uvek-cdr-312-steel-wastewater-review.md",
-          "docs/development/uvek-cdr-small-biomethane-heat-review.md",
-          "docs/development/uvek-european-delivered-water-review.md",
-          "docs/development/uvek-mdea-312-review.md",
-          "docs/development/uvek-cdr-family-review.md"
-        ],
-        "pending_cases": [
-          "Combined eight-sector update/exhaustive validation and signed LCI checks.",
-          "Real Brightway export and public-gate qualification for the inspected REMIND scenario; other IAM technology coverage remains separate."
-        ],
-        "scope_gate": "Intentionally closed until standard update/export and filters are verified.",
-        "latest_probe": "docs/development/uvek-mdea-312-verification.json",
-        "cycle_diagnostic": "docs/development/uvek-cdr-cycle-alias-diagnostic.json",
-        "latest_runtime_evidence": "docs/development/uvek-cdr-family-verification.json"
+      "native_mapping_coverage": {
+        "kind": "reviewed_CLIC_foreground_role_bindings_against_native_UVEK_background",
+        "runtime_verified": true,
+        "scenario": "encrypted REMIND SSP2-NPi 2050",
+        "native_CDR_suppliers_added": 0,
+        "all_active_IAM_roles_have_providers": true,
+        "original_support_and_main_published_slugs_preserved": true,
+        "evidence": "docs/development/uvek-cdr-family-verification.json",
+        "limitation": "Other IAM scenarios and non-applicable technologies are not qualified by this run."
       }
     },
     {
@@ -2280,6 +2296,32 @@
         "review": "docs/development/uvek-production-heat-boundary-review.md",
         "verification": "docs/development/uvek-production-heat-boundary-verification.json",
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
+      },
+      "current_mapping_frontier": {
+        "date": "2026-11-13",
+        "status": "inventory_preparation_requires_independent_correspondence_review",
+        "verified_after_CDR_export_writer_exited": true,
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "rule_id": "bp-0bbfeb07da304c0c",
+        "source": {
+          "location": "RER",
+          "name": "market for hydrogen fluoride",
+          "reference product": "hydrogen fluoride",
+          "unit": "kilogram"
+        },
+        "current_unapproved_target": {
+          "location": "GLO",
+          "name": "Hydrogen fluoride, at plant",
+          "reference product": "Hydrogen fluoride, at plant",
+          "unit": "kilogram"
+        },
+        "next_action": "Inspect source and native production references, chemical/solution concentration basis, market delivery and allocation/geography; then replace or scope the correspondence with explicit limitations.",
+        "export_performed": false,
+        "earlier_overlapping_probe": "Construction hit the active CDR export SQL writer and is not mapping evidence."
       }
     },
     {
@@ -3530,10 +3572,11 @@
     }
   ],
   "combined_default_run": {
-    "status": "biomass_electricity_heat_verified_other16pending",
+    "status": "unchanged_three_sector_default_verified_with_five_optional_sectors_qualified",
     "evidence": [
       "docs/development/uvek-biomass-verification.json",
-      "docs/development/uvek-heat-public-verification.json"
+      "docs/development/uvek-heat-public-verification.json",
+      "docs/development/uvek-cdr-qualification.json"
     ]
   },
   "packaged_resource_checks": {
@@ -3581,11 +3624,12 @@
       "cement",
       "steel",
       "mining",
-      "renewable"
+      "renewable",
+      "cdr"
     ],
     "registered_sectors_including_electricity": 19,
-    "remaining_unqualified_sector_count": 12,
-    "latest_combined_export_evidence": "docs/development/uvek-renewable-qualification.json",
+    "remaining_unqualified_sector_count": 11,
+    "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification."
   }
