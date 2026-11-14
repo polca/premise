@@ -2138,3 +2138,8 @@ Reviewed four exact source-3.9 delivered-voltage correspondences, retaining comp
 ## At-site mineral stocks — 14 November 2026
 
 Exact3.9 hydraulic-lime and crushed-limestone markets each contain one producer without market delivery. Reviewed complete native CH production at+1 signed kg, keeping the binder and uncalcined carbonate distinct. No helper, migration-resource, runtime or generator change; all older permissions unchanged. Twenty-seven Brightpath and ten source/ten installed Premise checks pass, plus four signed in-memory LCIs and two independent comparisons without Brightway writes. Fresh/cached battery count52to50; next kerosene delivery. Eight sectors remain qualified. See [review](uvek-mineral-gate-stocks-39-review.md) and [verification](uvek-mineral-gate-stocks-39-verification.json).
+
+
+## Delivered kerosene — 14 November 2026
+
+Corrected refinery-only matching to complete native RER kerosene regional storage,at+1 signed kg. Source delivery internals are replaced by a documented whole-process screening proxy; electricity,NMVOC,freight,infrastructure and wastewater differences are explicit. No helpers,omissions or runtime changes. Twenty-nine Brightpath and five Premise source checks pass,plus signed in-memory LCI/native-demand consistency without Brightway writes. Fresh/cached battery50to49; eight sectors remain qualified. See [review](uvek-kerosene-delivery-39-review.md) and [verification](uvek-kerosene-delivery-39-verification.json).

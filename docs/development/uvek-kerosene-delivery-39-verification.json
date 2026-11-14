@@ -1,0 +1,160 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "318ee5d0e6318900549a6ac58d56e0d822eaa811",
+  "scope_registration": {
+    "prior_scopes": 1459,
+    "new_scopes": 1460,
+    "new_rule_ids": [
+      "bp-94e99d669f988a94"
+    ],
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "one_reviewed_rule_changed": true,
+    "recipes_unchanged": true,
+    "new_helpers": 0,
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_source_and_broad_resource_checks": 29,
+    "premise_source_fresh_cache_withdrawal": 5,
+    "changed_tests_and_replayer_black_and_ruff": "passed",
+    "premise_clean_installed_package_same_checks": 5
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 1,
+    "native_suppliers": 1,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-94e99d669f988a94",
+        "source": {
+          "location": "RoW",
+          "name": "market for kerosene",
+          "reference product": "kerosene",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 0.0,
+        "full_graph_residual": {
+          "residual_before": 2.0002699718264283e-09,
+          "residual_after": 4.037557246246206e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.0002699718264283e-09,
+          "residual_after": 4.037557246246206e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies complete native delivered-kerosene kg interface and independent native-demand numerical consistency. Does not reproduce source regional delivery,emission or refinery model,prove LCIA equivalence or qualify battery/export."
+  },
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 50,
+    "current": 49,
+    "removed_rules": [
+      "bp-94e99d669f988a94"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-42ca176032e4b754",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 49,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-42ca176032e4b754",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "runtime_python_changes": [],
+  "new_helpers": 0,
+  "new_recipes": 0,
+  "new_source_omissions": [],
+  "user_environment_changed": false,
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "full_test_suite_rerun": false,
+  "reverse_generator_run": false,
+  "clean_forward_generator": {
+    "brightpath_commit": "318ee5d0e6318900549a6ac58d56e0d822eaa811",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "d03968a674722d7942669a42038126c9d9ac8ba059b0d5b395be3c380b97b34d",
+        "committed_sha256": "d03968a674722d7942669a42038126c9d9ac8ba059b0d5b395be3c380b97b34d",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 69358385
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 0,
+    "removed_generated_output_bytes": 106551429,
+    "removed_owned_clean_worktree_file_bytes": 498657282
+  },
+  "tracked_wheel_build": {
+    "brightpath_commit": "318ee5d0e6318900549a6ac58d56e0d822eaa811",
+    "clean_tracked_git_archive_build": true,
+    "unexpected_package_files": [],
+    "installed_resources_match_committed_bytes": [
+      "export/uvek_kerosene_delivery_39_review.json",
+      "migrations/RESOURCE_MANIFEST.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "export/uvek_archived_unreferenced_reviews.json"
+    ],
+    "removed_unused_wheel_bytes": 43880311,
+    "removed_temporary_tracked_build_source_and_archive_bytes": 1358200460,
+    "retained_installed_package": true
+  }
+}

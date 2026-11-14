@@ -282676,6 +282676,104 @@
           "fingerprint": "d1334ca99187556db28eaa0256db5fd382e2bce21cf7490b4fe16596d62e548b"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-94e99d669f988a94",
+      "mapping_method": "reviewed_complete_kerosene_delivery_39",
+      "review_path": "export/uvek_kerosene_delivery_39_review.json",
+      "review_sha256": "f333b98601aff8595994a4ecf398cf9c3d346be571c4ff5165ac63b01cdaf59f",
+      "authorization": "Standing user auto-approval of coming modelling decisions and complete native screening proxies with warnings,logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for kerosene",
+            "reference product": "kerosene",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 114,
+          "metadata_sha256": "92223ce5cfe9ac6ff859e56a12de1dbddc600b22613eec6656210104cb56ee1b",
+          "inventory_sha256": "ecede6443c02df5960d34d9cac2c40998fd612ece89729c432289f5e95701e3e",
+          "activity_comment_sha256": "5a11945cc96fbff586f864bdd0d181c90493fa82c8c3092d130008e3fe969b6d",
+          "product_information_sha256": "af10ba1c0900251b703d92d934de607add6e0faebc044ba49e2883f820ae60fa"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Kerosene, at regional storage",
+              "reference product": "Kerosene, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 15,
+            "metadata_sha256": "4a67acf3178412ef1a2a9db504de43bbe09a867349c426729f09ca79acc6e386",
+            "inventory_sha256": "2d56d41b8634131d5ba7235d28195867223a667b755b6ee0c364aefa07507323",
+            "activity_comment_sha256": "b6146e99bfcbd646a3c1ca34507379adaadf691f099fb068ba4245ddf3fcaa6f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Kerosene, at regional storage",
+              "reference product": "Kerosene, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 15,
+            "metadata_sha256": "9ea3170b080a013943762bd51b9251d585f290f38bb669b30fc563c8c559cbcb",
+            "inventory_sha256": "a946c40d4030f00aadbf162ef2e67885721ef9e58de01c953ff15d83939df22b",
+            "activity_comment_sha256": "3274dd0d6e3545aaba4f20d8711d265d38dd3da86af54415aed1c6c4803d2b94",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "delivered_fuel_boundary_corrected": true,
+          "source_fossil_carbon_kg_per_kg": 0.85,
+          "source_nonfossil_carbon_kg_per_kg": 0,
+          "source_net_heating_value_MJ_per_kg": 43,
+          "native_refinery_kg_per_delivered_kg": 1.0001,
+          "native_petroleum_only_supplier": true,
+          "source_distribution_electricity_kWh_per_kg": 0.0067,
+          "native_distribution_electricity_kWh_per_kg": 0.050762,
+          "native_NMVOC_kg_per_kg": 7.5e-05,
+          "source_NMVOC_kg_per_kg": 1e-05,
+          "whole_delivery_proxy": true,
+          "source_internal_inventory_preserved": false,
+          "extra_source_delivery_added": false,
+          "caller_mass_or_energy_scaling": false
+        }
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent3.9 cut-off RoW market for petroleum kerosene only,per positive1kg delivered fuel. Correct the former Swiss refinery-only correspondence to complete native European Kerosene,at regional storage,per positive1kg. Preserve signed caller mass,supported uncertainty/formulas,foreground ownership,separate combustion emissions and credits with factor+1. Other versions,patches,system models and reverse routes receive no new permission.",
+        "Source and native regional-storage documentation both cover distribution from refinery to end user,storage-tank and petrol-station operation,evaporation and effluent treatment. Use the complete native delivered fuel once; do not overlay a second source refinery,storage,transport,electricity,water,wastewater,emissions,loss or infrastructure inventory. This is a whole-process screening proxy: source internal country shares,freight,storage utilities,waste routes and direct emissions are replaced rather than individually retained. No caller exchange is omitted and no helper is created.",
+        "Source declares fossil kerosene with43MJ/kg and0.85kg fossil carbon/kg,no non-fossil carbon and no water. Native regional storage purchases only European petroleum kerosene from its allocated refinery model,not a petrol/diesel/biofuel blend; its1.0001kg refinery input per kg delivered includes native loss allowance. Native exact fuel specification,assay,carbon content and calorific value are not independently established identical. Keep the mass interface without energy,density,carbon,purity,loss or efficiency rescaling,renormalization or use-phase combustion. Geographic,refinery,allocation,vintage,uncertainty and unquantified-score differences remain explicit.",
+        "Native distribution purchases0.050762kWh/kg versus source total0.0067kWh/kg across92country entries;native utility geography is ENTSO-E. Native European freight differs from source RoW road,rail,barge,tanker and pipeline mix,and its infrastructure demand is2.0833e-10units/kg versus source1.04e-10. Native refinery and delivery models replace source regional supply without claims of preserved transport or equal environmental burdens.",
+        "Native direct NMVOC is7.5e-5kg/kg versus source1e-5,and native also reports0.18274MJ waste heat not listed in the source market. Source direct water-to-environment coordinates are not retained individually; native water and effluent inventories are used whole. Native separator-sludge,municipal-waste,sewage and oil-storage-rainwater treatment replace source routes,without a new avoided-burden credit or sign adjustment to separate caller emissions. These model differences can affect scores and remain unquantified; finite native LCIs do not establish source/native LCI,LCIA or stochastic equivalence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "dca31e4f27fdc6a52b53548818a232624fb64ffa3d44318ebd58cbab3b381004"
+        }
+      ]
     }
   ],
   "superseded_operations": [
