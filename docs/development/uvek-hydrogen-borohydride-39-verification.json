@@ -1,0 +1,148 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "8e8fe0059f1966f9a12795e2f98cfdb5733789d2",
+  "scope_registration": {
+    "prior_scopes": 1397,
+    "new_scopes": 1399,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-42c78b2535b455d8",
+      "bp-12a50a02dac97d63"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_product_basis_supplier_roles_signed_uncertainty_profile_refusal_atomic_replay_storage_schema": 133,
+    "premise_source_fresh_and_cached": 10,
+    "premise_installed": 10,
+    "lint_changed_tests_and_maintainer_helper": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 9,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-42c78b2535b455d8",
+        "source": {
+          "location": "RER",
+          "name": "market for hydrogen, liquid",
+          "reference product": "hydrogen, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 1.734723475976807e-18,
+        "full_graph_residual": {
+          "residual_before": 9.861640329947218e-10,
+          "residual_after": 1.1102230246251565e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 9.861640329947218e-10,
+          "residual_after": 1.5153402882767182e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-12a50a02dac97d63",
+        "source": {
+          "location": "GLO",
+          "name": "market for sodium tetrahydridoborate",
+          "reference product": "sodium tetrahydridoborate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 1.3877787807814457e-17,
+        "full_graph_residual": {
+          "residual_before": 1.0796916680746142e-07,
+          "residual_after": 1.3176302441682511e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.0796916680746142e-07,
+          "residual_after": 1.3176302441682511e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies hydrogen supplier-role portfolio, retained LCV/rail/road freight, nominal borohydride with native allocation and native-demand numerical consistency. Does not establish cryogenic specification or source/native allocation equivalence. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_hydrogen_borohydride_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 107,
+    "current": 105,
+    "removed_rules": [
+      "bp-42c78b2535b455d8",
+      "bp-12a50a02dac97d63"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-786f4636915b638d",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 105,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-786f4636915b638d",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [
+    "scripts/review_uvek_hydrogen_borohydride_39.py",
+    "scripts/generate_uvek_migration_resources.py: exact frozen profile replay hook"
+  ],
+  "new_helpers": 2,
+  "new_source_omissions": [],
+  "earlier_rules_recipes_approvals_and_fingerprints_unchanged": true,
+  "source_APME_and_native_specific_fossil_feedstock_mix_equivalence_established": false,
+  "legacy_H2_actual_cryogenic_specification_or_liquefaction_coverage_established": false,
+  "borohydride_allocation_diagnostic_used_as_mass_factor": false,
+  "full_generator_regeneration": "Not claimed passing; independently reproduced pre-existing nitrate-authority failure remains documented in the PET review."
+}
