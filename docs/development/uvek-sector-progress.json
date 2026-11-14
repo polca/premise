@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-4a9a4566f35ab410",
+        "rule_id": "bp-56d89eddd1ac15a4",
         "source": {
-          "location": "IAI Area, EU27 & EFTA",
-          "name": "market for aluminium, primary, ingot",
-          "reference product": "aluminium, primary, ingot",
+          "location": "GLO",
+          "name": "market for cobalt",
+          "reference product": "cobalt",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 70,
+        "unapproved_correspondence_count_in_current_39_cohort": 69,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-neutralising-soda-39-verification.json",
+        "verification": "docs/development/uvek-aluminium-europe-delivery-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "European aluminium: source import wrappers have only one positive1kg ingot purchase and no freight/biosphere extras; inspect the already approved same-product primary-metal proxy and retain the two explicit final freight entries without changing earlier3.10 permission.",
+        "next_action": "Review cobalt recycled/coproduced supplier shares against its complete native primary-metal proxy; molybdenum native regional stock embeds a zinc-metallurgy/storage model, so inspect delivery before adding source freight. Carbon-monoxide market has one producer and no separate delivery.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all70 pending first3.9-cohort details."
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all69 pending first3.9-cohort details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-neutralising-soda-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-aluminium-europe-delivery-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

@@ -128346,7 +128346,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "13a23f43555cd1c837e83c4ca425303f84fab3ef5e1fd41a9662f0613f4fdb29"
+          "fingerprint": "b5b2e40ac1755a56804cda3270d7af02eb936e8a0a2b7c7cb126679064059586"
         }
       ]
     },
@@ -280731,6 +280731,194 @@
             "version": "2025"
           },
           "fingerprint": "7a72bba63d37fe718aca6828aa4973d540f573fc3f234da8b5be458bae48b273"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-4a9a4566f35ab410",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_aluminium_europe_delivery_39_review.json",
+      "review_sha256": "9af239c0804ccd2cc0ef5fddd6a366c8ba019bdb38368b4b50718ca77c678a81",
+      "authorization": "Standing user auto-approval of similar approved cases and coming decisions; preserve quantities/delivery, document whole-native geographic/technology screening and retain earlier physical bindings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium, primary, ingot",
+            "reference product": "aluminium, primary, ingot",
+            "location": "IAI Area, EU27 & EFTA",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 10,
+          "metadata_sha256": "f688ef6fec599415ca514185022cfeffbd91e2b543ecfefcfb2df231ab6130f8",
+          "inventory_sha256": "3e91170da96d2d1e0c3cfdaef15a408002004f412982c862988d02959a0506cc",
+          "activity_comment_sha256": "7a242289da6a9c35022e8f393fcfeb94593e778f2d945c9962de9ddd6f0abcdd",
+          "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium, primary, at plant",
+              "reference product": "Aluminium, primary, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 24,
+            "metadata_sha256": "9c2da65149859c157127c43de436593efcfa8f345ad68d300fa29877a2ab4946",
+            "inventory_sha256": "53207f3ef6cc5a7c4c65c6f26ea8812a744a465065a953a9c25904a9613140a8",
+            "activity_comment_sha256": "918daccfae252775aad5a2355c2a37752ccf39670aa218c9d8d2fe7c3448b572",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium, primary, at plant",
+              "reference product": "Aluminium, primary, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 25,
+            "metadata_sha256": "a682de8c13696f65a075664168a128481379b1e0c2f5f70a32ffb275662db1d8",
+            "inventory_sha256": "24812803d907623c496515d04b471eac3b3dc94b8d46e088f4be4231ffa92fe3",
+            "activity_comment_sha256": "540fca24440abafdee4a28f3d3fd849608530bc4ee340cc6d6034ea929e04cbd",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "aluminium",
+          "source_reference_positive_one": true,
+          "source_import_handoffs_have_no_extra_inventory": true,
+          "source_producer_entries_retained": 8,
+          "source_regional_smelter_mix_reproduced": false,
+          "source_final_delivery_entries": 2,
+          "tank_barge_not_dry_barge": true,
+          "new_loading_or_casting_yield_factor": false,
+          "new_source_omission": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off European primary-ingot market and its independently inspected European tanker-barge market only. All source market, import-handoff, cast-metal producer and transport references are positive one of their declared kg or tonne-km units; native primary cast metal and tanker-barge references are positive one. Keep signed caller quantities, uncertainty, formulas and separate foreground exchanges at factor+1. Other source profiles and reverse routes gain no new permission; the earlier3.10 direct-stock approval retains its physical supplier and factor.",
+        "Reuse the already reviewed complete native European primary cast-aluminium screening proxy, not secondary metal, liquid-metal-only supply, fabricated sheet or an alloy-specific stock. Native liquid aluminium,1.019kg internal melt charge,casting electricity,plant,auxiliaries,packaging,waste and emissions remain included once. No casting-yield/loss,alloy,energy-efficiency,purity or recovery factor is applied to caller ingotkg, and no source casting/electrolysis inventory is overlaid.",
+        "Retain all eight original producer/import coefficients as separate positive kg entries. Each uses the complete native European primary-metal inventory; the source domestic/import provenance and regional smelter mix are therefore replaced, not physically reconstructed. The source import handoffs each contain only one1kg cast-ingot purchase and no added freight or direct biosphere exchange. About48% imported supply remains numerically represented, but its original electricity,prebake/Soederberg,geographic,allocation and emissions characteristics do not. Regional smelter electricity can materially change scores; differences remain unquantified.",
+        "Retain the two original final-delivery entries separately:0.088tkm tanker barge and2.4332tkm container-sea freight per suppliedkg, with original uncertainty fields. Use the complete native tanker-barge service, not generic dry-cargo barge, plus the previously reviewed complete container-ship service. No duplicate import transit, guessed distance,payload,loss or transport-product supplier is added. Native primary-production input transport remains separate from final market delivery.",
+        "The native tanker-barge service already includes fuel,direct exhaust,vessel manufacture,maintenance,canal,port and infrastructure. Both source and native references are delivered tonne-km, already including their respective loading,empty-running,lifetime and allocation assumptions. Source710t average loading/46.5-year vessel life and native2164t capacity/6921600km allocation basis are different model quantities, not a caller conversion ratio. Do not add vessel,fuel,port or distance a second time, condition on load, or calibrate transport work to a score.",
+        "European EAA2013/2010 primary-metal data and native historical freight replace source regional production/logistics. Grade/assay,industry sample,vintage,fuel/traction,emissions,allocation and internal uncertainty differences remain explicit screening limitations. Native explicit electricity/fuel suppliers remain eligible for shared Premise transformations; this proxy does not establish identical regional future performance, LCI,LCIA or stochastic distributions. No source/caller omission,empty handoff,runtime Python change,alternative sector engine or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "30e1152b1b6647add9e4c8550de7a7b76f99dbd413e1cc73ed959b4b5c7ce190"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-16e473d1588a6e26",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_aluminium_europe_delivery_39_review.json",
+      "review_sha256": "9af239c0804ccd2cc0ef5fddd6a366c8ba019bdb38368b4b50718ca77c678a81",
+      "authorization": "Standing user auto-approval of similar approved cases and coming decisions; preserve quantities/delivery, document whole-native geographic/technology screening and retain earlier physical bindings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, inland waterways, barge tanker",
+            "reference product": "transport, freight, inland waterways, barge tanker",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "d351103d919f377387e461e28888cd5af8e91c1dbad11444fc39ca6d6c28d2ff",
+          "inventory_sha256": "b75f1a9bf6dcacf359ec3e909b4115ea939e854a566d4c3d3cf6ae8c9906e914",
+          "activity_comment_sha256": "321a40038690cdec92347491ce6471d76779dbb47668eb6ad62d34984ebf0815",
+          "product_information_sha256": "dd06da830b02126cf380f027a952c39b6dab60af687840f7a0fadfc96959c15f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, barge tanker",
+              "reference product": "Transport, barge tanker",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 43,
+            "metadata_sha256": "be2856dbfeb7fb82e2b67ae361a031ed58aea2c0a38f1d92d3e32eb0a74eb2b6",
+            "inventory_sha256": "ea8f5a98e8de01c045cd244a3ecb4bb59c34843401118d0fc9e1893d2c44172b",
+            "activity_comment_sha256": "2a61c7854fdccc7c74853333609e85b6b804c68bad568fd57c4c1dbd22fc36b8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, barge tanker",
+              "reference product": "Transport, barge tanker",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 43,
+            "metadata_sha256": "0892cc200f74850e761949994ff67d5bf2056df1bf91041adaffe87fc48a40c1",
+            "inventory_sha256": "4fc13f00b0096878e2912bc9c3c890e4bcd9e32fd375dd2dcc47056a3a4bdda0",
+            "activity_comment_sha256": "945f5197c74af9cb5ad964567eeb096e6b5f7534afccabcaef6aa3777ba0f338",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "barge_tanker",
+          "source_reference_positive_one": true,
+          "source_import_handoffs_have_no_extra_inventory": null,
+          "source_producer_entries_retained": 1,
+          "source_regional_smelter_mix_reproduced": false,
+          "source_final_delivery_entries": 0,
+          "tank_barge_not_dry_barge": true,
+          "new_loading_or_casting_yield_factor": false,
+          "new_source_omission": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off European primary-ingot market and its independently inspected European tanker-barge market only. All source market, import-handoff, cast-metal producer and transport references are positive one of their declared kg or tonne-km units; native primary cast metal and tanker-barge references are positive one. Keep signed caller quantities, uncertainty, formulas and separate foreground exchanges at factor+1. Other source profiles and reverse routes gain no new permission; the earlier3.10 direct-stock approval retains its physical supplier and factor.",
+        "Reuse the already reviewed complete native European primary cast-aluminium screening proxy, not secondary metal, liquid-metal-only supply, fabricated sheet or an alloy-specific stock. Native liquid aluminium,1.019kg internal melt charge,casting electricity,plant,auxiliaries,packaging,waste and emissions remain included once. No casting-yield/loss,alloy,energy-efficiency,purity or recovery factor is applied to caller ingotkg, and no source casting/electrolysis inventory is overlaid.",
+        "Retain all eight original producer/import coefficients as separate positive kg entries. Each uses the complete native European primary-metal inventory; the source domestic/import provenance and regional smelter mix are therefore replaced, not physically reconstructed. The source import handoffs each contain only one1kg cast-ingot purchase and no added freight or direct biosphere exchange. About48% imported supply remains numerically represented, but its original electricity,prebake/Soederberg,geographic,allocation and emissions characteristics do not. Regional smelter electricity can materially change scores; differences remain unquantified.",
+        "Retain the two original final-delivery entries separately:0.088tkm tanker barge and2.4332tkm container-sea freight per suppliedkg, with original uncertainty fields. Use the complete native tanker-barge service, not generic dry-cargo barge, plus the previously reviewed complete container-ship service. No duplicate import transit, guessed distance,payload,loss or transport-product supplier is added. Native primary-production input transport remains separate from final market delivery.",
+        "The native tanker-barge service already includes fuel,direct exhaust,vessel manufacture,maintenance,canal,port and infrastructure. Both source and native references are delivered tonne-km, already including their respective loading,empty-running,lifetime and allocation assumptions. Source710t average loading/46.5-year vessel life and native2164t capacity/6921600km allocation basis are different model quantities, not a caller conversion ratio. Do not add vessel,fuel,port or distance a second time, condition on load, or calibrate transport work to a score.",
+        "European EAA2013/2010 primary-metal data and native historical freight replace source regional production/logistics. Grade/assay,industry sample,vintage,fuel/traction,emissions,allocation and internal uncertainty differences remain explicit screening limitations. Native explicit electricity/fuel suppliers remain eligible for shared Premise transformations; this proxy does not establish identical regional future performance, LCI,LCIA or stochastic distributions. No source/caller omission,empty handoff,runtime Python change,alternative sector engine or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5c9aa318f9a350303ca7d8895293f55d5880f7b4ebdb7bdeef29a7c2917a7edc"
         }
       ]
     }
