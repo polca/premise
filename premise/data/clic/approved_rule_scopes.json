@@ -280545,6 +280545,194 @@
           "fingerprint": "774cc5d69e6190a08bf9b71ff1e162b048487aeeade095a479f89c913980bd62"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-a9797fdfc7109d86",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_neutralising_soda_39_review.json",
+      "review_sha256": "aaf7480eca9065d246c3eab4c84b66d262de8c28b3180dccdee2f668dc38af9e",
+      "authorization": "Standing user auto-approval of coming modelling decisions; correct mismatched products with documented native screening supply, retained functional amounts, uncertainty, delivery and allocation warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for soda ash, light",
+            "reference product": "soda ash, light",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "a313e78dfd7471466addc837ba84b81fc52bf2559579916a70abeb036c07ba6c",
+          "inventory_sha256": "de19346630b25ccea4121ce04b9fd49a341fa579f5165327402103af7888601a",
+          "activity_comment_sha256": "6c6aff7b2ee5abd3e4d9bc0ded463b018250926f30ca8b80d0531f96c6fe52b6",
+          "product_information_sha256": "b205223facba931b1b98d81b5b413ff4b68a25335eb20d57dde79e88b278a975"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Soda, powder, at plant",
+              "reference product": "Soda, powder, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "2bc567e12b71bfaf2a80630f16787333bfcc8261d5cd81d41a1a5eb21817f473",
+            "inventory_sha256": "65e65564999ff101d2849978d7777f9490b482f74da48d152e42289ac146f228",
+            "activity_comment_sha256": "b236463e93b6ea0dc7b761292fa3836cae7ae4be9ba151c08f2f477f3c4edcc0",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Soda, powder, at plant",
+              "reference product": "Soda, powder, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "b9ac3ae8faa0300f44afe7c8f97d66cf6b9c85326ca2bcb8b06ff08149ae9fe2",
+            "inventory_sha256": "4164491ccd4aafc8af7cff983f8428770ab38c00fd4d60c148db7ddb79b61427",
+            "activity_comment_sha256": "07f8bb13c2ca1a49baeb384cf4f92340b8a5b7d5c8e86f1cc894dc5c939a27df",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_reference_positive_one": true,
+          "native_light_soda_positive_one_kg": true,
+          "functional_reference_is_NaOH_equivalent": false,
+          "source_internal_soda_demand": null,
+          "internal_uncertainty_retained": true,
+          "source_title_not_used_for_hydration_scaling": true,
+          "source_producer_allocation_reproduced": false,
+          "four_final_delivery_entries_retained": true,
+          "new_source_omission": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off only. Correct two unsafe heuristic products: global light-soda market must not purchase an LED, and the soda-based NaOH-equivalent neutralising service must not purchase lithium hydroxide. Use complete native RER Soda, powder, at plant: its inspected2026 description specifies1kg100% light soda, excludes densification and final-product transport/storage. Native2025 and2026 both have positive one-kg references. Other source versions, patches, system models and reverse directions gain no permission.",
+        "The neutralising reference is1kg sodium-hydroxide-equivalent capacity, not1kg soda or actual NaOH. Preserve the measured internal demand of1.325kg delivered light soda and its original lognormal uncertainty, pedigree and supported statistical fields inside a dedicated helper; keep caller quantity, sign, uncertainty, formulas and separate exchanges at factor+1. Do not substitute actual caustic soda, lithium hydroxide or bicarbonate. Preserve1.325 only once, without multiplying caller and helper both.",
+        "Source titles say crystalline heptahydrate, but the inspected actual input is light soda with zero water-content property; the product metadata declares pure Na2CO3,CAS497-19-8,CNa2O3 and explicitly defines1.325kg per NaOH-equivalent. Do not infer seven waters, dissolution, density, extra solvent, neutralisation emissions or reaction yield from that inconsistent title. This follows the actual source functional reference, not a claim that every soda hydrate or solution is interchangeable.",
+        "The delivered market retains both original source producer coefficients0.7763011797364658 and0.223698820263534 as separate entries, each supplied by complete native European light soda. Preserve all four final freight amounts and supported uncertainty separately:0.1546rail,0.0246barge,0.1044road,0.599container-sea tonne-km per marketkg. Native production includes its own raw-input transport but excludes final delivery. Add final freight once, with existing complete native geographic/fleet/traction screening proxies; no guessed losses, distance or storage burden.",
+        "Native Solvay soda retains its own complete feedstocks, heat, electricity, plant, wastes, direct emissions and economic coproduct allocation. Its33% soda/67% calcium-chloride allocation replaces the source allocation and bicarbonate/coproduction model; no allocation ratio, calcium-chloride or bicarbonate recovery credit, source-energy overlay or score-calibration factor is added. Global/RoW supply uses the European inventory. Geography, process vintage, allocation, technology, internal uncertainty, exact assay documentation and LCI/LCIA differences remain explicit unquantified screening limitations.",
+        "No source/caller exchange omission, native empty handoff, alternate sector engine, runtime Python change or source/target validation bypass. Functional equivalence does not establish identical inventories, stochastic distributions or environmental scores. This scoped correction uses the standing user authorization for coming modelling decisions and records the product, quantity and allocation differences for review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2da839c0c77d9bf06279a8ddd006043b9628a905f6bb91931bea62de3ed56c88"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-1f8f01358cc4d9ba",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_neutralising_soda_39_review.json",
+      "review_sha256": "aaf7480eca9065d246c3eab4c84b66d262de8c28b3180dccdee2f668dc38af9e",
+      "authorization": "Standing user auto-approval of coming modelling decisions; correct mismatched products with documented native screening supply, retained functional amounts, uncertainty, delivery and allocation warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "soda ash, light, crystalline, heptahydrate, to generic market for neutralising agent",
+            "reference product": "neutralising agent, sodium hydroxide-equivalent",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "0004b9c6dbb2df674efdfa2788e621f9733fe3fa68d20edf6e25d0412bda6f19",
+          "inventory_sha256": "75f22208ecae9c0435bc6be8ccfc00d0de417f307745df3d961585624dcb8ab6",
+          "activity_comment_sha256": "a6c5f0d217e5508ec368657de11d13195e4853cc60713e3f14a9e406c0299368",
+          "product_information_sha256": "5d71bc1be28e86f8878e5e4f704bdea68814fa5178219de84ae122bced1fa3d9"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Soda, powder, at plant",
+              "reference product": "Soda, powder, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "2bc567e12b71bfaf2a80630f16787333bfcc8261d5cd81d41a1a5eb21817f473",
+            "inventory_sha256": "65e65564999ff101d2849978d7777f9490b482f74da48d152e42289ac146f228",
+            "activity_comment_sha256": "b236463e93b6ea0dc7b761292fa3836cae7ae4be9ba151c08f2f477f3c4edcc0",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Soda, powder, at plant",
+              "reference product": "Soda, powder, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "b9ac3ae8faa0300f44afe7c8f97d66cf6b9c85326ca2bcb8b06ff08149ae9fe2",
+            "inventory_sha256": "4164491ccd4aafc8af7cff983f8428770ab38c00fd4d60c148db7ddb79b61427",
+            "activity_comment_sha256": "07f8bb13c2ca1a49baeb384cf4f92340b8a5b7d5c8e86f1cc894dc5c939a27df",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_reference_positive_one": true,
+          "native_light_soda_positive_one_kg": true,
+          "functional_reference_is_NaOH_equivalent": true,
+          "source_internal_soda_demand": 1.325,
+          "internal_uncertainty_retained": true,
+          "source_title_not_used_for_hydration_scaling": true,
+          "source_producer_allocation_reproduced": false,
+          "four_final_delivery_entries_retained": true,
+          "new_source_omission": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off only. Correct two unsafe heuristic products: global light-soda market must not purchase an LED, and the soda-based NaOH-equivalent neutralising service must not purchase lithium hydroxide. Use complete native RER Soda, powder, at plant: its inspected2026 description specifies1kg100% light soda, excludes densification and final-product transport/storage. Native2025 and2026 both have positive one-kg references. Other source versions, patches, system models and reverse directions gain no permission.",
+        "The neutralising reference is1kg sodium-hydroxide-equivalent capacity, not1kg soda or actual NaOH. Preserve the measured internal demand of1.325kg delivered light soda and its original lognormal uncertainty, pedigree and supported statistical fields inside a dedicated helper; keep caller quantity, sign, uncertainty, formulas and separate exchanges at factor+1. Do not substitute actual caustic soda, lithium hydroxide or bicarbonate. Preserve1.325 only once, without multiplying caller and helper both.",
+        "Source titles say crystalline heptahydrate, but the inspected actual input is light soda with zero water-content property; the product metadata declares pure Na2CO3,CAS497-19-8,CNa2O3 and explicitly defines1.325kg per NaOH-equivalent. Do not infer seven waters, dissolution, density, extra solvent, neutralisation emissions or reaction yield from that inconsistent title. This follows the actual source functional reference, not a claim that every soda hydrate or solution is interchangeable.",
+        "The delivered market retains both original source producer coefficients0.7763011797364658 and0.223698820263534 as separate entries, each supplied by complete native European light soda. Preserve all four final freight amounts and supported uncertainty separately:0.1546rail,0.0246barge,0.1044road,0.599container-sea tonne-km per marketkg. Native production includes its own raw-input transport but excludes final delivery. Add final freight once, with existing complete native geographic/fleet/traction screening proxies; no guessed losses, distance or storage burden.",
+        "Native Solvay soda retains its own complete feedstocks, heat, electricity, plant, wastes, direct emissions and economic coproduct allocation. Its33% soda/67% calcium-chloride allocation replaces the source allocation and bicarbonate/coproduction model; no allocation ratio, calcium-chloride or bicarbonate recovery credit, source-energy overlay or score-calibration factor is added. Global/RoW supply uses the European inventory. Geography, process vintage, allocation, technology, internal uncertainty, exact assay documentation and LCI/LCIA differences remain explicit unquantified screening limitations.",
+        "No source/caller exchange omission, native empty handoff, alternate sector engine, runtime Python change or source/target validation bypass. Functional equivalence does not establish identical inventories, stochastic distributions or environmental scores. This scoped correction uses the standing user authorization for coming modelling decisions and records the product, quantity and allocation differences for review."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7a72bba63d37fe718aca6828aa4973d540f573fc3f234da8b5be458bae48b273"
+        }
+      ]
     }
   ],
   "superseded_operations": [
