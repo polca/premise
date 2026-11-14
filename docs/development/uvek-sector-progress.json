@@ -2298,28 +2298,28 @@
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       },
       "current_mapping_frontier": {
-        "date": "2026-11-13",
+        "date": "2026-11-14",
         "status": "inventory_preparation_incomplete",
         "source_profile": {
           "family": "ecoinvent",
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-bedea13a2ea06f3b",
+        "rule_id": "bp-49ff9c1c2a744693",
         "source": {
-          "location": "GLO",
-          "name": "market for electricity, medium voltage, cobalt industry",
-          "reference product": "electricity, medium voltage, cobalt industry",
-          "unit": "kilowatt hour"
+          "location": "RoW",
+          "name": "market for lime, hydraulic",
+          "reference product": "lime, hydraulic",
+          "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 56,
+        "unapproved_correspondence_count_in_current_39_cohort": 52,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-direct-waste-services-39-verification.json",
+        "verification": "docs/development/uvek-remaining-electricity-grids-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Cobalt-industry electricity is a protected historical technology mix,not a country-grid portfolio. Source is over91%non-pumped hydro; native aluminium mix is54%hydro. Check direct native generation alternatives and native grid topology before changing its supplier or invoking a whole-grid proxy. Keep source-specific electricity preservation in shared Premise logic.",
+        "next_action": "Review hydraulic lime and remaining mineral correspondences against actual reference products, source market boundaries and native suppliers; preserve earlier profile bindings.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all56 pending first3.9-cohort details."
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all52 pending first3.9-cohort details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-direct-waste-services-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-remaining-electricity-grids-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

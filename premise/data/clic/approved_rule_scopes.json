@@ -21203,7 +21203,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "54ac9d4a369cff7857a499efafc7f36f56a34b915eff98882ff4faeae5e7e625"
+          "fingerprint": "195ba269198a217f022c0d628904880c9aad640206d22ea24f5689b7b610ff8d"
         }
       ]
     },
@@ -282127,6 +282127,371 @@
             "version": "2025"
           },
           "fingerprint": "a35af79da36c0dc1afeb51122e6dcf9484e0b6b701cacd034bfab487420e9c53"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-bedea13a2ea06f3b",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_remaining_electricity_grids_39_review.json",
+      "review_sha256": "d41122c1550a4688adfd75e4a69e56dd59e0a5a68be9c170b2b51d58c631b53c",
+      "authorization": "Standing user auto-approval of coming modelling decisions and similar native-grid cases;complete delivered-voltage models with prominent industrial-profile limits and unchanged shared Premise behavior.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for electricity, medium voltage, cobalt industry",
+            "reference product": "electricity, medium voltage, cobalt industry",
+            "location": "GLO",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "4e24b3a9fc969448871ae5bb86c56d89def849b84644bcd9e05dc08b6574e35d",
+          "inventory_sha256": "bd536f5ad2c0a5f3cda66635182f643f4ccd149607b88deec611bd9dcdc83f91",
+          "activity_comment_sha256": "1b9296cad538d98ef7e440b449b3233b8b27d0cdc6bc53adb5ee2485f0da5a9f",
+          "product_information_sha256": "5290a18e9c3e37cc5497994d3ef490877f15bbb495c4d684b398f79817be2c66"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, aluminium industry, at grid",
+              "reference product": "Electricity, medium voltage, aluminium industry, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "bbb43a147ec56e41fd4677255bf0a1d961bd6909c1adfd84a7b8098a301ee6ec",
+            "inventory_sha256": "28fd4c99782d8fe6bff1d0bccb3beac48d5363073a8ab74b1d4a8082efa35a0a",
+            "activity_comment_sha256": "ef892814579fdfbbaca26d837b58973a3fa0b5e273e31d4eb2e7c39619b81ffa",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, aluminium industry, at grid",
+              "reference product": "Electricity, medium voltage, aluminium industry, at grid",
+              "location": "GLO",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "e78704d7c93f1b731d5b40138bf4ae8508373062eaa0fb15e830f33e7c99065b",
+            "inventory_sha256": "f963d68613ffdcec3e81d616213b7f0ab72cf9a96e7f241a6212ba4d04aa3f9e",
+            "activity_comment_sha256": "8d28cbac463c2f9762cb39586295d9b07c55138a890af80d19f39fdcae887354",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_native_reference_positive_one_kWh": true,
+          "delivered_voltage": "medium voltage",
+          "source_generation_mix_reproduced": false,
+          "native_complete_grid_losses_and_infrastructure_retained": true,
+          "source_grid_burdens_overlaid": false,
+          "industrial_grid_screening_proxy": true,
+          "new_helper": false,
+          "new_source_omission": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact ecoinvent3.9 cut-off electricity market and selected complete native grid. Source and native references are positive1deliveredkWh of the declared medium/high voltage. Preserve signed caller kWh,supported uncertainty,formulas and independent emissions at factor+1. Do not multiply by3.6,an upstream-generation requirement,loss ratio,capacity,voltage or source import coefficient. Native generation,losses,transformation,transmission assets,SF6 and other emissions remain included once; do not overlay source self-input loops,grid assets or SF6 on top.",
+        "Whole native electricity-supply models replace source historical production/import/trade mixes,geography,losses,grid technology,vintage and internal uncertainty. No exact LCI,LCIA or stochastic equivalence is claimed; score effects remain unquantified. No caller exchange is omitted,no helper or alternative sector engine is created,and no runtime Python or shared market logic is changed. Exact source scopes do not authorize other versions,patches,system models or reverse directions.",
+        "Keep ordinary grids subject to the standard shared Premise update through existing native market YAML aliases. Keep the original source and native GLO industrial grids protected by the existing industry exception. Do not add an alias that empties an industrial mix into a generic IAM market or patch the runtime selector to bypass that exception.",
+        "The selected native GLO aluminium-industry medium-voltage grid is a same-carrier,voltage and delivered-kWh screening proxy for cobalt-industry electricity,not a cobalt-specific production model. It is the only native GLO industrial medium-voltage grid in the two inspected releases. Source historical generation is91.090396%non-pumped hydropower,while native aluminium generation has54%hydropower. This is a major generation/sector/geographic model difference that can materially change scores; the source generation profile is not reproduced. The native globally labelled record uses EAA2013/2010 industry data and partly European plant proxies. Retain its complete model rather than claiming industry labels imply equivalent supplies.",
+        "Source nominal generator input is1.0074/((1-0.0046)*(1-0.0335))=1.0471344595kWh per delivered medium-voltage kWh. Native upstream input is1.0123*1.04=1.052792. These are model-boundary comparisons,not caller conversion factors: both already supply1deliveredkWh. Native uncertain grid coefficients,network infrastructure and emissions remain in the complete model without fixed foreground cancellation or reconstructed correlations. Shared Premise explicitly preserves cobalt/aluminium industry names,and GLO is outside the aluminium-specific regions that are redirected; this proxy therefore preserves the existing industrial-market treatment."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d135888bf5fcc5cda89fb2e87d0db0fcc5b3a97b5527a8e67f453de016c534a7"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-4389bb6ee9ab35e9",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_remaining_electricity_grids_39_review.json",
+      "review_sha256": "d41122c1550a4688adfd75e4a69e56dd59e0a5a68be9c170b2b51d58c631b53c",
+      "authorization": "Standing user auto-approval of coming modelling decisions and similar native-grid cases;complete delivered-voltage models with prominent industrial-profile limits and unchanged shared Premise behavior.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "Europe without Switzerland",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 39,
+          "metadata_sha256": "34c896a9b5ef448d9841f39ad93267b9d561de2d66a21fd46690b3f4ab05cc7e",
+          "inventory_sha256": "15d84781e00e67eb7ca19db267af7216ecf5fda243a0a9d2c8aa186fbf8c736f",
+          "activity_comment_sha256": "3026357a586a7ebda309ad1ca6b94c94c07825bdb40bf212a4b3e0ead9a36242",
+          "product_information_sha256": "5e49b8e40b1f1d56d0d565246998394fd12d3368c82481820483bde6cbe51539"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "ENTSO-E",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "ea91e6b55b0a521d0571ce22b804c87c2750529657190d4f410b16b47b0ca5a6",
+            "inventory_sha256": "4e1be1b37dcf63b80ae89c60596add22028112dd8ced061f26bb3ff99b19c921",
+            "activity_comment_sha256": "ff9e65abeed617cb90769f540734050526ade434c102aa21114d0db25692fc08",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "ENTSO-E",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "fbb3ac9f50163101431e0c7544fec49c2cfc8e65c34a3a7d5d4bc1a33bb0011f",
+            "inventory_sha256": "b57deb4e66e3b0f7a73beb916fea33a3a71f30917382624e4bf7b5d0e8ea2a15",
+            "activity_comment_sha256": "1bb7adee771814ed75392dbfc178034e25eacd351f969249a805e42c420de2ea",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_native_reference_positive_one_kWh": true,
+          "delivered_voltage": "medium voltage",
+          "source_generation_mix_reproduced": false,
+          "native_complete_grid_losses_and_infrastructure_retained": true,
+          "source_grid_burdens_overlaid": false,
+          "industrial_grid_screening_proxy": false,
+          "new_helper": false,
+          "new_source_omission": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact ecoinvent3.9 cut-off electricity market and selected complete native grid. Source and native references are positive1deliveredkWh of the declared medium/high voltage. Preserve signed caller kWh,supported uncertainty,formulas and independent emissions at factor+1. Do not multiply by3.6,an upstream-generation requirement,loss ratio,capacity,voltage or source import coefficient. Native generation,losses,transformation,transmission assets,SF6 and other emissions remain included once; do not overlay source self-input loops,grid assets or SF6 on top.",
+        "Whole native electricity-supply models replace source historical production/import/trade mixes,geography,losses,grid technology,vintage and internal uncertainty. No exact LCI,LCIA or stochastic equivalence is claimed; score effects remain unquantified. No caller exchange is omitted,no helper or alternative sector engine is created,and no runtime Python or shared market logic is changed. Exact source scopes do not authorize other versions,patches,system models or reverse directions.",
+        "Keep ordinary grids subject to the standard shared Premise update through existing native market YAML aliases. Keep the original source and native GLO industrial grids protected by the existing industry exception. Do not add an alias that empties an industrial mix into a generic IAM market or patch the runtime selector to bypass that exception.",
+        "Reuse the previously reviewed complete ENTSO-E medium-voltage grid for Europe without Switzerland after independent3.9 positive-reference checks. It includes native high-voltage supply,medium-voltage losses,grid and SF6 rather than being a bare generator. The native2026 text contains a copied production-busbar statement; its actual exchanges and2025 transmission description establish the delivered-grid boundary. Native ENTSO-E country coverage,Swiss inclusion,trade and historical generation differ from the source European group. Keep factor+1 with no additional loss factor,grid or country-market helper. The earlier3.8 direct supplier,factor,review and source scope remain physically unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6c59bd21bdf11fb93c7bd2906108f15db5b5d98ada4ed755f983df7e76956bd7"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-4d54ff618e5e5e23",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_remaining_electricity_grids_39_review.json",
+      "review_sha256": "d41122c1550a4688adfd75e4a69e56dd59e0a5a68be9c170b2b51d58c631b53c",
+      "authorization": "Standing user auto-approval of coming modelling decisions and similar native-grid cases;complete delivered-voltage models with prominent industrial-profile limits and unchanged shared Premise behavior.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "DE",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "afa6a791e65a4478e57a067103d4b8f0bf4d53bc897e6018abf4a59efb6bd213",
+          "inventory_sha256": "df6f42686e611763539634713ce8872dfa256b633092da04b9493d5be3e3c5b8",
+          "activity_comment_sha256": "092bcbfe2cbf8bed65d1d9dcec16402d872f645f715d1ae40eef0e4b409f9bbf",
+          "product_information_sha256": "5e49b8e40b1f1d56d0d565246998394fd12d3368c82481820483bde6cbe51539"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "DE",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "8708f20840cc24be4e25dd771b8118fe38bd485380cab1dd4088049a9429e801",
+            "inventory_sha256": "8998aba342a233078bc62f31a5a0c7155a9bbcc8738f85719ff88bcdbecb27f4",
+            "activity_comment_sha256": "ff9e65abeed617cb90769f540734050526ade434c102aa21114d0db25692fc08",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "DE",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "c36a53df2f692e8dd1465d613a52dcacc09e19e01a1477591e9113912ae7f79c",
+            "inventory_sha256": "4e58e7a26583926a7bf58010fe558e8f65ab038fb13e6f7b05ec1960befe6c02",
+            "activity_comment_sha256": "e2529190a6419bab21b43414e81e78bfbda55a2535e635d90745613550ba240f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_native_reference_positive_one_kWh": true,
+          "delivered_voltage": "medium voltage",
+          "source_generation_mix_reproduced": false,
+          "native_complete_grid_losses_and_infrastructure_retained": true,
+          "source_grid_burdens_overlaid": false,
+          "industrial_grid_screening_proxy": false,
+          "new_helper": false,
+          "new_source_omission": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact ecoinvent3.9 cut-off electricity market and selected complete native grid. Source and native references are positive1deliveredkWh of the declared medium/high voltage. Preserve signed caller kWh,supported uncertainty,formulas and independent emissions at factor+1. Do not multiply by3.6,an upstream-generation requirement,loss ratio,capacity,voltage or source import coefficient. Native generation,losses,transformation,transmission assets,SF6 and other emissions remain included once; do not overlay source self-input loops,grid assets or SF6 on top.",
+        "Whole native electricity-supply models replace source historical production/import/trade mixes,geography,losses,grid technology,vintage and internal uncertainty. No exact LCI,LCIA or stochastic equivalence is claimed; score effects remain unquantified. No caller exchange is omitted,no helper or alternative sector engine is created,and no runtime Python or shared market logic is changed. Exact source scopes do not authorize other versions,patches,system models or reverse directions.",
+        "Keep ordinary grids subject to the standard shared Premise update through existing native market YAML aliases. Keep the original source and native GLO industrial grids protected by the existing industry exception. Do not add an alias that empties an industrial mix into a generic IAM market or patch the runtime selector to bypass that exception.",
+        "The source German medium-voltage market uses the complete native German medium-voltage grid at the same delivered-kWh basis. Native historical generation/imports,losses,network and emission assumptions replace the source model; matching country and voltage does not establish equal supply profiles. Its ordinary national market remains eligible for the shared regional IAM redirection and its normal voltage-loss accounting."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "398c77b45f6db5eceadfd0173abfe196c6fee536ff83765fdf705a6546d373c7"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-b3e8cf53e0504f8a",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_remaining_electricity_grids_39_review.json",
+      "review_sha256": "d41122c1550a4688adfd75e4a69e56dd59e0a5a68be9c170b2b51d58c631b53c",
+      "authorization": "Standing user auto-approval of coming modelling decisions and similar native-grid cases;complete delivered-voltage models with prominent industrial-profile limits and unchanged shared Premise behavior.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for electricity, high voltage",
+            "reference product": "electricity, high voltage",
+            "location": "ZA",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 13,
+          "metadata_sha256": "d78f94a21ea2cb7101fa828ca3b1425c771178ff2bda2cc239f6ffa29a03fb17",
+          "inventory_sha256": "3d512c675bc07026aa47b37b668f61e249581b0645dbdb945049be5f5ce97b98",
+          "activity_comment_sha256": "ec962bc2901da1b2fa96648b8fb4361d3acb20d70a4452d100ba1868b732eb69",
+          "product_information_sha256": "ef36ebdcd27fad8ce2d243bfb232cb102643639c6696076b9cc03c9800efac84"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "ZA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "efb4963b3ff0bb13b2a1a687e5698dbd23923c86eca42642e37420f390b05126",
+            "inventory_sha256": "03fd8f17ee3a4bcfa6c37616eeaf3a5ba8c5ed87e4cfb380d6e39b6b80816d12",
+            "activity_comment_sha256": "7fe50835508d7bf1a6fb826633f542025b6f4dd48ba3239a6790ceef5e37a7ba",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "ZA",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "2309618efde0ed565787ad1529184d614f7bde44f1e5115cb7c2342f0dba5be9",
+            "inventory_sha256": "0b86fb0d40e1c6fbe2063a4d56ee3584a6b4f640afc652bbace6e2e90784050c",
+            "activity_comment_sha256": "fc5a7f7f1a47d8018e74236b44902c241f265a8b0a41f590aa269840704501a5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_native_reference_positive_one_kWh": true,
+          "delivered_voltage": "high voltage",
+          "source_generation_mix_reproduced": false,
+          "native_complete_grid_losses_and_infrastructure_retained": true,
+          "source_grid_burdens_overlaid": false,
+          "industrial_grid_screening_proxy": false,
+          "new_helper": false,
+          "new_source_omission": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact ecoinvent3.9 cut-off electricity market and selected complete native grid. Source and native references are positive1deliveredkWh of the declared medium/high voltage. Preserve signed caller kWh,supported uncertainty,formulas and independent emissions at factor+1. Do not multiply by3.6,an upstream-generation requirement,loss ratio,capacity,voltage or source import coefficient. Native generation,losses,transformation,transmission assets,SF6 and other emissions remain included once; do not overlay source self-input loops,grid assets or SF6 on top.",
+        "Whole native electricity-supply models replace source historical production/import/trade mixes,geography,losses,grid technology,vintage and internal uncertainty. No exact LCI,LCIA or stochastic equivalence is claimed; score effects remain unquantified. No caller exchange is omitted,no helper or alternative sector engine is created,and no runtime Python or shared market logic is changed. Exact source scopes do not authorize other versions,patches,system models or reverse directions.",
+        "Keep ordinary grids subject to the standard shared Premise update through existing native market YAML aliases. Keep the original source and native GLO industrial grids protected by the existing industry exception. Do not add an alias that empties an industrial mix into a generic IAM market or patch the runtime selector to bypass that exception.",
+        "The source South African high-voltage market uses the complete native South African high-voltage grid at the same delivered-kWh basis. Native generation/imports,high-voltage loss,network and emission assumptions replace the source model. Do not substitute medium voltage or add another transmission requirement. The ordinary national market remains eligible for the shared regional IAM redirection."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "eb6e4f105480139df405848aa04a20b023c1e4914c58ee08e300f097803285ae"
         }
       ]
     }

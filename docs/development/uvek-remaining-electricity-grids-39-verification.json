@@ -1,0 +1,292 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "765ffa42f9ede68a6676bb69eff8f3fc408bd962",
+  "scope_registration": {
+    "prior_scopes": 1453,
+    "new_scopes": 1457,
+    "new_rule_ids": [
+      "bp-bedea13a2ea06f3b",
+      "bp-4389bb6ee9ab35e9",
+      "bp-4d54ff618e5e5e23",
+      "bp-b3e8cf53e0504f8a"
+    ],
+    "earlier_physical_bindings_reviews_methods_and_source_profiles_unchanged": true,
+    "one_prior_raw_rule_fingerprint_rebound_after_physical_binding_comparison": [
+      {
+        "operation_index": 199,
+        "rule_id": "bp-4389bb6ee9ab35e9",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "previous_fingerprint": "54ac9d4a369cff7857a499efafc7f36f56a34b915eff98882ff4faeae5e7e625",
+        "previous_review_path": "export/uvek_pilot_grid_converter_review.json",
+        "previous_review_sha256": "143a88f8b6a9a4b0f89549c13cd73a54b8b1a260af31f505a09621144af38a2b",
+        "rebound_fingerprint": "195ba269198a217f022c0d628904880c9aad640206d22ea24f5689b7b610ff8d",
+        "unchanged_physical_binding": {
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "unit": "kilowatt hour"
+          },
+          "target": {
+            "location": "ENTSO-E",
+            "name": "Electricity, medium voltage, at grid",
+            "reference product": "Electricity, medium voltage, at grid",
+            "unit": "kilowatt hour"
+          },
+          "conversion_factor": 1,
+          "recipes": {}
+        },
+        "unchanged_physical_binding_sha256": "22521aad3cda2c2a267d14c54b4f812eabece4c750efe5bbf53bc3c06c925fc1"
+      }
+    ],
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_source_and_broad_resource_checks": 66,
+    "premise_source_checks": 10,
+    "premise_clean_installed_package_same_checks": 10,
+    "changed_review_and_test_file_lint": "passed",
+    "shared_generator_lint_limit": "Two pre-existing I001 findings at unrelated imports; no full-file cleanup performed."
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "native_suppliers": 4,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 8,
+    "independent_native_reference_LCI_solves": 4,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-bedea13a2ea06f3b",
+        "source": {
+          "location": "GLO",
+          "name": "market for electricity, medium voltage, cobalt industry",
+          "reference product": "electricity, medium voltage, cobalt industry",
+          "unit": "kilowatt hour"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilowatt hour",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 4.336808689942018e-19,
+        "full_graph_residual": {
+          "residual_before": 7.738875739111462e-11,
+          "residual_after": 2.1951404717689382e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.738875739111462e-11,
+          "residual_after": 2.1951404588846308e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-4389bb6ee9ab35e9",
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilowatt hour",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 4.0138155232604645e-30,
+        "full_graph_residual": {
+          "residual_before": 3.90904608009118e-10,
+          "residual_after": 1.830285497524123e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.90904608009118e-10,
+          "residual_after": 1.830285497524123e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-4d54ff618e5e5e23",
+        "source": {
+          "location": "DE",
+          "name": "market for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilowatt hour",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 1.3552527156068805e-20,
+        "full_graph_residual": {
+          "residual_before": 2.4161955850047183e-10,
+          "residual_after": 1.5673512793398783e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.4161955850047183e-10,
+          "residual_after": 1.5673512793398786e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-b3e8cf53e0504f8a",
+        "source": {
+          "location": "ZA",
+          "name": "market for electricity, high voltage",
+          "reference product": "electricity, high voltage",
+          "unit": "kilowatt hour"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilowatt hour",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 1.068442720190581e-09,
+          "residual_after": 2.391010979685018e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.068442720190581e-09,
+          "residual_after": 2.391010979685018e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies signed delivered kWh,complete native industrial/national grids and independent native-demand consistency. Does not reproduce source generation/loss profiles,stochastic/score equivalence or battery/export completion."
+  },
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 56,
+    "current": 52,
+    "removed_rules": [
+      "bp-bedea13a2ea06f3b",
+      "bp-4389bb6ee9ab35e9",
+      "bp-4d54ff618e5e5e23",
+      "bp-b3e8cf53e0504f8a"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-49ff9c1c2a744693",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 52,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-49ff9c1c2a744693",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "runtime_python_changes": [],
+  "new_helpers": 0,
+  "new_recipes": 0,
+  "new_source_omissions": [],
+  "user_environment_changed": false,
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "full_test_suite_rerun": false,
+  "reverse_generator_run": false,
+  "clean_forward_generator": {
+    "brightpath_commit": "765ffa42f9ede68a6676bb69eff8f3fc408bd962",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "6744d8f2a4f6d322259cfacd904fbb91e0809e429e07b24c88c483e39f39dc00",
+        "committed_sha256": "6744d8f2a4f6d322259cfacd904fbb91e0809e429e07b24c88c483e39f39dc00",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 69346335
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 0,
+    "removed_generated_output_bytes": 106539379,
+    "removed_owned_clean_worktree_file_bytes": 498591813
+  },
+  "tracked_wheel_build": {
+    "brightpath_commit": "765ffa42f9ede68a6676bb69eff8f3fc408bd962",
+    "clean_tracked_git_archive_build": true,
+    "unexpected_package_files": [],
+    "installed_resources_match_committed_bytes": [
+      "export/uvek_remaining_electricity_grids_39_review.json",
+      "migrations/RESOURCE_MANIFEST.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "export/uvek_archived_unreferenced_reviews.json"
+    ],
+    "removed_unused_wheel_bytes": 43870667,
+    "removed_temporary_tracked_build_source_and_archive_bytes": 1358055270,
+    "retained_installed_package": true
+  }
+}
