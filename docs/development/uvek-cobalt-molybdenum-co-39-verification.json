@@ -1,0 +1,256 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "d170be6ee2b11cabe0193c8293ba5a4eab181ed6",
+  "scope_registration": {
+    "prior_scopes": 1440,
+    "new_scopes": 1443,
+    "new_rule_ids": [
+      "bp-56d89eddd1ac15a4",
+      "bp-e9ef5ee03d6520f5",
+      "bp-07ddf8c234151cab"
+    ],
+    "earlier_physical_bindings_reviews_methods_and_source_profiles_unchanged": true,
+    "prior_raw_rule_fingerprints_rebound": [],
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_product_reference_market_boundary_uncertainty_replay_and_broad_resources": 48,
+    "nonblocked_catalogue_mapping_identities_executed": 30269,
+    "premise_source_fresh_cached_and_withdrawn_approvals": 7,
+    "premise_clean_installed_package_same_checks": 7,
+    "changed_review_and_test_file_lint": "passed",
+    "shared_generator_lint": "Two independently confirmed preexisting import-order findings; no added findings from this six-line replay hook. Black check passes."
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 7,
+    "signed_foreground_LCI_solves": 6,
+    "independent_native_reference_LCI_solves": 3,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-56d89eddd1ac15a4",
+        "source": {
+          "location": "GLO",
+          "name": "market for cobalt",
+          "reference product": "cobalt",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.411595000419766e-08,
+        "refined_max_abs_inventory_difference": 9.094947017729282e-13,
+        "full_graph_residual": {
+          "residual_before": 3.8214244500420175e-08,
+          "residual_after": 9.069911513402177e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 5.881720759621926e-08,
+          "residual_after": 5.141167440537723e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-e9ef5ee03d6520f5",
+        "source": {
+          "location": "GLO",
+          "name": "market for molybdenum",
+          "reference product": "molybdenum",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 3.469446951953614e-18,
+        "full_graph_residual": {
+          "residual_before": 7.16404330810373e-08,
+          "residual_after": 2.1374727378881777e-13,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.16404330810373e-08,
+          "residual_after": 2.1374727378881777e-13,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-07ddf8c234151cab",
+        "source": {
+          "location": "RER",
+          "name": "market for carbon monoxide",
+          "reference product": "carbon monoxide",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 6.776263578034403e-21,
+        "full_graph_residual": {
+          "residual_before": 4.972862857204957e-08,
+          "residual_after": 3.8497573337325066e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.972862857204957e-08,
+          "residual_after": 3.8497573337325066e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies signed cobalt,molybdenum and CO productkg, retained cobalt delivery and independently flattened native demand. Does not reproduce source recycling,metallurgy,oxygen/water or distribution models, stochastic/score equivalence or battery/export completion."
+  },
+  "installed_package": {
+    "brightpath_commit": "d170be6ee2b11cabe0193c8293ba5a4eab181ed6",
+    "clean_tracked_git_archive_build": true,
+    "unexpected_package_files": [],
+    "installed_resources_match_committed_bytes": [
+      "export/uvek_cobalt_molybdenum_co_39_review.json",
+      "migrations/RESOURCE_MANIFEST.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "export/uvek_archived_unreferenced_reviews.json"
+    ],
+    "removed_unused_wheel_bytes": 43804384,
+    "removed_temporary_tracked_build_source_and_archive_bytes": 1356759989,
+    "retained_installed_package": true
+  },
+  "clean_forward_generator": {
+    "brightpath_commit": "d170be6ee2b11cabe0193c8293ba5a4eab181ed6",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "2f2d85e1431733a4473f0c6d135fe8b53dfcaba116a06983a6d1f44d79f15134",
+        "committed_sha256": "2f2d85e1431733a4473f0c6d135fe8b53dfcaba116a06983a6d1f44d79f15134",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 69277599
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 1,
+    "removed_generated_output_bytes": 106470643,
+    "removed_owned_clean_worktree_file_bytes": 498116882
+  },
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 69,
+    "current": 66,
+    "removed_rules": [
+      "bp-56d89eddd1ac15a4",
+      "bp-e9ef5ee03d6520f5",
+      "bp-07ddf8c234151cab"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-91b9cff76b3562bb",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 66,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-91b9cff76b3562bb",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "new_helpers": 1,
+  "cobalt": {
+    "source_product_and_recovered_metal_references_positive_one_kg": true,
+    "retained_producer_coefficients": 4,
+    "source_recycled_fraction_replaced_by_native_primary_model": 0.00571625801376486,
+    "retained_final_freight_entries": 4,
+    "native_missing_further_treatment_emissions_explicit": true
+  },
+  "molybdenum": {
+    "complete_native_delivered_stock_proxy": true,
+    "source_regional_shares_and_four_freight_entries_replaced_not_reproduced": true,
+    "extra_freight_helper": false,
+    "native_negative_concentrate_and_resource_correction_inputs_preserved": true,
+    "native_zinc_metallurgy_proxy_limit_explicit": true
+  },
+  "carbon_monoxide": {
+    "one_source_producer_no_final_freight": true,
+    "direct_complete_native_product_no_helper": true,
+    "missing_native_purchased_oxygen_and_source_water_explicit": true,
+    "source_internal_inventory_overlay": false
+  },
+  "remaining_bulk_read_only_inspection": {
+    "remaining_rules": 66,
+    "source_positive_one_references": 54,
+    "source_negative_one_references": 12,
+    "existing_recipe_targets": 2,
+    "direct_native_targets": 64,
+    "direct_targets_present_nonempty_and_positive_one_in_both_native_releases": true,
+    "candidate_presence_is_not_product_or_scope_approval": true,
+    "brightway_database_writes": 0
+  },
+  "all_earlier_approval_operations_and_fingerprints_unchanged": true,
+  "new_source_omissions": [],
+  "runtime_python_changes": [],
+  "notebook_changes": [],
+  "user_environment_changed": false,
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "full_test_suite_rerun": false,
+  "reverse_generator_run": false
+}
