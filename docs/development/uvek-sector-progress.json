@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-6fb142ff07a96aed",
+        "rule_id": "bp-4a9a4566f35ab410",
         "source": {
-          "location": "GLO",
-          "name": "market for sodium methoxide",
-          "reference product": "sodium methoxide",
+          "location": "IAI Area, EU27 & EFTA",
+          "name": "market for aluminium, primary, ingot",
+          "reference product": "aluminium, primary, ingot",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 72,
+        "unapproved_correspondence_count_in_current_39_cohort": 71,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-remaining-freight-39-verification.json",
+        "verification": "docs/development/uvek-sodium-methoxide-market-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Verify source3.9 sodium-methoxide reference/product/route basis against its existing explicitly approved3.8 whole-product20/80 technology proxy; retain that authority and warnings, and inspect whether source final delivery can be retained without duplicating native producer transport.",
+        "next_action": "Inspect European aluminium domestic/import boundaries and final freight before selecting complete native supply; correct the sodium-hydroxide-equivalent soda-ash service rather than using lithium hydroxide.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all72 pending first3.9-cohort details."
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all71 pending first3.9-cohort details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-remaining-freight-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-sodium-methoxide-market-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

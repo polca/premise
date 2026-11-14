@@ -131,7 +131,16 @@ def test_existing_chemical_permissions_keep_direct_supplier_through_cache(
     assert resolved.activities == before
 
 
-def test_pending_sodium_methoxide_is_not_authorized_by_older_38_approval(tmp_path):
+def test_sodium_methoxide_is_not_authorized_by_older_38_approval_alone(
+    tmp_path, monkeypatch
+):
+    ledger = copy.deepcopy(approvals._approval_ledger())
+    for operation in ledger["operations"]:
+        if operation["rule_id"] == "bp-6fb142ff07a96aed":
+            operation["scopes"] = [
+                s for s in operation["scopes"] if s["source"]["version"] != "3.9"
+            ]
+    monkeypatch.setattr(approvals, "_approval_ledger", lambda: ledger)
     source = {
         "name": "market for sodium methoxide",
         "reference product": "sodium methoxide",
