@@ -6444,7 +6444,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "c08e0640d8e089a330f73750f3f4c9bb8c63aef18fe10ef5feae0a94db1a3c98"
+          "fingerprint": "b37480a493a1fb4102cc5d58c3de07ffda91fffdc86ac90ae1d5aedfd99b7287"
         }
       ]
     },
@@ -7274,7 +7274,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "25e91b3b5bb1a8f147b6dfd5935cc746ba11e0a361c43267431f65181162fd45"
+          "fingerprint": "90672bbee245b6a5d57775ea472a3ee23dedb7a7b4773896a52a88e52cf77651"
         }
       ]
     },
@@ -125856,7 +125856,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "93eaa81b6ae4c53f5af660000cf3a59652edba03334ad6a82bf6ee6aa4a96640"
+          "fingerprint": "49fb7a9d36b292baeacb79b6eef625edf246084e9c375268000ed85505801f14"
         }
       ]
     },
@@ -198613,7 +198613,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "b68766543a5ef9286c20a14b28c61067d21a230da40e254617c107af128666d8"
+          "fingerprint": "bb38a1034c3c088e8ba2c0b4a86bf9e783b149d314fbc5798ee2befef46d46e6"
         }
       ]
     },
@@ -276302,6 +276302,811 @@
             "version": "2025"
           },
           "fingerprint": "3b4f13cf07c3be3c12280a25a1130ddb63a294a1238e9b06e134d56e4fdc2977"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-e1c5c137f358792d",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_polymer_carton_39_review.json",
+      "review_sha256": "92c18097b05ea6cb3fcc2118aa37a80e2668b3ca6416b85d214b9e542d415f05",
+      "authorization": "Standing autonomous approval of coming modelling decisions, exact named-product/geographic/technology screening proxies and documented reconstructions, with retained quantities and warnings for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for acrylonitrile-butadiene-styrene copolymer",
+            "reference product": "acrylonitrile-butadiene-styrene copolymer",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "7fa77793be8861f2c4730c34c319f0e971505e0c3f3278a10daad9c7dd24e0d1",
+          "inventory_sha256": "f2dea53b49413804b820f3d5dcf63a904a5627196e97f1dfb5ce2d9f889f5cc7",
+          "activity_comment_sha256": "f9166ff5ae1b4be58d4d64ee72c3943e1c1211dc4b40d7daf51c6e97cb2f864b",
+          "product_information_sha256": "be6eba1da1d572a754c0ff17da84d62376de5bbb4d6d253a3e9277a323f51114"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+              "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 146,
+            "metadata_sha256": "08a2f3cf7ee2dd6a8a94dc61790161b2f4c5d3f38015cb1898b8b65fa1942110",
+            "inventory_sha256": "568f28b1cc79248f76eaf9aaed13302e524740ec230ae32579bf97a1083d4f46",
+            "activity_comment_sha256": "87653195700ad8c8570bb6f21332d2ad4d6ae24c1a42b9fccc62cfb1f506bd58",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+              "reference product": "Acrylonitrile-butadiene-styrene copolymer, ABS, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 152,
+            "metadata_sha256": "bb8ae4e527e2a23f47c449f91135e732ad37dfcfec5295489ab8354f48bc6c05",
+            "inventory_sha256": "78e1b3a9baa6b68af5930c44c3be1a16ef4590915f1c5faf638d1da27dc48939",
+            "activity_comment_sha256": "c492a3c25ca65fd05aced89d523d02775ac5ad43360fd086c9c7c97503af8059",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_product_reference_kg": true,
+          "new_product_mass_factor": false,
+          "kind": "virgin_ABS",
+          "same_inherited_seven_site_study": true
+        }
+      },
+      "limitations": [
+        "New scientific approval covers only the independently inspected exact ecoinvent3.9 cut-off named product. Keep signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one-kg source/native product references with factor+1. Market recipes retain every original producer and final-delivery entry separately at its original quantity and supported uncertainty, except the explicitly documented carton board/conversion normalization. Do not aggregate or normalize supplier shares or drop a delivery mode. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once in place of source producer internals. Native upstream feedstock, energy, raw-material delivery, infrastructure, emissions, waste treatment and allocation replace the source internal model; do not overlay source producer inputs or direct emissions, infer product mass from auxiliary inputs, or add recycling/avoided-production credits. Source/native geography, technology, vintage, release coverage, internal uncertainty and allocation differ; assay, grade/performance, LCI, LCIA and stochastic equivalence are not established, and score effects are unquantified.",
+        "Final source-market freight remains additional to internal native producer transport. Keep source rail, road, sea, air and light-commercial tonne-km using complete native mode suppliers. Rail/road use European fleets; sea uses the native ocean service; light-commercial uses the native Swiss3.5t-gross-weight fleet; air uses the Lufthansa2019 passenger-aircraft freight service with its own short/medium/long-haul mix and weight allocation. Geographic, vehicle/flight/loading, fuel, infrastructure and vintage differences are screening proxies, not equal fleets or distances. Add no guessed payload, distance, loss or extra freight multiplier.",
+        "No literal caller/source exchange omission, empty supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal defaults, unrelated rules, recipe bodies and shared review cards remain frozen. Only the reviewed3.9 market profiles select new helpers. Four older approved scopes are rebound to the extended raw-rule fingerprint only after proving their effective supplier, quantity factor and complete recipe closure unchanged; their original review bytes/methods/identities and source versions remain intact.",
+        "ABS is the virgin acrylonitrile/butadiene/styrene copolymer, not a single monomer or a formed component. Both source producer records and native supply inherit the same seven-European-site PlasticsEurope emulsion-polymerization study. Keep original RER/RoW shares; RoW uses European native supply explicitly. Native aggregate already contains upstream feedstocks/energy and waste interfaces. Inherited exclusions for recyclable wastes, unspecified metals/air/N2/O2, mercaptans, unspecified CFC/HCFC and dioxin are not measured zero. Embedded aggregate energy cannot be fully updated through ordinary supplier relinking; do not add guessed monomers, electricity or a recycle fraction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "2a0a0d1fe5a7952ca13fcd488946d8e68ec95d9b44aa0b2c262445d54c1cde2c"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-46961b2d2543df96",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_polymer_carton_39_review.json",
+      "review_sha256": "92c18097b05ea6cb3fcc2118aa37a80e2668b3ca6416b85d214b9e542d415f05",
+      "authorization": "Standing autonomous approval of coming modelling decisions, exact named-product/geographic/technology screening proxies and documented reconstructions, with retained quantities and warnings for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for polyvinylfluoride",
+            "reference product": "polyvinylfluoride",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "986df8967168853f3da8829fb95e7db49975033c560770cfcf1cc1cc69608b2e",
+          "inventory_sha256": "4288b891c72f24977ad78feb31316cd56abe61b48e1d2a27c500a83fbc2c20cd",
+          "activity_comment_sha256": "787fb24c80b9dd8036ccd0570c0f5d6cd0c80613f5bae58f0074899725a0b4cd",
+          "product_information_sha256": "c35a3e68bb2d0e3f0f3f8048d1e06c02f3c5000899941b3437634cc7228aae49"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyvinylfluoride, at plant",
+              "reference product": "Polyvinylfluoride, at plant",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "63b8302d42fa4207021a9c98eeea6fe20d98b2612b29390e510ea7c555b82b77",
+            "inventory_sha256": "96b9e42dbac40c76ac4ee98c33c4a0352ad7499f7c44b143829d4aef0d49ee27",
+            "activity_comment_sha256": "5d697db48c7241b6dfba9839ba0a380c4c4a4f5171d6677a1238243d08548673",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyvinylfluoride, at plant",
+              "reference product": "Polyvinylfluoride, at plant",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "73b7306c065a8559a7418c65655611656fd4b46770981d047f41fa95b8fc7d03",
+            "inventory_sha256": "98e5e4662e04ca3f75c0c2025cb500e2b71e1306e06dd1222eb281deb86bfd5e",
+            "activity_comment_sha256": "f748b15067f1ee05e3f552259df716a4fad87ec8fb627e27d86349c37f27fa6e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_product_reference_kg": true,
+          "new_product_mass_factor": false,
+          "kind": "PVF_not_PVDF_or_dispersion",
+          "RoW_uses_US_proxy": true
+        }
+      },
+      "limitations": [
+        "New scientific approval covers only the independently inspected exact ecoinvent3.9 cut-off named product. Keep signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one-kg source/native product references with factor+1. Market recipes retain every original producer and final-delivery entry separately at its original quantity and supported uncertainty, except the explicitly documented carton board/conversion normalization. Do not aggregate or normalize supplier shares or drop a delivery mode. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once in place of source producer internals. Native upstream feedstock, energy, raw-material delivery, infrastructure, emissions, waste treatment and allocation replace the source internal model; do not overlay source producer inputs or direct emissions, infer product mass from auxiliary inputs, or add recycling/avoided-production credits. Source/native geography, technology, vintage, release coverage, internal uncertainty and allocation differ; assay, grade/performance, LCI, LCIA and stochastic equivalence are not established, and score effects are unquantified.",
+        "Final source-market freight remains additional to internal native producer transport. Keep source rail, road, sea, air and light-commercial tonne-km using complete native mode suppliers. Rail/road use European fleets; sea uses the native ocean service; light-commercial uses the native Swiss3.5t-gross-weight fleet; air uses the Lufthansa2019 passenger-aircraft freight service with its own short/medium/long-haul mix and weight allocation. Geographic, vehicle/flight/loading, fuel, infrastructure and vintage differences are screening proxies, not equal fleets or distances. Add no guessed payload, distance, loss or extra freight multiplier.",
+        "No literal caller/source exchange omission, empty supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal defaults, unrelated rules, recipe bodies and shared review cards remain frozen. Only the reviewed3.9 market profiles select new helpers. Four older approved scopes are rebound to the extended raw-rule fingerprint only after proving their effective supplier, quantity factor and complete recipe closure unchanged; their original review bytes/methods/identities and source versions remain intact.",
+        "Use named neat polyvinylfluoride (PVF) product, not PVDF, an aqueous dispersion, a finished film or generic organic chemicals. Native positive one-kg US fluoropolymer inventory uses cumulative process data with incomplete air/water emissions. Keep US and RoW source producer shares separately, with RoW using the native US product explicitly; no dilution, fluorine-content, monomer or film-conversion multiplier is inferred. Formulation/purity and release equivalence remain unverified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "828979d736f236a63a9c87299581f6aef3f04611f16e492d2008b76b724b6ea1"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-4cb0f787f01d05a7",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_polymer_carton_39_review.json",
+      "review_sha256": "92c18097b05ea6cb3fcc2118aa37a80e2668b3ca6416b85d214b9e542d415f05",
+      "authorization": "Standing autonomous approval of coming modelling decisions, exact named-product/geographic/technology screening proxies and documented reconstructions, with retained quantities and warnings for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for polyvinylchloride, emulsion polymerised",
+            "reference product": "polyvinylchloride, emulsion polymerised",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "e0761d64c972de0e2101088a0ddad792fe2ac99e98b3d8676f7b6ef4c24fe283",
+          "inventory_sha256": "296cf677b27d4ce9a0bb5ccce0712f41ca02fa31fc8da497091afd2804fa1b71",
+          "activity_comment_sha256": "0b360a55b28890af0d3d7e225da5aa27a19139a97259b1c917799d6f8d45fcc4",
+          "product_information_sha256": "8e65293987008e09fb67a4435822f368faad889d65a13392bd9efc741fda34e1"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyvinylchloride, emulsion polymerised, at plant",
+              "reference product": "Polyvinylchloride, emulsion polymerised, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 412,
+            "metadata_sha256": "78c39d80d3bb0181bbc26d7c11d12c53cbbcbebcba60b1d98a716728b6079e2d",
+            "inventory_sha256": "bd6d1ea2b7a8b5ac9aeb95690d8fe46ebbd55455dd70c2c61f18afd22fde5e21",
+            "activity_comment_sha256": "6fea02709b33fe70241beb4e98db166c1e47b3230db5c7c5ee395aa220a89799",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyvinylchloride, emulsion polymerised, at plant",
+              "reference product": "Polyvinylchloride, emulsion polymerised, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 424,
+            "metadata_sha256": "66b947b4217c5a4fba9fd60baefa8a90715cb0f4cd0a3ac534e6d2ad015365a7",
+            "inventory_sha256": "46eefa18151b0d423330a841dfe744bd32e6b49cc24494779cec66dbaa2b5977",
+            "activity_comment_sha256": "a360ad76e4cf4f6bf657a4f711b004938a5429010ff1e79cc2022f8fc9d599b3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_product_reference_kg": true,
+          "new_product_mass_factor": false,
+          "kind": "PVC_emulsion",
+          "emulsion_is_not_solution_basis": true,
+          "native2026_documents_methane_update": true
+        }
+      },
+      "limitations": [
+        "New scientific approval covers only the independently inspected exact ecoinvent3.9 cut-off named product. Keep signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one-kg source/native product references with factor+1. Market recipes retain every original producer and final-delivery entry separately at its original quantity and supported uncertainty, except the explicitly documented carton board/conversion normalization. Do not aggregate or normalize supplier shares or drop a delivery mode. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once in place of source producer internals. Native upstream feedstock, energy, raw-material delivery, infrastructure, emissions, waste treatment and allocation replace the source internal model; do not overlay source producer inputs or direct emissions, infer product mass from auxiliary inputs, or add recycling/avoided-production credits. Source/native geography, technology, vintage, release coverage, internal uncertainty and allocation differ; assay, grade/performance, LCI, LCIA and stochastic equivalence are not established, and score effects are unquantified.",
+        "Final source-market freight remains additional to internal native producer transport. Keep source rail, road, sea, air and light-commercial tonne-km using complete native mode suppliers. Rail/road use European fleets; sea uses the native ocean service; light-commercial uses the native Swiss3.5t-gross-weight fleet; air uses the Lufthansa2019 passenger-aircraft freight service with its own short/medium/long-haul mix and weight allocation. Geographic, vehicle/flight/loading, fuel, infrastructure and vintage differences are screening proxies, not equal fleets or distances. Add no guessed payload, distance, loss or extra freight multiplier.",
+        "No literal caller/source exchange omission, empty supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal defaults, unrelated rules, recipe bodies and shared review cards remain frozen. Only the reviewed3.9 market profiles select new helpers. Four older approved scopes are rebound to the extended raw-rule fingerprint only after proving their effective supplier, quantity factor and complete recipe closure unchanged; their original review bytes/methods/identities and source versions remain intact.",
+        "Match commercial emulsion-polymerized PVC to the same native polymerization role, preserving both regional shares. Emulsion describes the manufacturing route, not permission to convert polymer kg into kg of an aqueous latex. Keep these two resin grades separate. Native PlasticsEurope aggregates include upstream VCM/chlorine/ethylene, utilities, feedstock freight and waste; source version3.9 exposes a different unit-process boundary. Use the whole native aggregate once, without adding source monomer/energy, water/concentration, conversion-yield, residual-VCM recovery or plasticizer factors. Native2026 explicitly includes a later methane-emission update; exact grade, release and vintage equivalence is not claimed. Non-European source production uses the complete European model as a geographic proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "aa4dde848c83cdd70d4cd94e06e5785a1c5673701acaad27125dc0b786a5e749"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-1a39c7b4c1f58b77",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_polymer_carton_39_review.json",
+      "review_sha256": "92c18097b05ea6cb3fcc2118aa37a80e2668b3ca6416b85d214b9e542d415f05",
+      "authorization": "Standing autonomous approval of coming modelling decisions, exact named-product/geographic/technology screening proxies and documented reconstructions, with retained quantities and warnings for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for polyphenylene sulfide",
+            "reference product": "polyphenylene sulfide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "54fec5aa54116e1a2a2ffb719aba21863593d6d53d58394223a8023722e44cdb",
+          "inventory_sha256": "f433c0c8f02d38ffb0a37e0a709e527d92f2464fcbe9b3e9d749324ac5c2399e",
+          "activity_comment_sha256": "ab0538ab7509889f428147c56a2ec6786bc015749b15098dcf089917c2f3b804",
+          "product_information_sha256": "04d877c6a124a22d194c4956a374a9e9e87f7cd02dcb8d72f466c35435093ce7"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyphenylene sulfide, at plant",
+              "reference product": "Polyphenylene sulfide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 26,
+            "metadata_sha256": "601c3d2aed440388d130ddd5389d8922c361445e0a90697f405619178c4792f6",
+            "inventory_sha256": "3ad721101937db01499c5d63455fac18a5f0b1b8890f60587f55bc87772311f1",
+            "activity_comment_sha256": "45cf980bc3f47e15a3579423f54ff5627acd0a18bc7645424328d0b715335dcd",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyphenylene sulfide, at plant",
+              "reference product": "Polyphenylene sulfide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 26,
+            "metadata_sha256": "66e2d3c41b43777dc1a9b18ac4324310604b2729e7a21bf21bd10e8e2ffe5b2d",
+            "inventory_sha256": "6922d20bacaad51968ec30b432e8c4e50541e9688b876295fcc6e1026db1d345",
+            "activity_comment_sha256": "2e1428bbe189442ef459fe812f9dc70c212156eabeda993771126a3dd5d2546d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_product_reference_kg": true,
+          "new_product_mass_factor": false,
+          "kind": "solid_PPS",
+          "new_85percent_yield_factor": false
+        }
+      },
+      "limitations": [
+        "New scientific approval covers only the independently inspected exact ecoinvent3.9 cut-off named product. Keep signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one-kg source/native product references with factor+1. Market recipes retain every original producer and final-delivery entry separately at its original quantity and supported uncertainty, except the explicitly documented carton board/conversion normalization. Do not aggregate or normalize supplier shares or drop a delivery mode. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once in place of source producer internals. Native upstream feedstock, energy, raw-material delivery, infrastructure, emissions, waste treatment and allocation replace the source internal model; do not overlay source producer inputs or direct emissions, infer product mass from auxiliary inputs, or add recycling/avoided-production credits. Source/native geography, technology, vintage, release coverage, internal uncertainty and allocation differ; assay, grade/performance, LCI, LCIA and stochastic equivalence are not established, and score effects are unquantified.",
+        "Final source-market freight remains additional to internal native producer transport. Keep source rail, road, sea, air and light-commercial tonne-km using complete native mode suppliers. Rail/road use European fleets; sea uses the native ocean service; light-commercial uses the native Swiss3.5t-gross-weight fleet; air uses the Lufthansa2019 passenger-aircraft freight service with its own short/medium/long-haul mix and weight allocation. Geographic, vehicle/flight/loading, fuel, infrastructure and vintage differences are screening proxies, not equal fleets or distances. Add no guessed payload, distance, loss or extra freight multiplier.",
+        "No literal caller/source exchange omission, empty supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal defaults, unrelated rules, recipe bodies and shared review cards remain frozen. Only the reviewed3.9 market profiles select new helpers. Four older approved scopes are rebound to the extended raw-rule fingerprint only after proving their effective supplier, quantity factor and complete recipe closure unchanged; their original review bytes/methods/identities and source versions remain intact.",
+        "Both source and native refer to solid PPS per product kg, based on the inherited patent/stoichiometric model of sodium sulfide and p-dichlorobenzene in NMP. The stated85% reaction yield is already inside product inventories; do not divide output demand by0.85 or add source solvent/reactants again. Native records explicitly describe large uncertainty, incomplete estimated releases and omitted solid wastes. Keep those source-data limitations visible, not zero-burden waste assertions or newly fabricated treatment inventories."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bf387c3136f4e1f621c2261c26daa06f7232625e8d939a334e55c085fb1bdfd3"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-4df468ffd8629c6d",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_polymer_carton_39_review.json",
+      "review_sha256": "92c18097b05ea6cb3fcc2118aa37a80e2668b3ca6416b85d214b9e542d415f05",
+      "authorization": "Standing autonomous approval of coming modelling decisions, exact named-product/geographic/technology screening proxies and documented reconstructions, with retained quantities and warnings for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for polyvinylchloride, suspension polymerised",
+            "reference product": "polyvinylchloride, suspension polymerised",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "42b74e6602711485330545d065140a0df07e555efc96f0747b08c5fd6f0a62e0",
+          "inventory_sha256": "2aa71e15f49eba3e5f215bdd097244045f30e3508693f96c413e1d9d36223d39",
+          "activity_comment_sha256": "db7c8d3b10f860cc3b97c505f4a9d5ffc419aca26d06de72aa770270095725e3",
+          "product_information_sha256": "a03e193ed16a3399e16c5eb64d8fdc48bac9acd40d406677b5c1590b1cf9d1e5"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyvinylchloride, suspension polymerised, at plant",
+              "reference product": "Polyvinylchloride, suspension polymerised, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 413,
+            "metadata_sha256": "6ae2ad804b3986e8db434cc1824262e36677d48d8fe9eb0d57cf9898cf0b803a",
+            "inventory_sha256": "aec3d48b7dfa8c21c6db218fb89ef3d34942a0abc4ad9e509a635a19ff1c7ba1",
+            "activity_comment_sha256": "a11f922d7d05f31ffdcc4e6a238dbc0d8991e72077a0c8096bf783fca109715c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyvinylchloride, suspension polymerised, at plant",
+              "reference product": "Polyvinylchloride, suspension polymerised, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 422,
+            "metadata_sha256": "ea034a36a46b102d1cd9ce8b34d212625b632c8e6028ea2e9e9d88b5727276ca",
+            "inventory_sha256": "e91d1945540ac7560b64265e992411552f906c8d30644b38d05e1ed3bba90998",
+            "activity_comment_sha256": "7ee90bdccada7a0b35fb505d8662893df777971560228be1266a07fa7bb06bc5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_product_reference_kg": true,
+          "new_product_mass_factor": false,
+          "kind": "PVC_suspension",
+          "emulsion_is_not_solution_basis": true,
+          "native2026_documents_methane_update": true
+        }
+      },
+      "limitations": [
+        "New scientific approval covers only the independently inspected exact ecoinvent3.9 cut-off named product. Keep signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one-kg source/native product references with factor+1. Market recipes retain every original producer and final-delivery entry separately at its original quantity and supported uncertainty, except the explicitly documented carton board/conversion normalization. Do not aggregate or normalize supplier shares or drop a delivery mode. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once in place of source producer internals. Native upstream feedstock, energy, raw-material delivery, infrastructure, emissions, waste treatment and allocation replace the source internal model; do not overlay source producer inputs or direct emissions, infer product mass from auxiliary inputs, or add recycling/avoided-production credits. Source/native geography, technology, vintage, release coverage, internal uncertainty and allocation differ; assay, grade/performance, LCI, LCIA and stochastic equivalence are not established, and score effects are unquantified.",
+        "Final source-market freight remains additional to internal native producer transport. Keep source rail, road, sea, air and light-commercial tonne-km using complete native mode suppliers. Rail/road use European fleets; sea uses the native ocean service; light-commercial uses the native Swiss3.5t-gross-weight fleet; air uses the Lufthansa2019 passenger-aircraft freight service with its own short/medium/long-haul mix and weight allocation. Geographic, vehicle/flight/loading, fuel, infrastructure and vintage differences are screening proxies, not equal fleets or distances. Add no guessed payload, distance, loss or extra freight multiplier.",
+        "No literal caller/source exchange omission, empty supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal defaults, unrelated rules, recipe bodies and shared review cards remain frozen. Only the reviewed3.9 market profiles select new helpers. Four older approved scopes are rebound to the extended raw-rule fingerprint only after proving their effective supplier, quantity factor and complete recipe closure unchanged; their original review bytes/methods/identities and source versions remain intact.",
+        "Match commercial suspension-polymerized PVC to the same native polymerization role, preserving both regional shares. Emulsion describes the manufacturing route, not permission to convert polymer kg into kg of an aqueous latex. Keep these two resin grades separate. Native PlasticsEurope aggregates include upstream VCM/chlorine/ethylene, utilities, feedstock freight and waste; source version3.9 exposes a different unit-process boundary. Use the whole native aggregate once, without adding source monomer/energy, water/concentration, conversion-yield, residual-VCM recovery or plasticizer factors. Native2026 explicitly includes a later methane-emission update; exact grade, release and vintage equivalence is not claimed. Non-European source production uses the complete European model as a geographic proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b9af8c565cd69805ef7514aaa9574410b8f26911605710b4bc92834490e9b67b"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-1b65914b2f33ba7b",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_polymer_carton_39_review.json",
+      "review_sha256": "92c18097b05ea6cb3fcc2118aa37a80e2668b3ca6416b85d214b9e542d415f05",
+      "authorization": "Standing autonomous approval of coming modelling decisions, exact named-product/geographic/technology screening proxies and documented reconstructions, with retained quantities and warnings for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for packaging film, low density polyethylene",
+            "reference product": "packaging film, low density polyethylene",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "3ba857e5531f58ef54db8da00525fa9ad6eccd49a0ad7f31c2eea71ba4574138",
+          "inventory_sha256": "931a1171197d611a00c4154ab8e30989220568f8cdbbc092cec47bafe46bff2e",
+          "activity_comment_sha256": "588e2974050cf3e49665fd752d73f8acd6f9a4b374d2c37f46daf1c054c9c357",
+          "product_information_sha256": "bb9bbedb17504f2eaac2b8d68b40e3bd4668c0da68345e8cfd3c5255ef6d995a"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Packaging film, LDPE, at plant",
+              "reference product": "Packaging film, LDPE, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 4,
+            "metadata_sha256": "70cec854ed491ee674e769dd97e94c5a8186deeb48b2ce9e01c1eed70ed75a01",
+            "inventory_sha256": "bec56438e770849fddda5cf814419001da9d5c88d8da278ec3c39e3f50c95d0d",
+            "activity_comment_sha256": "d3d39bd3a6fe5cad2456b23ff83f22a169f21bed5ee912812b51367975676933",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Packaging film, LDPE, at plant",
+              "reference product": "Packaging film, LDPE, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 4,
+            "metadata_sha256": "ce10783dd4feb697fb4bb4af3193ef680261c8a3be86a014940d1dd651fe3a81",
+            "inventory_sha256": "c243eeb56a6ed7e7568ae2568202b33b6e06558ecbc66556bf613d50531b4b11",
+            "activity_comment_sha256": "2f8c47023c6df23dddeb41566e14e3b088fd0d274a850dac6b1069b9880bc112",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_product_reference_kg": true,
+          "new_product_mass_factor": false,
+          "kind": "finished_LDPE_packaging_film",
+          "extra_resin_or_extrusion_added": false
+        }
+      },
+      "limitations": [
+        "New scientific approval covers only the independently inspected exact ecoinvent3.9 cut-off named product. Keep signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one-kg source/native product references with factor+1. Market recipes retain every original producer and final-delivery entry separately at its original quantity and supported uncertainty, except the explicitly documented carton board/conversion normalization. Do not aggregate or normalize supplier shares or drop a delivery mode. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once in place of source producer internals. Native upstream feedstock, energy, raw-material delivery, infrastructure, emissions, waste treatment and allocation replace the source internal model; do not overlay source producer inputs or direct emissions, infer product mass from auxiliary inputs, or add recycling/avoided-production credits. Source/native geography, technology, vintage, release coverage, internal uncertainty and allocation differ; assay, grade/performance, LCI, LCIA and stochastic equivalence are not established, and score effects are unquantified.",
+        "Final source-market freight remains additional to internal native producer transport. Keep source rail, road, sea, air and light-commercial tonne-km using complete native mode suppliers. Rail/road use European fleets; sea uses the native ocean service; light-commercial uses the native Swiss3.5t-gross-weight fleet; air uses the Lufthansa2019 passenger-aircraft freight service with its own short/medium/long-haul mix and weight allocation. Geographic, vehicle/flight/loading, fuel, infrastructure and vintage differences are screening proxies, not equal fleets or distances. Add no guessed payload, distance, loss or extra freight multiplier.",
+        "No literal caller/source exchange omission, empty supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal defaults, unrelated rules, recipe bodies and shared review cards remain frozen. Only the reviewed3.9 market profiles select new helpers. Four older approved scopes are rebound to the extended raw-rule fingerprint only after proving their effective supplier, quantity factor and complete recipe closure unchanged; their original review bytes/methods/identities and source versions remain intact.",
+        "Use complete LDPE packaging film, including its polymer stock, raw-polymer transport and film extrusion, rather than bare LDPE resin or a forming-only service. Keep both original regional producer entries and all four final freight entries. Native at-plant production is European; RoW uses that complete process as an explicit geographic proxy. Do not add extrusion, resin, internal raw-material transport or a film thickness/density factor twice. The older independently reviewed3.8 helper stays unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ee3d92e9687cdbe27539e45397a7b6cd653dbe01c3476241501207865af52534"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-df72f3655eabc25a",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_polymer_carton_39_review.json",
+      "review_sha256": "92c18097b05ea6cb3fcc2118aa37a80e2668b3ca6416b85d214b9e542d415f05",
+      "authorization": "Standing autonomous approval of coming modelling decisions, exact named-product/geographic/technology screening proxies and documented reconstructions, with retained quantities and warnings for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "fleece production, polyethylene",
+            "reference product": "fleece, polyethylene",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 14,
+          "metadata_sha256": "153e1e355ec1d01f03d969ce0276326c08ffa9610bd035804b4a868d36afb776",
+          "inventory_sha256": "b2d5d9421a93cbca57d1c00273637e44ee5eb527766f6d3f31233ff103e578c9",
+          "activity_comment_sha256": "bd2ad74bb8d58e5957d099085f40877fae05fba4b8645f2a92d7cd92edd3ab87",
+          "product_information_sha256": "a913f0707e06fda3ab38882a8d9dd47e8ae244cea05c11755cc1d19768126c56"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Fleece, polyethylene, at plant",
+              "reference product": "Fleece, polyethylene, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "7f03993b2b969f6263392e85ce26cd11f51bedbb68a130f02cb7cc0ad8d7082e",
+            "inventory_sha256": "6194fae06d625d26ff0b082c664983624fb1aaf3a177a095dd4c88be048d2feb",
+            "activity_comment_sha256": "cd925d22fc46e6cc99112f9ac0716b8e3c8edbfedaa34adf9031e551159eba7b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Fleece, polyethylene, at plant",
+              "reference product": "Fleece, polyethylene, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "8b312d2e898399ab710561b787229a360ed53bb0a27124168ddf7f21cc06cfab",
+            "inventory_sha256": "11d4738c77d40e7dd7dca0ce1c496b04964c836b4b7d1b5fb02c2e07deda2d86",
+            "activity_comment_sha256": "a6a31127ac56574d8d6d894b1e2c345a2ca36a09b6cb58460887b7df440279dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_product_reference_kg": true,
+          "new_product_mass_factor": false,
+          "kind": "finished_HDPE_fleece",
+          "source_generic_text_says_polyester": true,
+          "actual_source_and_native_raw_material_is_HDPE": true,
+          "area_or_grammage_factor_added": false
+        }
+      },
+      "limitations": [
+        "New scientific approval covers only the independently inspected exact ecoinvent3.9 cut-off named product. Keep signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one-kg source/native product references with factor+1. Market recipes retain every original producer and final-delivery entry separately at its original quantity and supported uncertainty, except the explicitly documented carton board/conversion normalization. Do not aggregate or normalize supplier shares or drop a delivery mode. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once in place of source producer internals. Native upstream feedstock, energy, raw-material delivery, infrastructure, emissions, waste treatment and allocation replace the source internal model; do not overlay source producer inputs or direct emissions, infer product mass from auxiliary inputs, or add recycling/avoided-production credits. Source/native geography, technology, vintage, release coverage, internal uncertainty and allocation differ; assay, grade/performance, LCI, LCIA and stochastic equivalence are not established, and score effects are unquantified.",
+        "Final source-market freight remains additional to internal native producer transport. Keep source rail, road, sea, air and light-commercial tonne-km using complete native mode suppliers. Rail/road use European fleets; sea uses the native ocean service; light-commercial uses the native Swiss3.5t-gross-weight fleet; air uses the Lufthansa2019 passenger-aircraft freight service with its own short/medium/long-haul mix and weight allocation. Geographic, vehicle/flight/loading, fuel, infrastructure and vintage differences are screening proxies, not equal fleets or distances. Add no guessed payload, distance, loss or extra freight multiplier.",
+        "No literal caller/source exchange omission, empty supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal defaults, unrelated rules, recipe bodies and shared review cards remain frozen. Only the reviewed3.9 market profiles select new helpers. Four older approved scopes are rebound to the extended raw-rule fingerprint only after proving their effective supplier, quantity factor and complete recipe closure unchanged; their original review bytes/methods/identities and source versions remain intact.",
+        "Use the named polyethylene fleece inventory per kg, not generic polyester textile. Source generic product text incorrectly says polyester, but its process description, reception boundary and actual main raw-material input identify polyethylene/HDPE; the native inventory likewise purchases HDPE. Preserve that inspected material basis rather than following the conflicting generic text. Source/native both include fleece processing, energy, packaging and infrastructure; native uses one Swiss company/early1990s technology as a European average and its own positive PE-incineration service instead of source negative waste-reference convention. Keep the complete native product once, with no extra HDPE, fabric area/grammage, drying/thermal yield or waste overlay. For the market, preserve both producer shares and all four freight modes, including air/light commercial; RoW uses European native fleece."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fa769da1973153e17251bbe1a7dc1c0826ec366662e2d885503bb64850639b01"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-14552642b34ae381",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_polymer_carton_39_review.json",
+      "review_sha256": "92c18097b05ea6cb3fcc2118aa37a80e2668b3ca6416b85d214b9e542d415f05",
+      "authorization": "Standing autonomous approval of coming modelling decisions, exact named-product/geographic/technology screening proxies and documented reconstructions, with retained quantities and warnings for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for fleece, polyethylene",
+            "reference product": "fleece, polyethylene",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "a88b9e525e03982f2d70418e518c95a526877066d5e3a7c517430746040248fe",
+          "inventory_sha256": "6cca53434d9bff1d834f6f7409ab96305d866634b068d6b45c22bef2034b6cf6",
+          "activity_comment_sha256": "00e78e4b364cf2254ab3a7f03da56bd7356d9880933122941f7cd6aa7b436843",
+          "product_information_sha256": "a913f0707e06fda3ab38882a8d9dd47e8ae244cea05c11755cc1d19768126c56"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Fleece, polyethylene, at plant",
+              "reference product": "Fleece, polyethylene, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "7f03993b2b969f6263392e85ce26cd11f51bedbb68a130f02cb7cc0ad8d7082e",
+            "inventory_sha256": "6194fae06d625d26ff0b082c664983624fb1aaf3a177a095dd4c88be048d2feb",
+            "activity_comment_sha256": "cd925d22fc46e6cc99112f9ac0716b8e3c8edbfedaa34adf9031e551159eba7b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Fleece, polyethylene, at plant",
+              "reference product": "Fleece, polyethylene, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 14,
+            "metadata_sha256": "8b312d2e898399ab710561b787229a360ed53bb0a27124168ddf7f21cc06cfab",
+            "inventory_sha256": "11d4738c77d40e7dd7dca0ce1c496b04964c836b4b7d1b5fb02c2e07deda2d86",
+            "activity_comment_sha256": "a6a31127ac56574d8d6d894b1e2c345a2ca36a09b6cb58460887b7df440279dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_product_reference_kg": true,
+          "new_product_mass_factor": false,
+          "kind": "finished_HDPE_fleece",
+          "source_generic_text_says_polyester": true,
+          "actual_source_and_native_raw_material_is_HDPE": true,
+          "area_or_grammage_factor_added": false
+        }
+      },
+      "limitations": [
+        "New scientific approval covers only the independently inspected exact ecoinvent3.9 cut-off named product. Keep signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one-kg source/native product references with factor+1. Market recipes retain every original producer and final-delivery entry separately at its original quantity and supported uncertainty, except the explicitly documented carton board/conversion normalization. Do not aggregate or normalize supplier shares or drop a delivery mode. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once in place of source producer internals. Native upstream feedstock, energy, raw-material delivery, infrastructure, emissions, waste treatment and allocation replace the source internal model; do not overlay source producer inputs or direct emissions, infer product mass from auxiliary inputs, or add recycling/avoided-production credits. Source/native geography, technology, vintage, release coverage, internal uncertainty and allocation differ; assay, grade/performance, LCI, LCIA and stochastic equivalence are not established, and score effects are unquantified.",
+        "Final source-market freight remains additional to internal native producer transport. Keep source rail, road, sea, air and light-commercial tonne-km using complete native mode suppliers. Rail/road use European fleets; sea uses the native ocean service; light-commercial uses the native Swiss3.5t-gross-weight fleet; air uses the Lufthansa2019 passenger-aircraft freight service with its own short/medium/long-haul mix and weight allocation. Geographic, vehicle/flight/loading, fuel, infrastructure and vintage differences are screening proxies, not equal fleets or distances. Add no guessed payload, distance, loss or extra freight multiplier.",
+        "No literal caller/source exchange omission, empty supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal defaults, unrelated rules, recipe bodies and shared review cards remain frozen. Only the reviewed3.9 market profiles select new helpers. Four older approved scopes are rebound to the extended raw-rule fingerprint only after proving their effective supplier, quantity factor and complete recipe closure unchanged; their original review bytes/methods/identities and source versions remain intact.",
+        "Use the named polyethylene fleece inventory per kg, not generic polyester textile. Source generic product text incorrectly says polyester, but its process description, reception boundary and actual main raw-material input identify polyethylene/HDPE; the native inventory likewise purchases HDPE. Preserve that inspected material basis rather than following the conflicting generic text. Source/native both include fleece processing, energy, packaging and infrastructure; native uses one Swiss company/early1990s technology as a European average and its own positive PE-incineration service instead of source negative waste-reference convention. Keep the complete native product once, with no extra HDPE, fabric area/grammage, drying/thermal yield or waste overlay. For the market, preserve both producer shares and all four freight modes, including air/light commercial; RoW uses European native fleece."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c34f929780c1a26640c029faab99f8f3bb28af428b58b959477cf16617a3578d"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-dc31a9f499822217",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_polymer_carton_39_review.json",
+      "review_sha256": "92c18097b05ea6cb3fcc2118aa37a80e2668b3ca6416b85d214b9e542d415f05",
+      "authorization": "Standing autonomous approval of coming modelling decisions, exact named-product/geographic/technology screening proxies and documented reconstructions, with retained quantities and warnings for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for solid bleached and unbleached board carton",
+            "reference product": "solid bleached and unbleached board carton",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "2f62e4d0e302355cbcbbad16c4d552a5e89521bce002c503d1189f37545d78b9",
+          "inventory_sha256": "d738839684663f6e0eeaa8ca67479d779dadecd3cc73f101e7497c66945623fc",
+          "activity_comment_sha256": "57ac0bfe41ecb34ff8c259441d5a870a4f5bad29811026e7471f7eba837c9bb8",
+          "product_information_sha256": "3afd988bf36da600b1b725d11031f116f516dd6c650b8d66df2d617ba7c7a9a5"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Solid unbleached board, SUB, at plant",
+              "reference product": "Solid unbleached board, SUB, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 130,
+            "metadata_sha256": "45b526f1ab84569b0fd42395b266b8e7d4284da13cf02e31562e339765847fad",
+            "inventory_sha256": "300c8ae3bc6c536f80073a5c2591531690925bc52756eb5dc1381e0a4d1d8a3a",
+            "activity_comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Solid unbleached board, SUB, at plant",
+              "reference product": "Solid unbleached board, SUB, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 132,
+            "metadata_sha256": "60113435e5be1e8a41c1929af72c0b4063fab2b979d00c41a7c4caeda3d6bf1a",
+            "inventory_sha256": "91ca99641cfe6e764be5e5fff95610f0ac06e4bd3c18644795ec042cd9db9fa4",
+            "activity_comment_sha256": "5421cd44b68fc5619636c6589830db0a6e852600a50afb1a5872fdd0fae65080",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_product_reference_kg": true,
+          "new_product_mass_factor": false,
+          "kind": "converted_virgin_fibre_carton",
+          "raw_board_only_is_inadequate": true,
+          "documented_native_module_kg_per_board_kg": 0.83,
+          "board_kg_per_module_kg": 1.2048192771084338,
+          "conversion_module_kg": 1,
+          "bleached_unbleached_source_shares_known": false,
+          "uses_all_SUB_grade_proxy": true,
+          "new_17percent_waste_exchange": false
+        }
+      },
+      "limitations": [
+        "New scientific approval covers only the independently inspected exact ecoinvent3.9 cut-off named product. Keep signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one-kg source/native product references with factor+1. Market recipes retain every original producer and final-delivery entry separately at its original quantity and supported uncertainty, except the explicitly documented carton board/conversion normalization. Do not aggregate or normalize supplier shares or drop a delivery mode. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once in place of source producer internals. Native upstream feedstock, energy, raw-material delivery, infrastructure, emissions, waste treatment and allocation replace the source internal model; do not overlay source producer inputs or direct emissions, infer product mass from auxiliary inputs, or add recycling/avoided-production credits. Source/native geography, technology, vintage, release coverage, internal uncertainty and allocation differ; assay, grade/performance, LCI, LCIA and stochastic equivalence are not established, and score effects are unquantified.",
+        "Final source-market freight remains additional to internal native producer transport. Keep source rail, road, sea, air and light-commercial tonne-km using complete native mode suppliers. Rail/road use European fleets; sea uses the native ocean service; light-commercial uses the native Swiss3.5t-gross-weight fleet; air uses the Lufthansa2019 passenger-aircraft freight service with its own short/medium/long-haul mix and weight allocation. Geographic, vehicle/flight/loading, fuel, infrastructure and vintage differences are screening proxies, not equal fleets or distances. Add no guessed payload, distance, loss or extra freight multiplier.",
+        "No literal caller/source exchange omission, empty supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal defaults, unrelated rules, recipe bodies and shared review cards remain frozen. Only the reviewed3.9 market profiles select new helpers. Four older approved scopes are rebound to the extended raw-rule fingerprint only after proving their effective supplier, quantity factor and complete recipe closure unchanged; their original review bytes/methods/identities and source versions remain intact.",
+        "Source product is printed, cut and creased solid-board carton blanks, with board production and conversion aggregated. Native SUB alone ends at board production, so it cannot cover that full boundary. Use native solid unbleached board plus the complete Swiss offset-printing carton-converting module, which explicitly excludes its main cartonboard feedstock. Interpret its positive one-kg module reference as one kg of converted boxes; its documented0.83kg module per kg board gives1/0.83kg native board per kg module. This is an explicit normalization of the native module convention, not a measured source carton yield, fibre balance or assumed17% waste-disposal exchange. Include one kg module and1/0.83kg board once, then all three original final-market freight entries. Preserve original final freight amounts/uncertainty; no quantity is used to calibrate a score.",
+        "Native unbleached SUB stands in for the source combined bleached/unbleached virgin-fibre carton grade. Source grade shares are not available, so no50/50 split or alleged exact blend is invented. The all-SUB choice does not reproduce bleaching/coating and may materially change scores. Offset conversion is a Swiss technology proxy for the source European mix; printing/cutting/creasing, ink/glue doses, losses, coating, factory energy, residues, internal board-to-converter travel and vintage differ. Native process inventories retain their own inputs, internal freight, releases and wastes once. Their coverage does not establish source-equivalent scrap recovery or all internal trips; add no guessed board-shipping distance, recovery credit, separate17% disposal or source conversion inventory on top. Exact finished-box mass composition, grade/yield and score equivalence remain unverified. This is a logged screening reconstruction, not a certified equivalent carton grade."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "58a65aa2a968344717d359e8de2bef0cdb4a9e72c66b1da2083969111329a541"
         }
       ]
     }

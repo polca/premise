@@ -1,0 +1,463 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "d2026ea553b20c9002b2deb757ee3eb8c8168fef",
+  "scope_registration": {
+    "prior_scopes": 1405,
+    "new_scopes": 1414,
+    "new_rule_ids": [
+      "bp-e1c5c137f358792d",
+      "bp-46961b2d2543df96",
+      "bp-4cb0f787f01d05a7",
+      "bp-1a39c7b4c1f58b77",
+      "bp-4df468ffd8629c6d",
+      "bp-1b65914b2f33ba7b",
+      "bp-df72f3655eabc25a",
+      "bp-14552642b34ae381",
+      "bp-dc31a9f499822217"
+    ],
+    "earlier_physical_bindings_reviews_methods_and_source_profiles_unchanged": true,
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "runtime_python_changes": [],
+    "new_source_omissions": [],
+    "superseded_shared_review_preserved_verbatim_in_archive": [
+      "r-24c3f1321c024c09"
+    ],
+    "older_scope_rebindings": [
+      {
+        "rule_id": "bp-e1c5c137f358792d",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "previous_review_path": "export/uvek_pilot_polymer_service_review.json",
+        "previous_review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+        "previous_fingerprint": "c08e0640d8e089a330f73750f3f4c9bb8c63aef18fe10ef5feae0a94db1a3c98",
+        "rebound_fingerprint": "b37480a493a1fb4102cc5d58c3de07ffda91fffdc86ac90ae1d5aedfd99b7287",
+        "unchanged_physical_binding_sha256": "27f738dfdeab41620d3f8db28611f68fe9d1523266b40428e9f59c85745fc19d"
+      },
+      {
+        "rule_id": "bp-e1c5c137f358792d",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.10",
+          "system_model": "cutoff"
+        },
+        "previous_review_path": "export/uvek_heat_310_utilities_materials_review.json",
+        "previous_review_sha256": "aae40d3793f73cc92bca293ed7e3782863ac0882c60f247a850c064b05bd37ac",
+        "previous_fingerprint": "93eaa81b6ae4c53f5af660000cf3a59652edba03334ad6a82bf6ee6aa4a96640",
+        "rebound_fingerprint": "49fb7a9d36b292baeacb79b6eef625edf246084e9c375268000ed85505801f14",
+        "unchanged_physical_binding_sha256": "27f738dfdeab41620d3f8db28611f68fe9d1523266b40428e9f59c85745fc19d"
+      },
+      {
+        "rule_id": "bp-46961b2d2543df96",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "previous_review_path": "export/uvek_pilot_polymer_service_review.json",
+        "previous_review_sha256": "73379db17ed8c2f5a0b030494770d712741b799a6daef0cf8f2beba718afd75a",
+        "previous_fingerprint": "25e91b3b5bb1a8f147b6dfd5935cc746ba11e0a361c43267431f65181162fd45",
+        "rebound_fingerprint": "90672bbee245b6a5d57775ea472a3ee23dedb7a7b4773896a52a88e52cf77651",
+        "unchanged_physical_binding_sha256": "f5a9ccee4e883ff9257424c774bbc9a173730349462a0c6303e08b443ddaf7b9"
+      },
+      {
+        "rule_id": "bp-1b65914b2f33ba7b",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "previous_review_path": "export/uvek_fuels_38_delivered_materials_review.json",
+        "previous_review_sha256": "357ad62ef92e5a5627e2c326b2f76ea40ec0a612a02fde761cf1edb62c7096c0",
+        "previous_fingerprint": "b68766543a5ef9286c20a14b28c61067d21a230da40e254617c107af128666d8",
+        "rebound_fingerprint": "bb38a1034c3c088e8ba2c0b4a86bf9e783b149d314fbc5798ee2befef46d46e6",
+        "unchanged_physical_binding_sha256": "c7b9640f288070be22ca9a35e0783d6d04fbccf7f002d90209468011717642d2"
+      }
+    ]
+  },
+  "tests": {
+    "brightpath_signed_uncertain_products_freight_carton_basis_preserved_profiles_atomic_replay_storage_and_older_LDPE_authoring": 159,
+    "premise_source_preparation_and_cache": 49,
+    "premise_installed_preparation_and_cache": 49,
+    "lint_changed_tests_and_maintainer_helpers": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 17,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 15,
+    "signed_foreground_LCI_solves": 18,
+    "independent_native_reference_LCI_solves": 9,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-e1c5c137f358792d",
+        "source": {
+          "location": "GLO",
+          "name": "market for acrylonitrile-butadiene-styrene copolymer",
+          "reference product": "acrylonitrile-butadiene-styrene copolymer",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 3.590653818719147e-08,
+        "refined_max_abs_inventory_difference": 2.842170943040401e-14,
+        "full_graph_residual": {
+          "residual_before": 3.253033077228536e-10,
+          "residual_after": 7.730393253556804e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.7623343133631293e-09,
+          "residual_after": 6.81147263842654e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-46961b2d2543df96",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyvinylfluoride",
+          "reference product": "polyvinylfluoride",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.7422993298387155e-07,
+        "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 2.3897323956552844e-08,
+          "residual_after": 1.5369691663550894e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.754011531541726e-08,
+          "residual_after": 1.537042350001732e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-4cb0f787f01d05a7",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyvinylchloride, emulsion polymerised",
+          "reference product": "polyvinylchloride, emulsion polymerised",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 5.270450742500543e-10,
+        "refined_max_abs_inventory_difference": 5.551115123125783e-17,
+        "full_graph_residual": {
+          "residual_before": 1.2083820962647352e-09,
+          "residual_after": 5.551115123125783e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.3463097121938895e-09,
+          "residual_after": 3.1982534720223267e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-1a39c7b4c1f58b77",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyphenylene sulfide",
+          "reference product": "polyphenylene sulfide",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.2944732336327434e-08,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 6.306461867213796e-08,
+          "residual_after": 1.7763568394002505e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.998761350241732e-08,
+          "residual_after": 1.7763568394002505e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-4df468ffd8629c6d",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyvinylchloride, suspension polymerised",
+          "reference product": "polyvinylchloride, suspension polymerised",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.1119817006365338e-09,
+        "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 4.2122914006446135e-11,
+          "residual_after": 5.551115123125783e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.17834421990431e-11,
+          "residual_after": 4.6117688195105096e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-1b65914b2f33ba7b",
+        "source": {
+          "location": "GLO",
+          "name": "market for packaging film, low density polyethylene",
+          "reference product": "packaging film, low density polyethylene",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 3.575829623514437e-07,
+        "refined_max_abs_inventory_difference": 5.551115123125783e-17,
+        "full_graph_residual": {
+          "residual_before": 1.6392412730456896e-08,
+          "residual_after": 3.3380258770909305e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.0029012397891967e-08,
+          "residual_after": 3.3380258770909305e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-df72f3655eabc25a",
+        "source": {
+          "location": "RER",
+          "name": "fleece production, polyethylene",
+          "reference product": "fleece, polyethylene",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.4540867116229492e-08,
+        "refined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "full_graph_residual": {
+          "residual_before": 3.803660543137776e-09,
+          "residual_after": 5.672046711836994e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.3934579246223575e-10,
+          "residual_after": 4.221646090433323e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-14552642b34ae381",
+        "source": {
+          "location": "GLO",
+          "name": "market for fleece, polyethylene",
+          "reference product": "fleece, polyethylene",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 8.853191957314266e-09,
+        "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+        "full_graph_residual": {
+          "residual_before": 5.0231312976245e-10,
+          "residual_after": 8.149383485870374e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 8.936794588140374e-10,
+          "residual_after": 8.149385039050911e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-dc31a9f499822217",
+        "source": {
+          "location": "RER",
+          "name": "market for solid bleached and unbleached board carton",
+          "reference product": "solid bleached and unbleached board carton",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.4634224498877302e-08,
+        "refined_max_abs_inventory_difference": 2.2737367544323206e-13,
+        "full_graph_residual": {
+          "residual_before": 3.2084456942020573e-10,
+          "residual_after": 3.115599997029294e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.708081389474495e-09,
+          "residual_after": 4.440892098500626e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies named polymer/fleece product bases and a documented native converted-carton screening reconstruction with retained final delivery and native-demand numerical consistency. Does not establish grade/purity/physical carton yield or source/native score equivalence, full scenario decarbonization, battery completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_polymer_carton_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json",
+    "export/uvek_archived_unreferenced_reviews.json"
+  ],
+  "unused_wheel_bytes_removed": 44722722,
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 99,
+    "current": 90,
+    "removed_rules": [
+      "bp-e1c5c137f358792d",
+      "bp-46961b2d2543df96",
+      "bp-4cb0f787f01d05a7",
+      "bp-1a39c7b4c1f58b77",
+      "bp-4df468ffd8629c6d",
+      "bp-1b65914b2f33ba7b",
+      "bp-df72f3655eabc25a",
+      "bp-14552642b34ae381",
+      "bp-dc31a9f499822217"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-3d257e55be3541c6",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 90,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-3d257e55be3541c6",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [
+    "scripts/review_uvek_polymer_carton_39.py",
+    "scripts/generate_uvek_migration_resources.py: frozen grouped replay hook",
+    "scripts/archive_uvek_unreferenced_reviews.py: bounded archive hash"
+  ],
+  "test_only_historical_stage_restoration": [
+    "tests/uvek_review_helpers.py",
+    "tests/test_uvek_fuels_38_delivered_materials.py"
+  ],
+  "new_helpers": 8,
+  "new_source_omissions": [],
+  "retained_original_producer_entries": 14,
+  "retained_original_final_freight_entries": 26,
+  "carton_component_basis": {
+    "native_board_kg_per_native_module_kg": 1.2048192771084338,
+    "native_offset_module_kg": 1,
+    "source_caller_product_factor": 1,
+    "interpretation": "Positive module kg reference and documented0.83kg module/kg board convention. Not a measured source carton yield or a fabricated17% disposal demand.",
+    "grade_proxy": "All native unbleached SUB for unspecified source bleached/unbleached mixture; no invented blend shares."
+  },
+  "all_existing_literal_default_targets_and_recipe_bodies_unchanged": true,
+  "one_superseded_shared_review_archived_verbatim": [
+    "r-24c3f1321c024c09"
+  ],
+  "scope_rebinding_limit": "Four prior rule fingerprints necessarily change because the content-bound raw rule now includes new3.9 profile/review metadata. Existing review bytes, methods, source-version permissions, selected supplier identities, factors and full recipe contents remain unchanged and are separately tested. No blind widening of source profiles.",
+  "full_generator_regeneration": "Not claimed passing; independently reproduced earlier nitrate-authority failure remains tracked.",
+  "full_historical_reference_sign_suite": "Not rerun as a whole. This batch passes targeted159 mapping/replay/storage/older-LDPE checks and49 source/installed Premise checks.",
+  "clean_committed_git_wheel_check": {
+    "clean_tracked_git_archive_build": true,
+    "unexpected_package_files": [],
+    "installed_resources_match_committed_bytes": [
+      "export/uvek_polymer_carton_39_review.json",
+      "migrations/RESOURCE_MANIFEST.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "export/uvek_archived_unreferenced_reviews.json"
+    ],
+    "isolated_installed_preparation_and_older_profile_smoke_checks": 17,
+    "dependencies_shared_with_existing_premise_conda_environment": true,
+    "new_environment_not_registered_as_jupyter_kernel": true,
+    "user_environment_retains_last_published_mapping_package": true,
+    "temporary_build_files_and_unused_wheel_removed": true
+  }
+}
