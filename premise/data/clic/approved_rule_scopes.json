@@ -269784,6 +269784,279 @@
           "fingerprint": "1a3bb2dd7caba5ebd70c7d76dbf56aa9eb6f3363baf22c786db971ab97fc2fef"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-e2640cf8bd34dad3",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_factory_wire_39_review.json",
+      "review_sha256": "b056c16eeafe432b158fac299110db90c979f0cafc2014f459a492ba18116046",
+      "authorization": "Standing autonomous approval of remaining mappings and complete native infrastructure/processing screening proxies, with warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "aluminium casting facility construction",
+            "reference product": "aluminium casting facility",
+            "location": "RER",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 10,
+          "metadata_sha256": "e99106f928a0e3f0171ad787e299831d93f87d299b3adab50fb94c768a79dc22",
+          "inventory_sha256": "301701cc95ec42bb4f6d2853c51eaa48a3f7edbc29afaa82aa76f1f717831876",
+          "activity_comment_sha256": "39b8329e5081595af970634a3ed65131499294b49afb9b866c2b34b40ef2b749",
+          "product_information_sha256": "6ae11f3a34425762822c46dd19a5c708d4bb144068b986b366e9a570b094fa86"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium casting, plant",
+              "reference product": "Aluminium casting, plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "05fce6b2de95e3df4e2ae7d62cc22cb3ff7f301ea25c4ec017ee1f72d0550a9a",
+            "inventory_sha256": "23d5884e5d63ab51f8dfc894c40b2fd7d23b4ae35adfe704abfbe3b0521c40d5",
+            "activity_comment_sha256": "c01545d2643890aee63df56a6079f63624b0015044db11c20e0654691ad21b9e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium casting, plant",
+              "reference product": "Aluminium casting, plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "e7b0bef8581271ebcf5fca40cfdeeb523526825ab059ab677a01f53a975d2a7c",
+            "inventory_sha256": "f8b326e0c4e8bc357a415f77d376cb00965e1a980cfe06c6a94e9330d21c85a3",
+            "activity_comment_sha256": "3c7b0e192fd8b410a2be175a959552ce8075f4c5eeff095a81ab07d1c6e8ae91",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_aluminium_casting_infrastructure",
+          "reference_factory_units": 1,
+          "hall_m2": 21700,
+          "building_m3": 2000,
+          "concrete_m3": 909,
+          "machine_kg": 2000000,
+          "lifetime_capacity_or_site_allocation_reapplied": false
+        }
+      },
+      "limitations": [
+        "Permission is limited to the independently inspected exact ecoinvent 3.9 cut-off European source identity. Source/native references are positive one of the stated service or infrastructure unit: preserve signed caller demand with factor +1, supported uncertainty/formulas, foreground ownership and separately supplied main materials, energy, operation and emissions. Other releases, patches, system models and reverse directions receive no permission. Do not convert infrastructure units to processed kg or apply another lifetime, annual-capacity, site-allocation, density, metal-yield or recovery multiplier.",
+        "Use the complete corresponding native service once. Its internal materials, utilities, transport, infrastructure, disposal, direct emissions, allocation, vintage and uncertainty replace the source service inventory as a screening proxy. Internal negative-reference source treatment inputs become the original native positive disposal demands without changing the positive service reference or adding recovery credits. Main caller materials remain separate. No second factory, equipment, service energy, disposal or transport is added. Complete source/native LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "No change to the existing direct mapping rule, default target, earlier approval fingerprints, runtime modules or shared Premise sector logic. No new helper, source omission, broad fallback, alternate sector engine or validation bypass. Explicit eligible native suppliers remain available to the ordinary shared Premise transformations.",
+        "Casting facility means one complete medium aluminium-casting plant infrastructure, including hall, heavy machinery, administrative buildings, disposal and already allocated land use. Source/native document 130,000 tonnes annual casting output, a 50-year life, shared electrolysis/casting site and 50% land allocation to casting. Preserve the caller factory-unit demand; do not divide by 6.5 million lifetime tonnes, apply the 50% split again, add electrolysis infrastructure or treat this as one kg of aluminium casting. Both records retain nominal 21,700 m2 hall, 2,000 m3 multistorey building, 2,000,000 kg machinery and 909 m3 concrete. Source normal-strength concrete market mix becomes native foundation/sole-plate concrete; concrete specification and upstream burdens differ. Source regional concrete-disposal mix becomes native Swiss final building-concrete disposal at its original 2,000,000 kg. Building/machine composition, decommissioning, geography and uncertainty remain screening differences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c116a61f5cb8b41db04ea45816529a37eb8e0d73234a582a4752af3e9d6d14c7"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-eb1049529e8cd10a",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_factory_wire_39_review.json",
+      "review_sha256": "b056c16eeafe432b158fac299110db90c979f0cafc2014f459a492ba18116046",
+      "authorization": "Standing autonomous approval of remaining mappings and complete native infrastructure/processing screening proxies, with warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "plastic processing factory construction",
+            "reference product": "plastic processing factory",
+            "location": "RER",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 8,
+          "metadata_sha256": "6763321e3819027e6a64a1550d0dd5d35249522a95f01cf4754b836423f07b75",
+          "inventory_sha256": "9124973156cbd39262f88a1309f1e476446e0dfeb75c19442eeacf8f0283f572",
+          "activity_comment_sha256": "ad5584c6a1af6dcf8b62c94242d752d512d0bde23c1a6644d98bf515af3f6e59",
+          "product_information_sha256": "45025c7792669dc63576ad35383f2d2964d86f32545b3b8546e2d667526881f3"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Plastics processing factory",
+              "reference product": "Plastics processing factory",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "f23c35beb41bd743b11ae9e6cbbc25c45862caf9dce866389025351e5e345442",
+            "inventory_sha256": "7800bfe59896d6c944bd6e5532f7e15daea82bf604ebc97556a26b0faadbc411",
+            "activity_comment_sha256": "e9214eb7613584f3a3353cc8f0fc2a4413e8bd1dd5b947f835526d455306948e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Plastics processing factory",
+              "reference product": "Plastics processing factory",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "24e1c420dd2cb9b35403fc2550a10aa4e2950df1e2ed480f1f8b53539cb84b3b",
+            "inventory_sha256": "1da0ebea74b7eaeecbb55c12e0cd351fa57335366de136b5d90154d6d22e9ae6",
+            "activity_comment_sha256": "105d67966d39a3a3a803525dea6418e4e497fd371ff998c7e2e19e6461b44082",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_plastics_processing_infrastructure",
+          "reference_factory_units": 1,
+          "hall_m2": 98000,
+          "building_m3": 420000,
+          "machine_kg": 1140000,
+          "internal_road_m2_year": 5000000,
+          "lifetime_capacity_or_machine_replacement_reapplied": false
+        }
+      },
+      "limitations": [
+        "Permission is limited to the independently inspected exact ecoinvent 3.9 cut-off European source identity. Source/native references are positive one of the stated service or infrastructure unit: preserve signed caller demand with factor +1, supported uncertainty/formulas, foreground ownership and separately supplied main materials, energy, operation and emissions. Other releases, patches, system models and reverse directions receive no permission. Do not convert infrastructure units to processed kg or apply another lifetime, annual-capacity, site-allocation, density, metal-yield or recovery multiplier.",
+        "Use the complete corresponding native service once. Its internal materials, utilities, transport, infrastructure, disposal, direct emissions, allocation, vintage and uncertainty replace the source service inventory as a screening proxy. Internal negative-reference source treatment inputs become the original native positive disposal demands without changing the positive service reference or adding recovery credits. Main caller materials remain separate. No second factory, equipment, service energy, disposal or transport is added. Complete source/native LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "No change to the existing direct mapping rule, default target, earlier approval fingerprints, runtime modules or shared Premise sector logic. No new helper, source omission, broad fallback, alternate sector engine or validation bypass. Explicit eligible native suppliers remain available to the ordinary shared Premise transformations.",
+        "Plastics-processing factory means one complete infrastructure approximation for a plastic tube/component factory, including building/machine production and disposal plus land/internal roads. It is not a kg of polymer, extrusion service or factory operation. Source/native2026 documentation specifies 27,000 tonnes annual output, 50-year infrastructure/tank life and 25-year machine life. Both native releases and source retain nominal 98,000 m2 steel hall, 420,000 m3 multistorey building, 1,140,000 kg machinery and 5,000,000 m2-year internal-road service. Those machine lifetimes and geometry are already represented; no repeated production-capacity, replacement, building-height or lifetime multiplier. Source global upstream supply becomes complete native Swiss/European building, machine and road supply. Native geography documentation is unspecified beyond its regional label. The small company sample and explicitly high inventory uncertainty are preserved as limitations, not improved by the name match. Land-class/emission detail, upstream construction and disposal can differ."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5c0ecd6d330ab1d699642cb6343b5c10b6c26ac93b8f940d8c50ad91959f2ca3"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-e559c0495e452c9e",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_factory_wire_39_review.json",
+      "review_sha256": "b056c16eeafe432b158fac299110db90c979f0cafc2014f459a492ba18116046",
+      "authorization": "Standing autonomous approval of remaining mappings and complete native infrastructure/processing screening proxies, with warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "wire drawing, copper",
+            "reference product": "wire drawing, copper",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 23,
+          "metadata_sha256": "2ada6a789bc8e2c0c004a605b27d7a84cb5d3812f1356aa7d059cb0479ba70a9",
+          "inventory_sha256": "af50ac0133618a101476c5969d69057edcd07921af4054257befa31ed6b97a81",
+          "activity_comment_sha256": "88db5a737dfa8d18dc3c4ee10a77d9c61f12478afe779cd5cbeb477b06f90110",
+          "product_information_sha256": "3a6b79e413d2465ba0fee182a1cb631e7d7df2a8138081c7df3528abef01b76a"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Wire drawing, copper",
+              "reference product": "Wire drawing, copper",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 23,
+            "metadata_sha256": "20734104c48b03c0f1661069b1ac888d3b343bbb9c5398f64a288db667b66f9f",
+            "inventory_sha256": "3ce2266fef87010e361e43a8edcbf2ef78791a825aaeb53e46ffc16d9068fe77",
+            "activity_comment_sha256": "c31f73d44bf6189774ce41b81c95f5143adb0bdb00d7f8f24b60fbb8bf0c4295",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Wire drawing, copper",
+              "reference product": "Wire drawing, copper",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 23,
+            "metadata_sha256": "ddf79146379b6b71af10f03cfc05718429ef902572182e9891f9ca47362edb61",
+            "inventory_sha256": "4e325623fcda4e39eb9bd9c7e01a34dd0e42745f463f8bf3839a5fbe2826df14",
+            "activity_comment_sha256": "0d33c543cafcf2a0ab0b2a2162ab9bdb7dc87443282e4c6167d9edec6dc5f360",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_copper_wire_drawing_service",
+          "reference_processed_kg": 1,
+          "main_copper_excluded": true,
+          "internal_copper_loss_replacement_kg": 0.039644,
+          "electricity_kWh": 0.44667,
+          "rolling_mill_units": 1.4286e-09,
+          "native_gas_combustion_MJ": 0.80011,
+          "native_oil_combustion_MJ": 0.80011,
+          "extra_main_copper_yield_or_heat_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "Permission is limited to the independently inspected exact ecoinvent 3.9 cut-off European source identity. Source/native references are positive one of the stated service or infrastructure unit: preserve signed caller demand with factor +1, supported uncertainty/formulas, foreground ownership and separately supplied main materials, energy, operation and emissions. Other releases, patches, system models and reverse directions receive no permission. Do not convert infrastructure units to processed kg or apply another lifetime, annual-capacity, site-allocation, density, metal-yield or recovery multiplier.",
+        "Use the complete corresponding native service once. Its internal materials, utilities, transport, infrastructure, disposal, direct emissions, allocation, vintage and uncertainty replace the source service inventory as a screening proxy. Internal negative-reference source treatment inputs become the original native positive disposal demands without changing the positive service reference or adding recovery credits. Main caller materials remain separate. No second factory, equipment, service energy, disposal or transport is added. Complete source/native LCI, LCIA and stochastic equivalence are not claimed and score effects remain unquantified.",
+        "No change to the existing direct mapping rule, default target, earlier approval fingerprints, runtime modules or shared Premise sector logic. No new helper, source omission, broad fallback, alternate sector engine or validation bypass. Explicit eligible native suppliers remain available to the ordinary shared Premise transformations.",
+        "Copper wire drawing is a complete rod-production/further-drawing service per kg of separately supplied copper, not a finished copper-wire material or one kg copper purchase. Source/native2026 documentation explicitly excludes the main copper and balances only unrecovered scrap losses with 0.039644 kg internal copper; native2025 shorter documentation and its matching small internal copper demand support the same service boundary. Keep the caller main copper and native internal loss replacement separately; no second kg of copper, scrap-recovery credit, wire cross-section/volume/density conversion or extra rolling stage is added. The service is an older EU average estimated from aluminium-processing data; native label alone is not proof of representative modern copper-plant performance.",
+        "Both source and native retain 0.44667 kWh electricity and 1.4286e-9 rolling-mill units per service kg. Native purchases 0.80011 MJ natural-gas combustion and 0.80011 MJ light-fuel-oil combustion, while source purchases 0.720099 and 0.7601045 MJ useful heat. Fuel-input MJ and purchased heat differ in basis: no efficiency or energy-balance correction is inferred. Complete native ENTSO-E electricity, Swiss combustion/treatment, water/emissions and vintage replace source supply portfolios. Native upstream-material freight is included but final customer delivery is excluded, as source service documentation also states; independent caller delivery remains. Native complete corrugated packaging, internal lubricants, replacement steel plus its sheet-rolling service, waste oil and hazardous/municipal treatment stay once, without a second box or shaping service. These facts do not grant standalone chemical, packaging or treatment-flow equivalence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1ca8731da7b176b64638b873de44cb6ee3ed45ccfb71b2241e52f693b0156203"
+        }
+      ]
     }
   ],
   "superseded_operations": [
