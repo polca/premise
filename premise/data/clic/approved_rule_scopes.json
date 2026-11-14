@@ -11308,7 +11308,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "891bc011ba4ef8127b471634ae8d797f12614a9c6e86b9f7d04aefb6ca69b27b"
+          "fingerprint": "4843480fcdfe48408013d20a6f8fb02ef99f760ef91a2c724897aa5014e6e860"
         }
       ]
     },
@@ -195338,7 +195338,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "3e34887ca653510fc3bcac830fa409b63449d10c85687c789cca32eabfcde405"
+          "fingerprint": "edb6b10dbd30581743d1a81a69d7ca276ec47027fcd311c89f44267d585e356d"
         }
       ]
     },
@@ -281207,6 +281207,386 @@
             "version": "2025"
           },
           "fingerprint": "c6eeb8c01d65c15d2d9b8cfba7d298feeb0494ff3e5e9d9046e44f8fad710b77"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-91b9cff76b3562bb",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_acid_surfactant_salts_39_review.json",
+      "review_sha256": "d37b5cb049a76b8eefc5638d716f0680828ee5e8a910e99bf3a4abebecabc106",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed active-chemical cases;retain quantities,uncertainty,three AE3 routes and delivery,with explicit coproduct/allocation/native-model limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for hydrochloric acid, without water, in 30% solution state",
+            "reference product": "hydrochloric acid, without water, in 30% solution state",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 11,
+          "metadata_sha256": "66746b53c37676e3d476cfa145f43248e2a74158d3b4aa16093eb79c11d5e5b2",
+          "inventory_sha256": "5ace83ac8449372afa729e5007bc67b74306b6c7e935c843dc628bcca3b941d0",
+          "activity_comment_sha256": "f415ec5e9554bbaf03fc0a7026aeb3b99e0800ac92b2bd3c09f545ba65c522b2",
+          "product_information_sha256": "2dcb518e67fb68cfb5a71e43ceca47156e4714fdeffe1611526019bf81885831"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Hydrochloric acid, 30% in H2O, at plant",
+              "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 2,
+            "metadata_sha256": "107d7b144d4effb58e54c5a694dce49788b6de085b8f049229ac61fea7cbd51f",
+            "inventory_sha256": "5bf09c2abf0cc6f016914b03964ae13cdd1650de52d638921643ee684430f8d5",
+            "activity_comment_sha256": "6189b44f73e3305d59e8ede0c4b7788d648b69910e1037a67ed753e248db5d12",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Hydrochloric acid, 30% in H2O, at plant",
+              "reference product": "Hydrochloric acid, 30% in H2O, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 2,
+            "metadata_sha256": "c0ff7bc29433fd0c72470e3f18b3150bff1a7cb685fd3f3614c2ab840ad62999",
+            "inventory_sha256": "1fd4c7a9e92610b9aa1e72062ad3e93c45507ede5b09bda2d6ec00d398ccf2e2",
+            "activity_comment_sha256": "1bc8d4d007d29c7819eccafc38e46bb8db7f6dd9dbfe94cced0f2635ea8199be",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "hydrochloric_acid",
+          "source_and_native_reference_positive_one": true,
+          "caller_factor": 1,
+          "acid_reference_active_kg": true,
+          "solution_or_yield_multiplier_added": false,
+          "all_three_AE3_feedstocks_matched": false,
+          "source_producer_entries": 8,
+          "source_final_freight_entries": 3,
+          "no_source_omission": true
+        }
+      },
+      "limitations": [
+        "New permission covers only the four independently inspected exact ecoinvent3.9 cut-off chemical markets. All source markets,product providers and selected native processes have positive1kg references. Keep signed caller chemical quantities,uncertainty,formulas and separate inputs/emissions at factor+1. Hydrochloric acid and nitric acid refer to kg100% active acid despite30%/50%solution-state names. Reuse the earlier explicitly reviewed HCl active basis, independently check current native two0.5kg active-acid branches and hydrogen/chlorine inputs. Nitric-acid documentation explicitly states1kg100%acid. Do not apply0.30,1/0.30,0.50 or2 multipliers,add dilution water or infer a new purity/solution factor. Other source versions,patches,system models and reverse routes gain no new permission.",
+        "Retain all source producer and final-freight entries separately with their original amounts and supported statistical fields. Native raw-material transport remains inside production; final source market delivery is additional and included once. Do not normalize source shares,aggregate away national entries,guess distances,loading,storage or losses,or add a second plant/vehicle/port burden. Global/RoW production and unavailable national freight use explicitly recorded native European screening proxies; the source US rail branch instead uses the available complete native US diesel-rail service, matching its inspected single-diesel-supplier market.",
+        "Hydrochloric acid: retain all eight source producer coefficients and three delivery legs. Match the source Mannheim and hydrogen/chlorine production branches to their corresponding native active-acid processes. Six other byproduct branches use the previously reviewed complete native50/50 primary-acid mix as a screening proxy. This replaces approximately25.73% source byproduct supply and its source TDI,MDI,fluorocarbon/chlorination/allyl-chloride allocation,not a reconstruction of those coproduct systems. Keep native Mannheim economic/stoichiometric allocation and uncertainty; add no coproduct burden,chlorine,sodium-sulfate or avoided-HCl credit. The two primary source coefficients are equal,so the deterministic native net output mix remains50/50 without a new allocation factor. Earlier3.6and3.8 direct-stock suppliers,factors,source scopes and frozen authority bytes remain unchanged; they do not acquire the new3.9 delivery helper.",
+        "AE3: preserve the source petrochemical,coconut-oil and palm-kernel-oil shares separately,using the corresponding complete native AE3 supplier for each. Do not replace the petrochemical majority or palm-kernel branch with coconut production,substitute AE7/AE11/ethanol,or add separate fatty alcohol/ethylene oxide. Source and native refer to one kg AE3 with three average ethoxy units; this does not establish exact chain-length distribution,grade,purity or stochastic equivalence. Native ECOSOL mid1990s technology,mass allocation,energy/emission assumptions and absent water-consumption data remain limitations. No biogenic-carbon,molecular-weight or ethoxylation-yield factor is invented.",
+        "Ammonium bicarbonate: source and native refer to1kg100%NH4HCO3,CAS1066-33-7. Native raw inputs already embody its95%yield estimate; add no extra1/0.95 factor,CO2 uptake/recovery credit,ammonia or water. The European manufacturer-based historical model replaces source RoW production; native documentation explicitly lacks auxiliaries,solid waste and air/water emissions except waste heat. These inherited missing-data limits remain unquantified rather than invented from unrelated producers. Retain its one producer and all ten final freight entries; only US rail has a matching native national service,while IN/CN/ZA/RoW rail and other unavailable freight geographies use the reviewed complete native proxies.",
+        "Nitric acid: use the complete native European weak-acid process per kgactiveHNO3,keeping the source RoW producer coefficient and both freight entries. Retain native ammonia oxidation,absorption,dilution,N2O/other emissions,energy and infrastructure once. Native historical production and its N2O/vintage/abatement model replace the source process; do not overlay source emissions,assume modern abatement,or multiply demand for the50%solution label. Final source transport and native internal precursor/waste transport remain separate.",
+        "All four use whole native production models: feedstock,water/energy,waste,emissions,allocation,geographic/temporal coverage,grade and internal uncertainty can differ. Source/native LCI,LCIA and stochastic equivalence are not established; potentially substantial score effects remain unquantified. No source/caller exchange omission,empty handoff,runtime Python change,alternative sector engine or source/target validation bypass. Native explicit suppliers remain eligible for ordinary shared Premise transformations without claiming identical regional future performance."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "37da05ee3f200a388f1ae234bf631a06222e4d11449467ca53be99b1b70d7d3a"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-df0913c9f6897c1d",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_acid_surfactant_salts_39_review.json",
+      "review_sha256": "d37b5cb049a76b8eefc5638d716f0680828ee5e8a910e99bf3a4abebecabc106",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed active-chemical cases;retain quantities,uncertainty,three AE3 routes and delivery,with explicit coproduct/allocation/native-model limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ethoxylated alcohol (AE3)",
+            "reference product": "ethoxylated alcohol (AE3)",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "946ddd554066de8425a6baff3c1f5b8ea5c8a647d4736805811367d1a6e0cbaa",
+          "inventory_sha256": "4671860e6c034862d6cf273f4ddab468cc9d5bfca6d2a41a655420f2957d4e2b",
+          "activity_comment_sha256": "a46db12c01c7733eb9a426c52e8dd27d8e5a6ba406e1da284879e1fb64f7811d",
+          "product_information_sha256": "4d4b954fdd42b1f13a95086a9d3ba09df73733c29f4dc36a3b6e690bc3a4edd5"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Ethoxylated alcohols (AE3), coconut oil, at plant",
+              "reference product": "Ethoxylated alcohols (AE3), coconut oil, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 28,
+            "metadata_sha256": "994c9ee274d83a51362a5d27cd0c808f895160fdeba5a366a302548db1818143",
+            "inventory_sha256": "e9e46aba11d0a31c04732652a8b2f357ad742d764e69d6a745f2b9f24aa1febc",
+            "activity_comment_sha256": "54ccc2e932a46627ccba9c96191bd260495a92fea237970f1fa48fea7e36b93c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Ethoxylated alcohols (AE3), coconut oil, at plant",
+              "reference product": "Ethoxylated alcohols (AE3), coconut oil, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 28,
+            "metadata_sha256": "bc146d8230e325f7a0958800e956f731c3a9b403730d079c4518516327b8e829",
+            "inventory_sha256": "94e5168d8034f976f7427e7e6393d725f0b70a16dcc2aa18e44d9df4ad57d38c",
+            "activity_comment_sha256": "28cdac793eeeb640cb1c20cd6512f7f691148b6b90131201c430e6907b318c3b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "ae3",
+          "source_and_native_reference_positive_one": true,
+          "caller_factor": 1,
+          "acid_reference_active_kg": false,
+          "solution_or_yield_multiplier_added": false,
+          "all_three_AE3_feedstocks_matched": true,
+          "source_producer_entries": 3,
+          "source_final_freight_entries": 3,
+          "no_source_omission": true
+        }
+      },
+      "limitations": [
+        "New permission covers only the four independently inspected exact ecoinvent3.9 cut-off chemical markets. All source markets,product providers and selected native processes have positive1kg references. Keep signed caller chemical quantities,uncertainty,formulas and separate inputs/emissions at factor+1. Hydrochloric acid and nitric acid refer to kg100% active acid despite30%/50%solution-state names. Reuse the earlier explicitly reviewed HCl active basis, independently check current native two0.5kg active-acid branches and hydrogen/chlorine inputs. Nitric-acid documentation explicitly states1kg100%acid. Do not apply0.30,1/0.30,0.50 or2 multipliers,add dilution water or infer a new purity/solution factor. Other source versions,patches,system models and reverse routes gain no new permission.",
+        "Retain all source producer and final-freight entries separately with their original amounts and supported statistical fields. Native raw-material transport remains inside production; final source market delivery is additional and included once. Do not normalize source shares,aggregate away national entries,guess distances,loading,storage or losses,or add a second plant/vehicle/port burden. Global/RoW production and unavailable national freight use explicitly recorded native European screening proxies; the source US rail branch instead uses the available complete native US diesel-rail service, matching its inspected single-diesel-supplier market.",
+        "Hydrochloric acid: retain all eight source producer coefficients and three delivery legs. Match the source Mannheim and hydrogen/chlorine production branches to their corresponding native active-acid processes. Six other byproduct branches use the previously reviewed complete native50/50 primary-acid mix as a screening proxy. This replaces approximately25.73% source byproduct supply and its source TDI,MDI,fluorocarbon/chlorination/allyl-chloride allocation,not a reconstruction of those coproduct systems. Keep native Mannheim economic/stoichiometric allocation and uncertainty; add no coproduct burden,chlorine,sodium-sulfate or avoided-HCl credit. The two primary source coefficients are equal,so the deterministic native net output mix remains50/50 without a new allocation factor. Earlier3.6and3.8 direct-stock suppliers,factors,source scopes and frozen authority bytes remain unchanged; they do not acquire the new3.9 delivery helper.",
+        "AE3: preserve the source petrochemical,coconut-oil and palm-kernel-oil shares separately,using the corresponding complete native AE3 supplier for each. Do not replace the petrochemical majority or palm-kernel branch with coconut production,substitute AE7/AE11/ethanol,or add separate fatty alcohol/ethylene oxide. Source and native refer to one kg AE3 with three average ethoxy units; this does not establish exact chain-length distribution,grade,purity or stochastic equivalence. Native ECOSOL mid1990s technology,mass allocation,energy/emission assumptions and absent water-consumption data remain limitations. No biogenic-carbon,molecular-weight or ethoxylation-yield factor is invented.",
+        "Ammonium bicarbonate: source and native refer to1kg100%NH4HCO3,CAS1066-33-7. Native raw inputs already embody its95%yield estimate; add no extra1/0.95 factor,CO2 uptake/recovery credit,ammonia or water. The European manufacturer-based historical model replaces source RoW production; native documentation explicitly lacks auxiliaries,solid waste and air/water emissions except waste heat. These inherited missing-data limits remain unquantified rather than invented from unrelated producers. Retain its one producer and all ten final freight entries; only US rail has a matching native national service,while IN/CN/ZA/RoW rail and other unavailable freight geographies use the reviewed complete native proxies.",
+        "Nitric acid: use the complete native European weak-acid process per kgactiveHNO3,keeping the source RoW producer coefficient and both freight entries. Retain native ammonia oxidation,absorption,dilution,N2O/other emissions,energy and infrastructure once. Native historical production and its N2O/vintage/abatement model replace the source process; do not overlay source emissions,assume modern abatement,or multiply demand for the50%solution label. Final source transport and native internal precursor/waste transport remain separate.",
+        "All four use whole native production models: feedstock,water/energy,waste,emissions,allocation,geographic/temporal coverage,grade and internal uncertainty can differ. Source/native LCI,LCIA and stochastic equivalence are not established; potentially substantial score effects remain unquantified. No source/caller exchange omission,empty handoff,runtime Python change,alternative sector engine or source/target validation bypass. Native explicit suppliers remain eligible for ordinary shared Premise transformations without claiming identical regional future performance."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f35a8d2d7f49528bd653a32b232693569824ffa438a8085311e0410177a362ab"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-f787c27b6e7dbfde",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_acid_surfactant_salts_39_review.json",
+      "review_sha256": "d37b5cb049a76b8eefc5638d716f0680828ee5e8a910e99bf3a4abebecabc106",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed active-chemical cases;retain quantities,uncertainty,three AE3 routes and delivery,with explicit coproduct/allocation/native-model limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonium bicarbonate",
+            "reference product": "ammonium bicarbonate",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 11,
+          "metadata_sha256": "4f12e224b149df2850b8b5f30ff0e39545e171f016e2032905e049a9fc045ae7",
+          "inventory_sha256": "6148bf74fe84c456db22f8866592ed40d9f3265433e51856eb74117a986c39b1",
+          "activity_comment_sha256": "51415160d12f483e8aa95e9c70d9e1198aaa32d7c5ba3e8eb559908779711572",
+          "product_information_sha256": "ed056c252bd58c817dd7aa03574bdbce5dc45451858ceb88c4dc7a020cc7bf78"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Ammonium bicarbonate, at plant",
+              "reference product": "Ammonium bicarbonate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 7,
+            "metadata_sha256": "9ab15e37ede13974bb87f34fa09776835602c68436b5077f57f664658d653ddd",
+            "inventory_sha256": "23d261fb6c122fa0010fb001849c87e9bfa62989f27ef489e2f087a60dd13434",
+            "activity_comment_sha256": "fc47e438453404e461d4a6f174569dad3eef9a601cb1a2561fddc1f5ef4d0999",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Ammonium bicarbonate, at plant",
+              "reference product": "Ammonium bicarbonate, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 7,
+            "metadata_sha256": "66ae703095605a39b8d1121270bf762ad1aac814fb58c1b2823ac4ec53e026f4",
+            "inventory_sha256": "b605aa244634fb0c6a779485aff203fc36504077723471e99a23b2ec0e9405f8",
+            "activity_comment_sha256": "91267576ff45cc19615c58bb39c81b6c98b12f1c40f8dcf2dca94930ff45e8f1",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "ammonium_bicarbonate",
+          "source_and_native_reference_positive_one": true,
+          "caller_factor": 1,
+          "acid_reference_active_kg": false,
+          "solution_or_yield_multiplier_added": false,
+          "all_three_AE3_feedstocks_matched": false,
+          "source_producer_entries": 1,
+          "source_final_freight_entries": 10,
+          "no_source_omission": true
+        }
+      },
+      "limitations": [
+        "New permission covers only the four independently inspected exact ecoinvent3.9 cut-off chemical markets. All source markets,product providers and selected native processes have positive1kg references. Keep signed caller chemical quantities,uncertainty,formulas and separate inputs/emissions at factor+1. Hydrochloric acid and nitric acid refer to kg100% active acid despite30%/50%solution-state names. Reuse the earlier explicitly reviewed HCl active basis, independently check current native two0.5kg active-acid branches and hydrogen/chlorine inputs. Nitric-acid documentation explicitly states1kg100%acid. Do not apply0.30,1/0.30,0.50 or2 multipliers,add dilution water or infer a new purity/solution factor. Other source versions,patches,system models and reverse routes gain no new permission.",
+        "Retain all source producer and final-freight entries separately with their original amounts and supported statistical fields. Native raw-material transport remains inside production; final source market delivery is additional and included once. Do not normalize source shares,aggregate away national entries,guess distances,loading,storage or losses,or add a second plant/vehicle/port burden. Global/RoW production and unavailable national freight use explicitly recorded native European screening proxies; the source US rail branch instead uses the available complete native US diesel-rail service, matching its inspected single-diesel-supplier market.",
+        "Hydrochloric acid: retain all eight source producer coefficients and three delivery legs. Match the source Mannheim and hydrogen/chlorine production branches to their corresponding native active-acid processes. Six other byproduct branches use the previously reviewed complete native50/50 primary-acid mix as a screening proxy. This replaces approximately25.73% source byproduct supply and its source TDI,MDI,fluorocarbon/chlorination/allyl-chloride allocation,not a reconstruction of those coproduct systems. Keep native Mannheim economic/stoichiometric allocation and uncertainty; add no coproduct burden,chlorine,sodium-sulfate or avoided-HCl credit. The two primary source coefficients are equal,so the deterministic native net output mix remains50/50 without a new allocation factor. Earlier3.6and3.8 direct-stock suppliers,factors,source scopes and frozen authority bytes remain unchanged; they do not acquire the new3.9 delivery helper.",
+        "AE3: preserve the source petrochemical,coconut-oil and palm-kernel-oil shares separately,using the corresponding complete native AE3 supplier for each. Do not replace the petrochemical majority or palm-kernel branch with coconut production,substitute AE7/AE11/ethanol,or add separate fatty alcohol/ethylene oxide. Source and native refer to one kg AE3 with three average ethoxy units; this does not establish exact chain-length distribution,grade,purity or stochastic equivalence. Native ECOSOL mid1990s technology,mass allocation,energy/emission assumptions and absent water-consumption data remain limitations. No biogenic-carbon,molecular-weight or ethoxylation-yield factor is invented.",
+        "Ammonium bicarbonate: source and native refer to1kg100%NH4HCO3,CAS1066-33-7. Native raw inputs already embody its95%yield estimate; add no extra1/0.95 factor,CO2 uptake/recovery credit,ammonia or water. The European manufacturer-based historical model replaces source RoW production; native documentation explicitly lacks auxiliaries,solid waste and air/water emissions except waste heat. These inherited missing-data limits remain unquantified rather than invented from unrelated producers. Retain its one producer and all ten final freight entries; only US rail has a matching native national service,while IN/CN/ZA/RoW rail and other unavailable freight geographies use the reviewed complete native proxies.",
+        "Nitric acid: use the complete native European weak-acid process per kgactiveHNO3,keeping the source RoW producer coefficient and both freight entries. Retain native ammonia oxidation,absorption,dilution,N2O/other emissions,energy and infrastructure once. Native historical production and its N2O/vintage/abatement model replace the source process; do not overlay source emissions,assume modern abatement,or multiply demand for the50%solution label. Final source transport and native internal precursor/waste transport remain separate.",
+        "All four use whole native production models: feedstock,water/energy,waste,emissions,allocation,geographic/temporal coverage,grade and internal uncertainty can differ. Source/native LCI,LCIA and stochastic equivalence are not established; potentially substantial score effects remain unquantified. No source/caller exchange omission,empty handoff,runtime Python change,alternative sector engine or source/target validation bypass. Native explicit suppliers remain eligible for ordinary shared Premise transformations without claiming identical regional future performance."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3ef5eeec1688a8574b0056ff6eb05dba88ad99a18284e6033c7270ea476abe3e"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-0c3d7f0bf03b5e44",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_acid_surfactant_salts_39_review.json",
+      "review_sha256": "d37b5cb049a76b8eefc5638d716f0680828ee5e8a910e99bf3a4abebecabc106",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed active-chemical cases;retain quantities,uncertainty,three AE3 routes and delivery,with explicit coproduct/allocation/native-model limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nitric acid, without water, in 50% solution state",
+            "reference product": "nitric acid, without water, in 50% solution state",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "9dbb5600d198019a88c3971cbc9bfe40b54ffa14d683d96c71d884d1d678f74e",
+          "inventory_sha256": "545f83c8b918bafdff2e01354c073bab9520e6775c584ef67058e3228859b203",
+          "activity_comment_sha256": "99324a4891b9f58cd0af24e40abfaf0fbfc5c8462c48f3dfe7a91c7d43b626d0",
+          "product_information_sha256": "5e996ffe81fa5e29fe85ca9170225f90f4808ec6b8c0ce1a49bac272a4d373d5"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Nitric acid, 50% in H2O, at plant",
+              "reference product": "Nitric acid, 50% in H2O, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 11,
+            "metadata_sha256": "3927fdbda6586e19057001a195993bed34a4b12005402c3d510cc79f611b613f",
+            "inventory_sha256": "f75eada5f730df847ce03fa2eb32d9161cce1290b04fcf8c384122c77e6a5144",
+            "activity_comment_sha256": "3a4166355873e6dc00f35ea53669f320ff158c1ed06476bf2e604bd946f8ff7d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Nitric acid, 50% in H2O, at plant",
+              "reference product": "Nitric acid, 50% in H2O, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 11,
+            "metadata_sha256": "0147ad4a9fdf4fd2007e7108dffbe4cc4054dc8c97b8d7e9b1d37bd2dcece355",
+            "inventory_sha256": "3b2c44f3b813c48ae2862348e070bf00f15c6d788a1fdecca8795d3fe02e386a",
+            "activity_comment_sha256": "ee8d2c4390f44140b143e144e488c2d39131dc4049962ca98db999f462af82ee",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "nitric_acid",
+          "source_and_native_reference_positive_one": true,
+          "caller_factor": 1,
+          "acid_reference_active_kg": true,
+          "solution_or_yield_multiplier_added": false,
+          "all_three_AE3_feedstocks_matched": false,
+          "source_producer_entries": 1,
+          "source_final_freight_entries": 2,
+          "no_source_omission": true
+        }
+      },
+      "limitations": [
+        "New permission covers only the four independently inspected exact ecoinvent3.9 cut-off chemical markets. All source markets,product providers and selected native processes have positive1kg references. Keep signed caller chemical quantities,uncertainty,formulas and separate inputs/emissions at factor+1. Hydrochloric acid and nitric acid refer to kg100% active acid despite30%/50%solution-state names. Reuse the earlier explicitly reviewed HCl active basis, independently check current native two0.5kg active-acid branches and hydrogen/chlorine inputs. Nitric-acid documentation explicitly states1kg100%acid. Do not apply0.30,1/0.30,0.50 or2 multipliers,add dilution water or infer a new purity/solution factor. Other source versions,patches,system models and reverse routes gain no new permission.",
+        "Retain all source producer and final-freight entries separately with their original amounts and supported statistical fields. Native raw-material transport remains inside production; final source market delivery is additional and included once. Do not normalize source shares,aggregate away national entries,guess distances,loading,storage or losses,or add a second plant/vehicle/port burden. Global/RoW production and unavailable national freight use explicitly recorded native European screening proxies; the source US rail branch instead uses the available complete native US diesel-rail service, matching its inspected single-diesel-supplier market.",
+        "Hydrochloric acid: retain all eight source producer coefficients and three delivery legs. Match the source Mannheim and hydrogen/chlorine production branches to their corresponding native active-acid processes. Six other byproduct branches use the previously reviewed complete native50/50 primary-acid mix as a screening proxy. This replaces approximately25.73% source byproduct supply and its source TDI,MDI,fluorocarbon/chlorination/allyl-chloride allocation,not a reconstruction of those coproduct systems. Keep native Mannheim economic/stoichiometric allocation and uncertainty; add no coproduct burden,chlorine,sodium-sulfate or avoided-HCl credit. The two primary source coefficients are equal,so the deterministic native net output mix remains50/50 without a new allocation factor. Earlier3.6and3.8 direct-stock suppliers,factors,source scopes and frozen authority bytes remain unchanged; they do not acquire the new3.9 delivery helper.",
+        "AE3: preserve the source petrochemical,coconut-oil and palm-kernel-oil shares separately,using the corresponding complete native AE3 supplier for each. Do not replace the petrochemical majority or palm-kernel branch with coconut production,substitute AE7/AE11/ethanol,or add separate fatty alcohol/ethylene oxide. Source and native refer to one kg AE3 with three average ethoxy units; this does not establish exact chain-length distribution,grade,purity or stochastic equivalence. Native ECOSOL mid1990s technology,mass allocation,energy/emission assumptions and absent water-consumption data remain limitations. No biogenic-carbon,molecular-weight or ethoxylation-yield factor is invented.",
+        "Ammonium bicarbonate: source and native refer to1kg100%NH4HCO3,CAS1066-33-7. Native raw inputs already embody its95%yield estimate; add no extra1/0.95 factor,CO2 uptake/recovery credit,ammonia or water. The European manufacturer-based historical model replaces source RoW production; native documentation explicitly lacks auxiliaries,solid waste and air/water emissions except waste heat. These inherited missing-data limits remain unquantified rather than invented from unrelated producers. Retain its one producer and all ten final freight entries; only US rail has a matching native national service,while IN/CN/ZA/RoW rail and other unavailable freight geographies use the reviewed complete native proxies.",
+        "Nitric acid: use the complete native European weak-acid process per kgactiveHNO3,keeping the source RoW producer coefficient and both freight entries. Retain native ammonia oxidation,absorption,dilution,N2O/other emissions,energy and infrastructure once. Native historical production and its N2O/vintage/abatement model replace the source process; do not overlay source emissions,assume modern abatement,or multiply demand for the50%solution label. Final source transport and native internal precursor/waste transport remain separate.",
+        "All four use whole native production models: feedstock,water/energy,waste,emissions,allocation,geographic/temporal coverage,grade and internal uncertainty can differ. Source/native LCI,LCIA and stochastic equivalence are not established; potentially substantial score effects remain unquantified. No source/caller exchange omission,empty handoff,runtime Python change,alternative sector engine or source/target validation bypass. Native explicit suppliers remain eligible for ordinary shared Premise transformations without claiming identical regional future performance."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "68c87d00712c088668a41358045cd394c88a34cad3a042194a0ae6a0ccc86749"
         }
       ]
     }

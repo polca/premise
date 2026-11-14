@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-91b9cff76b3562bb",
+        "rule_id": "bp-6ebc0285d15772a7",
         "source": {
-          "location": "RER",
-          "name": "market for hydrochloric acid, without water, in 30% solution state",
-          "reference product": "hydrochloric acid, without water, in 30% solution state",
+          "location": "GLO",
+          "name": "market for non-sulfidic tailing, off-site",
+          "reference product": "non-sulfidic tailing, off-site",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 66,
+        "unapproved_correspondence_count_in_current_39_cohort": 62,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-cobalt-molybdenum-co-39-verification.json",
+        "verification": "docs/development/uvek-acid-surfactant-salts-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Use completed read-only bulk inspection to group remaining work. Check hydrochloric-acid active/solution basis and existing similar-case authorities; distinguish12negative source references from54positive products and fix wrong product candidates before exact-profile approval.",
+        "next_action": "Review direct negative-reference waste services using already verified-1sign rules and complete native treatment models; retain existing rules where sufficient. Separate multi-destination/recovery markets and check their portfolios rather than authorizing by waste name alone.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all66 pending first3.9-cohort details."
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all62 pending first3.9-cohort details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-cobalt-molybdenum-co-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-acid-surfactant-salts-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
