@@ -270248,6 +270248,293 @@
           "fingerprint": "65140be6a28a3763f6eea74c656d6d0e43368445b48ca0d83f8df5ce0e956059"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-7bb87cea8e133871",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_aluminium_stock_services_39_review.json",
+      "review_sha256": "54389b74bd75deb69919199a38fd673a630f4af1ecdb3b936949ec42a2192ada",
+      "authorization": "Standing autonomous approval of remaining mappings and documented whole-material/geographic/complete-process screening proxies, with explicit operating-chemistry and boundary warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium, primary, ingot",
+            "reference product": "aluminium, primary, ingot",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 8,
+          "metadata_sha256": "6492c76508182f4d736e2a784c00ae0145f52e7277a56f8fee429d1b20d494d7",
+          "inventory_sha256": "f1bce751b9f6e0ce7278ba98810852494da5922be6f1f0ba3e1cff11cf5425c3",
+          "activity_comment_sha256": "61373a9327d23732a0e06ef0cd01ddfaa09f988caa158402ede7eb9c4db1cb01",
+          "product_information_sha256": "1f50635f21c3bd5796a6f165b69798bad8d15c7357426461452c62a7abf24247"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium, primary, at plant",
+              "reference product": "Aluminium, primary, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 24,
+            "metadata_sha256": "9c2da65149859c157127c43de436593efcfa8f345ad68d300fa29877a2ab4946",
+            "inventory_sha256": "53207f3ef6cc5a7c4c65c6f26ea8812a744a465065a953a9c25904a9613140a8",
+            "activity_comment_sha256": "918daccfae252775aad5a2355c2a37752ccf39670aa218c9d8d2fe7c3448b572",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium, primary, at plant",
+              "reference product": "Aluminium, primary, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 25,
+            "metadata_sha256": "a682de8c13696f65a075664168a128481379b1e0c2f5f70a32ffb275662db1d8",
+            "inventory_sha256": "24812803d907623c496515d04b471eac3b3dc94b8d46e088f4be4231ffa92fe3",
+            "activity_comment_sha256": "540fca24440abafdee4a28f3d3fd849608530bc4ee340cc6d6034ea929e04cbd",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_primary_cast_aluminium",
+          "source_market_producer_entries": 8,
+          "source_positive_deterministic_material_total_kg": 1,
+          "source_separate_delivery_entries": 0,
+          "source_direct_biosphere_entries": 0,
+          "native_liquid_primary_input_kg": 1.019,
+          "native_casting_plant_units": 1.54e-10,
+          "native_casting_electricity_kWh": 0.098,
+          "identical_alloy_assay_established": false,
+          "extra_casting_yield_or_loss_multiplier_added": false,
+          "redundant_same_supplier_helper_added": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact ecoinvent 3.9 cut-off source identity. Source and native references are positive one of the declared functional unit, requiring factor +1. Preserve signed caller quantities, supported uncertainty/formulas, foreground ownership and independent caller stock, processing, transport and emissions. Finished primary metal, kg rolling service and square-metre anodising service are distinct products. No unit/area/density, product yield, thickness, purity, energy-efficiency, loss or recovery multiplier is inferred. Other source releases, patches, system models and reverse directions receive no new permission.",
+        "Use the complete corresponding native inventory once. Native upstream material/energy, infrastructure, internal freight, disposal, direct emissions, allocation, geography, industry sample, vintage and internal uncertainty replace the source model as a screening proxy. Internal negative-reference source waste demands and native positive disposal demands do not reverse the positive material/service reference or create recovery credits. Preserve original native internal quantities and independent caller inputs; do not reconstruct selected source internals over the full native process. Source/native LCI, LCIA, alloy/assay and stochastic equivalence are not established, and score effects remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No redundant helper, recipe, source omission, runtime Python, alternative sector engine or validation bypass. Explicit eligible native suppliers remain subject to shared Premise transformations in the normal way; geographic/industry proxying does not prove identical regional future performance.",
+        "The source market supplies primary aluminium ingot from eight regional casting producers; their positive deterministic material shares sum to one kg within floating-point roundoff and there is no final-market freight, other service, formula or direct biosphere input. All eight producers use positive one-kg ingot references and exclude scrap remelting. Represent the complete primary cast-metal supply directly by the complete native European primary-aluminium process. No eight-identical-edge market helper is created: it would add no physical distinction after this explicit geographic/technology substitution. This does not grant independent producer mappings or reconstruct the eight regional technology portfolios.",
+        "Native product includes its primary-liquid-aluminium supply, casting plant, auxiliaries, packaging, utilities and residue treatment: 1.019 kg liquid primary metal, 1.54e-10 casting-plant units and 0.098 kWh casting electricity per kg output. Those are internal input/yield quantities, not conversion factors for caller output kg. Add no second liquid metal, electrolysis, caster, furnace, packaging, argon/chlorine or disposal, and do not multiply/divide the caller kg by 1.019 or apply a casting-loss correction.",
+        "Source regional prebake/Soederberg liquid-metal mixes, aluminium-industry electricity, casting heat, alloying/metal-loss/dross recovery and upstream supply become native European EAA2013/2010 industry data. Native grade/ingot assay and source alloying are not independently established equal; this is primary cast-metal supply, not secondary/alloy production mix, liquid-metal-only supply or fabricated sheet. Native gas and oil entries retain their declared units/quantities; no standalone volume-to-energy or useful-heat ratio is inferred. Regional smelter electricity is particularly important to impacts and is not reconstructed by this proxy. The source market adds no final delivery, so no missing delivery is invented or silently discarded."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "746668ebbd3ea854b66123f06b87c472a9ad123010e498d8750e48bfdcfae308"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-0ed419a56e408600",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_aluminium_stock_services_39_review.json",
+      "review_sha256": "54389b74bd75deb69919199a38fd673a630f4af1ecdb3b936949ec42a2192ada",
+      "authorization": "Standing autonomous approval of remaining mappings and documented whole-material/geographic/complete-process screening proxies, with explicit operating-chemistry and boundary warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "anodising, aluminium sheet",
+            "reference product": "anodising, aluminium sheet",
+            "location": "RER",
+            "unit": "square meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 42,
+          "metadata_sha256": "9644524315f216932a390590f6abb926cd41298f5dd7b9f580a64b0d58c0dfa9",
+          "inventory_sha256": "70c3d7a978f83743c5d4e51319ab64dd08562a327aa0fee177291b451a6853d2",
+          "activity_comment_sha256": "6f7669aa305be831bb78b9280cb7ca9b8630d2c52b4881b1ad901c6a0d125df0",
+          "product_information_sha256": "10bb10cda800b2f2a0c22b4ae1f6deec2d6ed2f8445bf3e5a6c590757b9a3f51"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Anodising, aluminium sheet",
+              "reference product": "Anodising, aluminium sheet",
+              "location": "RER",
+              "unit": "square meter"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 39,
+            "metadata_sha256": "a288b1537229d1d1af6c78e606b05eff21aabb56783e8c6cd12524da84a5ad63",
+            "inventory_sha256": "b14e7c57d1cdbba64c5f9a23a59d8a8a08a360afd469b29bb632234890509c90",
+            "activity_comment_sha256": "29a58e19c5aa9c5b2d45e34d816b2a9eb3d23b7c9670f8266e5376388bd0c243",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Anodising, aluminium sheet",
+              "reference product": "Anodising, aluminium sheet",
+              "location": "RER",
+              "unit": "square meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 39,
+            "metadata_sha256": "83a2eb821ef52dbd5cd36f66b50978f35af895cfe8da5cc8c0f7d378cbe05a78",
+            "inventory_sha256": "bdd5292200eee351fd6f8f00eae68c77c75d0f5c7ee32d892ac46b995c20ca75",
+            "activity_comment_sha256": "d96b53b5214a4af6cfbcd1a6c68669f4bbd579a97f87efbe9168d59d67a2836a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_colourless_anodising_service",
+          "reference_area_m2": 1,
+          "oxide_coating_micrometres": 20,
+          "auxiliary_aluminium_kg": 0.00187,
+          "electricity_kWh": 4.84,
+          "water_kg": 750,
+          "source_nitric_acid_active_kg": 0.03,
+          "native_labelled_half_strength_nitric_solution_kg": 0.03,
+          "source_sodium_hydroxide_active_kg": 0.1217,
+          "native_labelled_half_strength_sodium_hydroxide_solution_kg": 0.1217,
+          "source_wastewater_m3": 0.459375,
+          "native_wastewater_m3": 0.75,
+          "whole_process_acid_or_sheet_mass_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact ecoinvent 3.9 cut-off source identity. Source and native references are positive one of the declared functional unit, requiring factor +1. Preserve signed caller quantities, supported uncertainty/formulas, foreground ownership and independent caller stock, processing, transport and emissions. Finished primary metal, kg rolling service and square-metre anodising service are distinct products. No unit/area/density, product yield, thickness, purity, energy-efficiency, loss or recovery multiplier is inferred. Other source releases, patches, system models and reverse directions receive no new permission.",
+        "Use the complete corresponding native inventory once. Native upstream material/energy, infrastructure, internal freight, disposal, direct emissions, allocation, geography, industry sample, vintage and internal uncertainty replace the source model as a screening proxy. Internal negative-reference source waste demands and native positive disposal demands do not reverse the positive material/service reference or create recovery credits. Preserve original native internal quantities and independent caller inputs; do not reconstruct selected source internals over the full native process. Source/native LCI, LCIA, alloy/assay and stochastic equivalence are not established, and score effects remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No redundant helper, recipe, source omission, runtime Python, alternative sector engine or validation bypass. Explicit eligible native suppliers remain subject to shared Premise transformations in the normal way; geographic/industry proxying does not prove identical regional future performance.",
+        "Anodising reference is one m2 colourless porous anodising of aluminium sheet with 20 micrometre oxide coating, not kg of metal or finished sheet. Both records include mechanical pretreatment for half the workpieces, degreasing, pickling, anodising, sealing and wastewater treatment; dyeing is excluded. Preserve the original area. The 20 micrometres is coating thickness, not sheet thickness; do not infer sheet mass, density, area-to-kg, dye or alternate-coating scaling. Both inventories contain their original small 0.00187 kg aluminium input per m2, with native primary metal versus source wrought alloy. Keep independently supplied caller sheet unchanged; do not mistake that small auxiliary input for a full sheet blank or add/remove a guessed blank mass.",
+        "Chemical-dose boundaries differ inside this complete-process proxy. Source nitric acid is 0.03 kg acid without water in 50% solution state, while native is 0.03 kg of its labelled 50% aqueous product. Source sodium hydroxide is 0.1217 kg without water, versus native 0.1217 kg total of labelled 50% solutions. Preserve the full native operating model and explicitly report the different nominal active doses. Do not double the whole process to compensate, silently add acid/base/water, or treat this as standalone active-acid/base kg equivalence. Source separately specified AE3/AE7 become native generic ethoxylated alcohols; small alloy, reagent grade and wastewater chemistry differ.",
+        "Both use 4.84 kWh electricity and 750 kg decarbonised water per m2, but source wastewater demand is 0.459375 m3 versus native 0.75 m3. Native industry water/emission model, wood-chip mix, ENTSO-E electricity, Swiss disposal and oil-based heat replace source portfolios. Some source supplies are useful-heat services, so no extra fuel/efficiency or invented water-balance correction is applied. Same coating reference and selected nominal quantities do not establish equivalent process performance, emissions, water consumption, chemical concentrations, allocation or impacts."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "331389d9ce9c24567016c1f0c5e8d2053f539d6e06e963a7e8745a709b1f6dfe"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-15c42019546101f4",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_aluminium_stock_services_39_review.json",
+      "review_sha256": "54389b74bd75deb69919199a38fd673a630f4af1ecdb3b936949ec42a2192ada",
+      "authorization": "Standing autonomous approval of remaining mappings and documented whole-material/geographic/complete-process screening proxies, with explicit operating-chemistry and boundary warnings.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "sheet rolling, aluminium",
+            "reference product": "sheet rolling, aluminium",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 25,
+          "metadata_sha256": "7692275dfb2498f97d5713a68a5dca0f482238f09420b24c3bd3b83cac80b42c",
+          "inventory_sha256": "dbfdbf9a580dfdec7f10b8cd037c3eb67fb92369e91349f12b8c48c41b64de50",
+          "activity_comment_sha256": "af06b6bda9002e46e46f971e9403443b5e4a33c4521280a96a19abd065ad1e6c",
+          "product_information_sha256": "b8422286f1a723fe6daadb17e1f9d16a260de32577fee844ac68993efa8a58e0"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Sheet rolling, aluminium",
+              "reference product": "Sheet rolling, aluminium",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 24,
+            "metadata_sha256": "d878a1e71aea1ca8483d35a89528ee366142955419e917cd176c61b9e92f527e",
+            "inventory_sha256": "1e5f612a38389ca1c9f5cadc6af702793441a0277e2fcbc95be2f78eda8657ca",
+            "activity_comment_sha256": "fc9ac314b8b97eb76b441a7acdb76aa56d814f34406c3c1071871e6cb03683d2",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Sheet rolling, aluminium",
+              "reference product": "Sheet rolling, aluminium",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 24,
+            "metadata_sha256": "adade85e461701ce4a3d3ac9b20be056120f7d196cfe5ab8d53842ec8c28f126",
+            "inventory_sha256": "9771b28b6ec434f59dcfdf8bf4f0e73f51b5c13ca2d6f9c981de0dec2eef2782",
+            "activity_comment_sha256": "b31f2fb94759e24d9d0d3160fe4112faffe391d09b04deb9a68146e95c5aa456",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_aluminium_rolling_service",
+          "reference_processed_kg": 1,
+          "main_metal_excluded": true,
+          "internal_aluminium_replacement_kg": 0.012,
+          "electricity_kWh": 0.547,
+          "rolling_mill_units": 4.72e-09,
+          "native_gas_combustion_MJ": 2.11,
+          "native_oil_combustion_MJ": 0.0145,
+          "extra_main_stock_yield_or_heat_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact ecoinvent 3.9 cut-off source identity. Source and native references are positive one of the declared functional unit, requiring factor +1. Preserve signed caller quantities, supported uncertainty/formulas, foreground ownership and independent caller stock, processing, transport and emissions. Finished primary metal, kg rolling service and square-metre anodising service are distinct products. No unit/area/density, product yield, thickness, purity, energy-efficiency, loss or recovery multiplier is inferred. Other source releases, patches, system models and reverse directions receive no new permission.",
+        "Use the complete corresponding native inventory once. Native upstream material/energy, infrastructure, internal freight, disposal, direct emissions, allocation, geography, industry sample, vintage and internal uncertainty replace the source model as a screening proxy. Internal negative-reference source waste demands and native positive disposal demands do not reverse the positive material/service reference or create recovery credits. Preserve original native internal quantities and independent caller inputs; do not reconstruct selected source internals over the full native process. Source/native LCI, LCIA, alloy/assay and stochastic equivalence are not established, and score effects remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No redundant helper, recipe, source omission, runtime Python, alternative sector engine or validation bypass. Explicit eligible native suppliers remain subject to shared Premise transformations in the normal way; geographic/industry proxying does not prove identical regional future performance.",
+        "Sheet rolling is one kg of aluminium semi-fabrication service: sawing/scalping, hot/cold rolling, solution treatment, finishing and packaging. Source/native2026 explicitly exclude the principal metal being rolled and include only replacement of scrap lost in waste; native2025 retains the same smaller 0.012 kg internal aluminium input and process description. Keep the caller principal metal separately. Native primary replacement metal replaces source wrought alloy at that nominal quantity, not a complete kg of sheet. Add no primary kg, sheet-thickness/density or ingot-to-sheet-yield factor, second rolling/fabrication or scrap recovery credit. Both exclude final customer delivery while retaining internal material transport.",
+        "Both source/native use nominal 0.547 kWh electricity and 4.72e-9 rolling-mill units per kg service. Source purchased heat is 1.899 MJ natural-gas and 0.013775 MJ other heat; native uses 2.11 MJ gas combustion and 0.0145 MJ oil combustion. Fuel-input and useful-heat bases differ: preserve the complete model without another efficiency multiplier. Native utility mix, aluminium replacement/alloy grade, complete corrugated packaging, internal replacement steel plus its rolling service, freight, waste oil, aluminium/hazardous/municipal disposal, direct emissions, geography, age and internal uncertainty remain screening differences. The EU-average technique and inherited infrastructure assumptions do not establish present-day plant performance."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d717e4c098bc893afd5ce9a3f6aa9830ff4440ab758bddfb89d343ebacf0abec"
+        }
+      ]
     }
   ],
   "superseded_operations": [
