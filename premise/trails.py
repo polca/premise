@@ -38,9 +38,12 @@ from .iam.scenario_downloader import (
 )
 from .core.filesystem_constants import DATA_DIR
 from .core.utils import load_database, dump_database
-from .lifecycle_timing import load_lifecycle_timing, retirement_profile
+from .lifecycle_timing import load_lifecycle_timing_rows, retirement_profile
+from .temporal_legacy import compile_legacy_rows
+from .temporal_specs import TemporalRegistry, profile_to_temporal_parameters
 
 FILEPATH_TEMPORAL_PARAMETERS = DATA_DIR / "trails" / "temporal_distributions.csv"
+TEMPORAL_REGISTRY_DIR = DATA_DIR / "trails" / "temporal"
 
 
 class KeyLoader(yaml.SafeLoader):
@@ -147,6 +150,13 @@ class TrailsDataPackage:
 
         self.scenario_names = []
         self.classifications = get_classifications()
+        self._load_canonical_temporal_data()
+
+    def _load_canonical_temporal_data(self):
+        """Load all runtime temporal metadata directly from canonical YAML."""
+
+        self.temporal_registry = TemporalRegistry.from_directory(TEMPORAL_REGISTRY_DIR)
+        legacy_temporal_rows = compile_legacy_rows(TEMPORAL_REGISTRY_DIR)
 
         (
             self.stock_asset_params,
@@ -155,8 +165,11 @@ class TrailsDataPackage:
             self.maintenance_suppliers,
             self.long_term_biosphere_params,
             self.dataset_lifetimes,
-        ) = self._load_temporal_specs_from_csv(FILEPATH_TEMPORAL_PARAMETERS)
-        self.lifecycle_timing = load_lifecycle_timing(FILEPATH_TEMPORAL_PARAMETERS)
+        ) = self._load_temporal_specs(legacy_temporal_rows)
+        self.lifecycle_timing = load_lifecycle_timing_rows(legacy_temporal_rows)
+        self.temporal_classifications = self._load_temporal_classifications_from_rows(
+            legacy_temporal_rows
+        )
 
     @staticmethod
     def _year_from_column(column):
@@ -401,7 +414,24 @@ class TrailsDataPackage:
             contributors=contributors,
         )
 
-    def _load_temporal_specs_from_csv(self, path: Path) -> tuple[
+    def _load_temporal_specs_from_csv(
+        self, path: Path
+    ) -> tuple[
+        Dict[Tuple[str, str], dict],
+        Set[Tuple[str, str]],
+        Dict[Tuple[str, str], dict],
+        Set[Tuple[str, str]],
+        List[dict],
+        Dict[Tuple[str, str], float],
+    ]:
+        """Load the generated compatibility CSV for external callers and tests."""
+
+        with open(path, "r", encoding="utf-8-sig", newline="") as f:
+            return self._load_temporal_specs(list(csv.DictReader(f)))
+
+    def _load_temporal_specs(
+        self, rows
+    ) -> tuple[
         Dict[Tuple[str, str], dict],
         Set[Tuple[str, str]],
         Dict[Tuple[str, str], dict],
@@ -410,22 +440,21 @@ class TrailsDataPackage:
         Dict[Tuple[str, str], float],
     ]:
         """
+        Load canonical in-memory rows compiled directly from the YAML registry.
+
         Returns:
           stock_assets: dict[(name, ref)] -> exchange-level temporal params for stock_asset suppliers
           end_of_life:  set[(name, ref)] of end_of_life supplier datasets
           biomass_growth: dict[(name, ref)] -> temporal params for CO2 uptake in biomass growth datasets
           maintenance: set[(name, ref)] of maintenance supplier datasets
           long_term_biosphere: list of long-term biosphere emission selectors and params
-          dataset_lifetimes: dict[(name, ref)] -> dataset lifetime from CSV, regardless of temporal_tag
+          dataset_lifetimes: dict[(name, ref)] -> dataset lifetime, regardless of temporal_tag
         """
-        with open(path, "r", encoding="utf-8-sig", newline="") as f:
-            rows = list(csv.DictReader(f))
-
         required = {"name", "reference product", "temporal_tag"}
         missing = required - set(rows[0].keys() if rows else [])
         if missing:
             raise ValueError(
-                f"Temporal params CSV file missing columns: {sorted(missing)}"
+                f"Temporal registry rows are missing columns: {sorted(missing)}"
             )
 
         def _clean(x):
@@ -614,17 +643,28 @@ class TrailsDataPackage:
 
     @staticmethod
     def _load_temporal_classifications(path: Path) -> Dict[Tuple[str, str], dict]:
-        """Return unambiguous ISIC/CPC pairs recorded by the temporal mapping."""
-        candidates = {}
+        """Load classifications from the compatibility CSV for external callers."""
+
         with open(path, "r", encoding="utf-8-sig", newline="") as stream:
-            for row in csv.DictReader(stream):
-                name = (row.get("name") or "").strip()
-                product = (row.get("reference product") or "").strip()
-                isic = (row.get("ISIC rev.4 ecoinvent") or "").strip()
-                cpc = (row.get("CPC") or "").strip()
-                if not name or not product or not isic or not cpc:
-                    continue
-                candidates.setdefault((name, product), set()).add((isic, cpc))
+            return TrailsDataPackage._load_temporal_classifications_from_rows(
+                csv.DictReader(stream)
+            )
+
+    @staticmethod
+    def _load_temporal_classifications_from_rows(
+        rows,
+    ) -> Dict[Tuple[str, str], dict]:
+        """Return unambiguous ISIC/CPC pairs from canonical registry rows."""
+
+        candidates = {}
+        for row in rows:
+            name = (row.get("name") or "").strip()
+            product = (row.get("reference product") or "").strip()
+            isic = (row.get("ISIC rev.4 ecoinvent") or "").strip()
+            cpc = (row.get("CPC") or "").strip()
+            if not name or not product or not isic or not cpc:
+                continue
+            candidates.setdefault((name, product), set()).add((isic, cpc))
 
         return {
             key: {"ISIC rev.4 ecoinvent": isic, "CPC": cpc}
@@ -687,9 +727,12 @@ class TrailsDataPackage:
         # that can be absent from the generic import mapping, including renamed
         # supplemental inventories. Keep the generic mapping authoritative when
         # both sources define the same identity.
-        for key, classification in self._load_temporal_classifications(
-            FILEPATH_TEMPORAL_PARAMETERS
-        ).items():
+        temporal_classifications = getattr(self, "temporal_classifications", None)
+        if temporal_classifications is None:
+            temporal_classifications = self._load_temporal_classifications_from_rows(
+                compile_legacy_rows(TEMPORAL_REGISTRY_DIR)
+            )
+        for key, classification in temporal_classifications.items():
             self.classifications.setdefault(key, classification)
 
         # Build lookup indices from existing classifications
@@ -1349,6 +1392,7 @@ class TrailsDataPackage:
         long_term_biosphere = getattr(self, "long_term_biosphere_params", [])
         dataset_lifetimes = getattr(self, "dataset_lifetimes", {})
         lifecycle_timing = getattr(self, "lifecycle_timing", {})
+        temporal_registry = getattr(self, "temporal_registry", None)
         outdir = Path.cwd() / "trails_temp"
         outfile = outdir / "temporal_distribution_faulty_exchanges.csv"
         match_outfile = outdir / "long_term_biosphere_matches.csv"
@@ -1362,6 +1406,7 @@ class TrailsDataPackage:
         faulty_exchanges = []
         long_term_matches = []
         retirement_assignments = []
+        selector_assignments = []
 
         def _scenario_label(value):
             return " | ".join(
@@ -1397,6 +1442,54 @@ class TrailsDataPackage:
             exc["temporal_max"] = None
             exc["temporal_offsets"] = [float(offset)]
             exc["temporal_weights"] = [1.0]
+
+        def _selected_profile(record, target, scenario, caller_record=None):
+            if temporal_registry is None or not temporal_registry.assignments:
+                return None, None
+            resolution = temporal_registry.resolve(
+                record,
+                target=target,
+                context={
+                    "ecoinvent_version": getattr(self, "source_version", None),
+                    "year": scenario.get("year"),
+                    "geography": record.get("location"),
+                },
+                caller_record=caller_record,
+            )
+            if resolution is None:
+                return None, None
+            profile = temporal_registry.profiles[resolution.profile_id]
+            selector_assignments.append(
+                {
+                    "scenario": _scenario_label(scenario),
+                    "target": target,
+                    "name": record.get("name", ""),
+                    "reference_product": record.get(
+                        "reference product", record.get("product", "")
+                    ),
+                    "unit": record.get("unit", ""),
+                    "location": record.get("location", ""),
+                    "calling_dataset_name": (caller_record or {}).get("name", ""),
+                    "calling_dataset_reference_product": (caller_record or {}).get(
+                        "reference product", ""
+                    ),
+                    "calling_dataset_location": (caller_record or {}).get(
+                        "location", ""
+                    ),
+                    "assignment_id": resolution.assignment_id,
+                    "assignment_kind": next(
+                        item["kind"]
+                        for item in temporal_registry.assignments
+                        if item["id"] == resolution.assignment_id
+                    ),
+                    "profile_id": resolution.profile_id,
+                    "quantity": profile["quantity"],
+                    "competing_assignment_ids": "|".join(
+                        resolution.competing_assignment_ids
+                    ),
+                }
+            )
+            return profile, profile_to_temporal_parameters(profile)
 
         def _match_selector(pattern, value):
             pattern = (pattern or "*").strip()
@@ -1555,10 +1648,37 @@ class TrailsDataPackage:
                     ds_lifetime = ds_stock.get("lifetime")
                     if ds_lifetime is None:
                         ds_lifetime = dataset_lifetimes.get((ds_name, ds_ref))
+                    activity_profile, activity_params = _selected_profile(
+                        ds, "activity", scenario
+                    )
+                    if (
+                        activity_profile is not None
+                        and activity_profile["quantity"] == "service_life"
+                    ):
+                        ds_lifetime = activity_params.get("lifetime")
                     is_lifecycle_service = (
                         ds_key in maintenance or ds_key in end_of_life
                     )
-                    reference = lifecycle_timing.get(ds_key, {}).get("timing_reference")
+                    caller_timing = lifecycle_timing.get(ds_key)
+                    caller_profile, caller_params = _selected_profile(
+                        ds, "caller", scenario
+                    )
+                    if (
+                        caller_profile is not None
+                        and caller_profile["quantity"] == "fleet_age"
+                    ):
+                        caller_timing = {
+                            "timing_reference": "existing_fleet",
+                            "assumption": "; ".join(
+                                str(value)
+                                for value in caller_profile.get("assumptions", [])
+                            ),
+                            "lifetime": caller_params.get("lifetime"),
+                            "age_offsets": caller_params.get("temporal_offsets"),
+                            "age_weights": caller_params.get("temporal_weights"),
+                        }
+                        ds_lifetime = caller_params.get("lifetime") or ds_lifetime
+                    reference = (caller_timing or {}).get("timing_reference")
                     if is_lifecycle_service:
                         reference = "lifecycle_event"
                     if reference is None:
@@ -1580,6 +1700,11 @@ class TrailsDataPackage:
                         )
 
                     bg = biomass_growth.get((ds_name, ds_ref))
+                    if (
+                        activity_profile is not None
+                        and activity_profile["quantity"] == "biomass_growth"
+                    ):
+                        bg = activity_params
                     for e in ds.get("exchanges", []):
                         exc_type = e.get("type")
 
@@ -1594,6 +1719,12 @@ class TrailsDataPackage:
                             continue
 
                         if exc_type == "biosphere":
+                            selected_profile, selected_params = _selected_profile(
+                                e, "biosphere", scenario, caller_record=ds
+                            )
+                            if selected_profile is not None:
+                                _apply_params(e, selected_params)
+                                continue
                             params, ambiguous = _lookup_biosphere_params(e)
                             if ambiguous:
                                 _record_fault(
@@ -1626,6 +1757,17 @@ class TrailsDataPackage:
                             continue
                         key = (sup_name, sup_ref)
                         params = stock_assets.get(key)
+                        selected_profile, selected_params = _selected_profile(
+                            {
+                                **e,
+                                "reference product": sup_ref,
+                            },
+                            "supplier",
+                            scenario,
+                            caller_record=ds,
+                        )
+                        if selected_profile is not None:
+                            params = selected_params
                         is_maintenance = key in maintenance
                         is_end_of_life = key in end_of_life
 
@@ -1667,7 +1809,7 @@ class TrailsDataPackage:
                                 offsets, weights = retirement_profile(
                                     reference,
                                     ds_lifetime,
-                                    lifecycle_timing.get(ds_key),
+                                    caller_timing,
                                 )
                             except ValueError as error:
                                 _record_fault(ds, e, str(error))
@@ -1684,12 +1826,12 @@ class TrailsDataPackage:
                                     "exchange_name": sup_name,
                                     "exchange_product": sup_ref,
                                     "timing_reference": reference,
-                                    "fixed_lifetime": lifecycle_timing.get(
-                                        ds_key, {}
-                                    ).get("lifetime", ds_lifetime),
-                                    "timing_assumption": lifecycle_timing.get(
-                                        ds_key, {}
-                                    ).get("assumption", ""),
+                                    "fixed_lifetime": (caller_timing or {}).get(
+                                        "lifetime", ds_lifetime
+                                    ),
+                                    "timing_assumption": (caller_timing or {}).get(
+                                        "assumption", ""
+                                    ),
                                     "temporal_offsets": json.dumps(offsets),
                                     "temporal_weights": json.dumps(weights),
                                 }
@@ -1753,6 +1895,16 @@ class TrailsDataPackage:
                 )
                 writer.writeheader()
                 writer.writerows(retirement_assignments)
+
+        if selector_assignments:
+            outdir.mkdir(parents=True, exist_ok=True)
+            selector_outfile = outdir / "temporal_selector_matches.csv"
+            with selector_outfile.open("w", newline="", encoding="utf-8") as stream:
+                writer = csv.DictWriter(
+                    stream, fieldnames=list(selector_assignments[0])
+                )
+                writer.writeheader()
+                writer.writerows(selector_assignments)
 
         if long_term_matches:
             outdir.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,4153 @@
+schema_version: 1
+profiles:
+  annual-cereal-preharvest-uptake-one-year:
+    quantity: biomass_growth
+    reference_event: harvest
+    distribution:
+      kind: uniform
+      minimum_years: -1
+      maximum_years: 0
+    applicability:
+      crop_type: annual cereal
+    assumptions:
+    - Biogenic carbon uptake is allocated uniformly across the year immediately preceding the current
+      harvest.
+    - The profile changes timing metadata only and preserves the existing carbon uptake amount.
+    - This reviewed selector is behavior-equivalent to the resolved legacy mappings it replaces.
+    evidence:
+      status: assumption
+      source_ids: []
+      coverage:
+        review_basis: Resolved TRAILS mappings for annual cereal production
+    review:
+      activation_status: active
+      rationale: Behavior-preserving replacement for reviewed legacy cereal mappings.
+  nrel-wind-technical-life-30-years:
+    quantity: service_life
+    reference_event: asset_commissioning
+    service_life_years: 30
+    distribution:
+      kind: fixed
+      offset_years: 30
+    applicability:
+      technology: land-based and offshore wind power plants
+    assumptions:
+    - The NREL ATB technical life is used as prospective caller context, not as an observed fleet age.
+    - Component replacements and refurbishment within the project life are not represented by this fixed
+      value.
+    - The profile does not define a construction-vintage distribution for stock-asset exchanges.
+    evidence:
+      status: literature
+      source_ids:
+      - nrel-atb-2024b-technical-lifetimes
+      coverage:
+        technology: land-based and offshore wind power plants
+        technical_life_years: 30
+    review:
+      activation_status: active
+      rationale: A stable electricity-production selector was audited across ecoinvent 3.8-3.12.
+  nrel-solar-pv-technical-life-30-years:
+    quantity: service_life
+    reference_event: asset_commissioning
+    service_life_years: 30
+    distribution:
+      kind: fixed
+      offset_years: 30
+    applicability:
+      technology: utility-scale and distributed solar photovoltaic systems
+    assumptions:
+    - The NREL ATB technical life is used as prospective caller context, not as an observed fleet age.
+    - Component replacements and refurbishment within the project life are not represented by this fixed
+      value.
+    - The profile does not define a construction-vintage distribution for stock-asset exchanges.
+    evidence:
+      status: literature
+      source_ids:
+      - nrel-atb-2024b-technical-lifetimes
+      coverage:
+        technology: utility-scale and distributed solar photovoltaic systems
+        technical_life_years: 30
+    review:
+      activation_status: active
+      rationale: A stable photovoltaic electricity-production selector was audited across ecoinvent 3.8-3.12.
+  nrel-hydropower-technical-life-100-years:
+    quantity: service_life
+    reference_event: asset_commissioning
+    service_life_years: 100
+    distribution:
+      kind: fixed
+      offset_years: 100
+    applicability:
+      technology: conventional and pumped-storage hydropower projects
+    assumptions:
+    - The NREL ATB technical life is used as prospective caller context, not as an observed fleet age.
+    - Component replacements and refurbishment within the project life are not represented by this fixed
+      value.
+    - The profile does not define a construction-vintage distribution for stock-asset exchanges.
+    evidence:
+      status: literature
+      source_ids:
+      - nrel-atb-2024b-technical-lifetimes
+      coverage:
+        technology: conventional and pumped-storage hydropower projects
+        technical_life_years: 100
+    review:
+      activation_status: active
+      rationale: A stable hydroelectricity-production selector was audited across ecoinvent 3.8-3.12.
+  nrel-nuclear-technical-life-60-years:
+    quantity: service_life
+    reference_event: asset_commissioning
+    service_life_years: 60
+    distribution:
+      kind: fixed
+      offset_years: 60
+    applicability:
+      technology: nuclear power plants
+    assumptions:
+    - The NREL ATB technical life is used as prospective caller context, not as an observed fleet age.
+    - Component replacements and refurbishment within the project life are not represented by this fixed
+      value.
+    - The profile does not define a construction-vintage distribution for stock-asset exchanges.
+    evidence:
+      status: literature
+      source_ids:
+      - nrel-atb-2024b-technical-lifetimes
+      coverage:
+        technology: nuclear power plants
+        technical_life_years: 60
+    review:
+      activation_status: active
+      rationale: A stable nuclear electricity-production selector was audited across ecoinvent 3.8-3.12.
+  nrel-stationary-battery-technical-life-15-years:
+    quantity: service_life
+    reference_event: asset_commissioning
+    service_life_years: 15
+    distribution:
+      kind: fixed
+      offset_years: 15
+    applicability:
+      technology: utility-scale, commercial, and residential stationary battery storage
+    assumptions:
+    - The NREL ATB technical life is used as prospective caller context, not as an observed fleet age.
+    - Component replacements and refurbishment within the project life are not represented by this fixed
+      value.
+    - The profile does not define a construction-vintage distribution for stock-asset exchanges.
+    evidence:
+      status: literature
+      source_ids:
+      - nrel-atb-2024b-technical-lifetimes
+      coverage:
+        technology: utility-scale, commercial, and residential stationary battery storage
+        technical_life_years: 15
+    review:
+      activation_status: eligible
+      rationale: No sufficiently specific cross-version activity selector has yet been established.
+  eu-passenger-car-survival-uk-mot:
+    quantity: service_life
+    reference_event: asset_commissioning
+    distribution:
+      kind: derived
+      generator: right_censored_survival_curve
+      parameters:
+        ages_years:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        survival_probabilities:
+        - 0.96
+        - 0.96
+        - 0.95
+        - 0.94
+        - 0.94
+        - 0.92
+        - 0.92
+        - 0.9
+        - 0.87
+        - 0.83
+        - 0.78
+        - 0.7
+        - 0.59
+        - 0.48
+        - 0.27
+        - 0.2
+        - 0.12
+        - 0.06
+        - 0.04
+        right_censored_after_years: 19
+    applicability:
+      geographies:
+      - Europe
+      vehicle: passenger car
+    assumptions:
+    - The underlying UK MOT inspection population is used by the source as a proxy for the wider European
+      fleet.
+    - Four percent of vehicles remain at the final reported age; the tail is right-censored and no unsupported
+      retirement age is assigned.
+    - The source does not provide powertrain-specific survival curves.
+    evidence:
+      status: empirical
+      source_ids:
+      - ec-light-duty-vehicle-survival-2015
+      population: United Kingdom vehicles represented in MOT periodic-inspection records.
+      weighting: Source-reported vehicle survival share by age.
+      reference_period: Source evaluation published 2015; underlying observation period not reported in
+        the extracted table.
+      censoring: Right-censored after age 19 with four percent surviving.
+      sample_size:
+        not_reported: The source table does not report the underlying vehicle count.
+        unit: vehicles
+      quality_flags:
+      - geographic-proxy
+      - right-censored
+      coverage:
+        source_population: United Kingdom MOT periodic inspection records
+        reported_age_years:
+        - 1
+        - 19
+        last_reported_survival_probability: 0.04
+    review:
+      activation_status: evidence_only
+      rationale: The curve is a UK proxy and cannot produce an uncensored mean lifetime without a reviewed
+        tail model.
+  eu-light-commercial-vehicle-survival-uk-mot:
+    quantity: service_life
+    reference_event: asset_commissioning
+    distribution:
+      kind: derived
+      generator: right_censored_survival_curve
+      parameters:
+        ages_years:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        survival_probabilities:
+        - 0.96
+        - 0.94
+        - 0.93
+        - 0.9
+        - 0.88
+        - 0.86
+        - 0.83
+        - 0.8
+        - 0.74
+        - 0.7
+        - 0.65
+        - 0.58
+        - 0.47
+        - 0.34
+        - 0.26
+        - 0.2
+        - 0.12
+        - 0.06
+        - 0.04
+        right_censored_after_years: 19
+    applicability:
+      geographies:
+      - Europe
+      vehicle: light commercial vehicle
+    assumptions:
+    - The underlying UK MOT inspection population is used by the source as a proxy for the wider European
+      fleet.
+    - Four percent of vehicles remain at the final reported age; the tail is right-censored and no unsupported
+      retirement age is assigned.
+    - The source does not provide powertrain-specific survival curves.
+    evidence:
+      status: empirical
+      source_ids:
+      - ec-light-duty-vehicle-survival-2015
+      population: United Kingdom vehicles represented in MOT periodic-inspection records.
+      weighting: Source-reported vehicle survival share by age.
+      reference_period: Source evaluation published 2015; underlying observation period not reported in
+        the extracted table.
+      censoring: Right-censored after age 19 with four percent surviving.
+      sample_size:
+        not_reported: The source table does not report the underlying vehicle count.
+        unit: vehicles
+      quality_flags:
+      - geographic-proxy
+      - right-censored
+      coverage:
+        source_population: United Kingdom MOT periodic inspection records
+        reported_age_years:
+        - 1
+        - 19
+        last_reported_survival_probability: 0.04
+    review:
+      activation_status: evidence_only
+      rationale: The curve is a UK proxy and cannot produce an uncensored mean lifetime without a reviewed
+        tail model.
+  eu-road-passenger-car-age-2024:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: derived
+      generator: uniform_within_reported_age_bands
+      parameters:
+        bands:
+        - source_code: Y_LT2
+          minimum_years: 0
+          maximum_years: 2
+          weight: 0.098996789602
+        - source_code: Y2-5
+          minimum_years: 2
+          maximum_years: 5
+          weight: 0.118449169365
+        - source_code: Y5-10
+          minimum_years: 5
+          maximum_years: 10
+          weight: 0.231159956487
+        - source_code: Y10-20
+          minimum_years: 10
+          maximum_years: 20
+          weight: 0.367640139566
+        - source_code: Y_GT20
+          minimum_years: 20
+          maximum_years: null
+          weight: 0.18375394498
+    applicability:
+      geographies:
+      - Europe
+      reference_year: 2024
+    assumptions:
+    - Aggregate only countries reporting every age band, so every band has identical geographical coverage.
+    - The source's open-ended over-20-years band is retained; no unsupported upper age or annual allocation
+      is introduced.
+    - Vehicle counts represent registered stock, not utilisation-weighted service.
+    evidence:
+      status: empirical
+      source_ids:
+      - eurostat-road-eqs-carage-2024
+      population: Registered end-of-year vehicle stock in EU27 countries reporting every requested age
+        band.
+      weighting: Vehicle count.
+      reference_period: '2024-12-31'
+      censoring: The oldest age band is open-ended above 20 years.
+      sample_size:
+        count: 197815334
+        unit: registered vehicles
+      quality_flags:
+      - complete-reporting-country-subset
+      - open-ended-oldest-age-band
+      coverage:
+        countries:
+        - AT
+        - BE
+        - CY
+        - DE
+        - DK
+        - EE
+        - ES
+        - FI
+        - FR
+        - HR
+        - HU
+        - LT
+        - LU
+        - LV
+        - MT
+        - NL
+        - PL
+        - PT
+        - RO
+        - SE
+        - SI
+        country_count: 21
+        vehicle_count: 197815334
+    review:
+      activation_status: evidence_only
+      rationale: Valid fleet-age evidence, but no reviewed geography-specific caller mapping is active.
+  eu-road-bus-age-2024:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: derived
+      generator: uniform_within_reported_age_bands
+      parameters:
+        bands:
+        - source_code: Y_LT2
+          minimum_years: 0
+          maximum_years: 2
+          weight: 0.116442028469
+        - source_code: Y2-5
+          minimum_years: 2
+          maximum_years: 5
+          weight: 0.133929097181
+        - source_code: Y5-10
+          minimum_years: 5
+          maximum_years: 10
+          weight: 0.236310189762
+        - source_code: Y10-20
+          minimum_years: 10
+          maximum_years: 20
+          weight: 0.330968149826
+        - source_code: Y_GT20
+          minimum_years: 20
+          maximum_years: null
+          weight: 0.182350534762
+    applicability:
+      geographies:
+      - Europe
+      reference_year: 2024
+    assumptions:
+    - Aggregate only countries reporting every age band, so every band has identical geographical coverage.
+    - The source's open-ended over-20-years band is retained; no unsupported upper age or annual allocation
+      is introduced.
+    - Vehicle counts represent registered stock, not utilisation-weighted service.
+    evidence:
+      status: empirical
+      source_ids:
+      - eurostat-road-eqs-busage-2024
+      population: Registered end-of-year vehicle stock in EU27 countries reporting every requested age
+        band.
+      weighting: Vehicle count.
+      reference_period: '2024-12-31'
+      censoring: The oldest age band is open-ended above 20 years.
+      sample_size:
+        count: 645334
+        unit: registered vehicles
+      quality_flags:
+      - complete-reporting-country-subset
+      - open-ended-oldest-age-band
+      coverage:
+        countries:
+        - AT
+        - BE
+        - CY
+        - DE
+        - DK
+        - EE
+        - ES
+        - FI
+        - FR
+        - HR
+        - HU
+        - IT
+        - LT
+        - LU
+        - LV
+        - MT
+        - NL
+        - PL
+        - PT
+        - RO
+        - SE
+        - SI
+        country_count: 22
+        vehicle_count: 645334
+    review:
+      activation_status: evidence_only
+      rationale: Valid fleet-age evidence, but no reviewed geography-specific caller mapping is active.
+  eu-road-lorry-over-3.5t-age-2024:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: derived
+      generator: uniform_within_reported_age_bands
+      parameters:
+        bands:
+        - source_code: Y_LT2
+          minimum_years: 0
+          maximum_years: 2
+          weight: 0.101649382596
+        - source_code: Y2-5
+          minimum_years: 2
+          maximum_years: 5
+          weight: 0.105303555291
+        - source_code: Y5-10
+          minimum_years: 5
+          maximum_years: 10
+          weight: 0.170519818933
+        - source_code: Y10-20
+          minimum_years: 10
+          maximum_years: 20
+          weight: 0.300834822641
+        - source_code: Y_GT20
+          minimum_years: 20
+          maximum_years: null
+          weight: 0.32169242053899993
+    applicability:
+      geographies:
+      - Europe
+      reference_year: 2024
+    assumptions:
+    - Aggregate only countries reporting every age band, so every band has identical geographical coverage.
+    - The source's open-ended over-20-years band is retained; no unsupported upper age or annual allocation
+      is introduced.
+    - Vehicle counts represent registered stock, not utilisation-weighted service.
+    evidence:
+      status: empirical
+      source_ids:
+      - eurostat-road-eqs-lorroa-2024
+      population: Registered end-of-year vehicle stock in EU27 countries reporting every requested age
+        band.
+      weighting: Vehicle count.
+      reference_period: '2024-12-31'
+      censoring: The oldest age band is open-ended above 20 years.
+      sample_size:
+        count: 2467590
+        unit: registered vehicles
+      quality_flags:
+      - complete-reporting-country-subset
+      - open-ended-oldest-age-band
+      coverage:
+        countries:
+        - AT
+        - CY
+        - DE
+        - DK
+        - EE
+        - ES
+        - FI
+        - FR
+        - HR
+        - HU
+        - LT
+        - LU
+        - LV
+        - MT
+        - NL
+        - PL
+        - PT
+        - RO
+        - SE
+        country_count: 19
+        vehicle_count: 2467590
+    review:
+      activation_status: evidence_only
+      rationale: Valid fleet-age evidence, but no reviewed geography-specific caller mapping is active.
+  eu-road-tractor-age-2024:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: derived
+      generator: uniform_within_reported_age_bands
+      parameters:
+        bands:
+        - source_code: Y_LT2
+          minimum_years: 0
+          maximum_years: 2
+          weight: 0.203637540549
+        - source_code: Y2-5
+          minimum_years: 2
+          maximum_years: 5
+          weight: 0.175636996562
+        - source_code: Y5-10
+          minimum_years: 5
+          maximum_years: 10
+          weight: 0.274891861604
+        - source_code: Y10-20
+          minimum_years: 10
+          maximum_years: 20
+          weight: 0.244385395439
+        - source_code: Y_GT20
+          minimum_years: 20
+          maximum_years: null
+          weight: 0.101448205846
+    applicability:
+      geographies:
+      - Europe
+      reference_year: 2024
+    assumptions:
+    - Aggregate only countries reporting every age band, so every band has identical geographical coverage.
+    - The source's open-ended over-20-years band is retained; no unsupported upper age or annual allocation
+      is introduced.
+    - Vehicle counts represent registered stock, not utilisation-weighted service.
+    evidence:
+      status: empirical
+      source_ids:
+      - eurostat-road-eqs-lorroa-2024
+      population: Registered end-of-year vehicle stock in EU27 countries reporting every requested age
+        band.
+      weighting: Vehicle count.
+      reference_period: '2024-12-31'
+      censoring: The oldest age band is open-ended above 20 years.
+      sample_size:
+        count: 1897106
+        unit: registered vehicles
+      quality_flags:
+      - complete-reporting-country-subset
+      - open-ended-oldest-age-band
+      coverage:
+        countries:
+        - AT
+        - BE
+        - CY
+        - DE
+        - DK
+        - EE
+        - ES
+        - FI
+        - FR
+        - HR
+        - HU
+        - LT
+        - LU
+        - LV
+        - MT
+        - NL
+        - PL
+        - PT
+        - RO
+        - SE
+        - SI
+        country_count: 21
+        vehicle_count: 1897106
+    review:
+      activation_status: evidence_only
+      rationale: Valid fleet-age evidence, but no reviewed geography-specific caller mapping is active.
+  eu-road-light-commercial-age-2024:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: derived
+      generator: uniform_within_reported_age_bands
+      parameters:
+        bands:
+        - source_code: Y_LT2
+          minimum_years: 0
+          maximum_years: 2
+          weight: 0.113673238558
+        - source_code: Y2-5
+          minimum_years: 2
+          maximum_years: 5
+          weight: 0.13547129866
+        - source_code: Y5-10
+          minimum_years: 5
+          maximum_years: 10
+          weight: 0.210382150787
+        - source_code: Y10-20
+          minimum_years: 10
+          maximum_years: 20
+          weight: 0.312064821387
+        - source_code: Y_GT20
+          minimum_years: 20
+          maximum_years: null
+          weight: 0.22840849060799998
+    applicability:
+      geographies:
+      - Europe
+      reference_year: 2024
+    assumptions:
+    - Aggregate only countries reporting every age band, so every band has identical geographical coverage.
+    - The source's open-ended over-20-years band is retained; no unsupported upper age or annual allocation
+      is introduced.
+    - Vehicle counts represent registered stock, not utilisation-weighted service.
+    evidence:
+      status: empirical
+      source_ids:
+      - eurostat-road-eqs-lorroa-2024
+      population: Registered end-of-year vehicle stock in EU27 countries reporting every requested age
+        band.
+      weighting: Vehicle count.
+      reference_period: '2024-12-31'
+      censoring: The oldest age band is open-ended above 20 years.
+      sample_size:
+        count: 20796346
+        unit: registered vehicles
+      quality_flags:
+      - complete-reporting-country-subset
+      - open-ended-oldest-age-band
+      coverage:
+        countries:
+        - AT
+        - CY
+        - DE
+        - DK
+        - EE
+        - ES
+        - FI
+        - FR
+        - HR
+        - HU
+        - LT
+        - LU
+        - LV
+        - MT
+        - NL
+        - PL
+        - PT
+        - RO
+        - SE
+        country_count: 19
+        vehicle_count: 20796346
+    review:
+      activation_status: evidence_only
+      rationale: Valid fleet-age evidence, but no reviewed geography-specific caller mapping is active.
+  us-electricity-batteries-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years:
+      - -22
+      - -14
+      - -13
+      - -12
+      - -11
+      - -10
+      - -9
+      - -8
+      - -7
+      - -6
+      - -5
+      - -4
+      - -3
+      - -2
+      - -1
+      - 0
+      weights:
+      - 0.000934026661
+      - 1.8680533e-05
+      - 0.001412715325
+      - 0.000105077999
+      - 0.000513714664
+      - 0.002129580788
+      - 0.003897226244
+      - 0.001882063723
+      - 0.004677138507
+      - 0.004448301975
+      - 0.013454654056
+      - 0.070066009999
+      - 0.095952558918
+      - 0.16378671221
+      - 0.255990788629
+      - 0.380730749769
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Batteries
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 981
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Batteries
+        unit_count: 981
+        summer_capacity_mw: 42825.33
+        mean_age_years: 1.395904
+        minimum_age_years: 0
+        maximum_age_years: 22
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  us-electricity-conventional-hydroelectric-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: &id001
+      - -134
+      - -132
+      - -129
+      - -127
+      - -125
+      - -124
+      - -123
+      - -122
+      - -121
+      - -120
+      - -119
+      - -118
+      - -117
+      - -116
+      - -115
+      - -114
+      - -113
+      - -112
+      - -111
+      - -110
+      - -109
+      - -108
+      - -107
+      - -106
+      - -105
+      - -104
+      - -103
+      - -102
+      - -101
+      - -100
+      - -99
+      - -98
+      - -97
+      - -96
+      - -95
+      - -94
+      - -93
+      - -92
+      - -91
+      - -90
+      - -89
+      - -88
+      - -87
+      - -86
+      - -85
+      - -84
+      - -83
+      - -82
+      - -81
+      - -80
+      - -79
+      - -78
+      - -77
+      - -76
+      - -75
+      - -74
+      - -73
+      - -72
+      - -71
+      - -70
+      - -69
+      - -68
+      - -67
+      - -66
+      - -65
+      - -64
+      - -63
+      - -62
+      - -61
+      - -60
+      - -59
+      - -58
+      - -57
+      - -56
+      - -55
+      - -54
+      - -53
+      - -52
+      - -51
+      - -50
+      - -49
+      - -48
+      - -47
+      - -46
+      - -45
+      - -44
+      - -43
+      - -42
+      - -41
+      - -40
+      - -39
+      - -38
+      - -37
+      - -36
+      - -35
+      - -34
+      - -33
+      - -32
+      - -31
+      - -30
+      - -29
+      - -28
+      - -27
+      - -26
+      - -25
+      - -24
+      - -23
+      - -22
+      - -21
+      - -20
+      - -19
+      - -18
+      - -17
+      - -16
+      - -15
+      - -14
+      - -13
+      - -12
+      - -11
+      - -10
+      - -9
+      - -8
+      - -7
+      - -6
+      - -5
+      - -4
+      - -3
+      - -2
+      - -1
+      - 0
+      weights:
+      - 0.000103703257
+      - 7.977174e-06
+      - 4.3874455e-05
+      - 7.9771736e-05
+      - 3.722681e-05
+      - 2.9249636e-05
+      - 1.8613405e-05
+      - 0.000491925704
+      - 0.000271223902
+      - 0.000441403605
+      - 0.000329723175
+      - 0.001152701583
+      - 0.000595628961
+      - 0.000442733134
+      - 0.001423925485
+      - 0.001596764246
+      - 0.002221642843
+      - 0.004715839117
+      - 0.001672547395
+      - 0.003749936349
+      - 0.002358584323
+      - 0.003073870888
+      - 0.001419670992
+      - 0.003010053499
+      - 0.001217316689
+      - 0.003551703585
+      - 0.001941112239
+      - 0.005207764821
+      - 0.006383068396
+      - 0.008875935141
+      - 0.003892860709
+      - 0.005206435292
+      - 0.011441925977
+      - 0.003044621251
+      - 0.010579061701
+      - 0.00740946473
+      - 0.003380992071
+      - 0.000465335126
+      - 0.000475971357
+      - 0.000889587807
+      - 0.01072929847
+      - 0.00464337979
+      - 0.007513167987
+      - 0.006570531975
+      - 0.005548124227
+      - 0.009867763723
+      - 0.014805634171
+      - 0.014015893987
+      - 0.013979996705
+      - 0.005393898872
+      - 0.000740547614
+      - 0.002283332985
+      - 0.010414466019
+      - 0.017365642127
+      - 0.015325214077
+      - 0.018670574773
+      - 0.022245943973
+      - 0.025517648765
+      - 0.016217593896
+      - 0.017420817578
+      - 0.012783420668
+      - 0.018399350871
+      - 0.036356367466
+      - 0.021464313915
+      - 0.02064838201
+      - 0.046486846106
+      - 0.026869779688
+      - 0.026868450159
+      - 0.029172523796
+      - 0.021078351666
+      - 0.02012906801
+      - 0.034622927647
+      - 0.023516707725
+      - 0.019605233611
+      - 0.015060903726
+      - 0.011967089904
+      - 0.002807965101
+      - 0.01052986913
+      - 0.008058274848
+      - 0.024646807316
+      - 0.023313289798
+      - 0.005783450848
+      - 0.026883074977
+      - 0.028778983232
+      - 0.016163615021
+      - 0.003448798046
+      - 0.008290942411
+      - 0.009413463687
+      - 0.007722701746
+      - 0.016124526871
+      - 0.0085661549
+      - 0.003391628302
+      - 0.005412512277
+      - 0.00681250624
+      - 0.005811370956
+      - 0.002087360421
+      - 0.002371613706
+      - 0.001514333452
+      - 0.003619110702
+      - 0.001613782216
+      - 0.000699332218
+      - 0.000821648879
+      - 3.8556339e-05
+      - 0.001457163708
+      - 4.919257e-05
+      - 0.001752319131
+      - 0.000214054158
+      - 0.001074259376
+      - 0.001015760103
+      - 0.00039752915
+      - 0.000271223902
+      - 0.000231338034
+      - 0.000519845812
+      - 0.000353654696
+      - 0.000268564844
+      - 0.002121928173
+      - 0.004618783505
+      - 0.0056066235
+      - 0.002345289034
+      - 0.001867988148
+      - 0.005056198523
+      - 0.002765420176
+      - 0.001822784164
+      - 0.000243303794
+      - 0.002024207797
+      - 0.001026396334
+      - 0.000235326621
+      - 0.000324405059
+      - 1.3295289e-05
+      - 4.653351100004424e-05
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Conventional Hydroelectric
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 3663
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Conventional Hydroelectric
+        unit_count: 3663
+        summer_capacity_mw: 75214.61
+        mean_age_years: 63.787774
+        minimum_age_years: 0
+        maximum_age_years: 134
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  eia-us-conventional-hydropower-construction-vintage-2025:
+    quantity: construction_timing
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: *id001
+      weights:
+      - 0.000103703257
+      - 7.977174e-06
+      - 4.3874455e-05
+      - 7.9771736e-05
+      - 3.722681e-05
+      - 2.9249636e-05
+      - 1.8613405e-05
+      - 0.000491925704
+      - 0.000271223902
+      - 0.000441403605
+      - 0.000329723175
+      - 0.001152701583
+      - 0.000595628961
+      - 0.000442733134
+      - 0.001423925485
+      - 0.001596764246
+      - 0.002221642843
+      - 0.004715839117
+      - 0.001672547395
+      - 0.003749936349
+      - 0.002358584323
+      - 0.003073870888
+      - 0.001419670992
+      - 0.003010053499
+      - 0.001217316689
+      - 0.003551703585
+      - 0.001941112239
+      - 0.005207764821
+      - 0.006383068396
+      - 0.008875935141
+      - 0.003892860709
+      - 0.005206435292
+      - 0.011441925977
+      - 0.003044621251
+      - 0.010579061701
+      - 0.00740946473
+      - 0.003380992071
+      - 0.000465335126
+      - 0.000475971357
+      - 0.000889587807
+      - 0.01072929847
+      - 0.00464337979
+      - 0.007513167987
+      - 0.006570531975
+      - 0.005548124227
+      - 0.009867763723
+      - 0.014805634171
+      - 0.014015893987
+      - 0.013979996705
+      - 0.005393898872
+      - 0.000740547614
+      - 0.002283332985
+      - 0.010414466019
+      - 0.017365642127
+      - 0.015325214077
+      - 0.018670574773
+      - 0.022245943973
+      - 0.025517648765
+      - 0.016217593896
+      - 0.017420817578
+      - 0.012783420668
+      - 0.018399350871
+      - 0.036356367466
+      - 0.021464313915
+      - 0.02064838201
+      - 0.046486846106
+      - 0.026869779688
+      - 0.026868450159
+      - 0.029172523796
+      - 0.021078351666
+      - 0.02012906801
+      - 0.034622927647
+      - 0.023516707725
+      - 0.019605233611
+      - 0.015060903726
+      - 0.011967089904
+      - 0.002807965101
+      - 0.01052986913
+      - 0.008058274848
+      - 0.024646807316
+      - 0.023313289798
+      - 0.005783450848
+      - 0.026883074977
+      - 0.028778983232
+      - 0.016163615021
+      - 0.003448798046
+      - 0.008290942411
+      - 0.009413463687
+      - 0.007722701746
+      - 0.016124526871
+      - 0.0085661549
+      - 0.003391628302
+      - 0.005412512277
+      - 0.00681250624
+      - 0.005811370956
+      - 0.002087360421
+      - 0.002371613706
+      - 0.001514333452
+      - 0.003619110702
+      - 0.001613782216
+      - 0.000699332218
+      - 0.000821648879
+      - 3.8556339e-05
+      - 0.001457163708
+      - 4.919257e-05
+      - 0.001752319131
+      - 0.000214054158
+      - 0.001074259376
+      - 0.001015760103
+      - 0.00039752915
+      - 0.000271223902
+      - 0.000231338034
+      - 0.000519845812
+      - 0.000353654696
+      - 0.000268564844
+      - 0.002121928173
+      - 0.004618783505
+      - 0.0056066235
+      - 0.002345289034
+      - 0.001867988148
+      - 0.005056198523
+      - 0.002765420176
+      - 0.001822784164
+      - 0.000243303794
+      - 0.002024207797
+      - 0.001026396334
+      - 0.000235326621
+      - 0.000324405059
+      - 1.3295289e-05
+      - 4.653351100004424e-05
+    applicability:
+      evidence_geographies:
+      - US
+      reference_year: 2025
+      technology: Conventional Hydroelectric
+      proxy_policy: Use outside the United States only when no higher-precedence geography-specific profile
+        matches.
+    assumptions:
+    - The operating-fleet age distribution is used as the construction-vintage distribution of infrastructure
+      serving current electricity production.
+    - The profile is direct evidence for U.S. callers and an explicit fallback proxy elsewhere.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - The profile describes existing fleet composition and must not be interpreted as prospective service
+      life.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 3663
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      - country-proxy-fallback
+      coverage:
+        technology: Conventional Hydroelectric
+        unit_count: 3663
+        summer_capacity_mw: 75214.61
+        mean_age_years: 63.787774
+        minimum_age_years: 0
+        maximum_age_years: 134
+        derived_from_profile: us-electricity-conventional-hydroelectric-age-2025
+    review:
+      activation_status: active
+      rationale: Caller-and-exchange selectors were audited across ecoinvent 3.8-3.12; the proxy tier
+        is overridden by any direct selector.
+  us-electricity-conventional-steam-coal-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years:
+      - -89
+      - -86
+      - -84
+      - -79
+      - -77
+      - -76
+      - -74
+      - -73
+      - -72
+      - -71
+      - -70
+      - -69
+      - -68
+      - -67
+      - -66
+      - -65
+      - -64
+      - -63
+      - -62
+      - -61
+      - -60
+      - -59
+      - -58
+      - -57
+      - -56
+      - -55
+      - -54
+      - -53
+      - -52
+      - -51
+      - -50
+      - -49
+      - -48
+      - -47
+      - -46
+      - -45
+      - -44
+      - -43
+      - -42
+      - -41
+      - -40
+      - -39
+      - -38
+      - -37
+      - -36
+      - -35
+      - -34
+      - -33
+      - -32
+      - -31
+      - -30
+      - -29
+      - -28
+      - -27
+      - -25
+      - -24
+      - -22
+      - -21
+      - -20
+      - -19
+      - -18
+      - -17
+      - -16
+      - -15
+      - -14
+      - -13
+      - -5
+      - 0
+      weights:
+      - 3.617203e-05
+      - 3.617203e-05
+      - 3.617203e-05
+      - 3.617203e-05
+      - 1.8086015e-05
+      - 3.617203e-05
+      - 6.3301052e-05
+      - 4.03921e-05
+      - 0.00250189873
+      - 0.005742309736
+      - 0.018058885894
+      - 0.002535056424
+      - 0.001449895529
+      - 0.003378467586
+      - 0.003731747744
+      - 0.002274014942
+      - 0.00136247979
+      - 0.001627741342
+      - 0.002545305166
+      - 0.001350422447
+      - 0.008422657147
+      - 0.012464881481
+      - 0.025497060962
+      - 0.021368023757
+      - 0.013589228741
+      - 0.028897834634
+      - 0.043350369154
+      - 0.03171081282
+      - 0.066847719733
+      - 0.037172789325
+      - 0.040920211616
+      - 0.014278908777
+      - 0.045101095398
+      - 0.042292337281
+      - 0.048600136417
+      - 0.063454180468
+      - 0.041440485978
+      - 0.052576045363
+      - 0.032537343702
+      - 0.057363413511
+      - 0.025462697534
+      - 0.020470957417
+      - 0.014181847163
+      - 0.003852321177
+      - 0.012458852809
+      - 0.010172177656
+      - 0.009185886976
+      - 0.00434064358
+      - 0.00081278551
+      - 0.00039548086
+      - 0.008168850071
+      - 0.005464387973
+      - 0.000452150373
+      - 0.000318313863
+      - 0.000633010522
+      - 0.002652615521
+      - 0.000512437089
+      - 0.003140937924
+      - 0.002248694521
+      - 0.003159023939
+      - 0.008384676515
+      - 0.008841649826
+      - 0.010607447749
+      - 0.028736266234
+      - 0.023019879786
+      - 0.017422861036
+      - 0.000102487418
+      - 5.4258045999977876e-05
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Conventional Steam Coal
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 424
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Conventional Steam Coal
+        unit_count: 424
+        summer_capacity_mw: 165874.02
+        mean_age_years: 44.607747
+        minimum_age_years: 0
+        maximum_age_years: 89
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  us-electricity-geothermal-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years:
+      - -54
+      - -53
+      - -50
+      - -46
+      - -45
+      - -43
+      - -42
+      - -41
+      - -40
+      - -39
+      - -38
+      - -37
+      - -36
+      - -35
+      - -33
+      - -29
+      - -25
+      - -23
+      - -22
+      - -20
+      - -19
+      - -18
+      - -17
+      - -16
+      - -15
+      - -13
+      - -12
+      - -11
+      - -10
+      - -8
+      - -7
+      - -6
+      - -5
+      - -4
+      - -3
+      - -2
+      - -1
+      - 0
+      weights:
+      - 0.035014005602
+      - 0.031123560535
+      - 0.026455026455
+      - 0.019841269841
+      - 0.048630563336
+      - 0.027233115468
+      - 0.066137566138
+      - 0.050420168067
+      - 0.05757858699
+      - 0.015561780268
+      - 0.010698723934
+      - 0.095315904139
+      - 0.086290071584
+      - 0.016690009337
+      - 0.021591970121
+      - 0.017117958294
+      - 0.021786492375
+      - 0.001672891379
+      - 0.003112356054
+      - 0.007780890134
+      - 0.012566137566
+      - 0.012060379707
+      - 0.00466853408
+      - 0.039410208528
+      - 0.006069094304
+      - 0.056061313414
+      - 0.027466542172
+      - 0.005174291939
+      - 0.0145113601
+      - 0.009492685963
+      - 0.040966386555
+      - 0.007780890134
+      - 0.012371615313
+      - 0.009648303766
+      - 0.036414565826
+      - 0.031512605042
+      - 0.007780890134
+      - 0.005991285406000045
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Geothermal
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 152
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Geothermal
+        unit_count: 152
+        summer_capacity_mw: 2570.4
+        mean_age_years: 29.737356
+        minimum_age_years: 0
+        maximum_age_years: 54
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  us-electricity-hydroelectric-pumped-storage-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: &id002
+      - -98
+      - -97
+      - -96
+      - -71
+      - -69
+      - -64
+      - -63
+      - -62
+      - -60
+      - -59
+      - -58
+      - -57
+      - -56
+      - -55
+      - -54
+      - -53
+      - -52
+      - -51
+      - -50
+      - -49
+      - -48
+      - -47
+      - -46
+      - -45
+      - -44
+      - -43
+      - -42
+      - -41
+      - -40
+      - -38
+      - -34
+      - -32
+      - -30
+      - -23
+      weights:
+      - 0.005233506757
+      - 0.001205025926
+      - 8.7958097e-05
+      - 0.000373821911
+      - 0.003782198161
+      - 0.001759161935
+      - 0.007916228709
+      - 0.019350781288
+      - 0.021285859417
+      - 0.002902617193
+      - 0.063206688334
+      - 0.035319573755
+      - 0.004943245038
+      - 0.019064917473
+      - 0.00788104547
+      - 0.014161253579
+      - 0.219314718468
+      - 0.041186378809
+      - 0.017151828869
+      - 0.011896332587
+      - 0.037865960656
+      - 0.055000197906
+      - 0.057032029941
+      - 0.011733610108
+      - 0.006420941064
+      - 0.004090051499
+      - 0.007058637265
+      - 0.06207642679
+      - 0.128902590806
+      - 0.008787013867
+      - 0.072125639345
+      - 0.001759161935
+      - 0.045518315075
+      - 0.003606281967
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Hydroelectric Pumped Storage
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 145
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Hydroelectric Pumped Storage
+        unit_count: 145
+        summer_capacity_mw: 22738.1
+        mean_age_years: 47.612413
+        minimum_age_years: 23
+        maximum_age_years: 98
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  eia-us-pumped-storage-construction-vintage-2025:
+    quantity: construction_timing
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: *id002
+      weights:
+      - 0.005233506757
+      - 0.001205025926
+      - 8.7958097e-05
+      - 0.000373821911
+      - 0.003782198161
+      - 0.001759161935
+      - 0.007916228709
+      - 0.019350781288
+      - 0.021285859417
+      - 0.002902617193
+      - 0.063206688334
+      - 0.035319573755
+      - 0.004943245038
+      - 0.019064917473
+      - 0.00788104547
+      - 0.014161253579
+      - 0.219314718468
+      - 0.041186378809
+      - 0.017151828869
+      - 0.011896332587
+      - 0.037865960656
+      - 0.055000197906
+      - 0.057032029941
+      - 0.011733610108
+      - 0.006420941064
+      - 0.004090051499
+      - 0.007058637265
+      - 0.06207642679
+      - 0.128902590806
+      - 0.008787013867
+      - 0.072125639345
+      - 0.001759161935
+      - 0.045518315075
+      - 0.003606281967
+    applicability:
+      evidence_geographies:
+      - US
+      reference_year: 2025
+      technology: Hydroelectric Pumped Storage
+      proxy_policy: Use outside the United States only when no higher-precedence geography-specific profile
+        matches.
+    assumptions:
+    - The operating-fleet age distribution is used as the construction-vintage distribution of infrastructure
+      serving current electricity production.
+    - The profile is direct evidence for U.S. callers and an explicit fallback proxy elsewhere.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - The profile describes existing fleet composition and must not be interpreted as prospective service
+      life.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 145
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      - country-proxy-fallback
+      coverage:
+        technology: Hydroelectric Pumped Storage
+        unit_count: 145
+        summer_capacity_mw: 22738.1
+        mean_age_years: 47.612413
+        minimum_age_years: 23
+        maximum_age_years: 98
+        derived_from_profile: us-electricity-hydroelectric-pumped-storage-age-2025
+    review:
+      activation_status: active
+      rationale: Caller-and-exchange selectors were audited across ecoinvent 3.8-3.12; the proxy tier
+        is overridden by any direct selector.
+  us-electricity-natural-gas-fired-combined-cycle-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years:
+      - -75
+      - -73
+      - -72
+      - -71
+      - -69
+      - -67
+      - -66
+      - -64
+      - -62
+      - -60
+      - -59
+      - -58
+      - -56
+      - -55
+      - -54
+      - -53
+      - -52
+      - -51
+      - -50
+      - -49
+      - -48
+      - -47
+      - -46
+      - -45
+      - -44
+      - -43
+      - -42
+      - -41
+      - -40
+      - -39
+      - -38
+      - -37
+      - -36
+      - -35
+      - -34
+      - -33
+      - -32
+      - -31
+      - -30
+      - -29
+      - -28
+      - -27
+      - -26
+      - -25
+      - -24
+      - -23
+      - -22
+      - -21
+      - -20
+      - -19
+      - -18
+      - -17
+      - -16
+      - -15
+      - -14
+      - -13
+      - -12
+      - -11
+      - -10
+      - -9
+      - -8
+      - -7
+      - -6
+      - -5
+      - -4
+      - -3
+      - -2
+      - -1
+      - 0
+      weights:
+      - 0.000291357364
+      - 0.000111401345
+      - 0.000219374956
+      - 0.000675263537
+      - 0.000101803691
+      - 0.00061253601
+      - 0.000919318176
+      - 0.000881955879
+      - 0.000647841667
+      - 0.000885040839
+      - 0.000696858259
+      - 0.001127724384
+      - 0.002903975983
+      - 0.001552763362
+      - 7.5410141e-05
+      - 0.002204032763
+      - 0.001000555464
+      - 0.005898786908
+      - 0.001389946011
+      - 0.002234882366
+      - 0.002228026899
+      - 0.000174814418
+      - 0.000663609242
+      - 0.000318779233
+      - 0.000716739115
+      - 0.001383433317
+      - 0.000133681614
+      - 0.000656411002
+      - 0.000688974472
+      - 0.001471868847
+      - 0.004341224719
+      - 0.001607607101
+      - 0.004993213944
+      - 0.007798436919
+      - 0.005584463728
+      - 0.007806320707
+      - 0.006579534819
+      - 0.016974788505
+      - 0.008316264648
+      - 0.006710131472
+      - 0.006477388355
+      - 0.004267185671
+      - 0.009673475803
+      - 0.041876279723
+      - 0.060567745814
+      - 0.134271629728
+      - 0.130344372407
+      - 0.06715632985
+      - 0.040672048323
+      - 0.027423926164
+      - 0.015909825924
+      - 0.015612641413
+      - 0.021498814261
+      - 0.014258343832
+      - 0.027686147791
+      - 0.023322711358
+      - 0.011844533767
+      - 0.027727623369
+      - 0.016090810263
+      - 0.016932661657
+      - 0.028072796151
+      - 0.058402583551
+      - 0.019799275343
+      - 0.017817359723
+      - 0.014864709922
+      - 0.016631706639
+      - 0.02124166568
+      - 0.000335232355
+      - 0.005641021337000045
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Natural Gas Fired Combined Cycle
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 1848
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Natural Gas Fired Combined Cycle
+        unit_count: 1848
+        summer_capacity_mw: 291737.95
+        mean_age_years: 19.337075
+        minimum_age_years: 0
+        maximum_age_years: 75
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  us-electricity-natural-gas-fired-combustion-turbine-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years:
+      - -63
+      - -62
+      - -61
+      - -60
+      - -59
+      - -58
+      - -57
+      - -56
+      - -55
+      - -54
+      - -53
+      - -52
+      - -51
+      - -50
+      - -49
+      - -48
+      - -47
+      - -46
+      - -45
+      - -44
+      - -43
+      - -42
+      - -41
+      - -40
+      - -39
+      - -38
+      - -37
+      - -36
+      - -35
+      - -34
+      - -33
+      - -32
+      - -31
+      - -30
+      - -29
+      - -28
+      - -27
+      - -26
+      - -25
+      - -24
+      - -23
+      - -22
+      - -21
+      - -20
+      - -19
+      - -18
+      - -17
+      - -16
+      - -15
+      - -14
+      - -13
+      - -12
+      - -11
+      - -10
+      - -9
+      - -8
+      - -7
+      - -6
+      - -5
+      - -4
+      - -3
+      - -2
+      - -1
+      - 0
+      weights:
+      - 8.4652869e-05
+      - 0.000202099193
+      - 0.000106006746
+      - 0.000701627387
+      - 0.001181479508
+      - 0.000999513971
+      - 0.000966720517
+      - 0.001927950036
+      - 0.004112909235
+      - 0.006241433187
+      - 0.014236172202
+      - 0.006004252625
+      - 0.005396429769
+      - 0.011790390649
+      - 0.006859170342
+      - 0.001971420429
+      - 0.003873440757
+      - 0.003786499972
+      - 0.001239287503
+      - 0.003712524041
+      - 0.000481224871
+      - 0.000964737657
+      - 0.001064643295
+      - 0.003318239955
+      - 0.004096893827
+      - 0.005813593009
+      - 0.00499375666
+      - 0.010079792575
+      - 0.01003250899
+      - 0.007076522305
+      - 0.012123663657
+      - 0.008256324008
+      - 0.017136486279
+      - 0.02525248481
+      - 0.011185618347
+      - 0.009854814228
+      - 0.005036464414
+      - 0.03533914113
+      - 0.094751346686
+      - 0.140762697949
+      - 0.129698415382
+      - 0.058029160702
+      - 0.021880860162
+      - 0.025950146476
+      - 0.008201414038
+      - 0.014131690732
+      - 0.022350416664
+      - 0.020326602973
+      - 0.011810219249
+      - 0.011802592864
+      - 0.017340110749
+      - 0.026427710682
+      - 0.003158848517
+      - 0.011723278464
+      - 0.024775073131
+      - 0.006834003273
+      - 0.013525393153
+      - 0.010393999622
+      - 0.006371844364
+      - 0.016163359599
+      - 0.008427155024
+      - 0.018620580729
+      - 0.011810219249
+      - 0.017231968611999954
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Natural Gas Fired Combustion Turbine
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 2128
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Natural Gas Fired Combustion Turbine
+        unit_count: 2128
+        summer_capacity_mw: 131123.73
+        mean_age_years: 22.966985
+        minimum_age_years: 0
+        maximum_age_years: 63
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  us-electricity-nuclear-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: &id003
+      - -56
+      - -55
+      - -54
+      - -53
+      - -52
+      - -51
+      - -50
+      - -49
+      - -48
+      - -47
+      - -46
+      - -45
+      - -44
+      - -43
+      - -42
+      - -41
+      - -40
+      - -39
+      - -38
+      - -37
+      - -36
+      - -35
+      - -32
+      - -29
+      - -9
+      - -2
+      - -1
+      weights:
+      - 0.006398422335
+      - 0.021394498823
+      - 0.023448147689
+      - 0.042252095981
+      - 0.026265848924
+      - 0.084136620824
+      - 0.059599492008
+      - 0.028207987445
+      - 0.061541320778
+      - 0.021847767728
+      - 0.009117003263
+      - 0.019880849131
+      - 0.04486123157
+      - 0.011622888531
+      - 0.023066121505
+      - 0.069592780738
+      - 0.086248089869
+      - 0.09705808863
+      - 0.080094370793
+      - 0.062830917276
+      - 0.025110477842
+      - 0.036902696898
+      - 0.012338413249
+      - 0.011595010945
+      - 0.011584685913
+      - 0.011502085656
+      - 0.011502085656
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Nuclear
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 94
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Nuclear
+        unit_count: 94
+        summer_capacity_mw: 96852.0
+        mean_age_years: 42.31908
+        minimum_age_years: 1
+        maximum_age_years: 56
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  eia-us-nuclear-construction-vintage-2025:
+    quantity: construction_timing
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: *id003
+      weights:
+      - 0.006398422335
+      - 0.021394498823
+      - 0.023448147689
+      - 0.042252095981
+      - 0.026265848924
+      - 0.084136620824
+      - 0.059599492008
+      - 0.028207987445
+      - 0.061541320778
+      - 0.021847767728
+      - 0.009117003263
+      - 0.019880849131
+      - 0.04486123157
+      - 0.011622888531
+      - 0.023066121505
+      - 0.069592780738
+      - 0.086248089869
+      - 0.09705808863
+      - 0.080094370793
+      - 0.062830917276
+      - 0.025110477842
+      - 0.036902696898
+      - 0.012338413249
+      - 0.011595010945
+      - 0.011584685913
+      - 0.011502085656
+      - 0.011502085656
+    applicability:
+      evidence_geographies:
+      - US
+      reference_year: 2025
+      technology: Nuclear
+      proxy_policy: Use outside the United States only when no higher-precedence geography-specific profile
+        matches.
+    assumptions:
+    - The operating-fleet age distribution is used as the construction-vintage distribution of infrastructure
+      serving current electricity production.
+    - The profile is direct evidence for U.S. callers and an explicit fallback proxy elsewhere.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - The profile describes existing fleet composition and must not be interpreted as prospective service
+      life.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 94
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      - country-proxy-fallback
+      coverage:
+        technology: Nuclear
+        unit_count: 94
+        summer_capacity_mw: 96852.0
+        mean_age_years: 42.31908
+        minimum_age_years: 1
+        maximum_age_years: 56
+        derived_from_profile: us-electricity-nuclear-age-2025
+    review:
+      activation_status: active
+      rationale: Caller-and-exchange selectors were audited across ecoinvent 3.8-3.12; the proxy tier
+        is overridden by any direct selector.
+  us-electricity-offshore-wind-turbine-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years:
+      - -9
+      - -4
+      - -1
+      weights:
+      - 0.171044950379
+      - 0.070052539405
+      - 0.758902510216
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Offshore Wind Turbine
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 3
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - small-sample
+      - surviving-fleet
+      coverage:
+        technology: Offshore Wind Turbine
+        unit_count: 3
+        summer_capacity_mw: 171.3
+        mean_age_years: 2.578517
+        minimum_age_years: 1
+        maximum_age_years: 9
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  us-electricity-onshore-wind-turbine-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: &id004
+      - -44
+      - -43
+      - -42
+      - -41
+      - -40
+      - -39
+      - -38
+      - -36
+      - -35
+      - -33
+      - -32
+      - -31
+      - -28
+      - -27
+      - -26
+      - -25
+      - -24
+      - -23
+      - -22
+      - -21
+      - -20
+      - -19
+      - -18
+      - -17
+      - -16
+      - -15
+      - -14
+      - -13
+      - -12
+      - -11
+      - -10
+      - -9
+      - -8
+      - -7
+      - -6
+      - -5
+      - -4
+      - -3
+      - -2
+      - -1
+      - 0
+      weights:
+      - 0.000108924437
+      - 2.2036736e-05
+      - 0.000195182518
+      - 0.000659213213
+      - 0.000102628227
+      - 0.000195812139
+      - 0.000159294119
+      - 0.000557214607
+      - 0.000519437345
+      - 4.0925367e-05
+      - 2.6444083e-05
+      - 0.000295292261
+      - 3.563655e-05
+      - 0.001025023028
+      - 0.003023440161
+      - 0.000120257616
+      - 0.008504920803
+      - 0.004120743683
+      - 0.009735829907
+      - 0.002245228574
+      - 0.013585962473
+      - 0.016501863363
+      - 0.033117436284
+      - 0.051545184438
+      - 0.062907955073
+      - 0.030250142137
+      - 0.041740096219
+      - 0.083617449821
+      - 0.005467628979
+      - 0.031571842592
+      - 0.051910994253
+      - 0.054919953131
+      - 0.041672726769
+      - 0.0445545022
+      - 0.0535864158
+      - 0.093503759152
+      - 0.086863775825
+      - 0.059591741135
+      - 0.041469359178
+      - 0.031634049149
+      - 0.038293676654999956
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Onshore Wind Turbine
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 1554
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Onshore Wind Turbine
+        unit_count: 1554
+        summer_capacity_mw: 158825.7
+        mean_age_years: 9.469573
+        minimum_age_years: 0
+        maximum_age_years: 44
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  eia-us-onshore-wind-construction-vintage-2025:
+    quantity: construction_timing
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: *id004
+      weights:
+      - 0.000108924437
+      - 2.2036736e-05
+      - 0.000195182518
+      - 0.000659213213
+      - 0.000102628227
+      - 0.000195812139
+      - 0.000159294119
+      - 0.000557214607
+      - 0.000519437345
+      - 4.0925367e-05
+      - 2.6444083e-05
+      - 0.000295292261
+      - 3.563655e-05
+      - 0.001025023028
+      - 0.003023440161
+      - 0.000120257616
+      - 0.008504920803
+      - 0.004120743683
+      - 0.009735829907
+      - 0.002245228574
+      - 0.013585962473
+      - 0.016501863363
+      - 0.033117436284
+      - 0.051545184438
+      - 0.062907955073
+      - 0.030250142137
+      - 0.041740096219
+      - 0.083617449821
+      - 0.005467628979
+      - 0.031571842592
+      - 0.051910994253
+      - 0.054919953131
+      - 0.041672726769
+      - 0.0445545022
+      - 0.0535864158
+      - 0.093503759152
+      - 0.086863775825
+      - 0.059591741135
+      - 0.041469359178
+      - 0.031634049149
+      - 0.038293676654999956
+    applicability:
+      evidence_geographies:
+      - US
+      reference_year: 2025
+      technology: Onshore Wind Turbine
+      proxy_policy: Use outside the United States only when no higher-precedence geography-specific profile
+        matches.
+    assumptions:
+    - The operating-fleet age distribution is used as the construction-vintage distribution of infrastructure
+      serving current electricity production.
+    - The profile is direct evidence for U.S. callers and an explicit fallback proxy elsewhere.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - The profile describes existing fleet composition and must not be interpreted as prospective service
+      life.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 1554
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      - country-proxy-fallback
+      coverage:
+        technology: Onshore Wind Turbine
+        unit_count: 1554
+        summer_capacity_mw: 158825.7
+        mean_age_years: 9.469573
+        minimum_age_years: 0
+        maximum_age_years: 44
+        derived_from_profile: us-electricity-onshore-wind-turbine-age-2025
+    review:
+      activation_status: active
+      rationale: Caller-and-exchange selectors were audited across ecoinvent 3.8-3.12; the proxy tier
+        is overridden by any direct selector.
+  us-electricity-solar-photovoltaic-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: &id005
+      - -24
+      - -23
+      - -22
+      - -20
+      - -19
+      - -18
+      - -17
+      - -16
+      - -15
+      - -14
+      - -13
+      - -12
+      - -11
+      - -10
+      - -9
+      - -8
+      - -7
+      - -6
+      - -5
+      - -4
+      - -3
+      - -2
+      - -1
+      - 0
+      weights:
+      - 2.5672974e-05
+      - 1.9748442e-05
+      - 1.316563e-06
+      - 1.1849065e-05
+      - 1.1849065e-05
+      - 0.000151931345
+      - 0.00020340895
+      - 0.000639454543
+      - 0.00156881621
+      - 0.00495264587
+      - 0.010540072485
+      - 0.017663862037
+      - 0.022071845884
+      - 0.022342794505
+      - 0.052918056079
+      - 0.034445166213
+      - 0.032511662113
+      - 0.038493991734
+      - 0.070133562661
+      - 0.090291916199
+      - 0.074355516187
+      - 0.128427210404
+      - 0.204294009007
+      - 0.193923641465
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Solar Photovoltaic
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 7979
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Solar Photovoltaic
+        unit_count: 7979
+        summer_capacity_mw: 151910.72
+        mean_age_years: 3.53248
+        minimum_age_years: 0
+        maximum_age_years: 24
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  eia-us-solar-photovoltaic-construction-vintage-2025:
+    quantity: construction_timing
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years: *id005
+      weights:
+      - 2.5672974e-05
+      - 1.9748442e-05
+      - 1.316563e-06
+      - 1.1849065e-05
+      - 1.1849065e-05
+      - 0.000151931345
+      - 0.00020340895
+      - 0.000639454543
+      - 0.00156881621
+      - 0.00495264587
+      - 0.010540072485
+      - 0.017663862037
+      - 0.022071845884
+      - 0.022342794505
+      - 0.052918056079
+      - 0.034445166213
+      - 0.032511662113
+      - 0.038493991734
+      - 0.070133562661
+      - 0.090291916199
+      - 0.074355516187
+      - 0.128427210404
+      - 0.204294009007
+      - 0.193923641465
+    applicability:
+      evidence_geographies:
+      - US
+      reference_year: 2025
+      technology: Solar Photovoltaic
+      proxy_policy: Use outside the United States only when no higher-precedence geography-specific profile
+        matches.
+    assumptions:
+    - The operating-fleet age distribution is used as the construction-vintage distribution of infrastructure
+      serving current electricity production.
+    - The profile is direct evidence for U.S. callers and an explicit fallback proxy elsewhere.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - The profile describes existing fleet composition and must not be interpreted as prospective service
+      life.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 7979
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      - country-proxy-fallback
+      coverage:
+        technology: Solar Photovoltaic
+        unit_count: 7979
+        summer_capacity_mw: 151910.72
+        mean_age_years: 3.53248
+        minimum_age_years: 0
+        maximum_age_years: 24
+        derived_from_profile: us-electricity-solar-photovoltaic-age-2025
+    review:
+      activation_status: active
+      rationale: Caller-and-exchange selectors were audited across ecoinvent 3.8-3.12; the proxy tier
+        is overridden by any direct selector.
+  us-electricity-wood-wood-waste-biomass-age-2025:
+    quantity: fleet_age
+    reference_event: current_service
+    distribution:
+      kind: discrete
+      offsets_years:
+      - -78
+      - -77
+      - -76
+      - -75
+      - -74
+      - -73
+      - -71
+      - -70
+      - -68
+      - -67
+      - -66
+      - -65
+      - -64
+      - -63
+      - -61
+      - -60
+      - -59
+      - -58
+      - -57
+      - -56
+      - -55
+      - -54
+      - -53
+      - -51
+      - -49
+      - -48
+      - -47
+      - -46
+      - -45
+      - -44
+      - -43
+      - -42
+      - -41
+      - -40
+      - -39
+      - -38
+      - -37
+      - -36
+      - -35
+      - -34
+      - -33
+      - -32
+      - -31
+      - -30
+      - -29
+      - -28
+      - -26
+      - -24
+      - -23
+      - -22
+      - -21
+      - -19
+      - -18
+      - -17
+      - -16
+      - -15
+      - -14
+      - -13
+      - -12
+      - -11
+      - -10
+      - -9
+      - -8
+      - -7
+      - -6
+      - -5
+      - -4
+      - -1
+      - 0
+      weights:
+      - 0.001507340749
+      - 0.005275692623
+      - 0.004522022248
+      - 0.003165415574
+      - 0.005275692623
+      - 0.002713213349
+      - 0.008697356124
+      - 0.009345512647
+      - 0.011094027916
+      - 0.012209460071
+      - 0.002667993127
+      - 0.012857616593
+      - 0.003014681499
+      - 0.005275692623
+      - 0.003768351874
+      - 0.014184076452
+      - 0.024464140364
+      - 0.014153929637
+      - 0.024645021254
+      - 0.014093636007
+      - 0.003014681499
+      - 0.012917910223
+      - 0.014892526605
+      - 0.001884175937
+      - 0.034186488198
+      - 0.020967109825
+      - 0.018947273221
+      - 0.011289982213
+      - 0.024599801031
+      - 0.032558560188
+      - 0.033779506195
+      - 0.009164631757
+      - 0.032453046336
+      - 0.032664074041
+      - 0.011666817401
+      - 0.040833860903
+      - 0.01371680082
+      - 0.03489493835
+      - 0.045597057671
+      - 0.042280908022
+      - 0.0398239426
+      - 0.016867142986
+      - 0.004702903138
+      - 0.005727894848
+      - 0.00788339212
+      - 0.00625546411
+      - 0.005230472401
+      - 0.009496246722
+      - 4.5220222e-05
+      - 0.007596997377
+      - 0.006406198185
+      - 0.000949624672
+      - 0.011666817401
+      - 0.011636670586
+      - 0.002110277049
+      - 0.009903228724
+      - 0.015540683127
+      - 0.021102770492
+      - 0.078306351934
+      - 0.009631907389
+      - 0.015405022459
+      - 0.001070211932
+      - 0.015902444907
+      - 0.00661722589
+      - 0.021916734497
+      - 0.005727894848
+      - 0.000753670375
+      - 0.006029362998
+      - 0.0004522022210000885
+    applicability:
+      geographies:
+      - US
+      reference_year: 2025
+      technology: Wood/Wood Waste Biomass
+    assumptions:
+    - Includes EIA generators with operating status OP, a valid operating year, and positive reported
+      summer capacity.
+    - Fleet ages are weighted by net summer capacity, not annual generation or utilisation.
+    - Operating age is reference year minus operating year; operating month is not used.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators with status OP, a valid operating year, and positive summer capacity.
+      weighting: Net summer generating capacity in MW.
+      reference_period: '2025'
+      censoring: Operating units are right-censored with respect to eventual retirement.
+      sample_size:
+        count: 233
+        unit: generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - surviving-fleet
+      coverage:
+        technology: Wood/Wood Waste Biomass
+        unit_count: 233
+        summer_capacity_mw: 6634.2
+        mean_age_years: 37.166124
+        minimum_age_years: 0
+        maximum_age_years: 78
+    review:
+      activation_status: evidence_only
+      rationale: Valid U.S. fleet-age evidence; it is not a service-life distribution and lacks reviewed
+        ecoinvent geography mappings.
+  us-electricity-batteries-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 14
+      - 12
+      - 11
+      - 10
+      - 9
+      - 8
+      - 7
+      - 6
+      - 5
+      - 4
+      - 3
+      - 2
+      - 1
+      - 0
+      weights:
+      - 0.038684719536
+      - 0.009671179884
+      - 0.016924564797
+      - 0.008462282398
+      - 0.022969052224
+      - 0.020309477756
+      - 0.027321083172
+      - 0.027079303675
+      - 0.002417794971
+      - 0.734284332689
+      - 0.010154738878
+      - 0.036266924565
+      - 0.018858800774
+      - 0.026595744681
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Batteries
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 35
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      coverage:
+        technology: Batteries
+        unit_count: 35
+        summer_capacity_mw: 413.6
+        mean_retirement_age_years: 4.722437
+        minimum_retirement_age_years: 0
+        maximum_retirement_age_years: 14
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-conventional-hydroelectric-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 120
+      - 117
+      - 114
+      - 113
+      - 112
+      - 111
+      - 110
+      - 109
+      - 108
+      - 106
+      - 105
+      - 104
+      - 103
+      - 101
+      - 100
+      - 99
+      - 98
+      - 97
+      - 96
+      - 95
+      - 94
+      - 93
+      - 92
+      - 91
+      - 90
+      - 89
+      - 88
+      - 86
+      - 85
+      - 84
+      - 81
+      - 80
+      - 79
+      - 78
+      - 76
+      - 73
+      - 69
+      - 67
+      - 66
+      - 65
+      - 62
+      - 61
+      - 58
+      - 56
+      - 54
+      - 53
+      - 52
+      - 50
+      - 49
+      - 48
+      - 47
+      - 46
+      - 45
+      - 42
+      - 41
+      - 40
+      - 37
+      - 35
+      - 34
+      - 33
+      - 32
+      - 31
+      - 30
+      - 29
+      - 28
+      - 26
+      - 23
+      - 21
+      - 20
+      - 18
+      - 15
+      - 11
+      - 10
+      weights:
+      - 0.000832986256
+      - 0.002498958767
+      - 0.000832986256
+      - 0.008173677634
+      - 0.007236568097
+      - 0.010464389838
+      - 0.0063515202
+      - 0.016711786756
+      - 0.004529362766
+      - 0.016607663474
+      - 0.006820074969
+      - 0.002030403998
+      - 0.012494793836
+      - 0.002603082049
+      - 0.009266972095
+      - 0.001353602666
+      - 0.025562265723
+      - 0.003123698459
+      - 0.017024156601
+      - 5.2061641e-05
+      - 0.004685547688
+      - 0.055237401083
+      - 0.018950437318
+      - 0.000832986256
+      - 0.002082465639
+      - 0.008694294044
+      - 0.000572678051
+      - 0.014004581424
+      - 0.003331945023
+      - 0.008121615993
+      - 0.003592253228
+      - 0.01056851312
+      - 0.000104123282
+      - 0.00104123282
+      - 0.002238650562
+      - 0.003540191587
+      - 0.000832986256
+      - 0.000572678051
+      - 0.052061640983
+      - 0.002082465639
+      - 0.01004789671
+      - 0.000885047897
+      - 0.002082465639
+      - 0.05403998334
+      - 0.05403998334
+      - 0.057684298209
+      - 0.05403998334
+      - 0.108079966681
+      - 0.108079966681
+      - 0.057163681799
+      - 0.074864639733
+      - 0.026030820491
+      - 0.005206164098
+      - 0.000260308205
+      - 0.000104123282
+      - 0.005414410662
+      - 0.0031757601
+      - 0.003436068305
+      - 0.008277800916
+      - 0.00213452728
+      - 0.000624739692
+      - 0.004997917534
+      - 0.000728862974
+      - 0.002342773844
+      - 0.001249479384
+      - 0.000728862974
+      - 0.000260308205
+      - 5.2061641e-05
+      - 0.002498958767
+      - 0.00052061641
+      - 0.001874219075
+      - 0.000676801333
+      - 0.0006768013310000442
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Conventional Hydroelectric
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 230
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      coverage:
+        technology: Conventional Hydroelectric
+        unit_count: 230
+        summer_capacity_mw: 1920.8
+        mean_retirement_age_years: 64.2904
+        minimum_retirement_age_years: 10
+        maximum_retirement_age_years: 120
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-conventional-steam-coal-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 89
+      - 85
+      - 81
+      - 80
+      - 79
+      - 77
+      - 74
+      - 73
+      - 71
+      - 70
+      - 69
+      - 68
+      - 67
+      - 66
+      - 65
+      - 64
+      - 63
+      - 62
+      - 61
+      - 60
+      - 59
+      - 58
+      - 57
+      - 56
+      - 55
+      - 54
+      - 53
+      - 52
+      - 51
+      - 50
+      - 49
+      - 48
+      - 47
+      - 46
+      - 45
+      - 44
+      - 43
+      - 42
+      - 41
+      - 40
+      - 39
+      - 38
+      - 37
+      - 36
+      - 35
+      - 34
+      - 33
+      - 32
+      - 31
+      - 30
+      - 29
+      - 28
+      - 27
+      - 26
+      - 25
+      - 24
+      - 23
+      - 22
+      - 21
+      - 20
+      - 17
+      - 12
+      - 9
+      - 8
+      - 5
+      weights:
+      - 9.6135359e-05
+      - 8.1817326e-05
+      - 0.000190225284
+      - 2.8636064e-05
+      - 1.5340749e-05
+      - 2.0454332e-05
+      - 0.000107385241
+      - 0.001389871833
+      - 0.001697709524
+      - 0.001189419383
+      - 0.004180865382
+      - 0.004173706366
+      - 0.004209501446
+      - 0.008085597287
+      - 0.016274488949
+      - 0.02137375382
+      - 0.032602159159
+      - 0.022587718401
+      - 0.039794924871
+      - 0.029394919962
+      - 0.032722839716
+      - 0.024807013381
+      - 0.018784235438
+      - 0.037275973933
+      - 0.017510953295
+      - 0.061838558051
+      - 0.024534970771
+      - 0.043000118635
+      - 0.036035418721
+      - 0.036081440967
+      - 0.037237110703
+      - 0.023959181336
+      - 0.035490310783
+      - 0.069587681583
+      - 0.045635659264
+      - 0.042633986099
+      - 0.015365293908
+      - 0.012108964315
+      - 0.025803139331
+      - 0.029080945972
+      - 0.02236681162
+      - 0.028012207145
+      - 0.011265223136
+      - 0.013111226564
+      - 0.006492204854
+      - 0.00880558976
+      - 0.014870299083
+      - 0.000434654547
+      - 0.006402205795
+      - 0.006402205795
+      - 0.00107385241
+      - 0.000654538612
+      - 0.001805094765
+      - 0.000107385241
+      - 0.003420986962
+      - 0.000148293904
+      - 0.008130596816
+      - 0.002045433161
+      - 3.0681497e-05
+      - 0.000780332751
+      - 7.1590161e-05
+      - 2.0454332e-05
+      - 0.000269997177
+      - 0.006136299484
+      - 0.00015340748799997787
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Conventional Steam Coal
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 615
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      coverage:
+        technology: Conventional Steam Coal
+        unit_count: 615
+        summer_capacity_mw: 97778.8
+        mean_retirement_age_years: 49.719875
+        minimum_retirement_age_years: 5
+        maximum_retirement_age_years: 89
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-geothermal-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 39
+      - 38
+      - 32
+      - 30
+      - 29
+      - 28
+      - 26
+      - 24
+      - 23
+      - 22
+      - 21
+      - 20
+      - 17
+      - 14
+      - 13
+      - 10
+      - 8
+      - 4
+      weights:
+      - 0.044991212654
+      - 0.120562390158
+      - 0.043936731107
+      - 0.006326889279
+      - 0.177152899824
+      - 0.028119507909
+      - 0.085764499121
+      - 0.011599297012
+      - 0.066432337434
+      - 0.031282952548
+      - 0.031634446397
+      - 0.093145869947
+      - 0.099121265378
+      - 0.005272407733
+      - 0.017574692443
+      - 0.070298769772
+      - 0.028119507909
+      - 0.038664323374999976
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Geothermal
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 130
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      coverage:
+        technology: Geothermal
+        unit_count: 130
+        summer_capacity_mw: 284.5
+        mean_retirement_age_years: 24.178207
+        minimum_retirement_age_years: 4
+        maximum_retirement_age_years: 39
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-hydroelectric-pumped-storage-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 12
+      weights:
+      - 1.0
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Hydroelectric Pumped Storage
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 2
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      - small-sample
+      coverage:
+        technology: Hydroelectric Pumped Storage
+        unit_count: 2
+        summer_capacity_mw: 42.0
+        mean_retirement_age_years: 12.0
+        minimum_retirement_age_years: 12
+        maximum_retirement_age_years: 12
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-natural-gas-fired-combined-cycle-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 76
+      - 70
+      - 69
+      - 67
+      - 66
+      - 65
+      - 64
+      - 62
+      - 61
+      - 60
+      - 58
+      - 56
+      - 55
+      - 54
+      - 53
+      - 52
+      - 51
+      - 48
+      - 47
+      - 46
+      - 45
+      - 44
+      - 43
+      - 42
+      - 41
+      - 40
+      - 38
+      - 37
+      - 36
+      - 35
+      - 34
+      - 33
+      - 32
+      - 31
+      - 30
+      - 29
+      - 28
+      - 27
+      - 26
+      - 23
+      - 22
+      - 20
+      - 19
+      - 18
+      - 17
+      - 16
+      - 14
+      - 13
+      - 12
+      - 11
+      weights:
+      - 0.001021077967
+      - 0.002370359565
+      - 0.002698563197
+      - 0.005962365984
+      - 0.011304791773
+      - 0.000911676756
+      - 0.001276347458
+      - 0.014586828094
+      - 0.080592225221
+      - 0.082597914084
+      - 0.017139523011
+      - 0.011268324703
+      - 0.010393115017
+      - 0.008934432208
+      - 0.002680329662
+      - 0.003519072278
+      - 0.009116767559
+      - 0.002370359565
+      - 0.014240390927
+      - 0.037561082343
+      - 0.009481438261
+      - 0.008387426154
+      - 0.008679162716
+      - 0.001768652906
+      - 0.00616293487
+      - 0.011724163081
+      - 0.006108234264
+      - 0.051600904383
+      - 0.058164977026
+      - 0.013310480636
+      - 0.017540660783
+      - 0.025891619867
+      - 0.011213624097
+      - 0.003373203997
+      - 0.038837429801
+      - 0.03334913573
+      - 0.031908686456
+      - 0.046732550507
+      - 0.038035154256
+      - 0.0401867114
+      - 0.057526803297
+      - 0.040241412005
+      - 0.012708773977
+      - 0.005907665378
+      - 0.002188024214
+      - 0.000528772518
+      - 0.014058055576
+      - 0.000875209686
+      - 0.000547006054
+      - 0.082415578732
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Natural Gas Fired Combined Cycle
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 121
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      coverage:
+        technology: Natural Gas Fired Combined Cycle
+        unit_count: 121
+        summer_capacity_mw: 5484.4
+        mean_retirement_age_years: 36.838834
+        minimum_retirement_age_years: 11
+        maximum_retirement_age_years: 76
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-natural-gas-fired-combustion-turbine-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 61
+      - 59
+      - 58
+      - 56
+      - 55
+      - 54
+      - 53
+      - 52
+      - 51
+      - 50
+      - 49
+      - 48
+      - 47
+      - 46
+      - 45
+      - 44
+      - 43
+      - 42
+      - 41
+      - 40
+      - 39
+      - 38
+      - 37
+      - 36
+      - 35
+      - 34
+      - 33
+      - 32
+      - 31
+      - 30
+      - 29
+      - 28
+      - 27
+      - 26
+      - 25
+      - 24
+      - 23
+      - 22
+      - 21
+      - 20
+      - 19
+      - 18
+      - 17
+      - 16
+      - 15
+      - 14
+      - 13
+      - 12
+      - 11
+      - 10
+      - 9
+      - 8
+      - 7
+      - 6
+      - 5
+      - 4
+      weights:
+      - 0.001182604956
+      - 0.002386711821
+      - 0.002257700371
+      - 0.003558565823
+      - 0.002537225179
+      - 0.010374670752
+      - 0.010879965597
+      - 0.066838681933
+      - 0.045541041767
+      - 0.060183841316
+      - 0.010310165027
+      - 0.024232650648
+      - 0.025221738429
+      - 0.054604096114
+      - 0.084093963339
+      - 0.066870934795
+      - 0.064322958663
+      - 0.038918454013
+      - 0.008439499006
+      - 0.004515400742
+      - 0.015158845348
+      - 0.01677148847
+      - 0.02760845025
+      - 0.002494221362
+      - 0.038219641993
+      - 0.050217706821
+      - 0.022447992259
+      - 0.003870343493
+      - 0.00951459442
+      - 0.022974789013
+      - 0.021899693598
+      - 0.013481696501
+      - 0.003397301511
+      - 0.019405472236
+      - 0.013040907381
+      - 0.004203623072
+      - 0.010869214643
+      - 0.040531097135
+      - 0.007901951298
+      - 0.011525022846
+      - 0.003504811052
+      - 0.005515239478
+      - 0.000946083965
+      - 0.000967585873
+      - 0.00788044939
+      - 0.002719991399
+      - 0.000451540074
+      - 0.007192388324
+      - 0.000946083965
+      - 0.000483792937
+      - 0.002655485674
+      - 0.00347255819
+      - 0.006880610654
+      - 0.012363597269
+      - 0.000784819653
+      - 0.00043003816200008847
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Natural Gas Fired Combustion Turbine
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 436
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      coverage:
+        technology: Natural Gas Fired Combustion Turbine
+        unit_count: 436
+        summer_capacity_mw: 9301.5
+        mean_retirement_age_years: 39.094641
+        minimum_retirement_age_years: 4
+        maximum_retirement_age_years: 61
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-nuclear-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 43
+      - 36
+      - 30
+      - 29
+      weights:
+      - 0.138227210261
+      - 0.246220797068
+      - 0.306344480073
+      - 0.309207512598
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Nuclear
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 4
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      - small-sample
+      coverage:
+        technology: Nuclear
+        unit_count: 4
+        summer_capacity_mw: 3492.8
+        mean_retirement_age_years: 32.965071
+        minimum_retirement_age_years: 29
+        maximum_retirement_age_years: 43
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-onshore-wind-turbine-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 38
+      - 36
+      - 35
+      - 34
+      - 33
+      - 32
+      - 31
+      - 30
+      - 29
+      - 28
+      - 27
+      - 26
+      - 25
+      - 24
+      - 23
+      - 22
+      - 21
+      - 20
+      - 19
+      - 18
+      - 17
+      - 16
+      - 15
+      - 14
+      - 13
+      - 12
+      - 11
+      - 10
+      - 9
+      - 7
+      - 6
+      - 5
+      - 2
+      weights:
+      - 0.014016123122
+      - 0.030505679736
+      - 0.019879076585
+      - 0.062477097838
+      - 0.027482594357
+      - 0.009618908025
+      - 0.009985342616
+      - 0.036643459143
+      - 0.089868083547
+      - 0.013741297178
+      - 0.031879809454
+      - 0.007969952364
+      - 0.002656650788
+      - 0.069622572371
+      - 0.048644192012
+      - 0.031696592158
+      - 0.051758886039
+      - 0.093807255405
+      - 0.102693294247
+      - 9.1608648e-05
+      - 0.03160498351
+      - 0.01410773177
+      - 0.024184683034
+      - 0.010076951264
+      - 0.006046170759
+      - 0.018321729571
+      - 0.018321729571
+      - 0.109930377428
+      - 0.00128252107
+      - 9.1608648e-05
+      - 0.003023085379
+      - 0.003939171858
+      - 0.004030780504999911
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Onshore Wind Turbine
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 100
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      coverage:
+        technology: Onshore Wind Turbine
+        unit_count: 100
+        summer_capacity_mw: 1091.6
+        mean_retirement_age_years: 22.526933
+        minimum_retirement_age_years: 2
+        maximum_retirement_age_years: 38
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-solar-photovoltaic-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 29
+      - 27
+      - 17
+      - 16
+      - 15
+      - 14
+      - 13
+      - 12
+      - 11
+      - 10
+      - 9
+      - 8
+      - 7
+      - 4
+      - 3
+      - 1
+      weights:
+      - 0.011123470523
+      - 0.015572858732
+      - 0.012235817575
+      - 0.001112347052
+      - 0.011123470523
+      - 0.037819799778
+      - 0.026696329255
+      - 0.116796440489
+      - 0.072302558398
+      - 0.155728587319
+      - 0.001112347052
+      - 0.344827586207
+      - 0.020022246941
+      - 0.088987764182
+      - 0.07786429366
+      - 0.006674082314
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Solar Photovoltaic
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 155
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      coverage:
+        technology: Solar Photovoltaic
+        unit_count: 155
+        summer_capacity_mw: 89.9
+        mean_retirement_age_years: 9.271413
+        minimum_retirement_age_years: 1
+        maximum_retirement_age_years: 29
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.
+  us-electricity-wood-wood-waste-biomass-retirement-age-2002-2025:
+    quantity: retirement_timing
+    reference_event: asset_commissioning
+    distribution:
+      kind: discrete
+      offsets_years:
+      - 88
+      - 87
+      - 80
+      - 79
+      - 76
+      - 75
+      - 73
+      - 72
+      - 71
+      - 70
+      - 69
+      - 68
+      - 67
+      - 66
+      - 63
+      - 62
+      - 61
+      - 60
+      - 57
+      - 53
+      - 52
+      - 51
+      - 50
+      - 46
+      - 45
+      - 41
+      - 40
+      - 37
+      - 36
+      - 35
+      - 32
+      - 31
+      - 30
+      - 27
+      - 25
+      - 24
+      - 19
+      - 18
+      - 17
+      - 16
+      - 15
+      - 11
+      - 9
+      - 7
+      - 6
+      - 5
+      - 4
+      weights:
+      - 0.00731997438
+      - 0.002744990393
+      - 0.002744990393
+      - 0.005032482386
+      - 0.011437459969
+      - 0.004300484948
+      - 0.013907951322
+      - 0.011437459969
+      - 0.009424467014
+      - 0.053161313935
+      - 0.009149967975
+      - 0.018757434349
+      - 0.006862475981
+      - 0.003202488791
+      - 0.012169457407
+      - 0.052429316497
+      - 0.005672980145
+      - 0.067435263977
+      - 0.029828895599
+      - 0.006404977583
+      - 0.05526580657
+      - 0.004300484948
+      - 0.034403879586
+      - 0.008417970537
+      - 0.027175404886
+      - 0.01097996157
+      - 0.025162411932
+      - 0.03293988471
+      - 0.02223442218
+      - 0.004574983988
+      - 0.031292890475
+      - 9.149968e-05
+      - 0.010522463171
+      - 0.11044011346
+      - 0.119041083356
+      - 0.00375148687
+      - 0.002927989752
+      - 0.013724951963
+      - 0.005489980785
+      - 0.026443407448
+      - 0.049409827066
+      - 0.011528959649
+      - 0.01463994876
+      - 0.012352456766
+      - 0.016835941074
+      - 0.001097996157
+      - 0.01152895964799991
+    applicability:
+      geographies:
+      - US
+      observation_years:
+      - 2002
+      - 2025
+      technology: Wood/Wood Waste Biomass
+    assumptions:
+    - Observed retirement ages are not an uncensored survival curve and must not be treated as one without
+      a cohort model.
+    - Includes retired generators from 2002 onward with valid dates and positive reported summer capacity.
+    - Retirement ages are weighted by reported summer capacity.
+    evidence:
+      status: empirical
+      source_ids:
+      - eia-860-generator-2025
+      population: EIA generators reported retired from 2002 through 2025 with valid dates and positive
+        summer capacity.
+      weighting: Reported summer generating capacity in MW.
+      reference_period: 2002-2025
+      censoring: Conditioned on observed retirement; surviving and pre-2002 retirements are excluded.
+      sample_size:
+        count: 75
+        unit: retired generators
+        minimum_for_generalisation: 30
+      quality_flags:
+      - capacity-weighted
+      - retirement-conditioned
+      coverage:
+        technology: Wood/Wood Waste Biomass
+        unit_count: 75
+        summer_capacity_mw: 1092.9
+        mean_retirement_age_years: 41.433525
+        minimum_retirement_age_years: 4
+        maximum_retirement_age_years: 88
+    review:
+      activation_status: evidence_only
+      rationale: Observed retirement timing is descriptive and must not be used as prospective service
+        life without a cohort survival model.

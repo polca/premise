@@ -1,0 +1,487 @@
+schema_version: 1
+assignments:
+- id: reviewed-us-eia-onshore-wind-construction-vintage
+  profile: eia-us-onshore-wind-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - {field: name, operator: startswith, value: "electricity production, wind,", case_sensitive: false}
+    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+  caller_exclude:
+    any:
+    - {field: name, operator: contains, value: offshore, case_sensitive: false}
+  exchange_match:
+    any:
+    - {field: name, operator: glob, value: "wind turbine, *", case_sensitive: false}
+    - {field: name, operator: glob, value: "wind power plant, *", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: proxy-eia-onshore-wind-construction-vintage
+  profile: eia-us-onshore-wind-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - {field: name, operator: startswith, value: "electricity production, wind,", case_sensitive: false}
+  caller_exclude:
+    any:
+    - {field: name, operator: contains, value: offshore, case_sensitive: false}
+  exchange_match:
+    any:
+    - {field: name, operator: glob, value: "wind turbine, *", case_sensitive: false}
+    - {field: name, operator: glob, value: "wind power plant, *", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: reviewed-us-eia-photovoltaic-construction-vintage
+  profile: eia-us-solar-photovoltaic-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - {field: name, operator: startswith, value: "electricity production, photovoltaic,", case_sensitive: false}
+    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+  exchange_match:
+    all:
+    - {field: name, operator: startswith, value: photovoltaic, case_sensitive: false}
+    any:
+    - {field: name, operator: contains, value: installation, case_sensitive: false}
+    - {field: name, operator: startswith, value: "photovoltaic plant,", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: proxy-eia-photovoltaic-construction-vintage
+  profile: eia-us-solar-photovoltaic-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - {field: name, operator: startswith, value: "electricity production, photovoltaic,", case_sensitive: false}
+  exchange_match:
+    all:
+    - {field: name, operator: startswith, value: photovoltaic, case_sensitive: false}
+    any:
+    - {field: name, operator: contains, value: installation, case_sensitive: false}
+    - {field: name, operator: startswith, value: "photovoltaic plant,", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: reviewed-us-eia-conventional-hydropower-construction-vintage
+  profile: eia-us-conventional-hydropower-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - {field: name, operator: startswith, value: "electricity production, hydro,", case_sensitive: false}
+    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+  caller_exclude:
+    any:
+    - {field: name, operator: contains, value: pumped storage, case_sensitive: false}
+  exchange_match:
+    all:
+    - {field: name, operator: startswith, value: "hydropower plant,", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: proxy-eia-conventional-hydropower-construction-vintage
+  profile: eia-us-conventional-hydropower-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - {field: name, operator: startswith, value: "electricity production, hydro,", case_sensitive: false}
+  caller_exclude:
+    any:
+    - {field: name, operator: contains, value: pumped storage, case_sensitive: false}
+  exchange_match:
+    all:
+    - {field: name, operator: startswith, value: "hydropower plant,", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: reviewed-us-eia-pumped-storage-construction-vintage
+  profile: eia-us-pumped-storage-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - {field: name, operator: contains, value: "electricity production, hydro, pumped storage", case_sensitive: false}
+    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+  exchange_match:
+    all:
+    - {field: name, operator: startswith, value: "hydropower plant,", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: proxy-eia-pumped-storage-construction-vintage
+  profile: eia-us-pumped-storage-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - {field: name, operator: contains, value: "electricity production, hydro, pumped storage", case_sensitive: false}
+  exchange_match:
+    all:
+    - {field: name, operator: startswith, value: "hydropower plant,", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: reviewed-us-eia-nuclear-construction-vintage
+  profile: eia-us-nuclear-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - {field: name, operator: startswith, value: "electricity production, nuclear,", case_sensitive: false}
+    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+  exchange_match:
+    all:
+    - {field: name, operator: startswith, value: "nuclear power plant,", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: proxy-eia-nuclear-construction-vintage
+  profile: eia-us-nuclear-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - {field: name, operator: startswith, value: "electricity production, nuclear,", case_sensitive: false}
+  exchange_match:
+    all:
+    - {field: name, operator: startswith, value: "nuclear power plant,", case_sensitive: false}
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches: {minimum: 1}
+- id: reviewed-wind-electricity-service-life
+  profile: nrel-wind-technical-life-30-years
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, wind,
+      case_sensitive: false
+    - field: reference product
+      operator: startswith
+      value: electricity,
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: kilowatt hour
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-photovoltaic-electricity-service-life
+  profile: nrel-solar-pv-technical-life-30-years
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, photovoltaic,
+      case_sensitive: false
+    - field: reference product
+      operator: startswith
+      value: electricity,
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: kilowatt hour
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-hydroelectricity-service-life
+  profile: nrel-hydropower-technical-life-100-years
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, hydro,
+      case_sensitive: false
+    - field: reference product
+      operator: startswith
+      value: electricity,
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: kilowatt hour
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-nuclear-electricity-service-life
+  profile: nrel-nuclear-technical-life-60-years
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, nuclear,
+      case_sensitive: false
+    - field: reference product
+      operator: startswith
+      value: electricity,
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: kilowatt hour
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-barley-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: barley grain production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-maize-grain-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: maize grain production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-oat-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: oat grain production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-rye-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: rye grain production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-spelt-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: spelt grain production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-triticale-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: triticale grain production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-wheat-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: wheat grain production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+- id: reviewed-legacy-barley-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: barley production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1"]
+  expected_matches:
+    minimum: 1
+
+- id: reviewed-legacy-oat-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: oat production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1"]
+  expected_matches:
+    minimum: 1
+
+- id: reviewed-legacy-wheat-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: wheat production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1"]
+  expected_matches:
+    minimum: 1
+
+- id: reviewed-rye-legacy-name-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: rye production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+
+- id: reviewed-maize-silage-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: maize silage production*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+
+- id: reviewed-maize-seed-at-farm-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: maize seed production*at farm*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+
+- id: reviewed-oat-seed-at-farm-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: oat seed production*at farm*
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+  expected_matches:
+    minimum: 1
+
+- id: reviewed-wheat-feed-preharvest-uptake
+  profile: annual-cereal-preharvest-uptake-one-year
+  target: activity
+  kind: selector
+  priority: 100
+  match:
+    all:
+    - field: name
+      operator: glob
+      value: wheat grain, feed production, * region
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: ["3.11", "3.12"]
+  expected_matches:
+    minimum: 1

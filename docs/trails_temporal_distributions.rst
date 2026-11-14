@@ -1,11 +1,45 @@
 TRAILS temporal distributions
 =============================
 
-TRAILS stores temporal-distribution metadata in
-``premise/data/trails/temporal_distributions.csv``. The table is loaded by
-``TrailsDataPackage`` and the parameters are applied to exchanges before export.
-This allows the resulting database or matrix export to keep information about
-when an exchange occurs relative to the activity reference year.
+TRAILS stores its canonical temporal metadata under
+``premise/data/trails/temporal/``. The validated YAML files separate sources,
+reusable profiles, selector assignments, exact legacy mappings, and explicitly
+resolved duplicate identities. The file
+``premise/data/trails/temporal_distributions.csv`` is a deterministically
+generated compatibility artifact for external consumers and regression checks.
+TRAILS runtime loading reads the YAML registry directly. Do not edit the CSV by
+hand.
+
+The canonical files are:
+
+``sources.yaml``
+    Structured source metadata, including publisher, URI, source version,
+    publication or update date, retrieval date, and coverage.
+
+``profiles.yaml``
+    Reviewed temporal quantities with an explicit reference event,
+    distribution, applicability, assumptions, evidence status, source IDs, and
+    activation review. Empirical profiles also state their population,
+    weighting, reference period, censoring, sample size, and quality flags.
+
+``assignments.yaml``
+    Declarative dataset selectors and exact overrides. Operational assignments
+    are intentionally separate from evidence profiles: an observed fleet-age
+    distribution is not automatically a service-life distribution. Only
+    reviewed, behavior-preserving assignments are active.
+
+``legacy_profiles.yaml`` and ``legacy_mappings.yaml``
+    The resolved compatibility model. Reusable legacy parameter and assumption
+    records are referenced by compact groups of exact dataset identities.
+
+``legacy_conflicts.yaml``
+    Every duplicate identity found during migration, the differing fields, the
+    selected source row, and any field-level resolution needed to preserve the
+    old loader's effective behavior.
+
+The parameters are applied to exchanges before export. This allows the
+resulting database or matrix export to keep information about when an exchange
+occurs relative to the activity reference year.
 
 The temporal reference point is year ``0`` of the activity. Negative offsets
 represent exchanges that happened before the reference product is supplied, for
@@ -17,7 +51,8 @@ treatment, or long-term emissions.
 How the table is used
 ---------------------
 
-``TrailsDataPackage.add_temporal_distributions()`` applies the CSV rows with
+``TrailsDataPackage`` loads ``legacy_profiles.yaml`` and
+``legacy_mappings.yaml`` directly, then applies the resolved records with
 different matching rules depending on ``temporal_tag``:
 
 ``stock_asset``
@@ -31,7 +66,7 @@ different matching rules depending on ``temporal_tag``:
 
 ``end_of_life``
     The supplier is assigned a discrete one-pulse distribution at
-    ``dataset lifetime + 1`` years.
+    ``dataset lifetime`` years. No additional year is added.
 
 ``biomass_growth``
     The row identifies an activity by ``name`` and ``reference product``. Its
@@ -52,7 +87,171 @@ different matching rules depending on ``temporal_tag``:
 When an exchange cannot be assigned unambiguously, TRAILS writes audit files
 under ``trails_temp/``. The most useful files are
 ``temporal_distribution_faulty_exchanges.csv`` and
-``long_term_biosphere_matches.csv``.
+``long_term_biosphere_matches.csv``. Selector-backed assignments also write
+``temporal_selector_matches.csv`` with the selected assignment and profile.
+
+
+Temporal quantities and reference events
+----------------------------------------
+
+The YAML schema distinguishes quantities that were conflated in the original
+table:
+
+``service_life``
+    Duration between commissioning and retirement of a newly produced asset.
+
+``fleet_age``
+    Distribution of commissioning dates among assets operating in a stated
+    reference year. Offsets are non-positive relative to current service.
+
+``construction_timing``
+    Timing of an asset-supplying technosphere exchange relative to the activity
+    reference event.
+
+``retirement_timing``
+    Timing of retirement or treatment relative to a declared commissioning,
+    current-service, or lifecycle event.
+
+``biomass_growth``
+    Timing of biogenic carbon uptake relative to harvest or current output.
+
+``long_term_release``
+    Timing of a biosphere release relative to current output.
+
+Profiles declare ``reference_event`` rather than relying on the sign of their
+offsets alone. This prevents, for example, an observed age of operating assets
+from being mistaken for an empirically observed lifetime.
+
+
+Dataset selectors
+-----------------
+
+Assignments can reuse one profile for many datasets. Predicates support
+``equals``, ``contains``, ``startswith``, ``in``, and ``glob`` on dataset fields
+and classifications. A selector has ``all`` and ``any`` inclusion groups plus
+optional exclusions. Selectors can be restricted to named ecoinvent versions
+and can declare expected minimum and maximum match counts for coverage checks.
+
+Supplier and biosphere assignments may also combine ``caller_match`` with
+``exchange_match``. This makes the relationship explicit: a construction
+profile can depend on the technology and geography of the electricity-producing
+caller as well as the identity of its infrastructure exchange. Matching only
+the supplier is insufficient when a globally supplied asset is used by fleets
+with different regional age compositions.
+
+Resolution is deterministic: exact overrides outrank version-specific direct
+selectors, which outrank general direct selectors, country-proxy selectors, and
+generic fallbacks. A ``proxy`` assignment therefore applies only when no direct
+selector matches. Priority and selector specificity break ties.
+Equal-precedence matches that select different profiles raise an error instead
+of silently choosing one. The audit API reports raw and selected match counts,
+uncovered records, and expected-count violations.
+
+The selector operators mirror the stable subset of dataset-filter behavior used
+elsewhere in premise while remaining backend-independent and serialisable.
+
+The active cereal selectors are audited against installed cutoff inventories
+with ``dev/audit_trails_temporal_selectors.py``. The independent candidate set
+requires a direct positive ``Carbon dioxide, in air`` natural-resource input
+and either a cereal crop-production classification or a canonical
+``biomass_growth`` mapping. This separates genuine pre-harvest uptake from
+similarly named conversion processes such as ethanol production and seed
+processing. Run the audit from the repository root when the corresponding
+licensed Brightway projects are available:
+
+.. code-block:: console
+
+   PYTHONPATH=. python dev/audit_trails_temporal_selectors.py
+
+The default project and database names are
+``ecoinvent-{version}-cutoff`` for versions 3.8, 3.9.1, 3.10, 3.11, and 3.12.
+Both templates and the version list can be overridden on the command line. The
+selectors also accept premise's equivalent ``3.9`` and ``3.10.1`` source-version
+strings.
+
+
+Migration audit
+---------------
+
+The source table contained 9,678 rows but only 9,293 unique
+``(name, reference product)`` identities. The migration ledger records 378
+duplicated identities (385 excess rows). Of those, 134 differed in an
+operational timing field, principally ``lifetime``; the remainder differed only
+in annotations or classifications. The canonical compatibility model contains
+960 profiles because distinct assumptions are retained even when their numeric
+timing is identical, and 2,774 classification/mapping groups covering all 9,293
+identities.
+
+The old loader's effective outputs were compared with a compiled canonical CSV:
+965 stock-asset parameter records, 170 end-of-life suppliers, 431 biomass-growth
+records, 63 maintenance suppliers, 15 long-term biosphere selectors, 7,145
+dataset lifetimes, and all 9,293 lifecycle-reference records were identical.
+One duplicate needed an explicit field-level resolution: its final row had a
+blank lifetime, while the historical loader retained an earlier nonblank value.
+That decision is recorded in ``legacy_conflicts.yaml`` rather than remaining an
+implicit iteration-order effect.
+
+
+Evidence pilots
+---------------
+
+The registry contains non-operational evidence pilots for both fleet age and
+service life:
+
+* Eurostat 2024 road-stock age bands for passenger cars, buses, heavy lorries,
+  road tractors, and light commercial vehicles. Only countries reporting every
+  requested age band are aggregated. The open-ended over-20-years band is
+  retained; no unsupported upper age or annual interpolation is introduced.
+* EIA Form 860 (2025) operating-generator ages and observed retirement ages for
+  selected U.S. electricity technologies. Operating ages are weighted by net
+  summer capacity. Retirement observations from 2002 onward are documented as
+  observed retirements, not uncensored survival curves.
+* European Commission passenger-car and light-commercial-vehicle survival
+  curves derived from UK MOT inspection records. The source applies the UK data
+  as a European proxy. Four percent remain at the final reported age, so the
+  registry preserves a right-censored tail rather than inventing a maximum life.
+
+The empirical fleet and survival profiles remain deliberately unassigned.
+Applying them requires a reviewed geography/technology mapping and, for
+retirement timing, a cohort or survival model that handles censoring. The first
+active selectors instead use a behavior-preserving reviewed assumption: annual
+barley, maize, oat, rye, spelt, triticale, and wheat production use uniform
+pre-harvest uptake over ``[-1, 0]``. Fifteen selectors cover version-specific
+crop names, maize silage, farm-grown maize and oat seed, cereal co-products,
+and regional feed-wheat production. They cover 144 canonical identities in the
+3.12 compatibility registry and are regression-checked against the legacy
+mappings. Direct inventory audits found 81, 91, 116, 214, and 214 relevant
+activities in the cutoff inventories for ecoinvent 3.8, 3.9.1, 3.10, 3.11,
+and 3.12 respectively. Consequential inventories contained 61, 71, 97, 150,
+and 150 matches. Neither system model had missed candidates, out-of-scope
+matches, or selected activities lacking uptake. The reproducible profile
+derivation is ``dev/generate_trails_empirical_profiles.py``.
+
+Profiles have an explicit ``review.activation_status``. Only profiles marked
+``active`` may be referenced by an operational assignment; ``eligible`` marks a
+source-backed candidate still awaiting selector review, ``evidence_only`` keeps
+descriptive observations out of runtime behavior, and ``hold`` records a known
+blocker. The registry validator rejects assignments to any non-active profile.
+
+Four source-backed technical-life assumptions are active as caller context:
+wind and solar PV at 30 years, hydropower at 100 years, and nuclear at 60 years.
+They use the NREL ATB definition of prospective technical life and apply only to
+``electricity production, ...`` activities selected by name, electricity
+reference product, and kilowatt-hour unit. The selectors were audited against
+ecoinvent 3.8, 3.9.1, 3.10, 3.11, and 3.12 cutoff databases. They do not replace
+the separate construction-vintage distributions attached to stock-asset
+exchanges. The NREL 15-year stationary-battery assumption remains ``eligible``
+but unassigned because the installed inventories do not expose an equally clean
+cross-version activity family for stationary storage.
+
+Relationship-aware construction-timing selectors apply the capacity-weighted
+EIA 2025 operating-fleet age profiles to onshore wind, solar PV, conventional
+hydropower, pumped storage, and nuclear infrastructure exchanges. U.S. regional
+callers use direct ``reviewed-us-*`` assignments. Other countries use explicit
+``proxy-*`` assignments backed by the same U.S. evidence only while no better
+country-specific selector exists. The selector audit reports direct and proxy
+match counts separately. Offshore wind remains evidence-only because its EIA
+operating-fleet profile contains only three generators.
 
 
 CSV columns
@@ -295,25 +494,32 @@ Available profile names are:
     by a CSV row.
 
 
-Maintaining the table
----------------------
+Maintaining the registry
+------------------------
 
-When updating ``temporal_distributions.csv``:
+Edit the YAML registry, not ``temporal_distributions.csv``. Keep sources and
+assumptions as structured fields, give every profile an evidence status, and
+state geography and reference-year applicability when the evidence is not
+global. For discrete profiles, offsets and weights must be aligned, finite, and
+normalised.
 
-* Keep ``tag_notes`` focused on why the row is tagged.
-* Keep ``param_notes`` focused on timing sources and assumptions.
-* Use ``tag_confidence`` for the row classification and ``param_confidence`` for
-  the timing parameters.
-* For type ``6`` rows, keep ``offsets`` and ``weights`` the same length and make
-  sure weights sum to ``1``.
-* Prefer explicit source citations in ``param_notes`` when values come from a
-  paper, dataset, or reviewed model.
+After editing legacy profiles or mappings, regenerate the compatibility table:
+
+.. code-block:: bash
+
+    PYTHONPATH=. conda run -n premise python \
+        dev/compile_trails_temporal_csv.py
+
+``dev/migrate_trails_temporal_csv.py`` documents the one-time migration and
+conflict-resolution procedure. It is not the normal authoring direction.
 
 Useful checks before committing changes:
 
 .. code-block:: bash
 
-    conda run -n premise pytest tests/test_trails_temporal.py
+    conda run -n premise pytest tests/test_temporal_legacy.py \
+        tests/test_temporal_specs.py tests/test_temporal_evidence.py \
+        tests/test_trails_temporal.py tests/test_lifecycle_timing.py
     git diff --check
     make -C docs html
 

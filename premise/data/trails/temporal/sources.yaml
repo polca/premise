@@ -1,0 +1,55 @@
+schema_version: 1
+sources:
+  ec-light-duty-vehicle-survival-2015:
+    title: Evaluation of Regulations 443/2009 and 510/2011 on CO2 emissions from light-duty vehicles
+    publisher: European Commission
+    authors: Ricardo-AEA and Transport and Environmental Policy Research
+    kind: evaluation study using UK MOT inspection data
+    uri: https://climate.ec.europa.eu/system/files/2016-11/evaluation_ldv_co2_regs_en.pdf
+    doi: 10.2834/64489
+    published: 2015-04-08
+    retrieved: 2026-11-14
+    coverage: Passenger-car and light-commercial-vehicle survival through age 19; UK data used as a European proxy.
+  eurostat-road-eqs-carage-2024:
+    title: Passenger cars by age, reference year 2024
+    publisher: Eurostat
+    kind: administrative statistics
+    uri: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/road_eqs_carage?lang=en&time=2024
+    doi: 10.2908/ROAD_EQS_CARAGE
+    dataset_structure_version: "58.0"
+    data_updated: 2026-10-06
+    retrieved: 2026-11-14
+  eurostat-road-eqs-busage-2024:
+    title: Motor coaches, buses and trolley buses by age, reference year 2024
+    publisher: Eurostat
+    kind: administrative statistics
+    uri: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/road_eqs_busage?lang=en&time=2024
+    doi: 10.2908/ROAD_EQS_BUSAGE
+    dataset_structure_version: "55.0"
+    data_updated: 2026-10-06
+    retrieved: 2026-11-14
+  eurostat-road-eqs-lorroa-2024:
+    title: Lorries and road tractors by age, reference year 2024
+    publisher: Eurostat
+    kind: administrative statistics
+    uri: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/road_eqs_lorroa?lang=en&time=2024
+    doi: 10.2908/ROAD_EQS_LORROA
+    dataset_structure_version: "61.0"
+    data_updated: 2026-10-06
+    retrieved: 2026-11-14
+  eia-860-generator-2025:
+    title: Form EIA-860 detailed generator data, 2025
+    publisher: U.S. Energy Information Administration
+    kind: mandatory generator survey
+    uri: https://www.eia.gov/electricity/data/eia860/xls/eia8602025.zip
+    published: 2026-09-10
+    retrieved: 2026-11-14
+    coverage: Utility-scale generators at plants with at least 1 MW combined nameplate capacity.
+  nrel-atb-2024b-technical-lifetimes:
+    title: Annual Technology Baseline 2024b - Definitions and technical lifetimes
+    publisher: National Renewable Energy Laboratory
+    kind: technology modelling assumptions
+    uri: https://atb.nrel.gov/electricity/2024b/definitions
+    published: 2024
+    retrieved: 2026-11-14
+    coverage: Technical lives for wind, solar PV, hydropower, stationary battery storage, nuclear, and other electricity technologies.

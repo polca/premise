@@ -1,0 +1,4575 @@
+schema_version: 1
+conflicts:
+- identity:
+  - EUR-flat pallet production
+  - EUR-flat pallet
+  source_rows:
+  - 2420
+  - 2421
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2421
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - aluminium alloy production, AlLi
+  - copper, cathode
+  source_rows:
+  - 655
+  - 6640
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6640
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - aluminium alloy production, Metallic Matrix Composite
+  - copper, cathode
+  source_rows:
+  - 675
+  - 6632
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6632
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - aluminium hydroxide production
+  - aluminium hydroxide
+  source_rows:
+  - 705
+  - 3382
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3382
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - aluminium ingot, primary, to aluminium, cast alloy market
+  - aluminium, cast alloy
+  source_rows:
+  - 673
+  - 6671
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 6671
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - aluminium oxide production
+  - aluminium oxide, metallurgical
+  source_rows:
+  - 656
+  - 6673
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6673
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - aluminium production, primary, ingot
+  - aluminium, primary, ingot
+  source_rows:
+  - 698
+  - 6652
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6652
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - aluminium production, primary, liquid, Söderberg
+  - aluminium, primary, liquid
+  source_rows:
+  - 6662
+  - 6669
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 6669
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - aluminium production, primary, liquid, prebake
+  - aluminium, primary, liquid
+  source_rows:
+  - 678
+  - 6665
+  - 6666
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6666
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - antimony production
+  - antimony
+  source_rows:
+  - 693
+  - 6749
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6749
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - application of plant protection product, by field sprayer
+  - application of plant protection product, by field sprayer
+  source_rows:
+  - 8860
+  - 8942
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8942
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - batch dyeing, fibre, cotton
+  - batch dyeing, fibre, cotton
+  source_rows:
+  - 9403
+  - 9404
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9404
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - bauxite mine operation
+  - bauxite
+  source_rows:
+  - 634
+  - 694
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 694
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - bentonite quarry operation
+  - bentonite
+  source_rows:
+  - 660
+  - 808
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 808
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - beryllium hydroxide production
+  - beryllium hydroxide
+  source_rows:
+  - 672
+  - 6741
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6741
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - beryllium production
+  - beryllium
+  source_rows:
+  - 747
+  - 6718
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6718
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - bleaching and dyeing, yarn
+  - bleaching and dyeing, yarn
+  source_rows:
+  - 9401
+  - 9402
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9402
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - boric acid production, anhydrous, powder
+  - boric acid, anhydrous, powder
+  source_rows:
+  - 666
+  - 3642
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 3642
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - boric oxide production
+  - boric oxide
+  source_rows:
+  - 718
+  - 3390
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3390
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - boron carbide production
+  - boron carbide
+  source_rows:
+  - 728
+  - 3652
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3652
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - boron trifluoride production
+  - boron trifluoride
+  source_rows:
+  - 709
+  - 3649
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3649
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - cadmium production, primary
+  - cadmium
+  source_rows:
+  - 679
+  - 6731
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6731
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - chromite ore concentrate production
+  - chromite ore concentrate
+  source_rows:
+  - 635
+  - 674
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 674
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - chromium production
+  - chromium
+  source_rows:
+  - 713
+  - 6747
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6747
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - clay brick production, extruded
+  - clay brick
+  source_rows:
+  - 4609
+  - 4612
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 4612
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - clay roof tile production
+  - clay roof tile
+  source_rows:
+  - 4619
+  - 4621
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 4621
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - clefting/splitting of energy wood
+  - clefting of energy wood
+  source_rows:
+  - 276
+  - 277
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  - tag_notes
+  chosen_source_row: 277
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - clinker production
+  - clinker
+  source_rows:
+  - 4639
+  - 4640
+  - 5250
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5250
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - clinker production, average
+  - clinker
+  source_rows:
+  - 4641
+  - 5263
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 5263
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - cobalt production
+  - copper concentrate, sulfide ore
+  source_rows:
+  - 754
+  - 761
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 761
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - cobalt production
+  - copper, anode
+  source_rows:
+  - 708
+  - 6625
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6625
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - cobalt production
+  - copper, cathode
+  source_rows:
+  - 644
+  - 6642
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6642
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - cobalt production
+  - nickel concentrate, 16% Ni
+  source_rows:
+  - 629
+  - 699
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 699
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - coke production
+  - benzene
+  source_rows:
+  - 2479
+  - 2484
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2484
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - coke production
+  - coal gas
+  source_rows:
+  - 1515
+  - 1521
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 1521
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - coke production
+  - coal tar
+  source_rows:
+  - 3740
+  - 3744
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 3744
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - coke production
+  - coke
+  source_rows:
+  - 2478
+  - 2485
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2485
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - colemanite mine operation and beneficiation
+  - calcium borates
+  source_rows:
+  - 696
+  - 3630
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 3630
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - combine harvesting
+  - combine harvesting
+  source_rows:
+  - 8861
+  - 8924
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8924
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - compression of sheet moulding compound
+  - compression of sheet moulding compound
+  source_rows:
+  - 9257
+  - 9295
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9295
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - concrete block production
+  - concrete block
+  source_rows:
+  - 4704
+  - 4747
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 4747
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - concrete production, 25MPa, for building construction, for interior use, with cement, Portland
+  - concrete, 25MPa
+  source_rows:
+  - 8979
+  - 9364
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9364
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - concrete production, 25MPa, for building construction, for interior use, with cement, Portland
+  - hard coal ash
+  source_rows:
+  - 9375
+  - 9377
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9377
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - concrete production, 25MPa, for building construction, with cement, CEM II/A
+  - concrete, 25MPa
+  source_rows:
+  - 8982
+  - 9135
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9135
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - concrete production, 25MPa, for building construction, with cement, CEM II/B
+  - concrete, 25MPa
+  source_rows:
+  - 8153
+  - 9162
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9162
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - concrete production, 40MPa, for civil engineering, with cement, Portland
+  - concrete, 40MPa
+  source_rows:
+  - 4690
+  - 4763
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 4763
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - containerboard production, linerboard, testliner
+  - containerboard, linerboard
+  source_rows:
+  - 2452
+  - 2455
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2455
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - copper mine operation and beneficiation, sulfide ore
+  - molybdenite
+  source_rows:
+  - 668
+  - 6745
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6745
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - copper production, cathode, solvent extraction and electrowinning process
+  - copper, cathode
+  source_rows:
+  - 645
+  - 6636
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6636
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - cork slab production
+  - cork slab
+  source_rows:
+  - 10
+  - 11
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 11
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - corrugated board box production
+  - corrugated board box
+  source_rows:
+  - 2463
+  - 2465
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2465
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - delimbing, with excavator-based processor
+  - delimbing/sorting, excavator-based processor
+  source_rows:
+  - 185
+  - 186
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  chosen_source_row: 186
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - desulfurisation of hard coal flue gas
+  - SOx retained, in hard coal flue gas desulfurisation
+  source_rows:
+  - 3396
+  - 3451
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 3451
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - diesel, burned in diesel-electric generating set, 10MW
+  - diesel, burned in diesel-electric generating set, 10MW
+  source_rows:
+  - 888
+  - 962
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 962
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - distribution network construction, electricity, low voltage
+  - distribution network, electricity, low voltage
+  source_rows:
+  - 7609
+  - 7610
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  chosen_source_row: 7610
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - dolomite production
+  - dolomite
+  source_rows:
+  - 687
+  - 824
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 824
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - electricity production, nuclear, boiling water reactor
+  - electricity, high voltage
+  source_rows:
+  - 886
+  - 968
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 968
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - electricity production, wind, 1-3MW turbine, offshore
+  - electricity, high voltage
+  source_rows:
+  - 924
+  - 1027
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - param_confidence
+  - param_notes
+  - tag_notes
+  chosen_source_row: 1027
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - electrorefining of copper, anode
+  - copper, cathode
+  source_rows:
+  - 677
+  - 6639
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6639
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - fava bean seed production, for sowing
+  - fava bean seed, for sowing
+  source_rows:
+  - 160
+  - 164
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 164
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - ferroniobium production, from pyrochlore concentrate, 66% Nb
+  - ferroniobium, 66% Nb
+  source_rows:
+  - 773
+  - 6549
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6549
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - fertilising, by broadcaster
+  - fertilising, by broadcaster
+  source_rows:
+  - 8872
+  - 8932
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8932
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - fibreboard production, soft, from wet & dry processes
+  - bark chips, wet, measured as dry mass
+  source_rows:
+  - 2342
+  - 2380
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2380
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - fibreboard production, soft, from wet & dry processes
+  - fibreboard, soft
+  source_rows:
+  - 2405
+  - 2409
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2409
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - fibreboard production, soft, from wet & dry processes
+  - residual wood, dry
+  source_rows:
+  - 5119
+  - 5147
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5147
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - filament winding
+  - filament winding
+  source_rows:
+  - 9266
+  - 9296
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9296
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - forwarding, forwarder
+  - forwarding, forwarder
+  source_rows:
+  - 264
+  - 265
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  chosen_source_row: 265
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - furnace production, logs, 30kW
+  - furnace, logs, 30kW
+  source_rows:
+  - 7421
+  - 7533
+  differing_fields:
+  - EcoSpold01Categories
+  - param_confidence
+  - param_notes
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 7533
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - glass wool mat production
+  - glass wool mat
+  source_rows:
+  - 4581
+  - 4583
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 4583
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - glued laminated timber production, average glue mix
+  - glued laminated timber, average glue mix
+  source_rows:
+  - 2385
+  - 2391
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2391
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - gold refinery operation
+  - gold
+  source_rows:
+  - 638
+  - 6599
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6599
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - gold-silver mine operation with refinery
+  - gold
+  source_rows:
+  - 637
+  - 6598
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6598
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - gold-silver mine operation with refinery
+  - silver
+  source_rows:
+  - 657
+  - 6590
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6590
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - grain oriented electrical steel production, 0.23 mm coil
+  - grain oriented electrical steel, 0.23 mm coil
+  source_rows:
+  - 3514
+  - 6579
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6579
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - graphite production
+  - graphite
+  source_rows:
+  - 695
+  - 826
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 826
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - gravel and sand quarry operation
+  - sand
+  source_rows:
+  - 691
+  - 797
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 797
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - gravel production, crushed
+  - gravel, crushed
+  source_rows:
+  - 803
+  - 804
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 804
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hafnium sponge production, from hafnium tetrachloride
+  - hafnium sponge
+  source_rows:
+  - 742
+  - 6721
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6721
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hand lay-up
+  - hand lay-up
+  source_rows:
+  - 9249
+  - 9286
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9286
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, azobe, sustainable forest management
+  - sawlog and veneer log, azobe, measured as solid wood under bark
+  source_rows:
+  - 197
+  - 198
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 198
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, beech, sustainable forest management
+  - pulpwood, hardwood, measured as solid wood under bark
+  source_rows:
+  - 214
+  - 216
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 216
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, beech, sustainable forest management
+  - sawlog and veneer log, hardwood, measured as solid wood under bark
+  source_rows:
+  - 200
+  - 201
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 201
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, beech, sustainable forest management
+  - wood chips, wet, measured as dry mass
+  source_rows:
+  - 215
+  - 217
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 217
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, birch, sustainable forest management
+  - bundle, energy wood, measured as dry mass
+  source_rows:
+  - 242
+  - 283
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 283
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, birch, sustainable forest management
+  - pulpwood, hardwood, measured as solid wood under bark
+  source_rows:
+  - 250
+  - 253
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 253
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, birch, sustainable forest management
+  - sawlog and veneer log, hardwood, measured as solid wood under bark
+  source_rows:
+  - 220
+  - 222
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 222
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, birch, sustainable forest management
+  - wood chips, wet, measured as dry mass
+  source_rows:
+  - 254
+  - 255
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 255
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, eucalyptus ssp., planted forest management
+  - cleft timber, measured as dry mass
+  source_rows:
+  - 289
+  - 290
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 290
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, eucalyptus ssp., sustainable forest management
+  - sawlog and veneer log, eucalyptus ssp., measured as solid wood under bark
+  source_rows:
+  - 292
+  - 293
+  - 294
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 294
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, meranti, sustainable forest management
+  - sawlog and veneer log, meranti, measured as solid wood under bark
+  source_rows:
+  - 296
+  - 297
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 297
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, mixed species, sustainable forest management
+  - wood chips, wet, measured as dry mass
+  source_rows:
+  - 306
+  - 307
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 307
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, oak, sustainable forest management
+  - pulpwood, hardwood, measured as solid wood under bark
+  source_rows:
+  - 314
+  - 316
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 316
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, oak, sustainable forest management
+  - sawlog and veneer log, hardwood, measured as solid wood under bark
+  source_rows:
+  - 309
+  - 311
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 311
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hardwood forestry, oak, sustainable forest management
+  - wood chips, wet, measured as dry mass
+  source_rows:
+  - 315
+  - 317
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 317
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - harvesting, forestry harvester
+  - harvesting, forestry harvester
+  source_rows:
+  - 266
+  - 267
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 267
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - harvesting/bundling, energy wood harvester
+  - harvesting/bundling, energy wood harvester
+  source_rows:
+  - 278
+  - 281
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  chosen_source_row: 281
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat and power co-generation, hard coal
+  - heat, district or industrial, other than natural gas
+  source_rows:
+  - 1548
+  - 1693
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 1693
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat and power co-generation, natural gas, conventional power plant, 100MW electrical
+  - heat, district or industrial, natural gas
+  source_rows:
+  - 1585
+  - 1800
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 1800
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat production, air-water heat pump 10kW
+  - heat, air-water heat pump 10kW
+  source_rows:
+  - 1553
+  - 1809
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_notes
+  chosen_source_row: 1809
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat production, hard coal briquette, stove 5-15kW
+  - heat, central or small-scale, other than natural gas
+  source_rows:
+  - 1545
+  - 7449
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - param_confidence
+  - param_notes
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 7449
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat production, light fuel oil, at boiler 100kW condensing, non-modulating
+  - heat, central or small-scale, other than natural gas
+  source_rows:
+  - 1594
+  - 1846
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 1846
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat production, mixed logs, at wood heater 6kW
+  - heat, central or small-scale, other than natural gas
+  source_rows:
+  - 1640
+  - 1696
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 1696
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat production, natural gas, at boiler condensing modulating <100kW
+  - heat, central or small-scale, natural gas
+  source_rows:
+  - 1582
+  - 1685
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 1685
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat production, natural gas, at boiler condensing modulating >100kW
+  - heat, district or industrial, natural gas
+  source_rows:
+  - 1579
+  - 7544
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - param_confidence
+  - param_notes
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 7544
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat production, softwood chips from forest, at furnace 1000kW
+  - heat, district or industrial, other than natural gas
+  source_rows:
+  - 1650
+  - 9407
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 9407
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat production, softwood chips from forest, at furnace 1000kW, state-of-the-art 2014
+  - heat, district or industrial, other than natural gas
+  source_rows:
+  - 1631
+  - 9406
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9406
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heat production, wood pellet, at furnace 9kW
+  - heat, central or small-scale, other than natural gas
+  source_rows:
+  - 1617
+  - 1703
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 1703
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heavy mineral sand quarry operation
+  - ilmenite, 54% titanium dioxide
+  source_rows:
+  - 3193
+  - 3322
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 3322
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heavy mineral sand quarry operation
+  - rutile, 95% titanium dioxide
+  source_rows:
+  - 688
+  - 3319
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3319
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - heavy mineral sand quarry operation
+  - zircon
+  source_rows:
+  - 667
+  - 6695
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6695
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - high-grade gallium production, from low-grade gallium
+  - gallium, high-grade
+  source_rows:
+  - 726
+  - 3402
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3402
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hydrogen fluoride production
+  - hydrogen fluoride
+  source_rows:
+  - 837
+  - 3457
+  differing_fields:
+  - CPC
+  - lifetime
+  chosen_source_row: 3457
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hydrogen production, coal gasification
+  - hydrogen, gaseous, low pressure
+  source_rows:
+  - 3200
+  - 3248
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 3248
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hydrogen production, steam methane reforming
+  - hydrogen, gaseous, low pressure
+  source_rows:
+  - 3155
+  - 3173
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 3173
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hydropower plant construction, reservoir
+  - hydropower plant, reservoir
+  source_rows:
+  - 8144
+  - 8145
+  differing_fields:
+  - EcoSpold01Categories
+  - param_confidence
+  - param_notes
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8145
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - hydropower plant construction, run-of-river
+  - hydropower plant, run-of-river
+  source_rows:
+  - 8156
+  - 8609
+  differing_fields:
+  - EcoSpold01Categories
+  - param_confidence
+  - param_notes
+  - tag_notes
+  chosen_source_row: 8609
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - ilmenite - magnetite mine operation
+  - ilmenite, 54% titanium dioxide
+  source_rows:
+  - 3156
+  - 3324
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 3324
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - indium production
+  - indium
+  source_rows:
+  - 685
+  - 3400
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3400
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - iron ore beneficiation
+  - iron ore concentrate
+  source_rows:
+  - 616
+  - 671
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 671
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - iron ore mine operation and beneficiation
+  - iron ore concentrate
+  source_rows:
+  - 619
+  - 760
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 760
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - iron sinter production
+  - iron sinter
+  source_rows:
+  - 6552
+  - 6554
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 6554
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - laminated timber element production, for outdoor use
+  - laminated timber element, transversally prestressed, for outdoor use
+  source_rows:
+  - 2384
+  - 2390
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2390
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - laminated timber element production, for outdoor use
+  - residual wood, dry
+  source_rows:
+  - 5114
+  - 5153
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5153
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - limestone production, crushed, washed
+  - limestone, crushed, washed
+  source_rows:
+  - 776
+  - 789
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 789
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - liquid manure spreading, by vacuum tanker
+  - liquid manure spreading, by vacuum tanker
+  source_rows:
+  - 8862
+  - 8965
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8965
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - magnesium production, electrolysis
+  - magnesium
+  source_rows:
+  - 743
+  - 6711
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6711
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - manganese concentrate production
+  - manganese concentrate
+  source_rows:
+  - 636
+  - 704
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 704
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - manganese production
+  - manganese
+  source_rows:
+  - 716
+  - 6748
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6748
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - medium density fibreboard production, uncoated
+  - medium density fibreboard
+  source_rows:
+  - 2403
+  - 2404
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2404
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - medium density fibreboard production, uncoated
+  - residual wood, dry
+  source_rows:
+  - 5122
+  - 5150
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5150
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - methanol production, biomass gasification
+  - methanol, from biomass
+  source_rows:
+  - 2896
+  - 4126
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - lifetime
+  - tag_notes
+  chosen_source_row: 4126
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - molybdenite mine operation
+  - molybdenite
+  source_rows:
+  - 682
+  - 6746
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6746
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - molybdenum production
+  - indium rich leaching residues, from zinc production
+  source_rows:
+  - 741
+  - 6706
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6706
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - molybdenum production
+  - molybdenum
+  source_rows:
+  - 669
+  - 6705
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6705
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - multi-Si wafer production
+  - multi-Si wafer
+  source_rows:
+  - 7298
+  - 7877
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 7877
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - natural gas, burned in gas turbine
+  - natural gas, burned in gas turbine
+  source_rows:
+  - 978
+  - 2585
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 2585
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - nickel mine operation and benefication to nickel concentrate, 16% Ni
+  - nickel concentrate, 16% Ni
+  source_rows:
+  - 630
+  - 640
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 640
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - niobium mine operation and beneficiation, from pyrochlore ore
+  - iron ore concentrate
+  source_rows:
+  - 622
+  - 750
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 750
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - oriented strand board production
+  - bark chips, wet, measured as dry mass
+  source_rows:
+  - 2341
+  - 2367
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2367
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - oriented strand board production
+  - oriented strand board
+  source_rows:
+  - 2397
+  - 2398
+  - 2399
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2399
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - oriented strand board production
+  - residual wood, dry
+  source_rows:
+  - 5116
+  - 5120
+  - 5140
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5140
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - palm fruit bunch production
+  - palm fruit bunch
+  source_rows:
+  - 251
+  - 252
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 252
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - particleboard production, cement bonded
+  - particleboard, cement bonded
+  source_rows:
+  - 2392
+  - 2395
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2395
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - particleboard production, uncoated, average glue mix
+  - bark chips, wet, measured as dry mass
+  source_rows:
+  - 2340
+  - 2347
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2347
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - particleboard production, uncoated, average glue mix
+  - particleboard, uncoated
+  source_rows:
+  - 2394
+  - 2396
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2396
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - particleboard production, uncoated, average glue mix
+  - residual wood, dry
+  source_rows:
+  - 5118
+  - 5142
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5142
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - phosphate rock beneficiation
+  - phosphate rock, beneficiated
+  source_rows:
+  - 689
+  - 3798
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3798
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - phosphoric acid production, dihydrate process
+  - phosphoric acid, fertiliser grade, without water, in 70% solution state
+  source_rows:
+  - 759
+  - 3491
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 3491
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - phosphorus production, white, liquid
+  - phosphorus, white, liquid
+  source_rows:
+  - 758
+  - 3381
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3381
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic facade installation, 3kWp, multi-Si, laminated, integrated, at building
+  - photovoltaic facade installation, 3kWp, multi-Si, laminated, integrated, at building
+  source_rows:
+  - 7762
+  - 7763
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7763
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic facade installation, 3kWp, multi-Si, panel, mounted, at building
+  - photovoltaic facade installation, 3kWp, multi-Si, panel, mounted, at building
+  source_rows:
+  - 7764
+  - 7765
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7765
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic facade installation, 3kWp, single-Si, laminated, integrated, at building
+  - photovoltaic facade installation, 3kWp, single-Si, laminated, integrated, at building
+  source_rows:
+  - 7766
+  - 7767
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7767
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic facade installation, 3kWp, single-Si, panel, mounted, at building
+  - photovoltaic facade installation, 3kWp, single-Si, panel, mounted, at building
+  source_rows:
+  - 7768
+  - 7769
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7769
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic flat-roof installation, 3kWp, multi-Si, on roof
+  - photovoltaic flat-roof installation, 3kWp, multi-Si, on roof
+  source_rows:
+  - 7775
+  - 7777
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7777
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic flat-roof installation, 3kWp, single-Si, on roof
+  - photovoltaic flat-roof installation, 3kWp, single-Si, on roof
+  source_rows:
+  - 7779
+  - 7780
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 7780
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic laminate production, multi-Si wafer
+  - photovoltaic laminate, multi-Si wafer
+  source_rows:
+  - 9119
+  - 9142
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 9142
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic laminate production, single-Si wafer
+  - photovoltaic laminate, single-Si wafer
+  source_rows:
+  - 9115
+  - 9139
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 9139
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic module production, building-integrated, for facade installation
+  - photovoltaic module, building-integrated, for facade installation
+  source_rows:
+  - 9151
+  - 9152
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9152
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic module production, building-integrated, for slanted-roof installation
+  - photovoltaic module, building-integrated, for slanted-roof installation
+  source_rows:
+  - 9147
+  - 9157
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9157
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic mounting system production, for facade installation
+  - photovoltaic mounting system, for facade installation
+  source_rows:
+  - 9149
+  - 9153
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9153
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic mounting system production, for flat-roof installation
+  - photovoltaic mounting system, for flat-roof installation
+  source_rows:
+  - 9150
+  - 9158
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9158
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic mounting system production, for slanted-roof installation
+  - photovoltaic mounting system, for slanted-roof installation
+  source_rows:
+  - 9148
+  - 9156
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9156
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic panel production, multi-Si wafer
+  - photovoltaic panel, multi-Si wafer
+  source_rows:
+  - 9124
+  - 9141
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 9141
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic panel production, single-Si wafer
+  - photovoltaic panel, single-Si wafer
+  source_rows:
+  - 9122
+  - 9137
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 9137
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic slanted-roof installation, 3kWp, CIS, panel, mounted, on roof
+  - photovoltaic slanted-roof installation, 3kWp, CIS, panel, mounted, on roof
+  source_rows:
+  - 7563
+  - 7564
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_confidence
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7564
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic slanted-roof installation, 3kWp, CdTe, laminated, integrated, on roof
+  - photovoltaic slanted-roof installation, 3kWp, CdTe, laminated, integrated, on roof
+  source_rows:
+  - 7561
+  - 7562
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_confidence
+  - param_notes
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 7562
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic slanted-roof installation, 3kWp, multi-Si, laminated, integrated, on roof
+  - photovoltaic slanted-roof installation, 3kWp, multi-Si, laminated, integrated, on roof
+  source_rows:
+  - 7797
+  - 7798
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7798
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic slanted-roof installation, 3kWp, multi-Si, panel, mounted, on roof
+  - photovoltaic slanted-roof installation, 3kWp, multi-Si, panel, mounted, on roof
+  source_rows:
+  - 7799
+  - 7800
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7800
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic slanted-roof installation, 3kWp, single-Si, laminated, integrated, on roof
+  - photovoltaic slanted-roof installation, 3kWp, single-Si, laminated, integrated, on roof
+  source_rows:
+  - 7803
+  - 7804
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7804
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - photovoltaic slanted-roof installation, 3kWp, single-Si, panel, mounted, on roof
+  - photovoltaic slanted-roof installation, 3kWp, single-Si, panel, mounted, on roof
+  source_rows:
+  - 7805
+  - 7806
+  differing_fields:
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7806
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - pig iron production
+  - pig iron
+  source_rows:
+  - 6510
+  - 6529
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 6529
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - planing mill production
+  - planing mill
+  source_rows:
+  - 8059
+  - 8077
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8077
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - planting with starter fertiliser, by no till planter
+  - planting with starter fertiliser, by no till planter
+  source_rows:
+  - 8874
+  - 8986
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8986
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - platinum group metal mine operation, ore with high palladium content
+  - palladium
+  source_rows:
+  - 744
+  - 6727
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6727
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - platinum group metal mine operation, ore with high palladium content
+  - platinum
+  source_rows:
+  - 745
+  - 6615
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6615
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - platinum group metal, extraction and refinery operations
+  - palladium
+  source_rows:
+  - 746
+  - 6737
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6737
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - platinum group metal, extraction and refinery operations
+  - platinum
+  source_rows:
+  - 739
+  - 6614
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6614
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - platinum group metal, mine and concentration operations
+  - platinum group metal concentrate
+  source_rows:
+  - 676
+  - 6613
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6613
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - polyethylene terephthalate production, granulate, bottle grade
+  - polyethylene terephthalate, granulate, bottle grade
+  source_rows:
+  - 4113
+  - 4139
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 4139
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - potash salt production
+  - potash salt
+  source_rows:
+  - 731
+  - 3811
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3811
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - potato grading
+  - potato grading
+  source_rows:
+  - 8830
+  - 8844
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8844
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - power sawing, with catalytic converter
+  - power sawing, with catalytic converter
+  source_rows:
+  - 9174
+  - 9179
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  - temporal_tag
+  chosen_source_row: 9179
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - power sawing, without catalytic converter
+  - power sawing, without catalytic converter
+  source_rows:
+  - 9175
+  - 9178
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  - temporal_tag
+  chosen_source_row: 9178
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - primary lead production from concentrate
+  - lead
+  source_rows:
+  - 650
+  - 6682
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6682
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - primary zinc production from concentrate
+  - cadmium
+  source_rows:
+  - 719
+  - 6742
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6742
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - primary zinc production from concentrate
+  - copper, cathode
+  source_rows:
+  - 684
+  - 6641
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6641
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - primary zinc production from concentrate
+  - gold
+  source_rows:
+  - 647
+  - 6602
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6602
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - primary zinc production from concentrate
+  - indium rich leaching residues, from zinc production
+  source_rows:
+  - 692
+  - 6743
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6743
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - primary zinc production from concentrate
+  - lead concentrate
+  source_rows:
+  - 641
+  - 757
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 757
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - primary zinc production from concentrate
+  - silver
+  source_rows:
+  - 664
+  - 6589
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6589
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - primary zinc production from concentrate
+  - sulfur
+  source_rows:
+  - 670
+  - 3728
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 3728
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - primary zinc production from concentrate
+  - zinc
+  source_rows:
+  - 3331
+  - 6685
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6685
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - processing of anode slime from electrorefining of copper, anode
+  - gold
+  source_rows:
+  - 642
+  - 6606
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6606
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - processing of anode slime from electrorefining of copper, anode
+  - selenium
+  source_rows:
+  - 680
+  - 3473
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 3473
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - processing of anode slime from electrorefining of copper, anode
+  - silver
+  source_rows:
+  - 662
+  - 6593
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6593
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - protein pea production
+  - protein pea
+  source_rows:
+  - 482
+  - 483
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 483
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - pultrusion, thermoset resins
+  - pultrusion, thermoset resins
+  source_rows:
+  - 9280
+  - 9292
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 9292
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - purified terephthalic acid production
+  - purified terephthalic acid
+  source_rows:
+  - 2968
+  - 2984
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2984
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth element mine operation and beneficiation, bastnaesite and monazite ore
+  - iron ore concentrate
+  source_rows:
+  - 620
+  - 723
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 723
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth element mine operation and beneficiation, ion adsorption clays
+  - rare earth carbonate concentrate
+  source_rows:
+  - 643
+  - 3682
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3682
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - cerium oxide
+  source_rows:
+  - 733
+  - 3667
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3667
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - dysprosium oxide
+  source_rows:
+  - 3683
+  - 3703
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 3703
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - erbium oxide
+  source_rows:
+  - 771
+  - 3693
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3693
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - europium oxide
+  source_rows:
+  - 769
+  - 3684
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3684
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - gadolinium oxide
+  source_rows:
+  - 740
+  - 3677
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3677
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - holmium oxide
+  source_rows:
+  - 764
+  - 3696
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3696
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - lanthanum oxide
+  source_rows:
+  - 3669
+  - 3676
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  chosen_source_row: 3676
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - lutetium oxide
+  source_rows:
+  - 767
+  - 3692
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3692
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - neodymium oxide
+  source_rows:
+  - 3665
+  - 3679
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3679
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - praseodymium oxide
+  source_rows:
+  - 659
+  - 3672
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3672
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - samarium oxide
+  source_rows:
+  - 646
+  - 3699
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3699
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - terbium oxide
+  source_rows:
+  - 737
+  - 3680
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3680
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - thulium oxide
+  source_rows:
+  - 768
+  - 3681
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3681
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - ytterbium oxide
+  source_rows:
+  - 735
+  - 3687
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3687
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth carbonate concentrate
+  - yttrium oxide
+  source_rows:
+  - 766
+  - 3697
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3697
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth oxide concentrate, 70% REO
+  - iron ore concentrate
+  source_rows:
+  - 625
+  - 762
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 762
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - rare earth oxides production, from rare earth oxide concentrate, 70% REO
+  - lanthanum-cerium oxide
+  source_rows:
+  - 3685
+  - 3702
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 3702
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - reinforcing steel production
+  - reinforcing steel
+  source_rows:
+  - 6580
+  - 6581
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 6581
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - resin transfer moulding, light
+  - resin transfer moulding, light
+  source_rows:
+  - 9270
+  - 9299
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9299
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sand quarry operation, extraction from river bed
+  - sand
+  source_rows:
+  - 712
+  - 798
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 798
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawing and planing, azobe, air dried
+  - residual wood, dry
+  source_rows:
+  - 5121
+  - 5146
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5146
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawing and planing, azobe, air dried
+  - sawnwood, azobe, dried (u=15%), planed
+  source_rows:
+  - 2282
+  - 2288
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2288
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawing, hardwood
+  - sawdust, loose, wet, measured as dry mass
+  source_rows:
+  - 2349
+  - 5080
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 5080
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawing, hardwood
+  - sawnwood, hardwood, raw
+  source_rows:
+  - 2323
+  - 2344
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 2344
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawing, hardwood
+  - slab and siding, hardwood, wet, measured as dry mass
+  source_rows:
+  - 2325
+  - 2354
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 2354
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawing, softwood
+  - sawdust, loose, wet, measured as dry mass
+  source_rows:
+  - 2353
+  - 5077
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5077
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawing, softwood
+  - sawnwood, softwood, raw
+  source_rows:
+  - 2292
+  - 2350
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 2350
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawing, softwood
+  - slab and siding, softwood, wet, measured as dry mass
+  source_rows:
+  - 2348
+  - 2418
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 2418
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawmill construction
+  - sawmill
+  source_rows:
+  - 7989
+  - 7990
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  chosen_source_row: 7990
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawnwood production, hardwood, dried (u=10%), planed
+  - sawnwood, hardwood, dried (u=10%), planed
+  source_rows:
+  - 2309
+  - 2313
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2313
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawnwood production, hardwood, dried (u=20%), planed
+  - sawnwood, hardwood, dried (u=20%), planed
+  source_rows:
+  - 2307
+  - 2324
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2324
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawnwood production, hardwood, raw, dried (u=10%)
+  - sawnwood, hardwood, raw, dried (u=10%)
+  source_rows:
+  - 2306
+  - 2330
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2330
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawnwood production, hardwood, raw, dried (u=20%)
+  - sawnwood, hardwood, raw, dried (u=20%)
+  source_rows:
+  - 2308
+  - 2320
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2320
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawnwood production, softwood, dried (u=10%), planed
+  - sawnwood, softwood, dried (u=10%), planed
+  source_rows:
+  - 2279
+  - 2304
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2304
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawnwood production, softwood, dried (u=20%), planed
+  - sawnwood, softwood, dried (u=20%), planed
+  source_rows:
+  - 2281
+  - 2294
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2294
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawnwood production, softwood, raw, dried (u=10%)
+  - sawnwood, softwood, raw, dried (u=10%)
+  source_rows:
+  - 2278
+  - 2295
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2295
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sawnwood production, softwood, raw, dried (u=20%)
+  - sawnwood, softwood, raw, dried (u=20%)
+  source_rows:
+  - 2280
+  - 2300
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2300
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - scandium oxide production, from rare earth tailings
+  - iron ore concentrate
+  source_rows:
+  - 624
+  - 748
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 748
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - scandium oxide production, from rare earth tailings
+  - pyrochlore concentrate
+  source_rows:
+  - 730
+  - 752
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 752
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - scandium oxide production, from rare earth tailings
+  - scandium oxide
+  source_rows:
+  - 727
+  - 3691
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3691
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - selenium production
+  - selenium
+  source_rows:
+  - 697
+  - 3449
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3449
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - silica sand production
+  - silica sand
+  source_rows:
+  - 717
+  - 799
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 799
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - silicon production, metallurgical grade
+  - silicon, metallurgical grade
+  source_rows:
+  - 3611
+  - 3617
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 3617
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - silicon production, single crystal, Czochralski process, photovoltaics
+  - silicon, single crystal, Czochralski process, photovoltaics
+  source_rows:
+  - 9110
+  - 9143
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 9143
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - silver-gold mine operation with refinery
+  - gold
+  source_rows:
+  - 652
+  - 6607
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6607
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - silver-gold mine operation with refinery
+  - silver
+  source_rows:
+  - 648
+  - 6588
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6588
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - single-Si wafer production, photovoltaic
+  - single-Si wafer, photovoltaic
+  source_rows:
+  - 9136
+  - 9146
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 9146
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - skidding, skidder
+  - skidding, skidder
+  source_rows:
+  - 268
+  - 269
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  chosen_source_row: 269
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - smelting and refining of nickel concentrate, 16% Ni
+  - copper concentrate, sulfide ore
+  source_rows:
+  - 714
+  - 772
+  differing_fields:
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 772
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - smelting of copper concentrate, sulfide ore
+  - copper, anode
+  source_rows:
+  - 653
+  - 6621
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6621
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sodium borates mine operation and beneficiation
+  - sodium borates
+  source_rows:
+  - 710
+  - 813
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 813
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - softwood forestry, paraná pine, sustainable forest management
+  - sawlog and veneer log, paraná pine, measured as solid wood under bark
+  source_rows:
+  - 2258
+  - 2259
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2259
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - softwood forestry, pine, sustainable forest management
+  - bundle, energy wood, measured as dry mass
+  source_rows:
+  - 2274
+  - 2275
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 2275
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - softwood forestry, pine, sustainable forest management
+  - wood chips, wet, measured as dry mass
+  source_rows:
+  - 2269
+  - 2270
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 2270
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - softwood forestry, spruce, sustainable forest management
+  - bundle, energy wood, measured as dry mass
+  source_rows:
+  - 2411
+  - 2422
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 2422
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - softwood forestry, spruce, sustainable forest management
+  - wood chips, wet, measured as dry mass
+  source_rows:
+  - 2372
+  - 2377
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 2377
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - solid manure loading and spreading, by hydraulic loader and spreader
+  - solid manure loading and spreading, by hydraulic loader and spreader
+  source_rows:
+  - 8877
+  - 8920
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8920
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sowing
+  - sowing
+  source_rows:
+  - 8873
+  - 8955
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8955
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - soybean meal and crude oil production
+  - soybean meal
+  source_rows:
+  - 2118
+  - 2119
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2119
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - soybean meal and crude oil production
+  - soybean oil, crude
+  source_rows:
+  - 2106
+  - 2107
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2107
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - spodumene production
+  - spodumene
+  source_rows:
+  - 729
+  - 825
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 825
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - spray-up for composite production, spray-up of resin and fibres
+  - spray-up for composite production, spray-up of resin and fibres
+  source_rows:
+  - 9273
+  - 9283
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 9283
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - stamping for thermoplastic composite product, excluding electricity use
+  - stamping for thermoplastic composite product
+  source_rows:
+  - 9272
+  - 9290
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9290
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - stamping, electricity use, 300 – 500 t press, 150 - 200 °C
+  - stamping, electricity use, 300 – 500 t press, 150 - 200 °C
+  source_rows:
+  - 9269
+  - 9294
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 9294
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - stamping, electricity use, 300 – 500 t press, 60 - 150 °C
+  - stamping, electricity use, 300 – 500 t press, 60 - 150 °C
+  source_rows:
+  - 9250
+  - 9303
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9303
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - stamping, electricity use, 300 – 500 t press, > 200 °C
+  - stamping, electricity use, 300 – 500 t press, > 200 °C
+  source_rows:
+  - 9267
+  - 9300
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9300
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - stamping, electricity use, 50 – 150 t press, 150 - 200 °C
+  - stamping, electricity use, 50 – 150 t press, 150 - 200 °C
+  source_rows:
+  - 9276
+  - 9298
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9298
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - stamping, electricity use, 50 – 150 t press, 60 - 150 °C
+  - stamping, electricity use, 50 – 150 t press, 60 - 150 °C
+  source_rows:
+  - 9265
+  - 9304
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9304
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - stamping, electricity use, 50 – 150 t press, > 200 °C
+  - stamping, electricity use, 50 – 150 t press, > 200 °C
+  source_rows:
+  - 9256
+  - 9284
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9284
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - steel production, 3.2% silicon alloy, for grain oriented electrical steel
+  - steel, 3.2% silicon alloy, for grain oriented electrical steel
+  source_rows:
+  - 6531
+  - 6577
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 6577
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - steel production, chromium steel 18/8, hot rolled
+  - steel, chromium steel 18/8, hot rolled
+  source_rows:
+  - 6533
+  - 6563
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6563
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - steel production, converter, low-alloyed
+  - steel, low-alloyed
+  source_rows:
+  - 6524
+  - 6562
+  - 6575
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6575
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - steel production, converter, unalloyed
+  - steel, unalloyed
+  source_rows:
+  - 6527
+  - 6559
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6559
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - steel production, electric, chromium steel 18/8
+  - steel, chromium steel 18/8
+  source_rows:
+  - 6523
+  - 6576
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 6576
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - steel production, electric, low-alloyed
+  - heat, district or industrial, other than natural gas
+  source_rows:
+  - 1557
+  - 1789
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 1789
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - steel production, electric, low-alloyed
+  - steel, low-alloyed
+  source_rows:
+  - 6522
+  - 6561
+  - 6567
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6567
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - steel production, low-alloyed, hot rolled
+  - steel, low-alloyed, hot rolled
+  source_rows:
+  - 6520
+  - 6578
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6578
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - strontium mine operation and beneficiation
+  - strontium sulfate, 90% SrSO4
+  source_rows:
+  - 633
+  - 721
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 721
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sugarcane production
+  - sugarcane
+  source_rows:
+  - 286
+  - 287
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 287
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sulfate pulp production, from hardwood, bleached
+  - sulfate pulp, bleached
+  source_rows:
+  - 2424
+  - 2426
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2426
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - sulfur production, petroleum refinery operation
+  - sulfur
+  source_rows:
+  - 639
+  - 3733
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 3733
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - swath, by rotary windrower
+  - swath, by rotary windrower
+  source_rows:
+  - 8871
+  - 8954
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8954
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tantalum mine operation and beneficiation
+  - tantalum concentrate, 30% Ta2O5
+  source_rows:
+  - 724
+  - 6728
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6728
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tap water production, conventional treatment
+  - tap water
+  source_rows:
+  - 2068
+  - 2083
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 2083
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - technical wood drying facility construction
+  - technical wood drying facility
+  source_rows:
+  - 7998
+  - 7999
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  - tag_notes
+  chosen_source_row: 7999
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tellurium production, semiconductor-grade
+  - tellurium, semiconductor-grade
+  source_rows:
+  - 681
+  - 3401
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3401
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - textile production, cotton, weaving
+  - textile, woven cotton
+  source_rows:
+  - 2231
+  - 2232
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2232
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - textile production, jute, weaving
+  - textile, jute
+  source_rows:
+  - 2228
+  - 2229
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2229
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - thermocompression for wet thermoset composite product, excluding electricity use
+  - thermocompression for wet thermoset composite product
+  source_rows:
+  - 9278
+  - 9287
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 9287
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - thermocompression, electricity use, 200 – 500 t press, 120 °C, 20 minutes cycle
+  - thermocompression, electricity use, 200 – 500 t press, 120 °C, 20 minutes cycle
+  source_rows:
+  - 9279
+  - 9285
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 9285
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - thermocompression, electricity use, 200 – 500 t press, 120 °C, 60 minutes cycle
+  - thermocompression, electricity use, 200 – 500 t press, 120 °C, 60 minutes cycle
+  source_rows:
+  - 9274
+  - 9302
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9302
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - thermocompression, electricity use, 200 – 500 t press, 180 °C, 20 minutes cycle
+  - thermocompression, electricity use, 200 – 500 t press, 180 °C, 20 minutes cycle
+  source_rows:
+  - 9261
+  - 9301
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9301
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - thermocompression, electricity use, 200 – 500 t press, 180 °C, 60 minutes cycle
+  - thermocompression, electricity use, 200 – 500 t press, 180 °C, 60 minutes cycle
+  source_rows:
+  - 9264
+  - 9293
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9293
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - thermocompression, electricity use, 50 – 150 t press, 120 °C, 20 minutes cycle
+  - thermocompression, electricity use, 50 – 150 t press, 120 °C, 20 minutes cycle
+  source_rows:
+  - 9268
+  - 9297
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9297
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - thermocompression, electricity use, 50 – 150 t press, 120 °C, 60 minutes cycle
+  - thermocompression, electricity use, 50 – 150 t press, 120 °C, 60 minutes cycle
+  source_rows:
+  - 9271
+  - 9289
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 9289
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - thermocompression, electricity use, 50 – 150 t press, 180 °C, 20 minutes cycle
+  - thermocompression, electricity use, 50 – 150 t press, 180 °C, 20 minutes cycle
+  source_rows:
+  - 9281
+  - 9291
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 9291
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - thermocompression, electricity use, 50 – 150 t press, 180 °C, 60 minutes cycle
+  - thermocompression, electricity use, 50 – 150 t press, 180 °C, 60 minutes cycle
+  source_rows:
+  - 9277
+  - 9288
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 9288
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tillage, cultivating, chiselling
+  - tillage, cultivating, chiselling
+  source_rows:
+  - 8882
+  - 8898
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8898
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tillage, harrowing, by offset disc harrow
+  - tillage, harrowing, by offset disc harrow
+  source_rows:
+  - 8853
+  - 8922
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8922
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tillage, harrowing, by offset leveling disc harrow
+  - tillage, harrowing, by offset leveling disc harrow
+  source_rows:
+  - 8870
+  - 8941
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8941
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tillage, harrowing, by rotary harrow
+  - tillage, harrowing, by rotary harrow
+  source_rows:
+  - 8876
+  - 8947
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8947
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tillage, rolling
+  - tillage, rolling
+  source_rows:
+  - 8865
+  - 8976
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8976
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tillage, rotary cultivator
+  - tillage, rotary cultivator
+  source_rows:
+  - 8849
+  - 8921
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8921
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tin production
+  - tin
+  source_rows:
+  - 720
+  - 6687
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6687
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - titanium production
+  - titanium
+  source_rows:
+  - 707
+  - 6744
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6744
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - titanium sponge production, from titanium tetrachloride
+  - titanium sponge
+  source_rows:
+  - 711
+  - 6734
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 6734
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - titanium tetrachloride production
+  - titanium tetrachloride
+  source_rows:
+  - 738
+  - 3613
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_notes
+  chosen_source_row: 3613
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transmission network construction, electricity, high voltage
+  - transmission network, electricity, high voltage
+  source_rows:
+  - 8073
+  - 8074
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8074
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transmission network construction, electricity, medium voltage
+  - transmission network, electricity, medium voltage
+  source_rows:
+  - 8002
+  - 8003
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  chosen_source_row: 8003
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, 16-32 metric ton, diesel, EURO 1
+  - transport, freight, lorry, 16-32 metric ton, diesel, EURO 1
+  source_rows:
+  - 8556
+  - 8648
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8648
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, 16-32 metric ton, diesel, EURO 2
+  - transport, freight, lorry, 16-32 metric ton, diesel, EURO 2
+  source_rows:
+  - 8560
+  - 8628
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8628
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, 16-32 metric ton, diesel, unregulated
+  - transport, freight, lorry, 16-32 metric ton, diesel, unregulated
+  source_rows:
+  - 8561
+  - 8639
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8639
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 1
+  - transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 1
+  source_rows:
+  - 8554
+  - 8658
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8658
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 2
+  - transport, freight, lorry, 3.5-7.5 metric ton, diesel, EURO 2
+  source_rows:
+  - 8567
+  - 8636
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8636
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, 3.5-7.5 metric ton, diesel, unregulated
+  - transport, freight, lorry, 3.5-7.5 metric ton, diesel, unregulated
+  source_rows:
+  - 8564
+  - 8575
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8575
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 1
+  - transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 1
+  source_rows:
+  - 8555
+  - 8623
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8623
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 2
+  - transport, freight, lorry, 7.5-16 metric ton, diesel, EURO 2
+  source_rows:
+  - 8558
+  - 8618
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8618
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, 7.5-16 metric ton, diesel, unregulated
+  - transport, freight, lorry, 7.5-16 metric ton, diesel, unregulated
+  source_rows:
+  - 8562
+  - 8607
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8607
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, >32 metric ton, diesel, EURO 1
+  - transport, freight, lorry, >32 metric ton, diesel, EURO 1
+  source_rows:
+  - 8559
+  - 8629
+  differing_fields:
+  - EcoSpold01Categories
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8629
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, >32 metric ton, diesel, EURO 2
+  - transport, freight, lorry, >32 metric ton, diesel, EURO 2
+  source_rows:
+  - 8557
+  - 8654
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8654
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, lorry, >32 metric ton, diesel, unregulated
+  - transport, freight, lorry, >32 metric ton, diesel, unregulated
+  source_rows:
+  - 8563
+  - 8650
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8650
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, sea, container ship, heavy fuel oil
+  - transport, freight, sea, container ship, heavy fuel oil
+  source_rows:
+  - 8734
+  - 8738
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8738
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, train, diesel
+  - transport, freight, train, fleet average
+  source_rows:
+  - 8713
+  - 8718
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 8718
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - transport, freight, train, electric
+  - transport, freight, train, fleet average
+  source_rows:
+  - 8714
+  - 8715
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 8715
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of biowaste by anaerobic digestion
+  - biogas
+  source_rows:
+  - 9372
+  - 9374
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9374
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of biowaste by anaerobic digestion
+  - biowaste
+  source_rows:
+  - 4832
+  - 4837
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 4837
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of sulfidic tailings, from cinnabar mine operation, tailings impoundment
+  - sulfidic tailings, from cinnabar mine operation
+  source_rows:
+  - 5245
+  - 6287
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6287
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of sulfidic tailings, from copper mine operation, tailings impoundment
+  - sulfidic tailings, from copper mine operation
+  source_rows:
+  - 5258
+  - 6285
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6285
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of sulfidic tailings, from gold mine operation, tailings impoundment
+  - sulfidic tailings, from gold mine operation
+  source_rows:
+  - 5254
+  - 5671
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5671
+  resolution: preserve_legacy_last_effective_row
+  field_resolutions:
+    lifetime:
+      source_row: 5254
+      reason: legacy loader retained the latest nonblank lifetime
+- identity:
+  - treatment of sulfidic tailings, from nickel mine operation, tailings impoundment
+  - sulfidic tailings, from nickel mine operation
+  source_rows:
+  - 5262
+  - 6309
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6309
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of sulfidic tailings, from silver mine operation, tailings impoundment
+  - sulfidic tailings, from silver mine operation
+  source_rows:
+  - 5244
+  - 6283
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6283
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of sulfidic tailings, from zinc-lead mine operation, tailings impoundment
+  - sulfidic tailings, from zinc-lead mine operation
+  source_rows:
+  - 5246
+  - 6355
+  differing_fields:
+  - CPC
+  - lifetime
+  - tag_notes
+  chosen_source_row: 6355
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of sulfidic tailings, generic, tailings impoundment
+  - sulfidic tailings, generic
+  source_rows:
+  - 5672
+  - 5673
+  differing_fields:
+  - CPC
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5673
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of waste emulsion paint on wall, sorting plant
+  - waste emulsion paint, on wall
+  source_rows:
+  - 5912
+  - 5913
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5913
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of waste emulsion paint, on wood, collection for final disposal
+  - waste emulsion paint, on wood
+  source_rows:
+  - 5934
+  - 5935
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 5935
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of waste fibreboard, collection for final disposal
+  - waste fibreboard
+  source_rows:
+  - 5945
+  - 5946
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 5946
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of waste glass pane in burnable frame, collection for final disposal
+  - waste glass pane in burnable frame
+  source_rows:
+  - 5953
+  - 5955
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 5955
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of waste glass pane in burnable frame, sorting plant
+  - waste glass pane in burnable frame
+  source_rows:
+  - 5958
+  - 5959
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 5959
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of waste paint on wood, collection for final disposal
+  - waste paint on wood
+  source_rows:
+  - 6049
+  - 6050
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 6050
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of waste paper, unsorted, sorting
+  - waste paper, sorted
+  source_rows:
+  - 6066
+  - 6068
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 6068
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - treatment of waste polyurethane foam, collection for final disposal
+  - waste polyurethane foam
+  source_rows:
+  - 6325
+  - 6326
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 6326
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tree seedling production, in heated greenhouse
+  - tree seedling, for planting
+  source_rows:
+  - 422
+  - 427
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 427
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - tree seedling production, in unheated greenhouse
+  - tree seedling, for planting
+  source_rows:
+  - 421
+  - 435
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 435
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - uranium conversion facility construction
+  - uranium conversion facility
+  source_rows:
+  - 8080
+  - 8082
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8082
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - uranium mine operation, open cast
+  - uranium ore, as U
+  source_rows:
+  - 614
+  - 665
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 665
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - uranium mine operation, underground
+  - uranium ore, as U
+  source_rows:
+  - 612
+  - 690
+  differing_fields:
+  - CPC
+  - EcoSpold01Categories
+  - ISIC rev.4 ecoinvent
+  - tag_notes
+  chosen_source_row: 690
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - uranium production, centrifuge, enriched 3.9%
+  - uranium, enriched 3.9%, per separative work unit
+  source_rows:
+  - 2733
+  - 2741
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2741
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - uranium production, centrifuge, enriched 4.0%
+  - uranium, enriched 4.0%, per separative work unit
+  source_rows:
+  - 2731
+  - 2740
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 2740
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - vacuum infusion moulding for composite product
+  - vacuum infusion moulding for composite product
+  source_rows:
+  - 9248
+  - 9282
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 9282
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - water pump operation, diesel
+  - water pump operation, diesel
+  source_rows:
+  - 8791
+  - 8793
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8793
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood chipping, industrial residual wood, stationary electric chipper
+  - wood chipping, industrial residual wood, stationary electric chipper
+  source_rows:
+  - 9176
+  - 9177
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 9177
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood chipping, mobile chipper, at forest road
+  - wood chipping, chipper, mobile, diesel, at forest road
+  source_rows:
+  - 270
+  - 271
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  - tag_notes
+  chosen_source_row: 271
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood chipping, terrain chipper, diesel
+  - wood chipping, forwarder with terrain chipper, in forest
+  source_rows:
+  - 272
+  - 273
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  - tag_notes
+  chosen_source_row: 273
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood pellet production
+  - wood pellet, measured as dry mass
+  source_rows:
+  - 5107
+  - 5110
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 5110
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, dipping/immersion, solvent-based preservative, indoor use, dry
+  - wood preservation, dipping/immersion method, organic solvent-based, indoor use, dry
+  source_rows:
+  - 8160
+  - 8185
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8185
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, dipping/immersion, solvent-based preservative, indoor use, occasionally wet
+  - wood preservation, dipping/immersion method, organic solvent-based, indoor use, occasionally wet
+  source_rows:
+  - 8168
+  - 8170
+  differing_fields:
+  - EcoSpold01Categories
+  chosen_source_row: 8170
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, dipping/immersion, solvent-based preservative, outdoor use, no ground contact
+  - wood preservation, dipping/immersion method, organic solvent-based, outdoor use, no ground contact
+  source_rows:
+  - 8167
+  - 8183
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8183
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, hot/cold dipping, creosote, outdoor use, ground contact
+  - wood preservation, hot/cold dipping, creosote, outdoor use, ground contact
+  source_rows:
+  - 8164
+  - 8184
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8184
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, oscillating pressure method, inorganic salt, containing Cr, outdoor use, ground contact
+  - wood preservation, oscillating pressure method, inorganic salt, containing Cr, outdoor use, ground contact
+  source_rows:
+  - 8166
+  - 8187
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8187
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, oscillating pressure method, organic salt, Cr-free, outdoor use, ground contact
+  - wood preservation, oscillating pressure method, organic salt, Cr-free, outdoor use, ground contact
+  source_rows:
+  - 8159
+  - 8178
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8178
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, pressure vessel, creosote, outdoor use, ground contact
+  - wood preservation, pressure vessel, creosote, outdoor use, ground contact
+  source_rows:
+  - 8157
+  - 8186
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 8186
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, spray tunnel/deluging, solvent-based preservative, indoor use, dry
+  - wood preservation, spray tunnel/deluging, organic solvent-based, indoor use, dry
+  source_rows:
+  - 8165
+  - 8175
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8175
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, spray tunnel/deluging, solvent-based preservative, indoor use, occasionally wet
+  - wood preservation, spray tunnel/deluging, organic solvent-based, indoor use, occasionally wet
+  source_rows:
+  - 8161
+  - 8177
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8177
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, spray tunnel/deluging, solvent-based preservative, outdoor use, no ground contact
+  - wood preservation, spray tunnel/deluging, organic solvent-based, outdoor use, no ground contact
+  source_rows:
+  - 8162
+  - 8174
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8174
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, vacuum pressure method, inorganic salt, containing Cr, outdoor use, ground contact
+  - wood preservation, vacuum pressure method, inorganic salt, containing Cr, outdoor use, ground contact
+  source_rows:
+  - 8158
+  - 8182
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8182
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservation, vacuum pressure method, organic salt, Cr-free, outdoor use, ground contact
+  - wood preservation, vacuum pressure method, organic salts, Cr-free, outdoor use, ground contact
+  source_rows:
+  - 8163
+  - 8181
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 8181
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood preservative production, creosote
+  - wood preservative, creosote
+  source_rows:
+  - 4262
+  - 4275
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 4275
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood wool boards production, cement bonded
+  - wood wool boards, cement bonded
+  source_rows:
+  - 121
+  - 122
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 122
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood wool production
+  - residual wood, dry
+  source_rows:
+  - 5113
+  - 5149
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 5149
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wood wool production
+  - wood wool
+  source_rows:
+  - 2334
+  - 2336
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2336
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wooden board factory construction, cement bonded boards
+  - wooden board factory, cement bonded boards
+  source_rows:
+  - 8024
+  - 8025
+  differing_fields:
+  - EcoSpold01Categories
+  - param_confidence
+  - param_notes
+  - tag_notes
+  chosen_source_row: 8025
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - wooden board factory construction, organic bonded boards
+  - wooden board factory, organic bonded boards
+  source_rows:
+  - 8026
+  - 8027
+  differing_fields:
+  - EcoSpold01Categories
+  - param_confidence
+  - param_notes
+  - tag_notes
+  chosen_source_row: 8027
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - yarding and processing, mobile cable yarder on truck
+  - cable yarding
+  source_rows:
+  - 260
+  - 261
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  - tag_notes
+  chosen_source_row: 261
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - yarding, mobile cable yarder on trailer
+  - cable yarding
+  source_rows:
+  - 274
+  - 275
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 275
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - yarding, sled yarder
+  - cable yarding
+  source_rows:
+  - 262
+  - 263
+  differing_fields:
+  - EcoSpold01Categories
+  - param_notes
+  - tag_notes
+  chosen_source_row: 263
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - yarn production, jute
+  - yarn, jute
+  source_rows:
+  - 2224
+  - 2225
+  differing_fields:
+  - EcoSpold01Categories
+  - tag_notes
+  chosen_source_row: 2225
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - zinc mine operation
+  - sand
+  source_rows:
+  - 701
+  - 801
+  differing_fields:
+  - CPC
+  - tag_notes
+  chosen_source_row: 801
+  resolution: preserve_legacy_last_effective_row
+- identity:
+  - zirconium and hafnium tetrachloride production, from zircon
+  - hafnium tetrachloride
+  source_rows:
+  - 654
+  - 3352
+  differing_fields:
+  - CPC
+  - ISIC rev.4 ecoinvent
+  - lifetime
+  - tag_confidence
+  - tag_notes
+  chosen_source_row: 3352
+  resolution: preserve_legacy_last_effective_row
