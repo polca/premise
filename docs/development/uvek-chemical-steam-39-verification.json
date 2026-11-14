@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "f483b96d43bdd861e7f5ba838aa20448134a2f66",
+  "scope_registration": {
+    "prior_scopes": 1399,
+    "new_scopes": 1401,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-786f4636915b638d",
+      "bp-1a8ff64b231266fb"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_signed_uncertain_kg_and_exact_profile_refusals": 30,
+    "premise_source_preparation_and_cache": 11,
+    "premise_installed_preparation_and_cache": 11,
+    "lint_changed_tests": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 2,
+    "native_suppliers": 1,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-786f4636915b638d",
+        "source": {
+          "location": "RER",
+          "name": "market for steam, in chemical industry",
+          "reference product": "steam, in chemical industry",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 3.469446951953614e-18,
+        "full_graph_residual": {
+          "residual_before": 1.4642143704042397e-10,
+          "residual_after": 4.2895837441895984e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.4642143704042397e-10,
+          "residual_after": 4.2895837441895984e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-1a8ff64b231266fb",
+        "source": {
+          "location": "RoW",
+          "name": "market for steam, in chemical industry",
+          "reference product": "steam, in chemical industry",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 3.469446951953614e-18,
+        "full_graph_residual": {
+          "residual_before": 1.4642143704042397e-10,
+          "residual_after": 4.2895837441895984e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.4642143704042397e-10,
+          "residual_after": 4.2895837441895984e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the steam kg interface and native-demand numerical consistency; does not establish identical steam quality, source/native fuel/water boundaries, LCIA equivalence, battery completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_chemical_steam_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 105,
+    "current": 103,
+    "removed_rules": [
+      "bp-786f4636915b638d",
+      "bp-1a8ff64b231266fb"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-f1abd225900bb9b6",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "last_fresh_live_baseline": {
+    "pending_first39_rules": 105,
+    "evidence": "uvek-hydrogen-borohydride-39-verification.json",
+    "current_103_count_rechecked_live": false
+  },
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [],
+  "new_helpers": 0,
+  "new_source_omissions": [],
+  "compiled_resources_rules_recipes_and_earlier_approvals_unchanged": true,
+  "broader_regression_run": {
+    "result": "interrupted after 30 failures and 180 passes in107.87s",
+    "failures": "Existing coal-tar tests in test_uvek_reference_signs.py expect older direct suppliers and seven source-profile approvals; current rule instead has the earlier ferrosilicon-review source3.9 decision. Steam commits do not modify this rule or any compiled resource. Full suite is not claimed passing.",
+    "followup_required": true
+  },
+  "full_generator_regeneration": "Not claimed passing; independently reproduced earlier nitrate-authority failure remains tracked."
+}

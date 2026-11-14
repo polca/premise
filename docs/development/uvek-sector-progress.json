@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-786f4636915b638d",
+        "rule_id": "bp-f1abd225900bb9b6",
         "source": {
-          "location": "RER",
-          "name": "market for steam, in chemical industry",
-          "reference product": "steam, in chemical industry",
+          "location": "GLO",
+          "name": "market for graphite, battery grade",
+          "reference product": "graphite, battery grade",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 105,
+        "unapproved_correspondence_count_in_current_39_cohort": 103,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-hydrogen-borohydride-39-verification.json",
+        "verification": "docs/development/uvek-chemical-steam-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Verify chemical-steam kg versus2.75MJ/kg source heat input and native complete steam reference; then inspect matching battery-grade graphite route, original regional shares and final delivery. Do not invent energy, coke/purity or allocation corrections.",
-        "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh normal CLIC resolution and integrity-verified cached graph agree on all105 first3.9-cohort pending rule details."
+        "next_action": "Review battery graphite and timber/pallet/core-board markets together; preserve producer weights and final freight, use complete matching native products once and record geographic/moisture/allocation/source-data differences.",
+        "live_freshness_verified": false,
+        "mapping_diagnostic": "Integrity-verified cached graph105 to103; last fresh live run confirmed105 before the two steam approvals."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-hydrogen-borohydride-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-chemical-steam-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

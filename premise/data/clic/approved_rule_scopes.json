@@ -275766,6 +275766,192 @@
           "fingerprint": "713e38e620e0e048acd5d6d719ece70769249d20e9e52142874697090d595349"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-786f4636915b638d",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_chemical_steam_39_review.json",
+      "review_sha256": "5f1296d2ca2915ac70528317144c5d489fe497465e5aec07462ab9e07a944e84",
+      "authorization": "Standing autonomous approval of remaining mapping decisions and complete native named-product screening proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for steam, in chemical industry",
+            "reference product": "steam, in chemical industry",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "34028ee01b209d9187088b5925a77cc9f3379f3ae85a7bb1a3f8e185e6faed6b",
+          "inventory_sha256": "adb848b12edd4205f6541231f8deebfb5dddddfd48228c2d677186305e52a097",
+          "activity_comment_sha256": "cdc827af0dcb4ab04936818f703d327dd8356fbee3c727a50e46e5ad4693e66f",
+          "product_information_sha256": "34d1e61a536b7b659d8cfb994056a844bcd4b3b3cb6af71c178185e01d408989"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Steam, for chemical processes, at plant",
+              "reference product": "Steam, for chemical processes, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "710e73607e36b3601e05fd466a9c398fbc9c0fb0efc7aa0c70c951babe81b2af",
+            "inventory_sha256": "ba0f7ea2b31a7918ad24cc03d139ec3040c098e1350067c94d14e5c192f4080b",
+            "activity_comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Steam, for chemical processes, at plant",
+              "reference product": "Steam, for chemical processes, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "da1c2fea2929b2d4a0f92a1c4e2ae7ca47450f52ac26213892a36d9c0a1335a1",
+            "inventory_sha256": "e55dd8eff9e510300ffe740ecdf48791b875f92e01d50a0401758a33d9852be0",
+            "activity_comment_sha256": "a8bb4c3ce7f4c9c40fee66e82f43a6fc53cda6abab64269f3d5477abe02e5632",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_market_producer_count": 1,
+          "source_market_has_freight_or_losses": false,
+          "source_producer_heat_MJ_per_carrier_kg": 2.75,
+          "native2026_technosphere_entries": 3,
+          "native2026_biosphere_entries": 0,
+          "native_reference_is_kg_not_MJ": true,
+          "source_heat_added_on_top_of_native_steam": false,
+          "native_water_and_heating_infrastructure_already_covered": true,
+          "source_native_steam_quality_equivalence_established": false,
+          "RoW_uses_European_geographic_proxy": false
+        }
+      },
+      "limitations": [
+        "Approval covers only the inspected ecoinvent 3.9 cut-off chemical-industry steam market, RER. Both source and native references are positive one kilogram of named chemical-process steam. Factor +1 preserves signed caller steam kg, supported uncertainty and formulas, and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "The source market has exactly one producer at one kg and explicitly no market freight or losses. Its producer is a massless energy-carrier conversion purchasing 2.75 MJ of chemical steam heat per labelled kg; its upstream heat already includes water use and energy losses. Use the complete native kg steam process once rather than multiplying native kg by 2.75, adding the source heat again, or treating carrier kg as a further water demand. The native steam process already buys water and useful heat from gas/heavy-fuel-oil combustion services, with heating infrastructure in those services. Do not add another boiler, fuel, heat, water, efficiency, condensate or loss correction.",
+        "Native supply represents eleven European chemical sites using gas and heavy fuel oil. This replaces the source European or rest-of-world chemical-industry fuel portfolio, boiler technology, water/return-water boundary, vintage, infrastructure and allocation assumptions. RoW uses RER explicitly as a geographic screening proxy. Exact pressure, temperature, enthalpy and condensate-return equivalence are not established. No steam-quality, energy-content, yield or efficiency multiplier is inferred from source 2.75 MJ/kg or from the sum of native heat inputs. LCI, LCIA and stochastic equivalence are not claimed; score effects remain unquantified.",
+        "Native energy purchases remain real technosphere exchanges available to ordinary Premise supplier filtering and relinking. This correspondence neither certifies a full IAM heat update nor silently maps purchased useful heat to fuel energy. Preserve the standard heat workflow and the callers own foreground exchanges; only its background supplier changes. Existing direct rule/default target, all earlier fingerprints, recipes and runtime Python remain unchanged. No helper, source omission, validation bypass or alternate sector engine is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4d4993c2c96120a0e0412384c4d6b0a297ddd8412ec3d4587a6a759544b89506"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-1a8ff64b231266fb",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_chemical_steam_39_review.json",
+      "review_sha256": "5f1296d2ca2915ac70528317144c5d489fe497465e5aec07462ab9e07a944e84",
+      "authorization": "Standing autonomous approval of remaining mapping decisions and complete native named-product screening proxies, with explicit warnings and review records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for steam, in chemical industry",
+            "reference product": "steam, in chemical industry",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "0439dea756c8b1d68cc04e2a350dcac43a979f082b2302b9ae7638ca671132b3",
+          "inventory_sha256": "7377001b98a3094d99b763046fffca42913442dc993846bb91452e77d56117fe",
+          "activity_comment_sha256": "974eac56cfa8236af226cc86f8ac02d0b8dcb0fc0ccf082d0f8bd618c51ce033",
+          "product_information_sha256": "34d1e61a536b7b659d8cfb994056a844bcd4b3b3cb6af71c178185e01d408989"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Steam, for chemical processes, at plant",
+              "reference product": "Steam, for chemical processes, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "710e73607e36b3601e05fd466a9c398fbc9c0fb0efc7aa0c70c951babe81b2af",
+            "inventory_sha256": "ba0f7ea2b31a7918ad24cc03d139ec3040c098e1350067c94d14e5c192f4080b",
+            "activity_comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Steam, for chemical processes, at plant",
+              "reference product": "Steam, for chemical processes, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "da1c2fea2929b2d4a0f92a1c4e2ae7ca47450f52ac26213892a36d9c0a1335a1",
+            "inventory_sha256": "e55dd8eff9e510300ffe740ecdf48791b875f92e01d50a0401758a33d9852be0",
+            "activity_comment_sha256": "a8bb4c3ce7f4c9c40fee66e82f43a6fc53cda6abab64269f3d5477abe02e5632",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_market_producer_count": 1,
+          "source_market_has_freight_or_losses": false,
+          "source_producer_heat_MJ_per_carrier_kg": 2.75,
+          "native2026_technosphere_entries": 3,
+          "native2026_biosphere_entries": 0,
+          "native_reference_is_kg_not_MJ": true,
+          "source_heat_added_on_top_of_native_steam": false,
+          "native_water_and_heating_infrastructure_already_covered": true,
+          "source_native_steam_quality_equivalence_established": false,
+          "RoW_uses_European_geographic_proxy": true
+        }
+      },
+      "limitations": [
+        "Approval covers only the inspected ecoinvent 3.9 cut-off chemical-industry steam market, RoW. Both source and native references are positive one kilogram of named chemical-process steam. Factor +1 preserves signed caller steam kg, supported uncertainty and formulas, and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "The source market has exactly one producer at one kg and explicitly no market freight or losses. Its producer is a massless energy-carrier conversion purchasing 2.75 MJ of chemical steam heat per labelled kg; its upstream heat already includes water use and energy losses. Use the complete native kg steam process once rather than multiplying native kg by 2.75, adding the source heat again, or treating carrier kg as a further water demand. The native steam process already buys water and useful heat from gas/heavy-fuel-oil combustion services, with heating infrastructure in those services. Do not add another boiler, fuel, heat, water, efficiency, condensate or loss correction.",
+        "Native supply represents eleven European chemical sites using gas and heavy fuel oil. This replaces the source European or rest-of-world chemical-industry fuel portfolio, boiler technology, water/return-water boundary, vintage, infrastructure and allocation assumptions. RoW uses RER explicitly as a geographic screening proxy. Exact pressure, temperature, enthalpy and condensate-return equivalence are not established. No steam-quality, energy-content, yield or efficiency multiplier is inferred from source 2.75 MJ/kg or from the sum of native heat inputs. LCI, LCIA and stochastic equivalence are not claimed; score effects remain unquantified.",
+        "Native energy purchases remain real technosphere exchanges available to ordinary Premise supplier filtering and relinking. This correspondence neither certifies a full IAM heat update nor silently maps purchased useful heat to fuel energy. Preserve the standard heat workflow and the callers own foreground exchanges; only its background supplier changes. Existing direct rule/default target, all earlier fingerprints, recipes and runtime Python remain unchanged. No helper, source omission, validation bypass or alternate sector engine is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fe9bbf9a29f86184c21130de5855ea23bb6ebfcf660dfa0920e728425d19ebaf"
+        }
+      ]
     }
   ],
   "superseded_operations": [
