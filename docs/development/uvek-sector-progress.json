@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-6accb469572a8963",
+        "rule_id": "bp-345cb199eea27b3e",
         "source": {
-          "location": "RoW",
-          "name": "market for formaldehyde",
-          "reference product": "formaldehyde",
+          "location": "GLO",
+          "name": "market for lithium chloride",
+          "reference product": "lithium chloride",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 48,
+        "unapproved_correspondence_count_in_current_39_cohort": 44,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-lime-delivery-39-verification.json",
+        "verification": "docs/development/uvek-named-products-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Review the exact3.9 formaldehyde market against native Formaldehyde,production mix,at plant: verify active-chemical basis,allocated producer branches and delivery before replacing the generic-organic candidate.",
+        "next_action": "Review the exact3.9 lithium-chloride and sodium-perchlorate markets against native matching salts: verify pure-substance/hydrate references and retain all four final-delivery entries per market. Inspect generic-organic supply mix and one-unit precious-refinery construction next.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all48 pending first3.9-cohort details."
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all44 pending first3.9-cohort details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-lime-delivery-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-named-products-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
@@ -3675,6 +3675,17 @@
         "limitation": "Bulk-PVC product is a documented emulsion/suspension mixture because actual bulk-route data were unavailable; no distinct bulk-polymerisation model is established.",
         "review": "docs/development/uvek-chemical-polymer-39-review.md",
         "additional_inventory_detail_or_route_not_fabricated": true
+      },
+      {
+        "source_identity": {
+          "name": "Nylon 66, at plant",
+          "reference product": "Nylon 66, at plant",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "limitation": "Aggregated native upstream energy is embedded in biosphere inventory without explicit electricity/heat purchases; ordinary IAM supplier relinking cannot decarbonize that embedded share.",
+        "review": "docs/development/uvek-named-products-39-review.md",
+        "no_zero_energy_or_full_decarbonization_claim": true
       }
     ],
     "verified_source_definition_limits": [

@@ -282938,6 +282938,369 @@
           "fingerprint": "6de1bc489708a87ea449c63d44de4e2bc988126382ca52a08266a71fa17a3ed4"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-6accb469572a8963",
+      "mapping_method": "reviewed_named_product_and_market_boundary_39",
+      "review_path": "export/uvek_named_products_39_review.json",
+      "review_sha256": "fdf81a94e70046d5d8f492dbcac19e48ab18cd868016a785394fa8aee8146b45",
+      "authorization": "Standing user auto-approval of coming modelling decisions and helpers with explicit warnings and decisions logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for formaldehyde",
+            "reference product": "formaldehyde",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 12,
+          "metadata_sha256": "1c9f540ffe44f9164c6b402b734fa0e7233eb5cf244fa5866abf15cb44944541",
+          "inventory_sha256": "2147e32d5691ff10d22668b1898f1d6ae193b68776a347234900d74c81b6b386",
+          "activity_comment_sha256": "99faef4139e0939f0103c9737905fac4324d6403c98b2790a81adf25d19fb2cb",
+          "product_information_sha256": "6db08d3ca2505eabbca2af30cd7e90bbc17936cc8a7b8a84d1068c88bed952cb"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Formaldehyde, production mix, at plant",
+              "reference product": "Formaldehyde, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 16,
+            "metadata_sha256": "aaaaa3dad6723b384d37c64948f43225cd5dd088092cf26b487e59941d86e4f8",
+            "inventory_sha256": "b19ad60762b9546f208a8e06d6e19d6ebbaa1a46e63a16e01531c3d7f06c668e",
+            "activity_comment_sha256": "97931536a04d55703e6ea2bddef40bcf6f070acd9585a70f77cb2c1fbf7ead49",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Formaldehyde, production mix, at plant",
+              "reference product": "Formaldehyde, production mix, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 16,
+            "metadata_sha256": "21f090857c806a110cbd57e57a08e2ea0783528cadbe0e3f732473be1d127ff6",
+            "inventory_sha256": "be712e92225ecfd3b2530f16d0f16c29abe85e66b5bd6050f159910f0d97f614",
+            "activity_comment_sha256": "617694f1cbd521af3f555aed4a5106fb3472f5439010609600612ebe0331e7b0",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Formaldehyde, production mix, at plant",
+          "source_market_entries": 12,
+          "final_delivery_entries": 10,
+          "source_market_entry_statistics_preserved": true,
+          "native_manufacturing_internals_replace_source": true,
+          "extra_source_manufacturing_added": false,
+          "allocation_or_concentration_multiplier": false
+        }
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent3.9 cut-off source profile only. Preserve positive1kg reference and signed caller demand,supported uncertainty/formulas and separate caller emissions with factor+1. The native product must match formaldehyde,Nylon66 or lithium metal; generic organic chemicals,Nylon6 and lithium chloride are not interchangeable output products. No molecular-weight,density,purity,solution,allocation,energy or efficiency multiplier is added. Other releases,patches,system models and reverse routes receive no new permission.",
+        "For each source market,retain every original producer share and final-delivery entry separately in source order,including supported supplied uncertainty. Substitute complete native production once per source share and previously reviewed exact3.9freight suppliers at unchanged tonne-km. Native precursor transport is distinct from final market delivery. No producer or delivery renormalization,omission,extra manufacturing stage,duplicate source utilities or emissions,recovery/energy credit or runtime change is introduced.",
+        "Complete native production replaces source manufacturing internals,including geography,technology,allocation,energy,feedstocks,water,wastes,emissions,age and internal uncertainty. Source caller fields and explicitly reconstructed market entries remain separate; source/native LCI,LCIA,chemical-grade and stochastic equivalence are not established. Existing freight approvals retain their scope,fingerprints and limitations. Score effects remain unquantified; these are documented native screening proxies.",
+        "Source formaldehyde is explicitly pure CH2O,CAS50-00-0,with zero product water and0.4kg fossil carbon/kg. Native named formaldehyde production uses methanol oxidation with steam co-product allocation,1.128kg methanol per outputkg,and no solution qualifier. Its reaction-input basis is consistent with active chemical mass,but exact native commercial assay is not independently specified. Use signed kg without inventing37%formalin dilution or concentration scaling. Source methanol-oxidation branch consumes1.0486288848263254kg methanol/kg under its own allocation; native input differences are not a conversion factor.",
+        "The source market has0.00964024976027675formaldehyde co-product from dimethyl-carbonate production and0.990359750239723from methanol oxidation. Keep both shares as separate entries using the complete native methanol-based formaldehyde stock. The0.964%co-product branch changes production route and allocation; do not claim that boundary or steam allocation is reproduced. Retain all10final-delivery entries separately,without overlaying source chemical-plant,feedstock,utility,catalyst-waste or emission inventories on the native stock."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6ab863273f7053562eec4ede8009f91f5091026f3719d3d8dd0a3d89589a1bfa"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-e6188c164a47bc97",
+      "mapping_method": "reviewed_named_product_and_market_boundary_39",
+      "review_path": "export/uvek_named_products_39_review.json",
+      "review_sha256": "fdf81a94e70046d5d8f492dbcac19e48ab18cd868016a785394fa8aee8146b45",
+      "authorization": "Standing user auto-approval of coming modelling decisions and helpers with explicit warnings and decisions logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for nylon 6-6",
+            "reference product": "nylon 6-6",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 10,
+          "metadata_sha256": "3dbae9e192af54caa247647c374ae9d3ce6fb00a5a3cb9eda93aedc0fe7937b2",
+          "inventory_sha256": "9d89999839275f69164cbbff6a71671baa50d6aa5fbddeed6ec414a85df0ddb6",
+          "activity_comment_sha256": "b718e3522fc6d7ad1b992559aadb513b7ba66d14ad9d9e88ba88fe85dc65580e",
+          "product_information_sha256": "3c05c879c6bdbec01a2599a0c14513d7dfa93507af823f469164a7f5a725a899"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Nylon 66, at plant",
+              "reference product": "Nylon 66, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 145,
+            "metadata_sha256": "bb77202babaf83500322caf9b37237c775448c59cc8ecd423df0a4c05f4dda50",
+            "inventory_sha256": "749b27c3894b819c9e0f423a1c1a2f73ce71abeb023017009a6b301209470d9f",
+            "activity_comment_sha256": "3005ad6d7a70a4645c11242e023820d227cc059a681adfa1b4e958b3a7b28009",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Nylon 66, at plant",
+              "reference product": "Nylon 66, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 151,
+            "metadata_sha256": "2594d8fe7d8b249e810ca6fdc72e000ac7c87de22bee7236eb58f0dec4c16fd2",
+            "inventory_sha256": "b6b501d67939dc198b427c864f51fcc47b4f88ad8df4878edaf799d2f1f4e5de",
+            "activity_comment_sha256": "a7b25141de9d053e364de3edb0ba0e61da7f871591497eb0ed478aa4d72bd84a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Nylon 66, at plant",
+          "source_market_entries": 10,
+          "final_delivery_entries": 9,
+          "source_market_entry_statistics_preserved": true,
+          "native_manufacturing_internals_replace_source": true,
+          "extra_source_manufacturing_added": false,
+          "allocation_or_concentration_multiplier": false
+        }
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent3.9 cut-off source profile only. Preserve positive1kg reference and signed caller demand,supported uncertainty/formulas and separate caller emissions with factor+1. The native product must match formaldehyde,Nylon66 or lithium metal; generic organic chemicals,Nylon6 and lithium chloride are not interchangeable output products. No molecular-weight,density,purity,solution,allocation,energy or efficiency multiplier is added. Other releases,patches,system models and reverse routes receive no new permission.",
+        "For each source market,retain every original producer share and final-delivery entry separately in source order,including supported supplied uncertainty. Substitute complete native production once per source share and previously reviewed exact3.9freight suppliers at unchanged tonne-km. Native precursor transport is distinct from final market delivery. No producer or delivery renormalization,omission,extra manufacturing stage,duplicate source utilities or emissions,recovery/energy credit or runtime change is introduced.",
+        "Complete native production replaces source manufacturing internals,including geography,technology,allocation,energy,feedstocks,water,wastes,emissions,age and internal uncertainty. Source caller fields and explicitly reconstructed market entries remain separate; source/native LCI,LCIA,chemical-grade and stochastic equivalence are not established. Existing freight approvals retain their scope,fingerprints and limitations. Score effects remain unquantified; these are documented native screening proxies.",
+        "Correct Nylon6 to the native unfilled Nylon66 inventory,whose documentation describes adipic acid and hexamethylene diamine. The source is1kg dry Nylon6-6; do not substitute glass-filled Nylon66,apply a polymer density/yield ratio or add polymerization inputs. Keep its single producer and all9final-delivery entries. Native four-European-site aggregated cradle-to-gate inventory replaces the source RoW model,including documented omitted/unspecified inventory categories and waste/allocation differences.",
+        "Native Nylon66 upstream energy is embedded in its aggregated biosphere inventory rather than explicit electricity/heat purchase links. Standard Premise supplier substitution can update eligible explicit links but cannot decarbonize that embedded share. Missing energy links do not mean zero energy; do not fabricate energy purchases or subtract an unknown historical grid. A successful scenario must not be presented as full IAM decarbonization of this material."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "78c5a207d12325b0a956862c4b55d60966f5fc2bb74080ec2e76a36e01599988"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-f953be89bc382cce",
+      "mapping_method": "reviewed_named_product_and_market_boundary_39",
+      "review_path": "export/uvek_named_products_39_review.json",
+      "review_sha256": "fdf81a94e70046d5d8f492dbcac19e48ab18cd868016a785394fa8aee8146b45",
+      "authorization": "Standing user auto-approval of coming modelling decisions and helpers with explicit warnings and decisions logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "electrolysis of lithium chloride",
+            "reference product": "lithium",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 8,
+          "metadata_sha256": "ed1b91277aee78a29159ece9284ab03715da8da94b2338e548268ca1df97a26b",
+          "inventory_sha256": "5e6b455f3319a800fc916f2ee23e667047fec968c5540f4fb8ae477a7df3d410",
+          "activity_comment_sha256": "49484b472be79a5776a5b9aef02dc99eb611a966e69b6838c12474a289bb4cb8",
+          "product_information_sha256": "3c1c1c586c8ca6444e2ab5415660c69bc52ad778b063cc015373130d55c028d9"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lithium, at plant",
+              "reference product": "Lithium, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "2b164906a64d9d4726b117fef861aa5aabafe6e37e6fd944b6681ed7a5058d41",
+            "inventory_sha256": "3fdae591ff3aef8d6188bbeca313feda267c5bba3a27828d486627cb929dc034",
+            "activity_comment_sha256": "7cdafaadb052cf607bf54d3cc8ef30e0e142cc76c305adcc45188f64b48889c7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lithium, at plant",
+              "reference product": "Lithium, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "9aab71e8e91216aaedaee18f3070fabe84aa088cde0b3dfb367d2e28e30727d4",
+            "inventory_sha256": "143e74ef31c02ea7d3999f56dae609d9f0cfeef2de854d139073e7a208c6276e",
+            "activity_comment_sha256": "91a475b39372a2894a7fd8287d0978f3d155572fbea0d2c5747b49b98524238b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Lithium, at plant",
+          "source_market_entries": null,
+          "final_delivery_entries": 0,
+          "source_market_entry_statistics_preserved": false,
+          "native_manufacturing_internals_replace_source": true,
+          "extra_source_manufacturing_added": false,
+          "allocation_or_concentration_multiplier": false
+        }
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent3.9 cut-off source profile only. Preserve positive1kg reference and signed caller demand,supported uncertainty/formulas and separate caller emissions with factor+1. The native product must match formaldehyde,Nylon66 or lithium metal; generic organic chemicals,Nylon6 and lithium chloride are not interchangeable output products. No molecular-weight,density,purity,solution,allocation,energy or efficiency multiplier is added. Other releases,patches,system models and reverse routes receive no new permission.",
+        "For each source market,retain every original producer share and final-delivery entry separately in source order,including supported supplied uncertainty. Substitute complete native production once per source share and previously reviewed exact3.9freight suppliers at unchanged tonne-km. Native precursor transport is distinct from final market delivery. No producer or delivery renormalization,omission,extra manufacturing stage,duplicate source utilities or emissions,recovery/energy credit or runtime change is introduced.",
+        "Complete native production replaces source manufacturing internals,including geography,technology,allocation,energy,feedstocks,water,wastes,emissions,age and internal uncertainty. Source caller fields and explicitly reconstructed market entries remain separate; source/native LCI,LCIA,chemical-grade and stochastic equivalence are not established. Existing freight approvals retain their scope,fingerprints and limitations. Score effects remain unquantified; these are documented native screening proxies.",
+        "Electrolysis of lithium chloride outputs lithium metal,not lithium-chloride feedstock. Correct the output match to complete native Lithium,at plant,also based on lithium-chloride electrolysis. Source positive1kg lithium reference carries allocation factor0.985651289009498; native documentation instead states stoichiometric lithium/chlorine allocation. Preserve the mass interface while explicitly substituting that different allocated inventory; do not add a second chlorine credit or rescale the complete model to equalize one input.",
+        "Source allocated lithium-chloride input is6.5710085933966536kg/kg lithium and medium-voltage electricity29.569538670284945kWh/kg. Native allocated inventories list1.1111333333333333kg LiCl and30.0006kWh/kg,respectively,with differing infrastructure,precursor freight,water,emissions and allocation. These are allocated model quantities,not a stand-alone stoichiometric mass balance. Their ratio must not be used as a caller scaling factor. Native geographic supply,allocation conventions and age can materially affect scores; effects remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "65dbcd3fee45f312642faeead166918c22f8e08db23e3509ddf06122d5dce36c"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-a25414f665167027",
+      "mapping_method": "reviewed_named_product_and_market_boundary_39",
+      "review_path": "export/uvek_named_products_39_review.json",
+      "review_sha256": "fdf81a94e70046d5d8f492dbcac19e48ab18cd868016a785394fa8aee8146b45",
+      "authorization": "Standing user auto-approval of coming modelling decisions and helpers with explicit warnings and decisions logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for lithium",
+            "reference product": "lithium",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "d33e331e49cd193dd9d49e7cd0ac29d53adefc9a244a38131221cf44efaaeec5",
+          "inventory_sha256": "df8c3eba6d4fecdc953cb5c7e489bbb1da43889179f9c7250ec6cd47e21154d1",
+          "activity_comment_sha256": "4c5da63cc94a24aa8f574c7261dc6bb43bbd3ebba4a44b02fb5d5df9980e80e7",
+          "product_information_sha256": "3c1c1c586c8ca6444e2ab5415660c69bc52ad778b063cc015373130d55c028d9"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lithium, at plant",
+              "reference product": "Lithium, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "2b164906a64d9d4726b117fef861aa5aabafe6e37e6fd944b6681ed7a5058d41",
+            "inventory_sha256": "3fdae591ff3aef8d6188bbeca313feda267c5bba3a27828d486627cb929dc034",
+            "activity_comment_sha256": "7cdafaadb052cf607bf54d3cc8ef30e0e142cc76c305adcc45188f64b48889c7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lithium, at plant",
+              "reference product": "Lithium, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "9aab71e8e91216aaedaee18f3070fabe84aa088cde0b3dfb367d2e28e30727d4",
+            "inventory_sha256": "143e74ef31c02ea7d3999f56dae609d9f0cfeef2de854d139073e7a208c6276e",
+            "activity_comment_sha256": "91a475b39372a2894a7fd8287d0978f3d155572fbea0d2c5747b49b98524238b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Lithium, at plant",
+          "source_market_entries": 5,
+          "final_delivery_entries": 4,
+          "source_market_entry_statistics_preserved": true,
+          "native_manufacturing_internals_replace_source": true,
+          "extra_source_manufacturing_added": false,
+          "allocation_or_concentration_multiplier": false
+        }
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent3.9 cut-off source profile only. Preserve positive1kg reference and signed caller demand,supported uncertainty/formulas and separate caller emissions with factor+1. The native product must match formaldehyde,Nylon66 or lithium metal; generic organic chemicals,Nylon6 and lithium chloride are not interchangeable output products. No molecular-weight,density,purity,solution,allocation,energy or efficiency multiplier is added. Other releases,patches,system models and reverse routes receive no new permission.",
+        "For each source market,retain every original producer share and final-delivery entry separately in source order,including supported supplied uncertainty. Substitute complete native production once per source share and previously reviewed exact3.9freight suppliers at unchanged tonne-km. Native precursor transport is distinct from final market delivery. No producer or delivery renormalization,omission,extra manufacturing stage,duplicate source utilities or emissions,recovery/energy credit or runtime change is introduced.",
+        "Complete native production replaces source manufacturing internals,including geography,technology,allocation,energy,feedstocks,water,wastes,emissions,age and internal uncertainty. Source caller fields and explicitly reconstructed market entries remain separate; source/native LCI,LCIA,chemical-grade and stochastic equivalence are not established. Existing freight approvals retain their scope,fingerprints and limitations. Score effects remain unquantified; these are documented native screening proxies.",
+        "The global lithium market calls one lithium-metal electrolysis producer and four final-delivery services. Use the corrected complete native lithium-metal production and retain all four original road,rail,barge and container-sea quantities and uncertainty in one market helper. The native producer has its own precursor rail/road exchanges; those are separate from final product delivery. The source/native lithium-chlorine allocation and individual LiCl/electricity requirements differ as recorded for the production correspondence; retain those native boundaries once without an extra chlorine credit or allocation/stoichiometric multiplier."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "76d8482b42b31e77ac73a179516d41b32336dd24e85090c377be3aac3f2cd4a5"
+        }
+      ]
     }
   ],
   "superseded_operations": [
