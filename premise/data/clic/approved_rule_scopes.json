@@ -272258,6 +272258,204 @@
           "fingerprint": "9ee5a94caf74213e20098b6ce21d59c5152257ed9b56e24c82dffb271eeea0c9"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-c778372182af9cff",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_metalworking_markets_39_review.json",
+      "review_sha256": "a410fff772294eaaefe4f7208b0cf4e9f8223480888c6c9f904424571fc8ffd1",
+      "authorization": "Standing autonomous user approval of coming exact-profile geographic/feedstock/whole-process screening decisions with warnings and decisions for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for metal working, average for aluminium product manufacturing",
+            "reference product": "metal working, average for aluminium product manufacturing",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "228be043ccfa93f2abaf0e72406003b190037efebd339776cc597921848fe6c9",
+          "inventory_sha256": "f8fca4e81e27cbef06f7d7b1a52220b0ae3dbb882567589deb5350ecbb64ac5d",
+          "activity_comment_sha256": "13c87854479eac97b6880a3078b3a40f02cc68c541bd71696e8522dbe333ba10",
+          "product_information_sha256": "961c1cde0a5c0df5ee62118c7daf55208235d857348a6c48998c7c0d6d8d6679"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium product manufacturing, average metal working",
+              "reference product": "Aluminium product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "cf28cfb2d1166650c5565a4a0e01f49289098bacaa20d6fbf21d02cf157cc87a",
+            "inventory_sha256": "961fd77211b7fddcd3a03f607bae6f0e323099e2a5c2c34d47d28d415cc4a903",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium product manufacturing, average metal working",
+              "reference product": "Aluminium product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "10eed59296b10313051f3d7738ab367d0c79078ad3b6e958d2a6d52e3d733088",
+            "inventory_sha256": "283f11393e6647ab71e7421bfc3a3d6858a3ed54a502ead1e926d17eefc8e0c1",
+            "activity_comment_sha256": "5bb89eb07f142b53f1e5f7da9403b1f0445bea7b8c74b5c1ecaa8655e3408b5f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "average_metalworking_processing_service_excluding_principal_stock",
+          "metal": "aluminium",
+          "source_market_producer_count": 2,
+          "source_market_supply_total_kg": 1.0,
+          "source_market_actual_freight_and_biosphere_count": 0,
+          "principal_stock_included": false,
+          "degreasing_included": false,
+          "additional_processing_loss_metal_kg": 0.227,
+          "factory_units_per_service_kg": 4.58e-10,
+          "machine_kg_per_service_kg": 3.95e-05,
+          "source_loss_metal_basis": "cast/wrought alloys",
+          "native_loss_metal_basis": "European aluminium production mix",
+          "additional_stock_yield_or_scrap_credit_added": false,
+          "new_helper_added": false
+        }
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent3.9 cut-off global average aluminium-product metalworking market is newly qualified, per positive one kg processing service for one kg final product. Use complete native European average aluminium metalworking per signed kg, factor +1. Preserve caller uncertainty/formulas, principal metal stock, independent degreasing, transport, operations and emissions. This processing service excludes the principal metal input and is not one kg of supplied metal. Other versions, patches, system models, materials, technologies and reverse routes gain no permission.",
+        "The actual market has exactly two positive deterministic RER/Rest-of-World same-service suppliers summing to one, with no final freight or direct biosphere exchange. Its generic market comment mentions transport, but the inspected inventory has none. Collapse those two branches to the complete native European service as an explicit geographic proxy. No identical-supplier market helper, guessed delivery, new omission or renormalization is needed. Producer identities need their own permissions when separately called.",
+        "Both source and native include average processing, machine/factory operation, factory infrastructure, machine replacement and0.227kg additional metal for processing losses. They exclude the main stock and degreasing. Preserve the caller main-metal input independently and use the native0.227kg loss allowance once; do not add another kg of metal, apply1.227 or1/(1-0.227) yield factors, subtract loss metal, or invent recovered-scrap credit. Factory4.58e-10units and unspecified machine3.95e-5kg per service kg already belong to the complete process. Add no duplicate factory/machine/operation.",
+        "Source processing-loss metal is0.07264kg cast alloy plus0.15436kg wrought alloy per kg service. Native instead uses0.227kg European aluminium production mix. Total additional metal mass agrees, but alloy/primary-secondary mix, grade and recycling allocation do not. Preserve the whole native service as an explicit metal-feedstock/route proxy, without a standalone cast/wrought-alloy-to-production-mix permission or an invented alloy/purity/yield correction.",
+        "Source regional energy/auxiliary markets become native average-heat factory/machine-operation suppliers. Their fuel mix, electricity, useful-heat/fuel boundaries, technology sample, geographic label, vintage, internal uncertainty and inherited data gaps differ. Complete upstream production, disposal and emissions remain inside the native model. Do not rebuild selected utilities, add heat efficiency/LHV conversions or copy source emissions onto the complete native service. No LCI, LCIA or stochastic equivalence is established; score effects remain unquantified.",
+        "Existing raw rule/default target, review cards and all earlier fingerprints remain unchanged. No source omission, new helper, runtime Python, alternative sector engine or validation bypass. This independent exact-market review does not broaden standalone metal, producer, utility or fabrication permissions."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "eac0844d0bc5ce643ef67cf75237f718bd505292f63e0ba617d33a1250324ba8"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-116b48bce5106e19",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_metalworking_markets_39_review.json",
+      "review_sha256": "a410fff772294eaaefe4f7208b0cf4e9f8223480888c6c9f904424571fc8ffd1",
+      "authorization": "Standing autonomous user approval of coming exact-profile geographic/feedstock/whole-process screening decisions with warnings and decisions for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for metal working, average for copper product manufacturing",
+            "reference product": "metal working, average for copper product manufacturing",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "20b16d034d38f7824df6287a963ba162370d9518c9d3905f0582fa66e2ab9a74",
+          "inventory_sha256": "e3358fbdffd1ae6c12b8c547fa361252ba73246cdcf02a38c6548b8be862fa84",
+          "activity_comment_sha256": "cd0f5a3626642343531ed6b28e8edf7656dc0bdc451f02eabcafe230a7ea7263",
+          "product_information_sha256": "6d4fe2d5d1734c7a139ac8aa4e9e403a8217f6da5624e01adb9a464a02849c43"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Copper product manufacturing, average metal working",
+              "reference product": "Copper product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "c5cdd1e2e8b6f7270ac1bb7d73357f1cda1ddfcb347ca6a30912d1efe26c6acc",
+            "inventory_sha256": "f4d9ea187d286bb589b1084681dbc667f68660b312307a480999262ca3045d9f",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Copper product manufacturing, average metal working",
+              "reference product": "Copper product manufacturing, average metal working",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "9685f9da06db1e1189e055cc4e86805b934a9331097ea4a00a1054fe5abd5556",
+            "inventory_sha256": "f3358ebe9bd9cdb91cd2b5e0654742d0da3aa8095ef3bbf361cd85f5e18de3c6",
+            "activity_comment_sha256": "9435bc37c02cf6f49d1a9faca1f681891b9291e5fd4a3379e902c5b2fa0c54d1",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "average_metalworking_processing_service_excluding_principal_stock",
+          "metal": "copper",
+          "source_market_producer_count": 2,
+          "source_market_supply_total_kg": 1.0,
+          "source_market_actual_freight_and_biosphere_count": 0,
+          "principal_stock_included": false,
+          "degreasing_included": false,
+          "additional_processing_loss_metal_kg": 0.227,
+          "factory_units_per_service_kg": 4.58e-10,
+          "machine_kg_per_service_kg": 3.95e-05,
+          "source_loss_metal_basis": "cathode",
+          "native_loss_metal_basis": "European copper regional storage",
+          "additional_stock_yield_or_scrap_credit_added": false,
+          "new_helper_added": false
+        }
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent3.9 cut-off global average copper-product metalworking market is newly qualified, per positive one kg processing service for one kg final product. Use complete native European average copper metalworking per signed kg, factor +1. Preserve caller uncertainty/formulas, principal metal stock, independent degreasing, transport, operations and emissions. This processing service excludes the principal metal input and is not one kg of supplied metal. Other versions, patches, system models, materials, technologies and reverse routes gain no permission.",
+        "The actual market has exactly two positive deterministic RER/Rest-of-World same-service suppliers summing to one, with no final freight or direct biosphere exchange. Its generic market comment mentions transport, but the inspected inventory has none. Collapse those two branches to the complete native European service as an explicit geographic proxy. No identical-supplier market helper, guessed delivery, new omission or renormalization is needed. Producer identities need their own permissions when separately called.",
+        "Both source and native include average processing, machine/factory operation, factory infrastructure, machine replacement and0.227kg additional metal for processing losses. They exclude the main stock and degreasing. Preserve the caller main-metal input independently and use the native0.227kg loss allowance once; do not add another kg of metal, apply1.227 or1/(1-0.227) yield factors, subtract loss metal, or invent recovered-scrap credit. Factory4.58e-10units and unspecified machine3.95e-5kg per service kg already belong to the complete process. Add no duplicate factory/machine/operation.",
+        "Source processing-loss metal is0.227kg global copper cathode per kg service; native is0.227kg European copper at regional storage. Geographic production/recycling shares, cathode quality, storage/delivery and allocation differ. Keep native complete supply, without adding a second source cathode or delivery stage, metal-content conversion or standalone cathode/storage equivalence.",
+        "Source regional energy/auxiliary markets become native average-heat factory/machine-operation suppliers. Their fuel mix, electricity, useful-heat/fuel boundaries, technology sample, geographic label, vintage, internal uncertainty and inherited data gaps differ. Complete upstream production, disposal and emissions remain inside the native model. Do not rebuild selected utilities, add heat efficiency/LHV conversions or copy source emissions onto the complete native service. No LCI, LCIA or stochastic equivalence is established; score effects remain unquantified.",
+        "Existing raw rule/default target, review cards and all earlier fingerprints remain unchanged. No source omission, new helper, runtime Python, alternative sector engine or validation bypass. This independent exact-market review does not broaden standalone metal, producer, utility or fabrication permissions."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1ca530c1d405b178eda8fea3bc1b9975c4ecc7c92ef195f67353c413565b09e8"
+        }
+      ]
     }
   ],
   "superseded_operations": [
