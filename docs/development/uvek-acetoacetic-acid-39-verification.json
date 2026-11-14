@@ -1,0 +1,297 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "637c54a8ed01d1aa45f76ec8b76420b9e90a0de8",
+  "scope_registration": {
+    "prior_scopes": 1389,
+    "new_scopes": 1396,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-19970a05738136f6",
+      "bp-0d337819eb8b4ccb",
+      "bp-295a2857acc1f338",
+      "bp-6983448ac196d4e1",
+      "bp-c4181fc2830439b1",
+      "bp-b2ae35d1623aa77f",
+      "bp-9b6b68753c5e8cb5"
+    ],
+    "retained_inherited_recipe_dependencies": 12,
+    "inherited_previously_approved_omission_count": 46,
+    "new_source_omissions": [],
+    "new_helpers": 4,
+    "runtime_python_changes": []
+  },
+  "tests": {
+    "brightpath_chemistry_routes_scopes_signed_uncertainty_atomic_replay_resource_storage_and_schema": 197,
+    "premise_all_seven_scopes_fresh_cache_and_literal_omission_guard": 36,
+    "premise_installed_two_nested_recipe_roots_scope_refusals_and_literal_omission_guard": 11,
+    "installed_test_selection": "Both reconstructed recipe roots, signed lognormal/normal callers, fresh/cache paths, independent-scope denials and missing inherited-audit refusal. Five simple water scopes passed source-backed checks; their packaged review/resource bytes match the verified installed wheel.",
+    "lint_changed_tests_and_maintainer_helper": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 23,
+    "foreground_biosphere_flows": 29,
+    "native_suppliers": 82,
+    "signed_foreground_LCI_solves": 14,
+    "independent_native_reference_LCI_solves": 7,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-19970a05738136f6",
+        "source": {
+          "location": "GLO",
+          "name": "market for acetoacetic acid",
+          "reference product": "acetoacetic acid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.7377942640450783e-08,
+        "refined_max_abs_inventory_difference": 2.2737367544323206e-13,
+        "full_graph_residual": {
+          "residual_before": 7.787767164099615e-12,
+          "residual_after": 5.465550892660189e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.746605485404712e-08,
+          "residual_after": 5.521062043891424e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-0d337819eb8b4ccb",
+        "source": {
+          "location": "GLO",
+          "name": "market for ethyl acetate",
+          "reference product": "ethyl acetate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.922023784572957e-08,
+        "refined_max_abs_inventory_difference": 1.1368683772161603e-13,
+        "full_graph_residual": {
+          "residual_before": 5.523701357179983e-12,
+          "residual_after": 2.1520170837513195e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.435193665454282e-08,
+          "residual_after": 1.921670751350981e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-295a2857acc1f338",
+        "source": {
+          "location": "FR",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.5817608988176755e-10,
+        "refined_max_abs_inventory_difference": 5.293955920339377e-23,
+        "full_graph_residual": {
+          "residual_before": 2.220446049250313e-15,
+          "residual_after": 6.118208820890921e-21,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.508234213589246e-13,
+          "residual_after": 6.114900098440709e-21,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-6983448ac196d4e1",
+        "source": {
+          "location": "ES",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.5817608988176755e-10,
+        "refined_max_abs_inventory_difference": 5.293955920339377e-23,
+        "full_graph_residual": {
+          "residual_before": 2.220446049250313e-15,
+          "residual_after": 6.118208820890921e-21,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.508234213589246e-13,
+          "residual_after": 6.114900098440709e-21,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-c4181fc2830439b1",
+        "source": {
+          "location": "GB",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.5817608988176755e-10,
+        "refined_max_abs_inventory_difference": 5.293955920339377e-23,
+        "full_graph_residual": {
+          "residual_before": 2.220446049250313e-15,
+          "residual_after": 6.118208820890921e-21,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.508234213589246e-13,
+          "residual_after": 6.114900098440709e-21,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-b2ae35d1623aa77f",
+        "source": {
+          "location": "DE",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.5817608988176755e-10,
+        "refined_max_abs_inventory_difference": 5.293955920339377e-23,
+        "full_graph_residual": {
+          "residual_before": 2.220446049250313e-15,
+          "residual_after": 6.118208820890921e-21,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.508234213589246e-13,
+          "residual_after": 6.114900098440709e-21,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-9b6b68753c5e8cb5",
+        "source": {
+          "location": "CH",
+          "name": "market for water, decarbonised",
+          "reference product": "water, decarbonised",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.5817608988176755e-10,
+        "refined_max_abs_inventory_difference": 5.293955920339377e-23,
+        "full_graph_residual": {
+          "residual_before": 2.220446049250313e-15,
+          "residual_after": 6.118208820890921e-21,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.508234213589246e-13,
+          "residual_after": 6.114900098440709e-21,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies reconstructed source acetoacetic chemistry, separate ethyl-acetate routes/delivery and five decarbonised-water interfaces, with retained resource/emission inventories and native-demand consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_acetoacetic_acid_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 109,
+    "current": 108,
+    "removed_rules": [
+      "bp-19970a05738136f6"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-80d8e9e553118d45",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [
+    "scripts/review_uvek_acetoacetic_acid_39.py",
+    "scripts/generate_uvek_migration_resources.py: exact frozen review replay hook"
+  ],
+  "new_helpers": 4,
+  "new_exact_source39_scopes": 7,
+  "unchanged_inherited_recipe_dependencies": 12,
+  "unchanged_previously_approved_allocated_empty_handover_omissions": 46,
+  "new_source_omissions": [],
+  "source_acid_direct_emission_resource_rows_retained": 22,
+  "source_CAS_native_ethyl_acetate_metadata_conflict_explicit": true,
+  "all_older_approval_operations_and_fingerprints_unchanged": true,
+  "full_generator_regeneration": "Not claimed passing; the earlier independently reproduced nitrate authority guard failure remains documented in the PET review."
+}

@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-19970a05738136f6",
+        "rule_id": "bp-80d8e9e553118d45",
         "source": {
-          "location": "GLO",
-          "name": "market for acetoacetic acid",
-          "reference product": "acetoacetic acid",
+          "location": "RER",
+          "name": "market for butene, mixed",
+          "reference product": "butene, mixed",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 109,
+        "unapproved_correspondence_count_in_current_39_cohort": 108,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-cmc-latex-markets-39-verification.json",
+        "verification": "docs/development/uvek-acetoacetic-acid-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Replace the incorrect acetoacetic-acid/chloroacetic-acid correspondence. Inspect source ethyl-acetate chemistry, source emissions, factory/utilities and final delivery before constructing a native-facing exact-profile inventory. Do not treat distinct acids as synonyms.",
-        "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh normal CLIC resolution and integrity-verified cached graph agree on all109 first3.9-cohort pending rule details."
+        "next_action": "Review mixed-butene naphtha-cracking product/basis and retain original rail/road delivery; then review liquid-hydrogen supplier technology and source market distribution. Continue other source cohorts and sector qualification after all required mappings pass.",
+        "live_freshness_verified": false,
+        "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-cmc-latex-markets-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-acetoacetic-acid-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
