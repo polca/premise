@@ -283301,6 +283301,374 @@
           "fingerprint": "76d8482b42b31e77ac73a179516d41b32336dd24e85090c377be3aac3f2cd4a5"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-345cb199eea27b3e",
+      "mapping_method": "reviewed_pure_salt_and_delivery_39",
+      "review_path": "export/uvek_salts_generic_facility_39_review.json",
+      "review_sha256": "e368778cecfd1fb9faa5f2efb35e9d947cef8b88b6409ed3552e308e16b4a456",
+      "authorization": "Standing user auto-approval of coming modelling decisions,screening proxies and helpers with warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for lithium chloride",
+            "reference product": "lithium chloride",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "d14f83d61e405918289a2197f1b2549ff4c7865884571cf8c74863504f428332",
+          "inventory_sha256": "6204648c9778a5949269eb667b49844719208e4d2d23243034f5186d6f40592a",
+          "activity_comment_sha256": "9817ddd2b64be7e5aa792a19c40fdbb79e87418d79f579221312510090db8efc",
+          "product_information_sha256": "3c9c672174bc37d8eb5782343e7021ffc51b6ce39f1d4a00d6c9fb0b0393720c"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lithium chloride, at plant",
+              "reference product": "Lithium chloride, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 15,
+            "metadata_sha256": "d31ff6553abe6aef73940a61a02a1e4e3e9aef300ed7429680de0dd2a2a2f7eb",
+            "inventory_sha256": "16f0c00327fcc7f2421d40e7e1e23d6388617ead72aaaaadb1ceefaac54e98f3",
+            "activity_comment_sha256": "f704d6cec7178dbc53516bc4f5756149476460bb447a60a06506332976ad5129",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lithium chloride, at plant",
+              "reference product": "Lithium chloride, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 16,
+            "metadata_sha256": "f0c37fa8ea39230e9036095e1103c254e57f0b903e2696ab111251a7b0afceeb",
+            "inventory_sha256": "3eefd5fc1cd07fb9645de26ff6469f6e723af97a39b650486a18a18ad8994f87",
+            "activity_comment_sha256": "7cb43c564ad58a59ed5fd204b1888d2507b543aa6e9dcf6e55a24e96f954eac9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Lithium chloride, at plant",
+          "reference_unit": "kilogram",
+          "source_market_entries_retained": 5,
+          "final_delivery_entries_retained": 4,
+          "whole_market_proxy": false,
+          "facility_construction_not_operation": false,
+          "extra_source_manufacturing_added": false,
+          "quantity_basis_multiplier": false,
+          "raw_rule_unchanged": false
+        }
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent3.9 cut-off profile only. Source and selected native positive references are1kg of the declared material or1unit of refinery construction. Preserve signed caller amount,supported uncertainty/formulas and separate caller emissions at factor+1. No hydrate,solution,molecular-weight,density,yield,capacity,lifetime or allocation multiplier is introduced. Other versions,patches,system models and reverse routes gain no new permission.",
+        "Use complete native inventories once,without overlaying source manufacturing,utilities,water,waste,emission,infrastructure or credit inventories. Native technology,geography,age,precursors,allocation and internal uncertainty can differ; matching functions and reference units do not establish source/native LCI,LCIA,chemical-grade or stochastic equivalence. Score effects remain unquantified. No caller exchange is omitted and no runtime module,sector engine or validation behavior changes.",
+        "Source lithium chloride is explicitly100%LiCl,CAS7447-41-8;native documentation identifies LiCl with the same CAS and positive1kg reference,not a hydrated salt or solution. Both production models use lithium carbonate and acid/chlorination inputs; the native summary calls the route chlorination,while actual native inputs include hydrochloric acid. Preserve this documentation/model distinction without substituting a chlorine-gas input or inventing a reaction. Native purchases0.92732kg lithium carbonate and0.90226kg of its acid reference per kg LiCl;the historical acid label contains30%H2O wording,but no new acid/dilution correction belongs at this caller boundary. Keep its complete native production,waste,energy and precursor freight model.",
+        "Retain the single source producer and all four final market rail,barge,road and container-sea freight entries separately,in original order with supplied uncertainty. These are final product delivery,distinct from native precursor freight. Previously reviewed exact3.9freight correspondences are reused without changing quantities,distances,payloads or fleet shares; native fleet/geography/technology limitations remain explicit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7bcc395ea1dcfa4f402a08b9d423bf6005c3d4f4c10f0aa9f77c89c2b3533979"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-775f06316be9f220",
+      "mapping_method": "reviewed_pure_salt_and_delivery_39",
+      "review_path": "export/uvek_salts_generic_facility_39_review.json",
+      "review_sha256": "e368778cecfd1fb9faa5f2efb35e9d947cef8b88b6409ed3552e308e16b4a456",
+      "authorization": "Standing user auto-approval of coming modelling decisions,screening proxies and helpers with warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for sodium perchlorate",
+            "reference product": "sodium perchlorate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "43a4cfbf235910fd03de90afc3455b1887e95032232d1b5d9d02786e7213c493",
+          "inventory_sha256": "6c85c28330c4cadf4a10425f347e8252c472a4ad9670d186cf6e1cd7a9fdb313",
+          "activity_comment_sha256": "d3c3077ca0816d3b4c77aac6920752b88cdd8a642669ccb1759b3a84775b523a",
+          "product_information_sha256": "8fa48191a0d2775b2c99677d40b05837bf4c532e6c8de99d95888be29d01ed20"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Sodium perchlorate, at plant",
+              "reference product": "Sodium perchlorate, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 11,
+            "metadata_sha256": "175f408c523c75074b0b02b0a73530d355103fba1394035c37d8e94d5789f2fa",
+            "inventory_sha256": "1cbd54c71d3c967d8a3329a02fcc5b7a7bf1ecac4bbbbcb9dc5ebb5a3b804aa9",
+            "activity_comment_sha256": "921971092664921c1c9f3ca584310ecfa02197f8419456b7cd77b5b1730ebb53",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Sodium perchlorate, at plant",
+              "reference product": "Sodium perchlorate, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 12,
+            "metadata_sha256": "627f75e0bcb928f64072095d4928ab31ce5387689187e37e2b3daa298dce1bf6",
+            "inventory_sha256": "a08a19d94488dc171b6922dcddc0274b81fdac513441fda2b13f88ae76d81f1a",
+            "activity_comment_sha256": "75cd566117bb2093702efc7b2f92cc4e9a377d3037aba2f6ddc7eb7ae780edf2",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Sodium perchlorate, at plant",
+          "reference_unit": "kilogram",
+          "source_market_entries_retained": 5,
+          "final_delivery_entries_retained": 4,
+          "whole_market_proxy": false,
+          "facility_construction_not_operation": false,
+          "extra_source_manufacturing_added": false,
+          "quantity_basis_multiplier": false,
+          "raw_rule_unchanged": false
+        }
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent3.9 cut-off profile only. Source and selected native positive references are1kg of the declared material or1unit of refinery construction. Preserve signed caller amount,supported uncertainty/formulas and separate caller emissions at factor+1. No hydrate,solution,molecular-weight,density,yield,capacity,lifetime or allocation multiplier is introduced. Other versions,patches,system models and reverse routes gain no new permission.",
+        "Use complete native inventories once,without overlaying source manufacturing,utilities,water,waste,emission,infrastructure or credit inventories. Native technology,geography,age,precursors,allocation and internal uncertainty can differ; matching functions and reference units do not establish source/native LCI,LCIA,chemical-grade or stochastic equivalence. Score effects remain unquantified. No caller exchange is omitted and no runtime module,sector engine or validation behavior changes.",
+        "Source sodium perchlorate is explicitly100%NaClO4,CAS7601-89-0;native documentation gives the same anhydrous formula/CAS and positive1kg reference,not the monohydrate or a solution. Both describe anodic oxidation of sodium chlorate. Native lists0.91458kg sodium chlorate and2.74kWh electricity per kg product,along with platinum,water,infrastructure and precursor delivery. Preserve its complete model; do not add a hydration,molar,conversion-yield,electrical-efficiency or source-utility correction.",
+        "Retain the single source producer and all four final market rail,barge,road and container-sea freight entries separately,in original order with supplied uncertainty. Native precursor rail/road demand is not a replacement for those final-delivery entries. Reuse reviewed exact3.9freight suppliers with existing geographic,fleet,technology,age and uncertainty limitations,not a claim of identical transport models."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f56d7d91f466c6f5ec4e0a45722b6c4ca6bc3d1bb6f70b38523c863f0765ae62"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-65d60275b4f9e27a",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_salts_generic_facility_39_review.json",
+      "review_sha256": "e368778cecfd1fb9faa5f2efb35e9d947cef8b88b6409ed3552e308e16b4a456",
+      "authorization": "Standing user auto-approval of coming modelling decisions,screening proxies and helpers with warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for chemical, organic",
+            "reference product": "chemical, organic",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "e44f6458e26afbf0b223dc551b47fcf0b8b0c7de17542117afd8b01aa6b72b88",
+          "inventory_sha256": "5681df2181bcd261ba94e5c349feb436a2940dac1b41e965ac76c4336ffaa8c2",
+          "activity_comment_sha256": "94a4b1576ce27117e04d82342ce9f6c5cf453b2ca5df032c0b6f3048fa9772bb",
+          "product_information_sha256": "e973d608dcc9d2daa2f9e78ab8297b0aa31150a59b8fc5df871d9106d999fd84"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Chemicals organic, at plant",
+              "reference product": "Chemicals organic, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 20,
+            "metadata_sha256": "e0e36713012886e3a1338d755ad2bea01be49421200243407196fe6a35570877",
+            "inventory_sha256": "9892205b2aa79ef1cf5955e4500430db23495de6792a199434fc29b942646bfc",
+            "activity_comment_sha256": "9b122be2fca1b19221dfb63c15939b9ea79b1427dad862da233d2f027bb38b2e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Chemicals organic, at plant",
+              "reference product": "Chemicals organic, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 20,
+            "metadata_sha256": "fc35eba5ba2c02141441dba8a2ef2cefe7584593c4c675979d249e8461fe5b41",
+            "inventory_sha256": "30661529e83c4a50b7e223460ac8285666fc159a049ec753e917a4eb674cf956",
+            "activity_comment_sha256": "cec577d261a6df55094c2d4b5053ccbf0045e2463e0308eb1dd99d7f0618e686",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Chemicals organic, at plant",
+          "reference_unit": "kilogram",
+          "source_market_entries_retained": null,
+          "final_delivery_entries_retained": 0,
+          "whole_market_proxy": true,
+          "facility_construction_not_operation": false,
+          "extra_source_manufacturing_added": false,
+          "quantity_basis_multiplier": false,
+          "raw_rule_unchanged": true
+        }
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent3.9 cut-off profile only. Source and selected native positive references are1kg of the declared material or1unit of refinery construction. Preserve signed caller amount,supported uncertainty/formulas and separate caller emissions at factor+1. No hydrate,solution,molecular-weight,density,yield,capacity,lifetime or allocation multiplier is introduced. Other versions,patches,system models and reverse routes gain no new permission.",
+        "Use complete native inventories once,without overlaying source manufacturing,utilities,water,waste,emission,infrastructure or credit inventories. Native technology,geography,age,precursors,allocation and internal uncertainty can differ; matching functions and reference units do not establish source/native LCI,LCIA,chemical-grade or stochastic equivalence. Score effects remain unquantified. No caller exchange is omitted and no runtime module,sector engine or validation behavior changes.",
+        "This approval applies only to the explicitly unspecified generic-organic-chemical function,not to a named chemical such as dimethyl carbonate,tetraethyl orthosilicate or hexafluoroethane. Source and native generic definitions use an unweighted average of20organic substances from the top100included chemicals; their actual basket,upstream databases,age and allocation need not be identical. Source market contains99.4502769990137%generic chemical production and about0.549723%allocated naphtha-fraction/coal-synthesis co-product supplies,with no external market freight. Replace that complete market mix with the native generic average at one signed kg as a documented screening proxy. The minor co-product routes,allocation and internal uncertainty are not retained individually. No caller exchange is omitted and no redundant market helper is created.",
+        "Keep the existing raw generic rule,target and previously approved3.6scope/fingerprint byte-for-byte unchanged. The new exact3.9permission does not broaden it to other substances merely because they share a generic target. Do not add a coproduct credit,average-basket normalization,solvent dilution or source manufacturing overlay."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3229f07abd8c76fd75b79d61c78316ca8bfb5bce486e909e616b96b9f4e3e95f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-7896dce8b44c9507",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_salts_generic_facility_39_review.json",
+      "review_sha256": "e368778cecfd1fb9faa5f2efb35e9d947cef8b88b6409ed3552e308e16b4a456",
+      "authorization": "Standing user auto-approval of coming modelling decisions,screening proxies and helpers with warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for precious metal refinery",
+            "reference product": "precious metal refinery",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "acbf84c50faae5d4cb4d6efbdb15cf4a24bfe5989ffacb8a6fd2c36a6ce72d39",
+          "inventory_sha256": "ba7e2d3e33b4e84e75bc0fa2f410911e23aa638935615b2eac4fbb7f5c0e9d96",
+          "activity_comment_sha256": "36dd338b23df275cf58d4e186607c969c9f50efabf6d1f1bfd7a3311735eabf0",
+          "product_information_sha256": "cea2c707d297ebab153bbda9a9af975ddebf8078f9b0e7c9ced30a4d1bbc4b9a"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Facilities precious metal refinery",
+              "reference product": "Facilities precious metal refinery",
+              "location": "SE",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 16,
+            "metadata_sha256": "05227b6b39079821f5be129a7a453b2756978d752375d148e81e222f2cef9768",
+            "inventory_sha256": "75b615ce49949ecc6c9072faa5fa110e81b3f8b310486fdd4ad4adcbf649e91f",
+            "activity_comment_sha256": "35c4bef313a1229ac45364cd366dbf66f7b0c2c808fa825134511177ac109b18",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Facilities precious metal refinery",
+              "reference product": "Facilities precious metal refinery",
+              "location": "SE",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 16,
+            "metadata_sha256": "925f56e7a17a835843f74faf645452994fbfeae3c4ffead6ec6f700c59ce20e9",
+            "inventory_sha256": "30f6e617fa3674f88e814f8f04f483f57e4fc3265c3ac9d72e2447a45500ee42",
+            "activity_comment_sha256": "c7ef016dec7b80b17ae9763f41947fe51465fe21ae3e895b42ac46d4eca80861",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Facilities precious metal refinery",
+          "reference_unit": "unit",
+          "source_market_entries_retained": null,
+          "final_delivery_entries_retained": 0,
+          "whole_market_proxy": false,
+          "facility_construction_not_operation": true,
+          "extra_source_manufacturing_added": false,
+          "quantity_basis_multiplier": false,
+          "raw_rule_unchanged": true
+        }
+      },
+      "limitations": [
+        "Exact independently inspected ecoinvent3.9 cut-off profile only. Source and selected native positive references are1kg of the declared material or1unit of refinery construction. Preserve signed caller amount,supported uncertainty/formulas and separate caller emissions at factor+1. No hydrate,solution,molecular-weight,density,yield,capacity,lifetime or allocation multiplier is introduced. Other versions,patches,system models and reverse routes gain no new permission.",
+        "Use complete native inventories once,without overlaying source manufacturing,utilities,water,waste,emission,infrastructure or credit inventories. Native technology,geography,age,precursors,allocation and internal uncertainty can differ; matching functions and reference units do not establish source/native LCI,LCIA,chemical-grade or stochastic equivalence. Score effects remain unquantified. No caller exchange is omitted and no runtime module,sector engine or validation behavior changes.",
+        "This is construction of one complete precious-metal refinery,not its annual operation,one kg of metal,or an equipment-service-year. The source market contains one construction provider and no market freight. Source and native documentation describe5000m2housing,25yearservice life,243t/year anode-slime capacity and the same electrolysis,elution,electrowinning,calcination,smelting and electrorefining equipment. Use one signed native facility unit without multiplying or dividing by lifetime,capacity,metal throughput,floor area or a plant-utilization factor.",
+        "Native Swedish facility construction includes housing/equipment and their disposal;its documentation excludes transport and construction work. Keep the complete native capital inventory as a geographic/historical screening proxy for sourceRoW construction,with materials,land,disposal,capacity representation,uncertainty and score limitations. No operating fuel,power,metal production,second building,transport or demolition credit is added. Existing raw correspondence stays unchanged; no helper is needed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "08d4cbe94d99da14c8fe248426cd9608436d99a63284aaca4dbaf4731eda99c5"
+        }
+      ]
     }
   ],
   "superseded_operations": [
