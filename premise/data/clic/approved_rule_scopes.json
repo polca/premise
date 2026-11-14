@@ -282494,6 +282494,188 @@
           "fingerprint": "eb6e4f105480139df405848aa04a20b023c1e4914c58ee08e300f097803285ae"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-49ff9c1c2a744693",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_mineral_gate_stocks_39_review.json",
+      "review_sha256": "c61dde68562b9acf9b66a48d63bd6f5219c09a59a4ac31605675cfe6577ce383",
+      "authorization": "Standing user auto-approval of coming modelling decisions and similar cases;inspect exact mineral/reference and process boundaries and record geographic/source-data limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for lime, hydraulic",
+            "reference product": "lime, hydraulic",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "ba982c4ffc42ba263f06b6da0b726acd0164ef3789177fd96f5116eb9d28d2bb",
+          "inventory_sha256": "02de2a20003cec18bfbb388feb1bf41285f82108ee2d5465a590eaae391ac610",
+          "activity_comment_sha256": "02d8a591fa5348019a1d13ba3b0fdf9211d11e509e74a96e571c2497079c1969",
+          "product_information_sha256": "4ab4b5cb2b3287b2e9a0333b654309521b2d1b9cf5a729819564c7e33adb265d"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lime, hydraulic, at plant",
+              "reference product": "Lime, hydraulic, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 57,
+            "metadata_sha256": "1df86febc14a5d5f9e9e201442f2ea096e30d9b3c2d70831a9d32e4786b997a4",
+            "inventory_sha256": "099898c446e2acfece9ddc39b53390dc00d9278fc48a531e06b364e51b432d05",
+            "activity_comment_sha256": "b76af25be64e8379521d68854ca59f1fe15b453a3d307f7b7a7b5673242698d6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lime, hydraulic, at plant",
+              "reference product": "Lime, hydraulic, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 58,
+            "metadata_sha256": "34a00cd83f85a9834f37fe7f74bb361da28aae1dd274cdcf7811bd06f1b36025",
+            "inventory_sha256": "dd4cadb17fe4173a5de94a61ee6718d15309e030fd3a8e409b1204dffd7e1cf8",
+            "activity_comment_sha256": "596421e66cf3223f73c58a0623c49fd2da1824179a6f405fce74b1abd47f5532",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_market_producer_count": 1,
+          "source_market_producer_amount": 1,
+          "source_market_freight_count": 0,
+          "source_market_direct_biosphere_count": 0,
+          "native_complete_process": true,
+          "additional_source_processing_or_delivery": false,
+          "moisture_or_stoichiometric_multiplier": false,
+          "different_mineral_products_equated": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off permission for the inspected at-site mineral market: one producer supplies one positive kg,with no separate market freight,losses or biosphere exchanges. Native reference is one positive kg in both inspected releases. Preserve signed caller kg and supported uncertainty/formulas with factor+1,including any caller-level emissions and freight. Do not introduce delivery,moisture,purity,stoichiometric,clinker-energy or yield multipliers. Other source releases,patches,system models and reverse routes receive no new permission.",
+        "Use the complete named native production inventory once,not a source/native hybrid. Source producer documentation and native model share a documented historical process lineage,but RoW supply is replaced by historical Swiss production and its regional upstream inputs. Geography,vintage,energy mix,emissions,water,wastes,infrastructure,allocation and uncertainty can differ. This is a documented screening proxy,not source/native LCI,LCIA or stochastic equivalence; score effects remain unquantified. No extra source processing inputs,avoided emissions or recovery credits are added.",
+        "Permission only: existing mapping rules,recipes,manifest,earlier approvals,runtime modules and sector logic remain unchanged. No helper or omitted caller exchange is introduced.",
+        "Hydraulic lime is the calcined/slaked/milled hydraulic binder,not quicklime,hydrated lime,crushed limestone or clinker. Source and native documentation both describe an adjusted clinker-model rotary-kiln inventory with hydration water and88%of clinker energy/associated air-emission assumptions,without waste fuel or secondary raw materials. That88%assumption is already inside the production models and is not an additional caller factor. Native input1.42kg is labelled milled limestone whereas source uses its generic lime market; this upstream label/model difference is retained explicitly rather than declaring CaO/CaCO3 equivalence or adding speculative calcination. Preserve native direct process emissions and internal fuels without overlays."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "291d28a9cea9add3eae780f453e18e8453f7c7fee2d606b6cfd751217b4dd33c"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-8f33eefab926c2cf",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_mineral_gate_stocks_39_review.json",
+      "review_sha256": "c61dde68562b9acf9b66a48d63bd6f5219c09a59a4ac31605675cfe6577ce383",
+      "authorization": "Standing user auto-approval of coming modelling decisions and similar cases;inspect exact mineral/reference and process boundaries and record geographic/source-data limitations.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for limestone, crushed, for mill",
+            "reference product": "limestone, crushed, for mill",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "4642bbe7f5701d6fb8b7f718a6e177354e2d25609beaf7c181e705a9ea900742",
+          "inventory_sha256": "dc1bb5e384ff15cf0937816e144a31d2d9133ec7b840cc4bb802b4c74d025ea9",
+          "activity_comment_sha256": "d3cde92c25d218946eb09141e13043b02916e28750d6fdb9bb0e442d66ef1477",
+          "product_information_sha256": "27ae45ead61ae45361e6813a86bea42a3a2fe0ae0275063f73f6dedca2226251"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Limestone, crushed, for mill",
+              "reference product": "Limestone, crushed, for mill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 12,
+            "metadata_sha256": "a53fc821f3268e34a13600d85d5bd0e1dc24e1ff24b21804770caec5e30dfe9f",
+            "inventory_sha256": "cc045e6db9b2c7d936169615220830c1acea671213a682c8de60e99939b1ba12",
+            "activity_comment_sha256": "7d013ccd1ed80a2c802b6986f55dcb93b9cbf9bfed4f3609398edeec77fb41c1",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Limestone, crushed, for mill",
+              "reference product": "Limestone, crushed, for mill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 12,
+            "metadata_sha256": "395e61178bb25425ed17552eecd0bcca3de7240c7b4719e2cd60365969b74455",
+            "inventory_sha256": "6cf59e6c6525c75d994367783ad7a5b576096d96f26b6ba1ec413bb49869f17b",
+            "activity_comment_sha256": "2e5864952215a75cf1acaa959f152f0aeab87c87b7bd53ae91e05469116b4dde",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_market_producer_count": 1,
+          "source_market_producer_amount": 1,
+          "source_market_freight_count": 0,
+          "source_market_direct_biosphere_count": 0,
+          "native_complete_process": true,
+          "additional_source_processing_or_delivery": false,
+          "moisture_or_stoichiometric_multiplier": false,
+          "different_mineral_products_equated": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off permission for the inspected at-site mineral market: one producer supplies one positive kg,with no separate market freight,losses or biosphere exchanges. Native reference is one positive kg in both inspected releases. Preserve signed caller kg and supported uncertainty/formulas with factor+1,including any caller-level emissions and freight. Do not introduce delivery,moisture,purity,stoichiometric,clinker-energy or yield multipliers. Other source releases,patches,system models and reverse routes receive no new permission.",
+        "Use the complete named native production inventory once,not a source/native hybrid. Source producer documentation and native model share a documented historical process lineage,but RoW supply is replaced by historical Swiss production and its regional upstream inputs. Geography,vintage,energy mix,emissions,water,wastes,infrastructure,allocation and uncertainty can differ. This is a documented screening proxy,not source/native LCI,LCIA or stochastic equivalence; score effects remain unquantified. No extra source processing inputs,avoided emissions or recovery credits are added.",
+        "Permission only: existing mapping rules,recipes,manifest,earlier approvals,runtime modules and sector logic remain unchanged. No helper or omitted caller exchange is introduced.",
+        "Crushed limestone for milling is uncalcined carbonate aggregate,not quicklime,hydraulic lime or a finished fine lime product. Source and native documentation describe the same historical Swiss crushing,washing,conveyor and crusher/sieve/silo model with50%grid and50%nearby hydropower supply; current upstream geographies differ. Native explicitly purchases0.000255kWh grid plus0.000255kWh hydropower per kg. Use its complete quarry-to-crushed-product inventory without adding a second mine,crushing,milling,calcination,delivery or source electricity mix. Source declared wet mass1kg contains0.998kg dry material and0.002kg water; native exact moisture is not independently specified,so do not infer assay identity or apply an unsupported dry/wet correction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d1334ca99187556db28eaa0256db5fd382e2bce21cf7490b4fe16596d62e548b"
+        }
+      ]
     }
   ],
   "superseded_operations": [

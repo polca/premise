@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-49ff9c1c2a744693",
+        "rule_id": "bp-94e99d669f988a94",
         "source": {
           "location": "RoW",
-          "name": "market for lime, hydraulic",
-          "reference product": "lime, hydraulic",
+          "name": "market for kerosene",
+          "reference product": "kerosene",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 52,
+        "unapproved_correspondence_count_in_current_39_cohort": 50,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-remaining-electricity-grids-39-verification.json",
+        "verification": "docs/development/uvek-mineral-gate-stocks-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Review hydraulic lime and remaining mineral correspondences against actual reference products, source market boundaries and native suppliers; preserve earlier profile bindings.",
+        "next_action": "Reconcile delivered kerosene market boundary with native supply: source includes storage,electricity,freight,wastes and direct emissions; refinery-only matching is insufficient without an explicit reviewed whole-delivery proxy or preserved delivery recipe.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all52 pending first3.9-cohort details."
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all50 pending first3.9-cohort details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-remaining-electricity-grids-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-mineral-gate-stocks-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

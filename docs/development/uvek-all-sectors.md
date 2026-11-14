@@ -2133,3 +2133,8 @@ Granted six exact3.9 permissions for existing verified−1 waste-to-positive-dis
 ## Remaining delivered electricity grids — 14 November 2026
 
 Reviewed four exact source-3.9 delivered-voltage correspondences, retaining complete native losses and infrastructure once. The cobalt-industry proxy changes hydro from about91% to54%, explicitly recorded as a potentially substantial unquantified score difference. Actual shared Premise methods preserve industrial GLO markets and redirect ordinary national/European grids. No runtime or YAML changes, helpers or omissions. Fresh and cached battery diagnostics agree on56to52 pending rules; eight sectors remain qualified. See [review](uvek-remaining-electricity-grids-39-review.md) and [verification](uvek-remaining-electricity-grids-39-verification.json).
+
+
+## At-site mineral stocks — 14 November 2026
+
+Exact3.9 hydraulic-lime and crushed-limestone markets each contain one producer without market delivery. Reviewed complete native CH production at+1 signed kg, keeping the binder and uncalcined carbonate distinct. No helper, migration-resource, runtime or generator change; all older permissions unchanged. Twenty-seven Brightpath and ten source/ten installed Premise checks pass, plus four signed in-memory LCIs and two independent comparisons without Brightway writes. Fresh/cached battery count52to50; next kerosene delivery. Eight sectors remain qualified. See [review](uvek-mineral-gate-stocks-39-review.md) and [verification](uvek-mineral-gate-stocks-39-verification.json).
