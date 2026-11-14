@@ -1,0 +1,107 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "2785247910ca7d2bda0dedee006c47bd928b9cec",
+  "scope_registration": {
+    "prior_scopes": 1396,
+    "new_scopes": 1397,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-80d8e9e553118d45"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_signed_uncertainty_product_basis_exact_scope_atomic_replay_resource_storage_and_schema": 116,
+    "premise_source_fresh_and_cached": 5,
+    "premise_installed": 5,
+    "lint_changed_tests_and_maintainer_helper": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 2,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 3,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-80d8e9e553118d45",
+        "source": {
+          "location": "RER",
+          "name": "market for butene, mixed",
+          "reference product": "butene, mixed",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 3.0863103252935193e-12,
+          "residual_after": 1.860118344127358e-18,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.0863103252935193e-12,
+          "residual_after": 1.860118344127358e-18,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies native mixed-butene chemical stock with retained final rail/road delivery and numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_mixed_butene_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 108,
+    "current": 107,
+    "removed_rules": [
+      "bp-80d8e9e553118d45"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-42c78b2535b455d8",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [
+    "scripts/review_uvek_mixed_butene_39.py",
+    "scripts/generate_uvek_migration_resources.py: frozen exact-profile replay hook"
+  ],
+  "new_helpers": 1,
+  "new_source_omissions": [],
+  "earlier_rules_recipes_approvals_and_fingerprints_unchanged": true,
+  "same_declared_study_19_European_naphtha_cracking_sites": true,
+  "exact_isomer_grade_and_phase_equivalence_established": false,
+  "source_internal_waste_interfaces": 9,
+  "native_internal_treatment_interfaces": 8,
+  "new_calorific_or_density_or_phase_factor": false,
+  "full_generator_regeneration": "Not claimed passing; the pre-existing nitrate-authority failure remains tracked in the PET review."
+}

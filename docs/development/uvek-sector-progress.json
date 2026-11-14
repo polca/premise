@@ -2305,19 +2305,19 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-80d8e9e553118d45",
+        "rule_id": "bp-42c78b2535b455d8",
         "source": {
           "location": "RER",
-          "name": "market for butene, mixed",
-          "reference product": "butene, mixed",
+          "name": "market for hydrogen, liquid",
+          "reference product": "hydrogen, liquid",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 108,
+        "unapproved_correspondence_count_in_current_39_cohort": 107,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-acetoacetic-acid-39-verification.json",
+        "verification": "docs/development/uvek-mixed-butene-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Review mixed-butene naphtha-cracking product/basis and retain original rail/road delivery; then review liquid-hydrogen supplier technology and source market distribution. Continue other source cohorts and sector qualification after all required mappings pass.",
+        "next_action": "Review legacy liquid-hydrogen source/native technology, allocated coproduct shares, actual phase evidence and all three freight modes including light commercial vehicles. Independently inspect sodium borohydride Brown-Schlesinger basis and final delivery; do not infer cryogenic, purity or stoichiometric corrections.",
         "live_freshness_verified": false,
         "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links."
       }
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-acetoacetic-acid-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-mixed-butene-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

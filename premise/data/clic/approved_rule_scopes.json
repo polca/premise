@@ -275284,6 +275284,109 @@
           "fingerprint": "2de4b6f8b1bda360e5a272055b064dade00196f8cb5eebbc61a370aeea273524"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-80d8e9e553118d45",
+      "mapping_method": "reviewed_mixed_butene_39_delivered_market",
+      "review_path": "export/uvek_mixed_butene_39_review.json",
+      "review_sha256": "208ddbeb3142f695fd5bd50ed2dfdf6c85a15b6472fb058a080941fa758b03e7",
+      "authorization": "Standing autonomous user approval of coming exact-profile whole-product/geographic/technology screening mappings, with explicit retained quantities, warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for butene, mixed",
+            "reference product": "butene, mixed",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "43d4f672163ea8283b6495c5c7d23c151d6f55f38c0d2db94f95a397c1565de4",
+          "inventory_sha256": "1c3c3fddfb1b14b0dabb16e6c86e9709c627915bf5aae6742868715d7939d536",
+          "activity_comment_sha256": "715fc6ec661018734701a8c5faae70971f2d13d6ec8ddabdbd3fe57110076031",
+          "product_information_sha256": "fed5db2edc91046662e484904231ab824b1715ff5758217860910c715fc6a9f7"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Butene, mixed, at plant",
+              "reference product": "Butene, mixed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 145,
+            "metadata_sha256": "a2db615913491a9a5a89bec5bb0200b3cc7fba74a0f5b7adcbf7600b9f1fcf0c",
+            "inventory_sha256": "a9d2cc53fb8333b5be3dabe121125563e7406cf535bbd57a926b11606eb91efc",
+            "activity_comment_sha256": "53102a68c489e4a062402489fb40546eb9f32dcb96a4a82088b46692cd661035",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Butene, mixed, at plant",
+              "reference product": "Butene, mixed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 151,
+            "metadata_sha256": "4392586e19f6adc47b25cc85f89dfe5f8c626e241216605915aa390682dd2a96",
+            "inventory_sha256": "3a6d9995df79bbbd0086006264df382813d6af0d20285f89b530dc857d5177b7",
+            "activity_comment_sha256": "27dfae1c0ee3023940135717b36284a8b96e65955840a7d7c80e11d46503939e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "delivered_mixed_butene_chemical_kg",
+          "source_and_native_declared_naphtha_steam_cracking": true,
+          "source_and_native_declared_production_sites": 19,
+          "source_processing_internal_waste_interfaces": 9,
+          "native_processing_internal_treatment_interfaces": 8,
+          "exact_isomer_grade_or_phase_equivalence_established": false,
+          "new_calorific_density_phase_or_purity_factor": false,
+          "new_combustion_or_energy_credit": false,
+          "native_hidden_upstream_energy_exposed_for_relinking": false,
+          "retained_product_kg": 1,
+          "retained_rail_tkm": 0.0044,
+          "retained_road_tkm": 0.0171,
+          "source_native_nonproduction_counts": {
+            "source": 150,
+            "2025": 145,
+            "2026": 151
+          }
+        }
+      },
+      "limitations": [
+        "Only independently inspected exact ecoinvent3.9 cut-off European market for mixed butene is newly qualified, per positive1kg of delivered mixed chemical product. Use complete native European Butene,mixed,atplant per signedkg and retain both source delivery entries separately. Preserve caller supported uncertainty/formulas, foreground ownership, separate operations and emissions. Other releases, patches, system models, products and reverse routes receive no new authority.",
+        "Source producer and native2026 documentation identify the same inherited PlasticsEurope survey of19 European production sites, mixed-butene product from naphtha steam cracking and cradle-to-plant aggregate. This is not proof of identical isomer fractions, polymerization/feedstock grade, pressure, purity or phase. Native synonyms include inconsistent butane-like spellings alongside explicitly named butenes; functional selection uses the mixed-butene product and independently matched study/technology, not those spellings as alkane equivalence. Do not substitute pure1-butene, isobutene, butane/LPG, naphtha or a cracking service.",
+        "The source product information also lists45.3MJ/kg and possible fuel use. The mapped exchange remains chemicalkg. Add no LHV/HV, density, gas-volume, liquefaction, phase, monomer, yield or isomer multiplier, combustion burden or energy credit. A separately listed caller use-phase remains separate.",
+        "Retain the complete native aggregate and its own eight explicit treatment inputs once. The source producer has nine internal waste interfaces, some negative under source reference conventions; native supplies its own different waste/treatment portfolio. They do not reverse the positive butene product reference or authorize avoided production. Source residue/plastic/wood/incineration/mining/decommissioning interfaces and geographic/allocation boundaries are not individually reconstructed. Do not overlay source waste demands on the complete native product, invent missing disposal/recovery, treat unknown waste as burden-free or add source producer emissions a second time. No foreground exchange is omitted; whole-source internal inventory is replaced by the explicitly limited native process proxy.",
+        "Both records inherit PlasticsEurope exclusions for recyclable wastes, air/N2/O2 consumption, unspecified metals, mercaptans, unspecified CFC/HCFC emissions and dioxin to water; bonded sulfur is assumed included in oil. These gaps are not physically zero and are not repaired by invented flows. Native biosphere releases/speciation, coverage, residual-treatment, country/vintage and internal uncertainty differ, with unquantified score effects. Source and native production aggregates have no exposed electricity/fuel feedstock suppliers for ordinary energy relinking; do not claim their hidden upstream energy has been fully IAM-updated.",
+        "Retain final rail0.0044 and road0.0171tonne-km per sourcekg, with exact original signed quantities and supported uncertainty, including pedigree and scale-without-pedigree. Complete native European rail and lorry fleet are geographic/traction/fleet/load/fuel/infrastructure/vintage proxies; no exact steam-traction model is claimed. Source delivery is additional to upstream transport already inside production once. Add no mode, distance, payload, fleet-share or loss factor, and omit no freight.",
+        "No earlier approval, parent recipe, unrelated raw rule, source omission, runtime Python or shared Premise transformation changes. A single source3.9 delivered-market helper corrects the former at-plant-only suggestion. Complete native/source LCI, LCIA, grade and stochastic equivalence are not established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "28cf82ef711c7125123c1c88ed4446884f1e3e86794399e6931630718aa2769f"
+        }
+      ]
     }
   ],
   "superseded_operations": [
