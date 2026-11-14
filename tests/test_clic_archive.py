@@ -128,6 +128,27 @@ def test_latest_uses_numeric_semantic_versions():
     assert source.resolve(["dataset-1"]).versions[0]["version_id"] == 10
 
 
+def test_unpinned_latest_accepts_revised_inventory_values_for_a_stable_slug():
+    old = native(
+        1,
+        1,
+        "root",
+        status="superseded",
+        exchanges=[purchase("background", amount=2)],
+    )
+    revised = native(
+        1,
+        2,
+        "renamed root",
+        "1.1.0",
+        exchanges=[purchase("background", amount=7.5)],
+    )
+    result = catalog(old, revised).resolve(["dataset-1"])
+    assert result.versions[0]["version_id"] == 2
+    assert result.activities[0]["name"] == "renamed root"
+    assert result.activities[0]["exchanges"][1]["amount"] == 7.5
+
+
 def test_locked_graph_survives_a_new_release_and_supersession(archive):
     first = archive.resolve(["dataset-1"])
     changed = copy.deepcopy(list(archive.versions.values()))
