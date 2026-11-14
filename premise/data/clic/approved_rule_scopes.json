@@ -21071,8 +21071,8 @@
       "rule_id": "bp-ac05197a0852076a",
       "operation": "replace",
       "mapping_method": "reviewed_pilot_material",
-      "review_path": "export/uvek_pilot_grid_converter_review.json",
-      "review_sha256": "143a88f8b6a9a4b0f89549c13cd73a54b8b1a260af31f505a09621144af38a2b",
+      "review_path": "export/uvek_converter_steel_39_review.json",
+      "review_sha256": "175fbe98882b2567b9535bfaebe0f618e63299322ac6edf0ab5c26911f5d0e06",
       "authorization": "Standing auto-approval of independently inspected same whole-material/function/unit and geographic supply proxies, including correction to a closer existing native supplier. Applied only to the enumerated source profiles after checking converter/casting and delivered medium-voltage boundaries. No helper, extra production stage, new grade, physical quantity basis, omission or recovery model is introduced.",
       "inspection": {
         "rule_id": "bp-ac05197a0852076a",
@@ -21128,10 +21128,104 @@
           }
         },
         "native_direct_technosphere_coordinates_match": true,
-        "limitations": "Correct the mixed-route hot-rolled target to the existing complete native converter low-alloyed steel at plant. Both represent primary EU LD/converter steelmaking and casting, with cooling scrap, not a primary/secondary route mix, electric steel, reinforcing steel, rolling or final fabrication. Preserve signed kg at factor +1; retain complete native feedstock, alloying, converter energy/infrastructure, internal transport, residues and emissions once. The inspected major pig-iron, scrap, alloy, oxygen and lime inputs match their source coordinates; natural-gas energy/volume representation, market/delivery and background differ. Add no rolling, metal-yield factor, recovered-scrap credit or new steel helper. Geography, technology mix, water, allocation, waste routes and vintage remain limitations. The pinned 2026 import also uses different biosphere definitions, including chromium speciation relative to 2025; this correction does not assert biosphere or LCIA equivalence or edit that imported inventory. Score effects remain unquantified."
+        "limitations": "Correct the mixed-route hot-rolled target to the existing complete native converter low-alloyed steel at plant. Both represent primary EU LD/converter steelmaking and casting, with cooling scrap, not a primary/secondary route mix, electric steel, reinforcing steel, rolling or final fabrication. Preserve signed kg at factor +1; retain complete native feedstock, alloying, converter energy/infrastructure, internal transport, residues and emissions once. The inspected major pig-iron, scrap, alloy, oxygen and lime inputs match their source coordinates; natural-gas energy/volume representation, market/delivery and background differ. Add no rolling, metal-yield factor, recovered-scrap credit or new steel helper. Geography, technology mix, water, allocation, waste routes and vintage remain limitations. The pinned 2026 import also uses different biosphere definitions, including chromium speciation relative to 2025; this correction does not assert biosphere or LCIA equivalence or edit that imported inventory. Score effects remain unquantified.",
+        "profile_annotation_refinement": {
+          "prior_approval": {
+            "rule_id": "bp-ac05197a0852076a",
+            "operation": "replace",
+            "mapping_method": "reviewed_pilot_material",
+            "review_path": "export/uvek_pilot_grid_converter_review.json",
+            "review_sha256": "143a88f8b6a9a4b0f89549c13cd73a54b8b1a260af31f505a09621144af38a2b",
+            "authorization": "Standing auto-approval of independently inspected same whole-material/function/unit and geographic supply proxies, including correction to a closer existing native supplier. Applied only to the enumerated source profiles after checking converter/casting and delivered medium-voltage boundaries. No helper, extra production stage, new grade, physical quantity basis, omission or recovery model is introduced.",
+            "inspection": {
+              "rule_id": "bp-ac05197a0852076a",
+              "source": {
+                "location": "RER",
+                "name": "steel production, converter, low-alloyed",
+                "reference product": "steel, low-alloyed",
+                "unit": "kilogram"
+              },
+              "previous_target": {
+                "location": "RER",
+                "name": "Steel, low-alloyed, at plant",
+                "reference product": "Steel, low-alloyed, at plant",
+                "unit": "kilogram"
+              },
+              "target": {
+                "name": "Steel, converter, low-alloyed, at plant",
+                "reference product": "Steel, converter, low-alloyed, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "conversion_factor": 1,
+              "profiles": [
+                {
+                  "source_profile": {
+                    "family": "ecoinvent",
+                    "version": "3.6",
+                    "system_model": "cutoff"
+                  },
+                  "reference_amount": 1,
+                  "metadata_sha256": "7dcdb52034506b74dd879807f8cf5328b7658e20dc9738790727832a1b9d3142",
+                  "inventory_sha256": "e7bed8e63d1e2b0abb59236ac0a891b898faafe66a16e6fa0d8b7a54564f23f9",
+                  "comment_sha256": "0d72945f5740d98799c23cb8f08eecd4cc775647aeebc22cfe6eca63c438ad9f",
+                  "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                }
+              ],
+              "native_references": {
+                "2025": {
+                  "reference_amount": 1,
+                  "unit": "kilogram",
+                  "metadata_sha256": "df4ab7ad9f93f856158e3788bbf7ffd76d7f406d22141edf477995d8bc33654a",
+                  "inventory_sha256": "205865c9625635e1ee0dfc272023ac32e4cb2aa34f801768b50f2a26ec96720a",
+                  "comment_sha256": "d814c4bb2b29cb336317eae241c1b466cdaa5041125a6166f3f4fdbeec6989e4",
+                  "direct_technosphere_coordinates": 21
+                },
+                "2026": {
+                  "reference_amount": 1,
+                  "unit": "kilogram",
+                  "metadata_sha256": "eb2315ffae89be6dcdd68f4a3ced78a3bd606cdb24055673356d989c410125f3",
+                  "inventory_sha256": "c7d458710f2bfdea8ef56968e463d4398f2ab23200b4feefff4f6f0e7a4ba83b",
+                  "comment_sha256": "bbf16696a20dc32e4c592992ba1eb21d7b51c48a16524b46c662e991f4756a91",
+                  "direct_technosphere_coordinates": 21
+                }
+              },
+              "native_direct_technosphere_coordinates_match": true,
+              "limitations": "Correct the mixed-route hot-rolled target to the existing complete native converter low-alloyed steel at plant. Both represent primary EU LD/converter steelmaking and casting, with cooling scrap, not a primary/secondary route mix, electric steel, reinforcing steel, rolling or final fabrication. Preserve signed kg at factor +1; retain complete native feedstock, alloying, converter energy/infrastructure, internal transport, residues and emissions once. The inspected major pig-iron, scrap, alloy, oxygen and lime inputs match their source coordinates; natural-gas energy/volume representation, market/delivery and background differ. Add no rolling, metal-yield factor, recovered-scrap credit or new steel helper. Geography, technology mix, water, allocation, waste routes and vintage remain limitations. The pinned 2026 import also uses different biosphere definitions, including chromium speciation relative to 2025; this correction does not assert biosphere or LCIA equivalence or edit that imported inventory. Score effects remain unquantified."
+            },
+            "limitations": [
+              "Correct the mixed-route hot-rolled target to the existing complete native converter low-alloyed steel at plant. Both represent primary EU LD/converter steelmaking and casting, with cooling scrap, not a primary/secondary route mix, electric steel, reinforcing steel, rolling or final fabrication. Preserve signed kg at factor +1; retain complete native feedstock, alloying, converter energy/infrastructure, internal transport, residues and emissions once. The inspected major pig-iron, scrap, alloy, oxygen and lime inputs match their source coordinates; natural-gas energy/volume representation, market/delivery and background differ. Add no rolling, metal-yield factor, recovered-scrap credit or new steel helper. Geography, technology mix, water, allocation, waste routes and vintage remain limitations. The pinned 2026 import also uses different biosphere definitions, including chromium speciation relative to 2025; this correction does not assert biosphere or LCIA equivalence or edit that imported inventory. Score effects remain unquantified."
+            ],
+            "scopes": [
+              {
+                "source": {
+                  "family": "ecoinvent",
+                  "version": "3.6",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "family": "uvek",
+                  "version": "2025",
+                  "system_model": "cutoff"
+                },
+                "fingerprint": "c05244302a48dfde5ab085f50b9e01d47a09163732be6ebe2157cbcedf41e1c7"
+              }
+            ]
+          },
+          "new_source_profile": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "old_physical_mapping_factor_and_sign_entry_unchanged": true,
+          "primary36_hashes_still_match": true,
+          "warning_refinement": "Earlier3.6 matching-charge evidence remains scoped to3.6; new3.9 charge/Cr-Mo alloy differences are explicit. Original shared card is archived unchanged.",
+          "new_review": "export/uvek_converter_steel_39_review.json"
+        }
       },
       "limitations": [
-        "Correct the mixed-route hot-rolled target to the existing complete native converter low-alloyed steel at plant. Both represent primary EU LD/converter steelmaking and casting, with cooling scrap, not a primary/secondary route mix, electric steel, reinforcing steel, rolling or final fabrication. Preserve signed kg at factor +1; retain complete native feedstock, alloying, converter energy/infrastructure, internal transport, residues and emissions once. The inspected major pig-iron, scrap, alloy, oxygen and lime inputs match their source coordinates; natural-gas energy/volume representation, market/delivery and background differ. Add no rolling, metal-yield factor, recovered-scrap credit or new steel helper. Geography, technology mix, water, allocation, waste routes and vintage remain limitations. The pinned 2026 import also uses different biosphere definitions, including chromium speciation relative to 2025; this correction does not assert biosphere or LCIA equivalence or edit that imported inventory. Score effects remain unquantified."
+        "Correct the mixed-route hot-rolled target to the existing complete native converter low-alloyed steel at plant. Both represent primary EU LD/converter steelmaking and casting, with cooling scrap, not a primary/secondary route mix, electric steel, reinforcing steel, rolling or final fabrication. Preserve signed kg at factor +1; retain complete native feedstock, alloying, converter energy/infrastructure, internal transport, residues and emissions once. The inspected major pig-iron, scrap, alloy, oxygen and lime inputs match their source coordinates; natural-gas energy/volume representation, market/delivery and background differ. Add no rolling, metal-yield factor, recovered-scrap credit or new steel helper. Geography, technology mix, water, allocation, waste routes and vintage remain limitations. The pinned 2026 import also uses different biosphere definitions, including chromium speciation relative to 2025; this correction does not assert biosphere or LCIA equivalence or edit that imported inventory. Score effects remain unquantified.",
+        "Only exact source3.9 was added. Earlier3.6 physical supplier, +1 factor and reference-sign entry remain unchanged; all recorded current primary hashes match its original authority. The shared warning/card now distinguish source3.6 matched nominal charge from source3.9 changed charge and Cr/Mo alloying. Original authority/card are retained, with explicit fingerprint refinement and unchanged-card archival."
       ],
       "scopes": [
         {
@@ -21145,7 +21239,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "c05244302a48dfde5ab085f50b9e01d47a09163732be6ebe2157cbcedf41e1c7"
+          "fingerprint": "d519e2ae1e11295935d04b7fd8b4425e8d165b182f4d99f0206d11df494ab780"
         }
       ]
     },
@@ -270055,6 +270149,103 @@
             "version": "2025"
           },
           "fingerprint": "1ca8731da7b176b64638b873de44cb6ee3ed45ccfb71b2241e52f693b0156203"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-ac05197a0852076a",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_converter_steel_39_review.json",
+      "review_sha256": "175fbe98882b2567b9535bfaebe0f618e63299322ac6edf0ab5c26911f5d0e06",
+      "authorization": "Standing autonomous approval of remaining mappings and explicitly documented complete-process/grade/vintage screening proxies, with warnings and review logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "steel production, converter, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 37,
+          "metadata_sha256": "147457623ed95a538bf2eafc8c34a7fdb6a877da58a121ed4d494481b3209ea9",
+          "inventory_sha256": "bd4dbae8f3020e38293bee362005effd64bd473d780305a318059e5ce65f0c9a",
+          "activity_comment_sha256": "55628ee9b7cd4a12c226b13fd4964bde1160640d14f4b15fcf2c695f8cd64552",
+          "product_information_sha256": "dcf448dd176664e1ce169c253fa98e1c046388990ff3b7c0913c8e3f23f80473"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Steel, converter, low-alloyed, at plant",
+              "reference product": "Steel, converter, low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 34,
+            "metadata_sha256": "df4ab7ad9f93f856158e3788bbf7ffd76d7f406d22141edf477995d8bc33654a",
+            "inventory_sha256": "205865c9625635e1ee0dfc272023ac32e4cb2aa34f801768b50f2a26ec96720a",
+            "activity_comment_sha256": "d814c4bb2b29cb336317eae241c1b466cdaa5041125a6166f3f4fdbeec6989e4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Steel, converter, low-alloyed, at plant",
+              "reference product": "Steel, converter, low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 34,
+            "metadata_sha256": "c9b26b8a11246f38c0f95dfee0f1dd8c6d39360f642526ccd759d54c8c75842c",
+            "inventory_sha256": "a1871c6ff4f9052a2e044ec46556b27a7e157bf39974d05dfc69e8e30ec2b0ee",
+            "activity_comment_sha256": "bbf16696a20dc32e4c592992ba1eb21d7b51c48a16524b46c662e991f4756a91",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "recipe_id": null,
+        "boundary_checks": {
+          "kind": "complete_primary_BOF_cast_low_alloyed_steel",
+          "source39_pig_iron_kg": 0.867944612,
+          "native_pig_iron_kg": 0.9,
+          "source39_scrap_kg": 0.198864791,
+          "native_scrap_kg": 0.12501,
+          "source39_explicit_ferrochromium_kg": 0,
+          "native_explicit_ferrochromium_kg": 0.032853,
+          "source39_electricity_kWh": 0.0241523138988181,
+          "native_electricity_kWh": 0.021944,
+          "identical_grade_assay_independently_established": false,
+          "charge_yield_grade_or_rolling_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "New permission covers only independently inspected ecoinvent 3.9 cut-off European converter low-alloyed steel production. Both source and native references are positive one kg of primary BOF/LD-converter steelmaking and casting, before rolling or fabrication. Preserve signed caller cast-steel kg with factor +1, supported uncertainty/formulas, foreground ownership and separately listed caller forming, transport and emissions. Do not substitute mixed primary/secondary hot-rolled stock, electric-furnace steel, reinforcement or a processing service. Other profiles, patches, system models and reverse routes receive no new permission.",
+        "This is a complete older native BOF low-alloyed-steel screening proxy, not proof of the same grade or charge recipe. Source3.9 uses 0.867944612 kg pig iron and 0.198864791 kg scrap per reference kg, while native uses 0.9 and 0.12501 kg. Source3.9 has no explicit ferrochromium input and includes its original molybdenite input; native includes 0.032853 kg high-carbon 68%-Cr ferrochromium and a different alloying model. Native/source product names describe the broad low-alloyed steel class, not an independently verified identical alloy assay or application-specific grade. Chromium, molybdenum, scrap allocation, route efficiency and upstream burdens can change impacts materially; score differences remain unquantified. Do not apply the earlier source3.6 matching-charge statement to source3.9.",
+        "Use the complete native converter inventory once, including pig iron, cooling scrap, ferroalloys, oxygen, lime, energy, converter, internal transport, residues and direct emissions. Source3.9 electricity is 0.0241523138988181 kWh/kg versus native 0.021944. Oxygen/lime, compressed air, gas, auxiliary feedstock, wastewater and dust/slag/sludge handling differ. Source useful reference is finished cast kg, not charge mass: do not normalize the charge, add/subtract Cr or scrap, remove ferroalloy burdens, rescale yield/electricity, invent a heat-efficiency or gas-density/LHV factor, or add a recovery credit. Source volumetric gas supply and native energy-basis gas supply stay internal to their complete models; no standalone gas equivalence is authorized.",
+        "Internal source waste demands use negative waste references; native positive disposal inputs represent its own complete waste portfolio. They do not reverse the positive steel reference or authorize avoided steel production. Native European/Swiss upstream supply, older LD technology, product-grade sample, allocation, water/emission coverage, geographic label, vintage and uncertainty replace source details. The imported 2026 biosphere includes release-specific definitions/speciation, including chromium; preserve that inventory rather than inventing a chromium correction. Source/native LCI, LCIA and stochastic equivalence are not established.",
+        "Earlier source3.6 target, +1 factor and exact sign decision remain unchanged and its recorded primary hashes still match. The global warning and shared card now explicitly distinguish the earlier3.6 matching-charge evidence from the different source3.9 charge/grade. The complete prior authority and original review card are frozen; its fingerprint is explicitly refined for the extended metadata, not blindly refreshed. The retired unreferenced card is archived unchanged with its source commit. Other operations and fingerprints remain unchanged. No helper, source omission, runtime Python, alternate sector engine or validation bypass. Add no rolling, extra steel stock, fabrication, recovered-scrap credit or process stage."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "65140be6a28a3763f6eea74c656d6d0e43368445b48ca0d83f8df5ce0e956059"
         }
       ]
     }

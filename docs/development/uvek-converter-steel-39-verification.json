@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "14bae43722d1c7c4dfdfc19eb2a949075b347def",
+  "premise_base_commit": "24250af1f09d6caa9c2e7f8bd4d374cc9dded963",
+  "scope_registration": {
+    "prior_scopes": 1370,
+    "new_scopes": 1371,
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-ac05197a0852076a"
+    ],
+    "refined_prior36_rule": "bp-ac05197a0852076a",
+    "prior36_fingerprint": "c05244302a48dfde5ab085f50b9e01d47a09163732be6ebe2157cbcedf41e1c7",
+    "refined36_fingerprint": "d519e2ae1e11295935d04b7fd8b4425e8d165b182f4d99f0206d11df494ab780",
+    "prior36_physical_mapping_factor_and_sign_entry_unchanged": true,
+    "prior36_primary_hashes_match": true,
+    "retired_card_archived_unchanged": [
+      "r-b186bd09f0c8a558"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": [],
+    "new_helpers": 0
+  },
+  "tests": {
+    "brightpath_sign_uncertainty_old_pilot_authoring_atomic_replay_card_archive_and_storage": 39,
+    "premise_fresh_cache_signed_uncertainty_exact_scope_and_prior36": 6,
+    "installed_package_new_and_prior_converter_cases_and_integrity_guards": 19,
+    "lint": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 1,
+    "native_suppliers": 1,
+    "foreground_biosphere_flows": 1,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-ac05197a0852076a",
+        "source": {
+          "location": "RER",
+          "name": "steel production, converter, low-alloyed",
+          "reference product": "steel, low-alloyed",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 1.3234889800848443e-23,
+        "full_graph_residual": {
+          "residual_before": 4.577464049617646e-09,
+          "residual_after": 7.527709915982239e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.577464049617646e-09,
+          "residual_after": 7.527709915982239e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies the complete source3.9 primary-BOF low-alloyed cast-steel screening interface and point-estimate numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_converter_steel_39_review.json",
+    "export/uvek_archived_unreferenced_reviews.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 128,
+    "current": 127,
+    "removed_rules": [
+      "bp-ac05197a0852076a"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-7bb87cea8e133871",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_freshness": "Not newly verified; the cached mapping diagnostic continues after the two CLIC API timeouts documented in uvek-nylon6-39-verification.json. It is not a full live scenario/sector/export qualification.",
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "new_helpers": 0,
+  "new_source_omissions": [],
+  "important_limit": "Source3.9 BOF charge and alloying differ from native; generic low-alloyed cast-steel screening proxy does not establish identical grade, chemistry, inventory or impacts. Existing3.6 physical target/factor/sign remain unchanged with matching primary hashes and explicitly refined warning/card fingerprint."
+}
