@@ -3,6 +3,7 @@
 # cannot find an IAM equivalent
 ---
 Europe without Switzerland and Austria:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -11,6 +12,7 @@ Europe without Switzerland and Austria:
   gcam: EU-15
   witch: europe
 Europe without Austria:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -18,14 +20,8 @@ Europe without Austria:
   tiam-ucl: WEU
   gcam: EU-15
   witch: europe
-Europe without Switzerland and Austria:
-  remind: EUR
-  image: WEU
-  message: WEU
-  tiam-ucl: WEU
-  gcam: EU-15
-  witch: europe
 Europe without Switzerland:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -34,6 +30,7 @@ Europe without Switzerland:
   gcam: EU-15
   witch: europe
 North America without Quebec:
+  open-prom: USA
   remind: USA
   remind-eu: USA
   image: USA
@@ -42,6 +39,7 @@ North America without Quebec:
   gcam: USA
   witch: usa
 RER w/o RU:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -50,6 +48,7 @@ RER w/o RU:
   gcam: EU-15
   witch: te
 RER:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -58,6 +57,7 @@ RER:
   gcam: EU-15
   witch: te
 RoW:
+  open-prom: World
   remind: World
   remind-eu: World
   image: World
@@ -66,6 +66,7 @@ RoW:
   gcam: World
   witch: World
 GLO:
+  open-prom: World
   remind: World
   remind-eu: World
   image: World
@@ -74,6 +75,7 @@ GLO:
   gcam: World
   witch: World
 RNA:
+  open-prom: USA
   remind: USA
   remind-eu: USA
   image: USA
@@ -82,6 +84,7 @@ RNA:
   gcam: USA
   witch: usa
 SAS:
+  open-prom: IND
   remind: IND
   remind-eu: IND
   image: INDIA
@@ -90,6 +93,7 @@ SAS:
   gcam: India
   witch: india
 IAI Area, EU27 & EFTA:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -98,6 +102,7 @@ IAI Area, EU27 & EFTA:
   gcam: EU-15
   witch: europe
 IAI Area, Western and Central Europe:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -106,6 +111,7 @@ IAI Area, Western and Central Europe:
   gcam: EU-15
   witch: europe
 UN-OCEANIA:
+  open-prom: CAZ
   remind: CAZ
   remind-eu: AUS
   image: OCE
@@ -114,6 +120,7 @@ UN-OCEANIA:
   gcam: Australia_NZ
   witch: oceania
 UN-SEASIA:
+  open-prom: OAS
   remind: OAS
   remind-eu: OAS
   image: SEAS
@@ -122,6 +129,7 @@ UN-SEASIA:
   gcam: Southeast Asia
   witch: seasia
 RAF:
+  open-prom: SSA
   remind: SSA
   remind-eu: RSAF
   image: RSAF
@@ -130,6 +138,7 @@ RAF:
   gcam: South Africa
   witch: southafrica
 RAS:
+  open-prom: CHA
   remind: CHA
   remind-eu: CHN
   image: CHN
@@ -138,6 +147,7 @@ RAS:
   gcam: China
   witch: china
 IAI Area, Africa:
+  open-prom: SSA
   remind: SSA
   remind-eu: RSAF
   image: RSAF
@@ -146,6 +156,7 @@ IAI Area, Africa:
   gcam: South Africa
   witch: ssa
 RER w/o CH+DE:
+  open-prom: FRA
   remind: EUR
   remind-eu: FRA
   image: WEU
@@ -154,6 +165,7 @@ RER w/o CH+DE:
   gcam: EU-15
   witch: europe
 RER w/o DE+NL+RU:
+  open-prom: FRA
   remind: EUR
   remind-eu: FRA
   image: WEU
@@ -162,6 +174,7 @@ RER w/o DE+NL+RU:
   gcam: EU-15
   witch: europe
 IAI Area, Asia, without China and GCC:
+  open-prom: OAS
   remind: OAS
   remind-eu: OAS
   image: SEAS
@@ -170,6 +183,7 @@ IAI Area, Asia, without China and GCC:
   gcam: Southeast Asia
   witch: seasia
 Europe, without Russia and Turkey:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -178,6 +192,7 @@ Europe, without Russia and Turkey:
   gcam: EU-15
   witch: europe
 WECC:
+  open-prom: USA
   remind: USA
   remind-eu: USA
   image: USA
@@ -186,6 +201,7 @@ WECC:
   gcam: USA
   witch: usa
 WEU:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -194,6 +210,7 @@ WEU:
   gcam: EU-15
   witch: europe
 UCTE:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -202,6 +219,7 @@ UCTE:
   gcam: EU-15
   witch: europe
 UCTE without Germany:
+  open-prom: FRA
   remind: EUR
   remind-eu: FRA
   image: WEU
@@ -210,6 +228,7 @@ UCTE without Germany:
   gcam: EU-15
   witch: europe
 NORDEL:
+  open-prom: NEU
   remind: NEU
   remind-eu: NEN
   image: WEU
@@ -218,6 +237,7 @@ NORDEL:
   gcam: EU-15
   witch: europe
 ENTSO-E:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -226,6 +246,7 @@ ENTSO-E:
   gcam: EU-15
   witch: europe
 RLA:
+  open-prom: LAM
   remind: LAM
   remind-eu: LAM
   image: RSAM
@@ -234,6 +255,7 @@ RLA:
   gcam: South America_Southern
   witch: laca
 IAI Area, South America:
+  open-prom: LAM
   remind: LAM
   remind-eu: RSAM
   image: RSAM
@@ -242,6 +264,7 @@ IAI Area, South America:
   gcam: South America_Southern
   witch: laca
 IAI Area, Russia & RER w/o EU27 & EFTA:
+  open-prom: REF
   remind: REF
   remind-eu: REF
   image: RUS
@@ -250,6 +273,7 @@ IAI Area, Russia & RER w/o EU27 & EFTA:
   gcam: Russia
   witch: te
 IAI Area, Russia and Eastern Europe:
+  open-prom: REF
   remind: REF
   remind-eu: REF
   image: RUS
@@ -258,6 +282,7 @@ IAI Area, Russia and Eastern Europe:
   gcam: Russia
   witch: te
 IAI Area, North America:
+  open-prom: USA
   remind: USA
   remind-eu: USA
   image: USA
@@ -266,6 +291,7 @@ IAI Area, North America:
   gcam: USA
   witch: usa
 OCE:
+  open-prom: CAZ
   remind: CAZ
   remind-eu: CAZ
   image: OCE
@@ -274,6 +300,7 @@ OCE:
   gcam: Australia_NZ
   witch: oceania
 US-PR:
+  open-prom: USA
   remind: USA
   remind-eu: USA
   image: USA
@@ -282,6 +309,7 @@ US-PR:
   gcam: USA
   witch: usa
 US only:
+  open-prom: USA
   remind: USA
   remind-eu: USA
   image: USA
@@ -290,6 +318,7 @@ US only:
   gcam: USA
   witch: usa
 APAC:
+  open-prom: OAS
   remind: OAS
   remind-eu: OAS
   image: SEAS
@@ -338,6 +367,7 @@ CN-ECGC:
   gcam: China
   witch: china
 RoE:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -866,6 +896,7 @@ CN-GS:
   gcam: China
   witch: china
 Canada without Quebec:
+  open-prom: CAZ
   remind: CAZ
   remind-eu: CAN
   image: CAN
@@ -1337,6 +1368,7 @@ IN-UT:
   gcam: India
   witch: india
 RME:
+  open-prom: DEU
   remind: EUR
   remind-eu: DEU
   image: WEU
@@ -1433,6 +1465,7 @@ IN-CH:
   gcam: India
   witch: india
 Europe_Eastern:
+  open-prom: REF
   remind: REF
   remind-eu: REF
   image: CEU
