@@ -1,0 +1,165 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "d511ad0406fa4f0163e4d7f93fe7054ad5e2ff4c",
+  "scope_registration": {
+    "prior_scopes": 1387,
+    "new_scopes": 1389,
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-c63a1747fd444679",
+      "bp-97562a7b00a80fa8"
+    ],
+    "prior312_physical_supplier_and_factor_unchanged": true,
+    "prior312_primary_hash_checks": {
+      "source_metadata_sha256": true,
+      "source_inventory_sha256": true,
+      "source_activity_comment_sha256": true,
+      "source_product_information_sha256": true,
+      "native2025_metadata_sha256": true,
+      "native2025_inventory_sha256": true,
+      "native2025_activity_comment_sha256": true,
+      "native2026_metadata_sha256": false,
+      "native2026_inventory_sha256": false,
+      "native2026_activity_comment_sha256": true
+    },
+    "changed_native2026_import_independently_re_reviewed": true,
+    "identical_native2026_import_claimed": false,
+    "prior312_freight_reconstructed": false,
+    "new_helpers": 2,
+    "new_source_omissions": [],
+    "runtime_python_changes": []
+  },
+  "tests": {
+    "brightpath_exact_scope_signed_uncertainty_atomic_replay_and_resource_integrity": 129,
+    "premise_source_fresh_and_cached_including_older312_signed_uncertainty": 14,
+    "premise_installed": 14,
+    "lint_changed_tests_and_replay_helper": "passed",
+    "generator_lint": "previously verified two existing import-order findings; only a separate six-line replay hook is added"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 4,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 6,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-c63a1747fd444679",
+        "source": {
+          "location": "GLO",
+          "name": "market for carboxymethyl cellulose, powder",
+          "reference product": "carboxymethyl cellulose, powder",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 9.890300134429708e-09,
+        "refined_max_abs_inventory_difference": 3.469446951953614e-18,
+        "full_graph_residual": {
+          "residual_before": 8.058872522386288e-11,
+          "residual_after": 1.1102230246251565e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.466528925201966e-10,
+          "residual_after": 7.262070060509246e-18,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-97562a7b00a80fa8",
+        "source": {
+          "location": "RER",
+          "name": "market for latex",
+          "reference product": "latex",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 1.3877787807814457e-17,
+        "full_graph_residual": {
+          "residual_before": 1.0832969287399601e-11,
+          "residual_after": 8.976197684483004e-18,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.0832969287399601e-11,
+          "residual_after": 8.976197684483004e-18,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies delivered CMC-powder and synthetic-latex interfaces and native aggregate/freight numerical consistency. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_cmc_latex_markets_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 111,
+    "current": 109,
+    "removed_rules": [
+      "bp-c63a1747fd444679",
+      "bp-97562a7b00a80fa8"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-19970a05738136f6",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 109,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-19970a05738136f6",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [
+    "scripts/review_uvek_cmc_latex_markets_39.py",
+    "scripts/generate_uvek_migration_resources.py: exact frozen-profile replay hook"
+  ],
+  "new_helpers": 2,
+  "new_source_omissions": [],
+  "prior312_CMC_physical_at_plant_supplier_and_factor_unchanged": true,
+  "prior312_CMC_final_freight_reconstructed": false,
+  "current_native2026_import_primary_hash_differences_explicitly_re_reviewed": true,
+  "full_generator_regeneration": "Not claimed passing; earlier nitrate-authority failure remains as documented and reproduced in the PET batch."
+}
