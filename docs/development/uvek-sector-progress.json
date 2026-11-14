@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-f1abd225900bb9b6",
+        "rule_id": "bp-dc31a9f499822217",
         "source": {
-          "location": "GLO",
-          "name": "market for graphite, battery grade",
-          "reference product": "graphite, battery grade",
+          "location": "RER",
+          "name": "market for solid bleached and unbleached board carton",
+          "reference product": "solid bleached and unbleached board carton",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 103,
+        "unapproved_correspondence_count_in_current_39_cohort": 99,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-chemical-steam-39-verification.json",
+        "verification": "docs/development/uvek-material-markets-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Review battery graphite and timber/pallet/core-board markets together; preserve producer weights and final freight, use complete matching native products once and record geographic/moisture/allocation/source-data differences.",
-        "live_freshness_verified": false,
-        "mapping_diagnostic": "Integrity-verified cached graph105 to103; last fresh live run confirmed105 before the two steam approvals."
+        "next_action": "Review mixed bleached/unbleached carton versus native unbleached board, preserving source producer shares and delivery; then group the remaining named-polymer markets. Keep product-form and technology differences explicit rather than treating similar names as equivalence.",
+        "live_freshness_verified": true,
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all99 pending first3.9-cohort details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-chemical-steam-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-material-markets-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

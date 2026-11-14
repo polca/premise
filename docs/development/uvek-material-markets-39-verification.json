@@ -1,0 +1,215 @@
+{
+  "date": "2026-11-14",
+  "brightpath_mapping_commit": "91e89e39401a071de5ffb79463655e4084c428ee",
+  "brightpath_coal_tar_test_only_commit": "24d910702a94e301e633d6791dcc67d0d3d5b515",
+  "scope_registration": {
+    "prior_scopes": 1401,
+    "new_scopes": 1405,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-f1abd225900bb9b6",
+      "bp-93ee78d8de9d24cd",
+      "bp-6405b8335e873e4f",
+      "bp-a565c3865fb33f66"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_material_interfaces_retained_freight_signed_uncertainty_atomic_replay_and_resource_storage": 73,
+    "premise_source_preparation_and_cache": 20,
+    "premise_installed_preparation_and_cache": 20,
+    "coal_tar_exact_current_profile_regressions": 31,
+    "lint_changed_tests_and_maintainer_helper": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 8,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 8,
+    "signed_foreground_LCI_solves": 8,
+    "independent_native_reference_LCI_solves": 4,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-f1abd225900bb9b6",
+        "source": {
+          "location": "GLO",
+          "name": "market for graphite, battery grade",
+          "reference product": "graphite, battery grade",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.0569189018715406e-08,
+        "refined_max_abs_inventory_difference": 1.7053025658242404e-13,
+        "full_graph_residual": {
+          "residual_before": 3.257678491987774e-10,
+          "residual_after": 1.4210854715202004e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.0880386107952114e-09,
+          "residual_after": 3.552713678800501e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-93ee78d8de9d24cd",
+        "source": {
+          "location": "RER",
+          "name": "market for laminated timber element, transversally prestressed, for outdoor use",
+          "reference product": "laminated timber element, transversally prestressed, for outdoor use",
+          "unit": "cubic meter"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "cubic meter",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.1638590535767435e-08,
+        "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+        "full_graph_residual": {
+          "residual_before": 3.121892277710484e-06,
+          "residual_after": 4.49053375477622e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 3.569980377668484e-06,
+          "residual_after": 4.49053375477622e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-6405b8335e873e4f",
+        "source": {
+          "location": "GLO",
+          "name": "market for core board",
+          "reference product": "core board",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.1558768164832145e-08,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 8.416493633420811e-10,
+          "residual_after": 4.449239098145114e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.5742470254613934e-10,
+          "residual_after": 7.505832907839233e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-a565c3865fb33f66",
+        "source": {
+          "location": "RER",
+          "name": "market for EUR-flat pallet",
+          "reference product": "EUR-flat pallet",
+          "unit": "unit"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "unit",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 8.881784197001252e-16,
+        "refined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "full_graph_residual": {
+          "residual_before": 1.4355363772092994e-08,
+          "residual_after": 1.7763568394002505e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.4355363772092994e-08,
+          "residual_after": 1.7763568394002505e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies four matching native material product interfaces with retained source delivery and native-demand numerical consistency; does not establish identical graphite performance, timber moisture/allocation, country-specific coreboard, complete pallet manufacture, source/native LCIA equivalence, battery completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_material_markets_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "unused_wheel_bytes_removed": 44670802,
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 103,
+    "current": 99,
+    "removed_rules": [
+      "bp-f1abd225900bb9b6",
+      "bp-93ee78d8de9d24cd",
+      "bp-6405b8335e873e4f",
+      "bp-a565c3865fb33f66"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-dc31a9f499822217",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 99,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-dc31a9f499822217",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [
+    "scripts/review_uvek_material_markets_39.py",
+    "scripts/generate_uvek_migration_resources.py: frozen grouped replay hook"
+  ],
+  "new_helpers": 4,
+  "retained_producer_entries": 7,
+  "retained_final_freight_entries": 11,
+  "new_source_omissions": [],
+  "earlier_rules_recipes_reviews_approvals_and_fingerprints_unchanged": true,
+  "full_reference_sign_regression_suite": "Not claimed passing: earlier run interrupted after30 stale coal-tar failures/180passes. The31 targeted coal-tar checks now pass after adapting tests to the existing independently reviewed3.9 helper and keeping all other source-profile refusals. The other702 tests were not rerun as a complete suite. No runtime approval or migration change for this test correction.",
+  "full_generator_regeneration": "Not claimed passing; independently reproduced earlier nitrate-authority failure remains tracked."
+}

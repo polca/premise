@@ -275952,6 +275952,358 @@
           "fingerprint": "fe9bbf9a29f86184c21130de5855ea23bb6ebfcf660dfa0920e728425d19ebaf"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-f1abd225900bb9b6",
+      "mapping_method": "reviewed_material_markets_39_retained_delivery",
+      "review_path": "export/uvek_material_markets_39_review.json",
+      "review_sha256": "fe7d5529383809addf1440b3a32e329d7e381bea16ba4c2e59eb30b129cea2f6",
+      "authorization": "Standing autonomous approval of remaining mapping decisions and complete named native product/geographic/technology screening proxies, with retained quantities, warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for graphite, battery grade",
+            "reference product": "graphite, battery grade",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "710c50c81a360bde41cd74a7f7ac6a828e20287bee7ee21fb6aa397525b03ddd",
+          "inventory_sha256": "57519c880b6067574d08a3fb309241980eb5863861db75167254187628c60ea5",
+          "activity_comment_sha256": "18a257c50767a23f4f556081bdcad3c3a378d26d93e056391514bc33b243c69a",
+          "product_information_sha256": "9c30b24afefd7e2acdea9b60cfe741a215c3a9abad9055737fb85c90e7ad73f2"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Graphite, battery grade, at plant",
+              "reference product": "Graphite, battery grade, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 19,
+            "metadata_sha256": "9090d21c6d23a64d9740ef07240cf70cf83a6254cf9fb8e2e6bfab2eadf46b6e",
+            "inventory_sha256": "995750604393d4952051e995cd631d28bf7173c7ff726111327ce2ebe13b1294",
+            "activity_comment_sha256": "3a90b8c88ff916b36173fd587611581aa2bbb1cf38f9f16f025ab9eb6c7dab0a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Graphite, battery grade, at plant",
+              "reference product": "Graphite, battery grade, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 20,
+            "metadata_sha256": "f1f5cdc4f188a61ebeaf98d5f2353c5ac8d25dde3a943cde90d6f7bdc889d0d3",
+            "inventory_sha256": "8eca2c5edafce401420833ea2be5c2fefdd57d4d09e0995a05dd8232d1dda5da",
+            "activity_comment_sha256": "1d6f33978a9c8c4e2ed2e08428589f3005606943f86776bb1eb5da5fe1885ef8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "named_battery_grade_not_generic_graphite": true,
+          "native_mining_model_uses_limestone_approximation": true,
+          "native_documentation_reports_large_process_uncertainty": true,
+          "native_water_emissions_reported": false,
+          "RoW_uses_Chinese_product_proxy": true,
+          "new_graphitization_or_coke_added": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off named delivered-product market only. Preserve signed caller reference quantity, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one source/native product reference with factor+1. Keep every source producer entry and final-freight entry separately at its original amount and supported uncertainty; no supplier-share aggregation, normalization or freight omission. Other releases, patches, products, system models and reverse routes gain no new permission.",
+        "Both source producers and native supplier are already labelled battery-grade graphite, not ordinary graphite. Native China model, like the inherited source model, approximates mining/crushing/milling using limestone technology and adds coke and electricity for battery grade. Native documentation explicitly reports large uncertainty and no water emissions. Using the complete native battery-grade model replaces the source internal electricity, coke, heat, mining, emissions and infrastructure once; do not add source graphitization/coke again, convert its MJ coke to product kg, invent a modern furnace efficiency or certify actual purity, particle size, surface coating or electrochemical performance. Preserve the two source producer entries separately; the rest-of-world branch uses the native Chinese process as an explicit geographic/energy-mix proxy. Native and source historical synthetic/natural graphite modelling assumptions are not independently validated manufacturing data.",
+        "Whole native product inventories replace source producer internals once, including their own resources, energy, raw-material transport, infrastructure, emissions, residues and allocation. Final source-market delivery remains additional to production-internal upstream freight. Retain rail, road, sea or barge entries using the already reviewed complete native mode/fleet suppliers. Native geography, traction/fuel mix, fleet/load factors, technology/vintage, allocation, emissions and internal uncertainty differ; no distance, payload, loss or freight-volume correction is invented. Exact source/native LCI, LCIA, product assay/performance and stochastic equivalence are not established; score effects remain unquantified.",
+        "Only the inspected3.9 profile selects the delivered-market helper; literal default target identities remain frozen. Earlier approval operations/fingerprints, unrelated rules, recipes and review cards remain unchanged. No source/caller omission, zero-burden stock, extra recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Native exposed energy suppliers remain available to normal filtering/relinking; this mapping alone does not certify a complete sector update."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "95d46ce0492e332b3d711492a602602ae4097c47bddc258cbf1e149def653588"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-93ee78d8de9d24cd",
+      "mapping_method": "reviewed_material_markets_39_retained_delivery",
+      "review_path": "export/uvek_material_markets_39_review.json",
+      "review_sha256": "fe7d5529383809addf1440b3a32e329d7e381bea16ba4c2e59eb30b129cea2f6",
+      "authorization": "Standing autonomous approval of remaining mapping decisions and complete named native product/geographic/technology screening proxies, with retained quantities, warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for laminated timber element, transversally prestressed, for outdoor use",
+            "reference product": "laminated timber element, transversally prestressed, for outdoor use",
+            "location": "RER",
+            "unit": "cubic meter"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "ac30fab94533bb764a12a5b3ccbe6a6ef716382c3be6ab7bd693e4eb13c12937",
+          "inventory_sha256": "44190604aabe2f097f52ca8563409c70083dba394412787ad3e48cf0c5b988c4",
+          "activity_comment_sha256": "15a344b68e7d0c090f672c7d287759ddbfeda826f15072bdef5df6fc8e22f031",
+          "product_information_sha256": "29539467509c0d0af318a453ca6f47acda68b73ae3d5be782f098b79198e3d13"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Laminated timber element, transversally prestressed, for outdoor use, at plant",
+              "reference product": "Laminated timber element, transversally prestressed, for outdoor use, at plant",
+              "location": "RER",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "849a92f3f6e3b68edc2af1b957a25517107d5ae82c1f89cf0e1c7a12a5986c7a",
+            "inventory_sha256": "1b30696c53e68b900e8effcddf98c8060c4a0ec584c0ecf3e86b6bca9c8f702a",
+            "activity_comment_sha256": "a4a7a8474449f70a3a44c675bb310c0aadb96798bd346fefd89f5333195d0ba5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Laminated timber element, transversally prestressed, for outdoor use, at plant",
+              "reference product": "Laminated timber element, transversally prestressed, for outdoor use, at plant",
+              "location": "RER",
+              "unit": "cubic meter"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "7b6785ad4e432eabe34c2fe51b245855a7e92a74dd9177f38576bf9371ce3e68",
+            "inventory_sha256": "898f13481fc65eae7a7fa536a50813c32127c17fadcddb4f05caaee0dce9107f",
+            "activity_comment_sha256": "0f3be5e9b4360ed8d0d43b675204da2e4dfbd222a40dc47589b66eacd3cd1b82",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "same_outdoor_transversally_prestressed_role": true,
+          "source_wood_input_moisture_label": "u=20%",
+          "native_wood_input_moisture_label": "u=10%",
+          "native_signed_allocation_corrections_preserved": true,
+          "density_or_moisture_volume_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off named delivered-product market only. Preserve signed caller reference quantity, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one source/native product reference with factor+1. Keep every source producer entry and final-freight entry separately at its original amount and supported uncertainty; no supplier-share aggregation, normalization or freight omission. Other releases, patches, products, system models and reverse routes gain no new permission.",
+        "Source and native refer to the same outdoor, transversally prestressed/screwed laminated timber role, using German medium-enterprise technology from1995 for central Europe. Both are volume references, not generic glued laminated timber or indoor panels. Source sawnwood purchases use u=20% labels; native wood purchases include u=10% labels and its own negative allocation-correction exchanges. Keep the complete native economically allocated product and all its signed corrections; they are neither missing production nor new avoided-product credits. Native timber moisture, species mix, steel/input quantities, allocation and upstream freight differ. Do not add source timber/steel/electricity on top, reverse native corrections, or infer a density, moisture, dry-mass, yield or biogenic-carbon correction for one m3 of product. Both descriptions lack process-emission measurements; absence of those measurements is a data gap rather than established zero emissions.",
+        "Whole native product inventories replace source producer internals once, including their own resources, energy, raw-material transport, infrastructure, emissions, residues and allocation. Final source-market delivery remains additional to production-internal upstream freight. Retain rail, road, sea or barge entries using the already reviewed complete native mode/fleet suppliers. Native geography, traction/fuel mix, fleet/load factors, technology/vintage, allocation, emissions and internal uncertainty differ; no distance, payload, loss or freight-volume correction is invented. Exact source/native LCI, LCIA, product assay/performance and stochastic equivalence are not established; score effects remain unquantified.",
+        "Only the inspected3.9 profile selects the delivered-market helper; literal default target identities remain frozen. Earlier approval operations/fingerprints, unrelated rules, recipes and review cards remain unchanged. No source/caller omission, zero-burden stock, extra recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Native exposed energy suppliers remain available to normal filtering/relinking; this mapping alone does not certify a complete sector update."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "cb7ea99ef068ec95bb18d62552420fbfa7be4db3f825ae45215da2043ab4d95a"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-6405b8335e873e4f",
+      "mapping_method": "reviewed_material_markets_39_retained_delivery",
+      "review_path": "export/uvek_material_markets_39_review.json",
+      "review_sha256": "fe7d5529383809addf1440b3a32e329d7e381bea16ba4c2e59eb30b129cea2f6",
+      "authorization": "Standing autonomous approval of remaining mapping decisions and complete named native product/geographic/technology screening proxies, with retained quantities, warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for core board",
+            "reference product": "core board",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "5401ba994d5cf9012030ab3371913dca4b979cd79ff2cc0a8ddd3f428df32ea5",
+          "inventory_sha256": "2427e831a1f78e6141f498835d7fd5553dd0d7cf56b70004d5e7245c48a2893a",
+          "activity_comment_sha256": "ae9a52af40a8e29efee68cee56bc08d647d6055bfeef62742a8bbdb2a20764b5",
+          "product_information_sha256": "d8cc04d825378d1cbe409b8ffb6a4f11c61b8f5be493ef7ea3754ad093bd69e6"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Core board, at plant",
+              "reference product": "Core board, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 24,
+            "metadata_sha256": "c56ff869a33d0f775e7d08c154d5a2de2e45b6169733a3d81d1e18471b1edf06",
+            "inventory_sha256": "1b203d1c8939062968901f71b64d9cf9e08b140fc79650dde9337cc31e574952",
+            "activity_comment_sha256": "21f90f4440baded5754ac2fc766e1940a401662ec7fe4f3dec2dbaeffba82bea",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Core board, at plant",
+              "reference product": "Core board, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 24,
+            "metadata_sha256": "99accb477292c45f9c75db12eb1510092d9d81e4eccf752e87894daa853efcba",
+            "inventory_sha256": "d3a62091d147d1ae9403c725774f8a2e0d07d2e5b7ee7c05ea4998883f971cff",
+            "activity_comment_sha256": "26920771d22dfffdc1ff8c9d26c5341ac13c4e7cabb6747f51f1fc90182f90e6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "same_recycled_core_board_role": true,
+          "original_producer_entries_retained": 3,
+          "RoW_and_Quebec_use_European_product_proxy": true,
+          "new_recycling_credit_or_yield_factor": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off named delivered-product market only. Preserve signed caller reference quantity, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one source/native product reference with factor+1. Keep every source producer entry and final-freight entry separately at its original amount and supported uncertainty; no supplier-share aggregation, normalization or freight omission. Other releases, patches, products, system models and reverse routes gain no new permission.",
+        "Source and native describe the same core-board packaging made with recycled pulp, starch and semi-chemical pulp, based on the Finnish Corenso mill model. It is not corrugated-box manufacture, testliner or virgin cardboard. Preserve all three original RoW, Quebec and European supplier entries, but use complete native European core board for each as an explicit geographic/production-energy screening proxy. This retains source weights without claiming independent native country models. Native mill electricity, hardwood pulpwood requirement, water/emission coverage and background differ. Retain native recovered-paper allocation and full mill/infrastructure/chemical/heat inventory once; add no avoided virgin-paper or recycling credit, source production energy, pulpwood overlay, invented recycling yield, moisture or grade adjustment. Keep final delivery separately from native internal raw-material transport.",
+        "Whole native product inventories replace source producer internals once, including their own resources, energy, raw-material transport, infrastructure, emissions, residues and allocation. Final source-market delivery remains additional to production-internal upstream freight. Retain rail, road, sea or barge entries using the already reviewed complete native mode/fleet suppliers. Native geography, traction/fuel mix, fleet/load factors, technology/vintage, allocation, emissions and internal uncertainty differ; no distance, payload, loss or freight-volume correction is invented. Exact source/native LCI, LCIA, product assay/performance and stochastic equivalence are not established; score effects remain unquantified.",
+        "Only the inspected3.9 profile selects the delivered-market helper; literal default target identities remain frozen. Earlier approval operations/fingerprints, unrelated rules, recipes and review cards remain unchanged. No source/caller omission, zero-burden stock, extra recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Native exposed energy suppliers remain available to normal filtering/relinking; this mapping alone does not certify a complete sector update."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0251639312cfa3d5a7fe6058502a8ef1bd9014159829d9094ba3138a3ca5061b"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-a565c3865fb33f66",
+      "mapping_method": "reviewed_material_markets_39_retained_delivery",
+      "review_path": "export/uvek_material_markets_39_review.json",
+      "review_sha256": "fe7d5529383809addf1440b3a32e329d7e381bea16ba4c2e59eb30b129cea2f6",
+      "authorization": "Standing autonomous approval of remaining mapping decisions and complete named native product/geographic/technology screening proxies, with retained quantities, warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for EUR-flat pallet",
+            "reference product": "EUR-flat pallet",
+            "location": "RER",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "b561a92fe0c74ec43fb76da90a098179707e4847191db69b54746a8ac7cb7acd",
+          "inventory_sha256": "dafd47f604245cca41648e180aeabcab7ff949cd5039832f4cc5c9fbe4b9641e",
+          "activity_comment_sha256": "47c5dc1839443e734de0080548a7cc84097fb193b9febf525d959e8bedc19281",
+          "product_information_sha256": "1a3ef1e502cd54461b16e327faba792858174b504c65b54106ebd90edb18d89c"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "EUR-flat pallet",
+              "reference product": "EUR-flat pallet",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "e36c08488689eb8935539758e5bfed0073d928fad506eaabf4af118b054bff90",
+            "inventory_sha256": "0ecbfdc2b270db957674beb49d10b4100fa342d7ad0c55a0cbfbd7fdb039df45",
+            "activity_comment_sha256": "38de9e0a728d657d02402b9a6afee074a664ad7a6ea102e615bcb605c4716516",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "EUR-flat pallet",
+              "reference product": "EUR-flat pallet",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "829d71587b25c16114b30e0735b556e5f03097d9c74ffd0507e4b9f612812d2a",
+            "inventory_sha256": "6775370dba3d5bef75389e635822c2d05c39bd3aea140835d1efb981391e2b49",
+            "activity_comment_sha256": "7a05e86e9d756181f290d5b298f1102eff5d0fca787e9ab7bf6c4119526ba86d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "same_EUR_flat_pallet_materials_only_role": true,
+          "reference_unit_is_pallet_not_kg": true,
+          "construction_and_disposal_inside_native_boundary": false,
+          "source_description_nominal_pallet_mass_kg": 22,
+          "mass_or_reuse_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "Exact ecoinvent3.9 cut-off named delivered-product market only. Preserve signed caller reference quantity, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Match positive one source/native product reference with factor+1. Keep every source producer entry and final-freight entry separately at its original amount and supported uncertainty; no supplier-share aggregation, normalization or freight omission. Other releases, patches, products, system models and reverse routes gain no new permission.",
+        "Both source and native EUR-flat-pallet records explicitly model only constituent materials per pallet unit, exclude the construction process and waste treatment, and are intended for packaging/transport. Preserve that boundary rather than claiming a complete manufactured, repaired or disposed pallet. Source product text describes an average22kg pallet; the actual reference and native reference are one unit. Do not divide or multiply by22kg, a lifetime, number of uses, payload, density or reuse allocation. Complete native wood, particleboard and steel replace source material-supply internals once. Wood drying, particleboard glue mix, upstream supplies, vintage and allocation differ; later manufacture, reuse and end-of-life remain the callers responsibility and are not silently supplied here.",
+        "Whole native product inventories replace source producer internals once, including their own resources, energy, raw-material transport, infrastructure, emissions, residues and allocation. Final source-market delivery remains additional to production-internal upstream freight. Retain rail, road, sea or barge entries using the already reviewed complete native mode/fleet suppliers. Native geography, traction/fuel mix, fleet/load factors, technology/vintage, allocation, emissions and internal uncertainty differ; no distance, payload, loss or freight-volume correction is invented. Exact source/native LCI, LCIA, product assay/performance and stochastic equivalence are not established; score effects remain unquantified.",
+        "Only the inspected3.9 profile selects the delivered-market helper; literal default target identities remain frozen. Earlier approval operations/fingerprints, unrelated rules, recipes and review cards remain unchanged. No source/caller omission, zero-burden stock, extra recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Native exposed energy suppliers remain available to normal filtering/relinking; this mapping alone does not certify a complete sector update."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "3b4f13cf07c3be3c12280a25a1130ddb63a294a1238e9b06e134d56e4fdc2977"
+        }
+      ]
     }
   ],
   "superseded_operations": [
