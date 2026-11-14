@@ -270817,6 +270817,809 @@
           "fingerprint": "d01b75d5630e17a758a7c1d404e6fba294fead30ce13aa7648590542cef824b8"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-2ea4357c2edb64bc",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_factory_markets_39_review.json",
+      "review_sha256": "70d6a5b6d201168b4daddadff3aa394bf33b667310501f0274805241f4ab6cf2",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings and documented whole-infrastructure/geographic/model-boundary screening proxies, with explicit limitations and decisions for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium casting facility",
+            "reference product": "aluminium casting facility",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "9102e1ee09ce1e852ac48ebb1e73e59c295d0b380861addee17d8e09cbd36293",
+          "inventory_sha256": "0dfde2924aea3735081373ac6bcd1e7ce7654e3a402753257be702bb09c97bcd",
+          "activity_comment_sha256": "09e9e32e7c2c0eed46c2d6a71a513f33263291554ff516a13d3e32893dc9a4a8",
+          "product_information_sha256": "6ae11f3a34425762822c46dd19a5c708d4bb144068b986b366e9a570b094fa86"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium casting, plant",
+              "reference product": "Aluminium casting, plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "05fce6b2de95e3df4e2ae7d62cc22cb3ff7f301ea25c4ec017ee1f72d0550a9a",
+            "inventory_sha256": "23d5884e5d63ab51f8dfc894c40b2fd7d23b4ae35adfe704abfbe3b0521c40d5",
+            "activity_comment_sha256": "c01545d2643890aee63df56a6079f63624b0015044db11c20e0654691ad21b9e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium casting, plant",
+              "reference product": "Aluminium casting, plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "e7b0bef8581271ebcf5fca40cfdeeb523526825ab059ab677a01f53a975d2a7c",
+            "inventory_sha256": "f8b326e0c4e8bc357a415f77d376cb00965e1a980cfe06c6a94e9330d21c85a3",
+            "activity_comment_sha256": "3c7b0e192fd8b410a2be175a959552ce8075f4c5eeff095a81ab07d1c6e8ae91",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "defined_immobile_factory_infrastructure_module",
+          "reference_factory_module_units": 1,
+          "source_constructor_entries": 1,
+          "source_deterministic_construction_total_units": 1,
+          "source_final_delivery_or_direct_biosphere_entries": 0,
+          "redundant_market_helper_added": false,
+          "extra_capacity_lifetime_or_site_scaling_added": false,
+          "purpose": "aluminium_casting_infrastructure",
+          "annual_output_tonnes": 130000,
+          "assumed_lifetime_years": 50,
+          "shared_site_casting_land_share": 0.5,
+          "geometry_comparison_scope": "Positive construction/material purchases, excluding disposal/treatment/waste-service flows.",
+          "selected_geometry_checks": [
+            {
+              "component_token": "hall",
+              "unit": "square meter",
+              "amount": 21700
+            },
+            {
+              "component_token": "multi-storey",
+              "unit": "cubic meter",
+              "amount": 2000
+            },
+            {
+              "component_token": "industrial machine",
+              "unit": "kilogram",
+              "amount": 2000000
+            },
+            {
+              "component_token": "concrete",
+              "unit": "cubic meter",
+              "amount": 909
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "New permission is limited to the exact independently inspected global ecoinvent 3.9 cut-off factory market. Market, construction suppliers and native infrastructure-module references are all positive one unit. Preserve signed caller factory-unit fractions with factor +1, supported uncertainty/formulas, foreground ownership and independent operation, machinery/materials and emissions. One factory/module unit is not one kg of output, one device, one operating year or a unit of manufacturing service. Do not repeat lifetime, annual-output, site-allocation, machine-replacement, floor-area, volume, density or capacity multipliers already belonging to the caller/module model. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Each inspected market has only positive deterministic same-product construction-unit supply totalling one unit within floating-point roundoff, without final delivery, formulas or direct emissions. Represent the defined module directly by the complete corresponding native infrastructure module. Source regional constructor shares become that explicitly declared native site/geographic proxy; no redundant identical-supplier helper is added. Only the market identity receives permission here; constructor identities need independent approvals if called separately.",
+        "Keep the native module construction, materials, land, equipment where included, decommissioning, treatment and internal uncertainty once, rather than rebuilding selected source internals. Source global/Rest-of-World supplies become native European/Swiss or documented German-site proxies. Construction grade, upstream material/energy routes, internal transport, land wording, wastewater/cable/disposal models, allocation, age and uncertainty can differ. Internal negative-reference source wastes and positive native treatment demands do not reverse the positive factory reference or create recovery credits. Functional-module/selected-geometry agreement does not establish full site-design, throughput, LCI, LCIA or stochastic equivalence; score differences remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No helper, literal source omission, runtime Python, alternative sector engine, standalone material/treatment equivalence or validation bypass. These permissions do not add operation or machinery to partial construction modules. Shared Premise transformations remain unchanged.",
+        "Casting-plant module is one defined medium aluminium-casting infrastructure, including hall, machines, administration and disposal. The source constructor and native document130,000t/year,50years and shared electrolysis/casting land allocated50% to casting. Keep those original assumptions; do not add electrolysis infrastructure or reapply the half-site fraction. Selected hall/building/machine/concrete quantities match, while source normal-strength-concrete portfolios become native foundation concrete and source regional waste-concrete disposal becomes native Swiss final disposal. Those specifications and geographic/decommissioning differences remain warnings."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "69fa7cc9dceec19e11eefca2b2dd3384abe5fc4fcb8e0b6c15ecc061b3001550"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-ff9a987f3fba0c28",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_factory_markets_39_review.json",
+      "review_sha256": "70d6a5b6d201168b4daddadff3aa394bf33b667310501f0274805241f4ab6cf2",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings and documented whole-infrastructure/geographic/model-boundary screening proxies, with explicit limitations and decisions for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for aluminium oxide factory",
+            "reference product": "aluminium oxide factory",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "311efa9bfbea1f458c268ecec14521c8524e244670ad730d1d813a3549f3c658",
+          "inventory_sha256": "d04fb5d26716c57866a11b82c1b1f328bc62e5e54688dbe8f75c7672dd93c459",
+          "activity_comment_sha256": "d52f2f020a394dfee0eb0ea52df2673d11a7545e7f4e1ccdff8a74e70749300d",
+          "product_information_sha256": "4778b5316e1d40a0884c5513f1e11991bb622511fbb3daaf6561d37ac0808824"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Aluminium oxide, plant",
+              "reference product": "Aluminium oxide, plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 11,
+            "metadata_sha256": "69ac3846e58701c55a614709e85580898f720e1ae0a1defe8575b9500245c157",
+            "inventory_sha256": "74d86febfa42f27603a1451b167cde5a5f21ece93dc3736ac422c86f59f6c07d",
+            "activity_comment_sha256": "2415a4793894bda43a10556068b64f19f6c5e5ebcae2268adf7ef185c4316bce",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Aluminium oxide, plant",
+              "reference product": "Aluminium oxide, plant",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 11,
+            "metadata_sha256": "e131e81ba8949dc683b8f5bd832136aa21a52bf82bc2123c3d5cdd0e08989430",
+            "inventory_sha256": "6295fca3cbe0011c984c28c767c099cf9af0b0ce7eeb21207944b836d7ceebb1",
+            "activity_comment_sha256": "edfe5a375a70dcfebb8b06a8d6fae60fdc4a6b4bcc6d4ee153b3a4fd7577700b",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "defined_immobile_factory_infrastructure_module",
+          "reference_factory_module_units": 1,
+          "source_constructor_entries": 2,
+          "source_deterministic_construction_total_units": 1,
+          "source_final_delivery_or_direct_biosphere_entries": 0,
+          "redundant_market_helper_added": false,
+          "extra_capacity_lifetime_or_site_scaling_added": false,
+          "purpose": "alumina_calcination_and_storage_infrastructure_only",
+          "annual_output_tonnes": 800000,
+          "assumed_lifetime_years": 50,
+          "whole_integrated_bauxite_refinery_included": false,
+          "geometry_comparison_scope": "Positive construction/material purchases, excluding disposal/treatment/waste-service flows.",
+          "selected_geometry_checks": [
+            {
+              "component_token": "concrete",
+              "unit": "cubic meter",
+              "amount": 1420
+            },
+            {
+              "component_token": "reinforcing steel",
+              "unit": "kilogram",
+              "amount": 980000
+            },
+            {
+              "component_token": "low-alloyed",
+              "unit": "kilogram",
+              "amount": 61500
+            },
+            {
+              "component_token": "conveyor belt",
+              "unit": "meter",
+              "amount": 200
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "New permission is limited to the exact independently inspected global ecoinvent 3.9 cut-off factory market. Market, construction suppliers and native infrastructure-module references are all positive one unit. Preserve signed caller factory-unit fractions with factor +1, supported uncertainty/formulas, foreground ownership and independent operation, machinery/materials and emissions. One factory/module unit is not one kg of output, one device, one operating year or a unit of manufacturing service. Do not repeat lifetime, annual-output, site-allocation, machine-replacement, floor-area, volume, density or capacity multipliers already belonging to the caller/module model. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Each inspected market has only positive deterministic same-product construction-unit supply totalling one unit within floating-point roundoff, without final delivery, formulas or direct emissions. Represent the defined module directly by the complete corresponding native infrastructure module. Source regional constructor shares become that explicitly declared native site/geographic proxy; no redundant identical-supplier helper is added. Only the market identity receives permission here; constructor identities need independent approvals if called separately.",
+        "Keep the native module construction, materials, land, equipment where included, decommissioning, treatment and internal uncertainty once, rather than rebuilding selected source internals. Source global/Rest-of-World supplies become native European/Swiss or documented German-site proxies. Construction grade, upstream material/energy routes, internal transport, land wording, wastewater/cable/disposal models, allocation, age and uncertainty can differ. Internal negative-reference source wastes and positive native treatment demands do not reverse the positive factory reference or create recovery credits. Functional-module/selected-geometry agreement does not establish full site-design, throughput, LCI, LCIA or stochastic equivalence; score differences remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No helper, literal source omission, runtime Python, alternative sector engine, standalone material/treatment equivalence or validation bypass. These permissions do not add operation or machinery to partial construction modules. Shared Premise transformations remain unchanged.",
+        "Aluminium-oxide plant is explicitly the infrastructure part needed for alumina calcination and storage, including disposal; it is not a complete integrated bauxite/Bayer refinery or a kg of alumina. Source/native document800,000t/year and50-year building life, based on one German medium plant. Selected concrete, reinforcing/low-alloyed steel and conveyor quantities match. Source concrete/steel markets and regional reinforced-concrete disposal become native material/treatment supplies; product grade, metal route, geometry detail and site representativeness remain limitations. Do not add unmodelled refinery sections, calcination operation/fuel or another output/lifetime factor."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c524ae75075fd841e8cabbca6611c8750cda8d5338b09021298c95554fd1f8be"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-f1ab0f355c6e5a06",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_factory_markets_39_review.json",
+      "review_sha256": "70d6a5b6d201168b4daddadff3aa394bf33b667310501f0274805241f4ab6cf2",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings and documented whole-infrastructure/geographic/model-boundary screening proxies, with explicit limitations and decisions for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for electronic component factory",
+            "reference product": "electronic component factory",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "28c616e0f65276cc1f9cbd42e183b5937f48747c35328da851b8836c50b435d4",
+          "inventory_sha256": "722282167d8da367fb6409d341f5bbcb6135e7c1ff0d5d948a5fb94dc7d0fdcc",
+          "activity_comment_sha256": "566584acc816ef5d45a400ef4364a27451f185b22e6ef42f0ecc173f8ea805c0",
+          "product_information_sha256": "c5e15ef4d1333e6e209af202886642f616afb6348dc8750013aaf59c896df5fb"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electronic component production plant",
+              "reference product": "Electronic component production plant",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "40048f2b2f0080450623683aca14a0cd5f52ee4fd0ed025947fcb657c4447ce3",
+            "inventory_sha256": "4ba638919399678fdc8339ae93d47b005acd0a8529b71aceaa56e17e2538ce26",
+            "activity_comment_sha256": "5308f9849b7b9a49b9391915c5c95d359639dfd0b80e8fca3c5e6e7807fa12b7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electronic component production plant",
+              "reference product": "Electronic component production plant",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "e78cbb1cf20fc53ad319fcf911ebf398ef137c4ca7a4d4f792281ac611b3349f",
+            "inventory_sha256": "1aa4d52771d809fb6a070d36173ae0f906cc65a77c47c253aebc43a1547bde8b",
+            "activity_comment_sha256": "89fd816b940f77888f9358b489a61eb98b86991d6aab45a3e3394147a7b531bc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "defined_immobile_factory_infrastructure_module",
+          "reference_factory_module_units": 1,
+          "source_constructor_entries": 1,
+          "source_deterministic_construction_total_units": 1,
+          "source_final_delivery_or_direct_biosphere_entries": 0,
+          "redundant_market_helper_added": false,
+          "extra_capacity_lifetime_or_site_scaling_added": false,
+          "purpose": "defined_electronic_component_production_site",
+          "assumed_lifetime_years": 25,
+          "source_extra_unspecified_cable_manufacture_kg": 1968800,
+          "native_end_of_life_cable_treatment_kg": 1968800,
+          "native_throughput_metadata_internally_inconsistent": true,
+          "geometry_comparison_scope": "Positive construction/material purchases, excluding disposal/treatment/waste-service flows.",
+          "selected_geometry_checks": [
+            {
+              "component_token": "hall",
+              "unit": "square meter",
+              "amount": 85587
+            },
+            {
+              "component_token": "multi-storey",
+              "unit": "cubic meter",
+              "amount": 327780
+            },
+            {
+              "component_token": "reinforcing steel",
+              "unit": "kilogram",
+              "amount": 26000000
+            },
+            {
+              "component_token": "electronic component machinery",
+              "unit": "unit",
+              "amount": 500
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "New permission is limited to the exact independently inspected global ecoinvent 3.9 cut-off factory market. Market, construction suppliers and native infrastructure-module references are all positive one unit. Preserve signed caller factory-unit fractions with factor +1, supported uncertainty/formulas, foreground ownership and independent operation, machinery/materials and emissions. One factory/module unit is not one kg of output, one device, one operating year or a unit of manufacturing service. Do not repeat lifetime, annual-output, site-allocation, machine-replacement, floor-area, volume, density or capacity multipliers already belonging to the caller/module model. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Each inspected market has only positive deterministic same-product construction-unit supply totalling one unit within floating-point roundoff, without final delivery, formulas or direct emissions. Represent the defined module directly by the complete corresponding native infrastructure module. Source regional constructor shares become that explicitly declared native site/geographic proxy; no redundant identical-supplier helper is added. Only the market identity receives permission here; constructor identities need independent approvals if called separately.",
+        "Keep the native module construction, materials, land, equipment where included, decommissioning, treatment and internal uncertainty once, rather than rebuilding selected source internals. Source global/Rest-of-World supplies become native European/Swiss or documented German-site proxies. Construction grade, upstream material/energy routes, internal transport, land wording, wastewater/cable/disposal models, allocation, age and uncertainty can differ. Internal negative-reference source wastes and positive native treatment demands do not reverse the positive factory reference or create recovery credits. Functional-module/selected-geometry agreement does not establish full site-design, throughput, LCI, LCIA or stochastic equivalence; score differences remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No helper, literal source omission, runtime Python, alternative sector engine, standalone material/treatment equivalence or validation bypass. These permissions do not add operation or machinery to partial construction modules. Shared Premise transformations remain unchanged.",
+        "Electronics module is the defined production-site infrastructure: land, halls, facilities/machinery/cables and decommissioning, based on the AMD Dresden/Saxony example with25-year life, not one chip, one production machine or wafer fabrication operation. Selected hall, multistorey-building, reinforcing-steel and machinery quantities match. Native2026 states two million pieces/year in one section and about one million in production-volume metadata; that inconsistency is not a basis for a guessed factor2 or annual-chip normalization. Native ICT backgrounds were updated while the old site remains a global proxy. Geometry does not certify identical fab capacity/performance.",
+        "Electronic-site cable boundaries differ: source separately buys1,968,800kg unspecified manufactured cable (its source product text says66%copper/34%plastics) alongside its length-based cable purchases. Native instead has the same nominal mass as end-of-life cable treatment alongside its own length-based purchases. Do not call those two flows equivalent, infer a disposal credit, remove/add cable manufacturing or assume a repaired bill of materials. The complete native site model is retained with this explicit construction/decommissioning difference and unquantified score effect. Native wastewater-plant class/ICT/machinery and disposal backgrounds also replace source capacity-defined suppliers; no litre/year or wastewater-capacity factor is applied to the whole site."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "070427ccf27eb6173d367a31741b52916bf64352805db309b63f68d2cd8ac940"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-d6fd186db4b31506",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_factory_markets_39_review.json",
+      "review_sha256": "70d6a5b6d201168b4daddadff3aa394bf33b667310501f0274805241f4ab6cf2",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings and documented whole-infrastructure/geographic/model-boundary screening proxies, with explicit limitations and decisions for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for hot water tank factory",
+            "reference product": "hot water tank factory",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "782c37eb59dcf5333d36ea3c29311f64dbdb3a3322247ce732545ccfb4eadad5",
+          "inventory_sha256": "7c0a95d62f57e217e608b448fa59efd2f33c58c500412586214d479c81130cb1",
+          "activity_comment_sha256": "77465a4f1c5f80a7e033d9ca03808c84b7e8f5b0ff4d00036131202924dfc97d",
+          "product_information_sha256": "932458119411616802a95491805a5b939b7972f461ba99b50c13c972628ae611"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Hot water tank factory",
+              "reference product": "Hot water tank factory",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "4eb3074a734216b4a0e6e6969215883f52167b70c7cd49a183be4b50ea5a338f",
+            "inventory_sha256": "fc87a3f395d620f45202811a81c24f6957875273eeb1b1d2a1a9a1b9dfd35ee6",
+            "activity_comment_sha256": "2a3d80be56afc9dec68d2783a54a200343ac92a1748f744f60567fd9f8dbd8be",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Hot water tank factory",
+              "reference product": "Hot water tank factory",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 6,
+            "metadata_sha256": "0069b06208e8b9ce995aa882a6756888f904ad117739015aa6853934ceb9ffa5",
+            "inventory_sha256": "28064a36d48c0a1ed7bea7e9532ae45deab934bf21f6e13c75d3feeb35c0a3d3",
+            "activity_comment_sha256": "8b064b7896a854f92b33c7a0a11fbaf5eb2e57fe9bb062d4e4a46c2aa29dfd40",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "defined_immobile_factory_infrastructure_module",
+          "reference_factory_module_units": 1,
+          "source_constructor_entries": 2,
+          "source_deterministic_construction_total_units": 1,
+          "source_final_delivery_or_direct_biosphere_entries": 0,
+          "redundant_market_helper_added": false,
+          "extra_capacity_lifetime_or_site_scaling_added": false,
+          "purpose": "hot_water_tank_factory_building_and_land_only",
+          "annual_tank_capacity": 1000,
+          "assumed_lifetime_years": 50,
+          "machinery_included": false,
+          "geometry_comparison_scope": "Positive construction/material purchases, excluding disposal/treatment/waste-service flows.",
+          "selected_geometry_checks": [
+            {
+              "component_token": "hall",
+              "unit": "square meter",
+              "amount": 1750
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "New permission is limited to the exact independently inspected global ecoinvent 3.9 cut-off factory market. Market, construction suppliers and native infrastructure-module references are all positive one unit. Preserve signed caller factory-unit fractions with factor +1, supported uncertainty/formulas, foreground ownership and independent operation, machinery/materials and emissions. One factory/module unit is not one kg of output, one device, one operating year or a unit of manufacturing service. Do not repeat lifetime, annual-output, site-allocation, machine-replacement, floor-area, volume, density or capacity multipliers already belonging to the caller/module model. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Each inspected market has only positive deterministic same-product construction-unit supply totalling one unit within floating-point roundoff, without final delivery, formulas or direct emissions. Represent the defined module directly by the complete corresponding native infrastructure module. Source regional constructor shares become that explicitly declared native site/geographic proxy; no redundant identical-supplier helper is added. Only the market identity receives permission here; constructor identities need independent approvals if called separately.",
+        "Keep the native module construction, materials, land, equipment where included, decommissioning, treatment and internal uncertainty once, rather than rebuilding selected source internals. Source global/Rest-of-World supplies become native European/Swiss or documented German-site proxies. Construction grade, upstream material/energy routes, internal transport, land wording, wastewater/cable/disposal models, allocation, age and uncertainty can differ. Internal negative-reference source wastes and positive native treatment demands do not reverse the positive factory reference or create recovery credits. Functional-module/selected-geometry agreement does not establish full site-design, throughput, LCI, LCIA or stochastic equivalence; score differences remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No helper, literal source omission, runtime Python, alternative sector engine, standalone material/treatment equivalence or validation bypass. These permissions do not add operation or machinery to partial construction modules. Shared Premise transformations remain unchanged.",
+        "Hot-water-tank factory is one defined building/land module for a1,000-tank/year,50-year plant; machinery is explicitly excluded in source and native. The1,750m2 hall is retained, without adding tanks, boilers, storage production, machinery or operating energy. Source CH/Rest-of-World constructor shares use the complete native Swiss site as a geographic proxy. Source building supply and native construction/land definitions, old questionnaires/weight extrapolations and uncertainty remain limitations. Do not multiply by tank count, litres, weight or the50,000-lifetime-tank figure again."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8a16af121a37971804e8786312c22a0aea1ad15ab3e09e8ebb3b2c0cccd9c63b"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-9013e7c5588ff7a5",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_factory_markets_39_review.json",
+      "review_sha256": "70d6a5b6d201168b4daddadff3aa394bf33b667310501f0274805241f4ab6cf2",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings and documented whole-infrastructure/geographic/model-boundary screening proxies, with explicit limitations and decisions for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for metal working factory",
+            "reference product": "metal working factory",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "9ec2eda4faca64ab130c5e92b0d116a995edacf911af26157813dfbce9d8f86a",
+          "inventory_sha256": "d001a44ff9d8676880aac5e2399cfdb50603a7c3aa932c215d240075f777e40a",
+          "activity_comment_sha256": "28c03d83e88453f879a47b25d743183a445786a68be1a1af7207606ec45895e4",
+          "product_information_sha256": "e0be1e47f9fbe7750e1e48d2e9f286a0bfa3c7fdc5987fcb7101590485defce0"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Metal working factory",
+              "reference product": "Metal working factory",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 9,
+            "metadata_sha256": "e9e87f1d065e23d5ac5c25a31828c1990b7f2bb5b18618c28e4267a83205f921",
+            "inventory_sha256": "536c8def5e8f8b70b71e3ed8f4b0a53e91bbce7c06e58580fa1dd13a1eec3d63",
+            "activity_comment_sha256": "6da61d9ffdae99b88147161fbcc74996cc468a545930ff5d2a8f9ed850e62a1d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Metal working factory",
+              "reference product": "Metal working factory",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 9,
+            "metadata_sha256": "5a6c9f0b488fef45ec33a954ffb7c82011b92bc9bc3f2af27e34b81912d71e5d",
+            "inventory_sha256": "c3014219f4183bd23189265ebf8ba486a1f875b7be1f6b0a123f5a701d00232f",
+            "activity_comment_sha256": "16977fdd5a8ea37cbf597f256e52ba8d5acc241cc2cf8692f32f0e069af30b68",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "defined_immobile_factory_infrastructure_module",
+          "reference_factory_module_units": 1,
+          "source_constructor_entries": 2,
+          "source_deterministic_construction_total_units": 1,
+          "source_final_delivery_or_direct_biosphere_entries": 0,
+          "redundant_market_helper_added": false,
+          "extra_capacity_lifetime_or_site_scaling_added": false,
+          "purpose": "metalworking_factory_buildings_roads_and_land",
+          "annual_output_tonnes": 43675,
+          "assumed_lifetime_years": 50,
+          "machine_processing_and_operation_included": false,
+          "geometry_comparison_scope": "Positive construction/material purchases, excluding disposal/treatment/waste-service flows.",
+          "selected_geometry_checks": [
+            {
+              "component_token": "hall",
+              "unit": "square meter",
+              "amount": 274000
+            },
+            {
+              "component_token": "road",
+              "unit": "square meter-year",
+              "amount": 16200000
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "New permission is limited to the exact independently inspected global ecoinvent 3.9 cut-off factory market. Market, construction suppliers and native infrastructure-module references are all positive one unit. Preserve signed caller factory-unit fractions with factor +1, supported uncertainty/formulas, foreground ownership and independent operation, machinery/materials and emissions. One factory/module unit is not one kg of output, one device, one operating year or a unit of manufacturing service. Do not repeat lifetime, annual-output, site-allocation, machine-replacement, floor-area, volume, density or capacity multipliers already belonging to the caller/module model. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Each inspected market has only positive deterministic same-product construction-unit supply totalling one unit within floating-point roundoff, without final delivery, formulas or direct emissions. Represent the defined module directly by the complete corresponding native infrastructure module. Source regional constructor shares become that explicitly declared native site/geographic proxy; no redundant identical-supplier helper is added. Only the market identity receives permission here; constructor identities need independent approvals if called separately.",
+        "Keep the native module construction, materials, land, equipment where included, decommissioning, treatment and internal uncertainty once, rather than rebuilding selected source internals. Source global/Rest-of-World supplies become native European/Swiss or documented German-site proxies. Construction grade, upstream material/energy routes, internal transport, land wording, wastewater/cable/disposal models, allocation, age and uncertainty can differ. Internal negative-reference source wastes and positive native treatment demands do not reverse the positive factory reference or create recovery credits. Functional-module/selected-geometry agreement does not establish full site-design, throughput, LCI, LCIA or stochastic equivalence; score differences remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No helper, literal source omission, runtime Python, alternative sector engine, standalone material/treatment equivalence or validation bypass. These permissions do not add operation or machinery to partial construction modules. Shared Premise transformations remain unchanged.",
+        "Metalworking construction is hall/internal-road/parking/land infrastructure, not machine processing or factory operation. The documented43,675t/year,50-year site and4.58e-10factory units/kg allocation belong to the original module/caller basis, not another mapping multiplier. Hall and road nominal quantities match. Source global building/road supply becomes native Swiss supply, with native split land entries, classification wording and disposal/background differences retained. Keep independent caller operation/machines/materials separately; do not add them to this partial module."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "56819206e1e45b3748b73ca5d2ed1b3611021da750daabfda28e48a16cbbc519"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-67b96639de18a3f9",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_factory_markets_39_review.json",
+      "review_sha256": "70d6a5b6d201168b4daddadff3aa394bf33b667310501f0274805241f4ab6cf2",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings and documented whole-infrastructure/geographic/model-boundary screening proxies, with explicit limitations and decisions for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for packaging box factory",
+            "reference product": "packaging box factory",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "daf43e730b3be878aababad29c6a9e86f1b5224ac486078df13ba7e7e98cabaa",
+          "inventory_sha256": "31d5e6a3fdac0a0596555311170da11d5ecd4bacf79405428043f055413986aa",
+          "activity_comment_sha256": "3890a048debcd2c6ff4f570bf67c426caa02428f3406022a8133a0e1863689b1",
+          "product_information_sha256": "985d753f27d61fcf64e1ab714c1916153b405db503bb97e7754ff566c0d14a5b"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Packaging box production unit",
+              "reference product": "Packaging box production unit",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 13,
+            "metadata_sha256": "6dba8dfed996217c0aebdd2d3b76c3a786be97158bbc9ebfcfd22d364961e380",
+            "inventory_sha256": "b538d642ee180c906cc61d7aed95e8b4744a4f3c44b5d8c978f0fc5a4f9f7be4",
+            "activity_comment_sha256": "6f39ed4495425849f854a09869531f330b4ca50c721cee24a6fb0ddd54a89255",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Packaging box production unit",
+              "reference product": "Packaging box production unit",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 13,
+            "metadata_sha256": "9c753db578786f2cdd2119d0553df942d3d5a98fccdcf10b2d782b18d753da9a",
+            "inventory_sha256": "8f5ce66b1eb000f92b13934a704f160edb1ca3f2f8a11db032307856984c9661",
+            "activity_comment_sha256": "f4c6cba57fdab40b22d6ac272e3de15098cdab9d48866a40fd2d74bf5363f798",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "defined_immobile_factory_infrastructure_module",
+          "reference_factory_module_units": 1,
+          "source_constructor_entries": 2,
+          "source_deterministic_construction_total_units": 1,
+          "source_final_delivery_or_direct_biosphere_entries": 0,
+          "redundant_market_helper_added": false,
+          "extra_capacity_lifetime_or_site_scaling_added": false,
+          "purpose": "packaging_box_production_site_infrastructure",
+          "annual_output_tonnes": 14000,
+          "assumed_lifetime_years": 50,
+          "one_finished_box_included": false,
+          "geometry_comparison_scope": "Positive construction/material purchases, excluding disposal/treatment/waste-service flows.",
+          "selected_geometry_checks": [
+            {
+              "component_token": "hall",
+              "unit": "square meter",
+              "amount": 9600
+            },
+            {
+              "component_token": "low-alloyed",
+              "unit": "kilogram",
+              "amount": 156000
+            },
+            {
+              "component_token": "18/8",
+              "unit": "kilogram",
+              "amount": 438000
+            },
+            {
+              "component_token": "polyethylene",
+              "unit": "kilogram",
+              "amount": 25000
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "New permission is limited to the exact independently inspected global ecoinvent 3.9 cut-off factory market. Market, construction suppliers and native infrastructure-module references are all positive one unit. Preserve signed caller factory-unit fractions with factor +1, supported uncertainty/formulas, foreground ownership and independent operation, machinery/materials and emissions. One factory/module unit is not one kg of output, one device, one operating year or a unit of manufacturing service. Do not repeat lifetime, annual-output, site-allocation, machine-replacement, floor-area, volume, density or capacity multipliers already belonging to the caller/module model. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Each inspected market has only positive deterministic same-product construction-unit supply totalling one unit within floating-point roundoff, without final delivery, formulas or direct emissions. Represent the defined module directly by the complete corresponding native infrastructure module. Source regional constructor shares become that explicitly declared native site/geographic proxy; no redundant identical-supplier helper is added. Only the market identity receives permission here; constructor identities need independent approvals if called separately.",
+        "Keep the native module construction, materials, land, equipment where included, decommissioning, treatment and internal uncertainty once, rather than rebuilding selected source internals. Source global/Rest-of-World supplies become native European/Swiss or documented German-site proxies. Construction grade, upstream material/energy routes, internal transport, land wording, wastewater/cable/disposal models, allocation, age and uncertainty can differ. Internal negative-reference source wastes and positive native treatment demands do not reverse the positive factory reference or create recovery credits. Functional-module/selected-geometry agreement does not establish full site-design, throughput, LCI, LCIA or stochastic equivalence; score differences remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No helper, literal source omission, runtime Python, alternative sector engine, standalone material/treatment equivalence or validation bypass. These permissions do not add operation or machinery to partial construction modules. Shared Premise transformations remain unchanged.",
+        "Packaging-box production unit means one whole defined production-site infrastructure, not one box or one kg of packaging. Both source/native describe14kt/year,50years, land, hall, machinery/control electronics and dismantling/disposal, with selected hall/steel/HDPE quantities matching. Source multiple waste-polyethylene and electronics routes become native Swiss complete disposal, with different recycling/incineration, recovery, moisture, allocation and uncertainty boundaries. No new recovery credit, repeated electronics/plastic disposal, box production operation or annual-output/lifetime multiplier is added. Land is extrapolated from one Swiss packaging site; other components are rough estimates."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "aa4952fb3e344d5867f4f041e21816b5657733a1e72ca528bf315f527f372c0c"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-6db51cce596a9ea3",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_factory_markets_39_review.json",
+      "review_sha256": "70d6a5b6d201168b4daddadff3aa394bf33b667310501f0274805241f4ab6cf2",
+      "authorization": "Standing autonomous approval of remaining exact-profile mappings and documented whole-infrastructure/geographic/model-boundary screening proxies, with explicit limitations and decisions for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for plastic processing factory",
+            "reference product": "plastic processing factory",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "2b3597d201632354b7c125167f5180985c6b4dc8d59aac9b1802083239646c49",
+          "inventory_sha256": "8aff3266ce929192d5e5744b63b911b0e2cd5cabbc2c327ec5a0dade5569d187",
+          "activity_comment_sha256": "059fc44f53e78fed6faf9b8d76f0b98cd27b14991321c1011aec51e5d9121679",
+          "product_information_sha256": "45025c7792669dc63576ad35383f2d2964d86f32545b3b8546e2d667526881f3"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Plastics processing factory",
+              "reference product": "Plastics processing factory",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "f23c35beb41bd743b11ae9e6cbbc25c45862caf9dce866389025351e5e345442",
+            "inventory_sha256": "7800bfe59896d6c944bd6e5532f7e15daea82bf604ebc97556a26b0faadbc411",
+            "activity_comment_sha256": "e9214eb7613584f3a3353cc8f0fc2a4413e8bd1dd5b947f835526d455306948e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Plastics processing factory",
+              "reference product": "Plastics processing factory",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "24e1c420dd2cb9b35403fc2550a10aa4e2950df1e2ed480f1f8b53539cb84b3b",
+            "inventory_sha256": "1da0ebea74b7eaeecbb55c12e0cd351fa57335366de136b5d90154d6d22e9ae6",
+            "activity_comment_sha256": "105d67966d39a3a3a803525dea6418e4e497fd371ff998c7e2e19e6461b44082",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "defined_immobile_factory_infrastructure_module",
+          "reference_factory_module_units": 1,
+          "source_constructor_entries": 2,
+          "source_deterministic_construction_total_units": 1,
+          "source_final_delivery_or_direct_biosphere_entries": 0,
+          "redundant_market_helper_added": false,
+          "extra_capacity_lifetime_or_site_scaling_added": false,
+          "purpose": "plastics_tube_component_factory_infrastructure",
+          "annual_output_tonnes": 27000,
+          "assumed_infrastructure_lifetime_years": 50,
+          "assumed_machine_lifetime_years": 25,
+          "geometry_comparison_scope": "Positive construction/material purchases, excluding disposal/treatment/waste-service flows.",
+          "selected_geometry_checks": [
+            {
+              "component_token": "hall",
+              "unit": "square meter",
+              "amount": 98000
+            },
+            {
+              "component_token": "multi-storey",
+              "unit": "cubic meter",
+              "amount": 420000
+            },
+            {
+              "component_token": "industrial machine",
+              "unit": "kilogram",
+              "amount": 1140000
+            },
+            {
+              "component_token": "road",
+              "unit": "square meter-year",
+              "amount": 5000000
+            }
+          ]
+        }
+      },
+      "limitations": [
+        "New permission is limited to the exact independently inspected global ecoinvent 3.9 cut-off factory market. Market, construction suppliers and native infrastructure-module references are all positive one unit. Preserve signed caller factory-unit fractions with factor +1, supported uncertainty/formulas, foreground ownership and independent operation, machinery/materials and emissions. One factory/module unit is not one kg of output, one device, one operating year or a unit of manufacturing service. Do not repeat lifetime, annual-output, site-allocation, machine-replacement, floor-area, volume, density or capacity multipliers already belonging to the caller/module model. Other releases, patches, system models and reverse routes receive no new permission.",
+        "Each inspected market has only positive deterministic same-product construction-unit supply totalling one unit within floating-point roundoff, without final delivery, formulas or direct emissions. Represent the defined module directly by the complete corresponding native infrastructure module. Source regional constructor shares become that explicitly declared native site/geographic proxy; no redundant identical-supplier helper is added. Only the market identity receives permission here; constructor identities need independent approvals if called separately.",
+        "Keep the native module construction, materials, land, equipment where included, decommissioning, treatment and internal uncertainty once, rather than rebuilding selected source internals. Source global/Rest-of-World supplies become native European/Swiss or documented German-site proxies. Construction grade, upstream material/energy routes, internal transport, land wording, wastewater/cable/disposal models, allocation, age and uncertainty can differ. Internal negative-reference source wastes and positive native treatment demands do not reverse the positive factory reference or create recovery credits. Functional-module/selected-geometry agreement does not establish full site-design, throughput, LCI, LCIA or stochastic equivalence; score differences remain unquantified.",
+        "Existing direct rule/default target and all earlier approval fingerprints remain unchanged. No helper, literal source omission, runtime Python, alternative sector engine, standalone material/treatment equivalence or validation bypass. These permissions do not add operation or machinery to partial construction modules. Shared Premise transformations remain unchanged.",
+        "Plastics-processing factory is the defined construction/land/road/machine/disposal approximation for tube/component production, not polymer, extrusion or operation. Source/native2026 document27kt/year,50-year infrastructure/tank and25-year machine assumptions; selected hall, building, machine and road quantities match both native releases. Keep native original quantities without another machine replacement, building-height, capacity or lifetime multiplier. The sparse company sample/high uncertainty, source global versus native Swiss/European construction/roads and land/detail differences remain warnings."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "399b1c48c728bd3d315d8cf128504908d78c525be89d21690b20d7bf4171afcd"
+        }
+      ]
     }
   ],
   "superseded_operations": [

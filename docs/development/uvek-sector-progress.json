@@ -2312,14 +2312,14 @@
           "reference product": "polyethylene terephthalate, granulate, amorphous",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 121,
+        "unapproved_correspondence_count_in_current_39_cohort": 114,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-chemical-polymer-39-verification.json",
+        "verification": "docs/development/uvek-factory-markets-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Batch immobile factory markets after verifying constructor/site units, deterministic shares, capacity/lifetime boundaries and native model differences. Delivered PET and metalworking markets remain separate reviews.",
-        "live_freshness_verified": false,
-        "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links."
+        "next_action": "Inspect source3.9 PET delivered-market shares, freight and existing3.12 recipe boundaries before selecting direct proxy or version-specific composition.",
+        "live_freshness_verified": true,
+        "mapping_diagnostic": "Normal live CLIC resolution and integrity-verified cached graph agree on all 114 first3.9-cohort pending rule details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-chemical-polymer-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-factory-markets-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
