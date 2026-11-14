@@ -560,10 +560,11 @@ Transformations_HLF:
   gains_aliases_IAM: Transformations_HLF
 End_Use_Residential_NatGas:
   uvek_aliases:
-    use_legacy_templates: false
-    exact: true
     fltr:
       name:
+      - "Heat, biomethane, at boiler condensing modulating 15kW"
+      - "Heat, biomethane, at boiler condensing modulating 300kW"
+      - "Heat, biomethane, at boiler condensing modulating 50kW"
       - Heat, natural gas, at boiler condensing modulating 15kW
       - Heat, natural gas, at boiler condensing modulating 300kW
       - Heat, natural gas, at boiler condensing modulating 50kW
@@ -574,6 +575,8 @@ End_Use_Residential_NatGas:
       - xx Heat, natural gas, at boiler fan burner low-NOx non-modulating <100kW
       - xx Heat, natural gas, at boiler fan burner non-modulating <100kW
       - xx Heat, natural gas, at boiler modulating <100kW
+    exact: true
+    use_legacy_templates: false
   ecoinvent_aliases:
     fltr:
     - propane, burned in building machine
@@ -1125,6 +1128,7 @@ End_Use_Industry_NatGas:
       - "Heat treatment, cold impact extrusion, aluminium"
       - "Heat treatment, cold impact extrusion, steel"
       - "Heat treatment, hot impact extrusion, steel"
+      - "Heat, biomethane, at industrial furnace 1MW"
       - "Heat, digester sludge, at incineration plant, future, allocation price"
       - "Heat, natural gas, at heat plant"
       - "Heat, natural gas, at industrial furnace 1MW"
@@ -2381,8 +2385,41 @@ Power_Gen_NatGas:
   uvek_aliases:
     fltr:
       name:
+      - "Electricity, at cogen 15kWth, biomethane, allocation exergy"
+      - "Electricity, at cogen 15kWth, biomethane, economic allocation"
+      - "Electricity, at cogen 15kWth, natural gas, allocation exergy"
+      - "Electricity, at cogen 15kWth, natural gas, economic allocation"
+      - "Electricity, at cogen 1MWth, biomethane, allocation exergy"
+      - "Electricity, at cogen 1MWth, biomethane, economic allocation"
+      - "Electricity, at cogen 1MWth, natural gas, allocation exergy"
+      - "Electricity, at cogen 1MWth, natural gas, economic allocation"
+      - "Electricity, at cogen 300kWth, biomethane, allocation exergy"
+      - "Electricity, at cogen 300kWth, biomethane, economic allocation"
+      - "Electricity, at cogen 300kWth, natural gas, allocation exergy"
+      - "Electricity, at cogen 300kWth, natural gas, economic allocation"
+      - "Electricity, at cogen 50kWth, biomethane, allocation exergy"
+      - "Electricity, at cogen 50kWth, biomethane, economic allocation"
+      - "Electricity, at cogen 50kWth, natural gas, allocation exergy"
+      - "Electricity, at cogen 50kWth, natural gas, economic allocation"
       - "Electricity, natural gas, at CHP power plant"
+      - "Electricity, natural gas, at combined cycle plant, best technology"
       - "Electricity, natural gas, at power plant"
+      - "Heat, at cogen 15kWth, biomethane, allocation exergy"
+      - "Heat, at cogen 15kWth, biomethane, economic allocation"
+      - "Heat, at cogen 15kWth, natural gas, allocation exergy"
+      - "Heat, at cogen 15kWth, natural gas, economic allocation"
+      - "Heat, at cogen 1MWth, biomethane, allocation exergy"
+      - "Heat, at cogen 1MWth, biomethane, economic allocation"
+      - "Heat, at cogen 1MWth, natural gas, allocation exergy"
+      - "Heat, at cogen 1MWth, natural gas, economic allocation"
+      - "Heat, at cogen 300kWth, biomethane, allocation exergy"
+      - "Heat, at cogen 300kWth, biomethane, economic allocation"
+      - "Heat, at cogen 300kWth, natural gas, allocation exergy"
+      - "Heat, at cogen 300kWth, natural gas, economic allocation"
+      - "Heat, at cogen 50kWth, biomethane, allocation exergy"
+      - "Heat, at cogen 50kWth, biomethane, economic allocation"
+      - "Heat, at cogen 50kWth, natural gas, allocation exergy"
+      - "Heat, at cogen 50kWth, natural gas, economic allocation"
       - "Heat, natural gas, at CHP power plant"
       - "xx Electricity, natural gas, at turbine, 10MW"
     exact: true
@@ -2440,12 +2477,13 @@ Power_Gen_HLF:
   gains_aliases_IAM: Power_Gen_HLF
 Power_Gen_Coal_Old:
   uvek_aliases:
-    use_legacy_templates: false
-    exact: true
     fltr:
       name:
+      - "Electricity, hard coal, at coal mine power plant"
       - Electricity, peat, at power plant
       - Heat, peat, at cogen, allocation exergy
+    exact: true
+    use_legacy_templates: false
   ecoinvent_aliases:
     fltr:
     - electricity production, hard coal
@@ -2454,6 +2492,28 @@ Power_Gen_Coal_Old:
     - market
   gains_aliases_IAM: Power_Gen_Coal_Old
 Power_Gen_Bio_Trad_Old:
+  uvek_aliases:
+    fltr:
+      name:
+      - "Electricity, at cogen 1MWth, wood chips, allocation exergy"
+      - "Electricity, at cogen 1MWth, wood chips, economic allocation"
+      - "Electricity, at cogen 300kWth, pellets, allocation exergy"
+      - "Electricity, at cogen 300kWth, pellets, economic allocation"
+      - "Electricity, at cogen 300kWth, wood chips, allocation exergy"
+      - "Electricity, at cogen 300kWth, wood chips, economic allocation"
+      - "Electricity, at cogen 50kWth, wood pellets, allocation exergy"
+      - "Electricity, at cogen 50kWth, wood pellets, economic allocation"
+      - "Heat, at cogen 1MWth, wood chips, allocation exergy"
+      - "Heat, at cogen 1MWth, wood chips, economic allocation"
+      - "Heat, at cogen 300kWth, pellets, allocation exergy"
+      - "Heat, at cogen 300kWth, pellets, economic allocation"
+      - "Heat, at cogen 300kWth, wood chips, allocation exergy"
+      - "Heat, at cogen 300kWth, wood chips, economic allocation"
+      - "Heat, at cogen 50kWth, wood pellets, allocation exergy"
+      - "Heat, at cogen 50kWth, wood pellets, economic allocation"
+      - "Paper, recycling, average, at plant"
+    exact: true
+    use_legacy_templates: false
   ecoinvent_aliases:
     fltr:
     - treatment of bagasse, from sweet sorghum
@@ -2465,6 +2525,59 @@ Power_Gen_Bio_Trad_Old:
     - market
   gains_aliases_IAM: Power_Gen_Bio_Trad_Old
 Power_Gen_LLF:
+  uvek_aliases:
+    fltr:
+      name:
+      - "Carbon dioxide compression, transport and storage"
+      - "Drilling, deep borehole"
+      - "Electricity, at cogen 15kWth, diesel, allocation exergy"
+      - "Electricity, at cogen 15kWth, diesel, economic allocation"
+      - "Electricity, at cogen 1MWth, diesel, allocation exergy"
+      - "Electricity, at cogen 1MWth, diesel, economic allocation"
+      - "Electricity, at cogen 300kWth, diesel, allocation exergy"
+      - "Electricity, at cogen 300kWth, diesel, economic allocation"
+      - "Electricity, at cogen 50kWth, diesel, allocation exergy"
+      - "Electricity, at cogen 50kWth, diesel, economic allocation"
+      - "Electricity, nuclear, at power plant boiling water reactor"
+      - "Electricity, nuclear, at power plant pressure water reactor"
+      - "Gold, at refinery"
+      - "Gold, from combined gold-silver production, at refinery"
+      - "Green beans conventional, at farm"
+      - "Heat, at cogen 15kWth, diesel, allocation exergy"
+      - "Heat, at cogen 15kWth, diesel, economic allocation"
+      - "Heat, at cogen 1MWth, diesel, allocation exergy"
+      - "Heat, at cogen 1MWth, diesel, economic allocation"
+      - "Heat, at cogen 300kWth, diesel, allocation exergy"
+      - "Heat, at cogen 300kWth, diesel, economic allocation"
+      - "Heat, at cogen 50kWth, diesel, allocation exergy"
+      - "Heat, at cogen 50kWth, diesel, economic allocation"
+      - "Heat, at nuclear power plant, allocation exergy"
+      - "Heat, at nuclear power plant, economic allocation"
+      - "Irrigation, sprinkler"
+      - "Nuclear spent fuel, in reprocessing, at plant"
+      - "Paper, recycling, average, at plant"
+      - "Silver, from combined gold-silver production, at refinery"
+      - "Tomatoes conventional, hors-sol, at greenhouse"
+      - "Transport, crude oil pipeline, offshore"
+      - "Uranium conversion plant"
+      - "Uranium enrichment centrifuge plant"
+      - "Uranium enrichment diffusion plant"
+      - "Uranium mill"
+      - "Uranium natural, at open pit mine"
+      - "Uranium natural, at underground mine"
+      - "Uranium natural, in yellowcake, at in-situ leaching mine"
+      - "Uranium natural, in yellowcake, at mill"
+      - "Uranium natural, in yellowcake, at mill plant"
+      - "Uranium, enriched 3.0% at URENCO enrichment plant"
+      - "Uranium, enriched 3.8%, at URENCO enrichment plant"
+      - "Uranium, enriched 3.9% at URENCO enrichment plant"
+      - "Uranium, enriched 4.0%, at URENCO enrichment plant"
+      - "Uranium, enriched 4.2%, at URENCO enrichment plant"
+      - "Uranium, enriched 4.43%, at URENCO enrichment plant"
+      - "Uranium, enriched 4.75%, at URENCO enrichment plant"
+      - "xx Electricity, nuclear, at pressure water reactor, centrifugal enrichment"
+    exact: true
+    use_legacy_templates: false
   ecoinvent_aliases:
     fltr:
     - electricity production, at hydrogen-fired combined cycle power plant, by auto-thermal
@@ -2628,6 +2741,7 @@ End_Use_Transport_OFF_HLF:
       - "Articulated dump truck, 11m3, 170kW, diesel"
       - "Articulated dump truck, 24m3, 300kW, diesel"
       - "Asbestos, crysotile type, at plant"
+      - "Asphalt paver, 5.1m, pneumatic drive, hydraulic screed, diesel"
       - "Asphalt plant operation"
       - "Autoclaved aerated concrete block, at plant"
       - "Bark chips, softwood, u=140%, holzpur, at plant"
@@ -2971,6 +3085,9 @@ End_Use_Transport_OFF_HLF:
       - "Plywood, hardwood veneer, UF-bonded, at plant"
       - "Plywood, indoor use, at plant"
       - "Plywood, outdoor use, at plant"
+      - "Pneumatic tyre roller, 12t-25t, diesel"
+      - "Pneumatic tyre roller, 20t-35t, diesel"
+      - "Pneumatic tyre roller, 8t-20t, diesel"
       - "Poor concrete, at plant"
       - "Port facilities"
       - "Portafer, at plant"
@@ -3141,6 +3258,10 @@ End_Use_Transport_OFF_HLF:
       - "Uranium natural, at underground mine"
       - "Uranium natural, in yellowcake, at mill"
       - "Vermiculite, at mine"
+      - "Vibratory combination roller, 7t, diesel"
+      - "Vibratory roller, 10t, self-propelled, diesel"
+      - "Vibratory roller, 15t, self-propelled, diesel"
+      - "Vibratory roller, 5t, self-propelled, diesel"
       - "Walls and foundations, for hydrogen refuelling station"
       - "Water supply network"
       - "Wheel loader, 6t, 50kW, diesel"

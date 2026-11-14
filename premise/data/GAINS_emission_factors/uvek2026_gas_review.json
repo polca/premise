@@ -13,7 +13,15 @@
     "The selected GAINS gas-distribution series has no NOx/SO2 observations. It cannot replace combustion factors. Direct caller leaks/process emissions remain unchanged and require their own review; absent gas-distribution observations are not zero emissions or an invented unity factor.",
     "Preserve every complete source +1MJ burner inventory and original emitting geography, country gas composition, fuel/infrastructure quantities, upstream supply and signed caller quantities/formulas/uncertainty. Source mid1990s/other vintage, screening-control differences and score effects remain unquantified. No new compressor efficiency, gas composition, calorific value, 3.6 conversion, allocation or fuel/loss multiplier is introduced.",
     "Only reviewed gaseous air reductions change; retain all CO2, particulates, non-air, aggregate VOC and unreviewed species. Shared original burners and caller-owned fugitive emissions remain unchanged. Extraction-site partial combustion, flare/venting and direct process emissions remain outside this supply-energy cohort.",
-    "The internal LBFAC32 source geography is unresolved by Geomap. The two exact low/high-pressure supply-caller inputs use an explicit World GAINS screening proxy while retaining their literal location and native Swiss baseline assumptions. No Swiss operating-location inference or shared geography-map change is made; geographic control/score differences remain unquantified."
+    "The internal LBFAC32 source geography is unresolved by Geomap. The two exact low/high-pressure supply-caller inputs use an explicit World GAINS screening proxy while retaining their literal location and native Swiss baseline assumptions. No Swiss operating-location inference or shared geography-map change is made; geographic control/score differences remain unquantified.",
+    "Additional native generation and CHP inventories retain their complete +1MJ references, fuel/lubricant/urea/infrastructure/disposal inputs and all signed caller quantities/formulas/uncertainty. Allocation and efficiency remain in the original economic/exergy heat/electricity wrappers; no new allocation, output-share multiplier or recovered-heat credit is added.",
+    "Diesel generators and diesel CHP select Power_Gen_LLF (light-oil power), preserving the actual diesel fuel. Existing wood/pellet CHP selects the existing-biomass fleet role Power_Gen_Bio_Trad_Old as a screening cohort; plant age/control regimes, scale and score differences remain uncertain. No new physical plant vintage or technology upgrade is asserted.",
+    "Biomethane inventories explicitly derive from their natural-gas counterparts and replace fuel and biogenic species. Use corresponding gas CHP/industrial/residential control roles as a screening proxy while retaining complete renewable fuel supply and biogenic flow identities. Renewable-gas control/combustion differences remain unquantified; do not substitute fossil fuel or solid-biomass inventories.",
+    "The300kWbiomethaneboiler explicitly serves an area with several houses, so residential gas is used despite its size. Dedicated1MWindustrialfurnace stays industrial. Actual documented end use takes precedence over a generic capacity screening rule.",
+    "Copied natural-gas wording in wood/pellet/diesel CHP and the30versus300kWpellet description do not override actual fuel or justify rescaling. Preserve source infrastructure/capacity assumptions and reference quantities, with explicit documentation/scale uncertainty.",
+    "The Chinese coal-mine generator describes a historical20MWself-generation plant using circa2000mine data, so it uses the existing-coal role Power_Gen_Coal_Old. Preserve coal quality, ash disposal and waste-heat allocation; this does not establish power-fleet/control equivalence.",
+    "The two1MWelean-burn inputs explicitly mix combustion and distribution-leakage methane. They remain unchanged and retained pending a defensible mechanism split or selection; do not apply a uniform combustion methane reduction or invent separate emissions.",
+    "Only reviewed gaseous air reductions change. Particles/filter assumptions, CO2, aggregate VOC, non-air and unreviewed species remain. Other combustion/direct/extraction/foreground and public emissions qualification remain unfinished."
   ],
   "bindings": [
     {
@@ -14940,6 +14948,561 @@
         "unit": "megajoule"
       },
       "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 1MWth, natural gas, economic allocation",
+        "reference product": "Electricity, at cogen 1MWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 1MWth",
+        "reference product": "Natural gas, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 1MWth, natural gas, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 1MWth",
+        "reference product": "Natural gas, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 1MWth, natural gas, allocation exergy",
+        "reference product": "Electricity, at cogen 1MWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 1MWth",
+        "reference product": "Natural gas, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 1MWth",
+        "reference product": "Natural gas, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 15kWth, biomethane, economic allocation",
+        "reference product": "Heat, at cogen 15kWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 15kWth",
+        "reference product": "Biomethane, burned in cogen 15kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 15kWth, biomethane, allocation exergy",
+        "reference product": "Electricity, at cogen 15kWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 15kWth",
+        "reference product": "Biomethane, burned in cogen 15kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 15kWth, biomethane, economic allocation",
+        "reference product": "Electricity, at cogen 15kWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 15kWth",
+        "reference product": "Biomethane, burned in cogen 15kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 15kWth, biomethane, allocation exergy",
+        "reference product": "Heat, at cogen 15kWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 15kWth",
+        "reference product": "Biomethane, burned in cogen 15kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, biomethane, at boiler condensing modulating 300kW",
+        "reference product": "Heat, biomethane, at boiler condensing modulating 300kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in boiler condensing modulating 300kW",
+        "reference product": "Biomethane, burned in boiler condensing modulating 300kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Residential_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 300kWth, biomethane, allocation exergy",
+        "reference product": "Electricity, at cogen 300kWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 300kWth",
+        "reference product": "Biomethane, burned in cogen 300kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 300kWth, biomethane, economic allocation",
+        "reference product": "Electricity, at cogen 300kWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 300kWth",
+        "reference product": "Biomethane, burned in cogen 300kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 300kWth, biomethane, economic allocation",
+        "reference product": "Heat, at cogen 300kWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 300kWth",
+        "reference product": "Biomethane, burned in cogen 300kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 300kWth, biomethane, allocation exergy",
+        "reference product": "Heat, at cogen 300kWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 300kWth",
+        "reference product": "Biomethane, burned in cogen 300kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, biomethane, at boiler condensing modulating 15kW",
+        "reference product": "Heat, biomethane, at boiler condensing modulating 15kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in boiler condensing modulating 15kW",
+        "reference product": "Biomethane, burned in boiler condensing modulating 15kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Residential_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 50kWth, biomethane, allocation exergy",
+        "reference product": "Electricity, at cogen 50kWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 50kWth",
+        "reference product": "Biomethane, burned in cogen 50kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 50kWth, biomethane, allocation exergy",
+        "reference product": "Heat, at cogen 50kWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 50kWth",
+        "reference product": "Biomethane, burned in cogen 50kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 50kWth, biomethane, economic allocation",
+        "reference product": "Electricity, at cogen 50kWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 50kWth",
+        "reference product": "Biomethane, burned in cogen 50kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 50kWth, biomethane, economic allocation",
+        "reference product": "Heat, at cogen 50kWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 50kWth",
+        "reference product": "Biomethane, burned in cogen 50kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, biomethane, at boiler condensing modulating 50kW",
+        "reference product": "Heat, biomethane, at boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in boiler condensing modulating 50kW",
+        "reference product": "Biomethane, burned in boiler condensing modulating 50kW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Residential_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 50kWth, natural gas, economic allocation",
+        "reference product": "Heat, at cogen 50kWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 50kWth",
+        "reference product": "Natural gas, burned in cogen 50kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 50kWth, natural gas, allocation exergy",
+        "reference product": "Electricity, at cogen 50kWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 50kWth",
+        "reference product": "Natural gas, burned in cogen 50kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 50kWth, natural gas, allocation exergy",
+        "reference product": "Heat, at cogen 50kWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 50kWth",
+        "reference product": "Natural gas, burned in cogen 50kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 50kWth, natural gas, economic allocation",
+        "reference product": "Electricity, at cogen 50kWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 50kWth",
+        "reference product": "Natural gas, burned in cogen 50kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, biomethane, at industrial furnace 1MW",
+        "reference product": "Heat, biomethane, at industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in industrial furnace 1MW",
+        "reference product": "Biomethane, burned in industrial furnace 1MW",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "End_Use_Industry_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, natural gas, at combined cycle plant, best technology",
+        "reference product": "Electricity, natural gas, at combined cycle plant, best technology",
+        "location": "RER",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in combined cycle plant, best technology",
+        "reference product": "Natural gas, burned in combined cycle plant, best technology",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 300kWth, natural gas, economic allocation",
+        "reference product": "Electricity, at cogen 300kWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 300kWth",
+        "reference product": "Natural gas, burned in cogen 300kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 300kWth, natural gas, economic allocation",
+        "reference product": "Heat, at cogen 300kWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 300kWth",
+        "reference product": "Natural gas, burned in cogen 300kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 300kWth, natural gas, allocation exergy",
+        "reference product": "Heat, at cogen 300kWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 300kWth",
+        "reference product": "Natural gas, burned in cogen 300kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 300kWth, natural gas, allocation exergy",
+        "reference product": "Electricity, at cogen 300kWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 300kWth",
+        "reference product": "Natural gas, burned in cogen 300kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 1MWth, biomethane, economic allocation",
+        "reference product": "Heat, at cogen 1MWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 1MWth",
+        "reference product": "Biomethane, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 1MWth, biomethane, economic allocation",
+        "reference product": "Electricity, at cogen 1MWth, biomethane, economic allocation",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 1MWth",
+        "reference product": "Biomethane, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 1MWth, biomethane, allocation exergy",
+        "reference product": "Heat, at cogen 1MWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 1MWth",
+        "reference product": "Biomethane, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 1MWth, biomethane, allocation exergy",
+        "reference product": "Electricity, at cogen 1MWth, biomethane, allocation exergy",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Biomethane, burned in cogen 1MWth",
+        "reference product": "Biomethane, burned in cogen 1MWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 15kWth, natural gas, economic allocation",
+        "reference product": "Heat, at cogen 15kWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 15kWth",
+        "reference product": "Natural gas, burned in cogen 15kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 15kWth, natural gas, economic allocation",
+        "reference product": "Electricity, at cogen 15kWth, natural gas, economic allocation",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 15kWth",
+        "reference product": "Natural gas, burned in cogen 15kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Electricity, at cogen 15kWth, natural gas, allocation exergy",
+        "reference product": "Electricity, at cogen 15kWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "kilowatt hour"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 15kWth",
+        "reference product": "Natural gas, burned in cogen 15kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
+    },
+    {
+      "caller": {
+        "name": "Heat, at cogen 15kWth, natural gas, allocation exergy",
+        "reference product": "Heat, at cogen 15kWth, natural gas, allocation exergy",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 15kWth",
+        "reference product": "Natural gas, burned in cogen 15kWth",
+        "location": "CH",
+        "unit": "megajoule"
+      },
+      "sector": "Power_Gen_NatGas"
     }
   ],
   "receipts": [
@@ -14952,6 +15515,11 @@
       "name": "uvek_emissions_gas_supply_primary.private.json",
       "sha256": "50e5a355d9eb077465a4e958e4a07ed26e48f6d9d261f7b782b8c5ffa34f010f",
       "location": "private task workspace"
+    },
+    {
+      "name": "uvek_emissions_generation_primary.private.json",
+      "sha256": "435ca64374a8f94803057d42f4b3217b17f4066fcd031dfd8e6fa7395c6264c0",
+      "location": "private task workspace"
     }
   ],
   "evidence_sources": [
@@ -14959,6 +15527,11 @@
       "url": "https://gains.iiasa.ac.at/gains/GOD/abbreviations.info",
       "description": "IIASA differentiates industrial gas combustion, gas power generation and gas distribution. Industrial gas is a declared screening proxy for stationary compression/process energy, not proof of exact GAINS energy-industry classification.",
       "browser_receipt_sha256": "f84e255a49418c6de7362350c54ad50fc105f495a01e0a79a921c12f259348d9"
+    },
+    {
+      "url": "https://gains.iiasa.ac.at/gains/GOD/abbreviations.info",
+      "description": "IIASA distinguishes light-oil generation and existing biomass/coal fleets. These support declared fuel/cohort classifications, not detailed native technology/control equivalence.",
+      "browser_receipt_sha256": "f81b6068b34c717bd575a1085da33f6076bd13abae3f7ae8928e08a452a6d939"
     }
   ],
   "emitting_location_aliases": {
@@ -14966,5 +15539,37 @@
       "mapping_location": "GLO",
       "basis": "Scoped screening proxy for the two exact reviewed gas-turbine inputs whose native source location is LBFAC32. Geomap cannot resolve that code; documentation describes Swiss baseline gas composition/energy assumptions but does not establish Swiss operating geography. Retain the literal source location and use World GAINS factors explicitly, with unquantified geographic effects; this is not a general geography equivalence."
     }
-  }
+  },
+  "retained_cases": [
+    {
+      "caller": {
+        "name": "Paper, recycling, average, at plant",
+        "reference product": "Paper, recycling, average, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 1MWe lean burn",
+        "reference product": "Natural gas, burned in cogen 1MWe lean burn",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "reason": "The native source explicitly combines combustion methane with low-pressure distribution leakage. No independently established split or source-specific mechanism selection exists in the current mapping-only callback. Retain this complete input unchanged pending mechanism-aware review; no exchange is omitted."
+    },
+    {
+      "caller": {
+        "name": "Potassium chloride, as K2O, at regional storehouse",
+        "reference product": "Potassium chloride, as K2O, at regional storehouse",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "supplier": {
+        "name": "Natural gas, burned in cogen 1MWe lean burn",
+        "reference product": "Natural gas, burned in cogen 1MWe lean burn",
+        "location": "RER",
+        "unit": "megajoule"
+      },
+      "reason": "The native source explicitly combines combustion methane with low-pressure distribution leakage. No independently established split or source-specific mechanism selection exists in the current mapping-only callback. Retain this complete input unchanged pending mechanism-aware review; no exchange is omitted."
+    }
+  ]
 }
