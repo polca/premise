@@ -1,72 +1,45 @@
 Exporting sparse matrices
 ===========================
 
-*premise* can generate a sparse matrix representation of the database(s). This is useful
-when no LCA software can be used, or when connections to SQL databases should be avoided.
+Use this export when you need inventory coefficients for your own numerical
+workflow. It writes CSV coordinates for the technosphere and biosphere, plus
+files identifying their indices. It does not calculate impact scores.
 
-This is done as follows::
-
-    ndb.write_db_to_matrices()
-
-This creates a set of CSV files:
-
-* `A_matrix.csv`: technosphere exchanges with columns
-  `index of activity; index of product; value; uncertainty type; loc; scale; shape; minimum; maximum; negative; flip`.
-* `B_matrix.csv`: biosphere exchanges with columns
-  `index of activity; index of biosphere flow; value; uncertainty type; loc; scale; shape; minimum; maximum; negative; flip`.
-* `A_matrix_index.csv` and `B_matrix_index.csv`: mappings between dataset/flow identifiers and indices.
-
-with *a* being the row index of an activity, *b* being the column index of an activity,
-*c* being a natural flow, and *x* being the value exchanged.
-
-For example, the following piece of script calculates the GWP score of all activities in the database:
+After updating ``ndb``:
 
 .. code-block:: python
 
-    """ COLLECT DATA """
-    # creates dict of activities <--> indices in A matrix
-    A_inds = dict()
-    with open("A_matrix_index.csv", 'r') as read_obj:
-        csv_reader = reader(read_obj, delimiter=";")
-        for row in csv_reader:
-            A_inds[(row[0], row[1], row[2], row[3])] = row[4]
-    A_inds_rev = {int(v):k for k, v in A_inds.items()}
+   ndb.write_db_to_matrices(filepath="export/matrices")
 
-    # creates dict of bio flow <--> indices in B matrix
-    B_inds = dict()
-    with open("B_matrix_index.csv", 'r') as read_obj:
-        csv_reader = reader(read_obj, delimiter=";")
-        for row in csv_reader:
-            B_inds[(row[0], row[1], row[2], row[3])] = row[4]
-    B_inds_rev = {int(v):k for k, v in B_inds.items()}
+Premise prints the destination for each scenario. In its directory you will find:
 
-    # create a sparse A matrix
-    A_coords = np.genfromtxt("A_matrix.csv", delimiter=";", skip_header=1)
-    I = A_coords[:, 0].astype(int)
-    J = A_coords[:, 1].astype(int)
-    A = sparse.csr_matrix((A_coords[:,2], (J, I)))
+* ``A_matrix.csv``: activity index, supplied-product index and exchange amount.
+* ``B_matrix.csv``: activity index, biosphere-flow index and exchange amount.
+* ``A_matrix_index.csv``: activity name, product, unit, location and index.
+* ``B_matrix_index.csv``: flow name, compartment, subcompartment, unit and index.
 
-    # create a sparse B matrix
-    B_coords = np.genfromtxt("B_matrix.csv", delimiter=";", skip_header=1)
-    I = B_coords[:, 0].astype(int)
-    J = B_coords[:, 1].astype(int)
-    B = sparse.csr_matrix((B_coords[:,2] *- 1, (I, J)), shape=(A.shape[0], len(B_inds)))
+Both coefficient files use semicolons and contain the columns ``value``,
+``uncertainty type``, ``loc``, ``scale``, ``shape``, ``minimum``, ``maximum``,
+``negative`` and ``flip`` after their two indices. Production rows in A have
+``flip=0``; purchased technosphere inputs have ``flip=1``. Amounts retain their
+signs. Choose and apply your solver's matrix orientation and sign convention
+explicitly; the CSV coordinates are not a ready-made LCIA model.
 
-    # a vector with a few GWP CFs
-    gwp = np.zeros(B.shape[1])
+For example, inspect the first coefficients without changing their signs:
 
-    gwp[[int(B_inds[x]) for x in B_inds if x[0]=="Carbon dioxide, non-fossil, resource correction"]] = -1
-    gwp[[int(B_inds[x]) for x in B_inds if x[0]=="Hydrogen"]] = 5
-    gwp[[int(B_inds[x]) for x in B_inds if x[0]=="Carbon dioxide, in air"]] = -1
-    gwp[[int(B_inds[x]) for x in B_inds if x[0]=="Carbon dioxide, non-fossil"]] = 1
-    gwp[[int(B_inds[x]) for x in B_inds if x[0]=="Carbon dioxide, fossil"]] = 1
-    gwp[[int(B_inds[x]) for x in B_inds if x[0]=="Carbon dioxide, from soil or biomass stock"]] = 1
-    gwp[[int(B_inds[x]) for x in B_inds if x[0]=="Carbon dioxide, to soil or biomass stock"]] = -1
+.. code-block:: python
 
-    l_res = []
-    for v in range(0, A.shape[0]):
-        f = np.float64(np.zeros(A.shape[0]))
-        f[v] = 1
-        A_inv = spsolve(A, f)
-        C = A_inv * B
-        l_res.append((C * gwp).sum())
+   import csv
+   from itertools import islice
+   from pathlib import Path
+
+   # Replace this with the scenario directory printed by the exporter.
+   directory = Path("path/to/scenario/matrices")
+   with (directory / "A_matrix.csv").open(encoding="utf-8", newline="") as stream:
+       for row in islice(csv.DictReader(stream, delimiter=";"), 5):
+           print(row["index of activity"], row["index of product"], float(row["value"]))
+
+An impact calculation also needs a demand, a solved supply chain and a
+compatible characterization method. Use :doc:`brightway` or
+:doc:`scenario-arrays` for workflows that calculate with Brightway instead of
+assembling these parts yourself.

@@ -18,14 +18,13 @@ You can find it in the `ScenarioLink repository <https://github.com/polca/Scenar
 Example status and prerequisites
 ----------------------------------
 
-The first-scenario script is executable with licensed inputs. The preflight
-checks configuration without building a database. Inventory inspection,
-validation-findings and sensitivity examples execute in isolated storage with
-illustrative data. Download the :download:`execution record </examples/status.json>`
-for the date and outcome of the latest documentation checks.
+The :doc:`first-scenario script </getting_started/first-scenario>` needs
+licensed ecoinvent data and IAM access. The preflight checks local
+configuration without building a database. The small example in
+:doc:`inventories` uses illustrative data and needs neither input.
 
-Inline Python snippets elsewhere require the setup identified on their page.
-An ellipsis (``...``) denotes omitted user configuration and is not a runnable
-constructor argument. These partial snippets are syntax-checked, not counted
-as complete scenario executions. API examples in docstrings follow the same
-convention.
+Other snippets assume the setup named on their page. An ellipsis (``...``)
+marks configuration you must supply; it is not a runnable constructor argument.
+Notebook inputs and results also depend on the Premise version and data they
+were written for. Start with the current first-scenario script when adapting
+an older notebook.

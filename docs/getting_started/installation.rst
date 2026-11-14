@@ -15,14 +15,10 @@ Install Premise with the Brightway 2.5 dependencies:
 
    python -m pip install "premise[bw25]"
 
-The ``bw25`` option installs the modern Brightway dependencies. NumPy 2 and
-current SciPy, xarray and PyArrow releases are supported. pandas stays below
-3.1 until the country-conversion dependency supports its changed CSV parsing;
-DeepDiff stays below 9 while its native dependency lacks Python 3.15 support.
-On Python 3.12, PyArrow stays below 26 so existing NumPy 1.x environments remain
-usable. Newer Python versions use NumPy 2 and can install PyArrow 26. The Conda
-package retains PyArrow below 26, including its builds for newer Python
-versions, to keep compatibility with NumPy 1.x on Python 3.12.
+The ``bw25`` option installs the modern Brightway dependencies. Let pip
+resolve their compatible versions. If you are updating an existing project,
+use a separate environment first; see :doc:`/reference/compatibility` for
+version constraints.
 
 Conda packages support Python 3.12–3.14. Use pip for Python 3.15 until upstream
 Conda datapackage dependencies stop requiring the unavailable ``cchardet``
@@ -36,9 +32,8 @@ environment:
    conda config --env --set channel_priority flexible
    conda install -c conda-forge -c cmutel -c romainsacchi premise-bw25
 
-Flexible priority lets Conda select a compatible ``pyecospold`` build from
-``cmutel``. The conda-forge build currently pins an older lxml release that
-blocks Python versions above 3.12.
+Keep the channels and flexible priority shown above so Conda can find a
+compatible set of dependencies.
 
 Legacy Brightway
 ------------------
@@ -75,5 +70,5 @@ Encrypted IAM files require an access key passed through ``key=``. Examples
 read that key from the ``PREMISE_KEY`` environment variable and pass it to
 the constructor. The constructor does not read this variable automatically.
 
-See :doc:`/reference/compatibility` for ecoinvent system-model support and
-:doc:`first-scenario` for the complete workflow.
+Next, :doc:`preparation` helps you identify your databases and configure the
+first example. For other supported inputs, see :doc:`/reference/compatibility`.

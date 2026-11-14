@@ -23,4 +23,5 @@ Source and imported exchange uncertainties can be retained separately through
 ``keep_source_db_uncertainty`` and ``keep_imports_uncertainty``. These controls
 do not represent uncertainty in all IAM assumptions or structural choices.
 Scenario comparisons and sensitivity analyses are needed to assess those
-choices. Follow :doc:`/user_guide/interpreting-results` for a worked example. See :doc:`/user_guide/source-databases` and the sector methodology.
+choices. Follow :doc:`/user_guide/interpreting-results` for a comparison workflow and
+examples. See :doc:`/user_guide/source-databases` for the uncertainty options.

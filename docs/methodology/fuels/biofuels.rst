@@ -115,14 +115,6 @@ CO2 emissions per kg of crop farmed are calculated as::
 
     land_use_co2 = land_use_co2 [kg CO2/GJ] / 1000 [MJ/GJ] * LHV [MJ/kg]
 
-Citation-date clarification
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The linked Task 39 phase-1 comparison report is dated February 2017; the 2019
-URL directory is not its publication year. Its harmonization exercise shows
-why allocation, fertilizer emissions and transport must be aligned before
-comparing biofuel GWP results across tools.
-
 Markets and downstream links
 ------------------------------
 
@@ -162,74 +154,244 @@ Sources and inventory details
 Source inventories: biofuels
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Inventories for energy crops- and residues-based production of bioethanol and biodiesel
-are imported, and can be accessed here: `LCI_biofuels <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-biofuels.xlsx>`__. They include the farming of the crop,
-the conversion of the biomass to fuel, as well as its distribution. The conversion process
-often leads to the production of co-products (dried distiller's grain, electricity, CO2, bagasse.).
-Hence, energy, economic and system expansion partitioning approaches are available.
+The inventories cover crop farming, conversion of biomass to fuel, and
+distribution. Examples include
+`switchgrass supply <https://clic.psi.ch/datasets/farming-and-supply-of-switchgrass/>`__,
+`ethanol from switchgrass <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-switchgrass-energy-allocation/>`__
+and `biodiesel from used cooking oil <https://clic.psi.ch/datasets/biodiesel-production-via-transesterification-from-used-cooking-oil-energy-allocation/>`__.
+
+Conversion can also produce outputs such as distiller's grains, electricity,
+CO2 or bagasse. The catalogue includes energy allocation, economic allocation
+and system-expansion variants. Match that choice when comparing routes.
+
 These inventories originate from several different sources
 (`Wu <http://greet.es.anl.gov/publication-2lli584z>`__ et al. 2006 (2020 update), `Cozzolino <https://www.psi.ch/sites/default/files/2019-09/Cozzolino_377125_%20Research%20Project%20Report.pdf>`__ 2018, `Pereira <http://task39.sites.olt.ubc.ca/files/2019/04/Task-39-GHS-models-Final-Report-Phase-1.pdf>`__ et al. 2017 and `Gonzalez-Garcia <https://doi.org/10.1016/j.scitotenv.2012.07.044>`__ et al. 2012),
 `Cavalett <https://doi.org/10.1002/bbb.2395>`__ & Cherubini 2022, as indicated in the table below.
 
+CLIC links distinguish the published allocation variants for each activity
+and location.
+
 The following datasets are introduced:
 
- ================================================================================== =========== =============================
-  Activity                                                                           Location    Source
- ================================================================================== =========== =============================
-  Farming and supply of switchgrass                                                  US          Wu et al. 2006 (2020 update)
-  Farming and supply of poplar                                                       US          Wu et al. 2006 (2020 update)
-  Farming and supply of willow                                                       US          Wu et al. 2006 (2020 update)
-  Supply of forest residue                                                           US          Wu et al. 2006 (2020 update)
-  Farming and supply of miscanthus                                                   US          Wu et al. 2006 (2020 update)
-  Farming and supply of corn stover                                                  US          Wu et al. 2006 (2020 update)
-  Farming and supply of sugarcane                                                    US          Wu et al. 2006 (2020 update)
-  Farming and supply of Grain Sorghum                                                US          Wu et al. 2006 (2020 update)
-  Farming and supply of Sweet Sorghum                                                US          Wu et al. 2006 (2020 update)
-  Farming and supply of Forage Sorghum                                               US          Wu et al. 2006 (2020 update)
-  Farming and supply of corn                                                         US          Wu et al. 2006 (2020 update)
-  Farming and supply of sugarcane                                                    BR          Pereira et al. 2019/RED II
-  Farming and supply of sugarcane straw                                              BR          Pereira et al. 2019
-  Farming and supply of eucalyptus                                                   ES          Gonzalez-Garcia et al. 2012
-  Farming and supply of wheat grains                                                 RER         Cozzolino 2018
-  Farming and supply of wheat straw                                                  RER         Cozzolino 2018
-  Farming and supply of corn                                                         RER         Cozzolino 2018/RED II
-  Farming and supply of sugarbeet                                                    RER         Cozzolino 2018
-  Supply of forest residue                                                           RER         Cozzolino 2018
-  Supply and refining of waste cooking oil                                           RER         Cozzolino 2018
-  Farming and supply of rapeseed                                                     RER         Cozzolino 2018/RED II
-  Farming and supply of palm fresh fruit bunch                                       RER         Cozzolino 2018
-  Farming and supply of dry algae                                                    RER         Cozzolino 2018
-  Ethanol production, via fermentation, from switchgrass                             US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from poplar                                  US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from willow                                  US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from forest residue                          US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from miscanthus                              US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from corn stover                             US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from sugarcane                               US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from grain sorghum                           US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from sweet sorghum                           US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from forage sorghum                          US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from corn                                    US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from corn, with carbon capture               US          Wu et al. 2006 (2020 update)
-  Ethanol production, via fermentation, from sugarcane                               BR          Pereira et al. 2019
-  Ethanol production, via fermentation, from sugarcane straw                         BR          Pereira et al. 2019
-  Ethanol production, via fermentation, from eucalyptus                              ES          Gonzalez-Garcia et al. 2012
-  Ethanol production, via fermentation, from wheat grains                            RER         Cozzolino 2018
-  Ethanol production, via fermentation, from wheat straw                             RER         Cozzolino 2018
-  Ethanol production, via fermentation, from corn starch                             RER         Cozzolino 2018
-  Ethanol production, via fermentation, from sugarbeet                               RER         Cozzolino 2018
-  Ethanol production, via fermentation, from forest residue                          RER         Cozzolino 2018
-  Ethanol production, via fermentation, from forest residues                         RER         Cavalett & Cherubini 2022
-  Ethanol production, via fermentation, from forest product (non-residual)           RER         Cavalett & Cherubini 2022
-  Biodiesel production, via transesterification, from used cooking oil               RER         Cozzolino 2018
-  Biodiesel production, via transesterification, from rapeseed oil                   RER         Cozzolino 2018
-  Biodiesel production, via transesterification, from palm oil, energy allocation    RER         Cozzolino 2018
-  Biodiesel production, via transesterification, from algae, energy allocation       RER         Cozzolino 2018
-  Biodiesel production, via Fischer-Tropsch, from forest residues                    RER         Cavalett & Cherubini 2022
-  Biodiesel production, via Fischer-Tropsch, from forest product (non-residual)      RER         Cavalett & Cherubini 2022
-  Kerosene production, via Fischer-Tropsch, from forest residues                     RER         Cavalett & Cherubini 2022
-  Kerosene production, via Fischer-Tropsch, from forest product (non-residual)       RER         Cavalett & Cherubini 2022
- ================================================================================== =========== =============================
+.. list-table::
+   :header-rows: 1
+
+   * - Activity
+     - Location
+     - Source
+     - CLIC dataset page
+   * - Farming and supply of switchgrass
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-switchgrass/>`__
+   * - Farming and supply of poplar
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-poplar/>`__
+   * - Farming and supply of willow
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-willow/>`__
+   * - Supply of forest residue
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/supply-of-forest-residue/>`__
+   * - Farming and supply of miscanthus
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-miscanthus/>`__
+   * - Farming and supply of corn stover
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-corn-stover/>`__
+   * - Farming and supply of sugarcane
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-sugarcane/>`__
+   * - Farming and supply of Grain Sorghum
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-grain-sorghum/>`__
+   * - Farming and supply of Sweet Sorghum
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-sweet-sorghum/>`__
+   * - Farming and supply of Forage Sorghum
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-forage-sorghum/>`__
+   * - Farming and supply of corn
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-corn/>`__
+   * - Farming and supply of sugarcane
+     - BR
+     - Pereira et al. 2019/RED II
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-sugarcane-2/>`__
+   * - Farming and supply of sugarcane straw
+     - BR
+     - Pereira et al. 2019
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-sugarcane-straw/>`__
+   * - Farming and supply of eucalyptus
+     - ES
+     - Gonzalez-Garcia et al. 2012
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-eucalyptus/>`__
+   * - Farming and supply of wheat grains
+     - RER
+     - Cozzolino 2018
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-wheat-grains/>`__
+   * - Farming and supply of wheat straw
+     - RER
+     - Cozzolino 2018
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-wheat-straw/>`__
+   * - Farming and supply of corn
+     - RER
+     - Cozzolino 2018/RED II
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-corn-2/>`__
+   * - Farming and supply of sugarbeet
+     - RER
+     - Cozzolino 2018
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-sugarbeet/>`__
+   * - Supply of forest residue
+     - RER
+     - Cozzolino 2018
+     - `View dataset <https://clic.psi.ch/datasets/supply-of-forest-residue-2/>`__
+   * - Supply and refining of waste cooking oil
+     - RER
+     - Cozzolino 2018
+     - `View dataset <https://clic.psi.ch/datasets/supply-and-refining-of-waste-cooking-oil/>`__
+   * - Farming and supply of rapeseed
+     - RER
+     - Cozzolino 2018/RED II
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-rapeseed/>`__
+   * - Farming and supply of palm fresh fruit bunch
+     - RER
+     - Cozzolino 2018
+     - —
+   * - Farming and supply of dry algae
+     - RER
+     - Cozzolino 2018
+     - `View dataset <https://clic.psi.ch/datasets/farming-and-supply-of-dry-algae/>`__
+   * - Ethanol production, via fermentation, from switchgrass
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-switchgrass-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-switchgrass-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-switchgrass-system-expansion/>`__
+   * - Ethanol production, via fermentation, from poplar
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-poplar-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-poplar-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-poplar-system-expansion/>`__
+   * - Ethanol production, via fermentation, from willow
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-willow-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-willow-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-willow-system-expansion/>`__
+   * - Ethanol production, via fermentation, from forest residue
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forest-residue-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forest-residue-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forest-residue-system-expansion/>`__
+   * - Ethanol production, via fermentation, from miscanthus
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-miscanthus-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-miscanthus-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-miscanthus-system-expansion/>`__
+   * - Ethanol production, via fermentation, from corn stover
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-stover-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-stover-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-stover-system-expansion/>`__
+   * - Ethanol production, via fermentation, from sugarcane
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sugarcane-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sugarcane-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sugarcane-system-expansion/>`__
+   * - Ethanol production, via fermentation, from grain sorghum
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-grain-sorghum-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-grain-sorghum-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-grain-sorghum-system-expansion/>`__
+   * - Ethanol production, via fermentation, from sweet sorghum
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sweet-sorghum-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sweet-sorghum-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sweet-sorghum-system-expansion/>`__
+   * - Ethanol production, via fermentation, from forage sorghum
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forage-sorghum-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forage-sorghum-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forage-sorghum-system-expansion/>`__
+   * - Ethanol production, via fermentation, from corn
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-system-expansion/>`__
+   * - Ethanol production, via fermentation, from corn, with carbon capture
+     - US
+     - Wu et al. 2006 (2020 update)
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-with-carbon-capture-and-storage-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-with-carbon-capture-and-storage-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-with-carbon-capture-and-storage-system-expansion/>`__
+   * - Ethanol production, via fermentation, from sugarcane
+     - BR
+     - Pereira et al. 2019
+     - —
+   * - Ethanol production, via fermentation, from sugarcane straw
+     - BR
+     - Pereira et al. 2019
+     - `economic allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sugarcane-straw-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sugarcane-straw-energy-allocation/>`__; `system expansion <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sugarcane-straw-system-expansion/>`__
+   * - Ethanol production, via fermentation, from eucalyptus
+     - ES
+     - Gonzalez-Garcia et al. 2012
+     - `View dataset <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-eucalyptus/>`__
+   * - Ethanol production, via fermentation, from wheat grains
+     - RER
+     - Cozzolino 2018
+     - `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-wheat-grains-energy-allocation/>`__
+   * - Ethanol production, via fermentation, from wheat straw
+     - RER
+     - Cozzolino 2018
+     - `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-wheat-straw-energy-allocation/>`__
+   * - Ethanol production, via fermentation, from corn starch
+     - RER
+     - Cozzolino 2018
+     - `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-corn-starch-energy-allocation/>`__
+   * - Ethanol production, via fermentation, from sugarbeet
+     - RER
+     - Cozzolino 2018
+     - `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-sugarbeet-energy-allocation/>`__
+   * - Ethanol production, via fermentation, from forest residue
+     - RER
+     - Cozzolino 2018
+     - `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forest-residue-energy-allocation-2/>`__
+   * - Ethanol production, via fermentation, from forest residues
+     - RER
+     - Cavalett & Cherubini 2022
+     - `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forest-residue-energy-allocation-2/>`__; `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forest-residues-energy-allocation/>`__
+   * - Ethanol production, via fermentation, from forest product (non-residual)
+     - RER
+     - Cavalett & Cherubini 2022
+     - `energy allocation <https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-forest-product-non-residual-energy-allocation/>`__
+   * - Biodiesel production, via transesterification, from used cooking oil
+     - RER
+     - Cozzolino 2018
+     - `energy allocation <https://clic.psi.ch/datasets/biodiesel-production-via-transesterification-from-used-cooking-oil-energy-allocation/>`__
+   * - Biodiesel production, via transesterification, from rapeseed oil
+     - RER
+     - Cozzolino 2018
+     - `energy allocation <https://clic.psi.ch/datasets/biodiesel-production-via-transesterification-from-rapeseed-oil-energy-allocation/>`__
+   * - Biodiesel production, via transesterification, from palm oil, energy allocation
+     - RER
+     - Cozzolino 2018
+     - —
+   * - Biodiesel production, via transesterification, from algae, energy allocation
+     - RER
+     - Cozzolino 2018
+     - `energy allocation <https://clic.psi.ch/datasets/biodiesel-production-via-transesterification-from-algae-energy-allocation/>`__
+   * - Biodiesel production, via Fischer-Tropsch, from forest residues
+     - RER
+     - Cavalett & Cherubini 2022
+     - `energy allocation <https://clic.psi.ch/datasets/biodiesel-production-via-fischer-tropsch-from-forest-residues-energy-allocation/>`__
+   * - Biodiesel production, via Fischer-Tropsch, from forest product (non-residual)
+     - RER
+     - Cavalett & Cherubini 2022
+     - `energy allocation <https://clic.psi.ch/datasets/biodiesel-production-via-fischer-tropsch-from-forest-product-non-residual-energy-allocation/>`__
+   * - Kerosene production, via Fischer-Tropsch, from forest residues
+     - RER
+     - Cavalett & Cherubini 2022
+     - `energy allocation <https://clic.psi.ch/datasets/kerosene-production-via-fischer-tropsch-from-forest-residues-energy-allocation/>`__
+   * - Kerosene production, via Fischer-Tropsch, from forest product (non-residual)
+     - RER
+     - Cavalett & Cherubini 2022
+     - `energy allocation <https://clic.psi.ch/datasets/kerosene-production-via-fischer-tropsch-from-forest-product-non-residual-energy-allocation/>`__
 
 .. raw:: html
 

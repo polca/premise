@@ -1,11 +1,14 @@
 IAM data and variables
 ========================
 
-After extracting the ecoinvent database and additional inventories,
-*premise* instantiates the class *IAMDataCollection*, which collects
-all sorts of data from the IAM output file and store it into
-multi-dimensional arrays.
+Premise reads region, variable, unit and year values from the selected IAM
+file. Sector mapping files connect those names to the quantities each update
+uses. The file's units can differ from inventory units; each sector applies
+its documented conversions.
 
+Use :doc:`coverage` to check which mappings exist and the file-format section
+below when preparing your own IAM data. This is separate from the custom
+package format in :doc:`external-scenario-format`.
 
 Production volumes and efficiencies
 -------------------------------------

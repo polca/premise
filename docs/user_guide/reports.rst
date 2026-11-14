@@ -17,6 +17,10 @@ Start with this workbook to review both inventory changes and validation
 results. You do not need to request a separate validation report for this
 review.
 
+.. raw:: html
+
+   <span id="verified-report-excerpt"></span>
+
 Read the workbook in this order
 ---------------------------------
 
@@ -61,8 +65,6 @@ automatic reports were disabled:
 
 .. code-block:: python
 
-    ndb = NewDatabase(..., generate_reports=False)
-    ndb.update()
     artifacts = ndb.generate_change_report(
         filepath="review/reports",
         name="ssp2-review.xlsx",
@@ -88,11 +90,5 @@ separate from the inventory change report and validation certificate:
 Compare :doc:`/reference/models` and :doc:`/reference/scenarios` when
 interpreting different model/pathway results.
 
-Verified report excerpt
--------------------------
-
-The completed documentation run's Overview records status ``passed``,
-ecoinvent ``3.12``, system model ``cutoff``, Premise ``2.5.1`` and report
-schema ``2``. This verifies the reporting workflow, not the correctness of
-all source assumptions. The workbook also includes Scenario Summary, Sector
-Summary, Validation Findings, Validation Coverage and Methodology sheets.
+For uncertainty and changes in impact scores, continue to
+:doc:`interpreting-results`. For output files, see :doc:`export/index`.

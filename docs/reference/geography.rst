@@ -5,7 +5,10 @@ Country-to-IAM region mapping
    :local:
    :depth: 1
 
-IAM models have slightly different geographical resolutions and definitions.
+IAMs divide the world into different regions. Use the maps to understand
+those regions and the table to look up a country code. The mapping identifies
+geographical membership; it does not establish local technology performance.
+See :doc:`/methodology/regionalization` for how suppliers are selected.
 
 
 Map of IMAGE regions

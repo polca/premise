@@ -20,7 +20,7 @@ Upgrading to 2.5.5
 - Review the documented vehicle proxies and remaining limitations in
   :doc:`/methodology/transport/passenger-cars`,
   :doc:`/methodology/transport/trucks` and
-  :doc:`/methodology/transport/campaign-closeout`. The refreshed inventories
+  :doc:`/methodology/transport/overview`. The refreshed inventories
   are packaged; carculator is not a runtime dependency.
 - BEV/PHEV cars and trucks retain baseline range as electricity demand changes.
   Electric buses now use the same capacity rule with unchanged occupancy and
@@ -110,7 +110,7 @@ store API or request an independent copy of the inventory. See
 :doc:`/user_guide/inventories` for the maintained query, transaction and
 examples of copying inventories into dictionaries. The runtime backend distinction and a transaction
 limitation found during documentation review are recorded in
-:doc:`documentation-audit`.
+:doc:`/development/documentation`.
 
 Validation and reports
 ------------------------

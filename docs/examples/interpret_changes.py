@@ -10,6 +10,11 @@ def main():
     assert math.isclose(new_fuel, 3.6 / new_efficiency)
     print(f"Fuel per kWh: {old_fuel:.3f} -> {new_fuel:.3f} MJ")
 
+    absolute_efficiency = 0.50
+    absolute_fuel = old_fuel * old_efficiency / absolute_efficiency
+    assert math.isclose(absolute_fuel, 7.2)
+    print(f"Absolute efficiency 50%: {absolute_fuel:.3f} MJ fuel per kWh")
+
     # PV sensitivity holds installation burdens fixed; operation is excluded.
     lifetime = 30
     burden_per_kwp = 1000  # illustrative kg CO2-eq/kWp, not an inventory result

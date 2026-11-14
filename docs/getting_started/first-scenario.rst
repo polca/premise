@@ -7,22 +7,23 @@ It applies all default updates and writes a separate Brightway database.
 Before running
 ----------------
 
-Complete :doc:`preparation` first, including the preflight checks.
-This is an executable example requiring licensed inputs. It uses
-``inventory_backend="compact"``; the constructor default remains ``legacy``.
+Complete :doc:`preparation`, including the preflight checks, in the Python
+environment where you installed Premise. Keep the environment variables set:
+the script uses them for your project, source database, biosphere, output name
+and IAM key. Set ``PREMISE_IAM_DIR`` only if your IAM files are outside the
+default scenario directory.
 
-Install :doc:`installation`. Prepare a Brightway project containing the
-source database and its biosphere. Obtain the encrypted IAM file and its key.
-Set the ``PREMISE_KEY`` environment variable without storing the key in the script.
-The project, source database and biosphere names below must match your local
-installation. Set ``PREMISE_IAM_DIR`` if the scenario file is stored outside
-the default scenario directory.
+This example uses compact inventory storage, selected explicitly in the script.
 
 Complete example
 ------------------
 
 .. literalinclude:: /examples/first_scenario.py
    :language: python
+
+Save the code as ``first_scenario.py`` (or download
+:download:`the script </examples/first_scenario.py>`) and run it from the
+configured terminal with ``python first_scenario.py``.
 
 The output name includes ``docs-example`` to distinguish it from the source.
 The script refuses to overwrite an existing output database. Rename the output

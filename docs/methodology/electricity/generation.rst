@@ -49,6 +49,11 @@ After the setup in :doc:`/getting_started/first-scenario`:
 
    ndb.update("electricity")
 
+Natural-gas extraction and distribution inventories are described under
+:ref:`natural-gas-source-inventories`. The separate
+:ref:`geothermal heat inventories <geothermal-heat-inventories>` belong to the
+heat supply chapter.
+
 Transformation
 ----------------
 
@@ -244,14 +249,8 @@ the different fuels used in combustion-based power plants.
 Additionally, the biogenic and fossil CO2 emissions of the datasets are also
 scaled up or down by the same factor, as they are proportional to the amount of fuel used.
 
-An illustrative efficiency calculation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For a fixed 1 kWh electricity output (3.6 MJ), a 40% efficient process requires
-9 MJ of fuel. A 10% relative improvement gives 44% efficiency and requires
-8.182 MJ. An absolute target of 50% instead requires 7.2 MJ. These are
-illustrative energy balances, not measured natural-gas plant inventories.
-The executable arithmetic is in :doc:`/user_guide/interpreting-results`.
+See :ref:`generation-worked-example` for the relative and absolute
+calculations, including the non-fuel exchanges scaled by this step.
 
 The relative electricity branch applies technology-specific efficiency bounds
 before calculating its final exchange factor. The absolute branch derives the
@@ -284,157 +283,183 @@ Assumptions and limitations
 Efficiency bounds and selected exchanges differ by technology. CCS energy
 requirements, non-combustion technologies and storage cannot be interpreted
 using a single combustion scaling equation. Scenario efficiencies and source
-inventory efficiencies may use different boundaries; read the relative and
-absolute adjustment rules below.
+inventory efficiencies may use different boundaries; use the adjustment
+rules in **Transformation** when interpreting a result.
+
+.. _generation-worked-example:
 
 Worked example and checks
 ---------------------------
 
-Use the illustrative calculation below to distinguish a relative efficiency
-increase from an absolute target. Inspect fuel inputs and direct emissions
-per kWh, then inspect the market weights separately. A reduction in fuel use
-need not produce the same percentage reduction in total life-cycle impacts
-because upstream suppliers and other transformation steps can also change.
-Within the selected activity, inspect the shared scaling of all non-production
-exchanges rather than assuming infrastructure stays fixed.
+An illustrative efficiency calculation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Consider a process producing **1 kWh of electricity** (3.6 MJ) at **40%
+efficiency**. It needs ``3.6 / 0.40 = 9 MJ`` of fuel. Suppose its other inputs
+include 0.001 unit of infrastructure and its direct fossil CO2 is 0.5 kg.
+These are illustrative coefficients, not a measured plant inventory.
+
+* **Relative case:** a 10% efficiency improvement gives
+  ``0.40 × 1.10 = 0.44``. Assume this target is within the configured bounds.
+  The exchange factor is ``0.40 / 0.44 = 0.909091``.
+* **Absolute case:** a supplied target of 50% gives an exchange factor of
+  ``0.40 / 0.50 = 0.8``.
+
+.. list-table:: Exchange amounts per 1 kWh of electricity produced
+   :header-rows: 1
+   :widths: 40 20 20 20
+
+   * - Exchange
+     - Before
+     - Relative case
+     - Absolute case
+   * - Electricity production (kWh)
+     - 1
+     - 1
+     - 1
+   * - Fuel input (MJ)
+     - 9
+     - 8.181818
+     - 7.2
+   * - Infrastructure purchase (unit)
+     - 0.001
+     - 0.000909091
+     - 0.0008
+   * - Direct fossil CO2 (kg)
+     - 0.5
+     - 0.454545
+     - 0.4
+
+The production amount stays fixed. This routine scales every selected
+activity's non-production exchange, so the infrastructure input follows the
+same factor as fuel and direct emissions. The energy balances agree:
+``3.6 / 8.181818 ≈ 44%`` and ``3.6 / 7.2 = 50%``.
+
+In a scenario, compare the recorded old and new efficiencies with the final
+exchanges in **Key Changes**. Inspect the supplying market separately: its
+technology shares and upstream suppliers can also change the life-cycle
+result. :ref:`interpretation-arithmetic-example` provides a runnable version
+of the efficiency arithmetic.
 
 Sources and inventory details
 -------------------------------
 
-Source inventories: power plants with ccs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 Power plants with CCS
-^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 Datasets for power generation with Carbon Capture and Storage (CCS) are imported.
-They originate from `Volkart <https://doi.org/10.1016/j.ijggc.2013.03.003>`__ et al. 2013, and can be consulted here: `LCI_Power_generation <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-Carma-CCS.xlsx>`__.
-An exception to this are the inventories for biomass-based integrated gasification combined cycle power plants (BIGCCS),
+They originate from `Volkart <https://doi.org/10.1016/j.ijggc.2013.03.003>`__ et al. 2013, and can be consulted here: `electricity production, at hard coal-fired power plant, post, pipeline 200km, storage 1000m (RER) <https://clic.psi.ch/datasets/electricity-production-at-hard-coal-fired-power-plant-post-pipeline-200km-storage-1000m/>`__; `electricity production, at natural gas-fired combined cycle power plant, post, pipeline 200km, storage 1000m (RER) <https://clic.psi.ch/datasets/electricity-production-at-natural-gas-fired-combined-cycle-power-plant-post-pipeline-200km-storage-1000m/>`__.
+An exception to this are the inventories for `biomass-based integrated gasification combined cycle power plants (BIGCCS) <https://clic.psi.ch/datasets/electricity-production-at-biomass-fired-igcc-power-plant-post-pipeline-200km-storage-1000m/>`__,
 which are from `Briones-Hidrovo <https://doi.org/10.1016/j.jclepro.2020.125680>`__ et al, 2020.
 
 The table below lists the names of the new activities (only production datasets are shown).
 
- ============================================================================================================= ===========
-  Power generation with CCS (activities list)                                                                   location
- ============================================================================================================= ===========
-  electricity production, at power plant/hard coal, IGCC, no CCS                                                RER
-  electricity production, at power plant/hard coal, PC, no CCS                                                  RER
-  electricity production, at power plant/hard coal, oxy, pipeline 200km, storage 1000m                          RER
-  electricity production, at power plant/hard coal, oxy, pipeline 400km, storage 3000m                          RER
-  electricity production, at power plant/hard coal, post, pipeline 200km, storage 1000m                         RER
-  electricity production, at power plant/hard coal, post, pipeline 400km, storage 1000m                         RER
-  electricity production, at power plant/hard coal, post, pipeline 400km, storage 3000m                         RER
-  electricity production, at power plant/hard coal, pre, pipeline 200km, storage 1000m                          RER
-  electricity production, at power plant/hard coal, pre, pipeline 400km, storage 3000m                          RER
-  electricity production, at power plant/lignite, IGCC, no CCS                                                  RER
-  electricity production, at power plant/lignite, PC, no CCS                                                    RER
-  electricity production, at power plant/lignite, oxy, pipeline 200km, storage 1000m                            RER
-  electricity production, at power plant/lignite, oxy, pipeline 400km, storage 3000m                            RER
-  electricity production, at power plant/lignite, post, pipeline 200km, storage 1000m                           RER
-  electricity production, at power plant/lignite, post, pipeline 400km, storage 3000m                           RER
-  electricity production, at power plant/lignite, pre, pipeline 200km, storage 1000m                            RER
-  electricity production, at power plant/lignite, pre, pipeline 400km, storage 3000m                            RER
-  electricity production, at power plant/natural gas, ATR H2-CC, no CCS                                         RER
-  electricity production, at power plant/natural gas, NGCC, no CCS/kWh                                          RER
-  electricity production, at power plant/natural gas, post, pipeline 200km, storage 1000m                       RER
-  electricity production, at power plant/natural gas, post, pipeline 400km, storage 1000m                       RER
-  electricity production, at power plant/natural gas, post, pipeline 400km, storage 3000m                       RER
-  electricity production, at power plant/natural gas, pre, pipeline 200km, storage 1000m                        RER
-  electricity production, at power plant/natural gas, pre, pipeline 400km, storage 3000m                        RER
-  electricity production, at wood burning power plant 20 MW, truck 25km, no CCS                                 RER
-  electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m    RER
-  electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 400km, storage 3000m    RER
- ============================================================================================================= ===========
+.. list-table::
+   :header-rows: 1
 
+   * - Power generation with CCS (activities list)
+     - location
+     - CLIC dataset page
+   * - electricity production, at power plant/hard coal, IGCC, no CCS
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-hard-coal-fired-igcc-power-plant/>`__
+   * - electricity production, at power plant/hard coal, PC, no CCS
+     - RER
+     - —
+   * - electricity production, at power plant/hard coal, oxy, pipeline 200km, storage 1000m
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-hard-coal-fired-power-plant-oxy-pipeline-200km-storage-1000m/>`__
+   * - electricity production, at power plant/hard coal, oxy, pipeline 400km, storage 3000m
+     - RER
+     - —
+   * - electricity production, at power plant/hard coal, post, pipeline 200km, storage 1000m
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-hard-coal-fired-power-plant-post-pipeline-200km-storage-1000m/>`__
+   * - electricity production, at power plant/hard coal, post, pipeline 400km, storage 1000m
+     - RER
+     - —
+   * - electricity production, at power plant/hard coal, post, pipeline 400km, storage 3000m
+     - RER
+     - —
+   * - electricity production, at power plant/hard coal, pre, pipeline 200km, storage 1000m
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-hard-coal-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m/>`__
+   * - electricity production, at power plant/hard coal, pre, pipeline 400km, storage 3000m
+     - RER
+     - —
+   * - electricity production, at power plant/lignite, IGCC, no CCS
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-lignite-fired-igcc-power-plant/>`__
+   * - electricity production, at power plant/lignite, PC, no CCS
+     - RER
+     - —
+   * - electricity production, at power plant/lignite, oxy, pipeline 200km, storage 1000m
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-lignite-fired-power-plant-oxy-pipeline-200km-storage-1000m/>`__
+   * - electricity production, at power plant/lignite, oxy, pipeline 400km, storage 3000m
+     - RER
+     - —
+   * - electricity production, at power plant/lignite, post, pipeline 200km, storage 1000m
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-lignite-fired-power-plant-post-pipeline-200km-storage-1000m/>`__
+   * - electricity production, at power plant/lignite, post, pipeline 400km, storage 3000m
+     - RER
+     - —
+   * - electricity production, at power plant/lignite, pre, pipeline 200km, storage 1000m
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-lignite-fired-igcc-power-plant-pre-pipeline-200km-storage-1000m/>`__
+   * - electricity production, at power plant/lignite, pre, pipeline 400km, storage 3000m
+     - RER
+     - —
+   * - electricity production, at power plant/natural gas, ATR H2-CC, no CCS
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-hydrogen-fired-combined-cycle-power-plant-by-auto-thermal-reforming-of-natural-gas/>`__
+   * - electricity production, at power plant/natural gas, NGCC, no CCS/kWh
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-natural-gas-fired-combined-cycle-power-plant/>`__
+   * - electricity production, at power plant/natural gas, post, pipeline 200km, storage 1000m
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-natural-gas-fired-combined-cycle-power-plant-post-pipeline-200km-storage-1000m/>`__
+   * - electricity production, at power plant/natural gas, post, pipeline 400km, storage 1000m
+     - RER
+     - —
+   * - electricity production, at power plant/natural gas, post, pipeline 400km, storage 3000m
+     - RER
+     - —
+   * - electricity production, at power plant/natural gas, pre, pipeline 200km, storage 1000m
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-hydrogen-fired-combined-cycle-power-plant-by-auto-thermal-reforming-of-natural-gas-pre-pipeline-200km-storage-1000m/>`__
+   * - electricity production, at power plant/natural gas, pre, pipeline 400km, storage 3000m
+     - RER
+     - —
+   * - electricity production, at wood burning power plant 20 MW, truck 25km, no CCS
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-wood-burning-power-plant/>`__
+   * - electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 200km, storage 1000m
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-at-wood-burning-power-plant-post-pipeline-200km-storage-1000m/>`__
+   * - electricity production, at wood burning power plant 20 MW, truck 25km, post, pipeline 400km, storage 3000m
+     - RER
+     - —
 
-Natural gas
-^^^^^^^^^^^^^
+.. _epr-cladding-reference:
 
-Updated inventories relating to natural gas extraction and distribution
-are imported to substitute some of the original ecoinvent dataset.
-These datasets originate from ESU Services and come with a `report <http://www.esu-services.ch/fileadmin/download/publicLCI/meili-2021-LCI%20for%20the%20oil%20and%20gas%20extraction.pdf>`__,
-and can be consulted here: `LCI_Oil_NG <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-ESU-oil-and-gas.xlsx>`__.
+EPR cladding supply
+~~~~~~~~~~~~~~~~~~~
 
-They have been adapted to a brightway2-compatible format.
-These new inventories have, among other things, higher methane slip
-emissions along the natural gas supply chain, especially at extraction.
+Only for ecoinvent 3.12 cut-off, the
+`EPR M5 cladding alloy reference <https://clic.psi.ch/datasets/zirconium-cladding-alloy-production-epr-m5-type/>`__
+(source 3.12) is imported immediately before the
+`EPR electricity inventory <https://clic.psi.ch/datasets/electricity-production-nuclear-evolutionary-power-reactor-epr/>`__
+(source 3.8). Ordinary
+import duplicate checks retain one M5 alloy producer, purchasing 0.9884 kg of
+native nuclear-grade zirconium sponge per kg alloy; its six other inputs stay
+unchanged. The qualified custom Kroll provider remains an unused legacy
+alternative, so its reagents, yield, utilities and residues are not added again.
 
- ========================================================== ==============================================================
-  Original dataset                                           Replaced by
- ========================================================== ==============================================================
-  natural gas production (natural gas, high pressure), DE    natural gas, at production (natural gas, high pressure), DE
-  natural gas production (natural gas, high pressure), DZ    natural gas, at production (natural gas, high pressure), DZ
-  natural gas production (natural gas, high pressure), US    natural gas, at production (natural gas, high pressure), US
-  natural gas production (natural gas, high pressure), RU    natural gas, at production (natural gas, high pressure), RU
-  petroleum and gas production, GB                           natural gas, at production (natural gas, high pressure), GB
-  petroleum and gas production, NG                           natural gas, at production (natural gas, high pressure), NG
-  petroleum and gas production, NL                           natural gas, at production (natural gas, high pressure), NL
-  petroleum and gas production, NO                           natural gas, at production (natural gas, high pressure), NO
- ========================================================== ==============================================================
-
-Where selected by the import configuration, these natural-gas suppliers
-provide high-pressure gas to the mapped supply chains.
-
-The table below lists the names of the new activities (only high pressure datasets are shown).
-
- ============================= ===========
-  Natural gas extraction        location
- ============================= ===========
-  natural gas, at production    AZ
-  natural gas, at production    RO
-  natural gas, at production    LY
-  natural gas, at production    SA
-  natural gas, at production    IQ
-  natural gas, at production    RU
-  natural gas, at production    NL
-  natural gas, at production    DZ
-  natural gas, at production    NG
-  natural gas, at production    DE
-  natural gas, at production    KZ
-  natural gas, at production    NO
-  natural gas, at production    QA
-  natural gas, at production    GB
-  natural gas, at production    MX
-  natural gas, at production    US
- ============================= ===========
-
-.. note::
-
-    This import is skipped for supported ecoinvent versions 3.9 and later
-    as those dataset updates are already included.
-
-Source inventories: geothermal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Geothermal
-^^^^^^^^^^^^
-
-Heat production by means of a geothermal well are not represented in ecoinvent.
-The geothermal power plant construction inventories are from `Maeder <https://www.psi.ch/sites/default/files/import/ta/PublicationTab/BSc_Mattia_Maeder_2016.pdf>`__ Bachelor Thesis.
-
-The co-generation unit has been removed and replaced by heat exchanger and
-district heating pipes. Gross heat output of 1,483 TJ, with 80% efficiency.
-
-The inventories can be consulted here: `LCIgeothermal <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-geothermal.xlsx>`__.
-
-They introduce the following datasets (only heat production datasets shown):
-
- =================================== ===========
-  Geothermal heat production          location
- =================================== ===========
-  heat production, deep geothermal    RAS
-  heat production, deep geothermal    GLO
-  heat production, deep geothermal    RAF
-  heat production, deep geothermal    RME
-  heat production, deep geothermal    RLA
-  heat production, deep geothermal    RU
-  heat production, deep geothermal    CA
-  heat production, deep geothermal    JP
-  heat production, deep geothermal    US
-  heat production, deep geothermal    IN
-  heat production, deep geothermal    CN
-  heat production, deep geothermal    RER
- =================================== ===========
+The original EPR source and four fuel-fabrication buyers keep their authored
+3.8 profiles and assembly doses. Other target versions and consequential builds
+retain the existing source selection.
 
 .. raw:: html
 
@@ -444,3 +469,14 @@ Sources and data dates
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /reference/generated/source-electricity.inc
+
+.. raw:: html
+
+   <span id="geothermal"></span>
+   <span id="source-inventories-geothermal"></span>
+   <span id="natural-gas"></span>
+   <span id="source-inventories-power-plants-with-ccs"></span>
+
+Natural-gas supply is documented under :ref:`natural-gas-source-inventories`,
+geothermal heat under :ref:`geothermal-heat-inventories`, and CCS plants in
+the source inventory table above.

@@ -32,15 +32,16 @@ Transformation
 ----------------
 
 Market construction translates energy-based shares to supplier exchange
-amounts. The amount sum can differ from one for fuels with different heating
-values. Consumer carbon dioxide handling uses the linked fuel composition;
+amounts. The total purchased mass or volume can differ from one when suppliers have
+different heating values. Consumer carbon dioxide handling uses the linked fuel composition;
 the detailed examples below illustrate those separate operations.
 
 Reference energy and carbon properties
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Fuel markets normalize eligible IAM energy shares before converting them into
-supplier quantities. For energy share ``s`` and supplier heating value ``H``,
+supplier quantities. For energy share ``s`` and supplier lower heating value
+(``H``),
 the purchased quantity is ``s * H_reference / H``. It is not subsequently
 normalized to one kilogram or one cubic metre. The reference values are
 42.6 MJ/kg for petrol, 43 MJ/kg for diesel and kerosene, 36 MJ/m3 for natural
@@ -258,3 +259,95 @@ Sources and inventory details
 
 See the source inventories and mappings linked above, and
 :doc:`/reference/inventories` for constructor import selection.
+
+.. _natural-gas-source-inventories:
+
+Natural-gas supply
+~~~~~~~~~~~~~~~~~~
+
+Updated inventories relating to natural gas extraction and distribution
+are imported to substitute some of the original ecoinvent dataset.
+These datasets originate from ESU Services and come with a `report <http://www.esu-services.ch/fileadmin/download/publicLCI/meili-2021-LCI%20for%20the%20oil%20and%20gas%20extraction.pdf>`__,
+and can be consulted here: `natural gas, at production (DE) <https://clic.psi.ch/datasets/natural-gas-at-production-10/>`__; `crude oil, at production (MX) <https://clic.psi.ch/datasets/crude-oil-at-production/>`__.
+
+They have been adapted to a brightway2-compatible format.
+These new inventories have, among other things, higher methane slip
+emissions along the natural gas supply chain, especially at extraction.
+
+ ========================================================== ==============================================================
+  Original dataset                                           Replaced by
+ ========================================================== ==============================================================
+  natural gas production (natural gas, high pressure), DE    natural gas, at production (natural gas, high pressure), DE
+  natural gas production (natural gas, high pressure), DZ    natural gas, at production (natural gas, high pressure), DZ
+  natural gas production (natural gas, high pressure), US    natural gas, at production (natural gas, high pressure), US
+  natural gas production (natural gas, high pressure), RU    natural gas, at production (natural gas, high pressure), RU
+  petroleum and gas production, GB                           natural gas, at production (natural gas, high pressure), GB
+  petroleum and gas production, NG                           natural gas, at production (natural gas, high pressure), NG
+  petroleum and gas production, NL                           natural gas, at production (natural gas, high pressure), NL
+  petroleum and gas production, NO                           natural gas, at production (natural gas, high pressure), NO
+ ========================================================== ==============================================================
+
+Where selected by the import configuration, these natural-gas suppliers
+provide high-pressure gas to the mapped supply chains.
+
+The table below lists the names of the new activities (only high pressure datasets are shown).
+
+.. list-table::
+   :header-rows: 1
+
+   * - Natural gas extraction
+     - location
+     - CLIC dataset page
+   * - natural gas, at production
+     - AZ
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production/>`__
+   * - natural gas, at production
+     - RO
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-2/>`__
+   * - natural gas, at production
+     - LY
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-3/>`__
+   * - natural gas, at production
+     - SA
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-4/>`__
+   * - natural gas, at production
+     - IQ
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-5/>`__
+   * - natural gas, at production
+     - RU
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-6/>`__
+   * - natural gas, at production
+     - NL
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-7/>`__
+   * - natural gas, at production
+     - DZ
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-8/>`__
+   * - natural gas, at production
+     - NG
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-9/>`__
+   * - natural gas, at production
+     - DE
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-10/>`__
+   * - natural gas, at production
+     - KZ
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-11/>`__
+   * - natural gas, at production
+     - NO
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-12/>`__
+   * - natural gas, at production
+     - QA
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-13/>`__
+   * - natural gas, at production
+     - GB
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-14/>`__
+   * - natural gas, at production
+     - MX
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-15/>`__
+   * - natural gas, at production
+     - US
+     - `View dataset <https://clic.psi.ch/datasets/natural-gas-at-production-16/>`__
+
+.. note::
+
+    This import is skipped for supported ecoinvent versions 3.9 and later
+    as those dataset updates are already included.

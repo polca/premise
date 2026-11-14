@@ -6,15 +6,17 @@ Workflow and system boundaries
    <span id="transformation-and-certification"></span>
 
 
+A Premise build has three main steps:
+
+1. **Prepare inputs.** Read the source database and scenario data, add the
+   applicable technology inventories and prepare reusable input data.
+2. **Apply updates.** Change the selected processes and supply markets for
+   each scenario, then check the resulting inventory.
+3. **Export.** Write the scenario database to Brightway or another format.
+   Review the change report before calculating and interpreting impacts.
+
 .. image:: /main_workflow.png
-   :alt: Main workflow diagram of premise ETL process
-
-As illustrated in the workflow diagram above, *premise* follows an Extract, Transform, Load (`ETL <https://www.guru99.com/etl-extract-load-process.html#:~:text=ETL%20is%20a%20process%20that,is%20Extract%2C%20Transform%20and%20Load.>`__) process:
-
-1. Extract the ecoinvent database from a `brightway <https://brightway.dev/>`__ project or from `ecospold2 <https://ecoinvent.org/the-ecoinvent-database/data-formats/ecospold2/>`__ files.
-2. Expand the database by adding additional inventories for future production pathways for certain commodities, such as electricity, heat, steel, cement, etc.
-3. Modify the ecoinvent database, focusing primarily on process efficiency improvements and market adjustments.
-4. Load the updated database back into a Brightway project or export it as a set of CSV files, such as Simapro CSV files.
+   :alt: Read the source database, add inventories, apply scenario updates and export the result.
 
 Choosing a system model
 -------------------------

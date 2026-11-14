@@ -1,107 +1,97 @@
 Inspecting and modifying inventories
 ======================================
 
-.. contents:: On this page
-   :local:
-   :depth: 1
+After building a scenario, use its inventory store to find activities and
+inspect their inputs. You can query a few activities without loading a second
+copy of the full database.
 
-The examples below use ``inventory_backend="compact"`` when creating
-``NewDatabase``. Use this backend for the transaction example.
+Read activities
+-----------------
 
-Premise 2.5 stores inventories in ``InventoryStore``. Mutable inventory lists
-are no longer exposed on ``NewDatabase`` or retained in active scenario
-dictionaries.
-
-
-After creating ``ndb`` as in :doc:`/getting_started/first-scenario`:
+After :doc:`/getting_started/first-scenario`:
 
 .. code-block:: python
 
    store = ndb.get_inventory_store(scenario=0)
    activities = store.find({"location": "CH"})
-   if activities:
-       with ndb.get_inventory_store(writable=True).transaction("custom:foreground") as tx:
-           tx.patch_activity(activities[0].id, {"comment": "Updated by the foreground integration"})
+   for activity in activities[:5]:
+       print(activity["name"], activity["reference product"], activity["unit"])
 
-Read methods return immutable snapshots. Additions, patches, cloning, removals,
-and exchange replacement must occur inside a transaction. A transaction commits
-data and index changes together and restores its complete prior state if an
-exception leaves the context.
+``scenario=0`` selects the first scenario in ``ndb.scenarios``; use ``1`` for
+the second, and so on. Query results are read-only snapshots. See
+:doc:`/reference/api` for the available search methods.
 
-Compact transactions copy only the rows they change and retain enough
-information to undo those changes if the transaction fails.
+Edit an activity
+------------------
 
-To obtain an independent list of activity dictionaries, use:
-
+Use a writable store and a transaction, which saves a group of edits together.
+This example uses the compact storage selected by the first-scenario script:
 
 .. code-block:: python
 
-   database = ndb.materialize_inventory(restore_metadata=True)
+   store = ndb.get_inventory_store(scenario=0, writable=True)
+   activities = store.find({"location": "CH"})
+   if activities:
+       with store.transaction("custom:comment") as transaction:
+           transaction.patch_activity(activities[0].id, {"comment": "My study note"})
 
+If an exception leaves the transaction, its edits are undone. Adding,
+cloning or removing activities and replacing exchanges also require a
+transaction. Previously returned snapshots do not change when you edit the
+store; query again to see the updated activity.
 
-This copies all activities and exchanges into Python dictionaries and can
-require several gigabytes for a full ecoinvent scenario. Use the store's
-query methods when you only need to inspect activities.
+These edits change the in-memory scenario inventory. To use them in Brightway
+or another program, export it again. Inventory changes also require validation
+to run again before export.
 
+Obtain a complete copy
+-----------------------
 
-Compact storage and checkpoints
----------------------------------
+If another library needs a list of dictionaries, use:
 
+.. code-block:: python
 
-``CompactInventoryStore`` shares unchanged data between scenarios and copies
-data when it changes. It saves inventories in Arrow IPC files and keeps
-additional activity metadata in separate files. Reopening a saved inventory
-preserves its Python and NumPy numeric types. ``LegacyInventoryStore`` stores
-activities as dictionaries.
-The bundle contains:
+   database = ndb.materialize_inventory(scenario=0, restore_metadata=True)
 
+This copies the full inventory and can require several gigabytes. Editing
+that independent copy does not edit ``ndb``. Use the store when you only need
+to inspect or change a few activities; the old mutable ``ndb.database``
+attribute is no longer available.
 
-.. code-block:: text
+.. raw:: html
 
-   manifest.json
-   strings.arrow
-   activities.arrow
-   exchanges.arrow
-   metadata.bin
-   metadata_offsets.arrow
-   activity-fingerprints.pkl
-   checksums.json
+   <span id="automatic-scenario-cache-expiry"></span>
+   <span id="compact-storage-and-checkpoints"></span>
+   <span id="id1"></span>
+   <span id="id2"></span>
+   <span id="id3"></span>
+   <span id="on-this-page"></span>
 
+Saved inventories and cache cleanup
+------------------------------------
 
-Checkpoint writes use a sibling temporary directory and replacement; every
-file is verified before a bundle is opened. Store schema versions are
-independent from the historical pickle cache schema. Existing
-``inventory_backend="legacy"`` and ``inventory_backend="compact"`` calls remain
-accepted. Both backends apply the same validation rules.
+Premise saves intermediate inventories so later operations can reuse them.
+Managed scenario checkpoints unused for more than 24 hours can be removed
+when a new build starts and no other ``NewDatabase`` instance is alive.
+Long-lived notebook instances can therefore delay cleanup.
 
+Set ``cleanup_expired_caches=False`` to skip that startup cleanup. Source and
+import caches have a separate lifetime; see :doc:`source-databases` for the
+cache-clearing commands. Storage formats, locking and detailed cleanup rules
+are described in :doc:`/development/architecture`.
 
-Automatic scenario cache expiry
----------------------------------
+To clear prepared source caches or only cached additional inventories, use:
 
+.. code-block:: python
 
-``NewDatabase`` checks for managed scenario checkpoints unused for more than 24
-hours at startup. It also removes expired incomplete checkpoint writes. Cleanup
-runs only when no other ``NewDatabase`` instance is alive: a process-held shared
-lock protects inventories throughout updates, repeated exports, and reports.
-The lock is released when the instance is garbage-collected or its process exits.
-A long-lived notebook instance therefore defers cleanup until a later startup.
+   from premise import clear_cache, clear_inventory_cache
 
-Pass ``cleanup_expired_caches=False`` to skip the startup sweep. This instance still
-holds the shared lock. Restart existing premise processes when adopting this
-feature so all builds participate in locking. Standalone use of the low-level
-``InventoryStore`` API is not registered as an active build; keep checkpoints for
-such use outside premise's internal ``cached_files`` directory.
+   clear_inventory_cache()  # Reimport additional inventories on a later build.
+   # Alternative: clear_cache() removes all prepared source/import cache files.
 
-Only newly written, UUID-named checkpoints in ``cached_files`` carry expiry
-metadata. Successful checkpoint reopening refreshes their last-use timestamp;
-expiry metadata is separate from the inventory files protected by checksums. Base
-checkpoints needed by retained checkpoints are preserved. Existing unmarked
-checkpoints are never automatically adopted or removed; clean them separately
-after stopping active builds. Source/import caches in ``cache``, validation
-caches, and extracted datapackages are outside this expiry policy.
-
-Cleanup logs a count and estimated reclaimed space at INFO level (unless
-``quiet=True``); filesystem errors are warnings and do not abort a build.
+These commands clear reusable input caches, not your written Brightway
+databases. The managed scenario-checkpoint cleanup described above is a
+separate operation.
 
 Self-contained API example
 ----------------------------

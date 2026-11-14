@@ -5,79 +5,99 @@
      - 2020 mean (kWh/kg reference)
      - 2050 mean (kWh/kg reference)
      - 2050 mass factor
+     - CLIC capacity dataset
    * - NMC111
      - 0.18
      - 0.2
      - 0.9000
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc111/>`__
    * - NMC532
      - 0.2
      - 0.22
      - 0.9091
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc532/>`__
    * - NMC622
      - 0.24
      - 0.26
      - 0.9231
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc622/>`__
    * - NMC811
      - 0.28
      - 0.34
      - 0.8235
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc811/>`__
    * - NMC955
      - 0.34
      - 0.38
      - 0.8947
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc955/>`__
    * - NCA
      - 0.28
      - 0.34
      - 0.8235
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nca/>`__
    * - LFP
      - 0.16
      - 0.22
      - 0.7273
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-lfp/>`__
    * - LTO
      - 0.05
      - 0.05
      - 1.0000
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-lto/>`__
    * - LMO
      - 0.11
      - 0.11
      - 1.0000
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-limn2o4/>`__
    * - Li-O2
      - 0.62
      - 0.93
      - 0.6667
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-li-o2/>`__
    * - Li-S
      - 0.15
      - 0.34
      - 0.4412
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-li-sulfur-li-s/>`__
    * - SiB
      - 0.157
      - 0.2
      - 0.7850
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-sodium-ion-sib/>`__
    * - VRFB
      - 0.01676709411659144
      - 0.01676709411659144
      - 1.0000
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-redox-flow-vanadium-stationary/>`__
    * - ORFB
      - 0.016
      - 0.04
      - 0.4000
+     - —
    * - HRFB
      - 0.015
      - 0.04
      - 0.3750
+     - —
    * - LEAD-ACID
      - 0.03
      - 0.035
      - 0.8571
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-lead-acid-rechargeable-stationary/>`__
    * - ASSB-polymer
      - 0.1708073285047623
      - 0.1708073285047623
      - 1.0000
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-all-solid-state-battery-polymer/>`__
    * - ASSB-oxidic
      - 0.3161617539697314
      - 0.3161617539697314
      - 1.0000
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-all-solid-state-battery-oxidic/>`__
    * - ASSB-sulfidic
      - 0.3166231748883239
      - 0.3166231748883239
      - 1.0000
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-capacity-all-solid-state-battery-sulfidic/>`__

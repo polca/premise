@@ -1,11 +1,16 @@
 Reference
 ===========
 
-Detailed catalogues, mappings, schemas and the public Python interface.
+Look up a specific setting, supported input or file format here. For a
+step-by-step workflow, use the :doc:`/user_guide/index`; for explanations of
+how inventories change, use :doc:`/methodology/index`. Start with
+:doc:`glossary` if a technical term is unfamiliar.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :titlesonly:
 
+   /reference/glossary
    /reference/compatibility
    /reference/models
    /reference/coverage

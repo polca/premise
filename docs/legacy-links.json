@@ -1132,7 +1132,7 @@
   {
     "old": "faq.html#i-use-a-different-iam-than-remind-image-message-gcam-or-tiam-ucl-can-i-still-use-premise",
     "new": "user_guide/troubleshooting.html",
-    "title": "I use a different IAM than REMIND, IMAGE, MESSAGE, GCAM or TIAM-UCL \u2026 Can I still use premise?"
+    "title": "I use a different IAM than REMIND, IMAGE, MESSAGE, GCAM or TIAM-UCL … Can I still use premise?"
   },
   {
     "old": "faq.html#what-columns-are-necessary-in-the-iam-files",
@@ -1326,108 +1326,108 @@
   },
   {
     "old": "development/performance-history.html#runtime-and-resident-memory-optimization",
-    "new": "development/performance-history.html#runtime-and-resident-memory-optimization",
+    "new": "user_guide/inventories.html",
     "title": "Runtime and resident-memory optimization",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#reproducible-benchmark",
-    "new": "development/performance-history.html#reproducible-benchmark",
+    "new": "user_guide/inventories.html",
     "title": "Reproducible benchmark",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#validation-certification-acceptance",
-    "new": "development/performance-history.html#validation-certification-acceptance",
+    "new": "user_guide/inventories.html",
     "title": "Validation certification acceptance",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#results",
-    "new": "development/performance-history.html#results",
+    "new": "user_guide/inventories.html",
     "title": "Results",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#compact-inventorystore-pass",
-    "new": "development/performance-history.html#compact-inventorystore-pass",
+    "new": "user_guide/inventories.html",
     "title": "Compact InventoryStore pass",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#earlier-mutable-inventory-optimization-pass",
-    "new": "development/performance-history.html#earlier-mutable-inventory-optimization-pass",
+    "new": "user_guide/inventories.html",
     "title": "Earlier mutable-inventory optimization pass",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#output-equivalence-certification",
-    "new": "development/performance-history.html#output-equivalence-certification",
+    "new": "user_guide/inventories.html",
     "title": "Output-equivalence certification",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#profile-findings",
-    "new": "development/performance-history.html#profile-findings",
+    "new": "user_guide/inventories.html",
     "title": "Profile findings",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#implemented-changes",
-    "new": "development/performance-history.html#implemented-changes",
+    "new": "user_guide/inventories.html",
     "title": "Implemented changes",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#versioned-source-cache",
-    "new": "development/performance-history.html#versioned-source-cache",
+    "new": "user_guide/inventories.html",
     "title": "Versioned source cache",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#one-pass-scenario-compaction",
-    "new": "development/performance-history.html#one-pass-scenario-compaction",
+    "new": "user_guide/inventories.html",
     "title": "One-pass scenario compaction",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#indexed-metals-matching",
-    "new": "development/performance-history.html#indexed-metals-matching",
+    "new": "user_guide/inventories.html",
     "title": "Indexed metals matching",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#safer-activity-map-prefiltering",
-    "new": "development/performance-history.html#safer-activity-map-prefiltering",
+    "new": "user_guide/inventories.html",
     "title": "Safer activity-map prefiltering",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#experiments-deliberately-not-retained",
-    "new": "development/performance-history.html#experiments-deliberately-not-retained",
+    "new": "user_guide/inventories.html",
     "title": "Experiments deliberately not retained",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/performance-history.html#next-architectural-steps",
-    "new": "development/performance-history.html#next-architectural-steps",
+    "new": "user_guide/inventories.html",
     "title": "Next architectural steps",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/architecture.html#inventory-and-scenario-architecture",
@@ -1438,59 +1438,59 @@
   },
   {
     "old": "development/documentation-audit.html#documentation-migration-and-technical-audit",
-    "new": "development/documentation-audit.html#documentation-migration-and-technical-audit",
+    "new": "development/documentation.html",
     "title": "Documentation migration and technical audit",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/documentation-audit.html#content-migration",
-    "new": "development/documentation-audit.html#content-migration",
+    "new": "development/documentation.html",
     "title": "Content migration",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/documentation-audit.html#confirmed-and-corrected",
-    "new": "development/documentation-audit.html#confirmed-and-corrected",
+    "new": "development/documentation.html",
     "title": "Confirmed and corrected",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/documentation-audit.html#unresolved-implementation-and-source-questions",
-    "new": "development/documentation-audit.html#unresolved-implementation-and-source-questions",
+    "new": "development/documentation.html",
     "title": "Unresolved implementation and source questions",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/documentation-audit.html#verification",
-    "new": "development/documentation-audit.html#verification",
+    "new": "development/documentation.html",
     "title": "Verification",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/documentation-audit.html#example-execution-status",
-    "new": "development/documentation-audit.html#example-execution-status",
+    "new": "development/documentation.html",
     "title": "Example execution status",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/documentation-audit.html#external-link-scan",
-    "new": "development/documentation-audit.html#external-link-scan",
+    "new": "development/documentation.html",
     "title": "External-link scan",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/documentation-audit.html#acceptance-checks-completed",
-    "new": "development/documentation-audit.html#acceptance-checks-completed",
+    "new": "development/documentation.html",
     "title": "Acceptance checks completed",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/releases-2-5.html#premise-2-5-release-and-migration-guide",
@@ -1648,45 +1648,45 @@
   },
   {
     "old": "development/consequential-validation-history.html#consequential-marginal-mix-validation",
-    "new": "development/consequential-validation-history.html#consequential-marginal-mix-validation",
+    "new": "methodology/system-models.html",
     "title": "Consequential marginal-mix validation",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/consequential-validation-history.html#scope",
-    "new": "development/consequential-validation-history.html#scope",
+    "new": "methodology/system-models.html",
     "title": "Scope",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/consequential-validation-history.html#results",
-    "new": "development/consequential-validation-history.html#results",
+    "new": "methodology/system-models.html",
     "title": "Results",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/consequential-validation-history.html#checks",
-    "new": "development/consequential-validation-history.html#checks",
+    "new": "methodology/system-models.html",
     "title": "Checks",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/consequential-validation-history.html#interpretation",
-    "new": "development/consequential-validation-history.html#interpretation",
+    "new": "methodology/system-models.html",
     "title": "Interpretation",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/consequential-validation-history.html#reproduce",
-    "new": "development/consequential-validation-history.html#reproduce",
+    "new": "methodology/system-models.html",
     "title": "Reproduce",
     "generation": 2,
-    "compatibility_page": false
+    "compatibility_page": true
   },
   {
     "old": "development/iam-mapping.html#supporting-another-iam-model",
@@ -2446,7 +2446,7 @@
   },
   {
     "old": "methodology/electricity/generation.html#source-inventories-power-plants-with-ccs",
-    "new": "methodology/electricity/generation.html#source-inventories-power-plants-with-ccs",
+    "new": "methodology/electricity/generation.html#power-plants-with-ccs",
     "title": "Source inventories: power plants with ccs",
     "generation": 2,
     "compatibility_page": false
@@ -2460,21 +2460,21 @@
   },
   {
     "old": "methodology/electricity/generation.html#natural-gas",
-    "new": "methodology/electricity/generation.html#natural-gas",
+    "new": "methodology/fuels/markets.html#natural-gas-source-inventories",
     "title": "Natural gas",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "methodology/electricity/generation.html#source-inventories-geothermal",
-    "new": "methodology/electricity/generation.html#source-inventories-geothermal",
+    "new": "methodology/heat.html#geothermal-heat-inventories",
     "title": "Source inventories: geothermal",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "methodology/electricity/generation.html#geothermal",
-    "new": "methodology/electricity/generation.html#geothermal",
+    "new": "methodology/heat.html#geothermal-heat-inventories",
     "title": "Geothermal",
     "generation": 2,
     "compatibility_page": false
@@ -2810,140 +2810,140 @@
   },
   {
     "old": "user_guide/troubleshooting.html#ecoinvent",
-    "new": "user_guide/troubleshooting.html#ecoinvent",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
     "title": "Ecoinvent",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#what-is-ecoinvent",
-    "new": "user_guide/troubleshooting.html#what-is-ecoinvent",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
     "title": "What is ecoinvent?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#what-is-the-ecoinvent-version-used-in-premise",
-    "new": "user_guide/troubleshooting.html#what-is-the-ecoinvent-version-used-in-premise",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
     "title": "What is the ecoinvent version used in premise?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#how-does-premise-use-ecoinvent",
-    "new": "user_guide/troubleshooting.html#how-does-premise-use-ecoinvent",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
     "title": "How does premise use ecoinvent?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#can-i-share-the-modified-ecoinvent-database",
-    "new": "user_guide/troubleshooting.html#can-i-share-the-modified-ecoinvent-database",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
     "title": "Can I share the modified ecoinvent database?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#can-i-share-results-obtained-with-the-modified-ecoinvent-database",
-    "new": "user_guide/troubleshooting.html#can-i-share-results-obtained-with-the-modified-ecoinvent-database",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
     "title": "Can I share results obtained with the modified ecoinvent database?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#can-i-use-the-modified-ecoinvent-database-for-commercial-purposes",
-    "new": "user_guide/troubleshooting.html#can-i-use-the-modified-ecoinvent-database-for-commercial-purposes",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
     "title": "Can I use the modified ecoinvent database for commercial purposes?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#how-can-i-share-modified-ecoinvent-databases",
-    "new": "user_guide/troubleshooting.html#how-can-i-share-modified-ecoinvent-databases",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
     "title": "How can I share modified ecoinvent databases?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#iam-models",
-    "new": "user_guide/troubleshooting.html#iam-models",
+    "new": "user_guide/troubleshooting.html#custom-models-and-variables",
     "title": "IAM models",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#i-use-a-different-iam-than-remind-image-message-gcam-or-tiam-ucl-can-i-still-use-premise",
-    "new": "user_guide/troubleshooting.html#i-use-a-different-iam-than-remind-image-message-gcam-or-tiam-ucl-can-i-still-use-premise",
-    "title": "I use a different IAM than REMIND, IMAGE, MESSAGE, GCAM or TIAM-UCL \u2026 Can I still use premise?",
+    "new": "user_guide/troubleshooting.html#scenario-files-and-coverage",
+    "title": "I use a different IAM than REMIND, IMAGE, MESSAGE, GCAM or TIAM-UCL … Can I still use premise?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#what-columns-are-necessary-in-the-iam-files",
-    "new": "user_guide/troubleshooting.html#what-columns-are-necessary-in-the-iam-files",
+    "new": "user_guide/troubleshooting.html#scenario-files-and-coverage",
     "title": "What columns are necessary in the IAM files?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#how-big-an-effort-would-it-be-to-link-to-a-new-iam-as-simple-as-an-extension-of-the-mapping-files-what-difficulties-can-be-anticipated",
-    "new": "user_guide/troubleshooting.html#how-big-an-effort-would-it-be-to-link-to-a-new-iam-as-simple-as-an-extension-of-the-mapping-files-what-difficulties-can-be-anticipated",
+    "new": "user_guide/troubleshooting.html#scenario-files-and-coverage",
     "title": "How big an effort would it be to link to a new IAM? As simple as an extension of the mapping files? What difficulties can be anticipated?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#iam-data-collection",
-    "new": "user_guide/troubleshooting.html#iam-data-collection",
+    "new": "user_guide/troubleshooting.html#custom-models-and-variables",
     "title": "IAM data collection",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#how-was-the-list-of-variables-in-the-mapping-files-established",
-    "new": "user_guide/troubleshooting.html#how-was-the-list-of-variables-in-the-mapping-files-established",
+    "new": "user_guide/troubleshooting.html#custom-models-and-variables",
     "title": "How was the list of variables in the mapping files established?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#is-it-possible-to-expand-this-list-e-g-agriculture-crops-for-energy",
-    "new": "user_guide/troubleshooting.html#is-it-possible-to-expand-this-list-e-g-agriculture-crops-for-energy",
+    "new": "user_guide/troubleshooting.html#custom-models-and-variables",
     "title": "Is it possible to expand this list? (e.g. agriculture crops for energy)",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#is-the-unit-and-the-description-of-these-parameters-documented-or-are-they-necessarily-the-same-as-the-ones-of-the-ecoinvent-datasets-they-refer-to",
-    "new": "user_guide/troubleshooting.html#is-the-unit-and-the-description-of-these-parameters-documented-or-are-they-necessarily-the-same-as-the-ones-of-the-ecoinvent-datasets-they-refer-to",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
     "title": "Is the unit and the description of these parameters documented? Or are they necessarily the same as the ones of the ecoinvent datasets they refer to?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#what-if-a-variable-in-premise-corresponds-to-several-variables-in-the-iam",
-    "new": "user_guide/troubleshooting.html#what-if-a-variable-in-premise-corresponds-to-several-variables-in-the-iam",
+    "new": "user_guide/troubleshooting.html#custom-models-and-variables",
     "title": "What if a variable in premise corresponds to several variables in the IAM?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#regionalization",
-    "new": "user_guide/troubleshooting.html#regionalization",
+    "new": "user_guide/troubleshooting.html#locations-and-heat-markets",
     "title": "Regionalization",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#are-datasets-regionalized-on-the-basis-of-the-iam-scenario-only-or-does-it-come-from-other-sources",
-    "new": "user_guide/troubleshooting.html#are-datasets-regionalized-on-the-basis-of-the-iam-scenario-only-or-does-it-come-from-other-sources",
+    "new": "user_guide/troubleshooting.html#locations-and-heat-markets",
     "title": "Are datasets regionalized on the basis of the IAM scenario only, or does it come from other sources?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#does-premise-generate-more-regionalised-datasets-than-in-original-ei3-x-database",
-    "new": "user_guide/troubleshooting.html#does-premise-generate-more-regionalised-datasets-than-in-original-ei3-x-database",
+    "new": "user_guide/troubleshooting.html#scenario-files-and-coverage",
     "title": "Does premise generate more regionalised datasets than in original EI3.x database?",
     "generation": 2,
     "compatibility_page": false
@@ -2957,105 +2957,105 @@
   },
   {
     "old": "user_guide/troubleshooting.html#heat",
-    "new": "user_guide/troubleshooting.html#heat",
+    "new": "user_guide/troubleshooting.html#locations-and-heat-markets",
     "title": "Heat",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#does-the-secondary-heat-market-supply-both-buildings-and-industry",
-    "new": "user_guide/troubleshooting.html#does-the-secondary-heat-market-supply-both-buildings-and-industry",
+    "new": "user_guide/troubleshooting.html#locations-and-heat-markets",
     "title": "Does the secondary heat market supply both buildings and industry?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#why-are-legacy-ecoinvent-heat-markets-still-present-after-the-update",
-    "new": "user_guide/troubleshooting.html#why-are-legacy-ecoinvent-heat-markets-still-present-after-the-update",
+    "new": "user_guide/troubleshooting.html#locations-and-heat-markets",
     "title": "Why are legacy ecoinvent heat markets still present after the update?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#why-can-several-exchanges-point-to-the-same-new-heat-market",
-    "new": "user_guide/troubleshooting.html#why-can-several-exchanges-point-to-the-same-new-heat-market",
+    "new": "user_guide/troubleshooting.html#locations-and-heat-markets",
     "title": "Why can several exchanges point to the same new heat market?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#are-all-datasets-named-market-for-heat-replaced",
-    "new": "user_guide/troubleshooting.html#are-all-datasets-named-market-for-heat-replaced",
+    "new": "user_guide/troubleshooting.html#locations-and-heat-markets",
     "title": "Are all datasets named market for heat replaced?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#consistency-with-climate-targets",
-    "new": "user_guide/troubleshooting.html#consistency-with-climate-targets",
+    "new": "user_guide/troubleshooting.html#unexpected-impact-results",
     "title": "Consistency with climate targets",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#how-do-we-ensure-consistency-between-iam-scenario-and-plca-results-in-terms-of-global-warming-temperature-increase",
-    "new": "user_guide/troubleshooting.html#how-do-we-ensure-consistency-between-iam-scenario-and-plca-results-in-terms-of-global-warming-temperature-increase",
+    "new": "user_guide/troubleshooting.html#unexpected-impact-results",
     "title": "How do we ensure consistency between IAM scenario and pLCA results (in terms of global warming / temperature increase)?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#additional-inventories",
-    "new": "user_guide/troubleshooting.html#additional-inventories",
+    "new": "user_guide/troubleshooting.html#custom-models-and-variables",
     "title": "Additional inventories",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#can-additional-inventories-be-modelled-with-parameters-if-so-how-are-they-used",
-    "new": "user_guide/troubleshooting.html#can-additional-inventories-be-modelled-with-parameters-if-so-how-are-they-used",
+    "new": "user_guide/troubleshooting.html#custom-models-and-variables",
     "title": "Can additional inventories be modelled with parameters? If so, how are they used?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#can-some-parameters-of-the-additional-inventories-be-made-scenario-and-time-dependant",
-    "new": "user_guide/troubleshooting.html#can-some-parameters-of-the-additional-inventories-be-made-scenario-and-time-dependant",
+    "new": "user_guide/troubleshooting.html#custom-models-and-variables",
     "title": "Can some parameters of the additional inventories be made scenario- and time-dependant?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#can-premise-manage-an-efficiency-evolution-for-the-additional-inventories",
-    "new": "user_guide/troubleshooting.html#can-premise-manage-an-efficiency-evolution-for-the-additional-inventories",
+    "new": "user_guide/troubleshooting.html#efficiency-changes",
     "title": "Can premise manage an efficiency evolution for the additional inventories?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#efficiency-adjustments",
-    "new": "user_guide/troubleshooting.html#efficiency-adjustments",
+    "new": "user_guide/troubleshooting.html#efficiency-changes",
     "title": "Efficiency adjustments",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#is-the-calculated-scaling-factor-ratio-of-efficiencies-in-year-20xx-vs-2020-applied-to-all-inputs-of-the-transformed-dataset-or-only-to-the-energy-feedstock-input",
-    "new": "user_guide/troubleshooting.html#is-the-calculated-scaling-factor-ratio-of-efficiencies-in-year-20xx-vs-2020-applied-to-all-inputs-of-the-transformed-dataset-or-only-to-the-energy-feedstock-input",
+    "new": "user_guide/troubleshooting.html#efficiency-changes",
     "title": "Is the calculated scaling factor (ratio of efficiencies in year 20XX vs 2020) applied to all inputs of the transformed dataset, or only to the energy feedstock input?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#what-happens-if-the-iam-does-not-provide-efficiencies-for-certain-processes",
-    "new": "user_guide/troubleshooting.html#what-happens-if-the-iam-does-not-provide-efficiencies-for-certain-processes",
+    "new": "user_guide/troubleshooting.html#efficiency-changes",
     "title": "What happens if the IAM does not provide efficiencies for certain processes?",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/troubleshooting.html#why-use-external-data-sources-for-pv-efficiency-rather-than-the-output-of-iam",
-    "new": "user_guide/troubleshooting.html#why-use-external-data-sources-for-pv-efficiency-rather-than-the-output-of-iam",
+    "new": "user_guide/troubleshooting.html#efficiency-changes",
     "title": "Why use external data sources for PV efficiency, rather than the output of IAM?",
     "generation": 2,
     "compatibility_page": false
@@ -3097,14 +3097,14 @@
   },
   {
     "old": "user_guide/inventories.html#compact-storage-and-checkpoints",
-    "new": "user_guide/inventories.html#compact-storage-and-checkpoints",
+    "new": "development/architecture.html#compact-storage-and-checkpoints",
     "title": "Compact storage and checkpoints",
     "generation": 2,
     "compatibility_page": false
   },
   {
     "old": "user_guide/inventories.html#automatic-scenario-cache-expiry",
-    "new": "user_guide/inventories.html#automatic-scenario-cache-expiry",
+    "new": "development/architecture.html#automatic-scenario-cache-expiry",
     "title": "Automatic scenario cache expiry",
     "generation": 2,
     "compatibility_page": false
@@ -3160,7 +3160,7 @@
   },
   {
     "old": "user_guide/external-scenarios.html#purpose",
-    "new": "user_guide/external-scenarios.html#purpose",
+    "new": "user_guide/external-scenarios.html#using-user-generated-scenarios",
     "title": "Purpose",
     "generation": 2,
     "compatibility_page": false
@@ -3216,7 +3216,7 @@
   },
   {
     "old": "user_guide/export/brightway.html#regular-brightway2-database",
-    "new": "user_guide/export/brightway.html#regular-brightway2-database",
+    "new": "user_guide/export/brightway.html#write-the-databases",
     "title": "Regular brightway2 database",
     "generation": 2,
     "compatibility_page": false
@@ -3454,7 +3454,7 @@
   },
   {
     "old": "reference/models.html#quick-reference",
-    "new": "reference/models.html#quick-reference",
+    "new": "reference/models.html#choosing-an-iam",
     "title": "Quick Reference",
     "generation": 2,
     "compatibility_page": false
@@ -3611,6 +3611,388 @@
     "new": "getting_started/overview.html#reproducibility",
     "title": "Reproducibility",
     "generation": 2,
+    "compatibility_page": false
+  },
+  {
+    "old": "development/documentation-audit.html",
+    "new": "development/documentation.html",
+    "compatibility_page": true
+  },
+  {
+    "old": "development/scientific-update-backlog.html",
+    "new": "reference/source-review.html",
+    "compatibility_page": true
+  },
+  {
+    "old": "development/performance-history.html",
+    "new": "user_guide/inventories.html",
+    "compatibility_page": true
+  },
+  {
+    "old": "development/consequential-validation-history.html",
+    "new": "methodology/system-models.html",
+    "compatibility_page": true
+  },
+  {
+    "old": "development/passenger-car-refresh-2026.html",
+    "new": "methodology/transport/passenger-cars.html",
+    "compatibility_page": true
+  },
+  {
+    "old": "development/regional-truck-refresh-2026.html",
+    "new": "methodology/transport/trucks.html",
+    "compatibility_page": true
+  },
+  {
+    "old": "development/physical-inventory-probing-plan.html",
+    "new": "user_guide/physical-audits.html",
+    "compatibility_page": true
+  },
+  {
+    "old": "methodology/transport/campaign-closeout.html",
+    "new": "methodology/transport/overview.html",
+    "compatibility_page": true
+  },
+  {
+    "old": "methodology/batteries.html#battery-mass-uncertainty-over-time",
+    "new": "methodology/battery-inventories.html#battery-mass-uncertainty-over-time",
+    "title": "Battery mass uncertainty over time",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/batteries.html#capacity-and-remaining-coverage",
+    "new": "methodology/battery-inventories.html#capacity-and-remaining-coverage",
+    "title": "Capacity and remaining coverage",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/batteries.html#lfp-curated-reference",
+    "new": "methodology/battery-inventories.html#lfp-curated-reference",
+    "title": "Lfp curated reference",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/batteries.html#lfp-manufacturing-reference",
+    "new": "methodology/battery-inventories.html#lfp-manufacturing-reference",
+    "title": "Lfp manufacturing reference",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/batteries.html#li-o2-capacity-route-auxiliaries",
+    "new": "methodology/battery-inventories.html#li-o2-capacity-route-auxiliaries",
+    "title": "Li o2 capacity route auxiliaries",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/batteries.html#nmc955-cell-to-pack-capacity-allocation",
+    "new": "methodology/battery-inventories.html#nmc955-cell-to-pack-capacity-allocation",
+    "title": "Nmc955 cell to pack capacity allocation",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/batteries.html#nmc955-dry-anode-composition",
+    "new": "methodology/battery-inventories.html#dry-anode-composition",
+    "title": "Nmc955 dry anode composition",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/batteries.html#source-provenance-and-currency",
+    "new": "methodology/battery-inventories.html",
+    "title": "Source provenance and currency",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/batteries.html#sources-and-data-dates",
+    "new": "methodology/battery-inventories.html#sources-and-data-dates",
+    "title": "Sources and data dates",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#argonne-anl-cse-24-1-2024",
+    "new": "methodology/battery-inventories.html",
+    "title": "Argonne anl cse 24 1 2024",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#configured-density-targets",
+    "new": "methodology/battery-inventories.html#configured-density-targets",
+    "title": "Configured density targets",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#lithium-hydroxide-hydration-in-custom-nmc811-oxide",
+    "new": "methodology/battery-inventories.html#lithium-hydroxide-hydration-in-custom-nmc811-oxide",
+    "title": "Lithium hydroxide hydration in custom nmc811 oxide",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#nca-precursor-and-oxide-supply",
+    "new": "methodology/battery-inventories.html#nca-precursor-and-oxide-supply",
+    "title": "Nca precursor and oxide supply",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#nmc955-dry-anode-and-collector-boundary",
+    "new": "methodology/battery-inventories.html#nmc955-dry-anode-and-collector-boundary",
+    "title": "Nmc955 dry anode and collector boundary",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#nmc955-factory-energy-reference",
+    "new": "methodology/battery-inventories.html#nmc955-factory-energy-reference",
+    "title": "Nmc955 factory energy reference",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#nmc955-manufacturing-yield-and-rejects",
+    "new": "methodology/battery-inventories.html#nmc955-manufacturing-yield-and-rejects",
+    "title": "Nmc955 manufacturing yield and rejects",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#nmc955-reference-capacity-and-fixed-hardware",
+    "new": "methodology/battery-inventories.html#nmc955-reference-capacity-and-fixed-hardware",
+    "title": "Nmc955 reference capacity and fixed hardware",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-mobile.html#wolf-et-al-2023",
+    "new": "methodology/battery-inventories.html",
+    "title": "Wolf et al 2023",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#additional-battery-components",
+    "new": "methodology/battery-components.html#additional-battery-components",
+    "title": "Additional battery components",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#additional-fitted-monitoring-board-packages",
+    "new": "methodology/battery-components.html#additional-fitted-monitoring-board-packages",
+    "title": "Additional fitted monitoring board packages",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#battery-control-connector-material-reference",
+    "new": "methodology/battery-components.html#battery-control-connector-material-reference",
+    "title": "Battery control connector material reference",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#battery-control-resistor-supplies",
+    "new": "methodology/battery-components.html#battery-control-resistor-supplies",
+    "title": "Battery control resistor supplies",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#battery-monitor-capacitor-families",
+    "new": "methodology/battery-components.html#battery-monitor-capacitor-families",
+    "title": "Battery monitor capacitor families",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#central-control-fasteners-and-mass",
+    "new": "methodology/battery-components.html#central-control-fasteners-and-mass",
+    "title": "Central control fasteners and mass",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#configured-density-targets",
+    "new": "methodology/battery-inventories.html#configured-density-targets",
+    "title": "Configured density targets",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#control-package-wafer-allocation",
+    "new": "methodology/battery-components.html#control-package-wafer-allocation",
+    "title": "Control package wafer allocation",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#dry-zinc-chloride-carrier-water-accounting",
+    "new": "methodology/battery-components.html#dry-zinc-chloride-carrier-water-accounting",
+    "title": "Dry zinc chloride carrier water accounting",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#flow-battery-aluminium-end-plate-losses",
+    "new": "methodology/battery-components.html#flow-battery-aluminium-end-plate-losses",
+    "title": "Flow battery aluminium end plate losses",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#ho-tempo-peroxide-carrier-water",
+    "new": "methodology/battery-components.html#ho-tempo-peroxide-carrier-water",
+    "title": "Ho tempo peroxide carrier water",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#li-o2-final-assembly-electricity",
+    "new": "methodology/battery-components.html#li-o2-final-assembly-electricity",
+    "title": "Li o2 final assembly electricity",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#li-o2-module-monitor-manufacturing-reference",
+    "new": "methodology/battery-components.html#li-o2-module-monitor-manufacturing-reference",
+    "title": "Li o2 module monitor manufacturing reference",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#li-s-factory-allocation-per-nominal-capacity",
+    "new": "methodology/battery-components.html#li-s-factory-allocation-per-nominal-capacity",
+    "title": "Li s factory allocation per nominal capacity",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#lithium-foil-internal-manufacturing-return",
+    "new": "methodology/battery-components.html#lithium-foil-internal-manufacturing-return",
+    "title": "Lithium foil internal manufacturing return",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#magnesium-precipitation-land-boundary",
+    "new": "methodology/battery-components.html#magnesium-precipitation-land-boundary",
+    "title": "Magnesium precipitation land boundary",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#magnesium-precursor-wet-feed-water-accounting",
+    "new": "methodology/battery-components.html#magnesium-precursor-wet-feed-water-accounting",
+    "title": "Magnesium precursor wet feed water accounting",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#nickel-on-alumina-catalyst-preparation",
+    "new": "methodology/battery-components.html#nickel-on-alumina-catalyst-preparation",
+    "title": "Nickel on alumina catalyst preparation",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#radiator-and-manifold-aluminium-feed",
+    "new": "methodology/battery-components.html#radiator-and-manifold-aluminium-feed",
+    "title": "Radiator and manifold aluminium feed",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#sixteen-module-detailed-cooling-reference",
+    "new": "methodology/battery-components.html#sixteen-module-detailed-cooling-reference",
+    "title": "Sixteen module detailed cooling reference",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#sixteen-module-monitoring-reference",
+    "new": "methodology/battery-components.html#sixteen-module-monitoring-reference",
+    "title": "Sixteen module monitoring reference",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#standalone-interface-and-embedded-residual-boundaries",
+    "new": "methodology/battery-components.html#standalone-interface-and-embedded-residual-boundaries",
+    "title": "Standalone interface and embedded residual boundaries",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#standalone-li-o2-cooling-supplier",
+    "new": "methodology/battery-components.html#standalone-li-o2-cooling-supplier",
+    "title": "Standalone li o2 cooling supplier",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#tmatempo-oxidation-carrier-water",
+    "new": "methodology/battery-components.html#tmatempo-oxidation-carrier-water",
+    "title": "Tmatempo oxidation carrier water",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/battery-stationary.html#vrfb-controller-materials-and-moulding",
+    "new": "methodology/battery-components.html#vrfb-controller-materials-and-moulding",
+    "title": "Vrfb controller materials and moulding",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/pipeline-coating.html#qualified-pipeline-coating-references",
+    "new": "methodology/fuels/hydrogen.html#hydrogen-pipeline-coatings",
+    "title": "Qualified pipeline coating references",
+    "compatibility_page": true
+  },
+  {
+    "old": "reference/inventories.html#epr-cladding-supply",
+    "new": "methodology/electricity/generation.html#epr-cladding-supply",
+    "title": "Epr cladding supply",
+    "compatibility_page": false
+  },
+  {
+    "old": "reference/inventories.html#qualified-mdea-capture-burden-proxy",
+    "new": "methodology/cdr.html#mdea-capture-reference",
+    "title": "Qualified mdea capture burden proxy",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/hydrogen.html#evangelisti-et-al-2017",
+    "new": "methodology/fuels/hydrogen.html#electrolyser-component-references",
+    "title": "Evangelisti et al 2017",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/fuels/hydrogen.html#supplementary-inventory-tables",
+    "new": "methodology/fuels/hydrogen.html#electrolyser-component-references",
+    "title": "Supplementary inventory tables",
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/external-scenarios.html#on-this-page",
+    "new": "user_guide/external-scenarios.html#using-user-generated-scenarios",
+    "title": "On this page",
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/inventories.html#on-this-page",
+    "new": "user_guide/inventories.html#saved-inventories-and-cache-cleanup",
+    "title": "On this page",
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/physical-audits.html#command-line-and-pytest",
+    "new": "development/validation-internals.html#command-line-and-pytest",
+    "title": "Command line and pytest",
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/physical-audits.html#independent-scientific-contracts",
+    "new": "development/validation-internals.html#independent-scientific-contracts",
+    "title": "Independent scientific contracts",
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/physical-audits.html#run-a-matched-campaign",
+    "new": "development/validation-internals.html#run-a-matched-campaign",
+    "title": "Run a matched campaign",
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/source-databases.html#supplemental-inventory-proxies",
+    "new": "reference/inventory-migration.html#supplemental-inventory-proxies",
+    "title": "Supplemental inventory proxies",
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/troubleshooting.html#how-does-premise-handle-differences-between-iam-and-ecoinvent-regions",
+    "new": "user_guide/troubleshooting.html#database-access-and-sharing",
+    "title": "How does premise handle differences between iam and ecoinvent regions",
+    "compatibility_page": false
+  },
+  {
+    "old": "user_guide/reports.html#verified-report-excerpt",
+    "new": "user_guide/reports.html#read-the-workbook-in-this-order",
+    "title": "Verified report excerpt",
+    "compatibility_page": false
+  },
+  {
+    "old": "methodology/transport/passenger-cars.html#runtime-acceptance",
+    "new": "development/architecture.html#transport-performance-requirements",
+    "title": "Runtime acceptance",
     "compatibility_page": false
   }
 ]

@@ -1,7 +1,6 @@
 Photovoltaics
 ===============
 
-
 .. contents:: On this page
    :local:
    :depth: 1
@@ -17,12 +16,9 @@ The 2026 core is selected for all supported ecoinvent versions and system
 models. Premise applies its migration and consequential mapping data to link
 the inventories to the target database.
 
-Import audits cover ecoinvent 3.8–3.11 cut-off and consequential, and 3.12
-consequential. The 3.8 imports have no unlinked technosphere exchanges but omit
-nine nitric-acid air emissions per import because the flow is unavailable in
-the 3.8 biosphere. The audited 3.9–3.11 and 3.12 consequential imports have no
-unlinked exchanges or ignored biosphere flows. Automatic inventory selection
-for older versions does not imply that their imports have been validated.
+Ecoinvent 3.8 lacks the nitric-acid air flow used by nine source exchanges.
+Those exchanges are omitted when linking to the 3.8 biosphere. This limits
+biosphere coverage for that background version.
 
 .. figure:: /_static/process-diagrams/electricity-photovoltaics.svg
    :class: process-diagram
@@ -32,7 +28,7 @@ for older versions does not imply that their imports have been validated.
 Inputs and applicability
 --------------------------
 
-The IEA report, packaged workbooks, inherited Atlas yields and IRENA weights
+The IEA report, packaged inventory sources, inherited Atlas yields and IRENA weights
 are inputs to preparation of the country inventories. The build imports these
 prepared inventories during initialization. ``ndb.update("electricity")``
 then applies the module-efficiency trajectory and regional electricity-market
@@ -73,6 +69,8 @@ For the country extension, installations are grouped as follows:
      - Combined residential and commercial generation
      - ``electricity, photovoltaic, at plant``
 
+CLIC examples for Switzerland: `combined PV production mix <https://clic.psi.ch/datasets/electricity-production-mix-photovoltaic/>`__. Country-specific records retain their own location and supply mix.
+
 These voltage assignments define the generation boundary. No additional
 transformer inventory or unreported distribution loss is introduced.
 The existing IAM aliases select the residential and commercial datasets.
@@ -102,7 +100,7 @@ Annual yields are assigned in this order:
 
 * Report-country yields take precedence where available.
 * Elsewhere, ground-mounted yields are inherited from the Global Solar Atlas
-  values stored in ``lci-PV.xlsx``. Rooftop and facade yields are,
+  values retained in the legacy PV source. Rooftop and facade yields are,
   respectively, 0.94 and 0.66 times the ground-mounted yield.
 * Missing or zero Atlas values use the generation-weighted mean report yield.
   Dataset comments explicitly identify this fallback.
@@ -129,7 +127,7 @@ installation units per kWh.
 
    The source coefficients use lifetime multiplied by annual yield.
    Although source comments mention 0.7% annual degradation, no additional
-   degradation multiplier is applied. This preserves the workbook's
+   degradation multiplier is applied. This preserves the inventory source's
    numerical convention; whether the reported yield already includes
    lifetime degradation remains to be clarified with the authors.
 
@@ -332,23 +330,8 @@ efficiencies to the 10-30% interval. The update is applied only when the
 projected mean efficiency is higher than the efficiency inferred from the
 existing dataset.
 
-
-The table below provides such an example where a 450 kWp flat-roof installation
-sees its 2020 reference module efficiency improving from 20% to 27% by 2050.
-The area of PV panel (and mounting system) and the end-of-life treatment flow
-are multiplied by ``0.20 / 0.27 = 0.74``, all other inputs remaining unchanged.
-
- =================================================================== ========= ======== =======
-  450kWp flat roof installation                                       before    after    unit
- =================================================================== ========= ======== =======
-  photovoltaic flat-roof installation, 450 kWp, single-SI, on roof    1         1        unit
-  inverter production, 500 kW                                         1.5       1.5      unit
-  photovoltaic mounting system, …                                     2300      1704     m2
-  photovoltaic panel, single-SI                                       2500      1852     m2
-  treatment, single-SI PV module                                      30000     22222    kg
-  electricity, low voltage                                            25        25       kWh
-  module efficiency                                                   20%       27%      %
- =================================================================== ========= ======== =======
+See :ref:`pv-worked-examples` for a numerical module-area update and a
+separate example of converting electricity shares into installation inputs.
 
 Markets and downstream links
 ------------------------------
@@ -368,15 +351,96 @@ assumptions, not IAM projections. The degradation convention and source
 geographies below must be retained when interpreting comparisons. The metals
 update preserves the documented silicon-cell material inputs.
 
+.. _pv-worked-examples:
+
 Worked example and checks
 ---------------------------
 
-The installation-input calculation below illustrates electricity-share
-weighting. For scenario checks, compare capacity and module area before and
-after the update: area-dependent mounting, cleaning and recycling should
-follow the area adjustment, while capacity-dependent equipment stays fixed.
-For an impact comparison, use the same reference system, yield, lifetime
-and background database before attributing a difference to module efficiency.
+Converting electricity shares into installation inputs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Suppose a mix supplies 20% of its electricity from 10 kWp installations with
+an annual yield of 1,000 kWh/kWp, and 80% from 250 kWp installations with a
+yield of 1,200 kWh/kWp. Use the documented 30-year lifetime. These shares and
+yields illustrate the calculation; they are not a national mix.
+
+.. list-table:: Installation purchases per 1 kWh of the mixed electricity supply
+   :header-rows: 1
+   :widths: 25 25 20 30
+
+   * - Installation
+     - Lifetime output
+     - Electricity share
+     - Installation input
+   * - 10 kWp
+     - 10 × 1,000 × 30 = 300,000 kWh
+     - 0.20
+     - 0.20 / 300,000 = 6.666667 × 10\ :sup:`−7` unit
+   * - 250 kWp
+     - 250 × 1,200 × 30 = 9,000,000 kWh
+     - 0.80
+     - 0.80 / 9,000,000 = 8.888889 × 10\ :sup:`−8` unit
+
+Multiplying each installation input by its lifetime output recovers 0.2 and
+0.8 kWh, for a total of 1 kWh. Installation counts do not sum to one: the
+weights describe electricity supplied, not equal-sized pieces of equipment.
+
+Changing module area while keeping capacity fixed
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now consider an illustrative **450 kWp** single-technology installation.
+At 20% module efficiency and 1 kW/m² reference irradiance, its module area is
+``450 / 0.20 = 2,250 m²``. Suppose the selected future mean efficiency is 27%.
+The factor is ``0.20 / 0.27 = 0.740741``, giving
+``2,250 × 0.740741 ≈ 1,666.667 m²``. Capacity remains 450 kWp.
+
+The following example uses the capacity-metadata route described above.
+Mounting area and module-treatment inputs scale with module area; the
+inverter and assembly electricity retain their capacity-based quantities.
+
+.. list-table:: Illustrative inputs for one 450 kWp installation
+   :header-rows: 1
+   :widths: 45 20 20 15
+
+   * - Exchange or property
+     - Before
+     - After
+     - Unit
+   * - Installation production
+     - 1
+     - 1
+     - unit
+   * - Inverter purchase
+     - 1.5
+     - 1.5
+     - unit
+   * - Mounting system
+     - 2,300
+     - 1,703.704
+     - m²
+   * - PV modules
+     - 2,250
+     - 1,666.667
+     - m²
+   * - Module-treatment input magnitude
+     - 30,000
+     - 22,222.222
+     - kg
+   * - Assembly electricity
+     - 25
+     - 25
+     - kWh
+   * - Module efficiency
+     - 20
+     - 27
+     - %
+
+The treatment row shows a magnitude; retain the source exchange's sign.
+Check capacity and total module area together, rather than inferring
+module efficiency from mounting area. Cleaning water and its wastewater
+follow the changed module area in the consuming electricity activity.
+For an impact comparison, keep yield, lifetime and the background database
+consistent while testing the module-efficiency assumption.
 
 Sources and inventory details
 -------------------------------
@@ -386,31 +450,31 @@ Inventory preparation
 
 For **ecoinvent 3.12 cut-off**, *premise* imports the inventories from
 `IEA PVPS Task 12, report T12-33:2026 <https://doi.org/10.69766/WJTE1771>`_
-and its accompanying life-cycle inventory workbook.
+and its accompanying published life-cycle inventories, linked on CLIC below.
 Other ecoinvent versions and the consequential system model continue to use
-``lci-PV.xlsx`` inventories, under their current import rules.
+legacy photovoltaic inventories, under their current import rules.
 
-The packaged inventories are:
+The inventory groups and corresponding CLIC reference records are:
 
-.. list-table:: PV inventory files
+.. list-table:: PV inventories on CLIC
    :header-rows: 1
    :widths: 35 65
 
-   * - File
-     - Contents
-   * - ``lci-PV-2026.xlsx``
+   * - CLIC reference records
+     - Inventory group coverage
+   * - `photovoltaic installation construction, 10 kwp, slanted-roof, single-crystalline silicon, panel, mounted, on roof (CH) <https://clic.psi.ch/datasets/photovoltaic-installation-construction-10-kwp-slanted-roof-single-crystalline-silicon-panel-mounted-on-roof-6/>`__
      - 324 activities covering manufacturing, installations, operation and
        end-of-life, including the 45 original electricity functional units.
-   * - ``lci-PV-2026-electricity.xlsx``
+   * - `electricity production, photovoltaic, residential (CH) <https://clic.psi.ch/datasets/electricity-production-photovoltaic-residential-29/>`__; `electricity production, photovoltaic, commercial (CH) <https://clic.psi.ch/datasets/electricity-production-photovoltaic-commercial-29/>`__; `electricity production mix, photovoltaic (CH) <https://clic.psi.ch/datasets/electricity-production-mix-photovoltaic/>`__
      - Residential, commercial and combined electricity datasets for 250
        countries and territories, plus one compatibility activity for the
        existing hydrogen model.
-   * - ``lci-PV-CIGS.xlsx``
+   * - `photovoltaic panel, CIS, at regional storage (RER) <https://clic.psi.ch/datasets/photovoltaic-panel-cis-at-regional-storage/>`__; `photovoltaic panel, CIS, at plant (DE) <https://clic.psi.ch/datasets/photovoltaic-panel-cis-at-plant/>`__
      - Nine activities for the distinct CIS/CIGS supplement
        and its foreground dependencies.
 
-The workbooks are in ``premise/data/additional_inventories/``. Dataset names
-and reference products follow ecoinvent conventions. The ``source`` field
+The linked CLIC pages provide the inventory descriptions and provenance.
+Dataset names and reference products follow ecoinvent conventions. The ``source`` field
 identifies the publication; comments describe the dataset and any linking
 or modelling assumptions. Source-material licence terms remain separate
 from the *premise* software licence: the report specifies CC BY-NC-SA 4.0,
@@ -426,12 +490,18 @@ Emerging technologies for photovoltaic panels are also imported, namely:
 
 They are available in the following locations:
 
- ============================================================================================ ===========
-  Emerging PV technologies                                                                     location
- ============================================================================================ ===========
-  electricity production, photovoltaic, 0.28kWp, GaAs                                          GLO
-  electricity production, photovoltaic, 0.5kWp, perovskite-on-silicon tandem                   RER
- ============================================================================================ ===========
+.. list-table::
+   :header-rows: 1
+
+   * - Emerging PV technologies
+     - location
+     - CLIC dataset page
+   * - electricity production, photovoltaic, 0.28kWp, GaAs
+     - GLO
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-photovoltaic-028kwp-gaas/>`__
+   * - electricity production, photovoltaic, 0.5kWp, perovskite-on-silicon tandem
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/electricity-production-photovoltaic-05kwp-perovskite-on-silicon-tandem/>`__
 
 .. note::
 
@@ -454,8 +524,6 @@ reference, not demonstrated commercial durability or an attrition model.
 The baseline retains polishing after each lift-off. Polishing every ten cycles
 and 90% gold recovery are separate optimization cases and are not silently
 included in this reference.
-
-Substrate-reuse sensitivity was assessed with unchanged recurring process coefficients and background feedback. Numerical LCIA outputs are retained locally.
 
 GaAs fresh-wafer material balance and supporting references
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -496,10 +564,10 @@ The remaining supporting references are retained with their documented limits:
   end-of-life are unresolved. The 0.28 kWp output and electricity denominator
   are unchanged.
 
-Utility-PV transformer pressboard units
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Utility-PV transformer materials
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The 2.5 MW transformer reference in ``lci-PV-2026.xlsx`` specifies 36.96 kg
+The `2.5 MW transformer reference <https://clic.psi.ch/datasets/transformer-production-oil-immersed-25-mw/>`__ specifies 36.96 kg
 pressboard but purchases a hard-fibreboard proxy whose unit is m³. The current
 0.03696 m³ purchase uses an explicit density of 1,000 kg/m³, correcting the
 former 36.96 m³ purchase. The documented density sensitivity of 800–1,040 kg/m³

@@ -1,89 +1,44 @@
 Supplier-selection implementation
 ===================================
 
-This decision tree describes helpers in ``premise/core/transformation.py``.
-The methodological explanation is in :doc:`/methodology/regionalization`;
-these helper functions are not the public integration API.
+These helpers in ``premise/core/transformation.py`` select suppliers when
+relinking an input. For the modelling explanation, read
+:doc:`/methodology/regionalization`. These are internal helpers rather than
+the public inventory API.
+
+.. raw:: html
+
+   <span id="decision-is-the-exchange-in-cache"></span>
 
 .. _decision-tree:
 
-**Decision Tree for Processing Datasets**
+How a supplier is selected
+---------------------------
 
+1. **Reuse a cached match.** ``process_cached_exchange`` copies the saved
+   supplier choice into the new exchange list.
+2. **Find candidates.** ``process_uncached_exchange`` checks the supplier
+   index, then searches the database by activity name and reference product
+   if the index has no candidates. A successful search also updates the index.
+3. **Handle one candidate.** ``handle_single_possible_dataset`` uses the
+   matching supplier and retains the requested product.
+4. **Choose among several candidates.** ``handle_multiple_possible_datasets``
+   first checks the consuming activity's location. Otherwise,
+   ``process_complex_matching_and_allocation`` applies the geographical rules.
+5. **Use the appropriate geographical rule.** ``handle_iam_region`` handles
+   IAM regions. ``handle_global_and_row_scenarios`` handles broad locations.
+   Other locations use geographical matching. Supplier shares depend on the
+   matching and allocation options supplied by the caller.
 
-The process begins with a dataset that requires processing.
-
-
-Decision: Is the Exchange in Cache?
--------------------------------------
-
-- **Yes**
-
-  - Use ``process_cached_exchange``.
-
-    - Retrieve cached data.
-    - Update ``new_exchanges`` with cached data.
-
-- **No**
-
-  - Use ``process_uncached_exchange``.
-
-    **Decision: Number of Possible Datasets**
-
-    - **None**
-
-      - Print a warning and return.
-
-    - **One**
-
-      - Use ``handle_single_possible_dataset``.
-
-        - Use the single matched dataset.
-        - Update ``new_exchanges`` with this dataset information.
-
-    - **Multiple**
-
-      - Use ``handle_multiple_possible_datasets``.
-
-        **Decision: Does Dataset Location Match Possible Dataset Locations?**
-
-        - **Yes**
-
-          - Use the matched dataset location.
-
-        - **No**
-
-          - Use ``process_complex_matching_and_allocation``.
-
-            **Decision: Dataset Location Type**
-
-            - **IAM Region**
-
-              - Use ``handle_iam_region``.
-
-                - Match IAM region to ecoinvent locations.
-                - Update ``new_exchanges`` with IAM region-specific data.
-                - Cache the new entry.
-
-            - **Global ('GLO', 'RoW', 'World')**
-
-              - Use ``handle_global_and_row_scenarios``.
-
-                - Allocate inputs for global datasets.
-                - Update ``new_exchanges`` with global data.
-                - Cache the new entry.
-
-            - **Others**
-
-              - Perform GIS matching.
-
-                - Determine intersecting locations with GIS.
-                - Allocate inputs based on GIS matches.
-                - Update ``new_exchanges`` with GIS-specific data.
-                - Cache the new entry.
+If no candidates are found, the uncached helper prints a diagnostic and
+returns an exchange at the consuming activity's location, retaining its
+quantity and available uncertainty fields. This does not establish a resolved
+supplier; later linking and validation still matter.
 
 Final Steps
 -------------
 
-- If no match is found, use ``handle_default_option``.
-
-  - Integrate new exchanges into the dataset.
+``handle_default_option`` provides the final fallback where the geographical
+matching path calls for it. The caller collects the resulting exchanges and
+checks the relinked inventory. Do not infer that every input has a suitable
+local supplier merely because this helper completed.

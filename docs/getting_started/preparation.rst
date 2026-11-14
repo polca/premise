@@ -57,8 +57,9 @@ displayed. For PowerShell, use:
 
 These variables configure the examples; the constructor does not automatically
 read them. Optionally set ``PREMISE_IAM_DIR`` to the directory containing your
-scenario files. Restart notebook kernels from this terminal to inherit its
-environment variables, or set those variables in the notebook's launch configuration.
+scenario files. Launch Jupyter from this configured terminal so its kernels inherit the
+variables. An already running Jupyter server does not acquire variables set
+later in a different terminal; restart it or set them in its launch configuration.
 
 Run the preflight
 -------------------

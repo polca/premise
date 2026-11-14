@@ -61,11 +61,35 @@ product before attributing changes to synthesis technology.
 Worked example and checks
 ---------------------------
 
-As an illustrative supply-chain check, an unchanged hydrogen input of
-0.2 kg/kg fuel can still have a different impact when its supplier changes.
-Inspect both the synthesis exchange amount and the hydrogen supplier's energy
-inputs. Trace captured carbon through synthesis and final combustion so that
-a capture credit is not mistaken for permanent removal.
+Suppose a hypothetical synthesis activity purchases **0.2 kg hydrogen per
+kg fuel** before and after the update. To isolate the effect of hydrogen
+supply, assume its supplier's impact changes from **10 to 2 kg CO2-eq per
+kg hydrogen**, with all other contributions held fixed. These impact factors
+are illustrative, not results for a published inventory.
+
+.. list-table:: Hydrogen's contribution per kg of synthetic fuel
+   :header-rows: 1
+   :widths: 40 30 30
+
+   * - Quantity
+     - Before
+     - After
+   * - Hydrogen purchase
+     - 0.2 kg
+     - 0.2 kg
+   * - Supplier impact per kg hydrogen
+     - 10 kg CO2-eq
+     - 2 kg CO2-eq
+   * - Hydrogen contribution
+     - 0.2 × 10 = 2 kg CO2-eq
+     - 0.2 × 2 = 0.4 kg CO2-eq
+
+The difference is **1.6 kg CO2-eq per kg fuel** in this contribution, despite
+no change in the synthesis hydrogen amount. This is an upstream supplier
+change, not a direct synthesis-efficiency improvement or the fuel's total
+footprint. Inspect the actual supplier and use the same LCIA method when
+making this comparison. Trace captured carbon through synthesis and final
+combustion separately; using captured carbon in fuel is not permanent storage.
 
 Sources and inventory details
 -------------------------------
@@ -90,44 +114,152 @@ In their default configuration, these fuels use hydrogen from electrolysis and C
 from direct air capture (DAC). However, *premise* builds different configurations
 (i.e., CO2 and hydrogen sources) for these fuels, for each IAM region:
 
- ============================================================================================================================================================================ ================== =============================
-  Fuel production dataset                                                                                                                                                      location           source
- ============================================================================================================================================================================ ================== =============================
-  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, at fuelling station                                                             all IAM regions    van der Giesen et al. 2014
-  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, with CCS, at fuelling station                                                   all IAM regions    van der Giesen et al. 2014
-  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, at fuelling station                                                                  all IAM regions    van der Giesen et al. 2014
-  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, at fuelling station                                                             all IAM regions    van der Giesen et al. 2014
-  Diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, at fuelling station                                                   all IAM regions    van der Giesen et al. 2014
-  Diesel production, synthetic, from methanol, hydrogen from coal gasification, at fuelling station                                                                            all IAM regions    Hank et al, 2019
-  Diesel production, synthetic, from methanol, hydrogen from coal gasification, with CCS, at fuelling station                                                                  all IAM regions    Hank et al, 2019
-  Diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, at fuelling station                                                          all IAM regions    Hank et al, 2019
-  Diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station                                                                   all IAM regions    Hank et al, 2019
-  Gasoline production, synthetic, from methanol, hydrogen from coal gasification, at fuelling station                                                                          all IAM regions    Hank et al, 2019
-  Gasoline production, synthetic, from methanol, hydrogen from coal gasification, with CCS, at fuelling station                                                                all IAM regions    Hank et al, 2019
-  Gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, at fuelling station                                                        all IAM regions    Hank et al, 2019
-  Gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station                                                                 all IAM regions    Hank et al, 2019
-  Kerosene production, from methanol, hydrogen from coal gasification                                                                                                          all IAM regions    Hank et al, 2019
-  Kerosene production, from methanol, hydrogen from electrolysis, CO2 from cement plant                                                                                        all IAM regions    Hank et al, 2019
-  Kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC                                                                                                 all IAM regions    Hank et al, 2019
-  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification                                                                                     all IAM regions    van der Giesen et al. 2014
-  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS                                                                           all IAM regions    van der Giesen et al. 2014
-  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis                                                                                          all IAM regions    van der Giesen et al. 2014
-  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification                                                                                     all IAM regions    van der Giesen et al. 2014
-  Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS                                                                           all IAM regions    van der Giesen et al. 2014
-  Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from coal gasification                                                                              all IAM regions    van der Giesen et al. 2014
-  Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from electrolysis                                                                                   all IAM regions    van der Giesen et al. 2014
-  Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from wood gasification                                                                              all IAM regions    van der Giesen et al. 2014
-  Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS                                                                    all IAM regions    van der Giesen et al. 2014
-  Methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station                                                                                            all IAM regions    Zhang et al, 2019
-  Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat    all IAM regions    Zhang et al, 2019
-  Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using waste heat), at fuelling station, using waste heat            all IAM regions    Zhang et al, 2019
-  Methane, synthetic, gaseous, 5 bar, from electrochemical methanation, at fuelling station                                                                                    all IAM regions    Zhang et al, 2019
-  Naphtha production, synthetic, Fischer Tropsch process, hydrogen from coal gasification                                                                                      all IAM regions    van der Giesen et al. 2014
-  Naphtha production, synthetic, Fischer Tropsch process, hydrogen from electrolysis                                                                                           all IAM regions    van der Giesen et al. 2014
-  Naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification                                                                                      all IAM regions    van der Giesen et al. 2014
-  Naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS                                                                            all IAM regions    van der Giesen et al. 2014
-  Liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station                                                  all IAM regions    Hank et al, 2019
- ============================================================================================================================================================================ ================== =============================
+The CLIC column links the published allocation variants of each source
+route. IAM-region variants are created by Premise.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Fuel production dataset
+     - location
+     - source
+     - CLIC dataset page
+   * - Diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, at fuelling station
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-coal-gasification-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-coal-gasification-energy-allocation-at-fuelling-station/>`__
+   * - Diesel production, synthetic, from Fischer Tropsch process, hydrogen from coal gasification, with CCS, at fuelling station
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-coal-gasification-with-ccs-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-coal-gasification-with-ccs-energy-allocation-at-fuelling-station/>`__
+   * - Diesel production, synthetic, from Fischer Tropsch process, hydrogen from electrolysis, at fuelling station
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-electrolysis-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-electrolysis-energy-allocation-at-fuelling-station/>`__
+   * - Diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, at fuelling station
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-wood-gasification-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-wood-gasification-energy-allocation-at-fuelling-station/>`__
+   * - Diesel production, synthetic, from Fischer Tropsch process, hydrogen from wood gasification, with CCS, at fuelling station
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-wood-gasification-with-ccs-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-wood-gasification-with-ccs-energy-allocation-at-fuelling-station/>`__
+   * - Diesel production, synthetic, from methanol, hydrogen from coal gasification, at fuelling station
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-coal-gasification-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-coal-gasification-energy-allocation-at-fuelling-station/>`__
+   * - Diesel production, synthetic, from methanol, hydrogen from coal gasification, with CCS, at fuelling station
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-coal-gasification-with-ccs-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-coal-gasification-with-ccs-energy-allocation-at-fuelling-station/>`__
+   * - Diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, at fuelling station
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-cement-plant-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-cement-plant-energy-allocation-at-fuelling-station/>`__
+   * - Diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-dac-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-dac-energy-allocation-at-fuelling-station/>`__
+   * - Gasoline production, synthetic, from methanol, hydrogen from coal gasification, at fuelling station
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/gasoline-production-synthetic-from-methanol-hydrogen-from-coal-gasification-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/gasoline-production-synthetic-from-methanol-hydrogen-from-coal-gasification-energy-allocation-at-fuelling-station/>`__
+   * - Gasoline production, synthetic, from methanol, hydrogen from coal gasification, with CCS, at fuelling station
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/gasoline-production-synthetic-from-methanol-hydrogen-from-coal-gasification-with-ccs-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/gasoline-production-synthetic-from-methanol-hydrogen-from-coal-gasification-with-ccs-energy-allocation-at-fuelling-station/>`__
+   * - Gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, at fuelling station
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/gasoline-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-cement-plant-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/gasoline-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-cement-plant-energy-allocation-at-fuelling-station/>`__
+   * - Gasoline production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/gasoline-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-dac-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/gasoline-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-dac-energy-allocation-at-fuelling-station/>`__
+   * - Kerosene production, from methanol, hydrogen from coal gasification
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/kerosene-production-from-methanol-hydrogen-from-coal-gasification-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/kerosene-production-from-methanol-hydrogen-from-coal-gasification-energy-allocation/>`__
+   * - Kerosene production, from methanol, hydrogen from electrolysis, CO2 from cement plant
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/kerosene-production-from-methanol-hydrogen-from-electrolysis-co2-from-cement-plant-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/kerosene-production-from-methanol-hydrogen-from-electrolysis-co2-from-cement-plant-energy-allocation/>`__
+   * - Kerosene production, from methanol, hydrogen from electrolysis, CO2 from DAC
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/kerosene-production-from-methanol-hydrogen-from-electrolysis-co2-from-dac-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/kerosene-production-from-methanol-hydrogen-from-electrolysis-co2-from-dac-energy-allocation/>`__
+   * - Kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-coal-gasification-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-coal-gasification-energy-allocation/>`__
+   * - Kerosene production, synthetic, Fischer Tropsch process, hydrogen from coal gasification, with CCS
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-coal-gasification-with-ccs-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-coal-gasification-with-ccs-energy-allocation/>`__
+   * - Kerosene production, synthetic, Fischer Tropsch process, hydrogen from electrolysis
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-electrolysis-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-electrolysis-energy-allocation/>`__
+   * - Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-energy-allocation/>`__
+   * - Kerosene production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-with-ccs-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-with-ccs-energy-allocation/>`__
+   * - Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from coal gasification
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `energy allocation <https://clic.psi.ch/datasets/lubricating-oil-production-synthetic-fischer-tropsch-process-hydrogen-from-coal-gasification-energy-allocation/>`__
+   * - Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from electrolysis
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `energy allocation <https://clic.psi.ch/datasets/lubricating-oil-production-synthetic-fischer-tropsch-process-hydrogen-from-electrolysis-energy-allocation/>`__
+   * - Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from wood gasification
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `energy allocation <https://clic.psi.ch/datasets/lubricating-oil-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-energy-allocation/>`__
+   * - Lubricating oil production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `energy allocation <https://clic.psi.ch/datasets/lubricating-oil-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-with-ccs-energy-allocation/>`__
+   * - Methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
+     - all IAM regions
+     - Zhang et al, 2019
+     - `View dataset <https://clic.psi.ch/datasets/methane-synthetic-gaseous-5-bar-from-coal-based-hydrogen-at-fuelling-station/>`__
+   * - Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using heat pump heat), at fuelling station, using heat pump heat
+     - all IAM regions
+     - Zhang et al, 2019
+     - —
+   * - Methane, synthetic, gaseous, 5 bar, from electrochemical methanation (H2 from electrolysis, CO2 from DAC using waste heat), at fuelling station, using waste heat
+     - all IAM regions
+     - Zhang et al, 2019
+     - —
+   * - Methane, synthetic, gaseous, 5 bar, from electrochemical methanation, at fuelling station
+     - all IAM regions
+     - Zhang et al, 2019
+     - —
+   * - Naphtha production, synthetic, Fischer Tropsch process, hydrogen from coal gasification
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/naphtha-production-synthetic-fischer-tropsch-process-hydrogen-from-coal-gasification-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/naphtha-production-synthetic-fischer-tropsch-process-hydrogen-from-coal-gasification-energy-allocation/>`__
+   * - Naphtha production, synthetic, Fischer Tropsch process, hydrogen from electrolysis
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/naphtha-production-synthetic-fischer-tropsch-process-hydrogen-from-electrolysis-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/naphtha-production-synthetic-fischer-tropsch-process-hydrogen-from-electrolysis-energy-allocation/>`__
+   * - Naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/naphtha-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/naphtha-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-energy-allocation/>`__
+   * - Naphtha production, synthetic, Fischer Tropsch process, hydrogen from wood gasification, with CCS
+     - all IAM regions
+     - van der Giesen et al. 2014
+     - `economic allocation <https://clic.psi.ch/datasets/naphtha-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-with-ccs-economic-allocation/>`__; `energy allocation <https://clic.psi.ch/datasets/naphtha-production-synthetic-fischer-tropsch-process-hydrogen-from-wood-gasification-with-ccs-energy-allocation/>`__
+   * - Liquefied petroleum gas production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, at fuelling station
+     - all IAM regions
+     - Hank et al, 2019
+     - `economic allocation <https://clic.psi.ch/datasets/liquefied-petroleum-gas-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-dac-economic-allocation-at-fuelling-station/>`__; `energy allocation <https://clic.psi.ch/datasets/liquefied-petroleum-gas-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-dac-energy-allocation-at-fuelling-station/>`__
 
 In the case of wood and coal gasification-based fuels, the CO2 needed to produce methanol
 or syncrude originates from the gasification process itself. This also implies

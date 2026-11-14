@@ -40,7 +40,8 @@ external PV/battery trajectories use their own preparation rules.
 
 The exchanges affected by an efficiency change depend on the caller:
 electricity's general efficiency step scales all non-production exchanges;
-transport scales selected energy inputs and all biosphere exchanges; steel
+cars and trucks scale selected energy inputs and fuel-related air emissions;
+other transport modes also scale all biosphere exchanges; steel
 selects energy inputs and fossil CO2; CDR selects energy carriers and excludes
 biosphere flows. Consult the sector chapter before interpreting a common
 scaling factor as the same physical adjustment.

@@ -568,5 +568,17 @@
     "review_date": "2026-11-02",
     "disposition": "Updated Python compatibility, separate companion installation and retirement of the unsupported legacy Conda variant while retaining tested legacy pip support.",
     "review_level": "Release and implementation consistency; not independent scientific validation"
+  },
+  {
+    "page": "methodology/battery-inventories.rst",
+    "disposition": "Shared battery inventory reference; application updates remain in the mobile and stationary chapters."
+  },
+  {
+    "page": "methodology/battery-components.rst",
+    "disposition": "Shared battery inventory reference; application updates remain in the mobile and stationary chapters."
+  },
+  {
+    "page": "reference/glossary.rst",
+    "disposition": "Plain-language definitions for terms used throughout the guide."
   }
 ]

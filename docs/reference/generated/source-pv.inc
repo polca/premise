@@ -8,6 +8,6 @@
    * - Boundary
      - Single-Si TOPCon/PERC, multi-Si and CdTe; manufacturing through electricity and end of life; country extensions use inherited yield assumptions.
    * - Applicability
-     - 2026 core: ecoinvent 3.12 cut-off only; lci-PV.xlsx core otherwise.
+     - 2026 core: ecoinvent 3.12 cut-off only; legacy photovoltaic core otherwise.
 
 Source context: `publication or data provider <https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/>`__.

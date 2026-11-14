@@ -21,8 +21,9 @@ transport workflow is described in :doc:`overview`.
 Inputs and applicability
 --------------------------
 
-Inputs are the source database, ``lci-rail-freight.xlsx``, and the model aliases
-in ``transport_rail_freight.yaml``. The update uses ``rail_freight_fleet`` to determine
+Inputs are the source database, the imported services for electric, diesel-electric and hydrogen fuel-cell trains,
+and the aliases in ``transport_rail_freight.yaml``. Source records are linked in
+**Sources and inventory details** below. The update uses ``rail_freight_fleet`` to determine
 fleet-market availability and ``rail_freight_efficiencies`` for energy changes.
 ``ndb.update("trains")`` uses the upstream suppliers available at that point;
 run the default sequence for prospective electricity and fuels.
@@ -75,19 +76,21 @@ zero freight demand.
 Sources and inventory details
 -------------------------------
 
-The constructor selects ``lci-rail-freight.xlsx`` as documented in
+The constructor selects `transport, freight train, electric (Europe without Switzerland) <https://clic.psi.ch/datasets/transport-freight-train-electric/>`__; `transport, freight train, diesel-electric (Europe without Switzerland) <https://clic.psi.ch/datasets/transport-freight-train-diesel-electric/>`__; `transport, freight train, fuel cell, hydrogen (Europe without Switzerland) <https://clic.psi.ch/datasets/transport-freight-train-fuel-cell-hydrogen/>`__ as documented in
 :doc:`/reference/inventories`. The current mapping defines the following
 technology categories; these are selectors, not a guarantee of nonzero
 scenario deployment:
 
-* ``train, electric``
-* ``train, diesel-electric``
-* ``train, fuel cell``
+* ``train, electric`` — `CLIC dataset (Europe without Switzerland) <https://clic.psi.ch/datasets/transport-freight-train-electric/>`__
+* ``train, diesel-electric`` — `CLIC dataset (Europe without Switzerland) <https://clic.psi.ch/datasets/transport-freight-train-diesel-electric/>`__
+* ``train, fuel cell`` — `CLIC dataset (Europe without Switzerland) <https://clic.psi.ch/datasets/transport-freight-train-fuel-cell-hydrogen/>`__
 
-Source metadata should be read in the selected workbook.
+Source metadata and provenance are available on the linked CLIC dataset pages.
 
 Rail power-module wafer allocation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**CLIC dataset pages:** `power semiconductor module production, rail converter <https://clic.psi.ch/datasets/power-semiconductor-module-production-rail-converter/>`__.
 
 The generic rail-converter power module retains **0.02 kg silicon per kg
 module**. The native fabricated-wafer purchase uses **270 micrometres** as
@@ -102,5 +105,4 @@ remain engineering proxies. Native fabrication and yields are counted once,
 without another raw-wafer or complete packaged-device purchase. All other
 module materials, the **1 kWh/kg** assembly allowance, parent module purchases,
 rail masses, counts, lifetimes and service denominators remain unchanged.
-Both source declarations remain **3.9**. The pinned reference is
-``tests/data/inventory_contracts.json``.
+Both source declarations remain **3.9**.

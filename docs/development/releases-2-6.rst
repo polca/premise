@@ -30,7 +30,7 @@ Upgrading to 2.6.0
   as ``premise.transport`` and ``premise.inventory``; see :doc:`architecture`.
 * Keep scientific assumptions separate from implementation checks. The
   reviewed references remain qualified models with the limitations documented
-  in the sector methodology and :doc:`scientific-update-backlog`.
+  in the sector methodology and :doc:`/reference/source-review`.
 
 Fuel carbon and resource attribution
 ------------------------------------

@@ -1,67 +1,70 @@
 Configuring sector updates
 ============================
 
-Run ``ndb.update()`` for the normal dependency-ordered update of all sectors.
-A single-sector call is supported but does not create the prospective suppliers
-normally provided by earlier updates. See :doc:`/getting_started/first-scenario`
-for the complete workflow.
+After constructing ``ndb``, run all default updates with:
 
-The current default order in ``NewDatabase.update`` is biomass, electricity,
-cement, steel, fuels, renewable, metals, mining, heat, cdr, battery, cars,
-two_wheelers, trucks, ships, buses, trains, final energy, external, emissions.
-A requested list follows its supplied order. Dependencies therefore matter
-when selecting only part of this workflow.
+.. code-block:: python
 
+   ndb.update()
 
+This is the usual choice. Earlier updates prepare suppliers needed by later
+ones. Updates use the data available for each scenario; selecting a sector
+does not guarantee that its required variables are present.
 
-The updates below are applied when calling ``ndb.update()`` with the corresponding sector name.
-They change selected parts of ecoinvent; sectors not listed here are left unchanged unless
-explicitly mapped. The exact updates depend on the IAM model, scenario, year, and the ecoinvent
-version used.
+Choose part of the workflow
+----------------------------
 
-* **electricity**: updates electricity generation mixes, technology efficiencies, and regional
-  markets; applies corrections such as hydropower water emissions and PV/wind regionalization
-  where available. Mappings: ``premise/iam_variables_mapping/electricity.yaml``. Data: ``premise/data/renewables/``,
-  ``premise/data/electricity/``.
-* **fuels**: updates fuel supply chains and regional markets, including hydrogen, biofuels,
-  synthetic fuels, and fossil fuels; adjusts efficiencies and losses along the supply chain.
-  Mappings: ``premise/iam_variables_mapping/fuels.yaml``. Data: ``premise/data/fuels/``.
-* **heat**: updates residential/industrial heat markets and technology shares; calibrates heat
-  efficiencies and fuel inputs by region. Mappings: ``premise/iam_variables_mapping/heat.yaml``.
-* **cement**: updates clinker and cement production efficiencies, fuel use, and (where applicable)
-  carbon capture integration; rebuilds regional markets from IAM production volumes.
-  Mappings: ``premise/iam_variables_mapping/cement.yaml``.
-* **steel**: updates primary/secondary steel routes (e.g., BF-BOF, DRI, EAF), efficiencies, and
-  regional market shares from IAM outputs. Mappings: ``premise/iam_variables_mapping/steel.yaml``.
-* **transport (split by mode in `NewDatabase`)**: updates vehicle markets and fleets (cars, buses, trucks, ships, rail),
-  technology shares, and energy carriers; adjusts related emissions factors where relevant. Use:
-  ``cars``, ``two_wheelers``, ``trucks``, ``buses``, ``trains``, ``ships``. Mappings:
-  ``premise/iam_variables_mapping/transport_*.yaml``. Data: ``premise/data/transport/``.
-* **battery**: scales battery pack mass by projected energy densities; creates technology-specific
-  and scenario-average battery markets (mobile and stationary). Data:
-  ``premise/data/battery/energy_density.yaml``, ``premise/data/battery/mobile_scenarios.csv``,
-  ``premise/data/battery/stationary_scenarios.csv``.
-* **metals**: updates material intensities and adds/updates mining/refining markets; includes
-  post-allocation corrections for co-mined metals and regional supply shares. Data:
-  ``premise/data/metals/`` (e.g., ``activities_mapping.yml``, ``metals_db.csv``, ``mining_shares_mapping.xlsx``).
-* **mining**: updates waste/tailings handling and regional mining markets where mapped. Data:
-  ``premise/data/mining/tailings_activities.yaml``, ``premise/data/mining/tailings_topology.yaml``.
-* **biomass**: updates biomass supply chains and regional forestry activities. Mappings:
-  ``premise/iam_variables_mapping/biomass.yaml``. Data: ``premise/data/biomass/``.
-* **cdr**: introduces and updates carbon dioxide removal routes (DACCS, BECCS, enhanced weathering,
-  ocean liming) and their regional deployment. Mappings:
-  ``premise/iam_variables_mapping/carbon_dioxide_removal.yaml``. Data: ``premise/data/cdr/``.
-* **emissions**: applies IAM- and GAINS-based emission factors to relevant processes. Data:
-  ``premise/data/GAINS_emission_factors/``.
-* **renewable**: updates wind turbine (and related) inventories and regional deployment. Data:
-  ``premise/data/renewables/``.
-* **final energy**: regionalizes mapped end-use heating datasets, rebuilds marked
-  transport energy-use activities from updated vehicle inventories per MJ, and
-  relinks suppliers when final-energy data are available. See
-  :doc:`/methodology/final-energy` for the equipment boundary. Mappings:
-  ``premise/iam_variables_mapping/final_energy.yaml``. Data: ``premise/data/energy/``.
-* **external**: applies user-provided external scenarios to override or extend IAM data.
+You can request one sector or an ordered list:
 
-Each sector has dedicated configuration files under ``premise/data`` and
-``premise/iam_variables_mapping`` which define variable mappings, technology lists,
-and default parameters.
+.. code-block:: python
+
+   ndb.update("electricity")
+   # Alternative: start a fresh build and run a selected sequence.
+   # ndb.update(["biomass", "electricity", "fuels", "heat"])
+
+A list runs in the order you give it. A single-sector call does not also run
+its suppliers' updates. Use the full workflow unless you have a reason to
+keep part of the background unchanged.
+
+.. list-table:: Accepted update names
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Name
+     - What it changes
+   * - ``biomass``
+     - :doc:`Biomass supply </methodology/biomass>` and regional markets.
+   * - ``electricity``
+     - :doc:`Generation and markets </methodology/electricity/index>`, including PV adjustments.
+   * - ``cement``, ``steel``
+     - :doc:`Cement </methodology/cement>` and :doc:`steel </methodology/steel>` production, efficiencies and markets.
+   * - ``fuels``
+     - :doc:`Fuel supply chains and markets </methodology/fuels/index>`, including hydrogen.
+   * - ``renewable``
+     - Wind-turbine inventories; electricity supply is handled by ``electricity``.
+   * - ``metals``
+     - :doc:`Material inputs and metal supply markets </methodology/metals>`.
+   * - ``mining``
+     - :doc:`Sulfidic-tailings treatment </methodology/mining>` and its regional shares.
+   * - ``heat``
+     - :doc:`Delivered-heat supply and end-use markets </methodology/heat>`.
+   * - ``cdr``
+     - :doc:`Carbon removal and supporting capture/storage processes </methodology/cdr>`.
+   * - ``battery``
+     - Mass inputs and chemistry shares in existing :doc:`battery capacity markets </methodology/batteries>`.
+   * - ``cars``, ``two_wheelers``, ``trucks``, ``ships``, ``buses``, ``trains``
+     - :doc:`Transport inventories and available fleets </methodology/transport/index>`, selected by mode.
+   * - ``final energy``
+     - :doc:`End-use heating and transport energy-use activities </methodology/final-energy>`.
+   * - ``external``
+     - :doc:`Custom scenario changes <external-scenarios>`.
+   * - ``emissions``
+     - :doc:`Mapped air-pollutant emissions </methodology/emissions>` using GAINS data.
+
+The default order is biomass, electricity, cement, steel, fuels, renewable,
+metals, mining, heat, cdr, battery, cars, two_wheelers, trucks, ships, buses,
+trains, final energy, external, emissions. In particular, custom scenario
+changes run before the final emissions update.
+
+Next, :doc:`reports` explains how to review the changes before using an export.
+To inspect or edit individual activities, see :doc:`inventories`.

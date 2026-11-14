@@ -16,7 +16,7 @@ assumptions. The treatment of storage in electricity supply is described in
 :ref:`electricity-storage-operation`.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
 
    /methodology/electricity/generation

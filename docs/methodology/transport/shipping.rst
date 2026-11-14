@@ -21,8 +21,9 @@ transport workflow is described in :doc:`overview`.
 Inputs and applicability
 --------------------------
 
-Inputs are the source database, ``lci-ships.xlsx``, and the model aliases
-in ``transport_sea_freight.yaml``. The update uses ``sea_freight_fleet`` to determine
+Inputs are the source database, the imported services for diesel, hydrogen and electric container ships,
+and the aliases in ``transport_sea_freight.yaml``. Source records are linked in
+**Sources and inventory details** below. The update uses ``sea_freight_fleet`` to determine
 fleet-market availability and ``sea_freight_efficiencies`` for energy changes.
 ``ndb.update("ships")`` uses the upstream suppliers available at that point;
 run the default sequence for prospective electricity and fuels.
@@ -75,19 +76,19 @@ zero freight demand.
 Sources and inventory details
 -------------------------------
 
-The constructor selects ``lci-ships.xlsx`` as documented in
+The constructor selects `transport, freight, sea, container ship, powered with diesel (RER) <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-diesel/>`__; `transport, freight, sea, container ship, powered with hydrogen (RER) <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-hydrogen/>`__; `transport, freight, sea, container ship, powered with electricity (RER) <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-electricity/>`__ as documented in
 :doc:`/reference/inventories`. The current mapping defines the following
 technology categories; these are selectors, not a guarantee of nonzero
 scenario deployment:
 
 * ``ship, marine oil``
-* ``ship, diesel``
-* ``ship, biodiesel``
-* ``ship, electric``
-* ``ship, fuel cell``
-* ``ship, ammonia``
-* ``ship, methanol``
-* ``ship, synthetic methane``
-* ``ship, synthetic LPG``
+* ``ship, diesel`` — `CLIC dataset <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-diesel/>`__
+* ``ship, biodiesel`` — `CLIC dataset <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-biodiesel/>`__
+* ``ship, electric`` — `CLIC dataset <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-electricity/>`__
+* ``ship, fuel cell`` — `CLIC dataset <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-hydrogen/>`__
+* ``ship, ammonia`` — `CLIC dataset <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-liquid-ammonia/>`__
+* ``ship, methanol`` — `CLIC dataset <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-methanol/>`__
+* ``ship, synthetic methane`` — `CLIC dataset <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-synthetic-methane/>`__
+* ``ship, synthetic LPG`` — `CLIC dataset <https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-synthetic-liquefied-petroleum-gas/>`__
 
-Source metadata should be read in the selected workbook.
+Source metadata and provenance are available on the linked CLIC dataset pages.

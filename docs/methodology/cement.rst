@@ -1,7 +1,6 @@
 Cement production
 ===================
 
-
 .. contents:: On this page
    :local:
    :depth: 1
@@ -42,54 +41,6 @@ After the setup in :doc:`/getting_started/first-scenario`:
 .. code-block:: python
 
    ndb.update("cement")
-
-Canadian plant refractory normalization
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Source cleaning for ecoinvent 3.11 and 3.12 corrects a recognized refractory
-input in ``integrated cement plant construction`` (CA, reference product
-``integrated cement plant``, one unit). It applies before IAM transformations,
-including workflows that do not run the cement update.
-
-The native refractory exchange specifies 0.00130904176059766 kg refractory/kg
-clinker, but multiplies that rate by 11.4 billion kg clinker/year and 100 years.
-The annual output belongs to all 13 surveyed plants. The construction dataset
-represents one average plant, and ``clinker production, average`` (CA) buys
-``13 / (11.4e9 * 100)`` plant units per kg clinker. Combining the original
-coefficients gives 0.0170175428877695 kg refractory/kg clinker, exactly 13 times
-the exchange's stated rate.
-
-Premise divides only the recognized ``market for refractory, basic, packed``
-input (GLO, kg) by 13, from 1,492,307,607.08133 to 114,792,892.85241 kg per
-plant. This restores 1.30904176059766 kg refractory/t clinker on the
-national-average route. The native activity UUID is
-``085620b0-f171-5666-8400-a7bcb0aacd6f``. The
-`ecoinvent v3.11 change report, section 10.1.1, page 134
-<https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/3.11/Change%20Report%20v3.11.pdf#page=134>`__
-documents the 13-plant sample and 100-year lifetime; the specific rate and
-coefficients come from the source exchange documentation.
-
-The correction requires the exact activity/product/geography/unit identity,
-one unit of reference production, and one matching refractory input at the
-original amount within float32 rounding tolerance. If a native activity UUID
-is present, it must also match. Changed recipes, ambiguous inputs, custom
-formulas, unsupported uncertainty distributions and other source versions are
-left intact. The corrected coefficient no longer matches the original guard,
-so applying cleaning again does not divide it a second time. Source comments
-retain the original description and record the correction. Standard uncertainty
-parameters are rescaled with the input, preserving relative uncertainty and
-pedigree; deterministic locations follow the corrected amount.
-
-Affected source-cache names include ``ca_cement_refractory_v1``, invalidating
-older prepared source lists and their compact checkpoints. Supplementary-import
-cache names are retained. Rebuild scenarios to apply the correction; the
-original Brightway source database and saved scenario outputs are not edited.
-
-This is a source-rate normalization. Other plant inputs, regional infrastructure
-coefficients and clinker/cement allocation are retained. The allocation of the
-shared integrated plant between clinker and cement stages, Ontario's separate
-production basis, and refractory composition and lifetime remain separate
-questions. Required refractory consumption remains in the inventory.
 
 Transformation
 ----------------
@@ -214,7 +165,6 @@ The table below shows the example of the clinker market
 for South Africa, which now only includes an input from the "SAF"
 regional market, which "includes" it in terms of geography.
 
-
  ============================================ =========== ================ ===========
   Output                                       _           _                _
  ============================================ =========== ================ ===========
@@ -266,6 +216,25 @@ capture route separately. Confirm the regional clinker-to-cement links.
 Sources and inventory details
 -------------------------------
 
+Canadian plant refractory normalization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For ecoinvent 3.11 and 3.12, source cleaning normalizes the refractory input
+in the Canadian ``integrated cement plant construction`` inventory to one
+average plant before IAM transformations.
+
+The source describes 13 plants with combined annual output of 11.4 billion kg
+clinker and a 100-year lifetime. Its refractory rate is
+0.00130904176059766 kg/kg clinker. The one-plant construction inventory
+therefore requires **114,792,892.85241 kg refractory**, while Canadian clinker
+production purchases ``13 / (11.4e9 * 100)`` plant units per kg clinker.
+Together these give **1.30904176059766 kg refractory per tonne clinker**.
+
+The `ecoinvent v3.11 change report, section 10.1.1, page 134
+<https://support.ecoinvent.org/hubfs/Knowledge%20Base/Database/Releases/3.11/Change%20Report%20v3.11.pdf#page=134>`__
+describes the surveyed plants and lifetime. Relative input uncertainty and
+pedigree are preserved when applying this normalization.
+
 Source inventories: cement
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -278,21 +247,30 @@ production plants using three prospective technologies:
 
 These inventories represent the gate-to-gate capture of 1 kg of CO2 and
 include upstream material and energy inputs as well as transport and storage
-of the captured CO2. They are from `Muller <https://doi.org/10.1016/j.jclepro.2024.141884>`__ et al. (2024). They can be found
-here: `LCI_cement <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-carbon-capture.xlsx>`__.
+of the captured CO2. They are from `Muller <https://doi.org/10.1016/j.jclepro.2024.141884>`__ et al. (2024). Published CLIC records are available for
+`MEA capture <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-cement-production-plant-using-monoethanolamine/>`__,
+`direct separation <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-cement-production-plant-using-direct-separation/>`__
+and `oxyfuel capture <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-cement-production-plant-using-oxyfuel/>`__.
 
-==============================================================================  ==========
-Carbon capture at cement production plants                                       location
-==============================================================================  ==========
-carbon dioxide, captured, at cement production plant, using monoethanolamine     RER
-carbon dioxide, captured, at cement production plant, using direct separation    RER
-carbon dioxide, captured, at cement production plant, using oxyfuel              RER
-==============================================================================  ==========
+.. list-table::
+   :header-rows: 1
+
+   * - Carbon capture at cement production plants
+     - location
+     - CLIC dataset page
+   * - carbon dioxide, captured, at cement production plant, using monoethanolamine
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-cement-production-plant-using-monoethanolamine/>`__
+   * - carbon dioxide, captured, at cement production plant, using direct separation
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-cement-production-plant-using-direct-separation/>`__
+   * - carbon dioxide, captured, at cement production plant, using oxyfuel
+     - RER
+     - `View dataset <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-cement-production-plant-using-oxyfuel/>`__
 
 A fourth cement-related activity is available for CDR accounting rather than
 ordinary cement transformation:
-``carbon dioxide, captured and stored, at cement production plant, from
-non-fossil carbon dioxide, using monoethanolamine``. It is scaled to 1 kg of
+`carbon dioxide, captured and stored, at cement production plant, from non-fossil carbon dioxide, using monoethanolamine <https://clic.psi.ch/datasets/carbon-dioxide-captured-and-stored-at-cement-production-plant-from-non-fossil-carbon-dioxide-using-monoethanolamine/>`__. It is scaled to 1 kg of
 non-fossil CO2 stored, includes a 1 kg ``Carbon dioxide, in air`` input, uses
 the MEA cement capture inputs and the common CO2 compression, transport and
 storage module, and intentionally ignores fossil CO2 co-captured from the

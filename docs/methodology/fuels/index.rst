@@ -11,12 +11,11 @@ chapters describe those supply chains before explaining how regional fuel
 markets combine them and adjust fuel-consuming activities.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
 
    /methodology/biomass
    /methodology/fuels/hydrogen
-   /methodology/fuels/pipeline-coating
    /methodology/fuels/biofuels
    /methodology/fuels/synthetic
    /methodology/fuels/ammonia

@@ -6,7 +6,7 @@ copy-on-write scenario forks and versioned checkpoints; the legacy backend
 supports compatibility and differential checks. Public users should use
 :doc:`/user_guide/inventories`, not private mutable activity lists.
 
-See :doc:`performance-history` for dated measurements and
+See :doc:`/user_guide/inventories` for storage guidance and
 :doc:`/reference/api` for the supported interface. Runtime storage behaviour
 is defined in ``premise/inventory/inventory_store.py``; source loading and scenario generation is
 in ``premise/database/new_database.py``.
@@ -103,3 +103,75 @@ Historical comparison imports resolve to the same implementation; the unused
 campaign-specific bundle writer and IAM mapping spreadsheet script have been
 removed. Exports and remote inventory downloads use per-call temporary
 directories, with only explicitly selected resources included in datapackages.
+
+Compact storage and checkpoints
+---------------------------------
+
+
+``CompactInventoryStore`` shares unchanged data between scenarios and copies
+data when it changes. It saves inventories in Arrow IPC files and keeps
+additional activity metadata in separate files. Reopening a saved inventory
+preserves its Python and NumPy numeric types. ``LegacyInventoryStore`` stores
+activities as dictionaries.
+The bundle contains:
+
+
+.. code-block:: text
+
+   manifest.json
+   strings.arrow
+   activities.arrow
+   exchanges.arrow
+   metadata.bin
+   metadata_offsets.arrow
+   activity-fingerprints.pkl
+   checksums.json
+
+
+Checkpoint writes use a sibling temporary directory and replacement; every
+file is verified before a bundle is opened. Store schema versions are
+independent from the historical pickle cache schema. Existing
+``inventory_backend="legacy"`` and ``inventory_backend="compact"`` calls remain
+accepted. Both backends apply the same validation rules.
+
+
+
+Automatic scenario cache expiry
+---------------------------------
+
+
+``NewDatabase`` checks for managed scenario checkpoints unused for more than 24
+hours at startup. It also removes expired incomplete checkpoint writes. Cleanup
+runs only when no other ``NewDatabase`` instance is alive: a process-held shared
+lock protects inventories throughout updates, repeated exports, and reports.
+The lock is released when the instance is garbage-collected or its process exits.
+A long-lived notebook instance therefore defers cleanup until a later startup.
+
+Pass ``cleanup_expired_caches=False`` to skip the startup sweep. This instance still
+holds the shared lock. Restart existing premise processes when adopting this
+feature so all builds participate in locking. Standalone use of the low-level
+``InventoryStore`` API is not registered as an active build; keep checkpoints for
+such use outside premise's internal ``cached_files`` directory.
+
+Only newly written, UUID-named checkpoints in ``cached_files`` carry expiry
+metadata. Successful checkpoint reopening refreshes their last-use timestamp;
+expiry metadata is separate from the inventory files protected by checksums. Base
+checkpoints needed by retained checkpoints are preserved. Existing unmarked
+checkpoints are never automatically adopted or removed; clean them separately
+after stopping active builds. Source/import caches in ``cache``, validation
+caches, and extracted datapackages are outside this expiry policy.
+
+Cleanup logs a count and estimated reclaimed space at INFO level (unless
+``quiet=True``); filesystem errors are warnings and do not abort a build.
+
+Transport performance requirements
+----------------------------------
+
+
+The project acceptance limit is a maximum 0.1% increase in complete scenario-build
+runtime. Fuel lookups are cached, and the implementation adds no database-wide
+scan. Acceptance requires repeated interleaved baseline/patched builds with the
+same inputs, cache policy, export mode and warning handling. A one-sided 95%
+upper confidence bound on the paired runtime ratio must not exceed 1.001.
+An inconclusive benchmark is not a pass; microbenchmarks alone cannot establish
+compliance with the whole-build limit.

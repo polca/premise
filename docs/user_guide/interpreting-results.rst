@@ -56,6 +56,35 @@ inputs or supplier shares, their impact contributions, and the assumptions
 used in any sensitivity calculations. State which parts of the difference are
 explained by this evidence and which remain uncertain.
 
+.. _interpretation-arithmetic-example:
+
+Try the efficiency and yield calculations
+------------------------------------------
+
+This small example needs Python only. It uses illustrative values to isolate
+an efficiency change and a yield sensitivity; it does not run an LCA or read
+licensed inventories. Save :download:`interpret_changes.py
+</examples/interpret_changes.py>` and run ``python interpret_changes.py``.
+
+.. literalinclude:: /examples/interpret_changes.py
+   :language: python
+
+Expected output, rounded as printed:
+
+.. code-block:: text
+
+   Fuel per kWh: 9.000 -> 8.182 MJ
+   Absolute efficiency 50%: 7.200 MJ fuel per kWh
+   Yield 1000: 33.33 g CO2-eq/kWh
+   Yield 1300: 25.64 g CO2-eq/kWh
+
+The fuel calculation keeps electricity output at 1 kWh. The PV calculation
+holds installation impacts at an illustrative 1,000 kg CO2-eq/kWp and lifetime
+at 30 years. Increasing annual yield from 1,000 to 1,300 kWh/kWp spreads that
+same installation burden over more electricity, reducing this contribution
+by ``1 - 1000/1300 = 23.08%``. Operating inputs and other supply-chain changes
+are excluded, so these are not complete PV impact scores.
+
 Three kinds of uncertainty
 ----------------------------
 

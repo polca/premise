@@ -1,7 +1,6 @@
 Mobile batteries
 ==================
 
-
 .. contents:: On this page
    :local:
    :depth: 1
@@ -34,6 +33,25 @@ supplies external cell-energy-density targets and activity aliases;
 ``ndb.update("battery")`` handles mobile and stationary batteries together;
 it is skipped if both battery scenario arrays are absent.
 
+Chemistry coverage
+~~~~~~~~~~~~~~~~~~
+
+Before changing battery masses or scenario shares, Premise checks that every
+chemistry with a positive share has a matching capacity input in the market's
+unit. For example, a kWh market needs a kWh input; an input in kg is not a
+substitute. Missing mappings or inputs raise ``ValueError`` with the market,
+scenario, year and missing shares.
+
+When all chemistries are represented, shares are normalized to handle source
+rounding. Interpolation and endpoint handling still apply. Supplier linking
+is checked separately: having a named input does not prove that its supplier
+exists.
+
+The three solid-state suppliers retain distinct chemistry and capacity
+references after inventory migration. The NMC900/NMC900-Si aggregation is
+a separate proxy requiring assessment. Germanium is present in the sulfide LCI;
+metal-indicator methods that omit it do not report that demand.
+
 Using this update
 ~~~~~~~~~~~~~~~~~~~
 
@@ -62,102 +80,10 @@ that still buy a complete pack in kg retain their original scaling boundary.
 The configured density values supply relative growth factors and must not be
 interpreted as whole-pack densities or used alone to infer absolute kg/kWh.
 
-NMC955 reference capacity and fixed hardware
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The current NMC955 reference contains 108.03 kg of cells providing
-28.0829301277 kWh, corresponding to 259.954921112 Wh/kg cell. The configuration's
-340 to 380 Wh/kg trajectory is used as a relative growth index for this
-reference. Its effective 2050 cell density is therefore
-``259.954921112 * 380 / 340 = 290.537853007 Wh/kg``, not 380 Wh/kg.
-The cell purchase decreases from 3.84682080925 to 3.44189230301 kg/kWh.
-
-Non-cell materials remain at 1.34280859684 kg/kWh, with a separately supplied
-6.5128 kg control system per 28.0829301277 kWh reference. The non-cell helper
-contains 37.71 kg of materials per reference, not a second 145.74 kg complete
-electronics-free pack: the latter includes the 108.03 kg of cells. Cells,
-non-cell materials and controls each include their respective end-of-life
-provision once.
-
-Holding pack hardware and controls fixed is an explicit engineering
-counterfactual, not a measured future design. The reference does not establish
-future current ratings, thermal design or chemistry-specific pack geometry.
-The source cell design and relative learning assumption are distinct from
-the absolute values displayed in the density configuration. This capacity
-normalization does not independently validate upstream cell-manufacturing
-recipes or their utilities.
-
-NMC955 factory-energy reference
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The modern NMC955 cell reference transfers the factory-energy quantities in
-`Dai et al. (2019) <https://doi.org/10.3390/batteries5020048>`__: 30 MJ of
-electricity and 140 MJ of steam per kWh of cell capacity. At the approved
-259.954921112 Wh/kg reference density, this gives 2.16629100927 kWh electricity
-and 36.3936889557 MJ steam per kg of delivered cell. The native chemical-industry
-steam supplier documents 2.75 MJ/kg, giving a purchase of 13.2340687112 kg steam
-per kg cell. Its RoW supply is a geographic/process proxy.
-
-These quantities transfer observations from an older Chinese NMC manufacturing
-plant to the reconstructed NMC955/silicon-graphite design. They are not measured
-utilities for that design or a validated future factory. Factory energy is
-included once at the cell and is not additionally multiplied by the material
-reject factor. Existing density scaling remains: with utilities fixed per kg
-cell, utility purchases per kWh capacity decrease with the cell-mass factor.
-There is no separate forecast of manufacturing-energy efficiency. This energy
-assumption does not validate the material-yield or electrode recipes.
-
-NMC955 manufacturing yield and rejects
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The modern reference assumes a static 93% final-cell acceptance yield. One kg
-of accepted cell therefore requires ``1 / 0.93 = 1.07526881720`` kg of assembled
-cells and produces ``1 / 0.93 - 1 = 0.07526881720`` kg of manufacturing rejects.
-This final quality-control loss is distinct from upstream foil/film production
-losses already included in their suppliers. Material and associated forming
-service quantities include the reject factor; the capacity-based factory-energy
-reference is not multiplied a second time.
-
-The source is a transferred process assumption from Table 9 of
-`Argonne ANL/CSE-24/1 (2024)
-<https://publications.anl.gov/anlpubs/2024/01/187177.pdf#page=10>`_, which assumes
-93% yield in 2030 and 95% in 2035 for different high-nickel designs. These are
-cost-model assumptions, not measured NMC955 plant yields. The current reference
-holds 93% constant rather than importing that report's complete technology/year
-trajectory. This does not validate the timing or composition of real rejects.
-
-Manufacturing rejects use the existing used-Li-ion-battery treatment market
-as a generic proxy for fully assembled failed cells. They are separate from
-the retained cells retired later through the capacity supplier. The negative
-treatment purchase follows the supplier's negative-output convention and
-contributes a positive burden in the reviewed cut-off case; it is not an
-additional foreground recovery credit.
-
-NMC955 dry anode and collector boundary
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The modern reference supplies one kg of dry anode paste containing 0.8554 kg
-synthetic graphite, 0.0846 kg metallurgical silicon, 0.01 kg carbon black,
-0.02 kg CMC and 0.03 kg SBR. The mixture closes to one kg; silicon is 9% of
-the 94% graphite-plus-silicon active-material pool, not 9% of the whole paste.
-The CMC/SBR/carbon-black matrix is an engineering transfer attributed to
-`Wolf et al. (2023) <https://doi.org/10.3390/wevj14040087>`_. The silicon ratio
-retains the declared NMC955 adaptation.
-
-The dry-paste provider excludes copper foil and wet electrode processing.
-The cell purchases its collector separately and owns the aqueous carrier,
-mixing/coating/drying energy and evaporated water once. The former complete-anode
-supplier included copper foil and a different composition, so its per-kg score
-is not directly comparable to a kg of the new dry mixture.
-
-All-synthetic battery-grade graphite is a reference supply choice, not a
-forecast natural/synthetic mix. It dominates the paste's GWP in the reviewed
-scenario. Metallurgical silicon covers bulk supply while grade-specific
-purification and micronisation remain unquantified. Commodity CMC and dry SBR
-are upstream burden proxies for the experimental binders, not proof of
-battery-grade formulation or redispersibility. Mass closure and the specified
-silicon ratio do not validate N/P balance, formation losses, swelling, ageing
-or commercial cell performance.
+The shared :doc:`battery-inventories` page gives the configured density
+trajectories, uncertainty rule and profile-specific manufacturing assumptions.
+The :ref:`NMC955 separated-cell reference <nmc955-separated-cell-reference>`
+explains its fixed hardware and cell-capacity basis.
 
 Markets and downstream links
 ------------------------------
@@ -171,103 +97,162 @@ which scenario supplies a study.
 Vehicle inventories determine where mobile capacity is consumed;
 :doc:`transport/overview` explains the separate fleet update.
 
-NCA precursor and oxide supply
+Constant-range vehicle capacity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``NCA hydroxide`` and ``NCA oxide`` activities in both
-``lci-batteries-NMC111-811-NCA-LFP.xlsx`` and
-``lci-batteries-NMC955-LTO.xlsx`` are unit wrappers. Each buys exactly one kg
-from the corresponding native ``market for NCA hydroxide`` or
-``market for NCA oxide`` in ``CN`` per kg of reference output. These purchases
-replace the former custom synthesis recipes completely. They do not retain
-additional foreground reagents, process energy, freight, losses or emissions.
-Ordinary inventory migration selects the native supplier in the target
-ecoinvent version; matching identities do not imply identical recipes or
-burdens across versions.
+Marked passenger cars, trucks and electric buses resize their battery capacity
+in proportion to operating grid electricity per vehicle-kilometre relative to
+the 2020 design. This holds range fixed, with no additional mass/energy feedback
+on the IAM efficiency. Battery purchases remain nominal kWh times one plus
+lifetime replacements. Energy-density improvements are applied in the capacity
+markets, never as a second reduction of these kWh purchases.
 
-The wrapper's ``GLO`` location does not represent a global production mix:
-Chinese supply is the selected geographic proxy. Its chemical grade and
-production boundary should be assessed for the application. The NCA hydroxide
-increase in the paired LCIA audit principally reflects this source substitution,
-not a change in the hydroxide quantity or a deterioration of the same native
-production process.
+Cars retain occupancy; BEV trucks retain payload utilization and adjust their
+tonne-kilometre normalization. The ten electric bus variants described under :doc:`transport/buses`
+retain passenger occupancy and the existing replacement
+policy. Their capacity-only metadata uses exact inventory exchanges; it does
+not infer physical pack mass, road wear or curb mass from rounded comments.
+Overnight, opportunity-charging and battery-equipped trolleybuses all use the
+same capacity rule. Their original MIX or LTO supplier links are retained.
 
-Earlier foreground NCA reaction and hydration corrections remain historical
-source notes. In particular, the former conversion of 0.25 kg anhydrous LiOH
-to 0.438071574728 kg LiOH·H₂O is not applied to the native NCA wrappers.
-Adding those displaced reagents or water flows would double-count synthesis.
-This source choice leaves the NCA quantity in the downstream battery unchanged.
+For fixed lifetime, occupancy and replacement count, both battery capacity and
+electricity per kilometre change by the same factor, leaving purchased battery
+capacity per MJ constant. For example, the 13 m single-deck overnight bus uses
+399 kWh in 2020. If electricity use halves, it uses 199.5 kWh, rather than
+allocating the original 399 kWh over half as much lifetime electricity.
+Effective battery kg/MJ can still change through market density and chemistry.
 
-Lithium hydroxide hydration in custom NMC811 oxide
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Run ``python scripts/update_bus_battery_sizing.py`` after a compatible bus inventory
+refresh to regenerate these metadata rows. It checks the source capacity,
+lifetime and occupancy before writing and changes no exchange amounts.
 
-The custom ``NMC811 oxide`` activities in the same two workbooks buy
-``lithium hydroxide, battery grade``.
-That packaged product represents LiOH·H₂O, following
-`Kelly et al. (2021) <https://doi.org/10.1016/j.resconrec.2021.105762>`__.
-The previous 0.246 kg quantity was retained from an anhydrous-LiOH recipe.
-An equal mass of monohydrate supplies less lithium. Both custom NMC811 blocks
-use the corrected amount, including its water emission, so import order cannot
-restore the old reagent amount.
+Assumptions and limitations
+-----------------------------
 
-The correction preserves the rounded anhydrous dose in the existing
-workbook. Using Li = 6.94, H = 1.008 and O = 15.999 g/mol, each kg of
-anhydrous LiOH requires ``41.962 / 23.947 = 1.75228629891`` kg monohydrate:
+Changing capacity-market mass does not by itself specify cycle life,
+round-trip losses, utilization or delivered electricity. Those parameters
+belong to the consuming vehicle or storage service. An imported chemistry can
+be available without a positive scenario share. A zero-total chemistry market
+is not repaired by normalization and requires investigation.
 
-.. list-table:: Quantities per kg custom oxide output
+Worked example and checks
+---------------------------
+
+For NMC811, the configured mean cell densities are 0.28 kWh/kg in 2020 and
+0.34 in 2050. The 2050 mass factor is 0.28/0.34 = 0.8235. An illustrative
+starting coefficient of 5 kg/kWh therefore becomes 4.118 kg/kWh; 5 kg/kWh is
+an example, not a universal inventory coefficient. Check the actual market's
+kilogram exchanges, chemistry share closure and its consumer. For storage
+LCIA, inspect throughput and lifetime in the operating activity as well.
+
+Sources and inventory details
+-------------------------------
+
+Manufacturing recipes shared with stationary applications are documented in
+:doc:`battery-inventories`; electronics, material inputs and cooling are in
+:doc:`battery-components`. Application-specific solid-state references follow
+below.
+
+Source inventories: li-ion batteries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Battery imports depend on the source ecoinvent version. The NMC111/811/NCA/LFP
+supplement is skipped for 3.9 and later because those inventories are already
+represented in the background. The NMC622/NMC532 supplement is skipped for
+3.11 and 3.12. Other battery supplements are selected separately by the
+constructor's import registry, including the
+:ref:`curated LFP manufacturing reference <lfp-curated-reference>` from 3.9.
+NMC-111, NMC-622 NMC-811 and NCA Lithium-ion battery inventories are originally
+from `Dai <https://www.mdpi.com/2313-0105/5/2/48>`__ et al. 2019. They have been adapted to ecoinvent by `Crenna <https://doi.org/10.1016/j.resconrec.2021.105619>`__ et al, 2021.
+LFP and LTO Lithium-ion battery inventories are from  `Schmidt <https://doi.org/10.1021/acs.est.8b05313>`__ et al. 2019.
+Li-S (Lithium-sulfur) battery inventories are from `Wickerts <https://doi.org/10.1021/acssuschemeng.3c00141>`__ et al. 2023.
+Li-O2 (Lithium-air) battery inventories are from `Wang <https://doi.org/10.1016/j.jclepro.2020.121339>`__ et al. 2020.
+Finally, SIB (Sodium-ion) battery inventories are from `Zhang22 <https://doi.org/10.1016/j.resconrec.2023.107362>`__ et al. 2024.
+Ecoinvent provides also inventories for LMO (Lithium Maganese Oxide) batteries.
+
+They introduce the following datasets:
+
+.. list-table::
    :header-rows: 1
 
-   * - Activity
-     - LiOH·H₂O purchased, kg
-     - Additional bound water released, kg
-     - Total retained water emission, m³
-   * - NMC811 oxide
-     - 0.431062429532
-     - 0.185062429532
-     - 0.000380682430
+   * - Battery components
+     - location
+     - source
+     - CLIC dataset page
+   * - battery management system production, for Li-ion battery
+     - GLO
+     - Schmidt et al. 2019
+     - `View dataset <https://clic.psi.ch/datasets/battery-management-system-production-for-li-ion-battery/>`__
+   * - market for battery, Li-ion, NMC111, rechargeable, prismatic
+     - GLO
+     - Dai et al. 2019, Crenna et al. 2021
+     - —
+   * - market for battery, Li-ion, NMC622, rechargeable, prismatic
+     - GLO
+     - Dai et al. 2019, Crenna et al. 2021
+     - —
+   * - market for battery, Li-ion, NMC811, rechargeable, prismatic
+     - GLO
+     - Dai et al. 2019, Crenna et al. 2021
+     - —
+   * - market for battery, Li-ion, NCA, rechargeable, prismatic
+     - GLO
+     - Dai et al. 2019, Crenna et al. 2021
+     - —
+   * - market for battery, Li-ion, LFP, curated reference
+     - GLO
+     - Schmidt et al. 2019; curated layout
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-li-ion-lfp-rechargeable-prismatic/>`__
+   * - market for battery cell, Li-ion, LTO
+     - GLO
+     - Schmidt et al. 2019
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-lto/>`__
+   * - market for battery, Li-sulfur, Li-S
+     - GLO
+     - Wickerts et al. (2023)
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-li-sulfur-li-s/>`__
+   * - market for battery, Li-oxygen, Li-O2
+     - GLO
+     - Wang et al. (2020)
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-li-oxygen-li-o2/>`__
+   * - market for battery, Sodium-ion, SiB
+     - GLO
+     - Zhang et al. (2024)
+     - `View dataset <https://clic.psi.ch/datasets/market-for-battery-sodium-ion-sib/>`__
+   * - market for battery, NaCl, rechargeable, prismatic
+     - GLO
+     - Galloway & Dustmann (2003)
+     - —
 
-The added water of crystallisation exits through the existing water-to-air
-flow during calcination, using 1,000 kg/m³. The substitution conserves the
-LiOH mole dose, and its extra H, O and total mass equal the added emitted
-water exactly. It introduces no new reaction-yield or excess-lithium factor.
-Precursor quantities, nominal oxide output, electricity and existing
-transport activities are retained. The greater monohydrate purchase carries
-its supplier's existing upstream production and transport burdens.
-No separate drying-energy estimate is added to the existing aggregate
-calcination electricity; the changed reagent's thermal demand is unresolved.
+These battery inventories are mostly used by battery electric vehicles,
+stationary energy storage systems, etc. (also imported by *premise*).
 
-The anhydrous source is the
-`Crenna et al. (2021) supplement
-<https://ars.els-cdn.com/content/image/1-s2.0-S0921344921002287-mmc2.xlsx>`__,
-``NMC811`` J191–J196. Dai et al. (2018),
-`GREET cathode update <https://greet.anl.gov/publication-update_bom_cm>`__,
-Table 5, independently reports 0.246 kg LiOH/kg NMC811. This correction does
-not replace the rounded dose with a full-precision or independently optimized
-recipe.
+NMC-111, NMC-811, LFP and NCA inventories can be found here: `market for battery cell, Li-ion, NMC111 (GLO) <https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-nmc111/>`__; `market for battery cell, Li-ion, NMC811 (GLO) <https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-nmc811/>`__; `market for battery cell, Li-ion, NCA (GLO) <https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-nca/>`__; `market for battery cell, Li-ion, LFP, curated supply (GLO) <https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-lfp/>`__.
+CLIC also provides `NMC622 <https://clic.psi.ch/datasets/market-for-battery-li-ion-nmc622/>`__, `NMC532 <https://clic.psi.ch/datasets/market-for-battery-li-ion-nmc532/>`__,
+`NMC955 <https://clic.psi.ch/datasets/market-for-battery-li-ion-nmc955/>`__ and `LTO <https://clic.psi.ch/datasets/market-for-battery-li-ion-lto/>`__ battery records.
+Li-S inventories can be found here: `market for battery, Li-sulfur, Li-S (GLO) <https://clic.psi.ch/datasets/market-for-battery-li-sulfur-li-s/>`__; `battery cell production, Li-S (GLO) <https://clic.psi.ch/datasets/battery-cell-production-li-s/>`__.
+Li-O2 inventories can be found here: `market for battery, Li-oxygen, Li-O2 (GLO) <https://clic.psi.ch/datasets/market-for-battery-li-oxygen-li-o2/>`__; `battery cell production, Li-O2 (GLO) <https://clic.psi.ch/datasets/battery-cell-production-li-o2/>`__.
+And SIB inventories can be found here: `market for battery, sodium-ion, SiB (GLO) <https://clic.psi.ch/datasets/market-for-battery-sodium-ion-sib/>`__; `battery module production, for SiB battery (GLO) <https://clic.psi.ch/datasets/battery-module-production-for-sib-battery/>`__.
 
-Only the hydration increment is balanced here. The inherited
-``0.00019562 m³`` reaction-water baseline is retained and remains unvalidated.
-This hydration correction does not establish full atomic closure or the
-correctness of the complete LTO cell.
-Ordinary anhydrous LiOH suppliers, native ecoinvent cathode inventories,
-metal-characterization factors and primary/secondary shares are unchanged.
-Rebuild scenario databases before deriving updated system results.
+From ecoinvent 3.9 onward, the legacy NMC111/811/NCA/LFP inventory source is skipped;
+the curated LFP reference is imported separately with authored source version
+3.12 through ordinary inventory migration. Native battery inventories retain
+their original identities.
 
 Solid-state chemistry mapping and reference inventories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+**CLIC dataset pages:** `battery cell production, all-solid-state battery, sulfidic <https://clic.psi.ch/datasets/battery-cell-production-all-solid-state-battery-sulfidic/>`__; `battery cell production, all-solid-state battery, oxidic <https://clic.psi.ch/datasets/battery-cell-production-all-solid-state-battery-oxidic/>`__; `battery cell production, all-solid-state battery, polymer <https://clic.psi.ch/datasets/battery-cell-production-all-solid-state-battery-polymer/>`__.
+
 The mobile source forecast distinguishes ``ASSB (polymer)``, ``ASSB (oxidic)``
-and ``ASSB (sulfidic)`` from ``SIB``. Earlier versions renamed all three ASSB
-categories to SIB before grouping the source data. In MIX in 2040, each category
-has a 7.8% share: the previous mapping therefore reported 31.2% sodium-ion
-instead of 7.8% sodium-ion and 23.4% solid-state batteries. The forecast ends
-in 2040 and its endpoint is held thereafter. In PLiB, the solid-state shares
-total 36% at that endpoint. Total-share closure did not detect this composition
-error. The SIB inventory represents a sodium-ion NMMT design, not these lithium
-solid-state batteries.
+and ``ASSB (sulfidic)`` from sodium-ion ``SIB``. In MIX in 2040, each has a
+7.8% share, giving 7.8% sodium-ion and 23.4% solid-state batteries. The forecast
+ends in 2040 and its endpoint is held thereafter. In PLiB, solid-state shares
+total 36% at that endpoint. The SIB inventory represents a sodium-ion NMMT
+design and is separate from these lithium solid-state batteries.
 
 The three source identities are now retained and each has its own capacity
-market in ``lci-batteries-ASSB.xlsx``. The published reference designs below
+market: `polymer <https://clic.psi.ch/datasets/market-for-battery-capacity-all-solid-state-battery-polymer/>`__, `oxidic <https://clic.psi.ch/datasets/market-for-battery-capacity-all-solid-state-battery-oxidic/>`__ and `sulfidic <https://clic.psi.ch/datasets/market-for-battery-capacity-all-solid-state-battery-sulfidic/>`__. The published reference designs below
 are explicit representatives for the forecast categories, not measured fleet
 averages. Their nominal installed-capacity basis is independent of cycle life;
 vehicle inventories still determine lifetime output and replacements.
@@ -297,15 +282,13 @@ The optimal variants are alternatives, not an assumed annual progression.
 No density improvement or probability distribution is inferred. Existing
 liquid-electrolyte and sodium-ion trajectories are retained.
 
-Inventory construction and documented adaptations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Inventory construction
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The polymer and oxide cell materials and manufacturing energy follow the
 baseline reference designs of
 `Zhang et al. (2025) <https://doi.org/10.1016/j.jclepro.2025.146607>`__.
-The author model is pinned to revision
-``40c51d668689dd7ce64bd22def55f61d864facc5`` of the
-`dimensioning repository <https://github.com/Shan253/All_solid_state_battery_dimensioning_model>`__.
+The accompanying `dimensioning model <https://github.com/Shan253/All_solid_state_battery_dimensioning_model>`__ supplies the cell geometry.
 Full-precision outputs retain separate cathode active material, carbon, binder,
 lithium, collectors, electrolyte and pouch layers. Their retained dry material
 inputs sum to one kg per kg cell. Cathode mass times specific capacity times
@@ -369,143 +352,17 @@ For cell density ``rho``, the capacity market buys
 used Li-ion battery market as a treatment proxy. ASSB-specific recovery yields,
 pack redesign, lifetime and primary/secondary shares are not asserted.
 
-Coverage checks and reproducibility
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. raw:: html
 
-Before changing any mobile/stationary scenario shares or pack masses, the
-battery update verifies that every positive forecast chemistry has a mapped
-capacity exchange with the market's unit. A missing mapping, absent exchange
-or kilogram exchange in place of kWh raises ``ValueError`` naming the market,
-scenario, year and missing shares. Completely represented mixes retain
-normalization for source rounding; unsupported positive shares cannot be
-silently removed. Interpolation and endpoint clamping are retained. Inventory
-linking remains a separate check: a named exchange alone does not establish
-that its supplier exists.
+   <span id="argonne-anl-cse-24-1-2024"></span>
+   <span id="wolf-et-al-2023"></span>
+   <span id="configured-density-targets"></span>
+   <span id="id9"></span>
+   <span id="lithium-hydroxide-hydration-in-custom-nmc811-oxide"></span>
+   <span id="nca-precursor-and-oxide-supply"></span>
+   <span id="nmc955-dry-anode-and-collector-boundary"></span>
+   <span id="nmc955-factory-energy-reference"></span>
+   <span id="nmc955-manufacturing-yield-and-rejects"></span>
+   <span id="nmc955-reference-capacity-and-fixed-hardware"></span>
 
-``data/battery/solid_state_reference_designs.json`` records source links,
-revisions, supplement hashes, full-precision model outputs, source exchange
-rows and local adaptations. Run
-``python scripts/update_solid_state_battery_inventories.py`` to reconstruct
-the workbook without internet or a Brightway database. The script also replaces
-three unused zero-share placeholders in each of the four mobile scenario
-markets, preserving all other capacity-workbook cells, formulas and caches.
-The ``battery`` update uses these distinct suppliers after normal inventory
-import and migration. The existing NMC900/NMC900-Si aggregation remains a
-separate proxy requiring assessment. Germanium is present in the sulfide LCI;
-metal-indicator methods that omit it do not report that demand.
-
-Rebuild scenarios to apply these inventories. Saved scenario databases and
-results are not rewritten by the source correction. Arithmetic, unit, mass and
-supplier checks do not validate the future commercial design assumptions.
-
-Constant-range vehicle capacity
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Marked passenger cars, trucks and electric buses resize their battery capacity
-in proportion to operating grid electricity per vehicle-kilometre relative to
-the 2020 design. This holds range fixed, with no additional mass/energy feedback
-on the IAM efficiency. Battery purchases remain nominal kWh times one plus
-lifetime replacements. Energy-density improvements are applied in the capacity
-markets, never as a second reduction of these kWh purchases.
-
-Cars retain occupancy; BEV trucks retain payload utilization and adjust their
-tonne-kilometre normalization. The ten electric bus variants in
-``lci-buses.xlsx`` retain passenger occupancy and the existing replacement
-policy. Their capacity-only metadata uses exact inventory exchanges; it does
-not infer physical pack mass, road wear or curb mass from rounded comments.
-Overnight, opportunity-charging and battery-equipped trolleybuses all use the
-same capacity rule. Their original MIX or LTO supplier links are retained.
-
-For fixed lifetime, occupancy and replacement count, both battery capacity and
-electricity per kilometre change by the same factor, leaving purchased battery
-capacity per MJ constant. For example, the 13 m single-deck overnight bus uses
-399 kWh in 2020. If electricity use halves, it uses 199.5 kWh, rather than
-allocating the original 399 kWh over half as much lifetime electricity.
-Effective battery kg/MJ can still change through market density and chemistry.
-
-Run ``python scripts/update_bus_battery_sizing.py`` after a compatible bus inventory
-refresh to regenerate these metadata rows. It checks the source capacity,
-lifetime and occupancy before writing and changes no exchange amounts.
-
-
-Assumptions and limitations
------------------------------
-
-Changing capacity-market mass does not by itself specify cycle life,
-round-trip losses, utilization or delivered electricity. Those parameters
-belong to the consuming vehicle or storage service. An imported chemistry can
-be available without a positive scenario share. A zero-total chemistry market
-is not repaired by normalization and requires investigation.
-
-Worked example and checks
----------------------------
-
-For NMC811, the configured mean cell densities are 0.28 kWh/kg in 2020 and
-0.34 in 2050. The 2050 mass factor is 0.28/0.34 = 0.8235. An illustrative
-starting coefficient of 5 kg/kWh therefore becomes 4.118 kg/kWh; 5 kg/kWh is
-an example, not a universal inventory coefficient. Check the actual market's
-kilogram exchanges, chemistry share closure and its consumer. For storage
-LCIA, inspect throughput and lifetime in the operating activity as well.
-
-Sources and inventory details
--------------------------------
-
-Configured density targets
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-These cell-density targets and mass factors are generated from the packaged
-configuration. They are not whole-pack densities or absolute pack masses.
-The aliases determine which capacity markets receive each trajectory.
-
-.. include:: /reference/generated/battery-density.inc
-
-Source inventories: li-ion batteries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Battery imports depend on the source ecoinvent version. The NMC111/811/NCA/LFP
-supplement is skipped for 3.9 and later because those inventories are already
-represented in the background. The NMC622/NMC532 supplement is skipped for
-3.11 and 3.12. Other battery supplements are selected separately by the
-constructor's import registry, including the
-:ref:`curated LFP manufacturing reference <lfp-curated-reference>` from 3.9.
-NMC-111, NMC-622 NMC-811 and NCA Lithium-ion battery inventories are originally
-from `Dai <https://www.mdpi.com/2313-0105/5/2/48>`__ et al. 2019. They have been adapted to ecoinvent by `Crenna <https://doi.org/10.1016/j.resconrec.2021.105619>`__ et al, 2021.
-LFP and LTO Lithium-ion battery inventories are from  `Schmidt <https://doi.org/10.1021/acs.est.8b05313>`__ et al. 2019.
-Li-S (Lithium-sulfur) battery inventories are from `Wickerts <https://doi.org/10.1021/acssuschemeng.3c00141>`__ et al. 2023.
-Li-O2 (Lithium-air) battery inventories are from `Wang <https://doi.org/10.1016/j.jclepro.2020.121339>`__ et al. 2020.
-Finally, SIB (Sodium-ion) battery inventories are from `Zhang22 <https://doi.org/10.1016/j.resconrec.2023.107362>`__ et al. 2024.
-Ecoinvent provides also inventories for LMO (Lithium Maganese Oxide) batteries.
-
-They introduce the following datasets:
-
- ============================================================= =========== ======================================
-  Battery components                                            location    source
- ============================================================= =========== ======================================
-  battery management system production, for Li-ion battery        GLO         Schmidt et al. 2019
-  market for battery, Li-ion, NMC111, rechargeable, prismatic     GLO         Dai et al. 2019, Crenna et al. 2021
-  market for battery, Li-ion, NMC622, rechargeable, prismatic     GLO         Dai et al. 2019, Crenna et al. 2021
-  market for battery, Li-ion, NMC811, rechargeable, prismatic     GLO         Dai et al. 2019, Crenna et al. 2021
-  market for battery, Li-ion, NCA, rechargeable, prismatic        GLO         Dai et al. 2019, Crenna et al. 2021
-  market for battery, Li-ion, LFP, curated reference              GLO         Schmidt et al. 2019; curated layout
-  market for battery cell, Li-ion, LTO                            GLO         Schmidt et al. 2019
-  market for battery, Li-sulfur, Li-S                             GLO         Wickerts et al. (2023)
-  market for battery, Li-oxygen, Li-O2                            GLO         Wang et al. (2020)
-  market for battery, Sodium-ion, SiB                             GLO         Zhang et al. (2024)
-  market for battery, NaCl, rechargeable, prismatic               GLO         Galloway & Dustmann (2003)
- ============================================================= =========== ======================================
-
-These battery inventories are mostly used by battery electric vehicles,
-stationary energy storage systems, etc. (also imported by *premise*).
-
-NMC-111, NMC-811, LFP and NCA inventories can be found here: `LCI_batteries1 <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-NMC111-811-NCA-LFP.xlsx>`__.
-NMC622/NMC532 inventories are packaged in ``lci-batteries-NMC622-NMC532.xlsx``;
-NMC955/LTO inventories are in ``lci-batteries-NMC955-LTO.xlsx``, in the same
-additional-inventories directory.
-Li-S inventories can be found here: `LCI_batteries3 <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-LiS.xlsx>`__.
-Li-O2 inventories can be found here: `LCI_batteries4 <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-LiO2.xlsx>`__.
-And SIB inventories can be found here: `LCI_batteries5 <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-SIB.xlsx>`__.
-
-From ecoinvent 3.9 onward, the legacy NMC111/811/NCA/LFP workbook is skipped;
-the curated LFP reference is imported separately with authored source version
-3.12 through ordinary inventory migration. Native battery inventories retain
-their original identities.
+See :doc:`battery inventories </methodology/battery-inventories>` for these inventory details.

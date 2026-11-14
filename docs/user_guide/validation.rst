@@ -38,14 +38,31 @@ Find and interpret an issue
 Worked finding examples
 -------------------------
 
-A warning about using a supplier from another region asks you to assess
-whether that supplier represents your study location. It does not necessarily
-mean the calculation is invalid.
+The following records use the same illustrative findings as
+:download:`validation_findings.py </examples/validation_findings.py>`.
+Their ``example.*`` rule IDs are teaching examples, not results for a generated
+scenario.
 
-An error about an invalid exchange amount requires correction before
-calculation. Inspect the activity and the input data that supplied that amount.
-These are illustrative examples; use the message in your own report to
-decide what to investigate.
+.. list-table:: Example findings and how to respond
+   :header-rows: 1
+   :widths: 20 40 40
+
+   * - Finding
+     - Message and evidence
+     - Response
+   * - Warning: ``example.proxy``
+     - “Assess whether the global supplier represents this region.” The
+       illustrative consumer is ``example process`` in CH.
+     - Inspect the selected supplier and its geography. Decide whether the
+       proxy represents the study; the warning alone does not invalidate it.
+   * - Error: ``example.amount``
+     - “Exchange amount must be finite.” Exchange 1 has actual value ``NaN``;
+       the expected value is a finite number.
+     - Correct the data or calculation that produced ``NaN`` and rebuild.
+       ``report.raise_for_errors()`` rejects this report until the error is fixed.
+
+Use the message and evidence in your own report to identify the affected
+activity and input; these example identities will not occur in your database.
 
 When to request exhaustive checks
 -----------------------------------

@@ -25,6 +25,14 @@ regionalizes suppliers and redirects selected existing heat consumers.
    :alt: Delivered-heat markets: Read heat layers; Prepare suppliers and convert volumes; Build available heat markets; Redirect heat consumers; Relink energy inputs and check.
    :align: center
 
+The related end-use regionalization operation has its own chapter:
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+
+   /methodology/final-energy
+
 Inputs and applicability
 --------------------------
 
@@ -164,14 +172,6 @@ not the number of generated regional datasets.
 An individual scenario may still omit a whole layer or contain only zero values.
 No market is created for a layer without positive scenario data. If all three
 layers are absent, the heat transformation leaves the database unchanged.
-
-The related end-use regionalization operation has its own chapter:
-
-.. toctree::
-   :maxdepth: 1
-   :titlesonly:
-
-   /methodology/final-energy
 
 Transformation
 ----------------
@@ -427,6 +427,36 @@ layer and that purchased heat does not create a market cycle.
 
 Sources and inventory details
 -------------------------------
+
+.. _geothermal-heat-inventories:
+
+Geothermal heat
+~~~~~~~~~~~~~~~
+
+Heat production by means of a geothermal well are not represented in ecoinvent.
+The geothermal power plant construction inventories are from `Maeder <https://www.psi.ch/sites/default/files/import/ta/PublicationTab/BSc_Mattia_Maeder_2016.pdf>`__ Bachelor Thesis.
+
+The co-generation unit has been removed and replaced by heat exchanger and
+district heating pipes. Gross heat output of 1,483 TJ, with 80% efficiency.
+
+They introduce the following datasets (only heat production datasets shown):
+
+ =================================== ===========
+  Geothermal heat production          location
+ =================================== ===========
+  heat production, deep geothermal    RAS
+  heat production, deep geothermal    GLO
+  heat production, deep geothermal    RAF
+  heat production, deep geothermal    RME
+  heat production, deep geothermal    RLA
+  heat production, deep geothermal    RU
+  heat production, deep geothermal    CA
+  heat production, deep geothermal    JP
+  heat production, deep geothermal    US
+  heat production, deep geothermal    IN
+  heat production, deep geothermal    CN
+  heat production, deep geothermal    RER
+ =================================== ===========
 
 .. raw:: html
 

@@ -87,15 +87,38 @@ exhaust factors; matching energy alone does not establish combustion equivalence
 Worked example and checks
 ---------------------------
 
-Compare a mapped heating activity's source and regional versions. Inspect
-its location and energy suppliers separately from its direct energy amounts.
-Then inspect the heat-market route used by a consuming activity. If the data
-are absent, confirm the recorded skip rather than expecting new markets.
+Consider a hypothetical electric car that purchases **30,000 kWh of grid
+electricity over its life**. It uses a 60 kWh pack with one full replacement,
+so lifetime battery purchases are **120 kWh of capacity**. Its purchased
+traction-energy denominator is ``30,000 × 3.6 = 108,000 MJ``.
 
-For an electric passenger-car activity, verify 1/3.6 kWh per MJ and compare the
-battery-capacity input with the source car's lifetime capacity purchases divided
-by its lifetime purchased electricity in MJ. Check the source location and
-equipment boundary before comparing it with a complete transport service.
+.. list-table:: Inputs per 1 MJ of purchased traction energy
+   :header-rows: 1
+   :widths: 30 30 40
+
+   * - Input
+     - Lifetime purchase
+     - Input per MJ
+   * - Grid electricity
+     - 30,000 kWh
+     - 30,000 / 108,000 = 0.277778 kWh
+   * - Battery capacity
+     - 120 kWh of capacity
+     - 120 / 108,000 = 0.00111111 kWh of capacity
+
+The electricity coefficient equals ``1 / 3.6``. The battery coefficient
+already includes the replacement; multiplying it by two again would count the
+replacement twice. Equivalent source amounts per vehicle-kilometre give the
+same ratio when both use the same lifetime and occupancy basis.
+
+This example covers the retained traction-energy and battery inputs. Chassis,
+body, roads and whole-vehicle maintenance stay outside this energy-use
+activity. It is not the footprint of a complete transport service.
+
+For heating, compare a mapped source activity with its regional copy: check
+its location, unchanged or changed direct amounts, and relinked suppliers
+separately. Confirm which heat market a consumer uses. Without the required
+final-energy data, expect the recorded skip rather than new regional activities.
 
 Sources and inventory details
 -------------------------------

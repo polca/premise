@@ -2,10 +2,11 @@ Development and releases
 ==========================
 
 Start with migration guidance, then consult development practices and
-implementation details. Dated measurements and audit notes follow.
+implementation details.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :titlesonly:
 
    /development/releases-2-6
    /development/releases-2-5
@@ -16,11 +17,4 @@ implementation details. Dated measurements and audit notes follow.
    /development/architecture
    /development/internals
    /development/validation-internals
-   /development/physical-inventory-probing-plan
    /development/supplier-selection
-   /development/performance-history
-   /development/consequential-validation-history
-   /development/documentation-audit
-   /development/scientific-update-backlog
-   /development/passenger-car-refresh-2026
-   /development/regional-truck-refresh-2026

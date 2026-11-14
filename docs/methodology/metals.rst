@@ -1,7 +1,6 @@
 Metals
 ========
 
-
 .. contents:: On this page
    :local:
    :depth: 1
@@ -39,8 +38,8 @@ technology updates.
 Data collection and processing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Distributions for material intensities, derived from published literature, are provided in `SI_2_Material_requirements.xlsx <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/SI_2_Material_requirements.xlsx>`_.
-From this database, `metals_db.csv <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/metals_db.csv>`_ is created,
+Material-intensity distributions are compiled from published literature.
+From these observations, `metals_db.csv <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/metals_db.csv>`_ is created,
 which *premise* uses to update the material intensities for each technology.
 
 The mapping file that associates metal intensities with datasets to be
@@ -54,8 +53,29 @@ Finally, *premise* uses `metal_products.yaml <https://github.com/polca/premise/b
 to select the target activity, metal product and compound conversion. Each rule
 has a stable identifier which is included in the structured change report.
 
+Transformation
+----------------
+
+Premise builds metal markets and applies the configured in-ground resource
+allocation rules before updating direct material inputs and relinking.
+Material intensities are interpolated within each metal/technology pair's
+supported year range. Outside that range, the source input is preserved and
+a decision records the temporal restriction (``year_outside_support`` for
+individual rules, ``design_incomplete`` for a matched design).
+A 2020-only aluminium observation does not become a 2050 projection because
+neodymium has a 2050 observation. Each applied direct material amount uses the
+configured activity-unit conversion and compound/content factor.
+
+PEM electrolysers use a paired iridium/platinum loading assumption, and SOEC
+stacks use a matched yttrium/zirconium/cerium oxide design. These rules change
+the relevant material inputs together. Their reference designs, future
+assumptions and remaining gaps are described in :ref:`metals-pem-reference`
+and :ref:`metals-soec-reference`. The iridium supplier is documented under
+:ref:`metals-iridium-supply`.
+
 Material preservation and conversion
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 The six IEA PVPS 2026 silicon-cell names (20 geographic variants) have explicit
 ``preserve_source`` policies. Their source metallization pastes and other
@@ -133,21 +153,232 @@ subtracted automatically.
 
    <span id="material-rules-and-validation"></span>
 
-Transformation
-----------------
+.. _metals-resource-attribution:
 
-Premise builds metal markets and applies the configured in-ground resource
-allocation rules before updating direct material inputs and relinking.
-Material intensities are interpolated within each metal/technology pair's
-supported year range. Outside that range, the source input is preserved and
-a decision records the temporal restriction (``year_outside_support`` for
-individual rules, ``design_incomplete`` for a matched design).
-A 2020-only aluminium observation does not become a 2050 projection because
-neodymium has a 2050 observation. Each applied direct material amount uses the
-configured activity-unit conversion and compound/content factor.
+Post-allocation correction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Existing-provider fallback for PEM iridium
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This correction applies to attributional databases only. Consequential
+databases retain their source resource exchanges and substitution credits.
+Applying an economic-allocation correction there can both add extraction at
+refining and remove resource burdens associated with displaced coproducts.
+These operations conflict with the source model's substitution convention; see
+ecoinvent's `system-model documentation <https://support.ecoinvent.org/system-models>`_.
+
+Several metals can be extracted from the same ore. In ecoinvent's attributional
+models, economic allocation generally shares the inputs and emissions of a
+process between its valuable products. The metal resource flows assigned to
+one product therefore need not match the metals physically contained in it.
+
+The *premise* correction changes how metal extraction is attributed: its aim is
+to assign extraction of each element to the supply chain of the corresponding
+metal product. Other inputs and emissions keep their existing allocation under
+this correction. This is a resource-attribution convention, as discussed by
+`Berger <https://doi.org/10.1007/s11367-020-01737-5>`__ et al. (2020). It does
+not reconstruct a complete physical balance for every stage of production.
+
+What a zero resource flow means
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+An elementary resource flow records extraction from the environment attributed
+to a product. It is different from a product property, such as the gold content
+of a concentrate. **Setting a resource flow to zero does not mean that the
+element is physically absent from the product.** It also does not mean that
+the element has already been separated or that no extraction took place.
+
+For example, consider ``copper mine operation and beneficiation, sulfide ore``
+with the reference product ``copper concentrate, sulfide ore``. Where Gold and
+Tellurium resource exchanges are present, the correction sets them to zero
+because they are not the target metal of this copper product. This happens at
+the mining and beneficiation dataset, without waiting for smelting or later
+separation. The concentrate output and its downstream processing inputs are
+unchanged by this correction. Gold and tellurium can therefore still be
+physically present in the concentrate despite their zero direct resource flows.
+
+Using mining and concentrate datasets directly
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The correction is intended to support resource accounting for metal products
+through their supply chains. It does not give every intermediate a complete
+record of all the elements physically extracted with it. If a study ends at
+the mine or uses a concentrate directly, its corrected resource results must
+be read with this distinction in mind. They can omit co-mined elements that
+remain in that intermediate. This also affects resource impact indicators
+calculated from those flows.
+
+For questions about the physical composition of a concentrate or all metals
+removed from the ground at a mine, use product properties and process-specific
+material balances, including losses to tailings and other outputs. Neither
+the corrected elementary flows nor the original economically allocated flows
+alone establish that physical balance. A dataset can still be used under its
+stated allocation convention, but its zero resource flows must not be read as
+zero metal content or zero physical co-extraction.
+
+The detailed content factors and process-specific rules are listed under
+:ref:`metals-resource-recipes`.
+
+Runtime configuration
+~~~~~~~~~~~~~~~~~~~~~~~
+
+``premise/data/metals/metal_products.yaml`` is the authoritative material-rule
+file. ``technology_conversion_factors.yaml`` contains activity unit conversion
+factors. Invalid selectors, factors or allocation groups stop the update before
+material amounts are applied.
+
+``set_direct_amount`` replaces matching direct technosphere inputs. Biosphere
+exchanges are never selected by this operation. Providers are matched by exact
+name and reference product, with the location preference ``World``, ``GLO``,
+then ``RoW``. If no configured provider exists, the rule is skipped and a
+validation warning and the reason for the choice are recorded.
+
+For ecoinvent 3.11 and 3.12, the gallium rule selects
+``gallium, high-grade`` for the configured semiconductor-grade application.
+Provider name and reference product must match the source database version.
+
+Markets and downstream links
+------------------------------
+
+For cut-off markets, eligible secondary-supply exchanges are copied from an
+existing source market when their positive total does not exceed one. Primary
+supply fills the remaining share; transport additions are weighted by that
+primary share. Without usable secondary inputs the market uses primary supply
+only. Consequential markets retain their source marginal suppliers: historical
+average country shares are not evidence of future marginal supply. If a configured
+primary route is unavailable, the entire source market is preserved and the
+missing route is recorded; the available routes are not renormalized silently.
+Regional proxies retain existing suppliers and use a recorded geographical
+fallback when needed. Unresolved or duplicate final suppliers raise an error.
+
+All positive producer shares are retained, including shares below one percent.
+Transport includes all available modes and sums production routes within each
+country. All providers must be freight services in tonne-kilometres; aircraft
+manufacturing markets measured in aircraft units are explicitly excluded.
+A primary input of 0.75 kg travelling 1000 weighted km contributes
+0.75 tonne-km. Before creating proxies or relinking a market, all positive
+primary origins must have transport observations. Otherwise the source market
+is preserved, with the missing origins and their fraction of primary supply
+recorded. A recorded zero distance is distinguished from absent data. Negative,
+non-finite distances and unknown modes are rejected. The market validator checks the applied supplier
+shares and retained secondary fraction, not the unused split YAML assumptions.
+
+Mining and refining markets creation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*premise* builds global supply markets for several mined and refined metals.
+In these markets, the contribution of different mining and refining regions corresponds
+to their *current* market shares. Following this approach, the supply from different
+regions for a specific metal will be directly proportional to the country-level
+contributions to the global market. These shares are derived from various sources,
+mainly `BGS <https://www2.bgs.ac.uk/mineralsuk/statistics/worldStatistics.html>`_
+and `USGS <https://doi.org/10.3133/mcs2023>`_, in addition to data from
+`van den Brink <https://doi.org/10.1016/j.resconrec.2022.106586>`__ et al. (2022) for Antimony refining.
+For certain markets where data was available, *premise* incorporates projections
+from `BNEF <https://about.bnef.com/>`_ regarding the development of future mining and refining projects to
+forecast the market shares' evolution up to 2030.
+
+Replacement markets are built only within the years declared in this inventory source
+(currently 2020–2030). Interpolation uses the actual year labels. Outside that
+range, source markets are preserved instead of carrying the 2030 shares
+forward implicitly. Zero-share routes do not require a production provider.
+
+The global supply markets for mined and refined metals use the configured
+mining and refining production-share series. The linked CLIC records below
+describe their supplying process inventories.
+
+Additionally, global metal supply markets modeled account for the average transport
+distances and modes of transport for the different metals from producer
+to consumer. These data are retrieved from `UNCTAD <https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf>`_.
+
+Average transport distance and modes of transport for each producer can be found under: `transport_markets_data <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/transport_markets_data.csv>`_.
+
+Assumptions and limitations
+-----------------------------
+
+Direct metal inputs and total supply-chain metal requirements are different
+quantities. Source-preservation policies prevent specified overlays; they do
+not freeze upstream suppliers. Unknown ore/compound content and unavailable
+providers have the fallback behavior documented below. A corrected resource
+mass balance is not an independent validation of the whole mining inventory.
+Unverified EV component overlays are now preserved as described above.
+In particular, these fixes do not supply a dynamic scrap-stock model, future
+ore-grade or recovery-yield projections, endogenous metal demand, or marginal
+supplier projections for consequential modelling. Preserving source data
+prevents unsupported overrides; it does not make inherited inventories current
+or establish the physical feasibility of a future scenario.
+
+The scenario mapping at ``mapping["metals"]["methodology"]`` records these
+limitations and decision counts. ``material decisions``, ``market diagnostics``
+and ``resource diagnostics`` give activity-level evidence. Passing numerical
+validation does not mean that all configured markets or materials were updated.
+For example, a 2050 build now preserves all markets whose share data end in 2030.
+
+Removing the remaining methodological barriers requires independently sourced
+inputs: component bills of materials; grades and recovery yields with consistent
+allocation boundaries; stocks, lifetimes, collection and recycling losses; and
+scenario-specific mining capacities and marginal supplier choices. These need
+sensitivity analysis and external validation, not calibration of RELICS scores
+to 1 kg/kg. Zinc's explicit attribution boundary remains a convention.
+
+RELICS indicators can compare extraction by element in kg per functional unit
+alongside climate change. They should be reported separately by element and
+with biosphere-mapping coverage. They do not measure scarcity, supply risk,
+installed metal content or the plausibility of a future supply scenario.
+
+.. raw:: html
+
+   <span id="dataset-wise-comparison"></span>
+
+Worked example and checks
+---------------------------
+
+For an illustrative intensity of 2 kg metal/kW and a mapped 3 kW reference
+installation, the intended direct input is 6 kg only if the rule and activity
+unit authorize that conversion. A square metre of PV cell cannot use this
+capacity conversion by default. Inspect ``Key Changes`` for direct amounts
+and ``Methodology`` for applied or preserved rule IDs. Check background metal
+demand separately to avoid double counting component inventories.
+
+Sources and inventory details
+-------------------------------
+
+Inventories
+~~~~~~~~~~~~~
+
+*premise* provides inventories for the following metals:
+
+* `cobalt metal production, from copper mining, via electrolysis, economic allocation (CN) <https://clic.psi.ch/datasets/cobalt-metal-production-from-copper-mining-via-electrolysis-economic-allocation/>`__; `cobalt sulfate production, from copper mining, economic allocation (CN) <https://clic.psi.ch/datasets/cobalt-sulfate-production-from-copper-mining-economic-allocation/>`__.
+* Germanium co-production, as a co-product from zinc mine operation, based on the unallocated dataset in ecoinvent.
+* `natural graphite production, coated (CN) <https://clic.psi.ch/datasets/natural-graphite-production-coated/>`__; `synthetic graphite production (CN) <https://clic.psi.ch/datasets/synthetic-graphite-production/>`__.
+* Iridium: the South African supply uses the independently constructed,
+  Argonne-derived economic-allocation proxy shared with CLIC, declared against
+  ecoinvent 3.12. The remaining legacy PGM recipes retain their source model.
+* `market for lithium carbonate, battery grade (GLO) <https://clic.psi.ch/datasets/market-for-lithium-carbonate-battery-grade/>`__; `market for lithium hydroxide, battery grade (GLO) <https://clic.psi.ch/datasets/market-for-lithium-hydroxide-battery-grade/>`__.
+* Rhenium co-production, as a co-product from copper mine operation, based on the unallocated dataset in ecoinvent.
+* Legacy platinum-group metal supplies, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
+* and `vanadium pentoxide production (ZA) <https://clic.psi.ch/datasets/vanadium-pentoxide-production/>`__; `vanadium pentoxide and unalloyed steel production (CN) <https://clic.psi.ch/datasets/vanadium-pentoxide-and-unalloyed-steel-production/>`__.
+
+The published inventories are available in the `CLIC inventory catalogue <https://clic.psi.ch/browse/>`__.
+
+
+EPR construction
+~~~~~~~~~~~~~~~~~~
+
+EPR construction and the specified silicon-cell activities keep their direct
+source material structure. Their components already carry material inputs;
+Premise does not apply the generic plant- or capacity-level metal additions
+to these activities. Upstream suppliers can still change.
+
+.. raw:: html
+
+   <span id="source-inventories-graphite"></span>
+
+
+.. _metals-iridium-supply:
+
+PEM iridium supply
+~~~~~~~~~~~~~~~~~~~~~
+
+**CLIC dataset pages:** `iridium production, economic allocation, proxy <https://clic.psi.ch/datasets/iridium-production-economic-allocation-proxy/>`__.
 
 The ``pemel-iridium-iridium`` rule requests ``market for iridium``. Market
 creation can be skipped because PGM freight observations are absent or the
@@ -156,9 +387,9 @@ prevented application of the separate, supported material-intensity series:
 the PEM stack kept its original 0.8 kg iridium input at every year.
 
 The rule now explicitly declares ``existing_provider_fallback`` for
-``iridium production, economic allocation, proxy`` producing ``iridium``.
-This independently constructed South African reference comes from
-``lci-iridium-economic-proxy.xlsx`` and is shared with CLIC. It replaces the
+`iridium production, economic allocation, proxy <https://clic.psi.ch/datasets/iridium-production-economic-allocation-proxy/>`__ producing ``iridium``.
+This independently constructed South African reference is the
+`iridium economic-allocation proxy on CLIC <https://clic.psi.ch/datasets/iridium-production-economic-allocation-proxy/>`__. It replaces the
 legacy South African iridium recipe obtained by rescaling ecoinvent's platinum
 inventory. It is not a native ecoinvent iridium market. When the requested
 market is absent, retain that
@@ -184,7 +415,7 @@ actual refinery, retained location, selection mode and converted target.
 Direct-metal comparisons include the declared fallback provider.
 
 The static PEM stack still purchases **0.8 kg** iridium. The new supplier uses
-the approved Argonne-derived, economic-allocation reference, including the
+the Argonne-derived, economic-allocation reference, including the
 commercial-dose flotation proxies and purchased-water adjustment. It remains
 a partial engineering inventory: final-refinery reagent make-up, remaining
 direct emissions, extraction recovery losses, complete water returns and waste
@@ -193,8 +424,8 @@ burdens. Changes in impacts relative to the legacy recipe are a model
 substitution, not a measured improvement in mining performance.
 
 The supplier includes **1 kg of Iridium, in ground per kg of iridium supplied**.
-This product-content resource attribution was approved on 2026-11-01 and
-is a Premise extension to the historical CLIC source snapshot. The
+This product-content resource attribution is a Premise extension to the
+historical CLIC source snapshot. The
 elementary-flow name is ``Iridium``, with categories
 ``natural resource::in ground``. Its amount is not multiplied by the
 economic allocation factor used for pooled operating burdens. No
@@ -209,26 +440,19 @@ to cleaner production or wholly to lower metal demand. Filling coverage gaps
 requires additional source data rather than treating missing flows as zero.
 
 The supplier's source technosphere and biosphere versions are both 3.12. Its
-separate import declaration preserves the remaining PGM workbook's 3.8 source
-version and the electrolysis workbook's 3.9 source version. Premise's existing
+separate import declaration preserves the remaining PGM inventory source's 3.8 source
+version and the electrolysis inventory source's 3.9 source version. Premise's existing
 migration machinery translates each source to the requested output version;
-the foreground workbook omits machine-specific native links. This does not
+the foreground inventory source omits machine-specific native links. This does not
 claim that older output versions reproduce identical background burdens.
 The foreground compilation is CC BY 4.0; referenced background data retain
-their separate terms. The compiler, scientific sources and incomplete-boundary
-qualifications are recorded in the workbook and its pinned authoring reference
-in ``tests/data/inventory_contracts.json``.
+their separate terms. Source qualifications and compiler attribution are recorded on the linked
+CLIC inventory page.
 
-Matched PEM catalyst reference
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _metals-pem-reference:
 
-The previous PEMEL CSV independently combined medians from ten Ir and Pt
-observations with a Ru loading from one experimental Ru-Ir catalyst. This
-mix did not represent a documented electrode design. The ``Stahl_2016``
-workbook citation also actually identifies Staffell and Ingram's 2010 alkaline
-fuel-cell CHP paper; its true numerical source remains unresolved. The
-historical workbook and all 25 source observations are preserved, but its
-catalyst observations no longer determine the runtime coefficients.
+PEM catalyst reference
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the matched 2022 baseline in Badgett et al. (2024),
 `NREL/TP-6A20-87625 <https://docs.nlr.gov/docs/fy24osti/87625.pdf>`_,
@@ -284,15 +508,6 @@ trajectory. The unchanged lifetime allocation remains a separate proxy,
 as described below. Evaluate the constant-loading sensitivity alongside the
 prospective case when assessing how this assumption affects metal demand.
 
-In the paired GWP audit, holding the 2022 electrode loadings fixed while
-retaining 2050 supplier impacts and the same hardware raises the stack score
-from approximately 9.09 to 13.64 t CO2-eq per MW. This is a recipe sensitivity
-with background unit impacts held fixed, not a separate full scenario build.
-It isolates the optimistic catalyst-loading assumption from the independently
-reviewed iridium-supplier substitution and hardware coatings. The prospective
-trajectory is retained as an explicit scenario reference; the sensitivity does
-not validate unchanged durability or efficiency at the lower loadings.
-
 Equal CSV mean/median/min/max values specify a deterministic scenario, not
 zero engineering uncertainty. Outside the 2020–2050 support, preserve source
 inputs. The ``design_group`` on the three catalyst rules requires complete
@@ -301,15 +516,6 @@ suppliers for both positive inputs before changing any member. A missing or
 incompatible supplier cannot leave a partially changed catalyst set. No Ru
 market is required to apply its explicit zero. Provenance identifies the
 matched group, requested year, selected intensities and temporal support.
-
-The reference inputs, projection assumptions, previous constant coefficients,
-historical observations, citation audit and limits are packaged in
-``data/metals/pem_catalyst_reference.json``. Run
-``python tests/support/update_pem_catalyst_reference.py`` to reproduce only the nine
-PEMEL Ir/Pt/Ru CSV rows at 2020, 2022 and 2050. Pt rows contain the combined
-cathode-catalyst and selected hardware-coating quantity. The updater guards recognized
-source values, preserves unrelated records including embedded newlines,
-and is byte-idempotent.
 
 The **fixed-baseline** sensitivity retains 0.526315789 kg Ir/MW and
 0.263157895 kg cathode-catalyst Pt/MW over the same years. With the default
@@ -332,14 +538,9 @@ this switch affects only the matched PEMEL catalyst series.
 Platinum hardware coatings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The original stack has a direct 0.75 kg Pt input labelled cathode catalyst;
-it has no separate hardware-coating input or coating-service activity.
-NREL's Table 1 separately specifies Pt-coated anode PTLs and bipolar plates.
-Including cathode catalyst alone therefore leaves the selected reference
-incomplete. The runtime Pt input now replaces the old direct input with
-**cathode catalyst + PTL coating + bipolar-plate coating**, once. These
-components are calculated separately in the offline updater and reference
-JSON; they are not appended on top of the old 0.75 kg recipe.
+The stack's direct platinum input combines cathode catalyst, anode porous
+transport-layer coating and bipolar-plate coating. Each contribution is
+counted once using the geometry below.
 
 The user-selected coating reference assumes a **100 nm Pt film on both
 nominal flat faces of each anode PTL and bipolar plate**. The report directly
@@ -404,14 +605,6 @@ physical coating. Combine any coating case with either catalyst scenario.
 These are engineering sensitivities, not statistical bounds or demonstrated
 commercial designs. The default is ``--coating-case reference``.
 
-The retained reference gives approximately 9.09 t CO2-eq/MW stack in the paired
-2050 GWP audit. With the same catalyst loadings and frozen background impacts,
-the one-face coating sensitivity gives 7.50 t and the 20 nm sensitivity gives
-6.55 t CO2-eq/MW. These are recipe sensitivities, not separate full scenario
-builds. They isolate the thickness/coverage assumptions from catalyst loading
-and the iridium-supplier substitution; they do not bound unresolved deposition
-or microscopic-surface effects.
-
 Retained catalyst and nominal flat-film coating masses assume 100%
 incorporation at the direct metal-purchase boundary. Real pore/fibre area,
 coating penetration, flow-channel surface, masks, discontinuity, deposition
@@ -420,9 +613,7 @@ remain unresolved. No factory-line cost yield is interpreted as a measured
 metal recovery yield. The overall inventory remains a reference model with
 these gaps; the coating addition does not validate the entire stack.
 
-Other hardware remains unchanged. In particular, the potassium and titanium
-observations linked to ``Stahl_2016`` still need separate review. The retained
-hydrogen recipe uses 54 kWh/kg H₂, 20 years, 8,000 hours/year, 18.52 kg H₂/h,
+The hydrogen recipe uses 54 kWh/kg H₂, 20 years, 8,000 hours/year, 18.52 kg H₂/h,
 and three replacements (four stacks total); its specifications list 45,000
 hours nominal stack life. Thus demand is four stacks per 2,963,200 kg H₂,
 not another lifetime multiplier on catalyst mass. NREL separately reports
@@ -431,6 +622,8 @@ that the full hydrogen system matches NREL's performance, hardware or lifetime.
 No primary/secondary share or supply mix is changed. Rebuild scenarios to
 apply it; source inventories, saved databases, indicators and dashboards are
 not rewritten.
+
+.. _metals-soec-reference:
 
 Matched SOEC ceramic reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -497,11 +690,11 @@ were inspected. The latter identifies YDC, not GDC, and alternative air
 electrodes. The Häfele main-article numerical bill of materials was not
 directly accessible. The 0.425/0.262 kg source component masses are
 reconstructed from Gerloff's rounded entries and the attributed Häfele
-observations in the packaged ``SI_2_Material_requirements.xlsx``. Without
+observations in the supporting material-intensity compilation. Without
 the capacity exponent, the reference chemistry reproduces its separately
 attributed Y, Zr and Ce quantities within 0.001 kg/MW. Primary experimental
 sources in the JSON support the chemical conventions; they do not validate
-this manufacturer's complete stack. Historical workbook observations remain
+this manufacturer's complete stack. Historical inventory source observations remain
 unchanged and prior runtime rows are retained in the reference JSON.
 
 Future treatment and sensitivities
@@ -533,12 +726,12 @@ explicit scenario sensitivities instead:
 1 MW, increasing the 2020 package by a factor of 2.290868 relative to the
 default. It retains the same absolute 2050 Y target, so its stronger
 subsequent reduction is also an assumption. These exports leave runtime
-data and the source workbook unchanged. The original sublinear capacity
+data and the source inventory unchanged. The original sublinear capacity
 exponent is retained for continuity, not established as correct physical
 area scaling. Use the linear case to assess this material sensitivity.
 
-The workbook always contains the corrected baseline reference. The default
-updater reproduces this workbook and the prospective runtime rows. An
+The source inventory always contains the corrected baseline reference. The default
+updater reproduces this inventory source and the prospective runtime rows. An
 alternative CSV alone does not select it in premise. Restart Python and
 rebuild scenario databases to apply changed runtime coefficients.
 
@@ -552,66 +745,10 @@ eight stacks already multiply each stack's oxide recipe; kg/MW must not be
 multiplied by eight again. The correction does not validate all system-level
 SOEC metal demand. Primary/secondary shares and saved results are unchanged.
 
-.. _metals-resource-attribution:
+.. _metals-resource-recipes:
 
-Post-allocation correction
+Resource-attribution details
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This correction applies to attributional databases only. Consequential
-databases retain their source resource exchanges and substitution credits.
-Applying an economic-allocation correction there can both add extraction at
-refining and remove resource burdens associated with displaced coproducts.
-These operations conflict with the source model's substitution convention; see
-ecoinvent's `system-model documentation <https://support.ecoinvent.org/system-models>`_.
-
-Several metals can be extracted from the same ore. In ecoinvent's attributional
-models, economic allocation generally shares the inputs and emissions of a
-process between its valuable products. The metal resource flows assigned to
-one product therefore need not match the metals physically contained in it.
-
-The *premise* correction changes how metal extraction is attributed: its aim is
-to assign extraction of each element to the supply chain of the corresponding
-metal product. Other inputs and emissions keep their existing allocation under
-this correction. This is a resource-attribution convention, as discussed by
-`Berger <https://doi.org/10.1007/s11367-020-01737-5>`__ et al. (2020). It does
-not reconstruct a complete physical balance for every stage of production.
-
-What a zero resource flow means
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-An elementary resource flow records extraction from the environment attributed
-to a product. It is different from a product property, such as the gold content
-of a concentrate. **Setting a resource flow to zero does not mean that the
-element is physically absent from the product.** It also does not mean that
-the element has already been separated or that no extraction took place.
-
-For example, consider ``copper mine operation and beneficiation, sulfide ore``
-with the reference product ``copper concentrate, sulfide ore``. Where Gold and
-Tellurium resource exchanges are present, the correction sets them to zero
-because they are not the target metal of this copper product. This happens at
-the mining and beneficiation dataset, without waiting for smelting or later
-separation. The concentrate output and its downstream processing inputs are
-unchanged by this correction. Gold and tellurium can therefore still be
-physically present in the concentrate despite their zero direct resource flows.
-
-Using mining and concentrate datasets directly
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The correction is intended to support resource accounting for metal products
-through their supply chains. It does not give every intermediate a complete
-record of all the elements physically extracted with it. If a study ends at
-the mine or uses a concentrate directly, its corrected resource results must
-be read with this distinction in mind. They can omit co-mined elements that
-remain in that intermediate. This also affects resource impact indicators
-calculated from those flows.
-
-For questions about the physical composition of a concentrate or all metals
-removed from the ground at a mine, use product properties and process-specific
-material balances, including losses to tailings and other outputs. Neither
-the corrected elementary flows nor the original economically allocated flows
-alone establish that physical balance. A dataset can still be used under its
-stated allocation convention, but its zero resource flows must not be read as
-zero metal content or zero physical co-extraction.
 
 How resource amounts are set
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -756,164 +893,10 @@ estimating uncertainty in the attribution convention itself.
 
 The markets are relinked to metals-consuming activities throughout the database.
 
-Runtime configuration
-~~~~~~~~~~~~~~~~~~~~~~~
-
-``premise/data/metals/metal_products.yaml`` is the authoritative material-rule
-file. ``technology_conversion_factors.yaml`` contains activity unit conversion
-factors. Invalid selectors, factors or allocation groups stop the update before
-material amounts are applied.
-
-``set_direct_amount`` replaces matching direct technosphere inputs. Biosphere
-exchanges are never selected by this operation. Providers are matched by exact
-name and reference product, with the location preference ``World``, ``GLO``,
-then ``RoW``. If no configured provider exists, the rule is skipped and a
-validation warning and the reason for the choice are recorded.
-
-For ecoinvent 3.11 and 3.12, the gallium rule selects
-``gallium, high-grade`` for the configured semiconductor-grade application.
-Provider name and reference product must match the source database version.
-
-Markets and downstream links
-------------------------------
-
-For cut-off markets, eligible secondary-supply exchanges are copied from an
-existing source market when their positive total does not exceed one. Primary
-supply fills the remaining share; transport additions are weighted by that
-primary share. Without usable secondary inputs the market uses primary supply
-only. Consequential markets retain their source marginal suppliers: historical
-average country shares are not evidence of future marginal supply. If a configured
-primary route is unavailable, the entire source market is preserved and the
-missing route is recorded; the available routes are not renormalized silently.
-Regional proxies retain existing suppliers and use a recorded geographical
-fallback when needed. Unresolved or duplicate final suppliers raise an error.
-
-All positive producer shares are retained, including shares below one percent.
-Transport includes all available modes and sums production routes within each
-country. All providers must be freight services in tonne-kilometres; aircraft
-manufacturing markets measured in aircraft units are explicitly excluded.
-A primary input of 0.75 kg travelling 1000 weighted km contributes
-0.75 tonne-km. Before creating proxies or relinking a market, all positive
-primary origins must have transport observations. Otherwise the source market
-is preserved, with the missing origins and their fraction of primary supply
-recorded. A recorded zero distance is distinguished from absent data. Negative,
-non-finite distances and unknown modes are rejected. The market validator checks the applied supplier
-shares and retained secondary fraction, not the unused split YAML assumptions.
-
-Mining and refining markets creation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*premise* builds global supply markets for several mined and refined metals.
-In these markets, the contribution of different mining and refining regions corresponds
-to their *current* market shares. Following this approach, the supply from different
-regions for a specific metal will be directly proportional to the country-level
-contributions to the global market. These shares are derived from various sources,
-mainly `BGS <https://www2.bgs.ac.uk/mineralsuk/statistics/worldStatistics.html>`_
-and `USGS <https://doi.org/10.3133/mcs2023>`_, in addition to data from
-`van den Brink <https://doi.org/10.1016/j.resconrec.2022.106586>`__ et al. (2022) for Antimony refining.
-For certain markets where data was available, *premise* incorporates projections
-from `BNEF <https://about.bnef.com/>`_ regarding the development of future mining and refining projects to
-forecast the market shares' evolution up to 2030.
-
-Replacement markets are built only within the years declared in this workbook
-(currently 2020–2030). Interpolation uses the actual year labels. Outside that
-range, source markets are preserved instead of carrying the 2030 shares
-forward implicitly. Zero-share routes do not require a production provider.
-
-The file used to build the global supply markets for mined and refined metals is `mining_shares_mapping.xlsx <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/mining_shares_mapping.xlsx>`_.
-
-Additionally, global metal supply markets modeled account for the average transport
-distances and modes of transport for the different metals from producer
-to consumer. These data are retrieved from `UNCTAD <https://unctad.org/system/files/official-document/ser-rp-2022d5_en.pdf>`_.
-
-Average transport distance and modes of transport for each producer can be found under: `transport_markets_data <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/metals/transport_markets_data.csv>`_.
-
-Assumptions and limitations
------------------------------
-
-Direct metal inputs and total supply-chain metal requirements are different
-quantities. Source-preservation policies prevent specified overlays; they do
-not freeze upstream suppliers. Unknown ore/compound content and unavailable
-providers have the fallback behavior documented below. A corrected resource
-mass balance is not an independent validation of the whole mining inventory.
-Unverified EV component overlays are now preserved as described above.
-In particular, these fixes do not supply a dynamic scrap-stock model, future
-ore-grade or recovery-yield projections, endogenous metal demand, or marginal
-supplier projections for consequential modelling. Preserving source data
-prevents unsupported overrides; it does not make inherited inventories current
-or establish the physical feasibility of a future scenario.
-
-The scenario mapping at ``mapping["metals"]["methodology"]`` records these
-limitations and decision counts. ``material decisions``, ``market diagnostics``
-and ``resource diagnostics`` give activity-level evidence. Passing numerical
-validation does not mean that all configured markets or materials were updated.
-For example, a 2050 build now preserves all markets whose share data end in 2030.
-
-Removing the remaining methodological barriers requires independently sourced
-inputs: component bills of materials; grades and recovery yields with consistent
-allocation boundaries; stocks, lifetimes, collection and recycling losses; and
-scenario-specific mining capacities and marginal supplier choices. These need
-sensitivity analysis and external validation, not calibration of RELICS scores
-to 1 kg/kg. Zinc's explicit attribution boundary remains a convention.
-
-RELICS indicators can compare extraction by element in kg per functional unit
-alongside climate change. They should be reported separately by element and
-with biosphere-mapping coverage. They do not measure scarcity, supply risk,
-installed metal content or the plausibility of a future supply scenario.
-
-The October 2026 correctness audit and its reproducible commands are recorded
-in ``results/metals-correctness/README.rst``. It includes paired resource and
-climate scores, biosphere coverage, compatibility builds and backend checks.
-
-.. raw:: html
-
-   <span id="dataset-wise-comparison"></span>
-
-Worked example and checks
----------------------------
-
-For an illustrative intensity of 2 kg metal/kW and a mapped 3 kW reference
-installation, the intended direct input is 6 kg only if the rule and activity
-unit authorize that conversion. A square metre of PV cell cannot use this
-capacity conversion by default. Inspect ``Key Changes`` for direct amounts
-and ``Methodology`` for applied or preserved rule IDs. Check background metal
-demand separately to avoid double counting component inventories.
-
-EPR construction
-~~~~~~~~~~~~~~~~~~
-
-EPR construction and the specified silicon-cell activities keep their direct
-source material structure. Their components already carry material inputs;
-Premise does not apply the generic plant- or capacity-level metal additions
-to these activities. Upstream suppliers can still change.
-
-.. raw:: html
-
-   <span id="source-inventories-graphite"></span>
-
-Sources and inventory details
--------------------------------
-
-Inventories
-~~~~~~~~~~~~~
-
-*premise* provides inventories for the following metals:
-
-* `Cobalt <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-cobalt.xlsx>`_.
-* `Germanium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-germanium.xlsx>`_, as a co-product from zinc mine operation, based on the unallocated dataset in ecoinvent.
-* `Graphite <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-graphite.xlsx>`_.
-* Iridium: the South African supply uses the independently constructed,
-  Argonne-derived economic-allocation proxy shared with CLIC, declared against
-  ecoinvent 3.12. The remaining legacy PGM recipes retain their source model.
-* `Lithium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-lithium.xlsx>`_.
-* `Rhenium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-rhenium.xlsx>`_, as a co-product from copper mine operation, based on the unallocated dataset in ecoinvent.
-* `Ruthenium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-PGM.xlsx>`_, as a co-product from PGM mine operation, based on the unallocated dataset in ecoinvent.
-* and `Vanadium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-batteries-vanadium.xlsx>`_.
-
-The inventories are provided under `premise/data/additional_inventories <https://github.com/polca/premise/tree/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories>`_
-
 Graphite
 ~~~~~~~~~~
+
+**CLIC dataset pages:** `natural graphite production, coated <https://clic.psi.ch/datasets/natural-graphite-production-coated/>`__; `synthetic graphite production <https://clic.psi.ch/datasets/synthetic-graphite-production/>`__.
 
 *premise* includes new inventories for:
 
@@ -933,44 +916,64 @@ forming a new market for graphite, with the following datasets:
 to represent a 80:20 split between natural and synthetic graphite,
 according to `Surovtseva <https://doi.org/10.1111/jiec.13234>`__ et al, 2022.
 
-These inventories can be found here: `LCI_graphite <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-graphite.xlsx>`__.
+These inventories can be found here: `natural graphite production, coated (CN) <https://clic.psi.ch/datasets/natural-graphite-production-coated/>`__; `synthetic graphite production (CN) <https://clic.psi.ch/datasets/synthetic-graphite-production/>`__.
 
 Cobalt
 ~~~~~~~~
 
+**CLIC dataset pages:** `cobalt sulfate production, from copper mining, economic allocation <https://clic.psi.ch/datasets/cobalt-sulfate-production-from-copper-mining-economic-allocation/>`__; `cobalt sulfate production, from copper mining, mass allocation <https://clic.psi.ch/datasets/cobalt-sulfate-production-from-copper-mining-mass-allocation/>`__; `cobalt metal production, from copper mining, via electrolysis, economic allocation <https://clic.psi.ch/datasets/cobalt-metal-production-from-copper-mining-via-electrolysis-economic-allocation/>`__; `cobalt metal production, from copper mining, via electrolysis, mass allocation <https://clic.psi.ch/datasets/cobalt-metal-production-from-copper-mining-via-electrolysis-mass-allocation/>`__.
+
 New inventories of cobalt are added, from the work of Dai, Kelly and `Elgowainy <https://greet.es.anl.gov/publication-update_cobalt>`__, 2018.
 They are available under the following datasets:
 
-=================================================================================== ===========
-Activity                                                                             Location
-=================================================================================== ===========
-cobalt sulfate production, from copper mining, economic allocation                   CN
-cobalt sulfate production, from copper mining, energy allocation                     CN
-cobalt metal production, from copper mining, via electrolysis, economic allocation   CN
-cobalt metal production, from copper mining, via electrolysis, energy allocation     CN
-=================================================================================== ===========
+.. list-table::
+   :header-rows: 1
+
+   * - Activity
+     - Location
+     - CLIC dataset page
+   * - cobalt sulfate production, from copper mining, economic allocation
+     - CN
+     - `economic allocation <https://clic.psi.ch/datasets/cobalt-sulfate-production-from-copper-mining-economic-allocation/>`__
+   * - cobalt sulfate production, from copper mining, energy allocation
+     - CN
+     - —
+   * - cobalt metal production, from copper mining, via electrolysis, economic allocation
+     - CN
+     - `economic allocation <https://clic.psi.ch/datasets/cobalt-metal-production-from-copper-mining-via-electrolysis-economic-allocation/>`__
+   * - cobalt metal production, from copper mining, via electrolysis, energy allocation
+     - CN
+     - —
 
 These cobalt inventories can be selected when
 by the Cobalt Development Institute (CDI) since ecoinvent 3.7, which seem to lack transparency.
 
-These inventories can be found here: `LCI_cobalt <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-cobalt.xlsx>`__.
+These inventories can be found here: `cobalt metal production, from copper mining, via electrolysis, economic allocation (CN) <https://clic.psi.ch/datasets/cobalt-metal-production-from-copper-mining-via-electrolysis-economic-allocation/>`__; `cobalt sulfate production, from copper mining, economic allocation (CN) <https://clic.psi.ch/datasets/cobalt-sulfate-production-from-copper-mining-economic-allocation/>`__.
 
 Lithium
 ~~~~~~~~~
+
+**CLIC dataset pages:** `market for lithium carbonate, battery grade <https://clic.psi.ch/datasets/market-for-lithium-carbonate-battery-grade/>`__; `market for lithium hydroxide, battery grade <https://clic.psi.ch/datasets/market-for-lithium-hydroxide-battery-grade/>`__.
 
 New inventories for lithium extraction are also added,
 from the work of `Schenker <https://doi.org/10.1016/j.resconrec.2022.106611>`__ et al., 2022.
 They cover lithium extraction from five different locations in Chile, Argentina and China.
 They are available under the following datasets for battery production:
 
-=================================================================================== ===========
-Activity                                                                             Location
-=================================================================================== ===========
-market for lithium carbonate, battery grade                                          GLO
-market for lithium hydroxide, battery grade                                          GLO
-=================================================================================== ===========
+.. list-table::
+   :header-rows: 1
 
-These inventories can be found here: `LCI_lithium <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-lithium.xlsx>`__.
+   * - Activity
+     - Location
+     - CLIC dataset page
+   * - market for lithium carbonate, battery grade
+     - GLO
+     - `View dataset <https://clic.psi.ch/datasets/market-for-lithium-carbonate-battery-grade/>`__
+   * - market for lithium hydroxide, battery grade
+     - GLO
+     - `View dataset <https://clic.psi.ch/datasets/market-for-lithium-hydroxide-battery-grade/>`__
+
+These inventories can be found here: `market for lithium carbonate, battery grade (GLO) <https://clic.psi.ch/datasets/market-for-lithium-carbonate-battery-grade/>`__; `market for lithium hydroxide, battery grade (GLO) <https://clic.psi.ch/datasets/market-for-lithium-hydroxide-battery-grade/>`__.
 
 .. raw:: html
 

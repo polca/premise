@@ -1,7 +1,6 @@
 Steel production
 ==================
 
-
 .. contents:: On this page
    :local:
    :depth: 1
@@ -62,7 +61,7 @@ Dataset proxies
 
 premise creates proxy datasets for each IAM region by duplicating
 all available steel production routes selected from the inventory library
-(see lci-steel.xlsx).
+(see the linked CLIC capture references below).
 These include, for example:
 
 Primary routes: BF–BOF with different coke/natural gas shares, NG-DRI + EAF, etc.
@@ -93,7 +92,6 @@ secondary-steel handling is not a promise that only electricity can change.
 .. code-block:: python
 
     ndb.generate_scenario_report()
-
 
 .. warning::
 
@@ -141,8 +139,7 @@ low-alloyed electric-steel proxy remain eligible.
 
 This list applies to every source version. It contains no dataset identifiers,
 version conditions or preferred producer list. The secondary mapping supplied
-to market construction therefore excludes the specialty recipes that were
-previously admitted by the broad electric-steel prefix. The existing market
+to market construction excludes those specialty recipes. The existing market
 builder retains IAM route quantities, supplier weighting and consequential
 policy. An active route without eligible suppliers raises its existing
 missing-supplier error, rather than transferring its share to another route.
@@ -162,28 +159,8 @@ Within each dataset, the supply shares of primary and secondary steel
 are adjusted to reflect the projections from the IAM scenario, for a given region
 and year, based on the variables described in the `steel <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/iam_variables_mapping/steel.yaml>`__ mapping file.
 
-The table below shows an example of the market for India, with 90% across the listed primary routes and 10% electric steel.
-These coefficients are illustrative; they do not specify an IAM scenario result.
-
- ============================================================================================================================== ============ ================ ===========
-  Output                                                                                                                         _            _                _
- ============================================================================================================================== ============ ================ ===========
-  producer                                                                                                                       amount       unit             location
-  market for steel, low-alloyed                                                                                                  1            kilogram         IND
-  Input
-  supplier                                                                                                                       amount       unit             location
-  market group for transport, freight, inland waterways, barge                                                                   0.5          ton kilometer    GLO
-  market group for transport, freight train                                                                                      0.35         ton kilometer    GLO
-  market for transport, freight, sea, bulk carrier for dry goods                                                                 0.38         ton kilometer    GLO
-  transport, freight, lorry, unspecified, regional delivery                                                                      0.12         ton kilometer    IND
-  steel production, blast furnace-basic oxygen furnace, unalloyed                                                                0.66         kilogram         IND
-  steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed                               0.05         kilogram         IND
-  steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed                                      0.04         kilogram         IND
-  steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed     0.05         kilogram         IND
-  steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed                                        0.08         kilogram         IND
-  steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, unalloyed       0.02         kilogram         IND
-  steel production, electric, low-alloyed                                                                                        0.10         kilogram         IND
- ============================================================================================================================== ============ ================ ===========
+See :ref:`steel-market-example` for a complete illustrative market,
+including the distinction between steel inputs and transport requirements.
 
 Original market datasets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -209,14 +186,43 @@ must be checked together when comparing technologies. Market shares and
 energy intensity are distinct scenario effects. The common consequential
 supplier calculation is described in :doc:`system-models`.
 
+.. _steel-market-example:
+
 Worked example and checks
 ---------------------------
 
-The illustrative India market below contains 0.90 kg across primary routes
-and 0.10 kg of electric steel per kilogram supplied. These illustrative coefficients specify the example mix. Check that steel
-supplier amounts sum to one independently of transport exchanges, that the
-intended routes supply the market, and that downstream consumers use it.
-Review ``Market Changes`` and the energy/CO2 entries in ``Key Changes``.
+The table below shows an example of the market for India, with 90% across the listed primary routes and 10% electric steel.
+These coefficients are illustrative; they do not specify an IAM scenario result.
+
+ ============================================================================================================================== ============ ================ ===========
+  Output                                                                                                                         _            _                _
+ ============================================================================================================================== ============ ================ ===========
+  producer                                                                                                                       amount       unit             location
+  market for steel, low-alloyed                                                                                                  1            kilogram         IND
+  Input
+  supplier                                                                                                                       amount       unit             location
+  market group for transport, freight, inland waterways, barge                                                                   0.5          ton kilometer    GLO
+  market group for transport, freight train                                                                                      0.35         ton kilometer    GLO
+  market for transport, freight, sea, bulk carrier for dry goods                                                                 0.38         ton kilometer    GLO
+  transport, freight, lorry, unspecified, regional delivery                                                                      0.12         ton kilometer    IND
+  steel production, blast furnace-basic oxygen furnace, unalloyed                                                                0.66         kilogram         IND
+  steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed                               0.05         kilogram         IND
+  steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed                                      0.04         kilogram         IND
+  steel production, natural gas-based direct reduction iron-electric arc furnace, with carbon capture and storage, unalloyed     0.05         kilogram         IND
+  steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed                                        0.08         kilogram         IND
+  steel production, blast furnace-basic oxygen furnace, with top gas recycling, with carbon capture and storage, unalloyed       0.02         kilogram         IND
+  steel production, electric, low-alloyed                                                                                        0.10         kilogram         IND
+ ============================================================================================================================== ============ ================ ===========
+
+The six primary-route inputs sum to
+``0.66 + 0.05 + 0.04 + 0.05 + 0.08 + 0.02 = 0.90 kg``.
+Adding 0.10 kg of electric steel gives **1 kg of steel supplied**. The transport
+inputs total 1.35 tonne-kilometres and are additional services; they must not
+be added to the kilogram sum or included when normalizing steel shares.
+
+Check supplier amounts and units in **Market Changes**, then inspect energy
+and CO2 amounts in **Key Changes**. Finally, confirm that a steel-consuming
+activity reaches this regional market.
 
 Sources and inventory details
 -------------------------------
@@ -228,50 +234,119 @@ Source inventories: steel
 These include conventional blast furnace-basic oxygen furnace (BF-BOF) routes,
 as well as emerging processes such as direct reduction (DRI), hydrogen-based
 production, electrowinning, and carbon capture (CCS) variants. They are from `Harpprecht <https://doi.org/10.1039/D5EE01356A>`__ et al. (2025).
-They can be found here: `LCI_steel <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-steel.xlsx>`__.
+They can be found here: `carbon dioxide, captured at pig iron production plant, using monoethanolamine (GLO) <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-pig-iron-production-plant-using-monoethanolamine/>`__; `carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption (GLO) <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-steel-production-plant-using-vacuum-pressure-swing-adsorption/>`__.
 
 The table below provides an overview of the included datasets, their key
 input(s), and assumed regional scope.
 
-==================================================================================================================  ==========
-Steel production and related processes                                                                               location
-==================================================================================================================  ==========
-steel production, blast furnace-basic oxygen furnace, low-alloyed                                                    GLO
-steel production, blast furnace-basic oxygen furnace, unalloyed                                                      GLO
-alloys production, for low-alloyed steel                                                                             GLO
-pig iron production, blast furnace, with carbon capture and storage                                                  GLO
-carbon dioxide, captured at pig iron production plant, using monoethanolamine                                        GLO
-steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed                   GLO
-steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed                     GLO
-pig iron production, top gas recycling-blast furnace                                                                 GLO
-steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed                            GLO
-steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed                              GLO
-pig iron production, blast furnace, with top gas recycling, with carbon capture and storage                          GLO
-carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption                           GLO
-steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, low-alloyed                  GLO
-steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, unalloyed                    GLO
-pig iron production, with natural gas-based direct reduction                                                         GLO
-steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed                          GLO
-steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed                            GLO
-pig iron production, with natural gas-based direct reduction, with carbon capture and storage                        GLO
-carbon dioxide, captured at steel production plant using DRI, using vacuum pressure swing adsorption                 GLO
-steel production, natural gas-based DRI-EAF, with CCS, low-alloyed                                                   GLO
-steel production, natural gas-based DRI-EAF, with CCS, unalloyed                                                     GLO
-steel production, hydrogen-based DRI-EAF, low-alloyed                                                                GLO
-steel production, hydrogen-based DRI-EAF, unalloyed                                                                  GLO
-pig iron production, hydrogen-based direct reduction iron                                                            GLO
-preheating of iron ore pellets                                                                                       GLO
-preheating of hydrogen                                                                                               GLO
-pig iron production, by electrowinning                                                                               GLO
-leaching of iron ore                                                                                                 GLO
-market for cathode, graphite                                                                                         GLO
-nickel anode production, for electrolysis of iron ore                                                                GLO
-production of alkaline solution from sodium hydroxide of 50 wt-%                                                     GLO
-steel production, electrowinning-electric arc furnace, low-alloyed                                                   GLO
-steel production, electrowinning-electric arc furnace, unalloyed                                                     GLO
-ultrafine grinding of iron ore                                                                                       GLO
-==================================================================================================================  ==========
+.. list-table::
+   :header-rows: 1
 
+   * - Steel production and related processes
+     - location
+     - CLIC dataset page
+   * - steel production, blast furnace-basic oxygen furnace, low-alloyed
+     - GLO
+     - —
+   * - steel production, blast furnace-basic oxygen furnace, unalloyed
+     - GLO
+     - —
+   * - alloys production, for low-alloyed steel
+     - GLO
+     - —
+   * - pig iron production, blast furnace, with carbon capture and storage
+     - GLO
+     - —
+   * - carbon dioxide, captured at pig iron production plant, using monoethanolamine
+     - GLO
+     - `View dataset <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-pig-iron-production-plant-using-monoethanolamine/>`__
+   * - steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, low-alloyed
+     - GLO
+     - —
+   * - steel production, blast furnace-basic oxygen furnace, with carbon capture and storage, unalloyed
+     - GLO
+     - —
+   * - pig iron production, top gas recycling-blast furnace
+     - GLO
+     - —
+   * - steel production, blast furnace-basic oxygen furnace, with top gas recycling, low-alloyed
+     - GLO
+     - —
+   * - steel production, blast furnace-basic oxygen furnace, with top gas recycling, unalloyed
+     - GLO
+     - —
+   * - pig iron production, blast furnace, with top gas recycling, with carbon capture and storage
+     - GLO
+     - —
+   * - carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption
+     - GLO
+     - `View dataset <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-steel-production-plant-using-vacuum-pressure-swing-adsorption/>`__
+   * - steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, low-alloyed
+     - GLO
+     - —
+   * - steel production, blast furnace-basic oxygen furnace, with top gas recycling, with CCS, unalloyed
+     - GLO
+     - —
+   * - pig iron production, with natural gas-based direct reduction
+     - GLO
+     - —
+   * - steel production, natural gas-based direct reduction iron-electric arc furnace, low-alloyed
+     - GLO
+     - —
+   * - steel production, natural gas-based direct reduction iron-electric arc furnace, unalloyed
+     - GLO
+     - —
+   * - pig iron production, with natural gas-based direct reduction, with carbon capture and storage
+     - GLO
+     - —
+   * - carbon dioxide, captured at steel production plant using DRI, using vacuum pressure swing adsorption
+     - GLO
+     - `View dataset <https://clic.psi.ch/datasets/carbon-dioxide-captured-at-steel-production-plant-using-direct-reduction-iron-using-vacuum-pressure-swing-adsorption/>`__
+   * - steel production, natural gas-based DRI-EAF, with CCS, low-alloyed
+     - GLO
+     - —
+   * - steel production, natural gas-based DRI-EAF, with CCS, unalloyed
+     - GLO
+     - —
+   * - steel production, hydrogen-based DRI-EAF, low-alloyed
+     - GLO
+     - —
+   * - steel production, hydrogen-based DRI-EAF, unalloyed
+     - GLO
+     - —
+   * - pig iron production, hydrogen-based direct reduction iron
+     - GLO
+     - —
+   * - preheating of iron ore pellets
+     - GLO
+     - `View dataset <https://clic.psi.ch/datasets/preheating-of-iron-ore-pellets/>`__
+   * - preheating of hydrogen
+     - GLO
+     - `View dataset <https://clic.psi.ch/datasets/preheating-of-hydrogen/>`__
+   * - pig iron production, by electrowinning
+     - GLO
+     - —
+   * - leaching of iron ore
+     - GLO
+     - —
+   * - market for cathode, graphite
+     - GLO
+     - —
+   * - nickel anode production, for electrolysis of iron ore
+     - GLO
+     - —
+   * - production of alkaline solution from sodium hydroxide of 50 wt-%
+     - GLO
+     - —
+   * - steel production, electrowinning-electric arc furnace, low-alloyed
+     - GLO
+     - —
+   * - steel production, electrowinning-electric arc furnace, unalloyed
+     - GLO
+     - —
+   * - ultrafine grinding of iron ore
+     - GLO
+     - —
 
 These inventories provide a modular basis for modeling steel systems under various future-oriented scenarios and technological configurations.
 

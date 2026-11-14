@@ -1,18 +1,19 @@
 Methodology
 =============
 
-Start with the common modelling principles, then explore their application
-to individual sectors. Validation follows the sector descriptions; the final
-chapter explains consequential modelling. This reading order is distinct
-from the execution order documented in :doc:`/user_guide/updates`.
+This guide explains how Premise changes inventories and which assumptions
+those changes depend on. Start with :doc:`workflow` for the overall sequence,
+then read the sectors relevant to your study. The chapters are grouped by
+subject; the order used by the code is listed in :doc:`/user_guide/updates`.
 
-Sector chapters follow the same sequence: scope, inputs, transformation,
-market links, limitations, checks and sources. Each distinguishes inventories
-available at initialization from changes applied during a scenario update
-and the suppliers actually used by downstream activities.
+Each sector chapter explains what changes, which data are needed, how the
+update works and how its outputs are used. Examples and limitations come
+before the detailed inventory sources, which you can consult as needed.
+Being available in the database does not mean an inventory is used by a
+particular scenario or consumer.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
    :caption: Foundations
 
@@ -21,7 +22,7 @@ and the suppliers actually used by downstream activities.
    /methodology/regionalization
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
    :caption: Energy supply and storage
 
@@ -31,7 +32,7 @@ and the suppliers actually used by downstream activities.
    /methodology/batteries
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
    :caption: Materials and industry
 
@@ -41,21 +42,21 @@ and the suppliers actually used by downstream activities.
    /methodology/cement
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
    :caption: Transport
 
    /methodology/transport/index
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
    :caption: Carbon management
 
    /methodology/cdr
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
    :caption: Assessment and limitations
 
@@ -63,7 +64,7 @@ and the suppliers actually used by downstream activities.
    /methodology/validation
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
    :caption: Consequential modelling
 

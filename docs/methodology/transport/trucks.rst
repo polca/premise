@@ -1,7 +1,6 @@
 Trucks
 ========
 
-
 .. contents:: On this page
    :local:
    :depth: 1
@@ -18,11 +17,10 @@ fleet data exist, builds regional transport markets. The generated service is
 expressed per tonne-kilometre; vehicle manufacturing and battery capacity have
 separate reference units.
 
-The current replacement workbook uses 2020 Regional delivery vehicles, with
+The current replacement inventory source uses 2020 Regional delivery vehicles, with
 400 km design range and cycle-specific payload and mileage. See
-:doc:`/development/regional-truck-refresh-2026` for battery specifications,
-proxy assumptions and the controlled EF 3.1 comparison. Historical long-haul
-labels in the market examples below do not define this workbook's driving cycle.
+:ref:`truck-source-inventories` for battery specifications and proxy assumptions. Historical long-haul
+labels in the market examples below do not define this inventory source's driving cycle.
 
 .. figure:: /_static/process-diagrams/transport-trucks.svg
    :class: process-diagram
@@ -60,7 +58,7 @@ at endpoint values outside the range; it is not simply scaled by vehicle
 fuel efficiency.
 
 The legacy selector uses manufacturing names containing ``truck``. The current
-workbook uses ``lorry production`` names, which it does not match. Consequently,
+inventory source uses ``lorry production`` names, which it does not match. Consequently,
 these activities retain nominal capacity times one plus lifetime replacements;
 all 42 production activities were checked in the 2020 build. The projected-size
 mechanism should not be assumed to have overwritten their physical batteries.
@@ -108,13 +106,6 @@ changes. Missing MESSAGE vehicle mappings do not create a synthetic vehicle
 projection. Do not substitute pooled electricity or liquid-fuel demand for
 individual technologies without accounting for hybrid contributions.
 
-The original REMIND preprocessing must retain ``Energy intensity`` variables
-in addition to ``Efficiency``. ``tests/support/restore_vehicle_intensities.py`` can
-append the mapped rows to an encrypted scenario from its matching original.
-It verifies model/pathway and existing transport values, preserves the existing
-plaintext bytes, and writes a new encrypted file plus hashes for review.
-Existing scenario archives without these rows use the documented fallback.
-
 Vehicle energy inputs are selected by their fuel/electricity product and unit,
 in addition to the IAM fuel mapping. A name containing a fuel, such as lorry
 production, diesel, does not make manufacture or equipment an energy input.
@@ -144,7 +135,6 @@ is unchanged. Regional markets are built only when fleet data are available.
 Cars and trucks receive read-only emission diagnostics for matched fuel, size
 and emissions-class cases. These checks are separate from IAM efficiency
 changes and the GAINS emissions update; they never normalize pollutant amounts.
-
 
 Markets and downstream links
 ------------------------------
@@ -308,42 +298,43 @@ read-only emission diagnostics.
 Sources and inventory details
 -------------------------------
 
+.. _truck-source-inventories:
+
 Process context and source inventories
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The refreshed truck catalogue contains 52 RER services, 42 manufacturing recipes
+The truck catalogue contains 52 RER services, 42 manufacturing recipes
 and 20 supporting components. Shared fuel-cell, membrane, lightweighting and
 carbon-fibre components reuse the existing canonical inventories instead of
 model-suffixed copies. Their original quantities, uncertainty and background
 declarations are retained, with normal import migrations adapting them to the
-selected background. Model-specific provenance remains in the development
-audit manifest and consumer comments.
-Gross-mass classes are 3.5, 7.5, 18, 26, 32, 40 and
+selected background. Gross-mass classes are 3.5, 7.5, 18, 26, 32, 40 and
 60 tonnes. Native powertrains include diesel, compressed gas, diesel hybrid,
 plug-in diesel hybrid, battery electric and fuel-cell electric. Ten gasoline/LPG
 variants use explicit energy-preserving manufacture/combustion proxies.
 
 All regenerated templates use the **Regional delivery** cycle, a **400 km**
 baseline design range and 2020 defaults under Swiss climate. The source model
-also supports Urban delivery and Long haul, but this workbook does not contain
+also supports Urban delivery and Long haul, but this inventory source does not contain
 three cycle variants. Combustion templates use EURO-VI; electric vehicles have
 no EURO class. Transport is expressed per tonne-kilometre, using modelled cargo
 rather than gross vehicle mass.
 
 The current catalogue is in
-`lci-trucks.xlsx <https://github.com/polca/premise/blob/master/premise/data/additional_inventories/lci-trucks.xlsx>`_
-and its generated parameter snapshot is retained with the test data. Exact names are preserved from
+`transport, freight, lorry, battery electric, 18 metric ton (RER) <https://clic.psi.ch/datasets/transport-freight-lorry-battery-electric-18-metric-ton/>`__; `transport, freight, lorry, fuel cell electric, 18 metric ton (RER) <https://clic.psi.ch/datasets/transport-freight-lorry-fuel-cell-electric-18-metric-ton/>`__;
+`transport, freight, lorry, diesel, 18 metric ton (RER) <https://clic.psi.ch/datasets/transport-freight-lorry-diesel-18-metric-ton/>`__
+Exact names are preserved from
 the selected service catalogue. Only mapped technologies are regionalized;
 unmatched 32 t/60 t services do not acquire fleet data simply because templates
 exist. Compatibility recipes remain with their canonical suppliers; there is
-no separate legacy-component workbook.
+no separate legacy-component inventory source.
 
 HEVs now have coupled high-power buffer sizing. FCEV trucks use the approved
 AKASOL reference with charging/discharge checks; 3.5/7.5 t motors use documented
 57/129 kW proxies. Premise purchases nominal kWh through its MIX capacity market,
 with the physical manufacturing-mass mismatch recorded explicitly. Corrected
 2020 FCEV hardware remains fixed in future scenarios. See
-:doc:`campaign-closeout` for the source references, final checks and limitations.
+:doc:`/methodology/transport/overview` for shared modelling assumptions and limitations.
 
 .. include:: battery-sizing.inc
 
@@ -353,6 +344,8 @@ with the physical manufacturing-mass mismatch recorded explicitly. Corrected
 
 150 kW charger-cabinet finishing boundary
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**CLIC dataset pages:** `power cabinet production, charger, 150 kw <https://clic.psi.ch/datasets/power-cabinet-production-charger-150-kw/>`__.
 
 The qualified 150 kW cabinet reference purchases **593.6378316624472 kg**
 of generic steel-working service per cabinet, reduced from
@@ -365,11 +358,12 @@ All material purchases, native embedded stock and uncertainty, remaining
 ordinary-steel service, other services, assembly, parent purchases and
 retirement remain unchanged. No native inventory is modified or recovery
 credit added. Original technosphere and biosphere declarations both remain
-**3.12**. The pinned reference is
-``tests/data/inventory_contracts.json``.
+**3.12**.
 
 Ferritic-steel nominal argon outlet
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**CLIC dataset pages:** `ferritic steel production, grade 430, charger enclosure <https://clic.psi.ch/datasets/ferritic-steel-production-grade-430-charger-enclosure/>`__.
 
 The grade 430 charger-enclosure steel reference releases
 **0.02138737625378074 kg argon to generic air per kg finished steel**, equal
@@ -382,7 +376,6 @@ Existing CO2 and nitrogen outlets, material and energy purchases, uncertainty
 and downstream steel quantities remain unchanged. The correction establishes
 neither complete emissions coverage nor an LCIA improvement and adds no
 heat-recovery credit. Both original source declarations remain **3.12**.
-The pinned reference is ``tests/data/inventory_contracts.json``.
 
 Charging-display coating geometry
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -397,5 +390,4 @@ The geometry remains a cross-revision engineering proxy. Native sputtering
 target losses are counted once, with no separate indium purchase or foreground
 target-loss multiplier. The documented **1.65 kg** hardware reference, other
 component purchases, assembly, uncertainty and downstream doses remain
-unchanged. Both original source declarations remain **3.12**. The pinned
-reference is ``tests/data/inventory_contracts.json``.
+unchanged. Both original source declarations remain **3.12**.

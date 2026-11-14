@@ -88,14 +88,13 @@ The following market is created for each IAM region:
 ``market for lignocellulosic biomass, used as fuel`` supplies 1 kg of
 ``lignocellulosic biomass`` per kilogram of market output.
 
-inside of which, the shares of "purpose grown" and "residual" biomass
-is represented by the following activities:
+Its purpose-grown and residual shares are represented by these activities:
 
 * market for wood chips (for "purpose grown" biomass)
 * market for wood chips (for "purpose grown" woody biomass)
 * supply of forest residue (for "residual" biomass)
 
-The sum of those shares equal 1. The activity "supply of forest residue" includes
+The shares sum to one. The activity "supply of forest residue" includes
 the energy, embodied biogenic CO2, transport and associated emissions to chip the residual biomass
 and transport it to the powerplant, but no other forestry-related burden is included.
 
@@ -126,9 +125,11 @@ under the configured marginal-supplier assumption.
 Worked example and checks
 ---------------------------
 
-For an illustrative average mix with 0.7 purpose-grown and 0.3 residual
-supply, check that the category shares sum to one and inspect each route's
-forestry and processing inputs. Compare the consequential supplier selection
+For an illustrative 1 kg average supply mix, the inputs are 0.7 kg of
+purpose-grown biomass and 0.3 kg of residual biomass. They sum to 1 kg.
+A demand for 5 kg of this mix therefore requires ``5 × 0.7 = 3.5 kg`` and
+``5 × 0.3 = 1.5 kg``, respectively. Inspect each route's forestry and
+processing inputs separately from these supplier amounts. Compare the consequential supplier selection
 separately. Check that an updated biomass-fired consumer actually reaches the
 regional biomass market.
 

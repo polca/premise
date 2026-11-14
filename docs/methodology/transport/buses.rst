@@ -97,50 +97,120 @@ Source inventories and coverage
 
 The following datasets for city and coach buses are imported.
 
- =================================================================================================================== ==================
-  Bus datasets                                                                                                        location
- =================================================================================================================== ==================
-  transport, passenger bus, battery electric - overnight charging 9m midibus                                          all IAM regions
-  transport, passenger bus, battery electric - opportunity charging, LTO battery, 9m midibus                          all IAM regions
-  transport, passenger bus, fuel cell electric, 9m midibus                                                            all IAM regions
-  transport, passenger bus, diesel hybrid, 9m midibus, EURO-VI                                                        all IAM regions
-  transport, passenger bus, diesel, 9m midibus, EURO-VI                                                               all IAM regions
-  transport, passenger bus, compressed gas, 9m midibus, EURO-VI                                                       all IAM regions
-  transport, passenger bus, battery electric - overnight charging 13m single deck urban bus                           all IAM regions
-  transport, passenger bus, battery electric - battery-equipped trolleybus, LTO battery, 13m single deck urban bus    all IAM regions
-  transport, passenger bus, battery electric - opportunity charging, LTO battery, 13m single deck urban bus           all IAM regions
-  transport, passenger bus, fuel cell electric, 13m single deck urban bus                                             all IAM regions
-  transport, passenger bus, diesel hybrid, 13m single deck urban bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-VI                                        all IAM regions
-  transport, passenger bus, fuel cell electric, 13m single deck coach bus                                             all IAM regions
-  transport, passenger bus, diesel hybrid, 13m single deck coach bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 13m single deck coach bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-VI                                        all IAM regions
-  transport, passenger bus, battery electric - overnight charging 13m double deck urban bus                           all IAM regions
-  transport, passenger bus, battery electric - opportunity charging, LTO battery, 13m double deck urban bus           all IAM regions
-  transport, passenger bus, fuel cell electric, 13m double deck urban bus                                             all IAM regions
-  transport, passenger bus, diesel hybrid, 13m double deck urban bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 13m double deck urban bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-VI                                        all IAM regions
-  transport, passenger bus, fuel cell electric, 13m double deck coach bus                                             all IAM regions
-  transport, passenger bus, diesel hybrid, 13m double deck coach bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 13m double deck coach bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-VI                                        all IAM regions
-  transport, passenger bus, battery electric - overnight charging 18m articulated urban bus                           all IAM regions
-  transport, passenger bus, battery electric - battery-equipped trolleybus, LTO battery, 18m articulated urban bus    all IAM regions
-  transport, passenger bus, battery electric - opportunity charging, LTO battery, 18m articulated urban bus           all IAM regions
-  transport, passenger bus, fuel cell electric, 18m articulated urban bus                                             all IAM regions
-  transport, passenger bus, diesel hybrid, 18m articulated urban bus, EURO-VI                                         all IAM regions
-  transport, passenger bus, diesel, 18m articulated urban bus, EURO-VI                                                all IAM regions
-  transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-VI                                        all IAM regions
- =================================================================================================================== ==================
+.. list-table::
+   :header-rows: 1
+
+   * - Bus datasets
+     - location
+     - CLIC dataset page
+   * - transport, passenger bus, battery electric - overnight charging 9m midibus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-overnight-charging-9m-midibus/>`__
+   * - transport, passenger bus, battery electric - opportunity charging, LTO battery, 9m midibus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-opportunity-charging-lto-battery-9m-midibus/>`__
+   * - transport, passenger bus, fuel cell electric, 9m midibus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-fuel-cell-electric-9m-midibus/>`__
+   * - transport, passenger bus, diesel hybrid, 9m midibus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-hybrid-9m-midibus-euro-vi/>`__
+   * - transport, passenger bus, diesel, 9m midibus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-9m-midibus-euro-vi/>`__
+   * - transport, passenger bus, compressed gas, 9m midibus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-compressed-gas-9m-midibus-euro-vi/>`__
+   * - transport, passenger bus, battery electric - overnight charging 13m single deck urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-overnight-charging-13m-single-deck-urban-bus/>`__
+   * - transport, passenger bus, battery electric - battery-equipped trolleybus, LTO battery, 13m single deck urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-battery-equipped-trolleybus-lto-battery-13m-single-deck-urban-bus/>`__
+   * - transport, passenger bus, battery electric - opportunity charging, LTO battery, 13m single deck urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-opportunity-charging-lto-battery-13m-single-deck-urban-bus/>`__
+   * - transport, passenger bus, fuel cell electric, 13m single deck urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-fuel-cell-electric-13m-single-deck-urban-bus/>`__
+   * - transport, passenger bus, diesel hybrid, 13m single deck urban bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-hybrid-13m-single-deck-urban-bus-euro-vi/>`__
+   * - transport, passenger bus, diesel, 13m single deck urban bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-13m-single-deck-urban-bus-euro-vi/>`__
+   * - transport, passenger bus, compressed gas, 13m single deck urban bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-compressed-gas-13m-single-deck-urban-bus-euro-vi/>`__
+   * - transport, passenger bus, fuel cell electric, 13m single deck coach bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-fuel-cell-electric-13m-single-deck-coach-bus/>`__
+   * - transport, passenger bus, diesel hybrid, 13m single deck coach bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-hybrid-13m-single-deck-coach-bus-euro-vi/>`__
+   * - transport, passenger bus, diesel, 13m single deck coach bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-13m-single-deck-coach-bus-euro-vi/>`__
+   * - transport, passenger bus, compressed gas, 13m single deck coach bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-compressed-gas-13m-single-deck-coach-bus-euro-vi/>`__
+   * - transport, passenger bus, battery electric - overnight charging 13m double deck urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-overnight-charging-13m-double-deck-urban-bus/>`__
+   * - transport, passenger bus, battery electric - opportunity charging, LTO battery, 13m double deck urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-opportunity-charging-lto-battery-13m-double-deck-urban-bus/>`__
+   * - transport, passenger bus, fuel cell electric, 13m double deck urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-fuel-cell-electric-13m-double-deck-urban-bus/>`__
+   * - transport, passenger bus, diesel hybrid, 13m double deck urban bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-hybrid-13m-double-deck-urban-bus-euro-vi/>`__
+   * - transport, passenger bus, diesel, 13m double deck urban bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-13m-double-deck-urban-bus-euro-vi/>`__
+   * - transport, passenger bus, compressed gas, 13m double deck urban bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-compressed-gas-13m-double-deck-urban-bus-euro-vi/>`__
+   * - transport, passenger bus, fuel cell electric, 13m double deck coach bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-fuel-cell-electric-13m-double-deck-coach-bus/>`__
+   * - transport, passenger bus, diesel hybrid, 13m double deck coach bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-hybrid-13m-double-deck-coach-bus-euro-vi/>`__
+   * - transport, passenger bus, diesel, 13m double deck coach bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-13m-double-deck-coach-bus-euro-vi/>`__
+   * - transport, passenger bus, compressed gas, 13m double deck coach bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-compressed-gas-13m-double-deck-coach-bus-euro-vi/>`__
+   * - transport, passenger bus, battery electric - overnight charging 18m articulated urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-overnight-charging-18m-articulated-urban-bus/>`__
+   * - transport, passenger bus, battery electric - battery-equipped trolleybus, LTO battery, 18m articulated urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-battery-equipped-trolleybus-lto-battery-18m-articulated-urban-bus/>`__
+   * - transport, passenger bus, battery electric - opportunity charging, LTO battery, 18m articulated urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-opportunity-charging-lto-battery-18m-articulated-urban-bus/>`__
+   * - transport, passenger bus, fuel cell electric, 18m articulated urban bus
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-fuel-cell-electric-18m-articulated-urban-bus/>`__
+   * - transport, passenger bus, diesel hybrid, 18m articulated urban bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-hybrid-18m-articulated-urban-bus-euro-vi/>`__
+   * - transport, passenger bus, diesel, 18m articulated urban bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-diesel-18m-articulated-urban-bus-euro-vi/>`__
+   * - transport, passenger bus, compressed gas, 18m articulated urban bus, EURO-VI
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-passenger-bus-compressed-gas-18m-articulated-urban-bus-euro-vi/>`__
 
 Inventories are from `Sacchi <https://zenodo.org/records/5720779>`__ et al. 2021. The vehicles are available
 for different years and emission standards and for each IAM region.
 
 *premise* creates fleet markets where the required scenario data are available. The inventories can be consulted
-here: `LCIbuses <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-buses.xlsx>`__.
+here: `transport, passenger bus, battery electric - overnight charging, 9m midibus (RER) <https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-overnight-charging-9m-midibus/>`__; `transport, passenger bus, fuel cell electric, 9m midibus (RER) <https://clic.psi.ch/datasets/transport-passenger-bus-fuel-cell-electric-9m-midibus/>`__.
 
 This mode has no configured existing consumer-replacement rules. Its
 presence in the inventory does not establish downstream use.

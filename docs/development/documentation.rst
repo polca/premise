@@ -16,6 +16,32 @@ Methodology progresses from shared principles through sectors and assessment
 to consequential modelling. This reading order differs from update execution
 order. Group chapters with captioned toctrees; avoid empty intermediate pages.
 Keep end-use heating under Heat and transport modes as sibling pages.
+Overview pages should introduce a subject and route readers to its chapters.
+Put application-specific details under the relevant application; give recipes
+used by several applications an explicitly named shared reference page.
+Keep component recipes within their parent technology rather than beside
+whole technologies in navigation. Catalogue pages should link to those
+recipes rather than duplicate them.
+
+Writing for readers
+---------------------
+
+Begin with the task or the modelling question, then explain what the reader
+needs and what happens next. Define specialist terms before using them; link
+to :doc:`/reference/glossary` for shared definitions. Prefer short sentences,
+concrete verbs and one main idea per paragraph.
+
+Keep the normal workflow visible. Put optional branches after it and move
+storage internals, source-recipe calculations and maintenance instructions to
+their appropriate reference or development sections. Avoid repeating complete
+setup examples on every page. Label snippets that need an existing ``ndb`` or
+user-specific paths, and give the setup link once.
+
+Use shallow, task-based contents lists. Each page should have a clear purpose
+and a useful next step, without requiring readers to follow several links just
+to understand the paragraph in front of them. Keep scientific boundaries,
+quantities and limitations when simplifying the prose. Describe current code
+behaviour rather than the history of fixes or isolated successful test runs.
 
 Sector chapter structure
 --------------------------
@@ -66,6 +92,21 @@ Use explicit labels and ``:ref:`` for important sections and ``:doc:`` for
 pages. Use root-relative paths for shared figures and downloads. Keep global
 navigation three levels deep, with a shallow local contents list on long pages.
 
+External website links open in a new tab automatically through
+``_static/external-links.js``. Links within the documentation keep the current
+tab. Do not add individual target attributes to dataset links.
+
+At a dataset's first substantive description, give a prominent direct link to
+its published page on `CLIC <https://clic.psi.ch/>`__. Link the dataset name
+in the explanatory prose or its inventory-table row. Keep the link with the
+relevant description; avoid separate callouts that repeat selected dataset
+links. Match the technology,
+reference product, location and allocation variant. Link the published source
+when explaining a generated scenario variant, and label that relationship.
+Use CLIC dataset pages in place of bundled Excel inventory references and
+download links. Retain scientific publications and their supplementary evidence
+as supporting references.
+
 When moving an existing topic, update ``docs/legacy-links.json`` and retain its
 old page/fragment as a useful link. Legacy landing pages are deliberately
 excluded from the main navigation, but remain available to existing bookmarks.
@@ -77,6 +118,10 @@ Examples and assumptions
 Use explicit imports and the modern Brightway interface in current examples.
 The first-scenario example uses ecoinvent 3.12 cut-off, REMIND SSP2-NPi and
 2025. Explain prerequisites and mark partial examples or illustrative schemas.
+A worked example must show its inputs, calculation or operation, and resulting
+amounts or records. Put that content in the section that promises it. Use an
+explicit section reference when an example lives elsewhere, rather than an
+unqualified “above” or “below”. Check units, rounding and before/after totals.
 Keep secrets in environment variables, never in source or rendered examples.
 
 Use **Python environment** for installed packages (for example, a conda
@@ -85,9 +130,9 @@ Write **environment variable** when referring to shell settings such as
 ``PREMISE_KEY``; avoid using "environment" alone for these settings.
 
 Check behaviour against the current implementation and packaged configuration.
-Distinguish regression results from independent scientific validation and
-historical measurements from current guarantees. Report unresolved issues in
-:doc:`documentation-audit`; do not silently change modelling assumptions.
+Describe current model behaviour, sources and limitations. Keep internal
+review logs, test receipts, cache migration histories and implementation
+correction narratives out of the published documentation.
 
 Build and check
 -----------------
@@ -105,9 +150,8 @@ From the repository root, in a dedicated Python environment:
    python docs/_tools/check_documentation_content.py
 
 For a release, review defaults and import conditions against code, regenerate
-the reference tables, and update page dispositions in ``content-review.json``.
-Review sector source years, the scientific backlog and unresolved citations.
-Record which examples actually executed, including their inputs and date.
+the reference tables, and check source dates and citations against the sector descriptions.
+Run the documented examples with their stated prerequisites.
 Do not infer scientific approval from a successful link or build check.
 
 Run ``python docs/_tools/generate_documentation_reference.py`` after intentionally

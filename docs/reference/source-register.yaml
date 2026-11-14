@@ -7,7 +7,7 @@ sectors:
   data_years: 2022–2025 factory observations for the 2026 report; other inputs vary
   boundary: Single-Si TOPCon/PERC, multi-Si and CdTe; manufacturing through electricity
     and end of life; country extensions use inherited yield assumptions.
-  applicability: '2026 core: ecoinvent 3.12 cut-off only; lci-PV.xlsx core otherwise.'
+  applicability: '2026 core: ecoinvent 3.12 cut-off only; legacy photovoltaic core otherwise.'
   source: https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/
   candidate: https://iea-pvps.org/key-topics/t12-lci-pv-systems-2026/
   reviewed_on: '2026-09-07'
@@ -374,3 +374,803 @@ sectors:
   limitations: Scope review is not a coefficient-by-coefficient reproduction. Unavailable
     supplements and exact source years remain unverified where noted.
   source_role: Source context for the implemented inventories/method
+
+# Published capacity records linked from the generated battery-density table.
+clic_battery_capacity:
+  NMC111: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc111/
+  NMC532: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc532/
+  NMC622: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc622/
+  NMC811: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc811/
+  NMC955: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc955/
+  NCA: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nca/
+  LFP: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-lfp/
+  LTO: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-lto/
+  LMO: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-limn2o4/
+  Li-O2: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-li-o2/
+  Li-S: https://clic.psi.ch/datasets/market-for-battery-capacity-li-sulfur-li-s/
+  SiB: https://clic.psi.ch/datasets/market-for-battery-capacity-sodium-ion-sib/
+  VRFB: https://clic.psi.ch/datasets/market-for-battery-capacity-redox-flow-vanadium-stationary/
+  LEAD-ACID: https://clic.psi.ch/datasets/market-for-battery-capacity-lead-acid-rechargeable-stationary/
+  ASSB-polymer: https://clic.psi.ch/datasets/market-for-battery-capacity-all-solid-state-battery-polymer/
+  ASSB-oxidic: https://clic.psi.ch/datasets/market-for-battery-capacity-all-solid-state-battery-oxidic/
+  ASSB-sulfidic: https://clic.psi.ch/datasets/market-for-battery-capacity-all-solid-state-battery-sulfidic/
+
+# Internal source keys preserve constructor selection; rendered references use CLIC.
+clic_inventory_sources:
+  lci-BIGCC.xlsx:
+    label: Biomass IGCC power generation
+    datasets:
+    - name: electricity production, at biomass-fired IGCC power plant
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-production-at-biomass-fired-igcc-power-plant/
+    - name: electricity production, at biomass-fired IGCC power plant, post, pipeline 200km, storage 1000m
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-production-at-biomass-fired-igcc-power-plant-post-pipeline-200km-storage-1000m/
+  lci-Carma-CCS.xlsx:
+    label: Power generation with CCS
+    datasets:
+    - name: electricity production, at hard coal-fired power plant, post, pipeline 200km, storage 1000m
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-production-at-hard-coal-fired-power-plant-post-pipeline-200km-storage-1000m/
+    - name: electricity production, at natural gas-fired combined cycle power plant, post, pipeline 200km, storage 1000m
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-production-at-natural-gas-fired-combined-cycle-power-plant-post-pipeline-200km-storage-1000m/
+  lci-ESU-oil-and-gas.xlsx:
+    label: Oil and natural-gas extraction
+    datasets:
+    - name: natural gas, at production
+      location: DE
+      url: https://clic.psi.ch/datasets/natural-gas-at-production-10/
+    - name: crude oil, at production
+      location: MX
+      url: https://clic.psi.ch/datasets/crude-oil-at-production/
+  lci-PGM.xlsx:
+    label: Legacy platinum-group metal supplies
+    datasets: []
+  lci-PV-2026-electricity.xlsx:
+    label: Country PV electricity
+    datasets:
+    - name: electricity production, photovoltaic, residential
+      location: CH
+      url: https://clic.psi.ch/datasets/electricity-production-photovoltaic-residential-29/
+    - name: electricity production, photovoltaic, commercial
+      location: CH
+      url: https://clic.psi.ch/datasets/electricity-production-photovoltaic-commercial-29/
+    - name: electricity production mix, photovoltaic
+      location: CH
+      url: https://clic.psi.ch/datasets/electricity-production-mix-photovoltaic/
+  lci-PV-2026.xlsx:
+    label: PV manufacturing and installations
+    datasets:
+    - name: photovoltaic installation construction, 10 kwp, slanted-roof, single-crystalline silicon, panel, mounted, on roof
+      location: CH
+      url: https://clic.psi.ch/datasets/photovoltaic-installation-construction-10-kwp-slanted-roof-single-crystalline-silicon-panel-mounted-on-roof-6/
+  lci-PV-CIGS.xlsx:
+    label: CIS/CIGS photovoltaics
+    datasets:
+    - name: photovoltaic panel, CIS, at regional storage
+      location: RER
+      url: https://clic.psi.ch/datasets/photovoltaic-panel-cis-at-regional-storage/
+    - name: photovoltaic panel, CIS, at plant
+      location: DE
+      url: https://clic.psi.ch/datasets/photovoltaic-panel-cis-at-plant/
+  lci-PV-GaAs.xlsx:
+    label: GaAs photovoltaics
+    datasets:
+    - name: electricity production, photovoltaic, 0.28kWp, GaAs
+      location: GLO
+      url: https://clic.psi.ch/datasets/electricity-production-photovoltaic-028kwp-gaas/
+  lci-PV-perovskite.xlsx:
+    label: Perovskite/silicon tandem photovoltaics
+    datasets:
+    - name: electricity production, photovoltaic, 0.5kWp, perovskite-on-silicon tandem
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-production-photovoltaic-05kwp-perovskite-on-silicon-tandem/
+  lci-PV.xlsx:
+    label: Legacy photovoltaic inventories
+    datasets: []
+  lci-afforestation.xlsx:
+    label: Afforestation
+    datasets: []
+  lci-ammonia.xlsx:
+    label: Ammonia production
+    datasets:
+    - name: ammonia production, with market-average hydrogen
+      location: GLO
+      url: https://clic.psi.ch/datasets/ammonia-production-with-market-average-hydrogen/
+    - name: ammonia production, steam reforming
+      location: GLO
+      url: https://clic.psi.ch/datasets/ammonia-production-steam-reforming/
+  lci-batteries-ASSB.xlsx:
+    label: All-solid-state batteries
+    datasets:
+    - name: battery cell production, all-solid-state battery, sulfidic
+      location: GLO
+      url: https://clic.psi.ch/datasets/battery-cell-production-all-solid-state-battery-sulfidic/
+    - name: battery cell production, all-solid-state battery, oxidic
+      location: GLO
+      url: https://clic.psi.ch/datasets/battery-cell-production-all-solid-state-battery-oxidic/
+    - name: battery cell production, all-solid-state battery, polymer
+      location: GLO
+      url: https://clic.psi.ch/datasets/battery-cell-production-all-solid-state-battery-polymer/
+  lci-batteries-LFP-native-312.xlsx:
+    label: Curated LFP pack and cell supply
+    datasets:
+    - name: market for battery, Li-ion, LFP, curated reference
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-li-ion-lfp-rechargeable-prismatic/
+    - name: market for battery cell, Li-ion, LFP, curated supply
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-lfp/
+  lci-batteries-LiO2.xlsx:
+    label: Lithium-oxygen batteries
+    datasets:
+    - name: market for battery, Li-oxygen, Li-O2
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-li-oxygen-li-o2/
+    - name: battery cell production, Li-O2
+      location: GLO
+      url: https://clic.psi.ch/datasets/battery-cell-production-li-o2/
+  lci-batteries-LiS.xlsx:
+    label: Lithium-sulfur batteries
+    datasets:
+    - name: market for battery, Li-sulfur, Li-S
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-li-sulfur-li-s/
+    - name: battery cell production, Li-S
+      location: GLO
+      url: https://clic.psi.ch/datasets/battery-cell-production-li-s/
+  lci-batteries-NMC111-811-NCA-LFP.xlsx:
+    label: NMC111, NMC811, NCA and LFP cells
+    datasets:
+    - name: market for battery cell, Li-ion, NMC111
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-nmc111/
+    - name: market for battery cell, Li-ion, NMC811
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-nmc811/
+    - name: market for battery cell, Li-ion, NCA
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-nca/
+    - name: market for battery cell, Li-ion, LFP, curated supply
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-cell-li-ion-lfp/
+  lci-batteries-NMC622-NMC532.xlsx:
+    label: NMC622 and NMC532 batteries
+    datasets:
+    - name: market for battery, Li-ion, NMC622
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-li-ion-nmc622/
+    - name: market for battery, Li-ion, NMC532
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-li-ion-nmc532/
+  lci-batteries-NMC955-LTO.xlsx:
+    label: NMC955 and LTO batteries
+    datasets:
+    - name: market for battery, Li-ion, NMC955
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-li-ion-nmc955/
+    - name: market for battery, Li-ion, LTO
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-li-ion-lto/
+  lci-batteries-NMC955-capacity-reference-310.xlsx:
+    label: NMC955 capacity references
+    datasets:
+    - name: market for battery capacity, Li-ion, NMC955
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc955/
+    - name: market for battery capacity, Li-ion, NMC955, stationary
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc955-stationary/
+  lci-batteries-NMC955-fixed-reference-38.xlsx:
+    label: NMC955 legacy fixed-hardware reference
+    datasets: []
+  lci-batteries-NMC955-modern-312.xlsx:
+    label: NMC955 modern cell reference
+    datasets:
+    - name: battery cell production, Li-ion, NMC955
+      location: GLO
+      url: https://clic.psi.ch/datasets/battery-cell-production-li-ion-nmc955/
+  lci-batteries-SIB.xlsx:
+    label: Sodium-ion batteries
+    datasets:
+    - name: market for battery, sodium-ion, SiB
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-sodium-ion-sib/
+    - name: battery module production, for SiB battery
+      location: GLO
+      url: https://clic.psi.ch/datasets/battery-module-production-for-sib-battery/
+  lci-batteries-organic-and-hybrid-redox-flow.xlsx:
+    label: Organic and hybrid redox-flow batteries
+    datasets:
+    - name: electricity supply, high voltage, from organic redox flow battery system (OFB)
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-supply-high-voltage-from-organic-redox-flow-battery-system-ofb/
+    - name: electricity supply, high voltage, from hybrid redox flow battery system (HFB)
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-supply-high-voltage-from-hybrid-redox-flow-battery-system-hfb/
+  lci-batteries-vanadium-redox-flow.xlsx:
+    label: Vanadium redox-flow batteries
+    datasets:
+    - name: vanadium-redox flow battery system assembly, 8.3 megawatt hour
+      location: RER
+      url: https://clic.psi.ch/datasets/vanadium-redox-flow-battery-system-assembly-83-megawatt-hour/
+    - name: electricity supply, high voltage, from vanadium-redox flow battery system
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-supply-high-voltage-from-vanadium-redox-flow-battery-system/
+  lci-batteries-vanadium.xlsx:
+    label: Vanadium mining and refining
+    datasets:
+    - name: vanadium pentoxide production
+      location: ZA
+      url: https://clic.psi.ch/datasets/vanadium-pentoxide-production/
+    - name: vanadium pentoxide and unalloyed steel production
+      location: CN
+      url: https://clic.psi.ch/datasets/vanadium-pentoxide-and-unalloyed-steel-production/
+  lci-battery-capacity.xlsx:
+    label: Battery capacity markets
+    datasets:
+    - name: market for battery capacity, Li-ion, NMC622
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-capacity-li-ion-nmc622/
+    - name: market for battery capacity, redox-flow, vanadium, stationary
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-battery-capacity-redox-flow-vanadium-stationary/
+  lci-biochar-spruce.xlsx:
+    label: Spruce biochar
+    datasets:
+    - name: biochar, from spruce wood pyrolysis
+      location: RER
+      url: https://clic.psi.ch/datasets/biochar-from-spruce-wood-pyrolysis/
+    - name: carbon dioxide, captured and stored, by biochar application on mineral soil
+      location: RER
+      url: https://clic.psi.ch/datasets/carbon-dioxide-captured-and-stored-by-biochar-application-on-mineral-soil/
+  lci-biofuels.xlsx:
+    label: Biofuel feedstocks and conversion
+    datasets:
+    - name: farming and supply of switchgrass
+      location: US
+      url: https://clic.psi.ch/datasets/farming-and-supply-of-switchgrass/
+    - name: ethanol production, via fermentation, from switchgrass, energy allocation
+      location: US
+      url: https://clic.psi.ch/datasets/ethanol-production-via-fermentation-from-switchgrass-energy-allocation/
+    - name: biodiesel production, via transesterification, from used cooking oil, energy allocation
+      location: RER
+      url: https://clic.psi.ch/datasets/biodiesel-production-via-transesterification-from-used-cooking-oil-energy-allocation/
+  lci-biogas.xlsx:
+    label: Biogas and biomethane
+    datasets:
+    - name: biomethane, gaseous, 5 bar, from sewage sludge fermentation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/biomethane-gaseous-5-bar-from-sewage-sludge-fermentation-at-fuelling-station/
+  lci-biomethane-capture-MDEA-proxy-312.xlsx:
+    label: Biomethane-SMR capture reference
+    datasets:
+    - name: carbon dioxide, captured and stored, from a hydrogen production plant using steam methane reforming of biomethane
+      location: RER
+      url: https://clic.psi.ch/datasets/carbon-dioxide-captured-and-stored-from-a-hydrogen-production-plant-using-steam-methane-reforming-of-biomethane/
+  lci-buses.xlsx:
+    label: Bus transport inventories
+    datasets:
+    - name: transport, passenger bus, battery electric - overnight charging, 9m midibus
+      location: RER
+      url: https://clic.psi.ch/datasets/transport-passenger-bus-battery-electric-overnight-charging-9m-midibus/
+    - name: transport, passenger bus, fuel cell electric, 9m midibus
+      location: RER
+      url: https://clic.psi.ch/datasets/transport-passenger-bus-fuel-cell-electric-9m-midibus/
+  lci-carbon-capture.xlsx:
+    label: Carbon capture and storage
+    datasets:
+    - name: carbon dioxide, captured, with a sorbent-based direct air capture system, 100ktCO2
+      location: RER
+      url: https://clic.psi.ch/datasets/carbon-dioxide-captured-with-a-sorbent-based-direct-air-capture-system-100ktco2/
+    - name: carbon dioxide, captured, with a solvent-based direct air capture system, 1MtCO2
+      location: RER
+      url: https://clic.psi.ch/datasets/carbon-dioxide-captured-with-a-solvent-based-direct-air-capture-system-1mtco2/
+  lci-carbon-fiber.xlsx:
+    label: Carbon fibre production
+    datasets:
+    - name: carbon fiber production, weaved, at factory
+      location: RER
+      url: https://clic.psi.ch/datasets/carbon-fiber-production-weaved-at-factory/
+  lci-co-firing-power-plants.xlsx:
+    label: Co-firing power plants
+    datasets: []
+  lci-coastal-enhanced-weathering.xlsx:
+    label: Coastal enhanced weathering
+    datasets:
+    - name: carbon dioxide, captured and stored, by olivine spreading on coastline
+      location: RER
+      url: https://clic.psi.ch/datasets/carbon-dioxide-captured-and-stored-by-olivine-spreading-on-coastline/
+  lci-cobalt.xlsx:
+    label: Cobalt mining and refining
+    datasets:
+    - name: cobalt metal production, from copper mining, via electrolysis, economic allocation
+      location: CN
+      url: https://clic.psi.ch/datasets/cobalt-metal-production-from-copper-mining-via-electrolysis-economic-allocation/
+    - name: cobalt sulfate production, from copper mining, economic allocation
+      location: CN
+      url: https://clic.psi.ch/datasets/cobalt-sulfate-production-from-copper-mining-economic-allocation/
+  lci-combined-heat-power-plant-CCS.xlsx:
+    label: CHP heat with CCS
+    datasets:
+    - name: heat production, at co-generation natural gas-fired power plant, post, pipeline 200km, storage 1000m
+      location: RER
+      url: https://clic.psi.ch/datasets/heat-production-at-co-generation-natural-gas-fired-power-plant-post-pipeline-200km-storage-1000m/
+  lci-concentrating-solar-power.xlsx:
+    label: Concentrating solar power
+    datasets:
+    - name: electricity production, at 110 MW concentrating solar power plant, with thermal energy storage
+      location: CH
+      url: https://clic.psi.ch/datasets/electricity-production-at-110-mw-concentrating-solar-power-plant-with-thermal-energy-storage/
+  lci-electric-boiler-industrial.xlsx:
+    label: Industrial electric boilers
+    datasets: []
+  lci-electric-car-mechanical-powertrain.xlsx:
+    label: Electric-car mechanical powertrain
+    datasets:
+    - name: mechanical powertrain production and attributed treatment, electric passenger car, historical reference
+      location: GLO
+      url: https://clic.psi.ch/datasets/mechanical-powertrain-production-and-attributed-treatment-electric-passenger-car-historical-reference/
+    - name: auxiliary battery production and attributed treatment, passenger car, historical burden proxy
+      location: GLO
+      url: https://clic.psi.ch/datasets/auxiliary-battery-production-and-attributed-treatment-passenger-car-historical-burden-proxy/
+  lci-electric-heating.xlsx:
+    label: Electric storage heating
+    datasets:
+    - name: heat, residential, electric storage heater, using electricity from grid
+      location: CH
+      url: https://clic.psi.ch/datasets/heat-residential-electric-storage-heater-using-electricity-from-grid/
+  lci-epr-m5-native-312.xlsx:
+    label: EPR M5 cladding alloy
+    datasets:
+    - name: zirconium cladding alloy production, epr, m5 type
+      location: GLO
+      url: https://clic.psi.ch/datasets/zirconium-cladding-alloy-production-epr-m5-type/
+  lci-final-energy.xlsx:
+    label: Final-energy supply references
+    datasets: []
+  lci-fkm-gasket-native-312.xlsx:
+    label: FKM gaskets
+    datasets:
+    - name: gasket production, FKM, for VRFB system
+      location: RER
+      url: https://clic.psi.ch/datasets/gasket-production-fkm-for-vrfb-system/
+  lci-fuel_cell.xlsx:
+    label: PEM fuel cells
+    datasets:
+    - name: fuel cell system assembly, 1 kWe, proton exchange membrane (PEM)
+      location: GLO
+      url: https://clic.psi.ch/datasets/fuel-cell-system-assembly-1-kwe-proton-exchange-membrane-pem/
+    - name: fuel cell stack production, 1 kWe, proton exchange membrane (PEM)
+      location: GLO
+      url: https://clic.psi.ch/datasets/fuel-cell-stack-production-1-kwe-proton-exchange-membrane-pem/
+  lci-geothermal.xlsx:
+    label: Deep-geothermal heat
+    datasets: []
+  lci-germanium.xlsx:
+    label: Germanium co-production
+    datasets: []
+  lci-graphite.xlsx:
+    label: Natural and synthetic graphite
+    datasets:
+    - name: natural graphite production, coated
+      location: CN
+      url: https://clic.psi.ch/datasets/natural-graphite-production-coated/
+    - name: synthetic graphite production
+      location: CN
+      url: https://clic.psi.ch/datasets/synthetic-graphite-production/
+  lci-heat-pump-high-temp.xlsx:
+    label: High-temperature heat pumps
+    datasets:
+    - name: heat production, water-water heat pump, industrial, 100kW
+      location: RER
+      url: https://clic.psi.ch/datasets/heat-production-water-water-heat-pump-industrial-100kw/
+    - name: steam heat production, water-water heat pump, industrial, 100kW
+      location: RER
+      url: https://clic.psi.ch/datasets/steam-heat-production-water-water-heat-pump-industrial-100kw/
+  lci-home-batteries.xlsx:
+    label: Home battery storage
+    datasets:
+    - name: home electricity storage system, 19.5 kWh, NMC811 battery
+      location: RER
+      url: https://clic.psi.ch/datasets/home-electricity-storage-system-195-kwh-nmc811-battery/
+    - name: electricity supply, from stationary 14.4 kWh LFP battery
+      location: CH
+      url: https://clic.psi.ch/datasets/electricity-supply-from-stationary-144-kwh-lfp-battery/
+  lci-hydrogen-coal-gasification.xlsx:
+    label: Hydrogen from coal gasification
+    datasets:
+    - name: hydrogen production, coal gasification
+      location: RoW
+      url: https://clic.psi.ch/datasets/hydrogen-production-coal-gasification/
+  lci-hydrogen-coal-gasification_CCS.xlsx:
+    label: Hydrogen from coal gasification with CCS
+    datasets:
+    - name: hydrogen production, coal gasification, with CCS
+      location: RoW
+      url: https://clic.psi.ch/datasets/hydrogen-production-coal-gasification-with-ccs/
+  lci-hydrogen-distribution.xlsx:
+    label: Hydrogen storage and distribution
+    datasets:
+    - name: hydrogen refuelling station
+      location: GLO
+      url: https://clic.psi.ch/datasets/hydrogen-refuelling-station/
+    - name: high pressure hydrogen storage tank
+      location: GLO
+      url: https://clic.psi.ch/datasets/high-pressure-hydrogen-storage-tank/
+    - name: pipeline, hydrogen, low pressure distribution network
+      location: RER
+      url: https://clic.psi.ch/datasets/pipeline-hydrogen-low-pressure-distribution-network/
+  lci-hydrogen-electrolysis.xlsx:
+    label: Hydrogen from electrolysis
+    datasets:
+    - name: hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-gaseous-30-bar-from-pem-electrolysis-from-grid-electricity/
+    - name: hydrogen production, gaseous, 20 bar, from AEC electrolysis, from grid electricity
+      location: CH
+      url: https://clic.psi.ch/datasets/hydrogen-production-gaseous-20-bar-from-aec-electrolysis-from-grid-electricity/
+    - name: hydrogen production, gaseous, 1 bar, from SOEC electrolysis, from grid electricity
+      location: CH
+      url: https://clic.psi.ch/datasets/hydrogen-production-gaseous-1-bar-from-soec-electrolysis-from-grid-electricity/
+  lci-hydrogen-heating.xlsx:
+    label: Hydrogen for residential heat
+    datasets:
+    - name: heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by electrolysis, PEM using electricity from grid
+      location: RER
+      url: https://clic.psi.ch/datasets/heat-residential-by-combustion-of-hydrogen-using-boiler-distributed-by-pipeline-produced-by-electrolysis-pem-using-electricity-from-grid/
+  lci-hydrogen-oil.xlsx:
+    label: Hydrogen from oil
+    datasets: []
+  lci-hydrogen-pyrolysis.xlsx:
+    label: Hydrogen from methane pyrolysis
+    datasets:
+    - name: hydrogen production, gaseous, 100 bar, from methane pyrolysis
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-gaseous-100-bar-from-methane-pyrolysis/
+  lci-hydrogen-smr-atr-biogas.xlsx:
+    label: Hydrogen from biomethane reforming
+    datasets:
+    - name: hydrogen production, steam methane reforming, from biomethane
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-steam-methane-reforming-from-biomethane/
+    - name: hydrogen production, auto-thermal reforming, from biomethane
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-auto-thermal-reforming-from-biomethane/
+  lci-hydrogen-smr-atr-natgas.xlsx:
+    label: Hydrogen from natural-gas reforming
+    datasets:
+    - name: hydrogen production, steam methane reforming
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-steam-methane-reforming/
+    - name: hydrogen production, steam methane reforming, with CCS
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-steam-methane-reforming-with-ccs/
+    - name: hydrogen production, auto-thermal reforming
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-auto-thermal-reforming/
+  lci-hydrogen-thermochemical-water-splitting.xlsx:
+    label: Thermochemical water splitting
+    datasets:
+    - name: hydrogen production, gaseous, 25 bar, from thermochemical water splitting, at solar tower
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-gaseous-25-bar-from-thermochemical-water-splitting-at-solar-tower/
+  lci-hydrogen-turbine.xlsx:
+    label: Hydrogen-fired turbine
+    datasets:
+    - name: electricity production, from hydrogen-fired one gigawatt gas turbine, for grid balancing
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-production-from-hydrogen-fired-one-gigawatt-gas-turbine-for-grid-balancing/
+  lci-hydrogen-wood-gasification.xlsx:
+    label: Hydrogen from wood gasification
+    datasets:
+    - name: hydrogen production, gaseous, 25 bar, from heatpipe reformer gasification of woody biomass, at gasification plant
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-gaseous-25-bar-from-heatpipe-reformer-gasification-of-woody-biomass-at-gasification-plant/
+    - name: hydrogen production, gaseous, 25 bar, from gasification of woody biomass in entrained flow gasifier, at gasification plant
+      location: RER
+      url: https://clic.psi.ch/datasets/hydrogen-production-gaseous-25-bar-from-gasification-of-woody-biomass-in-entrained-flow-gasifier-at-gasification-plant/
+  lci-iridium-economic-proxy.xlsx:
+    label: Iridium economic-allocation proxy
+    datasets:
+    - name: iridium production, economic allocation, proxy
+      location: ZA
+      url: https://clic.psi.ch/datasets/iridium-production-economic-allocation-proxy/
+  lci-lithium.xlsx:
+    label: Battery-grade lithium
+    datasets:
+    - name: market for lithium carbonate, battery grade
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-lithium-carbonate-battery-grade/
+    - name: market for lithium hydroxide, battery grade
+      location: GLO
+      url: https://clic.psi.ch/datasets/market-for-lithium-hydroxide-battery-grade/
+  lci-methanol-heating.xlsx:
+    label: Methanol for residential heat
+    datasets:
+    - name: methanol supply, produced with biomass
+      location: RER
+      url: https://clic.psi.ch/datasets/methanol-supply-produced-with-biomass/
+    - name: methanol supply, produced with coal
+      location: RER
+      url: https://clic.psi.ch/datasets/methanol-supply-produced-with-coal/
+  lci-nmc532-native-312-reference.xlsx:
+    label: NMC532 native-cell reference
+    datasets:
+    - name: battery cell production, Li-ion, NMC532
+      location: GLO
+      url: https://clic.psi.ch/datasets/battery-cell-production-li-ion-nmc532/
+  lci-nuclear-heat.xlsx:
+    label: Nuclear heat
+    datasets: []
+  lci-nuclear_EPR.xlsx:
+    label: Nuclear EPR electricity
+    datasets:
+    - name: electricity production, nuclear, evolutionary power reactor (EPR)
+      location: CH
+      url: https://clic.psi.ch/datasets/electricity-production-nuclear-evolutionary-power-reactor-epr/
+    - name: electricity production, nuclear, evolutionary power reactor (EPR)
+      location: FR
+      url: https://clic.psi.ch/datasets/electricity-production-nuclear-evolutionary-power-reactor-epr-2/
+    - name: electricity production, nuclear, evolutionary power reactor (EPR)
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-production-nuclear-evolutionary-power-reactor-epr-3/
+  lci-nuclear_SMR.xlsx:
+    label: Nuclear SMR electricity
+    datasets:
+    - name: electricity production, nuclear, small modular reactor (SMR)
+      location: CH
+      url: https://clic.psi.ch/datasets/electricity-production-nuclear-small-modular-reactor-smr/
+  lci-ocean-liming.xlsx:
+    label: Ocean liming
+    datasets:
+    - name: carbon dioxide, captured and stored, by ocean liming
+      location: RER
+      url: https://clic.psi.ch/datasets/carbon-dioxide-captured-and-stored-by-ocean-liming/
+  lci-pass_cars.xlsx:
+    label: Passenger-car transport
+    datasets:
+    - name: transport, passenger car, battery electric, medium
+      location: RER
+      url: https://clic.psi.ch/datasets/transport-passenger-car-battery-electric-medium/
+    - name: transport, passenger car, gasoline, medium, EURO-6
+      location: RER
+      url: https://clic.psi.ch/datasets/transport-passenger-car-gasoline-medium-euro-6/
+  lci-pfsa-ew1100.xlsx:
+    label: PFSA EW1100 membrane
+    datasets:
+    - name: perfluorosulfonic acid membrane production, ew1100, engineering reference
+      location: GLO
+      url: https://clic.psi.ch/datasets/perfluorosulfonic-acid-membrane-production-ew1100-engineering-reference/
+  lci-pipeline-coating-native-312.xlsx:
+    label: Aluminium-zinc-silicon pipeline coatings
+    datasets:
+    - name: aluminium-zinc-silicon coating production, hot-dip, on distribution pipe
+      location: RER
+      url: https://clic.psi.ch/datasets/aluminium-zinc-silicon-coating-production-hot-dip-on-distribution-pipe/
+    - name: aluminium-zinc-silicon coating production, hot-dip, on transmission pipe
+      location: RER
+      url: https://clic.psi.ch/datasets/aluminium-zinc-silicon-coating-production-hot-dip-on-transmission-pipe/
+  lci-ptfe-gasket-native-312.xlsx:
+    label: Formed PTFE gaskets
+    datasets:
+    - name: polytetrafluoroethylene gasket production, forming, resin supply proxy
+      location: GLO
+      url: https://clic.psi.ch/datasets/polytetrafluoroethylene-gasket-production-forming-resin-supply-proxy/
+  lci-rail-freight.xlsx:
+    label: Rail freight
+    datasets:
+    - name: transport, freight train, electric
+      location: Europe without Switzerland
+      url: https://clic.psi.ch/datasets/transport-freight-train-electric/
+    - name: transport, freight train, diesel-electric
+      location: Europe without Switzerland
+      url: https://clic.psi.ch/datasets/transport-freight-train-diesel-electric/
+    - name: transport, freight train, fuel cell, hydrogen
+      location: Europe without Switzerland
+      url: https://clic.psi.ch/datasets/transport-freight-train-fuel-cell-hydrogen/
+  lci-rhenium.xlsx:
+    label: Rhenium co-production
+    datasets: []
+  lci-ships.xlsx:
+    label: Container-ship freight
+    datasets:
+    - name: transport, freight, sea, container ship, powered with diesel
+      location: RER
+      url: https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-diesel/
+    - name: transport, freight, sea, container ship, powered with hydrogen
+      location: RER
+      url: https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-hydrogen/
+    - name: transport, freight, sea, container ship, powered with electricity
+      location: RER
+      url: https://clic.psi.ch/datasets/transport-freight-sea-container-ship-powered-with-electricity/
+  lci-steel.xlsx:
+    label: Steel production and capture
+    datasets:
+    - name: carbon dioxide, captured at pig iron production plant, using monoethanolamine
+      location: GLO
+      url: https://clic.psi.ch/datasets/carbon-dioxide-captured-at-pig-iron-production-plant-using-monoethanolamine/
+    - name: carbon dioxide, captured at steel production plant, using vacuum pressure swing adsorption
+      location: GLO
+      url: https://clic.psi.ch/datasets/carbon-dioxide-captured-at-steel-production-plant-using-vacuum-pressure-swing-adsorption/
+  lci-sulfidic-tailings.xlsx:
+    label: Sulfidic-tailings treatment
+    datasets:
+    - name: treatment of sulfidic tailings, generic, backfilling
+      location: GLO
+      url: https://clic.psi.ch/datasets/treatment-of-sulfidic-tailings-generic-backfilling/
+    - name: treatment of sulfidic tailings, flocculation-flotation process
+      location: GLO
+      url: https://clic.psi.ch/datasets/treatment-of-sulfidic-tailings-flocculation-flotation-process/
+    - name: treatment of sulfidic tailings, roasting and leaching
+      location: GLO
+      url: https://clic.psi.ch/datasets/treatment-of-sulfidic-tailings-roasting-and-leaching/
+  lci-synfuels-from-FT-from-coal-gasification-with-CCS.xlsx:
+    label: Synthetic fuels from Fischer–Tropsch from coal gasification with CCS
+    datasets:
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from coal gasification, with CCS, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-coal-gasification-with-ccs-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-coal-gasification-with-ccs-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-FT-from-coal-gasification.xlsx:
+    label: Synthetic fuels from Fischer–Tropsch from coal gasification
+    datasets:
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from coal gasification, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-coal-gasification-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from coal gasification, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-coal-gasification-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-FT-from-electrolysis.xlsx:
+    label: Synthetic fuels from Fischer–Tropsch from electrolysis
+    datasets:
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from electrolysis, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-electrolysis-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from electrolysis, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-electrolysis-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-FT-from-natural-gas.xlsx:
+    label: Synthetic fuels from Fischer–Tropsch from natural gas
+    datasets:
+    - name: lubricating oil production, synthetic, fischer tropsch process, from natural gas, energy allocation
+      location: RER
+      url: https://clic.psi.ch/datasets/lubricating-oil-production-synthetic-fischer-tropsch-process-from-natural-gas-energy-allocation/
+    - name: kerosene production, synthetic, fischer tropsch process, from natural gas, energy allocation
+      location: RER
+      url: https://clic.psi.ch/datasets/kerosene-production-synthetic-fischer-tropsch-process-from-natural-gas-energy-allocation/
+  lci-synfuels-from-FT-from-wood-gasification-with-CCS.xlsx:
+    label: Synthetic fuels from Fischer–Tropsch from wood gasification with CCS
+    datasets:
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from wood gasification, with CCS, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-wood-gasification-with-ccs-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from wood gasification, with CCS, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-wood-gasification-with-ccs-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-FT-from-wood-gasification.xlsx:
+    label: Synthetic fuels from Fischer–Tropsch from wood gasification
+    datasets:
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from wood gasification, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-wood-gasification-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from fischer tropsch process, hydrogen from wood gasification, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-hydrogen-from-wood-gasification-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-FT.xlsx:
+    label: Synthetic fuels from Fischer–Tropsch
+    datasets:
+    - name: diesel production, synthetic, from fischer tropsch process, market-average hydrogen, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-market-average-hydrogen-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from fischer tropsch process, market-average hydrogen, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-fischer-tropsch-process-market-average-hydrogen-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-methanol-from-cement-plant.xlsx:
+    label: Synthetic fuels from methanol from cement plant
+    datasets:
+    - name: diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-cement-plant-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from cement plant, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-cement-plant-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-methanol-from-coal-with-CCS.xlsx:
+    label: Synthetic fuels from methanol from coal with CCS
+    datasets:
+    - name: diesel production, synthetic, from methanol, hydrogen from coal gasification, with CCS, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-coal-gasification-with-ccs-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from methanol, hydrogen from coal gasification, with CCS, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-coal-gasification-with-ccs-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-methanol-from-coal.xlsx:
+    label: Synthetic fuels from methanol from coal
+    datasets:
+    - name: diesel production, synthetic, from methanol, hydrogen from coal gasification, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-coal-gasification-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from methanol, hydrogen from coal gasification, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-coal-gasification-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-methanol-from-electrolysis.xlsx:
+    label: Synthetic fuels from methanol from electrolysis
+    datasets:
+    - name: diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-dac-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from methanol, hydrogen from electrolysis, CO2 from DAC, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-hydrogen-from-electrolysis-co2-from-dac-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-methanol-from-wood.xlsx:
+    label: Synthetic fuels from methanol from wood
+    datasets:
+    - name: diesel production, synthetic, from methanol, from wood, with CCS, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-from-wood-with-ccs-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from methanol, from wood, with CCS, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-from-wood-with-ccs-energy-allocation-at-fuelling-station/
+  lci-synfuels-from-methanol.xlsx:
+    label: Synthetic fuels from methanol
+    datasets:
+    - name: diesel production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, economic allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-market-average-hydrogen-co2-from-dac-economic-allocation-at-fuelling-station/
+    - name: diesel production, synthetic, from methanol, market-average hydrogen, CO2 from DAC, energy allocation, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/diesel-production-synthetic-from-methanol-market-average-hydrogen-co2-from-dac-energy-allocation-at-fuelling-station/
+  lci-syngas-from-coal.xlsx:
+    label: Coal-based synthetic methane
+    datasets:
+    - name: methane, synthetic, gaseous, 5 bar, from coal-based hydrogen, at fuelling station
+      location: RER
+      url: https://clic.psi.ch/datasets/methane-synthetic-gaseous-5-bar-from-coal-based-hydrogen-at-fuelling-station/
+  lci-syngas.xlsx:
+    label: Syngas and synthetic methane
+    datasets:
+    - name: electricity production, from combined cycle plant, synthetic natural gas
+      location: RER
+      url: https://clic.psi.ch/datasets/electricity-production-from-combined-cycle-plant-synthetic-natural-gas/
+  lci-trucks.xlsx:
+    label: Truck transport
+    datasets:
+    - name: transport, freight, lorry, battery electric, 18 metric ton
+      location: RER
+      url: https://clic.psi.ch/datasets/transport-freight-lorry-battery-electric-18-metric-ton/
+    - name: transport, freight, lorry, fuel cell electric, 18 metric ton
+      location: RER
+      url: https://clic.psi.ch/datasets/transport-freight-lorry-fuel-cell-electric-18-metric-ton/
+  lci-two_wheelers.xlsx:
+    label: Two-wheeler transport
+    datasets:
+    - name: transport, kick scooter, battery electric, <1kW
+      location: CH
+      url: https://clic.psi.ch/datasets/transport-kick-scooter-battery-electric-1kw/
+    - name: transport, bicycle, battery electric, cargo bike
+      location: CH
+      url: https://clic.psi.ch/datasets/transport-bicycle-battery-electric-cargo-bike/
+  lci-vrfb-reference-conditioning.xlsx:
+    label: Vanadium-electrolyte conditioning
+    datasets:
+    - name: vanadium electrolyte conditioning
+      location: RER
+      url: https://clic.psi.ch/datasets/vanadium-electrolyte-conditioning/
+  lci-waste-CHP.xlsx:
+    label: Municipal-waste incineration and energy recovery
+    datasets:
+    - name: municipal waste incineration, at incineration plant, with semi-dry air pollution control, without flue gas condensation, with electricity recovery only
+      location: RER
+      url: https://clic.psi.ch/datasets/municipal-waste-incineration-at-incineration-plant-with-semi-dry-air-pollution-control-without-flue-gas-condensation-with-electricity-recovery-only/
+    - name: municipal waste incineration, at incineration plant, with semi-dry air pollution control, without flue gas condensation, with electricity and heat recovery
+      location: RER
+      url: https://clic.psi.ch/datasets/municipal-waste-incineration-at-incineration-plant-with-semi-dry-air-pollution-control-without-flue-gas-condensation-with-electricity-and-heat-recovery/
+  lci-wave_energy.xlsx:
+    label: Wave electricity
+    datasets:
+    - name: electricity production, wave energy converter
+      location: GB
+      url: https://clic.psi.ch/datasets/electricity-production-wave-energy-converter/

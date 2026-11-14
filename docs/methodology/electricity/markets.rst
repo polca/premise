@@ -313,11 +313,39 @@ when suppliers are aggregated to regions.
 Worked example and checks
 ---------------------------
 
-For an illustrative 1 kWh generation mix with shares 0.7 and 0.3, verify
-those two production contributions before inspecting losses and ancillary
-inputs. A lower-voltage market may require more than 1 kWh upstream due to
-losses. Trace one low-voltage consumer through the layers and check that
-storage losses and equipment are not counted twice.
+Consider a generation-only mix with 70% from technology A and 30% from
+technology B. Two suppliers provide technology A in a 60/40 split; one supplier
+provides all of B. These are illustrative shares before network losses,
+storage or other ancillary inputs.
+
+.. list-table:: Supplier inputs per 1 kWh of the generation mix
+   :header-rows: 1
+   :widths: 25 25 25 25
+
+   * - Supplier
+     - Technology share
+     - Share within technology
+     - Electricity input
+   * - A1
+     - 0.70
+     - 0.60
+     - 0.70 × 0.60 = 0.42 kWh
+   * - A2
+     - 0.70
+     - 0.40
+     - 0.70 × 0.40 = 0.28 kWh
+   * - B1
+     - 0.30
+     - 1.00
+     - 0.30 × 1.00 = 0.30 kWh
+
+The inputs sum to 1 kWh. Changing the A1/A2 split changes suppliers within
+technology A without changing its 70% technology share.
+
+In an actual voltage market, inspect losses and ancillary inputs separately
+from these generation shares. A lower-voltage market can need more than
+1 kWh upstream per kWh supplied. Trace a consumer through the voltage layers
+and check that storage losses and equipment are counted once.
 
 Sources and inventory details
 -------------------------------

@@ -11,9 +11,9 @@ This is done as follows:
 
     ndb.write_datapackage()
 
-This creates a zip file that contains the all the data necessary for
-other users to replicate the databases, provided they have access
-to the source database locally.
+The ZIP records the scenario differences needed to reconstruct the databases.
+Recipients also need the matching source database locally. Check the applicable
+source licences before distributing a package.
 
 See the `unfold library <https://github.com/polca/unfold/tree/main>`_ for more information on data packages
 for sharing LCA databases. ``unfold`` can read these data packages and create

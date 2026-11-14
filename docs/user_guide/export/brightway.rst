@@ -1,61 +1,44 @@
 Exporting to Brightway
 ========================
 
-Regular brightway2 database
------------------------------
+.. raw:: html
 
-*premise* uses its Brightway2/Brightway25 adapters to load the LCI database back into a *brightway2* project.
-This is done as follows:
+   <span id="regular-brightway2-database"></span>
 
-.. code-block:: python
+Write the databases
+---------------------
 
-    ndb.write_db_to_brightway()
-
-If several databases have been built, the user can give them specific names, like so:
+Use an active Brightway project containing the configured biosphere database.
+After updating ``ndb``, export its scenario with a name of your choice:
 
 .. code-block:: python
 
-    ndb.write_db_to_brightway(name=["db_1", "db_2"])
+    ndb.write_db_to_brightway(name="my-scenario-database")
 
-.. note::
+For several scenarios, provide one name per scenario, in the same order:
 
-    Brightway export requires an active Brightway project with the configured
-    biosphere database already registered.
+.. code-block:: python
 
+    ndb.write_db_to_brightway(name=["scenario-2025", "scenario-2050"])
+
+Omitting ``name`` uses names generated from the scenario settings. Keep output
+names distinct from your source database and any results you want to retain.
+Then use the written databases with your usual Brightway LCA workflow.
 
 Scenario metadata
 -------------------
 
-Every database written to brightway carries, in its brightway metadata, a description
-of the scenario and of the point in time it represents. It sits next to the fields
-brightway maintains itself:
+Premise records the IAM model, pathway, year, ecoinvent version, system model
+and Premise version in each written database's metadata. Read these fields
+from your own output:
 
 .. code-block:: python
 
     import bw2data as bd
 
-    bd.databases["ei_cutoff_3.10.1_remind_SSP2-PkBudg500_2050"]
-
-.. code-block:: python
-
-    {
-        # written by brightway
-        "format": "Ecoinvent XML",
-        "depends": ["ecoinvent-3.10.1-biosphere"],
-        "backend": "sqlite",
-        "number": 43648,
-        "modified": "2026-08-14T12:09:25.945746",
-        "processed": "2026-08-14T12:09:56.124243",
-        "geocollections": ["world"],
-        "searchable": True,
-        # written by premise
-        "premise_version": "2.4.9.1",
-        "iam_model": "remind",
-        "pathway": "SSP2-PkBudg500",
-        "representative_time": "2050-01-01T00:00:00",
-        "ecoinvent_version": "3.10.1",
-        "system_model": "cutoff",
-    }
+    metadata = bd.Database("my-scenario-database").metadata
+    print(metadata["iam_model"], metadata["pathway"], metadata["representative_time"])
+    print(metadata["ecoinvent_version"], metadata["system_model"])
 
 .. note::
 

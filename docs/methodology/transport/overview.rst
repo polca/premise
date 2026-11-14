@@ -5,21 +5,17 @@ Transport overview
 
    <span id="road-vehicles"></span>
 
-
 .. raw:: html
 
    <span id="source-inventories-road-vehicles"></span>
-
 
 .. raw:: html
 
    <span id="key-outputs"></span>
 
-
 .. raw:: html
 
    <span id="transport"></span>
-
 
 The transport transformation combines mode-specific vehicle inventories with
 IAM fleet data where available. It can create regional fleet-average transport
@@ -82,25 +78,31 @@ Available inventory variants and their restrictions are listed on the mode
 pages. Battery production is described in :doc:`/methodology/batteries`;
 electricity supply and fuel markets have their own losses and boundaries.
 
+Capacity-market purchases are manufacturing proxies when a vehicle's physical
+battery mass or chemistry differs from the capacity reference. Manufacturing
+and end-of-life are counted through that capacity supplier once.
+
+FCEV buffer-power references do not model state-of-charge-dependent charging,
+fuel-cell ramping, electrothermal behaviour or ageing. Future scenarios do not
+resize FCEV buffers or hydrogen tanks. PHEV cycling remains an external design
+assumption. Retained truck NOx factors follow their source model and are not
+clipped to regulatory thresholds.
+
 .. raw:: html
 
    <span id="two-wheelers"></span>
-
 
 .. raw:: html
 
    <span id="passenger-cars"></span>
 
-
 .. raw:: html
 
    <span id="medium-and-heavy-duty-trucks"></span>
 
-
 .. raw:: html
 
    <span id="buses"></span>
-
 
 .. raw:: html
 

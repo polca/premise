@@ -1,6 +1,17 @@
 IAM scenario catalogue
 ========================
 
+Use this catalogue to look up a pathway name after choosing a model. Scenario
+files vary by Premise release: confirm that the file you need is available and
+contains data for your study. :doc:`/user_guide/choose-scenario` explains that
+selection step.
+
+Temperature categories in this inherited catalogue are descriptive guidance.
+They have not been matched to every distributed IAM release; do not use them
+as precise temperature estimates. See :doc:`coverage` for the metadata needed
+to make that comparison.
+
+
 .. contents:: On this page
    :local:
    :depth: 1

@@ -5,92 +5,68 @@ External-scenario format
    :local:
    :depth: 1
 
+This page specifies the files used by :doc:`/user_guide/external-scenarios`.
+For a guided authoring workflow, start with
+:doc:`/user_guide/create-external-scenario`.
+
+A package needs resources named ``scenario_data`` and ``config``. An
+``inventories`` resource is optional when all selected activities already exist
+in the source database. Paths are relative to ``datapackage.json``.
+
 datapackage.json
 ------------------
 
-The datapackage.json file is a descriptor file that indicates the scenario author,
-scenario name, scenario description, scenario version, and the file names and paths
-of the scenario file, configuration file, and inventories.
-
-Example:
+The descriptor names the package, its sources, its scenario labels and the
+ecoinvent version used to author its inventories. This example shows a small
+package without an inventory resource. Adapt its names and paths to your files:
 
 .. code-block:: json
 
     {
         "profile": "data-package",
-        "name": "ammonia-prospective-scenarios",
-        "title": "Ammonia decarbonisation pathways and their effects on life cycle assessments: Integrating future ammonia scenarios into background data for prospective LCAs",
-        "description": "Implementation of the scenarios on future ammonia supply from the Master thesis of J. Boyce, 2022.",
-        "source":"Boyce, J. C. (2022). Ammonia decarbonisation pathways and their effects on life cycle assessments: Integrating future ammonia scenarios into background data for prospective LCAs [Master’s Thesis, Leiden University and TU Delft].",
-        "version": "0.0.1",
-        "contributors":[
+        "name": "my-scenario-package",
+        "title": "My technology projections",
+        "description": "Document the projection assumptions and source publications here.",
+        "version": "1.0.0",
+        "ecoinvent": {"version": "3.12", "system model": "cutoff"},
+        "scenarios": {
+            "My custom scenario": [
+                {"model": "remind", "pathway": "SSP2-NPi"}
+            ]
+        },
+        "resources": [
             {
-            "title": "Johanna C. Boyce",
-            "email": "xxxx@umail.leidenuniv.nl"
-    }
-
-
-The mapping between IAM scenarios and user-defined scenarios is established within the
-datapackage.json file. For instance, the SSP2-Base scenario from IAM models IMAGE and REMIND
-is mapped to the user-defined scenario Business As Usual. This implies that when users opt for
-the SSP2-Base scenario from IMAGE and REMIND, the user-defined scenario Business As Usual will
-be selected. Although your custom scenario may not be intended for use alongside an IAM scenario,
-it must still be mapped to one (this aspect could be improved in the future).
-
-
-.. code-block:: json
-
-    "scenarios": {
-        "Business As Usual": [
-            {
-                "model": "image",
-                "pathway": "SSP2-Base"
+                "name": "scenario_data",
+                "path": "scenario_data/scenario_data.csv",
+                "profile": "tabular-data-resource",
+                "format": "csv"
             },
             {
-                "model": "remind",
-                "pathway": "SSP2-Base"
+                "name": "config",
+                "path": "configuration_file/config.yaml",
+                "format": "yaml"
             }
-        ],
+        ]
+    }
 
-The resources section of the datapackage.json file indicates the file names, location
-of the scenario file, configuration file, and inventories, as well as how their
-data should present.
-
-For example, here the scenario file is called **scenario_data.csv**,
-and is located in the **scenario_data** folder. The data in the file is in the
-**long** format, with the columns **region**, **year**, **scenario**, **variable**, etc.
-A scenario is, along with a configuration file, a mandatory resource
-of a scenario package -- inventories are optional.
-
-.. code-block:: json
-
-    "resources": [
-        {
-            "path": "scenario_data/scenario_data.csv",
-            "profile": "tabular-data-resource",
-            "name": "scenario_data",
-            "format": "csv",
-            "mediatype": "text/csv",
-            "encoding": "utf-8-sig",
-            "schema": {
-                "fields": [
-                    {
-                        "name": "model",
-                        "type": "string",
-                        "format": "default"
-                    },
+The custom scenario label must match the ``scenario`` column in the data and
+the label passed in the build's ``external scenarios`` entry. Model/pathway
+associations record which base IAM scenarios the custom projection accompanies.
+Include source and contributor attribution in your own package.
 
 Scenario data
 ---------------
 
-The **scenario_data.csv** file contains the scenario data.
-Having this file as a csv is mandatory, as it allows to track changes
-between scenario versions.
-Below are shown some variables that indicate the efficiency of the
-production of hydrogen from alkaline-based electrolysers, from 2020
-to 2050, for the **Sustainable development** scenario, for several regions.
-The actual meaning of this variable is not important here, as it is
-defined in the configuration file.
+The CSV contains one row per scenario, region and variable, with year values
+in separate columns. Required columns are ``scenario``, ``region``,
+``variables`` and ``unit``; note the plural spelling ``variables``. Year-column
+names must be integers from 2005 to 2100, and required cells must not be empty.
+The example also carries model/pathway labels as context.
+
+The table below illustrates an electricity-based hydrogen-efficiency trajectory
+for several regions. The later configuration examples illustrate ammonia
+production instead; their variable and scenario names must be replaced to
+match your own data.
 
 
 +-------+------------+-------------------------+--------+---------------------------------------------------------+------+------+------+------+------+------+------+------+------+
@@ -113,7 +89,7 @@ maps with. The second column is the **pathway** column, which indicates
 the IAM scenario that the user-defined scenario should map with.
 The third column is the name of the user-defined scenario. The fourth column
 is the region, which can be either a country or a region. The fifth column
-is the **variable** column, which indicates the variable that the
+is the ``variables`` column, which indicates the variable that the
 scenario data is about. The sixth column is the **unit** column,
 which indicates the unit of that variable. The columns after that are the
 values of the variable across time.
@@ -124,11 +100,11 @@ or other variables that are needed to modify/adjust inventories.
 Inventories
 -------------
 
-Inventories are stored in csv files (for version control).
-The name of the csv file should be similar to what is indicated in the
-*datapackage.json* file. For example, if the *datapackage.json* file indicates
-that the inventory file is **inventories/lci-xxx.csv**, then the inventory file should
-be named **lci-xxx.csv** under the folder **inventories** in the root folder.
+Inventories can be Brightway-compatible Excel or CSV files. Declare the
+``inventories`` resource and its exact path in ``datapackage.json``. For a path
+such as ``inventories/lci-example.csv``, that file must exist in the package's
+``inventories`` directory. Preserve its product, unit, location and source
+version so Premise can identify and migrate its suppliers.
 
 config.yaml
 -------------
@@ -383,8 +359,5 @@ This ratio is inferred from the declared electrical-efficiency basis; it does
 not independently verify fuel consumption. Values above 100% are reported,
 not automatically corrected, because the heating-value basis must be known.
 
-The old external routine attempted to bound a scaling factor using the target
-itself. That did not enforce the documented final-efficiency interval and also
-affected unrelated process types. Explicit target bounds replace that implicit
-behaviour. Existing datapackages that depended on it should supply intentional
-limits in their configuration.
+If you are updating an older package, declare the intended bounds explicitly;
+do not rely on the historical implicit scaling limits.

@@ -1,7 +1,6 @@
 Two-wheelers
 ==============
 
-
 .. contents:: On this page
    :local:
    :depth: 1
@@ -52,7 +51,6 @@ change to technosphere inputs selected by the technology's fuel-name filters.
 If the efficiency array or mapped variable is missing, that energy adjustment
 is unchanged. Regional markets are built only when fleet data are available.
 
-
 Markets and downstream links
 ------------------------------
 
@@ -80,7 +78,7 @@ product. Dedicated mechanical-energy equipment replaces mixed/glider proxies
 at the declared mechanical mass; it does not duplicate a common glider.
 Electrical compatibility, detailed component topology and material grades
 remain engineering qualifications. Higher battery MIX burdens and this
-equipment/grid-energy boundary jointly explain the reviewed per-MJ outlier;
+equipment/grid-energy boundary jointly explain the per-MJ outlier;
 it must not be described as a deterioration in grid electricity alone.
 
 Inventory driving conditions, vehicle sizes and powertrains constrain
@@ -109,30 +107,65 @@ Inventories are from `Sacchi <https://zenodo.org/records/5720779>`__ et al. 2022
 for different years and emission standards. *premise* will only
 import vehicles which production year is equal or inferior to
 the scenario year considered. The inventories can be consulted
-here: `LCItwowheelers <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-two_wheelers.xlsx>`__.
+here: `transport, kick scooter, battery electric, <1kW (CH) <https://clic.psi.ch/datasets/transport-kick-scooter-battery-electric-1kw/>`__; `transport, bicycle, battery electric, cargo bike (CH) <https://clic.psi.ch/datasets/transport-bicycle-battery-electric-cargo-bike/>`__.
 
+.. list-table::
+   :header-rows: 1
 
- ================================================= ==================
-  Two-wheeler datasets                              location
- ================================================= ==================
-  transport, Kick Scooter, electric, <1kW           all IAM regions
-  transport, Bicycle, conventional, urban           all IAM regions
-  transport, Bicycle, electric (<25 km/h)           all IAM regions
-  transport, Bicycle, electric (<45 km/h)           all IAM regions
-  transport, Bicycle, electric, cargo bike          all IAM regions
-  transport, Moped, gasoline, <4kW, EURO-5          all IAM regions
-  transport, Scooter, gasoline, <4kW, EURO-5        all IAM regions
-  transport, Scooter, gasoline, 4-11kW, EURO-5      all IAM regions
-  transport, Scooter, electric, <4kW                all IAM regions
-  transport, Scooter, electric, 4-11kW              all IAM regions
-  transport, Motorbike, gasoline, 4-11kW, EURO-5    all IAM regions
-  transport, Motorbike, gasoline, 11-35kW, EURO-5   all IAM regions
-  transport, Motorbike, gasoline, >35kW, EURO-5     all IAM regions
-  transport, Motorbike, electric, <4kW              all IAM regions
-  transport, Motorbike, electric, 4-11kW            all IAM regions
-  transport, Motorbike, electric, 11-35kW           all IAM regions
-  transport, Motorbike, electric, >35kW             all IAM regions
- ================================================= ==================
+   * - Two-wheeler datasets
+     - location
+     - CLIC dataset page
+   * - transport, Kick Scooter, electric, <1kW
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-kick-scooter-battery-electric-1kw/>`__
+   * - transport, Bicycle, conventional, urban
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-bicycle-conventional-urban/>`__
+   * - transport, Bicycle, electric (<25 km/h)
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-bicycle-electric-25-kmh/>`__
+   * - transport, Bicycle, electric (<45 km/h)
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-bicycle-electric-45-kmh/>`__
+   * - transport, Bicycle, electric, cargo bike
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-bicycle-battery-electric-cargo-bike/>`__
+   * - transport, Moped, gasoline, <4kW, EURO-5
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-moped-gasoline-4kw-euro-5/>`__
+   * - transport, Scooter, gasoline, <4kW, EURO-5
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-scooter-gasoline-4kw-euro-5/>`__
+   * - transport, Scooter, gasoline, 4-11kW, EURO-5
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-scooter-gasoline-4-11kw-euro-5/>`__
+   * - transport, Scooter, electric, <4kW
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-scooter-battery-electric-4kw/>`__
+   * - transport, Scooter, electric, 4-11kW
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-scooter-battery-electric-4-11kw/>`__
+   * - transport, Motorbike, gasoline, 4-11kW, EURO-5
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-motorbike-gasoline-4-11kw-euro-5/>`__
+   * - transport, Motorbike, gasoline, 11-35kW, EURO-5
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-motorbike-gasoline-11-35kw-euro-5/>`__
+   * - transport, Motorbike, gasoline, >35kW, EURO-5
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-motorbike-gasoline-35kw-euro-5/>`__
+   * - transport, Motorbike, electric, <4kW
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-motorbike-battery-electric-4kw/>`__
+   * - transport, Motorbike, electric, 4-11kW
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-motorbike-battery-electric-4-11kw/>`__
+   * - transport, Motorbike, electric, 11-35kW
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-motorbike-battery-electric-11-35kw/>`__
+   * - transport, Motorbike, electric, >35kW
+     - all IAM regions
+     - `View dataset <https://clic.psi.ch/datasets/transport-motorbike-battery-electric-35kw/>`__
 
 This mode has no configured existing consumer-replacement rules; downstream
 use must be checked in the study supply chain.

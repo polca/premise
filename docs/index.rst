@@ -39,6 +39,9 @@ Premise documentation
 
       Find supported models, inventory sources, mappings and the Python API.
 
+Explore published source inventories in the :doc:`CLIC inventory catalogue
+<reference/inventories>`. Dataset descriptions link to the individual CLIC pages.
+
 For contributions and implementation details, see :doc:`development/index`.
 
 .. toctree::

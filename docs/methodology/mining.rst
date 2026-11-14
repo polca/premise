@@ -77,12 +77,12 @@ In the default ecoinvent system, all sulfidic tailings are treated via impoundme
 estimates for the uptake of the various alternatives, along with the references used to approximate the data points or
 inform the underlying trends.
 
-These newly introduced treatment pathways represent a more energy- and material-intensive treatment alternative
-compared to impoundments. However, they also provide a means of significantly reducing, or potentially eliminating,
-leachate-related emissions, which are critical environmental burden of tailings disposal. The modeled transition
-thus captures the trade-offs between higher resource consumption and the mitigation of long-term pollution risks.
-The assumed reduction in impoundments reflects broader trends in the industry toward more sustainable and circular
-tailings management practices, supported by technological innovation and emerging environmental regulation [5].
+The alternative treatments can use more energy and materials than impoundment,
+while reducing releases associated with leaching. The assumed transition
+therefore represents a trade-off between additional treatment burdens and
+long-term releases. The uptake estimates below draw on the cited sources and
+industry trends [5]; they are scenario assumptions rather than measured future
+adoption.
 
 .. list-table:: Regional estimates for sulfidic tailings treatment uptake
    :header-rows: 1
@@ -216,9 +216,9 @@ Inventories
 
 *premise* provides several inventories regarding updated mining practices:
 
-* `Alternative treatment pathways for sulfidic tailings <https://github.com/polca/premise/blob/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories/lci-sulfidic-tailings.xlsx>`_.
+* `treatment of sulfidic tailings, generic, backfilling (GLO) <https://clic.psi.ch/datasets/treatment-of-sulfidic-tailings-generic-backfilling/>`__; `treatment of sulfidic tailings, flocculation-flotation process (GLO) <https://clic.psi.ch/datasets/treatment-of-sulfidic-tailings-flocculation-flotation-process/>`__; `treatment of sulfidic tailings, roasting and leaching (GLO) <https://clic.psi.ch/datasets/treatment-of-sulfidic-tailings-roasting-and-leaching/>`__.
 
-The inventories are provided under `premise/data/additional_inventories <https://github.com/polca/premise/tree/76dbf845ef73bb765024dda1143960a24964a5fe/premise/data/additional_inventories>`_
+The published inventories are available in the `CLIC inventory catalogue <https://clic.psi.ch/browse/>`__.
 
 .. raw:: html
 

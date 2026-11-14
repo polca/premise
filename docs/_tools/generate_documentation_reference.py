@@ -98,6 +98,9 @@ def inventory_selection(tree, version, system_model):
 
 
 def generate():
+    register = yaml.safe_load(
+        (ROOT / "docs/reference/source-register.yaml").read_text()
+    )
     constants = yaml.safe_load(
         (ROOT / "premise/iam_variables_mapping/constants.yaml").read_text()
     )
@@ -149,6 +152,7 @@ def generate():
             "2020 mean (kWh/kg reference)",
             "2050 mean (kWh/kg reference)",
             "2050 mass factor",
+            "CLIC capacity dataset",
         ],
         [
             [
@@ -156,6 +160,11 @@ def generate():
                 entry["target"][2020]["mean"],
                 entry["target"][2050]["mean"],
                 f'{entry["target"][2020]["mean"] / entry["target"][2050]["mean"]:.4f}',
+                (
+                    f"`View dataset <{register['clic_battery_capacity'][name]}>`__"
+                    if name in register["clic_battery_capacity"]
+                    else "—"
+                ),
             ]
             for name, entry in densities.items()
         ],
@@ -176,12 +185,18 @@ def generate():
     files = sorted({(f, v) for values in selections.values() for f, v in values})
     rows = []
     for filename, source_version in files:
+        source = register["clic_inventory_sources"][filename]
+        references = "; ".join(
+            f"`{dataset['name']} ({dataset['location']}) <{dataset['url']}>`__"
+            for dataset in source["datasets"]
+        )
         selected = [
             k for k in configurations if (filename, source_version) in selections[k]
         ]
         rows.append(
             (
-                f"``{filename}``",
+                source["label"],
+                references or "—",
                 source_version,
                 (
                     "All supported configurations"
@@ -191,7 +206,13 @@ def generate():
             )
         )
     result["inventory-selection.inc"] = table(
-        ["Workbook", "Workbook source version", "Selected for"], rows
+        [
+            "Inventory source",
+            "Published CLIC records",
+            "Import source version",
+            "Selected for",
+        ],
+        rows,
     )
     mappings = {
         "Electricity": "electricity",
@@ -240,9 +261,6 @@ def generate():
         )
     result["mapping-coverage.inc"] = table(
         ["Sector", *constants["SUPPORTED_MODELS"]], rows
-    )
-    register = yaml.safe_load(
-        (ROOT / "docs/reference/source-register.yaml").read_text()
     )
     for record in register["sectors"]:
         rows = [
