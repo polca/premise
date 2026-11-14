@@ -414,9 +414,7 @@ class TrailsDataPackage:
             contributors=contributors,
         )
 
-    def _load_temporal_specs_from_csv(
-        self, path: Path
-    ) -> tuple[
+    def _load_temporal_specs_from_csv(self, path: Path) -> tuple[
         Dict[Tuple[str, str], dict],
         Set[Tuple[str, str]],
         Dict[Tuple[str, str], dict],
@@ -429,9 +427,7 @@ class TrailsDataPackage:
         with open(path, "r", encoding="utf-8-sig", newline="") as f:
             return self._load_temporal_specs(list(csv.DictReader(f)))
 
-    def _load_temporal_specs(
-        self, rows
-    ) -> tuple[
+    def _load_temporal_specs(self, rows) -> tuple[
         Dict[Tuple[str, str], dict],
         Set[Tuple[str, str]],
         Dict[Tuple[str, str], dict],
