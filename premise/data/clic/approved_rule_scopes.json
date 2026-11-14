@@ -279092,6 +279092,1361 @@
           "fingerprint": "bf9910ed42b24cf4cd53c449c9cac1b0393cbde5a71d1f65cf7c28f860577d99"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-b84feb5869b37bc3",
+      "mapping_method": "pairwise_review",
+      "review_path": "export/uvek_remaining_freight_39_review.json",
+      "review_sha256": "d6ea8bed61fff13ea47a2698f68a8836ae13f027a508579625ca516ae7ad2000",
+      "authorization": "Standing autonomous approval of coming modelling decisions, complete native transport screening proxies and documented native baseline supplier weighting, with explicit limitations and original signed quantities.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "61d9cb0808e8ae8a28f2b12abd139481a3237fa3d43500cb0e6dfad7d6d4953b",
+          "inventory_sha256": "d53004602a05e7b8dcebd33b2e72dce1727bceb8960f2c05a86832b257e2c398",
+          "activity_comment_sha256": "a18b3c95fe588240bd8bcb90415386f9453ea9628550ce39e7f10bd7576c7d45",
+          "product_information_sha256": "444dea75153bd75d7a50b9a19a3d8d1dff6181ffac20c1cff1d55ee187ca5e2b"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 47,
+            "metadata_sha256": "496a849a88fcd031bf917b7c23969d6019a14c0c34e6034da17d7871c45fc522",
+            "inventory_sha256": "98e5ee4bf9b036dc56bf6c0c8efb323912faee6115b84a502d16560deb6531ac",
+            "activity_comment_sha256": "6726245a1362853996448c3f8687fff13ad122e997cd25ac8afe2fa602425cae",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 47,
+            "metadata_sha256": "c50d7cf20c39bbb22ef67257860521a8218517af09f29f3c3899594ceee06441",
+            "inventory_sha256": "9b618f24a4acac85a6174c101a6c691b0422062ca4e548d1fc5b4785df74c1c0",
+            "activity_comment_sha256": "6b3c9d73ba89bd5081bc7519b4c9385cc91d75f2ad312d14061b704b8a5152a9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "selected_native_service_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "496a849a88fcd031bf917b7c23969d6019a14c0c34e6034da17d7871c45fc522",
+                "inventory_sha256": "98e5ee4bf9b036dc56bf6c0c8efb323912faee6115b84a502d16560deb6531ac",
+                "activity_comment_sha256": "6726245a1362853996448c3f8687fff13ad122e997cd25ac8afe2fa602425cae",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "c50d7cf20c39bbb22ef67257860521a8218517af09f29f3c3899594ceee06441",
+                "inventory_sha256": "9b618f24a4acac85a6174c101a6c691b0422062ca4e548d1fc5b4785df74c1c0",
+                "activity_comment_sha256": "6b3c9d73ba89bd5081bc7519b4c9385cc91d75f2ad312d14061b704b8a5152a9",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.288,
+            "conditional_weight": 0.7999999999999999
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+              "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 111,
+                "metadata_sha256": "f579146844f910d5732f3745fea5147f4b6a53a09cf50cedeb1d01200c8f6f2f",
+                "inventory_sha256": "af9d14fd37cf008d72595bc89ab287f1dd625467c36282ba3c7ec717d25c15d2",
+                "activity_comment_sha256": "2b6ba89770ad3c0cd4a0b17f571273c7e7a91835b82f0d5a422b17942f671082",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 111,
+                "metadata_sha256": "1ffbb6424c91176dd57c0b54b7914aaae899780e1a9bd7cbbe03861b5c62a1e0",
+                "inventory_sha256": "d8e54b5e7b7ade482701615df5b93aae1c6f0ec59f7881c6cff0ae4771661724",
+                "activity_comment_sha256": "e4321a17fbb281a7303cab3942e700bc09dcd2a1b1e61190a503075196d8bd43",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.036,
+            "conditional_weight": 0.09999999999999999
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+              "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "44e4b7685956ba6ab9bdda6fecc3c2350d60eaaaf0b9c1dc28e4098c85cd6efc",
+                "inventory_sha256": "53596087c83f4e3527b2591c36d2515b2f6c8ade5ebb271208bda4a300a782fa",
+                "activity_comment_sha256": "068a3cf40238b0db936bb438d0f98f13baff87aec51aae3aa880b36efc96e6a4",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "a8fb2be76212acc61ea463cf41956048d1560f32e4f775f64bfa3f67f849ec94",
+                "inventory_sha256": "d9b52127ad3fec11be8227126b6b10656a2c3563856c835dbd5794a2264e83ec",
+                "activity_comment_sha256": "3ee2bcc6fd36da0c28f4a1984a3e98c923e7ad1bf43b5ec4597008c67edc3b57",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.036,
+            "conditional_weight": 0.09999999999999999
+          }
+        ],
+        "native_weighting_basis": {
+          "2025": {
+            "root": {
+              "identity": {
+                "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 3,
+              "metadata_sha256": "615ccdb1b1771989ba96b17f01291796bc0907d429b85a5ea644c6703d4aec72",
+              "inventory_sha256": "3282aee3b1e8943b1ec07e35b0fb672ea37b717843dac5417a3170c3e0313c8b",
+              "activity_comment_sha256": "0716216989810c286263da289b407ae09aa4a17e1c375b712652b6590cfd6b6d",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "aggregate_parent_witnesses": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                  "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 3,
+                "metadata_sha256": "615ccdb1b1771989ba96b17f01291796bc0907d429b85a5ea644c6703d4aec72",
+                "inventory_sha256": "3282aee3b1e8943b1ec07e35b0fb672ea37b717843dac5417a3170c3e0313c8b",
+                "activity_comment_sha256": "0716216989810c286263da289b407ae09aa4a17e1c375b712652b6590cfd6b6d",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 4,
+                "metadata_sha256": "b77ed2e80f5ddc275106b2208b3812bec95ca9293a26ce3f51c378329e712deb",
+                "inventory_sha256": "29b2551f58926da6f007590ddeb32b6d5685389ee2cacd22fbaa655df0a43ada",
+                "activity_comment_sha256": "27043d9c6cfcedcb8e508d8133dd6ae1c606d61767ff31b1f1ce4a5686656f62",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 4,
+                "metadata_sha256": "06214e449f7c85d9e42924f3deb6db6e48c1b5f440ac40792693a295ec10303d",
+                "inventory_sha256": "34105c72a064039ced790d8267f66e052750c46ffb87dd1b79c1d21a2168a84e",
+                "activity_comment_sha256": "5a8b1e92bd9706204715e71d1976bdf948eedd7c7a5aef5b23d0f1b7b7b79cf9",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 4,
+                "metadata_sha256": "94e80d55dd4043b4f1255a54240a53d6a2e2be8a61278e1627889c3b1134d0d0",
+                "inventory_sha256": "5bc5f03764298e2c741f92d74f32841689dfd7548caf666c7f65d3541fb8f277",
+                "activity_comment_sha256": "f1110bf289d137d6612b9d5c3a7a678b902ce6e1392e88edefe5b58af82db995",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "raw_selected_share": 0.36,
+            "conditional_weights": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.288,
+                "conditional_weight": 0.7999999999999999
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.036,
+                "conditional_weight": 0.09999999999999999
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.036,
+                "conditional_weight": 0.09999999999999999
+              }
+            ]
+          },
+          "2026": {
+            "root": {
+              "identity": {
+                "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 3,
+              "metadata_sha256": "f90f1f43cdde53777f66a72695c154cc55d07d969b46a6e170bbdccbbf80e306",
+              "inventory_sha256": "5f30d62a2078718e512b2fb2d9403c5c5f1e6bbeeaba0d33d0d16a074987f714",
+              "activity_comment_sha256": "9abacce564e5a7e4c49b8e6add446c88b274309f624755ebc33cfba2fa201fbf",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "aggregate_parent_witnesses": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                  "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 3,
+                "metadata_sha256": "f90f1f43cdde53777f66a72695c154cc55d07d969b46a6e170bbdccbbf80e306",
+                "inventory_sha256": "5f30d62a2078718e512b2fb2d9403c5c5f1e6bbeeaba0d33d0d16a074987f714",
+                "activity_comment_sha256": "9abacce564e5a7e4c49b8e6add446c88b274309f624755ebc33cfba2fa201fbf",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 4,
+                "metadata_sha256": "43b8470249641d6c9d9bd501ab84f9ab91e4796bd3fe06b6a33282008ae49f33",
+                "inventory_sha256": "414b4fa528d1dd587a9a072abf15fbfa3abb61a0f2c91116f42f7171d1a3b8ac",
+                "activity_comment_sha256": "983a9f8aab0a0e2fca1d7bd4f9c8393e57fac9d6c818ed66b760cc75fb030acd",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 4,
+                "metadata_sha256": "22a5cf6c34e91dcf8a218a8045a8c2008b36176bb10bf77612b792ef3df19bbd",
+                "inventory_sha256": "278d253e309c0994256af01f8c86e051813a166bd2c5fd2c6e3aa82bbc1af0df",
+                "activity_comment_sha256": "893906ad64add0276d801c033c7d9a14a3bdcfadcaaf6120cc4fc9d463ffef4f",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, fleet average, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 4,
+                "metadata_sha256": "598323c2decca14d9b5a8c9909bef0b1d7e327bb5ad26934ed4d5837e5c42cba",
+                "inventory_sha256": "7d408079534f460816dfc23b96dcc8848572ea669d788f97bfcb5ada887d3fa3",
+                "activity_comment_sha256": "a56ef6b2caf4c161e88e0ddf51c5e202d736a8aaa5121febdfe8e1708db476aa",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "raw_selected_share": 0.36,
+            "conditional_weights": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.288,
+                "conditional_weight": 0.7999999999999999
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.036,
+                "conditional_weight": 0.09999999999999999
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 40t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.036,
+                "conditional_weight": 0.09999999999999999
+              }
+            ]
+          }
+        },
+        "boundary_checks": {
+          "kind": "heavy_EuroVI_lorry",
+          "source_market_supplier_count": 1,
+          "source_market_extra_delivery_or_losses": false,
+          "native_weighting_basis": "Swiss2020 size-class baseline, conditioned on2020 Euro-VI diesel",
+          "native_raw_selected_share": 0.36,
+          "conditional_supplier_count": 3,
+          "conditioned_weights_sum": 0.9999999999999999,
+          "source_duty_and_payload_reproduced": false,
+          "source_average_load_t": 15.96,
+          "caller_payload_or_efficiency_factor_added": false,
+          "source_transport_work_reduced_by_native_EuroVI_share": false
+        }
+      },
+      "limitations": [
+        "New permissions cover only the three inspected exact ecoinvent3.9 cut-off transport markets. Source and selected native services reference positive1tonne-km. Factor+1 preserves caller signed transport work, supported uncertainty/formulas and separate foreground exchanges. Both databases already normalize vehicle-km, payload, empty running and infrastructure to their own tonne-km basis. Do not multiply by gross weight, payload, distance, load factor, fuel consumption, lifetime or a second empty-return factor. Other releases, patches, system models and reverse routes gain no new permission.",
+        "Use each complete native transport service once, retaining its own fuel/energy, exhaust/non-exhaust releases, vehicles, maintenance, road/track construction/operation and end of life. Source service internals are replaced, not copied on top. No added vehicle, road, wear, shunting, electricity or diesel inventory, recovery credit or source/caller omission. Operating geography, driving/loading, infrastructure, energy mix, model vintage, allocation and internal uncertainty can differ; source/native LCI, LCIA, technology performance and stochastic equivalence are not established and score effects remain unquantified.",
+        "Existing literal defaults, mapping methods, unrelated rules, earlier recipes/reviews and previously approved fingerprints remain unchanged. Only the two exact3.9 Euro-VI lorry profiles select new helpers; the European rail rule remains byte-for-byte unchanged. No runtime Python module, alternative sector engine or validation bypass.",
+        "Preserve diesel Euro-VI as the delivered service class. The original single producer already supplies1tkm with no extra service-market delivery or loss. Condition the native size-class fleet weighting evidence on its existing2020 Euro-VI diesel services, and normalize only those positive native weighting coefficients to one. This is a Swiss2020 baseline size/duty screening distribution, not an independently measured European source fleet. Older-Euro shares are excluded from supplier-weight evidence, not omitted physical foreground inputs or avoided vehicle burdens. Do not use their original absolute share as a transport-work reduction.",
+        "Retain native relative long-haul/regional/urban duty shares and, for16–32t, the native18/26/32t gross-capacity mix within the selected Euro-VI cohort. The>32t source service uses the native40t-capacity class through the32–40t fleet aggregate. Source journeys are average European HBEFA3.1 conditions; native services use their published2020 vehicles and Swiss-based duty/payload/lifetime assumptions, extrapolated to RER. These do not reproduce source average loads of15.96t (>32t) or5.79t (16–32t), SCR/EGR mix, road allocation, actual driving mass, fuel demand or emissions. No payload-ratio, gross-capacity conversion, energy-efficiency calibration or invented source duty shares are applied. Native capacity labels and source actual loaded GVW must not be treated as the same quantity."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b7538e6079c26ef5f5f31c0bc0bb077947a152d0928d38b09a35fcd97478f656"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-a3a951644bd5ed9c",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_remaining_freight_39_review.json",
+      "review_sha256": "d6ea8bed61fff13ea47a2698f68a8836ae13f027a508579625ca516ae7ad2000",
+      "authorization": "Standing autonomous approval of coming modelling decisions, complete native transport screening proxies and documented native baseline supplier weighting, with explicit limitations and original signed quantities.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight train",
+            "reference product": "transport, freight train",
+            "location": "Europe without Switzerland",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "623d6cefce8f922295eb3404f4de8e469e9e447dd01e78ced9e3ebb25a067f0b",
+          "inventory_sha256": "2acd46cbcd5ff54e5a40b52f2b0788dfe8f3c21a0b9ac1b88873bba4ba4f3cea",
+          "activity_comment_sha256": "c9249147d8e98270cc174b57d2cbf1a773ccf5a53da20342be19578837e882c5",
+          "product_information_sha256": "00d2c4fb04400ff490f8ac06754a81272689264f63af1510d40cbbc662a2cf4b"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 66,
+            "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+            "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+            "activity_comment_sha256": "1df979a6bc0882b7d94bc3904a8832568a6c5463344665f169125ea352d9d7a5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 66,
+            "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476",
+            "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+            "activity_comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "selected_native_service_witnesses": [
+          {
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, rail",
+                  "reference product": "Transport, freight, rail",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 66,
+                "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+                "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+                "activity_comment_sha256": "1df979a6bc0882b7d94bc3904a8832568a6c5463344665f169125ea352d9d7a5",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, rail",
+                  "reference product": "Transport, freight, rail",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 66,
+                "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476",
+                "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+                "activity_comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          }
+        ],
+        "native_weighting_basis": {},
+        "boundary_checks": {
+          "kind": "complete_European_rail",
+          "source_electric_share": 0.6,
+          "source_diesel_share": 0.4,
+          "source_60_40_traction_split_reproduced": false,
+          "native_complete_service_includes_shunting": true,
+          "electricity_only_service_substituted": false,
+          "Swiss_traction_services_combined": false,
+          "new_helper_required": false
+        }
+      },
+      "limitations": [
+        "New permissions cover only the three inspected exact ecoinvent3.9 cut-off transport markets. Source and selected native services reference positive1tonne-km. Factor+1 preserves caller signed transport work, supported uncertainty/formulas and separate foreground exchanges. Both databases already normalize vehicle-km, payload, empty running and infrastructure to their own tonne-km basis. Do not multiply by gross weight, payload, distance, load factor, fuel consumption, lifetime or a second empty-return factor. Other releases, patches, system models and reverse routes gain no new permission.",
+        "Use each complete native transport service once, retaining its own fuel/energy, exhaust/non-exhaust releases, vehicles, maintenance, road/track construction/operation and end of life. Source service internals are replaced, not copied on top. No added vehicle, road, wear, shunting, electricity or diesel inventory, recovery credit or source/caller omission. Operating geography, driving/loading, infrastructure, energy mix, model vintage, allocation and internal uncertainty can differ; source/native LCI, LCIA, technology performance and stochastic equivalence are not established and score effects remain unquantified.",
+        "Existing literal defaults, mapping methods, unrelated rules, earlier recipes/reviews and previously approved fingerprints remain unchanged. Only the two exact3.9 Euro-VI lorry profiles select new helpers; the European rail rule remains byte-for-byte unchanged. No runtime Python module, alternative sector engine or validation bypass.",
+        "Use the complete native European rail service directly per signed tonne-km. It already includes electric/diesel energy, diesel shunting, vehicles, maintenance and railway infrastructure. The source market has60% electric and40% diesel producers and no extra service-delivery/loss entry. This screening substitution uses the native full European aggregate rather than reproducing that60/40 traction split; do not claim that its energy quantities encode those source shares. Native operation is based on DE/AT/IT/FR data with Swiss-derived infrastructure factors, rather than the source EU15 conditions and historical traction allocation. Those geography, energy, traction and vintage differences are explicit limits with unquantified score effects.",
+        "No redundant rail helper is created. Native European electricity-only rail explicitly excludes diesel shunting, so it cannot alone represent the source complete electric-rail function. Available Swiss traction-specific services would introduce another national grid, operating portfolio and particle-filter choice; they are not combined merely to reproduce numeric60/40 shares. The chosen complete European service retains its actual native boundary once. Separate caller electricity, diesel or emissions remain separate and unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ef26e8232c11194caf7cfd2c9b0f6df248e92559df504357a967b821998bce9b"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-dcfa2d2a1b36367a",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_remaining_freight_39_review.json",
+      "review_sha256": "d6ea8bed61fff13ea47a2698f68a8836ae13f027a508579625ca516ae7ad2000",
+      "authorization": "Standing autonomous approval of coming modelling decisions, complete native transport screening proxies and documented native baseline supplier weighting, with explicit limitations and original signed quantities.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry 16-32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry 16-32 metric ton, EURO6",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "2c73e7c9a261917d077c90e895d171e9cd955ff9736633deb275b2bb25aa19e0",
+          "inventory_sha256": "321bfbf8bf46b4affead25c40c3077df628b724786eadc2c68ab884d82f16235",
+          "activity_comment_sha256": "cd6e6fd1243d5415099e93c3d52708af1e147e5f414560e03aaf21eace283e7a",
+          "product_information_sha256": "9cfcd34ba4596cdd49f7cfc193aa9ae200c52b40eebf902ef79043ce10b1d345"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 47,
+            "metadata_sha256": "2ed0f2664ba40b753683ba20cb4d90d8b59316c323fa2c9c77e4529caaaba581",
+            "inventory_sha256": "c3d4d3be9452590f6820224a51766bfa30b760e205c670ce250f31067396a882",
+            "activity_comment_sha256": "95f96eec80c9707c46a24ef30d59d6518de53f5ee5cb3dcc3677c7fc823c9d17",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 47,
+            "metadata_sha256": "1e4e3f4a6395067a5fc6e6fdf3051f9b59166668610b94c95c8e6c5482e36211",
+            "inventory_sha256": "dfa342dd532ecca1f8982fbc6d40cdcc6c2b8a266cbcb7f715c3cc5622d2495c",
+            "activity_comment_sha256": "18299a0f0779f398e48bc04ef9075f18330f37a5ece5479c957b33db9f3153a5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "selected_native_service_witnesses": [
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "2ed0f2664ba40b753683ba20cb4d90d8b59316c323fa2c9c77e4529caaaba581",
+                "inventory_sha256": "c3d4d3be9452590f6820224a51766bfa30b760e205c670ce250f31067396a882",
+                "activity_comment_sha256": "95f96eec80c9707c46a24ef30d59d6518de53f5ee5cb3dcc3677c7fc823c9d17",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "1e4e3f4a6395067a5fc6e6fdf3051f9b59166668610b94c95c8e6c5482e36211",
+                "inventory_sha256": "dfa342dd532ecca1f8982fbc6d40cdcc6c2b8a266cbcb7f715c3cc5622d2495c",
+                "activity_comment_sha256": "18299a0f0779f398e48bc04ef9075f18330f37a5ece5479c957b33db9f3153a5",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.121765519070768,
+            "conditional_weight": 0.1639072684658878
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+              "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 111,
+                "metadata_sha256": "f31641be8f7aef2da8cbb2857e4199c9eaa60cfea5c6e5510f1c8d764db59a12",
+                "inventory_sha256": "e4da0a3a03b43fc7e5ffeb4c1c20658420c5a728ad8812984e38f5fe1ce068d8",
+                "activity_comment_sha256": "b835c3bf9482d6aec526a54216140cd5b08e3f69602648874835fed84128087c",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 111,
+                "metadata_sha256": "2ecea9d2ac1df23d4a6d2b2e8c74504f306754dde7d63fde22ddca5204543eab",
+                "inventory_sha256": "24a1474122c3a902e9ced0bae5d504f0c1b356e5f3d19cfaa38cfc1c4ba0576e",
+                "activity_comment_sha256": "4060ac4a1f1396281aa4653a8baa4038f4e88ffb87976a5e8a66de2c6943e99a",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.015220689883846,
+            "conditional_weight": 0.020488408558235974
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+              "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "99ac5b4058d2ffbf48e257123c912c1da5d4e98a40eea159e667628b32aedd95",
+                "inventory_sha256": "e965f585d2fdc714984ca23184223ac81d9f55a17a0c34d8345b1b18361777f2",
+                "activity_comment_sha256": "60a6c5bf23b013e70b0348b122f959eed7b3539fe99963f4aa8dccab19f95542",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "deef000d949f08f9f05bf96938f5084fd2fe39ba246055b239229883278b3f08",
+                "inventory_sha256": "ec5689b718cddaa82827ca0233f365966c324d27e7529c60a93089f487df5716",
+                "activity_comment_sha256": "9be2d962b6216130751a6b799ddf03ed116208921e722cdc42547dd67463b7bb",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.015220689883846,
+            "conditional_weight": 0.020488408558235974
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "a0d68f70c9c35fcc0f38585cd98b485da456e4a09401ec0e1df319fea46d94b9",
+                "inventory_sha256": "ab158abf69847c0259bacff43543d3c14c65692fa9bee7cd3df3489f784c4c8e",
+                "activity_comment_sha256": "92f5062cf6e226a8ac64b17d4cc741db625dde39c1a9a0b065731778fe0aba89",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "4e53b12300358bc501824766bdebf4b077fe21821e493f0e9c423a82f0b98772",
+                "inventory_sha256": "e07a71dc03400583982a572bca8e42decce9a8aaced6831de1d83905fd5fcc72",
+                "activity_comment_sha256": "7d62461676b8994fa6de37011b4f721c234fa64ddfb146f4394dea23729eebf7",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.16968759488863,
+            "conditional_weight": 0.22841466437290048
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+              "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 111,
+                "metadata_sha256": "b1aaa1e468e654ea0d605779f2a67cdbddf2c3d1e5ad33b022cdb10db0c5d5a7",
+                "inventory_sha256": "05b15c5f7f0fb00c8374bfdbbb693486c1ae50fff44f5798e28a0fa0eb5cc753",
+                "activity_comment_sha256": "b1c2de2fc05973a5be95bed8f4a6b582ec680f61a82ba3a77d58afe4ab71a136",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 111,
+                "metadata_sha256": "87859622b637fe5c2cd37445922429224372cde1059474d991124cf7058a02bf",
+                "inventory_sha256": "c3f660a95a9b0b427b931945bca8d8ac884ba42ee74b33e1c6ba80db4c8f8ff9",
+                "activity_comment_sha256": "a7a14171f221a93cdf0f35148e3f3429a8c20a0ab0658730329913e369ff3807",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.0212109493610787,
+            "conditional_weight": 0.028551833046612494
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+              "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "e29cf54773b0284973d542c1f6f1b5bb9a4dbf7f7b0a08eeb86e2f7201ee5a8c",
+                "inventory_sha256": "f3ae0336ba0fbb7bd1ef50019f3b37c4e0d605821c7eae5f0c3758207c8c0f0f",
+                "activity_comment_sha256": "693a211319714e5941f738b4054c9716aa4e1cc54b363dfde1008cbe3c0c9d18",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "6ecf4c8256a671df39179bba35990c871ab0b1348233a01632a54f4b8d4a2a45",
+                "inventory_sha256": "6fc80ff822b09df82f96a7f0f0c02292426721c7edc86643bfad179668c09573",
+                "activity_comment_sha256": "77e4e7bbe856efe0170f56567269a56f660bd19c9ef56c1e41694f9ea9175ee4",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.0212109493610787,
+            "conditional_weight": 0.028551833046612494
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "f43adb427e099ee75f78b4fd19f994468c910130cf9d0fbcf88a2b001f31eb28",
+                "inventory_sha256": "1739ee34549f3c215faeb4013fba7afc7d1adb750b4754a9e93d11e43019c9c0",
+                "activity_comment_sha256": "11ced3c3b0edc3b59c615743dead04a3e39ed3159df00ed1d08cc871628dc109",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "b25582ed42b94689ba3d4d3703df8b445d26f28c2cf3d98871489aacfa7f1261",
+                "inventory_sha256": "c2ab52e180e0c504dfcbed2ed8f425e1d63670c79c9537b41f05243d7c9be577",
+                "activity_comment_sha256": "52ac924b22b3813d3e29b24fdc4e3870b11eedd5c82e3bfea28637f4a96a4ead",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.302861074595869,
+            "conditional_weight": 0.4076780671612117
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+              "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 111,
+                "metadata_sha256": "647a636f1da90a7f200fdbc621ffb5dea23eb112e88ce0cf35f312e41f4bf462",
+                "inventory_sha256": "fe2f81412233f84cf0c617ff3bcbf244d765a231b7387d6099af3982231e34d7",
+                "activity_comment_sha256": "a5111314a0931c7dc194ea0a8d4a591ea25a8404dba451fd36d7aafeea8c7cd4",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 111,
+                "metadata_sha256": "e8692060b6f025bbb8dbd8d578d211fdea42280256e02cc11356c71142ceb81a",
+                "inventory_sha256": "fa36079817e05e55553751891c3202abfcab08b4cde837e399fea8712aa916b5",
+                "activity_comment_sha256": "8792bce1203174e555d23c4afba7fc776b55ab990e4f8d9b7e6ddbf62d9047ef",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.0378576343244837,
+            "conditional_weight": 0.050959758395151565
+          },
+          {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+              "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "af8914c06e4e94517b3a1b47259b97e164d97bd60e6883cb3327f58337a17985",
+                "inventory_sha256": "57b73fd5b5c2c6d52868c4fca4a8f17190d5de1e1d43b34c4819a71c83285c15",
+                "activity_comment_sha256": "27a2ca2282083209f4c8327949c0598877f2e52998e3de1ebe03fb9e21f04158",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 47,
+                "metadata_sha256": "38b9bdd9d1e90901e2b18ed2e41ad7470e9ebde94c1e491c6809301001a02a01",
+                "inventory_sha256": "ea0880c2e3b05d9baf575bad047f638bb86f62695ceaea82f2effac9a50eb294",
+                "activity_comment_sha256": "8616fb6e4d28a52b03c5ad48341f03c0dd542ac27cd5c727f5d9547c58d0c946",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            },
+            "raw_native_2026_weight": 0.0378576343244837,
+            "conditional_weight": 0.050959758395151565
+          }
+        ],
+        "native_weighting_basis": {
+          "2025": {
+            "root": {
+              "identity": {
+                "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 36,
+              "metadata_sha256": "037e6543207d50f7b2c8c01d87faa42c1b3e0a873a053fed184132294da11234",
+              "inventory_sha256": "9d5c053efd481303713a6567d27ad9ab91ee5affe3b17a91dd9e9c7a14ff8587",
+              "activity_comment_sha256": "0716216989810c286263da289b407ae09aa4a17e1c375b712652b6590cfd6b6d",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "aggregate_parent_witnesses": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                  "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 36,
+                "metadata_sha256": "037e6543207d50f7b2c8c01d87faa42c1b3e0a873a053fed184132294da11234",
+                "inventory_sha256": "9d5c053efd481303713a6567d27ad9ab91ee5affe3b17a91dd9e9c7a14ff8587",
+                "activity_comment_sha256": "0716216989810c286263da289b407ae09aa4a17e1c375b712652b6590cfd6b6d",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "raw_selected_share": 0.7428927356940838,
+            "conditional_weights": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.121765519070768,
+                "conditional_weight": 0.1639072684658878
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.015220689883846,
+                "conditional_weight": 0.020488408558235974
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.015220689883846,
+                "conditional_weight": 0.020488408558235974
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.16968759488863,
+                "conditional_weight": 0.22841466437290048
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.0212109493610787,
+                "conditional_weight": 0.028551833046612494
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.0212109493610787,
+                "conditional_weight": 0.028551833046612494
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.302861074595869,
+                "conditional_weight": 0.4076780671612117
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.0378576343244837,
+                "conditional_weight": 0.050959758395151565
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.0378576343244837,
+                "conditional_weight": 0.050959758395151565
+              }
+            ]
+          },
+          "2026": {
+            "root": {
+              "identity": {
+                "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 36,
+              "metadata_sha256": "43da2fda1a287603787fe209502a44e8e4f1e09936d08746c63eeb15d5d6f1d3",
+              "inventory_sha256": "824fbffaccf56d711a729813107e283f889b1e529710957915bcf57bd497c5f3",
+              "activity_comment_sha256": "cfeacf8bcece2ae0cc7b71909c93944bf17bd1be88c76e74e63319856233a482",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "aggregate_parent_witnesses": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                  "reference product": "Transport, freight, lorry, 16t-32t gross weight, fleet average",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 36,
+                "metadata_sha256": "43da2fda1a287603787fe209502a44e8e4f1e09936d08746c63eeb15d5d6f1d3",
+                "inventory_sha256": "824fbffaccf56d711a729813107e283f889b1e529710957915bcf57bd497c5f3",
+                "activity_comment_sha256": "cfeacf8bcece2ae0cc7b71909c93944bf17bd1be88c76e74e63319856233a482",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            ],
+            "raw_selected_share": 0.7428927356940838,
+            "conditional_weights": [
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.121765519070768,
+                "conditional_weight": 0.1639072684658878
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.015220689883846,
+                "conditional_weight": 0.020488408558235974
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 18t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.015220689883846,
+                "conditional_weight": 0.020488408558235974
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.16968759488863,
+                "conditional_weight": 0.22841466437290048
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.0212109493610787,
+                "conditional_weight": 0.028551833046612494
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.0212109493610787,
+                "conditional_weight": 0.028551833046612494
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, long haul",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.302861074595869,
+                "conditional_weight": 0.4076780671612117
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, regional delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.0378576343244837,
+                "conditional_weight": 0.050959758395151565
+              },
+              {
+                "identity": {
+                  "name": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+                  "reference product": "Transport, freight, lorry, diesel, 32t gross weight, 2020, EURO-VI, urban delivery",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "weight": 0.0378576343244837,
+                "conditional_weight": 0.050959758395151565
+              }
+            ]
+          }
+        },
+        "boundary_checks": {
+          "kind": "medium_EuroVI_lorry",
+          "source_market_supplier_count": 1,
+          "source_market_extra_delivery_or_losses": false,
+          "native_weighting_basis": "Swiss2020 size-class baseline, conditioned on2020 Euro-VI diesel",
+          "native_raw_selected_share": 0.7428927356940838,
+          "conditional_supplier_count": 9,
+          "conditioned_weights_sum": 1.0,
+          "source_duty_and_payload_reproduced": false,
+          "source_average_load_t": 5.79,
+          "caller_payload_or_efficiency_factor_added": false,
+          "source_transport_work_reduced_by_native_EuroVI_share": false
+        }
+      },
+      "limitations": [
+        "New permissions cover only the three inspected exact ecoinvent3.9 cut-off transport markets. Source and selected native services reference positive1tonne-km. Factor+1 preserves caller signed transport work, supported uncertainty/formulas and separate foreground exchanges. Both databases already normalize vehicle-km, payload, empty running and infrastructure to their own tonne-km basis. Do not multiply by gross weight, payload, distance, load factor, fuel consumption, lifetime or a second empty-return factor. Other releases, patches, system models and reverse routes gain no new permission.",
+        "Use each complete native transport service once, retaining its own fuel/energy, exhaust/non-exhaust releases, vehicles, maintenance, road/track construction/operation and end of life. Source service internals are replaced, not copied on top. No added vehicle, road, wear, shunting, electricity or diesel inventory, recovery credit or source/caller omission. Operating geography, driving/loading, infrastructure, energy mix, model vintage, allocation and internal uncertainty can differ; source/native LCI, LCIA, technology performance and stochastic equivalence are not established and score effects remain unquantified.",
+        "Existing literal defaults, mapping methods, unrelated rules, earlier recipes/reviews and previously approved fingerprints remain unchanged. Only the two exact3.9 Euro-VI lorry profiles select new helpers; the European rail rule remains byte-for-byte unchanged. No runtime Python module, alternative sector engine or validation bypass.",
+        "Preserve diesel Euro-VI as the delivered service class. The original single producer already supplies1tkm with no extra service-market delivery or loss. Condition the native size-class fleet weighting evidence on its existing2020 Euro-VI diesel services, and normalize only those positive native weighting coefficients to one. This is a Swiss2020 baseline size/duty screening distribution, not an independently measured European source fleet. Older-Euro shares are excluded from supplier-weight evidence, not omitted physical foreground inputs or avoided vehicle burdens. Do not use their original absolute share as a transport-work reduction.",
+        "Retain native relative long-haul/regional/urban duty shares and, for16–32t, the native18/26/32t gross-capacity mix within the selected Euro-VI cohort. The>32t source service uses the native40t-capacity class through the32–40t fleet aggregate. Source journeys are average European HBEFA3.1 conditions; native services use their published2020 vehicles and Swiss-based duty/payload/lifetime assumptions, extrapolated to RER. These do not reproduce source average loads of15.96t (>32t) or5.79t (16–32t), SCR/EGR mix, road allocation, actual driving mass, fuel demand or emissions. No payload-ratio, gross-capacity conversion, energy-efficiency calibration or invented source duty shares are applied. Native capacity labels and source actual loaded GVW must not be treated as the same quantity."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b28ca30157c68b2a31701c46e5bc5b50f94f313449d50709a778825dc54c01fe"
+        }
+      ]
     }
   ],
   "superseded_operations": [

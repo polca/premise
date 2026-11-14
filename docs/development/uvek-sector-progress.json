@@ -2312,14 +2312,14 @@
           "reference product": "sodium methoxide",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 75,
+        "unapproved_correspondence_count_in_current_39_cohort": 72,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-solvent-supply-markets-39-verification.json",
+        "verification": "docs/development/uvek-remaining-freight-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Inspect sodium-methoxide production/allocation and a possible source reconstruction; independently qualify the three remaining freight mappings using their actual lorry size classes and rail-service boundaries.",
+        "next_action": "Verify source3.9 sodium-methoxide reference/product/route basis against its existing explicitly approved3.8 whole-product20/80 technology proxy; retain that authority and warnings, and inspect whether source final delivery can be retained without duplicating native producer transport.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all75 pending first3.9-cohort details."
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all72 pending first3.9-cohort details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-solvent-supply-markets-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-remaining-freight-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
