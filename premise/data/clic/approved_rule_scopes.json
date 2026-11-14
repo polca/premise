@@ -277109,6 +277109,806 @@
           "fingerprint": "58a65aa2a968344717d359e8de2bef0cdb4a9e72c66b1da2083969111329a541"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-3d257e55be3541c6",
+      "mapping_method": "reviewed_chemical_markets_39_retained_delivery",
+      "review_path": "export/uvek_chemical_markets_39_review.json",
+      "review_sha256": "24163c27d1b68dcd08d39e05835c8c684946fd26dec3b497edda639ba111f548",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact named-product/technology/geographic screening correspondences with preserved quantities, explicit warnings and decision records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for acetonitrile",
+            "reference product": "acetonitrile",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "20c1e08460cd49a42861a4603cc2dfcb9befd31f36531a05d66ae2bc1b2991d9",
+          "inventory_sha256": "c15ace1bc5574bbb526ca3b6b41a7a8b085c698125aea7d77482b722ae56570c",
+          "activity_comment_sha256": "f6b349573ca4b6e68c70de756fe33097e10f8f73684edaf528ad71de060276b2",
+          "product_information_sha256": "ae7b6f3528b094656871a8e1d92693f5d6531a398eeddb8d99f4508bc0617abf"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Acetonitrile, at plant",
+              "reference product": "Acetonitrile, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "367c1f66b3fc758af7773b96686763a245be7a0e7f6a2dff0ea6f794364400b1",
+            "inventory_sha256": "2ec1211c755797c80ccc0f82e48adac3b664d7df8f11be1bf549da77b5e8ed6c",
+            "activity_comment_sha256": "2e28067c715a2861b69ae95345312ce857a53a13ab4469fb104800455f7710d3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Acetonitrile, at plant",
+              "reference product": "Acetonitrile, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 22,
+            "metadata_sha256": "075635f2a29c43dda2da05a877b0b5fa2c7031bd49c3171c9172a09f0a974115",
+            "inventory_sha256": "d400d017d0f894ec66ed6beff25d11c5c9c85912eb3f1837e349360e8b23c4f0",
+            "activity_comment_sha256": "48d42a4a312d865dfc936a0ab56b866cf91dde59f8b2b90f291a3feedb364f3a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "allocated_Sohio_acetonitrile",
+          "CAS": "75-05-8",
+          "formula": "C2H3N",
+          "gross_propylene_description_used_as_reference": false
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected exact ecoinvent3.9 cut-off named chemical reference. Source/native references are positive one kg of the stated product or process module. Factor+1 preserves signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes gain no new authority.",
+        "Complete native producer inventories replace source producer internals once, with their own allocation, feedstock, water, energy, infrastructure, releases and waste treatment. Do not add source producer inputs, direct releases, reaction-yield, economic/mass-allocation, purity, concentration, density, LHV or molecular-weight factors on top. Chemical name/reference matching is not proof of identical grade, assay, allocation, process performance, LCI, LCIA or stochastic equivalence. Geography, vintage, water/emission coverage and internal uncertainty differ; score effects remain unquantified.",
+        "Where source markets contain delivery, keep every producer and final-freight entry separately at its original quantity and supported uncertainty, without normalization or omitted modes. Source final freight is additional to raw-material transport inside native production. Complete native European rail and heavy-road fleet, European barge and native ocean-container services are geographic/traction/fuel/fleet/loading/infrastructure/vintage proxies. Five separate national rail and three national road contributions in the RoW acetone market remain separate despite sharing native mode suppliers. No extra distance, payload, loss or fleet-share multiplier is invented.",
+        "No literal caller/source omission, zero-burden supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal default targets, unrelated raw rules, recipe contents, shared review cards and earlier approvals remain unchanged. Only exact3.9 market profiles with actual delivery select new helpers. The dimethyl-ether production link and the single-producer/no-delivery PVF-dispersion and ethylene-oxide markets use unchanged direct native-product rules.",
+        "Map the acetonitrile product, CAS75-05-8/C2H3N, from the two allocated source Sohio producers to complete native European Sohio acetonitrile. The source activity name is a multioutput reaction description; its actual allocated reference is one kg acetonitrile, not one kg propylene or acrylonitrile. Keep native allocation once; add no acrylonitrile/HCN displacement credit, propylene-to-product yield or allocation multiplier. Preserve RER/RoW shares separately; RoW uses European native supply explicitly. Source/native utility and reagent quantities differ, with no claim of score equality."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0cf89d8ffdc9751dd051d89564acd56c2800b2a8d083bf2958fbf4fc10c8a507"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-c86dc86fdb185fd5",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_chemical_markets_39_review.json",
+      "review_sha256": "24163c27d1b68dcd08d39e05835c8c684946fd26dec3b497edda639ba111f548",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact named-product/technology/geographic screening correspondences with preserved quantities, explicit warnings and decision records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "ethylene glycol dimethyl ether production",
+            "reference product": "ethylene glycol dimethyl ether",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 23,
+          "metadata_sha256": "c4c4981feb6177895a135111132d8285094f0476b1ccd6714fa56450587e678f",
+          "inventory_sha256": "897a6eb9d555dd568dfddf9156c9668b428d20dd4b704a18e84572030ea6a59a",
+          "activity_comment_sha256": "a61b99f99cc0febe6318b2bb1832f2921cab86a2c51b5f88090fad72dddf4000",
+          "product_information_sha256": "49c16fe6cf7665377c44220bc1095d11e99aa8cc271d1b3d35e2779148f8bead"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "xx Ethylene glycol dimethyl ether, at plant",
+              "reference product": "xx Ethylene glycol dimethyl ether, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 19,
+            "metadata_sha256": "cde05b2aa822596926ea38b0ffa7b55e18538f6e8b38d545aecadcd67cfba54f",
+            "inventory_sha256": "f9ceab9f8dadbb95fee3271d91fdd2b023f05302806bdc510627a52df93e5c11",
+            "activity_comment_sha256": "23bded0eaa7308460ebdaeaf53fb148ab510e2ac4befa77ae23d3a2fe9df08dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "xx Ethylene glycol dimethyl ether, at plant",
+              "reference product": "xx Ethylene glycol dimethyl ether, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 19,
+            "metadata_sha256": "bdf15655d1d82a5ef289d97f9aa198558580a2fd4c173d3c29548ff7ae3f21ed",
+            "inventory_sha256": "5e30ae53c1f89567ca05e48312af686dc388125e0922432e957335e144c15338",
+            "activity_comment_sha256": "3d74cfbe8ff04e54e389ca12cbf76550616f96bca9e8261df3acc78f5def0bb3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "pure_ethylene_glycol_dimethyl_ether",
+          "CAS": "110-71-4",
+          "formula": "C4H10O2",
+          "glycol_or_solution_substitution": false,
+          "legacy_xx_stock_nonempty": true
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected exact ecoinvent3.9 cut-off named chemical reference. Source/native references are positive one kg of the stated product or process module. Factor+1 preserves signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes gain no new authority.",
+        "Complete native producer inventories replace source producer internals once, with their own allocation, feedstock, water, energy, infrastructure, releases and waste treatment. Do not add source producer inputs, direct releases, reaction-yield, economic/mass-allocation, purity, concentration, density, LHV or molecular-weight factors on top. Chemical name/reference matching is not proof of identical grade, assay, allocation, process performance, LCI, LCIA or stochastic equivalence. Geography, vintage, water/emission coverage and internal uncertainty differ; score effects remain unquantified.",
+        "Where source markets contain delivery, keep every producer and final-freight entry separately at its original quantity and supported uncertainty, without normalization or omitted modes. Source final freight is additional to raw-material transport inside native production. Complete native European rail and heavy-road fleet, European barge and native ocean-container services are geographic/traction/fuel/fleet/loading/infrastructure/vintage proxies. Five separate national rail and three national road contributions in the RoW acetone market remain separate despite sharing native mode suppliers. No extra distance, payload, loss or fleet-share multiplier is invented.",
+        "No literal caller/source omission, zero-burden supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal default targets, unrelated raw rules, recipe contents, shared review cards and earlier approvals remain unchanged. Only exact3.9 market profiles with actual delivery select new helpers. The dimethyl-ether production link and the single-producer/no-delivery PVF-dispersion and ethylene-oxide markets use unchanged direct native-product rules.",
+        "Use pure named ethylene glycol dimethyl ether/1,2-dimethoxyethane, CAS110-71-4/C4H10O2, not monoethylene glycol, another glycol ether, a polymer or an aqueous solution. Source and native inherit the same EO/dimethyl-ether reaction model with estimated stoichiometry and standard energy/releases/infrastructure. Keep the native complete product once, including its existing EO and dimethyl ether; no extra reaction or source utilities, dilution or solvent-removal factor. The native xx label identifies its legacy process; it does not imply zero inventory. RoW uses the available European model, with vintage, estimation and assay limitations. Only the market needs a delivery helper; the production link remains a direct product match."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5e618614f053d1738317a8f408ccdbc741ea0d12712cdc6e5dafe25720b2ad03"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-365d5afb2cddee67",
+      "mapping_method": "reviewed_chemical_markets_39_retained_delivery",
+      "review_path": "export/uvek_chemical_markets_39_review.json",
+      "review_sha256": "24163c27d1b68dcd08d39e05835c8c684946fd26dec3b497edda639ba111f548",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact named-product/technology/geographic screening correspondences with preserved quantities, explicit warnings and decision records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ethylene carbonate",
+            "reference product": "ethylene carbonate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "e9005439a2d9ac4c3cff6820bd15424dff82dfde5ec4eb782c8b16275920d29d",
+          "inventory_sha256": "7d2a7a2c566a984361fe7537a58103d835763b8c0d189352b540f56af507cd8b",
+          "activity_comment_sha256": "1cf72b8322be4f0ba7169453443256844e6a4aa6e84bbeae5ee3b3f6d8512a97",
+          "product_information_sha256": "b16d665d46c4683638f5e4ee0aec79d2aa2fadc3e865c24f6c2169f0403f15cc"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Ethylene carbonate, at plant",
+              "reference product": "Ethylene carbonate, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 11,
+            "metadata_sha256": "899481aae3385024b421485afb275fff399f4b9aa2a2c654346ad268624bca19",
+            "inventory_sha256": "5fdad1c9a7cb0d35b220ca7908fef242ded4b0a3f00d33cc1ca18ca6769e14be",
+            "activity_comment_sha256": "a31e6b5a1d7b59080f556754bc8c7635e47ebad07d98e8705dec544dbe40ef90",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Ethylene carbonate, at plant",
+              "reference product": "Ethylene carbonate, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 11,
+            "metadata_sha256": "739e33cc13f20fef872dada70d56e473dcbb12b900996e60f5b887b4ef1525c3",
+            "inventory_sha256": "4f35068a2b33393de7db9477940994e14a042bfac8b4a22d0349b5a53c8d3a47",
+            "activity_comment_sha256": "ce9b0a66bfd48199a63ac924dff1a77bd8229026a4c984096f7cf2e1b6e55faa",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "cyclic_ethylene_carbonate",
+          "CAS": "96-49-1",
+          "formula": "C3H4O3",
+          "native_patent_catalyst_assumption": true,
+          "new_conversion_yield_or_carbon_removal_credit": false
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected exact ecoinvent3.9 cut-off named chemical reference. Source/native references are positive one kg of the stated product or process module. Factor+1 preserves signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes gain no new authority.",
+        "Complete native producer inventories replace source producer internals once, with their own allocation, feedstock, water, energy, infrastructure, releases and waste treatment. Do not add source producer inputs, direct releases, reaction-yield, economic/mass-allocation, purity, concentration, density, LHV or molecular-weight factors on top. Chemical name/reference matching is not proof of identical grade, assay, allocation, process performance, LCI, LCIA or stochastic equivalence. Geography, vintage, water/emission coverage and internal uncertainty differ; score effects remain unquantified.",
+        "Where source markets contain delivery, keep every producer and final-freight entry separately at its original quantity and supported uncertainty, without normalization or omitted modes. Source final freight is additional to raw-material transport inside native production. Complete native European rail and heavy-road fleet, European barge and native ocean-container services are geographic/traction/fuel/fleet/loading/infrastructure/vintage proxies. Five separate national rail and three national road contributions in the RoW acetone market remain separate despite sharing native mode suppliers. No extra distance, payload, loss or fleet-share multiplier is invented.",
+        "No literal caller/source omission, zero-burden supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal default targets, unrelated raw rules, recipe contents, shared review cards and earlier approvals remain unchanged. Only exact3.9 market profiles with actual delivery select new helpers. The dimethyl-ether production link and the single-producer/no-delivery PVF-dispersion and ethylene-oxide markets use unchanged direct native-product rules.",
+        "Use cyclic ethylene carbonate, CAS96-49-1/C3H4O3, not dimethyl carbonate, an inorganic carbonate or a mixed electrolyte. Preserve the two source CN/RoW producer entries; both use the complete native CN-labelled product, which itself uses Swiss/European background proxies. The native patent model reacts EO and CO2 with an assumed silver catalyst under pressure. Its stated99.95% conversion is internal to the product inventory, not a demand multiplier or independently verified battery-grade assay. Add no further CO2 feedstock, avoided-emission/sequestration credit, catalyst, heating, melting or pressure correction. Foreground use-phase releases remain separate."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "4532a82c90d3c1f9f64cf29ec765a903b87f5843a3fc8fe7ccc12293f057f421"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-15cba0ab8cf2223b",
+      "mapping_method": "reviewed_chemical_markets_39_retained_delivery",
+      "review_path": "export/uvek_chemical_markets_39_review.json",
+      "review_sha256": "24163c27d1b68dcd08d39e05835c8c684946fd26dec3b497edda639ba111f548",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact named-product/technology/geographic screening correspondences with preserved quantities, explicit warnings and decision records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for polyester resin, unsaturated",
+            "reference product": "polyester resin, unsaturated",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "445b28b4999c636860cccdeeebef610d03e32e70926960073ba7dad8d42819e0",
+          "inventory_sha256": "f38e3ead550a1fb1bb71c85c9271b60fe032746b0d442273aa37ad2408b370df",
+          "activity_comment_sha256": "64f7f7afbef49427b593535a340781a28f089b90e696a0d5660d4e5a712b7ada",
+          "product_information_sha256": "7f49834de3c3a8aa4d20bce254248fa2d95ac45a8f1ea0f4e251c2a24283ccab"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyester resin, unsaturated, at plant",
+              "reference product": "Polyester resin, unsaturated, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 19,
+            "metadata_sha256": "0cd7dd1d266b5410dbf943e4881e5bad084fed8cc19a13d798c1b72e69fa248b",
+            "inventory_sha256": "62eb1c42cbbd57d4797625b374cf9b552091ea0e171cd6a2bf2fc397316fac4e",
+            "activity_comment_sha256": "a8ae3f74f3f88851f59b21deb3423ba39ec97b060bfc14567208823428eaf7b4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyester resin, unsaturated, at plant",
+              "reference product": "Polyester resin, unsaturated, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 19,
+            "metadata_sha256": "9d409a626ad8bcb290c981f14a89aacbf3b38930ee88acf4a4f14f219473ed37",
+            "inventory_sha256": "46ff9e3ae39bcda19c86c229807d7073688f877d91b2248d82bfcd85edd555bd",
+            "activity_comment_sha256": "013eacdf942b7150121a49c90bff7fe290f5fd88c78774666cc47eb12afed915",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "unsaturated_polyester_resin",
+          "PET_or_cured_composite_substitution": false,
+          "new_styrene_or_condensation_yield_factor": false
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected exact ecoinvent3.9 cut-off named chemical reference. Source/native references are positive one kg of the stated product or process module. Factor+1 preserves signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes gain no new authority.",
+        "Complete native producer inventories replace source producer internals once, with their own allocation, feedstock, water, energy, infrastructure, releases and waste treatment. Do not add source producer inputs, direct releases, reaction-yield, economic/mass-allocation, purity, concentration, density, LHV or molecular-weight factors on top. Chemical name/reference matching is not proof of identical grade, assay, allocation, process performance, LCI, LCIA or stochastic equivalence. Geography, vintage, water/emission coverage and internal uncertainty differ; score effects remain unquantified.",
+        "Where source markets contain delivery, keep every producer and final-freight entry separately at its original quantity and supported uncertainty, without normalization or omitted modes. Source final freight is additional to raw-material transport inside native production. Complete native European rail and heavy-road fleet, European barge and native ocean-container services are geographic/traction/fuel/fleet/loading/infrastructure/vintage proxies. Five separate national rail and three national road contributions in the RoW acetone market remain separate despite sharing native mode suppliers. No extra distance, payload, loss or fleet-share multiplier is invented.",
+        "No literal caller/source omission, zero-burden supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal default targets, unrelated raw rules, recipe contents, shared review cards and earlier approvals remain unchanged. Only exact3.9 market profiles with actual delivery select new helpers. The dimethyl-ether production link and the single-producer/no-delivery PVF-dispersion and ethylene-oxide markets use unchanged direct native-product rules.",
+        "Both records model one kg of unsaturated polyester resin using the inherited mixture of anhydrides, glycols and acids. This is not PET, a cured GFRP article or permission to invent a styrene-rich formulation. Native precursors remain inside the complete resin inventory; do not add source glycols/anhydrides, styrene, curing agents or extra polymerization. Process energy/releases are estimated by analogy, transport/infrastructure estimated, and further inputs/solid wastes omitted in the underlying documentation. Those gaps are not measured zero. Actual grade/formulation and reaction-water/yield equivalence are not independently established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5f8faf46a81a68d9e5d2b438178ced4ba2fb9752ff7818bc02cf2aafd849d3f0"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-31d296d99ac55524",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_chemical_markets_39_review.json",
+      "review_sha256": "24163c27d1b68dcd08d39e05835c8c684946fd26dec3b497edda639ba111f548",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact named-product/technology/geographic screening correspondences with preserved quantities, explicit warnings and decision records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for polyvinylfluoride, dispersion",
+            "reference product": "polyvinylfluoride, dispersion",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "7b7f9036dbe50a49cdcee14b2888b37e81673f10bd40b2341a05835be7bac000",
+          "inventory_sha256": "685a2be3676e7292036858f216dac489276c87b4a15c562bfc5611f3b89770af",
+          "activity_comment_sha256": "f92935a25309f11bcf24633e35ab5d4a73c96669f94de9317d55ca6f0cc02660",
+          "product_information_sha256": "dc6ac5cdd28aa02466fc288af2177643f4ed21fec8705c6d21aff9dde505e079"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyvinylfluoride, dispersion, at plant",
+              "reference product": "Polyvinylfluoride, dispersion, at plant",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "fbfa1709275648fac4c8d4ad15fdb68a9e53ac987daabeed388f8e154fdef57a",
+            "inventory_sha256": "1a836b98c89788906de8d4695b935adcd872cd17902756e5ed4890585489068e",
+            "activity_comment_sha256": "5d697db48c7241b6dfba9839ba0a380c4c4a4f5171d6677a1238243d08548673",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyvinylfluoride, dispersion, at plant",
+              "reference product": "Polyvinylfluoride, dispersion, at plant",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 10,
+            "metadata_sha256": "03f92d559e58d8356c9bff3bcd9985c37c36c2824200ff3b90b6ce9a243c555c",
+            "inventory_sha256": "4f395b03efef131f02faf0d4562fc28425b17a945f7dc0048fe140bad88b9f98",
+            "activity_comment_sha256": "c5ac389bf472279398d8b8d9b363463c3b40e59af284565c56f531bf9c3427ef",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "PVF_dispersion_module",
+          "source_and_native_PVF_input_kg": 1.0526,
+          "wet_or_dry_solids_fraction_independently_established": false,
+          "standalone_acetic_acid_solution_basis_approved": false,
+          "extra_helper_needed": false
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected exact ecoinvent3.9 cut-off named chemical reference. Source/native references are positive one kg of the stated product or process module. Factor+1 preserves signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes gain no new authority.",
+        "Complete native producer inventories replace source producer internals once, with their own allocation, feedstock, water, energy, infrastructure, releases and waste treatment. Do not add source producer inputs, direct releases, reaction-yield, economic/mass-allocation, purity, concentration, density, LHV or molecular-weight factors on top. Chemical name/reference matching is not proof of identical grade, assay, allocation, process performance, LCI, LCIA or stochastic equivalence. Geography, vintage, water/emission coverage and internal uncertainty differ; score effects remain unquantified.",
+        "Where source markets contain delivery, keep every producer and final-freight entry separately at its original quantity and supported uncertainty, without normalization or omitted modes. Source final freight is additional to raw-material transport inside native production. Complete native European rail and heavy-road fleet, European barge and native ocean-container services are geographic/traction/fuel/fleet/loading/infrastructure/vintage proxies. Five separate national rail and three national road contributions in the RoW acetone market remain separate despite sharing native mode suppliers. No extra distance, payload, loss or fleet-share multiplier is invented.",
+        "No literal caller/source omission, zero-burden supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal default targets, unrelated raw rules, recipe contents, shared review cards and earlier approvals remain unchanged. Only exact3.9 market profiles with actual delivery select new helpers. The dimethyl-ether production link and the single-producer/no-delivery PVF-dispersion and ethylene-oxide markets use unchanged direct native-product rules.",
+        "Use the complete named PVF-dispersion process module, not the neat-PVF or PVDF product, generic chemicals or an assumed aqueous latex. Both inherited process inventories use1.0526kg PVF input per labelled one-kg module and include their acid, energy, infrastructure and release models. An input above one kg is a production-input coefficient, not a105.26% solids concentration. Neither an actual wet/dry-solids fraction nor a drying/concentration conversion is independently established here; infer none from the word dispersion or generic fossil-plastic text. Native acid-solution and heat-reference conventions differ from the source and remain part of its whole-process proxy; no standalone acid-basis mapping is approved or source acid/heat overlaid. Native cumulative GWP/energy disaggregation and incomplete air/water emissions remain explicit limits. This source market has one US producer and no delivery entries, so direct native supply needs no extra helper."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d86332b5db32a0ed74d1a4b4d3f090044727b6e9922a43d58d54c2dab0b1b94f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-b34986b27d859725",
+      "mapping_method": "reviewed_chemical_markets_39_retained_delivery",
+      "review_path": "export/uvek_chemical_markets_39_review.json",
+      "review_sha256": "24163c27d1b68dcd08d39e05835c8c684946fd26dec3b497edda639ba111f548",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact named-product/technology/geographic screening correspondences with preserved quantities, explicit warnings and decision records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ethylene glycol dimethyl ether",
+            "reference product": "ethylene glycol dimethyl ether",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "df71c06a7c552b3d8df821efcadb5f5d37d300a9bd36822a13f37f2702b96440",
+          "inventory_sha256": "faef728ba103bb0bb338a6c52aedc93cff1ab41aeb04e8d162157e7700fcb106",
+          "activity_comment_sha256": "b50c8f190b149fa1fe7edfee414a0dfecbccc89397573d5a6f32cee22d0b871b",
+          "product_information_sha256": "49c16fe6cf7665377c44220bc1095d11e99aa8cc271d1b3d35e2779148f8bead"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "xx Ethylene glycol dimethyl ether, at plant",
+              "reference product": "xx Ethylene glycol dimethyl ether, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 19,
+            "metadata_sha256": "cde05b2aa822596926ea38b0ffa7b55e18538f6e8b38d545aecadcd67cfba54f",
+            "inventory_sha256": "f9ceab9f8dadbb95fee3271d91fdd2b023f05302806bdc510627a52df93e5c11",
+            "activity_comment_sha256": "23bded0eaa7308460ebdaeaf53fb148ab510e2ac4befa77ae23d3a2fe9df08dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "xx Ethylene glycol dimethyl ether, at plant",
+              "reference product": "xx Ethylene glycol dimethyl ether, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 19,
+            "metadata_sha256": "bdf15655d1d82a5ef289d97f9aa198558580a2fd4c173d3c29548ff7ae3f21ed",
+            "inventory_sha256": "5e30ae53c1f89567ca05e48312af686dc388125e0922432e957335e144c15338",
+            "activity_comment_sha256": "3d74cfbe8ff04e54e389ca12cbf76550616f96bca9e8261df3acc78f5def0bb3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "pure_ethylene_glycol_dimethyl_ether",
+          "CAS": "110-71-4",
+          "formula": "C4H10O2",
+          "glycol_or_solution_substitution": false,
+          "legacy_xx_stock_nonempty": true
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected exact ecoinvent3.9 cut-off named chemical reference. Source/native references are positive one kg of the stated product or process module. Factor+1 preserves signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes gain no new authority.",
+        "Complete native producer inventories replace source producer internals once, with their own allocation, feedstock, water, energy, infrastructure, releases and waste treatment. Do not add source producer inputs, direct releases, reaction-yield, economic/mass-allocation, purity, concentration, density, LHV or molecular-weight factors on top. Chemical name/reference matching is not proof of identical grade, assay, allocation, process performance, LCI, LCIA or stochastic equivalence. Geography, vintage, water/emission coverage and internal uncertainty differ; score effects remain unquantified.",
+        "Where source markets contain delivery, keep every producer and final-freight entry separately at its original quantity and supported uncertainty, without normalization or omitted modes. Source final freight is additional to raw-material transport inside native production. Complete native European rail and heavy-road fleet, European barge and native ocean-container services are geographic/traction/fuel/fleet/loading/infrastructure/vintage proxies. Five separate national rail and three national road contributions in the RoW acetone market remain separate despite sharing native mode suppliers. No extra distance, payload, loss or fleet-share multiplier is invented.",
+        "No literal caller/source omission, zero-burden supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal default targets, unrelated raw rules, recipe contents, shared review cards and earlier approvals remain unchanged. Only exact3.9 market profiles with actual delivery select new helpers. The dimethyl-ether production link and the single-producer/no-delivery PVF-dispersion and ethylene-oxide markets use unchanged direct native-product rules.",
+        "Use pure named ethylene glycol dimethyl ether/1,2-dimethoxyethane, CAS110-71-4/C4H10O2, not monoethylene glycol, another glycol ether, a polymer or an aqueous solution. Source and native inherit the same EO/dimethyl-ether reaction model with estimated stoichiometry and standard energy/releases/infrastructure. Keep the native complete product once, including its existing EO and dimethyl ether; no extra reaction or source utilities, dilution or solvent-removal factor. The native xx label identifies its legacy process; it does not imply zero inventory. RoW uses the available European model, with vintage, estimation and assay limitations. Only the market needs a delivery helper; the production link remains a direct product match."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5111017d1a9e904711487763e9df5a5f22cb10b8eb5ce0dc7d21aeaf58f3b4f1"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-dc7ba6c9f2564285",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_chemical_markets_39_review.json",
+      "review_sha256": "24163c27d1b68dcd08d39e05835c8c684946fd26dec3b497edda639ba111f548",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact named-product/technology/geographic screening correspondences with preserved quantities, explicit warnings and decision records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ethylene oxide",
+            "reference product": "ethylene oxide",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "e402656a12f485255a18f45c030f35f861c9ec9e2352dfbfd6e9b7ae421efd92",
+          "inventory_sha256": "22b6ce32e13a03ba8ef5cbdc642a94a1981f65af9dc1e55ba3d704378fadf9c0",
+          "activity_comment_sha256": "2c9ce3e43ac664ff5336bc7f851bc4f66cdd2b156606930394c9899b8741cd90",
+          "product_information_sha256": "9c698fbcf35f54c523deff25ef48a84ed86ee49727fd306039df7b8a05f9f3d5"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Ethylene oxide, at plant",
+              "reference product": "Ethylene oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 17,
+            "metadata_sha256": "d4d4aa67214e45321101ec503b5044a5bda70006ea87fef4494c96912dcb9f7d",
+            "inventory_sha256": "8f0bedb7248746fa55126273bec71041362f7968cc3a1fe35a80f778403088c8",
+            "activity_comment_sha256": "b49c0468f58a88383a3032fae0521cd4ae7a2ff25f590c6f6824938e2553b2ef",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Ethylene oxide, at plant",
+              "reference product": "Ethylene oxide, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 18,
+            "metadata_sha256": "f0d2abeded5e9abda76f576103d1bf94fec393a9c5428cde140a9abd049995d8",
+            "inventory_sha256": "8abb4fe3252c3b7ff6f47bc9a1a0112a66b62aeb07c61d99938cfe3fbb06e9ca",
+            "activity_comment_sha256": "fb60165b6cf9229a8d9b162cca094f73ebe1b3e8cbe04b8338367af3d5c93000",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "ethylene_oxide",
+          "CAS": "75-21-8",
+          "formula": "C2H4O",
+          "source_market_producer_count": 1,
+          "extra_helper_needed": false
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected exact ecoinvent3.9 cut-off named chemical reference. Source/native references are positive one kg of the stated product or process module. Factor+1 preserves signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes gain no new authority.",
+        "Complete native producer inventories replace source producer internals once, with their own allocation, feedstock, water, energy, infrastructure, releases and waste treatment. Do not add source producer inputs, direct releases, reaction-yield, economic/mass-allocation, purity, concentration, density, LHV or molecular-weight factors on top. Chemical name/reference matching is not proof of identical grade, assay, allocation, process performance, LCI, LCIA or stochastic equivalence. Geography, vintage, water/emission coverage and internal uncertainty differ; score effects remain unquantified.",
+        "Where source markets contain delivery, keep every producer and final-freight entry separately at its original quantity and supported uncertainty, without normalization or omitted modes. Source final freight is additional to raw-material transport inside native production. Complete native European rail and heavy-road fleet, European barge and native ocean-container services are geographic/traction/fuel/fleet/loading/infrastructure/vintage proxies. Five separate national rail and three national road contributions in the RoW acetone market remain separate despite sharing native mode suppliers. No extra distance, payload, loss or fleet-share multiplier is invented.",
+        "No literal caller/source omission, zero-burden supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal default targets, unrelated raw rules, recipe contents, shared review cards and earlier approvals remain unchanged. Only exact3.9 market profiles with actual delivery select new helpers. The dimethyl-ether production link and the single-producer/no-delivery PVF-dispersion and ethylene-oxide markets use unchanged direct native-product rules.",
+        "Use named ethylene oxide/oxirane, CAS75-21-8/C2H4O, not ethylene glycol, EO-derived polymer or a sterilization service. The source RoW market has exactly one producer and no delivery inputs, so use complete native European EO directly without a helper. Native supply models actual European ethylene/oxygen-or-air processes and their coproduct CO2, upstream resources and utilities. Keep its full allocated process once. No extra oxygen/ethylene, source energy, gas-volume/density, phase/pressure or avoided-CO2 multiplier is introduced. The European technology/geography and undocumented precise assay replace the source model as an explicit screening proxy."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "98bd5305877e8b106a772689892d689ce7dd96881e285112ec0b3a7e920d8174"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-92c2120012f2e193",
+      "mapping_method": "reviewed_chemical_markets_39_retained_delivery",
+      "review_path": "export/uvek_chemical_markets_39_review.json",
+      "review_sha256": "24163c27d1b68dcd08d39e05835c8c684946fd26dec3b497edda639ba111f548",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact named-product/technology/geographic screening correspondences with preserved quantities, explicit warnings and decision records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for acetone, liquid",
+            "reference product": "acetone, liquid",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "d6c456bf6d402e47c388eae41b473991f37f5f05eb4d4a8af490003f4e3e3c23",
+          "inventory_sha256": "c8c1780a0ece63ebdba2fd301cf11f1125878050ee110429f099409312c0f443",
+          "activity_comment_sha256": "fe34334e411e3fbb47d18efe4ee064a0625b87ebf66d023d8c95a065a7ab1e4d",
+          "product_information_sha256": "8d5ca4f07d6d90d52dd359c9b4d2070ec03e9b89139cd31f0d4f87e9211baf74"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Acetone, liquid, at plant",
+              "reference product": "Acetone, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 145,
+            "metadata_sha256": "74e4166f6534d879c0a66161561160269be91123c81a4e7ebb90605997eb3563",
+            "inventory_sha256": "f4e51b3208376d69f18f5cf9721818c4c1248be6cea02770d65a041a519eb2ff",
+            "activity_comment_sha256": "61c67ff0354178a314f2b6a5ee175f052aff0f4811383d54f002f8aaf861d2dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Acetone, liquid, at plant",
+              "reference product": "Acetone, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 151,
+            "metadata_sha256": "ee78f195b5dfbffa97fe999d27376faeecc208a46ba64660d0821d458845d975",
+            "inventory_sha256": "815c2b921914df098e33f4d64d6f78a39e47004a2c54b2614a870476add94f9b",
+            "activity_comment_sha256": "1edc2f840f059c54c0cb85e382ff0e1c692885b7c0f7b1ce1763fc185c64790e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "liquid_acetone_route_portfolio",
+          "CAS": "67-64-1",
+          "butane_role_matched_individually": true,
+          "unsupported_routes_use_explicit_cumene_proxy": true,
+          "full_original_route_mix_equivalence_established": false
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected exact ecoinvent3.9 cut-off named chemical reference. Source/native references are positive one kg of the stated product or process module. Factor+1 preserves signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes gain no new authority.",
+        "Complete native producer inventories replace source producer internals once, with their own allocation, feedstock, water, energy, infrastructure, releases and waste treatment. Do not add source producer inputs, direct releases, reaction-yield, economic/mass-allocation, purity, concentration, density, LHV or molecular-weight factors on top. Chemical name/reference matching is not proof of identical grade, assay, allocation, process performance, LCI, LCIA or stochastic equivalence. Geography, vintage, water/emission coverage and internal uncertainty differ; score effects remain unquantified.",
+        "Where source markets contain delivery, keep every producer and final-freight entry separately at its original quantity and supported uncertainty, without normalization or omitted modes. Source final freight is additional to raw-material transport inside native production. Complete native European rail and heavy-road fleet, European barge and native ocean-container services are geographic/traction/fuel/fleet/loading/infrastructure/vintage proxies. Five separate national rail and three national road contributions in the RoW acetone market remain separate despite sharing native mode suppliers. No extra distance, payload, loss or fleet-share multiplier is invented.",
+        "No literal caller/source omission, zero-burden supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal default targets, unrelated raw rules, recipe contents, shared review cards and earlier approvals remain unchanged. Only exact3.9 market profiles with actual delivery select new helpers. The dimethyl-ether production link and the single-producer/no-delivery PVF-dispersion and ethylene-oxide markets use unchanged direct native-product rules.",
+        "Match liquid acetone, CAS67-64-1/C3H6O, at product kg rather than the gross phenol/propylene/butane process basis. Preserve every original producer contribution separately. Cumene/phenol coproduct acetone uses the complete native European cumene-oxidation aggregate; source butane-oxidation coproduct uses the distinct complete native allocated butane-oxidation acetone process. Native has no corresponding isopropanol, resorcinol-coproduct or coal/Fischer-Tropsch acetone supplier among its inspected acetone products, so those source contributions use native cumene acetone as explicit technology/allocation/geographic proxies. They are not omitted or assigned zero; this does not approve their parent fuels/phenol/resorcinol processes as acetone manufacture outside the inspected market.",
+        "Native cumene acetone is an aggregated three-European-plant PlasticsEurope study; native butane acetone retains its own mass-allocation model and full upstream inventory. Differences in process energy, coproduct allocation, source regions, vintage, precursor and release coverage remain material and unquantified. Add no source producer internals, phenol/other coproduct credits, allocation/yield/phase factors or guessed acetone dehydrogenation reactor. Inherited PlasticsEurope exclusions for recyclable wastes, unspecified metals/air/N2/O2, mercaptans, unspecified CFC/HCFC and dioxin remain data gaps. Hidden upstream energy in its aggregate cannot be fully IAM-updated by ordinary supplier relinking; do not invent an energy overlay."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b8b1adf76fe086a34391b73949a6a11eb8c170b51ad2d685c203f769f8a3a320"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-3d4f6646db9a7399",
+      "mapping_method": "reviewed_chemical_markets_39_retained_delivery",
+      "review_path": "export/uvek_chemical_markets_39_review.json",
+      "review_sha256": "24163c27d1b68dcd08d39e05835c8c684946fd26dec3b497edda639ba111f548",
+      "authorization": "Standing autonomous approval of coming modelling decisions and exact named-product/technology/geographic screening correspondences with preserved quantities, explicit warnings and decision records.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for acetone, liquid",
+            "reference product": "acetone, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 15,
+          "metadata_sha256": "85e7b3c442746db409e6f803827593979e1b90341393ebc02ca8e1975edce681",
+          "inventory_sha256": "bbddc1b58e745021b6c0114b2c5d6eba6414163bc76b99c72e82bf2b2e81b803",
+          "activity_comment_sha256": "b376af9699de068a5d7186567d2aae819d1e5c54b46a50feb6d39542c287647c",
+          "product_information_sha256": "8d5ca4f07d6d90d52dd359c9b4d2070ec03e9b89139cd31f0d4f87e9211baf74"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Acetone, liquid, at plant",
+              "reference product": "Acetone, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 145,
+            "metadata_sha256": "74e4166f6534d879c0a66161561160269be91123c81a4e7ebb90605997eb3563",
+            "inventory_sha256": "f4e51b3208376d69f18f5cf9721818c4c1248be6cea02770d65a041a519eb2ff",
+            "activity_comment_sha256": "61c67ff0354178a314f2b6a5ee175f052aff0f4811383d54f002f8aaf861d2dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Acetone, liquid, at plant",
+              "reference product": "Acetone, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 151,
+            "metadata_sha256": "ee78f195b5dfbffa97fe999d27376faeecc208a46ba64660d0821d458845d975",
+            "inventory_sha256": "815c2b921914df098e33f4d64d6f78a39e47004a2c54b2614a870476add94f9b",
+            "activity_comment_sha256": "1edc2f840f059c54c0cb85e382ff0e1c692885b7c0f7b1ce1763fc185c64790e",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "liquid_acetone_route_portfolio",
+          "CAS": "67-64-1",
+          "butane_role_matched_individually": true,
+          "unsupported_routes_use_explicit_cumene_proxy": true,
+          "full_original_route_mix_equivalence_established": false
+        }
+      },
+      "limitations": [
+        "New approval covers only the independently inspected exact ecoinvent3.9 cut-off named chemical reference. Source/native references are positive one kg of the stated product or process module. Factor+1 preserves signed caller product kg, supported uncertainty/formulas, foreground ownership and separate caller inputs/emissions. Other source releases, patches, system models and reverse routes gain no new authority.",
+        "Complete native producer inventories replace source producer internals once, with their own allocation, feedstock, water, energy, infrastructure, releases and waste treatment. Do not add source producer inputs, direct releases, reaction-yield, economic/mass-allocation, purity, concentration, density, LHV or molecular-weight factors on top. Chemical name/reference matching is not proof of identical grade, assay, allocation, process performance, LCI, LCIA or stochastic equivalence. Geography, vintage, water/emission coverage and internal uncertainty differ; score effects remain unquantified.",
+        "Where source markets contain delivery, keep every producer and final-freight entry separately at its original quantity and supported uncertainty, without normalization or omitted modes. Source final freight is additional to raw-material transport inside native production. Complete native European rail and heavy-road fleet, European barge and native ocean-container services are geographic/traction/fuel/fleet/loading/infrastructure/vintage proxies. Five separate national rail and three national road contributions in the RoW acetone market remain separate despite sharing native mode suppliers. No extra distance, payload, loss or fleet-share multiplier is invented.",
+        "No literal caller/source omission, zero-burden supplier, new recovery credit, runtime Python change, validation bypass or alternative Premise sector engine. Existing literal default targets, unrelated raw rules, recipe contents, shared review cards and earlier approvals remain unchanged. Only exact3.9 market profiles with actual delivery select new helpers. The dimethyl-ether production link and the single-producer/no-delivery PVF-dispersion and ethylene-oxide markets use unchanged direct native-product rules.",
+        "Match liquid acetone, CAS67-64-1/C3H6O, at product kg rather than the gross phenol/propylene/butane process basis. Preserve every original producer contribution separately. Cumene/phenol coproduct acetone uses the complete native European cumene-oxidation aggregate; source butane-oxidation coproduct uses the distinct complete native allocated butane-oxidation acetone process. Native has no corresponding isopropanol, resorcinol-coproduct or coal/Fischer-Tropsch acetone supplier among its inspected acetone products, so those source contributions use native cumene acetone as explicit technology/allocation/geographic proxies. They are not omitted or assigned zero; this does not approve their parent fuels/phenol/resorcinol processes as acetone manufacture outside the inspected market.",
+        "Native cumene acetone is an aggregated three-European-plant PlasticsEurope study; native butane acetone retains its own mass-allocation model and full upstream inventory. Differences in process energy, coproduct allocation, source regions, vintage, precursor and release coverage remain material and unquantified. Add no source producer internals, phenol/other coproduct credits, allocation/yield/phase factors or guessed acetone dehydrogenation reactor. Inherited PlasticsEurope exclusions for recyclable wastes, unspecified metals/air/N2/O2, mercaptans, unspecified CFC/HCFC and dioxin remain data gaps. Hidden upstream energy in its aggregate cannot be fully IAM-updated by ordinary supplier relinking; do not invent an energy overlay."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "aeb2301ceceb174659177006de643a78846ba3afe55798c30ce3abacc5b4915c"
+        }
+      ]
     }
   ],
   "superseded_operations": [

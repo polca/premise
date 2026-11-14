@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-3d257e55be3541c6",
+        "rule_id": "bp-1e57ca1b0391f0a7",
         "source": {
           "location": "GLO",
-          "name": "market for acetonitrile",
-          "reference product": "acetonitrile",
-          "unit": "kilogram"
+          "name": "market for cooling energy",
+          "reference product": "cooling energy",
+          "unit": "megajoule"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 90,
+        "unapproved_correspondence_count_in_current_39_cohort": 81,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-polymer-carton-39-verification.json",
+        "verification": "docs/development/uvek-chemical-markets-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Review remaining named chemical markets together, starting with acetonitrile; verify actual product/solution bases, native complete products, original supplier/freight quantities and any already approved older profile bindings.",
+        "next_action": "Inspect actual source cooling-energy technology mix and native cooling-service basis before choosing suppliers or factors; then continue remaining sector dependencies.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all90 pending first3.9-cohort details."
+        "mapping_diagnostic": "Fresh standard CLIC resolution agrees with all81 pending first3.9-cohort details in the integrity-checked cached diagnostic."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-polymer-carton-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-chemical-markets-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

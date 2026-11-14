@@ -1,0 +1,415 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "e4bd63dda55025d639cf0cdea01758b163b255f7",
+  "scope_registration": {
+    "prior_scopes": 1414,
+    "new_scopes": 1423,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-3d257e55be3541c6",
+      "bp-c86dc86fdb185fd5",
+      "bp-365d5afb2cddee67",
+      "bp-15cba0ab8cf2223b",
+      "bp-31d296d99ac55524",
+      "bp-b34986b27d859725",
+      "bp-dc7ba6c9f2564285",
+      "bp-92c2120012f2e193",
+      "bp-3d4f6646db9a7399"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_chemical_migrations_signs_uncertainty_guards_replay_storage": 38,
+    "premise_source_preparation_and_cache": 13,
+    "premise_final_clean_installed_package_preparation_and_cache": 13,
+    "nitrate_authority_guard_and_authoring_checks": 26
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 15,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 12,
+    "signed_foreground_LCI_solves": 18,
+    "independent_native_reference_LCI_solves": 9,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-3d257e55be3541c6",
+        "source": {
+          "location": "GLO",
+          "name": "market for acetonitrile",
+          "reference product": "acetonitrile",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.393139528881875e-08,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 1.989041821209182e-10,
+          "residual_after": 4.4097341469870397e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.381691217755086e-09,
+          "residual_after": 4.4097340233897014e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-c86dc86fdb185fd5",
+        "source": {
+          "location": "RoW",
+          "name": "ethylene glycol dimethyl ether production",
+          "reference product": "ethylene glycol dimethyl ether",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.4841158342023846e-08,
+        "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+        "full_graph_residual": {
+          "residual_before": 2.893204859731428e-10,
+          "residual_after": 2.04838735470677e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 8.241302800742727e-09,
+          "residual_after": 2.0509741933276846e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-365d5afb2cddee67",
+        "source": {
+          "location": "GLO",
+          "name": "market for ethylene carbonate",
+          "reference product": "ethylene carbonate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.0336244688223815e-08,
+        "refined_max_abs_inventory_difference": 5.551115123125783e-17,
+        "full_graph_residual": {
+          "residual_before": 4.8664984330708616e-11,
+          "residual_after": 5.2000924439249e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.6397185634671147e-08,
+          "residual_after": 5.19965642119127e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-15cba0ab8cf2223b",
+        "source": {
+          "location": "RER",
+          "name": "market for polyester resin, unsaturated",
+          "reference product": "polyester resin, unsaturated",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.7171608962817118e-06,
+        "refined_max_abs_inventory_difference": 3.552713678800501e-15,
+        "full_graph_residual": {
+          "residual_before": 1.982213759669394e-09,
+          "residual_after": 1.0148191138734068e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.223925366311574e-08,
+          "residual_after": 1.0148191138734068e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-31d296d99ac55524",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyvinylfluoride, dispersion",
+          "reference product": "polyvinylfluoride, dispersion",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.4639848561491817e-07,
+        "refined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "full_graph_residual": {
+          "residual_before": 3.739027980545963e-10,
+          "residual_after": 1.365667875038223e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 5.4764627054865326e-08,
+          "residual_after": 1.360116759915096e-14,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-b34986b27d859725",
+        "source": {
+          "location": "GLO",
+          "name": "market for ethylene glycol dimethyl ether",
+          "reference product": "ethylene glycol dimethyl ether",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 8.399297257710714e-09,
+        "refined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "full_graph_residual": {
+          "residual_before": 2.822484366876051e-10,
+          "residual_after": 1.6065239202866026e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.894789300631377e-09,
+          "residual_after": 1.6056718051416648e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-dc7ba6c9f2564285",
+        "source": {
+          "location": "RoW",
+          "name": "market for ethylene oxide",
+          "reference product": "ethylene oxide",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.5464993447243955e-09,
+        "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+        "full_graph_residual": {
+          "residual_before": 2.0376374565354316e-10,
+          "residual_after": 2.0872379421959576e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.1150584300667e-08,
+          "residual_after": 2.220446049250313e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-92c2120012f2e193",
+        "source": {
+          "location": "RER",
+          "name": "market for acetone, liquid",
+          "reference product": "acetone, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.688238242067655e-08,
+        "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+        "full_graph_residual": {
+          "residual_before": 4.2187891568908965e-11,
+          "residual_after": 1.6653345369377348e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.416662689648901e-11,
+          "residual_after": 9.645316371617465e-18,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-3d4f6646db9a7399",
+        "source": {
+          "location": "RoW",
+          "name": "market for acetone, liquid",
+          "reference product": "acetone, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.548034482354524e-08,
+        "refined_max_abs_inventory_difference": 2.220446049250313e-16,
+        "full_graph_residual": {
+          "residual_before": 4.367838751183035e-11,
+          "residual_after": 1.110223024625158e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.900169974706575e-10,
+          "residual_after": 2.0004085947729655e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies nine named chemical reference bases, native butane/cumene acetone roles, retained delivery and native-demand numerical consistency. Does not establish chemical assay, full original acetone route equivalence, allocation or score equivalence, complete IAM updating of aggregated upstream burdens, battery completion or export qualification."
+  },
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 90,
+    "current": 81,
+    "removed_rules": [
+      "bp-3d257e55be3541c6",
+      "bp-c86dc86fdb185fd5",
+      "bp-365d5afb2cddee67",
+      "bp-15cba0ab8cf2223b",
+      "bp-31d296d99ac55524",
+      "bp-b34986b27d859725",
+      "bp-dc7ba6c9f2564285",
+      "bp-92c2120012f2e193",
+      "bp-3d4f6646db9a7399"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-1e57ca1b0391f0a7",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 81,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-1e57ca1b0391f0a7",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "clean_tracked_wheel": {
+    "brightpath_commit": "e4bd63dda55025d639cf0cdea01758b163b255f7",
+    "clean_tracked_git_archive_build": true,
+    "unexpected_package_files": [],
+    "installed_resources_match_committed_bytes": [
+      "export/uvek_chemical_markets_39_review.json",
+      "migrations/RESOURCE_MANIFEST.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "export/uvek_archived_unreferenced_reviews.json",
+      "export/uvek_pilot_nitrate_market_review.json",
+      "export/uvek_nitrate_authority_refresh_review.json"
+    ],
+    "removed_unused_wheel_bytes": 43676748,
+    "removed_temporary_tracked_build_source_and_archive_bytes": 1354266977,
+    "retained_installed_package": true
+  },
+  "clean_forward_generator": {
+    "brightpath_commit": "e4bd63dda55025d639cf0cdea01758b163b255f7",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "2343ba6f3d1395094ca89a34d48a8e0b73a18be4cf67672b4b50c929602043f4",
+        "committed_sha256": "2343ba6f3d1395094ca89a34d48a8e0b73a18be4cf67672b4b50c929602043f4",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 69065775
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "nitrate_modelling_quantities_changed": false,
+    "removed_generated_output_bytes": 106258819,
+    "removed_owned_clean_worktree_file_bytes": 497158766
+  },
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "new_helpers": 6,
+  "new_source_omissions": [],
+  "retained_original_producer_entries": 15,
+  "retained_original_final_freight_entries": 28,
+  "full_historical_reference_sign_suite": "Not rerun as a whole; focused checks only.",
+  "reverse_generator": "Not run in this batch."
+}
