@@ -99,20 +99,24 @@ def get_mapping(
         if var in val:
             if model is None or model in val.get("iam_aliases", {}):
                 entry = val[var]
-                if (
-                    var == "ecoinvent_aliases"
-                    and isinstance(entry, dict)
-                    and Path(filepath).parent.resolve() == VARIABLES_DIR.resolve()
-                ):
+                if var == "ecoinvent_aliases" and isinstance(entry, dict):
                     from .clic_requirements import role_slugs
 
                     slugs = role_slugs(Path(filepath).name, key)
-                    if slugs:
+                    role_key = f"{Path(filepath).name}:{key}"
+                    if (
+                        not slugs
+                        and Path(filepath).name == ACTIVITIES_METALS_MAPPING.name
+                    ):
+                        slugs = _procedural_clic_slugs(entry)
+                        role_key = None
+                    if slugs or Path(filepath).name == ACTIVITIES_METALS_MAPPING.name:
                         entry = {
                             **entry,
                             "clic_slugs": slugs,
-                            "clic_role_key": f"{Path(filepath).name}:{key}",
                         }
+                        if role_key is not None:
+                            entry["clic_role_key"] = role_key
                 mapping[key] = entry
 
     return mapping
@@ -164,6 +168,36 @@ def act_fltr(
         filters.extend(ws.exclude(ws.contains(field, item)) for item in values)
 
     return list(ws.get_many(database, *filters))
+
+
+def _procedural_clic_slugs(definition: dict) -> Tuple[str, ...]:
+    """Resolve non-sector filters against reviewed pre-CLIC identities.
+
+    Procedural mappings such as the metals activity map are not IAM sector
+    roots, but they still consume additional inventories.  Evaluate their
+    existing filters against the migration ledger once, then use the stable
+    published slugs at runtime so later CLIC name/product revisions cannot
+    broaden or narrow a role.
+    """
+    from .clic_requirements import registry
+
+    records = []
+    for node in registry().get("hybrid_sources", {}).get("nodes", ()):
+        slug = node.get("clic_slug")
+        identity = node.get("identity", ())
+        if not slug or len(identity) != 4:
+            continue
+        records.append(
+            {
+                "name": identity[0],
+                "reference product": identity[1],
+                "location": identity[2],
+                "unit": identity[3],
+                "_clic_slug": slug,
+            }
+        )
+    matches = act_fltr(records, definition.get("fltr"), definition.get("mask"))
+    return tuple(sorted({record["_clic_slug"] for record in matches}))
 
 
 def mapping_to_dataframe(
@@ -629,10 +663,12 @@ class InventorySet:
         # dataset's name/product or when colliding source identities need a
         # namespace. Native providers retain the existing filter semantics.
         clic_roles = defaultdict(list)
+        has_clic_constraints = False
         for technology, definition in filtr.items():
+            has_clic_constraints |= "clic_slugs" in definition
             for slug in definition.get("clic_slugs", ()):
                 clic_roles[slug].append(technology)
-        if clic_roles:
+        if has_clic_constraints:
 
             def eligible(activity, technology):
                 provenance = activity.get("clic provenance", {})
@@ -641,7 +677,7 @@ class InventorySet:
                 return bindings is None or key is None or key in bindings
 
             for technology, definition in filtr.items():
-                if definition.get("clic_slugs"):
+                if "clic_slugs" in definition:
                     allowed = set(definition["clic_slugs"])
                     techs[technology] = [
                         activity

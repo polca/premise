@@ -91,6 +91,18 @@ def plan_hybrid_inventories(
         explicit_roots or required_roots(sectors, scenarios, source_files=sources)
     )
     pending = list(extra_nodes)
+
+    def requires_retained_workbook(node):
+        return system_model == "consequential"
+
+    # Published CLIC inventories use cutoff background cohorts, and Brightpath
+    # deliberately does not translate between ecoinvent system models. Preserve
+    # the reviewed bundled workbook definitions for consequential builds,
+    # including when a recipe names one of their roots.
+    for node in nodes:
+        if node.get("clic_slug") in requested and requires_retained_workbook(node):
+            requested.discard(node["clic_slug"])
+            pending.append(node["id"])
     scenarios = list(scenarios) or [{}]
     for sector in sectors:
         for filename in specification["sector_mappings"].get(sector, ()):
@@ -129,7 +141,10 @@ def plan_hybrid_inventories(
                 pending.extend(graph["files"].get(filename, {}).get("nodes", ()))
     selected, guards = set(), set()
     vehicle_sources = defaultdict(list)
+    nodes_by_slug = defaultdict(list)
     for node in nodes:
+        if node.get("clic_slug"):
+            nodes_by_slug[node["clic_slug"]].append(node["id"])
         if node["file"] in active:
             vehicle_sources[node["identity"][0].casefold()].append(node["id"])
 
@@ -167,7 +182,7 @@ def plan_hybrid_inventories(
             node = nodes[index]
             if node["file"] not in active:
                 continue
-            if node["clic_slug"]:
+            if node["clic_slug"] and not requires_retained_workbook(node):
                 requested.add(node["clic_slug"])
                 continue
             if index in selected:
@@ -203,7 +218,18 @@ def plan_hybrid_inventories(
                             break
             for edge in node["inputs"]:
                 if "clic_slug" in edge:
-                    requested.add(edge["clic_slug"])
+                    retained = [
+                        candidate
+                        for candidate in nodes_by_slug.get(edge["clic_slug"], ())
+                        if nodes[candidate]["file"] in active
+                        and requires_retained_workbook(nodes[candidate])
+                    ]
+                    if retained:
+                        child = choose(retained, node)
+                        if child is not None:
+                            pending.append(child)
+                    else:
+                        requested.add(edge["clic_slug"])
                 else:
                     child = choose(edge["nodes"], node)
                     if child is not None:

@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from premise.core.filesystem_constants import VARIABLES_DIR
+from premise.core.filesystem_constants import DATA_DIR, VARIABLES_DIR
 from premise.inventory.activity_maps import InventorySet, get_mapping
 from premise.inventory.clic_archive import ClicArchive
 from premise.inventory.clic_requirements import (
@@ -24,6 +24,18 @@ def _reviewed_roles():
             slugs = role_slugs(filename, role)
             if slugs:
                 yield filename, role, slugs
+    filename = "activities_mapping.yml"
+    definitions = get_mapping(_mapping_path(filename), "ecoinvent_aliases")
+    for role, definition in definitions.items():
+        slugs = tuple(definition.get("clic_slugs", ()))
+        if slugs:
+            yield filename, role, slugs
+
+
+def _mapping_path(filename):
+    if filename == "activities_mapping.yml":
+        return DATA_DIR / "metals" / filename
+    return VARIABLES_DIR / filename
 
 
 def _reviewed_slugs():
@@ -36,11 +48,12 @@ def test_every_reviewed_role_exists_and_exposes_its_clic_slugs():
     for filename, role, slugs in _reviewed_roles():
         definitions = by_file.setdefault(
             filename,
-            get_mapping(VARIABLES_DIR / filename, "ecoinvent_aliases"),
+            get_mapping(_mapping_path(filename), "ecoinvent_aliases"),
         )
         assert role in definitions, f"Missing ecoinvent_aliases role {filename}:{role}"
         assert set(definitions[role]["clic_slugs"]) == set(slugs)
-        assert definitions[role]["clic_role_key"] == f"{filename}:{role}"
+        if filename != "activities_mapping.yml":
+            assert definitions[role]["clic_role_key"] == f"{filename}:{role}"
 
 
 def test_all_role_filters_accept_reviewed_clic_datasets_after_identity_changes():
@@ -72,7 +85,7 @@ def test_all_role_filters_accept_reviewed_clic_datasets_after_identity_changes()
                     }
                 )
 
-        definitions = get_mapping(VARIABLES_DIR / filename, "ecoinvent_aliases")
+        definitions = get_mapping(_mapping_path(filename), "ecoinvent_aliases")
         selected = InventorySet(records).generate_sets_from_filters(definitions)
         for role, codes in expected_codes.items():
             actual = {record["code"] for record in selected[role]}
@@ -81,6 +94,24 @@ def test_all_role_filters_accept_reviewed_clic_datasets_after_identity_changes()
                 f"missing={sorted(codes - actual)!r}, "
                 f"unexpected={sorted(actual - codes)!r}"
             )
+
+
+def test_unreviewed_procedural_role_rejects_renamed_clic_false_positive():
+    definitions = get_mapping(
+        _mapping_path("activities_mapping.yml"), "ecoinvent_aliases"
+    )
+    assert definitions["CdTe"]["clic_slugs"] == ()
+    record = {
+        "name": "photovoltaic laminate, CdTe, first solar series 4, at plant",
+        "reference product": "photovoltaic laminate, CdTe",
+        "location": "MY",
+        "unit": "square meter",
+        "clic provenance": {"slug": "renamed-unreviewed-cdte"},
+    }
+    selected = InventorySet([record]).generate_sets_from_filters(
+        {"CdTe": definitions["CdTe"]}
+    )
+    assert selected["CdTe"] == []
 
 
 @pytest.fixture(scope="module")
@@ -118,13 +149,16 @@ def test_live_archive_records_pass_all_reviewed_role_filters(live_clic_archive):
         roles_by_file.setdefault(filename, {})[role] = set(slugs)
 
     for filename, roles in roles_by_file.items():
-        definitions = get_mapping(VARIABLES_DIR / filename, "ecoinvent_aliases")
+        definitions = get_mapping(_mapping_path(filename), "ecoinvent_aliases")
         selected = InventorySet(resolved.activities).generate_sets_from_filters(
             definitions
         )
         for role, expected in roles.items():
-            role_key = f"{filename}:{role}"
-            expected = {slug for slug in expected if role_key in bindings_by_slug[slug]}
+            role_key = definitions[role].get("clic_role_key")
+            if role_key is not None:
+                expected = {
+                    slug for slug in expected if role_key in bindings_by_slug[slug]
+                }
             actual = {
                 record["clic provenance"]["slug"]
                 for record in selected[role]

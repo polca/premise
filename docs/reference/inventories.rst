@@ -44,6 +44,12 @@ Source-specific adaptations are explained with their inventories:
 Inventory source selection
 ----------------------------
 
+CLIC inventories target cutoff backgrounds. If ``inventory_source="clic"`` is
+requested with a consequential background, premise uses the established
+workbook inventory pipeline instead and records the fallback reason and requested
+sectors in the inventory manifest. Cutoff and EN15804 CLIC builds continue to use
+slug-based CLIC selection.
+
 This table is generated from the constructor's inventory-selection statements.
 It records selection before activity-level filtering, migration and linking.
 Selection does not guarantee that every activity survives those steps or is

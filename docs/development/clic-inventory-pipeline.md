@@ -8,7 +8,11 @@ gap filling and linking. User-supplied inventories are also preserved.
 **Rollout is pending.** The target range now starts at ecoinvent **3.7**;
 3.5 and 3.6 background builds are rejected before downloading inventories.
 Older native inventory sources remain supported for migration into newer
-backgrounds. CLIC mode does not fall back to public workbook replacements.
+backgrounds. Cutoff and EN15804 CLIC builds do not fall back to public workbook
+replacements. Consequential builds use the workbook pipeline because CLIC
+inventories are published against cutoff backgrounds and cannot be migrated
+reliably across ecoinvent system models; the fallback and its reason are recorded
+in the inventory manifest.
 
 ## Current interface
 
@@ -32,7 +36,10 @@ database.write_inventory_recipe("inventory-recipe.json")
 `prepare_inventories(sectors)` can prepare the same scope explicitly. Multiple
 calls expand the union of required sectors without changing canonical names.
 The legacy `inventory_source="workbooks"` default remains in place during
-development; it is not an automatic compatibility fallback inside CLIC mode.
+development. When `system_model="consequential"` is requested in CLIC mode,
+premise automatically selects that pipeline before inventory preparation and
+records the requested sectors and fallback reason in the manifest. Other CLIC
+builds do not silently substitute public workbook replacements.
 
 Pragmatic migration accepts inferred reverse routes, their aggregation/proxy
 losses, overlapping packaged rules using the engine's deterministic last-rule

@@ -1411,9 +1411,12 @@ class Metals(BaseTransformation):
             self.material_rules_by_technology[rule.technology].append(rule)
 
         self.technology_conversions = load_technology_conversions()
-        self.technology_conversions_by_name = {
-            item.activity_name: item for item in self.technology_conversions
-        }
+        from ..inventory.activity_maps import expand_inventory_name_mapping
+
+        self.technology_conversions_by_name = expand_inventory_name_mapping(
+            self.database,
+            {item.activity_name: item for item in self.technology_conversions},
+        )
 
         inv = InventorySet(self.database, self.version)
 

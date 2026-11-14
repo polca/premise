@@ -58,6 +58,16 @@ def test_has_cache_value_preserves_legacy_presence_semantics(value, expected):
     assert utils_module._has_cache_value(value) is expected
 
 
+def test_trim_exchanges_accepts_container_metadata():
+    categories = np.array(["air", "urban air close to ground"])
+    trimmed = utils_module.trim_exchanges(
+        {"amount": 1.0, "categories": categories, "ignored": ["metadata"]}
+    )
+    assert trimmed["amount"] == np.float32(1.0)
+    np.testing.assert_array_equal(trimmed["categories"], categories)
+    assert set(trimmed) == {"amount", "categories"}
+
+
 def test_scenario_exchange_presence_checks_metadata_truth_only_once(monkeypatch):
     calls = 0
     original = utils_module._has_cache_value

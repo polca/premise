@@ -1937,6 +1937,36 @@ def test_material_conversion_is_explicit_and_unit_checked(name, unit, expected):
     )
 
 
+def test_material_conversion_follows_reviewed_clic_legacy_identity():
+    from premise.inventory.activity_maps import expand_inventory_name_mapping
+
+    current_name = "electrolyzer production, 1MWe, PEM, stack"
+    dataset = {
+        "name": current_name,
+        "unit": "unit",
+        "clic provenance": {
+            "slug": "electrolyzer-production-1mwe-pem-stack",
+            "name": current_name,
+            "legacy_identities": [
+                [
+                    "electrolyzer production, 1MWe, PEM, Stack",
+                    "electrolyzer, 1MWe, PEM, Stack",
+                    "RER",
+                    "unit",
+                ]
+            ],
+        },
+    }
+    metals = object.__new__(Metals)
+    metals.version = "3.12"
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
+    metals.technology_conversions_by_name = expand_inventory_name_mapping(
+        [dataset],
+        {c.activity_name: c for c in load_technology_conversions()},
+    )
+    assert metals._technology_conversion_factor(dataset, "PEMEL") == 1
+
+
 def test_redox_flow_battery_stacks_do_not_match_sofc_material_rules():
     from premise.activity_maps import InventorySet
 

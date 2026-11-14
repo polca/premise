@@ -768,6 +768,9 @@ class NewDatabase:
         self.version = check_db_version(source_version)
         self.source_type = source_type
         self.system_model = check_system_model(system_model)
+        self._clic_workbook_fallback = (
+            inventory_source == "clic" and self.system_model == "consequential"
+        )
         self.system_model_args = system_args
         self.use_absolute_efficiency = use_absolute_efficiency
         self.keep_imports_uncertainty = keep_imports_uncertainty
@@ -905,7 +908,7 @@ class NewDatabase:
                 self._database = self.__clean_database()
 
             print("- Extracting inventories")
-            if self.inventory_source == "clic":
+            if self.inventory_source == "clic" and not self._clic_workbook_fallback:
                 # Sector requirements are known at update(), before any scenario
                 # fork or baseline certification. Never eagerly import a catalog.
                 self._database_is_complete = True
@@ -930,7 +933,9 @@ class NewDatabase:
                 imported_inventory_data = True
                 self._database_is_complete = True
 
-        if self.additional_inventories and self.inventory_source == "workbooks":
+        if self.additional_inventories and (
+            self.inventory_source == "workbooks" or self._clic_workbook_fallback
+        ):
             print("- Importing additional inventories")
             data = self.__import_additional_inventories(self.additional_inventories)
             self._database.extend(data)
@@ -1552,6 +1557,15 @@ class NewDatabase:
         wanted = self._clic_loaded_sectors | set(sectors)
         if wanted == self._clic_loaded_sectors:
             return
+        if self._clic_workbook_fallback:
+            self._clic_manifest = {
+                "provider": "workbooks",
+                "reason": "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
+                "requested_system_model": self.system_model,
+                "requested_sectors": sorted(wanted),
+            }
+            self._clic_loaded_sectors = wanted
+            return
         provider = self._clic_provider
         if not hasattr(self, "_clic_base_source_fingerprint"):
             self._clic_base_source_fingerprint = source_store_signature(
@@ -1720,7 +1734,9 @@ class NewDatabase:
 
         if self._can_reload_original_database():
             database = self._load_pickled_database(self.database_cache_filepath)
-            if getattr(self, "inventory_source", "workbooks") == "clic":
+            if getattr(self, "inventory_source", "workbooks") == "clic" and not getattr(
+                self, "_clic_workbook_fallback", False
+            ):
                 # Converted records retain behavior-bearing contracts (battery
                 # boundaries, compression, etc.) beyond the legacy hot cache.
                 from ..inventory.inventory_copy import clone_inventory_dataset

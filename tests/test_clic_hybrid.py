@@ -8,6 +8,7 @@ from unittest.mock import Mock
 
 import pytest
 
+from premise.database.new_database import NewDatabase
 from premise.inventory import clic_hybrid as module
 from premise.inventory.clic_archive import ClicInventoryError
 
@@ -134,6 +135,79 @@ def test_dependency_walk_stops_at_public_replacement_and_retains_licensed_suppli
     assert plan.clic_roots == ("public",)
     assert plan.selected_nodes == frozenset({0, 2})
     assert [path.name for path, _ in plan.sources] == ["licensed.xlsx"]
+
+
+def test_consequential_plan_retains_workbooks_instead_of_clic(monkeypatch):
+    nodes = [
+        {
+            "id": 0,
+            "file": "lci-test.xlsx",
+            "identity": ["public PV", "PV", "GLO", "unit"],
+            "clic_slug": "public-pv",
+            "science_hash": "0",
+            "inputs": [{"clic_slug": "pv-helper"}],
+        },
+        {
+            "id": 1,
+            "file": "lci-test.xlsx",
+            "identity": ["PV helper", "helper", "GLO", "kilogram"],
+            "clic_slug": "pv-helper",
+            "science_hash": "1",
+            "inputs": [],
+        },
+    ]
+    data = {
+        "sector_mappings": {},
+        "hybrid_sources": {
+            "nodes": nodes,
+            "files": {"lci-test.xlsx": {"sha256": "fixture"}},
+            "roles": {},
+        },
+    }
+    monkeypatch.setattr(module, "registry", lambda: data)
+    monkeypatch.setattr(
+        module, "required_roots", lambda *args, **kwargs: ("public-pv",)
+    )
+    import premise.inventory.profiles as profiles
+
+    monkeypatch.setattr(profiles, "profiles", lambda *args, **kwargs: [])
+    sources = [(Path("lci-test.xlsx"), "3.12")]
+
+    cutoff = module.plan_hybrid_inventories(
+        ["electricity"], [], sources, version="3.12", system_model="cutoff"
+    )
+    assert cutoff.clic_roots == ("public-pv",)
+    assert cutoff.selected_nodes == frozenset()
+
+    consequential = module.plan_hybrid_inventories(
+        ["electricity"],
+        [],
+        sources,
+        version="3.12",
+        system_model="consequential",
+    )
+    assert consequential.clic_roots == ()
+    assert consequential.selected_nodes == frozenset({0, 1})
+    assert [path.name for path, _ in consequential.sources] == ["lci-test.xlsx"]
+
+
+def test_consequential_database_records_workbook_fallback_before_clic_resolution():
+    database = object.__new__(NewDatabase)
+    database.inventory_source = "clic"
+    database.system_model = "consequential"
+    database._clic_workbook_fallback = True
+    database._clic_loaded_sectors = set()
+    database._clic_manifest = None
+
+    database.prepare_inventories(["electricity", "fuel"])
+
+    assert database._clic_loaded_sectors == {"electricity", "fuel"}
+    assert database._clic_manifest == {
+        "provider": "workbooks",
+        "reason": "CLIC cutoff inventories cannot be migrated across ecoinvent system models.",
+        "requested_system_model": "consequential",
+        "requested_sectors": ["electricity", "fuel"],
+    }
 
 
 def test_generated_helper_without_slug_cannot_replace_a_retained_activity(

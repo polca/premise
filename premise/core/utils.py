@@ -1178,7 +1178,7 @@ def trim_exchanges(exc: Dict[str, Any]) -> Dict[str, Any]:
             "categories",
             "comment",
         ]
-        and pd.notna(v)
+        and _has_cache_value(v)
     }
 
 
