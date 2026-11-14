@@ -2312,12 +2312,12 @@
           "reference product": "polyethylene terephthalate, granulate, amorphous",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 124,
+        "unapproved_correspondence_count_in_current_39_cohort": 121,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-aluminium-stock-services-39-verification.json",
+        "verification": "docs/development/uvek-chemical-polymer-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Review remaining named chemical/polymer definitions in grouped batches, then delivered PET and metalworking markets. Preserve stock-versus-processing bases and avoid redundant same-supplier helpers.",
+        "next_action": "Batch immobile factory markets after verifying constructor/site units, deterministic shares, capacity/lifetime boundaries and native model differences. Delivered PET and metalworking markets remain separate reviews.",
         "live_freshness_verified": false,
         "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links."
       }
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-aluminium-stock-services-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-chemical-polymer-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
@@ -3653,6 +3653,41 @@
         "limitation": "Aggregated native upstream energy is embedded in biosphere inventory, not explicit electricity/heat purchases; ordinary IAM supplier relinking cannot update that embedded portion.",
         "review": "docs/development/uvek-nylon6-39-review.md",
         "no_zero_energy_or_full_decarbonization_claim": true
+      },
+      {
+        "source_identity": {
+          "location": "RER",
+          "name": "Phthalic anhydride, at plant",
+          "reference product": "Phthalic anhydride, at plant",
+          "unit": "kilogram"
+        },
+        "limitation": "Inherited literature/analogy phthalic-anhydride inventory explicitly lacks further inputs and solid wastes; absent detail is not physically zero and is not filled with invented flows.",
+        "review": "docs/development/uvek-chemical-polymer-39-review.md",
+        "additional_inventory_detail_or_route_not_fabricated": true
+      },
+      {
+        "source_identity": {
+          "location": "RER",
+          "name": "Polyvinylchloride, bulk polymerised, at plant",
+          "reference product": "Polyvinylchloride, bulk polymerised, at plant",
+          "unit": "kilogram"
+        },
+        "limitation": "Bulk-PVC product is a documented emulsion/suspension mixture because actual bulk-route data were unavailable; no distinct bulk-polymerisation model is established.",
+        "review": "docs/development/uvek-chemical-polymer-39-review.md",
+        "additional_inventory_detail_or_route_not_fabricated": true
+      }
+    ],
+    "verified_source_definition_limits": [
+      {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_chain": "packed-milled lime -> loose lime -> crushed limestone for mill",
+        "limitation": "Generic loose-product text calls it quicklime but inspected production inventories describe one-to-one crushed-limestone milling/packing without a modelled calcination step. Do not infer standalone CaO/CaCO3 equivalence or silently rewrite source data.",
+        "review": "docs/development/uvek-chemical-polymer-39-review.md",
+        "new_independent_mineral_conversion_permission": false
       }
     ]
   }

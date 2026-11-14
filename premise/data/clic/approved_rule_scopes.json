@@ -270535,6 +270535,288 @@
           "fingerprint": "d717e4c098bc893afd5ce9a3f6aa9830ff4440ab758bddfb89d343ebacf0abec"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-cd08c3d439ca0c11",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_chemical_polymer_39_review.json",
+      "review_sha256": "43475584d7311dcd13c4cf95541815ac4792f4d1a42ea39c978665014bff7463",
+      "authorization": "Standing autonomous approval of remaining mappings and explicitly documented complete-product/process/grade screening proxies, with inherited-data and operating-chemistry limitations logged for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "phthalic anhydride production",
+            "reference product": "phthalic anhydride",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 17,
+          "metadata_sha256": "34d79bd9abdca86a0cd629cfdba08e3548aad54d55f8a5f2eecaeb8f20e76053",
+          "inventory_sha256": "76aafcd3c71dc45fdf914ca187e6ecc100a9f0b7191bba54a009d61f3ab172d5",
+          "activity_comment_sha256": "3cfcc4b049d29d75bbfa520f5dbdb02dcd9cff9fce28a1efe1a867be13ee7bf0",
+          "product_information_sha256": "45fce04ebce5017c6efeb0eefe5d6db4e4eb1247a0486dbc40a5dbdcbe137d2d"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Phthalic anhydride, at plant",
+              "reference product": "Phthalic anhydride, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 20,
+            "metadata_sha256": "d0f4cf36039fcd39f18670852f5302d01a0e6a34a7ecf4ccc248d24726486bce",
+            "inventory_sha256": "7946e02436af9642f7323efdbb07a05bf1c017318be0e4053923b58844b22a85",
+            "activity_comment_sha256": "b0a1d647c643442c6f3ad98d93eca688108bace025ef86a626d3a670edca5fdc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Phthalic anhydride, at plant",
+              "reference product": "Phthalic anhydride, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 20,
+            "metadata_sha256": "27ee433e61c162f2a21cd3264185aabc9c9f298e935205a881dbe7e6af934b24",
+            "inventory_sha256": "71f57bfeadd0d4232d33235fcb2b5f87812c717fca167f21eec350bc79ed2d86",
+            "activity_comment_sha256": "19a9eff39c6201a2f6e2454af12cac04d3ff1c6f546254a6d961c4c7b9ef840c",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_named_phthalic_anhydride",
+          "source_CAS": "85-44-9",
+          "source_formula": "C8H4O3",
+          "native_exact_assay_independently_established": false,
+          "xylene_input_kg": 0.95,
+          "electricity_kWh": 0.5,
+          "inherited_further_inputs_and_solid_wastes_incomplete": true,
+          "stoichiometry_yield_or_purity_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact European ecoinvent 3.9 cut-off production identity. Source and native named-product references are positive one kg, requiring factor +1. Preserve signed caller product kg, supported uncertainty/formulas, foreground ownership and independent caller inputs/emissions. Phthalic anhydride chemical, bulk-PVC proxy and formulated EPDM profile compound are distinct products; this is not a permission for every chemical or synthetic rubber. Other profiles, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once. Its internal feedstock, process utilities, transport, infrastructure, treatment, direct emissions, allocation, geography, age and uncertainty replace the source model as a screening proxy. Do not add source feedstock, energy, filling/forming, factory, transport or disposal again, reinterpret source negative internal waste references as avoided product, or invent a yield, purity, density, moisture or recovery multiplier. Caller-owned independent exchanges remain. Named product/reference agreement does not establish equal grade, assay, inventory, impact or stochastic behavior; score differences remain unquantified.",
+        "Existing direct rules/default targets and all previous approval fingerprints remain unchanged. No new helper, recipe, literal source omission, runtime Python, alternative sector engine or validation bypass. Shared Premise transformations still operate on explicit eligible suppliers in the ordinary way; complete industry/technology proxies and inherited missing detail do not certify identical future performance.",
+        "Phthalic anhydride is the named one-kg organic chemical, source CAS85-44-9/C8H4O3, modelled without solvent. It is not phthalic acid, isophthalic/terephthalic acid or a resin/solution. Native reference has the same named compound without a solution qualifier; exact native assay/grade is not independently specified. Source/native both include 0.95 kg xylene and 0.5 kWh process electricity per output kg. Input xylene or inferred stoichiometric/reaction yield is not an output conversion factor. Do not apply molecular-weight, hydrolysis, solvent or purity factors or add more xylene, oxygen, chemical plant or energy.",
+        "Both records use inherited mid-1990s literature/analogy data, with unspecified production technology, estimated air emissions and incomplete further-input/solid-waste coverage. Preserve that limitation explicitly: missing exchanges do not demonstrate physically zero auxiliaries or waste. Native retains its own gas/coal/oil combustion, European electricity, internal road/rail freight and direct emissions; source instead buys useful-heat portfolios. Do not equate fuel-input MJ with delivered-heat MJ, add another fuel/heat-efficiency correction or fabricate missing waste/emission details. Source/native water, emission and upstream-model differences remain unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "75aa2db03c3e26b34fb48704f6ffcc292b71acf31f36124eb4e9c880f47cfac2"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-cbc52fef35b97a9c",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_chemical_polymer_39_review.json",
+      "review_sha256": "43475584d7311dcd13c4cf95541815ac4792f4d1a42ea39c978665014bff7463",
+      "authorization": "Standing autonomous approval of remaining mappings and explicitly documented complete-product/process/grade screening proxies, with inherited-data and operating-chemistry limitations logged for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "polyvinylchloride production, bulk polymerisation",
+            "reference product": "polyvinylchloride, bulk polymerised",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "25c55b252224f002f7fef8aea5533f1aa0764141192b670b57a98abaf9aa2271",
+          "inventory_sha256": "74591e2f20bc71868dd5f9b8223243a79d973eb0b91121ddddc5ddd11a6eee85",
+          "activity_comment_sha256": "190a7bf732815003b85f9ae1f175cfc3ef980888961ace74e7d937c7a91f93e9",
+          "product_information_sha256": "4823f8f4e81012706a297226748831661b6e9989c0b46820d64ea8737c3f360f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyvinylchloride, bulk polymerised, at plant",
+              "reference product": "Polyvinylchloride, bulk polymerised, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 2,
+            "metadata_sha256": "c5e26cc8eeff2d203e9ada3fd01b392bc31db0d87b902895e3b59ee30d9475f7",
+            "inventory_sha256": "3e42146774bceab468d0e5cf7269f2d1aa225bfa0073b128377171e09ed437ee",
+            "activity_comment_sha256": "64c8d1750e65e1405ca63396be35e2d91148b66008a5c44482b682366603d569",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyvinylchloride, bulk polymerised, at plant",
+              "reference product": "Polyvinylchloride, bulk polymerised, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 2,
+            "metadata_sha256": "8a65c09af3a63f918d983c233016102c545663ade559bdd32435e2df2c73aa5f",
+            "inventory_sha256": "84c5dd4d6f506578146e1480fda5eccb09f777ff9c3792188a47cee48ab07b22",
+            "activity_comment_sha256": "56bb38aa4a9cd801d4861a55e528239c3ebff39b21a957788cd8f9b6d7b905b7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "documented_bulk_PVC_proxy_mixture",
+          "source_virgin_polymer": true,
+          "native_emulsion_fraction_kg": 0.12766,
+          "native_suspension_fraction_kg": 0.87234,
+          "source_native_nominal_mixture_weights_match": true,
+          "actual_bulk_route_independently_modelled": false,
+          "duplicate_mixture_or_polymerisation_helper_added": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact European ecoinvent 3.9 cut-off production identity. Source and native named-product references are positive one kg, requiring factor +1. Preserve signed caller product kg, supported uncertainty/formulas, foreground ownership and independent caller inputs/emissions. Phthalic anhydride chemical, bulk-PVC proxy and formulated EPDM profile compound are distinct products; this is not a permission for every chemical or synthetic rubber. Other profiles, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once. Its internal feedstock, process utilities, transport, infrastructure, treatment, direct emissions, allocation, geography, age and uncertainty replace the source model as a screening proxy. Do not add source feedstock, energy, filling/forming, factory, transport or disposal again, reinterpret source negative internal waste references as avoided product, or invent a yield, purity, density, moisture or recovery multiplier. Caller-owned independent exchanges remain. Named product/reference agreement does not establish equal grade, assay, inventory, impact or stochastic behavior; score differences remain unquantified.",
+        "Existing direct rules/default targets and all previous approval fingerprints remain unchanged. No new helper, recipe, literal source omission, runtime Python, alternative sector engine or validation bypass. Shared Premise transformations still operate on explicit eligible suppliers in the ordinary way; complete industry/technology proxies and inherited missing detail do not certify identical future performance.",
+        "The label bulk-polymerised PVC is already a documented fallback in both source and native: actual bulk-polymerisation data were unavailable, so their defined product is the same volume-weighted emulsion/suspension-PVC combination. The two nominal kg fractions match (0.12766 emulsion and 0.87234 suspension), summing to one kg. Reuse the complete native combination directly; do not create a duplicate two-input helper, replace it with just one route, add vinyl-chloride polymerisation, electricity, plant, plasticizer, fabrication or a density/moisture multiplier. Route names here are the defined polymer product supplies, not a declared aqueous-latex concentration.",
+        "This does not validate actual bulk-PVC manufacturing or identical resin grade/assay. Native at-plant polymer branches replace source delivered emulsion/suspension markets, so their upstream production, market transport, industry samples, feedstock/energy, allocation, water/emissions, age and internal uncertainty can differ. Branch energy may be aggregated inside native polymer inventories; ordinary utility relinking must not be represented as reconstructing a missing true bulk-PVC route or fully updating embedded industry energy. The inherited fallback is recorded as a source-data limitation."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "eb809c62b7d60921be96981ac2e3fc04d31fd4bcbee31e8f1db09827ef62ad0d"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-caf6300f4c89b64c",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_chemical_polymer_39_review.json",
+      "review_sha256": "43475584d7311dcd13c4cf95541815ac4792f4d1a42ea39c978665014bff7463",
+      "authorization": "Standing autonomous approval of remaining mappings and explicitly documented complete-product/process/grade screening proxies, with inherited-data and operating-chemistry limitations logged for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "synthetic rubber production",
+            "reference product": "synthetic rubber",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 15,
+          "metadata_sha256": "9e4adf2b560cde1d89b283346cb90d227edf77ee10cb7521c99b2f816559de20",
+          "inventory_sha256": "194c22e743ec45ec0ee264dfbbe7168c9ea029f09fe4a311e615a5118554fc0b",
+          "activity_comment_sha256": "7f4ba3a5ef6b27d8ed9d26db782f6fea730215072d82ccb141d1bda2f1278780",
+          "product_information_sha256": "3c79b31014bc037c3e11d07202e520f8f42e8b0805a4647c1c97401211127da4"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Synthetic rubber, at plant",
+              "reference product": "Synthetic rubber, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 17,
+            "metadata_sha256": "ae76eea69161ad83cc929028de959480fa937d27c3e39fee973af14e19c1ef0c",
+            "inventory_sha256": "7cc5dc217ac350deed326b3f952ee9a0a09958381af102230e7b1abc869c0558",
+            "activity_comment_sha256": "02b065c48552821ba747079cfcfd8e490627149e2454dc3e63b2e9c4252bf414",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Synthetic rubber, at plant",
+              "reference product": "Synthetic rubber, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 17,
+            "metadata_sha256": "6c0edd3a9afcf7290e56cc870bf8667aea6741d26fc98158d7a5b24d548e2bf0",
+            "inventory_sha256": "c44949b56d2dc6761ae0c069360e2fa7b3c4b2a966faf8f1b602fd71902f212d",
+            "activity_comment_sha256": "b782838a20e1bcdd3b5acdb9751a861ffeae9f3c28cc830390035e3dd4d0caf3",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "kind": "complete_formulated_EPDM_elastomer_profile",
+          "pure_unvulcanised_rubber": false,
+          "extrusion_and_vulcanisation_already_included": true,
+          "carbon_black_kg": 0.369,
+          "HDPE_proxy_input_kg": 0.251,
+          "PP_proxy_input_kg": 0.0628,
+          "electricity_kWh": 0.719,
+          "mineral_kg": 0.0883,
+          "source_mineral_text_and_actual_inventory_conflict": true,
+          "source_zinc_concentrate_kg": 0.0191,
+          "source_labelled_zinc_fraction": 0.59,
+          "native_primary_zinc_kg": 0.0191,
+          "standalone_mineral_or_zinc_equivalence_authorized": false,
+          "extra_filler_or_curing_or_metal_content_multiplier_added": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the independently inspected exact European ecoinvent 3.9 cut-off production identity. Source and native named-product references are positive one kg, requiring factor +1. Preserve signed caller product kg, supported uncertainty/formulas, foreground ownership and independent caller inputs/emissions. Phthalic anhydride chemical, bulk-PVC proxy and formulated EPDM profile compound are distinct products; this is not a permission for every chemical or synthetic rubber. Other profiles, patches, system models and reverse routes receive no new permission.",
+        "Use each complete native product inventory once. Its internal feedstock, process utilities, transport, infrastructure, treatment, direct emissions, allocation, geography, age and uncertainty replace the source model as a screening proxy. Do not add source feedstock, energy, filling/forming, factory, transport or disposal again, reinterpret source negative internal waste references as avoided product, or invent a yield, purity, density, moisture or recovery multiplier. Caller-owned independent exchanges remain. Named product/reference agreement does not establish equal grade, assay, inventory, impact or stochastic behavior; score differences remain unquantified.",
+        "Existing direct rules/default targets and all previous approval fingerprints remain unchanged. No new helper, recipe, literal source omission, runtime Python, alternative sector engine or validation bypass. Shared Premise transformations still operate on explicit eligible suppliers in the ordinary way; complete industry/technology proxies and inherited missing detail do not certify identical future performance.",
+        "The generic synthetic-rubber label refers specifically to a formulated EPDM elastomer/profile for technical seals, not pure unvulcanised rubber, SBR, natural rubber or any other elastomer. Both records describe polymer/elastomer production, internal mixing, extrusion and salt vulcanisation, including fillers/auxiliaries and internal transport. Their nominal PE/PP proxy inputs, carbon black and process electricity agree (0.251,0.0628,0.369 kg and0.719 kWh per product kg). These are inherited formulation/model quantities, not proof of identical actual EPDM chemistry or a new polymerisation recipe. Do not add another main polymer, carbon black, oil, extrusion or vulcanisation step, rescale to pure-polymer content or remove the caller separately listed processes.",
+        "The source mineral chain is internally ambiguous: packed-milled-lime suppliers lead to loose-product text calling it quicklime, but their actual production inventories take crushed limestone one-for-one and describe milling/sieving/packing without a calcination step. Native instead explicitly buys packed milled limestone. The nominal0.0883kg mineral quantity is retained inside the complete compound proxy; record the source naming/text-versus-inventory conflict rather than assert proven CaO-to-CaCO3 chemistry, add an invented kiln/CO2 or authorize a standalone lime/limestone conversion. Native/source packing, heat, geography and mineral grade can differ.",
+        "A separate material-boundary difference is explicit: source buys0.0191kg of zinc concentrate whose product text states59% zinc, while native buys0.0191kg primary zinc. Mining/concentrate and refined-metal supply differ; equal nominal mass is not equal zinc content or upstream burdens. Retain the complete native compound and report this screening limitation, without multiplying the whole elastomer by0.59, inventing zinc smelting, adding/subtracting zinc or granting standalone concentrate-to-metal equivalence. Source generic inorganic-nitrogen supply expressed asN becomes native potassium-nitrate-asN, so cation/salt and upstream details differ; no whole-product nitrogen/molar correction is inferred. Direct emissions/waste heat, utilities, background supplies, allocation, age and internal uncertainty also differ."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d01b75d5630e17a758a7c1d404e6fba294fead30ce13aa7648590542cef824b8"
+        }
+      ]
     }
   ],
   "superseded_operations": [
