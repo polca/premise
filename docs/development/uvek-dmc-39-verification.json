@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "b4005f25f4a675925296311111a8c7445dad4f11",
+  "scope_registration": {
+    "prior_scopes": 1469,
+    "new_scopes": 1470,
+    "new_rule_ids": [
+      "bp-30a490e8e65d619a"
+    ],
+    "earlier_physical_bindings_reviews_methods_and_source_profiles_unchanged": true,
+    "one_prior_raw_rule_fingerprint_rebound_after_physical_binding_comparison": [],
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_source_manufacturing_signs_uncertainty_alias_and_broad_resource_checks": 31,
+    "premise_source_fresh_cache_withdrawal_and_retained_rows": 5,
+    "new_tests_and_replayer_black_and_ruff": "passed",
+    "premise_clean_installed_package_same_checks": 5
+  },
+  "strict_private_manufacturing_preflight": {
+    "source_producers": 2,
+    "source_nonproduction_rows": [
+      25,
+      37
+    ],
+    "converted_nodes": 28,
+    "approved_unique_manufacturing_dependencies": 30,
+    "source_preserved": true,
+    "name_synonym_CAS_native_search_found_exact_DMC": false,
+    "brightway_writes": 0
+  },
+  "canonical_biosphere_alias": {
+    "source": {
+      "categories": [
+        "water"
+      ],
+      "CAS number": "000096-49-1",
+      "name": "1,3-Dioxolan-2-one",
+      "unit": "kilogram"
+    },
+    "target": {
+      "categories": [
+        "water"
+      ],
+      "CAS number": "000096-49-1",
+      "name": "Ethylene carbonate",
+      "unit": "kilogram"
+    }
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 30,
+    "foreground_biosphere_flows": 140,
+    "native_suppliers": 88,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-30a490e8e65d619a",
+        "source": {
+          "location": "GLO",
+          "name": "market for dimethyl carbonate",
+          "reference product": "dimethyl carbonate",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 9.592326932761353e-08,
+        "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 9.12627820472046e-10,
+          "residual_after": 1.4048566590639869e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.288589574059379e-09,
+          "residual_after": 1.4048583531298814e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies retained two-producer DMC manufacturing,canonical3.10direct emissions,reviewed signed treatment/native input routes and four final-delivery entries against independent flattened native demand and helper emissions. Does not prove original/native score or stochastic equivalence,complete industrial chemistry or battery/export qualification."
+  },
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 40,
+    "current": 39,
+    "removed_rules": [
+      "bp-30a490e8e65d619a"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-1f3253a7a5bd8588",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 39,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-1f3253a7a5bd8588",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "retained_manufacturing_technosphere_entries": 32,
+  "retained_direct_biosphere_entries_per_producer": 15,
+  "retained_market_producer_entries": 2,
+  "retained_market_freight_entries": 4,
+  "verified_existing_dependency_scopes": 34,
+  "existing_recipe_definitions_unchanged": 26,
+  "inherited_literal_recipe_omission_count": 0,
+  "all_earlier_approval_operations_and_fingerprints_unchanged": true,
+  "runtime_python_changes": [],
+  "new_recipe_definitions": 3,
+  "new_source_omissions": [],
+  "user_environment_changed": false,
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "full_test_suite_rerun": false,
+  "reverse_generator_run": false,
+  "clean_forward_generator": {
+    "brightpath_commit": "b4005f25f4a675925296311111a8c7445dad4f11",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "f051a7fc5af197e00342d98880ff405eee7a51222ef654856ae04421c1bef6ba",
+        "committed_sha256": "f051a7fc5af197e00342d98880ff405eee7a51222ef654856ae04421c1bef6ba",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 69540098
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 3,
+    "removed_generated_output_bytes": 106733142,
+    "removed_owned_clean_worktree_file_bytes": 499653996
+  },
+  "tracked_wheel_build": {
+    "brightpath_commit": "b4005f25f4a675925296311111a8c7445dad4f11",
+    "clean_tracked_git_archive_build": true,
+    "unexpected_package_files": [],
+    "installed_resources_match_committed_bytes": [
+      "export/uvek_dmc_39_review.json",
+      "migrations/RESOURCE_MANIFEST.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "export/uvek_archived_unreferenced_reviews.json"
+    ],
+    "removed_unused_wheel_bytes": 43987951,
+    "removed_temporary_tracked_build_source_and_archive_bytes": 1360991732,
+    "retained_installed_package": true
+  }
+}

@@ -283669,6 +283669,70 @@
           "fingerprint": "08d4cbe94d99da14c8fe248426cd9608436d99a63284aaca4dbaf4731eda99c5"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-30a490e8e65d619a",
+      "mapping_method": "reviewed_dmc_39_retained_source_manufacturing",
+      "review_path": "export/uvek_dmc_39_review.json",
+      "review_sha256": "09881206ec069a2579fa988d5645943ba68c26c6e7ccd61a6f133f18a203e87c",
+      "authorization": "Standing user auto-approval of inspected source reconstructions,native input/treatment proxies and helpers,with warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for dimethyl carbonate",
+            "reference product": "dimethyl carbonate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "d0612f452f826ef865820c541476c037e04bfc14902449d73bb5ef08f1974d50",
+          "inventory_sha256": "28e87ffa7b595d5f49984213d3e693590f50a512c1d575dae5bfda3911d8909f",
+          "activity_comment_sha256": "6c258399a07885ab6140affe6a783448fa0957b6fca7f26850c381a7d24180f4",
+          "product_information_sha256": "847da0b38e7f4c1f9f329dbe58dca32449b4eba175cede0a580af7b5a643ccbe"
+        },
+        "native_witnesses": {},
+        "boundary_checks": {
+          "native_lithium_carbonate_used_as_DMC": false,
+          "source_manufacturing_retained": true,
+          "source_producer_nonproduction_counts": [
+            25,
+            37
+          ],
+          "retained_direct_biosphere_per_producer": 15,
+          "retained_market_producer_entries": 2,
+          "retained_market_freight_entries": 4,
+          "existing_recipe_dependency_count": 26,
+          "new_reaction_balance_yield_or_credit": false,
+          "new_source_omission": false
+        }
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9 cut-off global dimethyl-carbonate market is reviewed,per positive1kg DMC. Lithium carbonate is a different substance and is not a DMC product proxy. No exact native DMC stock was found by the inspected name/synonym/CAS616-38-6 search. Reconstruct the two source producer inventories using already reviewed native input/treatment routes and canonical ecoinvent3.10 biosphere definitions. Preserve signed caller mass,supported uncertainty/formulas and separate caller emissions with factor+1; no solution,molar-mass,yield,allocation,energy or balance multiplier is invented.",
+        "Keep both source RER/RoW manufacturing inventories with all25and37nonproduction exchanges respectively:32technosphere entries and15directbiosphere entries per producer. These are allocated source inventory coefficients,not a newly balanced reaction model. Source prose mentions phosgene/methanol while inspected vectors use ethylene carbonate and methanol; retain the actual vectors and document that inconsistency rather than substituting phosgene,changing stoichiometry or adding coproduct/recovery credits. Source utility/site-data,allocation,estimated releases and internal uncertainty remain inherited limitations.",
+        "Thirty exact3.9source technosphere dependency rules and their26existing recipe definitions were independently checked and remain unchanged. Their whole-stock/geographic/fuel/grid/heat,water,wastewater,treatment,allocation,technology,age and internal-uncertainty limitations carry through this reconstruction. Native inventories replace each upstream source supplier once; do not overlay source utilities/emissions on those complete native inputs. Negative source wastewater demand is converted once using its existing verified reference-sign factor,and positive collection/treatment components stay as reviewed. No literal inherited recipe omission or new source/caller omission is present in this26recipe closure.",
+        "Preserve all15direct source resource/emission exchanges per producer,receiving compartments,units,signed amounts and supplied uncertainty. The source water emission named1,3-Dioxolan-2-one becomes canonical3.10Ethylene carbonate: both installed definitions have CAS96-49-1,water compartment andkg reference,so this is a synonym without a mass/speciation factor. All other direct identities remain canonical matches. Keep process emissions separate from upstream utility/treatment releases; do not add a second carbon/water balance or interpret BOD/COD/DOC/TOC as extra independent carbon emissions.",
+        "Keep the two original market producer shares and four final rail,barge,road and container-sea delivery entries separately,in source order and with supplied uncertainty. Reuse the existing exact3.9freight correspondences at original tonne-km,without renormalizing supply shares or changing distances,payloads or fleet weights. Final DMC delivery is distinct from native input/feedstock delivery. The two manufacturing definitions and their market are the only new recipe definitions;existing helpers are reused without duplicate copies or added processing stages.",
+        "Only target UVEK technosphere with canonical ecoinvent3.10biosphere is verified here. The supplied3.9manufacturing model is reconstructed through native inputs rather than replaced by an experimentally measured native DMC plant. Source/native precursor production,geography,technology,allocation,water,emission coverage,vintage and uncertainty can materially change scores. Finite LCIs and independent native-demand consistency do not establish source/native LCIA or stochastic equivalence,complete industrial coverage,other source releases,patches,system models,reverse conversion or whole battery/export qualification."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c190881b0db2bd353ba189839878a539f73f39c56fa9685f3cd02f107ab80d5c"
+        }
+      ]
     }
   ],
   "superseded_operations": [
