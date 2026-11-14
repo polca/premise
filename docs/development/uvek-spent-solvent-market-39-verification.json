@@ -1,0 +1,213 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "452e5fdb35e6bde7f073ef10f99492d39bad3575",
+  "scope_registration": {
+    "prior_scopes": 1426,
+    "new_scopes": 1428,
+    "all_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-58981d0406fe685b",
+      "bp-7c61ba7557f8a2aa"
+    ],
+    "prior_incinerator_rule_unchanged": true,
+    "literal_parent_recipe_omission_count": 2,
+    "new_caller_exchange_omissions": [],
+    "runtime_python_changes": []
+  },
+  "tests": {
+    "brightpath_new_market_prior_incinerator_and_broad_migration_resources": 56,
+    "nonblocked_catalogue_mapping_identities_executed": 30269,
+    "premise_source_preparation_cache_omission_guards_and_prior_service": 15,
+    "premise_clean_installed_package_same_checks": 15,
+    "lint_changed_maintainer_and_regression_files": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 3,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 3,
+    "signed_foreground_LCI_solves": 4,
+    "independent_native_reference_LCI_solves": 2,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-58981d0406fe685b",
+        "source": {
+          "location": "RoW",
+          "name": "market for spent solvent mixture",
+          "reference product": "spent solvent mixture",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 2.787693372983993e-10,
+          "residual_after": 1.9968293511751778e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 2.787693372983993e-10,
+          "residual_after": 7.610796063304346e-17,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-7c61ba7557f8a2aa",
+        "source": {
+          "location": "RoW",
+          "name": "treatment of spent solvent mixture, hazardous waste incineration",
+          "reference product": "spent solvent mixture",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": -2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 0.0,
+        "refined_max_abs_inventory_difference": 4.9774807958396e-29,
+        "full_graph_residual": {
+          "residual_before": 6.227260224850888e-10,
+          "residual_after": 1.7135222296770132e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.227260224850888e-10,
+          "residual_after": 1.7135222296770132e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies signed wet-kg treatment-service interfaces, retained incineration shares and collection, with exact empty allocated kiln handoffs recorded. Native-demand numerical consistency is not full source/native LCI, LCIA, uncertainty or portfolio equivalence; no battery or export qualification."
+  },
+  "installed_package": {
+    "brightpath_commit": "452e5fdb35e6bde7f073ef10f99492d39bad3575",
+    "clean_tracked_git_archive_build": true,
+    "unexpected_package_files": [],
+    "installed_resources_match_committed_bytes": [
+      "export/uvek_spent_solvent_market_39_review.json",
+      "migrations/RESOURCE_MANIFEST.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "export/uvek_archived_unreferenced_reviews.json"
+    ],
+    "removed_unused_wheel_bytes": 43696384,
+    "removed_temporary_tracked_build_source_and_archive_bytes": 1354692945,
+    "retained_installed_package": true
+  },
+  "clean_forward_generator": {
+    "brightpath_commit": "452e5fdb35e6bde7f073ef10f99492d39bad3575",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "63e88136b546b3b1605f4df98a59a90a02494ec4c6086d503fb41246417dd5fd",
+        "committed_sha256": "63e88136b546b3b1605f4df98a59a90a02494ec4c6086d503fb41246417dd5fd",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 69103175
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 1,
+    "removed_generated_output_bytes": 106296219,
+    "removed_owned_clean_worktree_file_bytes": 497323407
+  },
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 80,
+    "current": 79,
+    "removed_rules": [
+      "bp-58981d0406fe685b"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-9f6f2c29e3e84ba1",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 79,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-9f6f2c29e3e84ba1",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "preexisting_resource_test_expectations_refreshed": {
+    "baseline_installed_package_reproduces_old_count_mismatches": true,
+    "historical_test_commit": "bd0b91df3935158b0a23a72b7962011b4d596094",
+    "biosphere_mapped_before": 5390,
+    "biosphere_mapped_after": 5391,
+    "biosphere_unresolved_before": 6080,
+    "biosphere_unresolved_after": 6079,
+    "cause": "Reviewed same-CAS Quizalofop ethyl ester/Quizalofop-ethyl identity in exact source3.8 agricultural soil.",
+    "no_longer_blocked_rule_ids": [
+      "bp-daed85adc1fa3b47",
+      "bp-4c4b28fe5a79d86b"
+    ],
+    "newly_blocked_rules": [],
+    "nonblocked_execution_count_before": 30267,
+    "nonblocked_execution_count_after": 30269,
+    "coverage_assertions_removed": false
+  },
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [
+    "scripts/review_uvek_spent_solvent_market_39.py",
+    "scripts/generate_uvek_migration_resources.py: frozen replay hook"
+  ],
+  "new_helpers": 1,
+  "retained_incineration_entries": 2,
+  "retained_freight_entries": 8,
+  "literal_empty_allocated_kiln_omissions": 2,
+  "new_caller_exchange_omissions": [],
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "full_test_suite_rerun": false,
+  "reverse_generator_run": false
+}

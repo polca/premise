@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-58981d0406fe685b",
+        "rule_id": "bp-9f6f2c29e3e84ba1",
         "source": {
-          "location": "RoW",
-          "name": "market for spent solvent mixture",
-          "reference product": "spent solvent mixture",
+          "location": "GLO",
+          "name": "market for tetrahydrofuran",
+          "reference product": "tetrahydrofuran",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 80,
+        "unapproved_correspondence_count_in_current_39_cohort": 79,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-cooling-energy-39-verification.json",
+        "verification": "docs/development/uvek-spent-solvent-market-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Review the negative-reference spent-solvent market treatment portfolio and transport against the complete native incineration service. Existing opposite-reference sign factor is already -1; do not mistake this remaining compatibility review for a missing sign correction.",
+        "next_action": "Review tetrahydrofuran and related pending chemical supplies, checking product basis, native producer boundaries and original delivery before selecting direct stock or a retained-delivery helper.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all80 pending first3.9-cohort details."
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all79 pending first3.9-cohort details."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-cooling-energy-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-spent-solvent-market-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

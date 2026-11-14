@@ -278206,6 +278206,344 @@
           "fingerprint": "36b2af2767b15818d17df149b96982a82c71d9802e21c58cadb0cac79a126323"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-58981d0406fe685b",
+      "mapping_method": "reviewed_spent_solvent_market_39_retained_collection",
+      "review_path": "export/uvek_spent_solvent_market_39_review.json",
+      "review_sha256": "43a31d815a4123658d71850ed173208f1e76599be32bba5683c4db7e92643a22",
+      "authorization": "Standing autonomous approval of inspected remaining mappings and exact empty cut-off handoff omissions, with explicit warnings and literal audit records.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for spent solvent mixture",
+          "reference product": "spent solvent mixture",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for spent solvent mixture",
+            "reference product": "spent solvent mixture",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 12,
+          "metadata_sha256": "c0ff7dc6f8f39093b12147f41b05739e2398d8c5e44684b14b87b4b29483b2b8",
+          "inventory_sha256": "5baa0d8b66d4f64cb8e02bbe2fc2ae546ca0342d37d5ea146d090e95d1d8da09",
+          "activity_comment_sha256": "521227aa049600b4b8773c8f414a14d565bafd8878e7c16bdd7bfa9e3c413498",
+          "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of spent solvent mixture, hazardous waste incineration, with energy recovery",
+              "reference product": "spent solvent mixture",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 84,
+            "metadata_sha256": "7b1e6f173adfec5ad1e167971c808e7a8c90085325c16d6234e78bd1d3e5ea1d",
+            "inventory_sha256": "c45e52cf92f71c0cad643102d9f19ad63549cb324577ff33603838d36c3e4b7e",
+            "activity_comment_sha256": "539625dd73814cf156b8e54b5438ffa11b6820933c6dbbd54cde0562c6892cc7",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          },
+          {
+            "identity": {
+              "name": "treatment of spent solvent mixture, hazardous waste incineration",
+              "reference product": "spent solvent mixture",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 84,
+            "metadata_sha256": "7a3d69a689b8b3cf80954e47ccb39fef82769158f94edd5e87c3ca650593b12c",
+            "inventory_sha256": "50d88d748ccd18a37cc84f2733196b27a7f617b939d3c1e630da7b80dd1861fe",
+            "activity_comment_sha256": "2f300d7fb264eb70f821dc031fcb4b741e5bcc29f26de2a8fc20ffa886d05e75",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "spent solvent mixture",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "e7a29a56a419948ba4e9610b07001fa6c40ea757633fb766c28ccb6046458523",
+            "inventory_sha256": "4d5b7669dc1c35c82b470d51903779dd944c080a39821cf26844b1d3a2a17401",
+            "activity_comment_sha256": "290337ece226b7b65674b1e7a438ff8a4ab1b5a4211aee712722e2f148990cf0",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "spent solvent mixture",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "2bd4ab767e704614b30cfe970e8e9249a4a8301a40f8872278583ec3641841d8",
+            "inventory_sha256": "d8381dccea8c1f59926cc937ede95c642c4a3f9b90f22b95ccdf81cc0271ff26",
+            "activity_comment_sha256": "ab6563bc5de9bd8c32bfeb9b271dbb8a032cea6b4d81f62bd38d27590e6b1cda",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          }
+        ],
+        "recipe_id": "spent-solvent-market-39-retained-incineration-collection",
+        "approved_recipe_source_omissions": {
+          "spent-solvent-market-39-retained-incineration-collection": [
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "name": "market for spent solvent mixture",
+                "reference product": "spent solvent mixture",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "bebbb93899649d06dbf829b123a3e6ec2ba251590511915d85e95a7712faf5d4",
+              "original_index": 2,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "spent solvent mixture",
+                "location": "US",
+                "unit": "kilogram",
+                "amount": -0.0360726401153197,
+                "uncertainty type": 0,
+                "loc": -0.0360726401153197,
+                "type": "technosphere"
+              },
+              "rationale": "Omit exactly the two source kiln handoffs with independently inspected negative1kg waste references and no nonproduction exchanges. This is the source cut-off allocation boundary, not evidence that physical solvent use in a kiln has no impacts. Their original signed quantities, statistics, positions, full parent-inventory hash and empty-supplier witnesses are frozen. No clinker product, kiln fuel, incineration burden, avoided fuel, avoided clinker or recovery credit is invented for these empty allocated services. No nonempty or uninspected treatment is assigned zero; caller exchanges are not omitted. Empty allocated supplier inventory SHA256: 4d5b7669dc1c35c82b470d51903779dd944c080a39821cf26844b1d3a2a17401"
+            },
+            {
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "source_activity": {
+                "name": "market for spent solvent mixture",
+                "reference product": "spent solvent mixture",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "bebbb93899649d06dbf829b123a3e6ec2ba251590511915d85e95a7712faf5d4",
+              "original_index": 4,
+              "source_exchange": {
+                "name": "clinker production",
+                "reference product": "spent solvent mixture",
+                "location": "RoW",
+                "unit": "kilogram",
+                "amount": -0.355267550697279,
+                "uncertainty type": 0,
+                "loc": -0.355267550697279,
+                "type": "technosphere"
+              },
+              "rationale": "Omit exactly the two source kiln handoffs with independently inspected negative1kg waste references and no nonproduction exchanges. This is the source cut-off allocation boundary, not evidence that physical solvent use in a kiln has no impacts. Their original signed quantities, statistics, positions, full parent-inventory hash and empty-supplier witnesses are frozen. No clinker product, kiln fuel, incineration burden, avoided fuel, avoided clinker or recovery credit is invented for these empty allocated services. No nonempty or uninspected treatment is assigned zero; caller exchanges are not omitted. Empty allocated supplier inventory SHA256: d8381dccea8c1f59926cc937ede95c642c4a3f9b90f22b95ccdf81cc0271ff26"
+            }
+          ]
+        },
+        "empty_allocated_kiln_witnesses": [
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "spent solvent mixture",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "e7a29a56a419948ba4e9610b07001fa6c40ea757633fb766c28ccb6046458523",
+            "inventory_sha256": "4d5b7669dc1c35c82b470d51903779dd944c080a39821cf26844b1d3a2a17401",
+            "activity_comment_sha256": "290337ece226b7b65674b1e7a438ff8a4ab1b5a4211aee712722e2f148990cf0",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "spent solvent mixture",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "2bd4ab767e704614b30cfe970e8e9249a4a8301a40f8872278583ec3641841d8",
+            "inventory_sha256": "d8381dccea8c1f59926cc937ede95c642c4a3f9b90f22b95ccdf81cc0271ff26",
+            "activity_comment_sha256": "ab6563bc5de9bd8c32bfeb9b271dbb8a032cea6b4d81f62bd38d27590e6b1cda",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          }
+        ],
+        "incinerator_inventory_equality": {
+          "nonproduction_count_each": 84,
+          "excluded_metadata_fields": [
+            "output",
+            "name"
+          ],
+          "full_nonproduction_records_equal": true,
+          "canonical_physical_records_sha256": "7e81b3bc3f124e88b80c86b4bb6fd87cf44e23d1e6596d84195b108e069194bd"
+        }
+      },
+      "limitations": [
+        "New permissions cover only the inspected exact ecoinvent3.9 cut-off RoW spent-solvent treatment market and RoW hazardous-waste incineration without the energy-recovery suffix. Negative1kg waste references become positive1kg native treatment-service references with factor-1 once; preserve caller wet kg, signed uncertainty/formulas, foreground ownership and separate caller emissions. The market helper is positive1kg treatment service; its retained positive collection freight must stay positive. No dry-mass, moisture, heating-value, efficiency or allocation correction, cross-system or inverse permission is added.",
+        "Preserve the two source incineration entries independently at their original treatment shares, and all eight original freight entries: five country rail contributions and three country road contributions. Do not normalize the remaining incineration shares to one or move the empty kiln shares into incineration. Complete native European generic freight rail and heavy-lorry fleet retain their own infrastructure/traction/fuel/loading model as geographic, fleet, technology and vintage screening proxies. Source transport amounts and supported uncertainty remain unchanged; do not add a distance/payload correction or a second collection inventory.",
+        "Omit exactly the two source kiln handoffs with independently inspected negative1kg waste references and no nonproduction exchanges. This is the source cut-off allocation boundary, not evidence that physical solvent use in a kiln has no impacts. Their original signed quantities, statistics, positions, full parent-inventory hash and empty-supplier witnesses are frozen. No clinker product, kiln fuel, incineration burden, avoided fuel, avoided clinker or recovery credit is invented for these empty allocated services. No nonempty or uninspected treatment is assigned zero; caller exchanges are not omitted.",
+        "The with-energy-recovery and without-suffix source incinerators have identical full nonproduction exchange records after excluding owner/name metadata:84 exchanges each. Reuse the earlier independently reviewed complete native solvent incinerator for both, at the same16.5%water wet-kg basis. Process names alone must not create different recovered-energy credits. Retain each source treatment share separately even though both use the same native stock.",
+        "Complete native hazardous-waste incineration matches the source documented solvent mixture, 16.5% water, fossil-carbon content and halogen composition, HHV 23.68/LHV 21.7 MJ/kg and 0.07563 kg residues. Both describe Swiss 2000 wet scrubbing/low-dust SCR technology. Use that complete service once, including native incineration, process energy, reagents, stabilization, landfill releases, plant and landfill operation/construction. Do not add collection, another ash-treatment inventory, metal recovery, recovered-material or avoided-energy credit.",
+        "All 51 source direct biosphere exchanges match native2026 exactly on publisher UUID, full compartment, unit and signed amount. Native additionally lists waste heat 3.2859 MJ to surface water and 17.147 MJ to urban air close to ground. Retain those native emissions without balancing them against recoverable-energy prose or inventing an avoided-heat exchange; their score effect and native internal uncertainty differences remain unquantified. No full upstream LCI, LCIA or stochastic equivalence is claimed.",
+        "Both process descriptions allocate 100% of burdens to disposal with no energy substitution or expansion. Source describes 17.11 MJ thermal and 1.27 MJ electrical energy; native prose reverses those two labels. Neither recorded inventory has an exported recovered-energy credit or co-product production exchange. Native contains no negative technosphere exchange; source has only negative hydrated-waste-cement disposal, not an energy credit. Treat the reversed native labels as an unresolved documentation inconsistency: do not infer new coefficients, correct the source data or turn recovered energy into a credit.",
+        "Source regional raw-material/energy supply groups are replaced by the complete native Swiss/European background. Source useful light-oil heat 1.222 MJ and useful gas heat 0.184428 MJ differ in reference basis from native 1.3 MJ boiler fuel and 0.20492 MJ industrial-furnace fuel. Source and native total solidification cement are both 0.030252 kg; source negative 0.07563 kg waste-cement disposal becomes the native positive service inside their own inventories. Native CH/RER lorry/rail and upstream chemical/geographic/solution-reference, energy, allocation, age, infrastructure and uncertainty differences remain screening warnings. Do not copy source utilities/reagents or apply assumed solution conversions on top of the native complete inventory.",
+        "Only the market exact3.9 recipe override/review metadata and two Premise source-profile permissions change. The literal default market target, native treatment rule and all earlier approved permissions/fingerprints remain unchanged. The profile-specific helper is verified only for source3.9; other source releases do not acquire its reviewed status. Omission permission is bounded to the exact parent/profile/helper and each literal source exchange; compatibility permission alone does not authorize another omission. No runtime Python module, alternative sector engine or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "56da55080a95e13b5b4b162f9e75f6403551019fd2491a9afb1c833c5b1ba0be"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-7c61ba7557f8a2aa",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_spent_solvent_market_39_review.json",
+      "review_sha256": "43a31d815a4123658d71850ed173208f1e76599be32bba5683c4db7e92643a22",
+      "authorization": "Standing autonomous approval of inspected remaining mappings and exact empty cut-off handoff omissions, with explicit warnings and literal audit records.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "treatment of spent solvent mixture, hazardous waste incineration",
+          "reference product": "spent solvent mixture",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "treatment of spent solvent mixture, hazardous waste incineration",
+            "reference product": "spent solvent mixture",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 84,
+          "metadata_sha256": "7a3d69a689b8b3cf80954e47ccb39fef82769158f94edd5e87c3ca650593b12c",
+          "inventory_sha256": "50d88d748ccd18a37cc84f2733196b27a7f617b939d3c1e630da7b80dd1861fe",
+          "activity_comment_sha256": "2f300d7fb264eb70f821dc031fcb4b741e5bcc29f26de2a8fc20ffa886d05e75",
+          "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+        },
+        "source_producer_witnesses": [],
+        "recipe_id": null,
+        "approved_recipe_source_omissions": {},
+        "empty_allocated_kiln_witnesses": [
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "spent solvent mixture",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "e7a29a56a419948ba4e9610b07001fa6c40ea757633fb766c28ccb6046458523",
+            "inventory_sha256": "4d5b7669dc1c35c82b470d51903779dd944c080a39821cf26844b1d3a2a17401",
+            "activity_comment_sha256": "290337ece226b7b65674b1e7a438ff8a4ab1b5a4211aee712722e2f148990cf0",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          },
+          {
+            "identity": {
+              "name": "clinker production",
+              "reference product": "spent solvent mixture",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 0,
+            "metadata_sha256": "2bd4ab767e704614b30cfe970e8e9249a4a8301a40f8872278583ec3641841d8",
+            "inventory_sha256": "d8381dccea8c1f59926cc937ede95c642c4a3f9b90f22b95ccdf81cc0271ff26",
+            "activity_comment_sha256": "ab6563bc5de9bd8c32bfeb9b271dbb8a032cea6b4d81f62bd38d27590e6b1cda",
+            "product_information_sha256": "a296903a521a2574cb244388ed76584d7c62f7486bbc5e16adedeb2b7ab3ccbc"
+          }
+        ],
+        "incinerator_inventory_equality": {
+          "nonproduction_count_each": 84,
+          "excluded_metadata_fields": [
+            "output",
+            "name"
+          ],
+          "full_nonproduction_records_equal": true,
+          "canonical_physical_records_sha256": "7e81b3bc3f124e88b80c86b4bb6fd87cf44e23d1e6596d84195b108e069194bd"
+        }
+      },
+      "limitations": [
+        "New permissions cover only the inspected exact ecoinvent3.9 cut-off RoW spent-solvent treatment market and RoW hazardous-waste incineration without the energy-recovery suffix. Negative1kg waste references become positive1kg native treatment-service references with factor-1 once; preserve caller wet kg, signed uncertainty/formulas, foreground ownership and separate caller emissions. The market helper is positive1kg treatment service; its retained positive collection freight must stay positive. No dry-mass, moisture, heating-value, efficiency or allocation correction, cross-system or inverse permission is added.",
+        "Preserve the two source incineration entries independently at their original treatment shares, and all eight original freight entries: five country rail contributions and three country road contributions. Do not normalize the remaining incineration shares to one or move the empty kiln shares into incineration. Complete native European generic freight rail and heavy-lorry fleet retain their own infrastructure/traction/fuel/loading model as geographic, fleet, technology and vintage screening proxies. Source transport amounts and supported uncertainty remain unchanged; do not add a distance/payload correction or a second collection inventory.",
+        "Omit exactly the two source kiln handoffs with independently inspected negative1kg waste references and no nonproduction exchanges. This is the source cut-off allocation boundary, not evidence that physical solvent use in a kiln has no impacts. Their original signed quantities, statistics, positions, full parent-inventory hash and empty-supplier witnesses are frozen. No clinker product, kiln fuel, incineration burden, avoided fuel, avoided clinker or recovery credit is invented for these empty allocated services. No nonempty or uninspected treatment is assigned zero; caller exchanges are not omitted.",
+        "The with-energy-recovery and without-suffix source incinerators have identical full nonproduction exchange records after excluding owner/name metadata:84 exchanges each. Reuse the earlier independently reviewed complete native solvent incinerator for both, at the same16.5%water wet-kg basis. Process names alone must not create different recovered-energy credits. Retain each source treatment share separately even though both use the same native stock.",
+        "Complete native hazardous-waste incineration matches the source documented solvent mixture, 16.5% water, fossil-carbon content and halogen composition, HHV 23.68/LHV 21.7 MJ/kg and 0.07563 kg residues. Both describe Swiss 2000 wet scrubbing/low-dust SCR technology. Use that complete service once, including native incineration, process energy, reagents, stabilization, landfill releases, plant and landfill operation/construction. Do not add collection, another ash-treatment inventory, metal recovery, recovered-material or avoided-energy credit.",
+        "All 51 source direct biosphere exchanges match native2026 exactly on publisher UUID, full compartment, unit and signed amount. Native additionally lists waste heat 3.2859 MJ to surface water and 17.147 MJ to urban air close to ground. Retain those native emissions without balancing them against recoverable-energy prose or inventing an avoided-heat exchange; their score effect and native internal uncertainty differences remain unquantified. No full upstream LCI, LCIA or stochastic equivalence is claimed.",
+        "Both process descriptions allocate 100% of burdens to disposal with no energy substitution or expansion. Source describes 17.11 MJ thermal and 1.27 MJ electrical energy; native prose reverses those two labels. Neither recorded inventory has an exported recovered-energy credit or co-product production exchange. Native contains no negative technosphere exchange; source has only negative hydrated-waste-cement disposal, not an energy credit. Treat the reversed native labels as an unresolved documentation inconsistency: do not infer new coefficients, correct the source data or turn recovered energy into a credit.",
+        "Source regional raw-material/energy supply groups are replaced by the complete native Swiss/European background. Source useful light-oil heat 1.222 MJ and useful gas heat 0.184428 MJ differ in reference basis from native 1.3 MJ boiler fuel and 0.20492 MJ industrial-furnace fuel. Source and native total solidification cement are both 0.030252 kg; source negative 0.07563 kg waste-cement disposal becomes the native positive service inside their own inventories. Native CH/RER lorry/rail and upstream chemical/geographic/solution-reference, energy, allocation, age, infrastructure and uncertainty differences remain screening warnings. Do not copy source utilities/reagents or apply assumed solution conversions on top of the native complete inventory.",
+        "Only the market exact3.9 recipe override/review metadata and two Premise source-profile permissions change. The literal default market target, native treatment rule and all earlier approved permissions/fingerprints remain unchanged. The profile-specific helper is verified only for source3.9; other source releases do not acquire its reviewed status. Omission permission is bounded to the exact parent/profile/helper and each literal source exchange; compatibility permission alone does not authorize another omission. No runtime Python module, alternative sector engine or validation bypass."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a979b69588cd18f86ab6b0c98ac7d35c012059cfb0ef1c69b3cbf5867e9d141f"
+        }
+      ]
     }
   ],
   "superseded_operations": [
