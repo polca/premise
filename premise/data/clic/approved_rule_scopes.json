@@ -21816,7 +21816,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "3f1ebb70f508db5d6e0ac272ea024eeed5cdd4719277959d74044bb62897ebd9"
+          "fingerprint": "ad69de1fb10b7a3bb7e39de9efd66279258f362e5da88e41066a877f5d3224f0"
         }
       ]
     },
@@ -195452,7 +195452,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "f4afb26ab22ecf52e4da77fe0fbaa830f3f11db07d7e17f4874b30aba4d802cc"
+          "fingerprint": "f4e22084a6fb9bdae7328038541574fea084f09f91bcbdb765bbe10649d969ed"
         }
       ]
     },
@@ -195908,7 +195908,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "0e35497fcf85aed7afbeaa6f6d48521db7fbd6e20f55cc9db57211fdfff4ad05"
+          "fingerprint": "138765923b54aeb0928734b355550a9c67a9016464e7bb385632caf4665d95c4"
         }
       ]
     },
@@ -278542,6 +278542,554 @@
             "version": "2025"
           },
           "fingerprint": "a979b69588cd18f86ab6b0c98ac7d35c012059cfb0ef1c69b3cbf5867e9d141f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-9f6f2c29e3e84ba1",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_solvent_supply_markets_39_review.json",
+      "review_sha256": "8b2e76f1a239187ba5fe1c619b7bb275ec629a20f57c9c1d75100d981b897865",
+      "authorization": "Standing autonomous approval of coming modelling decisions and explicit complete-native product/feedstock/technology/geographic screening proxies, with original quantities, limitations and decision records retained for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for tetrahydrofuran",
+            "reference product": "tetrahydrofuran",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "7edca57ebddacdc9ee067c3d4a56004da3a87fee9988c9cbe1411e5bd1e5136f",
+          "inventory_sha256": "83bd209ca74aea4d0e8f41138288aea00280b4cd5e4a4b0a8e06bfee3ae948f0",
+          "activity_comment_sha256": "26b42be1cbaca8ca26fe17f6b3d688aa5fe2c91d64b1ab411d543a917cfb30cf",
+          "product_information_sha256": "e0e3ec5d6605c51a65cec096cbc1ba19f10c05e9e43e8ea70d95e8cb568590b7"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Tetrahydrofuran, at plant",
+              "reference product": "Tetrahydrofuran, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 16,
+            "metadata_sha256": "038635614767ab8553f4dbb8213212ab593c37ea79f533e85b0e68c1e8eee673",
+            "inventory_sha256": "8ca511c675b744d1bea77e1a8489bf90d1f88b7a4017acf3c585c25ff76875cd",
+            "activity_comment_sha256": "f5cfda8902ea1df29c7eb13b3f59fd7a10523c2cb0d3db01fdab44fb75fa80aa",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Tetrahydrofuran, at plant",
+              "reference product": "Tetrahydrofuran, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 16,
+            "metadata_sha256": "f3ff5edba2d074a3d1e176fcf8f01240c351a5ef0a08527f1d73917cfd6a8128",
+            "inventory_sha256": "29188f2306c6a487ea71472a7e5f4d130e0842513a1578fa8de489a398288108",
+            "activity_comment_sha256": "289acfe9f4defee4d025a871dd0f19e1d93592b8185a626c2d5140152a7cf4fd",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "selected_native_producer_witnesses": {
+          "tetrahydrofuran": {
+            "2025": {
+              "identity": {
+                "name": "Tetrahydrofuran, at plant",
+                "reference product": "Tetrahydrofuran, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 16,
+              "metadata_sha256": "038635614767ab8553f4dbb8213212ab593c37ea79f533e85b0e68c1e8eee673",
+              "inventory_sha256": "8ca511c675b744d1bea77e1a8489bf90d1f88b7a4017acf3c585c25ff76875cd",
+              "activity_comment_sha256": "f5cfda8902ea1df29c7eb13b3f59fd7a10523c2cb0d3db01fdab44fb75fa80aa",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "2026": {
+              "identity": {
+                "name": "Tetrahydrofuran, at plant",
+                "reference product": "Tetrahydrofuran, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 16,
+              "metadata_sha256": "f3ff5edba2d074a3d1e176fcf8f01240c351a5ef0a08527f1d73917cfd6a8128",
+              "inventory_sha256": "29188f2306c6a487ea71472a7e5f4d130e0842513a1578fa8de489a398288108",
+              "activity_comment_sha256": "289acfe9f4defee4d025a871dd0f19e1d93592b8185a626c2d5140152a7cf4fd",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "boundary_checks": {
+          "kind": "tetrahydrofuran",
+          "CAS": "109-99-9",
+          "formula": "C4H8O",
+          "source_pure_substance": true,
+          "native_exact_assay_independently_established": false,
+          "new_butanediol_or_yield_factor": false
+        }
+      },
+      "limitations": [
+        "New scientific permissions cover only the independently inspected exact ecoinvent3.9 cut-off chemical markets. Positive one-kg named-product references retain factor+1, signed caller quantities, uncertainty/formulas, foreground ownership and separate inputs/emissions. Preserve every original producer and final-delivery entry at its original quantity and supported uncertainty. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each selected complete native factory-gate producer once. Native feedstock, reaction model, allocation, internal raw-material transport, energy, emissions, waste and infrastructure replace source producer internals. Do not copy source producer inputs/releases on top, add reaction yield, moisture, dry/solution, density, molecular-weight, allocation or heating-value multipliers, invent avoided coproduct credits or normalize supplier shares. Exact grade, purity, allocation, process performance, LCI/LCIA and stochastic equivalence are not established; impacts can differ materially and remain unquantified.",
+        "Keep original source final freight separately from native producer upstream transport. Native European rail/road/barge and ocean container services are explicit geographic, fleet, fuel, traction, loading, infrastructure and vintage proxies. Methanol ocean delivery uses the complete native tanker rather than a container ship; source chemical tanker and native generic transoceanic tanker fleets/cargo/cleaning/return-trip assumptions can differ. No extra distance, payload, loss or fleet-share multiplier is invented. Native regional-storage distribution is not added on top of retained source-market freight.",
+        "No literal source/caller omission, empty supplier, extra recovery credit, runtime Python change or alternative Premise sector engine. Existing literal default targets, unrelated rules, old recipe/review bodies and historical evidence files remain unchanged. Only exact3.9 selects these four new delivery helpers. Three existing ammonia/methanol source3.6/3.8 permissions retain their exact supplier/factor/recipe closure and original review bytes/methods/source versions; content-bound fingerprints are rebound only after that full physical equality is proved.",
+        "Use named tetrahydrofuran/oxolane, CAS109-99-9/C4H8O, as product kg, not butanediol, a polymer or solvent solution. Source and native use the inherited1,4-butanediol cyclation model; the source producer reference is allocated one kg THF, not its1.2626kg butanediol feed. Keep both original RER/RoW shares, using complete native European production for each. RoW-to-Europe, estimated process energy/releases, source useful heat versus native fuel reference and upstream technology/transport differences remain screening warnings. Add no second butanediol, heat, electricity, condensation/water balance or conversion-yield correction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "dbae579c0e27dd315fde71f0ece8ae931fa30309bc0e5ce009208b4e753679b1"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-ce1c94b4a3defb29",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_solvent_supply_markets_39_review.json",
+      "review_sha256": "8b2e76f1a239187ba5fe1c619b7bb275ec629a20f57c9c1d75100d981b897865",
+      "authorization": "Standing autonomous approval of coming modelling decisions and explicit complete-native product/feedstock/technology/geographic screening proxies, with original quantities, limitations and decision records retained for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for dichloromethane",
+            "reference product": "dichloromethane",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 9,
+          "metadata_sha256": "cfd842ba43dcb116a788ee6185a541320d47492ca24f55ed8f123c6a861c88e0",
+          "inventory_sha256": "1467e229deb3fdea8effc540492d12338d88e079352a2c7b90ba69caf3418d75",
+          "activity_comment_sha256": "677ec2e0ea3f2026ff008caccb22ab7c3c3fe7b8554ee7fcce81e53a0b18701d",
+          "product_information_sha256": "8037a61984c155cce53c6f651d8995a3ae2cdb36e23c11bcb66ce54a52fd5592"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Dichloromethane, at plant",
+              "reference product": "Dichloromethane, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 93,
+            "metadata_sha256": "7e60cc597dcc4664551d0b43a5effb161ceaa7852cd2c60f3fa75b8cf329cbfa",
+            "inventory_sha256": "d52738b31b3679699681bb5abf66bc3892b292b7b590b6bb6fe1f69ac0d2e851",
+            "activity_comment_sha256": "0b074a30e060174b7de9fdfb109570f84d8c0fc850ce808f67d4b919dbed8e80",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Dichloromethane, at plant",
+              "reference product": "Dichloromethane, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 97,
+            "metadata_sha256": "7d58d72ac39c00cc89bd086ce2eb9254b9834d53a4eed9beb4eaaeefc118aa10",
+            "inventory_sha256": "cf77a12ecaf062bd188cba86007d8f44b04364af63d3fc8d8da21e7bd17bbfc2",
+            "activity_comment_sha256": "6fd3dae857544cc38c8ee1132850000314d1af007f598a7e6338a89bb7c8a405",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "selected_native_producer_witnesses": {
+          "dichloromethane": {
+            "2025": {
+              "identity": {
+                "name": "Dichloromethane, at plant",
+                "reference product": "Dichloromethane, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 93,
+              "metadata_sha256": "7e60cc597dcc4664551d0b43a5effb161ceaa7852cd2c60f3fa75b8cf329cbfa",
+              "inventory_sha256": "d52738b31b3679699681bb5abf66bc3892b292b7b590b6bb6fe1f69ac0d2e851",
+              "activity_comment_sha256": "0b074a30e060174b7de9fdfb109570f84d8c0fc850ce808f67d4b919dbed8e80",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "2026": {
+              "identity": {
+                "name": "Dichloromethane, at plant",
+                "reference product": "Dichloromethane, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 97,
+              "metadata_sha256": "7d58d72ac39c00cc89bd086ce2eb9254b9834d53a4eed9beb4eaaeefc118aa10",
+              "inventory_sha256": "cf77a12ecaf062bd188cba86007d8f44b04364af63d3fc8d8da21e7bd17bbfc2",
+              "activity_comment_sha256": "6fd3dae857544cc38c8ee1132850000314d1af007f598a7e6338a89bb7c8a405",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "boundary_checks": {
+          "kind": "dichloromethane",
+          "CAS": "75-09-2",
+          "formula": "CH2Cl2",
+          "source_pure_substance": true,
+          "embedded_upstream_energy_fully_IAM_relinkable": false,
+          "new_source_waste_overlay": false
+        }
+      },
+      "limitations": [
+        "New scientific permissions cover only the independently inspected exact ecoinvent3.9 cut-off chemical markets. Positive one-kg named-product references retain factor+1, signed caller quantities, uncertainty/formulas, foreground ownership and separate inputs/emissions. Preserve every original producer and final-delivery entry at its original quantity and supported uncertainty. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each selected complete native factory-gate producer once. Native feedstock, reaction model, allocation, internal raw-material transport, energy, emissions, waste and infrastructure replace source producer internals. Do not copy source producer inputs/releases on top, add reaction yield, moisture, dry/solution, density, molecular-weight, allocation or heating-value multipliers, invent avoided coproduct credits or normalize supplier shares. Exact grade, purity, allocation, process performance, LCI/LCIA and stochastic equivalence are not established; impacts can differ materially and remain unquantified.",
+        "Keep original source final freight separately from native producer upstream transport. Native European rail/road/barge and ocean container services are explicit geographic, fleet, fuel, traction, loading, infrastructure and vintage proxies. Methanol ocean delivery uses the complete native tanker rather than a container ship; source chemical tanker and native generic transoceanic tanker fleets/cargo/cleaning/return-trip assumptions can differ. No extra distance, payload, loss or fleet-share multiplier is invented. Native regional-storage distribution is not added on top of retained source-market freight.",
+        "No literal source/caller omission, empty supplier, extra recovery credit, runtime Python change or alternative Premise sector engine. Existing literal default targets, unrelated rules, old recipe/review bodies and historical evidence files remain unchanged. Only exact3.9 selects these four new delivery helpers. Three existing ammonia/methanol source3.6/3.8 permissions retain their exact supplier/factor/recipe closure and original review bytes/methods/source versions; content-bound fingerprints are rebound only after that full physical equality is proved.",
+        "Use named dichloromethane/methylene chloride, CAS75-09-2/CH2Cl2, per product kg. The source RoW producer and native European product inherit an aggregated Boustead industry inventory. Native upstream energy and raw materials are embedded rather than explicit purchases, so ordinary IAM supplier relinking cannot fully update them. No fabricated electricity/heat or chlorine/methane overlay is added. Native lack of main-process infrastructure, land-use/soil coverage and reliable internal uncertainty remains an inherited gap, not measured zero. Source waste is internally expressed through negative-reference markets; native uses its own complete positive disposal services. Do not add source residue/landfill/incineration again. All five original national rail and three national road entries remain separate."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d27eeea038625919d836cf1eb35e4a43f704cc19f7d78cd8a77cc3a8e5acf06e"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-48df3f130afafd5c",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_solvent_supply_markets_39_review.json",
+      "review_sha256": "8b2e76f1a239187ba5fe1c619b7bb275ec629a20f57c9c1d75100d981b897865",
+      "authorization": "Standing autonomous approval of coming modelling decisions and explicit complete-native product/feedstock/technology/geographic screening proxies, with original quantities, limitations and decision records retained for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "210057f366e05642e74a49dbc6538da17826ca255491752d4cd8d141f6c46477",
+          "inventory_sha256": "9477d842f5e03a98118fe15cd64499c2e1d95618471f43beb277d9555cec3dbe",
+          "activity_comment_sha256": "ef1a8e237daa8a73b2b616ad28eba31dc81d71e06b8ac595d51ee641b057386d",
+          "product_information_sha256": "c50a4d721cb0227fd2261a4644c4a5ef119f78149b26670b26e5e1379c4fb583"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Ammonia, partial oxidation, liquid, at plant",
+              "reference product": "Ammonia, partial oxidation, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 53,
+            "metadata_sha256": "91c92366f9a9b9a3d7423f228da6f22a2e31563bcfaee8ffb4023f696192d051",
+            "inventory_sha256": "6b247e173d75d17881309df00cc363caa2517a64eefe8fa7c1092d41d0426138",
+            "activity_comment_sha256": "62d3f06934f8011f5453e7b969705881a2a52a2a4e6f3b34d9913cd02c89c815",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Ammonia, partial oxidation, liquid, at plant",
+              "reference product": "Ammonia, partial oxidation, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 54,
+            "metadata_sha256": "026e42b63727da9cd4d9ae3b50c2d807285b89161f7e2bea24833aae530e25db",
+            "inventory_sha256": "548c6e805ef61da716235c640e8c49f837306493edd399a565d5f095e178125b",
+            "activity_comment_sha256": "cbf259f8b01e335f0e8a317094b732e9e60ff4dd91a37769c10e7ff0cb08c6ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "selected_native_producer_witnesses": {
+          "partial_oxidation": {
+            "2025": {
+              "identity": {
+                "name": "Ammonia, partial oxidation, liquid, at plant",
+                "reference product": "Ammonia, partial oxidation, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 53,
+              "metadata_sha256": "91c92366f9a9b9a3d7423f228da6f22a2e31563bcfaee8ffb4023f696192d051",
+              "inventory_sha256": "6b247e173d75d17881309df00cc363caa2517a64eefe8fa7c1092d41d0426138",
+              "activity_comment_sha256": "62d3f06934f8011f5453e7b969705881a2a52a2a4e6f3b34d9913cd02c89c815",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "2026": {
+              "identity": {
+                "name": "Ammonia, partial oxidation, liquid, at plant",
+                "reference product": "Ammonia, partial oxidation, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 54,
+              "metadata_sha256": "026e42b63727da9cd4d9ae3b50c2d807285b89161f7e2bea24833aae530e25db",
+              "inventory_sha256": "548c6e805ef61da716235c640e8c49f837306493edd399a565d5f095e178125b",
+              "activity_comment_sha256": "cbf259f8b01e335f0e8a317094b732e9e60ff4dd91a37769c10e7ff0cb08c6ac",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          },
+          "steam_reforming": {
+            "2025": {
+              "identity": {
+                "name": "Ammonia, steam reforming, liquid, at plant",
+                "reference product": "Ammonia, steam reforming, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 58,
+              "metadata_sha256": "deab84986de5cdb616a0c9c445e2197845f35e30b4e78d1642971abf87617ef0",
+              "inventory_sha256": "9b8a7e0b841818f8a3c54eb062fe6b38a36d42afa63c681b7d84fba706655943",
+              "activity_comment_sha256": "6286f72cac99dc5b9af1cde0043623d8d172942cf7f9b1f8eac50f81aea9fc7e",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "2026": {
+              "identity": {
+                "name": "Ammonia, steam reforming, liquid, at plant",
+                "reference product": "Ammonia, steam reforming, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 59,
+              "metadata_sha256": "62e7b47e1a7d1e052740ce76fe99bc8e18d866a4e76b28b9f6db0046244b872a",
+              "inventory_sha256": "a508c63ab5557c98c7fad866e3ffbaebd801b948279e91851619a31a13c7fd9a",
+              "activity_comment_sha256": "cf6ab6d8289c295c62df5be723a20c0be0c611fdc25ebfc8461035695341c77f",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "boundary_checks": {
+          "kind": "liquid_anhydrous_ammonia",
+          "CAS": "7664-41-7",
+          "source_partial_oxidation_share": 0.35,
+          "source_steam_reforming_share": 0.65,
+          "source_partial_oxidation_feedstock": "coal",
+          "native_partial_oxidation_feedstock": "heavy fuel oil",
+          "coal_branch_reproduced": false,
+          "explicit_coal_to_oil_screening_proxy": true,
+          "native_storehouse_distribution_and_15_85_mix_added": false
+        }
+      },
+      "limitations": [
+        "New scientific permissions cover only the independently inspected exact ecoinvent3.9 cut-off chemical markets. Positive one-kg named-product references retain factor+1, signed caller quantities, uncertainty/formulas, foreground ownership and separate inputs/emissions. Preserve every original producer and final-delivery entry at its original quantity and supported uncertainty. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each selected complete native factory-gate producer once. Native feedstock, reaction model, allocation, internal raw-material transport, energy, emissions, waste and infrastructure replace source producer internals. Do not copy source producer inputs/releases on top, add reaction yield, moisture, dry/solution, density, molecular-weight, allocation or heating-value multipliers, invent avoided coproduct credits or normalize supplier shares. Exact grade, purity, allocation, process performance, LCI/LCIA and stochastic equivalence are not established; impacts can differ materially and remain unquantified.",
+        "Keep original source final freight separately from native producer upstream transport. Native European rail/road/barge and ocean container services are explicit geographic, fleet, fuel, traction, loading, infrastructure and vintage proxies. Methanol ocean delivery uses the complete native tanker rather than a container ship; source chemical tanker and native generic transoceanic tanker fleets/cargo/cleaning/return-trip assumptions can differ. No extra distance, payload, loss or fleet-share multiplier is invented. Native regional-storage distribution is not added on top of retained source-market freight.",
+        "No literal source/caller omission, empty supplier, extra recovery credit, runtime Python change or alternative Premise sector engine. Existing literal default targets, unrelated rules, old recipe/review bodies and historical evidence files remain unchanged. Only exact3.9 selects these four new delivery helpers. Three existing ammonia/methanol source3.6/3.8 permissions retain their exact supplier/factor/recipe closure and original review bytes/methods/source versions; content-bound fingerprints are rebound only after that full physical equality is proved.",
+        "Supply liquid anhydrous ammonia, CAS7664-41-7/NH3, on its documented100%-NH3 product-kg basis, not aqueous ammonia, fertilizer-N kg or gas volume. Keep the source35% partial-oxidation and65% natural-gas steam-reforming entries and all original delivery. Use the two corresponding native European at-plant ammonia processes, not the default Swiss storehouse that embeds its own15/85 route split and0.1road/0.6rail delivery. Native factory-gate documentation explicitly excludes product transport/storage, so source delivery can be retained without that overlap.",
+        "Material technology limitation: the inspected source3.9 RoW partial-oxidation inventory actually uses coal; native partial oxidation uses heavy fuel oil. No native coal-based ammonia supplier was established among the inspected named native products. The entire35% source branch uses the complete native oil-based partial-oxidation process as an explicit feedstock/technology/geographic screening proxy. Retaining its35% coefficient does not preserve its coal supply chain, carbon intensity or allocation. This may materially affect scores; effect is unquantified. Do not silently call these identical technologies, swap oil to coal by heating value, copy source coal/CO2 onto a complete oil process or invent a correction factor. Native steam reforming retains its own natural-gas and utility inventory once.",
+        "Source newer Fertilizers-Europe production/CO2 and coproduct conventions differ from native1995/2000-era European ammonia data. Keep each complete native process and its own emissions/energy/catalysts/infrastructure/allocation. Add no separated CO2/urea credit, hydrogen credit, pressurization/liquefaction multiplier, captured-carbon claim or storage/boil-off factor. Separate caller emissions remain separate."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0f3b4f4f69b64463dcb04cd1401feda830052c592c21b5b3b8c316ca2ee3a113"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-cac4eeaf7215b33d",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_solvent_supply_markets_39_review.json",
+      "review_sha256": "8b2e76f1a239187ba5fe1c619b7bb275ec629a20f57c9c1d75100d981b897865",
+      "authorization": "Standing autonomous approval of coming modelling decisions and explicit complete-native product/feedstock/technology/geographic screening proxies, with original quantities, limitations and decision records retained for review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for methanol",
+            "reference product": "methanol",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "1496496925b6773b53e11ba7a676ac0df538f9777d7e5f0d3fe90a37bb0ad1b3",
+          "inventory_sha256": "17ff775391bd11646d2ac234265aa57f806a5520345da23d432610f82fcd491f",
+          "activity_comment_sha256": "d153ad3bd2734dd7788f40e693816ca976af79f05d8596726d10af64996e9f58",
+          "product_information_sha256": "f38cbdba4e597f03c9f5b2fd661008ee222830c4a007c8e977d671e57b10b6ec"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Methanol, at plant",
+              "reference product": "Methanol, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 31,
+            "metadata_sha256": "4e7d05a1cdd1615d0a08a1bd1dea950c6389f24de03069c53b88c49f800f5f87",
+            "inventory_sha256": "abe81b43ad12e655ea216f697faed83dcf81dc35d61ab610917619041a0b5e1b",
+            "activity_comment_sha256": "5d81881abeb1dc98b7f1988b14fe5131f9cbdd647f3c0db4ddc1e09634152a26",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Methanol, at plant",
+              "reference product": "Methanol, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 31,
+            "metadata_sha256": "0f509b6442bba1360bf1e52c0842bad9f3ef9ce1f571b3820968f87dee564786",
+            "inventory_sha256": "fc21b21db69fd061c22aacf5ccf160a9f26be1099c4094253946c3cc2adf4f35",
+            "activity_comment_sha256": "6cc6377015b0370ad863776c820ed3d07b5db0c3fd86af1d572ed1362cd628b7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "selected_native_producer_witnesses": {
+          "methanol": {
+            "2025": {
+              "identity": {
+                "name": "Methanol, at plant",
+                "reference product": "Methanol, at plant",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 31,
+              "metadata_sha256": "4e7d05a1cdd1615d0a08a1bd1dea950c6389f24de03069c53b88c49f800f5f87",
+              "inventory_sha256": "abe81b43ad12e655ea216f697faed83dcf81dc35d61ab610917619041a0b5e1b",
+              "activity_comment_sha256": "5d81881abeb1dc98b7f1988b14fe5131f9cbdd647f3c0db4ddc1e09634152a26",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "2026": {
+              "identity": {
+                "name": "Methanol, at plant",
+                "reference product": "Methanol, at plant",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 31,
+              "metadata_sha256": "0f509b6442bba1360bf1e52c0842bad9f3ef9ce1f571b3820968f87dee564786",
+              "inventory_sha256": "fc21b21db69fd061c22aacf5ccf160a9f26be1099c4094253946c3cc2adf4f35",
+              "activity_comment_sha256": "6cc6377015b0370ad863776c820ed3d07b5db0c3fd86af1d572ed1362cd628b7",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        },
+        "boundary_checks": {
+          "kind": "methanol",
+          "CAS": "67-56-1",
+          "source_pure_substance": true,
+          "source_coal_FT_product_share": 0.00367102654107643,
+          "coal_FT_branch_uses_explicit_natural_gas_proxy": true,
+          "biomass_syngas_alternative_excluded": true,
+          "native_regional_storage_distribution_added": false,
+          "ocean_freight_role": "sea_tanker",
+          "native_negative_furnace_infrastructure_retained": true
+        }
+      },
+      "limitations": [
+        "New scientific permissions cover only the independently inspected exact ecoinvent3.9 cut-off chemical markets. Positive one-kg named-product references retain factor+1, signed caller quantities, uncertainty/formulas, foreground ownership and separate inputs/emissions. Preserve every original producer and final-delivery entry at its original quantity and supported uncertainty. Other source releases, patches, system models and reverse routes receive no new permission.",
+        "Use each selected complete native factory-gate producer once. Native feedstock, reaction model, allocation, internal raw-material transport, energy, emissions, waste and infrastructure replace source producer internals. Do not copy source producer inputs/releases on top, add reaction yield, moisture, dry/solution, density, molecular-weight, allocation or heating-value multipliers, invent avoided coproduct credits or normalize supplier shares. Exact grade, purity, allocation, process performance, LCI/LCIA and stochastic equivalence are not established; impacts can differ materially and remain unquantified.",
+        "Keep original source final freight separately from native producer upstream transport. Native European rail/road/barge and ocean container services are explicit geographic, fleet, fuel, traction, loading, infrastructure and vintage proxies. Methanol ocean delivery uses the complete native tanker rather than a container ship; source chemical tanker and native generic transoceanic tanker fleets/cargo/cleaning/return-trip assumptions can differ. No extra distance, payload, loss or fleet-share multiplier is invented. Native regional-storage distribution is not added on top of retained source-market freight.",
+        "No literal source/caller omission, empty supplier, extra recovery credit, runtime Python change or alternative Premise sector engine. Existing literal default targets, unrelated rules, old recipe/review bodies and historical evidence files remain unchanged. Only exact3.9 selects these four new delivery helpers. Three existing ammonia/methanol source3.6/3.8 permissions retain their exact supplier/factor/recipe closure and original review bytes/methods/source versions; content-bound fingerprints are rebound only after that full physical equality is proved.",
+        "Supply named pure methanol, CAS67-56-1/CH4O, per product kg. Use the complete native global natural-gas steam-reforming producer at plant rather than the default Swiss regional-storage inventory, which already includes3.7tkm ocean tanker,0.24rail,0.34barge tanker,0.05road and a storage tank. Retain every original source producer/freight entry without adding those native distribution/storage components. Source market has no explicit storage process or storage emissions to reconstruct; add none from a different distribution boundary.",
+        "The source natural-gas producer uses the corresponding complete native steam-reforming methanol. Its separate0.00367102654107643kg South-African coal/Fischer-Tropsch coproduct contribution uses that native natural-gas product as an explicit technology/feedstock/geographic/allocation proxy, not a source-equivalent coal process. The native synthetic-gas methanol alternative is a biomass-gasification pilot model, so it is not treated as the fossil coal coproduct. Retain the exact coal-route source coefficient separately; do not omit/renormalize it or add coal, source FT burdens, avoided fuel/H2/CO2 credits or a carbon-efficiency multiplier. Neither identical environmental scores nor original co-product allocation is claimed.",
+        "Native natural-gas methanol includes its own integrated energy and catalysts and an existing small negative furnace-infrastructure exchange. Preserve that complete signed inventory; do not turn it into a new energy credit, zero it, or add another source furnace/heat model. Source useful-heat/gas-volume versus native fuel/normal-volume conventions, gas geography, feedstock/energy integration, water, direct emissions, internal uncertainty and vintage remain explicit differences."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "bf9910ed42b24cf4cd53c449c9cac1b0393cbde5a71d1f65cf7c28f860577d99"
         }
       ]
     }

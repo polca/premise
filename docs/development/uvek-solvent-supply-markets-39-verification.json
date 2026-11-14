@@ -1,0 +1,393 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "6ecaf7d0eb5761fc5bb082f8d6e1ca9c3d1aeb8a",
+  "scope_registration": {
+    "prior_scopes": 1428,
+    "new_scopes": 1432,
+    "new_rule_ids": [
+      "bp-9f6f2c29e3e84ba1",
+      "bp-ce1c94b4a3defb29",
+      "bp-48df3f130afafd5c",
+      "bp-cac4eeaf7215b33d"
+    ],
+    "earlier_physical_bindings_reviews_methods_and_source_profiles_unchanged": true,
+    "three_prior_raw_rule_fingerprints_rebound_after_physical_binding_comparison": [
+      {
+        "operation_index": 560,
+        "rule_id": "bp-48df3f130afafd5c",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "previous_fingerprint": "0e35497fcf85aed7afbeaa6f6d48521db7fbd6e20f55cc9db57211fdfff4ad05",
+        "previous_review_path": "export/uvek_fuels_38_additional_chemicals_review.json",
+        "previous_review_sha256": "01a5255dbc1312b892235597891c7098f77236d28cb7544387656a928867d2b0",
+        "rebound_fingerprint": "138765923b54aeb0928734b355550a9c67a9016464e7bb385632caf4665d95c4",
+        "unchanged_physical_binding": {
+          "source": {
+            "location": "RoW",
+            "name": "market for ammonia, anhydrous, liquid",
+            "reference product": "ammonia, anhydrous, liquid",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Ammonia, liquid, at regional storehouse",
+            "reference product": "Ammonia, liquid, at regional storehouse",
+            "unit": "kilogram"
+          },
+          "conversion_factor": 1,
+          "recipes": {}
+        },
+        "unchanged_physical_binding_sha256": "5be460bbef2b7f574ef6b78358ddb46211b48cb4df06c359533f66a464ebce58"
+      },
+      {
+        "operation_index": 202,
+        "rule_id": "bp-cac4eeaf7215b33d",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.6",
+          "system_model": "cutoff"
+        },
+        "target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "previous_fingerprint": "3f1ebb70f508db5d6e0ac272ea024eeed5cdd4719277959d74044bb62897ebd9",
+        "previous_review_path": "export/uvek_pilot_metal_chemical_supply_review.json",
+        "previous_review_sha256": "d33b402f9e329da4cecb30bf72b34aaac0d528df6b743ca8783bc11f13a26488",
+        "rebound_fingerprint": "ad69de1fb10b7a3bb7e39de9efd66279258f362e5da88e41066a877f5d3224f0",
+        "unchanged_physical_binding": {
+          "source": {
+            "location": "GLO",
+            "name": "market for methanol",
+            "reference product": "methanol",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Methanol, at regional storage",
+            "reference product": "Methanol, at regional storage",
+            "unit": "kilogram"
+          },
+          "conversion_factor": 1,
+          "recipes": {}
+        },
+        "unchanged_physical_binding_sha256": "35236419b21ee430e367f68dfa2b1e693b3407dacdd23af8ece8785b8a559811"
+      },
+      {
+        "operation_index": 556,
+        "rule_id": "bp-cac4eeaf7215b33d",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "previous_fingerprint": "f4afb26ab22ecf52e4da77fe0fbaa830f3f11db07d7e17f4874b30aba4d802cc",
+        "previous_review_path": "export/uvek_fuels_38_chemical_stocks_review.json",
+        "previous_review_sha256": "1795c57e09fa69ea4a13ab00e97d6e964de95b78980d859ff1dfd8c240b6dbb6",
+        "rebound_fingerprint": "f4e22084a6fb9bdae7328038541574fea084f09f91bcbdb765bbe10649d969ed",
+        "unchanged_physical_binding": {
+          "source": {
+            "location": "GLO",
+            "name": "market for methanol",
+            "reference product": "methanol",
+            "unit": "kilogram"
+          },
+          "target": {
+            "location": "CH",
+            "name": "Methanol, at regional storage",
+            "reference product": "Methanol, at regional storage",
+            "unit": "kilogram"
+          },
+          "conversion_factor": 1,
+          "recipes": {}
+        },
+        "unchanged_physical_binding_sha256": "35236419b21ee430e367f68dfa2b1e693b3407dacdd23af8ece8785b8a559811"
+      }
+    ],
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "runtime_python_changes": [],
+    "new_source_omissions": []
+  },
+  "tests": {
+    "brightpath_four_markets_older_38_chemicals_legacy_copper_and_broad_resources": 74,
+    "nonblocked_catalogue_mapping_identities_executed": 30269,
+    "premise_source_preparation_cache_and_old_permissions": 12,
+    "premise_clean_installed_package_same_checks": 12,
+    "lint_changed_maintainer_and_regression_files": "passed"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 8,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 10,
+    "signed_foreground_LCI_solves": 8,
+    "independent_native_reference_LCI_solves": 4,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-9f6f2c29e3e84ba1",
+        "source": {
+          "location": "GLO",
+          "name": "market for tetrahydrofuran",
+          "reference product": "tetrahydrofuran",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 2.8778686100849882e-08,
+        "refined_max_abs_inventory_difference": 3.552713678800501e-15,
+        "full_graph_residual": {
+          "residual_before": 1.2678485166660077e-08,
+          "residual_after": 6.022505898931746e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.604951276198043e-08,
+          "residual_after": 6.022505898931746e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-ce1c94b4a3defb29",
+        "source": {
+          "location": "RoW",
+          "name": "market for dichloromethane",
+          "reference product": "dichloromethane",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.841727184792035e-11,
+        "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+        "full_graph_residual": {
+          "residual_before": 1.7753366643578796e-12,
+          "residual_after": 1.3877787807814457e-17,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.4536343999534029e-12,
+          "residual_after": 7.512913339982123e-18,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-48df3f130afafd5c",
+        "source": {
+          "location": "RoW",
+          "name": "market for ammonia, anhydrous, liquid",
+          "reference product": "ammonia, anhydrous, liquid",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 4.740377335110679e-08,
+        "refined_max_abs_inventory_difference": 2.842170943040401e-14,
+        "full_graph_residual": {
+          "residual_before": 8.049193644884961e-09,
+          "residual_after": 1.5503493710088164e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 6.294901202938828e-11,
+          "residual_after": 1.5234615467663387e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      },
+      {
+        "rule_id": "bp-cac4eeaf7215b33d",
+        "source": {
+          "location": "GLO",
+          "name": "market for methanol",
+          "reference product": "methanol",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.0674582995306992e-08,
+        "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+        "full_graph_residual": {
+          "residual_before": 3.267838262047432e-09,
+          "residual_after": 2.6414747686249963e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 4.242657240990149e-09,
+          "residual_after": 2.208259362721692e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies four chemical product-kg interfaces, retained producer shares and freight, separate native factory-gate suppliers, and native-demand numerical consistency. Does not establish source/native feedstock, ammonia coal/oil or methanol coal/gas technology, allocation, grade, stochastic or score equivalence, full IAM updating of aggregates, battery completion or export qualification."
+  },
+  "installed_package": {
+    "brightpath_commit": "6ecaf7d0eb5761fc5bb082f8d6e1ca9c3d1aeb8a",
+    "clean_tracked_git_archive_build": true,
+    "unexpected_package_files": [],
+    "installed_resources_match_committed_bytes": [
+      "export/uvek_solvent_supply_markets_39_review.json",
+      "migrations/RESOURCE_MANIFEST.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "export/uvek_archived_unreferenced_reviews.json",
+      "export/uvek_fuels_38_additional_chemicals_review.json",
+      "export/uvek_pilot_metal_chemical_supply_review.json",
+      "export/uvek_fuels_38_chemical_stocks_review.json"
+    ],
+    "removed_unused_wheel_bytes": 43729703,
+    "removed_temporary_tracked_build_source_and_archive_bytes": 1355337967,
+    "retained_installed_package": true
+  },
+  "clean_forward_generator": {
+    "brightpath_commit": "6ecaf7d0eb5761fc5bb082f8d6e1ca9c3d1aeb8a",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "c3cc40a3884a010ebbaac350df7f594b99f4986fc21ebffa517f2c6eebdb05f3",
+        "committed_sha256": "c3cc40a3884a010ebbaac350df7f594b99f4986fc21ebffa517f2c6eebdb05f3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 69168387
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 4,
+    "removed_generated_output_bytes": 106361431,
+    "removed_owned_clean_worktree_file_bytes": 497559693
+  },
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 79,
+    "current": 75,
+    "removed_rules": [
+      "bp-9f6f2c29e3e84ba1",
+      "bp-ce1c94b4a3defb29",
+      "bp-48df3f130afafd5c",
+      "bp-cac4eeaf7215b33d"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-6fb142ff07a96aed",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 75,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-6fb142ff07a96aed",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "new_helpers": 4,
+  "retained_original_producer_entries": 7,
+  "retained_original_final_freight_entries": 20,
+  "material_screening_limits": {
+    "ammonia": {
+      "source_coal_partial_oxidation_share": 0.35,
+      "target": "Complete native European heavy-fuel-oil partial-oxidation ammonia",
+      "coal_branch_inventory_preserved": false,
+      "score_effect": "unquantified"
+    },
+    "methanol": {
+      "source_coal_FT_product_share": 0.00367102654107643,
+      "target": "Complete native global natural-gas methanol",
+      "coal_FT_allocation_preserved": false,
+      "biomass_syngas_alternative_used": false,
+      "score_effect": "unquantified"
+    },
+    "dichloromethane_embedded_upstream_energy_fully_IAM_updated": false
+  },
+  "duplicate_native_regional_distribution_added": false,
+  "old_authority_files_changed": false,
+  "old_physical_suppliers_factors_and_recipe_closures_changed": false,
+  "older_content_bound_fingerprints_rebound_after_physical_equality": 3,
+  "native_negative_methanol_furnace_infrastructure_retained": true,
+  "new_source_omissions": [],
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [
+    "scripts/review_uvek_solvent_supply_markets_39.py",
+    "scripts/generate_uvek_migration_resources.py: frozen replay hook"
+  ],
+  "test_adjustment": "The older3.8 regression retains exact original and extended-rule equality plus effective3.8 supplier/factor assertions, allowing only the reviewed later profile metadata.",
+  "metadata_failure_resolved": "New helpers require a shared rationale card. Four conditional review cards were added in mapping data; runtime was not changed.",
+  "sodium_methoxide_39_approved": false,
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "full_test_suite_rerun": false,
+  "reverse_generator_run": false
+}
