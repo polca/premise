@@ -41,7 +41,8 @@ keep part of the background unchanged.
    * - ``fuels``
      - :doc:`Fuel supply chains and markets </methodology/fuels/index>`, including hydrogen.
    * - ``renewable``
-     - Wind-turbine inventories; electricity supply is handled by ``electricity``.
+     - :ref:`Direct-drive wind-turbine variants <direct-drive-wind-variants>`;
+       electricity supply is handled by ``electricity``.
    * - ``metals``
      - :doc:`Material inputs and metal supply markets </methodology/metals>`.
    * - ``mining``

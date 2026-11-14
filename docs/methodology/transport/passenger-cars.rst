@@ -139,8 +139,8 @@ plug-in hybrid and non-car transport datasets are outside this floor's scope.
 Missing efficiency data do not trigger a source-inventory correction.
 
 The configuration is in ``data/transport/car_energy_floor.yaml``. Its default
-is **0.852 MJ LHV per vehicle-kilometre**, inherited from the previous validator's
-2 kg diesel-equivalent/100 km and 42.6 MJ/kg convention. This is a provisional
+is **0.852 MJ LHV per vehicle-kilometre**, equivalent to 2 kg diesel/100 km
+at 42.6 MJ/kg. This is a provisional
 compatibility guardrail, **not a demonstrated physical minimum**. Powertrain and
 size overrides and an ``enabled`` switch are supported. Configuration and fuel
 properties are cached per process; restart after changing them.
@@ -251,15 +251,7 @@ Electric mechanical powertrain
 
 **CLIC dataset pages:** `mechanical powertrain production and attributed treatment, electric passenger car, historical reference <https://clic.psi.ch/datasets/mechanical-powertrain-production-and-attributed-treatment-electric-passenger-car-historical-reference/>`__.
 
-Carculator's imported BEV and fuel-cell cars previously assigned their
-mechanical-powertrain mass to ``market for internal combustion engine,
-passenger car``. That supplier represents a whole combustion drivetrain,
-including starting and exhaust equipment. A medium BEV's 89.879898 kg proxy
-therefore purchased about 0.523 g platinum and 0.098 g palladium directly from
-its catalyst recipe, despite already having separate electric-motor and control
-inventories. These are direct source ingredients, not the car's full impact.
-
-The 17 BEV/FCEV production variants now use the
+The 17 BEV/FCEV production variants use the
 `electric-car mechanical-powertrain reference <https://clic.psi.ch/datasets/mechanical-powertrain-production-and-attributed-treatment-electric-passenger-car-historical-reference/>`__. Its mechanical recipe draws
 only on the electric gearbox and cooling components in
 `Notter et al. (2010), supporting Table S3
@@ -319,8 +311,7 @@ Both electric and hydrogen passenger-car final-energy wrappers use the
 mechanical fraction divided by their actual lifetime purchased-energy basis.
 Motor, controls, traction-capacity and fuel-cell quantities, fuel supply,
 emissions, occupancy, lifetime and performance parameters are preserved.
-Their source metadata records the common component as excluded and retains
-the original model provenance together with the local correction.
+The common auxiliary component is excluded at this energy-specific boundary.
 
 Combustion-drivetrain aluminium
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -368,13 +359,13 @@ The normalization applies to the recognized native cut-off inventory chain
 in ecoinvent 3.10–3.12. Other system models and custom recipes retain their
 source data. Relative uncertainty and waste-reference signs are preserved.
 
-This is an aluminium correction, not complete mass closure. Steel purchases and
+The aluminium balance does not establish complete mass closure. Steel purchases and
 manufacturing scrap still have a separate source-factor discrepancy. The
 nominal 275 kg includes fuel/operating fluids in the source; native manufacture
 omits the initial fuel. Other treatment outputs and generic shredder emissions
 are retained. Named treatment outflows total approximately 0.745090 kg per
-nominal kg after removing the excess aluminium, versus 1.005142 kg before.
+nominal kg.
 The missing mass is explicitly unresolved; no invented material is assigned to
 residue, and no universal ``275/220`` rescaling is applied. Vehicle component
 demands and performance specifications are unchanged. The separate electric
-mechanical/auxiliary inventories above are not targets of this correction.
+mechanical/auxiliary inventories above use their own reference recipes.

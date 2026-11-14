@@ -79,7 +79,7 @@ than relying on a duplicate activity-level balance record.
 Legacy inventories without this explicit role do not acquire an inferred
 compression burden. The upstream pipeline recipe is unchanged. Both the
 pipeline service and vehicle tank compression therefore follow hydrogen demand
-at their respective stages. Rebuild scenarios to receive the correction.
+at their respective stages.
 
 Hydrogen supply chains
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -196,7 +196,7 @@ The 764.6 kg direct polymer retirement remains separate. Drive ratings,
 electronic partitioning, lifetime and actual WEEE fate retain the explicitly
 documented engineering assumptions; mass/sign consistency does not validate
 a complete industrial disposal route. Operating hydrogen electricity demand
-is unchanged by these equipment-boundary corrections.
+is specified separately from these equipment boundaries.
 
 Implementation limitation: energy floors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -617,12 +617,9 @@ Shared PFSA membrane reference
 The additional PEM electrolyser and flow-battery inventories share
 `perfluorosulfonic acid membrane production, ew1100, engineering reference <https://clic.psi.ch/datasets/perfluorosulfonic-acid-membrane-production-ew1100-engineering-reference/>`__.
 This shared CLIC reference is imported before its buyers with
-source technosphere and biosphere versions both 3.9. The two former
-application-specific producers had identical supplier identities, quantities,
-uncertainties and formulas; consolidation preserves all 12 external exchanges
-and their quantities. The original electrolysis and VRFB inventory sources retain
-their 3.9 source declarations. Normal import migration targets the selected
-output version.
+source technosphere and biosphere versions both 3.9. Electrolysis and VRFB
+applications purchase the same membrane reference. Normal import migration
+targets the selected output version.
 
 The PEM electrolyser stack still purchases **16 kg** membrane. The VRFB
 `nafion membrane production <https://clic.psi.ch/datasets/nafion-membrane-production/>`__ wrapper still purchases **1 kg** of finished
@@ -686,10 +683,9 @@ Lanthanum-reject fate in SOEC interconnect supply
 The oxide-electrolysis lanthanum helper retains its 95% yield, precursor
 budget, graphite, reaction CO2 and **10 kWh electricity plus 3 MJ heat per kg
 La**. Its nominal **0.05263157894736836 kg La-equivalent loss per kg output**
-has no supported treatment destination. The former inert-disposal purchase
-is removed to align with CLIC; the loss and its treatment impacts remain
-explicitly unassigned. This does not represent zero physical loss or an
-environmental improvement.
+has no supported treatment destination. The loss and its treatment impacts
+remain explicitly unassigned; zero recorded treatment does not establish
+zero physical loss or zero environmental burden.
 
 The Crofer-type alloy still purchases **0.001 kg La per kg alloy**. The
 SOEC stack reference retains **8,976.1 kg alloy** and the same native
@@ -707,13 +703,12 @@ full **100 mm crystal**, including its unusable regions. Forty-seven wafers
 at **0.35 mm** thickness retain 16.45 mm of crystal, giving a mass retention
 of **0.1645**. Per kg finished physical wafer, the reference therefore buys
 **6.079027355623101 kg SiC** and sends **5.079027355623101 kg rejects** to
-the existing qualified mineral-waste proxy once. The previous 66 mm usable
-section omitted material lost outside that section. No recovery credit is
+the existing qualified mineral-waste proxy once. Material outside the usable
+section is included in those rejects. No recovery credit is
 added; actual waste classification and destination remain unverified.
 
 Substrate electricity stays **19,932.858629976276 kWh/kg physical wafer**.
-The material correction does not rescale the separately derived electricity
-reference or change downstream wafer, die, module or PCS coefficients.
+This electricity reference is specified independently of the material yield.
 This historical geometry is a reference scenario, not measured modern-factory
 yield. Purification, charge losses, process gases, direct emissions and
 industrial qualification remain unresolved. Technosphere and biosphere
@@ -769,8 +764,6 @@ hydrogen. Its quantities come from `Evangelisti et al. (2017)
 <https://doi.org/10.1016/j.jclepro.2016.11.159>`_ and its
 `supplementary inventory tables
 <https://ars.els-cdn.com/content/image/1-s2.0-S0959652616320212-mmc1.docx>`_.
-The supplement was checked on 10 October 2026 (SHA256
-``ca9470c504f61ef58e2e5cc3cad8c06d6cecf17073074ac2ce19dca3678ac49d``).
 
 The paper's main text, scenario labels and supplementary output masses are
 inconsistent. The retained recipe is the table containing HDPE. Its corrected
@@ -782,17 +775,8 @@ normalization is an explicit modelling choice; no unidentified missing material
 is added.
 
 Manufacturing electricity is published as 12.87 **MJ per assembly**. Dividing
-by 3.6 MJ/kWh and 87.71 kg gives 0.0407593 kWh/kg. Previously this MJ value had
-been treated as kWh. Steel working is a processing service and does not add
+by 3.6 MJ/kWh and 87.71 kg gives 0.0407593 kWh/kg. Steel working is a processing service and does not add
 material mass.
 
-Dataset metadata and its comment record the source, formulas and boundary.
-Existing supplier proxies, including AlLi for aluminium, are retained; this
-correction does not establish current vehicle composition, sizing or
-manufacturing yields.
-
-``tests/test_hydrogen_tank_inventories.py`` checks material closure and energy
-units after Brightway Excel import and its preparation strategies, without
-writing a database, plus quantity preservation through migrations to ecoinvent
-3.9--3.12. Existing generated databases must be rebuilt before their tank
-inventories change.
+Existing supplier proxies include AlLi for aluminium. These source references
+do not establish current vehicle composition, sizing or manufacturing yields.

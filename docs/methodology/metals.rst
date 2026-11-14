@@ -382,11 +382,10 @@ PEM iridium supply
 
 The ``pemel-iridium-iridium`` rule requests ``market for iridium``. Market
 creation can be skipped because PGM freight observations are absent or the
-mining-share series does not cover the requested year. Previously, that also
-prevented application of the separate, supported material-intensity series:
-the PEM stack kept its original 0.8 kg iridium input at every year.
+mining-share series does not cover the requested year. A supported
+material-intensity series can still be applied through the fallback below.
 
-The rule now explicitly declares ``existing_provider_fallback`` for
+The rule declares ``existing_provider_fallback`` for
 `iridium production, economic allocation, proxy <https://clic.psi.ch/datasets/iridium-production-economic-allocation-proxy/>`__ producing ``iridium``.
 This independently constructed South African reference is the
 `iridium economic-allocation proxy on CLIC <https://clic.psi.ch/datasets/iridium-production-economic-allocation-proxy/>`__. It replaces the
@@ -519,21 +518,10 @@ matched group, requested year, selected intensities and temporal support.
 
 The **fixed-baseline** sensitivity retains 0.526315789 kg Ir/MW and
 0.263157895 kg cathode-catalyst Pt/MW over the same years. With the default
-hardware coatings, its total Pt is 0.545034298 kg/MW throughout. Export a separate full intensity
-CSV without changing runtime data:
-
-.. code-block:: console
-
-   python tests/support/update_pem_catalyst_reference.py --scenario fixed-baseline --output /tmp/metals-fixed-baseline.csv
-
-For an intentional sensitivity build, omit ``--output`` to select the
-constant case in the local runtime CSV, then rebuild scenarios. Run the
-updater with its default ``--scenario prospective`` to restore the default.
-Restart Python before rebuilding after a switch, because the material-data
-loader caches its array within a Python process.
-An alternative CSV export alone does not alter an existing build or point
-premise to the exported file. Both cases retain the same non-catalyst inputs;
-this switch affects only the matched PEMEL catalyst series.
+hardware coatings, its total Pt is 0.545034298 kg/MW throughout. This
+comparison isolates catalyst-loading assumptions while keeping the same
+non-catalyst inputs. It is an alternative assumption, not an additional
+reduction applied to the prospective case.
 
 Platinum hardware coatings
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -542,7 +530,7 @@ The stack's direct platinum input combines cathode catalyst, anode porous
 transport-layer coating and bipolar-plate coating. Each contribution is
 counted once using the geometry below.
 
-The user-selected coating reference assumes a **100 nm Pt film on both
+The coating reference assumes a **100 nm Pt film on both
 nominal flat faces of each anode PTL and bipolar plate**. The report directly
 specifies 100 nm only for the PTL (printed page 30). Applying that thickness
 to bipolar plates and choosing both faces are explicit engineering
@@ -585,25 +573,17 @@ has no separately established future-thrifting trajectory. Coatings use
 the existing replacement-inclusive stack allocation: four stacks imply
 four coating sets, not another lifetime or replacement multiplier.
 
-Export explicit sensitivities without changing the runtime CSV:
-
-.. code-block:: console
-
-   python tests/support/update_pem_catalyst_reference.py --coating-case one-face --output /tmp/metals-one-face.csv
-   python tests/support/update_pem_catalyst_reference.py --coating-case thin-film --output /tmp/metals-thin-film.csv
-   python tests/support/update_pem_catalyst_reference.py --coating-case active-area --output /tmp/metals-active-area.csv
-   python tests/support/update_pem_catalyst_reference.py --coating-case none --output /tmp/metals-catalyst-only.csv
-
-``one-face`` halves the nominal coated-face count. ``thin-film`` uses 20 nm
-on both components, one fifth of reference coating mass. A
+Coating sensitivities can isolate the coated area and film thickness:
+using one face halves the nominal coated-face count, while a 20 nm film
+on both components uses one fifth of reference coating mass. A
 `manufacturer reports 20–100 nm for PTLs <https://mds.umicore.com/en/electroplating/news-media/news/ultra-thin-uniform-platinum-coating-for-ptls-in-pem-electrolysers/>`_,
 but that does not validate a 20 nm bipolar plate or this complete system.
-``active-area`` coats only active-area planes, omitting the PTL buffer and
-outer plate footprint. ``none`` reproduces the previous catalyst-only
-comparison; it deliberately omits coverage and is not evidence of zero
-physical coating. Combine any coating case with either catalyst scenario.
+Coating only active-area planes omits the PTL buffer and outer plate
+footprint. A catalyst-only comparison omits the hardware coating and does
+not establish zero physical coating. These alternatives can be considered
+with either catalyst-loading assumption.
 These are engineering sensitivities, not statistical bounds or demonstrated
-commercial designs. The default is ``--coating-case reference``.
+commercial designs. The default retains the 100 nm, two-face reference.
 
 Retained catalyst and nominal flat-film coating masses assume 100%
 incorporation at the direct metal-purchase boundary. Real pore/fibre area,
@@ -628,15 +608,13 @@ not rewritten.
 Matched SOEC ceramic reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The SOEC stack previously retained 37.7 kg of mixed Sm/Eu/Gd oxide while the
-metals update added explicit yttrium oxide. Gerloff (2021),
+The SOEC reference represents electrolyte and blocking-layer materials with
+explicit oxide supplies. Gerloff (2021),
 `section 2.2.3 <https://doi.org/10.1016/j.est.2021.102759>`_, used mixed
 rare-earth concentrate as an environmental-impact proxy for unavailable
-yttrium data. It was not a measured physical ingredient. Retaining both
-representations introduced overlapping component supply chains; this was
-not direct double-counting of measured yttrium by a yttrium indicator.
-Concentrate masses and purity labels also cannot be treated as assays of
-the pure oxides.
+yttrium data. That concentrate is not a measured physical ingredient and is
+not purchased alongside the explicit oxides. Concentrate masses and purity
+labels cannot be treated as assays of the pure oxides.
 
 The reference in ``soec_ceramic_reference.json`` reconciles just the YSZ
 electrolyte and YDC blocking-layer package. It uses 0.425 kg YSZ and
@@ -661,8 +639,8 @@ Pure-oxide inputs are calculated with the documented molar masses:
 
 The resulting purchases are 41.612603 kg Y₂O₃, 160.019911 kg ZrO₂ and
 98.253863 kg CeO₂ per stack, summing to 299.886377 kg ceramic. The two
-obsolete proxy exchanges are replaced by the separately calculated Y₂O₃
-contributions; this is not a one-for-one mass substitution. Both the source
+proxy representations are excluded from these separately calculated oxide
+contributions. Both the source
 Excel inventory and runtime CSV use the same oxide basis. The three rules
 share a ``design_group``: missing suppliers, incompatible units, missing
 coefficients or unsupported years prevent a partial ceramic update.
@@ -684,23 +662,21 @@ Within the support, direct oxides are replaced once, not added on top.
      - 21.752377
      - 14.686997
 
-Source access and interpretation are recorded explicitly. The original
-Gerloff supplement Figure 5 and Häfele (2016) supplement Figure S1/Table S2
-were inspected. The latter identifies YDC, not GDC, and alternative air
-electrodes. The Häfele main-article numerical bill of materials was not
-directly accessible. The 0.425/0.262 kg source component masses are
+Gerloff's supplement Figure 5 and Häfele's (2016) supplement Figure S1/Table
+S2 support the component interpretation; the latter identifies YDC and
+alternative air electrodes. The 0.425/0.262 kg source component masses are
 reconstructed from Gerloff's rounded entries and the attributed Häfele
 observations in the supporting material-intensity compilation. Without
 the capacity exponent, the reference chemistry reproduces its separately
 attributed Y, Zr and Ce quantities within 0.001 kg/MW. Primary experimental
 sources in the JSON support the chemical conventions; they do not validate
-this manufacturer's complete stack. Historical inventory source observations remain
-unchanged and prior runtime rows are retained in the reference JSON.
+this manufacturer's complete stack. The main-article numerical bill of
+materials remains an unresolved source limitation.
 
 Future treatment and sensitivities
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The user-selected prospective assumption retains the existing 2050 central
+The prospective assumption uses the 2050 central
 target of 6.016672 kg Y/MW. All three oxide inputs decline linearly together
 from 2020 to 2050, maintaining ceramic composition and component ratio.
 This assumes an 81.64% reduction in ceramic mass per MW. It is not an
@@ -710,30 +686,15 @@ energy are not automatically reduced with this package; existing hydrogen
 efficiency and lifetime assumptions are retained. YSZ in any separately
 omitted fuel-electrode support is not covered by this calculation.
 
-The old 2050 lower and upper limits combined different designs. They are
-not retained as independent uncertainty bounds on a matched recipe.
 Reference rows are deterministic (mean = median = min = max), with
-explicit scenario sensitivities instead:
-
-.. code-block:: console
-
-   python tests/support/update_soec_ceramic_reference.py
-   python tests/support/update_soec_ceramic_reference.py --scenario fixed-baseline --output /tmp/metals-soec-fixed.csv
-   python tests/support/update_soec_ceramic_reference.py --scenario linear-capacity --output /tmp/metals-soec-linear.csv
-
-``fixed-baseline`` holds the corrected ceramic package constant through
-2050. ``linear-capacity`` scales the source component masses linearly to
+explicit scenario sensitivities. A **fixed-baseline** comparison holds the
+ceramic package constant through 2050. A **linear-capacity** comparison
+scales the source component masses linearly to
 1 MW, increasing the 2020 package by a factor of 2.290868 relative to the
 default. It retains the same absolute 2050 Y target, so its stronger
-subsequent reduction is also an assumption. These exports leave runtime
-data and the source inventory unchanged. The original sublinear capacity
+subsequent reduction is also an assumption. The original sublinear capacity
 exponent is retained for continuity, not established as correct physical
 area scaling. Use the linear case to assess this material sensitivity.
-
-The source inventory always contains the corrected baseline reference. The default
-updater reproduces this inventory source and the prospective runtime rows. An
-alternative CSV alone does not select it in premise. Restart Python and
-rebuild scenario databases to apply changed runtime coefficients.
 
 Oxide purchases assume complete incorporation. Production losses,
 deposition rejects/recovery and additional ceramic fabrication remain gaps.

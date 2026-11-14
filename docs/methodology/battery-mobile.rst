@@ -97,6 +97,62 @@ which scenario supplies a study.
 Vehicle inventories determine where mobile capacity is consumed;
 :doc:`transport/overview` explains the separate fleet update.
 
+.. _mobile-battery-mix-scenarios:
+
+Battery mix scenarios
+~~~~~~~~~~~~~~~~~~~~~
+
+The four mobile mixes explore different rates of adoption of conventional
+lithium-ion and **post-lithium-ion** technologies, drawing on
+`Degen et al. (2023) <https://doi.org/10.1038/s41560-023-01355-z>`__ and
+`Orangi et al. <https://doi.org/10.1002/batt.202300346>`__.
+Post-lithium-ion does not mean lithium-free: this group includes sodium-ion,
+lithium-metal solid-state, lithium-sulfur and lithium-air batteries.
+
+.. list-table:: Mobile capacity-market scenarios
+   :header-rows: 1
+   :widths: 15 85
+
+   * - Scenario
+     - Assumption
+   * - LFP
+     - Conventional lithium-ion supply with a growing lithium iron phosphate
+       share, reaching 60% in 2040; NCA/NMC supply the remainder.
+   * - NCx
+     - Conventional lithium-ion supply led by nickel cobalt aluminium (NCA)
+       and nickel manganese cobalt (NMC), reaching a combined 95% in 2040;
+       LFP supplies 5%.
+   * - PLiB
+     - Faster adoption of post-lithium-ion technologies, together supplying
+       60% in 2040; NCA/NMC retain 40%.
+   * - MIX
+     - Diversified adoption: conventional lithium-ion supplies 61% and
+       post-lithium-ion technologies 39% in 2040.
+
+The packaged ``premise/data/battery/mobile_scenarios.csv`` defines the shares
+used by Premise. All four cases share the 2021 mix of 28% LFP and 72% NCA/NMC,
+then diverge. The table shows capacity shares in percent, grouping the three
+solid-state categories as ASSB. Their distinct suppliers are described under
+`Solid-state chemistry mapping and reference inventories`_.
+
+.. include:: /reference/generated/battery-mobile-mixes.inc
+
+Shares are linearly interpolated between the observations in 2010–2040;
+the 2040 mix is held for later years, including 2050. These are external
+technology assumptions shared across IAM pathways, not
+battery forecasts extracted from each IAM. They are also independent of the
+energy-density trajectories, which continue to 2050.
+Using these chemistry shares does not apply the source studies' complete
+manufacturing-energy or cost projections to each battery inventory.
+
+Each mix supplies 1 kWh of installed capacity through
+``market for battery capacity (<scenario> scenario)`` at GLO, using the labels
+LFP, NCx, PLiB and MIX exactly as shown. Running ``ndb.update("battery")``
+updates all available mixes; it does not select one globally. The consuming
+vehicle's capacity exchange selects the mix. To compare alternatives, use
+otherwise equivalent inventories linked to the respective capacity markets.
+Changing the IAM pathway alone does not switch an existing MIX link to PLiB.
+
 Constant-range vehicle capacity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -121,10 +177,6 @@ capacity per MJ constant. For example, the 13 m single-deck overnight bus uses
 399 kWh in 2020. If electricity use halves, it uses 199.5 kWh, rather than
 allocating the original 399 kWh over half as much lifetime electricity.
 Effective battery kg/MJ can still change through market density and chemistry.
-
-Run ``python scripts/update_bus_battery_sizing.py`` after a compatible bus inventory
-refresh to regenerate these metadata rows. It checks the source capacity,
-lifetime and occupancy before writing and changes no exchange amounts.
 
 Assumptions and limitations
 -----------------------------
@@ -357,12 +409,13 @@ pack redesign, lifetime and primary/secondary shares are not asserted.
    <span id="argonne-anl-cse-24-1-2024"></span>
    <span id="wolf-et-al-2023"></span>
    <span id="configured-density-targets"></span>
-   <span id="id9"></span>
    <span id="lithium-hydroxide-hydration-in-custom-nmc811-oxide"></span>
    <span id="nca-precursor-and-oxide-supply"></span>
    <span id="nmc955-dry-anode-and-collector-boundary"></span>
    <span id="nmc955-factory-energy-reference"></span>
    <span id="nmc955-manufacturing-yield-and-rejects"></span>
    <span id="nmc955-reference-capacity-and-fixed-hardware"></span>
+
+.. _id9:
 
 See :doc:`battery inventories </methodology/battery-inventories>` for these inventory details.

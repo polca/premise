@@ -43,9 +43,14 @@ After the setup in :doc:`/getting_started/first-scenario`, call:
 
    ndb.update("emissions")
 
-``gains_scenario="CLE"`` is the constructor default; choose ``"MFR"`` for the
-packaged maximum-feasible-reduction series. These labels describe the selected
-GAINS inputs, not the IAM climate pathway.
+``gains_scenario="CLE"`` is the constructor default. **CLE** means current
+legislation: the selected series reflects the pollution controls assumed
+under existing legislation. **MFR** means maximum feasible reduction: the
+alternative series assumes more extensive technical pollution controls.
+Select it with ``gains_scenario="MFR"`` when constructing ``NewDatabase``.
+These labels describe the selected GAINS inputs, not the IAM climate pathway;
+see the `GAINS scenario definitions
+<https://gains.docs.iiasa.ac.at/model/scenario/scenario_type.html>`__.
 
 Transformation
 ----------------

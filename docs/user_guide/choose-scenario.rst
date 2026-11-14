@@ -21,5 +21,17 @@ Use :doc:`/getting_started/first-scenario` for a complete example. Differences
 between models can reflect sector coverage, resolution and assumptions;
 matching a scenario label does not guarantee equivalent modelling boundaries.
 
+Battery technology assumptions
+-------------------------------
+
+Battery mixes are separate from the IAM pathway. The
+:ref:`mobile scenarios <mobile-battery-mix-scenarios>` compare LFP-led,
+nickel-based, post-lithium-ion and mixed adoption; the
+:ref:`stationary scenarios <stationary-battery-mix-scenarios>` compare
+continuity and technology change. ``ndb.update("battery")`` updates all
+available mixes. The capacity-market link in the consuming inventory selects
+which one is used; there is no constructor-wide battery-scenario selector.
+Record that market alongside the IAM pathway when reporting your assumptions.
+
 For custom projections, see :doc:`external-scenarios` and
 :doc:`/development/iam-mapping`.

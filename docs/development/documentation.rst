@@ -7,7 +7,7 @@ Audience and placement
 Getting started contains complete first-run instructions. The user guide
 answers operational questions. Methodology explains inventories and scientific
 assumptions. Reference contains catalogues, schemas and public signatures.
-Development contains implementation details and dated historical evidence.
+Development contains implementation details and contributor workflows.
 
 Give each subject one authoritative home. FAQ answers and release notes should
 link to it rather than repeat its current specification.
@@ -32,8 +32,10 @@ to :doc:`/reference/glossary` for shared definitions. Prefer short sentences,
 concrete verbs and one main idea per paragraph.
 
 Keep the normal workflow visible. Put optional branches after it and move
-storage internals, source-recipe calculations and maintenance instructions to
-their appropriate reference or development sections. Avoid repeating complete
+storage internals and contributor workflows in Development. Explain source
+recipes and scientific assumptions in Methodology. One-off maintenance
+commands, test receipts and investigation diaries do not belong in the
+published documentation. Avoid repeating complete
 setup examples on every page. Label snippets that need an existing ``ndb`` or
 user-specific paths, and give the setup link once.
 
@@ -70,7 +72,8 @@ consumer use. Identify whether each changing value comes from the IAM, an
 external trajectory, or a fixed inventory assumption. Describe unchanged
 exchange classes when that distinction is necessary to explain the operation.
 Use one operational setup link rather than repeating complete initialization.
-Keep developer maintenance instructions in Development; link from Methodology.
+Keep reusable contributor workflows in Development. Do not present repository
+maintenance or inventory-generation scripts as steps a database user must run.
 
 Every substantive sector scope includes an SVG process diagram. The reviewed
 steps and data-availability conditions live in

@@ -62,6 +62,42 @@ exchange. The electricity market builder does not automatically insert the
 CONT capacity market. See :ref:`electricity-storage-operation` for mapped
 storage-operation suppliers.
 
+.. _stationary-battery-mix-scenarios:
+
+Battery mix scenarios
+~~~~~~~~~~~~~~~~~~~~~
+
+The stationary mixes draw on
+`Schlichenmaier and Naegler (2022) <https://doi.org/10.1016/j.egyr.2022.11.025>`__:
+**CONT** represents continuity in technology adoption, while **TC** represents
+technology change toward a larger contribution from alternative storage
+chemistries. The packaged ``premise/data/battery/stationary_scenarios.csv``
+defines the actual capacity shares used by Premise.
+
+In 2020, both cases have 40% LFP, 40% NMC, 10% lead-acid, 5% vanadium
+redox flow (VRFB) and 5% in the source's sodium-based ``NAS`` category.
+CONT retains 90% LFP/NMC capacity in 2050. TC instead reaches 33% VRFB and
+33% NAS, with the remaining 34% supplied by LFP/NMC. Capacity shares in
+percent are:
+
+.. include:: /reference/generated/battery-stationary-mixes.inc
+
+The current supplier mapping represents ``NAS`` with the
+``market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl, stationary``
+inventory. This is a chemistry proxy, not a sodium-sulfur or sodium-ion
+inventory. Organic and hybrid flow-battery inventories can be available
+without receiving a share in either mix.
+
+Shares are interpolated between the packaged annual observations in
+2010–2050 and held at the endpoints outside that range. These assumptions
+are independent of the IAM pathway and of energy-density improvements.
+The markets are ``market for battery capacity, stationary (CONT scenario)``
+and ``market for battery capacity, stationary (TC scenario)``, at GLO.
+Each provides 1 kWh of installed capacity. The update adjusts both available
+markets; a storage consumer's explicit supplier exchange selects which it
+uses. Throughput, operating losses and replacement schedules belong to that
+consumer, rather than to the chemistry shares.
+
 Assumptions and limitations
 -----------------------------
 
@@ -105,12 +141,11 @@ The dataset providing electricity is the following:
 
 * `electricity supply, high voltage, from vanadium-redox flow battery system <https://clic.psi.ch/datasets/electricity-supply-high-voltage-from-vanadium-redox-flow-battery-system/>`__
 
-The power capacity for this application is 1MW and the net storage capacity 6 MWh.
 The original publication associates 6 MWh usable output with an 8.3 MWh nominal
-label, and gives a 10-year stack life and 20-year system life. The current
-reference correction below derives capacity independently from the electrolyte
-charge; those original capacity/output numbers no longer define its functional
-unit. The legacy assembly name is retained as a stable identifier.
+label and 1 MW power, and gives a 10-year stack life and 20-year system life.
+The Premise reference below derives nominal capacity independently from the
+electrolyte charge; its capacity functional unit is not the publication's
+6 MWh usable output. The assembly name is a stable identifier.
 
 These inventories can be found here: `vanadium-redox flow battery system assembly, 8.3 megawatt hour (RER) <https://clic.psi.ch/datasets/vanadium-redox-flow-battery-system-assembly-83-megawatt-hour/>`__; `electricity supply, high voltage, from vanadium-redox flow battery system (RER) <https://clic.psi.ch/datasets/electricity-supply-high-voltage-from-vanadium-redox-flow-battery-system/>`__.
 
@@ -249,12 +284,10 @@ already defined delivered output. This reference convention is not a measured
 SOC-dependent operating model or a reproduction of the source's 6/8.3 MWh
 performance claim.
 
-The generic legacy waste market used by other chemistries retains its previous
-quantities; its dependent Excel formulas are frozen so the VRFB service
-correction does not change those other recipes. Existing treatment technology
-and primary/secondary market shares remain unchanged. The generic mixed-storage
-consumer's lifetime-throughput allocation is a separate limitation; only the
-standalone VRFB supplier receives the specific lifetime reconstruction here.
+The generic mixed-storage consumer has its own lifetime-throughput
+allocation; the standalone VRFB lifetime calculation does not define the
+performance of that mixed-storage service. Treatment technologies and
+primary/secondary market shares are separate inventory assumptions.
 
 Vanadium co-product allocation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -278,17 +311,15 @@ Tables S9 and S12--S14.
 * Iron and vanadium extraction are assigned to the magnetite stream at
   ``1.08 / 1.53`` and ``0.019 / 1.53`` kg per kg magnetite. Titanium extraction
   is assigned to the separated ilmenite co-product. These element-specific
-  resource flows are not economically scaled. The former negative
-  ``ilmenite - magnetite mine operation`` input is removed. Thus the later
-  metals resource correction cannot retain an avoided-ilmenite extraction
-  credit after zeroing the mine's direct titanium flow.
+  resource flows are not economically scaled. No avoided-ilmenite mine
+  credit is included alongside this attribution to the separated products.
 * The slag inventory already encoded **50% economic allocation** through a
   reference output of ``0.1226 = 0.0613 / 0.5``. Normalizing this output to one
   kilogram preserves that allocation. Despite its legacy name, the reference
   quantity represents V2O5 contained in slag, not bulk slag at 25% V2O5.
 * Refining produces 1 kg V2O5 and 1 kg sodium sulfate, while consuming 0.5 kg
-  sodium sulfate. The chemical input is retained and the negative
-  sodium-sulfate market input is removed. Shared burdens receive an economic
+  sodium sulfate. The chemical input is retained without an avoided
+  sodium-sulfate market credit. Shared burdens receive an economic
   allocation of **98.9280% to V2O5**, calculated as
   ``6.46 / (6.46 + 140 / 2000)``. Both prices refer to 2010 USD: 6.46 USD/lb
   V2O5 from the `USGS 2014 vanadium summary <https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/mineral-pubs/vanadium/mcs-2014-vanad.pdf>`__

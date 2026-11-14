@@ -30,15 +30,12 @@ functional/count provenance. The central-board allowance remains
 the standalone interface remains **0.005 kg/kg interface**. The bundle's
 part counts are not transferred to those independent mass allowances.
 
-Native whole-resistor supply replaces the custom film, lead-glass and
-ruthenium manufacturing chain for these purchases. It does not establish
+The native whole-resistor supply is a manufacturing proxy. It does not establish
 exact Vishay/Yageo composition, jumper electrical equivalence or complete
-Ru/Pd coverage. Native supplier uncertainty remains its own distribution;
-equivalence to the former joint uncertainty is not claimed. Other components,
-parent purchases, board masses and existing retirement ownership remain
-unchanged, with no additional end-of-life purchase or recovery credit.
-Existing unused source helpers remain preserved outside these new purchase
-paths. Technosphere and biosphere source declarations both stay **3.9**.
+Ru/Pd coverage. Uncertainty follows the native supplier's distribution.
+Retirement is assigned through the existing board and control-system
+inventories, without an additional component-level recovery credit.
+Technosphere and biosphere source declarations are both **3.9**.
 
 Battery-monitor capacitor families
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,7 +74,7 @@ counts, parent purchases, board budgets, assembly and retirement remain
 unchanged. The monitoring ASIC retains the imperfect BQ79616 material proxy
 for the fitted BQ79718 role; this is not a functional replacement claim.
 Package chemistry, fused-silica manufacture and unmodelled phosphorus gaps
-remain outside this correction. Both original source declarations stay
+remain unresolved. Both source declarations are
 **3.9**.
 
 Battery-control connector material reference
@@ -235,8 +232,8 @@ The corresponding reaction-water emission from the MgCl2 helper is removed.
 This is a qualified wet-feed assumption, not measured plant operation or
 complete industrial water accounting. Reagents, utility allowances, waste
 treatment, precursor quantities and filtrate throughput remain unchanged.
-The disconnected legacy recipe and separate land-occupation question remain
-outside this correction. Both original source declarations stay **3.9**.
+Own-stage land occupation is a separate assumption. Both source declarations
+are **3.9**.
 
 Magnesium precipitation land boundary
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -285,7 +282,7 @@ consumer quantities remain unchanged.
 
 The added **0.065 kg/batch** retains an unassigned outlet. Evaporation,
 recovery, wastewater fate and complete reaction/workup mass closure remain
-unresolved. This input correction does not add a new outlet or treatment.
+unresolved. No outlet or treatment is assigned to that water.
 Both original source declarations stay **3.9**.
 
 TMATEMPO oxidation carrier water
@@ -429,18 +426,14 @@ Radiator and manifold aluminium feed
 **CLIC dataset pages:** `radiator production, for Li-O2 battery <https://clic.psi.ch/datasets/radiator-production-for-li-o2-battery/>`__; `manifolds production, for Li-O2 battery <https://clic.psi.ch/datasets/manifolds-production-for-li-o2-battery/>`__.
 
 The existing RER radiator and manifold references each purchase **1 kg** from
-``market for aluminium, wrought alloy`` (GLO), replacing the mixed-metal-scrap
-input. The former input represented scrap rather than an established finished
-metal supply before forming. The wrought-alloy market is a qualified stock
+``market for aluminium, wrought alloy`` (GLO) before forming. The market is a qualified stock
 proxy; actual alloy grade and recycled content remain unverified. No claim of
 **100% secondary aluminium** is made.
 
-All stock quantities, outputs, forming, freight, infrastructure, retirement,
-other exchanges, formulas and caches remain unchanged. No additional remelting
-process, recovery credit or yield correction is added. Native processing stock,
-losses and uncertainty remain untouched. Original technosphere and biosphere
-declarations both remain **3.9**. This feed correction does not certify the
-other inherited thermal, forming or equipment assumptions.
+Forming, freight, infrastructure and retirement are represented separately
+from stock supply. No additional remelting or recovery credit is included.
+Technosphere and biosphere source declarations are both **3.9**. Thermal,
+forming and equipment quantities remain inherited assumptions.
 
 Sixteen-module detailed cooling reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

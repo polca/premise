@@ -38,7 +38,8 @@ Inputs combine existing generation inventories, version-selected additional
 inventories, and mapped IAM generation and efficiency series. The
 ``use_absolute_efficiency`` constructor option selects absolute targets or
 relative efficiency changes. ``ndb.update("electricity")`` includes generation
-and market transformations; there is no separate update call for this page.
+and market transformations. The separate ``renewable`` update creates the
+wind variants described below.
 
 Using this update
 ~~~~~~~~~~~~~~~~~~~
@@ -78,6 +79,26 @@ this step.
 Swiss reservoir hydropower activities receive the packaged water-flow
 coefficients before regionalization. This is a source-specific water
 adjustment, separate from combustion efficiency and PV area scaling.
+
+.. _direct-drive-wind-variants:
+
+Direct-drive wind variants
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``ndb.update("renewable")`` creates variants of the available onshore and
+offshore wind-generation, plant-construction, turbine-construction and
+associated market activities. Their names receive the suffix
+``, direct drive``. Unit-valued technosphere inputs in these copies receive
+the same suffix, except inputs whose name contains ``connection``.
+
+This step retains the source exchange amounts. It does not itself calculate
+a new generator design, remove a gearbox, project a direct-drive market share
+or alter wind capacity factors. Subsequent :doc:`material-intensity updates
+</methodology/metals>` can distinguish the variant by name where matching
+rules exist. Availability of a variant does not establish its use in an
+electricity mix: that still depends on the generation mapping and consumer
+links. Inspect those links before treating a direct-drive variant as a
+scenario-wide technology choice.
 
 Efficiency adjustment
 ~~~~~~~~~~~~~~~~~~~~~~~

@@ -283,13 +283,12 @@ retains the declared NMC955 adaptation.
 
 The dry-paste provider excludes copper foil and wet electrode processing.
 The cell purchases its collector separately and owns the aqueous carrier,
-mixing/coating/drying energy and evaporated water once. The former complete-anode
-supplier included copper foil and a different composition, so its per-kg score
-is not directly comparable to a kg of the new dry mixture.
+mixing/coating/drying energy and evaporated water once. A dry-paste quantity
+therefore excludes the collector and cannot be compared directly with the
+same mass of a complete anode.
 
 All-synthetic battery-grade graphite is a reference supply choice, not a
-forecast natural/synthetic mix. It dominates the paste's GWP in the reviewed
-scenario. Metallurgical silicon covers bulk supply while grade-specific
+forecast natural/synthetic mix. Metallurgical silicon covers bulk supply while grade-specific
 purification and micronisation remain unquantified. Commodity CMC and dry SBR
 are upstream burden proxies for the experimental binders, not proof of
 battery-grade formulation or redispersibility. Mass closure and the specified
@@ -307,9 +306,9 @@ NCA precursor and oxide supply
 The linked NCA hydroxide and oxide activities in the legacy and modern
 battery inventories are unit wrappers. Each buys exactly one kg
 from the corresponding native ``market for NCA hydroxide`` or
-``market for NCA oxide`` in ``CN`` per kg of reference output. These purchases
-replace the former custom synthesis recipes completely. They do not retain
-additional foreground reagents, process energy, freight, losses or emissions.
+``market for NCA oxide`` in ``CN`` per kg of reference output. These wrappers
+add no foreground reagents, process energy, freight, losses or emissions to
+the purchased native supply.
 Ordinary inventory migration selects the native supplier in the target
 ecoinvent version; matching identities do not imply identical recipes or
 burdens across versions.
@@ -330,13 +329,12 @@ The custom `NMC811 oxide <https://clic.psi.ch/datasets/nmc811-oxide/>`__ activit
 ``lithium hydroxide, battery grade``.
 That packaged product represents LiOH·H₂O, following
 `Kelly et al. (2021) <https://doi.org/10.1016/j.resconrec.2021.105762>`__.
-The previous 0.246 kg quantity was retained from an anhydrous-LiOH recipe.
-An equal mass of monohydrate supplies less lithium. Both custom NMC811 blocks
-use the corrected amount, including its water emission, so import order cannot
-restore the old reagent amount.
+The source recipe specifies 0.246 kg anhydrous LiOH per kg oxide. An equal
+mass of monohydrate supplies less lithium, so the purchase is converted to
+preserve the source's LiOH mole dose. The associated water of crystallisation
+is included in the water emission.
 
-The correction preserves the rounded anhydrous dose in the existing
-inventory source. Using Li = 6.94, H = 1.008 and O = 15.999 g/mol, each kg of
+Using Li = 6.94, H = 1.008 and O = 15.999 g/mol, each kg of
 anhydrous LiOH requires ``41.962 / 23.947 = 1.75228629891`` kg monohydrate:
 
 .. list-table:: Quantities per kg custom oxide output
@@ -366,17 +364,15 @@ The anhydrous source is the
 <https://ars.els-cdn.com/content/image/1-s2.0-S0921344921002287-mmc2.xlsx>`__,
 ``NMC811`` J191–J196. Dai et al. (2018),
 `GREET cathode update <https://greet.anl.gov/publication-update_bom_cm>`__,
-Table 5, independently reports 0.246 kg LiOH/kg NMC811. This correction does
-not replace the rounded dose with a full-precision or independently optimized
-recipe.
+Table 5, independently reports 0.246 kg LiOH/kg NMC811. The reference uses
+this rounded dose rather than a separately optimized recipe.
 
 Only the hydration increment is balanced here. The inherited
 ``0.00019562 m³`` reaction-water baseline is retained and remains unvalidated.
-This hydration correction does not establish full atomic closure or the
-correctness of the complete LTO cell.
-Ordinary anhydrous LiOH suppliers, native ecoinvent cathode inventories,
-metal-characterization factors and primary/secondary shares are unchanged.
-Rebuild scenario databases before deriving updated system results.
+This hydration balance does not establish full atomic closure or the
+correctness of the complete LTO cell. The conversion applies to these
+custom NMC811 recipes, not to ordinary anhydrous LiOH suppliers or native
+ecoinvent cathode inventories.
 
 .. _battery-density-targets:
 

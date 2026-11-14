@@ -96,8 +96,7 @@ The generic rail-converter power module retains **0.02 kg silicon per kg
 module**. The native fabricated-wafer purchase uses **270 micrometres** as
 an allocation reference and **2330 kg/m3** silicon density:
 ``0.02 / (2330 * 270e-6) = 0.03179144810046098 m2/kg module``.
-The previous 300 micrometre reference corresponds to
-0.028612303290414882 m2/kg and remains a diagnostic alternative.
+A 300 micrometre thickness sensitivity gives 0.028612303290414882 m2/kg.
 
 Neither thickness establishes measured rail-IGBT geometry or actual device
 technology. The module composition and the fabricated-IC-wafer supplier

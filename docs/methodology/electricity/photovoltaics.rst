@@ -513,10 +513,8 @@ GaAs substrate reuse and recurring processing
 The transfer-route reference amortizes manufacture of the complete original
 GaAs substrate over 100 uses: each square metre processed purchases 0.01 m²
 of substrate manufacture. Lithography, gold deposition, growth and epitaxial
-lift-off/polishing are charged for every processed m². The previous installation
-instead purchased 0.01 m² of the entire processing chain, dividing recurring
-operations by 100 as well. Intermediate scores before and after this boundary
-correction therefore do not describe the same supplied processing service.
+lift-off/polishing are charged for every processed m². Substrate reuse does
+not amortize those recurring operations.
 
 Pallas et al. (2020), sections 2.7–2.10, assume 100 reuses prospectively and
 reports 5–10 achieved at that time. Retaining 100 uses is a future technology
@@ -569,12 +567,12 @@ Utility-PV transformer materials
 
 The `2.5 MW transformer reference <https://clic.psi.ch/datasets/transformer-production-oil-immersed-25-mw/>`__ specifies 36.96 kg
 pressboard but purchases a hard-fibreboard proxy whose unit is m³. The current
-0.03696 m³ purchase uses an explicit density of 1,000 kg/m³, correcting the
-former 36.96 m³ purchase. The documented density sensitivity of 800–1,040 kg/m³
+0.03696 m³ purchase uses an explicit density of 1,000 kg/m³. A density
+sensitivity of 800–1,040 kg/m³
 corresponds to 0.0462–0.0355385 m³. The original 71.07 kg cellulose disposal
-(36.96 kg pressboard plus 34.11 kg kraft paper) is retained. This unit correction
-leaves transformer quantity, other materials, operating performance and the PV
-electricity denominator unchanged; the fibreboard grade remains a proxy.
+(36.96 kg pressboard plus 34.11 kg kraft paper) is retained. The fibreboard
+grade and density remain proxies; this material conversion does not define
+transformer performance or the PV electricity denominator.
 
 .. raw:: html
 

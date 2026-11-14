@@ -6,6 +6,9 @@ post-import filtering or successful availability in a built database.
 
 import argparse
 import ast
+import csv
+from collections import defaultdict
+from math import isfinite
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -21,6 +24,42 @@ def table(headers, rows):
         lines.append("   * - " + str(row[0]))
         lines.extend("     - " + str(value).replace("\n", " ") for value in row[1:])
     return "\n".join(lines) + "\n"
+
+
+def battery_mix_table(filename, scenarios, years, groups):
+    """Summarize packaged capacity shares without loading the scenario model."""
+    shares = defaultdict(dict)
+    with (ROOT / "premise/data/battery" / filename).open() as stream:
+        for row in csv.DictReader(stream):
+            key = (row["scenario"], int(row["year"]))
+            shares[key][row["chemistry"]] = float(row["value"])
+    actual_scenarios = {scenario for scenario, _ in shares}
+    if actual_scenarios != set(scenarios):
+        raise ValueError(f"Document every battery scenario in {filename}")
+    documented_chemistries = {name for names in groups.values() for name in names}
+    for key, values in shares.items():
+        if values.keys() - documented_chemistries:
+            raise ValueError(f"Document new battery chemistries in {filename}: {key}")
+        if (
+            not all(isfinite(v) and v >= 0 for v in values.values())
+            or sum(values.values()) <= 0
+        ):
+            raise ValueError(f"Invalid battery shares: {filename}: {key}")
+    return table(
+        ["Scenario", "Year", *[f"{name} (%)" for name in groups]],
+        [
+            [
+                label,
+                year,
+                *[
+                    f"{100 * sum(shares[(scenario, year)].get(c, 0) for c in names) / sum(shares[(scenario, year)].values()):.1f}"
+                    for names in groups.values()
+                ],
+            ]
+            for scenario, label in scenarios.items()
+            for year in years
+        ],
+    )
 
 
 def inventory_selection(tree, version, system_model):
@@ -145,6 +184,39 @@ def generate():
     }
     densities = yaml.safe_load(
         (ROOT / "premise/data/battery/energy_density.yaml").read_text()
+    )
+    result["battery-mobile-mixes.inc"] = battery_mix_table(
+        "mobile_scenarios.csv",
+        {"LFP": "LFP", "NCX": "NCx", "PLIB": "PLiB", "MIX": "MIX"},
+        (2030, 2040),
+        {
+            "LFP": ("LFP",),
+            "NCA/NMC": (
+                "NCA",
+                "NMC111",
+                "NMC532",
+                "NMC622",
+                "NMC811",
+                "NMC900",
+                "NMC900-Si",
+            ),
+            "Sodium-ion": ("SIB",),
+            "Solid-state": ("ASSB (polymer)", "ASSB (oxidic)", "ASSB (sulfidic)"),
+            "Lithium-sulfur": ("LSB",),
+            "Lithium-air": ("LAB",),
+        },
+    )
+    result["battery-stationary-mixes.inc"] = battery_mix_table(
+        "stationary_scenarios.csv",
+        {"cont": "CONT", "tc": "TC"},
+        (2030, 2050),
+        {
+            "LFP": ("LFP",),
+            "NMC": ("NMC111", "NMC622", "NMC811"),
+            "Lead-acid": ("LEAD-ACID",),
+            "VRFB": ("VRFB",),
+            "NAS": ("NAS",),
+        },
     )
     result["battery-density.inc"] = table(
         [

@@ -21,17 +21,17 @@ follow :doc:`/user_guide/choose-scenario` to configure a build.
 
    * - Model
      - Description
-   * - REMIND
+   * - `REMIND <https://www.pik-potsdam.de/en/institute/departments/transformation-pathways/models/remind>`__
      - REMIND (Regionalized Model of Investment and Development) links economic growth, energy investment and climate policy. It models how regions invest in technologies and energy resources under climate constraints.
    * - REMIND-EU
      - REMIND-EU represents European energy systems and policies in more regional detail than the global REMIND model.
-   * - IMAGE
+   * - `IMAGE <https://models.pbl.nl/image/Index.php>`__
      - IMAGE (Integrated Model to Assess the Global Environment) links energy, land use, agriculture and climate. It represents environmental processes alongside changes in population and economic activity.
-   * - TIAM-UCL
+   * - `TIAM-UCL <https://www.ucl.ac.uk/energy-models/sites/energy_models/files/tiam-ucl-manual.pdf>`__
      - TIAM-UCL (TIMES Integrated Assessment Model by University College London) models energy technologies, resources and supply chains. It uses the TIMES framework to examine the costs and technology choices of decarbonization pathways.
-   * - MESSAGE
+   * - `MESSAGE <https://docs.messageix.org/>`__
      - MESSAGEix-GLOBIOM-GAINS (MESSAGE) couples the MESSAGEix energy system with the GLOBIOM land-use model and GAINS air-pollution module. It is used to explore long-term energy and land-use transitions and their climate and air-quality implications under different policy scenarios.
-   * - GCAM
+   * - `GCAM <https://gcims.pnnl.gov/modeling/gcam-global-change-analysis-model>`__
      - GCAM (Global Change Analysis Model) links energy, water, land use, climate and economic systems. It represents their responses to policies, technology changes and socioeconomic assumptions.
 
 

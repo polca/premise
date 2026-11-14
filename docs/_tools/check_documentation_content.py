@@ -101,6 +101,42 @@ def main():
         source = path.read_text()
         if re.search(r"https://doi\.org/https://|this is NEW|today \(2020\)", source):
             failures.append(f"Stale editorial marker: {path.relative_to(DOCS)}")
+    for application, sources in {
+        "mobile": ("10.1038/s41560-023-01355-z", "10.1002/batt.202300346"),
+        "stationary": ("10.1016/j.egyr.2022.11.025",),
+    }.items():
+        name = f"methodology/battery-{application}.rst"
+        source = (DOCS / name).read_text()
+        required = (
+            f".. _{application}-battery-mix-scenarios:",
+            f".. include:: /reference/generated/battery-{application}-mixes.inc",
+            *sources,
+        )
+        if any(item not in source for item in required):
+            failures.append(
+                f"Missing battery scenario explanation, shares or sources: {name}"
+            )
+    # Include shared prose, not only top-level pages: maintenance commands
+    # must not leak into a user guide through an .inc file.
+    for group in ("getting_started", "user_guide", "methodology", "reference"):
+        for path in (DOCS / group).rglob("*"):
+            if path.suffix not in {".rst", ".inc", ".md"}:
+                continue
+            source = path.read_text()
+            if re.search(
+                r"\bpython(?:3(?:\.\d+)?)?\s+(?:scripts|tests/support)/", source
+            ):
+                failures.append(
+                    f"Repository maintenance command in user documentation: {path.relative_to(DOCS)}"
+                )
+            if re.search(
+                r"\b(?:supplement was checked on|integration verification,|full suite: \d+ passed)",
+                source,
+                re.I,
+            ):
+                failures.append(
+                    f"One-off verification receipt in user documentation: {path.relative_to(DOCS)}"
+                )
     if failures:
         raise SystemExit("\n".join(failures))
     print(

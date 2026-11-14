@@ -99,9 +99,7 @@ fuel plausibility ranges live in
 its expected resource amounts from the production attribution configuration.
 
 The reusable direct-metal-input comparison belongs to ``premise.audit``.
-Historical comparison imports resolve to the same implementation; the unused
-campaign-specific bundle writer and IAM mapping spreadsheet script have been
-removed. Exports and remote inventory downloads use per-call temporary
+Exports and remote inventory downloads use per-call temporary
 directories, with only explicitly selected resources included in datapackages.
 
 Compact storage and checkpoints

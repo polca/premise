@@ -91,9 +91,8 @@ balance is distinct from an energy-normalized fuel blend whose supplier masses
 can legitimately sum to more than one kilogram.
 
 The delivered CNG reference is **46.5 MJ/kg**, as documented by the ecoinvent
-vehicle-grade gas market. The refreshed car/truck adapters preserve modelled
-energy by dividing it by 46.5; their former 47.5 MJ/kg conversion understated
-purchases by approximately 2.15%. This leaves the compression recipe unchanged.
+vehicle-grade gas market. The car/truck adapters convert modelled energy to
+fuel mass by dividing it by 46.5. Compression is included in the supplier recipe.
 The inherited 1.360544 m3/kg gas input represents about 48.98 MJ/kg at the
 36 MJ/m3 reference. Metadata record this upstream/delivered boundary difference
 explicitly; it is not attributed entirely to measured methane losses.
@@ -131,7 +130,7 @@ Industrial consumers retain their existing residual-emissions treatment,
 including the limit on emissions that can be reclassified after CCS; the
 vehicle-specific full-oxidation calculation does not apply to them.
 
-The historical illustrative table below shows a classification-only change
+The illustrative table below shows a classification-only change
 for a 3.5t truck after linking to an Indian regional diesel market. Current
 builds calculate the amounts from their actual linked fuel properties; total
 CO2 can also change when those properties differ from the original inventory.

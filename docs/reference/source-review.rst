@@ -40,6 +40,13 @@ The references below provide additional methodological context.
    * - Mobile and stationary batteries
      - :doc:`Sector chapter </methodology/batteries>`
      - `Publication or provider <https://research.slu.se/en/publications/future-climate-impacts-of-sodium-ion-batteries/>`__
+   * - Mobile battery chemistry mixes
+     - :ref:`Scenario assumptions <mobile-battery-mix-scenarios>`
+     - `Degen et al. (2023) <https://doi.org/10.1038/s41560-023-01355-z>`__;
+       `Orangi et al. <https://doi.org/10.1002/batt.202300346>`__
+   * - Stationary battery chemistry mixes
+     - :ref:`Scenario assumptions <stationary-battery-mix-scenarios>`
+     - `Schlichenmaier and Naegler (2022) <https://doi.org/10.1016/j.egyr.2022.11.025>`__
    * - Transport
      - :doc:`Sector chapter </methodology/transport/overview>`
      - `Publication or provider <https://pubs.acs.org/doi/abs/10.1021/acs.est.0c07773>`__
