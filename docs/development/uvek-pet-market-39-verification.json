@@ -1,0 +1,128 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "96a6f7b7915728311a8fd672e832a8185bfcccdf",
+  "scope_registration": {
+    "prior_scopes": 1384,
+    "new_scopes": 1385,
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "new_rule_ids": [
+      "bp-ca080a54d1c79f8d"
+    ],
+    "refined_prior312_rule": "bp-ca080a54d1c79f8d",
+    "prior312_fingerprint": "3e8e82c94e220079245c6d86e310e778bf11969a008275f81b51c44626f7378d",
+    "prior312_physical_mapping_factor_and_sign_entry_unchanged": true,
+    "prior312_primary_hashes_match": true,
+    "retired_card_archived_unchanged": [
+      "r-213ad056a9b720d9"
+    ],
+    "runtime_python_changes": [],
+    "new_source_omissions": [],
+    "new_helpers": 1,
+    "refined312_fingerprint": "1c2041acaee05fb20b03ea8b7c8c07b5a00ab2a70e11af7c82d6435ac4284e16"
+  },
+  "tests": {
+    "brightpath_PET_and_existing312": 42,
+    "resource_storage_and_schema": 98,
+    "premise_source39": 5,
+    "premise_installed39_and_prior312": 6,
+    "lint_changed_tests_and_maintainer_helpers": "passed",
+    "generator_lint": "same two pre-existing import-order findings as prior HEAD; new hook introduces none"
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 2,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 4,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-ca080a54d1c79f8d",
+        "source": {
+          "location": "GLO",
+          "name": "market for polyethylene terephthalate, granulate, amorphous",
+          "reference product": "polyethylene terephthalate, granulate, amorphous",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 1.8334674223297043e-08,
+        "refined_max_abs_inventory_difference": 5.684341886080802e-14,
+        "full_graph_residual": {
+          "residual_before": 5.599065733635957e-09,
+          "residual_after": 1.1065432033104882e-15,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.621667632805767e-10,
+          "residual_after": 1.1065432421400016e-15,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies this whole PET-market screening recipe, signed demands and point-estimate native-demand consistency; does not verify recycled/virgin equivalence. Does not prove native/source chemical assay or LCIA equivalence, battery-sector completion or export qualification."
+  },
+  "installed_resources_match_committed_bytes": [
+    "export/uvek_pet_market_39_review.json",
+    "migrations/RESOURCE_MANIFEST.json",
+    "migrations/uvek/ecoinvent-to-uvek-2025.json"
+  ],
+  "battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 114,
+    "current": 113,
+    "removed_rules": [
+      "bp-ca080a54d1c79f8d"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-c778372182af9cff",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "full_generator_replay": {
+    "passed": false,
+    "baseline_reproduction": {
+      "baseline_commit": "042b5907dd2f9b672dc98632ff90a48cdb9b29f9",
+      "same_failure_as_current_generator": true,
+      "failure": "Pilot nitrate market authority changed; repeat its scientific review.",
+      "failure_before_new_PET_hook": true,
+      "runtime_guard_not_weakened": true
+    },
+    "new_PET_hook_frozen_replay_and_drift_checks": "passed",
+    "guard_not_weakened": true
+  },
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "runtime_python_changes": [],
+  "maintainer_python_changes": [
+    "scripts/review_uvek_pet_market_39.py",
+    "scripts/generate_uvek_migration_resources.py: exact reviewed-profile replay hook",
+    "scripts/archive_uvek_unreferenced_reviews.py: archived review checksum"
+  ],
+  "new_helpers": 1,
+  "new_source_omissions": [],
+  "prior312_physical_recipe_and_sign_entry_unchanged": true,
+  "source39_recycled_supply_mass_kg_per_kg": 0.000999000999001,
+  "recycled_share_represented_by_complete_native_virgin_resin": true,
+  "recycled_feedstock_score_effect_quantified": false
+}

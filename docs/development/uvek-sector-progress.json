@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-ca080a54d1c79f8d",
+        "rule_id": "bp-c778372182af9cff",
         "source": {
           "location": "GLO",
-          "name": "market for polyethylene terephthalate, granulate, amorphous",
-          "reference product": "polyethylene terephthalate, granulate, amorphous",
+          "name": "market for metal working, average for aluminium product manufacturing",
+          "reference product": "metal working, average for aluminium product manufacturing",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 114,
+        "unapproved_correspondence_count_in_current_39_cohort": 113,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-factory-markets-39-verification.json",
+        "verification": "docs/development/uvek-pet-market-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Inspect source3.9 PET delivered-market shares, freight and existing3.12 recipe boundaries before selecting direct proxy or version-specific composition.",
-        "live_freshness_verified": true,
-        "mapping_diagnostic": "Normal live CLIC resolution and integrity-verified cached graph agree on all 114 first3.9-cohort pending rule details."
+        "next_action": "Review two deterministic aluminium/copper metalworking markets against native processing-service definitions, preserving caller ownership of principal metal stock. Then review remaining chemistry, treatment and utility identities.",
+        "live_freshness_verified": false,
+        "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links."
       }
     },
     {
@@ -3630,7 +3630,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-factory-markets-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-pet-market-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
@@ -3688,6 +3688,15 @@
         "limitation": "Generic loose-product text calls it quicklime but inspected production inventories describe one-to-one crushed-limestone milling/packing without a modelled calcination step. Do not infer standalone CaO/CaCO3 equivalence or silently rewrite source data.",
         "review": "docs/development/uvek-chemical-polymer-39-review.md",
         "new_independent_mineral_conversion_permission": false
+      }
+    ],
+    "maintainer_regeneration_failures": [
+      {
+        "failure": "Pilot nitrate market authority changed; repeat its scientific review.",
+        "reproduced_with_prior_generator_commit": "042b5907dd2f9b672dc98632ff90a48cdb9b29f9",
+        "failure_precedes_new_hook": true,
+        "verification": "docs/development/uvek-pet-market-39-verification.json",
+        "guard_weakened": false
       }
     ]
   }

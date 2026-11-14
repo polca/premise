@@ -134821,8 +134821,8 @@
       "rule_id": "bp-ca080a54d1c79f8d",
       "operation": "replace",
       "mapping_method": "reviewed_heat_312_market_composition",
-      "review_path": "export/uvek_heat_312_markets_review.json",
-      "review_sha256": "8079772089b1702b8595d1ffcf1ce29c00e96cc682e14385a01890de71dbb2dd",
+      "review_path": "export/uvek_pet_market_39_review.json",
+      "review_sha256": "692ebb616b0eed6ed5d1eb4d8abe1abb77132d8ff2564e84f85f321474f52976",
       "authorization": "Standing autonomous modelling approval; exact independently inspected source/service bases and complete native proxies with warnings.",
       "inspection": {
         "source": {
@@ -135061,13 +135061,293 @@
               "unit": "ton kilometer"
             }
           }
-        ]
+        ],
+        "profile_annotation_refinement": {
+          "prior_approval": {
+            "rule_id": "bp-ca080a54d1c79f8d",
+            "operation": "replace",
+            "mapping_method": "reviewed_heat_312_market_composition",
+            "review_path": "export/uvek_heat_312_markets_review.json",
+            "review_sha256": "8079772089b1702b8595d1ffcf1ce29c00e96cc682e14385a01890de71dbb2dd",
+            "authorization": "Standing autonomous modelling approval; exact independently inspected source/service bases and complete native proxies with warnings.",
+            "inspection": {
+              "source": {
+                "location": "GLO",
+                "name": "market for polyethylene terephthalate, granulate, amorphous",
+                "reference product": "polyethylene terephthalate, granulate, amorphous",
+                "unit": "kilogram"
+              },
+              "target": {
+                "recipe_ref": "heat-312-market-0cb14b47d25bc155b877"
+              },
+              "conversion_factor": 1,
+              "source_profile": {
+                "family": "ecoinvent",
+                "version": "3.12",
+                "system_model": "cutoff"
+              },
+              "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+              "source_metadata_sha256": "489cdfd8e60288a457d14af692e705fc7287cf18edca3e84b9645e0b094bdea3",
+              "source_producer_witnesses": [
+                {
+                  "identity": {
+                    "name": "polyethylene terephthalate production, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "location": "RER",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "00feef314f558dcf642eb23438b57a51d57026a2a4b1cfd52570fd39322e299b",
+                  "metadata_sha256": "9aea859916b1ba87b68e93a7742ea610f85a57e5cf916521ff06087aa5512298"
+                },
+                {
+                  "identity": {
+                    "name": "polyethylene terephthalate production, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "location": "CA-QC",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "a7e60a0f666c0a61edbb76ac6de1cda368905b9b39f164735e12fee3ade9e515",
+                  "metadata_sha256": "5665813c03311124d6a0b515c9ef0f8dad2c2abd772a680e404aa44b44db9324"
+                },
+                {
+                  "identity": {
+                    "name": "polyethylene terephthalate production, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "location": "RoW",
+                    "unit": "kilogram"
+                  },
+                  "inventory_sha256": "164cc64e9c2e46e3d2224471b2997a8cb206f4a39cf8bc773dac25dcac12a983",
+                  "metadata_sha256": "7d15fc39eb435af0f9409ecf64721c8d2627592707462762f3fcaa5f279f39bf"
+                }
+              ],
+              "retained_input_bindings": [
+                {
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene terephthalate, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+                  "original_index": 1,
+                  "kind": "complete_production_or_service_proxy",
+                  "source_identity": {
+                    "name": "polyethylene terephthalate production, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "location": "RER",
+                    "unit": "kilogram"
+                  },
+                  "target_input": {
+                    "amount": 0.3305923516393028,
+                    "uncertainty type": 0,
+                    "loc": 0.3305923516393028,
+                    "type": "technosphere",
+                    "location": "RER",
+                    "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                    "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                    "unit": "kilogram"
+                  }
+                },
+                {
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene terephthalate, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+                  "original_index": 2,
+                  "kind": "complete_production_or_service_proxy",
+                  "source_identity": {
+                    "name": "polyethylene terephthalate production, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "location": "CA-QC",
+                    "unit": "kilogram"
+                  },
+                  "target_input": {
+                    "amount": 0.004442857142857153,
+                    "uncertainty type": 0,
+                    "loc": 0.004442857142857153,
+                    "type": "technosphere",
+                    "location": "RER",
+                    "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                    "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                    "unit": "kilogram"
+                  }
+                },
+                {
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene terephthalate, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+                  "original_index": 3,
+                  "kind": "complete_production_or_service_proxy",
+                  "source_identity": {
+                    "name": "polyethylene terephthalate production, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "location": "RoW",
+                    "unit": "kilogram"
+                  },
+                  "target_input": {
+                    "amount": 0.6649647912178401,
+                    "uncertainty type": 0,
+                    "loc": 0.6649647912178401,
+                    "type": "technosphere",
+                    "location": "RER",
+                    "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                    "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                    "unit": "kilogram"
+                  }
+                },
+                {
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene terephthalate, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+                  "original_index": 4,
+                  "kind": "freight",
+                  "source_identity": {
+                    "name": "market group for transport, freight, lorry, diesel, unspecified",
+                    "reference product": "transport, freight, lorry, diesel, unspecified",
+                    "location": "GLO",
+                    "unit": "ton kilometer"
+                  },
+                  "target_input": {
+                    "amount": 0.4504,
+                    "uncertainty type": 2,
+                    "loc": -0.7976192021566564,
+                    "scale": 0.44944410108488464,
+                    "pedigree": {
+                      "reliability": 1,
+                      "completeness": 1,
+                      "temporal correlation": 5,
+                      "geographical correlation": 5,
+                      "further technological correlation": 4
+                    },
+                    "type": "technosphere",
+                    "name": "Transport, freight, lorry, fleet average",
+                    "reference product": "Transport, freight, lorry, fleet average",
+                    "location": "RER",
+                    "unit": "ton kilometer"
+                  }
+                },
+                {
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene terephthalate, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+                  "original_index": 5,
+                  "kind": "freight",
+                  "source_identity": {
+                    "name": "market for transport, freight, sea, container ship, heavy fuel oil",
+                    "reference product": "transport, freight, sea, container ship, heavy fuel oil",
+                    "location": "GLO",
+                    "unit": "ton kilometer"
+                  },
+                  "target_input": {
+                    "amount": 0.5248,
+                    "uncertainty type": 2,
+                    "loc": -0.6447380413522577,
+                    "scale": 0.44944410108488464,
+                    "pedigree": {
+                      "reliability": 1,
+                      "completeness": 1,
+                      "temporal correlation": 5,
+                      "geographical correlation": 5,
+                      "further technological correlation": 4
+                    },
+                    "type": "technosphere",
+                    "name": "Transport, transoceanic container ship",
+                    "reference product": "Transport, transoceanic container ship",
+                    "location": "OCE",
+                    "unit": "ton kilometer"
+                  }
+                },
+                {
+                  "source_activity": {
+                    "location": "GLO",
+                    "name": "market for polyethylene terephthalate, granulate, amorphous",
+                    "reference product": "polyethylene terephthalate, granulate, amorphous",
+                    "unit": "kilogram"
+                  },
+                  "source_inventory_sha256": "b9c7a55723ac13ba4391e448052b40199514bf6605fc87ab1f011ffb8cce56a8",
+                  "original_index": 6,
+                  "kind": "freight",
+                  "source_identity": {
+                    "name": "market group for transport, freight, train, fleet average",
+                    "reference product": "transport, freight, train, fleet average",
+                    "location": "GLO",
+                    "unit": "ton kilometer"
+                  },
+                  "target_input": {
+                    "amount": 0.2887,
+                    "uncertainty type": 2,
+                    "loc": -1.2423671923132475,
+                    "scale": 0.44944410108488464,
+                    "pedigree": {
+                      "reliability": 1,
+                      "completeness": 1,
+                      "temporal correlation": 5,
+                      "geographical correlation": 5,
+                      "further technological correlation": 4
+                    },
+                    "type": "technosphere",
+                    "name": "Transport, freight, rail",
+                    "reference product": "Transport, freight, rail",
+                    "location": "RER",
+                    "unit": "ton kilometer"
+                  }
+                }
+              ]
+            },
+            "limitations": [
+              "Reconstruct the global amorphousPETgranulate market with its three originalRER/Quebec/RoWvirgin-production shares and all three road/ocean/rail finished-resin delivery entries unchanged. Use complete native European amorphousPETgranulate fromPTAandethylene glycol per source kg. Do not substitute crystallinePET, recycledPET, sheet/film or extrusion service; do not add native conversion processing to a resin market.",
+              "Source and native derive from European-plastics eco-profiles, but region, energy/chemical supply, wastewater, air/water emissions, estimatedDOC/TOC, infrastructure, upstream transport, allocation, vintage and internal uncertainty differ. Native production includes the entire resin inventory; source market delivery remains additional. No crystallinity, purity, density, polymerization-yield or recycled-content correction is inferred.",
+              "Complete native ocean-container, European rail/traction/shunting, European lorry-fleet and Rhine-barge services are geographic/fleet/vintage proxies per tonne-km. NativeRERlorry fleet derives from Swiss2020shares. Port/canal/road/infrastructure, load, fuel, emissions and allocation differ, including no separate native barge bilge-oil treatment exchange. Source finished-product market delivery remains distinct from native upstream raw-material/production transport. No fuel/load/distance or fleet-share multiplier or extra source production emissions is added.",
+              "Exact inspected ecoinvent3.12cut-off profile only. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate caller emissions. Retain every original market producer share and freight entry separately with its amount and supported uncertainty; do not renormalize. Complete native production/services remain unchanged once, replacing source internal inventories as explicitly qualified screening proxies. Native biosphere exclusions, background/geography, vintage, internal uncertainty and unquantified score differences remain warnings. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+            ],
+            "scopes": [
+              {
+                "source": {
+                  "family": "ecoinvent",
+                  "version": "3.12",
+                  "system_model": "cutoff"
+                },
+                "target": {
+                  "family": "uvek",
+                  "version": "2025",
+                  "system_model": "cutoff"
+                },
+                "fingerprint": "3e8e82c94e220079245c6d86e310e778bf11969a008275f81b51c44626f7378d"
+              }
+            ]
+          },
+          "new_source_profile": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "old_physical_mapping_factor_and_sign_entry_unchanged": true,
+          "primary312_hashes_still_match": true,
+          "warning_refinement": "Earlier3.12 market recipe, quantities and freight uncertainty remain unchanged. Source3.9 adds its own seven shares, recycled-content screening warning and preserved delivery uncertainty. Original shared card is archived unchanged.",
+          "new_review": "export/uvek_pet_market_39_review.json"
+        }
       },
       "limitations": [
         "Reconstruct the global amorphousPETgranulate market with its three originalRER/Quebec/RoWvirgin-production shares and all three road/ocean/rail finished-resin delivery entries unchanged. Use complete native European amorphousPETgranulate fromPTAandethylene glycol per source kg. Do not substitute crystallinePET, recycledPET, sheet/film or extrusion service; do not add native conversion processing to a resin market.",
         "Source and native derive from European-plastics eco-profiles, but region, energy/chemical supply, wastewater, air/water emissions, estimatedDOC/TOC, infrastructure, upstream transport, allocation, vintage and internal uncertainty differ. Native production includes the entire resin inventory; source market delivery remains additional. No crystallinity, purity, density, polymerization-yield or recycled-content correction is inferred.",
         "Complete native ocean-container, European rail/traction/shunting, European lorry-fleet and Rhine-barge services are geographic/fleet/vintage proxies per tonne-km. NativeRERlorry fleet derives from Swiss2020shares. Port/canal/road/infrastructure, load, fuel, emissions and allocation differ, including no separate native barge bilge-oil treatment exchange. Source finished-product market delivery remains distinct from native upstream raw-material/production transport. No fuel/load/distance or fleet-share multiplier or extra source production emissions is added.",
-        "Exact inspected ecoinvent3.12cut-off profile only. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate caller emissions. Retain every original market producer share and freight entry separately with its amount and supported uncertainty; do not renormalize. Complete native production/services remain unchanged once, replacing source internal inventories as explicitly qualified screening proxies. Native biosphere exclusions, background/geography, vintage, internal uncertainty and unquantified score differences remain warnings. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred."
+        "Exact inspected ecoinvent3.12cut-off profile only. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate caller emissions. Retain every original market producer share and freight entry separately with its amount and supported uncertainty; do not renormalize. Complete native production/services remain unchanged once, replacing source internal inventories as explicitly qualified screening proxies. Native biosphere exclusions, background/geography, vintage, internal uncertainty and unquantified score differences remain warnings. No inverse, cross-system-model, other-profile, LCIA-equivalence or impact-completeness approval is inferred.",
+        "Source3.12 physical recipe, quantities, uncertainty and sign entry remain unchanged; original primary metadata/inventory hashes match. Only new3.9 profile and context-specific warning metadata extend the raw parent. Its previous authority and review card are frozen; fingerprint refinement is explicit."
       ],
       "scopes": [
         {
@@ -135081,7 +135361,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "3e8e82c94e220079245c6d86e310e778bf11969a008275f81b51c44626f7378d"
+          "fingerprint": "1c2041acaee05fb20b03ea8b7c8c07b5a00ab2a70e11af7c82d6435ac4284e16"
         }
       ]
     },
@@ -271618,6 +271898,364 @@
             "version": "2025"
           },
           "fingerprint": "399b1c48c728bd3d315d8cf128504908d78c525be89d21690b20d7bf4171afcd"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-ca080a54d1c79f8d",
+      "mapping_method": "reviewed_heat_312_market_composition",
+      "review_path": "export/uvek_pet_market_39_review.json",
+      "review_sha256": "692ebb616b0eed6ed5d1eb4d8abe1abb77132d8ff2564e84f85f321474f52976",
+      "authorization": "Standing user auto-approval of coming modelling decisions: independently inspected whole-market, feedstock and geographic screening proxy, explicit warnings and logged limitations for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for polyethylene terephthalate, granulate, amorphous",
+            "reference product": "polyethylene terephthalate, granulate, amorphous",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 10,
+          "metadata_sha256": "070b3471d72878a9cf525d94ec2b90ec17c5be80c52568c85022aaa02b187f64",
+          "inventory_sha256": "dfe2823087a9d19e3a089fd157fa3f2e6c1a26ae7861525240b03a7e66f0d305",
+          "activity_comment_sha256": "8270355c32d528933397d7803a049fd60c9f04999cdff429996666c5462350d2",
+          "product_information_sha256": "0d9770b3f83dea2195bbbd5b5cde195e16c18b7e2e944cb2c4a92de7e3da31dd"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "polyethylene terephthalate production, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 26,
+            "metadata_sha256": "43ef3ce7b715fa9fde2244d66d52c816697ad9f601ab96bd24a83b796b9c641c",
+            "inventory_sha256": "18db5b2da86b027ddf686659650291ad90151551114798c955d9424b8db9a280",
+            "activity_comment_sha256": "deaa3ceb788626c18fc8563082a5ff8349686ab52c129fefc9ad50df18eeb2c3",
+            "product_information_sha256": "0d9770b3f83dea2195bbbd5b5cde195e16c18b7e2e944cb2c4a92de7e3da31dd"
+          },
+          {
+            "identity": {
+              "name": "polyethylene terephthalate, granulate, amorphous, recycled to generic market for amorphous PET granulate",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 1,
+            "metadata_sha256": "5387fec44643e1ba3345878d6da69570f6b5ee45411328dd68e750834eeeee92",
+            "inventory_sha256": "89dcc65acd3532aa852f2ee91a43e333270168010bea12be1e713df6b609b0bf",
+            "activity_comment_sha256": "d51f9927bba7fd15ab127dd66069d27bd5785556f00f70d0f0a9193f4d7133eb",
+            "product_information_sha256": "0d9770b3f83dea2195bbbd5b5cde195e16c18b7e2e944cb2c4a92de7e3da31dd"
+          },
+          {
+            "identity": {
+              "name": "polyethylene terephthalate, granulate, amorphous, recycled to generic market for amorphous PET granulate",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 1,
+            "metadata_sha256": "af7fa9e12b1e5bd1612f36934cdeb44934a6352e8f6ec42dc914cf21817c4dad",
+            "inventory_sha256": "8cabe9398a628b85d2aab23ec7e507dfbf20bbaead06b3ea7ad2e76d2b863f68",
+            "activity_comment_sha256": "0a25fd857579522a41cf8c7533b9f60cbb420172f9a5867e8b5fd1b4a883023f",
+            "product_information_sha256": "0d9770b3f83dea2195bbbd5b5cde195e16c18b7e2e944cb2c4a92de7e3da31dd"
+          },
+          {
+            "identity": {
+              "name": "polyethylene terephthalate, granulate, amorphous, recycled to generic market for amorphous PET granulate",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 1,
+            "metadata_sha256": "4103f6f102773a3012bfcd1448c96331bad6e996bfdfb01e6b355daaf77c7f8c",
+            "inventory_sha256": "2c02aa72e8c681f3160027cca2ce3a7fdd631b9049f02a0898d03f1026efb260",
+            "activity_comment_sha256": "9a05a9f6711a47d615ebb4fd49ea1e4411393af3323d4cb732fcc05f9cdff112",
+            "product_information_sha256": "0d9770b3f83dea2195bbbd5b5cde195e16c18b7e2e944cb2c4a92de7e3da31dd"
+          },
+          {
+            "identity": {
+              "name": "polyethylene terephthalate production, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "CA-QC",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 26,
+            "metadata_sha256": "bb9f9815e77dd95d2b0682cdf16554b05676258bc01b3155b34700888da760fd",
+            "inventory_sha256": "ed0cc2dc9f1600c48a398d8026c2f3b86f8970085f0ab5c7ec24762390322366",
+            "activity_comment_sha256": "a7fdfa7f895b0dcfcbf42b1941f1a9e40d2d4dd1ce53adc652dc1621f62d9bf5",
+            "product_information_sha256": "0d9770b3f83dea2195bbbd5b5cde195e16c18b7e2e944cb2c4a92de7e3da31dd"
+          },
+          {
+            "identity": {
+              "name": "polyethylene terephthalate, granulate, amorphous, recycled to generic market for amorphous PET granulate",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "US",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 1,
+            "metadata_sha256": "8a99fec7630eabd357879964ef0cd0491d717b6730d5f4b4958ef64b05a6e372",
+            "inventory_sha256": "af630d5473e81c3e2c7a323ba0cd9c6507feb3234ada1a47587e26ffa646a755",
+            "activity_comment_sha256": "d51f9927bba7fd15ab127dd66069d27bd5785556f00f70d0f0a9193f4d7133eb",
+            "product_information_sha256": "0d9770b3f83dea2195bbbd5b5cde195e16c18b7e2e944cb2c4a92de7e3da31dd"
+          },
+          {
+            "identity": {
+              "name": "polyethylene terephthalate production, granulate, amorphous",
+              "reference product": "polyethylene terephthalate, granulate, amorphous",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 40,
+            "metadata_sha256": "436ac077d005ad27e15e136d9aa5d14af23906a86b8b318caea4703e82c65c73",
+            "inventory_sha256": "c6d378572d0cc6b69ce0bd06740dcbd71ef9d3b8ab6adce28fb57d010f018409",
+            "activity_comment_sha256": "deaa3ceb788626c18fc8563082a5ff8349686ab52c129fefc9ad50df18eeb2c3",
+            "product_information_sha256": "0d9770b3f83dea2195bbbd5b5cde195e16c18b7e2e944cb2c4a92de7e3da31dd"
+          }
+        ],
+        "native_witnesses": {
+          "{\"location\": \"OCE\", \"name\": \"Transport, transoceanic container ship\", \"reference product\": \"Transport, transoceanic container ship\", \"unit\": \"ton kilometer\"}": {
+            "identity": {
+              "location": "OCE",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, transoceanic container ship",
+                  "reference product": "Transport, transoceanic container ship",
+                  "location": "OCE",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 35,
+                "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed",
+                "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+                "activity_comment_sha256": "1fa4cf7ddcadc6f3a56dc9cb83c870172228b0b7d1989127432a61f431bb4453",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, transoceanic container ship",
+                  "reference product": "Transport, transoceanic container ship",
+                  "location": "OCE",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 36,
+                "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce",
+                "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+                "activity_comment_sha256": "65b0638873b516d7f1c26a90f91c06e2f13927db4ca5bdc60d66c3be9b2bfe2e",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          "{\"location\": \"RER\", \"name\": \"Polyethylene terephthalate, granulate, amorphous, at plant\", \"reference product\": \"Polyethylene terephthalate, granulate, amorphous, at plant\", \"unit\": \"kilogram\"}": {
+            "identity": {
+              "location": "RER",
+              "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+              "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+              "unit": "kilogram"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                  "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 31,
+                "metadata_sha256": "ac22569a2ebb9ab1e3a7009b5a69321a6d114caba7f706f022f1913f3917481d",
+                "inventory_sha256": "4a007e156f9b8e43c5fb77eae1d98074bc6a6da48345fa08a4e12435f9a7f276",
+                "activity_comment_sha256": "4e9b71fcdc7cd65532dd3ff401b463b59afe861838fde871c4067e225b0bc404",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                  "reference product": "Polyethylene terephthalate, granulate, amorphous, at plant",
+                  "location": "RER",
+                  "unit": "kilogram"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 31,
+                "metadata_sha256": "002c52b1850e013ad14a9313bf58e676f4f519eab8115b89f323401b4d820403",
+                "inventory_sha256": "ee0828aa02067aadc388313097c868e510234415138d8ccc17aca942e2d51b3c",
+                "activity_comment_sha256": "6487795d229eb973535abb600abf0fa3e2412504d5666d7430c980c99539e924",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          "{\"location\": \"RER\", \"name\": \"Transport, freight, lorry, fleet average\", \"reference product\": \"Transport, freight, lorry, fleet average\", \"unit\": \"ton kilometer\"}": {
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, lorry, fleet average",
+                  "reference product": "Transport, freight, lorry, fleet average",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 4,
+                "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6",
+                "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+                "activity_comment_sha256": "0716216989810c286263da289b407ae09aa4a17e1c375b712652b6590cfd6b6d",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, lorry, fleet average",
+                  "reference product": "Transport, freight, lorry, fleet average",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 4,
+                "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35",
+                "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+                "activity_comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          },
+          "{\"location\": \"RER\", \"name\": \"Transport, freight, rail\", \"reference product\": \"Transport, freight, rail\", \"unit\": \"ton kilometer\"}": {
+            "identity": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "native_witnesses": {
+              "2025": {
+                "identity": {
+                  "name": "Transport, freight, rail",
+                  "reference product": "Transport, freight, rail",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1
+                ],
+                "nonproduction_count": 66,
+                "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+                "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+                "activity_comment_sha256": "1df979a6bc0882b7d94bc3904a8832568a6c5463344665f169125ea352d9d7a5",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              },
+              "2026": {
+                "identity": {
+                  "name": "Transport, freight, rail",
+                  "reference product": "Transport, freight, rail",
+                  "location": "RER",
+                  "unit": "ton kilometer"
+                },
+                "reference_amounts": [
+                  1.0
+                ],
+                "nonproduction_count": 66,
+                "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476",
+                "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+                "activity_comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3",
+                "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              }
+            }
+          }
+        },
+        "recipe_id": "pet-39-amorphous-market-virgin-screening-retained-delivery",
+        "boundary_checks": {
+          "kind": "complete_delivered_amorphous_PET_market_screening_proxy",
+          "source_product_mass_kg": 1.0,
+          "source_virgin_entries": 3,
+          "source_recycled_entries": 4,
+          "source_recycled_mass_kg": 0.000999000999001,
+          "source_virgin_mass_kg": 0.999000999000999,
+          "source_recycled_share_percent": 0.09990009990010001,
+          "source_recycled_production_nonproduction_counts": {
+            "Europe without Switzerland": 12,
+            "CH": 20,
+            "RoW": 32,
+            "US": 12
+          },
+          "native_recycling_handover_nonproduction_count": 0,
+          "empty_recycling_handover_used": false,
+          "recycled_share_represented_by_virgin_resin": true,
+          "source_producer_entries_preserved_individually": true,
+          "native_resin_mass_kg": 1.0,
+          "source_freight_amounts_and_supported_uncertainty_preserved": true,
+          "source39_freight_lognormal_scale": 0.4049691346263318,
+          "earlier312_freight_lognormal_scale": 0.44944410108488464,
+          "new_mass_omission_or_renormalization": false
+        }
+      },
+      "limitations": [
+        "Only the independently inspected ecoinvent3.9 cut-off global amorphous-PET granulate market is newly qualified, per positive one kg of delivered resin. Reuse the existing complete native-facing virgin-amorphous-PET plus delivery recipe as a whole-market screening proxy, factor +1. Preserve signed caller kg, supported uncertainty/formulas, independent caller operations and emissions. Other source versions, patches, system models, products and reverse routes receive no new permission.",
+        "This source3.9 market contains three virgin and four recycled supply entries. Recycled supply totals0.000999000999001kg/kg, approximately0.0999001 percent; virgin supply totals0.999000999000999kg/kg. The selected native supplier is virgin amorphous PET from PTA and ethylene glycol. Explicitly replace that small recycled-resin share with complete virgin-resin supply. This is a recycled-content/feedstock screening substitution, not a claim of equivalent recycling burdens, circularity, yield, quality, recycled content or impacts. Source recycled production includes sorting/washing, energy, chemicals, waste and wastewater; those nonempty inventories are not represented individually. Source market comment says100 percent virgin, but its actual exchanges include recycled supply; inventory evidence takes precedence for this warning.",
+        "Native xx Recycling PET is a production-only handover with no nonproduction exchanges in both inspected releases. It is not a suitable substitute for the source nonempty recycling supply and is not used. No recycling share is deleted, zeroed, renormalized or treated as burden-free. All source product mass is represented by complete native resin. Add no avoided-virgin credit, recycled-content credit, invented recycling process, sorting yield or recycling infrastructure. No standalone recycled-PET-to-virgin permission is granted outside this exact whole market.",
+        "Retain all seven source3.9 producer entries separately with original deterministic quantities, represented by the same complete native virgin amorphous PET supplier. Three are virgin geographic producers and four are the explicitly substituted recycled entries. All product mass remains represented, without renormalization. A distinct source3.9 helper is necessary because delivery uncertainty differs from3.12. Keep all three source freight entries and supported uncertainty, including scale and scale-without-pedigree. Existing3.12 recipe, producer shares, freight uncertainty and sign decision remain unchanged; original source3.12 inventory/metadata hashes still match its earlier authority.",
+        "All three finished-resin delivery quantities match source3.9 exactly: road0.4504tkm, ocean-container0.5248tkm and rail0.2887tkm per kg. Complete native European lorry-fleet and rail and ocean-container services retain source3.9 uncertainty and remain explicit geography/fleet/traction/load/fuel/infrastructure/allocation/vintage proxies. Do not add internal transport already belonging to resin production, adjust distances/payloads or copy a second final delivery stage.",
+        "Complete native European amorphous PET production replaces source geographic production mixes, upstream chemicals, energy, wastewater, emissions and internal uncertainty. Do not use bottle-grade/crystalline PET, fleece, film, extrusion or polymerization service as resin. No crystallinity, purity, density, yield, dilution, polymerization, recycling or whole-market energy correction is established. Direct caller emissions stay independent. LCI/LCIA and stochastic equivalence are not established; score differences and the recycled-feedstock effect remain unquantified. No runtime Python or omissions. Only the exact3.9 profile target and its supporting review are extended; source3.12 physical target/recipe/sign decision stay unchanged. All other approval operations remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9ee5a94caf74213e20098b6ce21d59c5152257ed9b56e24c82dffb271eeea0c9"
         }
       ]
     }
