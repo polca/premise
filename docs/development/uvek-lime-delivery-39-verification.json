@@ -1,0 +1,317 @@
+{
+  "date": "2026-11-14",
+  "brightpath_commit": "b9a7055d4b215c2ccbd38b4a3f5831a520bba37a",
+  "scope_registration": {
+    "prior_scopes": 1460,
+    "new_scopes": 1461,
+    "new_rule_ids": [
+      "bp-42ca176032e4b754"
+    ],
+    "earlier_physical_bindings_reviews_methods_and_source_profiles_unchanged": true,
+    "one_prior_raw_rule_fingerprint_rebound_after_physical_binding_comparison": [
+      {
+        "operation_index": 553,
+        "rule_id": "bp-42ca176032e4b754",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "target_profile": {
+          "family": "uvek",
+          "version": "2025",
+          "system_model": "cutoff"
+        },
+        "previous_fingerprint": "059bec84d4897f82b365a544dc6f131af546fa6a79e1523b73962fd359f34314",
+        "previous_review_path": "export/uvek_fuels_38_lime_review.json",
+        "previous_review_sha256": "47c608676be41fbf4cc2a34767e7b55ee7f1dd7c7414e2faf6b74287eb526760",
+        "rebound_fingerprint": "b1a76bc9ae558d9962ed7ba55033c6c93cc2887d379a86cf99af298407436817",
+        "unchanged_physical_binding": {
+          "source": {
+            "location": "RoW",
+            "name": "market for lime",
+            "reference product": "lime",
+            "unit": "kilogram"
+          },
+          "target": {
+            "recipe_ref": "fuels-38-lime-delivery-2a8dca6375cead538321"
+          },
+          "conversion_factor": 1,
+          "recipes": {
+            "fuels-38-lime-delivery-2a8dca6375cead538321": {
+              "evidence": [
+                "brightpath/data/export/uvek_fuels_38_lime_review.json"
+              ],
+              "inputs": [
+                {
+                  "amount": 0.0133966122939896,
+                  "loc": 0.0133966122939896,
+                  "recipe": "fuels-38-lime-mining-a200bb57112e9efbf2c8",
+                  "uncertainty type": 0
+                },
+                {
+                  "amount": 0.0011279466037016,
+                  "loc": 0.0011279466037016,
+                  "location": "CH",
+                  "name": "Limestone, milled, loose, at plant",
+                  "reference product": "Limestone, milled, loose, at plant",
+                  "type": "technosphere",
+                  "uncertainty type": 0,
+                  "unit": "kilogram"
+                },
+                {
+                  "amount": 0.985475441102309,
+                  "loc": 0.985475441102309,
+                  "location": "CH",
+                  "name": "Limestone, milled, loose, at plant",
+                  "reference product": "Limestone, milled, loose, at plant",
+                  "type": "technosphere",
+                  "uncertainty type": 0,
+                  "unit": "kilogram"
+                },
+                {
+                  "amount": 0.00228881646119878,
+                  "loc": -6.079720424189058,
+                  "location": "RER",
+                  "name": "Transport, freight, lorry, fleet average",
+                  "pedigree": {
+                    "completeness": 1,
+                    "further technological correlation": 4,
+                    "geographical correlation": 5,
+                    "reliability": 3,
+                    "temporal correlation": 5
+                  },
+                  "reference product": "Transport, freight, lorry, fleet average",
+                  "scale": 0.45166359162544856,
+                  "scale without pedigree": 0.34641016151377546,
+                  "type": "technosphere",
+                  "uncertainty type": 2,
+                  "unit": "ton kilometer"
+                },
+                {
+                  "amount": 0.000358344219835576,
+                  "loc": -7.934016525595621,
+                  "location": "RER",
+                  "name": "Transport, freight, lorry, fleet average",
+                  "pedigree": {
+                    "completeness": 1,
+                    "further technological correlation": 4,
+                    "geographical correlation": 5,
+                    "reliability": 3,
+                    "temporal correlation": 5
+                  },
+                  "reference product": "Transport, freight, lorry, fleet average",
+                  "scale": 0.45166359162544856,
+                  "scale without pedigree": 0.34641016151377546,
+                  "type": "technosphere",
+                  "uncertainty type": 2,
+                  "unit": "ton kilometer"
+                },
+                {
+                  "amount": 0.0173528393189656,
+                  "loc": -4.053999136470285,
+                  "location": "RER",
+                  "name": "Transport, freight, lorry, fleet average",
+                  "pedigree": {
+                    "completeness": 1,
+                    "further technological correlation": 4,
+                    "geographical correlation": 5,
+                    "reliability": 3,
+                    "temporal correlation": 5
+                  },
+                  "reference product": "Transport, freight, lorry, fleet average",
+                  "scale": 0.45166359162544856,
+                  "scale without pedigree": 0.34641016151377546,
+                  "type": "technosphere",
+                  "uncertainty type": 2,
+                  "unit": "ton kilometer"
+                }
+              ],
+              "location": "RoW",
+              "name": "market for lime, source 3.8 limestone and allocated-mining branches, reviewed native delivery",
+              "rationale": "Exact ecoinvent 3.8 cut-off only. The market description/CAS calls this lime or quicklime, but both inspected mill inventories consume crushed limestone without calcination. Use complete native milled limestone for those two branches, not hydraulic lime, CaO or hydrated lime; retain the source semantic inconsistency in provenance. Native Swiss limestone is a screening proxy with quarry, grinding, energy, infrastructure, geography, allocation, internal uncertainty and vintage differences. For the separate global zinc-mining co-product, preserve allocated mining burdens using native Swedish contained-Zn beneficiation at 0.59*(0.117/0.38) kg per kg source co-product: all 263 nonproduction source coordinates and 262 lognormal uncertainty coordinates support that price ratio; source concentrate contains 59% Zn. Native ore, co-products, allocation and internal uncertainty differ. Add no metal recovery credit or CaCO3/CaO purity/stoichiometric correction. Retain all three original producer shares and all three signed freight entries separately in source order, with original uncertainty and no renormalization or omission. Native European generic lorry fleet is a technology/geographic screening proxy at original tonne-km, without distance/payload correction. Score differences remain unquantified.",
+              "reference product": "lime",
+              "unit": "kilogram"
+            },
+            "fuels-38-lime-mining-a200bb57112e9efbf2c8": {
+              "evidence": [
+                "brightpath/data/export/uvek_fuels_38_lime_review.json"
+              ],
+              "inputs": [
+                {
+                  "amount": 0.1816578947368421,
+                  "location": "SE",
+                  "name": "Zinc, from combined metal production, at beneficiation",
+                  "reference product": "Zinc, from combined metal production, at beneficiation",
+                  "type": "technosphere",
+                  "unit": "kilogram"
+                }
+              ],
+              "location": "RoW",
+              "name": "Allocated zinc mining burden for lime co-product, source 3.8, reviewed native proxy",
+              "rationale": "Exact ecoinvent 3.8 cut-off only. The market description/CAS calls this lime or quicklime, but both inspected mill inventories consume crushed limestone without calcination. Use complete native milled limestone for those two branches, not hydraulic lime, CaO or hydrated lime; retain the source semantic inconsistency in provenance. Native Swiss limestone is a screening proxy with quarry, grinding, energy, infrastructure, geography, allocation, internal uncertainty and vintage differences. For the separate global zinc-mining co-product, preserve allocated mining burdens using native Swedish contained-Zn beneficiation at 0.59*(0.117/0.38) kg per kg source co-product: all 263 nonproduction source coordinates and 262 lognormal uncertainty coordinates support that price ratio; source concentrate contains 59% Zn. Native ore, co-products, allocation and internal uncertainty differ. Add no metal recovery credit or CaCO3/CaO purity/stoichiometric correction. Retain all three original producer shares and all three signed freight entries separately in source order, with original uncertainty and no renormalization or omission. Native European generic lorry fleet is a technology/geographic screening proxy at original tonne-km, without distance/payload correction. Score differences remain unquantified.",
+              "reference product": "lime",
+              "unit": "kilogram"
+            }
+          }
+        },
+        "unchanged_physical_binding_sha256": "73497766911000c08a06db00cd75fb94ff2ded4ccafc6305848521f5a1c358da"
+      }
+    ],
+    "all_other_existing_operations_and_fingerprints_unchanged": true,
+    "runtime_python_changes": [],
+    "new_source_omissions": [],
+    "source39_market_statistics_refined_before_commit": true
+  },
+  "tests": {
+    "brightpath_new_old_profile_and_broad_resource_checks": 36,
+    "premise_source_fresh_cache_withdrawal_and_earlier38": 6,
+    "new_tests_and_replayer_lint": "passed",
+    "interrupted_pre_refinement_run": "Stopped own obsolete test process after independently finding different3.9freight uncertainty; not counted as a pass. Final refined checks36pass.",
+    "initial_authoring_guard": "Unused rule-level review card refused before writing compiled resources; final exact-profile evidence uses no orphan card and retains archival guard.",
+    "premise_clean_installed_package_same_checks": 6
+  },
+  "no_write_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "foreground_datapackage_filesystem": "memory",
+    "transient_activities": 3,
+    "foreground_biosphere_flows": 1,
+    "native_suppliers": 3,
+    "signed_foreground_LCI_solves": 2,
+    "independent_native_reference_LCI_solves": 1,
+    "foreground_emissions_preserved": true,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "native_source_and_biosphere_metadata_preserved": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "rule_id": "bp-42ca176032e4b754",
+        "source": {
+          "location": "RoW",
+          "name": "market for lime",
+          "reference product": "lime",
+          "unit": "kilogram"
+        },
+        "source_caller_amount": 2.5,
+        "unit": "kilogram",
+        "standard_signed_LCIs_finite_and_reverse": true,
+        "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+        "unrefined_max_abs_inventory_difference": 6.042039455832638e-11,
+        "refined_max_abs_inventory_difference": 1.1102230246251565e-16,
+        "full_graph_residual": {
+          "residual_before": 6.719465240769841e-09,
+          "residual_after": 1.4713978733343902e-16,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.39948692672115e-09,
+          "residual_after": 1.4720754996921936e-16,
+          "correction_steps": 6
+        },
+        "comparison_tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        },
+        "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+      }
+    ],
+    "qualification_limit": "Verifies three producer shares,allocated mining and three freight entries in the reviewed3.9lime interface and independent native-demand numerical consistency. Does not resolve the source quicklime-label inconsistency,prove LCIA equivalence or qualify battery/export."
+  },
+  "market_statistics_comparison": {
+    "same_six_mean_quantities": true,
+    "freight_uncertainty_differs": true,
+    "source39_freight_lognormal_scale": 0.4074309757492673,
+    "source39_freight_scale_without_pedigree": 0.5
+  },
+  "cached_battery_mapping_diagnostic": {
+    "prior_unapproved_source_39_rules": 49,
+    "current": 48,
+    "removed_rules": [
+      "bp-42ca176032e4b754"
+    ],
+    "added_rules": [],
+    "next_rule": "bp-6accb469572a8963",
+    "mapping_diagnostic": "Unmodified ClicHarmonizer on the integrity-verified previously resolved battery archive graph. Same first3.9 cohort:121activities,967technosphere,199biosphere links.",
+    "cached_resolution_signature": "1ba09092cdc63dbca2e19d8654e235532157596ad52eb1488c05594c5bc52faa",
+    "cached_resolution_sha256": "c14790602af1ff2c80bfb4caa166b9c4d2538a123f44ac26b4006cc5d538fe56",
+    "live_freshness_verified": false,
+    "source_and_target_validation_enabled": true,
+    "battery_qualified": false,
+    "export_performed": false,
+    "brightway_writes": false
+  },
+  "live_mapping_diagnostic": {
+    "live_archive": "20261110T030235Z-613ea498808a",
+    "live_archive_date": "2026-11-10T03:03:34.737828+00:00",
+    "live_freshness_verified": true,
+    "live_pending_first39_rules": 48,
+    "live_pending_details_match_cached_diagnostic": true,
+    "next_rule": "bp-6accb469572a8963",
+    "validation_disabled": false,
+    "battery_qualified": false,
+    "export_performed": false
+  },
+  "runtime_python_changes": [],
+  "new_recipe_definitions": 2,
+  "transient_helper_roles_in_conversion": 2,
+  "new_source_omissions": [],
+  "user_environment_changed": false,
+  "baseline_qualified_sectors": 8,
+  "registered_sectors": 19,
+  "new_sector_qualification": false,
+  "full_test_suite_rerun": false,
+  "reverse_generator_run": false,
+  "clean_forward_generator": {
+    "brightpath_commit": "b9a7055d4b215c2ccbd38b4a3f5831a520bba37a",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "ab3b63cc91a140320e9f7edfd0427c98854b832aaeed0131e32ab39e319ea576",
+        "committed_sha256": "ab3b63cc91a140320e9f7edfd0427c98854b832aaeed0131e32ab39e319ea576",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 69373706
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 2,
+    "removed_generated_output_bytes": 106566750,
+    "removed_owned_clean_worktree_file_bytes": 498743116
+  },
+  "tracked_wheel_build": {
+    "brightpath_commit": "b9a7055d4b215c2ccbd38b4a3f5831a520bba37a",
+    "clean_tracked_git_archive_build": true,
+    "unexpected_package_files": [],
+    "installed_resources_match_committed_bytes": [
+      "export/uvek_lime_delivery_39_review.json",
+      "migrations/RESOURCE_MANIFEST.json",
+      "migrations/uvek/ecoinvent-to-uvek-2025.json",
+      "export/uvek_archived_unreferenced_reviews.json"
+    ],
+    "removed_unused_wheel_bytes": 43890742,
+    "removed_temporary_tracked_build_source_and_archive_bytes": 1358414313,
+    "retained_installed_package": true
+  }
+}

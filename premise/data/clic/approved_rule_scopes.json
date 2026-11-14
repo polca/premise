@@ -194923,7 +194923,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "059bec84d4897f82b365a544dc6f131af546fa6a79e1523b73962fd359f34314"
+          "fingerprint": "b1a76bc9ae558d9962ed7ba55033c6c93cc2887d379a86cf99af298407436817"
         }
       ]
     },
@@ -282772,6 +282772,170 @@
             "version": "2025"
           },
           "fingerprint": "dca31e4f27fdc6a52b53548818a232624fb64ffa3d44318ebd58cbab3b381004"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-42ca176032e4b754",
+      "mapping_method": "reviewed_inventory_boundary_correction",
+      "review_path": "export/uvek_lime_delivery_39_review.json",
+      "review_sha256": "c7c0ca8a539e458277ccb8aed09e65d2f2ad05c818e299d03c29ea84b83d8995",
+      "authorization": "Standing user auto-approval of coming modelling decisions and helpers with explicit warnings,logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for lime",
+            "reference product": "lime",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "f5b45bc856b761bfc1aa49fe4165034bababd9b390da259e7816ba3a28a33e8c",
+          "inventory_sha256": "80555da5f52cd95d9bd9fcf79f4415d3b49ef250acad555223453fc409a0cf67",
+          "activity_comment_sha256": "9e2659b7c7a069e1c3bf15fbc577974078029f62ac25b20e8d037537c1e67919",
+          "product_information_sha256": "1026e898a328e23ce29f87a182096d97a7c40aed5e010207a15408b2ab6c7423"
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Limestone, milled, loose, at plant",
+                "reference product": "Limestone, milled, loose, at plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 7,
+              "metadata_sha256": "e52ee82e48f0f313b636422f736f3a102b724872643f95e9bcef51f6fa6fcfe6",
+              "inventory_sha256": "12b10e56d3f26c30052e037e6fd97857d5383e0748b2e89ae518912e33b1e31e",
+              "activity_comment_sha256": "b1c2a189215fa00d9b80726d70bbd9a84d39f4f06308692e9da307baadc49e00",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "identity": {
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 4,
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6",
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "activity_comment_sha256": "0716216989810c286263da289b407ae09aa4a17e1c375b712652b6590cfd6b6d",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "identity": {
+                "name": "Zinc, from combined metal production, at beneficiation",
+                "reference product": "Zinc, from combined metal production, at beneficiation",
+                "location": "SE",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 25,
+              "metadata_sha256": "6ae86f7f7f0861109b964798ba1cda1600ece1c5245e3f99e06cb554eb3bc911",
+              "inventory_sha256": "b94826253349006d0d6ec21401e3588740297e62d704a85bb4fa7aa7c8a7c6ac",
+              "activity_comment_sha256": "ec7beb90211adf2e344c046266c20c41587763515c2f3da5b89fe0a93dc2bfdd",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Limestone, milled, loose, at plant",
+                "reference product": "Limestone, milled, loose, at plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 7,
+              "metadata_sha256": "8d4dcd83f9aa3db164f3f5b3fdd3da785999f9c4d53eccad58cf4cbc30016abe",
+              "inventory_sha256": "9f13dbf403d645e799bf2e41ca6c460003c450e562369c38ff80d25ca48b8bcf",
+              "activity_comment_sha256": "246adb2032c3b54cd2741f43e2d6e9181420fe811d71ca9bc035dd9e96089277",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "identity": {
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "location": "RER",
+                "unit": "ton kilometer"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 4,
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35",
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "activity_comment_sha256": "f40ff5cc0336e900ff57b6126375b05b5a17f7212403cff0f8a08f32f35c4e5c",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "identity": {
+                "name": "Zinc, from combined metal production, at beneficiation",
+                "reference product": "Zinc, from combined metal production, at beneficiation",
+                "location": "SE",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 25,
+              "metadata_sha256": "210b3c84874e5b82f12a2a72b6f0f9e41de54a855bfa93f9d517313c0d28742c",
+              "inventory_sha256": "701660e2e5041fb85aaa70fe839f94eb7059dea650d65c831805ea9b1143532f",
+              "activity_comment_sha256": "a3ab960e44efcec16a4a98b7e9f8ec04fe9782f72b0e45f14e826e18a70b06ef",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "boundary_checks": {
+          "source_market_inputs": 6,
+          "separate_producer_shares": 3,
+          "separate_freight_entries": 3,
+          "source_quicklime_label_inconsistency_retained": true,
+          "extra_calcination_added": false,
+          "source_mining_coordinates_compared": 264,
+          "source_allocation_ratio": 0.30789473684210533,
+          "contained_Zn_mass_fraction": 0.59,
+          "native_contained_Zn_demand_per_coproduct_kg": 0.18165789473684213,
+          "old38_physical_closure_unchanged": true,
+          "source39_freight_statistics_independently_preserved": true
+        }
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9 cut-off RoW generic-lime market is extended. Preserve one signed kg source market demand at factor+1,supported caller uncertainty/formulas and separately listed caller emissions. Retain all three source producer shares and all three delivery freight quantities separately,without renormalization,omission or a CaO/CaCO3,moisture,purity or yield multiplier. Other versions,patches,system models and reverse routes gain no new permission.",
+        "The source generic product text calls this quicklime,but both inspected milled-loose producer inventories consume crushed limestone without a calcination step. Match those actual milling inventories to complete native Swiss Limestone,milled,loose,at plant,not hydraulic lime,hydrated lime or a speculative additional CaO kiln. This preserves the inspected source inventory definition with an explicit naming inconsistency; it does not establish general chemical equivalence between quicklime and limestone. Native quarry,milling,energy,infrastructure,emissions,geography,allocation,age and uncertainty replace source internals and can change scores.",
+        "The separate source global zinc-mine lime co-product is represented by allocated mining burdens,not ordinary quarry limestone. Independently checked all264nonproduction source coordinates against the same-version zinc-concentrate inventory: matching provider/flow keys and every nonzero amount ratio equal0.117/0.38. Source documentation states59%Zn in concentrate. Native Swedish beneficiation references contained Zn,so demand is0.59*(0.117/0.38)=0.1816578947368421kg contained-Zn mining burden per kg source co-product. This retains the documented allocation basis while substituting a complete native mine model; ore,co-products,allocation,upstream geography and uncertainty differ. Add no zinc-recovery or avoided-mining credit.",
+        "The market quantities agree with the earlier3.8case,but upstream source mill and mining inventories changed; this extension follows independent3.9inspection rather than blanket inheritance. Two version-specific recipe definitions use the previously reviewed native suppliers and mean quantities,with independently inspected3.9freight uncertainty to attach accurate3.9 names,evidence and limitations. They replace the two existing helper roles for this source profile; no extra processing layer or duplicate burden is added. The earlier3.8 profile,raw default target,recipe definitions,review authority and physical supplier/factor closure remain unchanged; only its raw-rule approval fingerprint must be refreshed after physical comparison.",
+        "Native European generic lorry fleet replaces the source ZA,RoW and Brazilian unspecified fleets at each original tonne-km,with supported uncertainty retained up to floating-point serialization precision. These are explicit geography,fleet technology,vintage and internal-uncertainty proxies,not claims of identical routes,payloads or energy. Source market input order is not physically meaningful; entries stay separate in the established helper order. Do not add a delivery stage,merge or redistribute producer shares,or supplement the complete native stocks with source utilities/emissions. Source/native LCI,LCIA and stochastic equivalence are not established; score effects remain unquantified.",
+        "The three source3.9 freight entries use lognormal scale0.4074309757492673 and source scale-without-pedigree0.5,whereas3.8uses0.45166359162544856and0.34641016151377546. Preserve both supplied uncertainty fields rather than deriving or inheriting a different spread. No stochastic equivalence of source and native internal inventories is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6de1bc489708a87ea449c63d44de4e2bc988126382ca52a08266a71fa17a3ed4"
         }
       ]
     }

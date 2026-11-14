@@ -2143,3 +2143,8 @@ Exact3.9 hydraulic-lime and crushed-limestone markets each contain one producer 
 ## Delivered kerosene — 14 November 2026
 
 Corrected refinery-only matching to complete native RER kerosene regional storage,at+1 signed kg. Source delivery internals are replaced by a documented whole-process screening proxy; electricity,NMVOC,freight,infrastructure and wastewater differences are explicit. No helpers,omissions or runtime changes. Twenty-nine Brightpath and five Premise source checks pass,plus signed in-memory LCI/native-demand consistency without Brightway writes. Fresh/cached battery50to49; eight sectors remain qualified. See [review](uvek-kerosene-delivery-39-review.md) and [verification](uvek-kerosene-delivery-39-verification.json).
+
+
+## Generic lime delivery, exact source3.9 — 14 November 2026
+
+Preserved three producer shares and three freight quantities using inspected milled-limestone and allocated-mining boundaries,with explicit quicklime-label inconsistency. Verified all264mining coordinates against same-version zinc concentrate and retained its allocation ratio. Independent3.9freight uncertainty differs from3.8and is copied exactly; earlier3.8recipes and physical bindings unchanged. Two version-specific recipe definitions,no extra processing layer,runtime change or omission. Thirty-six Brightpath and six Premise source checks pass; signed in-memory LCIs and independent native demand pass without Brightway writes. Fresh/cached battery49to48; eight sectors remain qualified. See [review](uvek-lime-delivery-39-review.md) and [verification](uvek-lime-delivery-39-verification.json).
