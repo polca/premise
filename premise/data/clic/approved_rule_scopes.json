@@ -281589,6 +281589,546 @@
           "fingerprint": "68c87d00712c088668a41358045cd394c88a34cad3a042194a0ae6a0ccc86749"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-6ebc0285d15772a7",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_direct_waste_services_39_review.json",
+      "review_sha256": "0f7f5658661212cdc391ab58c2c91ac13306467379f069633e53e65bdfd17655",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed disposal cases;review exact references and full native service boundaries,retain verified signs and log composition/geography/transport limits.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for non-sulfidic tailing, off-site",
+            "reference product": "non-sulfidic tailing, off-site",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "d84c4c8754277a501bcb985defbd683dfc2328b6b004d86b698db2c9e7972418",
+          "inventory_sha256": "0e19dade92a82b4b9cf71e153537cd6341ded86ecc7acf0960305387173867d1",
+          "activity_comment_sha256": "722c74f9a22ada20aba9342d4e489cdc774117339f469ce0082854acc9611de8",
+          "product_information_sha256": "a866ca991d74465455afd73d9f324bff5860d21facbea62b1c30a11290fa829f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, non-sulfidic tailings, off-site",
+              "reference product": "Disposal, non-sulfidic tailings, off-site",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "32131d137e6c7e377fb82af19c25b7e467028da804bd8064c75dae1be16665f1",
+            "inventory_sha256": "be0b4c4308ce53095b069f08dcf6f05ace9238408eb298036b57b9d2c61ed7ec",
+            "activity_comment_sha256": "f92c26734bf1cf567f1e83b33740aa8566861d0a29737786052fb8af58d31e2f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, non-sulfidic tailings, off-site",
+              "reference product": "Disposal, non-sulfidic tailings, off-site",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 3,
+            "metadata_sha256": "aece932b7f3cad7f1115b01884706480cfa7401bc870ffd641994a6cb0f6b8f3",
+            "inventory_sha256": "c721764ed718fa0215f97111d447beffe0c430309bafbf0430cd4601263528ae",
+            "activity_comment_sha256": "da6d13a26a92cc88038490adb438f27856ab7b084d0a5cad80e20914b57375e1",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_reference_amount": -1,
+          "native_reference_amount": 1,
+          "existing_verified_factor_unchanged": -1,
+          "new_helper": false,
+          "source_internal_inventory_reproduced": false,
+          "new_recovery_credit": false,
+          "caller_exchange_omitted": false
+        }
+      },
+      "limitations": [
+        "Permission-only review of the independently inspected exact ecoinvent3.9 cut-off source service and its existing native counterpart. Source reference is-1kg waste and native reference is+1kg disposal service in both releases. Existing verified conversion factor-1 is correct and remains byte-for-byte unchanged: negative incoming waste demand becomes positive disposal demand,while positive avoided-treatment demand becomes negative native demand. Preserve source amount/reference service units, supported uncertainty,formulas and separate caller exchanges; never use absolute amounts or flip twice. Other source versions,patches,system models and reverse directions gain no new permission.",
+        "Use the complete native service per kg waste as a documented screening proxy. Its own waste composition,technology,collection/transport,energy,flue-gas treatment,solidification,landfill,land occupation,leachate,emission timing,allocation and uncertainty replace source internals. Do not overlay source utilities,water,plant,cement or emissions on top,add an energy/recovery credit,renormalize an unrelated waste mix,or derive an LHV,dry-matter,moisture,ore-grade or efficiency multiplier from names. Native historical geography/model boundaries can differ; source/native LCI,LCIA and stochastic equivalence are not established and score effects remain unquantified.",
+        "No caller exchange is omitted,no empty supplier/helper is created,and no source/caller inventory is mutated. This packet does not change any migration rule,recipe,resource manifest,runtime Python,sector engine or source/target validation. It grants only exact-profile compatibility permission after primary source/native inspection. Existing older approvals and fingerprints remain unchanged; multi-destination/recovery markets are outside this packet.",
+        "Source non-sulfidic-tailings market calls one matching disposal provider at-1kg,with no extra freight or direct biosphere input. Both its provider and the native non-sulfidic stock contain only three land-use flows with the same occupation/transformation quantities; the unspecified-versus-unknown origin label remains a classification limitation. The native comment misleadingly says sulphidic,but the inspected stock is the land-use-only non-sulfidic model,not the separate77-flow sulfide-leachate model. Do not add that other model or infer that pollution is physically absent. Source waste properties represent1kg wet tailings with0.7kg dry matter; equal inherited land-use coefficients do not certify every ore/moisture/geology. No extra0.7or1/0.7 scaling or rehabilitation model is inferred."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9800d00181b1816c1b42395d11dc2ac87b029e58e766ed820527825df311d583"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-d79552cf92e20874",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_direct_waste_services_39_review.json",
+      "review_sha256": "0f7f5658661212cdc391ab58c2c91ac13306467379f069633e53e65bdfd17655",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed disposal cases;review exact references and full native service boundaries,retain verified signs and log composition/geography/transport limits.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for sulfidic tailings, from copper mine operation",
+            "reference product": "sulfidic tailings, from copper mine operation",
+            "location": "ZM",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "22937a9d9b91fab902aca5e5ed4e3d6f32d7dc41584eb90cd61b7d0b7fdbfd68",
+          "inventory_sha256": "cfd03b77afbd8a816e932d57c82bbde99a164e1fa86b28acab3823adf15fda27",
+          "activity_comment_sha256": "d85f3cd2078304ec282909690c4c4f2aeed6e976ef5a470fb9ae969bca6fc100",
+          "product_information_sha256": "712e0fedb27c4a20b4d9d7392f90ffc78bbb61acb3765d772ad782d43cf6e760"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, sulfidic tailings, off-site",
+              "reference product": "Disposal, sulfidic tailings, off-site",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 77,
+            "metadata_sha256": "a1f581a4f647aa9807c48eb6a17e44708638582aa50ccf5eb6b5e1b622dee9a5",
+            "inventory_sha256": "59fbf34182ed51b79774799d1b1aa280e6adaa18db6c0a198df90396e1aa0a72",
+            "activity_comment_sha256": "308aa6121080f568608e369e7d4cd118e698f5fe8050656bb4da4d21d6345d22",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, sulfidic tailings, off-site",
+              "reference product": "Disposal, sulfidic tailings, off-site",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 77,
+            "metadata_sha256": "07034427658b184e4f9d49388d758ad831cf947b19251f9c1fe5f7c644f8d5ce",
+            "inventory_sha256": "5e029fe78cb4030947a41b6c0a5f24de0b6ead4ac2837e12f1c8af64e02d40fa",
+            "activity_comment_sha256": "aad7783f5c130868987cfae0ec76bbefee41181e3580eca033043c291dfcf59d",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_reference_amount": -1,
+          "native_reference_amount": 1,
+          "existing_verified_factor_unchanged": -1,
+          "new_helper": false,
+          "source_internal_inventory_reproduced": false,
+          "new_recovery_credit": false,
+          "caller_exchange_omitted": false
+        }
+      },
+      "limitations": [
+        "Permission-only review of the independently inspected exact ecoinvent3.9 cut-off source service and its existing native counterpart. Source reference is-1kg waste and native reference is+1kg disposal service in both releases. Existing verified conversion factor-1 is correct and remains byte-for-byte unchanged: negative incoming waste demand becomes positive disposal demand,while positive avoided-treatment demand becomes negative native demand. Preserve source amount/reference service units, supported uncertainty,formulas and separate caller exchanges; never use absolute amounts or flip twice. Other source versions,patches,system models and reverse directions gain no new permission.",
+        "Use the complete native service per kg waste as a documented screening proxy. Its own waste composition,technology,collection/transport,energy,flue-gas treatment,solidification,landfill,land occupation,leachate,emission timing,allocation and uncertainty replace source internals. Do not overlay source utilities,water,plant,cement or emissions on top,add an energy/recovery credit,renormalize an unrelated waste mix,or derive an LHV,dry-matter,moisture,ore-grade or efficiency multiplier from names. Native historical geography/model boundaries can differ; source/native LCI,LCIA and stochastic equivalence are not established and score effects remain unquantified.",
+        "No caller exchange is omitted,no empty supplier/helper is created,and no source/caller inventory is mutated. This packet does not change any migration rule,recipe,resource manifest,runtime Python,sector engine or source/target validation. It grants only exact-profile compatibility permission after primary source/native inspection. Existing older approvals and fingerprints remain unchanged; multi-destination/recovery markets are outside this packet.",
+        "Source Zambian copper-tailings market calls one impoundment provider at-1kg with no extra freight or direct biosphere input. Use the complete generic native sulfide-tailings impoundment,not the land-use-only non-sulfidic stock. Its generic ore composition,mechanically stable impoundment,renaturation and60000-year leachate model replace the source regional composition/release model. Source waste properties are1kg wet tailings with0.7kg dry matter; native generic composition and moisture are not certified identical. No speculative wet/dry correction,metal-recovery credit or reconstructed drainage flow is added."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c8632e9965bb16e9a645cfd7cd4692b409e966339cdee6adce405a9c49309837"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-62496b8cba81ceaf",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_direct_waste_services_39_review.json",
+      "review_sha256": "0f7f5658661212cdc391ab58c2c91ac13306467379f069633e53e65bdfd17655",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed disposal cases;review exact references and full native service boundaries,retain verified signs and log composition/geography/transport limits.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of hazardous waste, hazardous waste incineration",
+            "reference product": "hazardous waste, for incineration",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 77,
+          "metadata_sha256": "16b97edab116bf37178f08a19e80e8b9a4bab927b475538cb5f283c53ed94b50",
+          "inventory_sha256": "cd19e8dbc2657a24816fca5bfc57fcf11336ab205dcfb3c5bd1568bcfa3529b2",
+          "activity_comment_sha256": "168a8b4562ad1f8e43331382630aeabb82b5c092ce9f18add91457aed0cb28bf",
+          "product_information_sha256": "4764cbd2a496c8be1cd0f9d3998a7255f13178d7785c9aa2c2f755e1c5b1869a"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+              "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 79,
+            "metadata_sha256": "c1ac950e93ef5993de72f0eeaad38d9747bae9190d4cda43ede02522ac623bf2",
+            "inventory_sha256": "922dfd4770ecc72fba41e4782de0657e48f3a3103175254d36290f2df1a9dfe5",
+            "activity_comment_sha256": "a2435f06f1a80f4adb7bdb31f7b421bf8eed6b74f54df86cbdd12281c1eb0f48",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+              "reference product": "Disposal, hazardous waste, 25% water, to hazardous waste incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 80,
+            "metadata_sha256": "13da750365011b0f6d064abb2ad8cefe8db14562bc6097383261df2b20ba0e1a",
+            "inventory_sha256": "6d976ec7e33cbc9566c528e659c1de96928dcada831792c615287bd7b535a159",
+            "activity_comment_sha256": "67ea03b0a654205c23ea321e3878f17ab79c5d4f79ea84ab323734414728b9d5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_reference_amount": -1,
+          "native_reference_amount": 1,
+          "existing_verified_factor_unchanged": -1,
+          "new_helper": false,
+          "source_internal_inventory_reproduced": false,
+          "new_recovery_credit": false,
+          "caller_exchange_omitted": false
+        }
+      },
+      "limitations": [
+        "Permission-only review of the independently inspected exact ecoinvent3.9 cut-off source service and its existing native counterpart. Source reference is-1kg waste and native reference is+1kg disposal service in both releases. Existing verified conversion factor-1 is correct and remains byte-for-byte unchanged: negative incoming waste demand becomes positive disposal demand,while positive avoided-treatment demand becomes negative native demand. Preserve source amount/reference service units, supported uncertainty,formulas and separate caller exchanges; never use absolute amounts or flip twice. Other source versions,patches,system models and reverse directions gain no new permission.",
+        "Use the complete native service per kg waste as a documented screening proxy. Its own waste composition,technology,collection/transport,energy,flue-gas treatment,solidification,landfill,land occupation,leachate,emission timing,allocation and uncertainty replace source internals. Do not overlay source utilities,water,plant,cement or emissions on top,add an energy/recovery credit,renormalize an unrelated waste mix,or derive an LHV,dry-matter,moisture,ore-grade or efficiency multiplier from names. Native historical geography/model boundaries can differ; source/native LCI,LCIA and stochastic equivalence are not established and score effects remain unquantified.",
+        "No caller exchange is omitted,no empty supplier/helper is created,and no source/caller inventory is mutated. This packet does not change any migration rule,recipe,resource manifest,runtime Python,sector engine or source/target validation. It grants only exact-profile compatibility permission after primary source/native inspection. Existing older approvals and fingerprints remain unchanged; multi-destination/recovery markets are outside this packet.",
+        "Both source hazardous-waste properties and native waste definition specify25%water on an as-received basis. The native complete Swiss hazardous-waste incinerator models flue-gas cleanup,auxiliary energy,ash landfill and solidification,with100%burdens allocated to disposal rather than energy substitution. Source and native generic hazardous-waste mix,LHV,chemistry,stack emissions,technology/vintage and residue treatment can differ. Keep one signed kg-service conversion; do not divide by0.75,scale by energy content or add a power/heat credit."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "67db6b29a14a4f72545bc23c3340d15b7bacd9e7c5b922a7d8dfc0de12ead25f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-39a70123944bbc3e",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_direct_waste_services_39_review.json",
+      "review_sha256": "0f7f5658661212cdc391ab58c2c91ac13306467379f069633e53e65bdfd17655",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed disposal cases;review exact references and full native service boundaries,retain verified signs and log composition/geography/transport limits.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of waste mineral wool, collection for final disposal",
+            "reference product": "waste mineral wool",
+            "location": "Europe without Switzerland",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "16b365cf364098b824ebd3d10cfccee0032f2ca6cd60360e5d5645dc76a00c8b",
+          "inventory_sha256": "e660bf3c06dbe8c16dff2354831766d6b05aef4b6089fac64e82b79eaa8a1921",
+          "activity_comment_sha256": "84f4085e6999eab031b3bd2178e5e5269084500bb7e87605ad30141c917d402c",
+          "product_information_sha256": "69b6c9bd5c0e7ca6476f1185821da99ecb323e0bbed11c8ea77360bcf6dc640f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, building, mineral wool, to final disposal",
+              "reference product": "Disposal, building, mineral wool, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "988df6aa8bdc5f13ad689642d53a2751ab7c6ecb2b4ff796162f2a7df0f30b36",
+            "inventory_sha256": "4772d1bb86271e923d0c8d11c4a0382fbb3439438de43ea5c4c14643d1c24732",
+            "activity_comment_sha256": "ffa14014413c704404fe91369a7c55a7fe60004cf70238c6b9a21cfd244b72a2",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, building, mineral wool, to final disposal",
+              "reference product": "Disposal, building, mineral wool, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "80d1d8f95e40b93db9db81684d323e6ec3036ee16c5d7bf011d02fc8fb5b5e68",
+            "inventory_sha256": "7543cdcedbe37b7a1fc1f96fb2f2aacb0228598cf0c13ab5ba8f88f04bded3c5",
+            "activity_comment_sha256": "756a836325de45944fd09e500a3d48c1dfe56eb85307d8383fd4f2e331c497cd",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_reference_amount": -1,
+          "native_reference_amount": 1,
+          "existing_verified_factor_unchanged": -1,
+          "new_helper": false,
+          "source_internal_inventory_reproduced": false,
+          "new_recovery_credit": false,
+          "caller_exchange_omitted": false
+        }
+      },
+      "limitations": [
+        "Permission-only review of the independently inspected exact ecoinvent3.9 cut-off source service and its existing native counterpart. Source reference is-1kg waste and native reference is+1kg disposal service in both releases. Existing verified conversion factor-1 is correct and remains byte-for-byte unchanged: negative incoming waste demand becomes positive disposal demand,while positive avoided-treatment demand becomes negative native demand. Preserve source amount/reference service units, supported uncertainty,formulas and separate caller exchanges; never use absolute amounts or flip twice. Other source versions,patches,system models and reverse directions gain no new permission.",
+        "Use the complete native service per kg waste as a documented screening proxy. Its own waste composition,technology,collection/transport,energy,flue-gas treatment,solidification,landfill,land occupation,leachate,emission timing,allocation and uncertainty replace source internals. Do not overlay source utilities,water,plant,cement or emissions on top,add an energy/recovery credit,renormalize an unrelated waste mix,or derive an LHV,dry-matter,moisture,ore-grade or efficiency multiplier from names. Native historical geography/model boundaries can differ; source/native LCI,LCIA and stochastic equivalence are not established and score effects remain unquantified.",
+        "No caller exchange is omitted,no empty supplier/helper is created,and no source/caller inventory is mutated. This packet does not change any migration rule,recipe,resource manifest,runtime Python,sector engine or source/target validation. It grants only exact-profile compatibility permission after primary source/native inspection. Existing older approvals and fingerprints remain unchanged; multi-destination/recovery markets are outside this packet.",
+        "The source is dry mineral-wool collection with a final-landfill input and three particulate-emission coordinates. Native building-mineral-wool collection includes dry mineral-wool landfill,the native particulate model and0.015tkm of its historical road transport per kg. That road input is not explicitly listed in the source collection record: it is a native boundary difference,not copied source delivery or proof of physically zero source transport. Keep the complete native collection service once; do not add caller demolition/freight a second time or claim identical dust/density/transport performance. European source geography becomes the native historical Swiss collection/landfill model."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "abacfdf44548c2b7aa91a5d24561c94c6113a78f6437b0228d82d35684cf4b27"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-b73d5db62046c9cf",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_direct_waste_services_39_review.json",
+      "review_sha256": "0f7f5658661212cdc391ab58c2c91ac13306467379f069633e53e65bdfd17655",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed disposal cases;review exact references and full native service boundaries,retain verified signs and log composition/geography/transport limits.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of average incineration residue, residual material landfill",
+            "reference product": "average incineration residue",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 84,
+          "metadata_sha256": "1a7b05517b3e2ccccf955ca8aa8e7b224ab310c8ee2e01e3cf7b747cdc039591",
+          "inventory_sha256": "b23a293d37b77b598c1c39aac88f98634a2d7a76f7906ca1046c5bc30dcb7bfe",
+          "activity_comment_sha256": "f124bab64de8eb32c63ad847367b717330a1688c0c020bc72b0b9c3c40ff8cc0",
+          "product_information_sha256": "ab57a42fb0c423abe2620bec72d1c8921abc0a2d5bc18a9362d4bc4fe5a4d9e0"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, average incineration residue, 0% water, to residual material landfill",
+              "reference product": "Disposal, average incineration residue, 0% water, to residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 75,
+            "metadata_sha256": "74dbb851f909d3c2e9aafb257e6e9614e74a94ee11ddefcc8bceb17adb163f37",
+            "inventory_sha256": "9cdb42549fbeb30964a47e34eb540b57ff4ec3b4dacfbb36edc8917fb880f955",
+            "activity_comment_sha256": "343e9c7db42cb0c7c3d703d1e2aa04279d63776fbfe0f629804256ed0cae9ef6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, average incineration residue, 0% water, to residual material landfill",
+              "reference product": "Disposal, average incineration residue, 0% water, to residual material landfill",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 76,
+            "metadata_sha256": "4019b1ee684aead5a0c6ed90acdbc3fc772d89bedda8c8e94560cdf4e3eef2b2",
+            "inventory_sha256": "b8fc8cb6f19b28cf0803bb937659d3d80d5479c665bb09d43defadd63b17f9f5",
+            "activity_comment_sha256": "3fc4a56b12d57cc6d0ebe4acffb00bf5cff36d5da22fdf27788b49e31da645ed",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_reference_amount": -1,
+          "native_reference_amount": 1,
+          "existing_verified_factor_unchanged": -1,
+          "new_helper": false,
+          "source_internal_inventory_reproduced": false,
+          "new_recovery_credit": false,
+          "caller_exchange_omitted": false
+        }
+      },
+      "limitations": [
+        "Permission-only review of the independently inspected exact ecoinvent3.9 cut-off source service and its existing native counterpart. Source reference is-1kg waste and native reference is+1kg disposal service in both releases. Existing verified conversion factor-1 is correct and remains byte-for-byte unchanged: negative incoming waste demand becomes positive disposal demand,while positive avoided-treatment demand becomes negative native demand. Preserve source amount/reference service units, supported uncertainty,formulas and separate caller exchanges; never use absolute amounts or flip twice. Other source versions,patches,system models and reverse directions gain no new permission.",
+        "Use the complete native service per kg waste as a documented screening proxy. Its own waste composition,technology,collection/transport,energy,flue-gas treatment,solidification,landfill,land occupation,leachate,emission timing,allocation and uncertainty replace source internals. Do not overlay source utilities,water,plant,cement or emissions on top,add an energy/recovery credit,renormalize an unrelated waste mix,or derive an LHV,dry-matter,moisture,ore-grade or efficiency multiplier from names. Native historical geography/model boundaries can differ; source/native LCI,LCIA and stochastic equivalence are not established and score effects remain unquantified.",
+        "No caller exchange is omitted,no empty supplier/helper is created,and no source/caller inventory is mutated. This packet does not change any migration rule,recipe,resource manifest,runtime Python,sector engine or source/target validation. It grants only exact-profile compatibility permission after primary source/native inspection. Existing older approvals and fingerprints remain unchanged; multi-destination/recovery markets are outside this packet.",
+        "Source residual-landfill waste is dry average incineration residue; native definition also states0%water and0.4kg cement solidification per kg waste. Source cement inputs sum to0.4kg,so no second cement/landfill service,wet-mass factor or normalization of the waste-plus-binder mass is added. The complete native Swiss residual landfill replaces source RoW/country-specific cement,liner,leachate,composition and long-term release models. Its61.1%biogenic-carbon share and metal-content assumptions are not universal residue measurements. The earlier3.6 permission retains its exact raw rule,authority and fingerprint unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c90fd262d53645cd034849e9d2191a9d56c042e4c9dd01507389f0117522f76a"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-ca8d5024f84eef23",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_direct_waste_services_39_review.json",
+      "review_sha256": "0f7f5658661212cdc391ab58c2c91ac13306467379f069633e53e65bdfd17655",
+      "authorization": "Standing user auto-approval of coming decisions and similar reviewed disposal cases;review exact references and full native service boundaries,retain verified signs and log composition/geography/transport limits.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "treatment of residue from shredder fraction from manual dismantling, municipal waste incineration",
+            "reference product": "residue from shredder fraction from manual dismantling",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            -1.0
+          ],
+          "nonproduction_count": 131,
+          "metadata_sha256": "9b5bc05e2526a9ad084f7d93d6f9ebdf88e33f91503f29d5b76406bd7afad1ce",
+          "inventory_sha256": "adc5848a5f6ee4b53ed476cad09c5f49d39c4c25c689a1afee73f06476208c56",
+          "activity_comment_sha256": "033e06ed7a83141d2f94f10c40ca2b77e1edad053156f0a659bfe239d7820624",
+          "product_information_sha256": "ec53cee216335b0ece5a828f281689ce1278287f7b5eac7ebc79e0bb53344740"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, residues, shredder fraction from manual dismantling, in MSWI",
+              "reference product": "Disposal, residues, shredder fraction from manual dismantling, in MSWI",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 142,
+            "metadata_sha256": "d066bf522cb9131d18bc0a61996b4a0abc877a13217d3fb6ac3e03f71dc51e85",
+            "inventory_sha256": "7eab63a1bb3f26ccea94f936bc49d6979edb808a582294315984f2900ab128ca",
+            "activity_comment_sha256": "5e74e1a3ef19369ef94048ebc55c83b7c4955c28aa3507e710e1cf35c3bd14a0",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, residues, shredder fraction from manual dismantling, in MSWI",
+              "reference product": "Disposal, residues, shredder fraction from manual dismantling, in MSWI",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 144,
+            "metadata_sha256": "01e9a185d0e6366e4ae5657148d1436b38dd144e35970211e83e77c6855b49f9",
+            "inventory_sha256": "16b43582f3bf0ee186ff63f9d8b2c0c4bc312b39cd61cc98d3b48d74816823b5",
+            "activity_comment_sha256": "6d313d7d39040ac8212bb7063a0cb0e0e50d1dcb735f705dff2347f3c398a314",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "source_reference_amount": -1,
+          "native_reference_amount": 1,
+          "existing_verified_factor_unchanged": -1,
+          "new_helper": false,
+          "source_internal_inventory_reproduced": false,
+          "new_recovery_credit": false,
+          "caller_exchange_omitted": false
+        }
+      },
+      "limitations": [
+        "Permission-only review of the independently inspected exact ecoinvent3.9 cut-off source service and its existing native counterpart. Source reference is-1kg waste and native reference is+1kg disposal service in both releases. Existing verified conversion factor-1 is correct and remains byte-for-byte unchanged: negative incoming waste demand becomes positive disposal demand,while positive avoided-treatment demand becomes negative native demand. Preserve source amount/reference service units, supported uncertainty,formulas and separate caller exchanges; never use absolute amounts or flip twice. Other source versions,patches,system models and reverse directions gain no new permission.",
+        "Use the complete native service per kg waste as a documented screening proxy. Its own waste composition,technology,collection/transport,energy,flue-gas treatment,solidification,landfill,land occupation,leachate,emission timing,allocation and uncertainty replace source internals. Do not overlay source utilities,water,plant,cement or emissions on top,add an energy/recovery credit,renormalize an unrelated waste mix,or derive an LHV,dry-matter,moisture,ore-grade or efficiency multiplier from names. Native historical geography/model boundaries can differ; source/native LCI,LCIA and stochastic equivalence are not established and score effects remain unquantified.",
+        "No caller exchange is omitted,no empty supplier/helper is created,and no source/caller inventory is mutated. This packet does not change any migration rule,recipe,resource manifest,runtime Python,sector engine or source/target validation. It grants only exact-profile compatibility permission after primary source/native inspection. Existing older approvals and fingerprints remain unchanged; multi-destination/recovery markets are outside this packet.",
+        "Use the native MSWI service specifically for shredder residues from manual dismantling of electronic waste,not vehicle shredder residue or arbitrary mixed industrial waste. Source and native detailed waste definitions use the same named electronic-residue category but have different calculated composition and heating values: source LHV32.89MJ/kg versus native27.77MJ/kg. Their detailed water contents are8744.7and8610.5ppm respectively; a generic source product property says zero water and must not be mistaken for the detailed incinerator composition. These are explicitly different waste-model assumptions. Retain mass-based service factor-1 without an LHV or nominal-dryness ratio; native energy/metal recovery,slag,fly-ash/solidification,allocation and emissions remain in its complete historical model. No new recovery credit is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a35af79da36c0dc1afeb51122e6dcf9484e0b6b701cacd034bfab487420e9c53"
+        }
+      ]
     }
   ],
   "superseded_operations": [
