@@ -277909,6 +277909,303 @@
           "fingerprint": "aeb2301ceceb174659177006de643a78846ba3afe55798c30ce3abacc5b4915c"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-8b2189adc42645e8",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_cooling_energy_39_review.json",
+      "review_sha256": "bbb00b24340815337f5e3d84a8ac03aa79fc29b3c5fb2caf58d72d9b78023b1f",
+      "authorization": "Standing autonomous approval of coming modelling decisions; complete native same-service and geographic screening proxies with explicit warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "cooling energy, from natural gas, at cogen unit with absorption chiller 100kW",
+            "reference product": "cooling energy",
+            "location": "CH",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "metadata_sha256": "488eeda83fa0faeebfdc37d122951038547c3c99017f98c1608d3e9d1cd47188",
+          "inventory_sha256": "6834f40f529c72b6c885347738a1b3f2dd3215f3466c00766ebb383545b82e86",
+          "activity_comment_sha256": "4d5d504eec16bf730428cad96586de4ff1c007df6aa984a96f948187f2a8b9e6",
+          "product_information_sha256": "186e08e81d41c06b8d72691f7dc0f1d93df544bc39a15988d7177dcd58003f6f"
+        },
+        "native_witnesses": {
+          "2026": {
+            "identity": {
+              "name": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "reference product": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "54b1e7f7e469a3ffaee995b0e2f97b16e7b2da61cc10e4dd76ae0ba22eeb6fa5",
+            "inventory_sha256": "75e4e5ddd7655837d9d7e069001eb56c039b66d68c4492f00abc401bf3932c44",
+            "activity_comment_sha256": "51e6753ed8a123e179982f2bd0314da502508e1513e2a7258a856533b4eec502",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2025": {
+            "identity": {
+              "name": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "reference product": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "2473ae75337271581a09b5a9d5e5087535ed154d4ee74efc37912673f9ed9c76",
+            "inventory_sha256": "bc5c311c14aec6c0aad6045e210b694f78d5784b1fe5ac716592f167c387e09c",
+            "activity_comment_sha256": "2e0819efa9edc783224444a8b35236cebd43c327d6dfe37b6746b9ed02abf8b7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "reference_basis": "MJ cooling output",
+          "technology": "natural-gas cogeneration heat, single-stage100kW absorption chiller",
+          "seasonal_performance_factor_already_internal": 0.6,
+          "driving_heat_MJ_per_MJ_cooling": 1.67,
+          "electricity_kWh_per_MJ_cooling": 0.02,
+          "decarbonised_water_kg_per_MJ_cooling": 1.5,
+          "extra_efficiency_or_heat_multiplier": false,
+          "native_direct_water_returns_present": false,
+          "source_direct_water_returns_present": true,
+          "market_only_same_technology_producers": true,
+          "market_producer_shares_sum": 1.0,
+          "market_has_freight_or_additional_losses": false,
+          "native2025_and2026_nonproduction_count": 5,
+          "RoW_native_geography_proxy": "CH",
+          "new_helper_required": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the three inspected ecoinvent3.9 cut-off cooling-energy identities: Swiss and Rest-of-World gas-cogeneration absorption-chiller production and their global market. Source and native references are positive1MJ of cooling output, not1MJ of gas/heat, electric compression, electricity or kg/m3 of cooling water. Factor+1 preserves signed caller quantities, uncertainty, formulas and separate foreground exchanges. No other release, patch, system model or reverse route is newly approved.",
+        "Use the complete native Swiss100kW single-stage absorption-chiller service once. Source and native documentation describe heat from a160kWe natural-gas cogenerator with exergy allocation, seasonal performance factor0.6,6C chilled-water supply,85–100C driving heat and20year/20000full-load-hour infrastructure convention. Native inventory already contains1.67MJ cogenerated heat,0.02kWh operating electricity,1.5kg decarbonised water and chiller infrastructure per referenceMJ. Do not divide again by0.6, multiply by1.67, add gas/heat/electricity/water/chiller again, convert between heat and cooling units or credit exported electricity/heat a second time. Native internal allocation, losses and infrastructure convention remain its own.",
+        "The source global market contains only the Swiss and Rest-of-World versions of this same absorption technology; its two positive producer shares sum to1MJ and it has no freight, market loss or separate infrastructure demand. Direct replacement supplies1MJ of the same complete native service without constructing a redundant market helper. Original market geographies and producer split are not reproduced: the Rest-of-World share and producer use the Swiss complete service as an explicit geographic proxy, including native Swiss electricity and heat and European water rather than the source regional utility portfolios. Score and stochastic equivalence are not established.",
+        "Source producers explicitly return cooling water in two direct biosphere exchanges, while both inspected native2025 and2026 records contain waste heat but no direct water-return exchanges. This difference is retained as a complete-native boundary limitation, not a claim of physically zero discharge or a separate foreground-exchange omission. Do not fabricate a water balance, assume matching compartments or copy source water returns onto the native inventory. Native internal water supply, treatment, source import limitations, allocation, vintage and geography can change impacts; score effects remain unquantified. Caller-owned emissions remain unchanged.",
+        "The native name begins with xx but has a nonempty service inventory and positiveMJ reference. Existing direct rules, default targets, all previous fingerprints and migration resources remain unchanged. No helper, source foreground omission, runtime Python change, alternative transformation engine or validation bypass is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "be48dba12054f58e9acfd7726aedd55cdd8c4bee0ca270a0a854b5cf9fc85357"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-17e640dec8943b5c",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_cooling_energy_39_review.json",
+      "review_sha256": "bbb00b24340815337f5e3d84a8ac03aa79fc29b3c5fb2caf58d72d9b78023b1f",
+      "authorization": "Standing autonomous approval of coming modelling decisions; complete native same-service and geographic screening proxies with explicit warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "cooling energy, from natural gas, at cogen unit with absorption chiller 100kW",
+            "reference product": "cooling energy",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 25,
+          "metadata_sha256": "83105de3c596f9ac9daf97a24db617eececf7de8bd343e763fe14d064d3b09dd",
+          "inventory_sha256": "e9bb9e65f78893389717b40182a46c7fe7f266b6f10de13da974abbeffefe633",
+          "activity_comment_sha256": "4d5d504eec16bf730428cad96586de4ff1c007df6aa984a96f948187f2a8b9e6",
+          "product_information_sha256": "186e08e81d41c06b8d72691f7dc0f1d93df544bc39a15988d7177dcd58003f6f"
+        },
+        "native_witnesses": {
+          "2026": {
+            "identity": {
+              "name": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "reference product": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "54b1e7f7e469a3ffaee995b0e2f97b16e7b2da61cc10e4dd76ae0ba22eeb6fa5",
+            "inventory_sha256": "75e4e5ddd7655837d9d7e069001eb56c039b66d68c4492f00abc401bf3932c44",
+            "activity_comment_sha256": "51e6753ed8a123e179982f2bd0314da502508e1513e2a7258a856533b4eec502",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2025": {
+            "identity": {
+              "name": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "reference product": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "2473ae75337271581a09b5a9d5e5087535ed154d4ee74efc37912673f9ed9c76",
+            "inventory_sha256": "bc5c311c14aec6c0aad6045e210b694f78d5784b1fe5ac716592f167c387e09c",
+            "activity_comment_sha256": "2e0819efa9edc783224444a8b35236cebd43c327d6dfe37b6746b9ed02abf8b7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "reference_basis": "MJ cooling output",
+          "technology": "natural-gas cogeneration heat, single-stage100kW absorption chiller",
+          "seasonal_performance_factor_already_internal": 0.6,
+          "driving_heat_MJ_per_MJ_cooling": 1.67,
+          "electricity_kWh_per_MJ_cooling": 0.02,
+          "decarbonised_water_kg_per_MJ_cooling": 1.5,
+          "extra_efficiency_or_heat_multiplier": false,
+          "native_direct_water_returns_present": false,
+          "source_direct_water_returns_present": true,
+          "market_only_same_technology_producers": true,
+          "market_producer_shares_sum": 1.0,
+          "market_has_freight_or_additional_losses": false,
+          "native2025_and2026_nonproduction_count": 5,
+          "RoW_native_geography_proxy": "CH",
+          "new_helper_required": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the three inspected ecoinvent3.9 cut-off cooling-energy identities: Swiss and Rest-of-World gas-cogeneration absorption-chiller production and their global market. Source and native references are positive1MJ of cooling output, not1MJ of gas/heat, electric compression, electricity or kg/m3 of cooling water. Factor+1 preserves signed caller quantities, uncertainty, formulas and separate foreground exchanges. No other release, patch, system model or reverse route is newly approved.",
+        "Use the complete native Swiss100kW single-stage absorption-chiller service once. Source and native documentation describe heat from a160kWe natural-gas cogenerator with exergy allocation, seasonal performance factor0.6,6C chilled-water supply,85–100C driving heat and20year/20000full-load-hour infrastructure convention. Native inventory already contains1.67MJ cogenerated heat,0.02kWh operating electricity,1.5kg decarbonised water and chiller infrastructure per referenceMJ. Do not divide again by0.6, multiply by1.67, add gas/heat/electricity/water/chiller again, convert between heat and cooling units or credit exported electricity/heat a second time. Native internal allocation, losses and infrastructure convention remain its own.",
+        "The source global market contains only the Swiss and Rest-of-World versions of this same absorption technology; its two positive producer shares sum to1MJ and it has no freight, market loss or separate infrastructure demand. Direct replacement supplies1MJ of the same complete native service without constructing a redundant market helper. Original market geographies and producer split are not reproduced: the Rest-of-World share and producer use the Swiss complete service as an explicit geographic proxy, including native Swiss electricity and heat and European water rather than the source regional utility portfolios. Score and stochastic equivalence are not established.",
+        "Source producers explicitly return cooling water in two direct biosphere exchanges, while both inspected native2025 and2026 records contain waste heat but no direct water-return exchanges. This difference is retained as a complete-native boundary limitation, not a claim of physically zero discharge or a separate foreground-exchange omission. Do not fabricate a water balance, assume matching compartments or copy source water returns onto the native inventory. Native internal water supply, treatment, source import limitations, allocation, vintage and geography can change impacts; score effects remain unquantified. Caller-owned emissions remain unchanged.",
+        "The native name begins with xx but has a nonempty service inventory and positiveMJ reference. Existing direct rules, default targets, all previous fingerprints and migration resources remain unchanged. No helper, source foreground omission, runtime Python change, alternative transformation engine or validation bypass is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "65e5626e530e1a41bdc9aa7eee09dcbdc3c664c301ceb7de77aadae9cdcf6afd"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-1e57ca1b0391f0a7",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_cooling_energy_39_review.json",
+      "review_sha256": "bbb00b24340815337f5e3d84a8ac03aa79fc29b3c5fb2caf58d72d9b78023b1f",
+      "authorization": "Standing autonomous approval of coming modelling decisions; complete native same-service and geographic screening proxies with explicit warnings and decision logs.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for cooling energy",
+            "reference product": "cooling energy",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "5260efcfc15cbb8de2d3323ca910888e5192024c2c80014589709f4abd376afc",
+          "inventory_sha256": "d00ebadaa053cd71d7f6bef675e510e306badbdba27cd84bb9992a66458d039c",
+          "activity_comment_sha256": "efab5ffebe18551e4ae4878156fce8b232bce1cf1092786b8cc85f109ef710f8",
+          "product_information_sha256": "186e08e81d41c06b8d72691f7dc0f1d93df544bc39a15988d7177dcd58003f6f"
+        },
+        "native_witnesses": {
+          "2026": {
+            "identity": {
+              "name": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "reference product": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "54b1e7f7e469a3ffaee995b0e2f97b16e7b2da61cc10e4dd76ae0ba22eeb6fa5",
+            "inventory_sha256": "75e4e5ddd7655837d9d7e069001eb56c039b66d68c4492f00abc401bf3932c44",
+            "activity_comment_sha256": "51e6753ed8a123e179982f2bd0314da502508e1513e2a7258a856533b4eec502",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2025": {
+            "identity": {
+              "name": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "reference product": "xx Cooling energy, natural gas, at cogen unit with absorption chiller 100 kW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 5,
+            "metadata_sha256": "2473ae75337271581a09b5a9d5e5087535ed154d4ee74efc37912673f9ed9c76",
+            "inventory_sha256": "bc5c311c14aec6c0aad6045e210b694f78d5784b1fe5ac716592f167c387e09c",
+            "activity_comment_sha256": "2e0819efa9edc783224444a8b35236cebd43c327d6dfe37b6746b9ed02abf8b7",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "reference_basis": "MJ cooling output",
+          "technology": "natural-gas cogeneration heat, single-stage100kW absorption chiller",
+          "seasonal_performance_factor_already_internal": 0.6,
+          "driving_heat_MJ_per_MJ_cooling": 1.67,
+          "electricity_kWh_per_MJ_cooling": 0.02,
+          "decarbonised_water_kg_per_MJ_cooling": 1.5,
+          "extra_efficiency_or_heat_multiplier": false,
+          "native_direct_water_returns_present": false,
+          "source_direct_water_returns_present": true,
+          "market_only_same_technology_producers": true,
+          "market_producer_shares_sum": 1.0,
+          "market_has_freight_or_additional_losses": false,
+          "native2025_and2026_nonproduction_count": 5,
+          "RoW_native_geography_proxy": "CH",
+          "new_helper_required": false
+        }
+      },
+      "limitations": [
+        "New permission covers only the three inspected ecoinvent3.9 cut-off cooling-energy identities: Swiss and Rest-of-World gas-cogeneration absorption-chiller production and their global market. Source and native references are positive1MJ of cooling output, not1MJ of gas/heat, electric compression, electricity or kg/m3 of cooling water. Factor+1 preserves signed caller quantities, uncertainty, formulas and separate foreground exchanges. No other release, patch, system model or reverse route is newly approved.",
+        "Use the complete native Swiss100kW single-stage absorption-chiller service once. Source and native documentation describe heat from a160kWe natural-gas cogenerator with exergy allocation, seasonal performance factor0.6,6C chilled-water supply,85–100C driving heat and20year/20000full-load-hour infrastructure convention. Native inventory already contains1.67MJ cogenerated heat,0.02kWh operating electricity,1.5kg decarbonised water and chiller infrastructure per referenceMJ. Do not divide again by0.6, multiply by1.67, add gas/heat/electricity/water/chiller again, convert between heat and cooling units or credit exported electricity/heat a second time. Native internal allocation, losses and infrastructure convention remain its own.",
+        "The source global market contains only the Swiss and Rest-of-World versions of this same absorption technology; its two positive producer shares sum to1MJ and it has no freight, market loss or separate infrastructure demand. Direct replacement supplies1MJ of the same complete native service without constructing a redundant market helper. Original market geographies and producer split are not reproduced: the Rest-of-World share and producer use the Swiss complete service as an explicit geographic proxy, including native Swiss electricity and heat and European water rather than the source regional utility portfolios. Score and stochastic equivalence are not established.",
+        "Source producers explicitly return cooling water in two direct biosphere exchanges, while both inspected native2025 and2026 records contain waste heat but no direct water-return exchanges. This difference is retained as a complete-native boundary limitation, not a claim of physically zero discharge or a separate foreground-exchange omission. Do not fabricate a water balance, assume matching compartments or copy source water returns onto the native inventory. Native internal water supply, treatment, source import limitations, allocation, vintage and geography can change impacts; score effects remain unquantified. Caller-owned emissions remain unchanged.",
+        "The native name begins with xx but has a nonempty service inventory and positiveMJ reference. Existing direct rules, default targets, all previous fingerprints and migration resources remain unchanged. No helper, source foreground omission, runtime Python change, alternative transformation engine or validation bypass is introduced."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "36b2af2767b15818d17df149b96982a82c71d9802e21c58cadb0cac79a126323"
+        }
+      ]
     }
   ],
   "superseded_operations": [
