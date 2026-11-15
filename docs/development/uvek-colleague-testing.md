@@ -292,3 +292,8 @@ The qualification and remaining modelling limits are recorded in
 ## Mapping-only battery prerequisites — 15 November 2026
 
 The latest pinned Brightpath commit adds reviewed chemical supply/delivery and tanker-service mappings for a future wet-PEseparator reconstruction. Installation and the example notebook workflow are unchanged. These checks do not qualify the battery update: preparation still reports35pending rules in its inspected first3.9cohort. Continue using the documented three-sector notebook or optional eight-sector qualified run above. See `uvek-separator-chemicals-39-verification.json` for scoped tests and limitations.
+
+
+## Wet-process PE separator prerequisite — 15 November 2026
+
+The pinned Brightpath version reconstructs the wet-process PE separator using reviewed BAFU inputs,retained manufacturing emissions and delivery. Existing HDPE trace omissions remain visible in its audit. The notebook and installation workflow are unchanged;the battery sector remains unqualified with34pending first-cohort rules. See `uvek-separator-wet-pe-39-verification.json` for evidence and limits.

@@ -288184,6 +288184,192 @@
           "fingerprint": "f1f6213a27a05fe64fa120b14461f5f533537b130aa15e7e2ec0f122c4ec3403"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-487660780788dc2f",
+      "mapping_method": "reviewed_separator_wet_pe_39_retained_source_manufacturing",
+      "review_path": "export/uvek_separator_wet_pe_39_review.json",
+      "review_sha256": "9e69e3552e859167f2a7a61c096c7234e9c3a448707bcebaa39f8cb7cef319f4",
+      "authorization": "Standing user auto-approval of inspected source reconstructions,native input/treatment proxies and helpers,with warnings logged for later review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for battery separator",
+          "reference product": "battery separator",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "recipe_id": "separator-wet-pe-39-global-market",
+        "source_witness": {
+          "identity": {
+            "name": "market for battery separator",
+            "reference product": "battery separator",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "f36a0d708c351001744507b0e97cbb1b8552a8d48acee5b160b0329d08c5b0cf",
+          "inventory_sha256": "1174263a020117e749b6085f39dd42ad590695a69eb33aaa94c52717426b4b55",
+          "activity_comment_sha256": "6c3bd42de8e2e21c750fcfe432a6c9782c3f89c5cff9fbadb695208ef065253a",
+          "product_information_sha256": "0ea6f3effcc29099fe13c2cd6261c4f160212454b7d540edae75cd79a669dec1"
+        },
+        "native_witnesses": {},
+        "boundary_checks": {
+          "native_coated_separator_used_as_wet_PE": false,
+          "source_manufacturing_retained": true,
+          "source_producer_nonproduction_counts": [
+            58,
+            12
+          ],
+          "retained_direct_biosphere_per_producer": 5,
+          "retained_market_producer_entries": 2,
+          "retained_market_freight_entries": 2,
+          "existing_recipe_dependency_count": 8,
+          "new_reaction_balance_yield_or_credit": false,
+          "new_source_omission": false
+        },
+        "approved_recipe_source_omissions": {
+          "pilot-nitrate-hdpe-dfcfe7b3600a00f94f69": [
+            {
+              "original_index": 1,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "US",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 2,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "CH",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 3,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "RoW",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            },
+            {
+              "original_index": 6,
+              "rationale": "User-approved omission of this positive trace recyclate supply only; nonempty recycling burdens are omitted, with unquantified score effect. No normalization or empty-disposal substitution.",
+              "source_activity": {
+                "location": "GLO",
+                "name": "market for polyethylene, high density, granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "unit": "kilogram"
+              },
+              "source_exchange": {
+                "amount": 2.93285310007683e-14,
+                "loc": 2.93285310007683e-14,
+                "location": "Europe without Switzerland",
+                "name": "polyethylene, high density, granulate, recycled to generic market for high density PE granulate",
+                "reference product": "polyethylene, high density, granulate",
+                "type": "technosphere",
+                "uncertainty type": 0,
+                "unit": "kilogram"
+              },
+              "source_inventory_sha256": "e458e4fe337690a11c7dad4718d0cdcaef21cfcb76f8724cd2500abc1d9d8861",
+              "source_profile": {
+                "family": "ecoinvent",
+                "system_model": "cutoff",
+                "version": "3.9"
+              }
+            }
+          ]
+        },
+        "new_source_omissions": []
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9 cut-off global battery-separator market is reviewed,per positive1kg of wet-process polyethylene microporous membrane. Native coated-silica/PVF/plasticizer andPP/PEalternative separator datasets represent different technology or composition and are deliberately not substituted. Retain the two actual source manufacturing inventories through reviewed native input suppliers and canonical ecoinvent3.10 biosphere definitions. Preserve signed caller mass,uncertainty,formulas and separate caller emissions with factor+1;do not add thickness,area,density,yield,allocation or energy multipliers.",
+        "Retain all58RoW and12CN nonproduction exchanges:53and7technosphere inputs plus five direct air emissions each. Source producer inventories inherit Chinese manufacturing data and their wet-process technical model,including36.2kWh electricity and40.703MJ gas heat perkg. Retain each source country electricity coefficient,extrusion service,HDPE input,paraffin,dichloromethane andfactory quantity separately with its supplied uncertainty. Manufacturing process steps include mixing,melting,film extrusion,stretching andsolvent extraction;these descriptions do not authorize adding a second processing/energy burden on top of the inspected vector.",
+        "All55 exact3.9 manufacturing dependency mappings and their eight existing recipe definitions are frozen. Whole native chemical,polymer,extrusion,grid,heat,factory andtransport inventories replace their upstream source models once. Country grid mappings retain17national andone regional native grid anduse explicit global delivered-MVgrid proxies for22unsupported locations. The actual source electricity amounts survive;source national generation technologies,geography,losses andfuture decarbonization are not reproduced by global proxies. Native grids carry their own generation,losses,network infrastructure andSF6 once;do not overlay source losses or rescale the caller demand.",
+        "Preserve the five direct source air emissions in each producer,including0.0203kg dichloromethane,with signed amounts,units,compartments anduncertainty unchanged. Source Methane,dichloro-,HCC-30 becomes canonical3.10Dichloromethane:installed definitions shareCAS75-09-2,air compartment andkg reference. This is a synonym without a chemical-mass factor. Keep direct process emissions separate from upstream chemicals,heat andgrid emissions;do not infer solvent recovery,closed mass balance or an avoided-emission credit from the purchase/release amounts.",
+        "Existing HDPE supply helper retains its four literal,previously user-approved positive trace-recyclate omissions,total1.173141240030732e-13kg perkgHDPE. Their nonempty recycling burdens are omitted with unquantified score effect;retain the existing signed virgin shares andfreight without renormalization. These four inherited omission entries remain in the exact helper definition and audit. No new source or caller exchange is omitted by the separator reconstruction.",
+        "Retain the original market0.4RoW and0.6CN manufacturing shares plus0.02tkmrail and0.02tkmroad final delivery separately,in source order with supplied uncertainty. Keep native precursor/chemical delivery inside each supplier andfinal separator delivery once. The two manufacturing definitions andmarket are the only new recipe definitions;reuse all eight existing helper definitions without copies. The HDPE,gas heat,dichloromethane andparaffin screening limitations,including nativeparaffin0.402tkmroad boundary ambiguity,carry through.",
+        "TargetUVEKtechnosphere withcanonical ecoinvent3.10biosphere only. This is a reconstruction of the inspected source manufacturing model through native inputs,not an independently measured BAFU wet-PEplant. Source-specific process data,regional representativeness,chemical grade,upstream production technology,allocation,vintage,uncertainty andenergy aggregation remain limitations with unquantified score effects. Finite signed LCIs/native-demand agreement do not establish source/native LCIA or stochastic equivalence,other source releases,patches,system models,reverse conversion or complete battery/export qualification."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d7f2b20de4db7b77a7eb8e262bf67b27d0e836840bd25f005370fd229b97265e"
+        }
+      ]
     }
   ],
   "superseded_operations": [
