@@ -488,3 +488,30 @@ conversions:
   factor: 1.0
   description: The native reference provides one 1 MWe stack. Apply the existing kg/MW intensity with
     factor 1; no balance-of-plant or complete hydrogen-service conversion is inferred.
+- id: uvek-2026-motor-electric-scooter
+  activity:
+    name: Electric motor, for electric scooter
+  ecoinvent_unit: kilogram
+  intensity_unit: kg metal/kg motor
+  factor: 1.0
+  description: Native documentation references kg of the motor. Capacity and total device mass describe
+    the example motor only; apply no whole-device or kW multiplier. Existing EV material-preservation
+    reasons remain in force.
+- id: uvek-2026-motor-electric-vehicle-at-plant
+  activity:
+    name: Electric motor, electric vehicle, at plant
+  ecoinvent_unit: kilogram
+  intensity_unit: kg metal/kg motor
+  factor: 1.0
+  description: Native documentation references kg of the motor. Capacity and total device mass describe
+    the example motor only; apply no whole-device or kW multiplier. Existing EV material-preservation
+    reasons remain in force.
+- id: uvek-2026-motor-electric-passenger-car
+  activity:
+    name: Electric motor, for electric passenger car
+  ecoinvent_unit: kilogram
+  intensity_unit: kg metal/kg motor
+  factor: 1.0
+  description: Native documentation references kg of the motor. Capacity and total device mass describe
+    the example motor only; apply no whole-device or kW multiplier. Existing EV material-preservation
+    reasons remain in force.

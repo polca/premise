@@ -1,0 +1,99 @@
+{
+  "primary_native_motor_evidence": [
+    {
+      "identity": {
+        "name": "Electric motor, for electric scooter",
+        "reference product": "Electric motor, for electric scooter",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "positive_reference_amount": 1,
+      "reference_basis": "kg of complete vehicle/scooter motor, not a whole motor unit or installed kW",
+      "metadata_sha256": "21918cdf4bdee99ac720a249f1513afca5d2fc9a39b5e1c15678c07f7a2f772b",
+      "inventory_sha256": "50c389eb6da0784a6c77dd653a8b32cdf785ec91ad7d99763e3704ea69fc4771",
+      "intensity_unit": "kg metal/kg motor",
+      "conversion_factor": 1
+    },
+    {
+      "identity": {
+        "name": "Electric motor, electric vehicle, at plant",
+        "reference product": "Electric motor, electric vehicle, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "positive_reference_amount": 1,
+      "reference_basis": "kg of complete vehicle/scooter motor, not a whole motor unit or installed kW",
+      "metadata_sha256": "79d1a3c00987a922b85ab1ef22f0db3052c92b008b21a86c237876ed8b1cd00d",
+      "inventory_sha256": "546e3cd07cbe75b971e24830a9e6628733d9f4e2d3e8737cc389be62e102e3a0",
+      "intensity_unit": "kg metal/kg motor",
+      "conversion_factor": 1
+    },
+    {
+      "identity": {
+        "name": "Electric motor, for electric passenger car",
+        "reference product": "Electric motor, for electric passenger car",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "positive_reference_amount": 1,
+      "reference_basis": "kg of complete vehicle/scooter motor, not a whole motor unit or installed kW",
+      "metadata_sha256": "3eb9174f6efb24aac728d775e0842d11fadf8388ed08e0b2ce9f795b942e2914",
+      "inventory_sha256": "dd5d08ddaf6fdad7013413b8f38d7699e4a806990599f06d0fe39e0518adc0be",
+      "intensity_unit": "kg metal/kg motor",
+      "conversion_factor": 1
+    }
+  ],
+  "focused_tests_passed": 256,
+  "existing_conversions_unchanged": 65,
+  "new_conversions": 3,
+  "role_match_counts": {
+    "ICEV": 0,
+    "EV": 3,
+    "Wind-DDPM": 0,
+    "Wind-Gearbox": 0,
+    "PEMFC": 0,
+    "SOFC - Y": 0,
+    "PEMEL": 1,
+    "AEL": 1,
+    "HTEL - Yttrium": 1,
+    "c-Si": 0,
+    "a-Si": 0,
+    "CIGS": 0,
+    "CdTe": 0,
+    "perovskite": 0,
+    "Parabolic Trough - PB": 0,
+    "CSP Tower - PB": 0,
+    "Nuclear": 0
+  },
+  "material_update_metrics": {
+    "compiled pairs": 97,
+    "executed pairs": 97,
+    "provider index lookups": 9
+  },
+  "material_decision_reasons": {
+    "metals.material_rule.year_outside_support": 20,
+    "metals.material_rule.intensity_missing": 13,
+    "metals.material_rule.component_scope_unverified": 57,
+    "metals.material_rule.applied": 2,
+    "metals.material_rule.zero_intensity": 1,
+    "metals.material_rule.provider_missing": 1,
+    "metals.material_rule.design_incomplete": 3
+  },
+  "real_snapshot_workflow": {
+    "inventory_preparation_passed": true,
+    "status": "diagnostic_update_and_graph_checks_passed",
+    "activities": 12040,
+    "validation_errors": 0,
+    "sector": "metals",
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "freshness": "snapshot",
+    "validation_disabled": false,
+    "export_performed": false,
+    "elapsed_seconds": 55.74513758404646
+  },
+  "runtime_python_changes": [],
+  "new_brightway_databases": 0,
+  "remaining_missing_role_aliases": 13,
+  "metals_qualified": false,
+  "qualification_limit": "Four native roles are mapped; only the matched PEM catalyst group currently applies. Existing EV component-scope restrictions remain. Do not infer full metals operational coverage from a passing diagnostic."
+}

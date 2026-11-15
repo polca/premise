@@ -7,6 +7,31 @@ ICEV:
       - market
       - electric
 EV:
+  uvek_aliases:
+    fltr:
+      name: &id001
+      - Electric motor, for electric scooter
+      - Electric motor, electric vehicle, at plant
+      - Electric motor, for electric passenger car
+      reference product: *id001
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Electric motor, for electric scooter
+      reference product: Electric motor, for electric scooter
+      unit: kilogram
+    - name: Electric motor, electric vehicle, at plant
+      reference product: Electric motor, electric vehicle, at plant
+      unit: kilogram
+    - name: Electric motor, for electric passenger car
+      reference product: Electric motor, for electric passenger car
+      unit: kilogram
+    native_reference_amount: 1
+    native_limitations:
+    - These are complete vehicle/scooter motor inventories per kg of motor. Existing EV preserve_source
+      reasons remain unchanged because whole-vehicle material totals cannot be treated as motor-component
+      intensities. This mapping makes those decisions explicit; it does not authorize rare-earth or
+      permanent-magnet substitutions.
   ecoinvent_aliases:
     # Road-vehicle motor intensities do not apply to rail traction or other motors.
     # EN15804 scrap co-products can share the equipment activity name and unit.
