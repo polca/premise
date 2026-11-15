@@ -764,7 +764,9 @@ def _canonicalize_owned_biosphere_names(records, background, catalog_provider=No
                 continue
             categories = edge.get("categories") or ()
             categories = (
-                (categories,) if isinstance(categories, str) else tuple(categories)
+                tuple(categories.split("::"))
+                if isinstance(categories, str)
+                else tuple(categories)
             )
             original = (edge.get("name"), categories, edge.get("unit"))
             name = (

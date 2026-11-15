@@ -250,3 +250,94 @@ def test_default_catalog_resolution_respects_the_application_provider(monkeypatc
     before = copy.deepcopy(record)
     assert _canonicalize_owned_biosphere_names([record], BACKGROUND) == []
     assert record == before
+
+
+@pytest.mark.parametrize(
+    "categories",
+    [
+        "natural resource::in ground",
+        ["natural resource", "in ground"],
+        ("natural resource", "in ground"),
+    ],
+)
+def test_workbook_resource_alias_accepts_serialized_compartments(categories):
+    from brightpath.background import PackageCatalogProvider
+
+    record = activity(name="Rhenium, in ground", categories=categories)
+    original = copy.deepcopy(record)
+    notes = _canonicalize_owned_biosphere_names(
+        [record], BACKGROUND, PackageCatalogProvider()
+    )
+    assert len(notes) == 1
+    assert notes[0]["flow_id"] == "a2e6fb74-b047-5697-b5dd-e28cc68f29e6"
+    assert notes[0]["to"] == (
+        "Rhenium",
+        ("natural resource", "in ground"),
+        "kilogram",
+    )
+    assert record["exchanges"][1]["name"] == "Rhenium"
+    record["exchanges"][1]["name"] = "Rhenium, in ground"
+    assert record == original
+
+
+@pytest.mark.parametrize(
+    "categories,unit",
+    [
+        ("natural resource::in water", "kilogram"),
+        ("natural resource::in ground", "gram"),
+    ],
+)
+def test_serialized_compartments_do_not_relax_flow_or_unit_matching(categories, unit):
+    from brightpath.background import PackageCatalogProvider
+
+    record = activity(name="Rhenium, in ground", categories=categories, unit=unit)
+    original = copy.deepcopy(record)
+    assert (
+        _canonicalize_owned_biosphere_names(
+            [record], BACKGROUND, PackageCatalogProvider()
+        )
+        == []
+    )
+    assert record == original
+
+
+def test_serialized_resource_alias_survives_strict_migration_and_warm_cache(tmp_path):
+    from brightpath.background import PackageCatalogProvider
+
+    record = activity(
+        name="Rhenium, in ground", categories="natural resource::in ground"
+    )
+    record.update(
+        database="source",
+        code="one",
+        **{"inventory provenance": {"provider": "test", "record_id": "one"}},
+    )
+    original = copy.deepcopy(record)
+    for hit in (False, True):
+        prepared, diagnostics = _prepare_family_records(
+            [([record], BACKGROUND)],
+            [],
+            version="2026",
+            family="uvek",
+            system_model="cutoff",
+            biosphere_name="ecoinvent-3.10-biosphere",
+            catalog_provider=PackageCatalogProvider(),
+            cache_dir=tmp_path,
+        )
+        edge = next(e for e in prepared[0]["exchanges"] if e["type"] == "biosphere")
+        assert edge["input"] == (
+            "ecoinvent-3.10-biosphere",
+            "a2e6fb74-b047-5697-b5dd-e28cc68f29e6",
+        )
+        assert edge["amount"] == edge["loc"] == -2.0
+        assert edge["uncertainty type"] == 3 and edge["scale"] == 0.3
+        assert edge["formula"] == "dose"
+        assert (
+            prepared[0]["inventory provenance"]["migration_cohorts"][0]["cache_hit"]
+            is hit
+        )
+        assert any(
+            d["code"] == "clic.retained_biosphere_name_canonicalized"
+            for d in diagnostics
+        )
+    assert record == original
