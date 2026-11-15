@@ -2173,3 +2173,8 @@ Reviewed foil as whole native historical supply without a duplicate delivery hel
 ## Forty separator electricity inputs — 15 November 2026
 
 Verified forty delivered-MV reference coordinates and both native releases. Retained seventeen national/one regional supply; corrected twenty-two unsupported-country Swiss candidates to explicit global geographic proxies. Five older approvals/fingerprints and eighteen raw rules remain unchanged. No helpers, runtime/YAML change or omission. Brightpath33,sourcePremise11 and selectedinstalled8checks pass,with aggregate signed native-demand LCI consistency and clean generator replay. The separate separator dependency backlog falls42to2; current first3.9cohort remains35 and eight sectors qualified. See [review](uvek-separator-grids-39-review.md) and [verification](uvek-separator-grids-39-verification.json).
+
+
+## Separator chemicals and tanker delivery — 15 November 2026
+
+Reviewed two chemical markets plus two newly exposed tanker services,keeping three producer and seven delivery entries in two helpers. Preserve signed references and uncertainty;record cumulative-energy,paraffin grade/transport-boundary and vessel/geographic limitations. All earlier operations and fingerprints remain unchanged. Focused Brightpath57,source/installed Premise21each,resource/catalog and clean-forward replay checks pass,with eight signed LCIs/four native-demand comparisons and no Brightway writes. Separator direct dependencies fall2to0;strict manufacturing preflight retains58/12rows through55reviewed inputs. Parent reconstruction remains next and first-cohort battery count stays35. Eight sectors remain qualified. See [review](uvek-separator-chemicals-39-review.md) and [verification](uvek-separator-chemicals-39-verification.json).

@@ -287830,6 +287830,360 @@
           "fingerprint": "2e288b69c97ab7e2f6fe707a06cf79349619f2c5516c7c98e7100374010f4189"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-029d8a00425bda84",
+      "mapping_method": "reviewed_separator_chemical_supply_39",
+      "review_path": "export/uvek_separator_chemicals_39_review.json",
+      "review_sha256": "ddb5c4a61c1fe06d4ca741b224b993abf929a1488fb9d4edf949d4e709d93713",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for dichloromethane",
+            "reference product": "dichloromethane",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 3,
+          "metadata_sha256": "c772b939d172fbb9ad5f3f3dc111dd031c8d1432fbe8040d21c864dfdeed1db4",
+          "inventory_sha256": "5d06966d956553c8afa3518abff2664de7d618ab7371931329821e2a21d7428d",
+          "activity_comment_sha256": "96643e27d7ae2f38f8427caa633136636144ff646de7b75ac75968c9625c64a4",
+          "product_information_sha256": "8037a61984c155cce53c6f651d8995a3ae2cdb36e23c11bcb66ce54a52fd5592"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Dichloromethane, at plant",
+              "reference product": "Dichloromethane, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 93,
+            "metadata_sha256": "7e60cc597dcc4664551d0b43a5effb161ceaa7852cd2c60f3fa75b8cf329cbfa",
+            "inventory_sha256": "d52738b31b3679699681bb5abf66bc3892b292b7b590b6bb6fe1f69ac0d2e851",
+            "activity_comment_sha256": "0b074a30e060174b7de9fdfb109570f84d8c0fc850ce808f67d4b919dbed8e80",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Dichloromethane, at plant",
+              "reference product": "Dichloromethane, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 97,
+            "metadata_sha256": "7d58d72ac39c00cc89bd086ce2eb9254b9834d53a4eed9beb4eaaeefc118aa10",
+            "inventory_sha256": "cf77a12ecaf062bd188cba86007d8f44b04364af63d3fc8d8da21e7bd17bbfc2",
+            "activity_comment_sha256": "6fd3dae857544cc38c8ee1132850000314d1af007f598a7e6338a89bb7c8a405",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Dichloromethane, at plant",
+          "source_market_entries": 3,
+          "final_delivery_entries": 2,
+          "source_market_entry_statistics_preserved": true,
+          "extra_source_manufacturing_added": false,
+          "allocation_or_concentration_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9 cut-off interfaces are reviewed. Native2025and2026 references each provide positive1kg chemical or1tonne-kilometre freight service. Preserve signed caller quantities,uncertainty,formulas and separate caller emissions with factor+1. No concentration,density,molar-mass,payload,loading,distance,lifetime or allocation multiplier is introduced. Other source versions,patches,system models and reverse routes gain no new permission.",
+        "Use each complete selected native production or transport inventory once,with its own upstream requirements,allocated burdens,emissions,wastes,infrastructure and uncertainty. Source/native technology,geography,vintage,internal uncertainty and scores may differ; no LCI,LCIA or stochastic equivalence is established. No source omission,recovery credit,extra native-production overlay,runtime module or alternate sector engine is introduced.",
+        "Source and native identify dichloromethane,methylene chloride,CH2Cl2,CAS75-09-2,with positive1kg reference. Source explicitly defines pure substance;no solution or dilution multiplier is added. Both production descriptions identify the historic cumulative Boustead industry inventory. Use the whole native European chemical as a screening proxy,retaining its partial infrastructure,lack of land-use/soil coverage and unavailable source uncertainty assessment. Its aggregated raw-material and processing-energy burdens have no separate electricity/fuel supplier links and cannot follow ordinary IAM utility substitutions;this is a native-data limitation,not zero energy. Waste portfolios,biosphere coverage and background vintages differ.",
+        "Keep the source market one-kg producer and its0.0131rail plus0.0514road tkm as three separate entries,including source uncertainty. Native at-plant cumulative production already includes upstream transport burdens;the source separately declared final market delivery is retained once,without inventing or subtracting an upstream freight factor."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "62adb735305b664a35701b1b14b5d536d433c7bdb52b8727e0649df1858c1a1f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-70f5ef67585d19b9",
+      "mapping_method": "reviewed_separator_chemical_supply_39",
+      "review_path": "export/uvek_separator_chemicals_39_review.json",
+      "review_sha256": "ddb5c4a61c1fe06d4ca741b224b993abf929a1488fb9d4edf949d4e709d93713",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for paraffin",
+            "reference product": "paraffin",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 7,
+          "metadata_sha256": "0eeb055af9205f9fce31c126c467388b322e58626f7920da95d5e1468778c24a",
+          "inventory_sha256": "ef8197b2edb4c2e8af6a943d4420e5258c01d425662b863adde8e9fd69b47176",
+          "activity_comment_sha256": "ade29bcecb2cdf739cbfe2c4cd1f1cdcabd0316c598343d4a6edec61039489b6",
+          "product_information_sha256": "8bc8383aa4236d1cb110bcd310a4a009e0b26f02b233616c47717c063b0b92d8"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Paraffin, at plant",
+              "reference product": "Paraffin, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 35,
+            "metadata_sha256": "09990d817cc0868b0fc1f5724468070e5ea30abfbfc1084a4d0fad00ef7185c4",
+            "inventory_sha256": "507d30d82baafa3f687e361e65f1578e9e0b5758e6fefdfd77ef321cae445e79",
+            "activity_comment_sha256": "d12604e71fb5fccd511da4f938eddab69c54fa8840b68776818fc40d914c0fd2",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Paraffin, at plant",
+              "reference product": "Paraffin, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 35,
+            "metadata_sha256": "5174fbe1a48f67e3426863a502ed1f381f874937de14215b6df0a1cc20a3c01a",
+            "inventory_sha256": "3b78d1b0294a6f96710bd6f86db86e4670a5af75e5933e630556eeb5f6570434",
+            "activity_comment_sha256": "17bd98d77ed5d869f7826bffc1ca4fc9584de22005e395f1ee13fb279a61664a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Paraffin, at plant",
+          "source_market_entries": 7,
+          "final_delivery_entries": 5,
+          "source_market_entry_statistics_preserved": true,
+          "extra_source_manufacturing_added": false,
+          "allocation_or_concentration_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9 cut-off interfaces are reviewed. Native2025and2026 references each provide positive1kg chemical or1tonne-kilometre freight service. Preserve signed caller quantities,uncertainty,formulas and separate caller emissions with factor+1. No concentration,density,molar-mass,payload,loading,distance,lifetime or allocation multiplier is introduced. Other source versions,patches,system models and reverse routes gain no new permission.",
+        "Use each complete selected native production or transport inventory once,with its own upstream requirements,allocated burdens,emissions,wastes,infrastructure and uncertainty. Source/native technology,geography,vintage,internal uncertainty and scores may differ; no LCI,LCIA or stochastic equivalence is established. No source omission,recovery credit,extra native-production overlay,runtime module or alternate sector engine is introduced.",
+        "Source paraffin is a pure petroleum-derived C20-C40 organic mixture,solid at standard conditions;native documents n-paraffins from crude oil and the wax synonym. Both cite the historic ECOSOL European surfactant-industry study with mass allocation. Use native European paraffin as a complete screening proxy for both original RER andRoW shares0.330592351639303and0.669407648360697,kept separate. Native exact carbon-number distribution,melting grade and assay are not independently specified;this is not a separately verified liquid paraffin solvent or fuel. No combustion emission,energy-content factor or invented grade correction is added.",
+        "Retain all five source final-delivery entries:rail,barge tanker,light-commercial vehicle,lorry andpetroleum tanker,with their original tkm and uncertainty. Native manufacturing retains its own0.402tkm road input,which is absent as a separate entry in the inspected3.9producer. That historic transport-boundary difference remains explicit and may affect scores;its exact stage cannot independently be established from the available record. Do not subtract it arbitrarily or claim exact transport-boundary equivalence. Retain the explicitly separate source final-market portfolio alongside the complete native production proxy. Source regional utility/waste portfolios are replaced by native European historical electricity,three furnace fuels andSwiss waste treatment;allocation,grade,geography,age and uncertainty differences remain warnings."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "64ba2e8201750c90aecb6ae726518c8fec28654f8a3ea4aebe24fc5614aaae83"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-ca36606d9f927825",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_separator_chemicals_39_review.json",
+      "review_sha256": "ddb5c4a61c1fe06d4ca741b224b993abf929a1488fb9d4edf949d4e709d93713",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market group for transport, freight, inland waterways, barge tanker",
+            "reference product": "transport, freight, inland waterways, barge tanker",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 2,
+          "metadata_sha256": "8bc316659f0eaf07fa1f112fa11c99a46a94358781afd8d60d0bbad8c4aeaf2a",
+          "inventory_sha256": "47dbbdda0d479877a3924f59610061b94850582dc391c83154e17793f38b3a59",
+          "activity_comment_sha256": "c259928eed6cb4f2567fc4178ef93a56ad19fdfcb5b11c263fcf10e046be9f90",
+          "product_information_sha256": "dd06da830b02126cf380f027a952c39b6dab60af687840f7a0fadfc96959c15f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, barge tanker",
+              "reference product": "Transport, barge tanker",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 43,
+            "metadata_sha256": "be2856dbfeb7fb82e2b67ae361a031ed58aea2c0a38f1d92d3e32eb0a74eb2b6",
+            "inventory_sha256": "ea8f5a98e8de01c045cd244a3ecb4bb59c34843401118d0fc9e1893d2c44172b",
+            "activity_comment_sha256": "2a61c7854fdccc7c74853333609e85b6b804c68bad568fd57c4c1dbd22fc36b8",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, barge tanker",
+              "reference product": "Transport, barge tanker",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 43,
+            "metadata_sha256": "0892cc200f74850e761949994ff67d5bf2056df1bf91041adaffe87fc48a40c1",
+            "inventory_sha256": "4fc13f00b0096878e2912bc9c3c890e4bcd9e32fd375dd2dcc47056a3a4bdda0",
+            "activity_comment_sha256": "945f5197c74af9cb5ad964567eeb096e6b5f7534afccabcaef6aa3777ba0f338",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Transport, barge tanker",
+          "source_market_entries": null,
+          "final_delivery_entries": 0,
+          "source_market_entry_statistics_preserved": false,
+          "extra_source_manufacturing_added": false,
+          "allocation_or_concentration_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9 cut-off interfaces are reviewed. Native2025and2026 references each provide positive1kg chemical or1tonne-kilometre freight service. Preserve signed caller quantities,uncertainty,formulas and separate caller emissions with factor+1. No concentration,density,molar-mass,payload,loading,distance,lifetime or allocation multiplier is introduced. Other source versions,patches,system models and reverse routes gain no new permission.",
+        "Use each complete selected native production or transport inventory once,with its own upstream requirements,allocated burdens,emissions,wastes,infrastructure and uncertainty. Source/native technology,geography,vintage,internal uncertainty and scores may differ; no LCI,LCIA or stochastic equivalence is established. No source omission,recovery credit,extra native-production overlay,runtime module or alternate sector engine is introduced.",
+        "Use the complete native European diesel barge-tanker service per signed tkm as a geographic/fleet screening proxy for the global source market group. Source documentation describes710tonne average load and46.5year life;native describes2164t vessel capacity,6921600km lifetime performance andRhine canal allocation. Average load and capacity are distinct quantities,not a scale factor. Native includes vessel manufacture,fuel,operation emissions,ports andcanal construction/maintenance. Global country mix,loading,empty trips,engine/fuel vintage and infrastructure allocation are replaced;do not add a second vessel,port,canal or diesel burden."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "38bca9bca2791de0cba81a5d57621925b1570fd0169fb419586fcc309ea930dc"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-2d474e1cc4ae1395",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_separator_chemicals_39_review.json",
+      "review_sha256": "ddb5c4a61c1fe06d4ca741b224b993abf929a1488fb9d4edf949d4e709d93713",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, sea, tanker for petroleum",
+            "reference product": "transport, freight, sea, tanker for petroleum",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "4dc6d4ef6f1d9bd9a33f1f9da715c6e5f5462fab84deec1ad60c404592a7ba1e",
+          "inventory_sha256": "fb94c0bdbe3603db897eb16770c07f7393a869227fb34cbcd5782c5538f09702",
+          "activity_comment_sha256": "536b507d6ccfe466abf353925de4effcca098c9fa7dc250c5a34190252bf5d28",
+          "product_information_sha256": "47578d2282f7b0e03eea78c92ccfcbc9919270aea699ca2da4cb64f6c103daf9"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, transoceanic tanker",
+              "reference product": "Transport, transoceanic tanker",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "nonproduction_count": 40,
+            "metadata_sha256": "bb2fd7fe76b121b886cbd07858b897174e24a6d26b86b254917bb0eeb5560b63",
+            "inventory_sha256": "f129033d588891897c1bc4ec7693902d19a10ad1be96fe94036ac081b779cd97",
+            "activity_comment_sha256": "97917be2652eeae214fffc18dae490a2c2fdd6d873234f53f9e1b3adb00b35f9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, transoceanic tanker",
+              "reference product": "Transport, transoceanic tanker",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 41,
+            "metadata_sha256": "131e57c105589dad01d5e38602707f5bb578484ed39ea61148fcf619ec7e68ae",
+            "inventory_sha256": "b723f31f3a88933be4df05f1786f6fa5669d81fc19bf9d40731dd55ed80593ca",
+            "activity_comment_sha256": "b992c51497ebaa7b7a4e61462754ccefda03c4774c99a659536779ac4cc9f924",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "boundary_checks": {
+          "correct_native_product": "Transport, transoceanic tanker",
+          "source_market_entries": null,
+          "final_delivery_entries": 0,
+          "source_market_entry_statistics_preserved": false,
+          "extra_source_manufacturing_added": false,
+          "allocation_or_concentration_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the independently inspected exact ecoinvent3.9 cut-off interfaces are reviewed. Native2025and2026 references each provide positive1kg chemical or1tonne-kilometre freight service. Preserve signed caller quantities,uncertainty,formulas and separate caller emissions with factor+1. No concentration,density,molar-mass,payload,loading,distance,lifetime or allocation multiplier is introduced. Other source versions,patches,system models and reverse routes gain no new permission.",
+        "Use each complete selected native production or transport inventory once,with its own upstream requirements,allocated burdens,emissions,wastes,infrastructure and uncertainty. Source/native technology,geography,vintage,internal uncertainty and scores may differ; no LCI,LCIA or stochastic equivalence is established. No source omission,recovery credit,extra native-production overlay,runtime module or alternate sector engine is introduced.",
+        "Use the existing complete transoceanic petroleum-tanker native service per signed tkm. Source describes a36000DWT tanker,4100million tkm/year over25years;native allocates manufacture over4350000km and150000DWT and includes two ports,fuel,operation and disposal. These differing ship sizes,utilization,fuel,age,emissions,geography and infrastructure allocations are screening limitations,not additional distance/capacity multipliers. Do not substitute container shipping or add a second ship/port burden. The earlier exact3.8approval and raw rule,fingerprint,review authority and supplier remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f1f6213a27a05fe64fa120b14461f5f533537b130aa15e7e2ec0f122c4ec3403"
+        }
+      ]
     }
   ],
   "superseded_operations": [

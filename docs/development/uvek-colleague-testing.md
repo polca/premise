@@ -287,3 +287,8 @@ This uses the same source project, BAFU database, biosphere and export workflow.
 CDR adds regional removal markets and the corresponding capture/storage activities.
 The qualification and remaining modelling limits are recorded in
 [`uvek-cdr-qualification.json`](uvek-cdr-qualification.json).
+
+
+## Mapping-only battery prerequisites — 15 November 2026
+
+The latest pinned Brightpath commit adds reviewed chemical supply/delivery and tanker-service mappings for a future wet-PEseparator reconstruction. Installation and the example notebook workflow are unchanged. These checks do not qualify the battery update: preparation still reports35pending rules in its inspected first3.9cohort. Continue using the documented three-sector notebook or optional eight-sector qualified run above. See `uvek-separator-chemicals-39-verification.json` for scoped tests and limitations.
