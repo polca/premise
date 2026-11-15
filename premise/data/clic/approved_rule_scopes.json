@@ -289993,6 +289993,212 @@
           "fingerprint": "1fc362540681f04c2088d74c43f7a6af17312a29b4d81aea456cec210d2460ea"
         }
       ]
+    },
+    {
+      "rule_id": "bp-4b5ffb9631a00fd6",
+      "operation": "replace",
+      "mapping_method": "reviewed_lfp_battery_312",
+      "review_path": "export/uvek_lfp_battery_312_review.json",
+      "review_sha256": "105bfc3d014c8616ff27cf3ad5555fb4bf5a2852b1228107fed9646823508f3d",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Correct physically wrong chemistry using an inspected complete native LiFePO4 pack, retain source market quantities and final freight, and report design/performance/geography limitations without invented scaling.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for battery, Li-ion, LFP, rechargeable",
+          "reference product": "battery, Li-ion, LFP, rechargeable",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for battery, Li-ion, LFP, rechargeable",
+            "reference product": "battery, Li-ion, LFP, rechargeable",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "76c3df9cf1850ac482803917206e90bb44d7b263cd8b52899e199ff5a0cb6772",
+          "metadata_sha256": "4928e7c9c4ec0e6ab0aa8d54a59d7e88b7be2bba6f13bcfa950023b4a4851db0",
+          "nonproduction_exchange_count": 6,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "battery production, Li-ion, LFP, rechargeable",
+              "reference product": "battery, Li-ion, LFP, rechargeable",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "288cbb8fa6726087e9bd356c6bae6db401b566ea566cf799a157b81b16a387a6",
+            "metadata_sha256": "f440355bceaec93fb05c15760025596fed350f3d43fa1d54e5072dd15bf65661"
+          },
+          {
+            "identity": {
+              "name": "battery production, Li-ion, LFP, rechargeable",
+              "reference product": "battery, Li-ion, LFP, rechargeable",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "2c449a2d752ea6629f9851abd1393e8e2c0b53ac0139c8eeb73a2b54acbcd271",
+            "metadata_sha256": "69bfa4f0f38063d345da0338d259d19ad36b6c65689309045516815c68af215a"
+          }
+        ],
+        "basis": "Correct the source ecoinvent3.12cutoff LFP battery market from the chemically different NMC111 heuristic to a complete native prismatic LiFePO4 pack. Retain both original producer quantities separately and all four final-delivery quantities and statistics. Source and native provide positive1kg of complete battery hardware; no cell-only substitute, extra BMS/cooling/packaging or reference-mass multiplier is added.",
+        "conversion_factor": 1,
+        "recipe_id": "lfp-312-complete-native-pack-market",
+        "boundary_checks": {
+          "producer_entries": 2,
+          "final_freight_entries": 4,
+          "input_count": 6,
+          "complete_pack_not_cell_only": true,
+          "source_and_target_reference_unit": "kilogram",
+          "capacity_or_lifetime_scaling": false
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Battery, LiIo, rechargeable, prismatic,LiFePO4",
+                "reference product": "Battery, LiIo, rechargeable, prismatic,LiFePO4",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b15486698774c7e9d532c89d544470ac9d5df5c52f1d130c5a6aac02c1595531",
+              "metadata_sha256": "2bd834a900f51b9fe91d5d75762cac4cc073c8e5535b5b8075ee7a478d48260f"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+              "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Battery, LiIo, rechargeable, prismatic,LiFePO4",
+                "reference product": "Battery, LiIo, rechargeable, prismatic,LiFePO4",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1b8250137bd873070aaa8fc5f144173f90c7fa7d67bb225966a2c0c332149043",
+              "metadata_sha256": "40cecdfdb56859543049ea4955765535decb31d22887d1b5370080116f4c6b2f"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+              "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Correct the source ecoinvent3.12cutoff LFP battery market from the chemically different NMC111 heuristic to a complete native prismatic LiFePO4 pack. Retain both original producer quantities separately and all four final-delivery quantities and statistics. Source and native provide positive1kg of complete battery hardware; no cell-only substitute, extra BMS/cooling/packaging or reference-mass multiplier is added.",
+        "The native pack explicitly contains LiFePO4 single cells, battery management, passive cooling, casing and assembly. Its cells consume the LiFePO4 cathode, whose active-material route uses lithium hydroxide, iron sulfate and phosphoric acid. Source Chinese/RoW Dai2017/2018 pack designs and production mixtures are replaced by the complete Swiss native design. Cell/pack ratios, energy and material supplies, manufacturing region, allocation, age, internal uncertainty and environmental exclusions differ; score effects are unquantified.",
+        "This is a per-kg hardware screening proxy, not equal kWh capacity, power, cycle life, durability or efficiency. Native free-text technology metadata includes copied photovoltaic-use information and supplies no reviewed battery performance basis. Do not infer capacity or lifetime from that text, change caller kg demand or invent a kWh/kg, vehicle duty, cell-mass or lifetime scaling.",
+        "Native upstream component and assembly freight remain internal. Preserve the source final-market air, diesel-lorry, heavy-fuel-oil container and rail deliveries additionally through complete native freight services per unchanged signed tonne-km. Native geography, aircraft/cargo allocation, fleet/traction, fuel, loading, vessel, emissions, age and uncertainty are screening proxies; add no separate transport infrastructure or payload/distance multipliers.",
+        "Only the independently inspected exact ecoinvent3.12cutoff profile is approved through the existing UVEK2025-to2026 route. The same source identity was not found in inspected ecoinvent3.9; no source-version, inverse or cross-system-model permission is inferred. Preserve signed caller quantities, formulas, supported uncertainty, foreground ownership and separate emissions. No physical exchange is omitted and no LCIA equivalence is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "000dcc9f1d4baba0e052fa0ef6e020310b980309679af5facdaf40d51aa18d1b"
+        }
+      ]
     }
   ],
   "superseded_operations": [

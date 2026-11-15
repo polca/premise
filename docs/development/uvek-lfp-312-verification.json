@@ -1,0 +1,75 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "foreground_datapackage_filesystem": "memory",
+  "transient_activities": 2,
+  "foreground_biosphere_flows": 1,
+  "native_suppliers": 5,
+  "signed_foreground_LCI_solves": 2,
+  "independent_native_reference_LCI_solves": 1,
+  "foreground_emissions_preserved": true,
+  "new_brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "native_source_and_biosphere_metadata_preserved": true,
+  "database_registry_unchanged": true,
+  "checks": [
+    {
+      "rule_id": "bp-4b5ffb9631a00fd6",
+      "source": {
+        "location": "GLO",
+        "name": "market for battery, Li-ion, LFP, rechargeable",
+        "reference product": "battery, Li-ion, LFP, rechargeable",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 1.4797478797845542e-09,
+      "refined_max_abs_inventory_difference": 1.1368683772161603e-13,
+      "full_graph_residual": {
+        "residual_before": 4.465516664396993e-08,
+        "residual_after": 8.431978056962074e-15,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 3.6113591330723895e-08,
+        "residual_after": 8.431978056962074e-15,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    }
+  ],
+  "qualification_limit": "Verifies a complete native LFP pack market helper against flattened complete native demand and retained caller emissions. Does not establish source/native composition,manufacturing-route,geography,allocation or score/stochastic equivalence,or full shipping-sector qualification.",
+  "resource_preservation": {
+    "changed_rules": [
+      "bp-4b5ffb9631a00fd6"
+    ],
+    "unchanged_rules": 30474,
+    "rule_ids_preserved": true,
+    "existing_recipes_unchanged": true,
+    "added_recipes": [
+      "lfp-312-complete-native-pack-market"
+    ]
+  },
+  "tests": {
+    "brightpath_signed_profile_guard_cases": 13,
+    "premise_lfp_and_previous_shipping_connector_cases": 12
+  },
+  "workflow": {
+    "status": "failed",
+    "exception_type": "ClicInventoryError",
+    "message": "Next source3.12 compatibility refusal: bp-3f2bdc14588c01de, NMC532 battery market currently matched to NMC111. LFP refusal cleared; shipping callback not reached.",
+    "failed_stage": "archive-snapshot inventory preparation",
+    "snapshot_freshness_diagnostic_only": true,
+    "public_scope_guard_bypassed_for_diagnostic_only": true,
+    "live_public_qualification_claimed": false,
+    "validation_disabled": false,
+    "brightway_export_performed": false,
+    "elapsed_seconds": 31.32951570802834
+  }
+}
