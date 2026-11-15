@@ -276,6 +276,19 @@ the different fuels used in combustion-based power plants.
 Additionally, the biogenic and fossil CO2 emissions of the datasets are also
 scaled up or down by the same factor, as they are proportional to the amount of fuel used.
 
+For activities with recognized direct fuel inputs, the electricity carbon-balance
+diagnostic compares gross CO2 estimated from fuel with the sum of direct CO2
+emissions to air and captured-CO2 technosphere inputs. Its existing 20% relative
+tolerance applies to that gross balance, including for plants with carbon
+capture. Applying the tolerance to the small residual after capture would
+amplify differences in the approximate fuel factors. Negative residual
+emissions at this direct-combustion boundary remain warnings. Activities buying
+upstream generation instead of fuel retain the existing comparison of negative
+CO2 adjustments with capture inputs. Capture inputs must be non-negative,
+finite amounts in kilograms in either case. This diagnostic does not
+independently verify a plant's capture rate, upstream carbon balance or storage
+performance, and it does not change exchange amounts.
+
 See :ref:`generation-worked-example` for the relative and absolute
 calculations, including the non-fuel exchanges scaled by this step.
 

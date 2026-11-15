@@ -3272,7 +3272,8 @@ class ElectricityValidation(BaseDatasetValidator):
                 and any(ds["name"].startswith(x) for x in electricity_datasets)
                 and not any(x in ds["name"].lower() for x in exceptions)
             ):
-                fuel_energy, co2 = 0.0, 0.0
+                fuel_energy, co2, captured_co2 = 0.0, 0.0, 0.0
+                capture_issues = []
 
                 for e in ds["exchanges"]:
                     if e["type"] == "technosphere" and e["amount"] > 0:
@@ -3296,7 +3297,16 @@ class ElectricityValidation(BaseDatasetValidator):
                         e["name"].startswith("carbon dioxide, captured")
                         and e["type"] == "technosphere"
                     ):
-                        co2 -= e["amount"]
+                        if (
+                            e.get("unit") != "kilogram"
+                            or not math.isfinite(e["amount"])
+                            or e["amount"] < 0
+                        ):
+                            capture_issues.append(
+                                f"Invalid capture input: {e['amount']} {e.get('unit')}."
+                            )
+                        else:
+                            captured_co2 += e["amount"]
 
                 actual_co2 = sum(
                     [
@@ -3336,8 +3346,36 @@ class ElectricityValidation(BaseDatasetValidator):
                             message,
                         )
 
-                if not math.isclose(co2, actual_co2, rel_tol=0.2):
-                    message = f"Current CO2: {actual_co2}. Expected: {co2}."
+                # Fuel factors estimate gross combustion carbon. Applying their
+                # tolerance to the residual after capture amplifies small factor
+                # differences at high capture rates. Check air + captured CO2
+                # against fuel carbon. Wrappers buying upstream generation
+                # instead of fuel retain the capture-credit comparison: their
+                # negative air exchanges offset emissions in upstream plants.
+                gross_co2 = actual_co2 + captured_co2
+                if fuel_energy > 0:
+                    balanced = actual_co2 >= 0 and math.isclose(
+                        co2, gross_co2, rel_tol=0.2
+                    )
+                else:
+                    balanced = math.isclose(co2 - captured_co2, actual_co2, rel_tol=0.2)
+
+                if capture_issues or not balanced:
+                    if fuel_energy > 0:
+                        message = (
+                            f"Gross CO2 (air + captured): {gross_co2}. "
+                            f"Expected from fuel: {co2}. Air CO2: {actual_co2}. "
+                            f"Captured CO2: {captured_co2}."
+                        )
+                    else:
+                        message = (
+                            f"Current CO2 adjustment: {actual_co2}. "
+                            f"Expected: {co2 - captured_co2}. "
+                            "No recognized direct fuel input; retaining the "
+                            "capture-credit comparison."
+                        )
+                    if capture_issues:
+                        message += " " + " ".join(capture_issues)
                     self.log_issue(
                         ds,
                         "CO2 emissions possibly incorrect",
