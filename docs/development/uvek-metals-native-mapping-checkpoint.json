@@ -1,0 +1,78 @@
+{
+  "premise_tested_code_commit": "d0a8ae7911bc77343ce2b12ed61b819e8ce952e2",
+  "brightpath_installed_and_published_commit": "a945340170a4314aabfee9497dee4c1cb0193ecd",
+  "private_environment_only": true,
+  "user_environment_changed": false,
+  "regressions": {
+    "distinct_tests_passed": 573,
+    "main_selection_passed": 572,
+    "initial_failure": "The CDR maintainer-registry replay imports a sibling dev script and requires dev on PYTHONPATH.",
+    "maintainer_replay_passed_on_rerun": 1,
+    "main_pythonpath": ".:tests",
+    "maintainer_replay_pythonpath": ".:tests:dev",
+    "standard_UVEK_sectors_checked": [
+      "biomass",
+      "cement",
+      "cdr",
+      "heat consumers",
+      "mining",
+      "renewable"
+    ],
+    "other_checks": [
+      "shared native aliases",
+      "source/background gates",
+      "owned native templates and placeholders",
+      "strict retained workbook migration",
+      "native metals freight",
+      "stack and motor filters and units",
+      "matched PEM catalyst design",
+      "ecoinvent metals and five-version provider regressions"
+    ],
+    "lint": "Black and Ruff passed for all modified Python files"
+  },
+  "metals_current_checkpoint": {
+    "native_roles_mapped": 4,
+    "native_equipment_records_matched": 6,
+    "remaining_role_aliases": 13,
+    "compiled_and_executed_material_rule_decisions": 97,
+    "component_scope_preservation_decisions": 57,
+    "mining_share_support_years": [
+      2020,
+      2030
+    ],
+    "future2050_mining_markets_preserved": 103,
+    "matched_PEM_group_applies": true,
+    "real_diagnostic_activities": 12040,
+    "real_diagnostic_validation_errors": 0,
+    "public_metals_scope_gate_opened": false
+  },
+  "applicability_audit": {
+    "positive_year_supported_rules": 27,
+    "excluded_by_existing_rule_preservation_reason": 2,
+    "candidate_rules_before_activity_existence_unit_and_activity_policy_checks": 25,
+    "note": "Positive interpolated values alone do not establish applicable source processes. Existing component, time and design restrictions remain mandatory."
+  },
+  "in_memory_LCI_checkpoint": {
+    "proof": "uvek-metals-native-pem-suppliers-verification.json",
+    "native_updated_columns": 15,
+    "positive_negative_updated_PEM_LCIs_pass": true,
+    "all_final_native_columns_verified": true,
+    "processed_matrix_used_for_exact_cancellation": true,
+    "new_brightway_databases": 0
+  },
+  "production_python_files_changed_in_batch": [
+    "premise/materials/metals.py",
+    "premise/database/new_database.py"
+  ],
+  "production_python_change_reason": "Forward existing background axes, use native freight aliases and actual supplier locations, and use explicit biosphere3.10 for resource/validation lookup. No alternate sector engine or allocation/market arithmetic changes.",
+  "verified_sectors": 10,
+  "remaining_sectors": 9,
+  "metals_qualified": false,
+  "unavailable_checks": [
+    "No new full metals qualification/export, no combined19-sector build, no live archive-freshness assertion, and no source/native LCIA equivalence claim."
+  ],
+  "batch_commits": {
+    "Premise": 5,
+    "Brightpath": 0
+  }
+}
