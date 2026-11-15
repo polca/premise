@@ -9,6 +9,9 @@ import math
 
 PROPERTIES_KEY = "premise fuel properties"
 CNG_ENERGY_MJ_PER_KG = 46.5
+CNG_CARBON_CONVENTION = (
+    "Full oxidation; gas-supply carbon origins preserved through compression"
+)
 
 
 def annotate_cng_properties(database):
@@ -18,14 +21,35 @@ def annotate_cng_properties(database):
     input energy. Record that boundary difference, without explaining it away
     as measured losses or rescaling the inherited compression recipe.
     """
+    from ..core.utils import get_fuel_properties
+    from .native_gas import NATURAL_GAS_PRODUCTS, NativeGasProperties, gas_feed
+
     product = "natural gas, medium pressure, vehicle grade"
-    index = {activity_key(ds): ds for ds in database}
+    index = {}
+    for dataset in database:
+        if (
+            dataset.get("reference product") == product
+            and dataset.get(PROPERTIES_KEY, {}).get("carbon convention")
+            == CNG_CARBON_CONVENTION
+        ):
+            dataset.pop(PROPERTIES_KEY)
+        key = activity_key(dataset)
+        index[key] = dataset if key not in index else None
+    specifications = get_fuel_properties()
+    native_gas = NativeGasProperties(index, specifications)
     completed = set()
 
     def annotate(dataset, seen=frozenset()):
         key = activity_key(dataset)
         if key in completed or key in seen:
             return
+        production = [e for e in dataset["exchanges"] if e.get("type") == "production"]
+        if (
+            len(production) != 1
+            or production[0].get("amount") != 1
+            or production[0].get("unit") != "kilogram"
+        ):
+            return  # The inherited CNG recipe must have a one-kg reference.
         components = []
         carbon = {
             name: 0.0
@@ -38,24 +62,40 @@ def annotate_cng_properties(database):
         input_energy = 0.0
         compression = False
         for exchange in dataset["exchanges"]:
-            if exchange.get("type") != "technosphere" or exchange["amount"] <= 0:
+            if exchange.get("type") != "technosphere":
+                continue
+            feed = exchange.get("product", "")
+            if feed != product and not gas_feed(feed):
+                continue
+            amount = float(exchange["amount"])
+            if not math.isfinite(amount) or amount < 0:
+                return
+            if amount == 0:
                 continue
             if exchange.get("product") == product:
                 provider = index.get(activity_key(exchange))
                 if provider is None:
                     return
                 annotate(provider, seen | {key})
-            elif (
-                exchange.get("product", "").startswith("natural gas")
-                and exchange["unit"] == "cubic meter"
-            ):
+            elif feed in NATURAL_GAS_PRODUCTS and exchange["unit"] == "cubic meter":
                 provider = index.get(activity_key(exchange))
                 compression = True
             else:
-                continue
-            if provider is None or PROPERTIES_KEY not in provider:
+                return  # Do not ignore an unhandled carbon-bearing gas input.
+            if provider is None:
                 return  # Optional legacy supply: do not invent an origin.
-            properties = provider[PROPERTIES_KEY]
+            properties = provider.get(PROPERTIES_KEY)
+            if properties is None:
+                properties = native_gas.properties(provider)
+            if properties is None:
+                return
+            if properties.get("reference unit", provider["unit"]) != exchange[
+                "unit"
+            ] or any(
+                not math.isfinite(properties[name]) or properties[name] < 0
+                for name in (*carbon, "energy MJ per unit")
+            ):
+                return
             input_energy += exchange["amount"] * properties["energy MJ per unit"]
             for name in carbon:
                 carbon[name] += exchange["amount"] * properties[name]
@@ -68,6 +108,10 @@ def annotate_cng_properties(database):
                     "energy_MJ_per_unit": properties["energy MJ per unit"],
                 }
             )
+            if "native gas supply evidence" in properties:
+                components[-1]["native gas supply evidence"] = properties[
+                    "native gas supply evidence"
+                ]
         if not components:
             return
         total = sum(carbon.values())
@@ -78,7 +122,10 @@ def annotate_cng_properties(database):
             # fossil/non-fossil carbon. Scale oxidation potential to the
             # documented delivered fuel, not the larger upstream energy input.
             carbon = {
-                name: value / total * CNG_ENERGY_MJ_PER_KG * 0.06
+                name: value
+                / total
+                * CNG_ENERGY_MJ_PER_KG
+                * specifications["natural gas"]["co2"]
                 for name, value in carbon.items()
             }
         properties = {
@@ -87,7 +134,7 @@ def annotate_cng_properties(database):
             "energy MJ per unit": CNG_ENERGY_MJ_PER_KG,
             **carbon,
             "components": components,
-            "carbon convention": "Full oxidation; gas-supply carbon origins preserved through compression",
+            "carbon convention": CNG_CARBON_CONVENTION,
             "energy source": "ecoinvent vehicle-grade natural gas market comment: 46.5 MJ/kg",
         }
         if compression:

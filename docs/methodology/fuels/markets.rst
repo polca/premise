@@ -97,6 +97,27 @@ The inherited 1.360544 m3/kg gas input represents about 48.98 MJ/kg at the
 36 MJ/m3 reference. Metadata record this upstream/delivered boundary difference
 explicitly; it is not attributed entirely to measured methane losses.
 
+When the fuel update has no IAM gas-blend series, native CNG can still receive
+carbon properties from its unchanged source supply. The fallback follows every
+gas-feed branch to explicit fossil-only fuel properties or a reviewed extraction
+activity with a positive ``Gas, natural`` flow from ``natural resource/in ground``.
+Gas-trade loops are accepted only when every reachable activity has a path to
+such evidence; an isolated loop or an unknown branch remains unresolved. Mixed,
+biogenic and synthetic supplies without matching properties are not assumed
+fossil. Missing or ambiguous providers likewise retain the diagnostic.
+
+This fallback does not create a future gas blend or regionalize source markets.
+It uses the existing natural-gas reference of 36 MJ/m3 and 0.06 kg CO2/MJ,
+then the delivered CNG reference of 46.5 MJ/kg, giving an approximate oxidation
+potential of 2.79 kg CO2/kg CNG. These are the packaged fuel assumptions, not
+measured country-specific compositions. Extraction identities and the tracing
+method are retained on the CNG component properties. Source gas, compression
+electricity, infrastructure and loss exchanges remain unchanged. As with
+scenario fuel blends, the vehicle helper updates positive exhaust CO2 using
+the final purchased fuel quantity; separate carbon-containing pollutants and
+capture credits are unchanged. Generated CNG properties are rebuilt on each
+annotation pass so obsolete origin evidence cannot survive a changed supply.
+
 CO2 emissions update
 ~~~~~~~~~~~~~~~~~~~~~~
 

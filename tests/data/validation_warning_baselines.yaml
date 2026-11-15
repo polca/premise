@@ -8,23 +8,29 @@ cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     review:
       date: '2026-11-15'
-      source_commit: 54ba74fb034a1e5fab140acd185edc8395948895
+      source_commit: db0cb23b9930492b44e71b258f6782735e5053f9
       method: >-
         Full compact-backend no-write update of ecoinvent 3.12 cutoff with
         encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
-        structured ruleset-8 certificate: zero errors and 486 unsuppressed
-        current warnings. Final car/truck exhaust checks run at certification;
-        sector-stage exhaust results remain as history. Compared with the
-        previous 81 car hot-emission diagnostics, 36 clear and 38 new final-state
-        cases appear, giving 83 current diagnostics. Inventory amounts and
-        provider signatures remain unchanged across all 48531 activities and
-        1410226 exchanges.
+        structured ruleset-8 certificate: zero errors and 393 unsuppressed
+        current warnings. Native CNG properties resolve all 93 missing-fuel
+        carbon warnings through explicit source extraction evidence. The
+        source supply is retained without inventing an IAM gas blend; vehicle
+        exhaust CO2 follows final CNG purchases and the existing 46.5 MJ/kg,
+        0.06 kg CO2/MJ convention. Final transport hot-emission diagnostics
+        remain at 83; all other warning counts are unchanged. All 48531
+        activities and 1410226 exchanges were compared: non-CO2 quantities and
+        providers are unchanged. Independent fuel-quantity checks cover 93
+        operating services and 52 per-MJ combustion activities; CO2 differences
+        are below 0.00001 percent.
       limitations: >-
         Counts record existing methodological and data limitations for this
         case only. Warnings remain visible; new rules or increased counts fail.
-        The old zero-lead reference warning is no longer emitted. Missing CNG
-        carbon properties, germanium providers and unresolved extraction paths
-        remain open limitations, not evidence of a validated physical balance.
+        The old zero-lead reference warning is no longer emitted. Native CNG
+        uses approximate packaged fuel factors, not measured regional gas
+        compositions or a future IAM blend. Unknown/mixed supplies remain
+        unresolved. Germanium providers and unresolved extraction paths remain
+        open limitations, not evidence of a validated physical balance.
     warning_rule_counts:
       LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT: 90
       LEGACY.ELECTRICITY_EFFICIENCY_POSSIBLY_INCORRECT: 11
@@ -44,5 +50,6 @@ cases:
       # cases appear. Combined versus hot-only remains a heuristic screen;
       # cold-start/evaporation/deterioration remain unresolved.
       LEGACY.TRANSPORT_HOT_EMISSION_DIAGNOSTIC: 83
-      # Vehicle-grade natural gas in kg has no matched carbon properties.
-      LEGACY.VEHICLE_FUEL_CARBON_UNAVAILABLE: 93
+      # Reviewed native gas supply now resolves all 93 CNG cases. Do not permit
+      # their reintroduction; unknown supply still emits this diagnostic.
+      LEGACY.VEHICLE_FUEL_CARBON_UNAVAILABLE: 0
