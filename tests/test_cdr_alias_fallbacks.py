@@ -1,4 +1,4 @@
-"""Ordered IMAGE DAC alternatives remain distinct from additive IAM components."""
+"""Ordered IMAGE CDR alternatives remain distinct from additive IAM components."""
 
 from copy import deepcopy
 
@@ -190,3 +190,90 @@ def test_cdr_raw_mapping_consumers_accept_explicit_fallbacks():
 def test_bad_fallback_definitions_are_rejected(spec):
     with pytest.raises(ValueError):
         cdr_alias_candidates(spec)
+
+
+@pytest.mark.parametrize(
+    "technology,suffix,legacy",
+    [
+        ("biomass power generation, with CCS", "Electricity", "Electricity"),
+        ("synthetic fuels, with CCS", "Hydrogen", "Hydrogen"),
+        ("biofuels, with CCS", "Liquids", "Liquids"),
+    ],
+)
+@pytest.mark.parametrize("availability", ["legacy", "preferred", "both", "neither"])
+def test_biomass_cdr_production_fallbacks_preserve_values_and_priority(
+    technology, suffix, legacy, availability, capsys
+):
+    obj = iam()
+    preferred = f"Carbon Removal|Geological Storage|Biomass|{suffix}"
+    previous = f"Carbon Capture|Energy|Supply|{legacy}|Biomass"
+    candidates = {
+        preferred: [10.0, 20.0],
+        previous: [100.0, 400.0],
+        "other": [1.0, 1.0],
+    }
+    names = {
+        "legacy": [previous],
+        "preferred": [preferred],
+        "both": [previous, preferred],
+        "neither": ["other"],
+    }[availability]
+    data = data_for(["other"]).reindex(variables=names)
+    for name in names:
+        data.loc[dict(variables=name)] = candidates[name]
+    data.attrs["unit"] = {name: "Mt CO2/yr" for name in names}
+    raw = obj._IAMDataCollection__get_iam_variable_labels(IAM_CDR_VARS, "iam_aliases")
+    assert raw[technology] == {"fallback": [preferred, previous]}
+    production, _, _ = obj._IAMDataCollection__resolve_cdr_alias_fallbacks(
+        data, {technology: raw[technology]}, {}, {}
+    )
+    selected = (
+        None
+        if availability == "neither"
+        else previous if availability == "legacy" else preferred
+    )
+    output = capsys.readouterr().out
+    if selected is None:
+        assert production == {}
+        assert output.count("none of:") == 1
+        assert technology in output and preferred in output and previous in output
+    else:
+        assert production == {technology: selected}
+        assert output == ""
+    mix = obj._IAMDataCollection__fetch_market_data(data, production, normalize=False)
+    volumes = obj._IAMDataCollection__get_iam_production_volumes(production, data)
+    if selected is None:
+        assert mix is volumes is None
+    else:
+        for result in (mix, volumes):
+            np.testing.assert_array_equal(
+                result.sel(variables=technology, region="EUR"), candidates[selected]
+            )
+            assert result.attrs["unit"][technology] == "Mt CO2/yr"
+
+
+def test_cement_energy_carrier_components_remain_additive(capsys):
+    obj = iam()
+    technology = "cement production, non-fossil CO2, with CCS"
+    production = obj._IAMDataCollection__get_iam_variable_labels(
+        IAM_CDR_VARS, "iam_aliases"
+    )
+    energy = obj._IAMDataCollection__get_cdr_energy_variable_labels(IAM_CDR_VARS)
+    components = energy[technology]["heat"]
+    assert isinstance(components, list) and len(components) == 7
+    names = [production[technology], *components]
+    data = data_for(["other"]).reindex(variables=names)
+    for i, name in enumerate(names):
+        data.loc[dict(variables=name)] = float(i + 1)
+    data.attrs["unit"] = {n: "EJ/yr" for n in components}
+    _, resolved, _ = obj._IAMDataCollection__resolve_cdr_alias_fallbacks(
+        data,
+        {technology: production[technology]},
+        {technology: {"heat": components}},
+        {},
+    )
+    assert resolved[technology]["heat"] == components
+    flat = obj._IAMDataCollection__flatten_cdr_energy_variable_labels(resolved)
+    output = obj._IAMDataCollection__fetch_market_data(data, flat, normalize=False)
+    np.testing.assert_array_equal(output.values, [[[35.0, 35.0]]])
+    assert capsys.readouterr().out == ""

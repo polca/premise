@@ -185,8 +185,9 @@ biomass power generation, with CCS:
       remind: Emi|CO2|CDR|+|BECCS
       remind-eu: Emi|CO2|CDR|+|BECCS
       image:
-          - Carbon Removal|Geological Storage|Biomass|Electricity
-          - Carbon Capture|Energy|Supply|Electricity|Biomass
+          fallback:
+              - Carbon Removal|Geological Storage|Biomass|Electricity
+              - Carbon Capture|Energy|Supply|Electricity|Biomass
       message: Carbon Capture|Energy|Supply|Electricity|Biomass
   efficiency_use_aliases:
       heat:
@@ -208,8 +209,9 @@ synthetic fuels, with CCS:
       remind: Emi|CO2|CDR|+|Synthetic Fuels CCS
       remind-eu: Emi|CO2|CDR|+|Synthetic Fuels CCS
       image:
-          - Carbon Removal|Geological Storage|Biomass|Hydrogen
-          - Carbon Capture|Energy|Supply|Hydrogen|Biomass
+          fallback:
+              - Carbon Removal|Geological Storage|Biomass|Hydrogen
+              - Carbon Capture|Energy|Supply|Hydrogen|Biomass
       message: Carbon Capture|Energy|Supply|Hydrogen|Biomass
   energy_use_aliases:
       heat:
@@ -220,8 +222,9 @@ synthetic fuels, with CCS:
 biofuels, with CCS:
   iam_aliases:
       image:
-          - Carbon Removal|Geological Storage|Biomass|Liquids
-          - Carbon Capture|Energy|Supply|Liquids|Biomass
+          fallback:
+              - Carbon Removal|Geological Storage|Biomass|Liquids
+              - Carbon Capture|Energy|Supply|Liquids|Biomass
       message: Carbon Capture|Energy|Supply|Liquids|Biomass
   energy_use_aliases:
       heat:
