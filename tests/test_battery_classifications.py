@@ -1,7 +1,9 @@
-"""Whole rechargeable cells/packs use CPC 46420; other products need separate review.
+"""Reviewed whole rechargeable cells/packs and non-cell pack components.
 
 UN CPC 2.1 46420 (electric accumulators), correspondence to ISIC Rev.4 2720:
 https://unstats.un.org/unsd/classifications/Econ/Structure/Detail/EN/1074/46420
+Non-cell pack parts use CPC 46430, also corresponding to ISIC Rev.4 2720:
+https://unstats.un.org/unsd/classifications/Econ/Structure/Detail/EN/1074/46430
 """
 
 import copy
@@ -22,6 +24,10 @@ from premise.inventory.inventory_imports import (
 EXPECTED = {
     "ISIC rev.4 ecoinvent": "2720:Manufacture of batteries and accumulators",
     "CPC": "46420: Electric accumulators",
+}
+PARTS_EXPECTED = {
+    "ISIC rev.4 ecoinvent": "2720:Manufacture of batteries and accumulators",
+    "CPC": "46430: Parts of primary cells, primary batteries and electric accumulators (including separators)",
 }
 
 
@@ -78,6 +84,51 @@ def test_real_battery_imports_receive_classifications_without_inventory_changes(
         assert dict(classified["classifications"]) == EXPECTED
         assert {k: v for k, v in classified.items() if k != "classifications"} == {
             k: v for k, v in original.items() if k != "classifications"
+        }
+
+
+def test_noncell_pack_components_are_classified_without_changing_reference_or_recipe(
+    capsys,
+):
+    files = (
+        "lci-batteries-NMC955-LTO.xlsx",
+        "lci-batteries-NMC955-fixed-reference-38.xlsx",
+        "lci-batteries-LiS.xlsx",
+        "lci-batteries-LiO2.xlsx",
+        "lci-batteries-SIB.xlsx",
+        "lci-batteries-ASSB.xlsx",
+    )
+    datasets = []
+    for filename in files:
+        with redirect_stdout(io.StringIO()):
+            data = ExcelImporter(INVENTORY_DIR / filename).data
+        datasets.extend(
+            d
+            for d in data
+            if d["name"].startswith(
+                "battery pack component production and end-of-life treatment,"
+            )
+        )
+    identities = {(d["name"], d["reference product"]) for d in datasets}
+    assert len(identities) == 15
+    # The installed-capacity basis normalises hardware provision; it must not
+    # be converted to a mass reference or confused with delivered electricity.
+    assert all(d["unit"] == "kilowatt hour" for d in datasets)
+    assert all(d["name"].endswith(", without cells and controls") for d in datasets)
+    assert all(
+        d["reference product"].startswith("battery pack component provision,")
+        for d in datasets
+    )
+    original = copy.deepcopy(datasets)
+    importer = object.__new__(DefaultInventory)
+    importer.import_db = SimpleNamespace(data=datasets)
+    importer.classifications = get_classifications()
+    importer.add_classifications()
+    assert "missing classification" not in capsys.readouterr().out
+    for before, after in zip(original, datasets, strict=True):
+        assert dict(after["classifications"]) == PARTS_EXPECTED
+        assert {k: v for k, v in after.items() if k != "classifications"} == {
+            k: v for k, v in before.items() if k != "classifications"
         }
 
 

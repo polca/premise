@@ -46,7 +46,14 @@ The explicit activity/product entries in ``classifications.csv`` include raw
 workbook identities, prepared aliases and cell products bundled with end-of-life
 provision. Packs without electronics or central controls still contain cells.
 
-This review changes classification metadata only. Battery chemicals, non-cell
+The fifteen explicitly reviewed non-cell pack-component provision products use
+ISIC 2720 and `CPC 2.1 46430: Battery parts
+<https://unstats.un.org/unsd/classifications/Econ/Structure/Detail/EN/1074/46430>`_.
+These recipes express fixed pack hardware provision per nominal kWh of installed
+capacity. The kWh reference, supplier quantities, controls boundary and bundled
+end-of-life provision are retained unchanged.
+
+These reviews change classification metadata only. Battery chemicals, other
 parts, electronics, recycling outputs and storage-capacity services require
 separate product classifications. No general name-based battery fallback is
 applied. Changes to the classification table invalidate prepared import caches,
