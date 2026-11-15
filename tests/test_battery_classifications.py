@@ -1,4 +1,4 @@
-"""Reviewed whole rechargeable cells/packs and non-cell pack components.
+"""Reviewed rechargeable cells, packs, home modules and non-cell pack components.
 
 UN CPC 2.1 46420 (electric accumulators), correspondence to ISIC Rev.4 2720:
 https://unstats.un.org/unsd/classifications/Econ/Structure/Detail/EN/1074/46420
@@ -28,6 +28,16 @@ EXPECTED = {
 PARTS_EXPECTED = {
     "ISIC rev.4 ecoinvent": "2720:Manufacture of batteries and accumulators",
     "CPC": "46430: Parts of primary cells, primary batteries and electric accumulators (including separators)",
+}
+HOME_MODULES = {
+    (
+        "battery module production, home storage, lithium-ion, lfp, 14.4 kwh",
+        "battery module, home storage, Li-ion, LFP, 14.4 kWh",
+    ),
+    (
+        "battery module production, home storage, lithium-ion, nmc811, 19.5 kwh",
+        "battery module, home storage, Li-ion, NMC811, 19.5 kWh",
+    ),
 }
 
 
@@ -71,9 +81,18 @@ def test_real_battery_imports_receive_classifications_without_inventory_changes(
         with redirect_stdout(io.StringIO()):
             data = ExcelImporter(path).data
         datasets.extend(
-            d for d in data if whole_cell_or_pack(d["name"], d["reference product"])
+            d
+            for d in data
+            if whole_cell_or_pack(d["name"], d["reference product"])
+            or (d["name"], d["reference product"]) in HOME_MODULES
         )
     assert len(datasets) >= 77
+    assert HOME_MODULES <= {(d["name"], d["reference product"]) for d in datasets}
+    assert all(
+        d["unit"] == "unit"
+        for d in datasets
+        if (d["name"], d["reference product"]) in HOME_MODULES
+    )
     before = copy.deepcopy(datasets)
     importer = object.__new__(DefaultInventory)
     importer.import_db = SimpleNamespace(data=datasets)

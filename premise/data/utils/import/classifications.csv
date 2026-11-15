@@ -76,6 +76,8 @@ battery Charger,battery Charger,2720:Manufacture of batteries and accumulators,4
 "battery module disassembly, for LiS battery",disassembled battery module,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "battery module production, for LiS battery","battery, LiS module",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "battery module production, for SiB battery","battery, SiB module",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery module production, home storage, lithium-ion, lfp, 14.4 kwh","battery module, home storage, Li-ion, LFP, 14.4 kWh",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery module production, home storage, lithium-ion, nmc811, 19.5 kwh","battery module, home storage, Li-ion, NMC811, 19.5 kWh",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
 battery module system production,battery module system for home storage system module,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "battery pouch production, for LiS battery",battery pouch,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "battery production, Li-ion, NMC523","battery, Li-ion, NMC523",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
