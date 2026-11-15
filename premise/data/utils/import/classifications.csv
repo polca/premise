@@ -54,22 +54,22 @@ antimony production,antimony,0729:Mining of other non-ferrous metal ores,14290: 
 "avoided burden from recycling, CdTe PV module","avoided burden from recycling, CdTe PV module","3600:Water collection, treatment and supply","43914: Filtering or purifying machinery and apparatus, for liquids or gases, except oil filters, petrol filters and a[…]"
 base 35858 chemical production,base 35858 chemical,2011:Manufacture of basic chemicals,342: Basic inorganic chemicals n.e.c.
 battery 50kW,battery 50kW,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell assembly, Li-S",battery cell,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery cell assembly, Li-S",battery cell,2720:Manufacture of batteries and accumulators,46420: Electric accumulators
 "battery cell deactivation, for LiS battery",cells to deactivation,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-ion, LFP","battery cell, Li-ion, LFP",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-ion, LTO","battery cell, Li-ion, LTO",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-ion, NCA","battery cell, Li-ion, NCA",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-ion, NMC111","battery cell, Li-ion, NMC111",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-ion, NMC523","battery cell, Li-ion, NMC523",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-ion, NMC532","battery cell, Li-ion, NMC532",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-ion, NMC622","battery cell, Li-ion, NMC622",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-ion, NMC811","battery cell, Li-ion, NMC811",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-ion, NMC955","battery cell, Li-ion, NMC955",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-O2",battery cell,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, Li-S","battery cell, LiS",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, SIB, with NaPBA cathode and fossil-HC anode",battery cell,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, SIB, with NMMT cathode and fossil-HC anode",battery cell,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, SIB, with NVPF cathode and fossil-HC anode",battery cell,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery cell production, Li-ion, LFP","battery cell, Li-ion, LFP",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-ion, LTO","battery cell, Li-ion, LTO",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-ion, NCA","battery cell, Li-ion, NCA",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-ion, NMC111","battery cell, Li-ion, NMC111",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-ion, NMC523","battery cell, Li-ion, NMC523",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-ion, NMC532","battery cell, Li-ion, NMC532",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-ion, NMC622","battery cell, Li-ion, NMC622",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-ion, NMC811","battery cell, Li-ion, NMC811",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-ion, NMC955","battery cell, Li-ion, NMC955",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-O2",battery cell,2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, Li-S","battery cell, LiS",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, SIB, with NaPBA cathode and fossil-HC anode",battery cell,2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, SIB, with NMMT cathode and fossil-HC anode",battery cell,2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, SIB, with NVPF cathode and fossil-HC anode",battery cell,2720:Manufacture of batteries and accumulators,46420: Electric accumulators
 battery Charger,battery Charger,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "battery management system assembly, for VRFB system","battery management system, for VRFB system",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "battery management system production, for Li-ion battery","battery management system, for Li-ion battery",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
@@ -78,11 +78,11 @@ battery Charger,battery Charger,2720:Manufacture of batteries and accumulators,4
 "battery module production, for SiB battery","battery, SiB module",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 battery module system production,battery module system for home storage system module,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "battery pouch production, for LiS battery",battery pouch,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery production, Li-ion, NMC523","battery, Li-ion, NMC523",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery production, Li-ion, NMC532","battery, Li-ion, NMC532",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery production, Li-ion, NMC622","battery, Li-ion, NMC622",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery production, Li-ion, NMC955","battery, Li-ion, NMC955",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery production, Li-O2","battery, Li-O2",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery production, Li-ion, NMC523","battery, Li-ion, NMC523",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery production, Li-ion, NMC532","battery, Li-ion, NMC532",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery production, Li-ion, NMC622","battery, Li-ion, NMC622",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery production, Li-ion, NMC955","battery, Li-ion, NMC955",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery production, Li-O2","battery, Li-O2",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
 "battery rack production, for LiS battery",battery rack,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 battery separator,battery separator,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 bauxite mine operation,bauxite,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
@@ -1714,29 +1714,29 @@ market for battery capacity (PLiB scenario),electricity storage capacity,2720:Ma
 "market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl, stationary",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "market for battery capacity, stationary (CONT scenario)",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "market for battery capacity, stationary (TC scenario)",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery cell, Li-ion, LFP","battery cell, Li-ion, LFP",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery cell, Li-ion, LTO","battery cell, Li-ion, LTO",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery cell, Li-ion, NCA","battery cell, Li-ion, NCA",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery cell, Li-ion, NMC111","battery cell, Li-ion, NMC111",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery cell, Li-ion, NMC622","battery cell, Li-ion, NMC622",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery cell, Li-ion, NMC811","battery cell, Li-ion, NMC811",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"market for battery cell, Li-ion, LFP","battery cell, Li-ion, LFP",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, Li-ion, LTO","battery cell, Li-ion, LTO",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, Li-ion, NCA","battery cell, Li-ion, NCA",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, Li-ion, NMC111","battery cell, Li-ion, NMC111",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, Li-ion, NMC622","battery cell, Li-ion, NMC622",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, Li-ion, NMC811","battery cell, Li-ion, NMC811",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
 "market for battery management system, for Li-ion battery","battery management system, for Li-ion battery",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-ion, LFP, rechargeable, prismatic","battery, Li-ion, LFP, rechargeable, prismatic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-ion, LTO","battery, Li-ion, LTO",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-ion, LTO, rechargeable","battery, Li-ion, LTO, rechargeable",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-ion, NMC523","battery, Li-ion, NMC523",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-ion, NMC532","battery, Li-ion, NMC532",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-ion, NMC622","battery, Li-ion, NMC622",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-ion, NMC955","battery, Li-ion, NMC955",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-ion, NMC955, rechargeable","battery, Li-ion, NMC955, rechargeable",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-oxygen, Li-O2","battery, Li-O2",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-oxygen, Li-O2, rechargeable","battery, Li-O2, rechargeable",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-sulfur, Li-S","battery, Li-S",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Li-sulfur, Li-S, rechargeable","battery, Li-S, rechargeable",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, redox-flow, hybrid","battery, redox-flow, hybrid",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, redox-flow, organic","battery, redox-flow, organic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, redox-flow, Vanadium","battery, redox-flow, Vanadium",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, Sodium-ion, SiB","battery, SiB",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"market for battery, Li-ion, LFP, rechargeable, prismatic","battery, Li-ion, LFP, rechargeable, prismatic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-ion, LTO","battery, Li-ion, LTO",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-ion, LTO, rechargeable","battery, Li-ion, LTO, rechargeable",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-ion, NMC523","battery, Li-ion, NMC523",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-ion, NMC532","battery, Li-ion, NMC532",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-ion, NMC622","battery, Li-ion, NMC622",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-ion, NMC955","battery, Li-ion, NMC955",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-ion, NMC955, rechargeable","battery, Li-ion, NMC955, rechargeable",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-oxygen, Li-O2","battery, Li-O2",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-oxygen, Li-O2, rechargeable","battery, Li-O2, rechargeable",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-sulfur, Li-S","battery, Li-S",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-sulfur, Li-S, rechargeable","battery, Li-S, rechargeable",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, redox-flow, hybrid","battery, redox-flow, hybrid",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, redox-flow, organic","battery, redox-flow, organic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, redox-flow, Vanadium","battery, redox-flow, Vanadium",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Sodium-ion, SiB","battery, SiB",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
 market for bauxite,bauxite,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 market for bentonite,bentonite,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
 market for beryllium,beryllium,0729:Mining of other non-ferrous metal ores,14290: Other non-ferrous metal ores and concentrates (other than uranium or thorium ores and concentrates)
@@ -3975,17 +3975,17 @@ silane production,silane,2011:Manufacture of basic chemicals,"34210: Hydrogen, n
 "polyethylene oxide production, proxy, for ASSB","polyethylene oxide, for ASSB",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "polymer electrolyte production, PEO-LiTFSI, for ASSB","polymer electrolyte, PEO-LiTFSI, for ASSB",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "oxide electrolyte production, LLZO, for ASSB","oxide electrolyte, LLZO, for ASSB",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, ASSB, polymer","battery cell, ASSB, polymer",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, ASSB, oxidic","battery cell, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery cell production, ASSB, sulfidic","battery cell, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery production, ASSB, polymer","battery, ASSB, polymer",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, ASSB, polymer","battery, ASSB, polymer",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery cell production, ASSB, polymer","battery cell, ASSB, polymer",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, ASSB, oxidic","battery cell, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, ASSB, sulfidic","battery cell, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery production, ASSB, polymer","battery, ASSB, polymer",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, ASSB, polymer","battery, ASSB, polymer",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
 "market for battery capacity, ASSB, polymer",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery production, ASSB, oxidic","battery, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, ASSB, oxidic","battery, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery production, ASSB, oxidic","battery, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, ASSB, oxidic","battery, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
 "market for battery capacity, ASSB, oxidic",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"battery production, ASSB, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
-"market for battery, ASSB, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
+"battery production, ASSB, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, ASSB, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
 "market for battery capacity, ASSB, sulfidic",electricity storage capacity,2720:Manufacture of batteries and accumulators,46410: Primary cells and primary batteries
 "mechanical powertrain production, electric passenger car","mechanical powertrain, electric passenger car",2930:Manufacture of parts and accessories for motor vehicles,49129: Other parts and accessories of motor vehicles
 "market for mechanical powertrain, electric passenger car","mechanical powertrain, electric passenger car",2930:Manufacture of parts and accessories for motor vehicles,49129: Other parts and accessories of motor vehicles
@@ -3996,3 +3996,49 @@ silane production,silane,2011:Manufacture of basic chemicals,"34210: Hydrogen, n
 "vanadium electrolyte conditioning, reference design","vanadium electrolyte conditioning, reference design",2011:Manufacture of basic chemicals,342: Basic inorganic chemicals
 "market for used redox-flow battery, Vanadium, reference design","used redox-flow battery, Vanadium, reference design",3830:Materials recovery,39990: Other wastes n.e.c.
 "iridium production, economic allocation, proxy",iridium,2420: Manufacture of basic precious and other non-ferrous metals,"41330: Platinum, unwrought or in semi-manufactured forms, or in powder form"
+"battery cell production, all-solid-state battery, oxidic","battery cell, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, all-solid-state battery, polymer","battery cell, ASSB, polymer",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, all-solid-state battery, sulfidic","battery cell, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, lithium-ion, nca, silicon-graphite anode","battery cell, Li-ion, NCA, silicon-graphite anode",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, lithium-ion, nmc111, prismatic","battery cell, Li-ion, NMC111, prismatic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, lithium-ion, nmc532, prismatic","battery cell, Li-ion, NMC532, prismatic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery cell production, lithium-ion, nmc811, silicon-graphite anode","battery cell, Li-ion, NMC811, silicon-graphite anode",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, all-solid-state battery, oxidic, without central controls","battery pack, ASSB, oxidic, without central controls",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, all-solid-state battery, polymer, without central controls","battery pack, ASSB, polymer, without central controls",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, all-solid-state battery, sulfidic, without central controls","battery pack, ASSB, sulfidic, without central controls",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, lfp, without electronics","battery pack, Li-ion, LFP, without electronics",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, limn2o4, without electronics","battery pack, Li-ion, LiMn2O4, without electronics",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, lto, fuel cell bus, without controls","battery pack, Li-ion, LTO, fuel cell bus, without controls",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, lto, without electronics","battery pack, Li-ion, LTO, without electronics",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, nca, without electronics","battery pack, Li-ion, NCA, without electronics",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, nmc111, without electronics","battery pack, Li-ion, NMC111, without electronics",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, nmc532, without electronics","battery pack, Li-ion, NMC532, without electronics",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, nmc622, without electronics","battery pack, Li-ion, NMC622, without electronics",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, nmc811, without electronics","battery pack, Li-ion, NMC811, without electronics",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-ion, nmc955, without electronics","battery pack, Li-ion, NMC955, without electronics",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery pack production, lithium-oxygen, without auxiliaries","battery pack, lithium-oxygen, without auxiliaries",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery production, all-solid-state battery, oxidic","battery, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery production, all-solid-state battery, polymer","battery, ASSB, polymer",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"battery production, all-solid-state battery, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, Li-ion, LFP, curated supply","battery cell, Li-ion, LFP",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, all-solid-state battery, oxidic, including end-of-life treatment","battery cell, ASSB, oxidic, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, all-solid-state battery, polymer, including end-of-life treatment","battery cell, ASSB, polymer, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, all-solid-state battery, sulfidic, including end-of-life treatment","battery cell, ASSB, sulfidic, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, li-ion, limn2o4","battery cell, Li-ion, LiMn2O4",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, lfp, including end-of-life treatment","battery cell, Li-ion, LFP, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, limn2o4, including end-of-life treatment","battery cell, Li-ion, LiMn2O4, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, lto, including end-of-life treatment","battery cell, Li-ion, LTO, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, nca, including end-of-life treatment","battery cell, Li-ion, NCA, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, nmc111, including end-of-life treatment","battery cell, Li-ion, NMC111, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, nmc532","battery cell, Li-ion, NMC532",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, nmc532, including end-of-life treatment","battery cell, Li-ion, NMC532, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, nmc622, including end-of-life treatment","battery cell, Li-ion, NMC622, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, nmc811, including end-of-life treatment","battery cell, Li-ion, NMC811, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-ion, nmc955, including end-of-life treatment","battery cell, Li-ion, NMC955, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-oxygen, including end-of-life treatment","battery cell, Li-ion, Li-O2, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, lithium-sulfur, including end-of-life treatment","battery cell, Li-sulfur, Li-S, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery cell, sodium-ion, including end-of-life treatment","battery cell, Sodium-ion, SiB, including end-of-life treatment",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, Li-ion, LFP, curated reference","battery, Li-ion, LFP, rechargeable, prismatic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, all-solid-state battery, oxidic","battery, ASSB, oxidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, all-solid-state battery, polymer","battery, ASSB, polymer",2720:Manufacture of batteries and accumulators,46420: Electric accumulators
+"market for battery, all-solid-state battery, sulfidic","battery, ASSB, sulfidic",2720:Manufacture of batteries and accumulators,46420: Electric accumulators

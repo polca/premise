@@ -25,6 +25,27 @@ Validation is read-only and cannot be disabled through the public API.
 Unsuppressed errors stop an update before checkpointing or export; warnings and
 narrow, versioned suppressions remain visible in the immutable report.
 
+Imported rechargeable-battery classifications
+--------------------------------------------
+
+Reviewed rechargeable cells, cell-containing packs and their product markets
+use ISIC Rev.4 ``2720: Manufacture of batteries and accumulators`` and
+`CPC 2.1 46420: Electric accumulators
+<https://unstats.un.org/unsd/classifications/Econ/Structure/Detail/EN/1074/46420>`_.
+The former CPC 46410 label describes primary cells and primary batteries.
+The explicit activity/product entries in ``classifications.csv`` include raw
+workbook identities, prepared aliases and cell products bundled with end-of-life
+provision. Packs without electronics or central controls still contain cells.
+
+This review changes classification metadata only. Battery chemicals, non-cell
+parts, electronics, recycling outputs and storage-capacity services require
+separate product classifications. No general name-based battery fallback is
+applied. Changes to the classification table invalidate prepared import caches,
+including retained CLIC workbooks; native ecoinvent source caches are preserved.
+
+Validation certificate scope
+----------------------------
+
 The production certificate combines sector-specific checks evaluated while
 the transformation still owns direct references to its changed activities.
 They check coverage, finite physical values, reference production, market

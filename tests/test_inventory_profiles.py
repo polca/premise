@@ -310,6 +310,31 @@ def test_biosphere_preparation_version_invalidates_only_import_cache(
     )
 
 
+@pytest.mark.parametrize("inventory_source", ["workbooks", "clic"])
+def test_classification_data_invalidates_imports_but_preserves_source_cache(
+    monkeypatch, tmp_path, inventory_source
+):
+    import premise.database.new_database as module
+
+    path = tmp_path / "classifications.csv"
+    path.write_bytes(module.FILEPATH_CLASSIFICATIONS.read_bytes())
+    monkeypatch.setattr(module, "FILEPATH_CLASSIFICATIONS", path)
+    builder = object.__new__(module.NewDatabase)
+    builder.version, builder.system_model = "3.12", "cutoff"
+    builder.keep_imports_uncertainty = builder.keep_source_db_uncertainty = False
+    builder.inventory_source = inventory_source
+    builder._clic_semantic_fingerprint = "unchanged-clic-inputs"
+    source = builder._database_cache_path("classification-test")
+    imports = builder._database_cache_path("classification-test", inventories=True)
+    path.write_text(
+        path.read_text().replace("46420: Electric accumulators", "46420: Updated label")
+    )
+    assert builder._database_cache_path("classification-test") == source
+    assert (
+        builder._database_cache_path("classification-test", inventories=True) != imports
+    )
+
+
 def companion_sources():
     from premise.core.filesystem_constants import INVENTORY_DIR
 

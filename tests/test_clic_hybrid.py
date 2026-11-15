@@ -71,6 +71,20 @@ def test_prepared_cache_restores_owned_hashable_brightway_references(
     assert prepare.call_count == 2
     assert rebuilt == [record]
 
+    # Classification-only changes must also rebuild retained workbook metadata.
+    classification_path = tmp_path / "classifications.csv"
+    classification_path.write_bytes(
+        inventory_imports.FILEPATH_CLASSIFICATIONS.read_bytes()
+    )
+    monkeypatch.setattr(
+        inventory_imports, "FILEPATH_CLASSIFICATIONS", classification_path
+    )
+    module.import_retained_inventories(plan, [], [], **kwargs)
+    assert prepare.call_count == 2
+    classification_path.write_text("name,product,ISIC rev.4 ecoinvent,CPC\n")
+    module.import_retained_inventories(plan, [], [], **kwargs)
+    assert prepare.call_count == 3
+
 
 def test_dependency_walk_stops_at_public_replacement_and_retains_licensed_suppliers(
     monkeypatch,

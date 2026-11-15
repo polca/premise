@@ -76,6 +76,7 @@ from ..inventory.inventory_imports import (
     BaseInventoryImport,
     BIOSPHERE_MIGRATION_CACHE_VERSION,
     DefaultInventory,
+    FILEPATH_CLASSIFICATIONS,
 )
 from ..inventory.clean_datasets import source_normalization_data
 from ..inventory import profiles as inventory_profiles
@@ -1052,6 +1053,11 @@ class NewDatabase:
             if inventories
             else ""
         )
+        if inventories:
+            classification_digest = hashlib.sha256(
+                FILEPATH_CLASSIFICATIONS.read_bytes()
+            ).hexdigest()[:16]
+            inventory_label += f"_classifications_{classification_digest}"
         if inventories and getattr(self, "inventory_source", "workbooks") == "clic":
             fingerprint = (
                 getattr(self, "_clic_semantic_fingerprint", None) or "unresolved"
@@ -1670,6 +1676,9 @@ class NewDatabase:
         self._clear_inventory_importer_state()
         semantic = {
             "resolution": provider.manifest["resolution_fingerprint"],
+            "classifications": hashlib.sha256(
+                FILEPATH_CLASSIFICATIONS.read_bytes()
+            ).hexdigest(),
             "target": provider.manifest["target"],
             "policy": provider.manifest["policy"],
             "engine": provider.manifest["brightpath_version"],
