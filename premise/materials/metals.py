@@ -25,11 +25,9 @@ from .metals_rules import (
     ActivityPolicy,
     MaterialRule,
     MetalsConfigError,
-    conversion_factors_as_dataframe_records,
     load_material_rules,
     load_resource_policy,
     load_technology_conversions,
-    material_rules_as_dataframe_records,
 )
 from ..reporting.provenance import record_change_event
 from .metals_resource_boundaries import build_resource_boundary_plan, ground_resources
@@ -314,7 +312,6 @@ def _update_metals(scenario, version, system_model):
     validate.market_diagnostics = metals.market_diagnostics
     validate.resource_diagnostics = metals.resource_diagnostics
     validate.mining_shares_mapping = mining_shares_mapping
-    validate.interpolate_by_year = interpolate_by_year
     validate.metals_list = (
         mining_shares_mapping.loc[
             (mining_shares_mapping["Work done"] == "Yes")
@@ -449,76 +446,12 @@ def load_mining_shares_mapping(ei_version="3.12"):
     return _load_mining_shares_mapping(normalized_version).copy(deep=True)
 
 
-def load_primary_secondary_split():
-    """
-    Load mapping for primary and secondary split of metal markets.
-    """
-    path = DATA_DIR / "metals" / "primary_secondary_split.yaml"
-    with open(path, "r", encoding="utf-8") as stream:
-        return yaml.safe_load(stream)
-
-
-def load_activities_mapping():
-    """
-    Load mapping for the ecoinvent exchanges to be
-    updated by the new metal intensities. Only rows
-    where filter was set to yes are considered.
-    """
-
-    df = pd.DataFrame(material_rules_as_dataframe_records())
-    return df.loc[df["filter"].str.lower() == "yes"].copy()
-
-
-# Define a function to replicate rows based on the generated activity sets
-def extend_dataframe(df, mapping):
-    """ "
-     Extend a DataFrame by duplicating rows based on a mapping dictionary.
-
-    Parameters:
-    - df (pd.DataFrame): The original DataFrame to be extended.
-    - mapping (dict): A dictionary with keys corresponding to the 'technology'
-                      values in the DataFrame and values that are sets of processes.
-    """
-
-    new_rows = []
-
-    for key, processes in mapping.items():
-        # Find the rows in the DataFrame where the 'technology' matches the key
-        matching_rows = df[df["technology"] == key]
-        # For each process in the set associated with the key, duplicate the matching rows
-        for process in processes:
-            temp_rows = matching_rows.copy()
-            temp_rows["ecoinvent_technology"] = process["name"]
-            new_rows.extend(temp_rows.to_dict("records"))
-    new_df = pd.DataFrame(new_rows)
-
-    return new_df
-
-
 def fetch_mapping(filepath: str) -> dict:
     """Returns a dictionary from a YML file"""
 
     with open(filepath, "r", encoding="utf-8") as stream:
         mapping = yaml.safe_load(stream)
     return mapping
-
-
-def rev_metals_map(mapping: dict) -> dict:
-    """Returns a reversed dictionary"""
-
-    rev_mapping = {}
-    for key, val in mapping.items():
-        for v in val:
-            rev_mapping[v["name"]] = key
-    return rev_mapping
-
-
-def load_conversion_factors():
-    """
-    Load dataframe with conversion factors for metals
-    """
-
-    return pd.DataFrame(conversion_factors_as_dataframe_records())
 
 
 def update_exchanges(
@@ -593,15 +526,6 @@ def update_exchanges(
     activity["log parameters"].setdefault("new amount", {}).update({metal: new_amount})
 
     return activity
-
-
-def filter_technology(dataset_names, database):
-    return list(
-        ws.get_many(
-            database,
-            ws.either(*[ws.contains("name", name) for name in dataset_names]),
-        )
-    )
 
 
 def build_ws_filter(field: str, query: dict):
@@ -1346,28 +1270,6 @@ def correct_metal_resource_exchanges(
     return True
 
 
-def interpolate_by_year(target_year: int, data: dict) -> float:
-    """
-    Interpolate (or extrapolate) a value for the given `target_year`
-    from a dictionary like {2020: 0.1, 2030: 0.5, ...}.
-    """
-    data = {int(k): v for k, v in data.items()}
-    years = sorted(data)
-
-    if target_year in years:
-        return data[target_year]
-    elif target_year < years[0]:
-        return data[years[0]]
-    elif target_year > years[-1]:
-        return data[years[-1]]
-    else:
-        for i in range(len(years) - 1):
-            y0, y1 = years[i], years[i + 1]
-            if y0 < target_year < y1:
-                v0, v1 = data[y0], data[y1]
-                return v0 + (v1 - v0) * (target_year - y0) / (y1 - y0)
-
-
 def mining_shares_for_year(df: pd.DataFrame, year: int) -> pd.Series | None:
     """Select/interpolate declared shares, without inventing endpoint forecasts."""
     columns = {int(str(c)): c for c in df.columns if str(c).isdigit()}
@@ -1489,8 +1391,6 @@ class Metals(BaseTransformation):
         }
 
         self.transport_lookup = build_transport_lookup(self.metals_transport)
-
-        self.prim_sec_split = load_primary_secondary_split()
 
     def update_metals_use_in_database(self):
         """Apply every compiled material rule to its target exactly once."""
@@ -1713,27 +1613,6 @@ class Metals(BaseTransformation):
                     rule=rule,
                     conversion_factor=conversion_factor,
                 )
-
-    def process_metal_update(
-        self, metal_row, dataset, final_technology, technology, conversion_factor
-    ):
-        """Compatibility wrapper around the typed material-rule implementation."""
-
-        matching_rules = [
-            rule
-            for rule in self.material_rules_by_technology.get(technology, ())
-            if rule.element == metal_row.get("Element")
-            and rule.provider is not None
-            and rule.provider.name == metal_row.get("Activity")
-            and rule.target.name in {None, final_technology}
-        ]
-        for rule in matching_rules:
-            self._apply_material_rule(
-                dataset=dataset,
-                technology=technology,
-                rule=rule,
-                conversion_factor=conversion_factor,
-            )
 
     def _technology_conversion_factor(
         self, dataset: dict, technology: str | None = None
@@ -3523,49 +3402,6 @@ class Metals(BaseTransformation):
         # same complete database that the legacy Wurst scan saw here.
         self.build_db_indexes()
         self.post_allocation_correction()
-
-    def get_market_split_shares(self, metal_key: str) -> tuple[str, str, float, float]:
-        """
-        For a given metal_key (e.g., 'copper, cathod'), return:
-        - market name
-        - reference product
-        - primary share (interpolated)
-        - secondary share (interpolated)
-
-        For consequential system model, always return 100% primary.
-        """
-        if self.system_model == "consequential":
-            default_name = f"market for {metal_key}"
-            default_reference_product = metal_key
-            return default_name, default_reference_product, 1.0, 0.0
-
-        entry = self.prim_sec_split.get(metal_key, None)
-        if not entry:
-            default_name = f"market for {metal_key}"
-            default_reference_product = metal_key
-            logger.warning(
-                f"[Metals] WARNING: No entry found for metal key: {metal_key} in 'primary_secondary_split.yaml'"
-            )
-            return default_name, default_reference_product, 1.0, 0.0
-
-        name = entry["name"]
-        reference_product = entry["reference product"]
-
-        p = interpolate_by_year(self.year, entry["shares"]["primary"])
-        s = interpolate_by_year(self.year, entry["shares"]["secondary"])
-        total = p + s
-
-        if total > 1:
-            logger.warning(
-                f"[Metals] WARNING: Total shares for {metal_key} exceed 1: {total}. Normalizing."
-            )
-
-        return (
-            name,
-            reference_product,
-            p / total if total > 0 else 0,  # Avoid division by zero
-            s / total if total > 0 else 0,  # Avoid division by zero
-        )
 
     def write_log(self, dataset, status="created"):
         """Record a structured metals provenance event."""

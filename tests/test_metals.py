@@ -942,19 +942,9 @@ def test_secondary_extraction_tries_next_old_market_candidate():
     ]
 
 
-def test_create_market_uses_secondary_share_from_existing_market_instead_of_yaml():
+def test_create_market_uses_secondary_share_from_existing_market():
     metals = object.__new__(Metals)
     metals.system_model = "cutoff"
-    metals.prim_sec_split = {
-        "copper": {
-            "name": "market for copper",
-            "reference product": "copper",
-            "shares": {
-                "primary": {2020: 0.1},
-                "secondary": {2020: 0.9},
-            },
-        }
-    }
     metals.database = [
         market_dataset(
             "market for copper",
@@ -1013,7 +1003,6 @@ def test_create_market_uses_secondary_share_from_existing_market_instead_of_yaml
 def test_create_market_preserves_existing_marginal_market_for_consequential():
     metals = object.__new__(Metals)
     metals.system_model = "consequential"
-    metals.prim_sec_split = {}
     metals.database = [
         market_dataset(
             "market for copper",
@@ -2644,7 +2633,6 @@ def test_validation_uses_applied_suppliers_and_catches_even_small_share_loss():
             "secondary suppliers": [secondary],
         }
     }
-    validator.prim_sec_split = {"copper": {"shares": {"primary": {2020: 0.1}}}}
     issues = []
     validator.log_issue = lambda *args, **kwargs: issues.append((args, kwargs))
     validator.check_excel_shares_preserved()

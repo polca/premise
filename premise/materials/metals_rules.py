@@ -512,53 +512,6 @@ def load_technology_conversions() -> tuple[TechnologyConversion, ...]:
     return tuple(conversions)
 
 
-def material_rules_as_dataframe_records() -> list[dict[str, Any]]:
-    """Return the legacy spreadsheet-shaped records for compatibility."""
-
-    records = []
-    for rule in load_material_rules().rules:
-        records.append(
-            {
-                "technology": rule.technology,
-                "demanding_process": (
-                    rule.target.name if rule.target.kind == "exact_activity" else None
-                ),
-                "demanding_process_reference_product": (
-                    rule.target.reference_product
-                    if rule.target.kind == "exact_activity"
-                    else None
-                ),
-                "Element": rule.element,
-                "unit_convertor": rule.exchange_amount_factor,
-                "Activity": rule.provider.name if rule.provider else None,
-                "Reference product": (
-                    rule.provider.reference_product if rule.provider else None
-                ),
-                "From (ecoinvent form)": rule.ecoinvent_form,
-                "To (intensity form)": rule.intensity_form,
-                "filter": "Yes" if rule.enabled else "No",
-                "Comment": rule.comment,
-            }
-        )
-    return records
-
-
-def conversion_factors_as_dataframe_records() -> list[dict[str, Any]]:
-    """Return the legacy spreadsheet-shaped conversion records."""
-
-    return [
-        {
-            "Activity": item.activity_name,
-            "EI_unit": item.ecoinvent_unit,
-            "metals_db_unit": item.intensity_unit,
-            "Conversion_factor": item.factor,
-            "Description": item.description,
-            "Comment": item.comment,
-        }
-        for item in load_technology_conversions()
-    ]
-
-
 __all__ = [
     "ActivityPolicy",
     "ActivitySelector",
@@ -568,11 +521,9 @@ __all__ = [
     "ProviderSelector",
     "TechnologyConversion",
     "configured_metal_products",
-    "conversion_factors_as_dataframe_records",
     "load_material_rules",
     "load_resource_policy",
     "load_technology_conversions",
-    "material_rules_as_dataframe_records",
 ]
 
 

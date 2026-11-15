@@ -4805,7 +4805,6 @@ class MetalsValidation(BaseDatasetValidator):
 
         Primary country/route shares come from the complete workbook; secondary
         shares come from the retained source market (zero for consequential).
-        The legacy primary_secondary_split.yaml is not used by this model.
         """
         from ..materials.metals_resource_coverage import (
             resource_diagnostic_is_informational,
