@@ -293,5 +293,42 @@
   "first_source38_technosphere_refusals_after": 0,
   "subsequent_unmatched_elementary_flows": 3,
   "sector_qualified": false,
-  "production_python_changes": []
+  "production_python_changes": [],
+  "clean_tracked_generation": {
+    "brightpath_commit": "a945340170a4314aabfee9497dee4c1cb0193ecd",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "fd2b23080cb2b9349fd94ace7a8c448ffe38d510b804c49cab444b25ec32c223",
+        "committed_sha256": "fd2b23080cb2b9349fd94ace7a8c448ffe38d510b804c49cab444b25ec32c223",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 70292049
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 0,
+    "removed_generated_output_bytes": 107485093,
+    "removed_owned_clean_worktree_file_bytes": 502282555
+  }
 }
