@@ -27,6 +27,7 @@ from ..core.transformation import (
 )
 from ..electricity.electricity import filter_technology
 from ..core.utils import rescale_exchanges
+from ..iam.data_collection import cdr_alias_candidates
 
 logger = create_logger("cdr")
 
@@ -191,7 +192,10 @@ class CarbonDioxideRemoval(BaseTransformation):
     def _model_aliases(cls, aliases, model):
         if not isinstance(aliases, dict):
             return cls._as_list(aliases)
-        return cls._as_list(aliases.get(model))
+        selected = aliases.get(model)
+        if selected is None:
+            return []
+        return cdr_alias_candidates(selected)
 
     @staticmethod
     def _has_energy_alias_for_model(technology_mapping, model):

@@ -65,6 +65,7 @@ GAINS_GEO_MAP = VARIABLES_DIR / "gains_regions.yaml"
 COAL_POWER_PLANTS_DATA = DATA_DIR / "electricity" / "coal_power_emissions_2012_v1.csv"
 BATTERY_MOBILE_SCENARIO_DATA = DATA_DIR / "battery" / "mobile_scenarios.csv"
 BATTERY_STATIONARY_SCENARIO_DATA = DATA_DIR / "battery" / "stationary_scenarios.csv"
+CDRAliasSpec = Union[str, List[str], Dict[str, List[str]]]
 
 
 def print_missing_variables(missing_vars, file_name: str = None):
@@ -305,6 +306,27 @@ def flatten(list_to_flatten):
     return rt
 
 
+def cdr_alias_candidates(spec: CDRAliasSpec) -> List[str]:
+    """List names to load; plain lists add components, fallback lists choose one."""
+    if isinstance(spec, str):
+        return [spec]
+    if isinstance(spec, dict):
+        if set(spec) != {"fallback"}:
+            raise ValueError("CDR alias mappings must contain only 'fallback'.")
+        candidates = spec["fallback"]
+        if not isinstance(candidates, list) or not candidates:
+            raise ValueError("CDR fallback aliases require a nonempty ordered list.")
+    elif isinstance(spec, list):
+        candidates = spec
+    else:
+        raise ValueError(
+            "CDR aliases must be names, additive lists or fallback mappings."
+        )
+    if any(not isinstance(name, str) or not name.strip() for name in candidates):
+        raise ValueError("CDR alias candidates must be nonempty variable names.")
+    return list(candidates)
+
+
 def _read_tabular_from_resource(resource) -> pd.DataFrame:
     """Read a binary resource as CSV, fall back to Excel."""
     raw = resource.raw_read()
@@ -514,12 +536,6 @@ class IAMDataCollection:
         cdr_efficiency_use_vars = self.__flatten_cdr_energy_variable_labels(
             cdr_efficiency_vars
         )
-        cdr_efficiency_energy_vars = self.__group_cdr_energy_variable_labels(
-            cdr_energy_vars
-        )
-        cdr_efficiency_index_vars = self.__group_cdr_energy_variable_labels(
-            cdr_efficiency_vars
-        )
 
         biomass_prod_vars = self.__get_iam_variable_labels(
             IAM_BIOMASS_VARS, variable="iam_aliases"
@@ -619,9 +635,9 @@ class IAMDataCollection:
             + list(cement_eff_vars.values())
             + list(steel_prod_vars.values())
             + list(steel_energy_vars.values())
-            + list(cdr_prod_vars.values())
-            + list(cdr_energy_use_vars.values())
-            + list(cdr_efficiency_use_vars.values())
+            + [cdr_alias_candidates(v) for v in cdr_prod_vars.values()]
+            + [cdr_alias_candidates(v) for v in cdr_energy_use_vars.values()]
+            + [cdr_alias_candidates(v) for v in cdr_efficiency_use_vars.values()]
             + list(biomass_prod_vars.values())
             + list(biomass_eff_vars.values())
             + list(land_use_vars.values())
@@ -676,6 +692,19 @@ class IAMDataCollection:
         )
 
         self.data = data
+
+        cdr_prod_vars, cdr_energy_vars, cdr_efficiency_vars = (
+            self.__resolve_cdr_alias_fallbacks(
+                data, cdr_prod_vars, cdr_energy_vars, cdr_efficiency_vars
+            )
+        )
+        cdr_energy_use_vars = self.__flatten_cdr_energy_variable_labels(cdr_energy_vars)
+        cdr_efficiency_energy_vars = self.__group_cdr_energy_variable_labels(
+            cdr_energy_vars
+        )
+        cdr_efficiency_index_vars = self.__group_cdr_energy_variable_labels(
+            cdr_efficiency_vars
+        )
 
         self.regions = data.region.values.tolist()
         self.system_model = system_model
@@ -1224,7 +1253,7 @@ class IAMDataCollection:
 
     def __get_iam_variable_labels(
         self, filepath: Path, variable: str
-    ) -> Dict[str, Union[str, List[str]]]:
+    ) -> Dict[str, CDRAliasSpec]:
         """
         Loads a csv file into a dictionary.
         This dictionary contains common terminology to ``premise``
@@ -1245,9 +1274,50 @@ class IAMDataCollection:
 
         return dict_vars
 
+    def __resolve_cdr_alias_fallbacks(
+        self, data, production_labels, energy_labels, efficiency_labels
+    ):
+        """Resolve explicit alternatives once for every CDR consumer.
+
+        Availability means that the named series exists, including series whose
+        observations are zero or missing. No regional or annual values are
+        imputed from a lower-priority alias. Ordinary additive lists pass through.
+        """
+        available = set(data.variables.values)
+        missing = []
+
+        def resolve(labels, prefix=""):
+            result = {}
+            for label, spec in labels.items():
+                candidates = cdr_alias_candidates(spec)
+                if not isinstance(spec, dict):
+                    result[label] = spec
+                    continue
+                selected = next((v for v in candidates if v in available), None)
+                if selected is None:
+                    missing.append(
+                        f"{prefix}{label} (none of: {'; '.join(candidates)})"
+                    )
+                else:
+                    result[label] = selected
+            return result
+
+        production = resolve(production_labels)
+        energy = {
+            technology: resolve(labels, f"{technology} - ")
+            for technology, labels in energy_labels.items()
+        }
+        efficiency = {
+            technology: resolve(labels, f"{technology} - ")
+            for technology, labels in efficiency_labels.items()
+        }
+        if missing:
+            print_missing_variables(missing, str(self.filepath_iam_files))
+        return production, energy, efficiency
+
     def __get_cdr_energy_variable_labels(
         self, filepath: Path, variable: str = "energy_use_aliases"
-    ) -> Dict[str, Dict[str, Union[str, List[str]]]]:
+    ) -> Dict[str, Dict[str, CDRAliasSpec]]:
         """
         Loads CDR IAM labels grouped by explicit energy carrier.
 
@@ -1288,8 +1358,8 @@ class IAMDataCollection:
         return dict_vars
 
     def __flatten_cdr_energy_variable_labels(
-        self, energy_labels: Dict[str, Dict[str, Union[str, List[str]]]]
-    ) -> Dict[str, Union[str, List[str]]]:
+        self, energy_labels: Dict[str, Dict[str, CDRAliasSpec]]
+    ) -> Dict[str, CDRAliasSpec]:
         return {
             f"{technology} - {carrier}": aliases
             for technology, carrier_labels in energy_labels.items()

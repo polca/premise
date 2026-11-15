@@ -37,6 +37,17 @@ selects support activities. Technology coverage depends on both available
 inventories and mapped scenario data. Use ``ndb.update("cdr")`` in the default
 sequence for prospective energy suppliers.
 
+IMAGE's solvent-DAC production and gas-use mappings use explicit ordered
+``fallback`` lists. The first variable name present in the IAM file is selected
+for markets, production volumes and efficiency calculations. Older variable
+names support legacy IMAGE files; when both names exist, only the preferred
+name is used. A present series containing zeros or missing observations does
+not trigger a fallback to another series. If none of the candidate names exist,
+the loader reports the unavailable group and omits that series. Ordinary alias
+lists retain their additive meaning, including diagnostics for missing
+components. This fallback policy applies only to the two reviewed IMAGE DAC
+groups; it does not supply missing CDR pathways or energy data.
+
 Using this update
 ~~~~~~~~~~~~~~~~~~~
 
