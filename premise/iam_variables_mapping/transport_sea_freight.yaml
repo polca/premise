@@ -35,6 +35,22 @@ ship, marine oil:
     gcam:
       - Final Energy|Transport|Freight|Sea|International Ship|Liquids
       - Final Energy|Transport|Freight|Sea|Domestic Ship|Liquids
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, transoceanic container ship
+      unit: ton kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+      - Complete native historical ocean-container service per tonne-km, including fuel, emissions, vessel, maintenance and ports; retain the inventory once.
+      - Use the native vessel as a regional screening proxy through the shared IAM fleet and efficiency logic; vessel design, loading, geography and vintage differ with unquantified score effects. Do not add another vessel, port or fuel inventory.
+  uvek_fuel_aliases:
+    fltr:
+      name: Heavy fuel oil, at regional storage
+      reference product: Heavy fuel oil, at regional storage
+      unit: kilogram
+    exact: true
   ecoinvent_aliases:
     fltr:
       - transport, freight, sea, container ship
@@ -113,6 +129,14 @@ ship, biodiesel:
   ecoinvent_aliases:
     fltr:
       - transport, freight, sea, container ship, powered with biodiesel
+  uvek_fuel_aliases:
+    clic_slugs:
+      - biodiesel-production-via-fischer-tropsch-from-forest-product-non-residual-energy-allocation
+    clic_role_key: ship_fuel_activities.yaml:forest FT biodiesel
+    fltr:
+      name: biodiesel production, via fischer-tropsch
+      reference product: biodiesel, from forest residues
+      unit: kilogram
   ecoinvent_fuel_aliases:
     fltr:
       - biodiesel
@@ -205,6 +229,14 @@ ship, ammonia:
   ecoinvent_aliases:
     fltr:
       - transport, freight, sea, container ship, powered with liquid ammonia
+  uvek_fuel_aliases:
+    clic_slugs:
+      - ammonia-production-with-market-average-hydrogen
+    clic_role_key: ship_fuel_activities.yaml:market-average ammonia
+    fltr:
+      name: ammonia production
+      reference product: ammonia, anhydrous, liquid
+      unit: kilogram
   ecoinvent_fuel_aliases:
     fltr:
       - ammonia production

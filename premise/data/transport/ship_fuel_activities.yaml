@@ -1,0 +1,12 @@
+# Published fuel stocks used by the existing shipping efficiency adjustment.
+# These bind kg-based child suppliers; they are not IAM vehicle technologies.
+forest FT biodiesel:
+  fltr:
+    name: Biodiesel production, via Fischer-Tropsch, from forest product (non-residual), energy allocation
+    reference product: biodiesel, from forest residues
+    unit: kilogram
+market-average ammonia:
+  fltr:
+    name: ammonia production, with market-average hydrogen
+    reference product: ammonia, anhydrous, liquid
+    unit: kilogram

@@ -63,6 +63,14 @@ ship:
   unit: ton kilometer
   name: transport, freight, sea, container ship
   old:
+    # Native container service follows the same shared regional-market route.
+    Transport, transoceanic container ship:
+      remind: market for transport, freight, sea, container ship
+      remind-eu: market for transport, freight, sea, container ship
+      image: market for transport, freight, sea, container ship
+      tiam-ucl: market for transport, freight, sea, container ship
+      witch: market for transport, freight, sea, container ship
+      gcam: market for transport, freight, sea, container ship
     market for transport, freight, sea, container ship:
       remind: market for transport, freight, sea, container ship
       remind-eu: market for transport, freight, sea, container ship

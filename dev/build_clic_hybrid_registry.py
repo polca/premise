@@ -160,10 +160,14 @@ def build(archive, registry):
         "nodes": nodes,
         "roles": role_nodes,
     }
-    support_path = mapping_dir.parent / "data/cdr/cdr_activities.yaml"
-    role_nodes[support_path.name] = cdr_support_roles(
-        nodes, yaml.safe_load(support_path.read_text())
-    )
+    for relative_path in (
+        "cdr/cdr_activities.yaml",
+        "transport/ship_fuel_activities.yaml",
+    ):
+        support_path = mapping_dir.parent / "data" / relative_path
+        role_nodes[support_path.name] = cdr_support_roles(
+            nodes, yaml.safe_load(support_path.read_text())
+        )
     return registry
 
 

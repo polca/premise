@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-15",
+  "source": "BAFU:2026-reimported",
+  "source_context": {
+    "family": "uvek",
+    "version": "2026",
+    "biosphere_version": "3.10"
+  },
+  "prepared_activities": 11971,
+  "updated_activities": 12023,
+  "added_activities": 52,
+  "technologies": [
+    "ship, marine oil",
+    "ship, biodiesel",
+    "ship, ammonia"
+  ],
+  "fuel_supplier_counts": {
+    "ship, marine oil": 2,
+    "ship, biodiesel": 1,
+    "ship, ammonia": 1
+  },
+  "shared_callback_and_exhaustive_graph_validation_passed": true,
+  "validator_changed": false,
+  "stock_role_bindings_added": 2,
+  "existing_registry_node_graph_and_IAM_roles_unchanged": true,
+  "transport_regressions": 265,
+  "snapshot_freshness_diagnostic_only": true,
+  "public_sector_gate_bypassed_for_diagnostic": true,
+  "brightway_export_performed": false,
+  "public_qualification_claimed": false
+}

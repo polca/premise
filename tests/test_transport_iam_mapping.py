@@ -135,6 +135,8 @@ def test_transport_relink_scans_legacy_market_names_by_membership():
     matching = {
         "name": "old freight market",
         "product": "freight",
+        "reference product": "freight",
+        "input": ("native", "old-provider"),
         "location": "GLO",
         "unit": "ton kilometer",
         "type": "technosphere",
@@ -172,6 +174,9 @@ def test_transport_relink_scans_legacy_market_names_by_membership():
     transport.relink_transport_datasets()
 
     assert matching["name"] == "new freight market"
+    assert "input" not in matching
+    assert matching["reference product"] == "transport, freight, lorry"
+    assert skipped_by_dataset_unit["input"] == ("native", "old-provider")
     assert matching["product"] == "transport, freight, lorry"
     assert matching["location"] == "EUR"
     assert skipped_by_dataset_unit["name"] == "old freight market"

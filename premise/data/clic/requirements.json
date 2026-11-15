@@ -4551,7 +4551,8 @@
       "transport_rail_freight.yaml": {"train, electric":[3010,3013,3016,3019,3022,3025],"train, diesel-electric":[3009,3012,3015,3018,3021,3024],"train, fuel cell":[3011,3014,3017,3020,3023,3026]},
       "transport_sea_freight.yaml": {"ship, marine oil":[],"ship, diesel":[3049],"ship, biodiesel":[3051],"ship, electric":[3044],"ship, fuel cell":[3043],"ship, ammonia":[3045],"ship, methanol":[3046],"ship, synthetic methane":[3047],"ship, synthetic LPG":[3048]},
       "tailings_activities.yaml": {"sulfidic tailings - backfill":[3090],"sulfidic tailings - impoundment":[],"sulfidic tailings - flocculation":[3091],"sulfidic tailings - roasting":[3094]},
-      "cdr_activities.yaml": {"direct air capture":[2299,2300,2301,2302,2303,2304,2305,2306,2307,2308,2309,2310,2311,2312,2313,2314,2315,2316,2317,2318,2319,2330,2331,2332,2333],"CO2 storage":[2320],"industrial CCS":[2321,2322,2323,2324,2325,2329],"land use":[],"biochar":[1967,1968],"enhanced rock weathering":[2346],"ocean liming":[2853,2854],"bioenergy, with CCS":[2326]}
+      "cdr_activities.yaml": {"direct air capture":[2299,2300,2301,2302,2303,2304,2305,2306,2307,2308,2309,2310,2311,2312,2313,2314,2315,2316,2317,2318,2319,2330,2331,2332,2333],"CO2 storage":[2320],"industrial CCS":[2321,2322,2323,2324,2325,2329],"land use":[],"biochar":[1967,1968],"enhanced rock weathering":[2346],"ocean liming":[2853,2854],"bioenergy, with CCS":[2326]},
+      "ship_fuel_activities.yaml": {"forest FT biodiesel":[2128],"market-average ammonia":[1479]}
     }
   }
 }

@@ -392,6 +392,9 @@ class Transport(BaseTransformation):
                     exc["name"] = resolved_name
                     exc["product"] = self.mapping[self.vehicle_type]["name"]
                     exc["location"] = resolved_location
+                    if "reference product" in exc:
+                        exc["reference product"] = exc["product"]
+                    exc.pop("input", None)
 
     def adjust_transport_efficiency(self, dataset, technology=None):
         """
