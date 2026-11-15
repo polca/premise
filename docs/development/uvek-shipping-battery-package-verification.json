@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-15",
+  "brightpath_commit": "9459e02860caf82e73ef50f193b8f6454ec272fc",
+  "clean_tracked_resource_regeneration_byte_identical": true,
+  "wheel_sha256": "688065e0a34a1966d6716258a76686a69867de33a7dc2d2c1c9f918e3cd28a0d",
+  "tests_against_installed_wheel": {
+    "brightpath_lfp_nmc532_signed_and_profile_cases": 26,
+    "premise_three_shipping_boundaries_plus_two_battery_connector_cases": 17
+  },
+  "package_imported_from_private_site_packages": true,
+  "user_environment_modified": false,
+  "production_python_modules_changed_in_batch": 0,
+  "brightway_database_exports_in_batch": 0,
+  "scope": "Packaging and mapping verification of three source3.9 shipping boundaries and source3.12 LFP/NMC532 markets; does not qualify shipping or additional sectors."
+}
