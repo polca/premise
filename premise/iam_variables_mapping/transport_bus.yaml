@@ -2,6 +2,28 @@
 # transport volumes (ES, billion pkm/y) and energy use (FE)
 ---
 'bus, diesel':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger bus, diesel, 13m single deck urban bus, 2020, EURO-VI
+      reference product: Transport, passenger bus, diesel, 13m single deck urban bus, 2020, EURO-VI
+      unit: person kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native Swiss 2020 13m single-deck urban-bus service per passenger-kilometre as
+      a geographic, fleet, operating-pattern and vintage screening proxy through the shared IAM fleet
+      and relative-efficiency logic. The source inventory already allocates ten onboard passengers;
+      do not apply occupancy, vehicle-km or lifetime a second time.
+    - Retain vehicle manufacture, roads, charger or fuelling infrastructure where present, fuel supply
+      and all existing maintenance/wear burdens once. Preserve the original per-passenger-kilometre
+      basis and use the shared transport update. Native biosphere exclusions and source/scenario score
+      differences remain unquantified.
+  uvek_fuel_aliases:
+    fltr:
+      name: Fuel supply for diesel vehicles
+      unit: kilogram
+    exact: true
   iam_aliases:
     remind: ES|Transport|Pass|Road|Bus|Liquids
     remind-eu: ES|Transport|Pass|Road|Bus|Liquids
@@ -52,6 +74,29 @@
         - diesel
 
 'bus, compressed gas':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger bus, compressed gas, 13m single deck urban bus, 2020, EURO-VI
+      reference product: Transport, passenger bus, compressed gas, 13m single deck urban bus, 2020,
+        EURO-VI
+      unit: person kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native Swiss 2020 13m single-deck urban-bus service per passenger-kilometre as
+      a geographic, fleet, operating-pattern and vintage screening proxy through the shared IAM fleet
+      and relative-efficiency logic. The source inventory already allocates ten onboard passengers;
+      do not apply occupancy, vehicle-km or lifetime a second time.
+    - Retain vehicle manufacture, roads, charger or fuelling infrastructure where present, fuel supply
+      and all existing maintenance/wear burdens once. Preserve the original per-passenger-kilometre
+      basis and use the shared transport update. Native biosphere exclusions and source/scenario score
+      differences remain unquantified.
+  uvek_fuel_aliases:
+    fltr:
+      name: Fuel supply for gas vehicles
+      unit: kilogram
+    exact: true
   iam_aliases:
     remind: ES|Transport|Pass|Road|Bus|Gases
     remind-eu: ES|Transport|Pass|Road|Bus|Gases
@@ -84,6 +129,34 @@
         - liquefied petroleum gas
 
 'bus, fuel cell':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger bus, fuel cell electric, hydrogen from SMR of natural gas, 13m single
+        deck urban bus, 2020
+      reference product: Transport, passenger bus, fuel cell electric, hydrogen from SMR of natural
+        gas, 13m single deck urban bus, 2020
+      unit: person kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native Swiss 2020 13m single-deck urban-bus service per passenger-kilometre as
+      a geographic, fleet, operating-pattern and vintage screening proxy through the shared IAM fleet
+      and relative-efficiency logic. The source inventory already allocates ten onboard passengers;
+      do not apply occupancy, vehicle-km or lifetime a second time.
+    - Retain vehicle manufacture, roads, charger or fuelling infrastructure where present, fuel supply
+      and all existing maintenance/wear burdens once. Preserve the original per-passenger-kilometre
+      basis and use the shared transport update. Native biosphere exclusions and source/scenario score
+      differences remain unquantified.
+    - Use the complete native fuel-cell bus with its existing 700 bar SMR-hydrogen fuelling supply as
+      the baseline representative. The IAM role does not specify the original hydrogen production route.
+      Preserve delivered-fuel pressure and the complete supply once; upstream fuel-sector updates are
+      separate. No electrolysis credit or second compression burden is added.
+  uvek_fuel_aliases:
+    fltr:
+      name: Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      unit: kilogram
+    exact: true
   iam_aliases:
     remind: ES|Transport|Pass|Road|Bus|FCEV
     remind-eu: ES|Transport|Pass|Road|Bus|FCEV
@@ -103,6 +176,37 @@
     fltr:
       - hydrogen
 'bus, battery electric':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 13m single
+        deck urban bus, 2020
+      reference product: Transport, passenger bus, battery electric - overnight charging, NMC-622 battery,
+        13m single deck urban bus, 2020
+      unit: person kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native Swiss 2020 13m single-deck urban-bus service per passenger-kilometre as
+      a geographic, fleet, operating-pattern and vintage screening proxy through the shared IAM fleet
+      and relative-efficiency logic. The source inventory already allocates ten onboard passengers;
+      do not apply occupancy, vehicle-km or lifetime a second time.
+    - Retain vehicle manufacture, roads, charger or fuelling infrastructure where present, fuel supply
+      and all existing maintenance/wear burdens once. Preserve the original per-passenger-kilometre
+      basis and use the shared transport update. Native biosphere exclusions and source/scenario score
+      differences remain unquantified.
+    - Use the complete NMC-622 overnight-charging variant as the representative native BEV bus; the
+      IAM role does not specify chemistry or charging pattern. Its documented pack is 399 kWh. No invented
+      chemistry mixture, extra battery or additional charger burden is added.
+  uvek_fuel_aliases:
+    fltr:
+      # Shared geographic relinking uses the IAM market after electricity updates.
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit: kilowatt hour
+    exact: true
   iam_aliases:
     remind: ES|Transport|Pass|Road|Bus|BEV
     remind-eu: ES|Transport|Pass|Road|Bus|BEV

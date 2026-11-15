@@ -5,14 +5,15 @@ IAM data, and integrate them into the database.
 """
 
 import math
+import warnings
 from typing import Dict, List
 
 import numpy as np
 import yaml
 from wurst import searching as ws
 
-from ..inventory.activity_maps import InventorySet
-from ..core.filesystem_constants import DATA_DIR
+from ..inventory.activity_maps import InventorySet, get_mapping
+from ..core.filesystem_constants import DATA_DIR, VARIABLES_DIR
 from ..core.logger import create_logger
 from ..reporting.provenance import record_change_event
 from ..inventory.inventory_store import (
@@ -236,6 +237,8 @@ class Transport(BaseTransformation):
         self.vehicle_fuel_map = self.activity_mapping.generate_vehicle_fuel_map(
             transport_type=vehicle_type
         )
+        if family != "ecoinvent":
+            self.annotate_source_assumptions()
 
         self.battery_size = get_battery_size()
 
@@ -243,6 +246,34 @@ class Transport(BaseTransformation):
         for v in self.vehicle_map.values():
             if not v:
                 print(f"Vehicle map is empty for {self.vehicle_type}.")
+
+    def annotate_source_assumptions(self):
+        """Keep declared source limitations with the regionalized inventories."""
+        if self.family == "ecoinvent":
+            return
+        filename = self.mapping[self.vehicle_type].get("aliases_file")
+        if not filename:
+            return
+        definitions = get_mapping(
+            VARIABLES_DIR / filename, f"{self.family}_aliases", model=self.model
+        )
+        for role, records in self.vehicle_map.items():
+            limitations = definitions.get(role, {}).get("native_limitations", [])
+            if not limitations:
+                continue
+            note = "Premise transport source assumptions: " + " ".join(limitations)
+            changed = False
+            for record in records:
+                comment = str(record.get("comment") or "")
+                if note not in comment:
+                    record["comment"] = (comment + "\n" + note).strip()
+                    changed = True
+            if changed:
+                warnings.warn(
+                    f"Reviewed {role} source assumptions are retained in dataset comments.",
+                    UserWarning,
+                    stacklevel=2,
+                )
 
     def regionalize_transport_datasets(self):
         """

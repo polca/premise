@@ -42,6 +42,7 @@ two-wheeler:
   unit: kilometer
   name: transport, motorbike
 bus:
+  aliases_file: transport_bus.yaml
   sizes:
     - 13m single deck urban bus
   unit: person kilometer
