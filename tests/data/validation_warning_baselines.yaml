@@ -3,28 +3,29 @@ metadata:
     Reviewed unsuppressed validation-warning counts. A new rule or a count above
     the recorded value fails certification unless the exception is documented
     by a narrow version/system-model suppression.
-  validation_ruleset_version: 12
+  validation_ruleset_version: 13
 cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     review:
       date: '2026-11-15'
-      source_commit: 851362b4e4bb7917a92ba9ec0012d49e6538fa2a
+      source_commit: fa0a9e0da959701ecff7d79b2c891ebfadedd8fb
       method: >-
         Full compact-backend no-write update of ecoinvent 3.12 cutoff with
         encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
-        structured ruleset-12 certificate: zero errors and 312 unsuppressed
-        current warnings. Diesel electricity validation uses the IPCC 2006
-        defaults of 43 MJ/kg and 0.0741 kg CO2/MJ (Volume 2, Chapter 1,
-        Tables 1.2 and 1.4). This resolves the Peru oil-power CO2 diagnostic
-        caused by the previous low diesel heating-value reference. Every
-        inventory amount, provider and classification signature is unchanged;
-        all other warning counts are unchanged. Direct-combustion CCS checks
-        retain the gross-carbon comparison, and upstream-generation wrappers
-        retain their capture-credit comparison. Missing generation proxies
-        remain restricted to technologies represented in the scenario series.
+        structured ruleset-13 certificate: zero errors and 210 unsuppressed
+        current warnings. The 103 preserved metal-market diagnostics sharing
+        requested year 2050 and mining-share support 2020–2030 are reported
+        in one summary warning. Its actual.market_decisions retains every
+        original product-level diagnostic; issue and rule checked-object
+        counts remain 103. Different year ranges and other preservation reasons
+        remain separate. All 103 decisions match the previous certificate.
+        Every inventory amount, provider and classification signature is
+        unchanged, and every other warning is unchanged.
       limitations: >-
         Counts record existing methodological and data limitations for this
         case only. Warnings remain visible; new rules or increased counts fail.
+        The reduction in year-range warnings reflects grouping; future mining
+        shares remain unavailable and the source markets remain preserved.
         IPCC diesel defaults are generic screening factors, not measured
         regional fuel properties or validation of every source emission amount.
         The carbon-balance tolerance does not independently verify capture
@@ -46,8 +47,9 @@ cases:
       # material-rule applications. Source material amounts are preserved.
       LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED: 1
       LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT: 1
-      # Market share evidence ends in 2030; do not extrapolate it to 2050.
-      LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT: 103
+      # One summary retains all 103 product decisions for the 2050 request
+      # outside 2020–2030 support. Future mining-share data remain missing.
+      LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT: 1
       # Two germanium-concentrate provider lookups retain source inputs.
       LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE: 2
       # Five warnings share the incomplete nickel-smelter copper co-product

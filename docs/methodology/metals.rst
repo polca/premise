@@ -312,6 +312,14 @@ and ``resource diagnostics`` give activity-level evidence. Passing numerical
 validation does not mean that all configured markets or materials were updated.
 For example, a 2050 build now preserves all markets whose share data end in 2030.
 
+Market-preservation warnings for unsupported years are grouped by requested year
+and source-year range. Each summary gives the number of preserved products;
+its ``actual.market_decisions`` field in the validation certificate retains every
+original product-level diagnostic. The rule's checked-object count remains the
+number of affected markets. Other preservation reasons remain separate
+diagnostics. This grouping changes reporting; the missing future mining-share
+data and source-preservation policy remain explicit.
+
 Removing the remaining methodological barriers requires independently sourced
 inputs: component bills of materials; grades and recovery yields with consistent
 allocation boundaries; stocks, lifetimes, collection and recycling losses; and

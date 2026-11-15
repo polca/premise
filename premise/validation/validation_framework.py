@@ -29,7 +29,7 @@ import yaml
 from ..core.filesystem_constants import DATA_DIR
 from ..inventory.inventory_store import InventoryStore
 
-VALIDATION_RULESET_VERSION = 12
+VALIDATION_RULESET_VERSION = 13
 ValidationSeverity = Literal["error", "warning"]
 Applicability = Literal["applicable", "not_applicable"]
 ValidationPhaseKind = Literal["sector", "graph", "export"]

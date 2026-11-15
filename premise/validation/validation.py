@@ -1261,7 +1261,17 @@ class BaseDatasetValidator:
             for row in missing_classifications:
                 writer.writerow(row)
 
-    def log_issue(self, dataset, reason, message, issue_type="minor"):
+    def log_issue(
+        self,
+        dataset,
+        reason,
+        message,
+        issue_type="minor",
+        *,
+        checked_object_count=1,
+        expected=None,
+        actual=None,
+    ):
 
         if issue_type == "minor":
             log = self.minor_issues_log
@@ -1288,7 +1298,9 @@ class BaseDatasetValidator:
                 rule_id=f"LEGACY.{stable_reason}",
                 severity="warning" if issue_type == "minor" else "error",
                 message=message,
-                checked_object_count=1,
+                checked_object_count=checked_object_count,
+                expected=expected,
+                actual=actual,
                 activity_key=(
                     dataset.get("name"),
                     dataset.get("reference product"),
@@ -1479,7 +1491,9 @@ class BaseDatasetValidator:
                 rule_id=rule_id,
                 severity=issues[0].severity,
                 applicability="applicable",
-                checked_object_count=len(issues),
+                checked_object_count=sum(
+                    issue.checked_object_count for issue in issues
+                ),
                 actual={"issue_count": len(issues)},
                 issues=tuple(issues),
             )
@@ -4724,7 +4738,16 @@ class MetalsValidation(BaseDatasetValidator):
                     "Consequential markets must not inherit an attributional recycling share.",
                     issue_type="major",
                 )
+        year_groups = defaultdict(list)
+        year_fields = ("requested_year", "first_year", "last_year")
         for diagnostic in getattr(self, "market_diagnostics", ()):
+            if diagnostic["reason"] == "market_preserved_year_outside_support" and all(
+                field in diagnostic for field in year_fields
+            ):
+                year_groups[tuple(diagnostic[field] for field in year_fields)].append(
+                    diagnostic
+                )
+                continue
             self.log_issue(
                 {
                     "name": diagnostic.get(
@@ -4735,6 +4758,24 @@ class MetalsValidation(BaseDatasetValidator):
                 f"metal {diagnostic['reason']}",
                 str(diagnostic),
                 issue_type="minor",
+            )
+        for (requested, first, last), diagnostics in year_groups.items():
+            self.log_issue(
+                {"name": "metals markets"},
+                "metal market_preserved_year_outside_support",
+                f"Preserved {len(diagnostics)} metal markets: requested year "
+                f"{requested} is outside mining-share support {first}–{last}. "
+                "Source markets retained without endpoint hold or extrapolation. "
+                "See this issue's actual.market_decisions for all affected products.",
+                checked_object_count=len(diagnostics),
+                expected={"requested_year_within": [first, last]},
+                actual={
+                    "requested_year": requested,
+                    "first_year": first,
+                    "last_year": last,
+                    "preserved_market_count": len(diagnostics),
+                    "market_decisions": diagnostics,
+                },
             )
         for diagnostic in getattr(self, "resource_diagnostics", ()):
             if diagnostic.get("reason") == "primary_feed_attribution":
