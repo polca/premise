@@ -187,7 +187,6 @@ def test_prepared_battery_names_have_explicit_classification_entries(name, produ
             "battery management system production, for Li-ion battery",
             "battery management system, for Li-ion battery",
         ),
-        ("market for battery capacity, Li-ion, LFP", "electricity storage capacity"),
         ("anode paste, LFP", "anode paste, LFP"),
         (
             "treatment of used LFP battery cell, hydrometallurgical treatment",

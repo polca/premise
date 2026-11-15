@@ -1,0 +1,2306 @@
+schema_version: 1
+review_date: '2026-11-15'
+scope:
+  case: ecoinvent 3.12 cutoff / IMAGE SSP2-M 2050 default imports
+  observed_warning_count: 223
+  distinct_missing_pairs: 221
+  related_legacy_entries: Existing exact-product aliases of reviewed products; rechargeable module and
+    installed-capacity references.
+  runtime_matching: Exact activity/product entries in classifications.csv; this review file is provenance,
+    not runtime selection logic.
+sources:
+  cpc21_structure:
+    url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/CPC_Ver_2_1_english_structure.txt
+    sha256: 1c3e88e5fa67b9ba0d27594cb3363f717321f58fe0308be60b326ebf927c1b92
+  cpc21_explanatory_notes:
+    url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/CPC_Ver_2.1_Exp_Notes_Updated_3Apr2025.xlsx
+    sha256: 95dcca76a0d94e281e4c3c82f53ee43331a707f9177ff5527733426189cdb7b2
+  isic4_structure:
+    url: https://unstats.un.org/unsd/classifications/Econ/Download/In%20Text/ISIC_Rev_4_english_structure.txt
+    sha256: 18b645efc5a0b001fda5852cfd0690eb579011651e405631e50cb2d271ee2cc6
+  cpc21_isic4_correspondence:
+    url: https://unstats.un.org/unsd/classifications/Econ/tables/CPC/CPCv21_ISIC4/cpc21-isic4.txt
+    sha256: 0272188c086fb5d8efa3923749cc7b5a1bd5a12e7719843d26c2f2b38ea2f392
+  isic4_electronic_components:
+    url: https://unstats.un.org/unsd/classifications/Econ/Detail/EN/27/2610
+limitations:
+- Classifications describe the declared LCI outputs. Process completeness, technology performance,
+  hazard status and waste fate are outside this metadata review.
+- Capacity, throughput, service-package, area and lifetime-allocation denominators are preserved. Product
+  classification does not convert them into physical kilograms or operating electricity.
+- Parent categories are retained for mixed bundles or where a narrower delivery form, voltage, disposal
+  route or geometry is not supported.
+- The two control-board/connector groups use ISIC 2610 activity definitions explicitly despite the generic
+  CPC correspondence listing 2710; their rationales document the distinction.
+groups:
+  graphite_pastes:
+    classification:
+      ISIC rev.4 ecoinvent: 2399:Manufacture of other non-metallic mineral products n.e.c.
+      CPC: '37950: Artificial graphite; colloidal or semi-colloidal graphite; preparations based on graphite
+        or other carbon in the form of semi-manufactures'
+    rationale: Graphite-based electrode pastes are semi-manufactured carbon preparations, not complete
+      batteries.
+    activities:
+    - name: anode paste production, silicon-graphite, for lithium-ion battery, nmc955
+      product: anode paste, silicon-graphite, for Li-ion battery, NMC955
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: anode paste production, silicon-graphite, for lithium-ion battery, nmc955
+        product: anode paste, silicon-graphite, for Li-ion battery, NMC955
+        unit: kilogram
+      - file: lci-batteries-NMC955-modern-312.xlsx
+        name: anode paste production, silicon-graphite, for lithium-ion battery, nmc955
+        product: anode paste, silicon-graphite, for Li-ion battery, NMC955
+        unit: kilogram
+    - name: anode paste production, silicon-graphite, for lithium-ion batteries
+      product: anode paste, silicon-graphite, for Li-ion batteries
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: anode paste production, silicon-graphite, for lithium-ion batteries
+        product: anode paste, silicon-graphite, for Li-ion batteries
+        unit: kilogram
+    - name: anode paste production, graphite, for lithium-ion battery, nmc111
+      product: anode paste, graphite, for Li-ion battery, NMC111
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: anode paste production, graphite, for lithium-ion battery, nmc111
+        product: anode paste, graphite, for Li-ion battery, NMC111
+        unit: kilogram
+    related_legacy_entries:
+    - name: anode paste production, silicon-graphite, for Li-ion battery, NMC955
+      product: anode paste, silicon-graphite, for Li-ion battery, NMC955
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+  battery_hardware_parts:
+    classification:
+      ISIC rev.4 ecoinvent: 2720:Manufacture of batteries and accumulators
+      CPC: '46430: Parts of primary cells, primary batteries and electric accumulators (including separators)'
+    rationale: Non-cell assemblies and combined battery control/cooling provision represent battery-specific
+      parts, including their attributed retirement.
+    activities:
+    - name: market for non-cell battery assembly, for Li-ion battery, LTO proxy
+      product: non-cell battery assembly, for Li-ion battery, LTO proxy
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: market for non-cell battery assembly, for Li-ion battery, LTO proxy
+        product: non-cell battery assembly, for Li-ion battery, LTO proxy
+        unit: kilogram
+    - name: non-cell battery assembly production, for Li-ion battery, LTO proxy
+      product: non-cell battery assembly, for Li-ion battery, LTO proxy
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: non-cell battery assembly production, for Li-ion battery, LTO proxy
+        product: non-cell battery assembly, for Li-ion battery, LTO proxy
+        unit: kilogram
+    - name: battery control and cooling system production, 16 modules
+      product: battery control and cooling system, 16 modules
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: battery control and cooling system production, 16 modules
+        product: battery control and cooling system, 16 modules
+        unit: unit
+    - name: battery auxiliaries supply and end-of-life treatment, lithium-oxygen
+      product: battery auxiliaries supply and end-of-life treatment, lithium-oxygen
+      workbooks:
+      - file: lci-batteries-LiO2.xlsx
+        name: battery auxiliaries supply and end-of-life treatment, lithium-oxygen
+        product: battery auxiliaries supply and end-of-life treatment, lithium-oxygen
+        unit: unit
+  battery_cathodes:
+    classification:
+      ISIC rev.4 ecoinvent: 2720:Manufacture of batteries and accumulators
+      CPC: '46430: Parts of primary cells, primary batteries and electric accumulators (including separators)'
+    rationale: Markets supply fabricated battery cathodes; the output is a battery part, not a complete
+      primary battery.
+    activities:
+    - name: market for cathode, nmc811, for li-ion battery
+      product: cathode, NMC811, for Li-ion battery
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: market for cathode, nmc811, for li-ion battery
+        product: cathode, NMC811, for Li-ion battery
+        unit: kilogram
+    - name: market for cathode, nmc111, for li-ion battery
+      product: cathode, NMC111, for Li-ion battery
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: market for cathode, nmc111, for li-ion battery
+        product: cathode, NMC111, for Li-ion battery
+        unit: kilogram
+    - name: market for cathode, nmc532, for li-ion battery
+      product: cathode, NMC532, for Li-ion battery
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: market for cathode, nmc532, for li-ion battery
+        product: cathode, NMC532, for Li-ion battery
+        unit: kilogram
+    related_legacy_entries:
+    - name: cathode, NMC111, for Li-ion battery
+      product: cathode, NMC111, for Li-ion battery
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: cathode, NMC532, for Li-ion battery
+      product: cathode, NMC532, for Li-ion battery
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: cathode, NMC811, for Li-ion battery
+      product: cathode, NMC811, for Li-ion battery
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+  organic_carbonates:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34160: Organo-sulphur compounds and other organo-inorganic compounds; heterocyclic compounds
+        n.e.c.; nucleic acids and their salts'
+    rationale: Vinylene carbonate is a heterocyclic organic compound; the older vinyl-carbonate label
+      identifies the same electrolyte ingredient.
+    activities:
+    - name: vinyl carbonate
+      product: vinyl carbonate
+      workbooks:
+      - file: lci-batteries-NMC111-811-NCA-LFP.xlsx
+        name: vinyl carbonate
+        product: vinyl carbonate
+        unit: kilogram
+      - file: lci-batteries-NMC622-NMC532.xlsx
+        name: vinyl carbonate
+        product: vinyl carbonate
+        unit: kilogram
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: vinyl carbonate
+        product: vinyl carbonate
+        unit: kilogram
+    - name: vinylene carbonate production, ethylene carbonate chlorination
+      product: vinylene carbonate, ethylene carbonate chlorination
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: vinylene carbonate production, ethylene carbonate chlorination
+        product: vinylene carbonate, ethylene carbonate chlorination
+        unit: kilogram
+  battery_controllers:
+    classification:
+      ISIC rev.4 ecoinvent: 2710:Manufacture of electric motors, generators, transformers and electricity
+        distribution and control apparatus
+      CPC: '462: Electricity distribution and control apparatus, and parts thereof'
+    rationale: Complete protection/control apparatus and equipped power cabinets use the distribution/control
+      group. The group avoids an unsupported voltage-specific subclass.
+    activities:
+    - name: battery monitoring and central control system production, lithium-ion, lfp
+      product: battery monitoring and central control system, Li-ion, LFP
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: battery monitoring and central control system production, lithium-ion, lfp
+        product: battery monitoring and central control system, Li-ion, LFP
+        unit: unit
+    - name: battery monitoring and central control system production, lithium-ion, nmc111
+      product: battery monitoring and central control system, Li-ion, NMC111
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: battery monitoring and central control system production, lithium-ion, nmc111
+        product: battery monitoring and central control system, Li-ion, NMC111
+        unit: unit
+    - name: battery monitoring and central control system production, lithium-ion, nmc532
+      product: battery monitoring and central control system, Li-ion, NMC532
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: battery monitoring and central control system production, lithium-ion, nmc532
+        product: battery monitoring and central control system, Li-ion, NMC532
+        unit: unit
+    - name: battery monitoring and central control system production, lithium-ion, nmc622
+      product: battery monitoring and central control system, Li-ion, NMC622
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: battery monitoring and central control system production, lithium-ion, nmc622
+        product: battery monitoring and central control system, Li-ion, NMC622
+        unit: unit
+    - name: battery monitoring and central control system production, lithium-ion, nmc811
+      product: battery monitoring and central control system, Li-ion, NMC811
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: battery monitoring and central control system production, lithium-ion, nmc811
+        product: battery monitoring and central control system, Li-ion, NMC811
+        unit: unit
+    - name: battery monitoring and central control system production, lithium-ion, nmc955
+      product: battery monitoring and central control system, Li-ion, NMC955
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: battery monitoring and central control system production, lithium-ion, nmc955
+        product: battery monitoring and central control system, Li-ion, NMC955
+        unit: unit
+    - name: battery monitoring and central control system production, lithium-ion, nca
+      product: battery monitoring and central control system, Li-ion, NCA
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: battery monitoring and central control system production, lithium-ion, nca
+        product: battery monitoring and central control system, Li-ion, NCA
+        unit: unit
+    - name: battery monitoring and central control system production, lithium-ion, lto
+      product: battery monitoring and central control system, Li-ion, LTO
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: battery monitoring and central control system production, lithium-ion, lto
+        product: battery monitoring and central control system, Li-ion, LTO
+        unit: unit
+    - name: battery monitoring and central control system production, lithium-ion, limn2o4
+      product: battery monitoring and central control system, Li-ion, LiMn2O4
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: battery monitoring and central control system production, lithium-ion, limn2o4
+        product: battery monitoring and central control system, Li-ion, LiMn2O4
+        unit: unit
+    - name: battery central control and protection unit production
+      product: battery central control and protection unit
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: battery central control and protection unit production
+        product: battery central control and protection unit
+        unit: unit
+    - name: battery auxiliary interface and power conditioning unit production
+      product: battery auxiliary interface and power conditioning unit
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: battery auxiliary interface and power conditioning unit production
+        product: battery auxiliary interface and power conditioning unit
+        unit: kilogram
+    - name: charging controller production, compact programmable logic controller
+      product: charging controller, compact PLC
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: charging controller production, compact programmable logic controller
+        product: charging controller, compact PLC
+        unit: unit
+    - name: charging interface and controller assembly production
+      product: charging interface and controller assembly
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: charging interface and controller assembly production
+        product: charging interface and controller assembly
+        unit: unit
+    - name: power cabinet production, charger, 150 kw
+      product: power cabinet, charger, 150 kW
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: power cabinet production, charger, 150 kw
+        product: power cabinet, charger, 150 kW
+        unit: unit
+    - name: power distribution unit production, bus, high voltage
+      product: power distribution unit, bus, high voltage
+      workbooks:
+      - file: lci-buses.xlsx
+        name: power distribution unit production, bus, high voltage
+        product: power distribution unit, bus, high voltage
+        unit: unit
+    - name: excitation controller production, rail generator, analog
+      product: excitation controller, rail generator, analog
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: excitation controller production, rail generator, analog
+        product: excitation controller, rail generator, analog
+        unit: unit
+  mounted_control_boards:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '46220: Parts of electricity distribution or control apparatus'
+    rationale: These populated boards are dedicated parts of electrical control apparatus, rather than
+      bare printed circuits. ISIC 2610 explicitly includes loading components onto printed circuit boards;
+      that activity-specific definition is used although the generic CPC correspondence lists 2710 for
+      control-apparatus parts.
+    activities:
+    - name: printed circuit board production, battery central control, mounted
+      product: printed circuit board, battery central control, mounted
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: printed circuit board production, battery central control, mounted
+        product: printed circuit board, battery central control, mounted
+        unit: kilogram
+    - name: printed circuit board production, battery module control, mounted
+      product: printed circuit board, battery module control, mounted
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: printed circuit board production, battery module control, mounted
+        product: printed circuit board, battery module control, mounted
+        unit: kilogram
+  battery_cooling:
+    classification:
+      ISIC rev.4 ecoinvent: 2819:Manufacture of other general-purpose machinery
+      CPC: '43911: Producer gas or water gas generators; acetylene gas generators and similar water process
+        gas generators; distilling or rectifying plant; heat exchange units; machinery for liquefying
+        air or gas'
+    rationale: Liquid-cooling assemblies are represented by the heat-exchange equipment function, not
+      by the coolant chemical alone.
+    activities:
+    - name: battery cooling system production, liquid cooling
+      product: battery cooling system, liquid cooling
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: battery cooling system production, liquid cooling
+        product: battery cooling system, liquid cooling
+        unit: unit
+    - name: battery cooling system production, lithium-oxygen
+      product: battery cooling system, lithium-oxygen
+      workbooks:
+      - file: lci-batteries-LiO2.xlsx
+        name: battery cooling system production, lithium-oxygen
+        product: battery cooling system, lithium-oxygen
+        unit: kilogram
+  process_support_services:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '88421: Basic chemicals manufacturing services'
+    rationale: Calcination support, electrolyte conditioning and the inherited enrichment package are
+      processing-service references. They do not declare kilograms of finished cathode or enriched uranium.
+    activities:
+    - name: oxygen supply and residue handling, nmc955 oxide calcination
+      product: calcination support, NMC955 oxide
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: oxygen supply and residue handling, nmc955 oxide calcination
+        product: calcination support, NMC955 oxide
+        unit: kilogram
+    - name: oxygen supply and residue handling, nca oxide calcination
+      product: calcination support, NCA oxide
+      workbooks:
+      - file: lci-batteries-NMC955-LTO.xlsx
+        name: oxygen supply and residue handling, nca oxide calcination
+        product: calcination support, NCA oxide
+        unit: kilogram
+    - name: vanadium electrolyte conditioning
+      product: vanadium electrolyte conditioning
+      workbooks:
+      - file: lci-vrfb-reference-conditioning.xlsx
+        name: vanadium electrolyte conditioning
+        product: vanadium electrolyte conditioning
+        unit: kilogram
+    - name: inventory service package, inherited EPR enrichment reference
+      product: inventory service, inherited EPR enrichment reference
+      workbooks:
+      - file: lci-nuclear_EPR.xlsx
+        name: inventory service package, inherited EPR enrichment reference
+        product: inventory service, inherited EPR enrichment reference
+        unit: unit
+      - file: lci-nuclear_EPR.xlsx
+        name: inventory service package, inherited EPR enrichment reference
+        product: inventory service, inherited EPR enrichment reference
+        unit: unit
+  hydrometallurgical_recycling:
+    classification:
+      ISIC rev.4 ecoinvent: 3830:Materials recovery
+      CPC: '89410: Metal waste and scrap recovery (recycling) services, on a fee or contract basis'
+    rationale: The hydrometallurgical activity treats ground lithium-sulfur cells for material recovery;
+      its negative production reference remains a waste-treatment convention.
+    activities:
+    - name: hydrometallurgical recycling, for LiS battery
+      product: ground lithium-sulfur cells
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: hydrometallurgical recycling, for LiS battery
+        product: ground lithium-sulfur cells
+        unit: kilogram
+  lithium_rolling_service:
+    classification:
+      ISIC rev.4 ecoinvent: 2420:Manufacture of basic precious and other non-ferrous metals
+      CPC: '88602: Basic precious and other non-ferrous metal manufacturing services'
+    rationale: A mechanical rolling service per kilogram of non-ferrous-metal throughput, without a purchased
+      lithium feed, is not a kilogram of supplied lithium foil.
+    activities:
+    - name: lithium foil rolling
+      product: lithium foil rolling
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: lithium foil rolling
+        product: lithium foil rolling
+        unit: kilogram
+  integrated_circuits:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '47160: Electronic integrated circuits'
+    rationale: Finished IC packages, monitoring ICs, gate-driver ICs and microcontrollers include fabrication
+      and packaging, not packaging material alone.
+    activities:
+    - name: battery monitoring integrated circuit production, copper wire bonding
+      product: battery monitoring integrated circuit, copper wire bonding
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: battery monitoring integrated circuit production, copper wire bonding
+        product: battery monitoring integrated circuit, copper wire bonding
+        unit: unit
+    - name: semiconductor package production, cc2662r1ftwrgzrq1
+      product: semiconductor package, CC2662R1FTWRGZRQ1
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: semiconductor package production, cc2662r1ftwrgzrq1
+        product: semiconductor package, CC2662R1FTWRGZRQ1
+        unit: unit
+    - name: semiconductor package production, lm5168fqddarq1
+      product: semiconductor package, LM5168FQDDARQ1
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: semiconductor package production, lm5168fqddarq1
+        product: semiconductor package, LM5168FQDDARQ1
+        unit: unit
+    - name: semiconductor package production, txu0204qpwrq1
+      product: semiconductor package, TXU0204QPWRQ1
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: semiconductor package production, txu0204qpwrq1
+        product: semiconductor package, TXU0204QPWRQ1
+        unit: unit
+    - name: semiconductor package production, tps3436bdadaddfrq1
+      product: semiconductor package, TPS3436BDADADDFRQ1
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: semiconductor package production, tps3436bdadaddfrq1
+        product: semiconductor package, TPS3436BDADADDFRQ1
+        unit: unit
+    - name: semiconductor package production, tps71533qdckrq1
+      product: semiconductor package, TPS71533QDCKRQ1
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: semiconductor package production, tps71533qdckrq1
+        product: semiconductor package, TPS71533QDCKRQ1
+        unit: unit
+    - name: semiconductor package production, iso7741fqdwrq1
+      product: semiconductor package, ISO7741FQDWRQ1
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: semiconductor package production, iso7741fqdwrq1
+        product: semiconductor package, ISO7741FQDWRQ1
+        unit: unit
+    - name: gate driver production, ucc27524aqdrq1, redox-flow battery converter
+      product: gate driver, UCC27524AQDRQ1, redox-flow battery converter
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: gate driver production, ucc27524aqdrq1, redox-flow battery converter
+        product: gate driver, UCC27524AQDRQ1, redox-flow battery converter
+        unit: unit
+    - name: microcontroller production, tms320f28035pnt, redox-flow battery converter
+      product: microcontroller, TMS320F28035PNT, redox-flow battery converter
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: microcontroller production, tms320f28035pnt, redox-flow battery converter
+        product: microcontroller, TMS320F28035PNT, redox-flow battery converter
+        unit: unit
+    - name: isolated gate driver production, redox-flow battery converter
+      product: isolated gate driver, redox-flow battery converter
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: isolated gate driver production, redox-flow battery converter
+        product: isolated gate driver, redox-flow battery converter
+        unit: unit
+    - name: isolated gate driver production, photovoltaic inverter, ucc21710
+      product: isolated gate driver, photovoltaic inverter, UCC21710
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: isolated gate driver production, photovoltaic inverter, ucc21710
+        product: isolated gate driver, photovoltaic inverter, UCC21710
+        unit: unit
+  capacitors:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '47110: Electrical capacitors'
+    rationale: Individual capacitors and capacitor-only purchasing bundles retain the capacitor product
+      classification.
+    activities:
+    - name: capacitor production, class 2, 0402
+      product: capacitor, class 2, 0402
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: capacitor production, class 2, 0402
+        product: capacitor, class 2, 0402
+        unit: kilogram
+    - name: capacitor production, class 2, 0603
+      product: capacitor, class 2, 0603
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: capacitor production, class 2, 0603
+        product: capacitor, class 2, 0603
+        unit: kilogram
+    - name: capacitor production, class 2, 0805
+      product: capacitor, class 2, 0805
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: capacitor production, class 2, 0805
+        product: capacitor, class 2, 0805
+        unit: kilogram
+    - name: capacitor production, class 2, 1206
+      product: capacitor, class 2, 1206
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: capacitor production, class 2, 1206
+        product: capacitor, class 2, 1206
+        unit: kilogram
+    - name: capacitor production, flexible, class 2, 0805
+      product: capacitor, flexible, class 2, 0805
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: capacitor production, flexible, class 2, 0805
+        product: capacitor, flexible, class 2, 0805
+        unit: kilogram
+    - name: capacitor production, c0g, 0402
+      product: capacitor, C0G, 0402
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: capacitor production, c0g, 0402
+        product: capacitor, C0G, 0402
+        unit: kilogram
+    - name: capacitor assembly production, battery monitoring board, 134 capacitors
+      product: capacitor assembly, battery monitoring board, 134 capacitors
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: capacitor assembly production, battery monitoring board, 134 capacitors
+        product: capacitor assembly, battery monitoring board, 134 capacitors
+        unit: unit
+    - name: capacitor production, c0g, 0603
+      product: capacitor, C0G, 0603
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: capacitor production, c0g, 0603
+        product: capacitor, C0G, 0603
+        unit: kilogram
+    - name: capacitor production, c0g, 0805
+      product: capacitor, C0G, 0805
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: capacitor production, c0g, 0805
+        product: capacitor, C0G, 0805
+        unit: kilogram
+  resistors:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '47120: Electrical resistors (except heating resistors)'
+    rationale: Thick-film resistors, zero-ohm chip jumpers and resistor-only bundles are passive resistor
+      components, not heating resistors.
+    activities:
+    - name: thick-film resistor production
+      product: thick-film resistor
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: thick-film resistor production
+        product: thick-film resistor
+        unit: kilogram
+    - name: zero-ohm jumper production
+      product: zero-ohm jumper
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: zero-ohm jumper production
+        product: zero-ohm jumper
+        unit: kilogram
+    - name: resistor assembly production, battery monitoring board, 128 resistors
+      product: resistor assembly, battery monitoring board, 128 resistors
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: resistor assembly production, battery monitoring board, 128 resistors
+        product: resistor assembly, battery monitoring board, 128 resistors
+        unit: unit
+  electronic_connectors:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '46212: Electrical apparatus for switching or protecting electrical circuits, for making connexions
+        to or in electrical circuits, for a voltage not exceeding 1000 V'
+    rationale: The board connector is a low-voltage connection device, not an optical-fibre connector.
+      ISIC 2610 explicitly includes electronic connectors; that activity-specific definition is used although
+      the generic CPC correspondence lists 2710 for this broad switching/connection-device subclass.
+    activities:
+    - name: connector production, battery control board, plated contacts
+      product: connector, battery control board, plated contacts
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: connector production, battery control board, plated contacts
+        product: connector, battery control board, plated contacts
+        unit: kilogram
+  metal_oxides:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34220: Zinc oxide; zinc peroxide; chromium oxides and hydroxides; manganese oxides; iron oxides
+        and hydroxides; earth colours; cobalt oxides and hydroxides; titanium oxides; lead oxides; red
+        lead and orange lead; inorganic bases n.e.c.; metal oxides, hydroxides and peroxides n.e.c., except
+        of mercury'
+    rationale: Lead oxide, magnesium hydroxide and antimony trioxide are basic inorganic oxides/hydroxides.
+    activities:
+    - name: lead oxide production, for resistor glass
+      product: lead oxide, for resistor glass
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: lead oxide production, for resistor glass
+        product: lead oxide, for resistor glass
+        unit: kilogram
+    - name: magnesium hydroxide production, precipitation
+      product: magnesium hydroxide, precipitation
+      workbooks:
+      - file: lci-batteries-SIB.xlsx
+        name: magnesium hydroxide production, precipitation
+        product: magnesium hydroxide, precipitation
+        unit: kilogram
+    - name: lead oxide production, for power modules
+      product: lead oxide, for power modules
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: lead oxide production, for power modules
+        product: lead oxide, for power modules
+        unit: kilogram
+    - name: diantimony trioxide production, antimony metal oxidation
+      product: diantimony trioxide
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: diantimony trioxide production, antimony metal oxidation
+        product: diantimony trioxide
+        unit: kilogram
+    - name: market for diantimony trioxide
+      product: diantimony trioxide
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: market for diantimony trioxide
+        product: diantimony trioxide
+        unit: kilogram
+    - name: diantimony trioxide production, stibnite oxidation and revolatilisation
+      product: diantimony trioxide
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: diantimony trioxide production, stibnite oxidation and revolatilisation
+        product: diantimony trioxide
+        unit: kilogram
+  oxometallic_and_precious_compounds:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34250: Salts of oxometallic or peroxometallic acids; colloidal precious metals and compounds
+        thereof; inorganic and organic compounds of mercury; other inorganic chemicals n.e.c.; compressed
+        air; amalgams'
+    rationale: Titanate/zirconate salts and ruthenium dioxide use the oxometallic-salt/precious-metal-compound
+      category.
+    activities:
+    - name: barium titanate production, for capacitors
+      product: barium titanate, for capacitors
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: barium titanate production, for capacitors
+        product: barium titanate, for capacitors
+        unit: kilogram
+    - name: calcium zirconate production, for capacitors
+      product: calcium zirconate, for capacitors
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: calcium zirconate production, for capacitors
+        product: calcium zirconate, for capacitors
+        unit: kilogram
+    - name: ruthenium dioxide production, for resistor films
+      product: ruthenium dioxide, for resistor films
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: ruthenium dioxide production, for resistor films
+        product: ruthenium dioxide, for resistor films
+        unit: kilogram
+  nickel_alloys:
+    classification:
+      ISIC rev.4 ecoinvent: 2420:Manufacture of basic precious and other non-ferrous metals
+      CPC: '41422: Unwrought nickel'
+    rationale: The output is a nickel-based alloy reference; the recipe does not establish a particular
+      finished spring or electrical heating element.
+    activities:
+    - name: resistance heating alloy production, nickel-chromium, nicr80/20
+      product: resistance heating alloy, nickel-chromium, NiCr80/20
+      workbooks:
+      - file: lci-batteries-LiO2.xlsx
+        name: resistance heating alloy production, nickel-chromium, nicr80/20
+        product: resistance heating alloy, nickel-chromium, NiCr80/20
+        unit: kilogram
+    - name: nickel alloy production, epr springs, inconel 718 type
+      product: nickel alloy, EPR springs, Inconel 718 type
+      workbooks:
+      - file: lci-nuclear_EPR.xlsx
+        name: nickel alloy production, epr springs, inconel 718 type
+        product: nickel alloy, EPR springs, Inconel 718 type
+        unit: kilogram
+  formed_polymer_membranes:
+    classification:
+      ISIC rev.4 ecoinvent: 2220:Manufacture of plastics products
+      CPC: '363: Semi-manufactures of plastics'
+    rationale: Dry PFSA membranes and reinforced electrolyser diaphragms are formed polymer-based separator
+      products. The parent group avoids unsupported film reinforcement/porosity assumptions.
+    activities:
+    - name: perfluorosulfonic acid membrane production, ew1100, engineering reference
+      product: PFSA membrane, EW1100, dry acid form, engineering reference
+      workbooks:
+      - file: lci-pfsa-ew1100.xlsx
+        name: perfluorosulfonic acid membrane production, ew1100, engineering reference
+        product: PFSA membrane, EW1100, dry acid form, engineering reference
+        unit: kilogram
+    - name: diaphragm production, alkaline electrolysis, zirconia-polysulfone with polyphenylene sulfide
+        mesh
+      product: diaphragm, alkaline electrolysis, zirconia-polysulfone with PPS mesh
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: diaphragm production, alkaline electrolysis, zirconia-polysulfone with polyphenylene sulfide
+          mesh
+        product: diaphragm, alkaline electrolysis, zirconia-polysulfone with PPS mesh
+        unit: kilogram
+  waste_service_bundles:
+    classification:
+      ISIC rev.4 ecoinvent: 382:Waste treatment and disposal
+      CPC: '943: Waste treatment and disposal services'
+    rationale: These activities route attributed equipment/waste to existing treatment or cut-off providers.
+      A broad treatment/disposal category avoids asserting one hazard class, disposal route or recovery
+      yield; they are not physical scrap products.
+    activities:
+    - name: market for used redox-flow battery, vanadium
+      product: used redox-flow battery, vanadium
+      workbooks:
+      - file: lci-batteries-vanadium-redox-flow.xlsx
+        name: market for used redox-flow battery, vanadium
+        product: used redox-flow battery, vanadium
+        unit: kilogram
+    - name: treatment of used power conversion system, electrolysis, 1 mw
+      product: used power conversion system, electrolysis, 1 MW
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: treatment of used power conversion system, electrolysis, 1 mw
+        product: used power conversion system, electrolysis, 1 MW
+        unit: unit
+    - name: treatment of used motor drive assembly, electrolysis, pem
+      product: used motor drive assembly, electrolysis, PEM
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: treatment of used motor drive assembly, electrolysis, pem
+        product: used motor drive assembly, electrolysis, PEM
+        unit: unit
+    - name: treatment of used power conversion system and motor drives, electrolysis, pem
+      product: used power conversion system and motor drives, electrolysis, PEM
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: treatment of used power conversion system and motor drives, electrolysis, pem
+        product: used power conversion system and motor drives, electrolysis, PEM
+        unit: unit
+    - name: treatment of used motor drive assembly, electrolysis, aec
+      product: used motor drive assembly, electrolysis, AEC
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: treatment of used motor drive assembly, electrolysis, aec
+        product: used motor drive assembly, electrolysis, AEC
+        unit: unit
+    - name: treatment of used power conversion system and motor drives, electrolysis, aec
+      product: used power conversion system and motor drives, electrolysis, AEC
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: treatment of used power conversion system and motor drives, electrolysis, aec
+        product: used power conversion system and motor drives, electrolysis, AEC
+        unit: unit
+    - name: treatment of used motor drive assembly, electrolysis, soec
+      product: used motor drive assembly, electrolysis, SOEC
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: treatment of used motor drive assembly, electrolysis, soec
+        product: used motor drive assembly, electrolysis, SOEC
+        unit: unit
+    - name: treatment of used power conversion system and motor drives, electrolysis, soec
+      product: used power conversion system and motor drives, electrolysis, SOEC
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: treatment of used power conversion system and motor drives, electrolysis, soec
+        product: used power conversion system and motor drives, electrolysis, SOEC
+        unit: unit
+    - name: treatment of charger installation, 200 kw
+      product: used charger installation, 200 kW
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: treatment of charger installation, 200 kw
+        product: used charger installation, 200 kW
+        unit: unit
+    - name: qualified reject and retirement handling, 3760, per finished reference
+      product: qualified life-cycle waste handling, component 3760
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: qualified reject and retirement handling, 3760, per finished reference
+        product: qualified life-cycle waste handling, component 3760
+        unit: unit
+    - name: qualified reject and retirement handling, 3761, per finished reference
+      product: qualified life-cycle waste handling, component 3761
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: qualified reject and retirement handling, 3761, per finished reference
+        product: qualified life-cycle waste handling, component 3761
+        unit: unit
+    - name: qualified reject and retirement handling, 3762, per finished reference
+      product: qualified life-cycle waste handling, component 3762
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: qualified reject and retirement handling, 3762, per finished reference
+        product: qualified life-cycle waste handling, component 3762
+        unit: unit
+    - name: qualified reject and retirement handling, 3763, per finished reference
+      product: qualified life-cycle waste handling, component 3763
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: qualified reject and retirement handling, 3763, per finished reference
+        product: qualified life-cycle waste handling, component 3763
+        unit: unit
+    - name: treatment of used combustion equipment
+      product: used combustion equipment
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: treatment of used combustion equipment
+        product: used combustion equipment
+        unit: kilogram
+  supported_catalysts:
+    classification:
+      ISIC rev.4 ecoinvent: 2029:Manufacture of other chemical products n.e.c.
+      CPC: '35499: Other chemical products n.e.c.'
+    rationale: Supported Pd/C and nickel/alumina catalysts are prepared chemical catalysts. A supply-plus-retirement
+      reference retains its supplied catalyst product.
+    activities:
+    - name: palladium catalyst production, 10% palladium on activated carbon
+      product: palladium catalyst, 10% palladium on activated carbon
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: palladium catalyst production, 10% palladium on activated carbon
+        product: palladium catalyst, 10% palladium on activated carbon
+        unit: kilogram
+    - name: palladium catalyst supply and spent catalyst treatment, for temptma production
+      product: palladium catalyst, 10% palladium on activated carbon, including spent catalyst treatment
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: palladium catalyst supply and spent catalyst treatment, for temptma production
+        product: palladium catalyst, 10% palladium on activated carbon, including spent catalyst treatment
+        unit: kilogram
+    - name: catalyst production, nickel on aluminium oxide, hydrogenation
+      product: catalyst, nickel on aluminium oxide, hydrogenation
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: catalyst production, nickel on aluminium oxide, hydrogenation
+        product: catalyst, nickel on aluminium oxide, hydrogenation
+        unit: kilogram
+  aluminium_semimanufactures:
+    classification:
+      ISIC rev.4 ecoinvent: 2420:Manufacture of basic precious and other non-ferrous metals
+      CPC: '41534: Plates, sheets and strip, of aluminium, of a thickness exceeding 0.2 mm'
+    rationale: The output is an aluminium end-plate material reference, not a complete flow battery.
+    activities:
+    - name: aluminium plate production, flow battery end plate
+      product: aluminium plate, flow battery end plate
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: aluminium plate production, flow battery end plate
+        product: aluminium plate, flow battery end plate
+        unit: kilogram
+  zinc_foil:
+    classification:
+      ISIC rev.4 ecoinvent: 2420:Manufacture of basic precious and other non-ferrous metals
+      CPC: '41545: Zinc bars, rods, profiles and wire; zinc plates, sheets, strip and foil'
+    rationale: The finished zinc foil electrode is a rolled zinc semi-manufacture.
+    activities:
+    - name: zinc foil electrode production, casting and rolling
+      product: zinc foil electrode, casting and rolling
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: zinc foil electrode production, casting and rolling
+        product: zinc foil electrode, casting and rolling
+        unit: kilogram
+  discrete_semiconductors:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '47150: Diodes, transistors and similar semi-conductor devices; photosensitive semi-conductor
+        devices; light emitting diodes; mounted piezo-electric crystals'
+    rationale: MOSFETs, IGBT/SiC half bridges and the TPD6E004 diode-protection array are discrete semiconductor
+      devices/modules; they are not all integrated circuits.
+    activities:
+    - name: semiconductor package production, tpd6e004rser
+      product: semiconductor package, TPD6E004RSER
+      workbooks:
+      - file: lci-batteries-LiS.xlsx
+        name: semiconductor package production, tpd6e004rser
+        product: semiconductor package, TPD6E004RSER
+        unit: unit
+    - name: metal-oxide-semiconductor field-effect transistor production, csd19536kcs, redox-flow battery
+        converter
+      product: MOSFET, CSD19536KCS, redox-flow battery converter
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: metal-oxide-semiconductor field-effect transistor production, csd19536kcs, redox-flow battery
+          converter
+        product: MOSFET, CSD19536KCS, redox-flow battery converter
+        unit: unit
+    - name: silicon carbide switch production, redox-flow battery converter, 650 v, to-247
+      product: silicon carbide switch, redox-flow battery converter, 650 V, TO-247
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: silicon carbide switch production, redox-flow battery converter, 650 v, to-247
+        product: silicon carbide switch, redox-flow battery converter, 650 V, TO-247
+        unit: unit
+    - name: silicon carbide switch production, redox-flow battery converter, 1200 v, to-247
+      product: silicon carbide switch, redox-flow battery converter, 1200 V, TO-247
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: silicon carbide switch production, redox-flow battery converter, 1200 v, to-247
+        product: silicon carbide switch, redox-flow battery converter, 1200 V, TO-247
+        unit: unit
+    - name: insulated-gate bipolar transistor half-bridge module production, photovoltaic inverter, 1200
+        v, 300 a
+      product: IGBT half-bridge module, photovoltaic inverter, 1200 V, 300 A
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: insulated-gate bipolar transistor half-bridge module production, photovoltaic inverter,
+          1200 v, 300 a
+        product: IGBT half-bridge module, photovoltaic inverter, 1200 V, 300 A
+        unit: unit
+    - name: silicon carbide switch production, photovoltaic inverter, 1200 v, to-247
+      product: silicon carbide switch, photovoltaic inverter, 1200 V, TO-247
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: silicon carbide switch production, photovoltaic inverter, 1200 v, to-247
+        product: silicon carbide switch, photovoltaic inverter, 1200 V, TO-247
+        unit: unit
+    - name: silicon carbide switch production, photovoltaic inverter, 650 v, to-247
+      product: silicon carbide switch, photovoltaic inverter, 650 V, TO-247
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: silicon carbide switch production, photovoltaic inverter, 650 v, to-247
+        product: silicon carbide switch, photovoltaic inverter, 650 V, TO-247
+        unit: unit
+    - name: insulated-gate bipolar transistor half-bridge module production, electrolysis motor drive,
+        1200 v, 300 a
+      product: IGBT half-bridge module, electrolysis motor drive, 1200 V, 300 A
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: insulated-gate bipolar transistor half-bridge module production, electrolysis motor drive,
+          1200 v, 300 a
+        product: IGBT half-bridge module, electrolysis motor drive, 1200 V, 300 A
+        unit: unit
+    - name: silicon carbide half-bridge module production
+      product: silicon carbide half-bridge module
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: silicon carbide half-bridge module production
+        product: silicon carbide half-bridge module
+        unit: kilogram
+    - name: silicon carbide switch production, electrolysis motor drive, 1200 v, to-247
+      product: silicon carbide switch, electrolysis motor drive, 1200 V, TO-247
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: silicon carbide switch production, electrolysis motor drive, 1200 v, to-247
+        product: silicon carbide switch, electrolysis motor drive, 1200 V, TO-247
+        unit: unit
+    - name: silicon carbide switch production, electrolysis motor drive, 650 v, to-247
+      product: silicon carbide switch, electrolysis motor drive, 650 V, TO-247
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: silicon carbide switch production, electrolysis motor drive, 650 v, to-247
+        product: silicon carbide switch, electrolysis motor drive, 650 V, TO-247
+        unit: unit
+    - name: power semiconductor module production, rail converter
+      product: power semiconductor module, rail converter
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: power semiconductor module production, rail converter
+        product: power semiconductor module, rail converter
+        unit: kilogram
+  power_electronics_bundles:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '471: Electronic valves and tubes; electronic components; parts thereof'
+    rationale: The sets combine discrete switches and driver ICs, so the electronic-components parent
+      group is retained instead of assigning the whole set to one semiconductor subclass.
+    activities:
+    - name: power semiconductor assembly production, photovoltaic inverter, 10 kw
+      product: power semiconductor assembly, photovoltaic inverter, 10 kW
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: power semiconductor assembly production, photovoltaic inverter, 10 kw
+        product: power semiconductor assembly, photovoltaic inverter, 10 kW
+        unit: unit
+    - name: power semiconductor assembly production, photovoltaic inverter, 100 kw
+      product: power semiconductor assembly, photovoltaic inverter, 100 kW
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: power semiconductor assembly production, photovoltaic inverter, 100 kw
+        product: power semiconductor assembly, photovoltaic inverter, 100 kW
+        unit: unit
+  static_converters:
+    classification:
+      ISIC rev.4 ecoinvent: 2790:Manufacture of other electrical equipment
+      CPC: '46122: Ballasts for discharge lamps or tubes; static converters; other inductors'
+    rationale: Rectifiers, motor drives, chargers and converter assemblies are static power converters.
+      Their original power rating, unit basis and assembly boundaries remain intact.
+    activities:
+    - name: bidirectional power converter production, redox-flow battery, low voltage, 5 kw
+      product: bidirectional power converter, redox-flow battery, low voltage, 5 kW
+      workbooks:
+      - file: lci-batteries-organic-and-hybrid-redox-flow.xlsx
+        name: bidirectional power converter production, redox-flow battery, low voltage, 5 kw
+        product: bidirectional power converter, redox-flow battery, low voltage, 5 kW
+        unit: unit
+    - name: converter production, industrial, ac-dc, 1 mw
+      product: converter, industrial, AC-DC, 1 MW
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: converter production, industrial, ac-dc, 1 mw
+        product: converter, industrial, AC-DC, 1 MW
+        unit: unit
+    - name: power conversion system production, electrolysis, transformer and rectifier, 1 mw
+      product: power conversion system, electrolysis, transformer and rectifier, 1 MW
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: power conversion system production, electrolysis, transformer and rectifier, 1 mw
+        product: power conversion system, electrolysis, transformer and rectifier, 1 MW
+        unit: unit
+    - name: motor drive production, industrial, 75 kw
+      product: motor drive, industrial, 75 kW
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: motor drive production, industrial, 75 kw
+        product: motor drive, industrial, 75 kW
+        unit: unit
+    - name: motor drive production, industrial, 15 kw
+      product: motor drive, industrial, 15 kW
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: motor drive production, industrial, 15 kw
+        product: motor drive, industrial, 15 kW
+        unit: unit
+    - name: motor drive production, industrial, 1.1 kw
+      product: motor drive, industrial, 1.1 kW
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: motor drive production, industrial, 1.1 kw
+        product: motor drive, industrial, 1.1 kW
+        unit: unit
+    - name: motor drive assembly production, electrolysis, pem
+      product: motor drive assembly, electrolysis, PEM
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: motor drive assembly production, electrolysis, pem
+        product: motor drive assembly, electrolysis, PEM
+        unit: unit
+    - name: motor drive assembly production, electrolysis, aec
+      product: motor drive assembly, electrolysis, AEC
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: motor drive assembly production, electrolysis, aec
+        product: motor drive assembly, electrolysis, AEC
+        unit: unit
+    - name: motor drive assembly production, electrolysis, soec
+      product: motor drive assembly, electrolysis, SOEC
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: motor drive assembly production, electrolysis, soec
+        product: motor drive assembly, electrolysis, SOEC
+        unit: unit
+    - name: opportunity charger production, pantograph, 450 kw
+      product: opportunity charger, pantograph, 450 kW
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: opportunity charger production, pantograph, 450 kw
+        product: opportunity charger, pantograph, 450 kW
+        unit: unit
+    - name: charger production, integrated dc, 200 kw
+      product: charger, integrated DC, 200 kW
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: charger production, integrated dc, 200 kw
+        product: charger, integrated DC, 200 kW
+        unit: unit
+    - name: charger production, road vehicle, onboard
+      product: charger, road vehicle, onboard
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: charger production, road vehicle, onboard
+        product: charger, road vehicle, onboard
+        unit: kilogram
+    - name: converter production, road vehicle, auxiliary dc
+      product: converter, road vehicle, auxiliary DC
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: converter production, road vehicle, auxiliary dc
+        product: converter, road vehicle, auxiliary DC
+        unit: kilogram
+    - name: converter production, heavy-duty vehicle, auxiliary dc, 400 v to 24 v
+      product: converter, heavy-duty vehicle, auxiliary DC, 400 V to 24 V
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: converter production, heavy-duty vehicle, auxiliary dc, 400 v to 24 v
+        product: converter, heavy-duty vehicle, auxiliary DC, 400 V to 24 V
+        unit: unit
+    - name: converter production, heavy-duty vehicle, auxiliary dc, 800 v to 24 v
+      product: converter, heavy-duty vehicle, auxiliary DC, 800 V to 24 V
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: converter production, heavy-duty vehicle, auxiliary dc, 800 v to 24 v
+        product: converter, heavy-duty vehicle, auxiliary DC, 800 V to 24 V
+        unit: unit
+    - name: traction converter production, rail, medium voltage
+      product: traction converter, rail, medium voltage
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: traction converter production, rail, medium voltage
+        product: traction converter, rail, medium voltage
+        unit: kilogram
+  transformers:
+    classification:
+      ISIC rev.4 ecoinvent: 2710:Manufacture of electric motors, generators, transformers and electricity
+        distribution and control apparatus
+      CPC: '46121: Electrical transformers'
+    rationale: The separate electrolysis transformer is not a rectifier or a complete power-conversion
+      assembly.
+    activities:
+    - name: transformer production, electrolysis, 1.1 mva
+      product: transformer, electrolysis, 1.1 MVA
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: transformer production, electrolysis, 1.1 mva
+        product: transformer, electrolysis, 1.1 MVA
+        unit: unit
+  magnesium_and_copper_salts:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34240: Phosphates of triammonium; salts and peroxysalts of inorganic acids and metals n.e.c.'
+    rationale: Synthesised MgCl2, its aqueous brine and copper iodide are inorganic salts, not mined brines
+      or metal products.
+    activities:
+    - name: magnesium chloride production, from synthetic brine
+      product: magnesium chloride, from synthetic brine
+      workbooks:
+      - file: lci-batteries-SIB.xlsx
+        name: magnesium chloride production, from synthetic brine
+        product: magnesium chloride, from synthetic brine
+        unit: kilogram
+    - name: magnesium brine production, with magnesium chloride
+      product: magnesium brine, with magnesium chloride
+      workbooks:
+      - file: lci-batteries-SIB.xlsx
+        name: magnesium brine production, with magnesium chloride
+        product: magnesium brine, with magnesium chloride
+        unit: kilogram
+    - name: copper iodide production, for catalysts
+      product: copper iodide, for catalysts
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: copper iodide production, for catalysts
+        product: copper iodide, for catalysts
+        unit: kilogram
+  polyether_resin:
+    classification:
+      ISIC rev.4 ecoinvent: 2013:Manufacture of plastics and synthetic rubber in primary forms
+      CPC: '34740: Polyacetals, other polyethers and epoxide resins, in primary forms; polycarbonates,
+        alkyd resins, polyallyl esters and other polyesters, in primary forms'
+    rationale: Polyethylene oxide is a polyether in primary form, not polyethylene.
+    activities:
+    - name: polyethylene oxide production, for all-solid-state battery
+      product: polyethylene oxide, for ASSB
+      workbooks:
+      - file: lci-batteries-ASSB.xlsx
+        name: polyethylene oxide production, for all-solid-state battery
+        product: polyethylene oxide, for ASSB
+        unit: kilogram
+    related_legacy_entries:
+    - name: polyethylene oxide production, proxy, for ASSB
+      product: polyethylene oxide, for ASSB
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+  polymer_electrolyte:
+    classification:
+      ISIC rev.4 ecoinvent: 2029:Manufacture of other chemical products n.e.c.
+      CPC: '35499: Other chemical products n.e.c.'
+    rationale: The compounded PEO/LiTFSI solid electrolyte is a prepared chemical mixture, not an electric
+      accumulator.
+    activities:
+    - name: polymer electrolyte production, polyethylene oxide-lithium bis(trifluoromethanesulfonyl)imide,
+        for all-solid-state battery
+      product: polymer electrolyte, PEO-LiTFSI, for ASSB
+      workbooks:
+      - file: lci-batteries-ASSB.xlsx
+        name: polymer electrolyte production, polyethylene oxide-lithium bis(trifluoromethanesulfonyl)imide,
+          for all-solid-state battery
+        product: polymer electrolyte, PEO-LiTFSI, for ASSB
+        unit: kilogram
+    related_legacy_entries:
+    - name: polymer electrolyte production, PEO-LiTFSI, for ASSB
+      product: polymer electrolyte, PEO-LiTFSI, for ASSB
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+  mixed_oxide_powders:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '342: Basic inorganic chemicals n.e.c.'
+    rationale: LLZO electrolyte and LSM contact-ceramic recipes manufacture mixed inorganic oxide compositions
+      per kilogram; the parent chemical group avoids inventing a formed ceramic geometry.
+    activities:
+    - name: oxide electrolyte production, lithium lanthanum zirconium oxide, for all-solid-state battery
+      product: oxide electrolyte, LLZO, for ASSB
+      workbooks:
+      - file: lci-batteries-ASSB.xlsx
+        name: oxide electrolyte production, lithium lanthanum zirconium oxide, for all-solid-state battery
+        product: oxide electrolyte, LLZO, for ASSB
+        unit: kilogram
+    - name: contact ceramic production, lanthanum strontium manganite, la0.8sr0.2mno3
+      product: contact ceramic, lanthanum strontium manganite, La0.8Sr0.2MnO3
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: contact ceramic production, lanthanum strontium manganite, la0.8sr0.2mno3
+        product: contact ceramic, lanthanum strontium manganite, La0.8Sr0.2MnO3
+        unit: kilogram
+    related_legacy_entries:
+    - name: oxide electrolyte production, LLZO, for ASSB
+      product: oxide electrolyte, LLZO, for ASSB
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+  installed_battery_capacity:
+    classification:
+      ISIC rev.4 ecoinvent: 2720:Manufacture of batteries and accumulators
+      CPC: '46420: Electric accumulators'
+    rationale: These capacity-labelled references provision rechargeable battery hardware per nominal
+      installed kWh. They are not operating electricity, delivered lifetime kWh or a primary battery;
+      the capacity denominator is preserved.
+    activities:
+    - name: market for battery capacity, all-solid-state battery, polymer
+      product: electricity storage capacity
+      workbooks:
+      - file: lci-batteries-ASSB.xlsx
+        name: market for battery capacity, all-solid-state battery, polymer
+        product: electricity storage capacity
+        unit: kilowatt hour
+    - name: market for battery capacity, all-solid-state battery, oxidic
+      product: electricity storage capacity
+      workbooks:
+      - file: lci-batteries-ASSB.xlsx
+        name: market for battery capacity, all-solid-state battery, oxidic
+        product: electricity storage capacity
+        unit: kilowatt hour
+    - name: market for battery capacity, all-solid-state battery, sulfidic
+      product: electricity storage capacity
+      workbooks:
+      - file: lci-batteries-ASSB.xlsx
+        name: market for battery capacity, all-solid-state battery, sulfidic
+        product: electricity storage capacity
+        unit: kilowatt hour
+    - name: market for electricity storage capacity, battery, high power, fuel cell passenger car
+      product: electricity storage capacity, high power, fuel cell passenger car
+      workbooks:
+      - file: lci-battery-capacity.xlsx
+        name: market for electricity storage capacity, battery, high power, fuel cell passenger car
+        product: electricity storage capacity, high power, fuel cell passenger car
+        unit: kilowatt hour
+    - name: market for electricity storage capacity, battery, high power, fuel cell truck
+      product: electricity storage capacity, high power, fuel cell truck
+      workbooks:
+      - file: lci-battery-capacity.xlsx
+        name: market for electricity storage capacity, battery, high power, fuel cell truck
+        product: electricity storage capacity, high power, fuel cell truck
+        unit: kilowatt hour
+    - name: market for electricity storage capacity, battery, lithium-ion, lfp, hydrogen train
+      product: electricity storage capacity, Li-ion, LFP, hydrogen train
+      workbooks:
+      - file: lci-battery-capacity.xlsx
+        name: market for electricity storage capacity, battery, lithium-ion, lfp, hydrogen train
+        product: electricity storage capacity, Li-ion, LFP, hydrogen train
+        unit: kilowatt hour
+    - name: market for electricity storage capacity, battery, lithium-ion, lto, high power, fuel cell
+        bus
+      product: electricity storage capacity, Li-ion, LTO, high power, fuel cell bus
+      workbooks:
+      - file: lci-battery-capacity.xlsx
+        name: market for electricity storage capacity, battery, lithium-ion, lto, high power, fuel cell
+          bus
+        product: electricity storage capacity, Li-ion, LTO, high power, fuel cell bus
+        unit: kilowatt hour
+    related_legacy_entries:
+    - name: market for battery capacity (LFP scenario)
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity (MIX scenario)
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity (NCx scenario)
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity (PLiB scenario)
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, lead acid, rechargeable, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, LFP
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, LFP, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, Li-O2
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, LiMn2O4
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, LTO
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NCA
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC111
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC111, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC523
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC523, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC532
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC532, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC622
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC622, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC811
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC811, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC955
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-ion, NMC955, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Li-sulfur, Li-S
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, redox-flow, Vanadium, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Sodium-ion, SiB
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Sodium-ion, SiB, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, Sodium-Nickel-Chloride, Na-NiCl, stationary
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, stationary (CONT scenario)
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, stationary (TC scenario)
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, ASSB, polymer
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, ASSB, oxidic
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for battery capacity, ASSB, sulfidic
+      product: electricity storage capacity
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+  organometallics:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34160: Organo-sulphur compounds and other organo-inorganic compounds; heterocyclic compounds
+        n.e.c.; nucleic acids and their salts'
+    rationale: Trimethylaluminium and diethylzinc are organo-inorganic compounds.
+    activities:
+    - name: trimethylaluminium production, purified
+      product: trimethylaluminium, purified
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: trimethylaluminium production, purified
+        product: trimethylaluminium, purified
+        unit: kilogram
+    - name: diethylzinc production, organozinc synthesis
+      product: diethylzinc
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: diethylzinc production, organozinc synthesis
+        product: diethylzinc
+        unit: kilogram
+  metallization_pastes:
+    classification:
+      ISIC rev.4 ecoinvent: 2029:Manufacture of other chemical products n.e.c.
+      CPC: '35499: Other chemical products n.e.c.'
+    rationale: Formulated photovoltaic metallization pastes are chemical preparations, not kilograms of
+      elemental silver or aluminium.
+    activities:
+    - name: metallization paste production, photovoltaic cell, 90% silver
+      product: metallization paste, photovoltaic cell, 90% silver
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: metallization paste production, photovoltaic cell, 90% silver
+        product: metallization paste, photovoltaic cell, 90% silver
+        unit: kilogram
+    - name: metallization paste production, photovoltaic cell, 43% silver
+      product: metallization paste, photovoltaic cell, 43% silver
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: metallization paste production, photovoltaic cell, 43% silver
+        product: metallization paste, photovoltaic cell, 43% silver
+        unit: kilogram
+    - name: metallization paste production, photovoltaic cell, 79% aluminium
+      product: metallization paste, photovoltaic cell, 79% aluminium
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: metallization paste production, photovoltaic cell, 79% aluminium
+        product: metallization paste, photovoltaic cell, 79% aluminium
+        unit: kilogram
+  bismuth_and_antimony:
+    classification:
+      ISIC rev.4 ecoinvent: 2420:Manufacture of basic precious and other non-ferrous metals
+      CPC: '41603: Bismuth, antimony, manganese, chromium and articles thereof; including waste and scrap
+        of bismuth or manganese'
+    rationale: The output is refined metal, not a mined concentrate.
+    activities:
+    - name: bismuth production, lead-zinc refining
+      product: bismuth
+      workbooks:
+      - file: lci-PV-2026.xlsx
+        name: bismuth production, lead-zinc refining
+        product: bismuth
+        unit: kilogram
+    - name: antimony production, iron precipitation of stibnite
+      product: antimony
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: antimony production, iron precipitation of stibnite
+        product: antimony
+        unit: kilogram
+    related_legacy_entries:
+    - name: antimony production
+      product: antimony
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for antimony
+      product: antimony
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+  formed_plastics:
+    classification:
+      ISIC rev.4 ecoinvent: 2220:Manufacture of plastics products
+      CPC: '36990: Articles of plastics n.e.c.'
+    rationale: PTFE gaskets and the formed polyethylene pipeline coating are plastic articles, not primary
+      resin.
+    activities:
+    - name: polytetrafluoroethylene gasket production, forming, resin supply proxy
+      product: PTFE gasket, unfilled, engineering reference
+      workbooks:
+      - file: lci-ptfe-gasket-native-312.xlsx
+        name: polytetrafluoroethylene gasket production, forming, resin supply proxy
+        product: PTFE gasket, unfilled, engineering reference
+        unit: kilogram
+    - name: polyethylene coating production, high density, for pipelines
+      product: polyethylene coating, high density, for pipelines
+      workbooks:
+      - file: lci-hydrogen-distribution.xlsx
+        name: polyethylene coating production, high density, for pipelines
+        product: polyethylene coating, high density, for pipelines
+        unit: kilogram
+  glass_seals:
+    classification:
+      ISIC rev.4 ecoinvent: 2310:Manufacture of glass and glass products
+      CPC: '371: Glass and glass products'
+    rationale: The SOEC seal is a manufactured glass composition; the parent glass group avoids inventing
+      a commercial seal shape.
+    activities:
+    - name: glass seal production, soec, barium alumino-borosilicate
+      product: glass seal, SOEC, barium alumino-borosilicate
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: glass seal production, soec, barium alumino-borosilicate
+        product: glass seal, SOEC, barium alumino-borosilicate
+        unit: kilogram
+  inorganic_nitrides_carbides:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34280: Hydrogen peroxide; phosphides; carbides; hydrides, nitrides, azides, silicides and
+        borides'
+    rationale: Silicon nitride and the physical SiC wafer reference are inorganic nitride/carbide products.
+      The SiC inventory explicitly leaves doping chemistry unrepresented, so a doped-chemical category
+      is not asserted.
+    activities:
+    - name: silicon nitride production, for power modules
+      product: silicon nitride, for power modules
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: silicon nitride production, for power modules
+        product: silicon nitride, for power modules
+        unit: kilogram
+    - name: silicon carbide wafer production, physical vapour transport
+      product: silicon carbide wafer
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: silicon carbide wafer production, physical vapour transport
+        product: silicon carbide wafer
+        unit: kilogram
+  rare_earths_and_elements:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34231: Chemical elements n.e.c.; inorganic acids except phosphoric, nitric and sulphonitric;
+        inorganic oxygen compounds of boron, silicon and carbon; halogen or sulphur compounds of non-metals;
+        sodium hydroxide; hydroxide and peroxide of magnesium; oxides, hydroxides and peroxides of strontium
+        or barium; aluminium hydroxide; hydrozine and hydroxylamine and their inorganic salts'
+    rationale: Rare-earth/calcium/arsenic elements, hydrogen halides and boron trichloride follow the
+      UN chemical-elements/inorganic-acids/non-metal-halides category; use does not convert them to mined
+      ores.
+    activities:
+    - name: lanthanum metal production, oxide electrolysis
+      product: lanthanum metal, oxide electrolysis
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: lanthanum metal production, oxide electrolysis
+        product: lanthanum metal, oxide electrolysis
+        unit: kilogram
+    - name: neodymium production, molten salt electrolysis
+      product: neodymium
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: neodymium production, molten salt electrolysis
+        product: neodymium
+        unit: kilogram
+    - name: praseodymium production, molten salt electrolysis
+      product: praseodymium
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: praseodymium production, molten salt electrolysis
+        product: praseodymium
+        unit: kilogram
+    - name: calcium production, aluminothermic reduction
+      product: calcium
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: calcium production, aluminothermic reduction
+        product: calcium
+        unit: kilogram
+    - name: holmium production, calcium reduction
+      product: holmium
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: holmium production, calcium reduction
+        product: holmium
+        unit: kilogram
+    - name: terbium production, calcium reduction
+      product: terbium
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: terbium production, calcium reduction
+        product: terbium
+        unit: kilogram
+    - name: dysprosium production, calcium reduction
+      product: dysprosium
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: dysprosium production, calcium reduction
+        product: dysprosium
+        unit: kilogram
+    - name: hydrogen bromide production, direct synthesis
+      product: hydrogen bromide
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: hydrogen bromide production, direct synthesis
+        product: hydrogen bromide
+        unit: kilogram
+    - name: hydrogen iodide production, direct synthesis
+      product: hydrogen iodide
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: hydrogen iodide production, direct synthesis
+        product: hydrogen iodide
+        unit: kilogram
+    - name: arsenic production, high purity, from arsine
+      product: arsenic, high purity, from arsine
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: arsenic production, high purity, from arsine
+        product: arsenic, high purity, from arsine
+        unit: kilogram
+    - name: boron trichloride production, carbochlorination
+      product: boron trichloride
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: boron trichloride production, carbochlorination
+        product: boron trichloride
+        unit: kilogram
+  steel_and_ferroalloys:
+    classification:
+      ISIC rev.4 ecoinvent: 2410:Manufacture of basic iron and steel
+      CPC: '411: Basic iron and steel'
+    rationale: Ferritic steel grades and ferroboron use the basic-steel/ferroalloy group without inventing
+      a flat-rolled delivery form.
+    activities:
+    - name: ferritic steel production, electrolysis interconnect, crofer 22 apu type
+      product: ferritic steel, electrolysis interconnect, Crofer 22 APU type
+      workbooks:
+      - file: lci-hydrogen-electrolysis.xlsx
+        name: ferritic steel production, electrolysis interconnect, crofer 22 apu type
+        product: ferritic steel, electrolysis interconnect, Crofer 22 APU type
+        unit: kilogram
+    - name: ferritic steel production, grade 430, charger enclosure
+      product: ferritic steel, grade 430, charger enclosure
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: ferritic steel production, grade 430, charger enclosure
+        product: ferritic steel, grade 430, charger enclosure
+        unit: kilogram
+    - name: ferroboron production, carbothermic reduction, 19.6% boron
+      product: ferroboron, 19.6% boron
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: ferroboron production, carbothermic reduction, 19.6% boron
+        product: ferroboron, 19.6% boron
+        unit: kilogram
+  electrical_steel:
+    classification:
+      ISIC rev.4 ecoinvent: 2410:Manufacture of basic iron and steel
+      CPC: '41233: Flat-rolled products of silicon-electrical steel'
+    rationale: Non-oriented electrical steel is explicitly silicon-electrical flat-rolled steel.
+    activities:
+    - name: electrical steel production, non-oriented
+      product: electrical steel, non-oriented
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: electrical steel production, non-oriented
+        product: electrical steel, non-oriented
+        unit: kilogram
+  metal_coating_services:
+    classification:
+      ISIC rev.4 ecoinvent: 2592:Treatment and coating of metals; machining
+      CPC: '88731: Metal treatment and coating services'
+    rationale: The coated-pipe references allocate hot-dip Al/Zn/Si coating work, not manufacture of an
+      entire pipe.
+    activities:
+    - name: aluminium-zinc-silicon coating production, hot-dip, on distribution pipe
+      product: aluminium-zinc-silicon coating, on distribution pipe
+      workbooks:
+      - file: lci-pipeline-coating-native-312.xlsx
+        name: aluminium-zinc-silicon coating production, hot-dip, on distribution pipe
+        product: aluminium-zinc-silicon coating, on distribution pipe
+        unit: kilogram
+    - name: aluminium-zinc-silicon coating production, hot-dip, on transmission pipe
+      product: aluminium-zinc-silicon coating, on transmission pipe
+      workbooks:
+      - file: lci-pipeline-coating-native-312.xlsx
+        name: aluminium-zinc-silicon coating production, hot-dip, on transmission pipe
+        product: aluminium-zinc-silicon coating, on transmission pipe
+        unit: kilogram
+  composite_pressure_vessels:
+    classification:
+      ISIC rev.4 ecoinvent: 2220:Manufacture of plastics products
+      CPC: '36990: Articles of plastics n.e.c.'
+    rationale: The principal vessel is carbon-fibre-reinforced polymer, with polymer or metal liners and
+      accessories. Use a reinforced-plastic-article engineering classification rather than falsely declaring
+      an all-metal vessel; the component construction and engineering assumptions remain unchanged.
+    activities:
+    - name: hydrogen storage tank system production, refuelling station, 125 kg hydrogen
+      product: hydrogen storage tank system, refuelling station, 125 kg hydrogen
+      workbooks:
+      - file: lci-hydrogen-distribution.xlsx
+        name: hydrogen storage tank system production, refuelling station, 125 kg hydrogen
+        product: hydrogen storage tank system, refuelling station, 125 kg hydrogen
+        unit: unit
+    - name: hydrogen fuel tank production, truck, cylinder, 350 bar
+      product: hydrogen fuel tank, truck, cylinder, 350 bar
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: hydrogen fuel tank production, truck, cylinder, 350 bar
+        product: hydrogen fuel tank, truck, cylinder, 350 bar
+        unit: unit
+    - name: hydrogen fuel tank production, bus, type 4 cylinder, 350 bar
+      product: hydrogen fuel tank, bus, type IV cylinder, 350 bar
+      workbooks:
+      - file: lci-buses.xlsx
+        name: hydrogen fuel tank production, bus, type 4 cylinder, 350 bar
+        product: hydrogen fuel tank, bus, type IV cylinder, 350 bar
+        unit: unit
+    - name: hydrogen fuel tank production, rail, type 3 cylinder, 700 bar
+      product: hydrogen fuel tank, rail, type III cylinder, 700 bar
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: hydrogen fuel tank production, rail, type 3 cylinder, 700 bar
+        product: hydrogen fuel tank, rail, type III cylinder, 700 bar
+        unit: unit
+  zirconium_and_niobium:
+    classification:
+      ISIC rev.4 ecoinvent: 2420:Manufacture of basic precious and other non-ferrous metals
+      CPC: '4160: Other non-ferrous metals and articles thereof (including waste and scrap of some metals);
+        cermets and articles thereof'
+    rationale: Refined Zr/Nb and the M5 cladding-alloy reference are non-ferrous-metal products, not nuclear
+      fuel or metal ores. The alloy reference does not establish a specific finished tube geometry.
+    activities:
+    - name: zirconium cladding alloy production, epr, m5 type
+      product: zirconium cladding alloy, EPR, M5 type
+      workbooks:
+      - file: lci-epr-m5-native-312.xlsx
+        name: zirconium cladding alloy production, epr, m5 type
+        product: zirconium cladding alloy, EPR, M5 type
+        unit: kilogram
+      - file: lci-nuclear_EPR.xlsx
+        name: zirconium cladding alloy production, epr, m5 type
+        product: zirconium cladding alloy, EPR, M5 type
+        unit: kilogram
+    - name: zirconium metal production, cladding, kroll process
+      product: zirconium metal, cladding, Kroll process
+      workbooks:
+      - file: lci-nuclear_EPR.xlsx
+        name: zirconium metal production, cladding, kroll process
+        product: zirconium metal, cladding, Kroll process
+        unit: kilogram
+    - name: niobium metal production, ferroniobium separation
+      product: niobium metal, from ferroniobium separation
+      workbooks:
+      - file: lci-nuclear_EPR.xlsx
+        name: niobium metal production, ferroniobium separation
+        product: niobium metal, from ferroniobium separation
+        unit: kilogram
+  nonfuel_reactor_parts:
+    classification:
+      ISIC rev.4 ecoinvent: 2513:Manufacture of steam generators, except central heating hot water boilers
+      CPC: '42341: Parts of the goods of subclass 42310'
+    rationale: The assembly consists of non-fuel structural components of a nuclear reactor; enriched-uranium
+      fuel is explicitly excluded.
+    activities:
+    - name: fuel assembly component production, epr, without nuclear fuel
+      product: fuel assembly components, EPR, without nuclear fuel
+      workbooks:
+      - file: lci-nuclear_EPR.xlsx
+        name: fuel assembly component production, epr, without nuclear fuel
+        product: fuel assembly components, EPR, without nuclear fuel
+        unit: kilogram
+  road_vehicle_parts:
+    classification:
+      ISIC rev.4 ecoinvent: 2930:Manufacture of parts and accessories for motor vehicles
+      CPC: '49129: Other parts and accessories n.e.c. of motor vehicles (including brakes, gear boxes,
+        axles, road wheels, suspension shock absorbers, radiators, silencers, exhaust pipes, clutches,
+        steering wheels, steering columns, steering boxes, and parts thereof)'
+    rationale: Vehicle-specific balance-of-plant, ancillary electrical equipment, tank/control assemblies
+      and combustion equipment are vehicle components, not complete vehicles or generic construction services.
+    activities:
+    - name: fuel cell balance of plant production, road vehicle
+      product: fuel cell Balance of Plant, road vehicle
+      workbooks:
+      - file: lci-fuel_cell.xlsx
+        name: fuel cell balance of plant production, road vehicle
+        product: fuel cell Balance of Plant, road vehicle
+        unit: kilogram
+    - name: general electrical system production, vehicle glider
+      product: general electrical system, vehicle glider
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: general electrical system production, vehicle glider
+        product: general electrical system, vehicle glider
+        unit: kilogram
+    - name: hydrogen fuel tank control system production, truck, 350 bar
+      product: hydrogen fuel tank control system, truck, 350 bar
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: hydrogen fuel tank control system production, truck, 350 bar
+        product: hydrogen fuel tank control system, truck, 350 bar
+        unit: unit
+    - name: hydrogen fuel tank mounting and control system production, bus
+      product: hydrogen fuel tank mounting and control system, bus
+      workbooks:
+      - file: lci-buses.xlsx
+        name: hydrogen fuel tank mounting and control system production, bus
+        product: hydrogen fuel tank mounting and control system, bus
+        unit: unit
+    - name: hydrogen fuel tank system production, 13 m double-deck coach bus
+      product: hydrogen fuel tank system, 13 m double-deck coach bus
+      workbooks:
+      - file: lci-buses.xlsx
+        name: hydrogen fuel tank system production, 13 m double-deck coach bus
+        product: hydrogen fuel tank system, 13 m double-deck coach bus
+        unit: unit
+    - name: hydrogen fuel tank system production, 13 m double-deck urban bus
+      product: hydrogen fuel tank system, 13 m double-deck urban bus
+      workbooks:
+      - file: lci-buses.xlsx
+        name: hydrogen fuel tank system production, 13 m double-deck urban bus
+        product: hydrogen fuel tank system, 13 m double-deck urban bus
+        unit: unit
+    - name: hydrogen fuel tank system production, 13 m single-deck coach bus
+      product: hydrogen fuel tank system, 13 m single-deck coach bus
+      workbooks:
+      - file: lci-buses.xlsx
+        name: hydrogen fuel tank system production, 13 m single-deck coach bus
+        product: hydrogen fuel tank system, 13 m single-deck coach bus
+        unit: unit
+    - name: hydrogen fuel tank system production, 13 m single-deck urban bus
+      product: hydrogen fuel tank system, 13 m single-deck urban bus
+      workbooks:
+      - file: lci-buses.xlsx
+        name: hydrogen fuel tank system production, 13 m single-deck urban bus
+        product: hydrogen fuel tank system, 13 m single-deck urban bus
+        unit: unit
+    - name: hydrogen fuel tank system production, 18 m articulated urban bus
+      product: hydrogen fuel tank system, 18 m articulated urban bus
+      workbooks:
+      - file: lci-buses.xlsx
+        name: hydrogen fuel tank system production, 18 m articulated urban bus
+        product: hydrogen fuel tank system, 18 m articulated urban bus
+        unit: unit
+    - name: hydrogen fuel tank system production, 9 m midibus
+      product: hydrogen fuel tank system, 9 m midibus
+      workbooks:
+      - file: lci-buses.xlsx
+        name: hydrogen fuel tank system production, 9 m midibus
+        product: hydrogen fuel tank system, 9 m midibus
+        unit: unit
+    - name: internal combustion engine equipment production, without working fluids
+      product: internal combustion engine equipment, without working fluids
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: internal combustion engine equipment production, without working fluids
+        product: internal combustion engine equipment, without working fluids
+        unit: kilogram
+  fuel_cell_generator:
+    classification:
+      ISIC rev.4 ecoinvent: 2790:Manufacture of other electrical equipment
+      CPC: '461: Electric motors, generators and transformers, and parts thereof'
+    rationale: The complete rail fuel-cell system is generating equipment; the parent group avoids declaring
+      a rotary AC machine or a primary battery.
+    activities:
+    - name: fuel cell system assembly production, rail transport, 860 kwe
+      product: fuel cell system assembly, rail transport, 860 kWe
+      workbooks:
+      - file: lci-fuel_cell.xlsx
+        name: fuel cell system assembly production, rail transport, 860 kwe
+        product: fuel cell system assembly, rail transport, 860 kWe
+        unit: unit
+  adhesive_film:
+    classification:
+      ISIC rev.4 ecoinvent: 2220:Manufacture of plastics products
+      CPC: '36920: Self-adhesive plates, sheets, film, foil, tape, strip and other flat shapes, of plastics'
+    rationale: The PET/glue film is an adhesive plastic laminate, not untreated polyethylene resin.
+    activities:
+    - name: polyethylene terephthalate adhesive film production, for fuel cells
+      product: polyethylene terephthalate adhesive film, for fuel cells
+      workbooks:
+      - file: lci-fuel_cell.xlsx
+        name: polyethylene terephthalate adhesive film production, for fuel cells
+        product: polyethylene terephthalate adhesive film, for fuel cells
+        unit: kilogram
+  motorcycle_powertrains:
+    classification:
+      ISIC rev.4 ecoinvent: 3091:Manufacture of motorcycles
+      CPC: '49941: Parts and accessories of motorcycles and side-cars'
+    rationale: These are motorcycle/two-wheeler powertrain components, not complete motorcycles.
+    activities:
+    - name: mechanical powertrain production, motorcycle, gasoline
+      product: mechanical powertrain, motorcycle, gasoline
+      workbooks:
+      - file: lci-two_wheelers.xlsx
+        name: mechanical powertrain production, motorcycle, gasoline
+        product: mechanical powertrain, motorcycle, gasoline
+        unit: kilogram
+    - name: mechanical powertrain production, motorcycle, electric
+      product: mechanical powertrain, motorcycle, electric
+      workbooks:
+      - file: lci-two_wheelers.xlsx
+        name: mechanical powertrain production, motorcycle, electric
+        product: mechanical powertrain, motorcycle, electric
+        unit: kilogram
+    - name: electric powertrain production, two-wheeler, motor and controller, without charger
+      product: electric powertrain, two-wheeler, motor and controller, without charger
+      workbooks:
+      - file: lci-two_wheelers.xlsx
+        name: electric powertrain production, two-wheeler, motor and controller, without charger
+        product: electric powertrain, two-wheeler, motor and controller, without charger
+        unit: kilogram
+  plastic_forming_service:
+    classification:
+      ISIC rev.4 ecoinvent: 2220:Manufacture of plastics products
+      CPC: '88520: Plastic product manufacturing services'
+    rationale: This activity purchases injection-moulding work per kilogram, without supplying a physical
+      fuel-tank material input.
+    activities:
+    - name: fuel tank forming, motorcycle
+      product: fuel tank forming, motorcycle
+      workbooks:
+      - file: lci-two_wheelers.xlsx
+        name: fuel tank forming, motorcycle
+        product: fuel tank forming, motorcycle
+        unit: kilogram
+  display_interface:
+    classification:
+      ISIC rev.4 ecoinvent: 2620:Manufacture of computers and peripheral equipment
+      CPC: '47315: Monitors and projectors, principally used in an automatic data processing system'
+    rationale: The charging interface supplies an assembled TFT display, not a complete charging station.
+    activities:
+    - name: charging interface production, thin-film transistor display, 7 inch
+      product: charging interface, TFT display, 7 inch
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: charging interface production, thin-film transistor display, 7 inch
+        product: charging interface, TFT display, 7 inch
+        unit: unit
+  charger_structural_support:
+    classification:
+      ISIC rev.4 ecoinvent: 2511:Manufacture of structural metal products
+      CPC: '42190: Other structures (except prefabricated buildings) and parts of structures, of iron,
+        steel or aluminium; plates, rods, angles, shapes, sections, profiles, tubes and the like, prepared
+        for use in structures, of iron, steel or aluminium; props and similar equipment for scaffolding,
+        shuttering or pitpropping'
+    rationale: The output is a fabricated support/rack structure, not a complete charger or a pressure
+      vessel.
+    activities:
+    - name: pantograph contact dome and support production, charging station
+      product: pantograph contact dome and support, charging station
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: pantograph contact dome and support production, charging station
+        product: pantograph contact dome and support, charging station
+        unit: unit
+    - name: hydrogen fuel tank mounting rack production, rail
+      product: hydrogen fuel tank mounting rack, rail
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: hydrogen fuel tank mounting rack production, rail
+        product: hydrogen fuel tank mounting rack, rail
+        unit: unit
+  charging_cable:
+    classification:
+      ISIC rev.4 ecoinvent: 2732:Manufacture of other electronic and electric wires and cables
+      CPC: '46340: Other electric conductors, for a voltage not exceeding 1000 V'
+    rationale: The specified charging feeder is an insulated low-voltage conductor; original length and
+      connector assumptions are retained.
+    activities:
+    - name: charging feeder cable production, 10 m
+      product: charging feeder cable, 10 m
+      workbooks:
+      - file: lci-trucks.xlsx
+        name: charging feeder cable production, 10 m
+        product: charging feeder cable, 10 m
+        unit: unit
+  pantograph_collector:
+    classification:
+      ISIC rev.4 ecoinvent: 2930:Manufacture of parts and accessories for motor vehicles
+      CPC: '46960: Parts for the goods of subclasses 46910, 46921 and 46929; electrical parts n.e.c. of
+        machinery or apparatus'
+    rationale: The bus-mounted current collector is a vehicle electrical component, not an entire charging
+      installation.
+    activities:
+    - name: charger current collector production, bus mounted, pantograph
+      product: charger current collector, bus mounted, pantograph
+      workbooks:
+      - file: lci-buses.xlsx
+        name: charger current collector production, bus mounted, pantograph
+        product: charger current collector, bus mounted, pantograph
+        unit: unit
+  auxiliary_batteries:
+    classification:
+      ISIC rev.4 ecoinvent: 2720:Manufacture of batteries and accumulators
+      CPC: '46420: Electric accumulators'
+    rationale: The historical lead/acid starter-battery proxy represents rechargeable auxiliary hardware.
+      Classification does not validate its engineering recipe or sizing.
+    activities:
+    - name: auxiliary battery production, passenger car
+      product: auxiliary battery, passenger car, historical proxy
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: auxiliary battery production, passenger car
+        product: auxiliary battery, passenger car, historical proxy
+        unit: kilogram
+    - name: market for auxiliary battery, passenger car
+      product: auxiliary battery, passenger car, historical proxy
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: market for auxiliary battery, passenger car
+        product: auxiliary battery, passenger car, historical proxy
+        unit: kilogram
+    related_legacy_entries:
+    - name: auxiliary battery production, passenger car, historical proxy
+      product: auxiliary battery, passenger car, historical proxy
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+    - name: market for auxiliary battery, passenger car, historical proxy
+      product: auxiliary battery, passenger car, historical proxy
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+  permanent_magnets:
+    classification:
+      ISIC rev.4 ecoinvent: 2599:Manufacture of other fabricated metal products n.e.c.
+      CPC: '46931: Permanent metallic magnets'
+    rationale: NdFeB permanent metallic magnets are finished magnet products rather than rare-earth metal
+      feedstocks.
+    activities:
+    - name: permanent magnet production, neodymium-iron-boron, b3 grade
+      product: permanent magnet, neodymium-iron-boron, B3 grade
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: permanent magnet production, neodymium-iron-boron, b3 grade
+        product: permanent magnet, neodymium-iron-boron, B3 grade
+        unit: kilogram
+    - name: permanent magnet production, neodymium-iron-boron, a1 grade
+      product: permanent magnet, neodymium-iron-boron, A1 grade
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: permanent magnet production, neodymium-iron-boron, a1 grade
+        product: permanent magnet, neodymium-iron-boron, A1 grade
+        unit: kilogram
+  electric_drive_assemblies:
+    classification:
+      ISIC rev.4 ecoinvent: 2710:Manufacture of electric motors, generators, transformers and electricity
+        distribution and control apparatus
+      CPC: '461: Electric motors, generators and transformers, and parts thereof'
+    rationale: The assembly supplies an electrical traction drive; the parent group avoids misidentifying
+      it as a complete vehicle.
+    activities:
+    - name: traction powertrain production, permanent magnet motor
+      product: traction powertrain, permanent magnet motor
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: traction powertrain production, permanent magnet motor
+        product: traction powertrain, permanent magnet motor
+        unit: kilogram
+  bare_printed_circuits:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '47130: Printed circuits'
+    rationale: This reference explicitly supplies a bare printed circuit board, unlike the populated control-board
+      references.
+    activities:
+    - name: printed circuit board production, power electronics, bare
+      product: printed circuit board, power electronics, bare
+      workbooks:
+      - file: lci-electric-car-mechanical-powertrain.xlsx
+        name: printed circuit board production, power electronics, bare
+        product: printed circuit board, power electronics, bare
+        unit: square meter
+  ac_motors_generators:
+    classification:
+      ISIC rev.4 ecoinvent: 2710:Manufacture of electric motors, generators, transformers and electricity
+        distribution and control apparatus
+      CPC: '46112: Universal AC/DC motors of an output exceeding 37.5 W; other AC motors; AC generators
+        (alternators)'
+    rationale: The asynchronous traction motor and synchronous rail alternator have explicitly documented
+      AC-machine functions.
+    activities:
+    - name: electric motor production, asynchronous, traction
+      product: electric motor, asynchronous, traction
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: electric motor production, asynchronous, traction
+        product: electric motor, asynchronous, traction
+        unit: kilogram
+    - name: traction generator production, synchronous, rail
+      product: traction generator, synchronous, rail
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: traction generator production, synchronous, rail
+        product: traction generator, synchronous, rail
+        unit: kilogram
+  rail_tank_parts:
+    classification:
+      ISIC rev.4 ecoinvent: 3020:Manufacture of railway locomotives and rolling stock
+      CPC: '49540: Parts of railway or tramway locomotives or rolling stock; railway or tramway track
+        fixtures and fittings, and parts thereof; mechanical (including electromechanical) signalling,
+        safety or traffic control equipment for railways, tramways, roads, inland waterways, parking facilities,
+        port installations or airfields, and parts thereof'
+    rationale: The output is a rail-specific tank valve/control or complete tank-system assembly, not
+      a complete locomotive.
+    activities:
+    - name: hydrogen fuel tank valve and control system production, rail
+      product: hydrogen fuel tank valve and control system, rail
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: hydrogen fuel tank valve and control system production, rail
+        product: hydrogen fuel tank valve and control system, rail
+        unit: unit
+    - name: hydrogen fuel tank system production, rail, 700 bar
+      product: hydrogen fuel tank system, rail, 700 bar
+      workbooks:
+      - file: lci-rail-freight.xlsx
+        name: hydrogen fuel tank system production, rail, 700 bar
+        product: hydrogen fuel tank system, rail, 700 bar
+        unit: unit
+  compound_semiconductor_feedstock:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34250: Salts of oxometallic or peroxometallic acids; colloidal precious metals and compounds
+        thereof; inorganic and organic compounds of mercury; other inorganic chemicals n.e.c.; compressed
+        air; amalgams'
+    rationale: The output is undoped polycrystalline GaAs feedstock, not an operating photovoltaic cell.
+    activities:
+    - name: gallium arsenide boule production, polycrystalline
+      product: gallium arsenide boule, polycrystalline
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: gallium arsenide boule production, polycrystalline
+        product: gallium arsenide boule, polycrystalline
+        unit: kilogram
+  substrate_preparation_service:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '88741: Electronic component and board manufacturing services'
+    rationale: This reference allocates substrate cleaning, quality control and packing; it does not provide
+      another full semiconductor wafer or photovoltaic cell.
+    activities:
+    - name: gallium arsenide substrate preparation, for photovoltaic cell production
+      product: gallium arsenide substrate preparation, for photovoltaic cells
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: gallium arsenide substrate preparation, for photovoltaic cell production
+        product: gallium arsenide substrate preparation, for photovoltaic cells
+        unit: square meter
+  cell_free_pv_module:
+    classification:
+      ISIC rev.4 ecoinvent: 2610:Manufacture of electronic components and boards
+      CPC: '47173: Parts for the goods of subclasses 47140 to 47160'
+    rationale: The module assembly explicitly excludes cells, so it is a part/support assembly for photosensitive
+      semiconductor equipment, not a completed photovoltaic device.
+    activities:
+    - name: photovoltaic module production, gallium arsenide-silicon tandem, without cells
+      product: photovoltaic module, gallium arsenide-silicon tandem, without cells
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: photovoltaic module production, gallium arsenide-silicon tandem, without cells
+        product: photovoltaic module, gallium arsenide-silicon tandem, without cells
+        unit: square meter
+  halogenated_organics:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34110: Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives'
+    rationale: Ethyl bromide and ethyl iodide are halogenated hydrocarbon derivatives.
+    activities:
+    - name: ethyl bromide production, from ethanol
+      product: ethyl bromide
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: ethyl bromide production, from ethanol
+        product: ethyl bromide
+        unit: kilogram
+    - name: ethyl iodide production, from ethanol
+      product: ethyl iodide
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: ethyl iodide production, from ethanol
+        product: ethyl iodide
+        unit: kilogram
+  refractory_crucible:
+    classification:
+      ISIC rev.4 ecoinvent: 2391:Manufacture of refractory products
+      CPC: '37340: Unfired refractory products; other refractory ceramic goods'
+    rationale: The finished pyrolytic-boron-nitride crucible is refractory ceramic ware, not just bulk
+      boron nitride powder.
+    activities:
+    - name: pyrolytic boron nitride crucible production, chemical vapour deposition
+      product: pyrolytic boron nitride crucible
+      workbooks:
+      - file: lci-PV-GaAs.xlsx
+        name: pyrolytic boron nitride crucible production, chemical vapour deposition
+        product: pyrolytic boron nitride crucible
+        unit: kilogram
+  aluminium_profile:
+    classification:
+      ISIC rev.4 ecoinvent: 2420:Manufacture of basic precious and other non-ferrous metals
+      CPC: '41532: Bars, rods and profiles, of aluminium'
+    rationale: The output is an extruded aluminium frame profile with its existing coating, not a complete
+      PV module or thermal window.
+    activities:
+    - name: aluminium profile production, photovoltaic frame
+      product: aluminium profile, photovoltaic frame
+      workbooks:
+      - file: lci-PV-perovskite.xlsx
+        name: aluminium profile production, photovoltaic frame
+        product: aluminium profile, photovoltaic frame
+        unit: kilogram
+  metallization_aluminium:
+    classification:
+      ISIC rev.4 ecoinvent: 2420:Manufacture of basic precious and other non-ferrous metals
+      CPC: '41431: Unwrought aluminium'
+    rationale: The reference provides aluminium metal for metallization, not a complete paste or photovoltaic
+      device.
+    activities:
+    - name: aluminium production, for photovoltaic cell metallization
+      product: aluminium, for photovoltaic cell metallization
+      workbooks:
+      - file: lci-PV-perovskite.xlsx
+        name: aluminium production, for photovoltaic cell metallization
+        product: aluminium, for photovoltaic cell metallization
+        unit: kilogram
+  pv_balance_of_system:
+    classification:
+      ISIC rev.4 ecoinvent: 2790:Manufacture of other electrical equipment
+      CPC: '46: Electrical machinery and apparatus'
+    rationale: The reference combines inverter and electrical installation with mounting hardware. The
+      broad electrical-equipment category avoids declaring a photovoltaic cell or one particular inverter
+      product.
+    activities:
+    - name: photovoltaic balance of system production, perovskite, 0.5 kwp
+      product: photovoltaic balance of system, perovskite, 0.5 kWp
+      workbooks:
+      - file: lci-PV-perovskite.xlsx
+        name: photovoltaic balance of system production, perovskite, 0.5 kwp
+        product: photovoltaic balance of system, perovskite, 0.5 kWp
+        unit: unit
+  metal_cryogenic_vessel:
+    classification:
+      ISIC rev.4 ecoinvent: 2512:Manufacture of tanks, reservoirs and containers of metal
+      CPC: '42220: Containers for compressed or liquefied gas, of iron, steel or aluminium'
+    rationale: The dry cryogenic vessel is a steel/aluminium gas container with attributed retirement,
+      unlike the polymer-composite compressed-gas cylinders.
+    activities:
+    - name: cryogenic hydrogen storage tank production, with retirement
+      product: cryogenic hydrogen storage tank
+      workbooks:
+      - file: lci-ships.xlsx
+        name: cryogenic hydrogen storage tank production, with retirement
+        product: cryogenic hydrogen storage tank
+        unit: kilogram
+  liquefaction_plant_construction:
+    classification:
+      ISIC rev.4 ecoinvent: 4290:Construction of other civil engineering projects
+      CPC: '53269: Other constructions for manufacturing'
+    rationale: The material budget constructs a hydrogen liquefaction plant, not a power plant or a kilogram
+      of hydrogen.
+    activities:
+    - name: hydrogen liquefaction plant construction
+      product: hydrogen liquefaction plant
+      workbooks:
+      - file: lci-ships.xlsx
+        name: hydrogen liquefaction plant construction
+        product: hydrogen liquefaction plant
+        unit: unit
+  liquid_hydrogen:
+    classification:
+      ISIC rev.4 ecoinvent: 2011:Manufacture of basic chemicals
+      CPC: '34210: Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds
+        of non-metals n.e.c.'
+    rationale: Liquefaction supplies a physical kilogram of liquid hydrogen at the plant gate, preserving
+      the existing gaseous feed and losses.
+    activities:
+    - name: hydrogen liquefaction, market hydrogen
+      product: hydrogen, liquid
+      workbooks:
+      - file: lci-ships.xlsx
+        name: hydrogen liquefaction, market hydrogen
+        product: hydrogen, liquid
+        unit: kilogram
+    related_legacy_entries:
+    - name: hydrogen liquefaction, electricity-based proxy
+      product: hydrogen, liquid
+      basis: Existing mapping with the same reviewed product; retain the legacy activity identity.
+  marine_electrical_assembly:
+    classification:
+      ISIC rev.4 ecoinvent: 2710:Manufacture of electric motors, generators, transformers and electricity
+        distribution and control apparatus
+      CPC: '46: Electrical machinery and apparatus'
+    rationale: The ship reference bundles motors, converters and buffer batteries over its service horizon.
+      It is electrical equipment provision, not a complete ship or a single rechargeable battery.
+    activities:
+    - name: electric drive and buffer battery assembly, container ship
+      product: electric drive and buffer battery, container ship
+      workbooks:
+      - file: lci-ships.xlsx
+        name: electric drive and buffer battery assembly, container ship
+        product: electric drive and buffer battery, container ship
+        unit: unit
+  rechargeable_modules:
+    classification:
+      ISIC rev.4 ecoinvent: 2720:Manufacture of batteries and accumulators
+      CPC: '46420: Electric accumulators'
+    rationale: Complete rechargeable cell-containing modules use the accumulator code; module disassembly,
+      empty hardware and individual chemicals are excluded.
+    activities: []
+    related_legacy_entries:
+    - name: battery module production, for LiS battery
+      product: battery, LiS module
+      basis: Cell-containing rechargeable LiS/SiB module, not a primary battery or empty enclosure.
+    - name: battery module production, for SiB battery
+      product: battery, SiB module
+      basis: Cell-containing rechargeable LiS/SiB module, not a primary battery or empty enclosure.

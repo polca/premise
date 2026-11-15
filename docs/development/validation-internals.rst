@@ -53,11 +53,48 @@ These recipes express fixed pack hardware provision per nominal kWh of installed
 capacity. The kWh reference, supplier quantities, controls boundary and bundled
 end-of-life provision are retained unchanged.
 
-These reviews change classification metadata only. Battery chemicals, other
-parts, electronics, recycling outputs and storage-capacity services require
-separate product classifications. No general name-based battery fallback is
-applied. Changes to the classification table invalidate prepared import caches,
+Capacity-labelled markets which provision battery hardware per nominal installed
+kWh also use CPC 46420. This classification does not convert their reference to
+kilograms, operating electricity or lifetime delivered electricity. The separate
+chemicals, electronics, parts and treatment activities use their own product or
+service categories.
+
+These reviews change classification metadata only. No general name-based battery
+fallback is applied. Changes to the classification table invalidate prepared import caches,
 including retained CLIC workbooks; native ecoinvent source caches are preserved.
+
+Other reviewed import classifications
+-------------------------------------
+
+``premise/data/utils/import/classification_review.yaml`` records the review of
+the 221 distinct missing activity/product pairs observed in default ecoinvent
+3.12 cutoff / IMAGE SSP2-M imports, plus related legacy aliases and rechargeable
+module/capacity labels. It stores each group's CPC and ISIC labels, rationale,
+exact activity/product identities, source workbooks and original units. Source
+URLs and checksums refer to the UN CPC 2.1 structure, its updated explanatory
+notes and CPC/ISIC correspondence, and the ISIC Rev.4 structure. The existing
+mapping supplied relevant product precedents; erroneous primary-battery, ore,
+construction or chemical labels were not copied to new products.
+
+Runtime loading continues to use explicit rows in ``classifications.csv``.
+The YAML file is review provenance, not an additional matching mechanism.
+Populated control boards are distinguished from bare printed circuits; discrete
+power devices from integrated circuits; finished hardware from processing and
+waste-treatment services; and cell-free PV assemblies from complete PV devices.
+For the populated control boards and electronic connector, ISIC 2610's explicit
+activity definitions are used even though the generic CPC correspondence lists
+2710 for their control/connection product categories. This choice is recorded
+in those groups rather than treating the correspondence as an exact equivalence.
+
+Parent categories are retained where mixed equipment bundles, service allocation
+references or undocumented delivery forms do not support a narrower subclass.
+Composite pressure-vessel mappings follow the declared reinforced-polymer
+construction. Waste-service categories do not establish hazard status,
+destination or recovery rates. None of these metadata
+changes validates or alters the underlying engineering recipes, replacement
+budgets, signed waste exchanges, allocation denominators or supplier links.
+Unreviewed activity/product pairs continue to produce missing-classification
+diagnostics.
 
 Validation certificate scope
 ----------------------------
