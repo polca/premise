@@ -463,6 +463,68 @@ def test_declared_operating_service_keeps_recorded_total_and_fuel_demand(
         assert infrastructure == infrastructure_before
 
 
+@pytest.mark.parametrize(
+    "name,unit",
+    [
+        ("Excavation, hydraulic digger, average", "cubic meter"),
+        ("Irrigating", "hectare"),
+        ("Irrigating", "cubic meter"),
+        ("Wood chipping, chipper, mobile, diesel, at forest road", "hour"),
+        ("Baling", "unit"),
+        (
+            "Solid manure loading and spreading, by hydraulic loader and spreader",
+            "kilogram",
+        ),
+    ],
+)
+def test_native_operating_mapping_refreshes_origin_without_changing_service(name, unit):
+    from premise.inventory.activity_maps import FUELS_TECHS, get_mapping
+
+    filters = [
+        entry["selector"]
+        for entries in get_mapping(
+            FUELS_TECHS, "uvek_recorded_exhaust_consumers"
+        ).values()
+        for entry in entries
+    ]
+    fuel = supplier(share=0.25, name="market for diesel")
+    operating = vehicle(fuel)
+    operating.update(name=name, **{"reference product": name, "unit": unit})
+    operating["exchanges"][0].update(name=name, product=name, unit=unit)
+    operating["exchanges"][1].update(
+        {"uncertainty type": 2, "loc": -2.302585092994046, "scale": 0.2}
+    )
+    operating["exchanges"].append(emission("Carbon dioxide, non-fossil", 0.2))
+    operating["exchanges"].append(emission("Carbon dioxide, fossil", -0.01))
+    unaffected = deepcopy(
+        [
+            e
+            for e in operating["exchanges"]
+            if e["type"] != "biosphere"
+            or e["name"] == "Nitrogen oxides"
+            or e["amount"] < 0
+        ]
+    )
+    controls = [deepcopy(operating) for _ in range(3)]
+    controls[0]["name"] += ", infrastructure"
+    controls[1]["reference product"] = "different operating service"
+    controls[2]["unit"] = "square meter"
+    controls_before = deepcopy(controls)
+    for _ in range(2):
+        update_vehicle_fuel_co2(
+            [fuel, operating, *controls], "3.10", recorded_exhaust_filters=filters
+        )
+        assert amounts(operating) == pytest.approx((0.375, 0.125))
+        assert [
+            e
+            for e in operating["exchanges"]
+            if e["type"] != "biosphere"
+            or e["name"] == "Nitrogen oxides"
+            or e["amount"] < 0
+        ] == unaffected
+        assert controls == controls_before
+
+
 def test_kerosene_recorded_exhaust_uses_canonical_high_altitude_fallback():
     fuel = supplier(share=0.5, name="market for kerosene")
     aircraft = vehicle(fuel)

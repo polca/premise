@@ -1,0 +1,72 @@
+{
+  "date": "2026-11-15",
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "implementation": "Five exact name, reference-product and unit selector groups in the existing UVEK diesel recorded-exhaust mapping; no production Python changes.",
+  "new_operating_consumers": 48,
+  "reference_unit_counts": {
+    "cubic meter": 13,
+    "hectare": 23,
+    "hour": 9,
+    "kilogram": 1,
+    "unit": 2
+  },
+  "new_consumers_preserve_positive_CO2_total": true,
+  "new_consumers_preserve_every_other_exchange": true,
+  "excluded_mixed_input_harvesters_unchanged": 2,
+  "all_selected_resolved_consumers_origin_checks": 981,
+  "unselected_native_positive_CO2_candidates": 236,
+  "candidate_count_is_not_a_confirmed_error_count": true,
+  "native_source_records_retained": 11947,
+  "exhaustive_validation_errors": 0,
+  "tests": {
+    "passed": 219,
+    "new_mapping_integration_cases": 6,
+    "exact_name_reference_unit_controls": true,
+    "repeat_update_idempotence": true,
+    "signed_credit_and_fuel_uncertainty_preserved": true,
+    "black": "passed",
+    "ruff": "passed",
+    "documentation_reference_check": "passed"
+  },
+  "signed_LCI": {
+    "complete_transformed_activities": 13122,
+    "transient_matrix_filesystem": "memory",
+    "signed_LCI_solves": 6,
+    "checks": [
+      {
+        "name": "Excavation, hydraulic digger, average",
+        "location": "CH",
+        "functional_unit": "1 native service reference unit",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "Irrigating",
+        "location": "US",
+        "functional_unit": "1 native service reference unit",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "Wood chipping, chipper, mobile, diesel, at forest road",
+        "location": "RER",
+        "functional_unit": "1 native service reference unit",
+        "signed_LCIs_finite_and_reverse": true
+      }
+    ],
+    "brightway_database_writes": 0,
+    "registered_activities": 0,
+    "registry_unchanged": true,
+    "score_or_original_native_equivalence_claimed": false,
+    "biosphere_compartment_convention": "Explicit unspecified subcompartment and root compartment are canonicalized identically;name andunit stay exact."
+  },
+  "private_evidence_sha256": {
+    "fuel-current-consumer-and-origin-audit.private.json": "11414b741a4921ee3c4d1b338e0f0aa51fe531d138e06cd0fd078dae6a240be7",
+    "native-operating-fuel-actual-workflow-checks.private.json": "e67dc8f0a722b8c903617381de80708cdc023d8d929dff8ed37297f441d1ff3c",
+    "native-operating-fuel-candidates-primary.private.json": "2c799e14dbe740ace362de3f18786d0a803078245448a3a20adf274b4c203c85"
+  },
+  "no_new_helpers_or_migration_rules": true,
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "public_fuels_qualification_claimed": false,
+  "export_performed": false,
+  "qualified_sectors": 8,
+  "registered_sectors": 19
+}

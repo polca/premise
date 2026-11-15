@@ -895,6 +895,152 @@ diesel:
       exact: true
       fltr:
         name:
+        - Excavation, hydraulic digger (proj. 500)
+        - Excavation, hydraulic digger, average
+        - Excavation, hydraulic digger, average, Betrieb
+        - Excavation, hydraulic digger, average, without infrastructure
+        - Excavation, hydraulic digger, with particle filter
+        - Excavation, hydraulic digger, with particle filter, Betrieb
+        - Excavation, hydraulic digger, without infrastructure
+        - Excavation, hydraulic digger, without particle filter
+        - Excavation, hydraulic digger, without particle filter, Betrieb
+        - Excavation, skid-steer loader
+        - Fodder loading, by self-loading trailer
+        - Irrigating
+        - Slurry spreading, by vacuum tanker
+        reference product:
+        - Excavation, hydraulic digger (proj. 500)
+        - Excavation, hydraulic digger, average
+        - Excavation, hydraulic digger, average, Betrieb
+        - Excavation, hydraulic digger, average, without infrastructure
+        - Excavation, hydraulic digger, with particle filter
+        - Excavation, hydraulic digger, with particle filter, Betrieb
+        - Excavation, hydraulic digger, without infrastructure
+        - Excavation, hydraulic digger, without particle filter
+        - Excavation, hydraulic digger, without particle filter, Betrieb
+        - Excavation, skid-steer loader
+        - Fodder loading, by self-loading trailer
+        - Irrigating
+        - Slurry spreading, by vacuum tanker
+        unit: cubic meter
+    limitations:
+    - Exact reviewed excavation, farming and forestry operating services only. Retain the recorded positive exhaust CO2 total and refresh its fossil/non-fossil origin from the actual linked diesel blend. Preserve reference production, delivered fuel demand, signed exchanges, uncertainty, machinery, lubricants, waste treatment and non-CO2 emissions.
+    - Fuel-dominant whole-exhaust screening convention can reclassify minor lubricant carbon whose contribution is not separately identified. No guessed lubricant correction, full-oxidation factor, avoided-emission credit, efficiency change or reallocation is added; score effects remain unquantified.
+    - These are machinery operating services, not crop or wood production inventories. Two harvesters with additional rapeseed-oil inputs are excluded pending a documented carbon boundary; no process, soil, manure or mixed-fuel CO2 pool is inferred from its name.
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Application of plant protection products, by field sprayer
+        - Chopping, maize
+        - Combine harvesting
+        - Fertilising, by broadcaster
+        - Harvesting, by complete harvester, beets
+        - Harvesting, by complete harvester, potatoes
+        - Haying, by rotary tedder
+        - Hoeing
+        - Irrigating
+        - Mowing, by rotary mower
+        - Mulching
+        - Planting
+        - Potato haulm cutting
+        - Potato planting
+        - Sowing
+        - Swath, by rotary windrower
+        - Tillage, cultivating, chiselling
+        - Tillage, currying, by weeder
+        - Tillage, harrowing, by rotary harrow
+        - Tillage, harrowing, by spring tine harrow
+        - Tillage, hoeing and earthing-up, potatoes
+        - Tillage, ploughing
+        - Tillage, rolling
+        reference product:
+        - Application of plant protection products, by field sprayer
+        - Chopping, maize
+        - Combine harvesting
+        - Fertilising, by broadcaster
+        - Harvesting, by complete harvester, beets
+        - Harvesting, by complete harvester, potatoes
+        - Haying, by rotary tedder
+        - Hoeing
+        - Irrigating
+        - Mowing, by rotary mower
+        - Mulching
+        - Planting
+        - Potato haulm cutting
+        - Potato planting
+        - Sowing
+        - Swath, by rotary windrower
+        - Tillage, cultivating, chiselling
+        - Tillage, currying, by weeder
+        - Tillage, harrowing, by rotary harrow
+        - Tillage, harrowing, by spring tine harrow
+        - Tillage, hoeing and earthing-up, potatoes
+        - Tillage, ploughing
+        - Tillage, rolling
+        unit: hectare
+    limitations:
+    - Exact reviewed excavation, farming and forestry operating services only. Retain the recorded positive exhaust CO2 total and refresh its fossil/non-fossil origin from the actual linked diesel blend. Preserve reference production, delivered fuel demand, signed exchanges, uncertainty, machinery, lubricants, waste treatment and non-CO2 emissions.
+    - Fuel-dominant whole-exhaust screening convention can reclassify minor lubricant carbon whose contribution is not separately identified. No guessed lubricant correction, full-oxidation factor, avoided-emission credit, efficiency change or reallocation is added; score effects remain unquantified.
+    - These are machinery operating services, not crop or wood production inventories. Two harvesters with additional rapeseed-oil inputs are excluded pending a documented carbon boundary; no process, soil, manure or mixed-fuel CO2 pool is inferred from its name.
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Cable yarding and processing, mobile cable yarder on truck
+        - Cable yarding, mobile cable yarder on trailer
+        - Cable yarding, sled yarder
+        - Clefting of energy wood
+        - Delimbing, sorting, excavator-based processor
+        - Forwarding, forwarder
+        - Skidding
+        - Wood chipping, chipper, mobile, diesel, at forest road
+        - Wood chipping, forwarder with terrain chipper, in forest
+        reference product:
+        - Cable yarding and processing, mobile cable yarder on truck
+        - Cable yarding, mobile cable yarder on trailer
+        - Cable yarding, sled yarder
+        - Clefting of energy wood
+        - Delimbing, sorting, excavator-based processor
+        - Forwarding, forwarder
+        - Skidding
+        - Wood chipping, chipper, mobile, diesel, at forest road
+        - Wood chipping, forwarder with terrain chipper, in forest
+        unit: hour
+    limitations:
+    - Exact reviewed excavation, farming and forestry operating services only. Retain the recorded positive exhaust CO2 total and refresh its fossil/non-fossil origin from the actual linked diesel blend. Preserve reference production, delivered fuel demand, signed exchanges, uncertainty, machinery, lubricants, waste treatment and non-CO2 emissions.
+    - Fuel-dominant whole-exhaust screening convention can reclassify minor lubricant carbon whose contribution is not separately identified. No guessed lubricant correction, full-oxidation factor, avoided-emission credit, efficiency change or reallocation is added; score effects remain unquantified.
+    - These are machinery operating services, not crop or wood production inventories. Two harvesters with additional rapeseed-oil inputs are excluded pending a documented carbon boundary; no process, soil, manure or mixed-fuel CO2 pool is inferred from its name.
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Solid manure loading and spreading, by hydraulic loader and spreader
+        reference product:
+        - Solid manure loading and spreading, by hydraulic loader and spreader
+        unit: kilogram
+    limitations:
+    - Exact reviewed excavation, farming and forestry operating services only. Retain the recorded positive exhaust CO2 total and refresh its fossil/non-fossil origin from the actual linked diesel blend. Preserve reference production, delivered fuel demand, signed exchanges, uncertainty, machinery, lubricants, waste treatment and non-CO2 emissions.
+    - Fuel-dominant whole-exhaust screening convention can reclassify minor lubricant carbon whose contribution is not separately identified. No guessed lubricant correction, full-oxidation factor, avoided-emission credit, efficiency change or reallocation is added; score effects remain unquantified.
+    - These are machinery operating services, not crop or wood production inventories. Two harvesters with additional rapeseed-oil inputs are excluded pending a documented carbon boundary; no process, soil, manure or mixed-fuel CO2 pool is inferred from its name.
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Baling
+        - Loading bales
+        reference product:
+        - Baling
+        - Loading bales
+        unit: unit
+    limitations:
+    - Exact reviewed excavation, farming and forestry operating services only. Retain the recorded positive exhaust CO2 total and refresh its fossil/non-fossil origin from the actual linked diesel blend. Preserve reference production, delivered fuel demand, signed exchanges, uncertainty, machinery, lubricants, waste treatment and non-CO2 emissions.
+    - Fuel-dominant whole-exhaust screening convention can reclassify minor lubricant carbon whose contribution is not separately identified. No guessed lubricant correction, full-oxidation factor, avoided-emission credit, efficiency change or reallocation is added; score effects remain unquantified.
+    - These are machinery operating services, not crop or wood production inventories. Two harvesters with additional rapeseed-oil inputs are excluded pending a documented carbon boundary; no process, soil, manure or mixed-fuel CO2 pool is inferred from its name.
+  - selector:
+      exact: true
+      fltr:
+        name:
         - xxx Electricity, at cogen 200kWe diesel SCR, allocation energy
         reference product:
         - xxx Electricity, at cogen 200kWe diesel SCR, allocation energy
