@@ -290405,6 +290405,2359 @@
           "fingerprint": "a1a9d887e524af9de54444ba2bcf2b432099a976d7167d1516a2ec7e979a1c4f"
         }
       ]
+    },
+    {
+      "rule_id": "bp-8c81d7f44cf4e235",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_312_native_boundaries",
+      "review_path": "export/uvek_ships_312_remaining_review.json",
+      "review_sha256": "81659b690957809862004c2ad78bb8159a4c22be697de4dd4ec662b86580544a",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening proxies with explicit physical boundary, chemistry and score limitations; correct treatment signs without absolute values; retain final freight and supported caller statistics. No physical omission or IAM technology coalescing is authorized by this record.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for battery, Li-ion, NMC622, rechargeable",
+          "reference product": "battery, Li-ion, NMC622, rechargeable",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for battery, Li-ion, NMC622, rechargeable",
+            "reference product": "battery, Li-ion, NMC622, rechargeable",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "540c6045bbc13e472037780bff6f18466473d6db25b44d4d003c3341b94861e0",
+          "metadata_sha256": "fd94b50f10dcb18d9e1e2c447f4cef1dff687fc4b28c5a27342acbd9ae45e4cc",
+          "nonproduction_exchange_count": 6,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "battery production, Li-ion, NMC622, rechargeable",
+              "reference product": "battery, Li-ion, NMC622, rechargeable",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "73d7d11a72f26c906a5303f9ca75e5613f23071531bb99c79edd474df0d01df8",
+            "metadata_sha256": "5d396cd1c97b5a201270bd7f83485ae1bce96d0f973e06c2fa5c5b0aeeb7abcf"
+          },
+          {
+            "identity": {
+              "name": "battery production, Li-ion, NMC622, rechargeable",
+              "reference product": "battery, Li-ion, NMC622, rechargeable",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "c44aebc9d3f1bb7b2b11bbc7ff51527dc2163c5fde1664036d96b85ffdd7df13",
+            "metadata_sha256": "e8b1fc70a68223f49e4862187c27e392437e927b654ae72133cc29117a30457e"
+          }
+        ],
+        "basis": "Use a complete native NMC111 prismatic rechargeable Li-ion pack per signed kg as a background screening proxy for source NMC622. Both inspected native releases lack a complete NMC622 pack. Native NMC622 exists as a cell only and cannot replace a complete pack. Preserve both source producer entries separately and all four final deliveries. Do not add cells, BMS, cooling, module packaging, casing or infrastructure twice.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-312-8c81d7f44cf4e235-native-market",
+        "boundary_checks": {
+          "source_reference_amount": 1.0,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 6,
+          "final_freight_entries": 4,
+          "source_producer_entries": 2,
+          "capacity_or_lifetime_multiplier": false,
+          "redundant_one_supplier_market_helper_avoided": false
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "76db97fdf763de4780ae656cde92801edff0c19b3e33dd3f14d5b06cb3908284",
+              "metadata_sha256": "712e45bc407a1e90507dd9adf86ab06f3776a5dd9b762c1b7e9639a6dd2b802e"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+              "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca9c7be85f76e094b905658da392f30efcd8dbe35a224fb3813a44cbbe13c014",
+              "metadata_sha256": "2a138aad926a95936294a3e08d221495472ecee8e5224033e9263eb427aec347"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "87628afcd1a6480149efc4e2028648bb9ee075fa500cf8326fd36d753204f103",
+              "metadata_sha256": "c42691915d00d088a46b175b0af45f46e64bbae6d9cd63c0e3d25fa32c8b5523"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1ffbd9c5947be9b932567cdb055ad9bcecb460524d00a5ebed46326cfc178677",
+              "metadata_sha256": "c3bbed5678335b2836a3de6dde47b25a496da0759a8f1aa3e2d86d49552cf19b"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "5442fa22ade9a9e07f39c50dd9d498698b886f0eeda73b75f5e574b7c0717cea",
+              "metadata_sha256": "769db2befcd7963eda0ae37c882e4acb86d98430deb07284787a9a3008bfa7d3"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "107130c093dc34921f1f973384efc8bd73b00e7d8dcd643e6870892aed583266",
+              "metadata_sha256": "11ae2fa16ead782dc7458ac8efb5dea6954fd98fb7d26f2d37bd8463d12902c4"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "828db5811b665339b46951cb73d2e8384762d69a05fd52f2d1d1efc5a9eb3c61",
+              "metadata_sha256": "744b8049f96b279ca5b5a4c3c0d354870668d2b2755f1aee42de35cd1707df97"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+              "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a72ded32dbc4d67aee72d22bcbb59905fcae3e7405b3bbfe1eb8510c58dd6417",
+              "metadata_sha256": "97107f7c072a23cfdf9d04851d7c153b4cbd8987ebeb8ddd068a007fc0772a92"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b804bd672d7a49979202b7d32fa67a9d29f52be21aca00f2cca0279eaf4041cf",
+              "metadata_sha256": "17d0eed0906a9de81dfde231314325c86c177b218fe552b9b48431e30e7b7ad2"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "20a39804406cc6845745e17129f160faed7aac992ec340eafdfcb4c891ff1fc9",
+              "metadata_sha256": "c80b9c2f77e672604d44859832467d43f79b4161de6064563716647631551c5c"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "30cabcbd093ba0e94ae21b5804363267637bff68369683b6243973794370c92e",
+              "metadata_sha256": "3a87583642e7cf1adb9c8c6b6aa26952234ee5e5d0b309730422877350555db0"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9d31d69c3522beed0b550fb57764a50ae74a6174071ae258f4a9aa46209c3c8f",
+              "metadata_sha256": "199cb8db5a05a074eee047bcdc6e04225c357678c66576881d3d4b770009fcbc"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Use a complete native NMC111 prismatic rechargeable Li-ion pack per signed kg as a background screening proxy for source NMC622. Both inspected native releases lack a complete NMC622 pack. Native NMC622 exists as a cell only and cannot replace a complete pack. Preserve both source producer entries separately and all four final deliveries. Do not add cells, BMS, cooling, module packaging, casing or infrastructure twice.",
+        "The NMC622 cathode is not chemically equivalent to NMC111. NMC622 and NMC811 have different Ni:Mn:Co ratios from1:1:1; NCA uses nickel-cobalt-aluminium oxide rather than nickel-manganese-cobalt oxide. Source Winjobi/Dai pack designs and regional production are replaced by the complete native Dai/Crenna NMC111 design. Metal demand, cell fraction, manufacturing energy, allocation, geography, vintage, internal uncertainty and environmental scores differ; effects are unquantified. No cathode-metal correction, capacity, kWh/kg, lifetime or performance multiplier is inferred. Do not change IAM technology aliases to merge these chemistries.",
+        "Approve only the exact inspected ecoinvent3.12cutoff source through the existing native UVEK2025-to2026 route. Preserve signed caller amounts, formulas, supported uncertainty and separate emissions. No inverse, cross-system-model or uninspected source-release permission is inferred. No physical exchange is omitted and no LCIA equivalence is claimed.",
+        "Keep complete native supplier inventories and internal freight. Retain original final-market delivery entries separately through whole native modal freight per signed tonne-km, without distance, payload, loading or infrastructure multipliers. Geography, fleet, cargo allocation, traction, fuel, emissions, vintage and internal uncertainty are screening differences with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "098fc2236ecadc865405cc97962b6da193672e79a1ed86b84e48534ec8d0c627"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-47a1834bbd65636b",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_312_native_boundaries",
+      "review_path": "export/uvek_ships_312_remaining_review.json",
+      "review_sha256": "81659b690957809862004c2ad78bb8159a4c22be697de4dd4ec662b86580544a",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening proxies with explicit physical boundary, chemistry and score limitations; correct treatment signs without absolute values; retain final freight and supported caller statistics. No physical omission or IAM technology coalescing is authorized by this record.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for battery, Li-ion, NMC811, rechargeable",
+          "reference product": "battery, Li-ion, NMC811, rechargeable",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for battery, Li-ion, NMC811, rechargeable",
+            "reference product": "battery, Li-ion, NMC811, rechargeable",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "052449f75db22213bf45710abf988727aa0ee1a0ea8a273df3095648b62aa451",
+          "metadata_sha256": "1410d0fdcca169229b66915db5269b2767271660709170338715d0c8c920fa88",
+          "nonproduction_exchange_count": 6,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "battery production, Li-ion, NMC811, rechargeable",
+              "reference product": "battery, Li-ion, NMC811, rechargeable",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "58cd0772c82b252397f05a8a7f52956fcac758a78597453d147c4ae7963f26a6",
+            "metadata_sha256": "408c903233eb5f120a986fddfd6c47ee7d821a3ee2f452d7339dc3814f400b4f"
+          },
+          {
+            "identity": {
+              "name": "battery production, Li-ion, NMC811, rechargeable",
+              "reference product": "battery, Li-ion, NMC811, rechargeable",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b5e5bf153681f39ffb67e914d8610cfaa315e86679758274068718a0c8be0b02",
+            "metadata_sha256": "ae41e1d5c579216e59c7363af953120c939f5a4416be0d652b1dd16270ea0684"
+          }
+        ],
+        "basis": "Use a complete native NMC111 prismatic rechargeable Li-ion pack per signed kg as a background screening proxy for source NMC811. Both inspected native releases lack a complete NMC811 pack. Native NMC622 exists as a cell only and cannot replace a complete pack. Preserve both source producer entries separately and all four final deliveries. Do not add cells, BMS, cooling, module packaging, casing or infrastructure twice.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-312-47a1834bbd65636b-native-market",
+        "boundary_checks": {
+          "source_reference_amount": 1.0,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 6,
+          "final_freight_entries": 4,
+          "source_producer_entries": 2,
+          "capacity_or_lifetime_multiplier": false,
+          "redundant_one_supplier_market_helper_avoided": false
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "76db97fdf763de4780ae656cde92801edff0c19b3e33dd3f14d5b06cb3908284",
+              "metadata_sha256": "712e45bc407a1e90507dd9adf86ab06f3776a5dd9b762c1b7e9639a6dd2b802e"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+              "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca9c7be85f76e094b905658da392f30efcd8dbe35a224fb3813a44cbbe13c014",
+              "metadata_sha256": "2a138aad926a95936294a3e08d221495472ecee8e5224033e9263eb427aec347"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "87628afcd1a6480149efc4e2028648bb9ee075fa500cf8326fd36d753204f103",
+              "metadata_sha256": "c42691915d00d088a46b175b0af45f46e64bbae6d9cd63c0e3d25fa32c8b5523"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1ffbd9c5947be9b932567cdb055ad9bcecb460524d00a5ebed46326cfc178677",
+              "metadata_sha256": "c3bbed5678335b2836a3de6dde47b25a496da0759a8f1aa3e2d86d49552cf19b"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "5442fa22ade9a9e07f39c50dd9d498698b886f0eeda73b75f5e574b7c0717cea",
+              "metadata_sha256": "769db2befcd7963eda0ae37c882e4acb86d98430deb07284787a9a3008bfa7d3"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "107130c093dc34921f1f973384efc8bd73b00e7d8dcd643e6870892aed583266",
+              "metadata_sha256": "11ae2fa16ead782dc7458ac8efb5dea6954fd98fb7d26f2d37bd8463d12902c4"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "828db5811b665339b46951cb73d2e8384762d69a05fd52f2d1d1efc5a9eb3c61",
+              "metadata_sha256": "744b8049f96b279ca5b5a4c3c0d354870668d2b2755f1aee42de35cd1707df97"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+              "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a72ded32dbc4d67aee72d22bcbb59905fcae3e7405b3bbfe1eb8510c58dd6417",
+              "metadata_sha256": "97107f7c072a23cfdf9d04851d7c153b4cbd8987ebeb8ddd068a007fc0772a92"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b804bd672d7a49979202b7d32fa67a9d29f52be21aca00f2cca0279eaf4041cf",
+              "metadata_sha256": "17d0eed0906a9de81dfde231314325c86c177b218fe552b9b48431e30e7b7ad2"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "20a39804406cc6845745e17129f160faed7aac992ec340eafdfcb4c891ff1fc9",
+              "metadata_sha256": "c80b9c2f77e672604d44859832467d43f79b4161de6064563716647631551c5c"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "30cabcbd093ba0e94ae21b5804363267637bff68369683b6243973794370c92e",
+              "metadata_sha256": "3a87583642e7cf1adb9c8c6b6aa26952234ee5e5d0b309730422877350555db0"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9d31d69c3522beed0b550fb57764a50ae74a6174071ae258f4a9aa46209c3c8f",
+              "metadata_sha256": "199cb8db5a05a074eee047bcdc6e04225c357678c66576881d3d4b770009fcbc"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Use a complete native NMC111 prismatic rechargeable Li-ion pack per signed kg as a background screening proxy for source NMC811. Both inspected native releases lack a complete NMC811 pack. Native NMC622 exists as a cell only and cannot replace a complete pack. Preserve both source producer entries separately and all four final deliveries. Do not add cells, BMS, cooling, module packaging, casing or infrastructure twice.",
+        "The NMC811 cathode is not chemically equivalent to NMC111. NMC622 and NMC811 have different Ni:Mn:Co ratios from1:1:1; NCA uses nickel-cobalt-aluminium oxide rather than nickel-manganese-cobalt oxide. Source Winjobi/Dai pack designs and regional production are replaced by the complete native Dai/Crenna NMC111 design. Metal demand, cell fraction, manufacturing energy, allocation, geography, vintage, internal uncertainty and environmental scores differ; effects are unquantified. No cathode-metal correction, capacity, kWh/kg, lifetime or performance multiplier is inferred. Do not change IAM technology aliases to merge these chemistries.",
+        "Approve only the exact inspected ecoinvent3.12cutoff source through the existing native UVEK2025-to2026 route. Preserve signed caller amounts, formulas, supported uncertainty and separate emissions. No inverse, cross-system-model or uninspected source-release permission is inferred. No physical exchange is omitted and no LCIA equivalence is claimed.",
+        "Keep complete native supplier inventories and internal freight. Retain original final-market delivery entries separately through whole native modal freight per signed tonne-km, without distance, payload, loading or infrastructure multipliers. Geography, fleet, cargo allocation, traction, fuel, emissions, vintage and internal uncertainty are screening differences with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ada73862e80ccdea1b8798ffe0f70ee468751624fa605bbb8bca14ad40119792"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d77c499a4733bd9a",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_312_native_boundaries",
+      "review_path": "export/uvek_ships_312_remaining_review.json",
+      "review_sha256": "81659b690957809862004c2ad78bb8159a4c22be697de4dd4ec662b86580544a",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening proxies with explicit physical boundary, chemistry and score limitations; correct treatment signs without absolute values; retain final freight and supported caller statistics. No physical omission or IAM technology coalescing is authorized by this record.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for battery, Li-ion, NCA, rechargeable",
+          "reference product": "battery, Li-ion, NCA, rechargeable",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for battery, Li-ion, NCA, rechargeable",
+            "reference product": "battery, Li-ion, NCA, rechargeable",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "6bb614f0187730555f7861ff92ea691677ec161ad3ad2b893b1ba48f3c28519c",
+          "metadata_sha256": "76073c392a7659bf6afd943e0359ca679e7b078e0bd380bdf65bacef764b012d",
+          "nonproduction_exchange_count": 6,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "battery production, Li-ion, NCA, rechargeable",
+              "reference product": "battery, Li-ion, NCA, rechargeable",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "6f59d45f449f6e9bec8d37e1c656965efb74585a5407ec290ccd48bc90b117fa",
+            "metadata_sha256": "848ba3d2c25a79bc9884b27dabbc65287810fe8cc72213c44998e4882ee04d99"
+          },
+          {
+            "identity": {
+              "name": "battery production, Li-ion, NCA, rechargeable",
+              "reference product": "battery, Li-ion, NCA, rechargeable",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "3b524649210bd7136548e862414eb8e6e50c1a85213bfd191cc08831df08003f",
+            "metadata_sha256": "8d8c4729d87bea27a638fd202561592b1f14b03444aa8ca3bc5c788f7779e416"
+          }
+        ],
+        "basis": "Use a complete native NMC111 prismatic rechargeable Li-ion pack per signed kg as a background screening proxy for source NCA. Both inspected native releases lack a complete NCA pack. Native NMC622 exists as a cell only and cannot replace a complete pack. Preserve both source producer entries separately and all four final deliveries. Do not add cells, BMS, cooling, module packaging, casing or infrastructure twice.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-312-d77c499a4733bd9a-native-market",
+        "boundary_checks": {
+          "source_reference_amount": 1.0,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 6,
+          "final_freight_entries": 4,
+          "source_producer_entries": 2,
+          "capacity_or_lifetime_multiplier": false,
+          "redundant_one_supplier_market_helper_avoided": false
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "76db97fdf763de4780ae656cde92801edff0c19b3e33dd3f14d5b06cb3908284",
+              "metadata_sha256": "712e45bc407a1e90507dd9adf86ab06f3776a5dd9b762c1b7e9639a6dd2b802e"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+              "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca9c7be85f76e094b905658da392f30efcd8dbe35a224fb3813a44cbbe13c014",
+              "metadata_sha256": "2a138aad926a95936294a3e08d221495472ecee8e5224033e9263eb427aec347"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "87628afcd1a6480149efc4e2028648bb9ee075fa500cf8326fd36d753204f103",
+              "metadata_sha256": "c42691915d00d088a46b175b0af45f46e64bbae6d9cd63c0e3d25fa32c8b5523"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1ffbd9c5947be9b932567cdb055ad9bcecb460524d00a5ebed46326cfc178677",
+              "metadata_sha256": "c3bbed5678335b2836a3de6dde47b25a496da0759a8f1aa3e2d86d49552cf19b"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "5442fa22ade9a9e07f39c50dd9d498698b886f0eeda73b75f5e574b7c0717cea",
+              "metadata_sha256": "769db2befcd7963eda0ae37c882e4acb86d98430deb07284787a9a3008bfa7d3"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "107130c093dc34921f1f973384efc8bd73b00e7d8dcd643e6870892aed583266",
+              "metadata_sha256": "11ae2fa16ead782dc7458ac8efb5dea6954fd98fb7d26f2d37bd8463d12902c4"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "828db5811b665339b46951cb73d2e8384762d69a05fd52f2d1d1efc5a9eb3c61",
+              "metadata_sha256": "744b8049f96b279ca5b5a4c3c0d354870668d2b2755f1aee42de35cd1707df97"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+              "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a72ded32dbc4d67aee72d22bcbb59905fcae3e7405b3bbfe1eb8510c58dd6417",
+              "metadata_sha256": "97107f7c072a23cfdf9d04851d7c153b4cbd8987ebeb8ddd068a007fc0772a92"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b804bd672d7a49979202b7d32fa67a9d29f52be21aca00f2cca0279eaf4041cf",
+              "metadata_sha256": "17d0eed0906a9de81dfde231314325c86c177b218fe552b9b48431e30e7b7ad2"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "20a39804406cc6845745e17129f160faed7aac992ec340eafdfcb4c891ff1fc9",
+              "metadata_sha256": "c80b9c2f77e672604d44859832467d43f79b4161de6064563716647631551c5c"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "30cabcbd093ba0e94ae21b5804363267637bff68369683b6243973794370c92e",
+              "metadata_sha256": "3a87583642e7cf1adb9c8c6b6aa26952234ee5e5d0b309730422877350555db0"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9d31d69c3522beed0b550fb57764a50ae74a6174071ae258f4a9aa46209c3c8f",
+              "metadata_sha256": "199cb8db5a05a074eee047bcdc6e04225c357678c66576881d3d4b770009fcbc"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Use a complete native NMC111 prismatic rechargeable Li-ion pack per signed kg as a background screening proxy for source NCA. Both inspected native releases lack a complete NCA pack. Native NMC622 exists as a cell only and cannot replace a complete pack. Preserve both source producer entries separately and all four final deliveries. Do not add cells, BMS, cooling, module packaging, casing or infrastructure twice.",
+        "The NCA cathode is not chemically equivalent to NMC111. NMC622 and NMC811 have different Ni:Mn:Co ratios from1:1:1; NCA uses nickel-cobalt-aluminium oxide rather than nickel-manganese-cobalt oxide. Source Winjobi/Dai pack designs and regional production are replaced by the complete native Dai/Crenna NMC111 design. Metal demand, cell fraction, manufacturing energy, allocation, geography, vintage, internal uncertainty and environmental scores differ; effects are unquantified. No cathode-metal correction, capacity, kWh/kg, lifetime or performance multiplier is inferred. Do not change IAM technology aliases to merge these chemistries.",
+        "Approve only the exact inspected ecoinvent3.12cutoff source through the existing native UVEK2025-to2026 route. Preserve signed caller amounts, formulas, supported uncertainty and separate emissions. No inverse, cross-system-model or uninspected source-release permission is inferred. No physical exchange is omitted and no LCIA equivalence is claimed.",
+        "Keep complete native supplier inventories and internal freight. Retain original final-market delivery entries separately through whole native modal freight per signed tonne-km, without distance, payload, loading or infrastructure multipliers. Geography, fleet, cargo allocation, traction, fuel, emissions, vintage and internal uncertainty are screening differences with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "73dce63fcc1a0a2a93e9cb582949dfd08a0a73837b218d364d01557bd0f02624"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-11eb77f35655db2a",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_312_native_boundaries",
+      "review_path": "export/uvek_ships_312_remaining_review.json",
+      "review_sha256": "81659b690957809862004c2ad78bb8159a4c22be697de4dd4ec662b86580544a",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening proxies with explicit physical boundary, chemistry and score limitations; correct treatment signs without absolute values; retain final freight and supported caller statistics. No physical omission or IAM technology coalescing is authorized by this record.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for used Li-ion battery",
+          "reference product": "used Li-ion battery",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for used Li-ion battery",
+            "reference product": "used Li-ion battery",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "8544e918a7781053f3a4e8a8661bc35032192f08c8c00f9608fb9334c923a5a5",
+          "metadata_sha256": "886a1328582decd31254b0412bab6d4360760e33d9f3097f355e7d177f773341",
+          "nonproduction_exchange_count": 6,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+              "reference product": "used Li-ion battery",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "83e7a5e50fc8bd019302fdbf8566ffe191cc9f78407d6bf6a74858594202c8aa",
+            "metadata_sha256": "0c1b008b84cde6ecdec1cf80a92600ede6fc11f765f373296cd0a23d21898496"
+          },
+          {
+            "identity": {
+              "name": "treatment of used Li-ion battery, hydrometallurgical treatment",
+              "reference product": "used Li-ion battery",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "9dbb137a23817843eaba43242c980a2bd7eefbf67b2da28dff1e907b41283e04",
+            "metadata_sha256": "ae267843334f5c1ffdffb17dcf84b1549a86001d32726052ee591aecef9f013f"
+          }
+        ],
+        "basis": "Correct the treatment convention exactly once: source used-Li-ion-battery market references negative1kg; the helper supplies positive1kg treatment. Apply caller factor−1 without absolute values. Preserve the source50:50 pyro/hydrometallurgical mix using the corresponding complete native processes at positive0.5kg each, and retain all four positive final transport quantities. Negative source treatment-provider entries represent receiving waste, not avoided disposal. Genuine signed caller credits remain signed.",
+        "conversion_factor": -1,
+        "recipe_id": "ships-312-11eb77f35655db2a-native-market",
+        "boundary_checks": {
+          "source_reference_amount": -1.0,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": -1,
+          "native_input_count": 6,
+          "final_freight_entries": 4,
+          "source_producer_entries": 2,
+          "capacity_or_lifetime_multiplier": false,
+          "redundant_one_supplier_market_helper_avoided": false
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "76db97fdf763de4780ae656cde92801edff0c19b3e33dd3f14d5b06cb3908284",
+              "metadata_sha256": "712e45bc407a1e90507dd9adf86ab06f3776a5dd9b762c1b7e9639a6dd2b802e"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+              "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca9c7be85f76e094b905658da392f30efcd8dbe35a224fb3813a44cbbe13c014",
+              "metadata_sha256": "2a138aad926a95936294a3e08d221495472ecee8e5224033e9263eb427aec347"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "87628afcd1a6480149efc4e2028648bb9ee075fa500cf8326fd36d753204f103",
+              "metadata_sha256": "c42691915d00d088a46b175b0af45f46e64bbae6d9cd63c0e3d25fa32c8b5523"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1ffbd9c5947be9b932567cdb055ad9bcecb460524d00a5ebed46326cfc178677",
+              "metadata_sha256": "c3bbed5678335b2836a3de6dde47b25a496da0759a8f1aa3e2d86d49552cf19b"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "5442fa22ade9a9e07f39c50dd9d498698b886f0eeda73b75f5e574b7c0717cea",
+              "metadata_sha256": "769db2befcd7963eda0ae37c882e4acb86d98430deb07284787a9a3008bfa7d3"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "107130c093dc34921f1f973384efc8bd73b00e7d8dcd643e6870892aed583266",
+              "metadata_sha256": "11ae2fa16ead782dc7458ac8efb5dea6954fd98fb7d26f2d37bd8463d12902c4"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "828db5811b665339b46951cb73d2e8384762d69a05fd52f2d1d1efc5a9eb3c61",
+              "metadata_sha256": "744b8049f96b279ca5b5a4c3c0d354870668d2b2755f1aee42de35cd1707df97"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+              "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a72ded32dbc4d67aee72d22bcbb59905fcae3e7405b3bbfe1eb8510c58dd6417",
+              "metadata_sha256": "97107f7c072a23cfdf9d04851d7c153b4cbd8987ebeb8ddd068a007fc0772a92"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b804bd672d7a49979202b7d32fa67a9d29f52be21aca00f2cca0279eaf4041cf",
+              "metadata_sha256": "17d0eed0906a9de81dfde231314325c86c177b218fe552b9b48431e30e7b7ad2"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "20a39804406cc6845745e17129f160faed7aac992ec340eafdfcb4c891ff1fc9",
+              "metadata_sha256": "c80b9c2f77e672604d44859832467d43f79b4161de6064563716647631551c5c"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "30cabcbd093ba0e94ae21b5804363267637bff68369683b6243973794370c92e",
+              "metadata_sha256": "3a87583642e7cf1adb9c8c6b6aa26952234ee5e5d0b309730422877350555db0"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9d31d69c3522beed0b550fb57764a50ae74a6174071ae258f4a9aa46209c3c8f",
+              "metadata_sha256": "199cb8db5a05a074eee047bcdc6e04225c357678c66576881d3d4b770009fcbc"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Correct the treatment convention exactly once: source used-Li-ion-battery market references negative1kg; the helper supplies positive1kg treatment. Apply caller factor−1 without absolute values. Preserve the source50:50 pyro/hydrometallurgical mix using the corresponding complete native processes at positive0.5kg each, and retain all four positive final transport quantities. Negative source treatment-provider entries represent receiving waste, not avoided disposal. Genuine signed caller credits remain signed.",
+        "Native pyro/hydrometallurgical service inventories and allocation replace source3.12 recovery models. Lithium/cobalt/nickel recovery, recovered-product quality and credits, slag treatment, emissions, energy, geography, vintage and internal uncertainty can differ; score effects are unquantified. Retain all native internal recovery/allocation exchanges as recorded. Add no independent recovered-metal credit, virgin-metal substitution, extra collection operation or omission.",
+        "Approve only the exact inspected ecoinvent3.12cutoff source through the existing native UVEK2025-to2026 route. Preserve signed caller amounts, formulas, supported uncertainty and separate emissions. No inverse, cross-system-model or uninspected source-release permission is inferred. No physical exchange is omitted and no LCIA equivalence is claimed.",
+        "Keep complete native supplier inventories and internal freight. Retain original final-market delivery entries separately through whole native modal freight per signed tonne-km, without distance, payload, loading or infrastructure multipliers. Geography, fleet, cargo allocation, traction, fuel, emissions, vintage and internal uncertainty are screening differences with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "8380ca9a266c1ccadba47858750cfb02571f941f1bf89d697fdd577a9403e873"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b70ddddeca802ef5",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_312_native_boundaries",
+      "review_path": "export/uvek_ships_312_remaining_review.json",
+      "review_sha256": "81659b690957809862004c2ad78bb8159a4c22be697de4dd4ec662b86580544a",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening proxies with explicit physical boundary, chemistry and score limitations; correct treatment signs without absolute values; retain final freight and supported caller statistics. No physical omission or IAM technology coalescing is authorized by this record.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for container ship",
+          "reference product": "container ship",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for container ship",
+            "reference product": "container ship",
+            "unit": "unit"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "2dad74d1e00bbc4273912446d955f35b361a308031a3e4282129a444504c88f5",
+          "metadata_sha256": "cb8e439e25ed5837152a589868a0d3b3fe8a1ee28ee75f35b581198f43d16719",
+          "nonproduction_exchange_count": 1,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "container ship production",
+              "reference product": "container ship",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "inventory_sha256": "d38b92a79084c12c9e4ae8ca8ee69fe7ff88ac7ba64513c6b870e5edb3343361",
+            "metadata_sha256": "1515d269a8cf0755f6197b47dddc59fbfaa4f9720c1a51e4ae6ada95ae084a59"
+          }
+        ],
+        "basis": "Replace the physically wrong ship-wrecking heuristic with the complete native Transoceanic freight ship manufacturing process per positive1unit. The source market has exactly one deterministic1unit container-ship producer and no final transport or losses, so a redundant market helper is unnecessary. Native documentation identifies container-ship technology, material production, manufacturing energy, material freight and non-metal component disposal. Do not add a separate wrecking process or use a wrecking service as ship production.",
+        "conversion_factor": 1,
+        "recipe_id": null,
+        "boundary_checks": {
+          "source_reference_amount": 1.0,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 1,
+          "final_freight_entries": 0,
+          "source_producer_entries": 1,
+          "capacity_or_lifetime_multiplier": false,
+          "redundant_one_supplier_market_helper_avoided": true
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "76db97fdf763de4780ae656cde92801edff0c19b3e33dd3f14d5b06cb3908284",
+              "metadata_sha256": "712e45bc407a1e90507dd9adf86ab06f3776a5dd9b762c1b7e9639a6dd2b802e"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+              "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca9c7be85f76e094b905658da392f30efcd8dbe35a224fb3813a44cbbe13c014",
+              "metadata_sha256": "2a138aad926a95936294a3e08d221495472ecee8e5224033e9263eb427aec347"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "87628afcd1a6480149efc4e2028648bb9ee075fa500cf8326fd36d753204f103",
+              "metadata_sha256": "c42691915d00d088a46b175b0af45f46e64bbae6d9cd63c0e3d25fa32c8b5523"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1ffbd9c5947be9b932567cdb055ad9bcecb460524d00a5ebed46326cfc178677",
+              "metadata_sha256": "c3bbed5678335b2836a3de6dde47b25a496da0759a8f1aa3e2d86d49552cf19b"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "5442fa22ade9a9e07f39c50dd9d498698b886f0eeda73b75f5e574b7c0717cea",
+              "metadata_sha256": "769db2befcd7963eda0ae37c882e4acb86d98430deb07284787a9a3008bfa7d3"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "107130c093dc34921f1f973384efc8bd73b00e7d8dcd643e6870892aed583266",
+              "metadata_sha256": "11ae2fa16ead782dc7458ac8efb5dea6954fd98fb7d26f2d37bd8463d12902c4"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "828db5811b665339b46951cb73d2e8384762d69a05fd52f2d1d1efc5a9eb3c61",
+              "metadata_sha256": "744b8049f96b279ca5b5a4c3c0d354870668d2b2755f1aee42de35cd1707df97"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+              "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a72ded32dbc4d67aee72d22bcbb59905fcae3e7405b3bbfe1eb8510c58dd6417",
+              "metadata_sha256": "97107f7c072a23cfdf9d04851d7c153b4cbd8987ebeb8ddd068a007fc0772a92"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b804bd672d7a49979202b7d32fa67a9d29f52be21aca00f2cca0279eaf4041cf",
+              "metadata_sha256": "17d0eed0906a9de81dfde231314325c86c177b218fe552b9b48431e30e7b7ad2"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "20a39804406cc6845745e17129f160faed7aac992ec340eafdfcb4c891ff1fc9",
+              "metadata_sha256": "c80b9c2f77e672604d44859832467d43f79b4161de6064563716647631551c5c"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "30cabcbd093ba0e94ae21b5804363267637bff68369683b6243973794370c92e",
+              "metadata_sha256": "3a87583642e7cf1adb9c8c6b6aa26952234ee5e5d0b309730422877350555db0"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9d31d69c3522beed0b550fb57764a50ae74a6174071ae258f4a9aa46209c3c8f",
+              "metadata_sha256": "199cb8db5a05a074eee047bcdc6e04225c357678c66576881d3d4b770009fcbc"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Replace the physically wrong ship-wrecking heuristic with the complete native Transoceanic freight ship manufacturing process per positive1unit. The source market has exactly one deterministic1unit container-ship producer and no final transport or losses, so a redundant market helper is unnecessary. Native documentation identifies container-ship technology, material production, manufacturing energy, material freight and non-metal component disposal. Do not add a separate wrecking process or use a wrecking service as ship production.",
+        "Source documentation reports conflicting43000/59600t load capacities; native manufacturing represents51500t. Ship size, design, material quantities, manufacturing energy, geography, end-of-life coverage, age and allocation differ. Use a complete per-vessel screening proxy without a guessed DWT or lifetime multiplier; score effects remain unquantified. Separate caller maintenance, port and operating fuel inputs remain unchanged.",
+        "Approve only the exact inspected ecoinvent3.12cutoff source through the existing native UVEK2025-to2026 route. Preserve signed caller amounts, formulas, supported uncertainty and separate emissions. No inverse, cross-system-model or uninspected source-release permission is inferred. No physical exchange is omitted and no LCIA equivalence is claimed.",
+        "Keep complete native supplier inventories and internal freight. Retain original final-market delivery entries separately through whole native modal freight per signed tonne-km, without distance, payload, loading or infrastructure multipliers. Geography, fleet, cargo allocation, traction, fuel, emissions, vintage and internal uncertainty are screening differences with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "7c5ec791818e3bfc12d0ee5c50796ecec97a41600a696409f67756539e31c10c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5190369e8ee0e087",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_312_native_boundaries",
+      "review_path": "export/uvek_ships_312_remaining_review.json",
+      "review_sha256": "81659b690957809862004c2ad78bb8159a4c22be697de4dd4ec662b86580544a",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening proxies with explicit physical boundary, chemistry and score limitations; correct treatment signs without absolute values; retain final freight and supported caller statistics. No physical omission or IAM technology coalescing is authorized by this record.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for maintenance, container ship",
+          "reference product": "maintenance, container ship",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for maintenance, container ship",
+            "reference product": "maintenance, container ship",
+            "unit": "unit"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "8fa92b61ce4a9b093a47df6e9db119e9e5d191c62c983a11e55107b12af9d3ca",
+          "metadata_sha256": "508a0531ce3f330582a4cb3748921fbff20717649f8848faa115bab29f409cb7",
+          "nonproduction_exchange_count": 1,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "maintenance, container ship",
+              "reference product": "maintenance, container ship",
+              "location": "GLO",
+              "unit": "unit"
+            },
+            "inventory_sha256": "6bf1c6e693fad9d939f8b0a5704d8b05cba416b5b4f4f74d9fed892f33a24b07",
+            "metadata_sha256": "c63a88f348ff028f7564211bcde4357411e5fb49d41d711e425a8dd2448d70a6"
+          }
+        ],
+        "basis": "Use complete native transoceanic-freight-ship maintenance per positive1unit for the single deterministic source1unit maintenance supplier. Native documents six repaintings over25years; retain that complete service once, without a guessed repainting, ship-size or lifetime factor. A separate one-input market helper is unnecessary.",
+        "conversion_factor": 1,
+        "recipe_id": null,
+        "boundary_checks": {
+          "source_reference_amount": 1.0,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 1,
+          "final_freight_entries": 0,
+          "source_producer_entries": 1,
+          "capacity_or_lifetime_multiplier": false,
+          "redundant_one_supplier_market_helper_avoided": true
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "76db97fdf763de4780ae656cde92801edff0c19b3e33dd3f14d5b06cb3908284",
+              "metadata_sha256": "712e45bc407a1e90507dd9adf86ab06f3776a5dd9b762c1b7e9639a6dd2b802e"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+              "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca9c7be85f76e094b905658da392f30efcd8dbe35a224fb3813a44cbbe13c014",
+              "metadata_sha256": "2a138aad926a95936294a3e08d221495472ecee8e5224033e9263eb427aec347"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "87628afcd1a6480149efc4e2028648bb9ee075fa500cf8326fd36d753204f103",
+              "metadata_sha256": "c42691915d00d088a46b175b0af45f46e64bbae6d9cd63c0e3d25fa32c8b5523"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1ffbd9c5947be9b932567cdb055ad9bcecb460524d00a5ebed46326cfc178677",
+              "metadata_sha256": "c3bbed5678335b2836a3de6dde47b25a496da0759a8f1aa3e2d86d49552cf19b"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "5442fa22ade9a9e07f39c50dd9d498698b886f0eeda73b75f5e574b7c0717cea",
+              "metadata_sha256": "769db2befcd7963eda0ae37c882e4acb86d98430deb07284787a9a3008bfa7d3"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "107130c093dc34921f1f973384efc8bd73b00e7d8dcd643e6870892aed583266",
+              "metadata_sha256": "11ae2fa16ead782dc7458ac8efb5dea6954fd98fb7d26f2d37bd8463d12902c4"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "828db5811b665339b46951cb73d2e8384762d69a05fd52f2d1d1efc5a9eb3c61",
+              "metadata_sha256": "744b8049f96b279ca5b5a4c3c0d354870668d2b2755f1aee42de35cd1707df97"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+              "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a72ded32dbc4d67aee72d22bcbb59905fcae3e7405b3bbfe1eb8510c58dd6417",
+              "metadata_sha256": "97107f7c072a23cfdf9d04851d7c153b4cbd8987ebeb8ddd068a007fc0772a92"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b804bd672d7a49979202b7d32fa67a9d29f52be21aca00f2cca0279eaf4041cf",
+              "metadata_sha256": "17d0eed0906a9de81dfde231314325c86c177b218fe552b9b48431e30e7b7ad2"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "20a39804406cc6845745e17129f160faed7aac992ec340eafdfcb4c891ff1fc9",
+              "metadata_sha256": "c80b9c2f77e672604d44859832467d43f79b4161de6064563716647631551c5c"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "30cabcbd093ba0e94ae21b5804363267637bff68369683b6243973794370c92e",
+              "metadata_sha256": "3a87583642e7cf1adb9c8c6b6aa26952234ee5e5d0b309730422877350555db0"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9d31d69c3522beed0b550fb57764a50ae74a6174071ae258f4a9aa46209c3c8f",
+              "metadata_sha256": "199cb8db5a05a074eee047bcdc6e04225c357678c66576881d3d4b770009fcbc"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Use complete native transoceanic-freight-ship maintenance per positive1unit for the single deterministic source1unit maintenance supplier. Native documents six repaintings over25years; retain that complete service once, without a guessed repainting, ship-size or lifetime factor. A separate one-input market helper is unnecessary.",
+        "Source container-ship maintenance includes paint, steel, sand, diesel sandblasting, waste and painting/abrasive emissions. Native maintenance models paint and solvent emissions with different material and operating coverage. Those boundary, size, lifetime, geography, allocation, vintage and uncertainty differences are explicit whole-service screening limitations; score effects are unquantified. Do not add an arbitrary sandblasting or missing-material inventory, and keep separately listed caller fuel and emissions.",
+        "Approve only the exact inspected ecoinvent3.12cutoff source through the existing native UVEK2025-to2026 route. Preserve signed caller amounts, formulas, supported uncertainty and separate emissions. No inverse, cross-system-model or uninspected source-release permission is inferred. No physical exchange is omitted and no LCIA equivalence is claimed.",
+        "Keep complete native supplier inventories and internal freight. Retain original final-market delivery entries separately through whole native modal freight per signed tonne-km, without distance, payload, loading or infrastructure multipliers. Geography, fleet, cargo allocation, traction, fuel, emissions, vintage and internal uncertainty are screening differences with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5150c99185cf484b3e0b04d91cecdec7f6b80d3aeddd86f4e8c24a53aa1c0298"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ea131e9abe8941ab",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_312_native_boundaries",
+      "review_path": "export/uvek_ships_312_remaining_review.json",
+      "review_sha256": "81659b690957809862004c2ad78bb8159a4c22be697de4dd4ec662b86580544a",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening proxies with explicit physical boundary, chemistry and score limitations; correct treatment signs without absolute values; retain final freight and supported caller statistics. No physical omission or IAM technology coalescing is authorized by this record.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for port facilities",
+          "reference product": "port facilities",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for port facilities",
+            "reference product": "port facilities",
+            "unit": "unit"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "9c0c890b81a963846c0b48357f77f7a5a888381074e83595e4d157a11e1afd7c",
+          "metadata_sha256": "11889936adbcf5ff22f7a428ac64efa0c9a296937b790aa6f0fc5b9597c9db66",
+          "nonproduction_exchange_count": 2,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "port facilities construction",
+              "reference product": "port facilities",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "inventory_sha256": "4638b80240fcd15af824bd970854c96c32b5d00a0af95c1f74a42d53eb646ae9",
+            "metadata_sha256": "e4e0a2fe6985cdab7ee6abc8d071bdb2ab0e80b7c129190b94670025c5a89eb2"
+          },
+          {
+            "identity": {
+              "name": "port facilities construction",
+              "reference product": "port facilities",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "inventory_sha256": "4b2fa849981da825788f6b17d630f33e6d963f6795ae0d71fda7b10a5ee4e7e7",
+            "metadata_sha256": "cf81efb90ddf5264a2bcc36eaaf2c89b6b8ae06af1bb898cea83b8376ab8bb97"
+          }
+        ],
+        "basis": "Use the complete native RER Port facilities inventory for both original port-construction producer shares, retaining each source quantity and supported statistics separately. Both source and native describe the construction/use/disposal boundary of one port with Rotterdam-based modelling; native documentation uses100years. Do not confuse the copied word airport in native free text with the actual port inventory and supplier topology.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-312-ea131e9abe8941ab-native-market",
+        "boundary_checks": {
+          "source_reference_amount": 1.0,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 2,
+          "final_freight_entries": 0,
+          "source_producer_entries": 2,
+          "capacity_or_lifetime_multiplier": false,
+          "redundant_one_supplier_market_helper_avoided": false
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "76db97fdf763de4780ae656cde92801edff0c19b3e33dd3f14d5b06cb3908284",
+              "metadata_sha256": "712e45bc407a1e90507dd9adf86ab06f3776a5dd9b762c1b7e9639a6dd2b802e"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+              "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca9c7be85f76e094b905658da392f30efcd8dbe35a224fb3813a44cbbe13c014",
+              "metadata_sha256": "2a138aad926a95936294a3e08d221495472ecee8e5224033e9263eb427aec347"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "87628afcd1a6480149efc4e2028648bb9ee075fa500cf8326fd36d753204f103",
+              "metadata_sha256": "c42691915d00d088a46b175b0af45f46e64bbae6d9cd63c0e3d25fa32c8b5523"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1ffbd9c5947be9b932567cdb055ad9bcecb460524d00a5ebed46326cfc178677",
+              "metadata_sha256": "c3bbed5678335b2836a3de6dde47b25a496da0759a8f1aa3e2d86d49552cf19b"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "5442fa22ade9a9e07f39c50dd9d498698b886f0eeda73b75f5e574b7c0717cea",
+              "metadata_sha256": "769db2befcd7963eda0ae37c882e4acb86d98430deb07284787a9a3008bfa7d3"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "107130c093dc34921f1f973384efc8bd73b00e7d8dcd643e6870892aed583266",
+              "metadata_sha256": "11ae2fa16ead782dc7458ac8efb5dea6954fd98fb7d26f2d37bd8463d12902c4"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "828db5811b665339b46951cb73d2e8384762d69a05fd52f2d1d1efc5a9eb3c61",
+              "metadata_sha256": "744b8049f96b279ca5b5a4c3c0d354870668d2b2755f1aee42de35cd1707df97"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+              "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, pyrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, pyrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a72ded32dbc4d67aee72d22bcbb59905fcae3e7405b3bbfe1eb8510c58dd6417",
+              "metadata_sha256": "97107f7c072a23cfdf9d04851d7c153b4cbd8987ebeb8ddd068a007fc0772a92"
+            },
+            {
+              "identity": {
+                "name": "Disposal, Li-ions batteries, hydrometallurgical",
+                "reference product": "Disposal, Li-ions batteries, hydrometallurgical",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b804bd672d7a49979202b7d32fa67a9d29f52be21aca00f2cca0279eaf4041cf",
+              "metadata_sha256": "17d0eed0906a9de81dfde231314325c86c177b218fe552b9b48431e30e7b7ad2"
+            },
+            {
+              "identity": {
+                "name": "Transoceanic freight ship",
+                "reference product": "Transoceanic freight ship",
+                "location": "OCE",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "20a39804406cc6845745e17129f160faed7aac992ec340eafdfcb4c891ff1fc9",
+              "metadata_sha256": "c80b9c2f77e672604d44859832467d43f79b4161de6064563716647631551c5c"
+            },
+            {
+              "identity": {
+                "name": "Maintenance, transoceanic freight ship",
+                "reference product": "Maintenance, transoceanic freight ship",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "30cabcbd093ba0e94ae21b5804363267637bff68369683b6243973794370c92e",
+              "metadata_sha256": "3a87583642e7cf1adb9c8c6b6aa26952234ee5e5d0b309730422877350555db0"
+            },
+            {
+              "identity": {
+                "name": "Port facilities",
+                "reference product": "Port facilities",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9d31d69c3522beed0b550fb57764a50ae74a6174071ae258f4a9aa46209c3c8f",
+              "metadata_sha256": "199cb8db5a05a074eee047bcdc6e04225c357678c66576881d3d4b770009fcbc"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Use the complete native RER Port facilities inventory for both original port-construction producer shares, retaining each source quantity and supported statistics separately. Both source and native describe the construction/use/disposal boundary of one port with Rotterdam-based modelling; native documentation uses100years. Do not confuse the copied word airport in native free text with the actual port inventory and supplier topology.",
+        "Native whole-port model replaces the source regional producer inventories. Civil materials, maintenance, excavation/disposal, land occupation, infrastructure scale, regional supplies, vintage, allocation and internal uncertainty differ. Preserve the caller per-port-unit demand without invented capacity, utilisation or lifetime scaling. Do not add a second port construction, disposal or land inventory; score effects remain unquantified.",
+        "Approve only the exact inspected ecoinvent3.12cutoff source through the existing native UVEK2025-to2026 route. Preserve signed caller amounts, formulas, supported uncertainty and separate emissions. No inverse, cross-system-model or uninspected source-release permission is inferred. No physical exchange is omitted and no LCIA equivalence is claimed.",
+        "Keep complete native supplier inventories and internal freight. Retain original final-market delivery entries separately through whole native modal freight per signed tonne-km, without distance, payload, loading or infrastructure multipliers. Geography, fleet, cargo allocation, traction, fuel, emissions, vintage and internal uncertainty are screening differences with unquantified score effects."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2200d141cbc53b69a52f9278d84d57cd5e669140e5c305d2c660a1f149b1fd58"
+        }
+      ]
     }
   ],
   "superseded_operations": [
