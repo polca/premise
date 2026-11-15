@@ -222,3 +222,91 @@ def test_multiple_screening_omissions_retain_original_indices(tmp_path, monkeypa
     assert audits[1]["path"].endswith("exchanges[2]")
     assert audits[1]["details"]["screening_only"]
     assert audits[1]["details"]["source_exchange"] == second["exchange"]
+
+
+SODIUM_DECISION = next(
+    d
+    for d in json.loads(REVIEW_PATH.read_text())["decisions"]
+    if d["id"] == "uvek-2026-disodium-disulphite-sodium-water"
+)
+
+
+def sodium_fixture():
+    decision = SODIUM_DECISION
+    row = {
+        key: copy.deepcopy(decision[key])
+        for key in ("slug", "version_id", "semantic_version", "sha256")
+    }
+    row.update(
+        activity_code="sodium-owner", background=copy.deepcopy(decision["source"])
+    )
+    exchange = copy.deepcopy(decision["exchange"])
+    exchange.update(amount=-2, **{"uncertainty type": 3, "loc": -2, "scale": 0.2})
+    other = {**copy.deepcopy(exchange), "categories": ["air"]}
+    activity = {
+        **copy.deepcopy(decision["activity"]),
+        "code": row["activity_code"],
+        "unit": "kilogram",
+        "exchanges": [other, exchange],
+    }
+    return [activity], [row], copy.deepcopy(decision["target"])
+
+
+def test_biosphere_omission_is_compartment_scoped_and_audits_actual_signed_quantity():
+    activities, versions, target = sodium_fixture()
+    before = copy.deepcopy(activities)
+    result, audits = prepare_approved_omissions(activities, versions, target)
+    assert activities == before
+    assert result[0]["exchanges"] == [before[0]["exchanges"][0]]
+    assert len(audits) == 1
+    audit = audits[0]
+    assert audit["code"] == "migration.biosphere_omission"
+    assert audit["details"]["matching_basis"] == ["name", "unit", "categories"]
+    assert audit["details"]["source_exchange"] == before[0]["exchanges"][1]
+    assert audit["details"]["original_exchange_index"] == 1
+    assert "Actual omitted quantity: -2 kilogram" in audit["message"]
+    audit["details"]["source_exchange"]["amount"] = 0
+    assert activities == before
+
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("name", "Sodium ion"),
+        ("unit", "gram"),
+        ("categories", ["water", "surface water"]),
+        ("type", "technosphere"),
+    ],
+)
+def test_biosphere_omission_does_not_extend_to_another_flow(field, value):
+    activities, versions, target = sodium_fixture()
+    activities[0]["exchanges"][1][field] = value
+    before = copy.deepcopy(activities)
+    result, audits = prepare_approved_omissions(activities, versions, target)
+    assert result == activities == before
+    assert not audits
+
+
+@pytest.mark.parametrize("change", ["owner", "target", "source", "duplicate"])
+def test_biosphere_omission_keeps_other_owners_and_contexts_or_refuses_ambiguity(
+    change,
+):
+    activities, versions, target = sodium_fixture()
+    if change == "owner":
+        activities[0]["location"] = "CH"
+    elif change == "target":
+        target["biosphere"]["version"] = "3.12"
+    elif change == "source":
+        versions[0]["background"]["biosphere"]["version"] = "3.10"
+    else:
+        activities[0]["exchanges"].append(copy.deepcopy(activities[0]["exchanges"][1]))
+    before = copy.deepcopy(activities)
+    if change in {"source", "duplicate"}:
+        with pytest.raises(
+            ClicInventoryError, match="omission approval does not cover"
+        ):
+            prepare_approved_omissions(activities, versions, target)
+    else:
+        result, audits = prepare_approved_omissions(activities, versions, target)
+        assert result == activities and not audits
+    assert activities == before

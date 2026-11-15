@@ -15,6 +15,19 @@ def _identity(record):
     return activity_identity(record)[:3]
 
 
+def _exchange_matches(exchange, approved):
+    if exchange.get("type") != approved.get("type"):
+        return False
+    if exchange.get("type") == "biosphere":
+        return (
+            exchange.get("name") == approved.get("name")
+            and exchange.get("unit") == approved.get("unit")
+            and tuple(exchange.get("categories", ()))
+            == tuple(approved.get("categories", ()))
+        )
+    return _identity(exchange) == _identity(approved)
+
+
 def _approval_error(activity, row, decision, target, differences):
     """Identify the approval and the values that need another review."""
     return ClicInventoryError(
@@ -35,6 +48,7 @@ def prepare_approved_omissions(activities, versions, target):
 
     Version pins and full-record hashes are historical approval evidence, not
     matching criteria. Audit the actual source exchange, including its quantity.
+    Biosphere omissions additionally require the reviewed compartment and unit.
     Other consumers and destination contexts keep their exchanges.
     """
     review = json.loads(REVIEW_PATH.read_text(encoding="utf-8"))
@@ -57,8 +71,7 @@ def prepare_approved_omissions(activities, versions, target):
             indices = [
                 index
                 for index, exchange in enumerate(activity["exchanges"])
-                if _identity(exchange) == _identity(decision["exchange"])
-                and exchange.get("type") == decision["exchange"].get("type")
+                if _exchange_matches(exchange, decision["exchange"])
             ]
             if not indices:
                 continue
@@ -80,7 +93,7 @@ def prepare_approved_omissions(activities, versions, target):
             original_index = original_indices[id(exchange)]
             audit = {
                 "severity": "warning",
-                "code": "migration.technosphere_omission",
+                "code": f"migration.{exchange['type']}_omission",
                 "message": (
                     f"{decision['message']} Actual omitted quantity: "
                     f"{exchange.get('amount')} {exchange.get('unit')}."
@@ -88,7 +101,11 @@ def prepare_approved_omissions(activities, versions, target):
                 "path": f"datasets[{activity['code']}].exchanges[{original_index}]",
                 "details": {
                     "decision_id": decision["id"],
-                    "matching_basis": ["name", "reference product", "location"],
+                    "matching_basis": (
+                        ["name", "unit", "categories"]
+                        if exchange["type"] == "biosphere"
+                        else ["name", "reference product", "location"]
+                    ),
                     "approved_activity": copy.deepcopy(decision["activity"]),
                     "approved_exchange": copy.deepcopy(decision["exchange"]),
                     "source_pin": {

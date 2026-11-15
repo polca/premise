@@ -1,0 +1,69 @@
+{
+  "status": "ten_record_source39_cohort_harmonized",
+  "source_activities": 10,
+  "result_activities": 32,
+  "omission_count": 1,
+  "actual_omitted_quantity": 0.00134036749331893,
+  "warning_emitted": true,
+  "source_records_unchanged": true,
+  "manifest_preserves_original_exchange": true,
+  "cohorts": [
+    {
+      "fingerprint": "149716b973bba148b04a24c635055aaf226253a4643fe774f25b9bea2085afde",
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9"
+        }
+      },
+      "target": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        },
+        "technosphere": {
+          "family": "uvek",
+          "system_model": "cutoff",
+          "version": "2026"
+        }
+      },
+      "activity_count": 32,
+      "issue_counts": {
+        "clic.compatibility_proxy_limitations": 38,
+        "migration.approved_correspondence": 39,
+        "migration.biosphere_omission": 1,
+        "migration.canonical_biosphere_identity": 2,
+        "migration.catalog_correspondence": 2,
+        "migration.foreground_recipe": 22,
+        "migration.reviewed_technosphere_correspondence": 7,
+        "migration.scoped_compatibility_review": 2,
+        "migration.technosphere_information_loss": 34,
+        "migration.unit_changes_require_factors": 2
+      },
+      "cache_hit": true,
+      "audit_sha256": "474c6ba3d6a81f63ac7f01224ba57cceef152c89cb14e6865674ab26e15b101a",
+      "elapsed_seconds": 0.010633792029693723
+    }
+  ],
+  "new_brightway_databases": 0,
+  "elapsed_seconds": 19.64555133297108,
+  "source": "CLIC published archive snapshot 20261110T030235Z-613ea498808a",
+  "qualification_limit": "Only the ten source3.9 records pass conversion; metals is not operational or publicly enabled. The complete metals trial subsequently refused sixteen exact source3.8 correspondences.",
+  "full_metals_trial": {
+    "status": "failed",
+    "failed_stage": "inventory preparation",
+    "exception_type": "ClicInventoryError",
+    "sector": "metals",
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "freshness": "snapshot",
+    "validation_disabled": false,
+    "export_performed": false,
+    "elapsed_seconds": 44.1976085830247
+  },
+  "focused_tests_passed": 24
+}
