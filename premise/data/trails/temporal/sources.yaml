@@ -1,5 +1,68 @@
 schema_version: 1
 sources:
+  gem-chemicals-tracker-dashboard-2026:
+    title: Global Chemicals Tracker, November 2026 public dashboard snapshot
+    publisher: Global Energy Monitor
+    kind: researched industrial-site registry
+    uri: https://gem-viz.fly.dev/chemicals/plants.json
+    project_uri: https://globalenergymonitor.org/projects/global-chemicals-tracker
+    retrieved: 2026-11-14
+    coverage: 1,320 industrial sites, chemical-specific existing and developing capacity, feedstocks and
+      site ages. Site dates do not identify current process-unit construction.
+  yara-sluiskil-site-history-2017:
+    title: Investor and analyst visit to Sluiskil, site history
+    publisher: Yara International
+    uri: https://www.yara.com/siteassets/investors/057-reports-and-presentations/other/2017/2017-12-12_site_visit_sluiskil_presentation.pdf/
+    published: 2017-12-12
+    retrieved: 2026-11-14
+    coverage: Site timeline identifies 1929 as ammonium-sulphate production and documents later fuel changes
+      and investments, demonstrating why site age cannot date current ammonia units.
+  gem-wind-power-tracker-february-2026:
+    title: Global Wind Power Tracker, February 2026 public map snapshot
+    publisher: Global Energy Monitor
+    kind: researched wind-farm phase registry
+    uri: https://publicgemdata.nyc3.cdn.digitaloceanspaces.com/interim_maps/gwpt_map_2026-02.geojson
+    project_uri: https://globalenergymonitor.org/projects/global-wind-power-tracker
+    published: 2026-02
+    retrieved: 2026-11-14
+    coverage: Wind farm phase capacity, operating status, start year and installation type; operating
+      fixed-bottom offshore phases are selected separately from floating and unknown-mount phases.
+  igu-world-lng-report-2026:
+    title: World LNG Report 2026, Appendix 3 active LNG fleet
+    publisher: International Gas Union
+    uri: https://www.datocms-assets.com/146580/1783403747-igu-world-lng-report-2026.pdf
+    published: 2026-07-07
+    retrieved: 2026-11-14
+    coverage: 804 active LNG vessels at end-2025 with IMO numbers, cargo capacities, vessel types, delivery
+      years and ages referenced to 2026; orderbook is separate.
+  gem-bioenergy-power-tracker-api-2026:
+    title: Global Bioenergy Power Tracker, API snapshot retrieved 14 November 2026
+    publisher: Global Energy Monitor
+    kind: researched global bioenergy generating-unit registry
+    uri: https://api.globalenergymonitor.org/assets?asset_type=bioenergy-plant&include_type_fields=true
+    project_uri: https://globalenergymonitor.org/projects/global-bioenergy-power-tracker
+    retrieved: 2026-11-14
+    coverage: Complete 4,535-record API snapshot; operating status, electric capacity, fuel categories,
+      original start year and conversion metadata. API coverage is not asserted identical to the latest
+      website release. Small generating units are incompletely covered.
+  orr-passenger-rolling-stock-maintenance-review-2026:
+    title: Rolling Stock Maintenance Market Review, interim report, Figure 3.2
+    publisher: Office of Rail and Road
+    kind: regulator analysis of stakeholder fleet submissions
+    uri: https://www.orr.gov.uk/sites/default/files/2026-10/2026-interim-report-rolling-stock-maintenance-market-review.pdf
+    published: 2026-10-29
+    retrieved: 2026-11-14
+    coverage: Mainline passenger vehicles in Great Britain; six rounded age-band shares, excluding TARA
+      fleets representing 6% of vehicles; freight, light rail and metro are outside the review scope.
+  nod-facility-register-history-2026:
+    title: Facility register and facility status history, 14 November 2026 snapshot
+    publisher: Norwegian Offshore Directorate
+    kind: administrative offshore facility register
+    uri: https://factpages.sodir.no/en/facility/TableView/Fixed
+    history_uri: https://factpages.sodir.no/en/facility/TableView/History
+    retrieved: 2026-11-14
+    coverage: Complete CSV exports of fixed facilities and status history; includes facility IDs, location,
+      functions, service phase, current startup dates and earlier service intervals.
   ec-light-duty-vehicle-survival-2015:
     title: Evaluation of Regulations 443/2009 and 510/2011 on CO2 emissions from light-duty vehicles
     publisher: European Commission
@@ -9,14 +72,15 @@ sources:
     doi: 10.2834/64489
     published: 2015-04-08
     retrieved: 2026-11-14
-    coverage: Passenger-car and light-commercial-vehicle survival through age 19; UK data used as a European proxy.
+    coverage: Passenger-car and light-commercial-vehicle survival through age 19; UK data used as a European
+      proxy.
   eurostat-road-eqs-carage-2024:
     title: Passenger cars by age, reference year 2024
     publisher: Eurostat
     kind: administrative statistics
     uri: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/road_eqs_carage?lang=en&time=2024
     doi: 10.2908/ROAD_EQS_CARAGE
-    dataset_structure_version: "58.0"
+    dataset_structure_version: '58.0'
     data_updated: 2026-10-06
     retrieved: 2026-11-14
   eurostat-road-eqs-busage-2024:
@@ -25,7 +89,7 @@ sources:
     kind: administrative statistics
     uri: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/road_eqs_busage?lang=en&time=2024
     doi: 10.2908/ROAD_EQS_BUSAGE
-    dataset_structure_version: "55.0"
+    dataset_structure_version: '55.0'
     data_updated: 2026-10-06
     retrieved: 2026-11-14
   eurostat-road-eqs-lorroa-2024:
@@ -34,9 +98,37 @@ sources:
     kind: administrative statistics
     uri: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/road_eqs_lorroa?lang=en&time=2024
     doi: 10.2908/ROAD_EQS_LORROA
-    dataset_structure_version: "61.0"
+    dataset_structure_version: '61.0'
     data_updated: 2026-10-06
     retrieved: 2026-11-14
+  eurostat-avia-eq-arc-age-2024:
+    title: Commercial aircraft fleet by age of aircraft and country of operator, reference year 2024
+    publisher: Eurostat
+    kind: commercial aircraft-registry statistics derived from Cirium
+    uri: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/avia_eq_arc_age?lang=en&time=2024
+    dataset_code: avia_eq_arc_age
+    data_updated: 2026-07-07
+    retrieved: 2026-11-14
+    coverage: Commercial aircraft in service on 31 December by country of operator and five age classes;
+      EU27 reference-year 2024 data have complete country and age-band coverage.
+  easa-european-aviation-environmental-report-2025:
+    title: European Aviation Environmental Report 2025
+    publisher: European Union Aviation Safety Agency
+    kind: European aviation fleet and environmental assessment
+    uri: https://www.easa.europa.eu/sites/default/files/eaer-downloads/EASA_EAER_2025_Book_v5.pdf
+    published: 2025
+    retrieved: 2026-11-14
+    coverage: European fleet mean age by carrier segment through 2023, including an overall mean of 11.8
+      years and a substantially older cargo-aircraft fleet.
+  eea-eu-passenger-car-age-method-2022:
+    title: Age of the EU passenger cars - Product lifespans monitoring trends in Europe
+    publisher: European Environment Agency
+    kind: derived indicator methodology
+    uri: https://www.eea.europa.eu/en/analysis/publications/product-lifespans-monitoring-trends/evolution-of-the-average-passenger-car-age-in-the-eu-between-2013-and-2022
+    published: 2024
+    retrieved: 2026-11-14
+    coverage: Methodological precedent for representing the open-ended over-20-years road-vehicle band
+      at 22.5 years.
   eia-860-generator-2025:
     title: Form EIA-860 detailed generator data, 2025
     publisher: U.S. Energy Information Administration
@@ -52,4 +144,256 @@ sources:
     uri: https://atb.nrel.gov/electricity/2024b/definitions
     published: 2024
     retrieved: 2026-11-14
-    coverage: Technical lives for wind, solar PV, hydropower, stationary battery storage, nuclear, and other electricity technologies.
+    coverage: Technical lives for wind, solar PV, hydropower, stationary battery storage, nuclear, and
+      other electricity technologies.
+  unctad-review-maritime-transport-2024:
+    title: 'Review of Maritime Transport 2024: Navigating maritime chokepoints'
+    publisher: United Nations Conference on Trade and Development
+    kind: global merchant-fleet statistics
+    uri: https://unctad.org/system/files/official-document/rmt2024_en.pdf
+    published: 2024-10-22
+    retrieved: 2026-11-14
+    coverage: Deadweight-tonnage-weighted age-band shares for the world merchant fleet by principal vessel
+      type on 1 January 2024.
+  ccnr-market-observation-annual-report-2024:
+    title: CCNR Market Observation - Annual Report 2024
+    publisher: Central Commission for the Navigation of the Rhine
+    kind: Rhine and European inland-navigation market statistics
+    uri: https://www.ccr-zkr.org/files/documents/om/om24_II_en.pdf
+    published: 2024
+    retrieved: 2026-11-14
+    coverage: Figure 12 reports annual commissioning-year counts for Rhine dry-cargo, tanker, and push-and-tug
+      fleets using the IVR vessel database; the source notes possible inactive old vessels and 135 dry-cargo
+      vessels with unknown construction years.
+  gem-global-solar-power-tracker-february-2026:
+    title: Global Solar Power Tracker, February 2026 release
+    publisher: Global Energy Monitor
+    kind: researched global utility-scale solar-farm phase registry
+    uri: https://globalenergymonitor.org/projects/global-solar-power-tracker/
+    data_uri: https://github.com/GlobalEnergyMonitor/gipt-dashboard/blob/main/Global-Solar-Power-Tracker-February-2026.xlsx
+    published: 2026-02
+    retrieved: 2026-11-14
+    license: CC BY 4.0
+    coverage: Operating and prospective utility-scale solar phases of at least 1 MW worldwide, including
+      solar-thermal technology, phase status, start year, country, and reported nameplate capacity.
+  moderate-eu27-building-stock-2020-v1.4:
+    title: HEU MODERATE Building Stock Data, version 1.4
+    publisher: MODERATE Horizon Europe project and Eurac Research
+    kind: harmonised empirical and modelled building-stock dataset
+    uri: https://doi.org/10.48784/eb21f179-5e4b-42c2-8b53-2e3b14ee4551
+    license: CC BY 4.0
+    retrieved: 2026-11-14
+    coverage: EU27 national and aggregate constructed area, building counts, and characteristics by residential
+      or service subsector and seven construction periods; reference year 2020.
+  ec-fraunhofer-eu28-heating-cooling-mapping-2016:
+    title: Mapping and analyses of the current and future (2020-2030) heating/cooling fuel deployment
+    publisher: European Commission, Directorate-General for Energy
+    authors: Fraunhofer ISI, Fraunhofer ISE, TU Wien, TEP Energy, Observ'ER, and partners
+    kind: EU28 heating and cooling stock mapping study
+    uri: https://www.isi.fraunhofer.de/content/dam/isi/dokumente/ccx/mapping-eu/Mapping-HC-ExcecutiveSummary.pdf
+    published: 2016-03
+    retrieved: 2026-11-14
+    coverage: Installed-capacity-weighted age-band composition of EU28 building-heating technologies for
+      reference year 2012; empirical inputs are supplemented by bottom-up modelling where observations
+      are missing.
+  ec-vhk-heating-cooling-market-data-2026:
+    title: Market data for cooling and heating products
+    publisher: European Commission, Directorate-General for Energy
+    authors: VHK
+    kind: European product-stock and sales model
+    uri: https://op.europa.eu/en/publication-detail/-/publication/305c7d3a-b23e-11f1-b9e5-01aa75ed71a1/language-en
+    doi: 10.2833/9242048
+    published: 2026-09
+    retrieved: 2026-11-14
+    coverage: European heating and cooling product sales and stock model, including prospective Weibull
+      retirement assumptions for boilers and hydronic heat pumps.
+  eurelectric-edso-low-voltage-grid-age-2020:
+    title: 'Connecting the dots: Distribution grid investment to power the energy transition'
+    publisher: Eurelectric and European Distribution System Operators
+    authors: Monitor Deloitte
+    kind: European distribution-grid investment and asset-age study
+    uri: https://www.eurelectric.org/wp-content/uploads/2024/09/eurelectric-connecting-the-dots-full-study.pdf
+    published: 2021-01-14
+    retrieved: 2026-11-14
+    coverage: EU27 and United Kingdom low-voltage power-line age-share ranges for 2020, informed by distribution-system
+      operators and associations in ten European countries.
+  eurostat-census-2021-dwelling-construction-period:
+    title: Conventional dwellings by occupancy status, period of construction and NUTS 3 region
+    publisher: Eurostat
+    kind: population and housing census statistics
+    uri: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/cens_21dwop_r3?lang=en&geo=EU27_2020&time=2021
+    doi: 10.2908/CENS_21DWOP_R3
+    data_updated: 2025-05-21
+    retrieved: 2026-11-14
+    coverage: EU27 conventional dwellings by occupancy and construction period; used only to refine the
+      pre-1945 representative age.
+  gem-global-cement-concrete-tracker-july-2026:
+    title: Global Cement and Concrete Tracker, operating cement capacity by age group
+    publisher: Global Energy Monitor
+    kind: researched global plant registry and derived summary table
+    uri: https://docs.google.com/spreadsheets/d/1tk4YTdARFZBTG8VFCQ8oUyBEKeCwAiCi6JsUBQWxvL0/edit
+    project_uri: https://globalenergymonitor.org/projects/global-cement-concrete-tracker/
+    published: 2026-07
+    retrieved: 2026-11-14
+    coverage: Operating cement capacity by country and plant-start-date age band; 171 countries and areas,
+      with unknown-age capacity reported separately.
+  gem-global-iron-steel-tracker-september-2026-v1:
+    title: Global Iron and Steel Tracker, September 2026 V1
+    publisher: Global Energy Monitor
+    kind: researched global plant and furnace-unit registry
+    uri: https://api.globalenergymonitor.org/assets?asset_type=iron-steel-plant&include_type_fields=true
+    project_uri: https://globalenergymonitor.org/projects/global-iron-steel-tracker/
+    published: 2026-09
+    retrieved: 2026-11-14
+    coverage: Operating, planned, retired, and cancelled iron and steel furnace units with technology,
+      current capacity, unit age, location, and operating status; operating units at plants of at least
+      500,000 tonnes annual iron or steel capacity.
+  gem-global-coal-mine-tracker-may-2026:
+    title: Global Coal Mine Tracker, May 2026 release
+    publisher: Global Energy Monitor
+    kind: researched global coal-mine registry
+    uri: https://api.globalenergymonitor.org/assets?asset_type=coal-mine&include_type_fields=true
+    project_uri: https://globalenergymonitor.org/projects/global-coal-mine-tracker/
+    published: 2026-05
+    retrieved: 2026-11-14
+    license: CC BY 4.0
+    coverage: 7,117 operating, proposed, mothballed, and retired coal-mine records with mine type, opening
+      year, annual production, capacity, location, and operating status.
+  ec-railway-guidelines-final-report-2023:
+    title: Support study for the revision of the Railway Guidelines - Final Report
+    publisher: European Commission, Directorate-General for Competition
+    kind: European rail-sector study using vehicle-register data
+    uri: https://competition-policy.ec.europa.eu/system/files/2023-03/KD0423349enn_railway_guidelines_final_report.pdf
+    published: 2023-03
+    retrieved: 2026-11-14
+    coverage: Figure 15 reports the 2019 manufacturing-year composition of European freight wagons using
+      European Centralised Virtual Vehicle Register data; the report states that the register sample covers
+      more than half of the European wagon stock.
+  gem-global-gas-infrastructure-tracker-november-2025:
+    title: Global Gas Infrastructure Tracker, gas transmission pipelines
+    publisher: Global Energy Monitor
+    kind: researched global transmission-pipeline phase registry
+    uri: https://api.globalenergymonitor.org/assets?asset_type=gas-pipeline&include_type_fields=true
+    project_uri: https://globalenergymonitor.org/projects/global-gas-infrastructure-tracker/
+    published: 2025-11
+    retrieved: 2026-11-14
+    coverage: Operating, planned, retired, and cancelled natural-gas transmission-pipeline phases with
+      start years, reported or route-estimated lengths, location, and operating status; distribution and
+      gathering pipelines are excluded.
+  gem-global-oil-infrastructure-tracker-june-2026:
+    title: Global Oil Infrastructure Tracker, oil and NGL transmission pipelines
+    publisher: Global Energy Monitor
+    kind: researched global transmission-pipeline phase registry
+    uri: https://api.globalenergymonitor.org/assets?asset_type=oil-pipeline&include_type_fields=true
+    project_uri: https://globalenergymonitor.org/projects/global-oil-infrastructure-tracker/
+    published: 2026-06
+    retrieved: 2026-11-14
+    coverage: Operating, planned, retired, and cancelled crude-oil and natural-gas-liquids transmission-pipeline
+      phases with start years, reported or route-estimated lengths, location, and operating status; distribution
+      and gathering pipelines are excluded.
+  dft-veh1111-fuel-first-use-2025:
+    title: 'VEH1111: Licensed vehicles by body type, fuel type and year of first use, end-2025'
+    publisher: UK Department for Transport and Driver and Vehicle Licensing Agency
+    kind: administrative licensed vehicle stock registry
+    uri: https://assets.publishing.service.gov.uk/media/69ef3555606c20d41216341a/veh1111.ods
+    project_uri: https://www.gov.uk/government/statistical-data-sets/vehicle-licensing-statistics-data-tables
+    published: '2026-04-29'
+    retrieved: '2026-11-14'
+    sha256: bc3529975f7fa9e12181b64397cb1e619ae78926130146b64f5c35b9e268d1cc
+    coverage: United Kingdom end-2025 licensed passenger cars by fuel and first-use year. Unknown dates
+      excluded and reported; current fuel classifications do not identify conversions, size or Euro emission-class
+      vintages.
+    licence: Open Government Licence v3.0
+  trails-construction-event-convention:
+    title: TRAILS annual-resolution construction substep timing convention
+    publisher: premise/TRAILS
+    kind: explicit modelling convention
+    uri: docs/trails_temporal_distributions.rst
+    coverage: Selected new-asset assembly, installation and construction-product market links occur in
+      the parent construction year. This convention is not a measured fleet-age distribution.
+  bnetza-public-charger-register-2026-11-12:
+    title: Public charging-equipment register, 12 November 2026
+    publisher: Bundesnetzagentur
+    uri: https://data.bundesnetzagentur.de/Bundesnetzagentur/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenregister_BNetzA_2026-11-12.csv
+    published: '2026-11-12'
+    retrieved: '2026-11-15'
+    sha256: 865b2cc1059edfc5d1cb5a5cc5d9d56bf768ee99d0721cd16bfa72ce0f44224d
+    coverage: Registered physical charging-equipment ID, status, commissioning date and equipment nominal
+      power. Public infrastructure only; excludes uncompleted registration procedures.
+    licence: CC BY 4.0
+  sigeif-electricity-control-report-2023:
+    title: Electricity concession control report 2023, printed p. 19, Table P8
+    publisher: SIGEIF; underlying technical inventory from Enedis
+    uri: https://sigeif.fr/sites/default/files/2025-08/RAPPORT%20DE%20CONTROLE%20E%CC%81LECTRICITE%CC%81%202023_0.pdf
+    publication_date_note: Publication date not established; 2025-08 is the hosting-path month.
+    retrieved: '2026-11-15'
+    sha256: 56db2d609abc6385f2b0fc78cde9ab81ec8d354c4d494a42870b97de9cfb9711
+    coverage: Six low-voltage-line age bands by length in metres across 66 concession municipalities at
+      end-2023, totalling 5,409,052 metres; separate rounded mean 42 years.
+  eia-860-energy-storage-2025:
+    title: Form EIA-860 2025, Schedule 3_4 Energy Storage, Operable
+    publisher: U.S. Energy Information Administration
+    uri: https://www.eia.gov/electricity/data/eia860/xls/eia8602025.zip
+    published: '2026'
+    retrieved: '2026-11-15'
+    sha256: 22e93d60ba46c7c878bffb225d625a3ac52538687ccccb09059ad5e4945f2a8e
+    coverage: Generator status, technology, operating year, battery chemistry and nameplate stored-energy
+      capacity in MWh. Utility-scale population; smaller systems incompletely represented.
+    licence: U.S. federal government data
+  desnz-nbd-factory-summary-2026:
+    title: National Buildings Database Phase 2, Factory Summary, Table 3_16 (2023 stock)
+    publisher: UK Department for Energy Security and Net Zero
+    uri: https://assets.publishing.service.gov.uk/media/6a745f873a690e9ef0ea6cb7/NBD_Factory_Summary.xlsx
+    published: '2026-08-06'
+    retrieved: '2026-11-15'
+    sha256: be722bec59b7d3909f5c8b253e3c3d051f2b50e046ba32a304a42db31254bb0e
+    coverage: Floor-area age shares for Factories etc (FA_B); seven construction periods and unknown-age
+      share. Building stock, not process machinery commissioning.
+    licence: Open Government Licence v3.0
+  bernmobil-opportunity-charging-system:
+    title: 'Opportunity charging: operating pantograph system on routes 17, 19 and 21'
+    publisher: BERNMOBIL
+    uri: https://www.bernmobil.ch/de/unternehmen/projekte-innovationen/elektrifizierung-der-buslinien/streckenlader
+    retrieved: '2026-11-15'
+    coverage: Operator describes descending station-mounted pantographs at route termini; depot overnight
+      charging is distinct. Generic page retains an older future-tense reference to route 19; the dated
+      route-19 project update establishes actual operation.
+  bernmobil-opportunity-charging-line-17:
+    title: Electrification of bus route 17, Bern–Köniz Weiermatt
+    publisher: BERNMOBIL
+    uri: https://www.bernmobil.ch/de/unternehmen/projekte-innovationen/elektrifizierung-der-buslinien/streckenlader/linie-17
+    retrieved: '2026-11-15'
+    coverage: Operator identifies one ABB fast-charging terminus at Weiermatt and regular pilot operation
+      from 2019, with five buses. Buses are not counted as charging sites.
+  bernmobil-opportunity-charging-line-21:
+    title: Electrification of bus route 21, Bern–Bremgarten Stuckishaus
+    publisher: BERNMOBIL
+    uri: https://www.bernmobil.ch/de/unternehmen/projekte-innovationen/elektrifizierung-der-buslinien/streckenlader/linie-21
+    retrieved: '2026-11-15'
+    coverage: Electric operation finalised in spring 2023; one Siemens opportunity-charging station at Stuckishaus
+      terminus. Separate garage equipment is excluded.
+  bernmobil-opportunity-charging-line-19:
+    title: Electrification of bus route 19, Blinzern–Elfenau
+    publisher: BERNMOBIL
+    uri: https://www.bernmobil.ch/de/unternehmen/projekte-innovationen/elektrifizierung-der-buslinien/streckenlader/linie-19
+    retrieved: '2026-11-15'
+    coverage: Operation started 10 March 2025 with installed Blinzern charging infrastructure. Elfenau installation
+      remains blocked by objections and is excluded from operating stock.
+  abb-bernmobil-pantograph-pilot-2020:
+    title: ABB driving sustainable public transport through E-buses
+    publisher: ABB
+    uri: https://new.abb.com/news/detail/67788/abb-driving-sustainable-public-transport-through-e-buses
+    published: '2020-09-17'
+    retrieved: '2026-11-15'
+    coverage: 'Bern route 17: five buses entered service December 2018, charged by a descending station
+      pantograph at 450 kW. Operator regular-service year is 2019; the dating ambiguity is explicit. Depot
+      50 kW charging is separate.'
+  trails-truck-charger-inventory-placement:
+    title: 'Packaged electric and plug-in hybrid truck inventories: charger allocation'
+    publisher: premise
+    kind: inventory relationship inspection
+    uri: premise/data/additional_inventories/lci-trucks.xlsx
+    retrieved: '2026-11-15'
+    coverage: Fourteen lorry-production activities (seven weight classes, BEV and plug-in diesel hybrid)
+      allocate fractions of a 200 kW plug-in charger inside new-truck production. The workbook does not
+      establish an independent charger-fleet vintage distribution.

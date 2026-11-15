@@ -53,6 +53,35 @@ EUROSTAT_AGE_BANDS = {
     "Y_GT20": {"minimum_years": 20, "maximum_years": None},
 }
 
+# Closed Eurostat bands use their arithmetic midpoint.  The open-ended oldest
+# band follows the EEA's published stock-age convention of representing
+# vehicles older than 20 years at age 22.5.  Keeping this conversion separate
+# from ``eurostat_age_band_profile`` preserves the original source resolution
+# for evidence-only profiles while making the additional modelling assumption
+# explicit for operational construction-vintage profiles.
+EUROSTAT_REPRESENTATIVE_AGES = {
+    "Y_LT2": 1.0,
+    "Y2-5": 3.5,
+    "Y5-10": 7.5,
+    "Y10-20": 15.0,
+    "Y_GT20": 22.5,
+}
+
+EUROSTAT_AIRCRAFT_AGE_BANDS = {
+    "Y_LT5": {"minimum_years": 0, "maximum_years": 5},
+    "Y5-9": {"minimum_years": 5, "maximum_years": 10},
+    "Y10-14": {"minimum_years": 10, "maximum_years": 15},
+    "Y15-19": {"minimum_years": 15, "maximum_years": 20},
+    "Y_GE20": {"minimum_years": 20, "maximum_years": None},
+}
+EUROSTAT_AIRCRAFT_REPRESENTATIVE_AGES = {
+    "Y_LT5": 2.0,
+    "Y5-9": 7.0,
+    "Y10-14": 12.0,
+    "Y15-19": 17.0,
+    "Y_GE20": 22.5,
+}
+
 
 def decode_jsonstat(document: Mapping[str, Any]) -> list[dict[str, Any]]:
     """Decode the sparse JSON-stat representation returned by Eurostat."""
@@ -146,6 +175,145 @@ def eurostat_age_band_profile(
             }
             for index, age in enumerate(age_codes)
         ],
+    }
+
+
+def eurostat_representative_age_profile(
+    profile: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Convert Eurostat age bands to an explicit construction-vintage proxy.
+
+    This function does not estimate a lifetime distribution.  It places each
+    observed stock-age band at one documented representative age so TRAILS can
+    attach the band mass to a discrete construction year.
+    """
+
+    bands = profile.get("bands")
+    if not isinstance(bands, list) or not bands:
+        raise ValueError("A nonempty Eurostat age-band profile is required.")
+    unknown = [
+        band.get("code")
+        for band in bands
+        if band.get("code") not in EUROSTAT_REPRESENTATIVE_AGES
+    ]
+    if unknown:
+        raise ValueError(f"Unsupported Eurostat age bands: {unknown}")
+
+    points = sorted(
+        (
+            EUROSTAT_REPRESENTATIVE_AGES[band["code"]],
+            float(band["weight"]),
+        )
+        for band in bands
+    )
+    if any(not math.isfinite(weight) or weight < 0 for _, weight in points):
+        raise ValueError("Eurostat age-band weights must be finite and nonnegative.")
+    total = sum(weight for _, weight in points)
+    if not math.isclose(total, 1.0, rel_tol=1e-9, abs_tol=1e-12):
+        raise ValueError("Eurostat age-band weights must sum to one.")
+
+    # TRAILS convention lists the oldest (most negative) construction offset
+    # first.  Correct the final weight for harmless floating-point drift.
+    points.reverse()
+    weights = [weight for _, weight in points]
+    weights[-1] += 1.0 - sum(weights)
+    return {
+        "offsets_years": [-age for age, _ in points],
+        "weights": weights,
+        "mean_age_years": sum(age * weight for age, weight in points),
+    }
+
+
+def eurostat_aircraft_age_band_profile(
+    document: Mapping[str, Any], *, countries: Iterable[str] = EU27_2020
+) -> dict[str, Any]:
+    """Aggregate EU aircraft ages over countries reporting every age band."""
+
+    records = decode_jsonstat(document)
+    countries = set(countries)
+    age_codes = [
+        code
+        for code in document["dimension"]["age"]["category"]["index"]
+        if code in EUROSTAT_AIRCRAFT_AGE_BANDS
+    ]
+    if not age_codes:
+        raise ValueError("No supported Eurostat aircraft age bands were found.")
+    complete_countries = sorted(
+        country
+        for country in countries
+        if all(
+            any(
+                record.get("geo") == country and record.get("age") == age
+                for record in records
+            )
+            for age in age_codes
+        )
+    )
+    if not complete_countries:
+        raise ValueError("No country reports every requested aircraft age band.")
+    totals = {
+        age: sum(
+            record["value"]
+            for record in records
+            if record.get("geo") in complete_countries and record.get("age") == age
+        )
+        for age in age_codes
+    }
+    total = sum(totals.values())
+    if total <= 0:
+        raise ValueError(
+            "Eurostat aircraft age-band observations have no positive mass."
+        )
+    weights = [totals[age] / total for age in age_codes]
+    weights[-1] += 1.0 - sum(weights)
+    return {
+        "countries": complete_countries,
+        "country_count": len(complete_countries),
+        "observations": int(total),
+        "bands": [
+            {
+                "code": age,
+                **EUROSTAT_AIRCRAFT_AGE_BANDS[age],
+                "count": int(totals[age]),
+                "weight": weights[index],
+            }
+            for index, age in enumerate(age_codes)
+        ],
+    }
+
+
+def eurostat_aircraft_representative_age_profile(
+    profile: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Convert observed aircraft age bands to a discrete fleet-vintage proxy."""
+
+    bands = profile.get("bands")
+    if not isinstance(bands, list) or not bands:
+        raise ValueError("A nonempty Eurostat aircraft age-band profile is required.")
+    unknown = [
+        band.get("code")
+        for band in bands
+        if band.get("code") not in EUROSTAT_AIRCRAFT_REPRESENTATIVE_AGES
+    ]
+    if unknown:
+        raise ValueError(f"Unsupported Eurostat aircraft age bands: {unknown}")
+    points = sorted(
+        (
+            EUROSTAT_AIRCRAFT_REPRESENTATIVE_AGES[band["code"]],
+            float(band["weight"]),
+        )
+        for band in bands
+    )
+    total = sum(weight for _, weight in points)
+    if not math.isclose(total, 1.0, rel_tol=1e-9, abs_tol=1e-12):
+        raise ValueError("Eurostat aircraft age-band weights must sum to one.")
+    points.reverse()
+    weights = [weight for _, weight in points]
+    weights[-1] += 1.0 - sum(weights)
+    return {
+        "offsets_years": [-age for age, _ in points],
+        "weights": weights,
+        "mean_age_years": sum(age * weight for age, weight in points),
     }
 
 

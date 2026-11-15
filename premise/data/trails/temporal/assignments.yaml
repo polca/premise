@@ -1,5 +1,3859 @@
 schema_version: 1
 assignments:
+- id: proxy-global-bernmobil-pantograph-site-vintage
+  profile: bernmobil-ch-pantograph-site-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, passenger bus,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: equals
+      value: EV charger, level 3, with pantograph, 450 kW
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-new-truck-allocated-charger-construction-event
+  profile: reviewed-truck-allocated-charger-construction-event
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: lorry production, battery electric,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: lorry production, plugin diesel hybrid,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: equals
+      value: EV charger, level 3, plugin, 200 kW
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-new-factory-market-passthrough-timing
+  profile: reviewed-new-asset-construction-substep
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: in
+      value:
+      - market for photovoltaic cell factory
+      - market for metal coating facility
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: reference product
+      operator: in
+      value:
+      - photovoltaic cell factory
+      - metal coating facility
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-global-bnetza-dc-plugin-charger-vintage
+  profile: bnetza-de-dc-plugin-charger-150-250kw-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger bus,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: transport, passenger car,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: transport, freight, lorry,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: equals
+      value: EV charger, level 3, plugin, 200 kW
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: &id001
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-global-sigeif-low-voltage-network-vintage
+  profile: sigeif-fr-low-voltage-network-vintage-2023
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    all:
+    - field: reference product
+      operator: equals
+      value: electricity, low voltage
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: kilowatt hour
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: reference product
+      operator: equals
+      value: distribution network, electricity, low voltage
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: kilometer
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id001
+  expected_matches:
+    minimum: 1
+- id: proxy-global-eia-stationary-battery-energy-vintage
+  profile: eia-us-stationary-battery-energy-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity supply, from stationary battery
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: market for battery capacity, stationary
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: kilowatt hour
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id001
+  expected_matches:
+    minimum: 1
+- id: proxy-global-desnz-factory-building-vintage
+  profile: desnz-gb-factory-building-vintage-2023
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: photovoltaic cell production,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: wafer production,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: computer production,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: printer production,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: Selective coating
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: metal coating,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: bitumen seal production,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: hard chromium coating,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: enamelling
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: reference product
+      operator: in
+      value:
+      - photovoltaic cell factory
+      - metal coating facility
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id001
+  expected_matches:
+    minimum: 1
+- id: reviewed-uk-dft-gasoline-car-construction-vintage
+  profile: dft-uk-gasoline-car-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, gasoline,
+      case_sensitive: false
+    all:
+    - field: location
+      operator: in
+      value:
+      - GB
+      - UK
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, gasoline,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: &id002
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+- id: proxy-global-dft-gasoline-car-construction-vintage
+  profile: dft-uk-gasoline-car-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, gasoline,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, gasoline,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+  expected_matches:
+    minimum: 1
+- id: reviewed-uk-dft-diesel-car-construction-vintage
+  profile: dft-uk-diesel-car-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, diesel,
+      case_sensitive: false
+    all:
+    - field: location
+      operator: in
+      value:
+      - GB
+      - UK
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, diesel,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+- id: proxy-global-dft-diesel-car-construction-vintage
+  profile: dft-uk-diesel-car-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, diesel,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, diesel,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+  expected_matches:
+    minimum: 1
+- id: reviewed-uk-dft-battery-electric-car-construction-vintage
+  profile: dft-uk-battery-electric-car-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, battery electric,
+      case_sensitive: false
+    all:
+    - field: location
+      operator: in
+      value:
+      - GB
+      - UK
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, battery electric,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+- id: proxy-global-dft-battery-electric-car-construction-vintage
+  profile: dft-uk-battery-electric-car-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, battery electric,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, battery electric,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+  expected_matches:
+    minimum: 1
+- id: reviewed-uk-dft-fuel-cell-electric-car-construction-vintage
+  profile: dft-uk-fuel-cell-electric-car-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, fuel cell electric,
+      case_sensitive: false
+    all:
+    - field: location
+      operator: in
+      value:
+      - GB
+      - UK
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, fuel cell electric,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+- id: proxy-global-dft-fuel-cell-electric-car-construction-vintage
+  profile: dft-uk-fuel-cell-electric-car-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, fuel cell electric,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, fuel cell electric,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+  expected_matches:
+    minimum: 1
+- id: reviewed-uk-dft-gas-car-construction-vintage
+  profile: dft-uk-gas-car-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, compressed gas,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: transport, passenger car, liquefied petroleum gas,
+      case_sensitive: false
+    all:
+    - field: location
+      operator: in
+      value:
+      - GB
+      - UK
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, compressed gas,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: Passenger car, liquefied petroleum gas,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+- id: proxy-global-dft-gas-car-construction-vintage
+  profile: dft-uk-gas-car-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, compressed gas,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: transport, passenger car, liquefied petroleum gas,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, compressed gas,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: Passenger car, liquefied petroleum gas,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+  expected_matches:
+    minimum: 1
+- id: reviewed-uk-dft-gasoline-hybrid-car-construction-vintage
+  profile: dft-uk-gasoline-hybrid-car-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, gasoline hybrid,
+      case_sensitive: false
+    all:
+    - field: location
+      operator: in
+      value:
+      - GB
+      - UK
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, gasoline hybrid,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+- id: proxy-global-dft-gasoline-hybrid-car-construction-vintage
+  profile: dft-uk-gasoline-hybrid-car-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, gasoline hybrid,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, gasoline hybrid,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+  expected_matches:
+    minimum: 1
+- id: reviewed-uk-dft-diesel-hybrid-car-construction-vintage
+  profile: dft-uk-diesel-hybrid-car-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, diesel hybrid,
+      case_sensitive: false
+    all:
+    - field: location
+      operator: in
+      value:
+      - GB
+      - UK
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, diesel hybrid,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+- id: proxy-global-dft-diesel-hybrid-car-construction-vintage
+  profile: dft-uk-diesel-hybrid-car-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, diesel hybrid,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, diesel hybrid,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+  expected_matches:
+    minimum: 1
+- id: reviewed-uk-dft-plugin-gasoline-hybrid-car-construction-vintage
+  profile: dft-uk-plugin-gasoline-hybrid-car-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, plugin gasoline hybrid,
+      case_sensitive: false
+    all:
+    - field: location
+      operator: in
+      value:
+      - GB
+      - UK
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, plugin gasoline hybrid,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+- id: proxy-global-dft-plugin-gasoline-hybrid-car-construction-vintage
+  profile: dft-uk-plugin-gasoline-hybrid-car-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, plugin gasoline hybrid,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, plugin gasoline hybrid,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+  expected_matches:
+    minimum: 1
+- id: reviewed-uk-dft-plugin-diesel-hybrid-car-construction-vintage
+  profile: dft-uk-plugin-diesel-hybrid-car-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, plugin diesel hybrid,
+      case_sensitive: false
+    all:
+    - field: location
+      operator: in
+      value:
+      - GB
+      - UK
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, plugin diesel hybrid,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+- id: proxy-global-dft-plugin-diesel-hybrid-car-construction-vintage
+  profile: dft-uk-plugin-diesel-hybrid-car-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 20
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger car, plugin diesel hybrid,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car, plugin diesel hybrid,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions: *id002
+  expected_matches:
+    minimum: 1
+- profile: reviewed-new-asset-construction-substep
+  target: supplier
+  kind: selector
+  priority: 100
+  applicability: &id003
+    ecoinvent_versions: *id002
+  expected_matches: &id004
+    minimum: 1
+  id: reviewed-new-vehicle-assembly-component-timing
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: Passenger car,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: Passenger bus,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: lorry production,
+      case_sensitive: false
+  exchange_match:
+    any:
+    - field: name
+      operator: startswith
+      value: gearbox, for lorry
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: retarder, for lorry
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: suspension, for lorry
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: tires and wheels, for lorry
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: fuel tank,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: fuel tank assembly,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: fuel cell system assembly,
+      case_sensitive: false
+- profile: reviewed-new-asset-construction-substep
+  target: supplier
+  kind: selector
+  priority: 100
+  applicability: *id003
+  expected_matches: *id004
+  id: reviewed-new-photovoltaic-installation-substep-timing
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: photovoltaic slanted-roof installation,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: photovoltaic facade installation,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: photovoltaic flat-roof installation,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: photovoltaic plant construction,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: market for photovoltaic slanted-roof installation,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: market for photovoltaic facade installation,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: market for photovoltaic flat-roof installation,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: market for photovoltaics, electric installation for
+      case_sensitive: false
+  exchange_match:
+    any:
+    - field: name
+      operator: startswith
+      value: photovoltaics, electric installation for
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: photovoltaic slanted-roof installation,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: photovoltaic facade installation,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: photovoltaic flat-roof installation,
+      case_sensitive: false
+- profile: reviewed-new-asset-construction-substep
+  target: supplier
+  kind: selector
+  priority: 100
+  applicability: *id003
+  expected_matches: *id004
+  id: reviewed-new-chp-construction-work-timing
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: heat and power co-generation unit construction,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: micro gas turbine production,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: fuel cell production, solid oxide,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: market for construction work, heat and power co-generation unit,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: equals
+      value: construction work, heat and power co-generation unit, 160kW electrical
+      case_sensitive: false
+- id: reviewed-gb-gem-gwpt-offshore-fixed-structure-vintage
+  profile: gem-gwpt-united-kingdom-offshore-fixed-structure-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 130
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, wind,
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: offshore
+      case_sensitive: false
+    - field: location
+      operator: equals
+      value: GB
+      case_sensitive: false
+  exchange_match: &id005
+    all:
+    - field: name
+      operator: equals
+      value: wind power plant, 2MW, offshore, fixed parts
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-de-gem-gwpt-offshore-fixed-structure-vintage
+  profile: gem-gwpt-germany-offshore-fixed-structure-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 130
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, wind,
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: offshore
+      case_sensitive: false
+    - field: location
+      operator: equals
+      value: DE
+      case_sensitive: false
+  exchange_match: *id005
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-cn-gem-gwpt-offshore-fixed-structure-vintage
+  profile: gem-gwpt-china-offshore-fixed-structure-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 130
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, wind,
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: offshore
+      case_sensitive: false
+    any:
+    - field: location
+      operator: equals
+      value: CN
+      case_sensitive: false
+    - field: location
+      operator: startswith
+      value: CN-
+      case_sensitive: false
+  exchange_match: *id005
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-gem-gwpt-offshore-fixed-structure-vintage
+  profile: gem-gwpt-europe-offshore-fixed-structure-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, wind,
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: offshore
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RER
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - EL
+      - ES
+      - FI
+      - FR
+      - HR
+      - HU
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      - CH
+      - GB
+      - 'NO'
+      - IS
+      - LI
+      - Europe without Switzerland
+      case_sensitive: false
+  exchange_match: *id005
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-global-gem-gwpt-offshore-fixed-structure-vintage
+  profile: gem-gwpt-world-offshore-fixed-structure-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, wind,
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: offshore
+      case_sensitive: false
+  exchange_match: *id005
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-igu-lng-carrier-construction-vintage
+  profile: igu-world-lng-carrier-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 130
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, sea, tanker for liquefied natural gas,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: equals
+      value: tanker, for liquefied natural gas
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-gbpt-wood-biomass-construction-vintage
+  profile: gem-gbpt-europe-wood-biomass-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat and power co-generation, wood chips
+      case_sensitive: false
+    - field: location
+      operator: in
+      value: &id008
+      - RER
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - EL
+      - ES
+      - FI
+      - FR
+      - HR
+      - HU
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      - CH
+      - GB
+      - 'NO'
+      - IS
+      - LI
+      - AL
+      - BA
+      - ME
+      - MK
+      - RS
+      - UA
+      - BY
+      - MD
+      - RU
+      - Europe without Switzerland
+      - Europe, without Russia and Turkey
+      case_sensitive: false
+  caller_exclude: &id006
+    any:
+    - field: name
+      operator: contains
+      value: state-of-the-art
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: future
+      case_sensitive: false
+  exchange_match: &id007
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: furnace, wood chips, with silo,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: heat and power co-generation unit, organic Rankine cycle,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-global-gem-gbpt-wood-biomass-construction-vintage
+  profile: gem-gbpt-world-wood-biomass-construction-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat and power co-generation, wood chips
+      case_sensitive: false
+  caller_exclude: *id006
+  exchange_match: *id007
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-gbpt-waste-incineration-construction-vintage
+  profile: gem-gbpt-europe-waste-incineration-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: treatment of
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: municipal incineration
+      case_sensitive: false
+    - field: location
+      operator: in
+      value: *id008
+      case_sensitive: false
+  caller_exclude: &id009
+    any:
+    - field: name
+      operator: contains
+      value: without energy recovery
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: future
+      case_sensitive: false
+  exchange_match: &id010
+    all:
+    - field: name
+      operator: equals
+      value: municipal waste incineration facility
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-global-gem-gbpt-waste-incineration-construction-vintage
+  profile: gem-gbpt-world-waste-incineration-construction-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: treatment of
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: municipal incineration
+      case_sensitive: false
+  caller_exclude: *id009
+  exchange_match: *id010
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-gb-orr-passenger-rail-construction-vintage
+  profile: orr-gb-passenger-rail-construction-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger train
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: transport, passenger, train,
+      case_sensitive: false
+  caller_exclude:
+    any:
+    - field: name
+      operator: contains
+      value: high-speed
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: urban
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: in
+      value:
+      - train, passenger, regional
+      - train, passenger, long-distance
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-no-nod-offshore-platform-construction-vintage
+  profile: nod-norway-offshore-production-platform-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: in
+      value:
+      - petroleum and gas production, off-shore
+      - petroleum and gas production, offshore
+      case_sensitive: false
+    - field: location
+      operator: equals
+      value: 'NO'
+      case_sensitive: false
+  exchange_match: &id011
+    all:
+    - field: name
+      operator: in
+      value:
+      - offshore platform, petroleum
+      - offshore platform, natural gas
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-no-nod-offshore-platform-construction-vintage
+  profile: nod-norway-offshore-production-platform-construction-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: in
+      value:
+      - petroleum and gas production, off-shore
+      - petroleum and gas production, offshore
+      case_sensitive: false
+  exchange_match: *id011
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-fraunhofer-natural-gas-boiler-construction-vintage
+  profile: fraunhofer-eu28-natural-gas-boiler-construction-vintage-2012
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production, natural gas, at boiler
+      case_sensitive: false
+    - field: reference_product
+      operator: contains
+      value: heat, central or small-scale
+      case_sensitive: false
+    - field: location
+      operator: in
+      value: &id015
+      - RER
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - EL
+      - GR
+      - ES
+      - FI
+      - FR
+      - GB
+      - HR
+      - HU
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      - Europe without Switzerland
+      case_sensitive: false
+  caller_exclude: &id012
+    any:
+    - field: name
+      operator: contains
+      value: condensing
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: future
+      case_sensitive: false
+  exchange_match: &id013
+    all:
+    - field: name
+      operator: equals
+      value: gas boiler
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability: &id014
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-fraunhofer-natural-gas-boiler-construction-vintage
+  profile: fraunhofer-eu28-natural-gas-boiler-construction-vintage-2012
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production, natural gas, at boiler
+      case_sensitive: false
+    - field: reference_product
+      operator: contains
+      value: heat, central or small-scale
+      case_sensitive: false
+  caller_exclude: *id012
+  exchange_match: *id013
+  applicability: *id014
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-fraunhofer-fuel-oil-boiler-construction-vintage
+  profile: fraunhofer-eu28-fuel-oil-boiler-construction-vintage-2012
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production, light fuel oil, at boiler
+      case_sensitive: false
+    - field: reference_product
+      operator: contains
+      value: heat, central or small-scale
+      case_sensitive: false
+    - field: location
+      operator: in
+      value: *id015
+      case_sensitive: false
+  caller_exclude: *id012
+  exchange_match: &id016
+    all:
+    - field: name
+      operator: in
+      value:
+      - oil boiler, 10kW
+      - oil boiler, 100kW
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability: *id014
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-fraunhofer-fuel-oil-boiler-construction-vintage
+  profile: fraunhofer-eu28-fuel-oil-boiler-construction-vintage-2012
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production, light fuel oil, at boiler
+      case_sensitive: false
+    - field: reference_product
+      operator: contains
+      value: heat, central or small-scale
+      case_sensitive: false
+  caller_exclude: *id012
+  exchange_match: *id016
+  applicability: *id014
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-fraunhofer-biomass-furnace-construction-vintage
+  profile: fraunhofer-eu28-biomass-furnace-construction-vintage-2012
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production,
+      case_sensitive: false
+    - field: reference_product
+      operator: contains
+      value: heat, central or small-scale
+      case_sensitive: false
+    - field: location
+      operator: in
+      value: *id015
+      case_sensitive: false
+  caller_exclude: &id017
+    any:
+    - field: name
+      operator: contains
+      value: state-of-the-art
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: future
+      case_sensitive: false
+  exchange_match: &id018
+    all:
+    - field: name
+      operator: in
+      value:
+      - furnace, logs, 30kW
+      - furnace, logs, average storage area, 100kW
+      - furnace, wood chips, with silo, 50kW
+      - furnace, pellets, 25kW
+      - furnace, pellets, with silo, 300kW
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability: *id014
+- id: proxy-eu-fraunhofer-biomass-furnace-construction-vintage
+  profile: fraunhofer-eu28-biomass-furnace-construction-vintage-2012
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production,
+      case_sensitive: false
+    - field: reference_product
+      operator: contains
+      value: heat, central or small-scale
+      case_sensitive: false
+  caller_exclude: *id017
+  exchange_match: *id018
+  applicability: *id014
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-fraunhofer-biomass-stove-construction-vintage
+  profile: fraunhofer-eu28-biomass-stove-construction-vintage-2012
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production,
+      case_sensitive: false
+    - field: reference_product
+      operator: contains
+      value: heat, central or small-scale
+      case_sensitive: false
+    - field: location
+      operator: in
+      value: *id015
+      case_sensitive: false
+  caller_exclude: *id017
+  exchange_match: &id019
+    all:
+    - field: name
+      operator: in
+      value:
+      - furnace, logs, 6kW
+      - furnace, pellets, 9kW
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability: *id014
+- id: proxy-eu-fraunhofer-biomass-stove-construction-vintage
+  profile: fraunhofer-eu28-biomass-stove-construction-vintage-2012
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production,
+      case_sensitive: false
+    - field: reference_product
+      operator: contains
+      value: heat, central or small-scale
+      case_sensitive: false
+  caller_exclude: *id017
+  exchange_match: *id019
+  applicability: *id014
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-fraunhofer-aerial-heat-pump-construction-vintage
+  profile: fraunhofer-eu28-aerial-heat-pump-construction-vintage-2012
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production, air-water heat pump
+      case_sensitive: false
+    - field: location
+      operator: in
+      value: *id015
+      case_sensitive: false
+  exchange_match: &id020
+    all:
+    - field: name
+      operator: equals
+      value: heat pump, brine-water, 10kW
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability: *id014
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-fraunhofer-aerial-heat-pump-construction-vintage
+  profile: fraunhofer-eu28-aerial-heat-pump-construction-vintage-2012
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production, air-water heat pump
+      case_sensitive: false
+  exchange_match: *id020
+  applicability: *id014
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-fraunhofer-ground-heat-pump-construction-vintage
+  profile: fraunhofer-eu28-ground-heat-pump-construction-vintage-2012
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production, borehole heat exchanger, brine-water heat pump
+      case_sensitive: false
+    - field: location
+      operator: in
+      value: *id015
+      case_sensitive: false
+  exchange_match: *id020
+  applicability: *id014
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-fraunhofer-ground-heat-pump-construction-vintage
+  profile: fraunhofer-eu28-ground-heat-pump-construction-vintage-2012
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat production, borehole heat exchanger, brine-water heat pump
+      case_sensitive: false
+  exchange_match: *id020
+  applicability: *id014
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-brazil-cement-plant-construction-vintage
+  profile: gem-gcct-brazil-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - BR
+      case_sensitive: false
+    any: &id021
+    - field: name
+      operator: startswith
+      value: cement production
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: clinker production
+      case_sensitive: false
+  caller_exclude: &id022
+    any:
+    - field: name
+      operator: startswith
+      value: market for
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: market group for
+      case_sensitive: false
+  exchange_match: &id023
+    all:
+    - field: name
+      operator: in
+      value:
+      - cement factory
+      - integrated cement plant
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-canada-cement-plant-construction-vintage
+  profile: gem-gcct-canada-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - CA
+      - CA-ON
+      - CA-QC
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-colombia-cement-plant-construction-vintage
+  profile: gem-gcct-colombia-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - CO
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-ecuador-cement-plant-construction-vintage
+  profile: gem-gcct-ecuador-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - EC
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-india-cement-plant-construction-vintage
+  profile: gem-gcct-india-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - IN
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-peru-cement-plant-construction-vintage
+  profile: gem-gcct-peru-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - PE
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-south-africa-cement-plant-construction-vintage
+  profile: gem-gcct-south-africa-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - ZA
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-switzerland-cement-plant-construction-vintage
+  profile: gem-gcct-switzerland-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - CH
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-tunisia-cement-plant-construction-vintage
+  profile: gem-gcct-tunisia-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - TN
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-gem-gcct-united-states-cement-plant-construction-vintage
+  profile: gem-gcct-united-states-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - US
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-gem-gcct-cement-plant-construction-vintage
+  profile: gem-gcct-world-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - RoW
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-gcct-cement-plant-construction-vintage
+  profile: gem-gcct-europe-without-switzerland-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - Europe without Switzerland
+      case_sensitive: false
+    any: *id021
+  caller_exclude: *id022
+  exchange_match: *id023
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-gist-blast-furnace-construction-vintage
+  profile: gem-gist-europe-blast-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: pig iron production
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RER
+      case_sensitive: false
+  exchange_match: &id024
+    all:
+    - field: name
+      operator: equals
+      value: blast furnace
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-in-gem-gist-blast-furnace-construction-vintage
+  profile: gem-gist-india-blast-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: pig iron production
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - IN
+      case_sensitive: false
+  exchange_match: *id024
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-gem-gist-blast-furnace-construction-vintage
+  profile: gem-gist-world-blast-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: pig iron production
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RoW
+      case_sensitive: false
+  exchange_match: *id024
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-gist-basic-oxygen-furnace-construction-vintage
+  profile: gem-gist-europe-basic-oxygen-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: steel production, converter
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RER
+      case_sensitive: false
+  exchange_match: &id025
+    all:
+    - field: name
+      operator: equals
+      value: blast oxygen furnace converter
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-in-gem-gist-basic-oxygen-furnace-construction-vintage
+  profile: gem-gist-india-basic-oxygen-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: steel production, converter
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - IN
+      case_sensitive: false
+  exchange_match: *id025
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-gem-gist-basic-oxygen-furnace-construction-vintage
+  profile: gem-gist-world-basic-oxygen-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: steel production, converter
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RoW
+      case_sensitive: false
+  exchange_match: *id025
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-gist-electric-arc-furnace-construction-vintage
+  profile: gem-gist-europe-electric-arc-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - RER
+      - AT
+      - CH
+      - Europe without Switzerland and Austria
+      case_sensitive: false
+    any: &id026
+    - field: name
+      operator: startswith
+      value: cast iron production
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: steel production, electric
+      case_sensitive: false
+  exchange_match: &id027
+    all:
+    - field: name
+      operator: in
+      value:
+      - electric arc furnace
+      - electric arc furnace converter
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-in-gem-gist-electric-arc-furnace-construction-vintage
+  profile: gem-gist-india-electric-arc-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - IN
+      case_sensitive: false
+    any: *id026
+  exchange_match: *id027
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-ca-gem-gist-electric-arc-furnace-construction-vintage
+  profile: gem-gist-canada-electric-arc-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - CA
+      - CA-QC
+      case_sensitive: false
+    any: *id026
+  exchange_match: *id027
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-gem-gist-electric-arc-furnace-construction-vintage
+  profile: gem-gist-world-electric-arc-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - RoW
+      case_sensitive: false
+    any: *id026
+  exchange_match: *id027
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-in-gem-gist-direct-reduced-iron-furnace-construction-vintage
+  profile: gem-gist-india-direct-reduced-iron-furnace-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: sponge iron production
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - IN
+      case_sensitive: false
+  exchange_match: *id024
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-ggit-natural-gas-pipeline-construction-vintage
+  profile: gem-ggit-europe-natural-gas-transmission-pipeline-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, pipeline
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: natural gas
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - DE
+      - GB
+      - NL
+      - RER
+      - RER w/o DE+NL+RU
+      - 'NO'
+      - RO
+      - RU
+      case_sensitive: false
+  exchange_match: &id028
+    all:
+    - field: name
+      operator: in
+      value:
+      - pipeline, natural gas, long distance, high capacity, offshore
+      - pipeline, natural gas, long distance, high capacity, onshore
+      - pipeline, natural gas, long distance, low capacity, onshore
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: kilometer
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-gem-ggit-natural-gas-pipeline-construction-vintage
+  profile: gem-ggit-world-natural-gas-transmission-pipeline-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, pipeline
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: natural gas
+      case_sensitive: false
+  exchange_match: *id028
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-goit-oil-pipeline-construction-vintage
+  profile: gem-goit-europe-oil-ngl-transmission-pipeline-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, pipeline
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: petroleum
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RER
+      case_sensitive: false
+  exchange_match: &id029
+    all:
+    - field: name
+      operator: in
+      value:
+      - pipeline, petroleum
+      - pipeline, petroleum, offshore
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: kilometer
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-gem-goit-oil-pipeline-construction-vintage
+  profile: gem-goit-world-oil-ngl-transmission-pipeline-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, pipeline
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: petroleum
+      case_sensitive: false
+  exchange_match: *id029
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-ec-freight-wagon-construction-vintage
+  profile: ec-eu-freight-wagon-construction-vintage-2019
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight train
+      case_sensitive: false
+    - field: reference_product
+      operator: equals
+      value: transport, freight train
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - AT
+      - BE
+      - CH
+      - DE
+      - FR
+      - IT
+      - RER
+      - Europe without Switzerland
+      - Europe, without Russia and Turkey
+      case_sensitive: false
+  exchange_match: &id030
+    all:
+    - field: name
+      operator: equals
+      value: goods wagon
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-ec-freight-wagon-construction-vintage
+  profile: ec-eu-freight-wagon-construction-vintage-2019
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight train
+      case_sensitive: false
+    - field: reference_product
+      operator: equals
+      value: transport, freight train
+      case_sensitive: false
+  exchange_match: *id030
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-gcmt-surface-coal-mine-construction-vintage
+  profile: gem-gcmt-europe-surface-coal-mine-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - CZ
+      - GB
+      - false
+      - PL
+      - RER
+      - Europe without Switzerland
+      - Europe, without Russia and Turkey
+      case_sensitive: false
+    any: &id031
+    - field: name
+      operator: startswith
+      value: hard coal mine operation
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: lignite mine operation
+      case_sensitive: false
+  exchange_match: &id032
+    all:
+    - field: name
+      operator: in
+      value:
+      - mine infrastructure, open cast, hard coal
+      - mine infrastructure, open cast, lignite
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+- id: reviewed-global-gem-gcmt-surface-coal-mine-construction-vintage
+  profile: gem-gcmt-world-surface-coal-mine-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    any: *id031
+  exchange_match: *id032
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-gem-gcmt-underground-coal-mine-construction-vintage
+  profile: gem-gcmt-europe-underground-coal-mine-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - CZ
+      - GB
+      - false
+      - PL
+      - RER
+      - Europe without Switzerland
+      - Europe, without Russia and Turkey
+      case_sensitive: false
+    any: *id031
+  exchange_match: &id033
+    all:
+    - field: name
+      operator: equals
+      value: mine infrastructure, underground, hard coal
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+- id: reviewed-global-gem-gcmt-underground-coal-mine-construction-vintage
+  profile: gem-gcmt-world-underground-coal-mine-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    any: *id031
+  exchange_match: *id033
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-unctad-bulk-carrier-construction-vintage
+  profile: unctad-global-bulk-carrier-construction-vintage-2024
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, sea, bulk carrier for dry goods
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: equals
+      value: bulk carrier, for dry goods
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-unctad-container-ship-construction-vintage
+  profile: unctad-global-container-ship-construction-vintage-2024
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, sea, container ship,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: equals
+      value: container ship
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-unctad-oil-tanker-construction-vintage
+  profile: unctad-global-oil-tanker-construction-vintage-2024
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, sea, tanker for petroleum,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: equals
+      value: tanker, for petroleum
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-unctad-other-ships-construction-vintage
+  profile: unctad-global-other-ship-types-construction-vintage-2024
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, freight, sea, ferry,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: transport, freight, sea, tanker for liquefied natural gas,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: transport, freight, sea, tanker for liquid goods other than petroleum
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: equals
+      value: ferry
+      case_sensitive: false
+    - field: name
+      operator: equals
+      value: tanker, for liquefied natural gas
+      case_sensitive: false
+    - field: name
+      operator: equals
+      value: tanker, for liquid goods other than petroleum and liquefied natural gas
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-eurostat-commercial-passenger-aircraft-construction-vintage
+  profile: eurostat-eu27-commercial-passenger-aircraft-construction-vintage-2024
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: transport, passenger aircraft,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: transport, passenger, aircraft,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: transport, freight, aircraft, belly-freight,
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: aircraft, passenger,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: aircraft, belly freight,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-ccnr-dry-cargo-barge-construction-vintage
+  profile: ccnr-rhine-dry-cargo-vessel-construction-vintage-2024
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, inland waterways, barge
+      case_sensitive: false
+    - field: location
+      operator: equals
+      value: RER
+      case_sensitive: false
+  exchange_match: &id034
+    all:
+    - field: name
+      operator: equals
+      value: barge
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-ccnr-dry-cargo-barge-construction-vintage
+  profile: ccnr-rhine-dry-cargo-vessel-construction-vintage-2024
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, inland waterways, barge
+      case_sensitive: false
+  exchange_match: *id034
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-ccnr-tanker-barge-construction-vintage
+  profile: ccnr-rhine-tanker-vessel-construction-vintage-2024
+  target: supplier
+  kind: selector
+  priority: 110
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, inland waterways, barge tanker
+      case_sensitive: false
+    - field: location
+      operator: equals
+      value: RER
+      case_sensitive: false
+  exchange_match: &id035
+    all:
+    - field: name
+      operator: equals
+      value: barge tanker
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-ccnr-tanker-barge-construction-vintage
+  profile: ccnr-rhine-tanker-vessel-construction-vintage-2024
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, inland waterways, barge tanker
+      case_sensitive: false
+  exchange_match: *id035
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-moderate-nonresidential-building-construction-vintage
+  profile: moderate-eu-nonresidential-building-construction-vintage-2020
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: location
+      operator: in
+      value:
+      - RER
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - EL
+      - ES
+      - FI
+      - FR
+      - HR
+      - HU
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      - CH
+      - GB
+      - IS
+      - LI
+      - Europe without Switzerland
+      - Europe, without Russia and Turkey
+      case_sensitive: false
+  caller_exclude: &id036
+    any:
+    - field: name
+      operator: startswith
+      value: market for
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: market group for
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: construction
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  exchange_match: &id037
+    all:
+    - field: unit
+      operator: in
+      value:
+      - square meter
+      - cubic meter
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: building, hall
+      case_sensitive: false
+    - field: name
+      operator: equals
+      value: building, multi-storey
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-moderate-nonresidential-building-construction-vintage
+  profile: moderate-eu-nonresidential-building-construction-vintage-2020
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: glob
+      value: '*'
+      case_sensitive: false
+  caller_exclude: *id036
+  exchange_match: *id037
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-moderate-hotel-building-construction-vintage
+  profile: moderate-eu-hotel-restaurant-building-construction-vintage-2020
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: building operation,
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RER
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - EL
+      - ES
+      - FI
+      - FR
+      - HR
+      - HU
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      - CH
+      - GB
+      - IS
+      - LI
+      - Europe without Switzerland
+      - Europe, without Russia and Turkey
+      case_sensitive: false
+  exchange_match: &id038
+    all:
+    - field: name
+      operator: startswith
+      value: building,
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+    any:
+    - field: name
+      operator: contains
+      value: hotel
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: hostel
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+- id: proxy-eu-moderate-hotel-building-construction-vintage
+  profile: moderate-eu-hotel-restaurant-building-construction-vintage-2020
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: building operation,
+      case_sensitive: false
+  exchange_match: *id038
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-eu-eurostat-bus-construction-vintage
+  profile: eu-road-bus-construction-vintage-2024
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, passenger bus,
+      case_sensitive: false
+    - field: reference_product
+      operator: startswith
+      value: transport, passenger bus
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RER
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - EL
+      - ES
+      - FI
+      - FR
+      - HR
+      - HU
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      - CH
+      - GB
+      - IS
+      - LI
+      - Europe without Switzerland
+      - Europe, without Russia and Turkey
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: Passenger bus,
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-eurostat-bus-construction-vintage
+  profile: eu-road-bus-construction-vintage-2024
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, passenger bus,
+      case_sensitive: false
+    - field: reference_product
+      operator: startswith
+      value: transport, passenger bus
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: Passenger bus,
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+- id: reviewed-eu-eurostat-lorry-over-3.5t-construction-vintage
+  profile: eu-road-lorry-over-3.5t-construction-vintage-2024
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, lorry,
+      case_sensitive: false
+    - field: reference_product
+      operator: equals
+      value: transport, freight, lorry
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RER
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - EL
+      - ES
+      - FI
+      - FR
+      - HR
+      - HU
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      - CH
+      - GB
+      - IS
+      - LI
+      - Europe without Switzerland
+      - Europe, without Russia and Turkey
+      case_sensitive: false
+  caller_exclude:
+    any:
+    - field: name
+      operator: contains
+      value: 3.5 metric ton
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: lorry production,
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-eurostat-lorry-over-3.5t-construction-vintage
+  profile: eu-road-lorry-over-3.5t-construction-vintage-2024
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, lorry,
+      case_sensitive: false
+    - field: reference_product
+      operator: equals
+      value: transport, freight, lorry
+      case_sensitive: false
+  caller_exclude:
+    any:
+    - field: name
+      operator: contains
+      value: 3.5 metric ton
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: lorry production,
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+- id: reviewed-eu-eurostat-light-commercial-construction-vintage
+  profile: eu-road-light-commercial-construction-vintage-2024
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, lorry,
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: 3.5 metric ton
+      case_sensitive: false
+    - field: reference_product
+      operator: equals
+      value: transport, freight, lorry
+      case_sensitive: false
+    - field: location
+      operator: in
+      value:
+      - RER
+      - AT
+      - BE
+      - BG
+      - CY
+      - CZ
+      - DE
+      - DK
+      - EE
+      - EL
+      - ES
+      - FI
+      - FR
+      - HR
+      - HU
+      - IE
+      - IT
+      - LT
+      - LU
+      - LV
+      - MT
+      - NL
+      - PL
+      - PT
+      - RO
+      - SE
+      - SI
+      - SK
+      - CH
+      - GB
+      - IS
+      - LI
+      - Europe without Switzerland
+      - Europe, without Russia and Turkey
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: lorry production,
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: 3.5 metric ton
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eu-eurostat-light-commercial-construction-vintage
+  profile: eu-road-light-commercial-construction-vintage-2024
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: transport, freight, lorry,
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: 3.5 metric ton
+      case_sensitive: false
+    - field: reference_product
+      operator: equals
+      value: transport, freight, lorry
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: lorry production,
+      case_sensitive: false
+    - field: name
+      operator: contains
+      value: 3.5 metric ton
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+- id: reviewed-es-gem-gspt-csp-construction-vintage
+  profile: gem-gspt-spain-csp-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, solar thermal parabolic trough,
+      case_sensitive: false
+    - field: location
+      operator: equals
+      value: ES
+      case_sensitive: false
+  exchange_match: &id039
+    all:
+    - field: name
+      operator: equals
+      value: concentrated solar power plant, solar thermal parabolic trough, 50 MW
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-us-gem-gspt-csp-construction-vintage
+  profile: gem-gspt-united-states-csp-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, solar thermal parabolic trough,
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
+  exchange_match: *id039
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-za-gem-gspt-csp-construction-vintage
+  profile: gem-gspt-south-africa-csp-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 120
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, solar thermal parabolic trough,
+      case_sensitive: false
+    - field: location
+      operator: equals
+      value: ZA
+      case_sensitive: false
+  exchange_match: *id039
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-global-gem-gspt-csp-construction-vintage
+  profile: gem-gspt-world-csp-construction-vintage-2026
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, solar thermal parabolic trough,
+      case_sensitive: false
+  exchange_match: *id039
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-us-eia-wood-biomass-construction-vintage
+  profile: eia-us-wood-biomass-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: heat and power co-generation, wood chips
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
+  exchange_match:
+    any:
+    - field: name
+      operator: startswith
+      value: furnace, wood chips, with silo,
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: heat and power co-generation unit,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: reviewed-us-eia-onshore-wind-construction-vintage
   profile: eia-us-onshore-wind-construction-vintage-2025
   target: supplier
@@ -7,18 +3861,41 @@ assignments:
   priority: 100
   caller_match:
     all:
-    - {field: name, operator: startswith, value: "electricity production, wind,", case_sensitive: false}
-    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: electricity production, wind,
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
   caller_exclude:
     any:
-    - {field: name, operator: contains, value: offshore, case_sensitive: false}
+    - field: name
+      operator: contains
+      value: offshore
+      case_sensitive: false
   exchange_match:
     any:
-    - {field: name, operator: glob, value: "wind turbine, *", case_sensitive: false}
-    - {field: name, operator: glob, value: "wind power plant, *", case_sensitive: false}
+    - field: name
+      operator: glob
+      value: wind turbine, *
+      case_sensitive: false
+    - field: name
+      operator: glob
+      value: wind power plant, *
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: proxy-eia-onshore-wind-construction-vintage
   profile: eia-us-onshore-wind-construction-vintage-2025
   target: supplier
@@ -26,17 +3903,37 @@ assignments:
   priority: 10
   caller_match:
     all:
-    - {field: name, operator: startswith, value: "electricity production, wind,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: electricity production, wind,
+      case_sensitive: false
   caller_exclude:
     any:
-    - {field: name, operator: contains, value: offshore, case_sensitive: false}
+    - field: name
+      operator: contains
+      value: offshore
+      case_sensitive: false
   exchange_match:
     any:
-    - {field: name, operator: glob, value: "wind turbine, *", case_sensitive: false}
-    - {field: name, operator: glob, value: "wind power plant, *", case_sensitive: false}
+    - field: name
+      operator: glob
+      value: wind turbine, *
+      case_sensitive: false
+    - field: name
+      operator: glob
+      value: wind power plant, *
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: reviewed-us-eia-photovoltaic-construction-vintage
   profile: eia-us-solar-photovoltaic-construction-vintage-2025
   target: supplier
@@ -44,17 +3941,40 @@ assignments:
   priority: 100
   caller_match:
     all:
-    - {field: name, operator: startswith, value: "electricity production, photovoltaic,", case_sensitive: false}
-    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: electricity production, photovoltaic,
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
   exchange_match:
     all:
-    - {field: name, operator: startswith, value: photovoltaic, case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: photovoltaic
+      case_sensitive: false
     any:
-    - {field: name, operator: contains, value: installation, case_sensitive: false}
-    - {field: name, operator: startswith, value: "photovoltaic plant,", case_sensitive: false}
+    - field: name
+      operator: contains
+      value: installation
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: photovoltaic plant,
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: proxy-eia-photovoltaic-construction-vintage
   profile: eia-us-solar-photovoltaic-construction-vintage-2025
   target: supplier
@@ -62,16 +3982,36 @@ assignments:
   priority: 10
   caller_match:
     all:
-    - {field: name, operator: startswith, value: "electricity production, photovoltaic,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: electricity production, photovoltaic,
+      case_sensitive: false
   exchange_match:
     all:
-    - {field: name, operator: startswith, value: photovoltaic, case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: photovoltaic
+      case_sensitive: false
     any:
-    - {field: name, operator: contains, value: installation, case_sensitive: false}
-    - {field: name, operator: startswith, value: "photovoltaic plant,", case_sensitive: false}
+    - field: name
+      operator: contains
+      value: installation
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: photovoltaic plant,
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: reviewed-us-eia-conventional-hydropower-construction-vintage
   profile: eia-us-conventional-hydropower-construction-vintage-2025
   target: supplier
@@ -79,17 +4019,37 @@ assignments:
   priority: 100
   caller_match:
     all:
-    - {field: name, operator: startswith, value: "electricity production, hydro,", case_sensitive: false}
-    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: electricity production, hydro,
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
   caller_exclude:
     any:
-    - {field: name, operator: contains, value: pumped storage, case_sensitive: false}
+    - field: name
+      operator: contains
+      value: pumped storage
+      case_sensitive: false
   exchange_match:
     all:
-    - {field: name, operator: startswith, value: "hydropower plant,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: hydropower plant,
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: proxy-eia-conventional-hydropower-construction-vintage
   profile: eia-us-conventional-hydropower-construction-vintage-2025
   target: supplier
@@ -97,16 +4057,33 @@ assignments:
   priority: 10
   caller_match:
     all:
-    - {field: name, operator: startswith, value: "electricity production, hydro,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: electricity production, hydro,
+      case_sensitive: false
   caller_exclude:
     any:
-    - {field: name, operator: contains, value: pumped storage, case_sensitive: false}
+    - field: name
+      operator: contains
+      value: pumped storage
+      case_sensitive: false
   exchange_match:
     all:
-    - {field: name, operator: startswith, value: "hydropower plant,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: hydropower plant,
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: reviewed-us-eia-pumped-storage-construction-vintage
   profile: eia-us-pumped-storage-construction-vintage-2025
   target: supplier
@@ -114,14 +4091,31 @@ assignments:
   priority: 100
   caller_match:
     all:
-    - {field: name, operator: contains, value: "electricity production, hydro, pumped storage", case_sensitive: false}
-    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+    - field: name
+      operator: contains
+      value: electricity production, hydro, pumped storage
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
   exchange_match:
     all:
-    - {field: name, operator: startswith, value: "hydropower plant,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: hydropower plant,
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: proxy-eia-pumped-storage-construction-vintage
   profile: eia-us-pumped-storage-construction-vintage-2025
   target: supplier
@@ -129,13 +4123,27 @@ assignments:
   priority: 10
   caller_match:
     all:
-    - {field: name, operator: contains, value: "electricity production, hydro, pumped storage", case_sensitive: false}
+    - field: name
+      operator: contains
+      value: electricity production, hydro, pumped storage
+      case_sensitive: false
   exchange_match:
     all:
-    - {field: name, operator: startswith, value: "hydropower plant,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: hydropower plant,
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: reviewed-us-eia-nuclear-construction-vintage
   profile: eia-us-nuclear-construction-vintage-2025
   target: supplier
@@ -143,14 +4151,31 @@ assignments:
   priority: 100
   caller_match:
     all:
-    - {field: name, operator: startswith, value: "electricity production, nuclear,", case_sensitive: false}
-    - {field: location, operator: glob, value: "US-*", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: electricity production, nuclear,
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
   exchange_match:
     all:
-    - {field: name, operator: startswith, value: "nuclear power plant,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: nuclear power plant,
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: proxy-eia-nuclear-construction-vintage
   profile: eia-us-nuclear-construction-vintage-2025
   target: supplier
@@ -158,13 +4183,316 @@ assignments:
   priority: 10
   caller_match:
     all:
-    - {field: name, operator: startswith, value: "electricity production, nuclear,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: electricity production, nuclear,
+      case_sensitive: false
   exchange_match:
     all:
-    - {field: name, operator: startswith, value: "nuclear power plant,", case_sensitive: false}
+    - field: name
+      operator: startswith
+      value: nuclear power plant,
+      case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
-  expected_matches: {minimum: 1}
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-us-eia-steam-coal-construction-vintage
+  profile: eia-us-steam-coal-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production,
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
+    any:
+    - field: name
+      operator: startswith
+      value: electricity production, hard coal
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: electricity production, lignite
+      case_sensitive: false
+  exchange_match:
+    any:
+    - field: name
+      operator: startswith
+      value: hard coal power plant
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: lignite power plant
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eia-steam-coal-construction-vintage
+  profile: eia-us-steam-coal-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    any:
+    - field: name
+      operator: startswith
+      value: electricity production, hard coal
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: electricity production, lignite
+      case_sensitive: false
+  exchange_match:
+    any:
+    - field: name
+      operator: startswith
+      value: hard coal power plant
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: lignite power plant
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-us-eia-natural-gas-combined-cycle-construction-vintage
+  profile: eia-us-natural-gas-combined-cycle-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, natural gas, combined cycle
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: gas power plant, combined cycle
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eia-natural-gas-combined-cycle-construction-vintage
+  profile: eia-us-natural-gas-combined-cycle-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, natural gas, combined cycle
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: gas power plant, combined cycle
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eia-natural-gas-combustion-turbine-construction-vintage
+  profile: eia-us-natural-gas-combustion-turbine-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: equals
+      value: electricity production, natural gas, 10MW
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: gas turbine,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-us-eia-natural-gas-steam-turbine-construction-vintage
+  profile: eia-us-natural-gas-steam-turbine-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: equals
+      value: electricity production, natural gas, conventional power plant
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: glob
+      value: gas power plant, *MW electrical
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eia-natural-gas-steam-turbine-construction-vintage
+  profile: eia-us-natural-gas-steam-turbine-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: equals
+      value: electricity production, natural gas, conventional power plant
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: glob
+      value: gas power plant, *MW electrical
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: reviewed-us-eia-geothermal-construction-vintage
+  profile: eia-us-geothermal-construction-vintage-2025
+  target: supplier
+  kind: selector
+  priority: 100
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, deep geothermal
+      case_sensitive: false
+    - field: location
+      operator: glob
+      value: US-*
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: geothermal power plant,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
+- id: proxy-eia-geothermal-construction-vintage
+  profile: eia-us-geothermal-construction-vintage-2025
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: electricity production, deep geothermal
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: name
+      operator: startswith
+      value: geothermal power plant,
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 1
 - id: reviewed-wind-electricity-service-life
   profile: nrel-wind-technical-life-30-years
   target: activity
@@ -184,7 +4512,14 @@ assignments:
       operator: equals
       value: kilowatt hour
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-photovoltaic-electricity-service-life
@@ -206,7 +4541,14 @@ assignments:
       operator: equals
       value: kilowatt hour
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-hydroelectricity-service-life
@@ -228,7 +4570,14 @@ assignments:
       operator: equals
       value: kilowatt hour
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-nuclear-electricity-service-life
@@ -250,7 +4599,14 @@ assignments:
       operator: equals
       value: kilowatt hour
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-barley-preharvest-uptake
@@ -265,7 +4621,11 @@ assignments:
       value: barley grain production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-maize-grain-preharvest-uptake
@@ -280,7 +4640,14 @@ assignments:
       value: maize grain production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-oat-preharvest-uptake
@@ -295,7 +4662,11 @@ assignments:
       value: oat grain production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-rye-preharvest-uptake
@@ -310,7 +4681,9 @@ assignments:
       value: rye grain production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-spelt-preharvest-uptake
@@ -325,7 +4698,9 @@ assignments:
       value: spelt grain production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-triticale-preharvest-uptake
@@ -340,7 +4715,9 @@ assignments:
       value: triticale grain production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-wheat-preharvest-uptake
@@ -355,7 +4732,11 @@ assignments:
       value: wheat grain production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
 - id: reviewed-legacy-barley-preharvest-uptake
@@ -370,10 +4751,12 @@ assignments:
       value: barley production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
   expected_matches:
     minimum: 1
-
 - id: reviewed-legacy-oat-preharvest-uptake
   profile: annual-cereal-preharvest-uptake-one-year
   target: activity
@@ -386,10 +4769,12 @@ assignments:
       value: oat production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
   expected_matches:
     minimum: 1
-
 - id: reviewed-legacy-wheat-preharvest-uptake
   profile: annual-cereal-preharvest-uptake-one-year
   target: activity
@@ -402,10 +4787,12 @@ assignments:
       value: wheat production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
   expected_matches:
     minimum: 1
-
 - id: reviewed-rye-legacy-name-preharvest-uptake
   profile: annual-cereal-preharvest-uptake-one-year
   target: activity
@@ -418,10 +4805,16 @@ assignments:
       value: rye production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
-
 - id: reviewed-maize-silage-preharvest-uptake
   profile: annual-cereal-preharvest-uptake-one-year
   target: activity
@@ -434,10 +4827,16 @@ assignments:
       value: maize silage production*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
-
 - id: reviewed-maize-seed-at-farm-preharvest-uptake
   profile: annual-cereal-preharvest-uptake-one-year
   target: activity
@@ -450,10 +4849,16 @@ assignments:
       value: maize seed production*at farm*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
-
 - id: reviewed-oat-seed-at-farm-preharvest-uptake
   profile: annual-cereal-preharvest-uptake-one-year
   target: activity
@@ -466,10 +4871,16 @@ assignments:
       value: oat seed production*at farm*
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1
-
 - id: reviewed-wheat-feed-preharvest-uptake
   profile: annual-cereal-preharvest-uptake-one-year
   target: activity
@@ -482,6 +4893,8 @@ assignments:
       value: wheat grain, feed production, * region
       case_sensitive: false
   applicability:
-    ecoinvent_versions: ["3.11", "3.12"]
+    ecoinvent_versions:
+    - '3.11'
+    - '3.12'
   expected_matches:
     minimum: 1

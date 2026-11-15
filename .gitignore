@@ -8,9 +8,12 @@ logs/
 !/dev/
 /dev/*
 !/dev/generate_trails_empirical_profiles.py
+!/dev/generate_trails_fleet_age_report.py
 !/dev/migrate_trails_temporal_csv.py
 !/dev/compile_trails_temporal_csv.py
 !/dev/audit_trails_temporal_selectors.py
+!/dev/audit_trails_temporal_basis.py
+!/dev/trails_gap_profiles.py
 !/dev/audit_trails_legacy_lifetimes.py
 *.egg/
 build/
