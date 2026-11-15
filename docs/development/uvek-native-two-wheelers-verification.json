@@ -769,5 +769,9 @@
     "all_other_biosphere_flows_not_newly_invented": true,
     "new_Brightway_databases": 0,
     "note": "Preserves existing shared Premise non-car/non-truck emission scaling; does not establish scientific independence of every wear emission from efficiency."
+  },
+  "latest_transport_and_approval_regression_group": {
+    "passed": 168,
+    "includes_earlier_subsets": true
   }
 }

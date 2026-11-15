@@ -1,0 +1,113 @@
+{
+  "date": "2026-11-15",
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "qualified_sector_count": 12,
+  "registered_sector_count": 19,
+  "qualified_sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement",
+    "steel",
+    "mining",
+    "renewable",
+    "cdr",
+    "fuels",
+    "ships",
+    "buses",
+    "two_wheelers"
+  ],
+  "remaining_sectors": [
+    "metals",
+    "battery",
+    "cars",
+    "trucks",
+    "trains",
+    "final energy",
+    "emissions"
+  ],
+  "two_wheelers": {
+    "public_update_and_exhaustive_graph_validation": "passed",
+    "public_activities": 12038,
+    "combined_activities": 16347,
+    "new_regional_services": 78,
+    "new_markets": 13,
+    "signed_LCI_solves": 182,
+    "existing_written_columns_compared": 16256,
+    "only_existing_changes": "Six original Swiss services become redirects to their NEU equivalents; regional copies retain direct emissions according to the unchanged shared efficiency calculation.",
+    "other_existing_columns": "Same nonzero provider keys and coefficients within float32 Brightway storage precision.",
+    "new_Brightway_databases": 0,
+    "new_processed_files": 0,
+    "new_twelve_sector_Brightway_export": false,
+    "latest_actual_export_sector_count": 11,
+    "evidence": "docs/development/uvek-native-two-wheelers-verification.json"
+  },
+  "actual_hydrogen_train_frontier": {
+    "roots": 6,
+    "foregrounds": 34,
+    "first_source_cohort": "ecoinvent 3.12 cut-off",
+    "previous_distinct_unapproved_rules": 20,
+    "direct_suppliers_now_approved": 13,
+    "production_only_cutoff_handover_now_approved": 1,
+    "scoped_unsupported_input_omission": 1,
+    "remaining_first_cohort_unapproved_rule_ids": [
+      "bp-011b0c14ef8a369d",
+      "bp-ab66d17baa663f1c",
+      "bp-b7606642f4256898",
+      "bp-dbd744f486420f56",
+      "bp-ef673f7bc19f4581"
+    ],
+    "remaining_categories": [
+      "Titanium-dioxide production and delivery",
+      "Silica-sand production and delivery",
+      "Hazardous-waste incineration mix and collection",
+      "Ferrosilicon production and delivery",
+      "Mixed-plastic waste treatment mix and collection"
+    ],
+    "later_source_cohorts_inspected_to_completion": false,
+    "sector_qualified": false,
+    "interpretation": "Five is the actual current first-cohort refusal count, not a complete remaining-mapping count or permission to skip later cohorts."
+  },
+  "tests": {
+    "Premise_transport_background_filters_emissions_omissions_approvals": {
+      "passed": 168
+    },
+    "Brightpath_reference_signs_resource_storage_manifest_and_new_replay": {
+      "passed": 746
+    },
+    "stale_battery_expectations": "Reproduced against the preceding published resource, then corrected to assert actual exact-profile refusals and reviewed source3.12 treatment shares/delivery; production mappings unchanged.",
+    "selected_test_groups_are_not_total_repository_suites": true
+  },
+  "reproducible_packaging": {
+    "resource_count": 3,
+    "resources": [
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "byte_identical_to_tracked": true,
+        "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a"
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "byte_identical_to_tracked": true,
+        "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3"
+      },
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "byte_identical_to_tracked": true,
+        "sha256": "d3de2476461679614715e90e9587c4cf4177245cf4af9c88e1bfffe1bd254a6c"
+      }
+    ]
+  },
+  "cleanup": {
+    "redundant_private_generated_resources_removed_bytes": 107486668,
+    "active_combined_checkpoint_and_Brightway_sources_exports_preserved": true
+  },
+  "production_python_changes_this_batch": [
+    "Four-line opt-in comment disclosure for approved omissions; needed so the incomplete ceramic intermediate retains a visible standalone-use warning.",
+    "Public supported-sector declaration admits verified two_wheelers; default sectors and sector arithmetic unchanged."
+  ],
+  "Brightpath_runtime_python_changed": false,
+  "notebook_changed": false,
+  "freshness": "Diagnostic uses recorded CLIC archive snapshot 20261110T030235Z-613ea498808a, dated 2026-11-10T03:03:34.737828+00:00; live product defaults unchanged.",
+  "full_goal_complete": false
+}
