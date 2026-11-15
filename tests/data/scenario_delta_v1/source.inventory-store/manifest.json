@@ -1,0 +1,18 @@
+{
+  "activity_count": 2,
+  "backend": "compact",
+  "columnar_format": "arrow-ipc",
+  "exchange_count": 3,
+  "generation": 0,
+  "inventory_fingerprints": [],
+  "metadata_layout": "split-activity-exchange-v5",
+  "premise_version": "2.6.0",
+  "row_counts": {
+    "activities": 2,
+    "exchanges": 3
+  },
+  "scenario_identity": null,
+  "schema_version": 10,
+  "source_fingerprint": "8a0b0e9dc6401f523e80f79d3f2d9134d020d99176eb38e8c61a68f784002eaa",
+  "uncertainty_settings": {}
+}

@@ -1,0 +1,76 @@
+[
+  {
+    "name": "provider",
+    "reference product": "provider",
+    "location": "GLO",
+    "unit": "kilogram",
+    "exchanges": [
+      {
+        "name": "provider",
+        "product": "provider",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "production",
+        "amount": 1.0
+      }
+    ],
+    "code": "provider"
+  },
+  {
+    "name": "consumer",
+    "reference product": "consumer",
+    "location": "GLO",
+    "unit": "kilogram",
+    "exchanges": [
+      {
+        "name": "consumer",
+        "product": "consumer",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "production",
+        "amount": 1.0
+      },
+      {
+        "name": "provider",
+        "product": "provider",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": 3.25
+      },
+      {
+        "name": "provider",
+        "product": "provider",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "technosphere",
+        "amount": 0.5,
+        "comment": "added exchange"
+      }
+    ],
+    "custom": {
+      "notes": [
+        "source",
+        "scenario"
+      ]
+    },
+    "code": "consumer"
+  },
+  {
+    "name": "added",
+    "reference product": "added",
+    "location": "GLO",
+    "unit": "kilogram",
+    "code": "added",
+    "exchanges": [
+      {
+        "name": "added",
+        "product": "added",
+        "location": "GLO",
+        "unit": "kilogram",
+        "type": "production",
+        "amount": 1.0
+      }
+    ]
+  }
+]

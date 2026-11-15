@@ -1,0 +1,9 @@
+{
+  "activities.arrow": "98335c8fa41d8020177364a72ffbdbc3f8f688f333c33a4e5f0b7e73a62d5a46",
+  "activity-fingerprints.pkl": "bfce13fc2f13ad950016bb48ccbbbd04ce13be07c748476dde1f940fcdfa0d52",
+  "exchanges.arrow": "301b32590c1ada0f623713c4a75bae489796759fa98340ed535884f4d4b38d3a",
+  "manifest.json": "bc75807b3ce97c14fd73a4216bdf4fea785e2852215ed9f74c2474e96c6e0b1c",
+  "metadata.bin": "8a0b0e9dc6401f523e80f79d3f2d9134d020d99176eb38e8c61a68f784002eaa",
+  "metadata_offsets.arrow": "9660a9dd654645c05f8446aa8da982ba5a07d3e9df3b2c98a004085c3352231e",
+  "strings.arrow": "aaaae25ef688ba70616801d7cede57b2af789e8edd7f033eab2ea2cca8bcc254"
+}

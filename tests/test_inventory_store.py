@@ -2,6 +2,8 @@ import copy
 import json
 import pickle
 import random
+from pathlib import Path
+from shutil import copytree
 
 import numpy as np
 import pytest
@@ -897,18 +899,26 @@ def test_scenario_delta_checkpoint_roundtrip_preserves_order_and_compatibility(
     )
     assert loaded["database"] == expected
 
-    # The independent V1 dispatcher remains readable after V2 becomes the
-    # default writer.
-    v1_checkpoint = inventory_store_module._write_scenario_delta_checkpoint_v1(
-        scenario_store,
-        tmp_path / "scenario-v1.inventory-store",
-        inventory_store_module._scenario_delta_base_storage(scenario_store),
-    )
-    assert InventoryStore.open(v1_checkpoint).materialize() == expected
-
     source.rename(tmp_path / "moved-source.inventory-store")
     with pytest.raises(InventoryStoreCorruptionError, match="base checkpoint"):
         InventoryStore.open(checkpoint)
+
+
+def test_frozen_v1_scenario_checkpoint_remains_readable_after_relocation(tmp_path):
+    """Read a historical bundle without recreating it with the current writer."""
+
+    fixture = Path(__file__).parent / "data" / "scenario_delta_v1"
+    bundle = copytree(fixture, tmp_path / "relocated")
+    expected = json.loads((bundle / "expected.json").read_text())
+    checkpoint = bundle / "scenario.inventory-store"
+
+    assert InventoryStore.open(checkpoint).materialize() == expected
+    loaded = utils_module.load_database(
+        {"_inventory_checkpoint": checkpoint},
+        original_database=[],
+        consume_compact=True,
+    )
+    assert loaded["database"] == expected
 
 
 def test_load_database_transfers_compact_store_without_exchange_materialization(

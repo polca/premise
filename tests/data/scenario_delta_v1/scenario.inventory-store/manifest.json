@@ -1,0 +1,17 @@
+{
+  "activity_count": 3,
+  "backend": "compact",
+  "base_checkpoint": "source.inventory-store",
+  "base_checksum_fingerprint": "c2bcb88c32f0aeb1bdb92080fec04476ca6d3c560e0af9b3281f366892d124b6",
+  "columnar_format": "scenario-delta-v1",
+  "exchange_count": 5,
+  "generation": 0,
+  "metadata_layout": "scenario-delta-v1",
+  "premise_version": "2.6.0",
+  "row_counts": {
+    "activities": 3,
+    "exchanges": 5
+  },
+  "scenario_identity": null,
+  "schema_version": 10
+}
