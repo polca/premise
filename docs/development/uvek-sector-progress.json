@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships and buses. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
+  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses and two_wheelers. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
   "sectors": [
     {
       "sector": "biomass",
@@ -2482,7 +2482,7 @@
     },
     {
       "sector": "two_wheelers",
-      "status": "audited_not_operational",
+      "status": "operational_screening_with_explicit_proxy_limitations",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -2506,33 +2506,16 @@
             "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
           }
         ],
-        "runtime_verified": false
+        "runtime_verified": true
       },
-      "blockers": [
-        {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
-        },
-        {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/transport/transport.py:47",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/transport/transport.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
-        }
-      ],
+      "blockers": [],
       "decisions": [],
-      "implementation_commits": [],
-      "tests": [],
+      "implementation_commits": [
+        "8df0ae9a"
+      ],
+      "tests": [
+        "52 focused omission, exact train correspondence, background, native bus and two-wheeler tests pass; overlapping groups are not additive."
+      ],
       "integration_exports": [],
       "static_audit": {
         "callback": "_update_vehicles",
@@ -2560,7 +2543,24 @@
       },
       "two_wheeler_operating_exhaust_origin_verification": "docs/development/uvek-two-wheeler-carbon-verification.json",
       "latest_native_mapping_review": "docs/development/uvek-native-two-wheelers-verification.json",
-      "current_native_first_checkpoint": "native_services_and_single_sector_physical_graph_checks_passed_combined_LCI_and_export_pending"
+      "current_native_first_checkpoint": "public_update_combined_physical_and_no_write_LCI_checks_passed_new_export_not_repeated",
+      "latest_verification": "docs/development/uvek-native-two-wheelers-verification.json",
+      "integration_checks": [
+        {
+          "scenario": "encrypted REMIND SSP2-NPi 2050",
+          "combined_sector_count": 12,
+          "activities": 16347,
+          "new_regional_services": 78,
+          "new_markets": 13,
+          "finite_signed_LCI_solves": 182,
+          "preceding_written_columns_compared": 16256,
+          "only_expected_six_original_CH_services_redirected": true,
+          "all_other_columns_match_within_float32_storage_precision": true,
+          "new_Brightway_databases": 0,
+          "new_twelve_sector_export_performed": false,
+          "evidence": "docs/development/uvek-native-two-wheelers-verification.json"
+        }
+      ]
     },
     {
       "sector": "trucks",
@@ -3705,10 +3705,11 @@
       "cdr",
       "fuels",
       "ships",
-      "buses"
+      "buses",
+      "two_wheelers"
     ],
     "registered_sectors_including_electricity": 19,
-    "remaining_unqualified_sector_count": 8,
+    "remaining_unqualified_sector_count": 7,
     "latest_combined_export_evidence": "docs/development/uvek-native-buses-verification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
@@ -3795,10 +3796,12 @@
         "current_clean_tracked_generation_byte_identical": true
       }
     ],
-    "latest_shared_transport_review": "docs/development/uvek-native-buses.md",
+    "latest_shared_transport_review": "docs/development/uvek-native-two-wheelers.md",
     "latest_combined_run_freshness": "Recorded CLIC archive snapshot 20261110T030235Z-613ea498808a; live freshness was not checked by this run.",
     "latest_packaged_resource_checks": "docs/development/uvek-shipping-packaged-verification.json",
     "latest_native_first_checkpoint": "docs/development/uvek-native-first-checkpoint-2026-11-15.json",
-    "latest_owned_database_cleanup": "docs/development/uvek-native-first-checkpoint-2026-11-15.json#cleanup"
+    "latest_owned_database_cleanup": "docs/development/uvek-native-first-checkpoint-2026-11-15.json#cleanup",
+    "latest_combined_no_write_evidence": "docs/development/uvek-native-two-wheelers-verification.json",
+    "qualification_evidence_note": "Latest actual Brightway export covers eleven sectors; the twelve-sector checkpoint adds 182 no-write signed LCI checks and a complete comparison against that export. Full goal remains unfinished."
   }
 }

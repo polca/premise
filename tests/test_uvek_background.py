@@ -173,6 +173,7 @@ def test_uvek_scope_defaults_to_pilot_and_refuses_unverified_sectors():
     assert validate_uvek_scope("cdr") == ["cdr"]
     assert validate_uvek_scope("ships") == ["ships"]
     assert validate_uvek_scope("buses") == ["buses"]
+    assert validate_uvek_scope("two_wheelers") == ["two_wheelers"]
     assert validate_uvek_scope(["electricity", "fuels"]) == ["electricity", "fuels"]
     with pytest.raises(ValueError, match="unsupported sectors.*battery"):
         validate_uvek_scope(["electricity", "battery"])

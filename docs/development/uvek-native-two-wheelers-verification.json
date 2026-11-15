@@ -90,7 +90,7 @@
       }
     }
   ],
-  "tests_passed": 25,
+  "tests_passed": 52,
   "diagnostic": {
     "status": "native_two_wheelers_physical_and_graph_checks_passed",
     "activities": 12038,
@@ -634,9 +634,140 @@
     "sector_qualified": false,
     "full_goal_complete": false
   },
-  "source_python_modules_changed": [],
-  "qualification_status": "Not qualified: combined upstream-sector check and finite LCI/export proof remain pending. Public sector gate remains closed.",
+  "source_python_modules_changed": [
+    "premise/database/background.py: admit verified two_wheelers in the public scope declaration; no sector arithmetic changed"
+  ],
+  "qualification_status": "operational_screening_with_explicit_proxy_limitations",
   "observed_IAM_unit_limitation": "REMIND arrays report billion pkm/yr; native services and the shared canonical market use vehicle-km. Shared Premise normalizes IAM service volumes as fleet-share proxies without a per-class occupancy conversion. Source occupancy is1 for the scooter and1.1 for the two motorbike classes; do not claim absolute IAM vehicle-distance totals or equivalence. This observed existing convention is now explicit in each native source limitation.",
-  "verification_boundary": "Physical quantities and shares were verified before adding the warning-only IAM-unit clarification. Native identities, quantities and shared calculations did not change.",
-  "full_goal_complete": false
+  "verification_boundary": "Actual encrypted REMIND SSP2-NPi 2050, complete combined twelve-sector checkpoint, public standalone update, exhaustive graph checks and 182 signed inventory solves. Existing eleven-sector export supplies the independent matrix-storage comparison. No fresh twelve-sector Brightway export or LCIA-equivalence claim.",
+  "full_goal_complete": false,
+  "combined_physical_check": {
+    "status": "combined_twelve_sector_two_wheelers_physical_and_graph_checks_passed",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses",
+      "two_wheelers"
+    ],
+    "default_checkpoint_persistence": true,
+    "activities": 16347,
+    "regional_services": 78,
+    "fleet_markets": 13,
+    "reference": "positive one vehicle-kilometre",
+    "additional_inventories": 950,
+    "new_brightway_databases": 0,
+    "validation_disabled": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "combined_upstream_sector_check_complete": true,
+    "full_goal_complete": false,
+    "energy_scaling_and_fixed_input_checks": 78,
+    "regional_IAM_share_checks": 12,
+    "sector_qualified": true,
+    "additional_inventories_interpretation": "950 records belong to the existing eleven-sector upstream bundle; two_wheelers imports zero new CLIC records."
+  },
+  "combined_no_write_LCI": {
+    "status": "actual_twelve_sector_checkpoint_no_write_LCI_passed",
+    "activities": 16347,
+    "exchanges": 500379,
+    "exchange_amount_coordinate": "full-precision checkpoint; baseline comparison allows float32 Brightway storage rounding",
+    "baseline_coefficient_comparison_rtol": 5e-07,
+    "baseline_nonzero_provider_keys_required_equal": true,
+    "new_regional_services": 78,
+    "new_markets": 13,
+    "signed_LCI_solves": 182,
+    "preceding_written_database": "BAFU:2026-REMIND-SSP2-NPi-2050-eleven-buses-20261115-211255",
+    "preceding_written_columns_compared": 16256,
+    "changed_preexisting_columns": [
+      {
+        "name": "Transport, Scooter, gasoline, 4-11kW, EURO-5, 2020",
+        "reference_product": "Transport, Scooter, gasoline, 4-11kW, EURO-5, 2020",
+        "location": "CH",
+        "technosphere_changed": true,
+        "biosphere_changed": true
+      },
+      {
+        "name": "Transport, Motorbike, electric, >35kW, NMC battery, 2020",
+        "reference_product": "Transport, Motorbike, electric, >35kW, NMC battery, 2020",
+        "location": "CH",
+        "technosphere_changed": true,
+        "biosphere_changed": false
+      },
+      {
+        "name": "Transport, Motorbike, gasoline, >35kW, EURO-5, 2020",
+        "reference_product": "Transport, Motorbike, gasoline, >35kW, EURO-5, 2020",
+        "location": "CH",
+        "technosphere_changed": true,
+        "biosphere_changed": true
+      },
+      {
+        "name": "Transport, Motorbike, electric, 11-35kW, NMC battery, 2020",
+        "reference_product": "Transport, Motorbike, electric, 11-35kW, NMC battery, 2020",
+        "location": "CH",
+        "technosphere_changed": true,
+        "biosphere_changed": false
+      },
+      {
+        "name": "Transport, Scooter, electric, 4-11kW, NMC battery, 2020",
+        "reference_product": "Transport, Scooter, electric, 4-11kW, NMC battery, 2020",
+        "location": "CH",
+        "technosphere_changed": true,
+        "biosphere_changed": false
+      },
+      {
+        "name": "Transport, Motorbike, gasoline, 11-35kW, EURO-5, 2020",
+        "reference_product": "Transport, Motorbike, gasoline, 11-35kW, EURO-5, 2020",
+        "location": "CH",
+        "technosphere_changed": true,
+        "biosphere_changed": true
+      }
+    ],
+    "all_other_existing_technosphere_and_biosphere_columns_match_within_Brightway_storage_precision": true,
+    "complete_finite_matrix_links": true,
+    "new_brightway_databases": 0,
+    "new_processed_files": 0,
+    "registry_unchanged": true,
+    "validation_disabled": false,
+    "full_goal_complete": false,
+    "limitation": "Inventory calculation and complete matrix comparison; no LCIA equivalence claim. Twelve-sector Brightway export not performed by this check.",
+    "functional_unit_coverage": {
+      "regional_services": 78,
+      "markets": 13,
+      "positive_and_negative_demand_for_every_unit": true
+    }
+  },
+  "public_update_check": {
+    "status": "public_two_wheeler_update_and_exhaustive_graph_checks_passed",
+    "activities": 12038,
+    "native_roles": 6,
+    "regional_services": 78,
+    "additional_inventories": 0,
+    "new_brightway_databases": 0,
+    "public_gate_bypassed": false,
+    "validation_disabled": false,
+    "default_checkpoint_persistence": true,
+    "unchanged_no_argument_defaults": [
+      "biomass",
+      "electricity",
+      "heat"
+    ],
+    "freshness": "snapshot",
+    "elapsed_seconds": 55.70365579100326
+  },
+  "freshness": "Recorded CLIC archive snapshot 20261110T030235Z-613ea498808a, published 2026-11-10T03:03:34.737828+00:00. Live freshness was not checked by this diagnostic; product defaults unchanged.",
+  "direct_biosphere_preservation": {
+    "regional_services_checked": 78,
+    "services_with_direct_biosphere_exchanges": 39,
+    "all_original_direct_biosphere_flows_retained_and_scaled_by_existing_shared_transport_factor": true,
+    "all_other_biosphere_flows_not_newly_invented": true,
+    "new_Brightway_databases": 0,
+    "note": "Preserves existing shared Premise non-car/non-truck emission scaling; does not establish scientific independence of every wear emission from efficiency."
+  }
 }
