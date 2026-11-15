@@ -2055,21 +2055,24 @@ def test_a_si_material_amounts_preserve_the_rated_capacity_of_a_whole_laminate(
     assert decision["target direct amount"] == indium["amount"]
 
 
-def test_series_6_area_conversion_recovers_manufacturer_module_rating():
+@pytest.mark.parametrize("series,power,area", [(4, 115, 0.72), (6, 445, 2.47)])
+def test_series_area_conversion_recovers_manufacturer_module_rating(
+    series, power, area
+):
     metals = object.__new__(Metals)
     metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
     metals.technology_conversions_by_name = {
         c.activity_name: c for c in load_technology_conversions()
     }
     dataset = {
-        "name": "photovoltaic laminate, CdTe, First Solar Series 6, at plant",
+        "name": f"photovoltaic laminate, CdTe, First Solar Series {series}, at plant",
         "unit": "square meter",
     }
 
     conversion = metals._technology_conversion_factor(dataset, "CdTe")
 
-    # A 2.47 m² FS-6445 module must recover its 445 Wp nameplate rating.
-    assert conversion * 2.47 == pytest.approx(445 / 1_000_000)
+    # Per-area conversions must recover the complete module's nameplate rating.
+    assert conversion * area == pytest.approx(power / 1_000_000)
     with pytest.raises(MetalsConfigError, match="unit mismatch"):
         metals._technology_conversion_factor({**dataset, "unit": "unit"}, "CdTe")
 

@@ -351,8 +351,9 @@ conversions:
     name: photovoltaic laminate, CdTe, First Solar Series 4, at plant
   ecoinvent_unit: square meter
   intensity_unit: kg/MW
-  factor: 0.000115
-  comment: https://www.firstsolar.com/en-Emea/-/media/First-Solar/Technical-Documents/Series-4-Datasheets/Series-4V3-Module-Datasheet.ashx
+  factor: 0.00015972222222222223
+  description: First Solar Series 4 FS-4115-3 module, rated at 115 Wp over 0.72 m2. Datasheet PD-5-401-04-3, September 2018, page 2.
+  comment: 115 Wp / 0.72 m2 / 1000000 W per MW = 0.00015972222222222223 MW per m2. https://www.firstsolar.com/-/media/First-Solar/Technical-Documents/Series-4-Datasheets/Series-4V3-Module-Datasheet.pdf
 - id: photovoltaic-laminate-cdte-first-solar-series-6-at-plant
   activity:
     name: photovoltaic laminate, CdTe, First Solar Series 6, at plant

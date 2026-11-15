@@ -106,6 +106,11 @@ This gives ``445 / 2.47 / 1,000,000 = 0.00018016194331983804 MW/m²``.
 The CdTe material mapping continues to exclude Series models. The corrected
 conversion is available for explicit use; it does not activate those overlays.
 
+The excluded Series 4 reference similarly uses the 115 Wp FS-4115-3 module
+over 0.72 m²: ``115 / 0.72 / 1,000,000 = 0.00015972222222222223 MW/m²``.
+The rating and area come from the `manufacturer's September 2018 datasheet,
+page 2 <https://www.firstsolar.com/-/media/First-Solar/Technical-Documents/Series-4-Datasheets/Series-4V3-Module-Datasheet.pdf>`__.
+
 EV intensities in the runtime CSV are in kg metal/kg motor. The three motor
 activities therefore use a conversion of one, rather than 0.1 MW/53 kg.
 For example, the 2020 aluminium intensity is 0.2252697267 kg/kg motor.
