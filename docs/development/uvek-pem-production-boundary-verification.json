@@ -1,0 +1,261 @@
+{
+  "scenario": "REMIND SSP2-NPi2050",
+  "active_role_count": 22,
+  "active_roles_without_matched_suppliers": [],
+  "regional_market_count": 168,
+  "regional_market_locations": [
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "SSA",
+    "USA",
+    "World"
+  ],
+  "native_pem_production_checks": [
+    {
+      "location": "CAZ",
+      "electricity_kWh": 45.12328767123288,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "CHA",
+      "electricity_kWh": 45.12328767123288,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "EUR",
+      "electricity_kWh": 45.12328767123287,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "IND",
+      "electricity_kWh": 45.12328767123288,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "JPN",
+      "electricity_kWh": 45.12328767123288,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "LAM",
+      "electricity_kWh": 45.12328767123287,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 53.99999999999999,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "MEA",
+      "electricity_kWh": 45.12328767123288,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "NEU",
+      "electricity_kWh": 45.12328767123288,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "OAS",
+      "electricity_kWh": 45.12328767123287,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "REF",
+      "electricity_kWh": 45.12328767123288,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "SSA",
+      "electricity_kWh": 45.12328767123287,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    },
+    {
+      "location": "USA",
+      "electricity_kWh": 45.12328767123288,
+      "log_parameters": {
+        "initial energy input for hydrogen production": 54.0,
+        "new energy input for hydrogen production": 45.3
+      }
+    }
+  ],
+  "hydrogen_distribution_checks": [
+    {
+      "location": "CAZ",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "CHA",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "EUR",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "IND",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "JPN",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "LAM",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "MEA",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "NEU",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "OAS",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "REF",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "SSA",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "USA",
+      "distribution_amounts": [
+        1.0
+      ],
+      "distribution_names": [
+        "hydrogen supply, distributed by pipeline"
+      ]
+    },
+    {
+      "location": "World",
+      "distribution_amounts": [],
+      "distribution_names": []
+    }
+  ],
+  "exhaustive_validation_errors": 0,
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "export_performed": false,
+  "source_metadata_unchanged": true,
+  "date": "2026-11-15",
+  "tests": {
+    "focused_filter_hydrogen_energy_basis": 80,
+    "fuel_carbon_and_vehicle_grade_regressions": 151,
+    "black": "passed",
+    "ruff": "passed",
+    "generated_documentation_reference_check": "passed"
+  },
+  "reproduced_failures": {
+    "production_filter_before_fix": "2failed cases,list and compact inventory",
+    "efficiency_before_fix": "native capitalized name failed;lowercase ecoinvent case passed"
+  },
+  "production_python_change": "Two predicates in premise/fuels/hydrogen.py now match the full carrier name case-insensitively;unit filters,energy equations andregionalization stay unchanged.",
+  "yaml_change": "PEM UVEK name andreference product now select the native30bar production process rather than delivered pipeline supply.",
+  "new_migration_rules": 0,
+  "new_helper_inventories": 0,
+  "new_brightway_exports": 0,
+  "full_fuel_sector_qualification": false,
+  "new_signed_LCI_run": false,
+  "remaining_checks": [
+    "Inspect final intensity45.12328767kWh against logged adjustment45.3kWh in later shared processing before claiming end-to-end efficiency equality.",
+    "Audit remaining fuel consumer/production boundaries andemission-origin coverage,then qualify public workflow/export."
+  ]
+}

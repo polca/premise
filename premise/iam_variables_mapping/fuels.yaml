@@ -1547,9 +1547,9 @@ hydrogen, from electrolysis, PEM:
     exact: true
     fltr:
       name:
-      - Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+      - Hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity
       reference product:
-      - Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid
+      - Hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity
       unit: kilogram
   lhv:
     unit: megajoule

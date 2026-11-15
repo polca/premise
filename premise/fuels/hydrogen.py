@@ -130,7 +130,7 @@ class HydrogenMixin:
             exc["amount"]
             for exc in dataset["exchanges"]
             if exc["unit"] == feedstock_unit
-            and feedstock_name in exc["name"]
+            and feedstock_name.casefold() in exc["name"].casefold()
             and exc["type"] != "production"
         )
         dataset.setdefault("log parameters", {})[
@@ -163,7 +163,7 @@ class HydrogenMixin:
 
         for exc in ws.technosphere(
             dataset,
-            ws.contains("name", feedstock_name),
+            lambda exc: feedstock_name.casefold() in exc["name"].casefold(),
             ws.equals("unit", feedstock_unit),
         ):
             exc["amount"] *= scaling_factor

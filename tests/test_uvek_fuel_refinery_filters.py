@@ -9,6 +9,66 @@ from premise.inventory.inventory_store import IndexedInventoryList
 
 
 @pytest.mark.parametrize("container", [list, IndexedInventoryList])
+def test_native_pem_role_selects_production_before_shared_distribution(container):
+    name = "Hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity"
+    plant = {
+        "name": name,
+        "reference product": name,
+        "unit": "kilogram",
+        "location": "CH",
+    }
+    delivered = "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid"
+    excluded = [
+        {**plant, "name": delivered, "reference product": delivered},
+        {**plant, "unit": "megajoule"},
+        {**plant, "reference product": "heat"},
+        {**plant, "name": name.replace("PEM", "alkaline")},
+    ]
+    inventories = container([plant, *excluded])
+    mapping = InventorySet(inventories, family="uvek", version="2026", model="remind")
+    assert mapping.generate_fuel_map(model="remind", for_markets=True)[
+        "hydrogen, from electrolysis, PEM"
+    ] == [plant]
+
+
+@pytest.mark.parametrize(
+    "name", ["Electricity, low voltage, at grid", "electricity, low voltage"]
+)
+def test_pem_efficiency_recognizes_native_and_ecoinvent_electricity_names(name):
+    from types import SimpleNamespace
+
+    import xarray as xr
+
+    from premise.fuels.hydrogen import HydrogenMixin
+
+    driver = SimpleNamespace(
+        year=2050,
+        fuel_efficiencies=xr.DataArray(
+            [], dims=["variables"], coords={"variables": []}
+        ),
+    )
+    dataset = {
+        "exchanges": [
+            {
+                "name": name,
+                "unit": "kilowatt hour",
+                "type": "technosphere",
+                "amount": 54,
+            },
+            {"name": "water", "unit": "kilogram", "type": "technosphere", "amount": 14},
+        ]
+    }
+    HydrogenMixin._adjust_hydrogen_efficiency(
+        driver, dataset, "hydrogen, from electrolysis, PEM"
+    )
+    assert dataset["exchanges"][0]["amount"] == pytest.approx(48.9)
+    assert dataset["exchanges"][1]["amount"] == 14
+    assert (
+        dataset["log parameters"]["initial energy input for hydrogen production"] == 54
+    )
+
+
+@pytest.mark.parametrize("container", [list, IndexedInventoryList])
 @pytest.mark.parametrize(
     "fuel,role,key",
     [
