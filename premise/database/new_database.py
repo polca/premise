@@ -2804,19 +2804,10 @@ class NewDatabase:
 
         return data
 
-    def update(
-        self,
-        sectors: [str, list, None] = None,
-        *,
-        persist: bool = True,
-    ) -> None:
-        """
-        Update a specific sector by name.
+    def _sector_update_methods(self) -> dict:
+        """Return the ordered sector dispatch shared by normal and incremental builds."""
 
-        :param persist: checkpoint the scenario store after the update. Set to
-            ``False`` to retain it in memory for immediate inspection or export.
-        """
-        self.sector_update_methods = {
+        return {
             "biomass": {
                 "func": _update_biomass,
                 "args": (self.version, self.system_model),
@@ -2889,6 +2880,20 @@ class NewDatabase:
                 "args": (self.version, self.system_model, self.gains_scenario),
             },
         }
+
+    def update(
+        self,
+        sectors: [str, list, None] = None,
+        *,
+        persist: bool = True,
+    ) -> None:
+        """
+        Update a specific sector by name.
+
+        :param persist: checkpoint the scenario store after the update. Set to
+            ``False`` to retain it in memory for immediate inspection or export.
+        """
+        self.sector_update_methods = self._sector_update_methods()
 
         if isinstance(sectors, str):
             description = f"Processing scenarios for sector '{sectors}'"

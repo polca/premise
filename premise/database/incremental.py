@@ -1,19 +1,6 @@
 from datetime import datetime
 
-from .new_database import (
-    NewDatabase,
-    _update_biomass,
-    _update_electricity,
-    _update_cdr,
-    _update_cement,
-    _update_steel,
-    _update_fuels,
-    _update_heat,
-    _update_battery,
-    _update_emissions,
-    _update_vehicles,
-    _update_external_scenarios,
-)
+from .new_database import NewDatabase
 from copy import copy
 from tqdm import tqdm
 
@@ -37,68 +24,17 @@ class IncrementalDatabase(NewDatabase):
 
     def update(self, sectors: dict = None) -> None:
         """
-        Update the database with the specified sectors.
+        Create cumulative scenarios after each ordered group of sector updates.
 
-        :param sectors: A list of sectors to update. If None, all sectors will be updated incrementally.
-        :type
-
+        :param sectors: Mapping from group labels to a sector name or list of
+            sector names. Names match :meth:`NewDatabase.update`; ``dac`` also
+            remains an alias for ``cdr``. ``None`` uses the groups in
+            :data:`SECTORS`. Each source scenario starts from its own baseline.
         """
 
-        sector_update_methods = {
-            "biomass": {
-                "func": _update_biomass,
-                "args": (self.version, self.system_model),
-            },
-            "electricity": {
-                "func": _update_electricity,
-                "args": (self.version, self.system_model, self.use_absolute_efficiency),
-            },
-            "cdr": {"func": _update_cdr, "args": (self.version, self.system_model)},
-            # Backward-compatible alias for older incremental workflows.
-            "dac": {"func": _update_cdr, "args": (self.version, self.system_model)},
-            "cement": {
-                "func": _update_cement,
-                "args": (self.version, self.system_model),
-            },
-            "steel": {"func": _update_steel, "args": (self.version, self.system_model)},
-            "fuels": {"func": _update_fuels, "args": (self.version, self.system_model)},
-            "heat": {"func": _update_heat, "args": (self.version, self.system_model)},
-            "battery": {
-                "func": _update_battery,
-                "args": (self.version, self.system_model),
-            },
-            "emissions": {
-                "func": _update_emissions,
-                "args": (self.version, self.system_model, self.gains_scenario),
-            },
-            "cars": {
-                "func": _update_vehicles,
-                "args": ("car", self.version, self.system_model),
-            },
-            "two_wheelers": {
-                "func": _update_vehicles,
-                "args": ("two-wheeler", self.version, self.system_model),
-            },
-            "trucks": {
-                "func": _update_vehicles,
-                "args": ("truck", self.version, self.system_model),
-            },
-            "buses": {
-                "func": _update_vehicles,
-                "args": ("bus", self.version, self.system_model),
-            },
-            "trains": {
-                "func": _update_vehicles,
-                "args": ("train", self.version, self.system_model),
-            },
-            "external": {
-                "func": _update_external_scenarios,
-                "args": (
-                    self.version,
-                    self.system_model,
-                ),
-            },
-        }
+        sector_update_methods = self._sector_update_methods()
+        # Retain the historical incremental name for carbon removal.
+        sector_update_methods["dac"] = sector_update_methods["cdr"]
 
         if sectors is None:
             sectors = SECTORS
@@ -116,7 +52,7 @@ class IncrementalDatabase(NewDatabase):
         updates_to_apply = []
         for scenario in self.scenarios:
             scenario_sectors = []
-            for updates, updates in sectors.items():
+            for updates in sectors.values():
                 label = f"... + {updates}"
                 scenario_sectors.append(updates)
 
