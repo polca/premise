@@ -35111,7 +35111,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "93939d5c0e85b284220c6804c4eb28831df68067f18e9d87f8e9157e4e4196e9"
+          "fingerprint": "7224828f2a0263fd2534ddb6273e6c2cf046925ab651d861d459fe1d6fe4dcd7"
         }
       ]
     },
@@ -295768,6 +295768,470 @@
             "system_model": "cutoff"
           },
           "fingerprint": "9fc8130214c52aafcd73209c4f10ac2230dcb2c349ee1066c8fd4d642cb1aae0"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-452d8a3ac0cdfae0",
+      "mapping_method": "reviewed_metals_38_operating_service",
+      "review_path": "export/uvek_metals_38_operating_services_review.json",
+      "review_sha256": "2b77d90dbc304cecc033067c85917212828561c22652f09f2712e19101a63106",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal, with explicit warnings and decision logs.",
+      "limitations": [
+        "Correct the former small-CHP or industrial district-heat match to the native 1 MWe lean-burn natural-gas cogenerator with exergy allocation, retaining the matching heat-MJ or electricity-kWh reference. Both source and native describe the same named cogeneration technology and allocation, but RoW versus European gas supply, regulation, fuel pressure, leakage, operating conditions and age differ. Native uses high-pressure gas and explicitly includes a low-pressure leakage adjustment. No additional gas-pressure service, output credit, thermal/electrical-efficiency rescaling or network loss is added.",
+        "Preserve signed caller quantities, supported uncertainty, formulas and separate emissions; apply the reviewed conversion factor once. This is an exact source3.8 cut-off screening decision, with no automatic permission for other versions or system models.",
+        "Use the complete native inventory without adding a second fuel supply, machine, generator, road, heat network, allocated coproduct or avoided-emission credit. Source and native internal composition, allocation, emissions, geography, vintage and uncertainty can differ; score and stochastic effects remain unquantified."
+      ],
+      "inspection": {
+        "kind": "allocated_gas_CHP_electricity",
+        "source_witness": {
+          "identity": {
+            "name": "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+            "reference product": "electricity, high voltage",
+            "location": "RoW",
+            "unit": "kilowatt hour"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "acc70a5501e59e65d7651fda6c3b80d2",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "fd5cddad6d832ea5270dc426caaff227821c4855eb5cfb7da360275c37e3b727",
+          "inventory_sha256": "9d6cf267b81876e1f06ce6fe0103d5a9f9f7bc45749560732c52ebdff606a522",
+          "activity_comment_sha256": "d434fcd55652305fdfcb6670cab6c7971ddd425eadac79561caff2b431419872"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, at cogen 1MWe lean burn, allocation exergy",
+              "reference product": "Electricity, at cogen 1MWe lean burn, allocation exergy",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "source_database": "bafu",
+            "activity_code": "bafu-339429",
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "f2700e471dd00df453a1225952867abc64811563914d1527771f580e9880685e",
+            "inventory_sha256": "1d37e6ed408ab85badee72f05706d65625989c824ae2007432aac281d9ad11e1",
+            "activity_comment_sha256": "4f6ee5d230f460499517faff5af3c3c007d04c385928dd730546fd207e81c3f1"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, at cogen 1MWe lean burn, allocation exergy",
+              "reference product": "Electricity, at cogen 1MWe lean burn, allocation exergy",
+              "location": "RER",
+              "unit": "kilowatt hour"
+            },
+            "source_database": "BAFU:2026-reimported",
+            "activity_code": "35ed4e45b366e209645bff4daf66e93b",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "5f0ddab6674c783caa93fccba61d675ec05a23d43e23da1cdcf1539ae42f609e",
+            "inventory_sha256": "6f1ff80e12c4c48b2e0ca5eb20d88cb6478bcecd4eb86a56e3546770d965c30d",
+            "activity_comment_sha256": "744118b4f10db58ad626e4b52f2df3c65a7fc0e6161f6e2485b382f5c83fc19b"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary_checks": {
+          "same_named_1MWe_lean_burn_technology": true,
+          "same_exergy_allocation": true,
+          "source_and_target_service_unit": "kilowatt hour",
+          "native_low_pressure_leakage_adjustment_documented": true
+        }
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b548faa771266004637e1720b7f9b65b04069b199734d2ef948a65f43cfd7833"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-a38412fa92e914af",
+      "mapping_method": "reviewed_metals_38_operating_service",
+      "review_path": "export/uvek_metals_38_operating_services_review.json",
+      "review_sha256": "2b77d90dbc304cecc033067c85917212828561c22652f09f2712e19101a63106",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal, with explicit warnings and decision logs.",
+      "limitations": [
+        "Correct the former small-CHP or industrial district-heat match to the native 1 MWe lean-burn natural-gas cogenerator with exergy allocation, retaining the matching heat-MJ or electricity-kWh reference. Both source and native describe the same named cogeneration technology and allocation, but RoW versus European gas supply, regulation, fuel pressure, leakage, operating conditions and age differ. Native uses high-pressure gas and explicitly includes a low-pressure leakage adjustment. No additional gas-pressure service, output credit, thermal/electrical-efficiency rescaling or network loss is added.",
+        "Preserve signed caller quantities, supported uncertainty, formulas and separate emissions; apply the reviewed conversion factor once. This is an exact source3.8 cut-off screening decision, with no automatic permission for other versions or system models.",
+        "Use the complete native inventory without adding a second fuel supply, machine, generator, road, heat network, allocated coproduct or avoided-emission credit. Source and native internal composition, allocation, emissions, geography, vintage and uncertainty can differ; score and stochastic effects remain unquantified."
+      ],
+      "inspection": {
+        "kind": "allocated_gas_CHP_heat",
+        "source_witness": {
+          "identity": {
+            "name": "heat and power co-generation, natural gas, 1MW electrical, lean burn",
+            "reference product": "heat, district or industrial, natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "acc218db32f577bbe6de763841d875ba",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "d80fa640cf4a37bd6b255fe8a5c2e7f67dc4cc593b9536bd6512b48058b575cd",
+          "inventory_sha256": "ea00efd63beb71b78cfa6da927a2042b397ab47f02a15741b0c7cb6d2019d10b",
+          "activity_comment_sha256": "d434fcd55652305fdfcb6670cab6c7971ddd425eadac79561caff2b431419872"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Heat, at cogen 1MWe lean burn, allocation exergy",
+              "reference product": "Heat, at cogen 1MWe lean burn, allocation exergy",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "source_database": "bafu",
+            "activity_code": "bafu-403236",
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "a769f48d7e11b46566608ceec7fab148801040517b2c467a5c69602938b6a687",
+            "inventory_sha256": "0a50eabe7308330ebd3fe534d6e99033120721d7b03f5ffcd4775c90cc9e0e79",
+            "activity_comment_sha256": "4f6ee5d230f460499517faff5af3c3c007d04c385928dd730546fd207e81c3f1"
+          },
+          "2026": {
+            "identity": {
+              "name": "Heat, at cogen 1MWe lean burn, allocation exergy",
+              "reference product": "Heat, at cogen 1MWe lean burn, allocation exergy",
+              "location": "RER",
+              "unit": "megajoule"
+            },
+            "source_database": "BAFU:2026-reimported",
+            "activity_code": "9f19cfa77dd883958518f696e712e78f",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "855832ecdd8f174318a17dbf538a0d4ac2990969f85e41208d09c0b1c15b40fe",
+            "inventory_sha256": "b95eede236fbe7fe63682bcc581ccf57e9348b4b8d619aaa964f59a78d7506f7",
+            "activity_comment_sha256": "edb9ed4c51fe4fbfba6eb648e04817761a963ea0173c60686cc2ac303a964acb"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary_checks": {
+          "same_named_1MWe_lean_burn_technology": true,
+          "same_exergy_allocation": true,
+          "source_and_target_service_unit": "megajoule",
+          "native_low_pressure_leakage_adjustment_documented": true
+        }
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "b06f7fe63ebd76112e648312f35e8223fefa34aaf7ca01dc783aa1052c92aa8a"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-9e135fbcb0ded21f",
+      "mapping_method": "reviewed_metals_38_operating_service",
+      "review_path": "export/uvek_metals_38_operating_services_review.json",
+      "review_sha256": "2b77d90dbc304cecc033067c85917212828561c22652f09f2712e19101a63106",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal, with explicit warnings and decision logs.",
+      "limitations": [
+        "Correct the unrelated PEM-electrolyzer maintenance match using a fuel-demand proxy: complete native average Swiss diesel building-machine operation replaces one source hour of >=74.57 kW high-load machine operation. The audited source consumes 37.6322039589003 kg diesel/hour; native consumes 0.023364 kg/MJ. Use their ratio 1610.691831831035 MJ/hour to preserve the deterministic diesel draw. Native machinery, power/load, filter/fleet mix, lubricants, sulfur specification, emissions, geography, infrastructure and vintage differ. This fuel-based proxy does not establish equal machine work or time-resolved performance. No output efficiency, electricity/heat credit, second machine or mechanical-work factor is invented.",
+        "Preserve signed caller quantities, supported uncertainty, formulas and separate emissions; apply the reviewed conversion factor once. This is an exact source3.8 cut-off screening decision, with no automatic permission for other versions or system models.",
+        "Use the complete native inventory without adding a second fuel supply, machine, generator, road, heat network, allocated coproduct or avoided-emission credit. Source and native internal composition, allocation, emissions, geography, vintage and uncertainty can differ; score and stochastic effects remain unquantified."
+      ],
+      "inspection": {
+        "kind": "diesel_machine_fuel_proxy",
+        "source_witness": {
+          "identity": {
+            "name": "machine operation, diesel, >= 74.57 kW, high load factor",
+            "reference product": "machine operation, diesel, >= 74.57 kW, high load factor",
+            "location": "GLO",
+            "unit": "hour"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "6c891c9e472bab820e8ed95c4d9d175c",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "b3f4782a2e9a1303d4916654e6fcb83044c092633376c90524b0a81433539e47",
+          "inventory_sha256": "301c6a701cd96cafaec1cd9a331e8277da42ee583630c228e76c4d6484250fdb",
+          "activity_comment_sha256": "592e0ff01853449bc060d3fb66a8ca2bd0fdb7336a8f03300d9391b85b78fe05"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Diesel, burned in building machine, average",
+              "reference product": "Diesel, burned in building machine, average",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "source_database": "bafu",
+            "activity_code": "bafu-214499",
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "826a0435bf9c58e50e80baff78445b6374ad49e888879d2e5bcdb705656bb98f",
+            "inventory_sha256": "b03c72599facdb7b0fcdcaac0b14c61a29f4fd193e88fa938b7fb9d777a458bc",
+            "activity_comment_sha256": "6dce45ec51e0b05e009749cf8560903164ab6a384bd7cc323730e00df523e6a7"
+          },
+          "2026": {
+            "identity": {
+              "name": "Diesel, burned in building machine, average",
+              "reference product": "Diesel, burned in building machine, average",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "source_database": "BAFU:2026-reimported",
+            "activity_code": "ba7cde93d72945de31876791252cf5d0",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f39d7de943a50ae73a7239ab289260c3c129ffdbe3b73725830153e567840d7a",
+            "inventory_sha256": "d9ca8640f83d04f410aae6fc7c136868c6eb538f82cb958ab9e675fed796534b",
+            "activity_comment_sha256": "5673ec8db501d57c6857c08a2b3954b2efd8187198e7e9f55630a64c4abe04f6"
+          }
+        },
+        "conversion_factor": 1610.691831831035,
+        "boundary_checks": {
+          "source_diesel_kg_per_hour": 37.6322039589003,
+          "native_diesel_kg_per_MJ": 0.023364,
+          "MJ_native_service_per_source_hour": 1610.691831831035,
+          "fuel_draw_preserved": true,
+          "equal_mechanical_work_claimed": false
+        }
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e7bdd9691d69ffb7ba7e2d02d5000665e1e5b0073df4ce5e653a3d9138c20df7"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-8f9bd2d7bfd4ef19",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_metals_38_operating_services_review.json",
+      "review_sha256": "2b77d90dbc304cecc033067c85917212828561c22652f09f2712e19101a63106",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal, with explicit warnings and decision logs.",
+      "limitations": [
+        "Complete native diesel-generating-set operation per MJ of burned-fuel service replaces the source market/18.5 kW process at factor+1. The source has exactly one 1-MJ supplier and consumes 0.0234 kg diesel/MJ; native consumes 0.02336 kg/MJ. This is not the older 0.0666667 kg/MJ source case and receives no 2.8538813 multiplier. Native embeds a 10 MW set instead of 18.5 kW, with different lifetime/operating, fuel, emissions and allocation assumptions. The minor fuel-mass difference remains in the native model; no extra generator, electrical-output claim, efficiency correction or heat credit is introduced.",
+        "Preserve signed caller quantities, supported uncertainty, formulas and separate emissions; apply the reviewed conversion factor once. This is an exact source3.8 cut-off screening decision, with no automatic permission for other versions or system models.",
+        "Use the complete native inventory without adding a second fuel supply, machine, generator, road, heat network, allocated coproduct or avoided-emission credit. Source and native internal composition, allocation, emissions, geography, vintage and uncertainty can differ; score and stochastic effects remain unquantified."
+      ],
+      "inspection": {
+        "kind": "burned_diesel_generator_service",
+        "source_witness": {
+          "identity": {
+            "name": "market for diesel, burned in diesel-electric generating set, 18.5kW",
+            "reference product": "diesel, burned in diesel-electric generating set, 18.5kW",
+            "location": "GLO",
+            "unit": "megajoule"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "01614cd6dd195b459ef10e2f96b1ea8d",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "59b8c6e236525feeb6f2e1e307cb0da2d05a8356612be8478eee868dcc3cd507",
+          "inventory_sha256": "b9971e4d8890c80eed692aa8703dc288c8a5c222baf27af1a77781355ff5f7b9",
+          "activity_comment_sha256": "08bc9f13c1c3d9b08af52841a97ae17ff70827185b9118780aab940f05b7963c"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "diesel, burned in diesel-electric generating set, 18.5kW",
+              "reference product": "diesel, burned in diesel-electric generating set, 18.5kW",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "49ccc4b8cda6ad70d62b5129167945d5",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "609566eacf3105a339905c43a0e95a84155fad07490ed32b2163cb3b3757c38d",
+            "inventory_sha256": "7c43c0e6d41ab89fde460472a6fd15424857585f9ccae96b72d7f2bc26c82c24",
+            "activity_comment_sha256": "da52e4a1c5c04b510a7b2f3881b088456b8b94fcf7210bf16c526ee5d6aa0a14"
+          }
+        ],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Diesel, burned in diesel-electric generating set",
+              "reference product": "Diesel, burned in diesel-electric generating set",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "source_database": "bafu",
+            "activity_code": "bafu-316704",
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "9cce9647c27f6284c68adc7608bd38754198aeb2f7cc6fb9d3c7f1acdacac810",
+            "inventory_sha256": "1d9f9cd43f94f9273b5983b7a624a5bc4600d9ade439bcfc9b36d385a95551f1",
+            "activity_comment_sha256": "a09732f6845e9910ce6856ebb58de4b7db2d9d54b767e87c0e17158ad0a00fa7"
+          },
+          "2026": {
+            "identity": {
+              "name": "Diesel, burned in diesel-electric generating set",
+              "reference product": "Diesel, burned in diesel-electric generating set",
+              "location": "GLO",
+              "unit": "megajoule"
+            },
+            "source_database": "BAFU:2026-reimported",
+            "activity_code": "97c26e58f6dba8cb109ff48ad5a3a552",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "2bf3199553f098ed92d76e52365c2dfc5d638a57253bf2abadb2023ba3704ed8",
+            "inventory_sha256": "1b82a2c6d29920d9407a406d78a7bf3b339b1fd47ea68ec92f0f49d7cc4b81b5",
+            "activity_comment_sha256": "cb982e69048e44f714b05f824f29ac83116e865bb1828702d8f3752a3b1293ff"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary_checks": {
+          "source_market_single_provider_amount": 1,
+          "source_diesel_kg_per_MJ": 0.0234,
+          "native_diesel_kg_per_MJ": 0.02336,
+          "source_reference_is_not_verified_electrical_output": true,
+          "native_generator_MW": 10,
+          "source_generator_kW": 18.5
+        }
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "5719492cc568b2bc7335ff98a46042d7f237646f06dba8449381ce399dd305d4"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-44303018c0e8802f",
+      "mapping_method": "reviewed_metals_38_operating_service",
+      "review_path": "export/uvek_metals_38_operating_services_review.json",
+      "review_sha256": "2b77d90dbc304cecc033067c85917212828561c22652f09f2712e19101a63106",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal, with explicit warnings and decision logs.",
+      "limitations": [
+        "Replace the unrestricted Swiss fleet heuristic with the complete European 32–40 t gross-weight freight fleet per tonne-km. The source is a RoW >32 t EURO3 service. Native limits the upper weight and replaces EURO3 with its historical fleet, load/empty-trip assumptions, route mix, fuel, infrastructure and emissions. This is a mass-class/fleet/geographic proxy, not equivalence of emission standard or payload. Preserve tonne-km; add no load, distance, vehicle-km or fuel multiplier.",
+        "Preserve signed caller quantities, supported uncertainty, formulas and separate emissions; apply the reviewed conversion factor once. This is an exact source3.8 cut-off screening decision, with no automatic permission for other versions or system models.",
+        "Use the complete native inventory without adding a second fuel supply, machine, generator, road, heat network, allocated coproduct or avoided-emission credit. Source and native internal composition, allocation, emissions, geography, vintage and uncertainty can differ; score and stochastic effects remain unquantified."
+      ],
+      "inspection": {
+        "kind": "heavy_lorry_freight",
+        "source_witness": {
+          "identity": {
+            "name": "transport, freight, lorry >32 metric ton, EURO3",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO3",
+            "location": "RoW",
+            "unit": "ton kilometer"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "c79711d2763451032c46093af8cc8ed6",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "664e19cd8dab49193ae6c5cb254057fe128ef9a55f9a32df470e8445eb80f1cf",
+          "inventory_sha256": "5e92f1a262548ae4a46407304cff2efdb31d2af5eac1687446347b6c16c13173",
+          "activity_comment_sha256": "db3f6a0b08a916568ba5111534e2357be1d3f447395c32ab3b06ca71196e3262"
+        },
+        "source_producer_witnesses": [],
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_database": "bafu",
+            "activity_code": "bafu-243234",
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "615ccdb1b1771989ba96b17f01291796bc0907d429b85a5ea644c6703d4aec72",
+            "inventory_sha256": "3282aee3b1e8943b1ec07e35b0fb672ea37b717843dac5417a3170c3e0313c8b",
+            "activity_comment_sha256": "0716216989810c286263da289b407ae09aa4a17e1c375b712652b6590cfd6b6d"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "reference product": "Transport, freight, lorry, 32t-40t gross weight, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "source_database": "BAFU:2026-reimported",
+            "activity_code": "cae380288572b23dd56364a54be54039",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "f90f1f43cdde53777f66a72695c154cc55d07d969b46a6e170bbdccbbf80e306",
+            "inventory_sha256": "5f30d62a2078718e512b2fb2d9403c5c5f1e6bbeeaba0d33d0d16a074987f714",
+            "activity_comment_sha256": "9abacce564e5a7e4c49b8e6add446c88b274309f624755ebc33cfba2fa201fbf"
+          }
+        },
+        "conversion_factor": 1,
+        "boundary_checks": {
+          "source_mass_class": ">32 t EURO3",
+          "native_mass_class": "32–40 t fleet average",
+          "source_and_native_reference_tonne_km": 1
+        }
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1f11e019a0fbcd66b65990916cff7391d503bcbfbedfdd74ea44e505910b0b04"
         }
       ]
     }

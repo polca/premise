@@ -1,0 +1,92 @@
+{
+  "brightpath_commit": "2025a309ec82cdf7df42929f4e33033db90e9416",
+  "premise_tested_code_commit": "001fb33703c051ed9272943ec3c915380220bfac",
+  "clean_tracked_generation": {
+    "brightpath_commit": "2025a309ec82cdf7df42929f4e33033db90e9416",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "396c6f77568aab62bba3dd6d13f7348128ed7c0f6dd2708197bdd59c74677e32",
+        "committed_sha256": "396c6f77568aab62bba3dd6d13f7348128ed7c0f6dd2708197bdd59c74677e32",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 70223680
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 0,
+    "removed_generated_output_bytes": 107416724,
+    "removed_owned_clean_worktree_file_bytes": 502036590
+  },
+  "wheel_sha256": "7e32947086a84dcd1489d6644db58e84c2d552a15edd214aff9e957841236e0c",
+  "installed_Brightpath_tests_passed": 31,
+  "installed_Premise_tests_passed": 55,
+  "private_environment_only": true,
+  "user_conda_environment_changed": false,
+  "new_brightway_databases": 0,
+  "verified_sector_count": 10,
+  "remaining_sector_count": 9,
+  "metals_qualified": false,
+  "remaining_first_source38_chemical_refusals": 5,
+  "production_python_reason": "Existing omissions matched only technosphere identity fields; biosphere omissions require compartment/unit checks and their own audit code.",
+  "batch_commits": {
+    "brightpath": 3,
+    "premise": 4
+  },
+  "uncommitted_next_chemical_review_included_in_package": false,
+  "installed_resource_checks": [
+    {
+      "resource": "ecoinvent-to-uvek-2025.json",
+      "sha256": "396c6f77568aab62bba3dd6d13f7348128ed7c0f6dd2708197bdd59c74677e32",
+      "matches_clean_committed_source": true
+    },
+    {
+      "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "matches_clean_committed_source": true
+    },
+    {
+      "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "matches_clean_committed_source": true
+    }
+  ],
+  "owned_cleanup": [
+    {
+      "directory": "clean-metals38-batch-package",
+      "bytes_removed": 953151896
+    },
+    {
+      "directory": "metals38-batch-wheel",
+      "bytes_removed": 44227417
+    },
+    {
+      "directory": "metals38-batch-installed-tests",
+      "bytes_removed": 28238
+    }
+  ],
+  "owned_temporary_bytes_removed": 1606860865,
+  "production_python_files_changed_in_batch": [
+    "premise/inventory/clic_omissions.py"
+  ]
+}

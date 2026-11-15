@@ -1,0 +1,64 @@
+{
+  "status": "five_complete_native_operating_services_passed",
+  "new_brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "source_and_biosphere_metadata_unchanged": true,
+  "signed_LCI_solves": 10,
+  "source_records_unchanged": true,
+  "checks": [
+    {
+      "rule_id": "bp-452d8a3ac0cdfae0",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    },
+    {
+      "rule_id": "bp-a38412fa92e914af",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    },
+    {
+      "rule_id": "bp-9e135fbcb0ded21f",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    },
+    {
+      "rule_id": "bp-8f9bd2d7bfd4ef19",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    },
+    {
+      "rule_id": "bp-44303018c0e8802f",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    }
+  ],
+  "scope_limit": "Five complete native operating-service correspondences only; not source/native score equivalence or metals-sector qualification.",
+  "review_path": "export/uvek_metals_38_operating_services_review.json",
+  "review_sha256": "2b77d90dbc304cecc033067c85917212828561c22652f09f2712e19101a63106",
+  "new_Brightpath_test_cases": 12,
+  "prior_nitrate_goods_cases": 84,
+  "historical_replay_fixture_corrected_with_frozen_later_parents": true,
+  "first38_refusals_before": 10,
+  "first38_refusals_after": 5,
+  "remaining_first38_rule_ids": [
+    "bp-4d3399f22574aeb4",
+    "bp-7a43861ae0ccad22",
+    "bp-0cbbd373574b3465",
+    "bp-f5fcdac403308760",
+    "bp-39c85a579d30850c"
+  ],
+  "metals_sector_qualified": false,
+  "freshness": "published CLIC archive snapshot",
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "production_python_changes_for_this_group": [],
+  "new_helpers": 0,
+  "machine_MJ_per_source_hour": 1610.691831831035,
+  "premise_connector_cases_passed": 13,
+  "premise_result_evidence": "Initial run nine pass/four Unicode-rendering assertion failures; corrected manifest-string assertions pass all four affected cases. Production warning data is unchanged."
+}
