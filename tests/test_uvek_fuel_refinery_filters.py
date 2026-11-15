@@ -262,3 +262,46 @@ def test_hydrogen_iam_efficiency_applies_the_logged_energy_floor(change, expecte
     assert dataset["exchanges"][0]["amount"] == pytest.approx(
         dataset["log parameters"]["new energy input for hydrogen production"]
     )
+
+
+@pytest.mark.parametrize(
+    "change,expected_MJ", [(1.0, 157.32), (1.2, 131.1), (2.0, 126.0)]
+)
+def test_native_reformer_gas_energy_uses_existing_volume_basis(change, expected_MJ):
+    from types import SimpleNamespace
+
+    import xarray as xr
+
+    from premise.fuels.hydrogen import HydrogenMixin
+
+    role = "hydrogen, from natural gas"
+    driver = SimpleNamespace(
+        year=2050,
+        fuel_efficiencies=xr.DataArray(
+            [1], dims=["variables"], coords={"variables": [role]}
+        ),
+        find_iam_efficiency_change=lambda **kwargs: change,
+    )
+    dataset = {
+        "location": "EUR",
+        "exchanges": [
+            {
+                "name": "Natural gas, high pressure, at consumer",
+                "unit": "megajoule",
+                "type": "technosphere",
+                "amount": 157.32,
+            },
+            {
+                "name": "heat, district or industrial, natural gas",
+                "unit": "megajoule",
+                "type": "technosphere",
+                "amount": 10,
+            },
+        ],
+    }
+    HydrogenMixin._adjust_hydrogen_efficiency(driver, dataset, role)
+    assert dataset["log parameters"][
+        "initial energy input for hydrogen production"
+    ] == pytest.approx(4.37)
+    assert dataset["exchanges"][0]["amount"] == pytest.approx(expected_MJ)
+    assert dataset["exchanges"][1]["amount"] == 10

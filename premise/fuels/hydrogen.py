@@ -123,15 +123,29 @@ class HydrogenMixin:
 
         feedstock_name = params["feedstock name"]
         feedstock_unit = params["feedstock unit"]
+        feedstocks = [(feedstock_name, feedstock_unit, 1)] + [
+            (entry["name"], entry["unit"], entry["conversion factor"])
+            for entry in params.get("additional feedstocks", ())
+        ]
+
+        def feedstock_factor(exchange):
+            return next(
+                (
+                    factor
+                    for name, unit, factor in feedstocks
+                    if exchange["unit"] == unit
+                    and name.casefold() in exchange["name"].casefold()
+                ),
+                0,
+            )
+
         efficiency = params.get("efficiency")
         floor_value = params.get("floor value")
 
         initial_energy_use = sum(
-            exc["amount"]
+            exc["amount"] * feedstock_factor(exc)
             for exc in dataset["exchanges"]
-            if exc["unit"] == feedstock_unit
-            and feedstock_name.casefold() in exc["name"].casefold()
-            and exc["type"] != "production"
+            if exc["type"] != "production"
         )
         dataset.setdefault("log parameters", {})[
             "initial energy input for hydrogen production"
@@ -166,8 +180,7 @@ class HydrogenMixin:
 
         for exc in ws.technosphere(
             dataset,
-            lambda exc: feedstock_name.casefold() in exc["name"].casefold(),
-            ws.equals("unit", feedstock_unit),
+            lambda exc: feedstock_factor(exc) > 0,
         ):
             exc["amount"] *= scaling_factor
             exc["uncertainty type"] = 5

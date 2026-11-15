@@ -126,11 +126,21 @@ hydrogen, from biogas:
 hydrogen, from natural gas:
   feedstock name: natural gas
   feedstock unit: cubic meter
+  # Match raw delivered gas, not a separately purchased gas-heat service.
+  # Normalize MJ to the existing 36 MJ/m3 reference used by Premise.
+  additional feedstocks:
+    - name: Natural gas, high pressure, at consumer
+      unit: megajoule
+      conversion factor: 0.027777777777777776
   floor value: 3.5
 
 hydrogen, from natural gas, with CCS:
   feedstock name: natural gas
   feedstock unit: cubic meter
+  additional feedstocks:
+    - name: Natural gas, high pressure, at consumer
+      unit: megajoule
+      conversion factor: 0.027777777777777776
   floor value: 3.5
 
 hydrogen, from biomass, with CCS:

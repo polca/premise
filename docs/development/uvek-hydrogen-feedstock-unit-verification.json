@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-15",
+  "source_scenario": "REMIND SSP2-NPi2050",
+  "observed_failure": "NativeSMR feedstock157.32MJ matched no configured m3input and logged0. ConvertedCLICm3SMR already matched.",
+  "correction": "Optional data-declared feedstock aliases convert only accounting quantities to the existing reference unit. A common multiplier is applied to original exchanges without changing their units.",
+  "declared_reference_MJ_per_m3": 36,
+  "native_SMR_before_logged_input": 0,
+  "native_SMR_after_logged_m3_equivalent": 4.369999999999999,
+  "native_SMR_original_MJ_unchanged_for_neutral_IAM_change": true,
+  "audited_EUR_positive_production_hydrogen_roles": 6,
+  "audited_EUR_supplier_templates": 8,
+  "all_audited_inputs_now_recognized": true,
+  "regressions": {
+    "passed": 236,
+    "before_fix_unit_regressions_failed": 3,
+    "normal_and_floor_limited_IAM_changes_checked": true,
+    "separate_gas_heat_service_excluded": true,
+    "black": "passed",
+    "ruff": "passed",
+    "documentation_reference_check": "passed"
+  },
+  "exhaustive_graph_validation_errors": 0,
+  "signed_LCI": {
+    "complete_transformed_activities": 13122,
+    "transient_matrix_filesystem": "memory",
+    "signed_LCI_solves": 8,
+    "checks": [
+      {
+        "name": "market for hydrogen, gaseous, low pressure",
+        "location": "EUR",
+        "functional_unit": "1kgH2",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "market for hydrogen, gaseous, low pressure",
+        "location": "World",
+        "functional_unit": "1kgH2",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "Hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity",
+        "location": "EUR",
+        "functional_unit": "1kgH2",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+        "location": "EUR",
+        "functional_unit": "1kgH2",
+        "signed_LCIs_finite_and_reverse": true
+      }
+    ],
+    "brightway_database_writes": 0,
+    "registered_activities": 0,
+    "registry_unchanged": true,
+    "score_or_original_native_equivalence_claimed": false,
+    "biosphere_compartment_convention": "Explicit unspecified subcompartment and root compartment are canonicalized identically;name andunit stay exact."
+  },
+  "new_migration_rules": 0,
+  "new_helpers": 0,
+  "public_qualification_claimed": false,
+  "export_performed": false
+}
