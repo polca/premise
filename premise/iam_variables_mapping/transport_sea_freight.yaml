@@ -4,8 +4,12 @@
 
 ship, marine oil:
   iam_aliases:
-    remind: ES|Transport|Freight|Domestic Shipping|Liquids|Fossil
-    remind-eu: ES|Transport|Freight|Domestic Shipping|Liquids|Fossil
+    remind:
+      - ES|Transport|Freight|Domestic Shipping|Liquids|Fossil
+      - ES|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
+    remind-eu:
+      - ES|Transport|Freight|Domestic Shipping|Liquids|Fossil
+      - ES|Transport|Bunkers|Freight|International Shipping|Liquids|Fossil
     tiam-ucl:
       - Distance|Transport|Ship|Domestic|Heavy Fuel Oil
       - Distance|Transport|Ship|Domestic|Heavy Fuel Oil|Heavy Fuel Oil
@@ -101,8 +105,12 @@ ship, diesel:
 
 ship, biodiesel:
   iam_aliases:
-    remind: ES|Transport|Freight|Domestic Shipping|Liquids|Biomass
-    remind-eu: ES|Transport|Freight|Domestic Shipping|Liquids|Biomass
+    remind:
+      - ES|Transport|Freight|Domestic Shipping|Liquids|Biomass
+      - ES|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
+    remind-eu:
+      - ES|Transport|Freight|Domestic Shipping|Liquids|Biomass
+      - ES|Transport|Bunkers|Freight|International Shipping|Liquids|Biomass
     tiam-ucl:
       - Distance|Transport|Ship|Domestic|Biodiesel
       - Distance|Transport|Ship|International|Biodiesel
@@ -211,8 +219,12 @@ ship, fuel cell:
 
 ship, ammonia:
   iam_aliases:
-    remind: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
-    remind-eu: FE|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
+    remind:
+      - ES|Transport|Freight|Domestic Shipping|Liquids|Hydrogen
+      - ES|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
+    remind-eu:
+      - ES|Transport|Freight|Domestic Shipping|Liquids|Hydrogen
+      - ES|Transport|Bunkers|Freight|International Shipping|Liquids|Hydrogen
     tiam-ucl:
       - Distance|Transport|Ship|Domestic|Ammonia|Synthetic Ammonia
       - Distance|Transport|Ship|International|Ammonia|Synthetic Ammonia

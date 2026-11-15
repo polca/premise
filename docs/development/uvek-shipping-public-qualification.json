@@ -1,0 +1,518 @@
+{
+  "status": "public_ten_sector_export_and_written_shipping_checks_passed",
+  "database": "BAFU:2026-REMIND-SSP2-NPi-2050-ten-shipping-20261115-155721",
+  "activities": 16191,
+  "native_codes_retained": 11947,
+  "source_and_biosphere_metadata_unchanged_during_written_inspection": true,
+  "canonical_shipping_markets": 13,
+  "shipping_market_regions": [
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "SSA",
+    "USA",
+    "World"
+  ],
+  "shipping_technology_regional_counts": {
+    "ship, marine oil": 13,
+    "ship, biodiesel": 13,
+    "ship, ammonia": 13
+  },
+  "shipping_service_unit": "billion tkm/yr",
+  "regional_share_checks": [
+    {
+      "region": "MEA",
+      "shares": {
+        "ship, marine oil": 1.0,
+        "ship, biodiesel": 0.0,
+        "ship, ammonia": 0.0
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "REF",
+      "shares": {
+        "ship, marine oil": 1.0,
+        "ship, biodiesel": 0.0,
+        "ship, ammonia": 0.0
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "JPN",
+      "shares": {
+        "ship, marine oil": 0.9414900076624612,
+        "ship, biodiesel": 0.05850982627180692,
+        "ship, ammonia": 1.6606573192785556e-07
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "CHA",
+      "shares": {
+        "ship, marine oil": 0.962372374842881,
+        "ship, biodiesel": 0.03758317473924259,
+        "ship, ammonia": 4.445041787651503e-05
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "NEU",
+      "shares": {
+        "ship, marine oil": 0.930312130155105,
+        "ship, biodiesel": 0.06968786984489497,
+        "ship, ammonia": 0.0
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "USA",
+      "shares": {
+        "ship, marine oil": 0.9009070485794622,
+        "ship, biodiesel": 0.09503054387037305,
+        "ship, ammonia": 0.0040624075501647676
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "OAS",
+      "shares": {
+        "ship, marine oil": 0.9779080379298707,
+        "ship, biodiesel": 0.022091962070129326,
+        "ship, ammonia": 0.0
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "IND",
+      "shares": {
+        "ship, marine oil": 0.99999585162861,
+        "ship, biodiesel": 4.148371389967176e-06,
+        "ship, ammonia": 0.0
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "LAM",
+      "shares": {
+        "ship, marine oil": 0.92707011221222,
+        "ship, biodiesel": 0.07292502578731455,
+        "ship, ammonia": 4.8620004654336365e-06
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "CAZ",
+      "shares": {
+        "ship, marine oil": 0.9534263957283229,
+        "ship, biodiesel": 0.04657360427167714,
+        "ship, ammonia": 0.0
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "SSA",
+      "shares": {
+        "ship, marine oil": 0.9994566458131896,
+        "ship, biodiesel": 0.0005433541868103648,
+        "ship, ammonia": 0.0
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    },
+    {
+      "region": "EUR",
+      "shares": {
+        "ship, marine oil": 0.6693519976416293,
+        "ship, biodiesel": 0.30847026413109435,
+        "ship, ammonia": 0.022177738227276284
+      },
+      "written_shares_match_all_positive_IAM_transport_service_roles": true
+    }
+  ],
+  "native_nonfuel_vessel_port_maintenance_and_waste_quantities_unchanged_in_regions": [
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "SSA",
+    "USA",
+    "World"
+  ],
+  "written_functional_units_checked": 52,
+  "written_signed_LCI_solves": 104,
+  "LCI_checks": [
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "MEA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "REF",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "JPN",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "CHA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "NEU",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "USA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "OAS",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "World",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "IND",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "LAM",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "CAZ",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "SSA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for transport, freight, sea, container ship",
+      "location": "EUR",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "OAS",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "CHA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "IND",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "EUR",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "REF",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "REF",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "USA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "NEU",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "World",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "LAM",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "JPN",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "SSA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "CAZ",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "REF",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "SSA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "IND",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "USA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "CAZ",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "MEA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "JPN",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "CHA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "MEA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "World",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "SSA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "OAS",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "EUR",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "CHA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "IND",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "EUR",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "World",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "LAM",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "JPN",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "NEU",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "NEU",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "CAZ",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "OAS",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, transoceanic container ship",
+      "location": "MEA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with biodiesel",
+      "location": "LAM",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "transport, freight, sea, container ship, powered with liquid ammonia",
+      "location": "USA",
+      "unit": "ton kilometer",
+      "signed_LCIs_finite_and_reverse": true
+    }
+  ],
+  "inspection_database_writes": 0,
+  "new_export_databases_in_original_workflow": 1,
+  "default_checkpoint_persistence": true,
+  "exhaustive_validation_errors": 0,
+  "public_sector_gate_bypassed": false,
+  "validation_disabled": false,
+  "freshness": "snapshot",
+  "latest_published_archive_not_pinned": true,
+  "live_metadata_verification_available": false,
+  "inspection_elapsed_seconds": 93.03325779200532,
+  "full_goal_complete": false,
+  "date": "2026-11-15",
+  "qualified_context": {
+    "family": "uvek",
+    "version": "2026",
+    "system_model": "cutoff",
+    "biosphere_family": "ecoinvent",
+    "biosphere_version": "3.10"
+  },
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement",
+    "steel",
+    "mining",
+    "renewable",
+    "cdr",
+    "fuels",
+    "ships"
+  ],
+  "qualified_sector_count": 10,
+  "remaining_unqualified_sector_count": 9,
+  "archive_version": "20261110T030235Z-613ea498808a",
+  "archive_date": "2026-11-10T03:03:34.737828+00:00",
+  "live_metadata_last_status": 502,
+  "workflow_and_export_completed_before_separate_written_inspection": true,
+  "inspection_used_integer_activity_ids": true,
+  "private_public_workflow_receipt_sha256": "bbebe97c489fa31d730596a62f7c90c6c539d692b40e499942aa533fd55b7d0b",
+  "private_successful_written_receipt_sha256": "f0c2d481a3fdf60df32664f644637f323db6cba51fa49edbf6d3613e0a8846ae",
+  "regression_tests": {
+    "transport_native_filters_background_axes_and_public_scope": 290,
+    "brightpath_source38_cases": 19,
+    "premise_source38_cases": 13
+  },
+  "full_licensed_ecoinvent_process_suite": "Not claimed; exact inspected cut-off profiles and earlier qualified supplier routes are tested.",
+  "source_native_LCIA_equivalence_claimed": false
+}

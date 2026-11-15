@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr and fuels. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
+  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels and ships. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
   "sectors": [
     {
       "sector": "biomass",
@@ -2678,84 +2678,100 @@
     },
     {
       "sector": "ships",
-      "status": "audited_not_operational",
-      "requirements": [
-        "Family-aware native supplier matching and exact source/reference-basis review.",
-        "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
-        "Real public API update/certification/export and finite LCI; combined/default regression."
+      "status": "qualified_for_encrypted_REMIND_SSP2_NPi_2050_snapshot",
+      "runtime_verified": true,
+      "evidence": "docs/development/uvek-shipping-public-qualification.json",
+      "default_checkpoint_persistence": true,
+      "canonical_shipping_markets": 13,
+      "regional_shipping_technologies": 39,
+      "written_signed_LCI_solves": 104,
+      "exhaustive_validation_errors": 0,
+      "remaining_limits": [
+        "Latest published archive snapshot; live metadata unavailable.",
+        "Native/Clic fleet, chemistry and background screening differences; source/native LCIA equivalence not claimed.",
+        "Other IAM models/pathways/years not qualified by this run."
       ],
-      "native_mapping_coverage": {
-        "kind": "static_declarations_only",
-        "files": [
+      "historical_first_pass_audit": {
+        "sector": "ships",
+        "status": "audited_not_operational",
+        "requirements": [
+          "Family-aware native supplier matching and exact source/reference-basis review.",
+          "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
+          "Real public API update/certification/export and finite LCI; combined/default regression."
+        ],
+        "native_mapping_coverage": {
+          "kind": "static_declarations_only",
+          "files": [
+            {
+              "path": "premise/iam_variables_mapping/transport_sea_freight.yaml",
+              "ecoinvent_role_count": 9,
+              "explicit_nonempty_uvek_role_count": 0,
+              "missing_or_empty_uvek_roles": [
+                "ship, marine oil",
+                "ship, diesel",
+                "ship, biodiesel",
+                "ship, electric",
+                "ship, fuel cell",
+                "ship, ammonia",
+                "ship, methanol",
+                "ship, synthetic methane",
+                "ship, synthetic LPG"
+              ],
+              "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+            }
+          ],
+          "runtime_verified": false
+        },
+        "blockers": [
           {
-            "path": "premise/iam_variables_mapping/transport_sea_freight.yaml",
-            "ecoinvent_role_count": 9,
-            "explicit_nonempty_uvek_role_count": 0,
-            "missing_or_empty_uvek_roles": [
-              "ship, marine oil",
-              "ship, diesel",
-              "ship, biodiesel",
-              "ship, electric",
-              "ship, fuel cell",
-              "ship, ammonia",
-              "ship, methanol",
-              "ship, synthetic methane",
-              "ship, synthetic LPG"
-            ],
-            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+            "code": "scope_gate",
+            "path": "premise/database/background.py:validate_uvek_scope",
+            "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+          },
+          {
+            "code": "family_dispatch",
+            "path": "premise/database/new_database.py:NewDatabase.update",
+            "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+          },
+          {
+            "code": "sector_implementation_and_integration",
+            "path": "premise/transport/transport.py:47",
+            "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+          },
+          {
+            "code": "inventory_family_default",
+            "path": "premise/transport/transport.py",
+            "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
           }
         ],
-        "runtime_verified": false
-      },
-      "blockers": [
-        {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
-        },
-        {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/transport/transport.py:47",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/transport/transport.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        "decisions": [],
+        "implementation_commits": [],
+        "tests": [],
+        "integration_exports": [],
+        "static_audit": {
+          "callback": "_update_vehicles",
+          "module": "premise/transport/transport.py",
+          "module_sha256": "55bb622162b5d71702bbdc53ee82584871b2ee29920c0e2a5af925f1f6725fe0",
+          "update_function_line": 47,
+          "declared_arguments": [
+            "scenario",
+            "vehicle_type",
+            "version",
+            "system_model"
+          ],
+          "inventory_set_calls": [
+            {
+              "line": 210,
+              "family_keyword_supplied": false
+            }
+          ],
+          "biosphere_dictionary_calls": [],
+          "version_assumption_lines_to_review": [],
+          "role_files": [
+            "transport_sea_freight.yaml"
+          ],
+          "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
         }
-      ],
-      "decisions": [],
-      "implementation_commits": [],
-      "tests": [],
-      "integration_exports": [],
-      "static_audit": {
-        "callback": "_update_vehicles",
-        "module": "premise/transport/transport.py",
-        "module_sha256": "55bb622162b5d71702bbdc53ee82584871b2ee29920c0e2a5af925f1f6725fe0",
-        "update_function_line": 47,
-        "declared_arguments": [
-          "scenario",
-          "vehicle_type",
-          "version",
-          "system_model"
-        ],
-        "inventory_set_calls": [
-          {
-            "line": 210,
-            "family_keyword_supplied": false
-          }
-        ],
-        "biosphere_dictionary_calls": [],
-        "version_assumption_lines_to_review": [],
-        "role_files": [
-          "transport_sea_freight.yaml"
-        ],
-        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
       }
     },
     {
@@ -3670,14 +3686,15 @@
       "mining",
       "renewable",
       "cdr",
-      "fuels"
+      "fuels",
+      "ships"
     ],
     "registered_sectors_including_electricity": 19,
-    "remaining_unqualified_sector_count": 10,
-    "latest_combined_export_evidence": "docs/development/uvek-fuels-public-qualification.json",
+    "remaining_unqualified_sector_count": 9,
+    "latest_combined_export_evidence": "docs/development/uvek-shipping-public-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-pem-carrier-classification-verification.json",
+    "latest_mapping_review": "docs/development/uvek-ships-38-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
@@ -3754,8 +3771,14 @@
         "reproduced_with_prior_generator_commit": "042b5907dd2f9b672dc98632ff90a48cdb9b29f9",
         "failure_precedes_new_hook": true,
         "verification": "docs/development/uvek-pet-market-39-verification.json",
-        "guard_weakened": false
+        "guard_weakened": false,
+        "status": "resolved",
+        "resolution_evidence": "docs/development/uvek-shipping-packaged-verification.json",
+        "current_clean_tracked_generation_byte_identical": true
       }
-    ]
+    ],
+    "latest_shared_transport_review": "docs/development/uvek-transport-background-axes.md",
+    "latest_combined_run_freshness": "Latest published CLIC archive snapshot; live metadata last returned HTTP502. Earlier linked live qualifications remain historical evidence.",
+    "latest_packaged_resource_checks": "docs/development/uvek-shipping-packaged-verification.json"
   }
 }

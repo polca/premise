@@ -1,0 +1,19 @@
+{
+  "brightpath_commit": "25c868831c0e787889ea41918a19009defbfd931",
+  "resource_sha256": {
+    "brightpath/data/migrations/uvek/ecoinvent-to-uvek-2025.json": "28a331b22a348c03718828b21195a2d448b4f9c9d4ace467686d77ef94147d63",
+    "brightpath/data/migrations/uvek/uvek-2025-to-ecoinvent-3.12-cutoff.json": "c35acc23079f00885ad6a328226b43b0fd34701763a39d5e001ac9dfeabc9ef6",
+    "brightpath/data/migrations/RESOURCE_MANIFEST.json": "99a76686e001325aba6968182f57f37bc0587cfb426c2ebff6d2c16161456a15"
+  },
+  "clean_tracked_regeneration_byte_identical": true,
+  "wheel_sha256": "af75f7f573085952d5673413fa009888bf2e3e0e7cfb43fe9c7eb65cb74298fc",
+  "installed_package_tests": {
+    "brightpath_shipping_profiles": 32,
+    "premise_shipping_cohorts_and_prior_approvals": 24
+  },
+  "ordinary_transport_and_scope_regressions": 290,
+  "prior_fuels39_domain_cases": 30,
+  "prior_authoring_replay_cases": 1,
+  "user_environment_modified": false,
+  "private_site_packages_import_verified": true
+}

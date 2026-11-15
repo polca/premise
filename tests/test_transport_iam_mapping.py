@@ -180,3 +180,24 @@ def test_transport_relink_scans_legacy_market_names_by_membership():
     assert matching["product"] == "transport, freight, lorry"
     assert matching["location"] == "EUR"
     assert skipped_by_dataset_unit["name"] == "old freight market"
+
+
+def test_remind_shipping_fleet_uses_transport_service_for_the_same_scope_as_energy():
+    path = (
+        Path(__file__).parents[1]
+        / "premise/iam_variables_mapping/transport_sea_freight.yaml"
+    )
+    definitions = yaml.safe_load(path.read_text())
+    for model in ("remind", "remind-eu"):
+        for role, carrier in (
+            ("ship, marine oil", "Fossil"),
+            ("ship, biodiesel", "Biomass"),
+            ("ship, ammonia", "Hydrogen"),
+        ):
+            service = definitions[role]["iam_aliases"][model]
+            energy = definitions[role]["energy_use_aliases"][model]
+            assert set(service) == {
+                f"ES|Transport|Freight|Domestic Shipping|Liquids|{carrier}",
+                f"ES|Transport|Bunkers|Freight|International Shipping|Liquids|{carrier}",
+            }
+            assert set(energy) == {name.replace("ES|", "FE|", 1) for name in service}
