@@ -1,6 +1,7 @@
 # mapping for different vehicles attributes
 ---
 train:
+  aliases_file: transport_rail_freight.yaml
   sizes:
     - electric
     - diesel-electric
@@ -8,6 +9,14 @@ train:
   unit: ton kilometer
   name: transport, freight, train
   old:
+    # Complete native generic freight service uses the shared regional market.
+    Transport, freight, rail:
+      remind: market for transport, freight, train
+      remind-eu: market for transport, freight, train
+      image: market for transport, freight, train
+      tiam-ucl: market for transport, freight, train
+      witch: market for transport, freight, train
+      gcam: market for transport, freight, train
     market for transport, freight train, fleet average:
       remind: market for transport, freight, train
       remind-eu: market for transport, freight, train

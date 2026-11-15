@@ -3,6 +3,36 @@
 ---
 
 train, electric:
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, freight, rail, electricity only
+      reference product: Transport, freight, rail, electricity only
+      unit: ton kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native freight-rail services per positive tonne-kilometre through the existing shared
+      IAM regional fleet and relative-efficiency calculations. Preserve locomotive, wagon, track, maintenance,
+      disposal and all other service burdens once. Do not apply a payload or vehicle-km conversion again.
+    - Native allocation, train loads, fleet, vintage, geography and existing biosphere exclusions are screening
+      limitations with unquantified score effects. Retain the source inventories and the shared transport
+      carbon-accounting convention; no added avoided-emission credit is introduced.
+    - Use the five complete RER, AT, DE, FR and IT electricity-only services as native geographic prototypes
+      under ordinary supplier selection. These inventories exclude diesel shunting; no separate shunting
+      demand is established by the IAM or invented here. Native railway-grid and ordinary regional grid
+      differences remain a screening assumption.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Electricity, medium voltage, production ENTSO-E, at grid
+      - Electricity, medium voltage, railway, at grid
+      - Electricity, medium voltage, DB, at grid
+      - "Electricity, medium voltage, \xD6BB, at grid"
+      - market group for electricity, medium voltage
+      - market for electricity, medium voltage
+      unit: kilowatt hour
+    exact: true
   iam_aliases:
     remind: ES|Transport|Freight|Rail|Electric
     remind-eu: ES|Transport|Freight|Rail|Electric
@@ -28,6 +58,30 @@ train, electric:
       - electricity
 
 train, diesel-electric:
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, freight, rail, diesel, with particle filter
+      reference product: Transport, freight, rail, diesel, with particle filter
+      unit: ton kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use complete native freight-rail services per positive tonne-kilometre through the existing shared
+      IAM regional fleet and relative-efficiency calculations. Preserve locomotive, wagon, track, maintenance,
+      disposal and all other service burdens once. Do not apply a payload or vehicle-km conversion again.
+    - Native allocation, train loads, fleet, vintage, geography and existing biosphere exclusions are screening
+      limitations with unquantified score effects. Retain the source inventories and the shared transport
+      carbon-accounting convention; no added avoided-emission credit is introduced.
+    - Use the complete CH-labelled diesel service with particle filter as the baseline proxy. Its source
+      documentation substitutes Austrian traction consumption because Swiss traction data were unavailable.
+      Retain its native shunting, particle-filter, vehicle and track inventories once; fleet, topography
+      and operating differences remain unquantified.
+  uvek_fuel_aliases:
+    fltr:
+      name: Diesel, at regional storage
+      unit: kilogram
+    exact: true
   iam_aliases:
     remind: ES|Transport|Freight|Rail|Liquids
     remind-eu: ES|Transport|Freight|Rail|Liquids

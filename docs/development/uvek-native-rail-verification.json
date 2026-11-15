@@ -1,0 +1,455 @@
+{
+  "background": {
+    "technosphere": "UVEK 2026 cut-off",
+    "biosphere": "ecoinvent 3.10"
+  },
+  "authorization": "Standing autonomous approval; complete native service proxies logged for review.",
+  "native_technology_services": [
+    {
+      "name": "Transport, freight, rail, electricity only",
+      "product": "Transport, freight, rail, electricity only",
+      "unit": "ton kilometer",
+      "location": "RER",
+      "metadata_sha256": "e5663b8c6f098fca4e8091950ebcacf6981bf63036080df98f647f380def6909",
+      "inventory_sha256": "583f5d20090d49ab3cc815a7d02b17cf3b48d2d95dba2fc8cf69b3a0ce9cf5b7",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail, electricity only",
+      "product": "Transport, freight, rail, electricity only",
+      "unit": "ton kilometer",
+      "location": "IT",
+      "metadata_sha256": "a8cbfbdd8fe308827fe520f701f905862e24db07c2dfba0c388ef8edee98d4b5",
+      "inventory_sha256": "3ab7f7b524e13397d92ff808049cdd0b00bb8f21e605b5b4a4497baa733d0a44",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail, electricity only",
+      "product": "Transport, freight, rail, electricity only",
+      "unit": "ton kilometer",
+      "location": "DE",
+      "metadata_sha256": "9c7d71107a5bfab72a25214fa1a67412aa5fff7c2618c466f5183368a1704578",
+      "inventory_sha256": "45761550209f26a306a7985ec6db004e7df5b8b450aff9269bd5b6491e7e9ca0",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail, electricity only",
+      "product": "Transport, freight, rail, electricity only",
+      "unit": "ton kilometer",
+      "location": "FR",
+      "metadata_sha256": "68742b3dfb7a60acd00f66118cd56e06a83e9908ffbe4f94b7c4cda0178aed00",
+      "inventory_sha256": "b6e9a3f2d53476e4850a7e6b8ffe89082793ce631570e6a4721c44d78e245bc8",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail, electricity only",
+      "product": "Transport, freight, rail, electricity only",
+      "unit": "ton kilometer",
+      "location": "AT",
+      "metadata_sha256": "45fe32d4cbaac759eb11206cacea89362c0ff865f98446e9fc70f592b14eee75",
+      "inventory_sha256": "e3355eb260dd824f55c499e20cf97bba1becab3c99fbe33a2918251876f2fe70",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail, diesel, with particle filter",
+      "product": "Transport, freight, rail, diesel, with particle filter",
+      "unit": "ton kilometer",
+      "location": "CH",
+      "metadata_sha256": "739de8daeeba27e86909d7aa181b954f3a1178e171497630d37585c50902dab7",
+      "inventory_sha256": "4e7bf77afbcc34fbfc6495263896c0346cf06279cffbe2c7c2d156952de0f32b",
+      "positive_reference_amount": 1
+    }
+  ],
+  "native_generic_freight_interfaces": [
+    {
+      "name": "Transport, freight, rail",
+      "product": "Transport, freight, rail",
+      "unit": "ton kilometer",
+      "location": "AT",
+      "metadata_sha256": "9e2ae8322b9a83673a37dfb0d233214e89f6889e4fb82c73ed9bea93997f5938",
+      "inventory_sha256": "fc5824c3a069f25dd54cfbd8a7febd48ba08c6acf321164a56dec0648745ccc2",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail",
+      "product": "Transport, freight, rail",
+      "unit": "ton kilometer",
+      "location": "DE",
+      "metadata_sha256": "dc2436321db28bec6734edfee83b0dec41c35462a297065365e90c942a904dde",
+      "inventory_sha256": "59f1b1c1bbf9cc0b3ec7611220c495be46771687e2f219e170c710730fd56efb",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail",
+      "product": "Transport, freight, rail",
+      "unit": "ton kilometer",
+      "location": "FR",
+      "metadata_sha256": "a6f513f8d1d376ee0cd8fb47d19d50404e5594527bc96b1aa0823e769ce09262",
+      "inventory_sha256": "8a49517f067ce13d64a185611ee40581e5126f5b577cf4b1133c8f5ba76a3ab5",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail",
+      "product": "Transport, freight, rail",
+      "unit": "ton kilometer",
+      "location": "RER",
+      "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476",
+      "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail",
+      "product": "Transport, freight, rail",
+      "unit": "ton kilometer",
+      "location": "IT",
+      "metadata_sha256": "2c48992e65a84b13b4c1ddfb44b6322c4cad9aa0b97e30452c0eedef6e87e0b9",
+      "inventory_sha256": "80dafbab551e5de63b9bb106828b4ad0886c90b640fb6cf55e7ae6bf6696b0f8",
+      "positive_reference_amount": 1
+    },
+    {
+      "name": "Transport, freight, rail",
+      "product": "Transport, freight, rail",
+      "unit": "ton kilometer",
+      "location": "BE",
+      "metadata_sha256": "17100aadfa06a537caf21fcce08d1691f1a77619db10b995b75f67ca48642505",
+      "inventory_sha256": "709faac516a87d47236af03675dffd7e65bd0a907cd87561338499b6e355fa0a",
+      "positive_reference_amount": 1
+    }
+  ],
+  "actual_IAM_roles": [
+    "train, electric",
+    "train, diesel-electric",
+    "train, fuel cell"
+  ],
+  "required_clic_roots_before_native_aliases": 18,
+  "required_clic_roots_after_native_aliases": 6,
+  "remaining_root_geographies": [
+    "Europe without Switzerland",
+    "IN",
+    "CN",
+    "ZA",
+    "US",
+    "RoW"
+  ],
+  "root_geographies_are_distinct_not_duplicate_versions": true,
+  "remaining_first_failing_source_cohort": "ecoinvent 3.12 cutoff",
+  "unapproved_rules_in_that_cohort": [
+    {
+      "rule_id": "bp-effadcf67d6cad91",
+      "mapping_method": "heuristic_similarity",
+      "source": {
+        "name": "market for barium carbonate",
+        "reference product": "barium carbonate",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Lithium carbonate, at plant",
+        "reference product": "Lithium carbonate, at plant",
+        "location": "GLO",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-011b0c14ef8a369d",
+      "mapping_method": "reviewed_battery_chemical_supply_39",
+      "source": {
+        "name": "market for titanium dioxide",
+        "reference product": "titanium dioxide",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "battery-chemicals-39-titanium-dioxide-delivery"
+      }
+    },
+    {
+      "rule_id": "bp-1a39c7b4c1f58b77",
+      "mapping_method": "curated_legacy",
+      "source": {
+        "name": "market for polyphenylene sulfide",
+        "reference product": "polyphenylene sulfide",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Polyphenylene sulfide, at plant",
+        "reference product": "Polyphenylene sulfide, at plant",
+        "location": "GLO",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-f0ea84b691223768",
+      "mapping_method": "heuristic_similarity",
+      "source": {
+        "name": "market for locomotive",
+        "reference product": "locomotive",
+        "location": "GLO",
+        "unit": "unit"
+      },
+      "target": {
+        "name": "Locomotive",
+        "reference product": "Locomotive",
+        "location": "RER",
+        "unit": "unit"
+      }
+    },
+    {
+      "rule_id": "bp-b86c5c966757b8c9",
+      "mapping_method": "heuristic_similarity",
+      "source": {
+        "name": "market for goods wagon",
+        "reference product": "goods wagon",
+        "location": "GLO",
+        "unit": "unit"
+      },
+      "target": {
+        "name": "Goods wagon",
+        "reference product": "Goods wagon",
+        "location": "RER",
+        "unit": "unit"
+      }
+    },
+    {
+      "rule_id": "bp-3e953694d9531d69",
+      "mapping_method": "curated_legacy",
+      "source": {
+        "name": "market for phenolic resin",
+        "reference product": "phenolic resin",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Phenolic resin, at plant",
+        "reference product": "Phenolic resin, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-dbd744f486420f56",
+      "mapping_method": "reviewed_fuels_39_final_market",
+      "source": {
+        "name": "market for silica sand",
+        "reference product": "silica sand",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "fuels-39-final-market-5135e054986e0de8eda4"
+      }
+    },
+    {
+      "rule_id": "bp-ff83b71c804cabb4",
+      "mapping_method": "curated_legacy",
+      "source": {
+        "name": "market for gold",
+        "reference product": "gold",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Gold, at regional storage",
+        "reference product": "Gold, at regional storage",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-e9cdd018f5d75d22",
+      "mapping_method": "heuristic_similarity",
+      "source": {
+        "name": "market for palladium",
+        "reference product": "palladium",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Palladium, at regional storage",
+        "reference product": "Palladium, at regional storage",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-548c151eafe8725b",
+      "mapping_method": "heuristic_similarity",
+      "source": {
+        "name": "market for phosphorus, white, liquid",
+        "reference product": "phosphorus, white, liquid",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Phosphorus, white, liquid, at plant",
+        "reference product": "Phosphorus, white, liquid, at plant",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-60b0673da5bb6e7b",
+      "mapping_method": "heuristic_similarity",
+      "source": {
+        "name": "market for printed wiring board, for through-hole mounting, Pb free surface",
+        "reference product": "printed wiring board, for through-hole mounting, Pb free surface",
+        "location": "GLO",
+        "unit": "square meter"
+      },
+      "target": {
+        "name": "Printed wiring board, through-hole, lead-free surface, at plant",
+        "reference product": "Printed wiring board, through-hole, lead-free surface, at plant",
+        "location": "GLO",
+        "unit": "square meter"
+      }
+    },
+    {
+      "rule_id": "bp-711b4feda57acd26",
+      "mapping_method": "heuristic_similarity",
+      "source": {
+        "name": "market for ferrite",
+        "reference product": "ferrite",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Ferrite, at plant",
+        "reference product": "Ferrite, at plant",
+        "location": "GLO",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-612859ed6ea4236c",
+      "mapping_method": "heuristic_similarity",
+      "source": {
+        "name": "market for resistor, surface-mounted",
+        "reference product": "resistor, surface-mounted",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Resistor, SMD type, surface mounting, at plant",
+        "reference product": "Resistor, SMD type, surface mounting, at plant",
+        "location": "GLO",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-ef673f7bc19f4581",
+      "mapping_method": "reviewed_pilot_hazardous_paint",
+      "source": {
+        "name": "market for hazardous waste, for incineration",
+        "reference product": "hazardous waste, for incineration",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "pilot-hazardous-paint-7781a4a3e2537f64b1d3"
+      }
+    },
+    {
+      "rule_id": "bp-4389bb6ee9ab35e9",
+      "mapping_method": "reviewed_pilot_material",
+      "source": {
+        "name": "market group for electricity, medium voltage",
+        "reference product": "electricity, medium voltage",
+        "location": "Europe without Switzerland",
+        "unit": "kilowatt hour"
+      },
+      "target": {
+        "name": "Electricity, medium voltage, at grid",
+        "reference product": "Electricity, medium voltage, at grid",
+        "location": "ENTSO-E",
+        "unit": "kilowatt hour"
+      }
+    },
+    {
+      "rule_id": "bp-ab66d17baa663f1c",
+      "mapping_method": "reviewed_ferrosilicon_inventory_reconstruction",
+      "source": {
+        "name": "market for ferrosilicon",
+        "reference product": "ferrosilicon",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "ferrosilicon-39-global-market"
+      }
+    },
+    {
+      "rule_id": "bp-cc63c9f08414f90f",
+      "mapping_method": "curated_legacy",
+      "source": {
+        "name": "sheet rolling, steel",
+        "reference product": "sheet rolling, steel",
+        "location": "RER",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Sheet rolling, steel",
+        "reference product": "Sheet rolling, steel",
+        "location": "RER",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "rule_id": "bp-b7606642f4256898",
+      "mapping_method": "reviewed_pilot_uncontrolled_market",
+      "source": {
+        "name": "market for waste plastic, mixture",
+        "reference product": "waste plastic, mixture",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "pilot-uncontrolled-market-6c65b65b6a1554face5f"
+      }
+    },
+    {
+      "rule_id": "bp-37b9b46586e881e7",
+      "mapping_method": "reviewed_cutoff_stock_recipe",
+      "source": {
+        "name": "aluminium scrap, new, Recycled Content cut-off",
+        "reference product": "aluminium scrap, new",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "target": {
+        "recipe_ref": "cutoff-stock-c799837c419be7ab840f"
+      }
+    },
+    {
+      "rule_id": "bp-50840fb5920cae64",
+      "mapping_method": "product_checked",
+      "source": {
+        "name": "market for brass",
+        "reference product": "brass",
+        "location": "RoW",
+        "unit": "kilogram"
+      },
+      "target": {
+        "name": "Brass, at plant",
+        "reference product": "Brass, at plant",
+        "location": "CH",
+        "unit": "kilogram"
+      }
+    }
+  ],
+  "distinct_unapproved_rule_count_in_that_cohort": 20,
+  "not_a_global_remaining_rule_count": true,
+  "first_bad_candidate": "Barium carbonate to lithium carbonate is a different material and remains unapproved.",
+  "tests": {
+    "first_native_transport_selection_passed": 28,
+    "additional_native_interface_and_transport_selection_passed": 10,
+    "groups_overlap": true,
+    "distinct_cases_passed": 29
+  },
+  "production_python_changes": [],
+  "full_sector_update_reached": false,
+  "native_market_relinking_real_scenario_verified": false,
+  "public_sector_gate_opened": false,
+  "sector_qualified": false,
+  "full_goal_complete": false
+}
