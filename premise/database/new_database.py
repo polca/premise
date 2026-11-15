@@ -22,6 +22,7 @@ from typing import List, Literal, Union
 
 import bw2data
 import datapackage
+import portalocker
 from bw2io import ExcelImporter
 from packaging.version import Version
 from tqdm import tqdm
@@ -1224,10 +1225,27 @@ class NewDatabase:
             return None
         return {name: resolve_cache_ref(path) for name, path in candidates.items()}
 
-    def _compact_source_checkpoint_path(self, db_name: str | None) -> Path:
+    def _compact_source_checkpoint_path(
+        self,
+        db_name: str | None,
+        *,
+        cache_fingerprints: dict[str, str] | None = None,
+    ) -> Path:
+        """Name an immutable combined base from its source and import caches."""
+        if cache_fingerprints is None:
+            cache_refs = self._compact_source_cache_references(db_name)
+            if cache_refs is None:
+                raise ValueError(
+                    "Complete source and inventory caches are required to name "
+                    "a combined source checkpoint."
+                )
+            cache_fingerprints = self._compact_source_signature(cache_refs)
+        fingerprint = hashlib.sha256(
+            json.dumps(cache_fingerprints, sort_keys=True).encode("utf-8")
+        ).hexdigest()[:32]
         source = self._database_cache_path(db_name)
         return source.with_name(
-            f"{source.stem}_with_inventories_store_v{STORE_SCHEMA_VERSION}"
+            f"{source.stem}_with_inventories_{fingerprint}_store_v{STORE_SCHEMA_VERSION}"
             ".inventory-store"
         )
 
@@ -1244,13 +1262,15 @@ class NewDatabase:
         cache_refs = self._compact_source_cache_references(db_name)
         if cache_refs is None:
             return None
-        checkpoint = self._compact_source_checkpoint_path(db_name)
-        marker = checkpoint / "source-cache.json"
-        if not checkpoint.is_dir() or not marker.is_file():
-            return None
         try:
-            recorded = json.loads(marker.read_text(encoding="utf-8"))
             current = self._compact_source_signature(cache_refs)
+            checkpoint = self._compact_source_checkpoint_path(
+                db_name, cache_fingerprints=current
+            )
+            marker = checkpoint / "source-cache.json"
+            if not checkpoint.is_dir() or not marker.is_file():
+                return None
+            recorded = json.loads(marker.read_text(encoding="utf-8"))
         except (OSError, ValueError, TypeError):
             return None
         if recorded.get("cache_fingerprints") != current:
@@ -1265,14 +1285,36 @@ class NewDatabase:
         cache_refs = self._compact_source_cache_references(db_name)
         if cache_refs is None:
             return None
-        checkpoint = store.checkpoint(self._compact_source_checkpoint_path(db_name))
+        fingerprints = self._compact_source_signature(cache_refs)
+        checkpoint = self._compact_source_checkpoint_path(
+            db_name, cache_fingerprints=fingerprints
+        )
         marker = {
             "store_schema_version": STORE_SCHEMA_VERSION,
-            "cache_fingerprints": self._compact_source_signature(cache_refs),
+            "cache_fingerprints": fingerprints,
         }
-        (checkpoint / "source-cache.json").write_text(
-            json.dumps(marker, sort_keys=True, indent=2), encoding="utf-8"
-        )
+        # Serialise writers of the same base and never replace a base already
+        # referenced by scenario deltas, even when inputs have not changed.
+        with portalocker.Lock(str(checkpoint.with_suffix(".lock")), timeout=120):
+            if checkpoint.exists():
+                marker_path = checkpoint / "source-cache.json"
+                try:
+                    recorded = json.loads(marker_path.read_text(encoding="utf-8"))
+                except (OSError, ValueError) as error:
+                    raise InventoryStoreError(
+                        "Refusing to replace an existing combined source checkpoint "
+                        f"with an unreadable cache marker: {checkpoint}"
+                    ) from error
+                if recorded != marker:
+                    raise InventoryStoreError(
+                        "Refusing to replace an existing combined source checkpoint "
+                        f"with a different cache marker: {checkpoint}"
+                    )
+                return checkpoint
+            store.checkpoint(checkpoint)
+            (checkpoint / "source-cache.json").write_text(
+                json.dumps(marker, sort_keys=True, indent=2), encoding="utf-8"
+            )
         return checkpoint
 
     @staticmethod

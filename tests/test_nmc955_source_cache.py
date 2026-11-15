@@ -57,7 +57,8 @@ def test_nmc955_content_invalidates_imports_and_compact_checkpoint_only(
     changed_imports = builder._database_cache_path("ALIGN047", inventories=True)
     assert changed_imports != imports
     assert builder._database_cache_path("ALIGN047") == native
-    assert builder._compact_source_checkpoint_path("ALIGN047") == checkpoint
+    with pytest.raises(ValueError, match="Complete source and inventory caches"):
+        builder._compact_source_checkpoint_path("ALIGN047")
     assert builder._compact_source_cache_references("ALIGN047") is None
     assert builder._find_compact_source_checkpoint("ALIGN047") is None
     assert checkpoint.is_dir()  # Stale data exists, but cannot be reused.
@@ -65,6 +66,7 @@ def test_nmc955_content_invalidates_imports_and_compact_checkpoint_only(
     # Even when the replacement import cache exists, the old marker is stale.
     utils.create_cache([], changed_imports)
     assert builder._compact_source_cache_references("ALIGN047") is not None
+    assert builder._compact_source_checkpoint_path("ALIGN047") != checkpoint
     assert marker.read_bytes() == original_marker
     assert builder._find_compact_source_checkpoint("ALIGN047") is None
 

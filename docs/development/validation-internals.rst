@@ -7,6 +7,15 @@ Incremental sector phases and their production coverage phase are persisted
 with the scenario checkpoint; exporter schema phases are held only in memory so
 exports cannot rewrite a certified checkpoint.
 
+Combined source checkpoints include the fingerprints of the native source,
+prepared inventories and both metadata caches in their filenames. A refreshed
+inventory therefore creates a distinct base; scenario deltas saved earlier keep
+their original base reference. Unchanged cache fingerprints reuse the existing
+checkpoint, and a writer lock prevents concurrent builds from replacing it.
+Checkpoints using the older fixed filename are left intact rather than migrated
+or overwritten. This preserves valid older scenarios; it does not reconstruct a
+base that was already overwritten before this change.
+
 
 .. code-block:: python
 
