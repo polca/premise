@@ -101,7 +101,12 @@ def test_transport_does_not_retain_provider_index_as_relinking_cache(monkeypatch
         "3.12",
         "cutoff",
     )
-    assert captured["kwargs"] == {"cache": None, "index": None}
+    assert captured["kwargs"] == {
+        "cache": None,
+        "index": None,
+        "family": "ecoinvent",
+        "biosphere_version": None,
+    }
 
     Transport(
         database=[],
@@ -118,7 +123,12 @@ def test_transport_does_not_retain_provider_index_as_relinking_cache(monkeypatch
         reuse_index=True,
     )
 
-    assert captured["kwargs"] == {"cache": None, "index": provider_index}
+    assert captured["kwargs"] == {
+        "cache": None,
+        "index": provider_index,
+        "family": "ecoinvent",
+        "biosphere_version": None,
+    }
 
 
 def test_transport_relink_scans_legacy_market_names_by_membership():

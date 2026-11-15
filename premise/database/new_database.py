@@ -2932,6 +2932,12 @@ class NewDatabase:
                 "mining",
                 "renewable",
                 "cdr",
+                "cars",
+                "two_wheelers",
+                "trucks",
+                "ships",
+                "buses",
+                "trains",
             ):
                 self.sector_update_methods[sector]["args"] += (
                     self.source_family,

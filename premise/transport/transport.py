@@ -44,7 +44,14 @@ FILEPATH_TRUCK_LOAD_FACTORS = DATA_DIR / "transport" / "avg_load_factors.yaml"
 FILEPATH_VEHICLES_MAP = DATA_DIR / "transport" / "vehicles_map.yaml"
 
 
-def _update_vehicles(scenario, vehicle_type, version, system_model):
+def _update_vehicles(
+    scenario,
+    vehicle_type,
+    version,
+    system_model,
+    family="ecoinvent",
+    biosphere_version=None,
+):
 
     fleet_data = {
         "car": scenario["iam data"].passenger_car_fleet,
@@ -77,6 +84,8 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         has_fleet=has_fleet,
         index=scenario.get("index"),
         reuse_index=scenario.get("_transport_index_ready", False),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     trspt.regionalize_transport_datasets()
@@ -89,7 +98,9 @@ def _update_vehicles(scenario, vehicle_type, version, system_model):
         # Reuse the fuel module's accounting after regional supplier linking,
         # IAM efficiency scaling and any passenger-car energy floor. Rail
         # refreshes classification while retaining its recorded exhaust total.
-        update_vehicle_fuel_co2(trspt.database, version, vehicle_type)
+        update_vehicle_fuel_co2(
+            trspt.database, biosphere_version or version, vehicle_type
+        )
 
     replace_scenario_inventory(scenario, trspt.database)
     scenario["cache"] = trspt.cache
@@ -185,6 +196,8 @@ class Transport(BaseTransformation):
         has_fleet: bool,
         index: dict = None,
         reuse_index: bool = False,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ):
         super().__init__(
             database,
@@ -199,6 +212,8 @@ class Transport(BaseTransformation):
             # indexed fields directly. Consecutive transport transformations
             # maintain this index incrementally and can share it safely.
             index=index if reuse_index else None,
+            family=family,
+            biosphere_version=biosphere_version,
         )
         self.version = version
         self.relink = relink
@@ -208,7 +223,7 @@ class Transport(BaseTransformation):
         self.mapping = get_vehicles_mapping()
 
         self.activity_mapping = InventorySet(
-            database=database, version=version, model=model
+            database=database, version=version, model=model, family=family
         )
         self.vehicle_map = self.activity_mapping.generate_transport_map(
             transport_type=vehicle_type,
