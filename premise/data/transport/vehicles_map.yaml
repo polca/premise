@@ -37,6 +37,7 @@ train:
       witch: market for transport, freight, train
       gcam: market for transport, freight, train
 two-wheeler:
+  aliases_file: transport_two_wheelers.yaml
   sizes:
     - motorbike
   unit: kilometer

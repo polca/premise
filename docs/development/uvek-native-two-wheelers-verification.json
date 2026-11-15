@@ -1,0 +1,642 @@
+{
+  "authorization": "Standing autonomous approval; modelling assumptions logged for review.",
+  "background": {
+    "technosphere": "UVEK 2026 cut-off",
+    "biosphere": "ecoinvent 3.10"
+  },
+  "native_source_services": [
+    {
+      "role": "moped, gasoline",
+      "name": "Transport, Scooter, gasoline, 4-11kW, EURO-5, 2020",
+      "reference product": "Transport, Scooter, gasoline, 4-11kW, EURO-5, 2020",
+      "location": "CH",
+      "unit": "kilometer",
+      "reference_amount": 1.0,
+      "metadata_sha256": "a8555203c5cd8a7ec4c1b2cb96059083562fb5d398fe175885f3e582e874412f",
+      "inventory_sha256": "73513d88dbefa85ed23580f70d24f3c62ea09c2049d001e3e3047fedb5a0457a",
+      "direct_energy_supplier": {
+        "name": "Fuel supply for gasoline vehicles",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "role": "moped, battery electric",
+      "name": "Transport, Scooter, electric, 4-11kW, NMC battery, 2020",
+      "reference product": "Transport, Scooter, electric, 4-11kW, NMC battery, 2020",
+      "location": "CH",
+      "unit": "kilometer",
+      "reference_amount": 1.0,
+      "metadata_sha256": "f0522bdac04601bd573d1dc27395776b80c955aedf9d813148840891a91e85de",
+      "inventory_sha256": "90cd5577fce228bbf2609f0e0140fc10299a58e745311fb5806dedeb609e830c",
+      "direct_energy_supplier": {
+        "name": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      }
+    },
+    {
+      "role": "motorcycle, 50-250cc, gasoline",
+      "name": "Transport, Motorbike, gasoline, 11-35kW, EURO-5, 2020",
+      "reference product": "Transport, Motorbike, gasoline, 11-35kW, EURO-5, 2020",
+      "location": "CH",
+      "unit": "kilometer",
+      "reference_amount": 1.0,
+      "metadata_sha256": "245c37daa47ac597dc9fde9b6c66f1eebd253c62dae4c31d8a8adb7dde315df3",
+      "inventory_sha256": "3641afa0d85a6c1f775d39646f6c214c21bc4654cf7d13c9c8b66ade677090cf",
+      "direct_energy_supplier": {
+        "name": "Fuel supply for gasoline vehicles",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "role": "motorcycle, 50-250cc, battery electric",
+      "name": "Transport, Motorbike, electric, 11-35kW, NMC battery, 2020",
+      "reference product": "Transport, Motorbike, electric, 11-35kW, NMC battery, 2020",
+      "location": "CH",
+      "unit": "kilometer",
+      "reference_amount": 1.0,
+      "metadata_sha256": "389889b89c5f47c5cabce0ee8019356712b20be7fe6f8c588a69890ae4b2fb0f",
+      "inventory_sha256": "bef0fe1cf9465c3752a2bab304efbe03d333a11fe8e277673677766494d6647b",
+      "direct_energy_supplier": {
+        "name": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      }
+    },
+    {
+      "role": "motorcycle, >250cc, gasoline",
+      "name": "Transport, Motorbike, gasoline, >35kW, EURO-5, 2020",
+      "reference product": "Transport, Motorbike, gasoline, >35kW, EURO-5, 2020",
+      "location": "CH",
+      "unit": "kilometer",
+      "reference_amount": 1.0,
+      "metadata_sha256": "c03b9fbf66ed0108512a4490cb3d81dee17c25a5d41e8273897e51e9750cd614",
+      "inventory_sha256": "4be682731a9b4fe4d51470250ce27016fb7154a0dff3db9bb19cb3fa96451799",
+      "direct_energy_supplier": {
+        "name": "Fuel supply for gasoline vehicles",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "role": "motorcycle, >250cc, battery electric",
+      "name": "Transport, Motorbike, electric, >35kW, NMC battery, 2020",
+      "reference product": "Transport, Motorbike, electric, >35kW, NMC battery, 2020",
+      "location": "CH",
+      "unit": "kilometer",
+      "reference_amount": 1.0,
+      "metadata_sha256": "ac29ad7a4ad12f00d7540116d0e1538c591680e5fbaf6fc103559373a43e647e",
+      "inventory_sha256": "b238bfa0de6494ac6e6eb17f4f5b136a020d8dc64f4e9743a46bbf63539c0d9a",
+      "direct_energy_supplier": {
+        "name": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      }
+    }
+  ],
+  "tests_passed": 25,
+  "diagnostic": {
+    "status": "native_two_wheelers_physical_and_graph_checks_passed",
+    "activities": 12038,
+    "regional_services": 78,
+    "fleet_markets": 13,
+    "reference": "positive one vehicle-kilometre",
+    "energy_checks": [
+      {
+        "role": "moped, gasoline",
+        "region": "CAZ",
+        "factor": 0.8181818198739512,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "CHA",
+        "factor": 0.8194683016867143,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "EUR",
+        "factor": 0.8159542271696224,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "IND",
+        "factor": 0.818169564631354,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "JPN",
+        "factor": 0.8182189542483348,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "LAM",
+        "factor": 0.8239056422461317,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "MEA",
+        "factor": 0.8040900466142118,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "NEU",
+        "factor": 0.8091881467600384,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "OAS",
+        "factor": 0.8172335313448723,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "REF",
+        "factor": 0.8387324781018763,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "SSA",
+        "factor": 0.8984002778387151,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "USA",
+        "factor": 0.8182156410447217,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, gasoline",
+        "region": "World",
+        "factor": 0.8811535558262595,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "CAZ",
+        "factor": 0.9827243225626643,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "CHA",
+        "factor": 0.9794670161642772,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "EUR",
+        "factor": 0.9371316485625467,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "IND",
+        "factor": 0.9794670161642807,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "JPN",
+        "factor": 0.9828979260657982,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "LAM",
+        "factor": 0.9888810842127309,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "MEA",
+        "factor": 0.8040900466142118,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "NEU",
+        "factor": 0.9921001951039762,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "OAS",
+        "factor": 0.9827439074517645,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "REF",
+        "factor": 0.9827371911390215,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "SSA",
+        "factor": 0.9814717658775529,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "USA",
+        "factor": 0.8182156410447217,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "moped, battery electric",
+        "region": "World",
+        "factor": 1.0,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "CAZ",
+        "factor": 0.81818944360007,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "CHA",
+        "factor": 0.8203598588792912,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "EUR",
+        "factor": 0.8123755499726519,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "IND",
+        "factor": 0.8145408415702237,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "JPN",
+        "factor": 0.8182406733025724,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "LAM",
+        "factor": 0.8217739141626272,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "MEA",
+        "factor": 0.8040900466142118,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "NEU",
+        "factor": 0.8370344565383051,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "OAS",
+        "factor": 0.8,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "REF",
+        "factor": 0.8330343719950363,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "SSA",
+        "factor": 0.8143347870548717,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "USA",
+        "factor": 0.8182156410447217,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, gasoline",
+        "region": "World",
+        "factor": 0.8121025530624961,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "CAZ",
+        "factor": 0.9828900255033428,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "CHA",
+        "factor": 1.0,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "EUR",
+        "factor": 0.9004800499083974,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "IND",
+        "factor": 0.9747264973388585,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "JPN",
+        "factor": 0.9827733485932284,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "LAM",
+        "factor": 0.9874493908755784,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "MEA",
+        "factor": 0.9848314823370181,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "NEU",
+        "factor": 0.9827671859502909,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "OAS",
+        "factor": 0.88909646533928,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "REF",
+        "factor": 0.9508149619394864,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "SSA",
+        "factor": 0.982709398735269,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "USA",
+        "factor": 0.8182156410447217,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, 50-250cc, battery electric",
+        "region": "World",
+        "factor": 0.9878032997004468,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "CAZ",
+        "factor": 0.8190968775265869,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "CHA",
+        "factor": 0.8539506393864977,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "EUR",
+        "factor": 0.8182171167599318,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "IND",
+        "factor": 0.9747264973388585,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "JPN",
+        "factor": 0.8181683571481478,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "LAM",
+        "factor": 0.8255227552650802,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "MEA",
+        "factor": 0.8504727606415796,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "NEU",
+        "factor": 0.8366052521196391,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "OAS",
+        "factor": 0.8792589112358176,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "REF",
+        "factor": 0.8395488596132739,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "SSA",
+        "factor": 0.8804138104086366,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "USA",
+        "factor": 0.8182156410447217,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, gasoline",
+        "region": "World",
+        "factor": 0.8428119435956355,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "CAZ",
+        "factor": 0.9852482177818325,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "CHA",
+        "factor": 0.9742855706298009,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "EUR",
+        "factor": 0.9372126305168288,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "IND",
+        "factor": 0.9747264973388585,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "JPN",
+        "factor": 0.9829259120752205,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "LAM",
+        "factor": 0.9895562652275567,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "MEA",
+        "factor": 0.9828888888867432,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "NEU",
+        "factor": 0.9830416078183284,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "OAS",
+        "factor": 0.9828050069829558,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "REF",
+        "factor": 0.9828067913174809,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "SSA",
+        "factor": 0.9828880738026207,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "USA",
+        "factor": 0.9830401515372177,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      },
+      {
+        "role": "motorcycle, >250cc, battery electric",
+        "region": "World",
+        "factor": 0.996327403060717,
+        "energy_scaled_and_fixed_technosphere_totals_preserved": true
+      }
+    ],
+    "regional_share_checks": [
+      {
+        "region": "CAZ",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "CHA",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "EUR",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "IND",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "JPN",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "LAM",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "MEA",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "NEU",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "OAS",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "REF",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "SSA",
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "USA",
+        "all_positive_IAM_roles_verified": true
+      }
+    ],
+    "additional_inventories": 0,
+    "fleet_units": {
+      "motorcycle, >250cc, battery electric": "billion pkm/yr",
+      "motorcycle, 50-250cc, battery electric": "billion pkm/yr",
+      "moped, battery electric": "billion pkm/yr",
+      "moped, gasoline": "billion pkm/yr",
+      "motorcycle, >250cc, gasoline": "billion pkm/yr",
+      "motorcycle, 50-250cc, gasoline": "billion pkm/yr"
+    },
+    "new_brightway_databases": 0,
+    "validation_disabled": false,
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "combined_upstream_sector_check_complete": false,
+    "written_LCI_check_complete": false,
+    "sector_qualified": false,
+    "full_goal_complete": false
+  },
+  "source_python_modules_changed": [],
+  "qualification_status": "Not qualified: combined upstream-sector check and finite LCI/export proof remain pending. Public sector gate remains closed.",
+  "observed_IAM_unit_limitation": "REMIND arrays report billion pkm/yr; native services and the shared canonical market use vehicle-km. Shared Premise normalizes IAM service volumes as fleet-share proxies without a per-class occupancy conversion. Source occupancy is1 for the scooter and1.1 for the two motorbike classes; do not claim absolute IAM vehicle-distance totals or equivalence. This observed existing convention is now explicit in each native source limitation.",
+  "verification_boundary": "Physical quantities and shares were verified before adding the warning-only IAM-unit clarification. Native identities, quantities and shared calculations did not change.",
+  "full_goal_complete": false
+}

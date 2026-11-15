@@ -3,6 +3,34 @@
 ---
 
 moped, gasoline:
+    uvek_aliases:
+      use_legacy_templates: false
+      fltr:
+        name: Transport, Scooter, gasoline, 4-11kW, EURO-5, 2020
+        reference product: Transport, Scooter, gasoline, 4-11kW, EURO-5, 2020
+        unit: kilometer
+      exact: true
+      native_reference_amount: 1
+      native_limitations:
+      - Use the complete native 2020 service, labelled CH, per positive vehicle-kilometre through the existing
+        shared regional fleet and relative-efficiency logic. Source geography, vintage, operating pattern
+        and class surrogates are screening assumptions; source biosphere exclusions and scenario score differences
+        remain unquantified.
+      - Preserve the complete published vehicle, road, maintenance and wear inventories once. The reference
+        is a vehicle-kilometre, even where documentation lists passenger occupancy; do not apply occupancy,
+        a lifetime or a passenger-km conversion again.
+      - 'Retain the existing Premise moped-role surrogate: a 4-11 kW scooter. This is not a claim of regulatory
+        moped-class equivalence; no new engine displacement or power conversion is inferred.'
+      - REMIND reports passenger-kilometres while the shared transport market and these source services
+        use vehicle-kilometres. Retain the existing Premise normalized IAM service-share proxy without
+        claiming a passenger-to-vehicle distance conversion. Native occupancy differs by class; absolute
+        IAM production volumes are not demonstrated vehicle-km totals. Relative-efficiency changes and
+        source vehicle-km inventories retain their existing basis; score effects remain unquantified.
+    uvek_fuel_aliases:
+      fltr:
+        name: Fuel supply for gasoline vehicles
+        unit: kilogram
+      exact: true
     iam_aliases:
         remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids
         remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|Liquids
@@ -17,6 +45,40 @@ moped, gasoline:
             - gasoline
 
 moped, battery electric:
+    uvek_aliases:
+      use_legacy_templates: false
+      fltr:
+        name: Transport, Scooter, electric, 4-11kW, NMC battery, 2020
+        reference product: Transport, Scooter, electric, 4-11kW, NMC battery, 2020
+        unit: kilometer
+      exact: true
+      native_reference_amount: 1
+      native_limitations:
+      - Use the complete native 2020 service, labelled CH, per positive vehicle-kilometre through the existing
+        shared regional fleet and relative-efficiency logic. Source geography, vintage, operating pattern
+        and class surrogates are screening assumptions; source biosphere exclusions and scenario score differences
+        remain unquantified.
+      - Preserve the complete published vehicle, road, maintenance and wear inventories once. The reference
+        is a vehicle-kilometre, even where documentation lists passenger occupancy; do not apply occupancy,
+        a lifetime or a passenger-km conversion again.
+      - 'Retain the existing Premise moped-role surrogate: a 4-11 kW scooter. This is not a claim of regulatory
+        moped-class equivalence; no new engine displacement or power conversion is inferred.'
+      - Use the native NMC variant and its complete battery and charger where present as the representative
+        electric baseline. The IAM does not supply a chemistry mix. No extra battery, replacement, charger
+        or assumed future capacity factor is added.
+      - REMIND reports passenger-kilometres while the shared transport market and these source services
+        use vehicle-kilometres. Retain the existing Premise normalized IAM service-share proxy without
+        claiming a passenger-to-vehicle distance conversion. Native occupancy differs by class; absolute
+        IAM production volumes are not demonstrated vehicle-km totals. Relative-efficiency changes and
+        source vehicle-km inventories retain their existing basis; score effects remain unquantified.
+    uvek_fuel_aliases:
+      fltr:
+        name:
+        - Electricity, low voltage, at grid
+        - market group for electricity, low voltage
+        - market for electricity, low voltage
+        unit: kilowatt hour
+      exact: true
     iam_aliases:
         remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|BEV
         remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Moped|BEV
@@ -32,6 +94,34 @@ moped, battery electric:
 
 
 motorcycle, 50-250cc, gasoline:
+    uvek_aliases:
+      use_legacy_templates: false
+      fltr:
+        name: Transport, Motorbike, gasoline, 11-35kW, EURO-5, 2020
+        reference product: Transport, Motorbike, gasoline, 11-35kW, EURO-5, 2020
+        unit: kilometer
+      exact: true
+      native_reference_amount: 1
+      native_limitations:
+      - Use the complete native 2020 service, labelled CH, per positive vehicle-kilometre through the existing
+        shared regional fleet and relative-efficiency logic. Source geography, vintage, operating pattern
+        and class surrogates are screening assumptions; source biosphere exclusions and scenario score differences
+        remain unquantified.
+      - Preserve the complete published vehicle, road, maintenance and wear inventories once. The reference
+        is a vehicle-kilometre, even where documentation lists passenger occupancy; do not apply occupancy,
+        a lifetime or a passenger-km conversion again.
+      - 'Retain the existing Premise engine-displacement role to motor-power class surrogate: 11-35 kW for
+        50-250 cc and above 35 kW for above 250 cc. Do not infer a new cc-to-kW conversion from the labels.'
+      - REMIND reports passenger-kilometres while the shared transport market and these source services
+        use vehicle-kilometres. Retain the existing Premise normalized IAM service-share proxy without
+        claiming a passenger-to-vehicle distance conversion. Native occupancy differs by class; absolute
+        IAM production volumes are not demonstrated vehicle-km totals. Relative-efficiency changes and
+        source vehicle-km inventories retain their existing basis; score effects remain unquantified.
+    uvek_fuel_aliases:
+      fltr:
+        name: Fuel supply for gasoline vehicles
+        unit: kilogram
+      exact: true
     iam_aliases:
         remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
         remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|Liquids
@@ -48,6 +138,40 @@ motorcycle, 50-250cc, gasoline:
             - gasoline
 
 motorcycle, 50-250cc, battery electric:
+    uvek_aliases:
+      use_legacy_templates: false
+      fltr:
+        name: Transport, Motorbike, electric, 11-35kW, NMC battery, 2020
+        reference product: Transport, Motorbike, electric, 11-35kW, NMC battery, 2020
+        unit: kilometer
+      exact: true
+      native_reference_amount: 1
+      native_limitations:
+      - Use the complete native 2020 service, labelled CH, per positive vehicle-kilometre through the existing
+        shared regional fleet and relative-efficiency logic. Source geography, vintage, operating pattern
+        and class surrogates are screening assumptions; source biosphere exclusions and scenario score differences
+        remain unquantified.
+      - Preserve the complete published vehicle, road, maintenance and wear inventories once. The reference
+        is a vehicle-kilometre, even where documentation lists passenger occupancy; do not apply occupancy,
+        a lifetime or a passenger-km conversion again.
+      - 'Retain the existing Premise engine-displacement role to motor-power class surrogate: 11-35 kW for
+        50-250 cc and above 35 kW for above 250 cc. Do not infer a new cc-to-kW conversion from the labels.'
+      - Use the native NMC variant and its complete battery and charger where present as the representative
+        electric baseline. The IAM does not supply a chemistry mix. No extra battery, replacement, charger
+        or assumed future capacity factor is added.
+      - REMIND reports passenger-kilometres while the shared transport market and these source services
+        use vehicle-kilometres. Retain the existing Premise normalized IAM service-share proxy without
+        claiming a passenger-to-vehicle distance conversion. Native occupancy differs by class; absolute
+        IAM production volumes are not demonstrated vehicle-km totals. Relative-efficiency changes and
+        source vehicle-km inventories retain their existing basis; score effects remain unquantified.
+    uvek_fuel_aliases:
+      fltr:
+        name:
+        - Electricity, low voltage, at grid
+        - market group for electricity, low voltage
+        - market for electricity, low voltage
+        unit: kilowatt hour
+      exact: true
     iam_aliases:
         remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|BEV
         remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(50-250cc)|BEV
@@ -68,6 +192,34 @@ motorcycle, 50-250cc, battery electric:
             - electricity
 
 motorcycle, >250cc, gasoline:
+    uvek_aliases:
+      use_legacy_templates: false
+      fltr:
+        name: Transport, Motorbike, gasoline, >35kW, EURO-5, 2020
+        reference product: Transport, Motorbike, gasoline, >35kW, EURO-5, 2020
+        unit: kilometer
+      exact: true
+      native_reference_amount: 1
+      native_limitations:
+      - Use the complete native 2020 service, labelled CH, per positive vehicle-kilometre through the existing
+        shared regional fleet and relative-efficiency logic. Source geography, vintage, operating pattern
+        and class surrogates are screening assumptions; source biosphere exclusions and scenario score differences
+        remain unquantified.
+      - Preserve the complete published vehicle, road, maintenance and wear inventories once. The reference
+        is a vehicle-kilometre, even where documentation lists passenger occupancy; do not apply occupancy,
+        a lifetime or a passenger-km conversion again.
+      - 'Retain the existing Premise engine-displacement role to motor-power class surrogate: 11-35 kW for
+        50-250 cc and above 35 kW for above 250 cc. Do not infer a new cc-to-kW conversion from the labels.'
+      - REMIND reports passenger-kilometres while the shared transport market and these source services
+        use vehicle-kilometres. Retain the existing Premise normalized IAM service-share proxy without
+        claiming a passenger-to-vehicle distance conversion. Native occupancy differs by class; absolute
+        IAM production volumes are not demonstrated vehicle-km totals. Relative-efficiency changes and
+        source vehicle-km inventories retain their existing basis; score effects remain unquantified.
+    uvek_fuel_aliases:
+      fltr:
+        name: Fuel supply for gasoline vehicles
+        unit: kilogram
+      exact: true
     iam_aliases:
         remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids
         remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|Liquids
@@ -82,6 +234,40 @@ motorcycle, >250cc, gasoline:
             - gasoline
 
 motorcycle, >250cc, battery electric:
+    uvek_aliases:
+      use_legacy_templates: false
+      fltr:
+        name: Transport, Motorbike, electric, >35kW, NMC battery, 2020
+        reference product: Transport, Motorbike, electric, >35kW, NMC battery, 2020
+        unit: kilometer
+      exact: true
+      native_reference_amount: 1
+      native_limitations:
+      - Use the complete native 2020 service, labelled CH, per positive vehicle-kilometre through the existing
+        shared regional fleet and relative-efficiency logic. Source geography, vintage, operating pattern
+        and class surrogates are screening assumptions; source biosphere exclusions and scenario score differences
+        remain unquantified.
+      - Preserve the complete published vehicle, road, maintenance and wear inventories once. The reference
+        is a vehicle-kilometre, even where documentation lists passenger occupancy; do not apply occupancy,
+        a lifetime or a passenger-km conversion again.
+      - 'Retain the existing Premise engine-displacement role to motor-power class surrogate: 11-35 kW for
+        50-250 cc and above 35 kW for above 250 cc. Do not infer a new cc-to-kW conversion from the labels.'
+      - Use the native NMC variant and its complete battery and charger where present as the representative
+        electric baseline. The IAM does not supply a chemistry mix. No extra battery, replacement, charger
+        or assumed future capacity factor is added.
+      - REMIND reports passenger-kilometres while the shared transport market and these source services
+        use vehicle-kilometres. Retain the existing Premise normalized IAM service-share proxy without
+        claiming a passenger-to-vehicle distance conversion. Native occupancy differs by class; absolute
+        IAM production volumes are not demonstrated vehicle-km totals. Relative-efficiency changes and
+        source vehicle-km inventories retain their existing basis; score effects remain unquantified.
+    uvek_fuel_aliases:
+      fltr:
+        name:
+        - Electricity, low voltage, at grid
+        - market group for electricity, low voltage
+        - market for electricity, low voltage
+        unit: kilowatt hour
+      exact: true
     iam_aliases:
         remind: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|BEV
         remind-eu: ES|Transport|Pass|Road|LDV|Two Wheelers|Motorcycle(>250cc)|BEV
