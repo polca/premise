@@ -277,8 +277,20 @@ def _update_electricity(
         print("No electricity scenario data available -- skipping")
         return scenario
 
+    source_database = get_scenario_inventory(scenario)
+    source_validation = ElectricityValidation(
+        model=scenario["model"],
+        scenario=scenario["pathway"],
+        year=scenario["year"],
+        regions=scenario["iam data"].regions,
+        database=source_database,
+        iam_data=scenario["iam data"],
+        system_model=system_model,
+    )
+    source_checks = source_validation.check_efficiency(capture_only=True)
+
     electricity = Electricity(
-        database=get_scenario_inventory(scenario),
+        database=source_database,
         iam_data=scenario["iam data"],
         model=scenario["model"],
         pathway=scenario["pathway"],
@@ -348,6 +360,7 @@ def _update_electricity(
         system_model=system_model,
     )
 
+    validate.source_electricity_checks = source_checks
     record_validation_phase(
         scenario, validate.run_electricity_checks(check_supplier_vectors=False)
     )

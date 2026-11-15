@@ -3,22 +3,31 @@ metadata:
     Reviewed unsuppressed validation-warning counts. A new rule or a count above
     the recorded value fails certification unless the exception is documented
     by a narrow version/system-model suppression.
-  validation_ruleset_version: 14
+  validation_ruleset_version: 15
 cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     review:
       date: '2026-11-15'
-      source_commit: 85a0990683f589592b34f2a035f3773612a979cb
+      source_commit: e080f139b8c28d80206156d2d824f68d6df9fcf6
       method: >-
-        Read-only replay of final car/truck exhaust checks on the preceding
-        ecoinvent 3.12 cutoff IMAGE SSP2-M 2050 no-write inventory. Identical
-        hydrocarbon coverage gaps are grouped by family, powertrain, EURO class
-        and unavailable scope. One summary retains all 27 activity decisions;
-        the expected current warning count is 184, with all other limits
-        unchanged. The source emissions remain preserved.
+        Full compact-backend no-write update of ecoinvent 3.12 cutoff with
+        encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
+        structured ruleset-15 certificate: zero errors and 184 unsuppressed
+        current warnings. One hydrocarbon-scope summary retains all 27 original
+        activity decisions. All 71 electricity quality warnings carry exact,
+        unique source-versus-scenario measurements: 60 inherited CO2 mismatches
+        retain their relative deviation, and 11 inherited efficiency shortfalls
+        improve while remaining outside the bounds. Source measurements match
+        the source inventory. Every other warning is unchanged. All inventory
+        amount, provider and classification signatures match the preceding
+        build. The Series 4 reference conversion is corrected to 115 Wp over
+        0.72 m2 while Series models remain excluded from CdTe overlays.
       limitations: >-
         Counts record existing methodological and data limitations for this
         case only. Warnings remain visible; new rules or increased counts fail.
+        Grouping hydrocarbon coverage notices changes reporting; parent NMHC
+        and total hydrocarbon scopes remain unavailable. An inherited electricity
+        flag is still a discrepancy, not independent validation of the source.
         The reduction in year-range warnings reflects grouping; future mining
         shares remain unavailable and the source markets remain preserved.
         Correcting the Series 6 reference conversion does not establish the

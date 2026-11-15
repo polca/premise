@@ -297,6 +297,19 @@ These are generic validation references, rather than measurements of the
 regional fuel supply. They do not replace the inventory's fuel or emission
 amounts.
 
+Electricity quality warnings retain measurements from a read-only check of the
+inventory immediately before the electricity transformation. An exact, unique
+match on activity name, reference product, location and unit permits a source
+comparison. A discrepancy is ``inherited`` when the source check also failed,
+or ``new`` when that source check passed. Its change is reported as improved,
+worsened or unchanged using the distance outside the efficiency bounds or the
+symmetric relative carbon-balance gap. Missing or ambiguous counterparts,
+changed accounting boundaries and invalid measurements give an unresolved
+origin. The certificate stores both source and scenario measurements in each
+warning's ``actual`` field. Scenario measurements describe the electricity
+validation phase. These labels preserve warning severity, tolerances
+and inventory quantities; an inherited discrepancy still needs investigation.
+
 See :ref:`generation-worked-example` for the relative and absolute
 calculations, including the non-fuel exchanges scaled by this step.
 

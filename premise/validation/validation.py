@@ -3299,11 +3299,67 @@ class ElectricityValidation(BaseDatasetValidator):
                         issue_type="major",
                     )
 
-    def check_efficiency(self):
-        # check efficiency of electricity production datasets
-        # against expected values
+    def _record_electricity_quality_check(
+        self, checks, dataset, reason, message, values, capture_only
+    ):
+        """Retain comparable source/scenario measurements without changing checks."""
+        key = (
+            tuple(
+                dataset.get(field)
+                for field in ("name", "reference product", "location", "unit")
+            ),
+            reason,
+        )
+        checks.setdefault(key, []).append(values)
+        if capture_only or not values["failed"]:
+            return
+        candidates = getattr(self, "source_electricity_checks", {}).get(key, ())
+        source = candidates[0] if len(candidates) == 1 else None
+        origin, change = "unresolved", "source counterpart unavailable"
+        if len(candidates) > 1:
+            change = "ambiguous source counterparts"
+        elif source is not None:
+            if source["basis"] != values["basis"]:
+                change = "check boundary changed"
+            elif (
+                source["quality_errors"]
+                or values["quality_errors"]
+                or not all(math.isfinite(v["deviation"]) for v in (source, values))
+            ):
+                change = "invalid measurements prevent comparison"
+            elif not source["failed"]:
+                origin, change = "new", "new discrepancy"
+            else:
+                origin = "inherited"
+                before, after = source["deviation"], values["deviation"]
+                change = (
+                    "unchanged"
+                    if math.isclose(before, after, rel_tol=1e-6, abs_tol=1e-12)
+                    else "worsened" if after > before else "improved"
+                )
+        self.log_issue(
+            dataset,
+            reason,
+            message + f" Source comparison: {origin}; {change}.",
+            expected=values["expected"],
+            actual={
+                "origin": origin,
+                "change": change,
+                "source_match_count": len(candidates),
+                "source": source,
+                "scenario": values,
+            },
+        )
+
+    def check_efficiency(self, *, capture_only=False):
+        """Check power-plant efficiency/carbon and return measured outcomes.
+
+        ``capture_only`` records source outcomes without emitting issues. Normal
+        checks compare warnings with ``source_electricity_checks`` when present.
+        """
 
         electricity_vars = load_electricity_keys()
+        checks = {}
 
         LHV = electricity_vars["LHV"]
         fuel_CO2 = electricity_vars["CO2"]
@@ -3384,13 +3440,24 @@ class ElectricityValidation(BaseDatasetValidator):
                         math.isclose(efficiency, bound, rel_tol=1e-7)
                         for bound in (eff["min"], eff["max"])
                     )
-                    if not (within_bounds or at_boundary):
-                        message = f"Current eff.: {efficiency}. Min: {eff['min']}. Max: {eff['max']}."
-                        self.log_issue(
-                            ds,
-                            "electricity efficiency possibly incorrect",
-                            message,
-                        )
+                    self._record_electricity_quality_check(
+                        checks,
+                        ds,
+                        "electricity efficiency possibly incorrect",
+                        f"Current eff.: {efficiency}. Min: {eff['min']}. Max: {eff['max']}.",
+                        {
+                            "basis": "fuel-to-electricity efficiency",
+                            "unit": "fraction",
+                            "observed": efficiency,
+                            "expected": {"min": eff["min"], "max": eff["max"]},
+                            "deviation": max(
+                                eff["min"] - efficiency, efficiency - eff["max"], 0.0
+                            ),
+                            "quality_errors": (),
+                            "failed": not (within_bounds or at_boundary),
+                        },
+                        capture_only,
+                    )
 
                 # Fuel factors estimate gross combustion carbon. Applying their
                 # tolerance to the residual after capture amplifies small factor
@@ -3406,27 +3473,53 @@ class ElectricityValidation(BaseDatasetValidator):
                 else:
                     balanced = math.isclose(co2 - captured_co2, actual_co2, rel_tol=0.2)
 
-                if capture_issues or not balanced:
-                    if fuel_energy > 0:
-                        message = (
-                            f"Gross CO2 (air + captured): {gross_co2}. "
-                            f"Expected from fuel: {co2}. Air CO2: {actual_co2}. "
-                            f"Captured CO2: {captured_co2}."
-                        )
-                    else:
-                        message = (
-                            f"Current CO2 adjustment: {actual_co2}. "
-                            f"Expected: {co2 - captured_co2}. "
-                            "No recognized direct fuel input; retaining the "
-                            "capture-credit comparison."
-                        )
-                    if capture_issues:
-                        message += " " + " ".join(capture_issues)
-                    self.log_issue(
-                        ds,
-                        "CO2 emissions possibly incorrect",
-                        message,
+                if fuel_energy > 0:
+                    message = (
+                        f"Gross CO2 (air + captured): {gross_co2}. "
+                        f"Expected from fuel: {co2}. Air CO2: {actual_co2}. "
+                        f"Captured CO2: {captured_co2}."
                     )
+                else:
+                    message = (
+                        f"Current CO2 adjustment: {actual_co2}. "
+                        f"Expected: {co2 - captured_co2}. "
+                        "No recognized direct fuel input; retaining the "
+                        "capture-credit comparison."
+                    )
+                if capture_issues:
+                    message += " " + " ".join(capture_issues)
+                observed = gross_co2 if fuel_energy > 0 else actual_co2
+                expected = co2 if fuel_energy > 0 else co2 - captured_co2
+                scale = max(abs(observed), abs(expected))
+                errors = tuple(capture_issues) + (
+                    ("negative direct residual CO2",)
+                    if fuel_energy > 0 and actual_co2 < 0
+                    else ()
+                )
+                self._record_electricity_quality_check(
+                    checks,
+                    ds,
+                    "CO2 emissions possibly incorrect",
+                    message,
+                    {
+                        "basis": (
+                            "gross combustion CO2"
+                            if fuel_energy > 0
+                            else "upstream capture-credit adjustment"
+                        ),
+                        "unit": "kilogram per kilowatt hour",
+                        "observed": observed,
+                        "expected": expected,
+                        "air_co2": actual_co2,
+                        "captured_co2": captured_co2,
+                        "fuel_energy_MJ": fuel_energy,
+                        "deviation": abs(observed - expected) / scale if scale else 0.0,
+                        "quality_errors": errors,
+                        "failed": bool(capture_issues) or not balanced,
+                    },
+                    capture_only,
+                )
+        return checks
 
     def run_supplier_vector_checks(self):
         self.check_complete_electricity_supplier_vectors()
