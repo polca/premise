@@ -436,21 +436,6 @@ def check_filepath(path: str) -> Path:
     return Path(path)
 
 
-def check_exclude(list_exc: List[str]) -> List[str]:
-    """
-    Check for the validity of the list of excluded functions.
-    """
-
-    if not isinstance(list_exc, list):
-        raise TypeError("`exclude` should be a sequence of strings.")
-
-    if not set(list_exc).issubset(config["LIST_TRANSF_FUNC"]):
-        raise ValueError(
-            "One or several of the transformation that you wish to exclude is not recognized."
-        )
-    return list_exc
-
-
 def check_additional_inventories(inventories_list: List[dict]) -> List[dict]:
     """
     Check that any additional inventories that need to be imported are properly listed.
@@ -589,39 +574,6 @@ def check_system_model(system_model: str) -> str:
         )
 
     return system_model
-
-
-def check_time_horizon(time_horizon: int) -> int:
-    """
-    Check the validity of the time horizon provided (in years).
-    :param time_horizon: time horizon (in years), to determine marginal mixes for consequential modelling.
-    :return: time horizon (in years)
-    """
-
-    if time_horizon is None:
-        print(
-            "`time_horizon`, used to identify marginal suppliers, is not specified. "
-            "It is therefore set to 20 years."
-        )
-        time_horizon = 20
-
-    try:
-        int(time_horizon)
-    except ValueError as err:
-        raise Exception(
-            "`time_horizon` must be an integer with a value between 5 and 50 years."
-        ) from err
-
-    if time_horizon < 5 or time_horizon > 50:
-        raise ValueError(
-            "`time_horizon` must be an integer with a value between 5 and 50 years."
-        )
-
-    return int(time_horizon)
-
-
-def _export_to_matrices(obj):
-    obj.export_db_to_matrices()
 
 
 def check_presence_biosphere_database(biosphere_name: str) -> str:
@@ -802,9 +754,6 @@ class NewDatabase:
         self._reload_original_database_from_cache_for_update = False
         self._shared_geography_caches = {}
 
-        # if version is anything other than 3.8 or 3.9
-        # and system_model is "consequential"
-        # raise an error
         if (
             self.version
             not in ["3.8", "3.9", "3.9.1", "3.10", "3.10.1", "3.11", "3.12"]
@@ -1381,11 +1330,7 @@ class NewDatabase:
         # else, extract the database, pickle it for next time and return it
         print("Cannot find cached inventories. Will create them now for next time...")
         inventory_start = len(self._database)
-        import_inventories = self.__import_inventories
-        if "collect_data" in inspect.signature(import_inventories).parameters:
-            import_inventories(collect_data=False)
-        else:
-            import_inventories()
+        self.__import_inventories(collect_data=False)
 
         trimmed_inventories, inventories_metadata_cache_filepath = create_cache(
             self._database[inventory_start:], file_name
@@ -1537,13 +1482,15 @@ class NewDatabase:
 
     def __import_inventories(self, collect_data: bool = True) -> List[dict]:
         """
-        This method will trigger the import of a number of pickled inventories
-        and merge them into the database dictionary.
+        Import the selected bundled workbooks into the source inventory.
+
+        The importers apply target-version migrations and inventory profiles.
+        ``collect_data=False`` avoids retaining a second list of imported
+        activities when the caller only needs them appended to ``_database``.
         """
 
         print("Importing default inventories...\n")
 
-        # with HiddenPrints():
         # Manual import
         # file path and original ecoinvent version
         data, unlinked = [], []
@@ -2998,7 +2945,6 @@ class NewDatabase:
                     persist=persist,
                 )
                 self._release_shared_geography_cache(scenario_definition, position)
-                # Manually update the outer progress bar after each sector is completed
                 pbar_outer.update()
 
         print("Done!\n")

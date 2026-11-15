@@ -1164,7 +1164,8 @@ def test_inventory_cache_miss_replaces_full_inventory_tail_with_trimmed_cache(
     obj.source_type = "brightway"
     obj.keep_imports_uncertainty = False
 
-    def fake_import_inventories(self):
+    def fake_import_inventories(self, collect_data=True):
+        assert collect_data is False
         self.database.extend([imported_inventory])
         return [imported_inventory]
 

@@ -35,7 +35,7 @@ Unsuppressed errors stop an update before checkpointing or export; warnings and
 narrow, versioned suppressions remain visible in the immutable report.
 
 Imported rechargeable-battery classifications
---------------------------------------------
+---------------------------------------------
 
 Reviewed rechargeable cells, cell-containing packs and their product markets
 use ISIC Rev.4 ``2720: Manufacture of batteries and accumulators`` and

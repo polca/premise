@@ -1545,25 +1545,24 @@ class BaseTransformation:
         production_volumes=None,
         efficiency_adjustment_fn=None,
         regions=None,
-        scaling_factors=None,
     ):
-        """
-        Generalized processing of activities and adding them to the database.
+        """Regionalize each source activity once and append its regional proxies.
 
         Parameters
         ----------
-        mapping : dict or pd.DataFrame
-            Mapping containing the relevant activity data.
-        proxy_selection_fn : callable
-            Function to fetch proxies based on the mapping.
-        efficiency_adjustment_fn : callable, optional
-            Function to adjust process efficiency. If None, no adjustment is done.
-        scaling_factors : dict, optional
-            Dictionary with scaling factors for inputs.
-        log_message : str, optional
-            Message to log after processing.
-        add_to_index : bool, optional
-            Whether to add new activities to the index.
+        mapping : dict[str, list[dict]]
+            IAM technology names and source activities. Lists are extended in
+            place with regional proxies, shared across roles for one activity.
+        production_volumes : object, optional
+            An ``xarray.DataArray`` of production by region and technology, used
+            to weight proxy selection and replacement markets. Roles sharing a
+            source are summed first.
+        efficiency_adjustment_fn : callable or list[callable], optional
+            In-place callbacks receiving ``(dataset, technology)`` before each
+            proxy is indexed. No efficiency adjustment is applied by default.
+        regions : list[str], optional
+            Target regions; defaults to IAM regions, excluding World when
+            production volumes are supplied.
         """
 
         # Some callers build several mapping keys from the same source list. This
@@ -1699,13 +1698,10 @@ class BaseTransformation:
                     ds for ds in activities if not ds.get("regionalized", False)
                 ]
 
-                if len(datasets_to_regionalize) > 0:
+                if datasets_to_regionalize:
 
                     regionalized_datasets = self.fetch_proxies(
-                        # datasets=activities,
-                        datasets=[
-                            ds for ds in activities if not ds.get("regionalized", False)
-                        ],
+                        datasets=datasets_to_regionalize,
                         production_volumes=prod_vol,
                         regions=regions_to_process,
                     )
@@ -1714,7 +1710,7 @@ class BaseTransformation:
                     for ds in regionalized_datasets.values():
                         self.add_geo_definition_metadata(ds)
 
-                    # adjust efficiency of steel production
+                    # Apply technology adjustments before proxies enter the index.
                     if efficiency_adjustment_fn:
                         for dataset in regionalized_datasets.values():
                             if isinstance(efficiency_adjustment_fn, list):

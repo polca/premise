@@ -5,9 +5,7 @@ Various utils functions.
 import json
 import hashlib
 import math
-import os
 import pickle
-import sys
 import uuid
 from copy import deepcopy
 from collections.abc import MutableMapping
@@ -142,55 +140,9 @@ def rescale_exchanges(
 
 
 # Disable printing
-def blockPrint() -> None:
-    """Redirect ``stdout`` to ``os.devnull``.
-
-    This helper can be used to silence output temporarily when a context
-    manager is not required.
-    """
-
-    with open(os.devnull, "w") as devnull:
-        sys.stdout = devnull
 
 
 # Restore printing
-def enablePrint() -> None:
-    """Restore ``stdout`` to the original stream."""
-
-    sys.stdout = sys.__stdout__
-
-
-class HiddenPrints:
-    """Context manager to silence ``print`` statements temporarily.
-
-    Adapted from a recipe shared on StackOverflow_.
-
-    .. _StackOverflow: https://stackoverflow.com/questions/8391411/
-       how-to-block-calls-to-print
-    """
-
-    def __init__(self):
-        """Initialise the context manager state."""
-
-        self._original_stdout = None
-
-    def __enter__(self):
-        """Replace ``stdout`` with ``os.devnull``.
-
-        :return: The context manager instance so it can be reused if needed.
-        :rtype: HiddenPrints
-        """
-
-        self._original_stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w", encoding="utf-8")
-
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        """Restore the original ``stdout`` stream."""
-
-        sys.stdout.close()
-        sys.stdout = self._original_stdout
 
 
 def eidb_label(
@@ -1405,25 +1357,6 @@ def _trim_scenario_exchange(
     return compact_exchange, exchange_metadata
 
 
-def _metadata_for_scenario_dataset(ds: Dict[str, Any]) -> Tuple[tuple, Dict[str, Any]]:
-    key = (ds["name"], ds["reference product"], ds["location"])
-    metadata = {
-        field: value
-        for field, value in ds.items()
-        if field not in _SCENARIO_METADATA_EXCLUDED_FIELDS and _has_cache_value(value)
-    }
-
-    exchange_metadata = []
-    for exchange in ds.get("exchanges", []):
-        _, compact_exchange_metadata = _trim_scenario_exchange(exchange)
-        exchange_metadata.append(compact_exchange_metadata)
-
-    if any(exchange_metadata):
-        metadata["__exchange_metadata__"] = exchange_metadata
-
-    return key, metadata
-
-
 def _trim_scenario_dataset_in_place(ds: Dict[str, Any]) -> Dict[str, Any]:
     trimmed_dataset = {
         field: value
@@ -1477,14 +1410,6 @@ def _chunk_sequence(
 ) -> Iterable[Sequence[Any]]:
     for start in range(0, len(sequence), chunk_size):
         yield sequence[start : start + chunk_size]
-
-
-def _chunk_mapping(
-    mapping: Dict[Any, Any], chunk_size: int
-) -> Iterable[Dict[Any, Any]]:
-    items = list(mapping.items())
-    for chunk in _chunk_sequence(items, chunk_size):
-        yield dict(chunk)
 
 
 def _write_cache_manifest(

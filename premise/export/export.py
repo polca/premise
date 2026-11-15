@@ -6,8 +6,6 @@ import csv
 import json
 import multiprocessing as mp
 import os
-import re
-import unicodedata
 import uuid
 from collections import defaultdict
 from functools import lru_cache
@@ -50,9 +48,6 @@ CORRESPONDENCE_BIO_FLOWS = (
 DIR_DATAPACKAGE = Path.cwd() / "export" / "datapackage"
 
 
-import unicodedata
-
-
 def _has_semantic_certificate(scenario: dict) -> bool:
     payload = scenario.get("_validation_report")
     if not isinstance(payload, dict):
@@ -62,36 +57,6 @@ def _has_semantic_certificate(scenario: dict) -> bool:
     except (KeyError, TypeError, ValueError):
         return False
     return report.ruleset_version == VALIDATION_RULESET_VERSION and report.valid
-
-
-def clean_csv_field(text):
-    if not isinstance(text, str):
-        return text
-
-    # Normalize Unicode first to combine diacritics like U+0301
-    text = unicodedata.normalize("NFKC", text)
-
-    # Replace smart quotes
-    replacements = {
-        "“": "'",
-        "”": "'",
-        "‘": "'",
-        "’": "'",
-        "““": "'",
-        "””": "'",
-        '""': '"',  # optional: collapse double quotes
-    }
-    for k, v in replacements.items():
-        text = text.replace(k, v)
-
-    # Remove line breaks and excessive whitespace
-    text = text.replace("\n", " ").replace("\r", " ")
-    text = " ".join(text.split())  # removes extra spaces
-
-    # Encode to Latin-1, replacing unencodable characters
-    text = text.encode("latin-1", errors="replace").decode("latin-1")
-
-    return text
 
 
 def get_simapro_units() -> Dict[str, str]:
@@ -245,17 +210,6 @@ def rev_index(inds: dict) -> dict:
     return {v: k for k, v in inds.items()}
 
 
-def create_codes_index_of_exchanges_matrix(database):
-    """
-    Create a dictionary with row/column indices of the A matrix
-    as key and the activity code as value.
-    :return: a dictionary to map indices to activity codes
-    :rtype: dict
-    """
-
-    return {database[i]["code"]: i for i in range(0, len(database))}
-
-
 def create_codes_index_of_biosphere_flows_matrix(version):
     """
     Create a dictionary with row/column indices of the biosphere matrix
@@ -269,24 +223,6 @@ def create_index_of_biosphere_flows_matrix(version):
     data = biosphere_flows_dictionary(version)
 
     return {v: k for k, v in enumerate(data.keys())}
-
-
-def create_codes_and_names_of_tech_matrix(database: List[dict]):
-    """
-    Create a dictionary a tuple (activity name, reference product,
-    unit, location) as key, and its code as value.
-    :return: a dictionary to map indices to activities
-    :rtype: dict
-    """
-    return {
-        (
-            i["name"],
-            i["reference product"],
-            i["unit"],
-            i["location"],
-        ): i["code"]
-        for i in database
-    }
 
 
 @lru_cache
@@ -1602,94 +1538,5 @@ class Export:
     def create_rev_index_of_B_matrix(version):
         return {v: k for k, v in biosphere_flows_dictionary(version).items()}
 
-    def get_category_of_exchange(self):
-        """
-        This function returns a dictionnary with (name, reference product) as keys,
-        and {'main category': 'xxxxxx', 'category': 'yyyyyy'} as values.
-        This is useful for Simapro export, to categorize datasets into a tree structure.
-        :return: dict
-        """
-
-        dict_classifications = load_simapro_categories()
-
-        dict_categories = {}
-
-        for ds in self.db:
-            if (ds["name"], ds["reference product"]) not in dict_categories:
-                main_category, category = (None, None)
-
-                if "classifications" in ds:
-                    if len(ds["classifications"]) > 0:
-                        for x in ds["classifications"]:
-                            if x[0] == "ISIC rev.4 ecoinvent":
-                                try:
-                                    key = [
-                                        int(s)
-                                        for s in re.findall(r"\d+", x[1].split(":")[0])
-                                    ][0]
-                                    main_category = dict_classifications[key][
-                                        "category 1"
-                                    ]
-
-                                except KeyError:
-                                    try:
-                                        key = x[1].split(":")[0].strip()
-                                        main_category = dict_classifications[key][
-                                            "category 1"
-                                        ]
-
-                                    except KeyError:
-                                        continue
-
-                                if dict_classifications[key]["category 3"] != "":
-                                    category = (
-                                        dict_classifications[key]["category 2"]
-                                        + "\ ".strip()
-                                        + dict_classifications[key]["category 3"]
-                                    )
-                                else:
-                                    category = dict_classifications[key]["category 2"]
-
-                        if not main_category:
-                            for x in ds["classifications"]:
-                                if x[0] == "CPC":
-                                    main_category = dict_classifications[
-                                        x[1].split(":")[0].strip()
-                                    ]["category 1"]
-
-                                    if (
-                                        dict_classifications[
-                                            x[1].split(":")[0].strip()
-                                        ]["category 3"]
-                                        != ""
-                                    ):
-                                        category = (
-                                            dict_classifications[
-                                                x[1].split(":")[0].strip()
-                                            ]["category 2"]
-                                            + "\ ".strip()
-                                            + dict_classifications[
-                                                x[1].split(":")[0].strip()
-                                            ]["category 3"]
-                                        )
-                                    else:
-                                        category = dict_classifications[
-                                            x[1].split(":")[0].strip()
-                                        ]["category 2"]
-
-                if not main_category or main_category == "":
-                    main_category = "material"
-                    category = "Others"
-
-                dict_categories[(ds["name"], ds["reference product"])] = {
-                    "main category": main_category,
-                    "category": category,
-                }
-
-        return dict_categories
-
     def rev_index(self, inds):
         return {v: k for k, v in inds.items()}
-
-    def get_bio_code(self, idx):
-        return self.bio_codes[idx]

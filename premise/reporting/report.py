@@ -645,13 +645,6 @@ def generate_summary_report(
             if iam_da is None:
                 continue
 
-            # Optional unit conversions (kept from your code; "CCS" sectors not present though)
-            if "CCS" in sector:
-                try:
-                    iam_da = iam_da * 100
-                except Exception:
-                    pass
-
             if scenario_idx > 0:
                 # Put some horizontal spacing between scenario blocks
                 col = last_col_used + metadata.get(sector, {}).get("offset", 2)

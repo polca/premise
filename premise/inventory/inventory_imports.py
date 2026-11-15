@@ -1039,7 +1039,6 @@ class BaseInventoryImport:
     ) -> None:
         """Create a :class:`BaseInventoryImport` instance."""
         self.database = database
-        # self.db_code = [x["code"] for x in self.database]
         self.db_names = [
             (x["name"].lower(), x["reference product"].lower(), x["location"])
             for x in self.database
@@ -1659,7 +1658,6 @@ class BaseInventoryImport:
 
                     # If a 'reference product' field is present, we make sure
                     # it matches with the new 'product' field
-                    # if "reference product" in y:
                     if "reference product" in exchange:
                         try:
                             assert exchange["product"] == exchange["reference product"]
