@@ -1,0 +1,170 @@
+{
+  "status": "all_selected_metals_CLIC_cohorts_harmonized",
+  "source_activities": 51,
+  "converted_activities_including_reviewed_helpers": 86,
+  "source_context_cohorts": [
+    {
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.9"
+        }
+      },
+      "activity_count": 32,
+      "audit_sha256": "a223e4044a3733cc4164113a9945d8a86e372596692dd6d1388d29c200837896",
+      "cache_hit": false
+    },
+    {
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.8"
+        }
+      },
+      "activity_count": 44,
+      "audit_sha256": "83451b16d4d603faf0b607e0228e8b5327d52c50c99131125c85cbcda8eedf68",
+      "cache_hit": false
+    },
+    {
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.12"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.12"
+        }
+      },
+      "activity_count": 13,
+      "audit_sha256": "f78f888e30608571e56ea18e0ad57c4cfa3030ea05da999ab63c041a8fbf7d0f",
+      "cache_hit": false
+    }
+  ],
+  "new_sodium_omissions_checked": [
+    {
+      "activity": {
+        "name": "lithium carbonate precipitation 1, from salar de cauchari-olaroz",
+        "reference product": "lithium carbonate, precipitated",
+        "location": "AR",
+        "unit": "kilogram",
+        "code": "clic-04e104eb041d4c6f91af2c92f6b4436b"
+      },
+      "actual_omitted_exchange": {
+        "amount": 0.000163984410244733,
+        "categories": [
+          "water"
+        ],
+        "database": "biosphere3",
+        "loc": -8.71573919414185,
+        "name": "Sodium",
+        "scale": 0.2581689821184212,
+        "type": "biosphere",
+        "uncertainty type": 2,
+        "unit": "kilogram"
+      },
+      "original_exchange_index": 12,
+      "source_version": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.8"
+        }
+      },
+      "owned_audit_preserves_actual_quantity_and_uncertainty": true,
+      "warning_emitted": true
+    },
+    {
+      "activity": {
+        "name": "lithium carbonate precipitation 2, from salar de olaroz",
+        "reference product": "lithium carbonate, precipitated",
+        "location": "AR",
+        "unit": "kilogram",
+        "code": "clic-655987d78de544e0ad60d1455c883eb7"
+      },
+      "actual_omitted_exchange": {
+        "amount": 0.0005090491869677618,
+        "categories": [
+          "water"
+        ],
+        "database": "biosphere3",
+        "name": "Sodium",
+        "type": "biosphere",
+        "unit": "kilogram"
+      },
+      "original_exchange_index": 13,
+      "source_version": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.8"
+        }
+      },
+      "owned_audit_preserves_actual_quantity_and_uncertainty": true,
+      "warning_emitted": true
+    },
+    {
+      "activity": {
+        "name": "lithium brine filtering, via ion exchanger",
+        "reference product": "lithium brine, filtered",
+        "location": "CN",
+        "unit": "kilogram",
+        "code": "clic-2f6d020b4bba4029aa9ad6bd6668f9c3"
+      },
+      "actual_omitted_exchange": {
+        "amount": 0.000203735267297511,
+        "categories": [
+          "water"
+        ],
+        "database": "biosphere3",
+        "loc": -8.49868911619991,
+        "name": "Sodium",
+        "scale": 0.2581689821184212,
+        "type": "biosphere",
+        "uncertainty type": 2,
+        "unit": "kilogram"
+      },
+      "original_exchange_index": 9,
+      "source_version": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.8"
+        }
+      },
+      "owned_audit_preserves_actual_quantity_and_uncertainty": true,
+      "warning_emitted": true
+    }
+  ],
+  "source_records_unchanged": true,
+  "new_brightway_databases": 0,
+  "freshness": "published archive snapshot",
+  "elapsed_seconds": 27.812126167002134,
+  "sector_qualified": false,
+  "remaining_failure": "Separate retained source3.8 workbook cohort refuses19correspondences; shared sector transformation not yet reached.",
+  "existing_omission_tests_passed": 24,
+  "new_production_python_changes": []
+}

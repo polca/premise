@@ -150,6 +150,156 @@
       "message": "Approved scoped screening omission: omit only the generic Sodium emission to unspecified water in the CLIC disodium disulphite inventory for UVEK 2026 with ecoinvent 3.10 biosphere. The generic source flow is retired; no identical publisher UUID or reviewed exact synonym is established in the target. Sodium ion is not asserted to be the same published flow. Native Sulphite is a different chemical and cannot replace this complete foreground. Keep every other exchange, caller quantity and uncertainty; do not add an avoided emission or a zero-burden chemical supplier. The omitted emission and its score effect are unquantified.",
       "resolution_status": "screening omission; exact biosphere correspondence remains unresolved",
       "resolution_review": "docs/development/uvek-metals-sodium-omission.md"
+    },
+    {
+      "slug": "lithium-carbonate-precipitation-1-from-salar-de-cauchari-olaroz",
+      "version_id": 4896,
+      "semantic_version": "1.0.1",
+      "sha256": "79664c3d827ffba06ca6d382d49b3d667405d8e68c06850be008439d0db7a792",
+      "id": "uvek-2026-metals-source38-sodium-water-04e104eb041d",
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.8"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "activity": {
+        "name": "lithium carbonate precipitation 1, from salar de cauchari-olaroz",
+        "reference product": "lithium carbonate, precipitated",
+        "location": "AR"
+      },
+      "exchange": {
+        "amount": 0.000163984410244733,
+        "categories": [
+          "water"
+        ],
+        "database": "biosphere3",
+        "loc": -8.71573919414185,
+        "name": "Sodium",
+        "scale": 0.2581689821184212,
+        "type": "biosphere",
+        "uncertainty type": 2,
+        "unit": "kilogram"
+      },
+      "screening_only": true,
+      "resolution_status": "screening omission; exact generic-sodium biosphere correspondence unresolved",
+      "resolution_review": "docs/development/uvek-metals-38-sodium-omissions.md",
+      "message": "Approved scoped screening omission: omit only the generic Sodium emission to unspecified water in this inspected CLIC source3.8 metals inventory for UVEK2026 cut-off with ecoinvent3.10 biosphere. Strict migration finds no identical publisher UUID or reviewed exact synonym in the target; do not assert Sodium ion is the same published flow. Preserve all other exchanges, signed caller quantities and uncertainty. Keep the actual omitted quantity and its uncertainty in the audit. No avoided-emission credit or zero-burden process is added; the omitted emission and score effect remain unquantified."
+    },
+    {
+      "slug": "lithium-carbonate-precipitation-2-from-salar-de-olaroz",
+      "version_id": 4889,
+      "semantic_version": "1.0.1",
+      "sha256": "da7279a4d6b5dc8ad44e6dead1060604342d69114ab61e0e5d46e8d9c9264668",
+      "id": "uvek-2026-metals-source38-sodium-water-655987d78de5",
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.8"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "activity": {
+        "name": "lithium carbonate precipitation 2, from salar de olaroz",
+        "reference product": "lithium carbonate, precipitated",
+        "location": "AR"
+      },
+      "exchange": {
+        "amount": 0.0005090491869677618,
+        "categories": [
+          "water"
+        ],
+        "database": "biosphere3",
+        "name": "Sodium",
+        "type": "biosphere",
+        "unit": "kilogram"
+      },
+      "screening_only": true,
+      "resolution_status": "screening omission; exact generic-sodium biosphere correspondence unresolved",
+      "resolution_review": "docs/development/uvek-metals-38-sodium-omissions.md",
+      "message": "Approved scoped screening omission: omit only the generic Sodium emission to unspecified water in this inspected CLIC source3.8 metals inventory for UVEK2026 cut-off with ecoinvent3.10 biosphere. Strict migration finds no identical publisher UUID or reviewed exact synonym in the target; do not assert Sodium ion is the same published flow. Preserve all other exchanges, signed caller quantities and uncertainty. Keep the actual omitted quantity and its uncertainty in the audit. No avoided-emission credit or zero-burden process is added; the omitted emission and score effect remain unquantified."
+    },
+    {
+      "slug": "lithium-brine-filtering-via-ion-exchanger",
+      "version_id": 2144,
+      "semantic_version": "1.0.0",
+      "sha256": "2143501d9a551dd2546173edbba0def9858a62033bca78627764beb7267c2175",
+      "id": "uvek-2026-metals-source38-sodium-water-2f6d020b4bba",
+      "source": {
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        },
+        "technosphere": {
+          "family": "ecoinvent",
+          "system_model": "cutoff",
+          "version": "3.8"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "activity": {
+        "name": "lithium brine filtering, via ion exchanger",
+        "reference product": "lithium brine, filtered",
+        "location": "CN"
+      },
+      "exchange": {
+        "amount": 0.000203735267297511,
+        "categories": [
+          "water"
+        ],
+        "database": "biosphere3",
+        "loc": -8.49868911619991,
+        "name": "Sodium",
+        "scale": 0.2581689821184212,
+        "type": "biosphere",
+        "uncertainty type": 2,
+        "unit": "kilogram"
+      },
+      "screening_only": true,
+      "resolution_status": "screening omission; exact generic-sodium biosphere correspondence unresolved",
+      "resolution_review": "docs/development/uvek-metals-38-sodium-omissions.md",
+      "message": "Approved scoped screening omission: omit only the generic Sodium emission to unspecified water in this inspected CLIC source3.8 metals inventory for UVEK2026 cut-off with ecoinvent3.10 biosphere. Strict migration finds no identical publisher UUID or reviewed exact synonym in the target; do not assert Sodium ion is the same published flow. Preserve all other exchanges, signed caller quantities and uncertainty. Keep the actual omitted quantity and its uncertainty in the audit. No avoided-emission credit or zero-burden process is added; the omitted emission and score effect remain unquantified."
     }
   ]
 }
