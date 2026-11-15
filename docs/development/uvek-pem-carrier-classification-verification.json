@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-15",
+  "reproduced_in": "Normal public nine-sector update, default checkpoint persistence",
+  "failure": "Native hydrogen boiler delivered-heat factor 378.4 because its delivered hydrogen carrier was no longer in the classification map.",
+  "cause": "The PEM production-only alias also replaced the default carrier classification used by heat.",
+  "mapping_only_correction": "Declare the production-only selector under existing market_suppliers; default classification includes both native production and delivered PEM hydrogen.",
+  "source_basis": "Existing reviewed native hydrogen-boiler energy boundary:120MJ/kg,retain positive fuel and distribution-loss inputs.",
+  "new_scaling_or_efficiency_override": false,
+  "production_Python_changes": 0,
+  "additional_helpers": 0,
+  "regressions_failed_before": 3,
+  "fuel_heat_and_energy_regressions_passed": 189,
+  "normal_public_combined_export": "Separate pending qualification; not claimed by this mapping regression."
+}

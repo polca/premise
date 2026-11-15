@@ -29,6 +29,61 @@ def test_native_pem_role_selects_production_before_shared_distribution(container
     assert mapping.generate_fuel_map(model="remind", for_markets=True)[
         "hydrogen, from electrolysis, PEM"
     ] == [plant]
+    classification = mapping.generate_fuel_map()["hydrogen, from electrolysis, PEM"]
+    assert len(classification) == 2
+    assert plant in classification and excluded[0] in classification
+
+
+def test_native_delivered_hydrogen_remains_a_heat_input_without_becoming_market_supply():
+    from copy import deepcopy
+
+    from premise.core.utils import get_fuel_properties
+    from premise.energy.heat import Heat
+
+    name = "Hydrogen supply, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid"
+    delivered = {
+        "name": name,
+        "reference product": name,
+        "unit": "kilogram",
+        "location": "CH",
+        "exchanges": [],
+    }
+    mapping = InventorySet([delivered], family="uvek", version="2026", model="remind")
+    heat = object.__new__(Heat)
+    heat.database = [delivered]
+    heat.fuels_specs = get_fuel_properties()
+    heat.fuel_map_reverse = heat._build_fuel_map_reverse(mapping.generate_fuel_map())
+    boiler = {
+        "name": "illustrative hydrogen boiler",
+        "location": "CH",
+        "exchanges": [
+            {
+                "name": name,
+                "product": name,
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": amount,
+            }
+            for amount in (0.008, 0.0005)
+        ]
+        + [
+            {
+                "name": "Electricity, low voltage, at grid",
+                "unit": "kilowatt hour",
+                "type": "technosphere",
+                "amount": 0.001,
+            }
+        ],
+    }
+    before = deepcopy(boiler["exchanges"])
+    assert heat._supplier_conversion_factor(boiler, "combustion") == pytest.approx(
+        1 / ((0.008 + 0.0005) * 120)
+    )
+    assert boiler["exchanges"] == before
+    assert (
+        mapping.generate_fuel_map(for_markets=True)["hydrogen, from electrolysis, PEM"]
+        == []
+    )
 
 
 @pytest.mark.parametrize(
