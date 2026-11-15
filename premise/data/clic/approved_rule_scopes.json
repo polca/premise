@@ -288979,6 +288979,1020 @@
           "fingerprint": "cfd1dd0dfcb94271e37e3e80fc81222744e9dda28567b16cd6ccebf0db8835e9"
         }
       ]
+    },
+    {
+      "rule_id": "bp-044d46746cc73c41",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_39_market_boundaries",
+      "review_path": "export/uvek_ships_39_market_boundaries_review.json",
+      "review_sha256": "41d1737cca77989b6a4fc44cd2e0045c46e8c60c33942db7a9b80c3352e2b427",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Reuse exact generic treatment, distinguish native limestone/algae-lime functions, preserve source market quantities and freight, and record the minor mined-magnetite route proxy with warnings.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "treatment of inert waste, inert material landfill",
+          "reference product": "inert waste, for final disposal",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "RoW",
+            "name": "treatment of inert waste, inert material landfill",
+            "reference product": "inert waste, for final disposal",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "e82c9366024c7d2eafb13c1cfd549e3e33d5e7e7a7d77ebca01e6c7c10b011b4",
+          "metadata_sha256": "f0dacce1c09787717401f6ea5a05b19742b8afd1b4469770dcb938a6c93f328f",
+          "nonproduction_exchange_count": 2,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [],
+        "basis": "Reuse the existing exact generic inert-landfill helper:1kg native operation plus1.48e-9 native facility units per as-receivedkg, preserving both inspected source uncertainty distributions. Negative source waste reference maps to positive service with factor-1 exactly once. Source has no direct biosphere exchange, nonphysical waste indicator or collection freight: add none.",
+        "conversion_factor": -1.0,
+        "recipe_id": "pilot-inert39-treatment-22bf873e8a547af043e0",
+        "boundary_checks": {
+          "input_count": 2,
+          "final_freight_entries": 0,
+          "producer_entries": 1
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "xx Inert material landfill facility",
+                "reference product": "xx Inert material landfill facility",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8fd7a3cbf7b563c608fbd3ed7d4b77876a12b9089f5497be162567a76f8d1e84",
+              "metadata_sha256": "1ce37de9a3fc8aed5fa3671e069c9e85b99b216f0295e058d760c3aa69ba44c7"
+            },
+            {
+              "identity": {
+                "name": "Process-specific burdens, inert material landfill",
+                "reference product": "Process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "e1872dd50b8f5ba8b029219859255e5e1d93def668b0cbc90d32f2eea48a596a",
+              "metadata_sha256": "0a01101fda3cb714adba60464197a5bb4eab82a412e46f2d532d8fc36e7b31c1"
+            },
+            {
+              "identity": {
+                "name": "Limestone, milled, loose, at plant",
+                "reference product": "Limestone, milled, loose, at plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "12b10e56d3f26c30052e037e6fd97857d5383e0748b2e89ae518912e33b1e31e",
+              "metadata_sha256": "e52ee82e48f0f313b636422f736f3a102b724872643f95e9bcef51f6fa6fcfe6"
+            },
+            {
+              "identity": {
+                "name": "xx Lime, algae, at regional storehouse",
+                "reference product": "xx Lime, algae, at regional storehouse",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "39af055476c60f213b5bc2825b4dcd4ead76c6fdb631aaabe0a3ed2240cffc2b",
+              "metadata_sha256": "9fd782e5c8a5fbf7456b0516c7188c228e5df663571761d956e6aea5b5d646d3"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "name": "Magnetite, at plant",
+                "reference product": "Magnetite, at plant",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1d8237809b12fb4f58eb04c60d7394848c65e09f434a042b6d5162772c5d0945",
+              "metadata_sha256": "c5bbd1d449822452505966d5a593c827118f0612375e065aeb9854d93bd0c0cd"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "xx Inert material landfill facility",
+                "reference product": "xx Inert material landfill facility",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "dbf6ab0eb9ef5b169db8e0e869b62020f4cb95e8cba9ccd0544cc3a23a8dfe6e",
+              "metadata_sha256": "d598a0baff8c7c29f483348925552ea25df66117e75ab9183d3141e7c2c80baf"
+            },
+            {
+              "identity": {
+                "name": "Process-specific burdens, inert material landfill",
+                "reference product": "Process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "97039d7de54edafd787cf4d81bb4fefdc91a614f5a80d0ec49619801f1f5ce83",
+              "metadata_sha256": "4007e682421cded4d6fd6acb5fe7540a04215b3df9ea153a1fc894d428b7c104"
+            },
+            {
+              "identity": {
+                "name": "Limestone, milled, loose, at plant",
+                "reference product": "Limestone, milled, loose, at plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9f13dbf403d645e799bf2e41ca6c460003c450e562369c38ff80d25ca48b8bcf",
+              "metadata_sha256": "8d4dcd83f9aa3db164f3f5b3fdd3da785999f9c4d53eccad58cf4cbc30016abe"
+            },
+            {
+              "identity": {
+                "name": "xx Lime, algae, at regional storehouse",
+                "reference product": "xx Lime, algae, at regional storehouse",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "986c3a9f02dd4489542ff30d51554f347dd826401ed69de219badeead0ee4fa7",
+              "metadata_sha256": "8663c0096ca65cf64edd3d51b0df4172d4ec33bd9b91974615b324dd48bfad81"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "name": "Magnetite, at plant",
+                "reference product": "Magnetite, at plant",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca54c4f55dbb2284c5b4764f3f47499dc6a1e8260bff7e02ade027c013c72a94",
+              "metadata_sha256": "2a1af7dd5e5e814af6cb9d9f6c03e6b00e514f372d6ccf571ae79156e20a6402"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {
+          "pilot-inert39-treatment-22bf873e8a547af043e0": {
+            "evidence": [
+              "brightpath/data/export/uvek_pilot_nitrate_inert39_review.json: full source and independently reviewed complete generic component witnesses."
+            ],
+            "inputs": [
+              {
+                "amount": 1.48e-09,
+                "loc": -20.331223749170388,
+                "location": "CH",
+                "name": "xx Inert material landfill facility",
+                "pedigree": {
+                  "completeness": 1,
+                  "further technological correlation": 1,
+                  "geographical correlation": 5,
+                  "reliability": 1,
+                  "temporal correlation": 5
+                },
+                "reference product": "xx Inert material landfill facility",
+                "scale": 0.044721359549995794,
+                "scale without pedigree": 0.20976176963403032,
+                "type": "technosphere",
+                "uncertainty type": 2,
+                "unit": "unit"
+              },
+              {
+                "amount": 1.0,
+                "loc": 0.0,
+                "location": "CH",
+                "name": "Process-specific burdens, inert material landfill",
+                "pedigree": {
+                  "completeness": 1,
+                  "further technological correlation": 1,
+                  "geographical correlation": 5,
+                  "reliability": 1,
+                  "temporal correlation": 5
+                },
+                "reference product": "Process-specific burdens, inert material landfill",
+                "scale": 0.044721359549995794,
+                "scale without pedigree": 0.20976176963403032,
+                "type": "technosphere",
+                "uncertainty type": 2,
+                "unit": "kilogram"
+              }
+            ],
+            "location": "RoW",
+            "name": "treatment of inert waste, inert material landfill, complete generic treatment",
+            "rationale": "For the exact ecoinvent3.9cutoff RoW inert-waste final-disposal market, preserve its sole treatment and nine separate original collection terms(6rail,3road) with signed quantities and source uncertainty. Preserve the original market-to-treatment exchange through a positive helper, and its1kg generic inert-landfill operation plus1.48e-9facility units per as-receivedkg. Source reference-1kg maps to positive treatment via caller factor-1. Reuse the independently inspected complete native generic operation and facility functions under the standing whole-function/unit/geographic screening approval. Source and native facility capacity450000m3 establishes no multiplier; source generic component markets delegate to exactly one positive unit supplier, without freight/losses. Native energy and material/road/rail supplies, Swiss geography, waste-heat release, land definitions, allocation, internal uncertainty and vintage remain warned differences with unquantified score effects. Native2026 describes five years of recultivation/monitoring; no undocumented lifetime equality is inferred. Source leachate is explicitly not inventoried as negligible: retain that source-data gap, not a claim of physical zero. Do not use the composition-specific typeB or oil-catalyst-carrier disposal inventory, add direct leachate or landfill logistics, or infer a density, moisture, dry-mass, capacity, lifetime or recovery factor. Use the exact earlier whole-freight authority for all original signed tkm, retaining6genericRERrail entries and3heavyRERroad entries separately even where suppliers coincide. Do not use coal-only CN rail or diesel-only US rail, aggregate/normalize shares, infer traction/payload/distance factors or add infrastructure already included in the whole service. Fleet/traction, fuel, loading, geography, allocation and vintage differences remain screening warnings. The3.9source market and treatment contain no direct biosphere exchange or waste indicator; do not add an indicator from another release. The independently admitted3.12profile keeps its exact existing target, sign decision and complete six-input recipe(2landfill components,3roads,1nonphysical waste indicator), including all quantities, uncertainty and omission policy. Its approval fingerprint is reissued only because the shared raw rule now carries an additional profile and combined warning; its scientific mapping is unchanged. Preserve caller signed quantities, formulas, uncertainty, ownership and separate emissions/purchases. Native upstream biosphere exclusions and score differences remain limitations, not inventory or LCIA equivalence. Only exact3.9andretained3.12cutoff profiles qualify; uninspected patch versions, inverse and cross-model routes remain refused. New component hashes freeze this parent closure and grant no standalone approvals.",
+            "reference product": "inert waste, for final disposal",
+            "unit": "kilogram"
+          }
+        }
+      },
+      "limitations": [
+        "Reuse the existing exact generic inert-landfill helper:1kg native operation plus1.48e-9 native facility units per as-receivedkg, preserving both inspected source uncertainty distributions. Negative source waste reference maps to positive service with factor-1 exactly once. Source has no direct biosphere exchange, nonphysical waste indicator or collection freight: add none.",
+        "Source explicitly omits leachate as considered negligible; preserve that inherited data gap, not a claim that physical leachate is zero. Do not import the composition-specific5%-water construction-disposal emissions. Native Swiss energy, land-use, infrastructure, recultivation/aftercare, waste heat and vintage differ. No moisture, dry-mass, density, capacity, lifetime or recovery multiplier is introduced.",
+        "Only the independently inspected ecoinvent3.9cutoff profile is admitted, through the existing UVEK2025-to2026 route. Preserve signed caller quantities, reference units, formulas, supported uncertainty, separate emissions and foreground ownership. No inverse or cross-system-model permission is inferred.",
+        "Retain complete native inventories once. Geographic, technology, allocation, age, internal uncertainty and native biosphere-exclusion differences remain screening limitations with unquantified score effects; no LCIA equivalence is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9c9fb31c208584931d2155a95669f50a9e8cdffa3a860f5ad51b073366d1fbad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7cfbc8a9a47a41e4",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_39_market_boundaries",
+      "review_path": "export/uvek_ships_39_market_boundaries_review.json",
+      "review_sha256": "41d1737cca77989b6a4fc44cd2e0045c46e8c60c33942db7a9b80c3352e2b427",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Reuse exact generic treatment, distinguish native limestone/algae-lime functions, preserve source market quantities and freight, and record the minor mined-magnetite route proxy with warnings.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for lime",
+          "reference product": "lime",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "RER",
+            "name": "market for lime",
+            "reference product": "lime",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "632e849a68c4734502307913f659f0eba720d2da67cf8bb5ff6785043d48fa44",
+          "metadata_sha256": "0b5c9ca5d35195b0d5a12b50adb02c109a6d26eaf980bb7579c5ddb9912a0831",
+          "nonproduction_exchange_count": 4,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "lime production, milled, loose",
+              "reference product": "lime",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "c172a1ec51fd10fcb2409e7793c35ac7325b6cd85ab5a3beb3138ce44206fa90",
+            "metadata_sha256": "bfd1df5b2e9b544ae55f7c3582cf40d1b474f5eccf0c9a98ea57ab6feadc3b3e"
+          },
+          {
+            "identity": {
+              "name": "lime production, algae",
+              "reference product": "lime",
+              "location": "FR",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "76a193b4e7777d7206b0b0c98fe2c4a8051866dd7a5f70a0e0876ae212be34d1",
+            "metadata_sha256": "79c0da08ee8af95e32db7171c6a23b122e9a043a9ffb8e9ea5e8c1f310740803"
+          },
+          {
+            "identity": {
+              "name": "lime production, milled, loose",
+              "reference product": "lime",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "7002eb00472fa0d3dfc28267ea6e571f4b290f4f91691493f010b6c258b32171",
+            "metadata_sha256": "78dc7c375ed3dd951ae1cbc875ae758955db56e9449d450c57036361979c97d9"
+          }
+        ],
+        "basis": "Retain all three original producer entries and the original road-delivery quantity separately. The two loose-milled lime producers consume1kg crushed limestone with milling energy and no calcination. Use the complete native loose-milled limestone, not hydraulic lime or quicklime. Legacy source product text says quicklime despite these actual inventories; retain that inconsistency and infer no CaO/CaCO3 equivalence or purity factor.",
+        "conversion_factor": 1.0,
+        "recipe_id": "ships-39-lime-delivered-market",
+        "boundary_checks": {
+          "input_count": 4,
+          "final_freight_entries": 1,
+          "producer_entries": 3
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "xx Inert material landfill facility",
+                "reference product": "xx Inert material landfill facility",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8fd7a3cbf7b563c608fbd3ed7d4b77876a12b9089f5497be162567a76f8d1e84",
+              "metadata_sha256": "1ce37de9a3fc8aed5fa3671e069c9e85b99b216f0295e058d760c3aa69ba44c7"
+            },
+            {
+              "identity": {
+                "name": "Process-specific burdens, inert material landfill",
+                "reference product": "Process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "e1872dd50b8f5ba8b029219859255e5e1d93def668b0cbc90d32f2eea48a596a",
+              "metadata_sha256": "0a01101fda3cb714adba60464197a5bb4eab82a412e46f2d532d8fc36e7b31c1"
+            },
+            {
+              "identity": {
+                "name": "Limestone, milled, loose, at plant",
+                "reference product": "Limestone, milled, loose, at plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "12b10e56d3f26c30052e037e6fd97857d5383e0748b2e89ae518912e33b1e31e",
+              "metadata_sha256": "e52ee82e48f0f313b636422f736f3a102b724872643f95e9bcef51f6fa6fcfe6"
+            },
+            {
+              "identity": {
+                "name": "xx Lime, algae, at regional storehouse",
+                "reference product": "xx Lime, algae, at regional storehouse",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "39af055476c60f213b5bc2825b4dcd4ead76c6fdb631aaabe0a3ed2240cffc2b",
+              "metadata_sha256": "9fd782e5c8a5fbf7456b0516c7188c228e5df663571761d956e6aea5b5d646d3"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "name": "Magnetite, at plant",
+                "reference product": "Magnetite, at plant",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1d8237809b12fb4f58eb04c60d7394848c65e09f434a042b6d5162772c5d0945",
+              "metadata_sha256": "c5bbd1d449822452505966d5a593c827118f0612375e065aeb9854d93bd0c0cd"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "xx Inert material landfill facility",
+                "reference product": "xx Inert material landfill facility",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "dbf6ab0eb9ef5b169db8e0e869b62020f4cb95e8cba9ccd0544cc3a23a8dfe6e",
+              "metadata_sha256": "d598a0baff8c7c29f483348925552ea25df66117e75ab9183d3141e7c2c80baf"
+            },
+            {
+              "identity": {
+                "name": "Process-specific burdens, inert material landfill",
+                "reference product": "Process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "97039d7de54edafd787cf4d81bb4fefdc91a614f5a80d0ec49619801f1f5ce83",
+              "metadata_sha256": "4007e682421cded4d6fd6acb5fe7540a04215b3df9ea153a1fc894d428b7c104"
+            },
+            {
+              "identity": {
+                "name": "Limestone, milled, loose, at plant",
+                "reference product": "Limestone, milled, loose, at plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9f13dbf403d645e799bf2e41ca6c460003c450e562369c38ff80d25ca48b8bcf",
+              "metadata_sha256": "8d4dcd83f9aa3db164f3f5b3fdd3da785999f9c4d53eccad58cf4cbc30016abe"
+            },
+            {
+              "identity": {
+                "name": "xx Lime, algae, at regional storehouse",
+                "reference product": "xx Lime, algae, at regional storehouse",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "986c3a9f02dd4489542ff30d51554f347dd826401ed69de219badeead0ee4fa7",
+              "metadata_sha256": "8663c0096ca65cf64edd3d51b0df4172d4ec33bd9b91974615b324dd48bfad81"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "name": "Magnetite, at plant",
+                "reference product": "Magnetite, at plant",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca54c4f55dbb2284c5b4764f3f47499dc6a1e8260bff7e02ade027c013c72a94",
+              "metadata_sha256": "2a1af7dd5e5e814af6cb9d9f6c03e6b00e514f372d6ccf571ae79156e20a6402"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {
+          "pilot-inert39-treatment-22bf873e8a547af043e0": {
+            "evidence": [
+              "brightpath/data/export/uvek_pilot_nitrate_inert39_review.json: full source and independently reviewed complete generic component witnesses."
+            ],
+            "inputs": [
+              {
+                "amount": 1.48e-09,
+                "loc": -20.331223749170388,
+                "location": "CH",
+                "name": "xx Inert material landfill facility",
+                "pedigree": {
+                  "completeness": 1,
+                  "further technological correlation": 1,
+                  "geographical correlation": 5,
+                  "reliability": 1,
+                  "temporal correlation": 5
+                },
+                "reference product": "xx Inert material landfill facility",
+                "scale": 0.044721359549995794,
+                "scale without pedigree": 0.20976176963403032,
+                "type": "technosphere",
+                "uncertainty type": 2,
+                "unit": "unit"
+              },
+              {
+                "amount": 1.0,
+                "loc": 0.0,
+                "location": "CH",
+                "name": "Process-specific burdens, inert material landfill",
+                "pedigree": {
+                  "completeness": 1,
+                  "further technological correlation": 1,
+                  "geographical correlation": 5,
+                  "reliability": 1,
+                  "temporal correlation": 5
+                },
+                "reference product": "Process-specific burdens, inert material landfill",
+                "scale": 0.044721359549995794,
+                "scale without pedigree": 0.20976176963403032,
+                "type": "technosphere",
+                "uncertainty type": 2,
+                "unit": "kilogram"
+              }
+            ],
+            "location": "RoW",
+            "name": "treatment of inert waste, inert material landfill, complete generic treatment",
+            "rationale": "For the exact ecoinvent3.9cutoff RoW inert-waste final-disposal market, preserve its sole treatment and nine separate original collection terms(6rail,3road) with signed quantities and source uncertainty. Preserve the original market-to-treatment exchange through a positive helper, and its1kg generic inert-landfill operation plus1.48e-9facility units per as-receivedkg. Source reference-1kg maps to positive treatment via caller factor-1. Reuse the independently inspected complete native generic operation and facility functions under the standing whole-function/unit/geographic screening approval. Source and native facility capacity450000m3 establishes no multiplier; source generic component markets delegate to exactly one positive unit supplier, without freight/losses. Native energy and material/road/rail supplies, Swiss geography, waste-heat release, land definitions, allocation, internal uncertainty and vintage remain warned differences with unquantified score effects. Native2026 describes five years of recultivation/monitoring; no undocumented lifetime equality is inferred. Source leachate is explicitly not inventoried as negligible: retain that source-data gap, not a claim of physical zero. Do not use the composition-specific typeB or oil-catalyst-carrier disposal inventory, add direct leachate or landfill logistics, or infer a density, moisture, dry-mass, capacity, lifetime or recovery factor. Use the exact earlier whole-freight authority for all original signed tkm, retaining6genericRERrail entries and3heavyRERroad entries separately even where suppliers coincide. Do not use coal-only CN rail or diesel-only US rail, aggregate/normalize shares, infer traction/payload/distance factors or add infrastructure already included in the whole service. Fleet/traction, fuel, loading, geography, allocation and vintage differences remain screening warnings. The3.9source market and treatment contain no direct biosphere exchange or waste indicator; do not add an indicator from another release. The independently admitted3.12profile keeps its exact existing target, sign decision and complete six-input recipe(2landfill components,3roads,1nonphysical waste indicator), including all quantities, uncertainty and omission policy. Its approval fingerprint is reissued only because the shared raw rule now carries an additional profile and combined warning; its scientific mapping is unchanged. Preserve caller signed quantities, formulas, uncertainty, ownership and separate emissions/purchases. Native upstream biosphere exclusions and score differences remain limitations, not inventory or LCIA equivalence. Only exact3.9andretained3.12cutoff profiles qualify; uninspected patch versions, inverse and cross-model routes remain refused. New component hashes freeze this parent closure and grant no standalone approvals.",
+            "reference product": "inert waste, for final disposal",
+            "unit": "kilogram"
+          }
+        }
+      },
+      "limitations": [
+        "Retain all three original producer entries and the original road-delivery quantity separately. The two loose-milled lime producers consume1kg crushed limestone with milling energy and no calcination. Use the complete native loose-milled limestone, not hydraulic lime or quicklime. Legacy source product text says quicklime despite these actual inventories; retain that inconsistency and infer no CaO/CaCO3 equivalence or purity factor.",
+        "Retain the algae route with the complete native algae-lime process, including its inherited drying/milling and regional-storehouse boundary. Source and native describe25%initial and2.5%final water; no drying or moisture factor is added. Swiss native milled limestone is a geography/electricity-mix proxy for the European non-Swiss producer; its full energy/quarry/milling inventory replaces producer internals once. Source final market freight remains additional, as in its original model.",
+        "Keep original signed tonne-km and uncertainty through complete native heavy-diesel fleet,3.5t light-commercial fleet,European rail and transoceanic-container services as applicable. Source fleet/traction/fuel/load/geography/vintage mixtures are screening proxies; add no payload, distance, vehicle, road, rail or vessel infrastructure multiplier.",
+        "Only the independently inspected ecoinvent3.9cutoff profile is admitted, through the existing UVEK2025-to2026 route. Preserve signed caller quantities, reference units, formulas, supported uncertainty, separate emissions and foreground ownership. No inverse or cross-system-model permission is inferred.",
+        "Retain complete native inventories once. Geographic, technology, allocation, age, internal uncertainty and native biosphere-exclusion differences remain screening limitations with unquantified score effects; no LCIA equivalence is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "881bad6635ece197a82a77443cf47caa1880bca0b6b45d0a0619d84145dd8171"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-a756bfb30d94e11d",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_39_market_boundaries",
+      "review_path": "export/uvek_ships_39_market_boundaries_review.json",
+      "review_sha256": "41d1737cca77989b6a4fc44cd2e0045c46e8c60c33942db7a9b80c3352e2b427",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Reuse exact generic treatment, distinguish native limestone/algae-lime functions, preserve source market quantities and freight, and record the minor mined-magnetite route proxy with warnings.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for magnetite",
+          "reference product": "magnetite",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for magnetite",
+            "reference product": "magnetite",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "8f1e4429b59f20e4dbce5b47f247796d2a398b2c91792d62b457e39019851db4",
+          "metadata_sha256": "3cd35199560a869a5189d28b4f723bae622663b2be82e3b257131d705dd8e88b",
+          "nonproduction_exchange_count": 6,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "ilmenite - magnetite mine operation",
+              "reference product": "magnetite",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "d73d05d64ce7d0265d88e14b30dea31d0a71709496dbf87696beb1c9536271d2",
+            "metadata_sha256": "35694e9e32ff194a68f610b2ad8b73d075ed9f48c5b1cb2fe3790a1e61f93133"
+          },
+          {
+            "identity": {
+              "name": "magnetite production",
+              "reference product": "magnetite",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "3d0d05182f2817c87e36c5b8cc377c49f9aa0bcc34a19e4518736b75ea505fcf",
+            "metadata_sha256": "9daf5bf153822af807b52c31b7dec102c6f5c81da5de90fe66afe9111c2a23d2"
+          }
+        ],
+        "basis": "Retain both original producer entries and all four road/light-commercial/rail/container-ship delivery quantities separately, with source statistics. Use complete native Fe3O4magnetite for the chemical producer; both inventories describe the same estimated toner-carrier precipitation/filtration/drying process and warn against use where magnetite dominates inventory mass.",
+        "conversion_factor": 1.0,
+        "recipe_id": "ships-39-magnetite-delivered-market",
+        "boundary_checks": {
+          "input_count": 6,
+          "final_freight_entries": 4,
+          "producer_entries": 2
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "xx Inert material landfill facility",
+                "reference product": "xx Inert material landfill facility",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8fd7a3cbf7b563c608fbd3ed7d4b77876a12b9089f5497be162567a76f8d1e84",
+              "metadata_sha256": "1ce37de9a3fc8aed5fa3671e069c9e85b99b216f0295e058d760c3aa69ba44c7"
+            },
+            {
+              "identity": {
+                "name": "Process-specific burdens, inert material landfill",
+                "reference product": "Process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "e1872dd50b8f5ba8b029219859255e5e1d93def668b0cbc90d32f2eea48a596a",
+              "metadata_sha256": "0a01101fda3cb714adba60464197a5bb4eab82a412e46f2d532d8fc36e7b31c1"
+            },
+            {
+              "identity": {
+                "name": "Limestone, milled, loose, at plant",
+                "reference product": "Limestone, milled, loose, at plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "12b10e56d3f26c30052e037e6fd97857d5383e0748b2e89ae518912e33b1e31e",
+              "metadata_sha256": "e52ee82e48f0f313b636422f736f3a102b724872643f95e9bcef51f6fa6fcfe6"
+            },
+            {
+              "identity": {
+                "name": "xx Lime, algae, at regional storehouse",
+                "reference product": "xx Lime, algae, at regional storehouse",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "39af055476c60f213b5bc2825b4dcd4ead76c6fdb631aaabe0a3ed2240cffc2b",
+              "metadata_sha256": "9fd782e5c8a5fbf7456b0516c7188c228e5df663571761d956e6aea5b5d646d3"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "name": "Magnetite, at plant",
+                "reference product": "Magnetite, at plant",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1d8237809b12fb4f58eb04c60d7394848c65e09f434a042b6d5162772c5d0945",
+              "metadata_sha256": "c5bbd1d449822452505966d5a593c827118f0612375e065aeb9854d93bd0c0cd"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "xx Inert material landfill facility",
+                "reference product": "xx Inert material landfill facility",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "dbf6ab0eb9ef5b169db8e0e869b62020f4cb95e8cba9ccd0544cc3a23a8dfe6e",
+              "metadata_sha256": "d598a0baff8c7c29f483348925552ea25df66117e75ab9183d3141e7c2c80baf"
+            },
+            {
+              "identity": {
+                "name": "Process-specific burdens, inert material landfill",
+                "reference product": "Process-specific burdens, inert material landfill",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "97039d7de54edafd787cf4d81bb4fefdc91a614f5a80d0ec49619801f1f5ce83",
+              "metadata_sha256": "4007e682421cded4d6fd6acb5fe7540a04215b3df9ea153a1fc894d428b7c104"
+            },
+            {
+              "identity": {
+                "name": "Limestone, milled, loose, at plant",
+                "reference product": "Limestone, milled, loose, at plant",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9f13dbf403d645e799bf2e41ca6c460003c450e562369c38ff80d25ca48b8bcf",
+              "metadata_sha256": "8d4dcd83f9aa3db164f3f5b3fdd3da785999f9c4d53eccad58cf4cbc30016abe"
+            },
+            {
+              "identity": {
+                "name": "xx Lime, algae, at regional storehouse",
+                "reference product": "xx Lime, algae, at regional storehouse",
+                "location": "CH",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "986c3a9f02dd4489542ff30d51554f347dd826401ed69de219badeead0ee4fa7",
+              "metadata_sha256": "8663c0096ca65cf64edd3d51b0df4172d4ec33bd9b91974615b324dd48bfad81"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "name": "Magnetite, at plant",
+                "reference product": "Magnetite, at plant",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "ca54c4f55dbb2284c5b4764f3f47499dc6a1e8260bff7e02ade027c013c72a94",
+              "metadata_sha256": "2a1af7dd5e5e814af6cb9d9f6c03e6b00e514f372d6ccf571ae79156e20a6402"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {
+          "pilot-inert39-treatment-22bf873e8a547af043e0": {
+            "evidence": [
+              "brightpath/data/export/uvek_pilot_nitrate_inert39_review.json: full source and independently reviewed complete generic component witnesses."
+            ],
+            "inputs": [
+              {
+                "amount": 1.48e-09,
+                "loc": -20.331223749170388,
+                "location": "CH",
+                "name": "xx Inert material landfill facility",
+                "pedigree": {
+                  "completeness": 1,
+                  "further technological correlation": 1,
+                  "geographical correlation": 5,
+                  "reliability": 1,
+                  "temporal correlation": 5
+                },
+                "reference product": "xx Inert material landfill facility",
+                "scale": 0.044721359549995794,
+                "scale without pedigree": 0.20976176963403032,
+                "type": "technosphere",
+                "uncertainty type": 2,
+                "unit": "unit"
+              },
+              {
+                "amount": 1.0,
+                "loc": 0.0,
+                "location": "CH",
+                "name": "Process-specific burdens, inert material landfill",
+                "pedigree": {
+                  "completeness": 1,
+                  "further technological correlation": 1,
+                  "geographical correlation": 5,
+                  "reliability": 1,
+                  "temporal correlation": 5
+                },
+                "reference product": "Process-specific burdens, inert material landfill",
+                "scale": 0.044721359549995794,
+                "scale without pedigree": 0.20976176963403032,
+                "type": "technosphere",
+                "uncertainty type": 2,
+                "unit": "kilogram"
+              }
+            ],
+            "location": "RoW",
+            "name": "treatment of inert waste, inert material landfill, complete generic treatment",
+            "rationale": "For the exact ecoinvent3.9cutoff RoW inert-waste final-disposal market, preserve its sole treatment and nine separate original collection terms(6rail,3road) with signed quantities and source uncertainty. Preserve the original market-to-treatment exchange through a positive helper, and its1kg generic inert-landfill operation plus1.48e-9facility units per as-receivedkg. Source reference-1kg maps to positive treatment via caller factor-1. Reuse the independently inspected complete native generic operation and facility functions under the standing whole-function/unit/geographic screening approval. Source and native facility capacity450000m3 establishes no multiplier; source generic component markets delegate to exactly one positive unit supplier, without freight/losses. Native energy and material/road/rail supplies, Swiss geography, waste-heat release, land definitions, allocation, internal uncertainty and vintage remain warned differences with unquantified score effects. Native2026 describes five years of recultivation/monitoring; no undocumented lifetime equality is inferred. Source leachate is explicitly not inventoried as negligible: retain that source-data gap, not a claim of physical zero. Do not use the composition-specific typeB or oil-catalyst-carrier disposal inventory, add direct leachate or landfill logistics, or infer a density, moisture, dry-mass, capacity, lifetime or recovery factor. Use the exact earlier whole-freight authority for all original signed tkm, retaining6genericRERrail entries and3heavyRERroad entries separately even where suppliers coincide. Do not use coal-only CN rail or diesel-only US rail, aggregate/normalize shares, infer traction/payload/distance factors or add infrastructure already included in the whole service. Fleet/traction, fuel, loading, geography, allocation and vintage differences remain screening warnings. The3.9source market and treatment contain no direct biosphere exchange or waste indicator; do not add an indicator from another release. The independently admitted3.12profile keeps its exact existing target, sign decision and complete six-input recipe(2landfill components,3roads,1nonphysical waste indicator), including all quantities, uncertainty and omission policy. Its approval fingerprint is reissued only because the shared raw rule now carries an additional profile and combined warning; its scientific mapping is unchanged. Preserve caller signed quantities, formulas, uncertainty, ownership and separate emissions/purchases. Native upstream biosphere exclusions and score differences remain limitations, not inventory or LCIA equivalence. Only exact3.9andretained3.12cutoff profiles qualify; uninspected patch versions, inverse and cross-model routes remain refused. New component hashes freeze this parent closure and grant no standalone approvals.",
+            "reference product": "inert waste, for final disposal",
+            "unit": "kilogram"
+          }
+        }
+      },
+      "limitations": [
+        "Retain both original producer entries and all four road/light-commercial/rail/container-ship delivery quantities separately, with source statistics. Use complete native Fe3O4magnetite for the chemical producer; both inventories describe the same estimated toner-carrier precipitation/filtration/drying process and warn against use where magnetite dominates inventory mass.",
+        "The source2.83386367882951%mined co-product branch uses complete native chemically produced magnetite as a screening route proxy. Retain that branch quantity separately; mining/co-product allocation, ore, precursor supply, solution-basis, energy and freight differences have unquantified effects. Do not invent a mining allocation or stoichiometric correction. Native upstream precursor freight remains internal; retain only original final-market freight additionally.",
+        "Keep original signed tonne-km and uncertainty through complete native heavy-diesel fleet,3.5t light-commercial fleet,European rail and transoceanic-container services as applicable. Source fleet/traction/fuel/load/geography/vintage mixtures are screening proxies; add no payload, distance, vehicle, road, rail or vessel infrastructure multiplier.",
+        "Only the independently inspected ecoinvent3.9cutoff profile is admitted, through the existing UVEK2025-to2026 route. Preserve signed caller quantities, reference units, formulas, supported uncertainty, separate emissions and foreground ownership. No inverse or cross-system-model permission is inferred.",
+        "Retain complete native inventories once. Geographic, technology, allocation, age, internal uncertainty and native biosphere-exclusion differences remain screening limitations with unquantified score effects; no LCIA equivalence is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1fc362540681f04c2088d74c43f7a6af17312a29b4d81aea456cec210d2460ea"
+        }
+      ]
     }
   ],
   "superseded_operations": [
