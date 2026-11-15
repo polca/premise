@@ -358,8 +358,9 @@ conversions:
     name: photovoltaic laminate, CdTe, First Solar Series 6, at plant
   ecoinvent_unit: square meter
   intensity_unit: kg/MW
-  factor: 0.445
-  comment: https://www.firstsolar.com/-/media/First-Solar/Technical-Documents/Series-6-Datasheets/Series-6-Datasheet.ashx?la=en
+  factor: 0.00018016194331983804
+  description: First Solar Series 6 FS-6445 module, rated at 445 Wp over a manufacturer-declared area of 2.47 m2. Datasheet PD-5-401-06, October 2021, page 2.
+  comment: 445 Wp / 2.47 m2 / 1000000 W per MW = 0.00018016194331983804 MW per m2. https://www.firstsolar.com/-/media/First-Solar/Technical-Documents/Series-6-Datasheets/Series-6-Datasheet.pdf
 - id: photovoltaic-panel-perovskite-si-tandem-at-plant
   activity:
     name: photovoltaic panel, perovskite-Si-tandem, at plant

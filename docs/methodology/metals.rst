@@ -99,6 +99,13 @@ the 2050 indium median of 0.357 kg/MW gives 19.87 mg/m², or 45.70 mg per
 capacity. Germanium overlays still require a reviewed supply inventory;
 correcting the area conversion does not establish that supply boundary.
 
+The First Solar Series 6 conversion uses a 445 Wp FS-6445 module over 2.47 m²,
+as specified in the `manufacturer's October 2021 datasheet, page 2
+<https://www.firstsolar.com/-/media/First-Solar/Technical-Documents/Series-6-Datasheets/Series-6-Datasheet.pdf>`__.
+This gives ``445 / 2.47 / 1,000,000 = 0.00018016194331983804 MW/m²``.
+The CdTe material mapping continues to exclude Series models. The corrected
+conversion is available for explicit use; it does not activate those overlays.
+
 EV intensities in the runtime CSV are in kg metal/kg motor. The three motor
 activities therefore use a conversion of one, rather than 0.1 MW/53 kg.
 For example, the 2020 aluminium intensity is 0.2252697267 kg/kg motor.

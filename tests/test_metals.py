@@ -2055,6 +2055,50 @@ def test_a_si_material_amounts_preserve_the_rated_capacity_of_a_whole_laminate(
     assert decision["target direct amount"] == indium["amount"]
 
 
+def test_series_6_area_conversion_recovers_manufacturer_module_rating():
+    metals = object.__new__(Metals)
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
+    dataset = {
+        "name": "photovoltaic laminate, CdTe, First Solar Series 6, at plant",
+        "unit": "square meter",
+    }
+
+    conversion = metals._technology_conversion_factor(dataset, "CdTe")
+
+    # A 2.47 m² FS-6445 module must recover its 445 Wp nameplate rating.
+    assert conversion * 2.47 == pytest.approx(445 / 1_000_000)
+    with pytest.raises(MetalsConfigError, match="unit mismatch"):
+        metals._technology_conversion_factor({**dataset, "unit": "unit"}, "CdTe")
+
+
+@pytest.mark.parametrize("version", premise_config["SUPPORTED_EI_VERSIONS"])
+def test_series_pv_models_remain_excluded_from_cdte_material_mapping(version):
+    ordinary = {
+        "name": "photovoltaic laminate production, CdTe",
+        "reference product": "photovoltaic laminate, CdTe",
+        "unit": "square meter",
+        "location": "US",
+    }
+    series = [
+        {
+            **ordinary,
+            "name": f"photovoltaic laminate, CdTe, First Solar Series {number}, at plant",
+            "reference product": f"photovoltaic laminate, CdTe, First Solar Series {number}, at plant",
+        }
+        for number in (4, 6)
+    ]
+    database = [ordinary, *series]
+    before = deepcopy(database)
+
+    mapping = InventorySet(database, version).generate_metals_activities_map()
+
+    assert mapping["CdTe"] == [ordinary]
+    assert database == before
+
+
 def test_ev_intensity_applies_per_kg_motor_without_capacity_conversion():
     metals = _metals_for_material_rule_tests("EV", "Aluminium", 1)
     metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)

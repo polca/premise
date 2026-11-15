@@ -8,25 +8,27 @@ cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     review:
       date: '2026-11-15'
-      source_commit: 2f41d57b9d079794b3c2d7d7514b2a218c640087
+      source_commit: 85a0990683f589592b34f2a035f3773612a979cb
       method: >-
         Full compact-backend no-write update of ecoinvent 3.12 cutoff with
         encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
         structured ruleset-13 certificate: zero errors and 210 unsuppressed
-        current warnings. The a-Si laminate conversion uses the source rating
-        of 128 Wp per 2.3 square metres: 0.00005565217391304348 MW/m2. In this
-        2050 case, the two applied indium inputs (US/RoW) change from 45.696
-        to 19.867826 mg/m2, including proportional uncertainty bounds. Supplier
-        identities, classifications and every other exchange remain unchanged.
-        Germanium targets use the corrected area conversion, while both missing
-        provider decisions continue to preserve their source inventories.
-        All warning identities and counts are unchanged. The grouped mining-share
-        year gap still retains its 103 original product-level decisions.
+        current warnings. The excluded First Solar Series 6 conversion uses
+        the 445 Wp FS-6445 rating over 2.47 square metres from the manufacturer's
+        October 2021 datasheet, page 2: 0.00018016194331983804 MW/m2. The CdTe
+        selection policy still masks Series models. The audited inventory's
+        amounts, provider identities and classifications are identical to the
+        preceding build, and all warning identities and counts are unchanged.
+        This corrects a latent conversion error without activating any Series 6
+        material overlays. The a-Si area correction and all existing source
+        preservation decisions remain in place.
       limitations: >-
         Counts record existing methodological and data limitations for this
         case only. Warnings remain visible; new rules or increased counts fail.
         The reduction in year-range warnings reflects grouping; future mining
         shares remain unavailable and the source markets remain preserved.
+        Correcting the Series 6 reference conversion does not establish the
+        material model or authorize its use for other module variants.
         The a-Si conversion uses the inventory's rated source laminate, not a
         future module-efficiency forecast. The germanium supply boundary still
         needs review before its elemental material target can be applied.
