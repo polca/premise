@@ -38,8 +38,9 @@ algorithm. Their old source-profile decisions are compared before rebinding
 existing approval fingerprints and remain identical.
 
 Premise adds thirteen exact-profile scopes bound to the packaged evidence and
-rule fingerprints. This review does not yet resolve the six composed helper
-recipes in the current train import, later source cohorts or the full train
-update. The rejected barium-carbonate/lithium-carbonate candidate gains no scope;
-the separate caller-specific omission is explained in
-`uvek-hydrogen-train-barium-omission.md`.
+rule fingerprints. A subsequent independent approval of the production-only
+aluminium-scrap handover is recorded in `uvek-hydrogen-train-cutoff-stock.md`.
+The actual first source cohort now refuses five composed supply/treatment rules;
+later source cohorts and the full train update remain unfinished. The rejected
+barium-carbonate/lithium-carbonate candidate gains no scope; the separate
+caller-specific omission is explained in `uvek-hydrogen-train-barium-omission.md`.

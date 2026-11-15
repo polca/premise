@@ -297851,6 +297851,57 @@
           "fingerprint": "8eafa0b6ee96eca9c26b148e2aff5eb88e2fa7907594aa4c60521b5d0d9f1e73"
         }
       ]
+    },
+    {
+      "rule_id": "bp-37b9b46586e881e7",
+      "operation": "replace",
+      "mapping_method": "reviewed_cutoff_stock_recipe",
+      "review_path": "export/uvek_cutoff_stock_review.json",
+      "review_sha256": "e9d303836d198f8efc0d51f41aa8d1decf4a01e04f181cb7b9e9ea02e620b4ae",
+      "authorization": "Standing user auto-approval for equivalent reviewed cut-off handovers; actual required source inspected independently.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "aluminium scrap, new, Recycled Content cut-off",
+          "reference product": "aluminium scrap, new",
+          "unit": "kilogram"
+        },
+        "source_inventory_sha256": "6f8babef34d2d1e1cfc54db38f6c7f1b9d3ff0bcf158f82a8aed0d6468ad3fea",
+        "packaged_primary_witness": {
+          "label": "ecoinvent-3.12-cutoff",
+          "inventory_sha256": "6f8babef34d2d1e1cfc54db38f6c7f1b9d3ff0bcf158f82a8aed0d6468ad3fea",
+          "total_exchanges": 1,
+          "only_self_production": true,
+          "production_amount": 1
+        },
+        "source_reference_amount": 1,
+        "source_nonproduction_exchange_count": 0
+      },
+      "limitations": [
+        "Only the positive-reference production-only aluminium-new-scrap Recycled Content cut-off handover is represented. Preserve signed caller kg at factor +1; do not substitute virgin aluminium, recycling treatment or an avoided-metal credit.",
+        "Its source inventory contribution is zero by the inspected allocated cut-off boundary; this does not claim that physical collection or recycling is burden-free. Keep all separately listed caller treatment, transport and emissions.",
+        "New permission is restricted to the exact ecoinvent 3.12 cut-off to UVEK 2026 cut-off / ecoinvent 3.10 biosphere route. No consequential, reverse or unrelated nonempty scrap process is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c15c9225f4aa870683ba09a92e5475deeae36e36eb5ac9c2e7990d0991ac9988"
+        }
+      ]
     }
   ],
   "superseded_operations": [
