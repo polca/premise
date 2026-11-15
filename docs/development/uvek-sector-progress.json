@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels and ships. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
+  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships and buses. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
   "sectors": [
     {
       "sector": "biomass",
@@ -2776,59 +2776,48 @@
     },
     {
       "sector": "buses",
-      "status": "audited_not_operational",
+      "status": "public_shared_transport_update_and_combined_eleven_sector_export_verified_with_screening_limitations",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
       "native_mapping_coverage": {
-        "kind": "static_declarations_only",
-        "files": [
-          {
-            "path": "premise/iam_variables_mapping/transport_bus.yaml",
-            "ecoinvent_role_count": 7,
-            "explicit_nonempty_uvek_role_count": 0,
-            "missing_or_empty_uvek_roles": [
-              "bus, diesel",
-              "bus, gasoline",
-              "bus, diesel hybrid",
-              "bus, compressed gas",
-              "bus, liquefied petroleum gas",
-              "bus, fuel cell",
-              "bus, battery electric"
-            ],
-            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
-          }
-        ],
-        "runtime_verified": false
+        "kind": "four_exact_native_positive_one_passenger_km_services",
+        "IAM_scope": "remind SSP2-NPi 2050",
+        "reviewed_native_roles": 4,
+        "runtime_verified": true,
+        "additional_inventories": 0,
+        "other_IAM_models_verified": false
       },
-      "blockers": [
+      "blockers": [],
+      "decisions": [
         {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
-        },
-        {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
-        },
-        {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/transport/transport.py:47",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
-          "path": "premise/transport/transport.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+          "decision": "Use the complete native 2020 Swiss 13m urban diesel, compressed-gas, 700bar SMR-hydrogen fuel-cell and NMC622 overnight-electric bus services per published passenger-km. Preserve existing vehicle, road and charging/fuelling inventories once, ten-passenger source allocation and shared IAM logic. Geography, fleet, source omissions, chemistry, charging, vintage and score limitations remain explicit.",
+          "authorization": "Standing autonomous approval; logged for review.",
+          "review": "docs/development/uvek-native-buses.md"
         }
       ],
-      "decisions": [],
-      "implementation_commits": [],
-      "tests": [],
-      "integration_exports": [],
+      "implementation_commits": [
+        "b7504649"
+      ],
+      "tests": [
+        "264 native and existing transport checks passed.",
+        "108 mapping, inventory-selection, background and source-cache checks passed.",
+        "17 public-gate and native bus tests passed after enabling buses; overlaps earlier selections.",
+        "Public normal update plus exhaustive graph checks passed; default checkpoint persistence, no bypass or database write.",
+        "Combined eleven-sector export: 16256 datasets,52 regional bus services,13 fleet markets;52 energy-scaling checks,12 independent regional-share checks,130 signed finite LCIs passed."
+      ],
+      "integration_exports": [
+        {
+          "scenario": "encrypted REMIND SSP2-NPi2050",
+          "activities": 16256,
+          "bus_fleet_markets": 13,
+          "regional_bus_services": 52,
+          "written_signed_LCI_solves": 130,
+          "verification": "docs/development/uvek-native-buses-verification.json"
+        }
+      ],
       "static_audit": {
         "callback": "_update_vehicles",
         "module": "premise/transport/transport.py",
@@ -2851,13 +2840,37 @@
         "role_files": [
           "transport_bus.yaml"
         ],
-        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations.",
+        "historical_only": true
       },
       "production_heat_correspondence_review": {
         "review": "docs/development/uvek-production-heat-boundary-review.md",
         "verification": "docs/development/uvek-production-heat-boundary-verification.json",
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
-      }
+      },
+      "latest_qualification": "docs/development/uvek-native-buses-verification.json",
+      "historical_blockers_before_native_mapping": [
+        {
+          "code": "scope_gate",
+          "path": "premise/database/background.py:validate_uvek_scope",
+          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+        },
+        {
+          "code": "family_dispatch",
+          "path": "premise/database/new_database.py:NewDatabase.update",
+          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+        },
+        {
+          "code": "sector_implementation_and_integration",
+          "path": "premise/transport/transport.py:47",
+          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
+        },
+        {
+          "code": "inventory_family_default",
+          "path": "premise/transport/transport.py",
+          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+        }
+      ]
     },
     {
       "sector": "trains",
@@ -3687,11 +3700,12 @@
       "renewable",
       "cdr",
       "fuels",
-      "ships"
+      "ships",
+      "buses"
     ],
     "registered_sectors_including_electricity": 19,
-    "remaining_unqualified_sector_count": 9,
-    "latest_combined_export_evidence": "docs/development/uvek-shipping-public-qualification.json",
+    "remaining_unqualified_sector_count": 8,
+    "latest_combined_export_evidence": "docs/development/uvek-native-buses-verification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
     "latest_mapping_review": "docs/development/uvek-ships-38-verification.json",
@@ -3777,8 +3791,8 @@
         "current_clean_tracked_generation_byte_identical": true
       }
     ],
-    "latest_shared_transport_review": "docs/development/uvek-transport-background-axes.md",
-    "latest_combined_run_freshness": "Latest published CLIC archive snapshot; live metadata last returned HTTP502. Earlier linked live qualifications remain historical evidence.",
+    "latest_shared_transport_review": "docs/development/uvek-native-buses.md",
+    "latest_combined_run_freshness": "Recorded CLIC archive snapshot 20261110T030235Z-613ea498808a; live freshness was not checked by this run.",
     "latest_packaged_resource_checks": "docs/development/uvek-shipping-packaged-verification.json"
   }
 }

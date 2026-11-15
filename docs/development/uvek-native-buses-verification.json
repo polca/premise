@@ -1,0 +1,851 @@
+{
+  "background": {
+    "technosphere": "UVEK 2026 cut-off",
+    "biosphere": "ecoinvent 3.10"
+  },
+  "mapping_commit": "b7504649",
+  "authorization": "Standing user instruction to work autonomously and log modelling choices for later review.",
+  "native_source_services": [
+    {
+      "role": "bus, diesel",
+      "name": "Transport, passenger bus, diesel, 13m single deck urban bus, 2020, EURO-VI",
+      "reference product": "Transport, passenger bus, diesel, 13m single deck urban bus, 2020, EURO-VI",
+      "unit": "person kilometer",
+      "positive_reference_amount": 1,
+      "location": "CH",
+      "metadata_sha256": "d3078b6815b70b4a558271f05d9931c8d4f630b4c80d839dd5b33b5bd354411b",
+      "inventory_sha256": "885845a4b9ec5bdc989272491ae18482cb5dda9d91f29101e591c3776ba34a32",
+      "direct_energy_input": {
+        "name": "Fuel supply for diesel vehicles",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "role": "bus, compressed gas",
+      "name": "Transport, passenger bus, compressed gas, 13m single deck urban bus, 2020, EURO-VI",
+      "reference product": "Transport, passenger bus, compressed gas, 13m single deck urban bus, 2020, EURO-VI",
+      "unit": "person kilometer",
+      "positive_reference_amount": 1,
+      "location": "CH",
+      "metadata_sha256": "137cb86ec24f0d86d9dac6637d87c58a299d86655d5f04e075c9820e48a2885a",
+      "inventory_sha256": "e45d1de4f75293cb35db6e5b18d32cfdb838367e9bdfc2a89c8d347f452f0fb5",
+      "direct_energy_input": {
+        "name": "Fuel supply for gas vehicles",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "role": "bus, fuel cell",
+      "name": "Transport, passenger bus, fuel cell electric, hydrogen from SMR of natural gas, 13m single deck urban bus, 2020",
+      "reference product": "Transport, passenger bus, fuel cell electric, hydrogen from SMR of natural gas, 13m single deck urban bus, 2020",
+      "unit": "person kilometer",
+      "positive_reference_amount": 1,
+      "location": "CH",
+      "metadata_sha256": "12f523429cbcddee5cbdfcd164a2f76b9d9268e0d3e2a2bb1b3ebef729aacae5",
+      "inventory_sha256": "ddee7703230a5e776b06774a4c5b8fbee4bd9d4fbfd8b07ecb593adbd731afc3",
+      "direct_energy_input": {
+        "name": "Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station",
+        "unit": "kilogram"
+      }
+    },
+    {
+      "role": "bus, battery electric",
+      "name": "Transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 13m single deck urban bus, 2020",
+      "reference product": "Transport, passenger bus, battery electric - overnight charging, NMC-622 battery, 13m single deck urban bus, 2020",
+      "unit": "person kilometer",
+      "positive_reference_amount": 1,
+      "location": "CH",
+      "metadata_sha256": "375e7c5264fb05ea6c1d144634ab51bb63bcef5169d48a38182db900401f7c51",
+      "inventory_sha256": "3fae8c25eec48c41253dec969ca09654817c9a2263c813455f15c01fa3031830",
+      "direct_energy_input": {
+        "name": "Electricity, low voltage, at grid",
+        "unit": "kilowatt hour"
+      }
+    }
+  ],
+  "no_second_occupancy_or_lifetime_conversion": true,
+  "native_generic_fleet_external_consumers": 0,
+  "additional_bus_inventories_in_native_diagnostic": 0,
+  "diagnostic_regional_services": 52,
+  "diagnostic_fleet_markets": 13,
+  "diagnostic_graph_errors": 0,
+  "tests": {
+    "transport_tests_passed": 264,
+    "selection_and_background_tests_passed": 108,
+    "public_gate_and_bus_tests_passed_after_enablement": 17,
+    "overlap_note": "Public-gate selection overlaps the two earlier selections; do not add counts."
+  },
+  "production_python_change": "One shared, idempotent annotation hook carries YAML source limitations into dataset comments before regional copying. No transport calculation changes.",
+  "review": "docs/development/uvek-native-buses.md",
+  "combined_export_qualified": true,
+  "full_goal_complete": false,
+  "combined_qualification": {
+    "database": "BAFU:2026-REMIND-SSP2-NPi-2050-eleven-buses-20261115-211255",
+    "sectors": [
+      "biomass",
+      "electricity",
+      "heat",
+      "cement",
+      "steel",
+      "mining",
+      "renewable",
+      "cdr",
+      "fuels",
+      "ships",
+      "buses"
+    ],
+    "default_checkpoint_persistence": true,
+    "public_sector_gate_bypassed_for_buses_only": true,
+    "validation_disabled": false,
+    "freshness": "snapshot",
+    "live_metadata_verification_available": false,
+    "elapsed_seconds": 885.9904854999622,
+    "full_goal_complete": false,
+    "status": "combined_eleven_sector_export_and_bus_checks_passed",
+    "activities": 16256,
+    "native_codes_retained": 11947,
+    "bus_markets": 13,
+    "regional_bus_services": 52,
+    "regions": [
+      "CAZ",
+      "CHA",
+      "EUR",
+      "IND",
+      "JPN",
+      "LAM",
+      "MEA",
+      "NEU",
+      "OAS",
+      "REF",
+      "SSA",
+      "USA",
+      "World"
+    ],
+    "regional_share_checks": [
+      {
+        "region": "REF",
+        "shares": {
+          "bus, battery electric": 0.2623039329222258,
+          "bus, compressed gas": 0.04050724494359043,
+          "bus, diesel": 0.6768927829403265,
+          "bus, fuel cell": 0.02029603919385735
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "OAS",
+        "shares": {
+          "bus, battery electric": 0.40077142676485633,
+          "bus, compressed gas": 0.08444566405730047,
+          "bus, diesel": 0.5068290883452242,
+          "bus, fuel cell": 0.007953820832619021
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "NEU",
+        "shares": {
+          "bus, battery electric": 0.45124911247641014,
+          "bus, compressed gas": 0.03616236893642953,
+          "bus, diesel": 0.49085730470894917,
+          "bus, fuel cell": 0.021731213878211173
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "SSA",
+        "shares": {
+          "bus, battery electric": 0.2835643333903454,
+          "bus, compressed gas": 0.027174366282602905,
+          "bus, diesel": 0.6795861851230769,
+          "bus, fuel cell": 0.009675115203974776
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "JPN",
+        "shares": {
+          "bus, battery electric": 0.38164185599254663,
+          "bus, compressed gas": 0.0032456777795900143,
+          "bus, diesel": 0.42842130052620253,
+          "bus, fuel cell": 0.1866911657016609
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "IND",
+        "shares": {
+          "bus, battery electric": 0.23601397930553064,
+          "bus, compressed gas": 0.053336651408902605,
+          "bus, diesel": 0.7018601219389058,
+          "bus, fuel cell": 0.008789247346661018
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "USA",
+        "shares": {
+          "bus, battery electric": 0.42767765424163484,
+          "bus, compressed gas": 0.06786540844414636,
+          "bus, diesel": 0.4913219326914752,
+          "bus, fuel cell": 0.013135004622743538
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "CAZ",
+        "shares": {
+          "bus, battery electric": 0.41982595833558406,
+          "bus, compressed gas": 0.0525023321406678,
+          "bus, diesel": 0.5135558046502331,
+          "bus, fuel cell": 0.01411590487351513
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "EUR",
+        "shares": {
+          "bus, battery electric": 0.7331604647582513,
+          "bus, compressed gas": 0.015427398219015358,
+          "bus, diesel": 0.22044900023703065,
+          "bus, fuel cell": 0.03096313678570279
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "CHA",
+        "shares": {
+          "bus, battery electric": 0.6591817255815074,
+          "bus, compressed gas": 0.028317082795010898,
+          "bus, diesel": 0.2883395375901054,
+          "bus, fuel cell": 0.02416165403337622
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "LAM",
+        "shares": {
+          "bus, battery electric": 0.37808762820802855,
+          "bus, compressed gas": 0.05605852866947592,
+          "bus, diesel": 0.5566724912792107,
+          "bus, fuel cell": 0.009181351843284778
+        },
+        "all_positive_IAM_roles_verified": true
+      },
+      {
+        "region": "MEA",
+        "shares": {
+          "bus, battery electric": 0.2322595129759586,
+          "bus, compressed gas": 0.0460304474952927,
+          "bus, diesel": 0.711597952687172,
+          "bus, fuel cell": 0.010112086841576782
+        },
+        "all_positive_IAM_roles_verified": true
+      }
+    ],
+    "efficiency_checks": [
+      {
+        "role": "bus, diesel",
+        "region": "CAZ",
+        "factor": 0.9999681302562063,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "CHA",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "EUR",
+        "factor": 0.9627117638173626,
+        "counts": {
+          "unchanged": 16,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "IND",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "JPN",
+        "factor": 0.9953411265030557,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "LAM",
+        "factor": 0.9944208598048062,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "MEA",
+        "factor": 0.9111810741281884,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "NEU",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "OAS",
+        "factor": 0.9413192710597506,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "REF",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "SSA",
+        "factor": 0.9980220405160853,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "USA",
+        "factor": 0.9993690178351967,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, diesel",
+        "region": "World",
+        "factor": 0.8410407129018507,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 36,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "CAZ",
+        "factor": 0.9881713570650638,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "CHA",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "EUR",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 16,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "IND",
+        "factor": 0.9549413645385633,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "JPN",
+        "factor": 0.9979939449688541,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "LAM",
+        "factor": 0.9953681500032315,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "MEA",
+        "factor": 0.9034521278514716,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "NEU",
+        "factor": 0.8629828168377178,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "OAS",
+        "factor": 0.8011256333510687,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "REF",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "SSA",
+        "factor": 0.9973223467875519,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "USA",
+        "factor": 0.9883841324280442,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, compressed gas",
+        "region": "World",
+        "factor": 0.9037601827492574,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 25,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "CAZ",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "CHA",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "EUR",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 16,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "IND",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "JPN",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "LAM",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "MEA",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "NEU",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "OAS",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "REF",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "SSA",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "USA",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, fuel cell",
+        "region": "World",
+        "factor": 1.0,
+        "counts": {
+          "unchanged": 11,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "CAZ",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "CHA",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "EUR",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 17,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "IND",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "JPN",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "LAM",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "MEA",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "NEU",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "OAS",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "REF",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "SSA",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "USA",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      },
+      {
+        "role": "bus, battery electric",
+        "region": "World",
+        "factor": 0.8,
+        "counts": {
+          "unchanged": 12,
+          "biosphere": 1,
+          "energy": 1
+        },
+        "all_amounts_verified": true
+      }
+    ],
+    "written_signed_LCI_solves": 130,
+    "exhaustive_validation_errors": 0,
+    "native_bus_source_fingerprints_unchanged": true,
+    "source_and_biosphere_metadata_unchanged_during_written_checks": true,
+    "written_check_database_writes": 0,
+    "total_new_brightway_databases": 1,
+    "verifier_API_correction": "Use activity.id for repeated LCI demand; no production change or re-export.",
+    "written_verification_elapsed_seconds": 65.60340158303734
+  },
+  "public_workflow": {
+    "status": "public_bus_update_and_exhaustive_graph_checks_passed",
+    "activities": 12012,
+    "native_roles": 4,
+    "regional_services": 52,
+    "additional_inventories": 0,
+    "new_brightway_databases": 0,
+    "public_gate_bypassed": false,
+    "validation_disabled": false,
+    "default_checkpoint_persistence": true,
+    "unchanged_no_argument_defaults": [
+      "biomass",
+      "electricity",
+      "heat"
+    ],
+    "freshness": "snapshot",
+    "elapsed_seconds": 49.9602257499937
+  },
+  "qualified_sector_count": 11,
+  "remaining_sector_count": 8,
+  "qualification_scope": "Encrypted REMIND SSP2-NPi 2050, installed BAFU 2026 with ecoinvent 3.10 biosphere; snapshot archive. Other IAM models and live archive freshness are not established by this run.",
+  "lint": "Black and Ruff passed for changed Python; generated documentation reference checked."
+}

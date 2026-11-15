@@ -40,8 +40,8 @@ One small shared annotation hook carries the YAML source limitations into datase
 comments before regional copying. It issues a warning when adding the comments,
 is idempotent and changes no exchange quantities. This is needed because the
 existing transport mapping machinery otherwise leaves those YAML notes behind
-when exporting. Only the bus entry currently declares this mapping-file hook;
-the ecoinvent path retains its existing behaviour.
+when exporting. The bus entry declares this mapping-file hook; the ecoinvent path
+retains its existing behaviour.
 
 The native generic bus fleet has no consumers elsewhere in the inspected source
 database. No consumer redirection is therefore needed for that interface.
@@ -51,7 +51,22 @@ fleet; users can select the new regional `market for transport, passenger bus`.
 The bus-only diagnostic creates 52 regional services and 13 fleet markets,
 imports no additional inventories and passes exhaustive graph checks. The five
 new regression cases plus the existing transport selections pass 264 tests.
-Full combined-run/export qualification is recorded separately when completed.
+The combined eleven-sector update and export contain 16,256 activities, including
+all 11,947 native source codes. All 52 bus efficiency checks preserve fixed
+technosphere service totals through normal geographic supplier splitting. The
+13 written fleet markets have normalised nonnegative shares; all 12 non-World
+markets match every positive IAM bus role. All 130 signed LCI calculations pass.
+The four original native bus fingerprints remain unchanged. A separate public
+API run passes with default checkpoint persistence, no bypass, no disabled
+validation, no additional inventories and no new Brightway database.
+
+Buses are now enabled in the existing UVEK sector gate. The no-argument default
+remains biomass, electricity and heat. Overall qualification is eleven of
+nineteen sectors. Detailed evidence is in `uvek-native-buses-verification.json`.
+The qualification uses the recorded archive snapshot; live freshness was not
+checked. The source/native score difference is not established by finite LCI.
+The private written-check script was corrected to pass numeric activity IDs to
+Brightway repeat calculations; no production change or second export was needed.
 Other IAM models' additional bus technologies are not established by this
 REMIND scenario, and no cross-fuel proxy has been introduced for them.
 
