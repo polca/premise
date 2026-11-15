@@ -146,8 +146,8 @@ def test_use_labels_do_not_turn_carbon_electrodes_into_aluminium_feed():
 
 
 def test_unassigned_carrier_boundary_is_not_proof_of_extraction():
-    carrier = dataset("market for copper, anode", "copper, anode")
-    refinery = dataset("copper refinery", "copper, cathode", [feed(carrier)])
+    carrier = dataset("market for lead concentrate", "lead concentrate")
+    refinery = dataset("lead refinery", "lead", [feed(carrier)])
     result = classify_preserved_resource(
         refinery, providers([carrier, refinery]), "cutoff"
     )

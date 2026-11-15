@@ -3,23 +3,27 @@ metadata:
     Reviewed unsuppressed validation-warning counts. A new rule or a count above
     the recorded value fails certification unless the exception is documented
     by a narrow version/system-model suppression.
-  validation_ruleset_version: 9
+  validation_ruleset_version: 10
 cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     review:
       date: '2026-11-15'
-      source_commit: b786854eacf7ffc4f6df5fa4aa9461bb5db6d237
+      source_commit: c671d0d1ac6092db93a224c937411dd7ccc92e8c
       method: >-
         Full compact-backend no-write update of ecoinvent 3.12 cutoff with
         encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
-        structured ruleset-9 certificate: zero errors and 344 unsuppressed
-        current warnings. Reviewed all 75 preserved-resource cases: 40 have
-        established upstream extraction/cutoff-secondary boundaries; nine
-        non-metal inventories are outside correction scope. Seven unresolved
-        supply boundaries and 19 uncertain product-content/co-mined cases
-        remain warnings. All 75 decisions remain in scope coverage/provenance.
-        All activity amounts and provider signatures remain unchanged across
-        48531 activities and 1410226 exchanges. Other warning counts are unchanged.
+        structured ruleset-10 certificate: zero errors and 342 unsuppressed
+        current warnings. Nickel electrolyte tracing follows matching m3
+        reference units without a density assumption. Lead receives the same
+        guarded nominal co-product boundary as copper/silver in the primary
+        zinc-smelter route. The cobalt-industry copper-anode aggregate retains
+        its supplied allocated Copper extraction instead of losing it at a
+        blanket carrier clearing. Numerical changes are restricted to that
+        Copper resource and the added Lead resource; supplier quantities and
+        other exchanges are unchanged. Scope coverage records 74 preserved
+        decisions (41 covered upstream, nine outside scope, five unresolved
+        copper boundaries and 19 content/allocation cases). Other warning
+        counts are unchanged.
       limitations: >-
         Counts record existing methodological and data limitations for this
         case only. Warnings remain visible; new rules or increased counts fail.
@@ -28,6 +32,11 @@ cases:
         compositions or a future IAM blend. Unknown/mixed supplies remain
         unresolved. Germanium providers and unresolved extraction paths remain
         open limitations, not evidence of a validated physical balance.
+        The five copper warnings share an incomplete old nickel-smelter
+        copper-concentrate co-product proxy; no unsupported concentrate grade
+        or one-kg Copper amount is assigned there. Retained source-allocated
+        Copper is not a purity assay. Lead uses the existing nominal attribution
+        convention, not a complete physical deallocation of the source recipe.
     warning_rule_counts:
       LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT: 90
       LEGACY.ELECTRICITY_EFFICIENCY_POSSIBLY_INCORRECT: 11
@@ -39,10 +48,9 @@ cases:
       LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT: 103
       # Two germanium-concentrate provider lookups retain source inputs.
       LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE: 2
-      # Seven unresolved upstream boundaries and 19 content/co-mining gaps.
-      # All 75 reviewed cases remain in scope coverage and provenance; no
-      # extraction or other inventory amount was changed to clear warnings.
-      LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED: 26
+      # Five warnings share the incomplete nickel-smelter copper co-product
+      # boundary; 19 product-content/co-mining cases also remain unresolved.
+      LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED: 24
       # Residual NMVOC and absent THC totals cannot establish parent aggregates.
       LEGACY.TRANSPORT_EMISSION_SCOPE_UNAVAILABLE: 27
       # Final post-GAINS car checks: 36 earlier diagnostics clear and 38 new

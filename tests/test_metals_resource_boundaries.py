@@ -60,7 +60,8 @@ def correct(database, monkeypatch, system="cutoff", version="3.12"):
 
 
 @pytest.mark.parametrize(
-    "product,element", [("copper, cathode", "Copper"), ("silver", "Silver")]
+    "product,element",
+    [("copper, cathode", "Copper"), ("silver", "Silver"), ("lead", "Lead")],
 )
 def test_primary_coproduct_reagents_do_not_replace_extraction(
     product, element, monkeypatch
@@ -84,6 +85,7 @@ def test_primary_coproduct_reagents_do_not_replace_extraction(
     assert database == first
 
 
+@pytest.mark.parametrize("product,element", [("silver", "Silver"), ("lead", "Lead")])
 @pytest.mark.parametrize(
     "failure",
     [
@@ -96,13 +98,13 @@ def test_primary_coproduct_reagents_do_not_replace_extraction(
     ],
 )
 def test_coproduct_boundary_preserves_unsupported_or_unresolved_cases(
-    failure, monkeypatch
+    product, element, failure, monkeypatch
 ):
     ore = dataset("market for zinc concentrate", "zinc concentrate")
-    reagent = dataset("market for silver", "silver")
+    reagent = dataset(f"market for {product}", product)
     refinery = dataset(
         "primary zinc production from concentrate",
-        "silver",
+        product,
         [feed(ore, 2), feed(reagent, 0.001)],
     )
     database = [refinery, ore, reagent]
@@ -117,7 +119,7 @@ def test_coproduct_boundary_preserves_unsupported_or_unresolved_cases(
     elif failure == "unsupported_unit":
         refinery["unit"] = "unit"
     plan = build_resource_boundary_plan(
-        database, set() if failure == "missing_flow" else {"Silver"}
+        database, set() if failure == "missing_flow" else {element}
     )
     assert not plan.assignments
     assert id(refinery) in plan.reserved_ids
@@ -450,6 +452,7 @@ def test_boundary_correction_preserves_quantities_and_model_scope_across_version
             [feed(ore, 2)],
         ),
         dataset("primary zinc production from concentrate", "silver", [feed(ore, 2)]),
+        dataset("primary zinc production from concentrate", "lead", [feed(ore, 2)]),
         dataset(
             "sodium arsenide production from Imperial smelting furnace",
             "sodium arsenide",
@@ -478,7 +481,7 @@ def test_boundary_correction_preserves_quantities_and_model_scope_across_version
     else:
         available = metals.get_biosphere_in_ground_resource_flow_names()
         for boundary, element in zip(
-            boundaries, ("Copper", "Silver", "Arsenic", "Silicon", "Lithium")
+            boundaries, ("Copper", "Silver", "Lead", "Arsenic", "Silicon", "Lithium")
         ):
             resources = [e for e in boundary["exchanges"] if e["type"] == "biosphere"]
             if element in available:

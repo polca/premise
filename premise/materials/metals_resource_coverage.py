@@ -13,9 +13,19 @@ from .metals import (
     is_metal_resource_flow,
     resource_flow_matches_reference_product,
 )
+from .metals_rules import load_resource_policy
 
 OUTSIDE_SCOPE = "non_metal_resource_scope"
 UPSTREAM_SUPPLY = "upstream_resource_supply"
+TRAVERSABLE_CARRIERS = {
+    (row["reference_product"], canonical_resource_flow_label(row["element"]))
+    for row in load_resource_policy().get("source_retained_carrier_targets", ())
+    if row.get("traverse_carrier_product")
+}
+REVIEWED_SECONDARY_BOUNDARIES = {
+    (row["name"], row["reference_product"], row["unit"])
+    for row in load_resource_policy().get("diagnostic_secondary_boundaries", ())
+}
 
 
 def identity(dataset):
@@ -46,6 +56,12 @@ def secondary_boundary(dataset, system_model):
     if system_model != "cutoff":
         return False
     name = dataset.get("name", "")
+    if (
+        name,
+        dataset.get("reference product"),
+        dataset.get("unit"),
+    ) in REVIEWED_SECONDARY_BOUNDARIES:
+        return True
     if "Recycled Content cut-off" in name:
         return not any(
             e.get("type") == "technosphere" and e.get("amount", 0) > 0
@@ -53,10 +69,53 @@ def secondary_boundary(dataset, system_model):
         )
     return (
         name.lower().startswith("treatment of ")
-        and "recycl" in name.lower()
+        and any(term in name.lower() for term in ("recycl", "recover"))
         and re.search(r"\bscrap\b", dataset.get("reference product", "").lower())
         is not None
     )
+
+
+def cutoff_recyclable_supply(
+    dataset, provider_index, system_model, visited=frozenset()
+):
+    """Verify a recyclable market reaches only explicit cut-off scrap leaves."""
+    key = identity(dataset)
+    if system_model != "cutoff" or key in visited or dataset.get("unit") != "kilogram":
+        return False
+    product = dataset.get("reference product", "")
+    if not re.search(r"\bscrap\b", product):
+        return False
+    if any(
+        e.get("amount", 0) != 0 and is_metal_resource_flow(e.get("name", ""))
+        for e in get_in_ground_resource_exchanges(dataset)
+    ):
+        return False
+    if "Recycled Content cut-off" in dataset.get("name", ""):
+        return secondary_boundary(dataset, system_model)
+    if not dataset.get("name", "").startswith(("market for ", "market group for ")):
+        return False
+    branches = [
+        e
+        for e in dataset.get("exchanges", ())
+        if e.get("type") == "technosphere"
+        and e.get("unit") == "kilogram"
+        and e.get("amount", 0) > 0
+    ]
+    if not branches:
+        return False
+    for exchange in branches:
+        matches = provider_index.get(
+            tuple(exchange.get(f) for f in ("name", "product", "location")), []
+        )
+        if (
+            exchange.get("product") != product
+            or len(matches) != 1
+            or not cutoff_recyclable_supply(
+                matches[0], provider_index, system_model, visited | {key}
+            )
+        ):
+            return False
+    return True
 
 
 def upstream_resource_coverage(
@@ -84,7 +143,11 @@ def upstream_resource_coverage(
         if depth > max_depth:
             failures.append({"reason": "depth limit", "activity key": key})
             continue
-        if is_downstream_attributed_resource_carrier_dataset(current):
+        if (
+            is_downstream_attributed_resource_carrier_dataset(current)
+            and (current.get("reference product"), target_label)
+            not in TRAVERSABLE_CARRIERS
+        ):
             failures.append(
                 {
                     "reason": "unassigned downstream-attribution carrier",
@@ -173,6 +236,20 @@ def upstream_resource_coverage(
                         }
                     )
                     continue
+                if (
+                    len(providers) == 1
+                    and exchange.get("unit") == "kilogram"
+                    and cutoff_recyclable_supply(
+                        providers[0], provider_index, system_model
+                    )
+                ):
+                    ignored.append(
+                        {
+                            "product": label,
+                            "reason": "outgoing recyclable supplied by verified cut-off scrap leaves",
+                        }
+                    )
+                    continue
                 failures.append(
                     {
                         "reason": "unverified negative material quantity",
@@ -182,9 +259,9 @@ def upstream_resource_coverage(
                 )
                 continue
             if (
-                exchange.get("unit") != "kilogram"
+                exchange.get("unit") not in {"kilogram", "cubic meter"}
                 or len(providers) != 1
-                or providers[0].get("unit") != "kilogram"
+                or providers[0].get("unit") != exchange.get("unit")
             ):
                 failures.append(
                     {
@@ -214,6 +291,7 @@ def upstream_resource_coverage(
         "unresolved links": failures,
         "excluded exchanges": ignored,
         "qualification": "Attribution-boundary coverage only; not a weighted resource mass balance or assay validation",
+        "unit convention": "Follow each provider in its declared reference unit; no kg/m3 equality, density or concentration inferred",
     }
 
 

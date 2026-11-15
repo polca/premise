@@ -831,13 +831,18 @@ assay, recovery yield or the correctness of inherited allocation factors.
 Mixed-metal products and uncertain co-mined contents retain their source flows
 and explicit review warnings.
 
-Copper-cathode and silver co-products of ``primary zinc production from
+Copper-cathode, silver and lead co-products of ``primary zinc production from
 concentrate`` have corresponding exact primary boundaries. A positive uniquely
 resolved zinc-concentrate feed must cover at least 1 kg/kg output, while named
 target-bearing reagent inputs must total less than 1 kg/kg. Those reagents and
 their upstream burdens are retained; they cannot replace the missing primary
 co-product extraction. Failed supplier/unit/flow checks preserve the candidate
 and emit a diagnostic instead of falling back to generic attribution.
+The lead case retains its small lead and lead-concentrate process inputs;
+those auxiliary supplies do not account for the kilogram of lead co-product
+assigned to the primary zinc-concentrate route. This extends the same nominal
+pure-metal attribution convention, not a new concentrate assay or a complete
+deallocation of the economically allocated technosphere inventory.
 
 Primary lithium carbonate production from concentrated brine or spodumene has
 a dataset-specific Li2CO3 content boundary (0.187852 kg Li/kg carbonate). Every
@@ -889,6 +894,41 @@ Explicit product-content factors are used to resolve otherwise ambiguous
 metal-bearing products such as copper-cobalt ore; broader labels such as
 lead-zinc concentrates remain ambiguous unless an explicit factor exists for
 that product.
+
+One reviewed exception retains the source ``Copper`` extraction on the
+``cobalt production`` / ``copper, anode`` aggregate. Its native inventory
+includes cradle-to-gate extraction directly and has no copper-bearing material
+feed. Clearing its allocated Copper flow erased that branch's extraction,
+without a replacement boundary at electrorefining. The exception retains the
+supplied amount and its uncertainty, while other co-mined resources are cleared
+as before. It requires one positive target flow, a one-kg reference and no
+incoming copper-bearing material; unsupported contexts preserve the source and
+warn. The retained amount is an allocated inventory value, not copper-anode
+purity, and is not normalized to 1 kg. The native inventory cites the
+`Cobalt Institute/ERM refined-cobalt inventory
+<https://lca-data.cobaltinstitute.org/datasetdetail/process.xhtml?stock=default&uuid=071d5149-b91b-4f4d-b245-ad620f51e795&version=00.00.000>`_.
+
+Diagnostic traversal through ``copper, anode`` is coupled to that reviewed
+source boundary. Every branch must still resolve to extraction or a supported
+secondary boundary; a carrier label alone does not establish coverage. The
+nickel-rich electrolyte route is followed in its native cubic metres when
+the exchange and provider reference units agree. Its existing kilogram Nickel
+resource flow is per cubic metre of that provider. This locates extraction
+without assuming a density or equating a cubic metre with a kilogram; all
+source conversion quantities remain unchanged. Diagnostic coverage still does
+not validate allocated resource quantities as a physical mass balance.
+
+The remaining copper warning path reaches ``smelting and refining of nickel
+concentrate, 16% Ni`` / ``copper concentrate, sulfide ore``. This old proxy
+documents joint nickel/copper refining, but its copper-concentrate output has
+no independently supported elemental-Copper attribution. Its nickel-concentrate
+feed is allocated to the nickel route by the generic correction. A new copper
+content or a transfer from that feed requires a source-specific review of the
+co-product definition and allocation. The branch remains unresolved; no generic
+concentrate grade or one-kg Copper amount is assigned to it.
+Explicit scrap-recovery outputs and outgoing recyclable credits backed by
+cut-off scrap suppliers are distinguished from that primary resource gap;
+their supplier quantities and recycling burdens remain unchanged.
 
 Ambiguous or duplicate targets in strict correction calls raise errors. Other
 unresolved activity roles and upstream chains produce preservation diagnostics.

@@ -123,6 +123,44 @@
       "copper-cobalt ore"
     ]
   ],
+  "diagnostic_secondary_boundaries": [
+    {
+      "name": "treatment of used cable",
+      "reference_product": "copper, cathode",
+      "unit": "kilogram",
+      "basis": "The native inventory explicitly describes secondary copper from cable separation with allocation to cable disposal; no new virgin extraction belongs on this recovered output in the cut-off model.",
+      "source": "Native ecoinvent treatment of used cable / copper, cathode documentation",
+      "source_url": "https://support.ecoinvent.org/system-models"
+    },
+    {
+      "name": "treatment of non-Fe-Co-metals, from used Li-ion battery, hydrometallurgical processing",
+      "reference_product": "copper, cathode",
+      "unit": "kilogram",
+      "basis": "The native inventory documents recovery from used battery materials and removal of primary copper mining and extraction from its process proxy. Its remaining recycling recipe is preserved.",
+      "source": "Native ecoinvent used-battery hydrometallurgical treatment / copper, cathode documentation",
+      "source_url": "https://support.ecoinvent.org/system-models"
+    },
+    {
+      "name": "treatment of non-Fe-Co-metals, from used Li-ion battery, pyrometallurgical processing",
+      "reference_product": "copper, cathode",
+      "unit": "kilogram",
+      "basis": "The native inventory documents recovery from the non-Fe-Co fraction of used batteries using a secondary metal-recovery proxy. This is a secondary-supply boundary, not a validation of its recipe or recovery yield.",
+      "source": "Native ecoinvent used-battery pyrometallurgical treatment / copper, cathode documentation",
+      "source_url": "https://support.ecoinvent.org/system-models"
+    }
+  ],
+  "source_retained_carrier_targets": [
+    {
+      "name": "cobalt production",
+      "reference_product": "copper, anode",
+      "element": "Copper",
+      "unit": "kilogram",
+      "traverse_carrier_product": true,
+      "basis": "This cradle-to-gate cobalt-industry aggregate includes extraction directly and has no copper-bearing material feed. Retain its supplied allocated Copper resource amount while clearing other co-mined metals; no replacement copper boundary exists downstream for this branch. The retained amount is not an anode-purity assay and is not normalized to one kilogram.",
+      "source": "Native ecoinvent cobalt production / copper, anode inventory and its 2016 Cobalt Development Institute/ERM source documentation",
+      "source_url": "https://lca-data.cobaltinstitute.org/datasetdetail/process.xhtml?stock=default&uuid=071d5149-b91b-4f4d-b245-ad620f51e795&version=00.00.000"
+    }
+  ],
   "primary_feeds": [
     {
       "identity": [
@@ -177,7 +215,8 @@
     "primary_coproduct_feed": "zinc concentrate",
     "primary_coproduct_elements": {
       "copper, cathode": "Copper",
-      "silver": "Silver"
+      "silver": "Silver",
+      "lead": "Lead"
     },
     "rare_earth_oxide_atoms": {
       "Cerium": [

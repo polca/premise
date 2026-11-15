@@ -600,6 +600,47 @@ def _read_resource_policy(filename, modified, size):
         ):
             raise MetalsConfigError("Invalid or duplicate metal-bearing content factor")
         keys.add(key)
+    identities = set()
+    for entry in data.get("source_retained_carrier_targets", ()):
+        fields = (
+            "name",
+            "reference_product",
+            "element",
+            "unit",
+            "basis",
+            "source",
+            "source_url",
+        )
+        identity = entry.get("name"), entry.get("reference_product")
+        if (
+            not all(
+                isinstance(entry.get(field), str) and entry[field].strip()
+                for field in fields
+            )
+            or entry["unit"] != "kilogram"
+            or type(entry.get("traverse_carrier_product")) is not bool
+            or identity in identities
+        ):
+            raise MetalsConfigError(
+                "Invalid or duplicate source-retained carrier target"
+            )
+        identities.add(identity)
+    identities = set()
+    for entry in data.get("diagnostic_secondary_boundaries", ()):
+        fields = ("name", "reference_product", "unit", "basis", "source", "source_url")
+        identity = entry.get("name"), entry.get("reference_product")
+        if (
+            not all(
+                isinstance(entry.get(field), str) and entry[field].strip()
+                for field in fields
+            )
+            or entry["unit"] != "kilogram"
+            or identity in identities
+        ):
+            raise MetalsConfigError(
+                "Invalid or duplicate diagnostic secondary boundary"
+            )
+        identities.add(identity)
     return data
 
 

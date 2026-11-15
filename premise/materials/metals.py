@@ -117,6 +117,10 @@ RESOURCE_CARRIER_PRODUCTS_WITH_DOWNSTREAM_ATTRIBUTION = set(
 RESOURCE_CARRIER_DATASETS_WITH_DOWNSTREAM_ATTRIBUTION = {
     tuple(row) for row in _RESOURCE_POLICY["carrier_datasets"]
 }
+SOURCE_RETAINED_CARRIER_TARGETS = {
+    (row["name"], row["reference_product"]): row
+    for row in _RESOURCE_POLICY.get("source_retained_carrier_targets", ())
+}
 # Explicit downstream attribution boundary for the concentrate whose resource
 # flows are cleared above. Zinc/zinc-oxide process inputs do not replace this
 # primary feed; they retain their own supply-chain burdens. This is a resource
@@ -1249,8 +1253,46 @@ def correct_metal_resource_exchanges(
         return False
 
     if is_downstream_attributed_resource_carrier_dataset(dataset):
+        retained = SOURCE_RETAINED_CARRIER_TARGETS.get(
+            (dataset.get("name"), reference_product)
+        )
+        target = None
+        if retained is not None:
+            productions = [
+                e for e in dataset.get("exchanges", ()) if e.get("type") == "production"
+            ]
+            candidates = [
+                e
+                for e in resource_exchanges
+                if canonical_resource_flow_label(e.get("name", ""))
+                == canonical_resource_flow_label(retained["element"])
+            ]
+            if (
+                dataset.get("unit") != retained["unit"]
+                or len(candidates) != 1
+                or not np.isfinite(candidates[0]["amount"])
+                or candidates[0]["amount"] <= 0
+                or dataset.get("production amount", 1) != 1
+                or len(productions) > 1
+                or any(
+                    e.get("amount") != 1
+                    or e.get("unit", dataset.get("unit")) != retained["unit"]
+                    for e in productions
+                )
+                or any(
+                    e.get("type") == "technosphere"
+                    and e.get("amount", 0) > 0
+                    and e.get("unit") in {"kilogram", "cubic meter"}
+                    and resource_flow_matches_reference_product(
+                        retained["element"], e.get("product") or e.get("name", "")
+                    )
+                    for e in dataset.get("exchanges", ())
+                )
+            ):
+                return False  # Do not clear a primary aggregate without its verified target context.
+            target = candidates[0]
         for exc in resource_exchanges:
-            if is_metal_resource_flow(exc.get("name", "")):
+            if exc is not target and is_metal_resource_flow(exc.get("name", "")):
                 set_resource_amount(exc, 0.0)
         return True
 
@@ -2251,6 +2293,9 @@ class Metals(BaseTransformation):
             }
             if corrected and before != after:
                 self._validation_targets[id(ds)] = ds
+                retention = SOURCE_RETAINED_CARRIER_TARGETS.get(
+                    (ds.get("name"), ds.get("reference product"))
+                )
                 record_change_event(
                     self,
                     ds,
@@ -2260,6 +2305,16 @@ class Metals(BaseTransformation):
                     explanation=(
                         "Corrected in-ground metal resource flows after economic "
                         "allocation."
+                        + (
+                            " Retained the supplied allocated target amount; no purity or one-kg target was inferred."
+                            if retention
+                            else ""
+                        )
+                    ),
+                    configuration_reference=(
+                        "premise/data/metals/resource_attribution.json#source_retained_carrier_targets"
+                        if retention
+                        else None
                     ),
                     algorithm="post-allocation resource-flow correction",
                     computed_target_values={
@@ -2269,6 +2324,14 @@ class Metals(BaseTransformation):
                         "new resource amounts": {
                             str(key): value for key, value in after.items()
                         },
+                        **(
+                            {
+                                "retained target": retention["element"],
+                                "retention basis": retention["basis"],
+                            }
+                            if retention
+                            else {}
+                        ),
                     },
                 )
 
