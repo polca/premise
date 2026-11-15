@@ -786,6 +786,51 @@ so one producer's extraction cannot conceal missing attribution at others.
 The zinc and zinc-oxide input amounts and their supply-chain burdens are retained.
 Cycles without such an explicit boundary remain unresolved.
 
+Preserved-resource diagnostics
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A preserved activity does not necessarily need a direct resource correction.
+After metal-market relinking, a read-only applicability review separates
+non-metal mineral inventories and downstream metal supplies from unresolved
+resource boundaries. It does not change any exchange amount or provider.
+
+Sand, gravel and other non-metal mineral cases are outside this correction
+only when neither their in-ground flows nor their product identify a target
+metal. For a downstream metal product with no direct in-ground resource, every
+relevant material branch must reach a positive target-resource flow or an
+explicit secondary-supply boundary. The latter is restricted to cut-off
+inventories: source ``Recycled Content cut-off`` leaves without positive
+technosphere inputs, or recycling-treatment activities explicitly supplying
+scrap. Recovery is not inferred merely from a zero resource amount or a name
+containing ``used``. This follows the primary/secondary boundary described in
+`ecoinvent's cut-off system model <https://support.ecoinvent.org/system-models>`_;
+the recycling process's own burdens remain in the supply chain. Missing or
+ambiguous providers, unassigned attribution
+carriers, unsupported material units, isolated cycles and depth limits retain
+warnings. Connected trade loops are accepted for diagnostic coverage only when
+every reachable branch leads to an established boundary.
+
+Material labels are distinguished from their purpose or origin clauses. A
+carbon anode ``for aluminium electrolysis`` is not aluminium feedstock;
+magnesium or chlorine ``for reuse in titanium`` production is not titanium.
+These exclusions affect the diagnostic traversal, not supplier quantities or
+the existing correction algorithm. The evidence records ignored labels and
+the extraction/secondary boundaries actually found.
+Unit-based capital equipment is excluded from the material feed. A negative
+slag exchange is recognized as outgoing waste treatment only if its unique
+provider has a matching negative kilogram reference production; an unverified
+negative material quantity remains unresolved. Neither exclusion removes the
+equipment or waste-treatment burden from the inventory.
+
+Verified non-applicability decisions remain in the metals mapping and
+structured provenance, rather than appearing as unresolved warnings. The
+``sector:metals:resource_scope`` validation phase counts every reviewed decision,
+including the unresolved cases that still warn. Coverage establishes where
+attribution occurs; it does not establish a weighted mass balance, concentrate
+assay, recovery yield or the correctness of inherited allocation factors.
+Mixed-metal products and uncertain co-mined contents retain their source flows
+and explicit review warnings.
+
 Copper-cathode and silver co-products of ``primary zinc production from
 concentrate`` have corresponding exact primary boundaries. A positive uniquely
 resolved zinc-concentrate feed must cover at least 1 kg/kg output, while named

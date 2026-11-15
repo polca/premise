@@ -280,6 +280,7 @@ def _update_metals(scenario, version, system_model):
     metals.create_metal_markets()
     metals.update_metals_use_in_database()
     metals.relink_datasets()
+    metals.classify_resource_diagnostics()
     replace_scenario_inventory(scenario, metals.database)
     scenario["cache"] = metals.cache
     scenario["index"] = metals.index
@@ -2318,6 +2319,43 @@ class Metals(BaseTransformation):
                 "reason": reason,
             }
         )
+
+    def classify_resource_diagnostics(self):
+        """Separate verified non-applicability from unresolved preservation."""
+        from .metals_resource_coverage import classify_preserved_resource
+
+        providers = self.build_exchange_provider_index()
+        for diagnostic in getattr(self, "resource_diagnostics", ()):
+            original = diagnostic.get("preservation reason", diagnostic["reason"])
+            if original not in {
+                "preserved_unresolved",
+                "preserved_extraction",
+                "preserved_primary_or_coproduct",
+            }:
+                continue
+            matches = providers.get(
+                (diagnostic["name"], diagnostic["product"], diagnostic["location"]), []
+            )
+            if len(matches) != 1:
+                continue
+            dataset = matches[0]
+            decision = classify_preserved_resource(
+                dataset, providers, getattr(self, "system_model", "cutoff")
+            )
+            updated = {**diagnostic, **decision, "preservation reason": original}
+            if updated == diagnostic:
+                continue
+            diagnostic.update(updated)
+            record_change_event(
+                self,
+                dataset,
+                "skipped",
+                sector="metals",
+                reason_code="metals.resource_correction.applicability",
+                explanation=decision["explanation"],
+                algorithm="read-only resource-attribution boundary coverage",
+                computed_target_values=updated,
+            )
 
     def build_in_ground_resource_exchange_index(self) -> None:
         """Index qualifying in-ground exchanges once for the correction pass."""

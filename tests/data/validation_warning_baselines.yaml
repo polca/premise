@@ -3,26 +3,23 @@ metadata:
     Reviewed unsuppressed validation-warning counts. A new rule or a count above
     the recorded value fails certification unless the exception is documented
     by a narrow version/system-model suppression.
-  validation_ruleset_version: 8
+  validation_ruleset_version: 9
 cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     review:
       date: '2026-11-15'
-      source_commit: db0cb23b9930492b44e71b258f6782735e5053f9
+      source_commit: b786854eacf7ffc4f6df5fa4aa9461bb5db6d237
       method: >-
         Full compact-backend no-write update of ecoinvent 3.12 cutoff with
         encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
-        structured ruleset-8 certificate: zero errors and 393 unsuppressed
-        current warnings. Native CNG properties resolve all 93 missing-fuel
-        carbon warnings through explicit source extraction evidence. The
-        source supply is retained without inventing an IAM gas blend; vehicle
-        exhaust CO2 follows final CNG purchases and the existing 46.5 MJ/kg,
-        0.06 kg CO2/MJ convention. Final transport hot-emission diagnostics
-        remain at 83; all other warning counts are unchanged. All 48531
-        activities and 1410226 exchanges were compared: non-CO2 quantities and
-        providers are unchanged. Independent fuel-quantity checks cover 93
-        operating services and 52 per-MJ combustion activities; CO2 differences
-        are below 0.00001 percent.
+        structured ruleset-9 certificate: zero errors and 344 unsuppressed
+        current warnings. Reviewed all 75 preserved-resource cases: 40 have
+        established upstream extraction/cutoff-secondary boundaries; nine
+        non-metal inventories are outside correction scope. Seven unresolved
+        supply boundaries and 19 uncertain product-content/co-mined cases
+        remain warnings. All 75 decisions remain in scope coverage/provenance.
+        All activity amounts and provider signatures remain unchanged across
+        48531 activities and 1410226 exchanges. Other warning counts are unchanged.
       limitations: >-
         Counts record existing methodological and data limitations for this
         case only. Warnings remain visible; new rules or increased counts fail.
@@ -42,8 +39,10 @@ cases:
       LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT: 103
       # Two germanium-concentrate provider lookups retain source inputs.
       LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE: 2
-      # 48 unresolved paths and 27 retained extractions; no forced resource fix.
-      LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED: 75
+      # Seven unresolved upstream boundaries and 19 content/co-mining gaps.
+      # All 75 reviewed cases remain in scope coverage and provenance; no
+      # extraction or other inventory amount was changed to clear warnings.
+      LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED: 26
       # Residual NMVOC and absent THC totals cannot establish parent aggregates.
       LEGACY.TRANSPORT_EMISSION_SCOPE_UNAVAILABLE: 27
       # Final post-GAINS car checks: 36 earlier diagnostics clear and 38 new

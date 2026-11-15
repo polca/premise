@@ -4480,7 +4480,33 @@ class MetalsValidation(BaseDatasetValidator):
         self.check_market_balance()
         self.check_excel_shares_preserved()
         self.check_material_rule_applications()
-        return self._finalize_logs()
+        report = self._finalize_logs()
+        diagnostics = [
+            d
+            for d in getattr(self, "resource_diagnostics", ())
+            if "preservation reason" in d
+        ]
+        if not diagnostics:
+            return report
+        counts = defaultdict(int)
+        for diagnostic in diagnostics:
+            counts[diagnostic["reason"]] += 1
+        return report.with_phase(
+            ValidationPhaseResult(
+                phase_id="sector:metals:resource_scope",
+                kind="sector",
+                rule_results=(
+                    ValidationRuleResult(
+                        rule_id="METALS.RESOURCE_CORRECTION_SCOPE",
+                        severity="warning",
+                        applicability="applicable",
+                        checked_object_count=len(diagnostics),
+                        expected="Explicit applicability decisions; unresolved cases remain warnings",
+                        actual=dict(counts),
+                    ),
+                ),
+            )
+        )
 
     def check_material_rule_applications(self):
         """Report missing providers and reject repeated dataset/rule decisions."""
@@ -4604,6 +4630,10 @@ class MetalsValidation(BaseDatasetValidator):
         shares come from the retained source market (zero for consequential).
         The legacy primary_secondary_split.yaml is not used by this model.
         """
+        from ..materials.metals_resource_coverage import (
+            resource_diagnostic_is_informational,
+        )
+
         for metal, applied in getattr(self, "applied_market_shares", {}).items():
             markets = list(
                 ws.get_many(
@@ -4671,6 +4701,29 @@ class MetalsValidation(BaseDatasetValidator):
         for diagnostic in getattr(self, "resource_diagnostics", ()):
             if diagnostic.get("reason") == "primary_feed_attribution":
                 continue  # Successful attribution, not a preserved/unresolved input.
+            if resource_diagnostic_is_informational(diagnostic):
+                continue  # Scope evidence remains in mapping and structured provenance.
+            if "preservation reason" in diagnostic:
+                evidence = diagnostic.get("evidence", {})
+                coverage = (
+                    f"Unresolved activities: {len(evidence.get('unresolved activities', ()))}; "
+                    f"links: {len(evidence.get('unresolved links', ()))}. "
+                    if "all material branches accounted for" in evidence
+                    else ""
+                )
+                self.log_issue(
+                    {
+                        "name": diagnostic.get("name"),
+                        "reference product": diagnostic.get("product"),
+                        "location": diagnostic.get("location"),
+                    },
+                    "metal resource correction preserved",
+                    f"{diagnostic.get('product')!r}: {diagnostic['explanation']} "
+                    f"{coverage}"
+                    "See metals resource diagnostics/provenance for the boundary evidence.",
+                    issue_type="minor",
+                )
+                continue
             self.log_issue(
                 diagnostic,
                 "metal resource correction preserved",
