@@ -91,6 +91,14 @@ Missing metal/technology pairs remain missing; they are not converted to zero.
 A specified zero range removes the corresponding direct input. Every compiled
 rule records an applied or preserved outcome, including unavailable intensities.
 
+The a-Si laminate inventory describes a 2.3 m² ASR128 laminate rated at 128 Wp.
+Its reference output is one square metre, so kg/MW intensities use
+``128 / 2.3 / 1,000,000 = 0.00005565217391304348 MW/m²``. For example,
+the 2050 indium median of 0.357 kg/MW gives 19.87 mg/m², or 45.70 mg per
+2.3 m² laminate. The conversion uses the source inventory's rated module
+capacity. Germanium overlays still require a reviewed supply inventory;
+correcting the area conversion does not establish that supply boundary.
+
 EV intensities in the runtime CSV are in kg metal/kg motor. The three motor
 activities therefore use a conversion of one, rather than 0.1 MW/53 kg.
 For example, the 2020 aluminium intensity is 0.2252697267 kg/kg motor.

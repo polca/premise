@@ -308,8 +308,9 @@ conversions:
     name: photovoltaic laminate production, a-Si
   ecoinvent_unit: square meter
   intensity_unit: kg/MW
-  factor: 0.000128
-  description: The weight is 2.7 kg per m2. The rated nominal power is about 128Wp per laminate.
+  factor: 5.565217391304348e-05
+  description: The source inventory describes a 2.3 m2 ASR128 laminate rated at 128 Wp, weighing 2.7 kg per m2.
+  comment: 128 Wp / 2.3 m2 / 1000000 W per MW = 0.00005565217391304348 MW per m2. The activity reference output is one square meter, not one laminate.
 - id: photovoltaic-laminate-micro-si-at-plant
   activity:
     name: photovoltaic laminate, micro-Si, at plant

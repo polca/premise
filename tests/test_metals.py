@@ -2006,6 +2006,55 @@ def test_intensity_data_preserves_units_and_distinguishes_missing_from_zero():
     )
 
 
+@pytest.mark.parametrize("location", ["US", "RoW"])
+def test_a_si_material_amounts_preserve_the_rated_capacity_of_a_whole_laminate(
+    location,
+):
+    metals = _metals_for_material_rule_tests("a-Si", "Indium", 0.357)
+    metals.year = 2050
+    metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2050)
+    metals.technology_conversions_by_name = {
+        c.activity_name: c for c in load_technology_conversions()
+    }
+    rule = next(
+        r
+        for r in load_material_rules().enabled_rules
+        if r.technology == "a-Si" and r.element == "Indium"
+    )
+    provider = market_dataset("market for indium", "indium", "GLO", [])
+    metals.get_metal_market_dataset = lambda *args: provider
+    electricity = technosphere_exchange(
+        "market for electricity", "electricity", "US", 0.5
+    )
+    dataset = {
+        "name": "photovoltaic laminate production, a-Si",
+        "reference product": "photovoltaic laminate, a-Si",
+        "location": location,
+        "unit": "square meter",
+        "exchanges": [
+            technosphere_exchange("market for indium", "indium", "GLO", 0.00089368),
+            deepcopy(electricity),
+        ],
+    }
+
+    conversion = metals._technology_conversion_factor(dataset, "a-Si")
+    metals._apply_material_rule(
+        dataset=dataset, technology="a-Si", rule=rule, conversion_factor=conversion
+    )
+
+    (indium,) = [e for e in dataset["exchanges"] if e.get("product") == "indium"]
+    # A full 2.3 m² laminate is rated at 128 Wp, and must receive the
+    # corresponding material demand regardless of the per-m² reference output.
+    assert indium["amount"] * 2.3 == pytest.approx(0.357 * 128 / 1_000_000)
+    assert indium["maximum"] * 2.3 == pytest.approx(0.714 * 128 / 1_000_000)
+    assert indium["minimum"] == 0
+    assert electricity in dataset["exchanges"]
+    assert metals.material_update_diagnostics == []
+    (decision,) = metals.material_decisions
+    assert decision["technology conversion factor"] == conversion
+    assert decision["target direct amount"] == indium["amount"]
+
+
 def test_ev_intensity_applies_per_kg_motor_without_capacity_conversion():
     metals = _metals_for_material_rule_tests("EV", "Aluminium", 1)
     metals.precomputed_medians = get_metals_intensity_factors_data().sel(year=2020)
