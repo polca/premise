@@ -30,6 +30,11 @@ selected IAM. The current update uses this regional GAINS-IAM dataset for
 European and non-European activities alike. There is no separate country-first
 GAINS-EU pass in this transformation.
 
+Pollutant tables are explicitly aligned on the union of their sector and region
+labels. Observed values are retained, and combinations absent from a pollutant
+table remain missing. This alignment is independent of xarray's default join
+policy.
+
 The activity/sector mapping and ``GAINS_ei_pollutants.yaml`` select the
 activities and elementary flows. Activities without an eligible mapped region
 are left unchanged. If ``gains_data_IAM`` is absent, the update is skipped.

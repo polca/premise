@@ -234,7 +234,9 @@ def get_gains_IAM_data(model, gains_scenario):
 
         list_arrays.append(array)
 
-    arr = xr.concat(list_arrays, dim="pollutant")
+    # Pollutant tables cover different sectors; retain their union explicitly
+    # rather than relying on xarray's changing alignment defaults.
+    arr = xr.concat(list_arrays, dim="pollutant", join="outer")
 
     geo_map = load_yaml_cached(GAINS_GEO_MAP)
 
