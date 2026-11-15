@@ -1,0 +1,2064 @@
+{
+  "date": "2026-11-15",
+  "premise_commit": "c43a0cc7aea5f403677ee3cc1cbff464ce4015b5",
+  "brightpath_commit": "7dbb6d658508a20e4fd4cb991bb785b115cd9736",
+  "scenario": "REMIND SSP2-NPi2050",
+  "scope": "All11remaining sectors selection audited;10freshindependent workflow probes plus unchanged-current-package battery probe from preceding mapping batch.",
+  "registered_sectors": 19,
+  "previously_qualified_sectors": 8,
+  "new_qualifications_claimed": 0,
+  "sector_results": [
+    {
+      "sector": "fuels",
+      "clic_roots_requested": 30,
+      "retained_templates_selected": 0,
+      "diagnostic_status": "diagnostic_update_and_graph_checks_passed",
+      "failed_stage": null,
+      "runtime_seconds": 95.02323179203086,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "validation_error_count": 0,
+      "activities": 13122,
+      "source_metadata_unchanged": true
+    },
+    {
+      "sector": "metals",
+      "clic_roots_requested": 51,
+      "retained_templates_selected": 7,
+      "diagnostic_status": "failed",
+      "failed_stage": "inventory preparation",
+      "runtime_seconds": 37.20774491701741,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "first_reported_mapping_group_count": null,
+      "conversion_error_codes": [
+        "migration.biosphere_identity_unresolved"
+      ],
+      "first_mapping_examples": []
+    },
+    {
+      "sector": "battery",
+      "clic_roots_requested": 24,
+      "retained_templates_selected": 8,
+      "diagnostic_status": "failed",
+      "failed_stage": "inventory preparation",
+      "runtime_seconds": 55.07583145808894,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "first_reported_mapping_group_count": 28,
+      "conversion_error_codes": [
+        "migration.unapproved_correspondence"
+      ],
+      "first_mapping_examples": [
+        {
+          "source": {
+            "location": "Europe without Switzerland",
+            "name": "market for pitch",
+            "reference product": "pitch",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "RER",
+            "name": "Pitch despergents, in paper production, at plant",
+            "reference product": "Pitch despergents, in paper production, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for steel, chromium steel 18/8",
+            "reference product": "steel, chromium steel 18/8",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "RER",
+            "name": "Steel, electric, chromium steel 18/8, at plant",
+            "reference product": "Steel, electric, chromium steel 18/8, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for hot rolling, steel",
+            "reference product": "hot rolling, steel",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "CH",
+            "name": "Hot rolling, steel",
+            "reference product": "Hot rolling, steel",
+            "unit": "kilogram"
+          }
+        }
+      ]
+    },
+    {
+      "sector": "cars",
+      "clic_roots_requested": 30,
+      "retained_templates_selected": 0,
+      "diagnostic_status": "failed",
+      "failed_stage": "inventory preparation",
+      "runtime_seconds": 40.1692998749204,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "first_reported_mapping_group_count": 59,
+      "conversion_error_codes": [
+        "migration.unapproved_correspondence"
+      ],
+      "first_mapping_examples": [
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for polyphenylene sulfide",
+            "reference product": "polyphenylene sulfide",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "GLO",
+            "name": "Polyphenylene sulfide, at plant",
+            "reference product": "Polyphenylene sulfide, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "RoW",
+            "name": "market for sulfuric acid",
+            "reference product": "sulfuric acid",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "RER",
+            "name": "Sulphuric acid, liquid, at plant",
+            "reference product": "Sulphuric acid, liquid, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "RoW",
+            "name": "market for waste plastic, mixture",
+            "reference product": "waste plastic, mixture",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "recipe_ref": "pilot-uncontrolled-market-6c65b65b6a1554face5f"
+          }
+        }
+      ]
+    },
+    {
+      "sector": "two_wheelers",
+      "clic_roots_requested": 6,
+      "retained_templates_selected": 0,
+      "diagnostic_status": "failed",
+      "failed_stage": "inventory preparation",
+      "runtime_seconds": 35.67930566694122,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "first_reported_mapping_group_count": 13,
+      "conversion_error_codes": [
+        "migration.unapproved_correspondence"
+      ],
+      "first_mapping_examples": [
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for battery, Li-ion, LFP, rechargeable",
+            "reference product": "battery, Li-ion, LFP, rechargeable",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "GLO",
+            "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+            "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for battery, Li-ion, NMC532, rechargeable",
+            "reference product": "battery, Li-ion, NMC532, rechargeable",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "GLO",
+            "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+            "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for battery, Li-ion, NMC622, rechargeable",
+            "reference product": "battery, Li-ion, NMC622, rechargeable",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "GLO",
+            "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+            "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+            "unit": "kilogram"
+          }
+        }
+      ]
+    },
+    {
+      "sector": "trucks",
+      "clic_roots_requested": 20,
+      "retained_templates_selected": 0,
+      "diagnostic_status": "failed",
+      "failed_stage": "inventory preparation",
+      "runtime_seconds": 38.624454666045494,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "first_reported_mapping_group_count": 90,
+      "conversion_error_codes": [
+        "migration.unapproved_correspondence"
+      ],
+      "first_mapping_examples": [
+        {
+          "source": {
+            "location": "RER",
+            "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+            "reference product": "transport, freight, lorry >32 metric ton, EURO6",
+            "unit": "ton kilometer"
+          },
+          "proposed_target": {
+            "location": "CH",
+            "name": "Transport, freight, lorry, fleet average",
+            "reference product": "Transport, freight, lorry, fleet average",
+            "unit": "ton kilometer"
+          }
+        },
+        {
+          "source": {
+            "location": "CH",
+            "name": "treatment of wastewater from lorry production, capacity 4.7E10l/year",
+            "reference product": "wastewater from lorry production",
+            "unit": "cubic meter"
+          },
+          "proposed_target": {
+            "location": "CH",
+            "name": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+            "reference product": "Treatment, sewage, from residence, to wastewater treatment, class 2",
+            "unit": "cubic meter"
+          }
+        },
+        {
+          "source": {
+            "location": "CH",
+            "name": "maintenance, lorry 28 metric ton",
+            "reference product": "maintenance, lorry 28 metric ton",
+            "unit": "unit"
+          },
+          "proposed_target": {
+            "location": "CH",
+            "name": "Maintenance, lorry 28t",
+            "reference product": "Maintenance, lorry 28t",
+            "unit": "unit"
+          }
+        }
+      ]
+    },
+    {
+      "sector": "ships",
+      "clic_roots_requested": 2,
+      "retained_templates_selected": 0,
+      "diagnostic_status": "failed",
+      "failed_stage": "inventory preparation",
+      "runtime_seconds": 36.61236466700211,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "first_reported_mapping_group_count": 3,
+      "conversion_error_codes": [
+        "migration.unapproved_correspondence"
+      ],
+      "first_mapping_examples": [
+        {
+          "source": {
+            "location": "RoW",
+            "name": "treatment of inert waste, inert material landfill",
+            "reference product": "inert waste, for final disposal",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "CH",
+            "name": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "reference product": "Disposal, inert waste, 5% water, to construction waste landfill",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "RER",
+            "name": "market for lime",
+            "reference product": "lime",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "CH",
+            "name": "Lime, hydraulic, at plant",
+            "reference product": "Lime, hydraulic, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for magnetite",
+            "reference product": "magnetite",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "GLO",
+            "name": "Magnetite, at plant",
+            "reference product": "Magnetite, at plant",
+            "unit": "kilogram"
+          }
+        }
+      ]
+    },
+    {
+      "sector": "buses",
+      "clic_roots_requested": 4,
+      "retained_templates_selected": 0,
+      "diagnostic_status": "failed",
+      "failed_stage": "inventory preparation",
+      "runtime_seconds": 53.62278800003696,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "first_reported_mapping_group_count": 114,
+      "conversion_error_codes": [
+        "migration.unapproved_correspondence"
+      ],
+      "first_mapping_examples": [
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for copper, anode",
+            "reference product": "copper, anode",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "GLO",
+            "name": "Copper, primary, at refinery",
+            "reference product": "Copper, primary, at refinery",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for sheet rolling, copper",
+            "reference product": "sheet rolling, copper",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "RER",
+            "name": "Sheet rolling, copper",
+            "reference product": "Sheet rolling, copper",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for waste electric and electronic equipment",
+            "reference product": "waste electric and electronic equipment",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "recipe_ref": "whole-freight-market-composition-a8ad790cf239e5b48519"
+          }
+        }
+      ]
+    },
+    {
+      "sector": "trains",
+      "clic_roots_requested": 18,
+      "retained_templates_selected": 0,
+      "diagnostic_status": "failed",
+      "failed_stage": "inventory preparation",
+      "runtime_seconds": 36.24125050008297,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "first_reported_mapping_group_count": 29,
+      "conversion_error_codes": [
+        "migration.unapproved_correspondence"
+      ],
+      "first_mapping_examples": [
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for barium carbonate",
+            "reference product": "barium carbonate",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "GLO",
+            "name": "Lithium carbonate, at plant",
+            "reference product": "Lithium carbonate, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "RER",
+            "name": "market for titanium dioxide",
+            "reference product": "titanium dioxide",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "recipe_ref": "battery-chemicals-39-titanium-dioxide-delivery"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for polyphenylene sulfide",
+            "reference product": "polyphenylene sulfide",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "GLO",
+            "name": "Polyphenylene sulfide, at plant",
+            "reference product": "Polyphenylene sulfide, at plant",
+            "unit": "kilogram"
+          }
+        }
+      ]
+    },
+    {
+      "sector": "final energy",
+      "clic_roots_requested": 78,
+      "retained_templates_selected": 66,
+      "diagnostic_status": "failed",
+      "failed_stage": "inventory preparation",
+      "runtime_seconds": 55.64838591590524,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "first_reported_mapping_group_count": 45,
+      "conversion_error_codes": [
+        "migration.unapproved_correspondence"
+      ],
+      "first_mapping_examples": [
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for aluminium alloy, AlMg3",
+            "reference product": "aluminium alloy, AlMg3",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "RER",
+            "name": "Aluminium alloy, AlMg3, at plant",
+            "reference product": "Aluminium alloy, AlMg3, at plant",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for chromium",
+            "reference product": "chromium",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "RER",
+            "name": "Chromium, at regional storage",
+            "reference product": "Chromium, at regional storage",
+            "unit": "kilogram"
+          }
+        },
+        {
+          "source": {
+            "location": "GLO",
+            "name": "market for casting, aluminium, lost-wax",
+            "reference product": "casting, aluminium, lost-wax",
+            "unit": "kilogram"
+          },
+          "proposed_target": {
+            "location": "RER",
+            "name": "Sheet rolling, aluminium",
+            "reference product": "Sheet rolling, aluminium",
+            "unit": "kilogram"
+          }
+        }
+      ]
+    },
+    {
+      "sector": "emissions",
+      "clic_roots_requested": 0,
+      "retained_templates_selected": 0,
+      "diagnostic_status": "diagnostic_update_and_graph_checks_passed",
+      "failed_stage": null,
+      "runtime_seconds": 52.06141229206696,
+      "public_scope_gate_bypassed_for_diagnostic_only": true,
+      "validation_disabled": false,
+      "export_performed": false,
+      "validation_error_count": 0,
+      "activities": 12261,
+      "source_metadata_unchanged": true
+    }
+  ],
+  "shared_refusals_in_reported_groups": [
+    {
+      "source": {
+        "location": "GLO",
+        "name": "aluminium scrap, new, Recycled Content cut-off",
+        "reference product": "aluminium scrap, new",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains",
+        "two_wheelers"
+      ],
+      "sector_count": 3,
+      "exact_rule_scope_fingerprint": "c15c9225f4aa870683ba09a92e5475deeae36e36eb5ac9c2e7990d0991ac9988"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for polyphenylene sulfide",
+        "reference product": "polyphenylene sulfide",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains",
+        "two_wheelers"
+      ],
+      "sector_count": 3,
+      "exact_rule_scope_fingerprint": "5d5afe82a8c3cdeefc781e6a972a48daa2e943f8ae0a49d5b0a77d0f232a8836"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for used Li-ion battery",
+        "reference product": "used Li-ion battery",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains",
+        "two_wheelers"
+      ],
+      "sector_count": 3,
+      "exact_rule_scope_fingerprint": "9462ca41923ed7f4e94fdecc97568323d2c616c7da9f47c51b5d904a7169eece"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "air separation, cryogenic",
+        "reference product": "oxygen, liquid",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "68ada151ada4f48cc2cb53fb98ec4b54160f96282418b2d7eec3608d1d1d26c2"
+    },
+    {
+      "source": {
+        "location": "CH",
+        "name": "casting, brass",
+        "reference product": "casting, brass",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "4dd53cba45c1fa3c6062c764efdb7b4d03cabb3f4be3a5bd8059b46322302d01"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "epoxy resin production, liquid",
+        "reference product": "epoxy resin, liquid",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "0c9a70164136c73bc4131271183a69e39da50bf5b11e4cfb102e28dfb19db400"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "laminating service, foil, with acrylic binder",
+        "reference product": "laminating service, foil, with acrylic binder",
+        "unit": "square meter"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "703106c70d247bb7284ed89d771b7cfe5642e2354ef53d6f5d7f1721f5340513"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for 2-methylpentane",
+        "reference product": "2-methylpentane",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "60ba16c0d5bd5f57ce3230c4baae9307d88e9bd4e1c8ed5d6d96bbb645b5bc2d"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for acetylene",
+        "reference product": "acetylene",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "c7af374f9bdf76d41ae5619cf0df8cf73e7c1ad71025fad7c43174eb6bfbb087"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for acrylonitrile",
+        "reference product": "acrylonitrile",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "55a13b9b5a9efef9d05de1a5e0a2c70e5ace690dff4b681a48cd22df9e02dcf7"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for aluminium alloy, AlMg3",
+        "reference product": "aluminium alloy, AlMg3",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "37045d71d9f9d7ee8e6ffe4ad777e872c06deb250d22e124bf301a8b57e26958"
+    },
+    {
+      "source": {
+        "location": "RoW",
+        "name": "market for aluminium oxide, non-metallurgical",
+        "reference product": "aluminium oxide, non-metallurgical",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "19907946ca25e49542a35f7f7da83da3e816b9313a83b64cdffa5572e47a669e"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for aluminium, cast alloy",
+        "reference product": "aluminium, cast alloy",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "two_wheelers"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "e051ff785b76b6938d6f505b8b5bd8d411330c93795d8623b7063d64f4b03582"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for aluminium, wrought alloy",
+        "reference product": "aluminium, wrought alloy",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "bd6c107ffe29dfd4003fd60e674557555c97496457275c7b223bcfd3d04c8c09"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for battery, Li-ion, LFP, rechargeable",
+        "reference product": "battery, Li-ion, LFP, rechargeable",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "trains",
+        "two_wheelers"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "a1efeebbb4cd0365362f571737eaa2434a05a0583b3eb1cd9aaa4ad98cb20fc5"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for battery, Li-ion, NMC622, rechargeable",
+        "reference product": "battery, Li-ion, NMC622, rechargeable",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "two_wheelers"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "1a80c582526c8a30225d2d6a8edae78c8b3d46586a6d4c0ee182af8400db1ea3"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for benzaldehyde",
+        "reference product": "benzaldehyde",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "7609917d8373ba2c0bb55d456225651bf40204f5bd3b80aaf7d0bbd6f62c1f49"
+    },
+    {
+      "source": {
+        "location": "RoW",
+        "name": "market for brass",
+        "reference product": "brass",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "8eafa0b6ee96eca9c26b148e2aff5eb88e2fa7907594aa4c60521b5d0d9f1e73"
+    },
+    {
+      "source": {
+        "location": "CH",
+        "name": "market for brass",
+        "reference product": "brass",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "e27a772a0bf9406444b35f830a9e49d6db4a910b0c1737bb884faf2d9fd5b887"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for butyl acetate",
+        "reference product": "butyl acetate",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "eaab546bf5bce0803bf765700371e764d4734521165fb478393cdb94ecba8e80"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for capacitor, electrolyte type, < 2cm height",
+        "reference product": "capacitor, electrolyte type, < 2cm height",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "f49f20fe8825a1351bad98b35726ad567d88c6752f366c40a4093af8aa0f7c64"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for capacitor, for surface-mounting",
+        "reference product": "capacitor, for surface-mounting",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "efc1e9604e20771f4b4104876c94014928366482b9c57a2993303d14db784113"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for capacitor, tantalum-, for through-hole mounting",
+        "reference product": "capacitor, tantalum-, for through-hole mounting",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "b0d6b84bc93e795c7118352e3a1919ee86f6f0dfc6434f3fd226d6bc714600dd"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for carbon dioxide, liquid",
+        "reference product": "carbon dioxide, liquid",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "7e247a98b1cbb510d61ff42538527a797528bf83b8184d11905ec64e76a48f70"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for casting, aluminium, lost-wax",
+        "reference product": "casting, aluminium, lost-wax",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "63d359981937dbe370f37286dacfd880c0ab6da4899a8d6994cb0581cc53dc17"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for ceramic tile",
+        "reference product": "ceramic tile",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "e1cb97188f3fc95888954c398429aec4330f72e35ea086ce1847ff5e9467d5c4"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for chromium",
+        "reference product": "chromium",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "3d5addf60eb229a3eaf51e1f5b6c3c8feeea41cbb1892603855df0776b68f763"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for copper, cathode",
+        "reference product": "copper, cathode",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "07d7230f3b9a0dfdfbcea4032fef81a173ced243dcb56cf21eefd7eb75320e44"
+    },
+    {
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for diesel, low-sulfur",
+        "reference product": "diesel, low-sulfur",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "d50f6eb8014f104b50d36d17a2849420e014b0b5c3ca48b50ca42837c750eb73"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for diode, glass-, for surface-mounting",
+        "reference product": "diode, glass-, for surface-mounting",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "b2669c5a7641dd2a5304e1e7b65d934232eb3f69ef5fb902dfa9fe61e33d082d"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for electric connector, peripheral component interconnect buss",
+        "reference product": "electric connector, peripheral component interconnect buss",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "d80dea9ed89878677b19f89e76ac870b32d67f5b3ac79d2036b6d131717e0e7a"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for electric connector, wire clamp",
+        "reference product": "electric connector, wire clamp",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "cf93aa371c8014b0352332d89dd5274bbd8b0acf3a1fd1c9de56a3dba6f06eb9"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for ethylene glycol",
+        "reference product": "ethylene glycol",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "d01b4887888536ae5098be7bbfaf9fc553c60c4389d4868d60922dab905a8f60"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for ferrite",
+        "reference product": "ferrite",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "5ca306f71b8300f8f81cc7831a9b42d85c103c19ac12d72ade4b238630eb52ab"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for ferrosilicon",
+        "reference product": "ferrosilicon",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "f35cc07986280539bde7bddaf9caa023b6cd36a1af3ce85d30ae459b42971978"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for glass fibre",
+        "reference product": "glass fibre",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "c2868be1211a0c85d7535dad9802fc2811dd946d1e5d23c94a52f6fab0beaa13"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for gold",
+        "reference product": "gold",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "8b69a27fa0c445eea6a3427b9345e6786781a95ce7650a857400cac5eae5556c"
+    },
+    {
+      "source": {
+        "location": "RoW",
+        "name": "market for hazardous waste, for incineration",
+        "reference product": "hazardous waste, for incineration",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "e19ffa5abbb440b1925c1b9c5663d469eec8fb55483ddb905c0809315c7a46f3"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for inductor, low value multilayer chip",
+        "reference product": "inductor, low value multilayer chip",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "971b7bea897c83bf8c5553b48ec9e3682a1b9b62db66de9a46dfd294ade96f1b"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for inductor, miniature radio frequency chip",
+        "reference product": "inductor, miniature radio frequency chip",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "03521219879ca59714aa1401d56b2992cc78d425f1cf46dfa0018d3eca69103f"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for inductor, ring core choke type",
+        "reference product": "inductor, ring core choke type",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "c4798aacf81c5ca596e333c5a91d47b510bb290653d428d15625f46700f0f612"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for integrated circuit, logic type",
+        "reference product": "integrated circuit, logic type",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "73ccb4e8972cc615b41365466859265562018524eac112f94f56a8a8f9183306"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for integrated circuit, memory type",
+        "reference product": "integrated circuit, memory type",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "e5b1babe6b00627a7d43f7f9a685f4ed0f0d7b4e8674243ce9fd416eebfe0407"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for isopropanol",
+        "reference product": "isopropanol",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "1446ffaf6695b022bdca6fbf1305351cd126376ec490bcca17f08f8c94cbc0f6"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for light emitting diode",
+        "reference product": "light emitting diode",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "8757461723de6b6e93c5011152eb40fb56f00b82887093b64f0e3aeb6e634b41"
+    },
+    {
+      "source": {
+        "location": "RoW",
+        "name": "market for lime, hydrated, loose weight",
+        "reference product": "lime, hydrated, loose weight",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "660d7aad9fcb85b5a373484e0f7de7900c59361bc08994563bc7791ca43addea"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for lithium carbonate",
+        "reference product": "lithium carbonate",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "b2e57b0d839aeef6c2dd279b47f18d51c39c4d46cc9d52f173046a06a2f9e35e"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for lithium hydroxide",
+        "reference product": "lithium hydroxide",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "482e2a8661ef5bdf9d64119b4b85de757c792cef96ab0317525d3630f1869dc2"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for manganese dioxide",
+        "reference product": "manganese dioxide",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "acea9c292aff42b3f18779f16ce6e1af385b667b920d4ca870fad7db66bd439d"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for naphtha",
+        "reference product": "naphtha",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "225e4348a7bb51014e184314359167949855df11af6385e056c30157e88a0869"
+    },
+    {
+      "source": {
+        "location": "CH",
+        "name": "market for natural gas, high pressure",
+        "reference product": "natural gas, high pressure",
+        "unit": "cubic meter"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "b2bd1b3a677d854428a8625561f9ea8b4751ead9376a232f7da678447a3ecee2"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for nickel sulfate",
+        "reference product": "nickel sulfate",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "4ad0831fc2fe483e5805c02886ee59c4ad557c956aecc6fb7f79516f7971b141"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for nickel, class 1",
+        "reference product": "nickel, class 1",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "e86ec42972b9bb101e3cd7bb86fb858f5a34dc09743409600a43d5c933c65def"
+    },
+    {
+      "source": {
+        "location": "RER w/o RU",
+        "name": "market for nitric acid, without water, in 50% solution state",
+        "reference product": "nitric acid, without water, in 50% solution state",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "5d1ab4f82c1652fe7b14915fd976f012c5fb2432c663cdd088e44af29d101e61"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for nylon 6-6, glass-filled",
+        "reference product": "nylon 6-6, glass-filled",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "693254143a31b64b6074f2f254166dab59857e93ba02688812ec6b87ff56c103"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for phenolic resin",
+        "reference product": "phenolic resin",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "73e1bef65da08adaeccf7d0d13fa1c36a7248e85b2accb92aed21b5b52970515"
+    },
+    {
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market for pitch",
+        "reference product": "pitch",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "adb48b55db5228b9482f080b8b13fbf2c7334341b61c7afb2d97a354aa703ed7"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for platinum",
+        "reference product": "platinum",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "b57132f1863afaa7acf806292536798a794db24862217e1c13dddde5a245ba01"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for polycarbonate",
+        "reference product": "polycarbonate",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "309d922137c04a10652665aa04288a09146a5d9faf8fdfd95df8594efca1bc83"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for polyethylene terephthalate, granulate, amorphous",
+        "reference product": "polyethylene terephthalate, granulate, amorphous",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "ae16668ff767266b78c29eb0d6bc2b4afd46f8688cdc623a7f400c074cd8608d"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for polyphenylene sulfide",
+        "reference product": "polyphenylene sulfide",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "8bbd0b24874148fdc118b578bc9cddea05871e540d01e4591c176af2ec8f9152"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for polypropylene, granulate",
+        "reference product": "polypropylene, granulate",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "2267cb434d5a1f3f14fd943c5b594adef9f2b1db7d5cc2b51fcecd644cdaafd5"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for polyurethane, rigid foam",
+        "reference product": "polyurethane, rigid foam",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "8044650ad506e7a9ee58f9012f064108fa730c5f6c808af642fc9ef8916758e3"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for potassium carbonate",
+        "reference product": "potassium carbonate",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "0205b53245223e18fbe17a707017447d4ece13456cb1c6217422aa0d4ba4df61"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for potassium hydroxide",
+        "reference product": "potassium hydroxide",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "4f986febfad6b6ef6610cb77c89a93be87126b8cd8abc081dcd5c0a1461e1261"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for printed wiring board, for surface mounting, Pb free surface",
+        "reference product": "printed wiring board, for surface mounting, Pb free surface",
+        "unit": "square meter"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "d47c17961443efa2deca2eec6557c11f8a0c8725deacb580b53071c4c3c4e58a"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for printed wiring board, for through-hole mounting, Pb free surface",
+        "reference product": "printed wiring board, for through-hole mounting, Pb free surface",
+        "unit": "square meter"
+      },
+      "sectors": [
+        "cars",
+        "trains"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "17c1829ca3984b2166b73b726e21a22c8d254d811903542e923fbfd3460a7dfc"
+    },
+    {
+      "source": {
+        "location": "CH",
+        "name": "market for process-specific burdens, sanitary landfill",
+        "reference product": "process-specific burdens, sanitary landfill",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "1e622e9d09c3a933f909e6a916fbe208054084256ad8c36a3fe2fd015bc21b1f"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for refrigerant R134a",
+        "reference product": "refrigerant R134a",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "9d67002f79ab1b6b0fe94f256f93d5ce081fe75a10d7a7b569a05d3a3eb03e42"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for resistor, surface-mounted",
+        "reference product": "resistor, surface-mounted",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "a0555813206351a44f287e17f0f2ba8c849c989da60d75436efb5540662698df"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for resistor, surface-mounted",
+        "reference product": "resistor, surface-mounted",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "c052db592d6007f476a4ef08c880ec5d9061cdaf509341c9fb1e63e7a7c94ea9"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for road",
+        "reference product": "road",
+        "unit": "meter-year"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "00e46a9d541207d5a78591ac16a4b0f0c5840cf606126d8643e211d923958abb"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for road maintenance",
+        "reference product": "road maintenance",
+        "unit": "meter-year"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "26719bc26a7dfed04f6b1ca905eeb439cad0f7c25af3bf99e8665ca6409e681c"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for sheet rolling, copper",
+        "reference product": "sheet rolling, copper",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "b93cd7ad715296f9fb9beeba050c95dcaf21c57416bcdb1423b689874d54e01c"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for silicone product",
+        "reference product": "silicone product",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "8e72934e4c05bd486a9c439ecb0d6e91fb99f1a99a9afecb82730efef49f555c"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+        "reference product": "solder, bar, Sn95.5Ag3.9Cu0.6, for electronics industry",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "0c847322081dd51e95ca061983f932282689b2f29b2e2641e0c7d15f186512da"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for solder, paste, Sn95.5Ag3.9Cu0.6, for electronics industry",
+        "reference product": "solder, paste, Sn95.5Ag3.9Cu0.6, for electronics industry",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "c0e046c9b594f9e09d3adad05daaddd47cbbbacafd49c3340e105fbfd5941849"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for steel, chromium steel 18/8",
+        "reference product": "steel, chromium steel 18/8",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "e643903f5543487973b80d6446da8e5c1432dcfda514699c8408526e350c32ac"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for sulfuric acid",
+        "reference product": "sulfuric acid",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "f56b233eb17c0c4661f0376671f7be9eee8f9b6d2fc33caf169f0cf56d922e28"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for switch, toggle type",
+        "reference product": "switch, toggle type",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "420b5349f940ea1f4d060f7daa27ddee8a8ac53f82cddde42917db773bb21195"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for synthetic rubber",
+        "reference product": "synthetic rubber",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "d3afba6f60210de9830fbdede2ab323ea3764eff4406a4ba26324775c67df389"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for tetraethyl orthosilicate",
+        "reference product": "tetraethyl orthosilicate",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "8f5cd7461e8b141187f2206bef9a7a8f21182745d166c2cf31b0b65252692fee"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for tin",
+        "reference product": "tin",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "9301e8d3dbc648e3dbeed6ddb79cf1e3f1a48a201f237df839a01f501da45f8e"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for tin",
+        "reference product": "tin",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "12ab454bcf8e8cfb3da54692b35cedce6197c91a92c804aa895b54d0c679a35f"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for transformer, low voltage use",
+        "reference product": "transformer, low voltage use",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "db4e15f6c950745d0e7a78f1f0e075c6cf02ed858ac96aa4ee9360d0fef13123"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for transistor, surface-mounted",
+        "reference product": "transistor, surface-mounted",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "f3666380c377ed45de977fb4bce7da695426b976319714db7da584ddaddfe4de"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for transport, freight, lorry >32 metric ton, EURO6",
+        "reference product": "transport, freight, lorry >32 metric ton, EURO6",
+        "unit": "ton kilometer"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "095368422d6740eea800161550a51c937b499b9a4bb00a688f1ee98eaba7611a"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for wafer, fabricated, for integrated circuit",
+        "reference product": "wafer, fabricated, for integrated circuit",
+        "unit": "square meter"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "2ee0114c2ff27b25f2a5bda9ed8546e5c8ebb308317451cc9109b072195dd19c"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for waste electric and electronic equipment",
+        "reference product": "waste electric and electronic equipment",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "trains",
+        "two_wheelers"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "eb3d6f83af70ebd2042a77db8912a9df2ac3574cb01bc779d0a9420c6e1fc026"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for waste electric and electronic equipment",
+        "reference product": "waste electric and electronic equipment",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "4ad0d4ff9b310aa7f5163076b17123095486e402f43edf278c29acf6b3485e61"
+    },
+    {
+      "source": {
+        "location": "RoW",
+        "name": "market for waste plastic, mixture",
+        "reference product": "waste plastic, mixture",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "9d3a7beb321359dcdd1cfbe45e6f0ed2171b01c7ad39bbe55d9bdcc9f3d64042"
+    },
+    {
+      "source": {
+        "location": "RoW",
+        "name": "market for waste polyethylene",
+        "reference product": "waste polyethylene",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "52c33028960bfe548cbf78e9c478a3b5b9f5cb9a6e0abee3d38277a82980ed88"
+    },
+    {
+      "source": {
+        "location": "RoW",
+        "name": "market for waste reinforced concrete",
+        "reference product": "waste reinforced concrete",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "74352612c3ecba62119d02def400939db52ab708916fd823ab30d333da4fb152"
+    },
+    {
+      "source": {
+        "location": "RoW",
+        "name": "market for waste wood, untreated",
+        "reference product": "waste wood, untreated",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "1c72e110a2f4d0498973e0a418751c4904af0861eb88d213b7f2fbe7640ca123"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "market for water, ultrapure",
+        "reference product": "water, ultrapure",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "04397ab41fb4392d99311499246b390d324d4715e30223dcd518717f497495ab"
+    },
+    {
+      "source": {
+        "location": "GLO",
+        "name": "market for zinc",
+        "reference product": "zinc",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "6279d9a96c778d9aedf7baa80bef5fcfa20fc4c41222cbb076d314ec24974560"
+    },
+    {
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "market group for municipal solid waste",
+        "reference product": "municipal solid waste",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "e9a5f35c4240fad34cee2720b0c7777d02f8e124920ff2def89bdb5938f36a5c"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "metal working, average for aluminium product manufacturing",
+        "reference product": "metal working, average for aluminium product manufacturing",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "72c17aa0b3469b8f9fcf9cffc48625723a497d25a8d1d48f53d0e7a3e82506a7"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "metal working, average for chromium steel product manufacturing",
+        "reference product": "metal working, average for chromium steel product manufacturing",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "8854cdffcb4bec2fc41cfc945113ce8ab04c93eda893b464a45fb3f5d561deb7"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "metal working, average for copper product manufacturing",
+        "reference product": "metal working, average for copper product manufacturing",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "a0715ea8261dab3232cc904631ef633c18c127d9768d371fa14729d493653337"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "metal working, average for steel product manufacturing",
+        "reference product": "metal working, average for steel product manufacturing",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "cf3feb7922bb19c2a508df441eb0d98a214273eb8da75f15b457d29a060ea02d"
+    },
+    {
+      "source": {
+        "location": "Europe without Austria",
+        "name": "reinforcing steel production",
+        "reference product": "reinforcing steel",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "904859df4fb733dd4a77289a3a59ef27bb9c1e1edb479a96ba354863ff790d12"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "sheet rolling, steel",
+        "reference product": "sheet rolling, steel",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "cars",
+        "trains"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "9d70ebcc2bc37bc7602d568584820c46886021d78783177d589ab523c4441332"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "treatment of brake wear emissions, lorry",
+        "reference product": "brake wear emissions, lorry",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "8ee2c77aad620130b41f1dbe79fe9ab80c658c83d50e9f072f69c9f6c26778b3"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "treatment of road wear emissions, lorry",
+        "reference product": "road wear emissions, lorry",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "82c6f2716d7b5c751879395fc32e5f3790a976125e1d87364f81fe32ee205733"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "treatment of tyre wear emissions, lorry",
+        "reference product": "tyre wear emissions, lorry",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "d15a980200e61f7f7d24d4614f70bd6dc334b28eb51a31bf2d0efb9e5a16841c"
+    },
+    {
+      "source": {
+        "location": "CH",
+        "name": "treatment of wastewater from lorry production, capacity 4.7E10l/year",
+        "reference product": "wastewater from lorry production",
+        "unit": "cubic meter"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "6532be0fd762f9239363078d1fb18fa6dd19b7df6d48f5c5fa1295d458ab7a29"
+    },
+    {
+      "source": {
+        "location": "Europe without Switzerland",
+        "name": "water production, deionised",
+        "reference product": "water, deionised",
+        "unit": "kilogram"
+      },
+      "sectors": [
+        "battery",
+        "final energy"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "c48d76ef6f9cb8c35a9e87087e317fda611386d8f4acc5e56d8c78a72255d8c0"
+    },
+    {
+      "source": {
+        "location": "RER",
+        "name": "welding, arc, aluminium",
+        "reference product": "welding, arc, aluminium",
+        "unit": "meter"
+      },
+      "sectors": [
+        "buses",
+        "trucks"
+      ],
+      "sector_count": 2,
+      "exact_rule_scope_fingerprint": "72742bae249b153f989536966ec665687dce65e581b911d569e9d33f789aebeb"
+    }
+  ],
+  "count_limit": "Refusal counts apply only to each first reported source-profile mapping group,not total sector backlogs. Shared scopes require matching rule and full fingerprint,not name alone.",
+  "validation_scope": "Successful diagnostics explicitly called exhaustive report.raise_for_errors(). Public unsupported-sector gate alone bypassed in private harness;this is not public workflow/export qualification.",
+  "emissions_limit": "Implementation explicitly declares full_sector_mapping_complete=False;zero graph-validation errors do not establish complete emissions coverage.",
+  "battery_template_check": "All six generic scenario markets and two sodium-nickel-chloride capacity templates remain selected as retained workbook records. Sodium-ion andNaNiClare separate identities;no chemistry equivalence inferred.",
+  "runtime_python_changes": [],
+  "mapping_changes": [],
+  "brightway_exports": 0,
+  "pushes": 0,
+  "next_priorities": [
+    "Audit coverage and public/export readiness for fuels/emissions that already pass diagnostic graph checks.",
+    "Use ships as the next bounded end-to-end candidate:two CLIC roots,three refusals in its first reported group. Check significant source exchanges and main product/service identity before mapping changes.",
+    "Prioritize shared exact-scope material refusals across transport/finalenergy over battery-only trace refinery auxiliaries.",
+    "Keep the full19sector goal;do not remove selected technologies or relax validation to pass."
+  ]
+}
