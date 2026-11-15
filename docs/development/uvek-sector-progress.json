@@ -2558,7 +2558,9 @@
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
       },
-      "two_wheeler_operating_exhaust_origin_verification": "docs/development/uvek-two-wheeler-carbon-verification.json"
+      "two_wheeler_operating_exhaust_origin_verification": "docs/development/uvek-two-wheeler-carbon-verification.json",
+      "latest_native_mapping_review": "docs/development/uvek-native-two-wheelers-verification.json",
+      "current_native_first_checkpoint": "native_services_and_single_sector_physical_graph_checks_passed_combined_LCI_and_export_pending"
     },
     {
       "sector": "trucks",
@@ -2946,7 +2948,9 @@
           "transport_rail_freight.yaml"
         ],
         "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
-      }
+      },
+      "latest_native_mapping_review": "docs/development/uvek-native-rail-verification.json",
+      "current_native_first_checkpoint": "native_electric_and_diesel_aliases_checked_required_hydrogen_migration_pending"
     },
     {
       "sector": "final energy",
@@ -3708,7 +3712,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-native-buses-verification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-ships-38-verification.json",
+    "latest_mapping_review": "docs/development/uvek-native-rail.md",
     "verified_native_source_limits": [
       {
         "source_identity": {
@@ -3793,6 +3797,8 @@
     ],
     "latest_shared_transport_review": "docs/development/uvek-native-buses.md",
     "latest_combined_run_freshness": "Recorded CLIC archive snapshot 20261110T030235Z-613ea498808a; live freshness was not checked by this run.",
-    "latest_packaged_resource_checks": "docs/development/uvek-shipping-packaged-verification.json"
+    "latest_packaged_resource_checks": "docs/development/uvek-shipping-packaged-verification.json",
+    "latest_native_first_checkpoint": "docs/development/uvek-native-first-checkpoint-2026-11-15.json",
+    "latest_owned_database_cleanup": "docs/development/uvek-native-first-checkpoint-2026-11-15.json#cleanup"
   }
 }

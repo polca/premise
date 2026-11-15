@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-15",
+  "background": {
+    "technosphere": "BAFU/UVEK2026 cutoff",
+    "biosphere": "ecoinvent3.10"
+  },
+  "scenario": "encrypted REMIND SSP2-NPi2050",
+  "qualified_sector_count": 11,
+  "remaining_sector_count": 8,
+  "full_goal_complete": false,
+  "remaining_scope": [
+    {
+      "sector": "battery",
+      "nonzero_IAM_roles_in_role_registry": null,
+      "native_roles_avoiding_legacy_templates": null,
+      "declared_clic_root_count": 24,
+      "interpretation": "Root count is preparation metadata, not a count of unresolved rules or a complete retained-workbook inventory plan. A null role count means this ledger does not describe the sector."
+    },
+    {
+      "sector": "cars",
+      "nonzero_IAM_roles_in_role_registry": 30,
+      "native_roles_avoiding_legacy_templates": 0,
+      "declared_clic_root_count": 30,
+      "interpretation": "Root count is preparation metadata, not a count of unresolved rules or a complete retained-workbook inventory plan. A null role count means this ledger does not describe the sector."
+    },
+    {
+      "sector": "two_wheelers",
+      "nonzero_IAM_roles_in_role_registry": 6,
+      "native_roles_avoiding_legacy_templates": 6,
+      "declared_clic_root_count": 0,
+      "interpretation": "Root count is preparation metadata, not a count of unresolved rules or a complete retained-workbook inventory plan. A null role count means this ledger does not describe the sector."
+    },
+    {
+      "sector": "trucks",
+      "nonzero_IAM_roles_in_role_registry": 20,
+      "native_roles_avoiding_legacy_templates": 0,
+      "declared_clic_root_count": 20,
+      "interpretation": "Root count is preparation metadata, not a count of unresolved rules or a complete retained-workbook inventory plan. A null role count means this ledger does not describe the sector."
+    },
+    {
+      "sector": "trains",
+      "nonzero_IAM_roles_in_role_registry": 3,
+      "native_roles_avoiding_legacy_templates": 2,
+      "declared_clic_root_count": 6,
+      "interpretation": "Root count is preparation metadata, not a count of unresolved rules or a complete retained-workbook inventory plan. A null role count means this ledger does not describe the sector."
+    },
+    {
+      "sector": "final energy",
+      "nonzero_IAM_roles_in_role_registry": 203,
+      "native_roles_avoiding_legacy_templates": 0,
+      "declared_clic_root_count": 17,
+      "interpretation": "Root count is preparation metadata, not a count of unresolved rules or a complete retained-workbook inventory plan. A null role count means this ledger does not describe the sector."
+    },
+    {
+      "sector": "emissions",
+      "nonzero_IAM_roles_in_role_registry": null,
+      "native_roles_avoiding_legacy_templates": null,
+      "declared_clic_root_count": 0,
+      "interpretation": "Root count is preparation metadata, not a count of unresolved rules or a complete retained-workbook inventory plan. A null role count means this ledger does not describe the sector."
+    },
+    {
+      "sector": "metals",
+      "nonzero_IAM_roles_in_role_registry": null,
+      "native_roles_avoiding_legacy_templates": null,
+      "declared_clic_root_count": 0,
+      "interpretation": "Root count is preparation metadata, not a count of unresolved rules or a complete retained-workbook inventory plan. A null role count means this ledger does not describe the sector."
+    }
+  ],
+  "verified_buses": "docs/development/uvek-native-buses-verification.json",
+  "two_wheelers_physical_only": "docs/development/uvek-native-two-wheelers-verification.json",
+  "rail_native_aliases_and_required_hydrogen_frontier": "docs/development/uvek-native-rail-verification.json",
+  "cleanup": {
+    "deleted_owned_export": "BAFU:2026-REMIND-SSP2-NPi-2050-nine-fuels-20261115-124321",
+    "removed_activity_count": 16117,
+    "external_consumers_before_deletion": 0,
+    "protected_database_counts": {
+      "BAFU:2026-reimported": 11947,
+      "ecoinvent-3.10-biosphere": 4362,
+      "BAFU:2026-REMIND-SSP2-NPi-2050-ten-shipping-20261115-155721": 16191,
+      "BAFU:2026-REMIND-SSP2-NPi-2050-eleven-buses-20261115-211255": 16256
+    },
+    "protected_metadata_unchanged_during_registry_and_file_cleanup": true,
+    "removed_owned_files_bytes": 21323349,
+    "project_sqlite_free_pages_bytes_available_for_reuse": 9471463424,
+    "project_sqlite_file_not_compacted": true,
+    "vacuum_setting_restored": true,
+    "initial_cleanup_issue": "Brightway deleted the rows but automatic whole-project VACUUM failed; completed metadata and owned-file cleanup with vacuum disabled only for this process operation.",
+    "elapsed_seconds": 3.7834185840329155
+  },
+  "next_actions": [
+    "Check native two-wheelers with the upstream verified sectors and finite LCI/export evidence. Preserve the explicitly logged IAM passenger-distance/vehicle-distance share approximation.",
+    "Resolve the20 unapproved correspondences in the first failing3.12 hydrogen-train cohort; verify six distinct geographic providers, then the normal complete rail update and consumer relinking.",
+    "Apply the same native-first audit to30 active car roles and20 active truck roles. Check class, fuel, units and ordinary shared energy/battery guards before admitting aliases.",
+    "Complete battery capacity basis and supply coverage, final-energy native carrier/heat filters, remaining applicable metals roles, and shared emissions engine integration.",
+    "Complete public/default regression, full19-sector combined qualification and representative export."
+  ],
+  "python_production_changes_in_this_batch": [
+    "premise/transport/transport.py: carry YAML source notes into comments; no calculation changes.",
+    "premise/database/background.py: add verified buses to the existing sector gate."
+  ],
+  "live_archive_freshness_checked": false,
+  "qualification_archive_snapshot": "20261110T030235Z-613ea498808a",
+  "commit_batch_size": 5
+}
