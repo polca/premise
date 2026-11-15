@@ -15,6 +15,54 @@ from premise.inventory.clic_omissions import REVIEW_PATH, prepare_approved_omiss
 DECISION = json.loads(REVIEW_PATH.read_text())["decisions"][0]
 
 
+@pytest.mark.parametrize("amount", [0.75, -0.75])
+@pytest.mark.parametrize("context", ["approved", "ecoinvent", "other owner"])
+def test_barium_screening_omission_is_scoped_signed_and_visible(amount, context):
+    decision = next(
+        d
+        for d in json.loads(REVIEW_PATH.read_text())["decisions"]
+        if d["id"] == "uvek-2026-barium-carbonate-feed-screening"
+    )
+    version = {
+        key: copy.deepcopy(decision[key])
+        for key in ("slug", "version_id", "semantic_version", "sha256")
+    }
+    version.update(activity_code="ceramic", background=decision["source"])
+    exchange = {
+        **copy.deepcopy(decision["exchange"]),
+        "amount": amount,
+        "uncertainty type": 3,
+        "loc": amount,
+        "scale": 0.1,
+    }
+    retained = {"name": "another input", "type": "technosphere", "amount": 0.3}
+    activity = {
+        **decision["activity"],
+        "code": "ceramic",
+        "unit": "kilogram",
+        "comment": "Original ceramic documentation.",
+        "exchanges": [exchange, retained],
+    }
+    target = copy.deepcopy(decision["target"])
+    if context == "ecoinvent":
+        target = copy.deepcopy(decision["source"])
+    elif context == "other owner":
+        activity["name"] = "another ceramic process"
+    before = copy.deepcopy(activity)
+    result, audits = prepare_approved_omissions([activity], [version], target)
+    assert activity == before
+    if context != "approved":
+        assert result == [before] and audits == []
+        return
+    assert result[0]["exchanges"] == [retained]
+    assert len(audits) == 1
+    assert audits[0]["details"]["source_exchange"] == exchange
+    assert audits[0]["details"]["screening_only"] is True
+    assert result[0]["comment"].startswith("Original ceramic documentation.")
+    assert "unsuitable for standalone" in result[0]["comment"]
+    assert f"Actual omitted quantity: {amount} kilogram" in result[0]["comment"]
+
+
 def fixture():
     row = {
         key: copy.deepcopy(DECISION[key])

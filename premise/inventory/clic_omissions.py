@@ -126,5 +126,9 @@ def prepare_approved_omissions(activities, versions, target):
                 if key in decision:
                     audit["details"][key] = copy.deepcopy(decision[key])
             audits.append(audit)
+            if decision.get("include_warning_in_comment", False):
+                activity["comment"] = (
+                    str(activity.get("comment") or "") + "\n" + audit["message"]
+                ).strip()
             del activity["exchanges"][index]
     return records, audits
