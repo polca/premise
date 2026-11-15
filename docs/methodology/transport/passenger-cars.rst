@@ -61,6 +61,12 @@ an inventory error. Residual NMVOC is not compared with parent NMHC, and missing
 THC aggregates are reported as unavailable checks. Use the source model's
 component inventory to investigate hot, cold-start and evaporation terms.
 
+Identical unavailable hydrocarbon scopes are summarized by vehicle family,
+powertrain and reference EURO class. Each warning reports the affected count
+and retains every activity and reason in ``actual.activity_decisions`` in the
+validation certificate. Different scopes and invalid-emission errors remain
+separate findings.
+
 Optional ``energy_intensity_aliases`` provide technology-specific final-energy
 intensities in MJ/vehicle-km. REMIND and REMIND-EU use these when available,
 with an efficiency index equal to intensity(2020) divided by intensity(year).

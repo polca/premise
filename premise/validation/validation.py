@@ -2429,6 +2429,7 @@ class TransportValidation(BaseDatasetValidator):
             )
         ]
 
+        scope_groups = defaultdict(list)
         for ds in relevant_ds:
             parts = ds["name"].split(", ")
             if len(parts) < 3:
@@ -2519,12 +2520,43 @@ class TransportValidation(BaseDatasetValidator):
                         pollutant,
                     )
             if unavailable:
-                self.log_issue(
-                    ds,
-                    "transport emission scope unavailable",
-                    "; ".join(sorted(unavailable))
-                    + ". No aggregate was synthesized; inventory preserved.",
+                scope_groups[
+                    (powertrain, euro_class, tuple(sorted(unavailable)))
+                ].append(
+                    {
+                        "activity": {
+                            field: ds.get(field)
+                            for field in (
+                                "name",
+                                "reference product",
+                                "location",
+                                "unit",
+                            )
+                        },
+                        "reason": "; ".join(sorted(unavailable))
+                        + ". No aggregate was synthesized; inventory preserved.",
+                    }
                 )
+        for (powertrain, euro_class, unavailable), decisions in scope_groups.items():
+            self.log_issue(
+                {"name": vehicle_name},
+                "transport emission scope unavailable",
+                f"Comparable hydrocarbon aggregates unavailable for {len(decisions)} "
+                f"{powertrain} activities, reference EURO class {euro_class}: "
+                + "; ".join(unavailable)
+                + ". Inventory preserved. See this issue's actual.activity_decisions "
+                "for all affected activities and reasons.",
+                checked_object_count=len(decisions),
+                expected="Comparable parent hydrocarbon aggregates",
+                actual={
+                    "vehicle_family": vehicle_name,
+                    "powertrain": powertrain,
+                    "euro_class": euro_class,
+                    "unavailable_scopes": unavailable,
+                    "affected_activity_count": len(decisions),
+                    "activity_decisions": decisions,
+                },
+            )
 
     def check_vehicle_efficiency(
         self,

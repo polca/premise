@@ -1,6 +1,7 @@
 """Transport plausibility diagnostics preserve inventories and pollutant identity."""
 
 from copy import deepcopy
+import json
 from types import SimpleNamespace
 
 import pytest
@@ -66,6 +67,81 @@ def run(obj, vehicle="car"):
     obj.check_pollutant_emissions(
         "transport, passenger car" if vehicle == "car" else "transport, freight, lorry"
     )
+
+
+def test_shared_hydrocarbon_gaps_keep_all_activity_decisions_after_serialization():
+    vehicles = [
+        dataset([air("NMVOC, non-methane volatile organic compounds", 1e-4)])
+        for _ in range(27)
+    ]
+    for index, ds in enumerate(vehicles):
+        ds["location"] = f"R{index}"
+    before = deepcopy(vehicles)
+    obj = validator(vehicles[0])
+    obj.database = vehicles
+    obj.regions = [ds["location"] for ds in vehicles]
+    obj.exhaust = {"gasoline": {"6.2": {"NMVOC": 1.0, "Hydrocarbon": 1.0}}}
+
+    run(obj)
+
+    (issue,) = obj.validation_issues
+    restored = v.ValidationIssue.from_dict(json.loads(json.dumps(issue.to_dict())))
+    assert restored.rule_id == "LEGACY.TRANSPORT_EMISSION_SCOPE_UNAVAILABLE"
+    assert restored.checked_object_count == 27
+    assert restored.actual["affected_activity_count"] == 27
+    assert {
+        d["activity"]["location"] for d in restored.actual["activity_decisions"]
+    } == set(obj.regions)
+    assert all(
+        "aggregate THC is not exported" in d["reason"]
+        for d in restored.actual["activity_decisions"]
+    )
+    assert len(obj.minor_issues_log) == 1
+    assert vehicles == before
+
+
+def test_different_hydrocarbon_scopes_classes_and_invalid_flows_stay_distinct():
+    vehicles = [
+        dataset([air("NMVOC, non-methane volatile organic compounds", 1e-4)]),
+        dataset(
+            [air("NMVOC, non-methane volatile organic compounds", 1e-4)],
+            euro="EURO-6ab",
+        ),
+        dataset(
+            [
+                air("NMVOC, non-methane volatile organic compounds", 1e-4),
+                air("Hydrocarbons", 1.0),
+            ]
+        ),
+        dataset([air("NMVOC, non-methane volatile organic compounds", -1.0)]),
+    ]
+    obj = validator(vehicles[0])
+    obj.database = vehicles
+    obj.exhaust = {
+        "gasoline": {code: {"NMVOC": 1.0, "Hydrocarbon": 1.0} for code in ("6", "6.2")}
+    }
+    before = deepcopy(vehicles)
+
+    run(obj)
+
+    scopes = [
+        i
+        for i in obj.validation_issues
+        if i.rule_id == "LEGACY.TRANSPORT_EMISSION_SCOPE_UNAVAILABLE"
+    ]
+    assert len(scopes) == 4
+    assert {i.actual["euro_class"] for i in scopes} == {"6", "6.2"}
+    assert {len(i.actual["unavailable_scopes"]) for i in scopes} == {1, 2}
+    assert any(
+        i.rule_id == "LEGACY.INVALID_TRANSPORT_EMISSION_AMOUNT"
+        and i.severity == "error"
+        for i in obj.validation_issues
+    )
+    assert any(
+        i.rule_id == "LEGACY.TRANSPORT_HOT_EMISSION_DIAGNOSTIC"
+        for i in obj.validation_issues
+    )
+    assert vehicles == before
 
 
 @pytest.mark.parametrize(

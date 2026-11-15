@@ -3,25 +3,19 @@ metadata:
     Reviewed unsuppressed validation-warning counts. A new rule or a count above
     the recorded value fails certification unless the exception is documented
     by a narrow version/system-model suppression.
-  validation_ruleset_version: 13
+  validation_ruleset_version: 14
 cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     review:
       date: '2026-11-15'
       source_commit: 85a0990683f589592b34f2a035f3773612a979cb
       method: >-
-        Full compact-backend no-write update of ecoinvent 3.12 cutoff with
-        encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
-        structured ruleset-13 certificate: zero errors and 210 unsuppressed
-        current warnings. The excluded First Solar Series 6 conversion uses
-        the 445 Wp FS-6445 rating over 2.47 square metres from the manufacturer's
-        October 2021 datasheet, page 2: 0.00018016194331983804 MW/m2. The CdTe
-        selection policy still masks Series models. The audited inventory's
-        amounts, provider identities and classifications are identical to the
-        preceding build, and all warning identities and counts are unchanged.
-        This corrects a latent conversion error without activating any Series 6
-        material overlays. The a-Si area correction and all existing source
-        preservation decisions remain in place.
+        Read-only replay of final car/truck exhaust checks on the preceding
+        ecoinvent 3.12 cutoff IMAGE SSP2-M 2050 no-write inventory. Identical
+        hydrocarbon coverage gaps are grouped by family, powertrain, EURO class
+        and unavailable scope. One summary retains all 27 activity decisions;
+        the expected current warning count is 184, with all other limits
+        unchanged. The source emissions remain preserved.
       limitations: >-
         Counts record existing methodological and data limitations for this
         case only. Warnings remain visible; new rules or increased counts fail.
@@ -61,8 +55,8 @@ cases:
       # Five warnings share the incomplete nickel-smelter copper co-product
       # boundary; 19 product-content/co-mining cases also remain unresolved.
       LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED: 24
-      # Residual NMVOC and absent THC totals cannot establish parent aggregates.
-      LEGACY.TRANSPORT_EMISSION_SCOPE_UNAVAILABLE: 27
+      # One summary retains all 27 activities with identical missing NMHC/THC scopes.
+      LEGACY.TRANSPORT_EMISSION_SCOPE_UNAVAILABLE: 1
       # Final post-GAINS car checks: 36 earlier diagnostics clear and 38 new
       # cases appear. Combined versus hot-only remains a heuristic screen;
       # cold-start/evaporation/deterioration remain unresolved.
