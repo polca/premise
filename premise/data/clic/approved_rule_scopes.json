@@ -282771,7 +282771,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "dca31e4f27fdc6a52b53548818a232624fb64ffa3d44318ebd58cbab3b381004"
+          "fingerprint": "da7c6ecf4b27daed0763663ff2b53c64c8796fd1b4d9c5f0b6ee5c950d01d7df"
         }
       ]
     },
@@ -295282,6 +295282,474 @@
             "system_model": "cutoff"
           },
           "fingerprint": "0f3403d61957bdcf09d7b433b81a7b9dea6d8458cfd3363784868c004c79d9db"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-7dd6b6497336da23",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_metals_38_native_services_review.json",
+      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
+      "inspection": {
+        "kind": "industrial_natural_gas_heat",
+        "source_witness": {
+          "identity": {
+            "name": "heat production, natural gas, at industrial furnace >100kW",
+            "reference product": "heat, district or industrial, natural gas",
+            "location": "RoW",
+            "unit": "megajoule"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "543c1cc98c8df1f74b774d07a9ed3f38f07281aa1c999809614c81514cf391ba",
+          "inventory_sha256": "c02456076e167262c3b28cc1ff679f73f22a065f3ed6f3fe5e5b4e03fcb79303",
+          "comment_sha256": "ee66a4ece224ce75040d71562dd00558da316a7b293293c1aa58685c65565bc8",
+          "nonproduction_exchange_count": 26
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Heat, natural gas, at industrial furnace 1MW",
+              "reference product": "Heat, natural gas, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "ecc0e6d7b597513548e48b939c38cb33430f8a120188d66af4d6ee1950a0ce52",
+            "inventory_sha256": "5ccd8c8ebfd7965c28c9f08d631ff76a8a7f690b8601ea01b53881204f9a9634",
+            "comment_sha256": "9d0cceaec87dd3858247fcb8006c7549aa7389ef5cc6601634a5c27b13e0e245",
+            "nonproduction_exchange_count": 1
+          },
+          "2026": {
+            "identity": {
+              "name": "Heat, natural gas, at industrial furnace 1MW",
+              "reference product": "Heat, natural gas, at industrial furnace 1MW",
+              "location": "CH",
+              "unit": "megajoule"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "40110a76f4ae408f06defd5cac022714b9ec54cafb10d6599749db009166d771",
+            "inventory_sha256": "72bda5cc7674594ecee5b7783b11b5a4432f6552efc4dfd7ad8b6ce99e6f551f",
+            "comment_sha256": "7a844551e1a3f0778c2fd8296dd12e28927987f6dda3e0d6b5b0f0f05294723f",
+            "nonproduction_exchange_count": 1
+          }
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Complete Swiss 1 MW industrial natural-gas heat per MJ replaces the RoW >100 kW production service. Native documentation states 95% lower-heating-value efficiency and excludes heat distribution. Preserve the complete furnace/fuel model; do not add district distribution or a guessed efficiency, capacity or calorific-value correction. Geography, furnace size, operating patterns, emissions and vintage differ.",
+        "Use the complete native service per signed source unit at factor +1. Preserve caller amounts, supported uncertainty, formulas and separate emissions. Source internal supply mix and its uncertainty are replaced by the complete native model; do not overlay source delivery, losses or infrastructure. No source/native score or stochastic equivalence is claimed; the score effect is unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "1816b3bfa62a290f9492d2338e221631c7a4baea7ce6a5c07d868b5acdfb58a3"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-c63ae5eb4e863136",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_metals_38_native_services_review.json",
+      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
+      "inspection": {
+        "kind": "national_high_voltage_grid",
+        "source_witness": {
+          "identity": {
+            "name": "market for electricity, high voltage",
+            "reference product": "electricity, high voltage",
+            "location": "AR",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "f518e740a1630c393b4a7cffef97e184764a71352b08a8fff9911891434e2192",
+          "inventory_sha256": "55078f94901eecee903343ae0768ae1fc99e65e1f1dd599505df3b4c6be76f5d",
+          "comment_sha256": "975c2f8b78e4b10a24af62dc73c4eac16e9edafb37c6d5ffe84563eaa4410e80",
+          "nonproduction_exchange_count": 1
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "AR",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "3d627a5eebfeaf9eea7a3ee6702395ce3d97417dd12a57f8e0ba41e5200140e2",
+            "inventory_sha256": "4afbe4a2e90012e0e71e902d0536f40aac29ec965c3dec79dddee5e2432fe2e4",
+            "comment_sha256": "7fe50835508d7bf1a6fb826633f542025b6f4dd48ba3239a6790ceef5e37a7ba",
+            "nonproduction_exchange_count": 6
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "AR",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "3492a8ce9f932601f759204c41f983bdd913958fc2bc528087210c1135b7d030",
+            "inventory_sha256": "62c75cc67ac94f906c4b9032af09a7599f5e0e942c39da8da36f5822fd220283",
+            "comment_sha256": "09ef823f2aabb8b27ca888eff991446c6f2535c4850706b3b181795c606123e1",
+            "nonproduction_exchange_count": 6
+          }
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Same-country high-voltage delivered kWh screening correspondence. Native grid and source grid have different generation/import mixes, reference years, losses, network and direct emissions. Keep native losses and infrastructure exactly once. Source Chinese subnational market grouping is replaced by the complete native national mix. Ordinary Premise regional electricity relinking remains applicable; this approval does not create an industrial-mix exception.",
+        "Use the complete native service per signed source unit at factor +1. Preserve caller amounts, supported uncertainty, formulas and separate emissions. Source internal supply mix and its uncertainty are replaced by the complete native model; do not overlay source delivery, losses or infrastructure. No source/native score or stochastic equivalence is claimed; the score effect is unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "afc810e21344d2385f545e440df9aa82c10e5359384ff853bcece466e5ad2c49"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-340c161226265e8b",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_metals_38_native_services_review.json",
+      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
+      "inspection": {
+        "kind": "national_high_voltage_grid",
+        "source_witness": {
+          "identity": {
+            "name": "market for electricity, high voltage",
+            "reference product": "electricity, high voltage",
+            "location": "CL",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "95e7c3b9e43dcc9f5bd19f5bd463d1f7cfb09b99f87eed0871681705dcc64148",
+          "inventory_sha256": "bb35b898c4babf77978fd926c488977013b1847122e2a9c2ff450d4da3c73ceb",
+          "comment_sha256": "4670d2db4365b6a78b59356f0d2a9c223b1ab2b60fbc1095e79e21221688d444",
+          "nonproduction_exchange_count": 1
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "CL",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "4e12de518e5bc159b42be44cb061d30d0aa1b483cbdc50bf25a4152f2df5c6a7",
+            "inventory_sha256": "86a2371d3f99c9f64521bd1f72e075f69f8db5d6478e95bb7ff7c5096c2792f8",
+            "comment_sha256": "7fe50835508d7bf1a6fb826633f542025b6f4dd48ba3239a6790ceef5e37a7ba",
+            "nonproduction_exchange_count": 6
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "CL",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1eaad0a23e308755fdbb6241ad6e58d9e9a41e5d718d9a3de90deb239579c836",
+            "inventory_sha256": "c3fe53ad9c69a6afdcdd405c84a830b669676e1383ed5154263b5bdb498db6c6",
+            "comment_sha256": "393d67af17f4eec04e846c63b943a08f9c34eb81ae95d951a510784a0f1a7b46",
+            "nonproduction_exchange_count": 6
+          }
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Same-country high-voltage delivered kWh screening correspondence. Native grid and source grid have different generation/import mixes, reference years, losses, network and direct emissions. Keep native losses and infrastructure exactly once. Source Chinese subnational market grouping is replaced by the complete native national mix. Ordinary Premise regional electricity relinking remains applicable; this approval does not create an industrial-mix exception.",
+        "Use the complete native service per signed source unit at factor +1. Preserve caller amounts, supported uncertainty, formulas and separate emissions. Source internal supply mix and its uncertainty are replaced by the complete native model; do not overlay source delivery, losses or infrastructure. No source/native score or stochastic equivalence is claimed; the score effect is unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "880e4ec2a8b62a49a8b1728e4ca4ed815acc010c2e923ff8008cd7c4fd255390"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-94e99d669f988a94",
+      "mapping_method": "reviewed_complete_kerosene_delivery_39",
+      "review_path": "export/uvek_metals_38_native_services_review.json",
+      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
+      "inspection": {
+        "kind": "delivered_petroleum_kerosene",
+        "source_witness": {
+          "identity": {
+            "name": "market for kerosene",
+            "reference product": "kerosene",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "bbf8ef63a5e79be4eb70ed66cb87b6539b5077772b9c5ae16850498b839c775e",
+          "inventory_sha256": "23d545aa9733237c83dc6e7fc414207cbc7198237db3615d16a89da32420dabd",
+          "comment_sha256": "99044cd39db65cdcde96f28d968e1890d4afa0f8ff9c2b971bf78da55ad7bf7f",
+          "nonproduction_exchange_count": 26
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Kerosene, at regional storage",
+              "reference product": "Kerosene, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "4a67acf3178412ef1a2a9db504de43bbe09a867349c426729f09ca79acc6e386",
+            "inventory_sha256": "2d56d41b8634131d5ba7235d28195867223a667b755b6ee0c364aefa07507323",
+            "comment_sha256": "b6146e99bfcbd646a3c1ca34507379adaadf691f099fb068ba4245ddf3fcaa6f",
+            "nonproduction_exchange_count": 15
+          },
+          "2026": {
+            "identity": {
+              "name": "Kerosene, at regional storage",
+              "reference product": "Kerosene, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "9ea3170b080a013943762bd51b9251d585f290f38bb669b30fc563c8c559cbcb",
+            "inventory_sha256": "a946c40d4030f00aadbf162ef2e67885721ef9e58de01c953ff15d83939df22b",
+            "comment_sha256": "3274dd0d6e3545aaba4f20d8711d265d38dd3da86af54415aed1c6c4803d2b94",
+            "nonproduction_exchange_count": 15
+          }
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Complete European petroleum kerosene at regional storage replaces RoW delivered kerosene per kg. The source documents distribution to the final consumer; native storage includes refinery supply, delivery, storage, evaporation and effluent treatment. Geography, refinery mix, losses, specification, energy use, emissions and vintage differ. Do not substitute refinery-only output, add source freight or infer energy/carbon specification equivalence.",
+        "Use the complete native service per signed source unit at factor +1. Preserve caller amounts, supported uncertainty, formulas and separate emissions. Source internal supply mix and its uncertainty are replaced by the complete native model; do not overlay source delivery, losses or infrastructure. No source/native score or stochastic equivalence is claimed; the score effect is unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "36716256011f8803bae23919940be306ce35bd862e0a62db21cb9707a17d305f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-6b465f371713f763",
+      "mapping_method": "followup_review",
+      "review_path": "export/uvek_metals_38_native_services_review.json",
+      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
+      "inspection": {
+        "kind": "dry_bulk_ocean_freight",
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, sea, bulk carrier for dry goods",
+            "reference product": "transport, freight, sea, bulk carrier for dry goods",
+            "location": "GLO",
+            "unit": "ton kilometer"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "1c52da23e39e136e28a2a0aa2cf8504c2133d108a89ec940912bb5574c5b8f45",
+          "inventory_sha256": "d2da2839bd33d60d89eb15a6c2a51dcf60d9074a2d7a09b8446ce7ac2afcdc57",
+          "comment_sha256": "9c216be602c71c69f915f0e2edf5141d6be8c7c0df57bf004398d8c844d64d59",
+          "nonproduction_exchange_count": 1
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "55cce11708a2bd60c45954324ebdc68b573da7a2ba0a40e3657d33f6c603debd",
+            "inventory_sha256": "6475cc133be191701b945110383c936c9085720fcaffbea3fd240fa5e2c6689c",
+            "comment_sha256": "7b5b5229f3191efed2bc272aedf0d8382e3069252c67ac49a2601ed0a0b0a9b0",
+            "nonproduction_exchange_count": 35
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, transoceanic freight ship",
+              "reference product": "Transport, transoceanic freight ship",
+              "location": "OCE",
+              "unit": "ton kilometer"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "c5c5e44ca4b45cb814d138ae27e9ff2c0a1ff86a332b987022f1cf221b6a7ab6",
+            "inventory_sha256": "3b1a87f0abc6b812f6a6fbb4a189dc0bc7d555206da659d383fc79b1079df505",
+            "comment_sha256": "ca255165941b37f4748e890bff4eb8d572db44b38cb9466c7ff9fb7f5c1d0463",
+            "nonproduction_exchange_count": 36
+          }
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Complete native ocean freight per tonne-km is a screening proxy for global dry-bulk freight. The source describes a 50000-dwt bulk carrier; native allocation describes 75148 dwt and includes vessel, two ports, operation, maintenance and disposal. Vessel type/capacity, throughput, route, load/empty-trip treatment, fuel, emissions and vintage differ. Do not add a second ship or port, or invent a deadweight, distance, fuel or efficiency multiplier.",
+        "Use the complete native service per signed source unit at factor +1. Preserve caller amounts, supported uncertainty, formulas and separate emissions. Source internal supply mix and its uncertainty are replaced by the complete native model; do not overlay source delivery, losses or infrastructure. No source/native score or stochastic equivalence is claimed; the score effect is unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "54f10a053e6cb31867a51e4e7399b84fc89dd38f32699123f8a2ee54482cf7b7"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-740fb596590b99e4",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_metals_38_native_services_review.json",
+      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
+      "inspection": {
+        "kind": "national_high_voltage_grid",
+        "source_witness": {
+          "identity": {
+            "name": "market group for electricity, high voltage",
+            "reference product": "electricity, high voltage",
+            "location": "CN",
+            "unit": "kilowatt hour"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "721cbdca23f900b2cf74d759e6c7b574c3e364a3e5fa269a27c9e56874f63562",
+          "inventory_sha256": "c551840675ad23eeaf76a9148ccb50fe0a3b98309361fdbb6902296a42e23c6a",
+          "comment_sha256": "7f8fe1bd34abd24a374062203fec5a79e3af9f07e15a47a57cf2e28cd94f1375",
+          "nonproduction_exchange_count": 1
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1
+            ],
+            "metadata_sha256": "bd775b63eb564f53044d14aa4b30452b4217dfcc3746ac20c4a29d194d3002c7",
+            "inventory_sha256": "a143c8f5e1b2944abdd06efe9fedb31bece18af3babd2c614c28e65e9f3fc458",
+            "comment_sha256": "7fe50835508d7bf1a6fb826633f542025b6f4dd48ba3239a6790ceef5e37a7ba",
+            "nonproduction_exchange_count": 6
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, high voltage, at grid",
+              "reference product": "Electricity, high voltage, at grid",
+              "location": "CN",
+              "unit": "kilowatt hour"
+            },
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "555a8edb3293f935a29b627dae0415546c704fbba8b00563d6a9e3fe95ee394f",
+            "inventory_sha256": "e21f52058b1ee813b92e03709373405933401b2a8a19c874d834617299b81892",
+            "comment_sha256": "26359e94a38f86d1b0378c8275b03a171d85add4e99e699bd8a50c792801f227",
+            "nonproduction_exchange_count": 6
+          }
+        },
+        "conversion_factor": 1
+      },
+      "limitations": [
+        "Same-country high-voltage delivered kWh screening correspondence. Native grid and source grid have different generation/import mixes, reference years, losses, network and direct emissions. Keep native losses and infrastructure exactly once. Source Chinese subnational market grouping is replaced by the complete native national mix. Ordinary Premise regional electricity relinking remains applicable; this approval does not create an industrial-mix exception.",
+        "Use the complete native service per signed source unit at factor +1. Preserve caller amounts, supported uncertainty, formulas and separate emissions. Source internal supply mix and its uncertainty are replaced by the complete native model; do not overlay source delivery, losses or infrastructure. No source/native score or stochastic equivalence is claimed; the score effect is unquantified."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9fc8130214c52aafcd73209c4f10ac2230dcb2c349ee1066c8fd4d642cb1aae0"
         }
       ]
     }

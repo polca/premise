@@ -1,0 +1,122 @@
+{
+  "status": "six_complete_native_services_passed",
+  "new_brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "source_and_biosphere_metadata_unchanged": true,
+  "signed_LCI_solves": 12,
+  "source_records_unchanged": true,
+  "checks": [
+    {
+      "rule_id": "bp-7dd6b6497336da23",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    },
+    {
+      "rule_id": "bp-c63ae5eb4e863136",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    },
+    {
+      "rule_id": "bp-340c161226265e8b",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    },
+    {
+      "rule_id": "bp-94e99d669f988a94",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    },
+    {
+      "rule_id": "bp-6b465f371713f763",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    },
+    {
+      "rule_id": "bp-740fb596590b99e4",
+      "signed_caller_LCIs_finite_and_reverse": true,
+      "exact_complete_native_provider_resolved": true,
+      "caller_amount_uncertainty_formula_preserved": true
+    }
+  ],
+  "scope_limit": "Six complete native service correspondences only; not source/native score equivalence or metals-sector qualification.",
+  "brightpath_commit": "a22602c",
+  "review_path": "export/uvek_metals_38_native_services_review.json",
+  "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+  "brightpath_tests_passed": 49,
+  "premise_tests_passed": 23,
+  "first_source38_refusals_before": 16,
+  "first_source38_refusals_after": 10,
+  "full_metals_qualified": false,
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "freshness": "published archive snapshot",
+  "production_python_changes_for_this_group": [],
+  "clean_tracked_generation": {
+    "brightpath_commit": "a22602c78af038ef896ac800b533a733621eda82",
+    "clean_tracked_worktree": true,
+    "no_untracked_reference_catalog_inputs": true,
+    "generator_exit_code": 0,
+    "all_three_resources_match_committed_bytes": true,
+    "comparisons": [
+      {
+        "resource": "ecoinvent-to-uvek-2025.json",
+        "generated_sha256": "d3a5c2cd0b4853fdfc10419f3b183ff3c854bae766d015afb28096d3a4a63b94",
+        "committed_sha256": "d3a5c2cd0b4853fdfc10419f3b183ff3c854bae766d015afb28096d3a4a63b94",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 70199932
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "generated_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "committed_sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596319
+      },
+      {
+        "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "generated_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "committed_sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "bytes_match": true,
+        "semantic_json_match": true,
+        "generated_bytes": 18596725
+      }
+    ],
+    "runtime_python_changes": [],
+    "new_recipe_count": 0,
+    "removed_generated_output_bytes": 107392976,
+    "removed_owned_clean_worktree_file_bytes": 501923015
+  },
+  "installed_package_verification": {
+    "brightpath_commit": "a22602c78af038ef896ac800b533a733621eda82",
+    "clean_tracked_archive_build": true,
+    "wheel_sha256": "7564150103541bfa7847edff4eda49335ebec8e9f0912560791532185fd2c41a",
+    "private_environment_only": true,
+    "user_environment_modified": false,
+    "installed_Brightpath_checks_passed": 31,
+    "installed_Premise_checks_passed": 23,
+    "installed_review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+    "source_and_installed_forward_resources_match": true,
+    "cleanup": [
+      {
+        "owned_directory": "clean-metals38-package-a22602c",
+        "bytes_removed": 952947805
+      },
+      {
+        "owned_directory": "metals38-package-wheel",
+        "bytes_removed": 44212827
+      },
+      {
+        "owned_directory": "metals38-installed-tests",
+        "bytes_removed": 27015
+      }
+    ],
+    "owned_package_temporary_bytes_removed": 997187647
+  }
+}

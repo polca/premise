@@ -1,0 +1,74 @@
+{
+  "source_activities": 11947,
+  "database_writes": 0,
+  "mapping_file": "premise/data/metals/activities_mapping.yml",
+  "cases": [
+    {
+      "family": "ecoinvent",
+      "missing_aliases": {},
+      "matched_records_by_role": {
+        "ICEV": 0,
+        "EV": 0,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 0,
+        "PEMFC": 0,
+        "SOFC - Y": 2,
+        "PEMEL": 26,
+        "AEL": 0,
+        "HTEL - Yttrium": 0,
+        "c-Si": 0,
+        "a-Si": 0,
+        "CIGS": 0,
+        "CdTe": 0,
+        "perovskite": 0,
+        "Parabolic Trough - PB": 0,
+        "CSP Tower - PB": 0,
+        "Nuclear": 0
+      }
+    },
+    {
+      "family": "uvek",
+      "missing_aliases": {
+        "activities_mapping.yml:uvek_aliases": [
+          "ICEV",
+          "EV",
+          "Wind-DDPM",
+          "Wind-Gearbox",
+          "PEMFC",
+          "SOFC - Y",
+          "PEMEL",
+          "AEL",
+          "HTEL - Yttrium",
+          "c-Si",
+          "a-Si",
+          "CIGS",
+          "CdTe",
+          "perovskite",
+          "Parabolic Trough - PB",
+          "CSP Tower - PB",
+          "Nuclear"
+        ]
+      },
+      "matched_records_by_role": {
+        "ICEV": 0,
+        "EV": 0,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 0,
+        "PEMFC": 0,
+        "SOFC - Y": 0,
+        "PEMEL": 0,
+        "AEL": 0,
+        "HTEL - Yttrium": 0,
+        "c-Si": 0,
+        "a-Si": 0,
+        "CIGS": 0,
+        "CdTe": 0,
+        "perovskite": 0,
+        "Parabolic Trough - PB": 0,
+        "CSP Tower - PB": 0,
+        "Nuclear": 0
+      }
+    }
+  ],
+  "interpretation": "The current UVEK mapping has no native aliases for any of the 17 metal-intensity technology roles. The existing ecoinvent filters only match 28 records across two roles; these matches are counts, not scientific qualification. Adding explicit native aliases and propagating the family through the shared sector remain required before claiming operational metals updates. No filter or sector code has been changed by this audit."
+}
