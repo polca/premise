@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable and cdr. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
+  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr and fuels. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
   "sectors": [
     {
       "sector": "biomass",
@@ -954,7 +954,7 @@
     },
     {
       "sector": "fuels",
-      "status": "combined_clean_diagnostic_export_verified_pending_full_role_coverage",
+      "status": "public_nine_sector_update_export_and_written_LCIs_verified",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -1056,20 +1056,19 @@
         ],
         "runtime_verified": false
       },
-      "blockers": [
-        {
-          "code": "public_scope_qualification",
-          "finding": "Clean six-sector update, exhaustive graph validation, export and twenty signed LCIs passed. Public fuels gate remains closed pending full role/consumer/emission-origin qualification through the standard public workflow."
-        },
-        {
-          "code": "remaining_role_and_origin_coverage",
-          "finding": "Native four-fuel path audit retains all11947 source codes and classifies4114 native consumers; upstream production/process paths, fixed grades and remaining eligible IAM fuel roles require explicit review. Unreached paths are not automatically missing mappings."
-        }
-      ],
+      "blockers": [],
       "decisions": [],
       "implementation_commits": [],
-      "tests": [],
-      "integration_exports": [],
+      "tests": [
+        {
+          "fuel_background": 337,
+          "cross_sector_validation": 147,
+          "written_signed_LCIs": 176
+        }
+      ],
+      "integration_exports": [
+        "BAFU:2026-REMIND-SSP2-NPi-2050-nine-fuels-20261115-124321"
+      ],
       "static_audit": {
         "callback": "_update_fuels",
         "module": "premise/fuels/base.py",
@@ -1107,9 +1106,14 @@
         "docs/development/uvek-additional-burner-verification.json",
         "docs/development/uvek-allocated-heat-carbon-verification.json",
         "docs/development/uvek-clean-six-sector-verification.json",
-        "docs/development/uvek-six-sector-native-consumer-path-audit.json"
+        "docs/development/uvek-six-sector-native-consumer-path-audit.json",
+        "docs/development/uvek-hydrogen-feedstock-unit-verification.json",
+        "docs/development/uvek-operating-fuel-origin-verification.json",
+        "docs/development/uvek-legacy-operating-fuel-origin-verification.json",
+        "docs/development/uvek-pem-carrier-classification-verification.json",
+        "docs/development/uvek-fuels-public-qualification.json"
       ],
-      "latest_coverage_note": "Clean committed checkout6c748d36: biomass/electricity/heat/cement/steel/fuels shared updates, exhaustive graph validation and Brightway export pass with15586datasets. Twenty signed finite LCIs cover five fuel markets in EUR/World. Twelve regional fossil gas components remain separate from mixed forwarding. Current660abe2fexact identity restriction preserves193actual export gas-carrier matches;343focused regressions pass. Native consumer-path audit retains all11947source codes and classifies4114consumers in four fuel families. This supersedes initial family-dispatch/runtime absence findings, not full sector qualification; remaining roles, origins and legitimate fixed-boundary cases still need review.",
+      "latest_coverage_note": "Normal public nine-sector update with default checkpoint persistence, exhaustive graph validation and Brightway export pass. All22positiveIAMfuelroles occur in the78principal written markets; all11947nativecodes retained;176signedwrittenLCIsfinite/reverse. Explicit source/process/loss-origin limitations are retained; no blanket industrial-carbon reclassification or LCIA equivalence is claimed.",
       "two_wheeler_operating_exhaust_origin_verification": "docs/development/uvek-two-wheeler-carbon-verification.json",
       "low_pressure_carrier_boundary_verification": "docs/development/uvek-low-pressure-carrier-boundary-verification.json",
       "historical_initial_audit_blockers": [
@@ -1133,6 +1137,22 @@
           "path": "premise/fuels/base.py",
           "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
         }
+      ],
+      "historical_prequalification_blockers": [
+        {
+          "code": "public_scope_qualification",
+          "finding": "Clean six-sector update, exhaustive graph validation, export and twenty signed LCIs passed. Public fuels gate remains closed pending full role/consumer/emission-origin qualification through the standard public workflow."
+        },
+        {
+          "code": "remaining_role_and_origin_coverage",
+          "finding": "Native four-fuel path audit retains all11947 source codes and classifies4114 native consumers; upstream production/process paths, fixed grades and remaining eligible IAM fuel roles require explicit review. Unreached paths are not automatically missing mappings."
+        }
+      ],
+      "qualification_limits": [
+        "Bounded operating-exhaust origin updates preserve recorded totals; broad industrial/feedstock CO2 pools and mixed auxiliary-carbon cases are not assigned wholly to a purchased fuel.",
+        "Native low-pressure gas and station loss-flow origins remain native; no measured loss multiplier or complete future-composition equivalence is claimed.",
+        "Fixed source-grade recipes, dedicated fossil supply boundaries, proxy inventories, source biosphere exclusions, vintage and allocation limitations remain explicit in the existing review records.",
+        "Finite LCI and linking checks do not establish source/native LCIA equivalence or uncertainty simulation."
       ]
     },
     {
@@ -3595,11 +3615,12 @@
     }
   ],
   "combined_default_run": {
-    "status": "unchanged_three_sector_default_verified_with_five_optional_sectors_qualified",
+    "status": "unchanged_three_sector_default_with_six_optional_sectors_qualified",
     "evidence": [
       "docs/development/uvek-biomass-verification.json",
       "docs/development/uvek-heat-public-verification.json",
-      "docs/development/uvek-cdr-qualification.json"
+      "docs/development/uvek-cdr-qualification.json",
+      "docs/development/uvek-fuels-public-qualification.json"
     ]
   },
   "packaged_resource_checks": {
@@ -3648,14 +3669,15 @@
       "steel",
       "mining",
       "renewable",
-      "cdr"
+      "cdr",
+      "fuels"
     ],
     "registered_sectors_including_electricity": 19,
-    "remaining_unqualified_sector_count": 11,
-    "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
+    "remaining_unqualified_sector_count": 10,
+    "latest_combined_export_evidence": "docs/development/uvek-fuels-public-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-battery-chemicals-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-pem-carrier-classification-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {

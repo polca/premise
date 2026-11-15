@@ -1,0 +1,817 @@
+{
+  "status": "public_nine_sector_update_export_and_written_checks_passed",
+  "database": "BAFU:2026-REMIND-SSP2-NPi-2050-nine-fuels-20261115-124321",
+  "activities": 16117,
+  "native_codes_retained": 11947,
+  "technosphere_destination_databases": {
+    "BAFU:2026-REMIND-SSP2-NPi-2050-nine-fuels-20261115-124321": 157336
+  },
+  "biosphere_destination_databases": {
+    "ecoinvent-3.10-biosphere": 322215
+  },
+  "active_fuel_roles_with_positive_written_market_components": [
+    "bioethanol, from sugar",
+    "bioethanol, from wood",
+    "diesel",
+    "diesel, synthetic, from coal",
+    "diesel, synthetic, from coal, with CCS",
+    "diesel, synthetic, from electrolysis",
+    "diesel, synthetic, from natural gas",
+    "diesel, synthetic, from wood",
+    "diesel, synthetic, from wood, with CCS",
+    "gasoline",
+    "hydrogen, from biomass",
+    "hydrogen, from biomass, with CCS",
+    "hydrogen, from coal, with CCS",
+    "hydrogen, from electrolysis, PEM",
+    "hydrogen, from natural gas",
+    "hydrogen, from natural gas, with CCS",
+    "kerosene",
+    "methane, synthetic",
+    "natural gas",
+    "petrol, synthetic, from coal",
+    "petrol, synthetic, from coal, with CCS",
+    "petrol, synthetic, from electrolysis"
+  ],
+  "canonical_fuel_market_counts": {
+    "market for natural gas, high pressure": 13,
+    "market for natural gas, low pressure": 13,
+    "market for diesel": 13,
+    "market for kerosene": 13,
+    "market for petrol": 13,
+    "market for hydrogen, gaseous, low pressure": 13
+  },
+  "fuel_market_regions": [
+    "CAZ",
+    "CHA",
+    "EUR",
+    "IND",
+    "JPN",
+    "LAM",
+    "MEA",
+    "NEU",
+    "OAS",
+    "REF",
+    "SSA",
+    "USA",
+    "World"
+  ],
+  "exported_EUR_PEM_electricity_kWh": 45.3,
+  "exported_EUR_SMR_initial_m3_equivalent": 4.369999999999999,
+  "separate_hydrogen_distribution_checks": [
+    {
+      "location": "SSA",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "IND",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "USA",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "MEA",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "CHA",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "LAM",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "JPN",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "EUR",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "OAS",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "REF",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "World",
+      "separate_distribution_inputs": 0
+    },
+    {
+      "location": "NEU",
+      "separate_distribution_inputs": 1
+    },
+    {
+      "location": "CAZ",
+      "separate_distribution_inputs": 1
+    }
+  ],
+  "written_functional_units_checked": 88,
+  "written_signed_LCI_solves": 176,
+  "checks": [
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "World",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "LAM",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "JPN",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "CAZ",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "CHA",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "REF",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "LAM",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "SSA",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "SSA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "MEA",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "MEA",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "OAS",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "IND",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "NEU",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "JPN",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "OAS",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "LAM",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "USA",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "CHA",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "SSA",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "World",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "EUR",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "World",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "World",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "OAS",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "NEU",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "JPN",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "REF",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "MEA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "USA",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "CHA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, low pressure",
+      "location": "CAZ",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "IND",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "IND",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "World",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for diesel",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "World",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "NEU",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for natural gas, high pressure",
+      "location": "EUR",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "REF",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for petrol",
+      "location": "USA",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for hydrogen, gaseous, low pressure",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "market for kerosene",
+      "location": "CAZ",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Hydrogen production, steam methane reforming of natural gas, 25 bar",
+      "location": "EUR",
+      "unit": "kilogram",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "xxx Operation, passenger car",
+      "location": "CH",
+      "unit": "kilometer",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "xxx Operation, van < 3,5t",
+      "location": "CH",
+      "unit": "kilometer",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, municipal waste collection, lorry 21t",
+      "location": "CH",
+      "unit": "ton kilometer",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Excavation, hydraulic digger, average",
+      "location": "CH",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Irrigating",
+      "location": "US",
+      "unit": "cubic meter",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Wood chipping, chipper, mobile, diesel, at forest road",
+      "location": "RER",
+      "unit": "hour",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, helicopter, twin-engine, LTO cycle",
+      "location": "CH",
+      "unit": "unit",
+      "both_signed_LCIs_finite_and_reverse": true
+    },
+    {
+      "name": "Transport, passenger helicopter, twin-engine",
+      "location": "CH",
+      "unit": "hour",
+      "both_signed_LCIs_finite_and_reverse": true
+    }
+  ],
+  "all_signed_LCIs_finite_and_reverse": true,
+  "source_database_metadata_unchanged": true,
+  "additional_database_writes_during_inspection": 0,
+  "elapsed_seconds": 40.90555679099634,
+  "source_native_LCIA_equivalence_claimed": false,
+  "date": "2026-11-15",
+  "qualified_context": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "scenario": "encrypted REMIND SSP2-NPi2050",
+  "sectors": [
+    "biomass",
+    "electricity",
+    "heat",
+    "cement",
+    "steel",
+    "mining",
+    "renewable",
+    "cdr",
+    "fuels"
+  ],
+  "public_scope_guard_bypassed": false,
+  "default_checkpoint_persistence": true,
+  "exhaustive_validation_errors": 0,
+  "unresolved_carbon_origin_records": 0,
+  "hydrogen_boiler_heat_factors": [
+    {
+      "technology": "heat, buildings, from hydrogen boiler",
+      "region": "CAZ",
+      "factor": 1.1044051629616083,
+      "factor basis": "supplier-weighted inventory energy inputs",
+      "conversion": "combustion",
+      "suppliers": [
+        [
+          "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+          "CAZ"
+        ]
+      ],
+      "fallback": "IAM region"
+    },
+    {
+      "technology": "heat, buildings, from hydrogen boiler",
+      "region": "CHA",
+      "factor": 1.1044051629616083,
+      "factor basis": "supplier-weighted inventory energy inputs",
+      "conversion": "combustion",
+      "suppliers": [
+        [
+          "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+          "CHA"
+        ]
+      ],
+      "fallback": "IAM region"
+    },
+    {
+      "technology": "heat, buildings, from hydrogen boiler",
+      "region": "IND",
+      "factor": 1.1044051629616083,
+      "factor basis": "supplier-weighted inventory energy inputs",
+      "conversion": "combustion",
+      "suppliers": [
+        [
+          "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+          "IND"
+        ]
+      ],
+      "fallback": "IAM region"
+    },
+    {
+      "technology": "heat, buildings, from hydrogen boiler",
+      "region": "LAM",
+      "factor": 1.1044051629616083,
+      "factor basis": "supplier-weighted inventory energy inputs",
+      "conversion": "combustion",
+      "suppliers": [
+        [
+          "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+          "LAM"
+        ]
+      ],
+      "fallback": "IAM region"
+    },
+    {
+      "technology": "heat, buildings, from hydrogen boiler",
+      "region": "MEA",
+      "factor": 1.1044051629616083,
+      "factor basis": "supplier-weighted inventory energy inputs",
+      "conversion": "combustion",
+      "suppliers": [
+        [
+          "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+          "MEA"
+        ]
+      ],
+      "fallback": "IAM region"
+    },
+    {
+      "technology": "heat, buildings, from hydrogen boiler",
+      "region": "OAS",
+      "factor": 1.1044051629616083,
+      "factor basis": "supplier-weighted inventory energy inputs",
+      "conversion": "combustion",
+      "suppliers": [
+        [
+          "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+          "OAS"
+        ]
+      ],
+      "fallback": "IAM region"
+    },
+    {
+      "technology": "heat, buildings, from hydrogen boiler",
+      "region": "REF",
+      "factor": 1.1044051629616083,
+      "factor basis": "supplier-weighted inventory energy inputs",
+      "conversion": "combustion",
+      "suppliers": [
+        [
+          "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+          "REF"
+        ]
+      ],
+      "fallback": "IAM region"
+    },
+    {
+      "technology": "heat, buildings, from hydrogen boiler",
+      "region": "USA",
+      "factor": 1.1044051629616083,
+      "factor basis": "supplier-weighted inventory energy inputs",
+      "conversion": "combustion",
+      "suppliers": [
+        [
+          "Heat, residential, by combustion of hydrogen using boiler, distributed by pipeline, produced by Electrolysis, PEM using electricity from grid",
+          "USA"
+        ]
+      ],
+      "fallback": "IAM region"
+    }
+  ],
+  "offline_tests": {
+    "fuel_and_background_regressions": 337,
+    "cross_sector_and_validation_regressions": 147,
+    "classification_fuel_heat_regressions_overlapping_other_suites": 189,
+    "maintainer_registry_test_requires_dev_on_PYTHONPATH": true,
+    "black": "passed",
+    "ruff": "passed",
+    "documentation_reference_check": "passed"
+  },
+  "additional_Python_for_public_qualification": "Three-line supported-sector list/message update only; shared transformation callbacks unchanged.",
+  "new_export_databases": 1,
+  "additional_database_writes_during_written_inspection": 0,
+  "qualified_sector_count": 9,
+  "remaining_unqualified_sector_count": 10,
+  "full_licensed_ecoinvent_process_suite": "Not run; synthetic ecoinvent/shared regressions and real installed BAFU workflow are separate evidence.",
+  "full_goal_complete": false,
+  "limitations": [
+    "Bounded operating-exhaust origin updates preserve recorded totals; broad industrial/feedstock CO2 pools and mixed auxiliary-carbon cases are not assigned wholly to a purchased fuel.",
+    "Native low-pressure gas and station loss-flow origins remain native; no measured loss multiplier or complete future-composition equivalence is claimed.",
+    "Fixed source-grade recipes, dedicated fossil supply boundaries, proxy inventories, source biosphere exclusions, vintage and allocation limitations remain explicit in the existing review records.",
+    "Finite LCI and linking checks do not establish source/native LCIA equivalence or uncertainty simulation."
+  ],
+  "private_workflow_receipt_sha256": "1481e663260cae46d731c7786dfdf0bd9d74cbd275efac9ba7aa65ea8d940065"
+}

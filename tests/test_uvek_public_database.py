@@ -13,8 +13,8 @@ def test_public_update_refuses_unverified_sector_before_mutation():
     owner.prepare_inventories = Mock(
         side_effect=AssertionError("Unexpected preparation")
     )
-    with pytest.raises(ValueError, match="unsupported sectors.*steel"):
-        owner.update("steel")
+    with pytest.raises(ValueError, match="unsupported sectors.*battery"):
+        owner.update("battery")
     owner.prepare_inventories.assert_not_called()
 
 

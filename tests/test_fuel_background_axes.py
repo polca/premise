@@ -123,7 +123,6 @@ def test_fuel_dispatch_forwards_axes_before_preparation(monkeypatch, family):
     from unittest.mock import Mock
 
     from premise import NewDatabase
-    from premise.database import background
 
     owner = object.__new__(NewDatabase)
     owner.source_family = family
@@ -135,8 +134,7 @@ def test_fuel_dispatch_forwards_axes_before_preparation(monkeypatch, family):
     owner.prepare_inventories = Mock(
         side_effect=RuntimeError("stop before preparation")
     )
-    # Inspect registration only; this does not qualify or open the public fuel gate.
-    monkeypatch.setattr(background, "validate_uvek_scope", lambda sectors: [sectors])
+    # Use the public support guard and stop before source preparation.
     with pytest.raises(RuntimeError, match="stop before preparation"):
         owner.update("fuels")
     expected = (owner.version, "cutoff")
@@ -146,7 +144,7 @@ def test_fuel_dispatch_forwards_axes_before_preparation(monkeypatch, family):
     owner.prepare_inventories.assert_called_once_with(["fuels"])
 
 
-def test_public_fuels_gate_remains_closed_until_qualified():
+def test_public_gate_still_refuses_unverified_battery_before_preparation():
     from unittest.mock import Mock
 
     from premise import NewDatabase
@@ -154,6 +152,6 @@ def test_public_fuels_gate_remains_closed_until_qualified():
     owner = object.__new__(NewDatabase)
     owner.source_family = "uvek"
     owner.prepare_inventories = Mock()
-    with pytest.raises(ValueError, match="unsupported sectors.*fuels"):
-        owner.update("fuels")
+    with pytest.raises(ValueError, match="unsupported sectors.*battery"):
+        owner.update("battery")
     owner.prepare_inventories.assert_not_called()
