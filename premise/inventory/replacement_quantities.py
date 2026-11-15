@@ -1,6 +1,7 @@
-"""Translate reviewed quantity lookups before the shared workbook preparation."""
+"""Prepare reviewed native proxies and quantity lookups for owned workbooks."""
 
 import copy
+import math
 import warnings
 from pathlib import Path
 
@@ -8,6 +9,7 @@ import yaml
 
 from .clic_archive import ClicInventoryError, activity_identity, content_hash
 from .inventory_imports import BaseInventoryImport
+from ..core.utils import rescale_exchange
 
 REVIEW_PATH = (
     Path(__file__).resolve().parents[1]
@@ -15,6 +17,7 @@ REVIEW_PATH = (
 )
 NATIVE_INPUT = "_premise_prepared_native_input"
 NATIVE_BIOSPHERE = "_premise_prepared_native_biosphere"
+TEMPLATE_PATH = REVIEW_PATH.with_name("native_process_templates.yaml")
 
 
 def _selector(edge):
@@ -88,6 +91,139 @@ def _reference_supply(record, edge, slot, slots, donor):
     return result
 
 
+def _prepare_process_templates(records, database, background, target):
+    """Apply explicit whole-process proxy decisions before background migration.
+
+    These are known, allocated foreground inventories, not missing-quantity
+    placeholders. Keep their reviews separate from the placeholder filler and
+    retain the replaced source exchanges in the owned provenance.
+    """
+    review = yaml.safe_load(TEMPLATE_PATH.read_text())
+    if review.get("schema_version") != 1:
+        raise ClicInventoryError("Unsupported native process-template review schema.")
+    notes = []
+    for record in records:
+        provenance = record["inventory provenance"]
+        recipes = [
+            r
+            for r in review["recipes"]
+            if r["source"] == background
+            and r["target"] == target
+            and r["file"] == provenance.get("file")
+            and r["activity"] == list(activity_identity(record))
+        ]
+        if not recipes:
+            continue
+        if len(recipes) != 1:
+            raise ClicInventoryError("Ambiguous native process-template decision.")
+        recipe = recipes[0]
+        if provenance.get("sha256") != recipe["workbook_sha256"]:
+            raise ClicInventoryError(
+                "Native process-template scaling needs review for the changed workbook."
+            )
+        digest = content_hash(recipe)
+        applied = provenance.get("native process template")
+        if applied:
+            if applied["review_digest"] != digest:
+                raise ClicInventoryError("Native process-template review changed.")
+            continue
+        donors = [a for a in database if list(activity_identity(a)) == recipe["donor"]]
+        if len(donors) != 1:
+            raise ClicInventoryError(
+                "Missing or ambiguous native process-template donor."
+            )
+        donor = donors[0]
+        production = [e for e in record["exchanges"] if e["type"] == "production"]
+        donor_production = [e for e in donor["exchanges"] if e["type"] == "production"]
+        factors = recipe["factors"]
+        if (
+            not recipe["limitations"]
+            or donor.get("clic provenance")
+            or donor.get("brightpath_conversion")
+            or record["unit"] != donor["unit"]
+            or len(production) != 1
+            or len(donor_production) != 1
+            or production[0]["amount"] != 1
+            or donor_production[0]["amount"] != 1
+            or production[0].get("unit", record["unit"]) != record["unit"]
+            or donor_production[0].get("unit", donor["unit"]) != donor["unit"]
+            or set(factors) != {"technosphere", "biosphere"}
+            or any(not math.isfinite(v) or v <= 0 for v in factors.values())
+            or any(e.get("formula") for e in record["exchanges"])
+            or NATIVE_BIOSPHERE in record
+        ):
+            raise ClicInventoryError(
+                "Invalid native process-template reference or scope."
+            )
+        retained = []
+        for slot in recipe["retain_source_biosphere"]:
+            matches = [e for e in record["exchanges"] if _selector(e) == slot["source"]]
+            if len(matches) != 1 or matches[0]["amount"] != slot["amount"]:
+                raise ClicInventoryError(
+                    "Native process-template resource scope changed."
+                )
+            retained.append(copy.deepcopy(matches[0]))
+        edges, held, excluded = [], [], []
+        for raw in donor["exchanges"]:
+            if raw["type"] == "production":
+                continue
+            if raw["type"] not in factors or raw.get("formula"):
+                raise ClicInventoryError(
+                    "Unsupported native process-template exchange."
+                )
+            if _selector(raw) in recipe["exclude_donor_biosphere"]:
+                excluded.append(copy.deepcopy(raw))
+                continue
+            if raw["type"] == "biosphere" and any(
+                _selector(raw) == _selector(e) for e in retained
+            ):
+                raise ClicInventoryError(
+                    "Native process-template repeats a source resource."
+                )
+            edge = copy.deepcopy(raw)
+            edge.pop("output", None)
+            rescale_exchange(edge, factors[edge["type"]], remove_uncertainty=False)
+            if edge["type"] == "technosphere":
+                edge[NATIVE_INPUT] = True
+                edges.append(edge)
+            else:
+                held.append(edge)
+        if sorted(map(content_hash, map(_selector, excluded))) != sorted(
+            map(content_hash, recipe["exclude_donor_biosphere"])
+        ):
+            raise ClicInventoryError("Native process-template exclusion scope changed.")
+        audit = {
+            "decision": recipe["id"],
+            "review_digest": digest,
+            "source": copy.deepcopy(background),
+            "target": copy.deepcopy(target),
+            "donor": recipe["donor"],
+            "factors": factors,
+            "source_exchanges_replaced": copy.deepcopy(record["exchanges"]),
+            "donor_exchanges_excluded": excluded,
+            "source_resources_retained": retained,
+            "limitations": recipe["limitations"],
+        }
+        record["exchanges"] = production + edges + retained
+        record[NATIVE_BIOSPHERE] = held
+        provenance["native process template"] = audit
+        notes.append(
+            {
+                "code": "clic.retained_native_process_template",
+                "severity": "warning",
+                "activity": record["name"],
+                **copy.deepcopy(audit),
+            }
+        )
+        warnings.warn(
+            f"Reviewed native process proxy for {activity_identity(record)!r}: "
+            + " ".join(recipe["limitations"]),
+            UserWarning,
+            stacklevel=3,
+        )
+    return notes
+
+
 def prepare_replacement_quantities(records, database, background, target):
     """Fill owned placeholders with explicitly reviewed native donor inputs.
 
@@ -95,12 +231,14 @@ def prepare_replacement_quantities(records, database, background, target):
     become boundary anchors during migration; native elementary flows are held
     separately until source-profile migration finishes. Never migrate an
     unknown source quantity as though it were a measured physical zero.
+    Separately reviewed whole-process proxies replace known allocated records;
+    they do not relax the unknown-quantity placeholder guards.
     """
     review = yaml.safe_load(REVIEW_PATH.read_text())
     if review.get("schema_version") != 1:
         raise ClicInventoryError("Unsupported native replacement review schema.")
     pending = []
-    diagnostics = []
+    diagnostics = _prepare_process_templates(records, database, background, target)
     for record in records:
         placeholders = [
             edge

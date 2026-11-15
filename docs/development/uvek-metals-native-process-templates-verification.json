@@ -1,0 +1,593 @@
+{
+  "review_resource": "premise/data/utils/import/native_process_templates.yaml",
+  "review_sha256": "8c377b1592972116e76f6176d1c5be41585980e92b33d904c47d091be5920f59",
+  "records": [
+    {
+      "id": "uvek-2026-ruthenium-za-native-allocated-template",
+      "activity": [
+        "platinum group metal, extraction and refinery operations",
+        "ruthenium",
+        "ZA",
+        "kilogram"
+      ],
+      "source": {
+        "technosphere": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "donor": [
+        "Platinum, primary, at refinery",
+        "Platinum, primary, at refinery",
+        "ZA",
+        "kilogram"
+      ],
+      "factors": {
+        "technosphere": 0.44653047651577316,
+        "biosphere": 0.5158944340327865
+      },
+      "evidence": {
+        "source_parent": {
+          "name": "platinum group metal, extraction and refinery operations",
+          "reference product": "platinum",
+          "location": "ZA",
+          "unit": "kilogram",
+          "code": "7b3bd318ca92108334f86431cf0f24d9"
+        },
+        "source_parent_technosphere_coordinates_verified": 8,
+        "source_parent_nonmetal_biosphere_coordinates_verified": 54,
+        "source_parent_common_nonmetal_coordinates_constant_scaled": true,
+        "donor_metadata_sha256": "c56202859dad27428c97f62ae695931190ac61b04aa7fa0504a70f6aa62c9f22",
+        "donor_inventory_sha256": "dafda8307411f6c4978476dea40368e9d66b3411ac4f90e4db08170456f1ed6b",
+        "basis": "Separate source-observed technosphere and nonmetal-biosphere factors. The source foreground retains only its own-metal resource; replace the donor direct Platinum resource, not a copper-concentrate intermediary."
+      }
+    },
+    {
+      "id": "uvek-2026-ruthenium-ru-native-allocated-template",
+      "activity": [
+        "platinum group metal, extraction and refinery operations",
+        "ruthenium",
+        "RU",
+        "kilogram"
+      ],
+      "source": {
+        "technosphere": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "donor": [
+        "Platinum, primary, at refinery",
+        "Platinum, primary, at refinery",
+        "RU",
+        "kilogram"
+      ],
+      "factors": {
+        "technosphere": 2.126631267200306,
+        "biosphere": 2.126631267200306
+      },
+      "evidence": {
+        "source_parent": {
+          "name": "platinum group metal mine operation, ore with high palladium content",
+          "reference product": "platinum",
+          "location": "RU",
+          "unit": "kilogram",
+          "code": "35424445a08517926faeca24a4cad77f"
+        },
+        "source_parent_technosphere_coordinates_verified": 14,
+        "source_parent_nonmetal_biosphere_coordinates_verified": 54,
+        "source_parent_common_nonmetal_coordinates_constant_scaled": true,
+        "donor_metadata_sha256": "b1b5deb4936d1baff3fbb574263448e3973f46c7090f385eabddca5523d2e48a",
+        "donor_inventory_sha256": "27a22dd7650cb0b3653ea2f0d7c8a6e7791ca4b90ede912163f9067b65455034",
+        "basis": "Separate source-observed technosphere and nonmetal-biosphere factors. The source foreground retains only its own-metal resource; replace the donor direct Platinum resource, not a copper-concentrate intermediary."
+      }
+    },
+    {
+      "id": "uvek-2026-iridium-ru-native-allocated-template",
+      "activity": [
+        "platinum group metal, extraction and refinery operations",
+        "iridium",
+        "RU",
+        "kilogram"
+      ],
+      "source": {
+        "technosphere": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.8"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "donor": [
+        "Platinum, primary, at refinery",
+        "Platinum, primary, at refinery",
+        "RU",
+        "kilogram"
+      ],
+      "factors": {
+        "technosphere": 20.06816779706278,
+        "biosphere": 20.06816779706278
+      },
+      "evidence": {
+        "source_parent": {
+          "name": "platinum group metal mine operation, ore with high palladium content",
+          "reference product": "platinum",
+          "location": "RU",
+          "unit": "kilogram",
+          "code": "35424445a08517926faeca24a4cad77f"
+        },
+        "source_parent_technosphere_coordinates_verified": 14,
+        "source_parent_nonmetal_biosphere_coordinates_verified": 54,
+        "source_parent_common_nonmetal_coordinates_constant_scaled": true,
+        "donor_metadata_sha256": "b1b5deb4936d1baff3fbb574263448e3973f46c7090f385eabddca5523d2e48a",
+        "donor_inventory_sha256": "27a22dd7650cb0b3653ea2f0d7c8a6e7791ca4b90ede912163f9067b65455034",
+        "basis": "Separate source-observed technosphere and nonmetal-biosphere factors. The source foreground retains only its own-metal resource; replace the donor direct Platinum resource, not a copper-concentrate intermediary."
+      }
+    },
+    {
+      "id": "uvek-2026-germanium-glo-native-allocated-template",
+      "activity": [
+        "zinc mine operation",
+        "germanium, concentrate",
+        "GLO",
+        "kilogram"
+      ],
+      "source": {
+        "technosphere": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "donor": [
+        "Zinc, from combined metal production, at beneficiation",
+        "Zinc, from combined metal production, at beneficiation",
+        "SE",
+        "kilogram"
+      ],
+      "factors": {
+        "technosphere": 1026.0869565217379,
+        "biosphere": 1026.0869565217379
+      },
+      "evidence": {
+        "source_parent": {
+          "name": "zinc mine operation",
+          "reference product": "zinc concentrate",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_parent_technosphere_coordinates_verified": 127,
+        "source_parent_biosphere_coordinates_verified": 134,
+        "source_parent_technosphere_factor": 1739.1304347826065,
+        "source_parent_metal_content": 0.59,
+        "source_parent_mismatches_except_own_resource": 0,
+        "donor_metadata_sha256": "210b3c84874e5b82f12a2a72b6f0f9e41de54a855bfa93f9d517313c0d28742c",
+        "donor_inventory_sha256": "701660e2e5041fb85aaa70fe839f94eb7059dea650d65c831805ea9b1143532f",
+        "basis": "The source parent explicitly describes 59% zinc by mass. Native documentation explicitly references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply the observed source-parent factor by that documented source metal content, not by an inferred concentrate density or smelter yield."
+      }
+    },
+    {
+      "id": "uvek-2026-rhenium-cl-native-allocated-template",
+      "activity": [
+        "copper mine operation and beneficiation, sulfide ore",
+        "rhenium",
+        "CL",
+        "kilogram"
+      ],
+      "source": {
+        "technosphere": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "donor": [
+        "Copper, from combined metal production, at beneficiation",
+        "Copper, from combined metal production, at beneficiation",
+        "SE",
+        "kilogram"
+      ],
+      "factors": {
+        "technosphere": 524.5657297716014,
+        "biosphere": 524.5657297716014
+      },
+      "evidence": {
+        "source_parent": {
+          "name": "copper mine operation and beneficiation, sulfide ore",
+          "reference product": "copper concentrate, sulfide ore",
+          "location": "CL",
+          "unit": "kilogram"
+        },
+        "source_parent_technosphere_coordinates_verified": 23,
+        "source_parent_biosphere_coordinates_verified": 60,
+        "source_parent_technosphere_factor": 1770.3872081390527,
+        "source_parent_metal_content": 0.2963,
+        "source_parent_mismatches_except_own_resource": 0,
+        "donor_metadata_sha256": "904da59b7330a44bdf951588810bc32065635ed9c753c87d96a820fb70acc99a",
+        "donor_inventory_sha256": "67f063b76f94251cc855c3ff8afa4134b08c90fc41638e86f0f6ba6220bad388",
+        "basis": "The source parent explicitly describes 29.63% copper by mass. Native documentation explicitly references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply the observed source-parent factor by that documented source metal content, not by an inferred concentrate density or smelter yield."
+      }
+    },
+    {
+      "id": "uvek-2026-rhenium-cn-native-allocated-template",
+      "activity": [
+        "copper mine operation and beneficiation, sulfide ore",
+        "rhenium",
+        "CN",
+        "kilogram"
+      ],
+      "source": {
+        "technosphere": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "donor": [
+        "Copper, from combined metal production, at beneficiation",
+        "Copper, from combined metal production, at beneficiation",
+        "SE",
+        "kilogram"
+      ],
+      "factors": {
+        "technosphere": 424.48953020856806,
+        "biosphere": 424.48953020856806
+      },
+      "evidence": {
+        "source_parent": {
+          "name": "copper mine operation and beneficiation, sulfide ore",
+          "reference product": "copper concentrate, sulfide ore",
+          "location": "CN",
+          "unit": "kilogram"
+        },
+        "source_parent_technosphere_coordinates_verified": 23,
+        "source_parent_biosphere_coordinates_verified": 61,
+        "source_parent_technosphere_factor": 1432.6342565257105,
+        "source_parent_metal_content": 0.2963,
+        "source_parent_mismatches_except_own_resource": 0,
+        "donor_metadata_sha256": "904da59b7330a44bdf951588810bc32065635ed9c753c87d96a820fb70acc99a",
+        "donor_inventory_sha256": "67f063b76f94251cc855c3ff8afa4134b08c90fc41638e86f0f6ba6220bad388",
+        "basis": "The source parent explicitly describes 29.63% copper by mass. Native documentation explicitly references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply the observed source-parent factor by that documented source metal content, not by an inferred concentrate density or smelter yield."
+      }
+    },
+    {
+      "id": "uvek-2026-rhenium-us-native-allocated-template",
+      "activity": [
+        "copper mine operation and beneficiation, sulfide ore",
+        "rhenium",
+        "US",
+        "kilogram"
+      ],
+      "source": {
+        "technosphere": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.9"
+        }
+      },
+      "target": {
+        "technosphere": {
+          "family": "uvek",
+          "version": "2026",
+          "system_model": "cutoff"
+        },
+        "biosphere": {
+          "family": "ecoinvent",
+          "version": "3.10"
+        }
+      },
+      "donor": [
+        "Copper, from combined metal production, at beneficiation",
+        "Copper, from combined metal production, at beneficiation",
+        "SE",
+        "kilogram"
+      ],
+      "factors": {
+        "technosphere": 518.4257819457644,
+        "biosphere": 518.4257819457644
+      },
+      "evidence": {
+        "source_parent": {
+          "name": "copper mine operation and beneficiation, sulfide ore",
+          "reference product": "copper concentrate, sulfide ore",
+          "location": "US",
+          "unit": "kilogram"
+        },
+        "source_parent_technosphere_coordinates_verified": 23,
+        "source_parent_biosphere_coordinates_verified": 61,
+        "source_parent_technosphere_factor": 1749.6651432526642,
+        "source_parent_metal_content": 0.2963,
+        "source_parent_mismatches_except_own_resource": 0,
+        "donor_metadata_sha256": "904da59b7330a44bdf951588810bc32065635ed9c753c87d96a820fb70acc99a",
+        "donor_inventory_sha256": "67f063b76f94251cc855c3ff8afa4134b08c90fc41638e86f0f6ba6220bad388",
+        "basis": "The source parent explicitly describes 29.63% copper by mass. Native documentation explicitly references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply the observed source-parent factor by that documented source metal content, not by an inferred concentrate density or smelter yield."
+      }
+    }
+  ],
+  "focused_tests_passed": 37,
+  "real_workflow": {
+    "inventory_preparation_passed": true,
+    "status": "failed",
+    "failed_stage": "sector update",
+    "exception_type": "NoResults",
+    "message": "",
+    "sector": "metals",
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "freshness": "snapshot",
+    "validation_disabled": false,
+    "export_performed": false,
+    "elapsed_seconds": 52.369708791025914
+  },
+  "in_memory_LCI": {
+    "source": "BAFU:2026-reimported",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "transient_nodes": 7,
+    "signed_foreground_LCI_solves": 14,
+    "independent_native_reference_LCI_solves": 7,
+    "new_brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "source_and_biosphere_metadata_unchanged": true,
+    "database_registry_unchanged": true,
+    "checks": [
+      {
+        "decision": "uvek-2026-ruthenium-za-native-allocated-template",
+        "exact_scaled_native_technosphere_and_biosphere_vectors_match": true,
+        "owned_resource_retained_at_one_kg": true,
+        "signed_LCIs_finite_and_reverse": true,
+        "independent_native_reference_comparison_passed": true,
+        "max_abs_refined_difference": 2.842170943040401e-14,
+        "full_graph_residual": {
+          "residual_before": 0.00013182831793781823,
+          "residual_after": 9.179532134417911e-13,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 0.00012888003737571334,
+          "residual_after": 1.0486181005678588e-12,
+          "correction_steps": 6
+        },
+        "tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        }
+      },
+      {
+        "decision": "uvek-2026-ruthenium-ru-native-allocated-template",
+        "exact_scaled_native_technosphere_and_biosphere_vectors_match": true,
+        "owned_resource_retained_at_one_kg": true,
+        "signed_LCIs_finite_and_reverse": true,
+        "independent_native_reference_comparison_passed": true,
+        "max_abs_refined_difference": 1.4551915228366852e-11,
+        "full_graph_residual": {
+          "residual_before": 0.0001488949218676042,
+          "residual_after": 1.1082093633975431e-11,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 0.00014550102926596067,
+          "residual_after": 1.1082093633975431e-11,
+          "correction_steps": 6
+        },
+        "tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        }
+      },
+      {
+        "decision": "uvek-2026-iridium-ru-native-allocated-template",
+        "exact_scaled_native_technosphere_and_biosphere_vectors_match": true,
+        "owned_resource_retained_at_one_kg": true,
+        "signed_LCIs_finite_and_reverse": true,
+        "independent_native_reference_comparison_passed": true,
+        "max_abs_refined_difference": 7.275957614183426e-12,
+        "full_graph_residual": {
+          "residual_before": 0.0011734056542298027,
+          "residual_after": 3.0416867234099006e-11,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 0.001539620183091504,
+          "residual_after": 3.0416867234099006e-11,
+          "correction_steps": 6
+        },
+        "tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        }
+      },
+      {
+        "decision": "uvek-2026-germanium-glo-native-allocated-template",
+        "exact_scaled_native_technosphere_and_biosphere_vectors_match": true,
+        "owned_resource_retained_at_one_kg": true,
+        "signed_LCIs_finite_and_reverse": true,
+        "independent_native_reference_comparison_passed": true,
+        "max_abs_refined_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 8.217945163778219e-07,
+          "residual_after": 1.4311631307134531e-13,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 9.243945429678312e-07,
+          "residual_after": 1.4311631307134531e-13,
+          "correction_steps": 6
+        },
+        "tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        }
+      },
+      {
+        "decision": "uvek-2026-rhenium-cl-native-allocated-template",
+        "exact_scaled_native_technosphere_and_biosphere_vectors_match": true,
+        "owned_resource_retained_at_one_kg": true,
+        "signed_LCIs_finite_and_reverse": true,
+        "independent_native_reference_comparison_passed": true,
+        "max_abs_refined_difference": 5.820766091346741e-11,
+        "full_graph_residual": {
+          "residual_before": 1.2123051648212867e-07,
+          "residual_after": 5.227314292376343e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.4541392531758068e-07,
+          "residual_after": 2.1406869707047165e-13,
+          "correction_steps": 6
+        },
+        "tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        }
+      },
+      {
+        "decision": "uvek-2026-rhenium-cn-native-allocated-template",
+        "exact_scaled_native_technosphere_and_biosphere_vectors_match": true,
+        "owned_resource_retained_at_one_kg": true,
+        "signed_LCIs_finite_and_reverse": true,
+        "independent_native_reference_comparison_passed": true,
+        "max_abs_refined_difference": 8.881784197001252e-16,
+        "full_graph_residual": {
+          "residual_before": 5.834222196426682e-07,
+          "residual_after": 5.938505980365716e-14,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 7.501016144911155e-07,
+          "residual_after": 5.938505980365716e-14,
+          "correction_steps": 6
+        },
+        "tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        }
+      },
+      {
+        "decision": "uvek-2026-rhenium-us-native-allocated-template",
+        "exact_scaled_native_technosphere_and_biosphere_vectors_match": true,
+        "owned_resource_retained_at_one_kg": true,
+        "signed_LCIs_finite_and_reverse": true,
+        "independent_native_reference_comparison_passed": true,
+        "max_abs_refined_difference": 7.105427357601002e-15,
+        "full_graph_residual": {
+          "residual_before": 1.1090561523005997e-07,
+          "residual_after": 1.5384910142732244e-13,
+          "correction_steps": 6
+        },
+        "native_reference_residual": {
+          "residual_before": 1.549717327009723e-07,
+          "residual_after": 1.5384910142732244e-13,
+          "correction_steps": 6
+        },
+        "tolerance": {
+          "rtol": 1e-08,
+          "atol": 1e-11
+        }
+      }
+    ],
+    "qualification_limit": "Proves seven reviewed native-template proxies are linked and numerically match their explicit scaled-native construction with retained own-metal resources. Does not establish source/native scores, stochastic equivalence or full metals-sector qualification."
+  },
+  "verified_sectors": 10,
+  "remaining_sectors": 9,
+  "metals_qualified": false,
+  "production_python_files_changed": [
+    "premise/inventory/replacement_quantities.py"
+  ],
+  "source_inventory_vectors_committed": false,
+  "final_review_metadata_only_refinement": "Added explicit upstream resource-attribution limitation; all physical recipes, factors, selectors, donor exclusions and source guards unchanged."
+}

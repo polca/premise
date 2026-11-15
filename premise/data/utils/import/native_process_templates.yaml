@@ -1,0 +1,554 @@
+schema_version: 1
+authorization: Standing user instruction to work autonomously, auto-approve modelling decisions and
+  log them for review.
+recipes:
+- id: uvek-2026-ruthenium-za-native-allocated-template
+  file: lci-PGM.xlsx
+  workbook_sha256: 29e75f2d37ba8788549a4633abff750dbae2a672e2b7ffd07dd679b90f4c26c6
+  activity:
+  - platinum group metal, extraction and refinery operations
+  - ruthenium
+  - ZA
+  - kilogram
+  source:
+    technosphere:
+      family: ecoinvent
+      version: '3.8'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.8'
+  target: &id001
+    technosphere:
+      family: uvek
+      version: '2026'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.10'
+  donor:
+  - Platinum, primary, at refinery
+  - Platinum, primary, at refinery
+  - ZA
+  - kilogram
+  factors:
+    technosphere: 0.44653047651577316
+    biosphere: 0.5158944340327865
+  retain_source_biosphere:
+  - source:
+      type: biosphere
+      name: Ruthenium, in ground
+      unit: kilogram
+      categories:
+      - natural resource
+      - in ground
+    amount: 1
+  exclude_donor_biosphere:
+  - type: biosphere
+    name: Platinum
+    unit: kilogram
+    categories:
+    - natural resource
+    - in ground
+  evidence:
+    source_parent:
+      name: platinum group metal, extraction and refinery operations
+      reference product: platinum
+      location: ZA
+      unit: kilogram
+      code: 7b3bd318ca92108334f86431cf0f24d9
+    source_parent_technosphere_coordinates_verified: 8
+    source_parent_nonmetal_biosphere_coordinates_verified: 54
+    source_parent_common_nonmetal_coordinates_constant_scaled: true
+    donor_metadata_sha256: c56202859dad27428c97f62ae695931190ac61b04aa7fa0504a70f6aa62c9f22
+    donor_inventory_sha256: dafda8307411f6c4978476dea40368e9d66b3411ac4f90e4db08170456f1ed6b
+    basis: Separate source-observed technosphere and nonmetal-biosphere factors. The source foreground
+      retains only its own-metal resource; replace the donor direct Platinum resource, not a copper-concentrate
+      intermediary.
+  limitations:
+  - Screening proxy with unquantified score differences. The documented allocation factors represent
+    attributed burdens, not a physical production yield.
+  - Replace the complete legacy process inventory with the reviewed native process template. Original
+    exchanges remain in the owned audit. Native technology, co-production allocation, upstream supply,
+    water/land/emission models, vintage and internal uncertainty replace the source model; signed
+    caller quantities and the positive one-kg foreground output remain unchanged. Native-source biosphere
+    exclusions remain inherited limitations.
+  - The source-derived scaling is the observed relation to the stated source parent, not a current
+    price ratio, an extra recovery credit or an assumption that the same allocation is scientifically
+    optimal for UVEK. Preserve native exchange signs and scale supported uncertainty; retain the original
+    one-kg own-metal resource explicitly. Effects on scores are unquantified.
+  - The native complete primary-platinum process includes mining, beneficiation and refining; ZA and
+    RU use their existing country-labelled processes. Their documentation includes UCTE electricity
+    assumptions. Do not repair that upstream geography silently or add the original source refinery/concentrate
+    inputs again.
+  - The native publisher recommends more detailed PGM modelling when PGM contributions matter. These
+    processes remain screening proxies with that explicit applicability limitation. Retain the source
+    allocation construction; narrative allocation percentages alone do not reproduce the actual workbook
+    factors.
+  - The South African ruthenium workbook uses different technosphere and nonmetal-biosphere factors;
+    do not collapse them into a single multiplier.
+  - Removing the donor direct platinum depletion standardizes direct own-metal attribution. The original
+    South African concentrate chain can carry upstream coupled-metal resources; equality of full source/native
+    upstream resource balances is not established.
+- id: uvek-2026-ruthenium-ru-native-allocated-template
+  file: lci-PGM.xlsx
+  workbook_sha256: 29e75f2d37ba8788549a4633abff750dbae2a672e2b7ffd07dd679b90f4c26c6
+  activity:
+  - platinum group metal, extraction and refinery operations
+  - ruthenium
+  - RU
+  - kilogram
+  source:
+    technosphere:
+      family: ecoinvent
+      version: '3.8'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.8'
+  target: *id001
+  donor:
+  - Platinum, primary, at refinery
+  - Platinum, primary, at refinery
+  - RU
+  - kilogram
+  factors:
+    technosphere: 2.126631267200306
+    biosphere: 2.126631267200306
+  retain_source_biosphere:
+  - source:
+      type: biosphere
+      name: Ruthenium, in ground
+      unit: kilogram
+      categories:
+      - natural resource
+      - in ground
+    amount: 1
+  exclude_donor_biosphere:
+  - type: biosphere
+    name: Platinum
+    unit: kilogram
+    categories:
+    - natural resource
+    - in ground
+  evidence:
+    source_parent:
+      name: platinum group metal mine operation, ore with high palladium content
+      reference product: platinum
+      location: RU
+      unit: kilogram
+      code: 35424445a08517926faeca24a4cad77f
+    source_parent_technosphere_coordinates_verified: 14
+    source_parent_nonmetal_biosphere_coordinates_verified: 54
+    source_parent_common_nonmetal_coordinates_constant_scaled: true
+    donor_metadata_sha256: b1b5deb4936d1baff3fbb574263448e3973f46c7090f385eabddca5523d2e48a
+    donor_inventory_sha256: 27a22dd7650cb0b3653ea2f0d7c8a6e7791ca4b90ede912163f9067b65455034
+    basis: Separate source-observed technosphere and nonmetal-biosphere factors. The source foreground
+      retains only its own-metal resource; replace the donor direct Platinum resource, not a copper-concentrate
+      intermediary.
+  limitations:
+  - Screening proxy with unquantified score differences. The documented allocation factors represent
+    attributed burdens, not a physical production yield.
+  - Replace the complete legacy process inventory with the reviewed native process template. Original
+    exchanges remain in the owned audit. Native technology, co-production allocation, upstream supply,
+    water/land/emission models, vintage and internal uncertainty replace the source model; signed
+    caller quantities and the positive one-kg foreground output remain unchanged. Native-source biosphere
+    exclusions remain inherited limitations.
+  - The source-derived scaling is the observed relation to the stated source parent, not a current
+    price ratio, an extra recovery credit or an assumption that the same allocation is scientifically
+    optimal for UVEK. Preserve native exchange signs and scale supported uncertainty; retain the original
+    one-kg own-metal resource explicitly. Effects on scores are unquantified.
+  - The native complete primary-platinum process includes mining, beneficiation and refining; ZA and
+    RU use their existing country-labelled processes. Their documentation includes UCTE electricity
+    assumptions. Do not repair that upstream geography silently or add the original source refinery/concentrate
+    inputs again.
+  - The native publisher recommends more detailed PGM modelling when PGM contributions matter. These
+    processes remain screening proxies with that explicit applicability limitation. Retain the source
+    allocation construction; narrative allocation percentages alone do not reproduce the actual workbook
+    factors.
+  - Removing the donor direct platinum depletion standardizes direct own-metal attribution. The original
+    South African concentrate chain can carry upstream coupled-metal resources; equality of full source/native
+    upstream resource balances is not established.
+- id: uvek-2026-iridium-ru-native-allocated-template
+  file: lci-PGM.xlsx
+  workbook_sha256: 29e75f2d37ba8788549a4633abff750dbae2a672e2b7ffd07dd679b90f4c26c6
+  activity:
+  - platinum group metal, extraction and refinery operations
+  - iridium
+  - RU
+  - kilogram
+  source:
+    technosphere:
+      family: ecoinvent
+      version: '3.8'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.8'
+  target: *id001
+  donor:
+  - Platinum, primary, at refinery
+  - Platinum, primary, at refinery
+  - RU
+  - kilogram
+  factors:
+    technosphere: 20.06816779706278
+    biosphere: 20.06816779706278
+  retain_source_biosphere:
+  - source:
+      type: biosphere
+      name: Iridium, in ground
+      unit: kilogram
+      categories:
+      - natural resource
+      - in ground
+    amount: 1
+  exclude_donor_biosphere:
+  - type: biosphere
+    name: Platinum
+    unit: kilogram
+    categories:
+    - natural resource
+    - in ground
+  evidence:
+    source_parent:
+      name: platinum group metal mine operation, ore with high palladium content
+      reference product: platinum
+      location: RU
+      unit: kilogram
+      code: 35424445a08517926faeca24a4cad77f
+    source_parent_technosphere_coordinates_verified: 14
+    source_parent_nonmetal_biosphere_coordinates_verified: 54
+    source_parent_common_nonmetal_coordinates_constant_scaled: true
+    donor_metadata_sha256: b1b5deb4936d1baff3fbb574263448e3973f46c7090f385eabddca5523d2e48a
+    donor_inventory_sha256: 27a22dd7650cb0b3653ea2f0d7c8a6e7791ca4b90ede912163f9067b65455034
+    basis: Separate source-observed technosphere and nonmetal-biosphere factors. The source foreground
+      retains only its own-metal resource; replace the donor direct Platinum resource, not a copper-concentrate
+      intermediary.
+  limitations:
+  - Screening proxy with unquantified score differences. The documented allocation factors represent
+    attributed burdens, not a physical production yield.
+  - Replace the complete legacy process inventory with the reviewed native process template. Original
+    exchanges remain in the owned audit. Native technology, co-production allocation, upstream supply,
+    water/land/emission models, vintage and internal uncertainty replace the source model; signed
+    caller quantities and the positive one-kg foreground output remain unchanged. Native-source biosphere
+    exclusions remain inherited limitations.
+  - The source-derived scaling is the observed relation to the stated source parent, not a current
+    price ratio, an extra recovery credit or an assumption that the same allocation is scientifically
+    optimal for UVEK. Preserve native exchange signs and scale supported uncertainty; retain the original
+    one-kg own-metal resource explicitly. Effects on scores are unquantified.
+  - The native complete primary-platinum process includes mining, beneficiation and refining; ZA and
+    RU use their existing country-labelled processes. Their documentation includes UCTE electricity
+    assumptions. Do not repair that upstream geography silently or add the original source refinery/concentrate
+    inputs again.
+  - The native publisher recommends more detailed PGM modelling when PGM contributions matter. These
+    processes remain screening proxies with that explicit applicability limitation. Retain the source
+    allocation construction; narrative allocation percentages alone do not reproduce the actual workbook
+    factors.
+  - Removing the donor direct platinum depletion standardizes direct own-metal attribution. The original
+    South African concentrate chain can carry upstream coupled-metal resources; equality of full source/native
+    upstream resource balances is not established.
+- id: uvek-2026-germanium-glo-native-allocated-template
+  file: lci-germanium.xlsx
+  workbook_sha256: dfd9c6fe10cd01ea9557ba3f2c537d8af88e20d6323957ac0683f9b3fb4569fd
+  activity:
+  - zinc mine operation
+  - germanium, concentrate
+  - GLO
+  - kilogram
+  source:
+    technosphere:
+      family: ecoinvent
+      version: '3.9'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.9'
+  target: *id001
+  donor:
+  - Zinc, from combined metal production, at beneficiation
+  - Zinc, from combined metal production, at beneficiation
+  - SE
+  - kilogram
+  factors:
+    technosphere: 1026.0869565217379
+    biosphere: 1026.0869565217379
+  retain_source_biosphere:
+  - source:
+      type: biosphere
+      name: Germanium
+      unit: kilogram
+      categories:
+      - natural resource
+      - in ground
+    amount: 1
+  exclude_donor_biosphere: []
+  evidence:
+    source_parent:
+      name: zinc mine operation
+      reference product: zinc concentrate
+      location: GLO
+      unit: kilogram
+    source_parent_technosphere_coordinates_verified: 127
+    source_parent_biosphere_coordinates_verified: 134
+    source_parent_technosphere_factor: 1739.1304347826065
+    source_parent_metal_content: 0.59
+    source_parent_mismatches_except_own_resource: 0
+    donor_metadata_sha256: 210b3c84874e5b82f12a2a72b6f0f9e41de54a855bfa93f9d517313c0d28742c
+    donor_inventory_sha256: 701660e2e5041fb85aaa70fe839f94eb7059dea650d65c831805ea9b1143532f
+    basis: The source parent explicitly describes 59% zinc by mass. Native documentation explicitly
+      references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply
+      the observed source-parent factor by that documented source metal content, not by an inferred
+      concentrate density or smelter yield.
+  limitations:
+  - Screening proxy with unquantified score differences. The documented allocation factors represent
+    attributed burdens, not a physical production yield.
+  - Replace the complete legacy process inventory with the reviewed native process template. Original
+    exchanges remain in the owned audit. Native technology, co-production allocation, upstream supply,
+    water/land/emission models, vintage and internal uncertainty replace the source model; signed
+    caller quantities and the positive one-kg foreground output remain unchanged. Native-source biosphere
+    exclusions remain inherited limitations.
+  - The source-derived scaling is the observed relation to the stated source parent, not a current
+    price ratio, an extra recovery credit or an assumption that the same allocation is scientifically
+    optimal for UVEK. Preserve native exchange signs and scale supported uncertainty; retain the original
+    one-kg own-metal resource explicitly. Effects on scores are unquantified.
+  - The source parent explicitly describes 59% zinc by mass. Native documentation explicitly references
+    1 kg of metal contained in the unrefined product and excludes further refining. Multiply the observed
+    source-parent factor by that documented source metal content, not by an inferred concentrate density
+    or smelter yield.
+  - Use the complete Swedish combined-metal mining and beneficiation process as an explicit geographical,
+    ore, joint-production, allocation, vintage and technology proxy for the source mining route. This
+    replaces its country/global process model and retains native coupled-metal resource attribution;
+    it does not add physical copper or zinc to the foreground output, final-metal refining, an avoided-mining
+    credit or another mine inventory.
+  - The source germanium inventory also changes three recycled-material handovers relative to its
+    parent. Their source exchanges are retained in the audit; the complete native process replaces
+    those internal supply/disposal choices rather than pretending they match the parent exactly.
+- id: uvek-2026-rhenium-cl-native-allocated-template
+  file: lci-rhenium.xlsx
+  workbook_sha256: b0ef3a435fb2e2f435962f8211a541d91a58e0f56174dafe4d7966f9c70109d3
+  activity:
+  - copper mine operation and beneficiation, sulfide ore
+  - rhenium
+  - CL
+  - kilogram
+  source:
+    technosphere:
+      family: ecoinvent
+      version: '3.9'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.9'
+  target: *id001
+  donor:
+  - Copper, from combined metal production, at beneficiation
+  - Copper, from combined metal production, at beneficiation
+  - SE
+  - kilogram
+  factors:
+    technosphere: 524.5657297716014
+    biosphere: 524.5657297716014
+  retain_source_biosphere:
+  - source:
+      type: biosphere
+      name: Rhenium, in ground
+      unit: kilogram
+      categories:
+      - natural resource
+      - in ground
+    amount: 1
+  exclude_donor_biosphere: []
+  evidence:
+    source_parent:
+      name: copper mine operation and beneficiation, sulfide ore
+      reference product: copper concentrate, sulfide ore
+      location: CL
+      unit: kilogram
+    source_parent_technosphere_coordinates_verified: 23
+    source_parent_biosphere_coordinates_verified: 60
+    source_parent_technosphere_factor: 1770.3872081390527
+    source_parent_metal_content: 0.2963
+    source_parent_mismatches_except_own_resource: 0
+    donor_metadata_sha256: 904da59b7330a44bdf951588810bc32065635ed9c753c87d96a820fb70acc99a
+    donor_inventory_sha256: 67f063b76f94251cc855c3ff8afa4134b08c90fc41638e86f0f6ba6220bad388
+    basis: The source parent explicitly describes 29.63% copper by mass. Native documentation explicitly
+      references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply
+      the observed source-parent factor by that documented source metal content, not by an inferred
+      concentrate density or smelter yield.
+  limitations:
+  - Screening proxy with unquantified score differences. The documented allocation factors represent
+    attributed burdens, not a physical production yield.
+  - Replace the complete legacy process inventory with the reviewed native process template. Original
+    exchanges remain in the owned audit. Native technology, co-production allocation, upstream supply,
+    water/land/emission models, vintage and internal uncertainty replace the source model; signed
+    caller quantities and the positive one-kg foreground output remain unchanged. Native-source biosphere
+    exclusions remain inherited limitations.
+  - The source-derived scaling is the observed relation to the stated source parent, not a current
+    price ratio, an extra recovery credit or an assumption that the same allocation is scientifically
+    optimal for UVEK. Preserve native exchange signs and scale supported uncertainty; retain the original
+    one-kg own-metal resource explicitly. Effects on scores are unquantified.
+  - The source parent explicitly describes 29.63% copper by mass. Native documentation explicitly
+    references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply
+    the observed source-parent factor by that documented source metal content, not by an inferred
+    concentrate density or smelter yield.
+  - Use the complete Swedish combined-metal mining and beneficiation process as an explicit geographical,
+    ore, joint-production, allocation, vintage and technology proxy for the source mining route. This
+    replaces its country/global process model and retains native coupled-metal resource attribution;
+    it does not add physical copper or zinc to the foreground output, final-metal refining, an avoided-mining
+    credit or another mine inventory.
+  - The source sets its own rhenium resource to one kg, instead of retaining the source parent's trace-rhenium
+    extraction amount. Keep this source convention; do not multiply the one-kg resource by the mining
+    factor.
+- id: uvek-2026-rhenium-cn-native-allocated-template
+  file: lci-rhenium.xlsx
+  workbook_sha256: b0ef3a435fb2e2f435962f8211a541d91a58e0f56174dafe4d7966f9c70109d3
+  activity:
+  - copper mine operation and beneficiation, sulfide ore
+  - rhenium
+  - CN
+  - kilogram
+  source:
+    technosphere:
+      family: ecoinvent
+      version: '3.9'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.9'
+  target: *id001
+  donor:
+  - Copper, from combined metal production, at beneficiation
+  - Copper, from combined metal production, at beneficiation
+  - SE
+  - kilogram
+  factors:
+    technosphere: 424.48953020856806
+    biosphere: 424.48953020856806
+  retain_source_biosphere:
+  - source:
+      type: biosphere
+      name: Rhenium
+      unit: kilogram
+      categories:
+      - natural resource
+      - in ground
+    amount: 1
+  exclude_donor_biosphere: []
+  evidence:
+    source_parent:
+      name: copper mine operation and beneficiation, sulfide ore
+      reference product: copper concentrate, sulfide ore
+      location: CN
+      unit: kilogram
+    source_parent_technosphere_coordinates_verified: 23
+    source_parent_biosphere_coordinates_verified: 61
+    source_parent_technosphere_factor: 1432.6342565257105
+    source_parent_metal_content: 0.2963
+    source_parent_mismatches_except_own_resource: 0
+    donor_metadata_sha256: 904da59b7330a44bdf951588810bc32065635ed9c753c87d96a820fb70acc99a
+    donor_inventory_sha256: 67f063b76f94251cc855c3ff8afa4134b08c90fc41638e86f0f6ba6220bad388
+    basis: The source parent explicitly describes 29.63% copper by mass. Native documentation explicitly
+      references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply
+      the observed source-parent factor by that documented source metal content, not by an inferred
+      concentrate density or smelter yield.
+  limitations:
+  - Screening proxy with unquantified score differences. The documented allocation factors represent
+    attributed burdens, not a physical production yield.
+  - Replace the complete legacy process inventory with the reviewed native process template. Original
+    exchanges remain in the owned audit. Native technology, co-production allocation, upstream supply,
+    water/land/emission models, vintage and internal uncertainty replace the source model; signed
+    caller quantities and the positive one-kg foreground output remain unchanged. Native-source biosphere
+    exclusions remain inherited limitations.
+  - The source-derived scaling is the observed relation to the stated source parent, not a current
+    price ratio, an extra recovery credit or an assumption that the same allocation is scientifically
+    optimal for UVEK. Preserve native exchange signs and scale supported uncertainty; retain the original
+    one-kg own-metal resource explicitly. Effects on scores are unquantified.
+  - The source parent explicitly describes 29.63% copper by mass. Native documentation explicitly
+    references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply
+    the observed source-parent factor by that documented source metal content, not by an inferred
+    concentrate density or smelter yield.
+  - Use the complete Swedish combined-metal mining and beneficiation process as an explicit geographical,
+    ore, joint-production, allocation, vintage and technology proxy for the source mining route. This
+    replaces its country/global process model and retains native coupled-metal resource attribution;
+    it does not add physical copper or zinc to the foreground output, final-metal refining, an avoided-mining
+    credit or another mine inventory.
+  - The source sets its own rhenium resource to one kg, instead of retaining the source parent's trace-rhenium
+    extraction amount. Keep this source convention; do not multiply the one-kg resource by the mining
+    factor.
+- id: uvek-2026-rhenium-us-native-allocated-template
+  file: lci-rhenium.xlsx
+  workbook_sha256: b0ef3a435fb2e2f435962f8211a541d91a58e0f56174dafe4d7966f9c70109d3
+  activity:
+  - copper mine operation and beneficiation, sulfide ore
+  - rhenium
+  - US
+  - kilogram
+  source:
+    technosphere:
+      family: ecoinvent
+      version: '3.9'
+      system_model: cutoff
+    biosphere:
+      family: ecoinvent
+      version: '3.9'
+  target: *id001
+  donor:
+  - Copper, from combined metal production, at beneficiation
+  - Copper, from combined metal production, at beneficiation
+  - SE
+  - kilogram
+  factors:
+    technosphere: 518.4257819457644
+    biosphere: 518.4257819457644
+  retain_source_biosphere:
+  - source:
+      type: biosphere
+      name: Rhenium
+      unit: kilogram
+      categories:
+      - natural resource
+      - in ground
+    amount: 1
+  exclude_donor_biosphere: []
+  evidence:
+    source_parent:
+      name: copper mine operation and beneficiation, sulfide ore
+      reference product: copper concentrate, sulfide ore
+      location: US
+      unit: kilogram
+    source_parent_technosphere_coordinates_verified: 23
+    source_parent_biosphere_coordinates_verified: 61
+    source_parent_technosphere_factor: 1749.6651432526642
+    source_parent_metal_content: 0.2963
+    source_parent_mismatches_except_own_resource: 0
+    donor_metadata_sha256: 904da59b7330a44bdf951588810bc32065635ed9c753c87d96a820fb70acc99a
+    donor_inventory_sha256: 67f063b76f94251cc855c3ff8afa4134b08c90fc41638e86f0f6ba6220bad388
+    basis: The source parent explicitly describes 29.63% copper by mass. Native documentation explicitly
+      references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply
+      the observed source-parent factor by that documented source metal content, not by an inferred
+      concentrate density or smelter yield.
+  limitations:
+  - Screening proxy with unquantified score differences. The documented allocation factors represent
+    attributed burdens, not a physical production yield.
+  - Replace the complete legacy process inventory with the reviewed native process template. Original
+    exchanges remain in the owned audit. Native technology, co-production allocation, upstream supply,
+    water/land/emission models, vintage and internal uncertainty replace the source model; signed
+    caller quantities and the positive one-kg foreground output remain unchanged. Native-source biosphere
+    exclusions remain inherited limitations.
+  - The source-derived scaling is the observed relation to the stated source parent, not a current
+    price ratio, an extra recovery credit or an assumption that the same allocation is scientifically
+    optimal for UVEK. Preserve native exchange signs and scale supported uncertainty; retain the original
+    one-kg own-metal resource explicitly. Effects on scores are unquantified.
+  - The source parent explicitly describes 29.63% copper by mass. Native documentation explicitly
+    references 1 kg of metal contained in the unrefined product and excludes further refining. Multiply
+    the observed source-parent factor by that documented source metal content, not by an inferred
+    concentrate density or smelter yield.
+  - Use the complete Swedish combined-metal mining and beneficiation process as an explicit geographical,
+    ore, joint-production, allocation, vintage and technology proxy for the source mining route. This
+    replaces its country/global process model and retains native coupled-metal resource attribution;
+    it does not add physical copper or zinc to the foreground output, final-metal refining, an avoided-mining
+    credit or another mine inventory.
+  - The source sets its own rhenium resource to one kg, instead of retaining the source parent's trace-rhenium
+    extraction amount. Keep this source convention; do not multiply the one-kg resource by the mining
+    factor.
