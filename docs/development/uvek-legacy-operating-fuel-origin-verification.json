@@ -1,0 +1,76 @@
+{
+  "date": "2026-11-15",
+  "scenario": "encrypted REMIND SSP2-NPi 2050",
+  "new_exact_native_operating_consumers": 17,
+  "road_operating_consumers_with_changed_origin": 8,
+  "helicopter_consumers_correctly_retaining_zero_biogenic_share_for_this_scenario": 9,
+  "origin_status_counts": {
+    "resolved": 17
+  },
+  "all_new_services_preserve_recorded_positive_CO2_total_and_every_other_exchange": true,
+  "mixed_petrol_diesel_fleet_consumers": 2,
+  "excluded_manufacturing_fixed_blend_and_unresolved_boundary_records_unchanged": 10,
+  "all_selected_resolved_origin_checks": 998,
+  "unresolved_market_origin_records": 0,
+  "native_records_retained": 11947,
+  "remaining_unselected_positive_CO2_screening_candidates": 219,
+  "candidate_count_is_not_a_confirmed_error_count": true,
+  "production_Python_changes": 0,
+  "migration_changes": 0,
+  "new_helpers": 0,
+  "tests": {
+    "passed": 225,
+    "new_real_mapping_cases": 6,
+    "black": "passed",
+    "ruff": "passed",
+    "documentation_reference_check": "passed"
+  },
+  "exhaustive_graph_errors": 0,
+  "signed_LCI": {
+    "complete_transformed_activities": 13122,
+    "transient_matrix_filesystem": "memory",
+    "signed_LCI_solves": 10,
+    "checks": [
+      {
+        "name": "xxx Operation, passenger car",
+        "location": "CH",
+        "functional_unit": "1 native service reference unit",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "xxx Operation, van < 3,5t",
+        "location": "CH",
+        "functional_unit": "1 native service reference unit",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "Transport, municipal waste collection, lorry 21t",
+        "location": "CH",
+        "functional_unit": "1 native service reference unit",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "Transport, helicopter, twin-engine, LTO cycle",
+        "location": "CH",
+        "functional_unit": "1 native service reference unit",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "Transport, passenger helicopter, twin-engine",
+        "location": "CH",
+        "functional_unit": "1 native service reference unit",
+        "signed_LCIs_finite_and_reverse": true
+      }
+    ],
+    "brightway_database_writes": 0,
+    "registered_activities": 0,
+    "registry_unchanged": true,
+    "score_or_original_native_equivalence_claimed": false,
+    "biosphere_compartment_convention": "Explicit unspecified subcompartment and root compartment are canonicalized identically;name andunit stay exact."
+  },
+  "public_scope_bypass_for_diagnostic_only": true,
+  "export_performed": false,
+  "public_fuels_qualification_claimed": false,
+  "private_primary_sha256": "d549944e7ccc1becbbf22f47afcb38a88eb6fdc9e4f631418bcde98ee830d418",
+  "private_workflow_sha256": "ff5d2563686f7d98d0dabb7261abc54b7875b12664d00c0e6dbf39317f8e90f1"
+}

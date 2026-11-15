@@ -464,20 +464,43 @@ def test_declared_operating_service_keeps_recorded_total_and_fuel_demand(
 
 
 @pytest.mark.parametrize(
-    "name,unit",
+    "name,unit,fuel_name",
     [
-        ("Excavation, hydraulic digger, average", "cubic meter"),
-        ("Irrigating", "hectare"),
-        ("Irrigating", "cubic meter"),
-        ("Wood chipping, chipper, mobile, diesel, at forest road", "hour"),
-        ("Baling", "unit"),
+        ("Excavation, hydraulic digger, average", "cubic meter", "market for diesel"),
+        ("Irrigating", "hectare", "market for diesel"),
+        ("Irrigating", "cubic meter", "market for diesel"),
+        (
+            "Wood chipping, chipper, mobile, diesel, at forest road",
+            "hour",
+            "market for diesel",
+        ),
+        ("Baling", "unit", "market for diesel"),
         (
             "Solid manure loading and spreading, by hydraulic loader and spreader",
             "kilogram",
+            "market for diesel",
+        ),
+        ("xxx Operation, regular bus", "kilometer", "market for diesel"),
+        (
+            "Transport, municipal waste collection, lorry 21t",
+            "ton kilometer",
+            "market for diesel",
+        ),
+        (
+            "Transport, helicopter, twin-engine, LTO cycle",
+            "unit",
+            "market for kerosene",
+        ),
+        (
+            "Transport, freight helicopter, single-engine, Betrieb",
+            "hour",
+            "market for kerosene",
         ),
     ],
 )
-def test_native_operating_mapping_refreshes_origin_without_changing_service(name, unit):
+def test_native_operating_mapping_refreshes_origin_without_changing_service(
+    name, unit, fuel_name
+):
     from premise.inventory.activity_maps import FUELS_TECHS, get_mapping
 
     filters = [
@@ -487,7 +510,7 @@ def test_native_operating_mapping_refreshes_origin_without_changing_service(name
         ).values()
         for entry in entries
     ]
-    fuel = supplier(share=0.25, name="market for diesel")
+    fuel = supplier(share=0.25, name=fuel_name)
     operating = vehicle(fuel)
     operating.update(name=name, **{"reference product": name, "unit": unit})
     operating["exchanges"][0].update(name=name, product=name, unit=unit)
@@ -523,6 +546,40 @@ def test_native_operating_mapping_refreshes_origin_without_changing_service(name
             or e["amount"] < 0
         ] == unaffected
         assert controls == controls_before
+
+
+@pytest.mark.parametrize(
+    "name", ["xxx Operation, passenger car", "xxx Operation, van < 3,5t"]
+)
+def test_native_mixed_fleet_uses_both_fuel_carbon_purchases(name):
+    from premise.inventory.activity_maps import FUELS_TECHS, get_mapping
+
+    filters = [
+        entry["selector"]
+        for entries in get_mapping(
+            FUELS_TECHS, "uvek_recorded_exhaust_consumers"
+        ).values()
+        for entry in entries
+    ]
+    diesel = supplier(share=0.2, total=3, name="market for diesel")
+    petrol = supplier(share=0.8, total=2, name="market for petrol")
+    fleet = vehicle(diesel)
+    fleet.update(name=name, **{"reference product": name})
+    fleet["exchanges"][0].update(name=name, product=name)
+    fleet["exchanges"].append(
+        {**deepcopy(fleet["exchanges"][1]), "name": petrol["name"], "product": "petrol"}
+    )
+    fleet["exchanges"].append(emission("Carbon dioxide, non-fossil", 0.2))
+    purchases = deepcopy([e for e in fleet["exchanges"] if e["type"] == "technosphere"])
+    for _ in range(2):
+        update_vehicle_fuel_co2(
+            [diesel, petrol, fleet], "3.10", recorded_exhaust_filters=filters
+        )
+        # The fuels contribute 0.06 + 0.16 kg biogenic carbon potential to 0.5 kg.
+        assert amounts(fleet) == pytest.approx((0.28, 0.22))
+        assert [
+            e for e in fleet["exchanges"] if e["type"] == "technosphere"
+        ] == purchases
 
 
 def test_kerosene_recorded_exhaust_uses_canonical_high_altitude_fallback():

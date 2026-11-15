@@ -895,6 +895,42 @@ diesel:
       exact: true
       fltr:
         name:
+        - xxx Operation, lorry 20-28t, fleet average
+        - xxx Operation, lorry 3.5-20t, fleet average
+        - xxx Operation, lorry >28t, fleet average
+        - xxx Operation, passenger car
+        - xxx Operation, passenger car, diesel, fleet average
+        - xxx Operation, regular bus
+        - xxx Operation, van < 3,5t
+        reference product:
+        - xxx Operation, lorry 20-28t, fleet average
+        - xxx Operation, lorry 3.5-20t, fleet average
+        - xxx Operation, lorry >28t, fleet average
+        - xxx Operation, passenger car
+        - xxx Operation, passenger car, diesel, fleet average
+        - xxx Operation, regular bus
+        - xxx Operation, van < 3,5t
+        unit: kilometer
+    limitations:
+    - Exact reviewed road-fleet and helicopter operating services only. Preserve recorded positive exhaust CO2 totals, all fuel demands, reference units, infrastructure, LTO inputs, signed exchanges, uncertainty and other emissions; refresh only carbon origin from actual linked fuel properties.
+    - Where the native fleet consumes both petrol and diesel, use the existing common carbon accounting to combine their linked fossil/non-fossil oxidation potentials. Do not infer a new vehicle split or heating-value correction. Keep helicopter cruise and LTO inventories separate and retain the canonical biosphere compartment fallback.
+    - Fuel-dominant whole-exhaust screening convention can reclassify unidentified minor lubricant carbon; its score effect is unquantified. Vehicle manufacturing, fixed 5% blend recipes, two-stroke scooter fuel, mixed airport operations and the two additional-rapeseed-oil harvesters are excluded from these selectors.
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Transport, municipal waste collection, lorry 21t
+        reference product:
+        - Transport, municipal waste collection, lorry 21t
+        unit: ton kilometer
+    limitations:
+    - Exact reviewed road-fleet and helicopter operating services only. Preserve recorded positive exhaust CO2 totals, all fuel demands, reference units, infrastructure, LTO inputs, signed exchanges, uncertainty and other emissions; refresh only carbon origin from actual linked fuel properties.
+    - Where the native fleet consumes both petrol and diesel, use the existing common carbon accounting to combine their linked fossil/non-fossil oxidation potentials. Do not infer a new vehicle split or heating-value correction. Keep helicopter cruise and LTO inventories separate and retain the canonical biosphere compartment fallback.
+    - Fuel-dominant whole-exhaust screening convention can reclassify unidentified minor lubricant carbon; its score effect is unquantified. Vehicle manufacturing, fixed 5% blend recipes, two-stroke scooter fuel, mixed airport operations and the two additional-rapeseed-oil harvesters are excluded from these selectors.
+  - selector:
+      exact: true
+      fltr:
+        name:
         - Excavation, hydraulic digger (proj. 500)
         - Excavation, hydraulic digger, average
         - Excavation, hydraulic digger, average, Betrieb
@@ -2819,6 +2855,44 @@ kerosene:
     - Delivered-fuel market replacement; producer-specific refinery and explicitly fossil-only supplies remain separate and retain their physical product boundary.
     - Native delivery auxiliaries are retained in the IAM market using the reviewed template. Grade and vintage differences remain unquantified; downstream vehicle-blend and combustion-carbon checks are unfinished.
   uvek_recorded_exhaust_consumers:
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Transport, freight helicopter, single-engine
+        - Transport, freight helicopter, single-engine, Betrieb
+        - Transport, passenger helicopter, twin-engine
+        - Transport, passenger helicopter, twin-engine, Betrieb
+        - Transport, passenger, helicopter, single-engine
+        - Transport, passenger, helicopter, single-engine, Betrieb
+        - Transport, passenger, helicopter, single-engine, without LTO
+        reference product:
+        - Transport, freight helicopter, single-engine
+        - Transport, freight helicopter, single-engine, Betrieb
+        - Transport, passenger helicopter, twin-engine
+        - Transport, passenger helicopter, twin-engine, Betrieb
+        - Transport, passenger, helicopter, single-engine
+        - Transport, passenger, helicopter, single-engine, Betrieb
+        - Transport, passenger, helicopter, single-engine, without LTO
+        unit: hour
+    limitations:
+    - Exact reviewed road-fleet and helicopter operating services only. Preserve recorded positive exhaust CO2 totals, all fuel demands, reference units, infrastructure, LTO inputs, signed exchanges, uncertainty and other emissions; refresh only carbon origin from actual linked fuel properties.
+    - Where the native fleet consumes both petrol and diesel, use the existing common carbon accounting to combine their linked fossil/non-fossil oxidation potentials. Do not infer a new vehicle split or heating-value correction. Keep helicopter cruise and LTO inventories separate and retain the canonical biosphere compartment fallback.
+    - Fuel-dominant whole-exhaust screening convention can reclassify unidentified minor lubricant carbon; its score effect is unquantified. Vehicle manufacturing, fixed 5% blend recipes, two-stroke scooter fuel, mixed airport operations and the two additional-rapeseed-oil harvesters are excluded from these selectors.
+  - selector:
+      exact: true
+      fltr:
+        name:
+        - Transport, helicopter, single-engine, LTO cycle
+        - Transport, helicopter, twin-engine, LTO cycle
+        reference product:
+        - Transport, helicopter, single-engine, LTO cycle
+        - Transport, helicopter, twin-engine, LTO cycle
+        unit: unit
+    limitations:
+    - Exact reviewed road-fleet and helicopter operating services only. Preserve recorded positive exhaust CO2 totals, all fuel demands, reference units, infrastructure, LTO inputs, signed exchanges, uncertainty and other emissions; refresh only carbon origin from actual linked fuel properties.
+    - Where the native fleet consumes both petrol and diesel, use the existing common carbon accounting to combine their linked fossil/non-fossil oxidation potentials. Do not infer a new vehicle split or heating-value correction. Keep helicopter cruise and LTO inventories separate and retain the canonical biosphere compartment fallback.
+    - Fuel-dominant whole-exhaust screening convention can reclassify unidentified minor lubricant carbon; its score effect is unquantified. Vehicle manufacturing, fixed 5% blend recipes, two-stroke scooter fuel, mixed airport operations and the two additional-rapeseed-oil harvesters are excluded from these selectors.
   - selector:
       exact: true
       fltr:
