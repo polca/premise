@@ -108,6 +108,21 @@ steel, cement, biomass, metals, transport, batteries, renewables, mining,
 carbon removal, final energy, emissions, and external scenarios add their
 specific coverage, composition, linking, and physical-bound checks.
 
+Car and truck exhaust checks run again at scenario certification, after all
+requested transformations, including the final GAINS emissions update. The
+``sector:car:final_exhaust`` and ``sector:truck:final_exhaust`` phases replace
+only the pollutant rules previously evaluated in ``sector:car`` and
+``sector:truck``. Fuel-carbon, energy, fleet and linking results remain active.
+Successful final checks explicitly replace earlier warnings too. Validation
+reads the final inventory without changing any exchanges.
+
+``report.issues``, ``report.warnings`` and ``report.errors`` reflect these
+current results. Original findings remain in ``report.phase_results`` as
+sector-stage history, with explicit phase/rule replacement references in the
+final phases' ``supersedes`` field. Change-report Validation Findings uses the
+current results; Validation Coverage identifies historical rules in its
+``superseded by`` column. Checkpoint serialization preserves both stages.
+
 The exhaustive diagnostic additionally covers every activity and exchange:
 required fields and exchange types, uncertainty, provider identity and
 product/unit agreement, geographic fallback, exact duplicate suppliers, stale
@@ -145,12 +160,13 @@ After updating a scenario, inspect its checks and individual findings:
 
    report = ndb.get_validation_report(scenario=0)
    report.raise_for_errors()
-   for phase in report.phase_results:
-       for rule in phase.rule_results:
-           for issue in rule.issues:
-               print(issue.severity, issue.rule_id, issue.message)
-               print(issue.activity_key, issue.exchange_id)
-               print("Expected:", issue.expected, "Actual:", issue.actual)
+   for issue in report.issues:
+       print(issue.severity, issue.rule_id, issue.message)
+       print(issue.activity_key, issue.exchange_id)
+       print("Expected:", issue.expected, "Actual:", issue.actual)
+
+Iterate ``report.phase_results`` to inspect the full history, including earlier
+exhaust findings replaced by the final checks.
 
 The following executable example constructs illustrative findings using
 public report types. Its rule IDs start with ``example.``; they are teaching

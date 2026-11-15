@@ -29,7 +29,7 @@ import yaml
 from ..core.filesystem_constants import DATA_DIR
 from ..inventory.inventory_store import InventoryStore
 
-VALIDATION_RULESET_VERSION = 7
+VALIDATION_RULESET_VERSION = 8
 ValidationSeverity = Literal["error", "warning"]
 Applicability = Literal["applicable", "not_applicable"]
 ValidationPhaseKind = Literal["sector", "graph", "export"]
@@ -299,6 +299,7 @@ class ValidationPhaseResult:
     rule_results: tuple[ValidationRuleResult, ...] = ()
     elapsed_seconds: float = 0.0
     reused: bool = False
+    supersedes: tuple[tuple[str, str], ...] = ()
 
     def __post_init__(self) -> None:
         if not self.phase_id:
@@ -310,6 +311,15 @@ class ValidationPhaseResult:
                 "Validation phase elapsed time must be finite and non-negative."
             )
         object.__setattr__(self, "rule_results", tuple(self.rule_results))
+        object.__setattr__(
+            self, "supersedes", tuple(tuple(item) for item in self.supersedes)
+        )
+        if any(
+            len(item) != 2
+            or not all(isinstance(value, str) and value for value in item)
+            for item in self.supersedes
+        ):
+            raise ValueError("Phase replacements require a phase ID and a rule ID.")
 
     @property
     def issues(self) -> tuple[ValidationIssue, ...]:
@@ -342,6 +352,7 @@ class ValidationPhaseResult:
             "rule_results": [result.to_dict() for result in self.rule_results],
             "elapsed_seconds": self.elapsed_seconds,
             "reused": self.reused,
+            "supersedes": [list(item) for item in self.supersedes],
         }
 
     @classmethod
@@ -383,7 +394,35 @@ class ValidationReport:
 
     @property
     def issues(self) -> tuple[ValidationIssue, ...]:
-        return tuple(issue for phase in self.phase_results for issue in phase.issues)
+        superseded = self.superseded_rules
+        return tuple(
+            issue
+            for phase in self.phase_results
+            for result in phase.rule_results
+            if (phase.phase_id, result.rule_id) not in superseded
+            for issue in result.issues
+        )
+
+    @property
+    def superseded_rules(self) -> dict[tuple[str, str], str]:
+        """Map historical phase/rule pairs to their later replacement phase.
+
+        Only a later phase which actually evaluates the same rule may replace
+        its earlier outcome. Successful zero-issue results replace warnings too.
+        The original results remain available in ``phase_results``.
+        """
+
+        earlier = set()
+        superseded = {}
+        for phase in self.phase_results:
+            evaluated = {result.rule_id for result in phase.rule_results}
+            for target in phase.supersedes:
+                if target in earlier and target[1] in evaluated:
+                    superseded[target] = phase.phase_id
+            earlier.update(
+                (phase.phase_id, result.rule_id) for result in phase.rule_results
+            )
+        return superseded
 
     @property
     def errors(self) -> tuple[ValidationIssue, ...]:

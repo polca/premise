@@ -2152,6 +2152,15 @@ class NewDatabase:
                 continue
             if phase.kind == "sector":
                 sector_phases.append(phase)
+        from ..validation.transport_validation import validate_final_transport_emissions
+
+        final_transport_phases = validate_final_transport_emissions(
+            scenario, store, sector_phases
+        )
+        refreshed_ids = {phase.phase_id for phase in final_transport_phases}
+        sector_phases = [
+            phase for phase in sector_phases if phase.phase_id not in refreshed_ids
+        ] + list(final_transport_phases)
         incremental = bool(sector_phases) and not exhaustive
         if intent is None:
             intent = self._scenario_validation_intent(

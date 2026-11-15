@@ -1855,8 +1855,10 @@ def _validation_rows(
         if report is None:
             continue
         scenario_label = _scenario_label(scenario.identity)
+        superseded = report.superseded_rules
         for phase in report.phase_results:
             for result in phase.rule_results:
+                superseded_by = superseded.get((phase.phase_id, result.rule_id))
                 successful = not any(not issue.suppressed for issue in result.issues)
                 suppressed = [issue for issue in result.issues if issue.suppressed]
                 coverage.append(
@@ -1868,6 +1870,7 @@ def _validation_rows(
                         "checked objects": result.checked_object_count,
                         "successful": successful,
                         "suppressed count": len(suppressed),
+                        "superseded by": superseded_by,
                         "suppression explanations": " | ".join(
                             dict.fromkeys(
                                 issue.suppression_explanation or ""
@@ -1877,7 +1880,7 @@ def _validation_rows(
                     }
                 )
                 for issue in result.issues:
-                    if issue.suppressed:
+                    if issue.suppressed or superseded_by is not None:
                         continue
                     findings.append(
                         {
@@ -2328,6 +2331,7 @@ def _write_workbook(
         "checked objects",
         "successful",
         "suppressed count",
+        "superseded by",
         "suppression explanations",
     ]
     _write_table_sheet(workbook, "Validation Coverage", coverage, coverage_headers, 7)
