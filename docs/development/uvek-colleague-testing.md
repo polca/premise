@@ -297,3 +297,8 @@ The latest pinned Brightpath commit adds reviewed chemical supply/delivery and t
 ## Wet-process PE separator prerequisite — 15 November 2026
 
 The pinned Brightpath version reconstructs the wet-process PE separator using reviewed BAFU inputs,retained manufacturing emissions and delivery. Existing HDPE trace omissions remain visible in its audit. The notebook and installation workflow are unchanged;the battery sector remains unqualified with34pending first-cohort rules. See `uvek-separator-wet-pe-39-verification.json` for evidence and limits.
+
+
+## Further battery chemical prerequisites — 15 November 2026
+
+The next pinned Brightpath version adds six reviewed chemical supplies,retaining the TiO2chloride/sulfate route split anddocumenting rare-earth ore-route/zirconia nano-grade proxy limits. No notebook workflow change is required. Battery remains unqualified with28pending first-cohort rules;continue using the documented qualified sector set. Details: `uvek-battery-chemicals-39-verification.json`.

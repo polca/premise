@@ -288370,6 +288370,615 @@
           "fingerprint": "d7f2b20de4db7b77a7eb8e262bf67b27d0e836840bd25f005370fd229b97265e"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-f67674df84fdfefc",
+      "mapping_method": "reviewed_battery_chemical_supply_39",
+      "review_path": "export/uvek_battery_chemicals_39_review.json",
+      "review_sha256": "8ea0b287b814ef45dd0f0300f86f4e7d4dc2e690788aee0dd6000cbd9a171c47",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for benzaldehyde",
+            "reference product": "benzaldehyde",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 4,
+          "metadata_sha256": "e0ced94def7c12bedd0112bc18b7fe009064c72eff810a99cb97e602b37e73fd",
+          "inventory_sha256": "cb85c9c796a75d92e53036afb6cfeab732ab5e54404d8062fa3bb1143f6a8c6e",
+          "activity_comment_sha256": "958a33fa063dca3e47b9cc6e9c3938961086a97ecd909c6a00a95384622f87b2",
+          "product_information_sha256": "cac62a1108a28b5c57f5c47e0688b16a3e17ac5dcbdbb871b3a642f7870fa0b2"
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "xx Benzaldehyde, at plant",
+                "reference product": "xx Benzaldehyde, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 18,
+              "metadata_sha256": "b5c2576e3da54c36023c1ef2c9e06a9c92bf193d2534a77665a803a869d913e1",
+              "inventory_sha256": "7989596b5ea273babf364bb3b6dd90167ffdd99e16d76655b20da6771712cfab",
+              "activity_comment_sha256": "2a44e2237c5562a6c24663ca0c69b4a55fe52ca664b4211ccbf5f949ebef077c",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "xx Benzaldehyde, at plant",
+                "reference product": "xx Benzaldehyde, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 18,
+              "metadata_sha256": "f8f2ac40abb6bf3933f3068150ee7bbf5847012df66272eb3f4734c8203ee630",
+              "inventory_sha256": "0e3321ff3b2b5d0853901a912fe934447b4779a074a4edaa268fbcc8b4a2d2d8",
+              "activity_comment_sha256": "b876a7f83abceef7905504e8af97a02abde33941e3250171a25c48f0fba4a270",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "boundary_checks": {
+          "source_market_entries": 4,
+          "final_delivery_entries": 3,
+          "correct_native_products": [
+            "xx Benzaldehyde, at plant"
+          ],
+          "source_market_entry_statistics_preserved": true,
+          "titanium_route_mix_preserved": false,
+          "original_rule_unchanged": false,
+          "extra_source_manufacturing_added": false,
+          "purity_yield_or_element_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the inspected exact ecoinvent 3.9 cut-off chemical interfaces are reviewed. Source and native products each have positive one-kg references. Keep signed caller mass, supported uncertainty, formulas and separate caller exchanges at factor +1. No dilution, density, chemical-element, purity, process-yield, allocation or energy multiplier is added. Other source releases, patches, system models and reverse routes gain no new permission.",
+        "Use the complete selected native production inventory once. It replaces source production internals with its own precursor supply, energy, transport, infrastructure, wastes, emissions, allocation and uncertainty. Keep each explicit source final-market freight entry separately where a delivery helper is used; native raw-material delivery remains part of manufacturing. No source production overlay, recovery credit, omission, new runtime module or alternative sector engine is introduced. Technology, grade, geography, age, internal uncertainty and scores may differ; finite LCIs do not establish source/native LCIA or stochastic equivalence.",
+        "Source and native identify benzaldehyde, CAS 100-52-7, C7H6O, produced from benzal chloride. Retain the native name \"xx Benzaldehyde, at plant\" as supplied; the prefix is not interpreted as proof of quality or equivalence. Both models rely on stoichiometric feedstock estimates, literature energy, estimated emissions and default infrastructure. Use the complete European native plant and keep the source producer plus rail, barge and road delivery separately. Native exact assay, process efficiency, upstream supply and uncertainty are not independently equivalent; do not impose a second stoichiometric or purity correction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6af6cc714cd1c3efd52c7d7c46ba34b364566581182995dfc7d6c39a8c357664"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-011b0c14ef8a369d",
+      "mapping_method": "reviewed_battery_chemical_supply_39",
+      "review_path": "export/uvek_battery_chemicals_39_review.json",
+      "review_sha256": "8ea0b287b814ef45dd0f0300f86f4e7d4dc2e690788aee0dd6000cbd9a171c47",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for titanium dioxide",
+            "reference product": "titanium dioxide",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 5,
+          "metadata_sha256": "8ef157890d8c8e02bfe67fea80cfbe2f3c93213d2aea8086e3424f44bf9f6b3a",
+          "inventory_sha256": "5a1e0d9afd3e9b5b6ebfbb3bb5cb8af513f2d569406ee514fda9f5fd21e3fbe5",
+          "activity_comment_sha256": "65f0e484d3700ec6a9e65dfa7ab1aa6bdf0c677272e247d09a5bf352c8e0d732",
+          "product_information_sha256": "9f19e13758d33edc74c8400119f15f1dd38f85265be208eaa9f1356a6308d756"
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Titanium dioxide at plant, sulphate process, at plant",
+                "reference product": "Titanium dioxide at plant, sulphate process, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 1281,
+              "metadata_sha256": "26b4f1e3f0ff7a1c9093d1539873308b03fce99fa3105c290823d98a086647cd",
+              "inventory_sha256": "fd97a7bd2939be1c6de43e81d64bc3aa15a499187d181c8375b5a83d594c2b25",
+              "activity_comment_sha256": "c184a46a818009b9e1b029e4e1b3d63ec4aad5b122b1cc796cc8d3f11aee635e",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "identity": {
+                "name": "Titanium dioxide, chloride process, at plant",
+                "reference product": "Titanium dioxide, chloride process, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 1281,
+              "metadata_sha256": "b51a2fc1c357e01a109f892b009a5f123bb16d295e58adfa339d516f3f6cdc92",
+              "inventory_sha256": "be80c1e43aa12f2934a19a6b993b686b7b14597960bce5573b1abb5294dcc556",
+              "activity_comment_sha256": "bcc014c31074cf06e2efb99e05c8f03c5b29c516ec46db89e72c7f9b8aaa09cb",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Titanium dioxide at plant, sulphate process, at plant",
+                "reference product": "Titanium dioxide at plant, sulphate process, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 1301,
+              "metadata_sha256": "da5004515f2b14d9c9e9fe02bd7ba5445ea0e9e8e53dcfb26782f33b874dbfa6",
+              "inventory_sha256": "fe84fd58ed3bc932283813d60321dced541e4562803beeb5d152c117294314a0",
+              "activity_comment_sha256": "9866cafcd91c60a5ec0e410a4d04370bea5c4253776dc354ba2860df9a94791f",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "identity": {
+                "name": "Titanium dioxide, chloride process, at plant",
+                "reference product": "Titanium dioxide, chloride process, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 1301,
+              "metadata_sha256": "57fc10772efcefbbce546be2f4cdc0790c67209fefe175edddb0f64e0c79b62c",
+              "inventory_sha256": "f67753c81c07ef2ccffddfb7d0ab453a220879fe2ae4d152c997904aeee8881c",
+              "activity_comment_sha256": "00352c3ef4dde3a557724921c2365dd96f23b3893b21074944671a4230cfcfba",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "boundary_checks": {
+          "source_market_entries": 5,
+          "final_delivery_entries": 3,
+          "correct_native_products": [
+            "Titanium dioxide, chloride process, at plant",
+            "Titanium dioxide at plant, sulphate process, at plant"
+          ],
+          "source_market_entry_statistics_preserved": true,
+          "titanium_route_mix_preserved": true,
+          "original_rule_unchanged": false,
+          "extra_source_manufacturing_added": false,
+          "purity_yield_or_element_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the inspected exact ecoinvent 3.9 cut-off chemical interfaces are reviewed. Source and native products each have positive one-kg references. Keep signed caller mass, supported uncertainty, formulas and separate caller exchanges at factor +1. No dilution, density, chemical-element, purity, process-yield, allocation or energy multiplier is added. Other source releases, patches, system models and reverse routes gain no new permission.",
+        "Use the complete selected native production inventory once. It replaces source production internals with its own precursor supply, energy, transport, infrastructure, wastes, emissions, allocation and uncertainty. Keep each explicit source final-market freight entry separately where a delivery helper is used; native raw-material delivery remains part of manufacturing. No source production overlay, recovery credit, omission, new runtime module or alternative sector engine is introduced. Technology, grade, geography, age, internal uncertainty and scores may differ; finite LCIs do not establish source/native LCIA or stochastic equivalence.",
+        "Preserve the original European titanium-dioxide production-route shares: 0.241059602649006 chloride process and 0.758940397350994 sulfate process. Map each to its separately verified native process, not to the generic native 50/50 production mix. Both deliver one kg TiO2; this is an oxide product, not elemental titanium despite the source generic metal classification. Preserve each share and the three final-delivery entries. Specific plant technology, mineral feedstocks, pigment/crystal grade, reagents, effluent treatment, allocation, age and uncertainty may differ within each route. No chloride/sulfate, elemental-content or pigment-performance factor is added."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6b8af0bc2a4ae481f761f03b50b7f060a23638e3e079995cb350d8e9a79dc7ec"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-282e917963656877",
+      "mapping_method": "reviewed_battery_chemical_supply_39",
+      "review_path": "export/uvek_battery_chemicals_39_review.json",
+      "review_sha256": "8ea0b287b814ef45dd0f0300f86f4e7d4dc2e690788aee0dd6000cbd9a171c47",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for lanthanum oxide",
+            "reference product": "lanthanum oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 8,
+          "metadata_sha256": "99098c220156abd6f15cff0d5bf893f8d992091a9676fadc03d0314ba00f849b",
+          "inventory_sha256": "6e215965837fc14fbf2f00924df8b9d533434e4c7f317cf1f99c1e06fcd1c342",
+          "activity_comment_sha256": "dcf59bb751f17604800bf70bbf467597e67663790b501156a85e5519988c2811",
+          "product_information_sha256": "a7f5983ebe958479021f85f53697283008a5d19ed80fe2dd82c45bcaa4b69ef7"
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Lanthanum oxide, at plant",
+                "reference product": "Lanthanum oxide, at plant",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 48,
+              "metadata_sha256": "42478662ef5a94404a3bb68cea0d5290353b8a9c3170d42c505878c0e41bbd86",
+              "inventory_sha256": "5438447344e5cca3aa5ed6ff5703760cfbcd5d986137f42fa5476b69b58acf01",
+              "activity_comment_sha256": "d1b2a133f836b480537b4b1e3b5124336868072c7978fa472bb9283e2e8869ca",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Lanthanum oxide, at plant",
+                "reference product": "Lanthanum oxide, at plant",
+                "location": "CN",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 48,
+              "metadata_sha256": "6a9d2a3041b3ef7510bcdbf00b54cae943636e7dbf12f57ac67b4143493c1fe2",
+              "inventory_sha256": "6e440ad0823a4406b9e0aef8a77e784cef938743a011da6fc43c9f61bd178740",
+              "activity_comment_sha256": "4bf49b65e1012faf81b0aa0227b7306d4837842e51eafeae7899f10af080be06",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "boundary_checks": {
+          "source_market_entries": 8,
+          "final_delivery_entries": 4,
+          "correct_native_products": [
+            "Lanthanum oxide, at plant"
+          ],
+          "source_market_entry_statistics_preserved": true,
+          "titanium_route_mix_preserved": false,
+          "original_rule_unchanged": false,
+          "extra_source_manufacturing_added": false,
+          "purity_yield_or_element_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the inspected exact ecoinvent 3.9 cut-off chemical interfaces are reviewed. Source and native products each have positive one-kg references. Keep signed caller mass, supported uncertainty, formulas and separate caller exchanges at factor +1. No dilution, density, chemical-element, purity, process-yield, allocation or energy multiplier is added. Other source releases, patches, system models and reverse routes gain no new permission.",
+        "Use the complete selected native production inventory once. It replaces source production internals with its own precursor supply, energy, transport, infrastructure, wastes, emissions, allocation and uncertainty. Keep each explicit source final-market freight entry separately where a delivery helper is used; native raw-material delivery remains part of manufacturing. No source production overlay, recovery credit, omission, new runtime module or alternative sector engine is introduced. Technology, grade, geography, age, internal uncertainty and scores may differ; finite LCIs do not establish source/native LCIA or stochastic equivalence.",
+        "Retain all four source lanthanum-oxide producer shares and all four final-delivery entries. Use complete Chinese native bastnasite/sulphuric-acid separation for each producer as an explicit ore-route and geographic screening proxy. This does not reproduce the source carbonate/ion-adsorption-clay versus oxide-concentrate route mix. Native roasting/cracking, solvent extraction, auxiliary estimates and revenue allocation differ; source rare-earth co-products receive no added recovery credit. The source 85.27% lanthanum content is the element fraction of the oxide, not a one-kg elemental-metal reference or a dilution factor. Native documentation states rare-earth-oxide purity up to 99.9%; exact delivered assay and regional representativeness are not independently established."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fac1241e5a44bac4dd5f3920c2d6552f8cbdf6c454407178bcfbe035aaeee693"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-746b4e34afee8858",
+      "mapping_method": "reviewed_battery_chemical_supply_39",
+      "review_path": "export/uvek_battery_chemicals_39_review.json",
+      "review_sha256": "8ea0b287b814ef45dd0f0300f86f4e7d4dc2e690788aee0dd6000cbd9a171c47",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for zirconium oxide",
+            "reference product": "zirconium oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "b16f5ec400c095484a4edc1458b0ec5b57c461ef024eea04dc30a263dabe18a9",
+          "inventory_sha256": "ed46238180c65f62576bb0371d535040853b9289bb9f200a24cd760d8919f274",
+          "activity_comment_sha256": "ba45fdd7213dde867801a9c108ef0143acd9cd4072a622cd696bc7aafe6c1769",
+          "product_information_sha256": "10e2720cd0edbe54252a39c731c1ebee9b1d14b2d93b277f067484fe65571843"
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Zirconium oxide, at plant",
+                "reference product": "Zirconium oxide, at plant",
+                "location": "AU",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 26,
+              "metadata_sha256": "84a84baccc49bf24ae3e6075cfe6e5990becffe83ed36ef1be3fb0a2c69629de",
+              "inventory_sha256": "fd5827bce4ac016b62deb2c5806266ea6f45b0b996fff68fc306d1ae664faf47",
+              "activity_comment_sha256": "07c9ffa2cb9b4bd75e1723dec0a6575647283a76774ff9d7d038ef39f2187986",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Zirconium oxide, at plant",
+                "reference product": "Zirconium oxide, at plant",
+                "location": "AU",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 26,
+              "metadata_sha256": "93b4aad384591a8a176f4dce020f551d514249ea28327f3688d1f350b3841c43",
+              "inventory_sha256": "eeb74ad98d6505fa0dd9ef05d21f2c8ba42a90611650617ab7375ed7d35e5fef",
+              "activity_comment_sha256": "40e026cf8984c079c90f08f21f142c5508f19e2ce40406484386b7f37985340d",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "boundary_checks": {
+          "source_market_entries": 6,
+          "final_delivery_entries": 4,
+          "correct_native_products": [
+            "Zirconium oxide, at plant"
+          ],
+          "source_market_entry_statistics_preserved": true,
+          "titanium_route_mix_preserved": false,
+          "original_rule_unchanged": false,
+          "extra_source_manufacturing_added": false,
+          "purity_yield_or_element_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the inspected exact ecoinvent 3.9 cut-off chemical interfaces are reviewed. Source and native products each have positive one-kg references. Keep signed caller mass, supported uncertainty, formulas and separate caller exchanges at factor +1. No dilution, density, chemical-element, purity, process-yield, allocation or energy multiplier is added. Other source releases, patches, system models and reverse routes gain no new permission.",
+        "Use the complete selected native production inventory once. It replaces source production internals with its own precursor supply, energy, transport, infrastructure, wastes, emissions, allocation and uncertainty. Keep each explicit source final-market freight entry separately where a delivery helper is used; native raw-material delivery remains part of manufacturing. No source production overlay, recovery credit, omission, new runtime module or alternative sector engine is introduced. Technology, grade, geography, age, internal uncertainty and scores may differ; finite LCIs do not establish source/native LCIA or stochastic equivalence.",
+        "Source and native intend zirconium dioxide, zirconia, ZrO2. Source CAS 12036-23-6 and native CAS 1314-23-4 are both listed under PubChem CID 62395; NITE also identifies 12036-23-6 as zirconium dioxide, baddeleyite. Native prose formula \"ZiO2\" is a typographical inconsistency; its named zirconia product, CAS and caustic-fusion/calcination process support the intended oxide. Identifier agreement does not establish grade equivalence: the source declares nanomaterial whereas native nano-specific processing, particle size, phase, stabilizers and assay are not independently documented. Use complete native Australian zirconia as a screening proxy for both source producer regions, retaining both shares and all four original final-delivery entries in source order. Native energy and emission data are weak approximations and omit allocation to sodium-silicate by-product. Add no invented nanosizing, calcination, performance or co-product correction."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "48cdd0a075369bfec155bc909b6f0498da029cc612d57b4a5f030900075be7c3"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-af2ed16481887db4",
+      "mapping_method": "reviewed_battery_chemical_supply_39",
+      "review_path": "export/uvek_battery_chemicals_39_review.json",
+      "review_sha256": "8ea0b287b814ef45dd0f0300f86f4e7d4dc2e690788aee0dd6000cbd9a171c47",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for phthalic anhydride",
+            "reference product": "phthalic anhydride",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 6,
+          "metadata_sha256": "191236bd3adcfc9ff65a4e787bc55fda049948ded37d4a48224ae30dcca91838",
+          "inventory_sha256": "a9ad0c801e4b395f98a5262ff3c4a5417243d2933d68104fb72589ae24aad7d8",
+          "activity_comment_sha256": "a0fe18580807825d0691ba45b7aa4f25c1ec2d8795c209ae22103d7e83182555",
+          "product_information_sha256": "45fce04ebce5017c6efeb0eefe5d6db4e4eb1247a0486dbc40a5dbdcbe137d2d"
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Phthalic anhydride, at plant",
+                "reference product": "Phthalic anhydride, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 20,
+              "metadata_sha256": "d0f4cf36039fcd39f18670852f5302d01a0e6a34a7ecf4ccc248d24726486bce",
+              "inventory_sha256": "7946e02436af9642f7323efdbb07a05bf1c017318be0e4053923b58844b22a85",
+              "activity_comment_sha256": "b0a1d647c643442c6f3ad98d93eca688108bace025ef86a626d3a670edca5fdc",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Phthalic anhydride, at plant",
+                "reference product": "Phthalic anhydride, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 20,
+              "metadata_sha256": "27ee433e61c162f2a21cd3264185aabc9c9f298e935205a881dbe7e6af934b24",
+              "inventory_sha256": "71f57bfeadd0d4232d33235fcb2b5f87812c717fca167f21eec350bc79ed2d86",
+              "activity_comment_sha256": "19a9eff39c6201a2f6e2454af12cac04d3ff1c6f546254a6d961c4c7b9ef840c",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "boundary_checks": {
+          "source_market_entries": 6,
+          "final_delivery_entries": 4,
+          "correct_native_products": [
+            "Phthalic anhydride, at plant"
+          ],
+          "source_market_entry_statistics_preserved": true,
+          "titanium_route_mix_preserved": false,
+          "original_rule_unchanged": false,
+          "extra_source_manufacturing_added": false,
+          "purity_yield_or_element_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the inspected exact ecoinvent 3.9 cut-off chemical interfaces are reviewed. Source and native products each have positive one-kg references. Keep signed caller mass, supported uncertainty, formulas and separate caller exchanges at factor +1. No dilution, density, chemical-element, purity, process-yield, allocation or energy multiplier is added. Other source releases, patches, system models and reverse routes gain no new permission.",
+        "Use the complete selected native production inventory once. It replaces source production internals with its own precursor supply, energy, transport, infrastructure, wastes, emissions, allocation and uncertainty. Keep each explicit source final-market freight entry separately where a delivery helper is used; native raw-material delivery remains part of manufacturing. No source production overlay, recovery credit, omission, new runtime module or alternative sector engine is introduced. Technology, grade, geography, age, internal uncertainty and scores may differ; finite LCIs do not establish source/native LCIA or stochastic equivalence.",
+        "Use complete native European phthalic-anhydride production per signed kg for both source regional producers, keeping both original shares and all four final-delivery entries. Source declares pure phthalic anhydride, CAS 85-44-9; native explicitly references one kg of that product. Native mid-1990s literature model uses xylene, estimated energy, transport, infrastructure and analogical air emissions, and omits further inputs/solid wastes. These are inherited data limitations, not permission to omit caller exchanges or invent missing waste treatment. Exact xylene grade, plant performance, regional background, age and uncertainty are not equivalent."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7bfe104a4368f57b8750504b1ef4da43bf7d9f1f7dfb1f9d55674af67c84d526"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-9dd89f73e742148c",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_battery_chemicals_39_review.json",
+      "review_sha256": "8ea0b287b814ef45dd0f0300f86f4e7d4dc2e690788aee0dd6000cbd9a171c47",
+      "authorization": "Standing user auto-approval of coming modelling decisions,complete native screening proxies and helpers,with explicit warnings logged for later review.",
+      "inspection": {
+        "source_witness": {
+          "identity": {
+            "name": "market for propylene oxide, liquid",
+            "reference product": "propylene oxide, liquid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amounts": [
+            1.0
+          ],
+          "nonproduction_count": 1,
+          "metadata_sha256": "f8a1ed24fec538693590ccfb87188136c3ef0b79f8e033150cb087bc6471e863",
+          "inventory_sha256": "9583cd342930dbf739c4592a8b234df9baf8851268ab8f90f91817523fc204de",
+          "activity_comment_sha256": "02e6707907ad752a9d47292b3f223a8aacad83e5b6a96575d8b6e78084f35714",
+          "product_information_sha256": "353bce9d7715c8234a253c6d210adbed898cedfe14a9100c0cf912443e77fb0f"
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Propylene oxide, liquid, at plant",
+                "reference product": "Propylene oxide, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1
+              ],
+              "nonproduction_count": 22,
+              "metadata_sha256": "d77982660c189e70dd37991bdab03dc294c4a86fe75f2231537b334ee5539c7a",
+              "inventory_sha256": "47247df7ee42a50fcbab1beb7d416679ba624f3742386a6e6256b0392a97d083",
+              "activity_comment_sha256": "90135ce39ad9282d4988c95680ebea00c779a2e9c1b8607ebd5fdbf3fc7e9d77",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Propylene oxide, liquid, at plant",
+                "reference product": "Propylene oxide, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amounts": [
+                1.0
+              ],
+              "nonproduction_count": 23,
+              "metadata_sha256": "a451eb06b03b53b27142e3f972cf42f4784b5856ea2dd22d67dc550ea04de9c6",
+              "inventory_sha256": "ec71c5c3e80bf8f2bc917a202f032647c05a268497b1c6d391401b0f4b58bc2d",
+              "activity_comment_sha256": "167eb6105cc76f643d60aba9a3721595e468bd092e9d8ad83f3a476eaabbdefc",
+              "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "boundary_checks": {
+          "source_market_entries": null,
+          "final_delivery_entries": 0,
+          "correct_native_products": [
+            "Propylene oxide, liquid, at plant"
+          ],
+          "source_market_entry_statistics_preserved": false,
+          "titanium_route_mix_preserved": false,
+          "original_rule_unchanged": true,
+          "extra_source_manufacturing_added": false,
+          "purity_yield_or_element_multiplier": false
+        }
+      },
+      "limitations": [
+        "Only the inspected exact ecoinvent 3.9 cut-off chemical interfaces are reviewed. Source and native products each have positive one-kg references. Keep signed caller mass, supported uncertainty, formulas and separate caller exchanges at factor +1. No dilution, density, chemical-element, purity, process-yield, allocation or energy multiplier is added. Other source releases, patches, system models and reverse routes gain no new permission.",
+        "Use the complete selected native production inventory once. It replaces source production internals with its own precursor supply, energy, transport, infrastructure, wastes, emissions, allocation and uncertainty. Keep each explicit source final-market freight entry separately where a delivery helper is used; native raw-material delivery remains part of manufacturing. No source production overlay, recovery credit, omission, new runtime module or alternative sector engine is introduced. Technology, grade, geography, age, internal uncertainty and scores may differ; finite LCIs do not establish source/native LCIA or stochastic equivalence.",
+        "The inspected Rest-of-World propylene-oxide market has one producer at exactly 1 kg and no final-delivery exchanges. Use the existing complete native European liquid propylene-oxide plant directly, without a redundant helper. Source and native identify CAS 75-56-9, C3H6O. Both describe the chlorohydrin route; native assumes 90-95% yield, estimates emissions and internal wastewater treatment, and omits solid wastes. Keep the whole native model as a geographic/vintage screening proxy. Do not apply another yield, aqueous-solution, treatment-efficiency or avoided-emission factor, and do not invent transport absent from this market."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "cfd1dd0dfcb94271e37e3e80fc81222744e9dda28567b16cd6ccebf0db8835e9"
+        }
+      ]
     }
   ],
   "superseded_operations": [

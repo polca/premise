@@ -2305,21 +2305,21 @@
           "version": "3.9",
           "system_model": "cutoff"
         },
-        "rule_id": "bp-f67674df84fdfefc",
+        "rule_id": "bp-d700fe3d29d48083",
         "source": {
-          "location": "RER",
-          "name": "market for benzaldehyde",
-          "reference product": "benzaldehyde",
+          "location": "Europe without Switzerland",
+          "name": "market for pitch",
+          "reference product": "pitch",
           "unit": "kilogram"
         },
-        "unapproved_correspondence_count_in_current_39_cohort": 34,
+        "unapproved_correspondence_count_in_current_39_cohort": 28,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-separator-wet-pe-39-verification.json",
+        "verification": "docs/development/uvek-battery-chemicals-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Review the remaining34first-cohort material/treatment mappings in groups. Next six chemical markets have18already-approved freight entries;TiO2specific native routes are available and preserve its source mix.",
+        "next_action": "Review seven pitch-input rules,correct petroleum-to-coke to a verified native delivered-crude supply,then reconstruct the actual petroleum-derived pitch inventory. Continue the other27pending first-cohort rules andremaining sector qualifications.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh archive and cached resolution agree on34pending first3.9cohort rules;the wet-PEseparator market clears with all70manufacturing exchanges retained.",
+        "mapping_diagnostic": "Fresh archive and cached resolution agree on28pending first3.9battery cohort rules. Exactly six chemical rules clear;pitch inputpreflight separately exposes7unreviewed dependencies not added to this count.",
         "separate_separator_reconstruction_dependencies": {
           "unique_rules": 0,
           "electricity": 0,
@@ -2336,6 +2336,14 @@
             12
           ],
           "inherited_previous_trace_HDPE_omissions": 4
+        },
+        "separate_pitch_reconstruction_dependencies": {
+          "unique_unapproved_rules": 7,
+          "included_in_current_first_cohort_count": false,
+          "petroleum_coke_is_not_crude_oil": true,
+          "native_delivered_RER_crude_supply_found": true,
+          "source_and_native_crude_unit": "kilogram",
+          "reconstruction_and_input_permissions_pending": true
         }
       }
     },
@@ -3647,7 +3655,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-separator-wet-pe-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-battery-chemicals-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
