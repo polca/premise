@@ -87,7 +87,7 @@ def exchange_record(
         or supplier.get("reference product", "")
     )
     record.update(
-        name=record.get("name") or supplier.get("name", ""),
+        name=supplier.get("name") or record.get("name", ""),
         reference_product=product,
         product=product,
         location=supplier.get("location", ""),

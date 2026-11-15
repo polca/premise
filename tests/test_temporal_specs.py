@@ -96,7 +96,7 @@ def test_registry_loads_packaged_evidence_and_reviewed_assignment():
     assert "ccnr-rhine-tanker-vessel-construction-vintage-2024" in registry.profiles
     assert "gem-global-solar-power-tracker-february-2026" in registry.sources
     assert "gem-gspt-world-csp-construction-vintage-2026" in registry.profiles
-    assert len(registry.assignments) == 148
+    assert len(registry.assignments) == 152
     assert all(
         item["id"].startswith(("reviewed-", "proxy-")) for item in registry.assignments
     )
@@ -541,7 +541,10 @@ def test_relationship_selector_uses_caller_and_direct_evidence_beats_proxy():
     registry = TemporalRegistry(
         SOURCES, {"construction": construction}, [proxy, direct]
     )
-    exchange = {"name": "wind turbine, 2MW, onshore"}
+    exchange = {
+        "name": "wind turbine, 2MW, onshore",
+        "reference product": "wind turbine, 2MW, onshore",
+    }
 
     assert (
         registry.resolve(
@@ -2033,7 +2036,7 @@ def test_packaged_aircraft_construction_selector(version, caller_name, exchange_
 
     registry = TemporalRegistry.from_directory(DATA_DIR / "trails" / "temporal")
     resolution = registry.resolve(
-        {"name": exchange_name, "unit": "unit"},
+        {"name": exchange_name, "reference product": exchange_name, "unit": "unit"},
         target="supplier",
         context={"ecoinvent_version": version},
         caller_record={
@@ -2070,7 +2073,7 @@ def test_aircraft_selector_excludes_unreviewed_relationships(
 
     registry = TemporalRegistry.from_directory(DATA_DIR / "trails" / "temporal")
     resolution = registry.resolve(
-        {"name": exchange_name, "unit": "unit"},
+        {"name": exchange_name, "reference product": exchange_name, "unit": "unit"},
         target="supplier",
         context={"ecoinvent_version": "3.12"},
         caller_record={"name": caller_name, "location": "GLO"},
@@ -2123,7 +2126,7 @@ def test_packaged_inland_vessel_construction_selectors(
 
     registry = TemporalRegistry.from_directory(DATA_DIR / "trails" / "temporal")
     resolution = registry.resolve(
-        {"name": exchange_name, "unit": "unit"},
+        {"name": exchange_name, "reference product": exchange_name, "unit": "unit"},
         target="supplier",
         context={"ecoinvent_version": version},
         caller_record={"name": caller_name, "location": location},
@@ -2142,7 +2145,7 @@ def test_inland_vessel_selector_excludes_maintenance_relationship():
 
     registry = TemporalRegistry.from_directory(DATA_DIR / "trails" / "temporal")
     resolution = registry.resolve(
-        {"name": "barge", "unit": "unit"},
+        {"name": "barge", "reference product": "barge", "unit": "unit"},
         target="supplier",
         context={"ecoinvent_version": "3.12"},
         caller_record={"name": "maintenance, barge", "location": "RER"},
@@ -2169,7 +2172,7 @@ def test_packaged_csp_construction_selectors(location, profile_id):
         "concentrated solar power plant, solar thermal parabolic trough, 50 MW"
     )
     resolution = registry.resolve(
-        {"name": supplier_name, "unit": "unit"},
+        {"name": supplier_name, "reference product": supplier_name, "unit": "unit"},
         target="supplier",
         context={"ecoinvent_version": "3.12"},
         caller_record={
@@ -2190,7 +2193,11 @@ def test_platform_selector_geography_and_offshore_boundary(version, location, ki
     from premise.core.filesystem_constants import DATA_DIR
 
     registry = TemporalRegistry.from_directory(DATA_DIR / "trails" / "temporal")
-    supplier = {"name": "offshore platform, petroleum", "unit": "unit"}
+    supplier = {
+        "name": "offshore platform, petroleum",
+        "reference product": "offshore platform, petroleum",
+        "unit": "unit",
+    }
     caller = {
         "name": (
             "petroleum and gas production, off-shore"
@@ -2231,7 +2238,11 @@ def test_passenger_rail_proxy_and_service_exclusions(version, caller_name):
     from premise.core.filesystem_constants import DATA_DIR
 
     registry = TemporalRegistry.from_directory(DATA_DIR / "trails" / "temporal")
-    supplier = {"name": "train, passenger, long-distance", "unit": "unit"}
+    supplier = {
+        "name": "train, passenger, long-distance",
+        "reference product": "train, passenger, long-distance",
+        "unit": "unit",
+    }
     caller = {"name": caller_name, "location": "CH"}
     result = registry.resolve(
         supplier,
@@ -2259,7 +2270,9 @@ def test_passenger_rail_proxy_and_service_exclusions(version, caller_name):
             is None
         )
     caller["name"] = caller_name
-    supplier["name"] = "maintenance, train, passenger, long distance"
+    supplier["name"] = supplier["reference product"] = (
+        "maintenance, train, passenger, long distance"
+    )
     assert (
         registry.resolve(
             supplier,
@@ -2287,7 +2300,11 @@ def test_wood_biomass_geography_precedence_and_component_boundary(location, expe
         "name": "heat and power co-generation, wood chips, 6667 kW",
         "location": location,
     }
-    supplier = {"name": "furnace, wood chips, with silo, 5000kW", "unit": "unit"}
+    supplier = {
+        "name": "furnace, wood chips, with silo, 5000kW",
+        "reference product": "furnace, wood chips, with silo, 5000kW",
+        "unit": "unit",
+    }
     result = registry.resolve(
         supplier,
         target="supplier",
@@ -2295,7 +2312,9 @@ def test_wood_biomass_geography_precedence_and_component_boundary(location, expe
         caller_record=caller,
     )
     assert result is not None and result.profile_id == expected
-    supplier["name"] = "dust collector, electrostatic precipitator"
+    supplier["name"] = supplier["reference product"] = (
+        "dust collector, electrostatic precipitator"
+    )
     assert (
         registry.resolve(
             supplier,
@@ -2306,7 +2325,9 @@ def test_wood_biomass_geography_precedence_and_component_boundary(location, expe
         is None
     )
     if location == "CH":
-        supplier["name"] = "furnace, wood chips, with silo, 5000kW"
+        supplier["name"] = supplier["reference product"] = (
+            "furnace, wood chips, with silo, 5000kW"
+        )
         caller["name"] += ", state-of-the-art 2014"
         assert (
             registry.resolve(
@@ -2330,7 +2351,11 @@ def test_waste_incineration_profiles_exclude_no_recovery_and_hazardous(
         "name": "treatment of municipal solid waste, municipal incineration",
         "location": location,
     }
-    supplier = {"name": "municipal waste incineration facility", "unit": "unit"}
+    supplier = {
+        "name": "municipal waste incineration facility",
+        "reference product": "municipal waste incineration facility",
+        "unit": "unit",
+    }
     result = registry.resolve(
         supplier,
         target="supplier",
@@ -2383,7 +2408,11 @@ def test_offshore_structure_geography_and_moving_parts_boundary(location, geogra
         "name": "electricity production, wind, 1-3MW turbine, offshore",
         "location": location,
     }
-    supplier = {"name": "wind power plant, 2MW, offshore, fixed parts", "unit": "unit"}
+    supplier = {
+        "name": "wind power plant, 2MW, offshore, fixed parts",
+        "reference product": "wind power plant, 2MW, offshore, fixed parts",
+        "unit": "unit",
+    }
     result = registry.resolve(
         supplier,
         target="supplier",
@@ -2395,7 +2424,9 @@ def test_offshore_structure_geography_and_moving_parts_boundary(location, geogra
         result.profile_id
         == f"gem-gwpt-{geography}-offshore-fixed-structure-vintage-2026"
     )
-    supplier["name"] = "wind power plant, 2MW, offshore, moving parts"
+    supplier["name"] = supplier["reference product"] = (
+        "wind power plant, 2MW, offshore, moving parts"
+    )
     assert (
         registry.resolve(
             supplier,
@@ -2412,7 +2443,11 @@ def test_lng_carrier_specific_profile_overrides_other_ships_and_chemical_sites_u
 
     registry = TemporalRegistry.from_directory(DATA_DIR / "trails" / "temporal")
     result = registry.resolve(
-        {"name": "tanker, for liquefied natural gas", "unit": "unit"},
+        {
+            "name": "tanker, for liquefied natural gas",
+            "reference product": "tanker, for liquefied natural gas",
+            "unit": "unit",
+        },
         target="supplier",
         context={"ecoinvent_version": "3.12"},
         caller_record={
@@ -2445,6 +2480,7 @@ def test_csp_selector_excludes_component_construction():
     resolution = registry.resolve(
         {
             "name": "concentrated solar power plant, solar thermal parabolic trough, 50 MW",
+            "reference product": "concentrated solar power plant, solar thermal parabolic trough, 50 MW",
             "unit": "unit",
         },
         target="supplier",

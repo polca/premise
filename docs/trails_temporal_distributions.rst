@@ -132,6 +132,13 @@ and classifications. A selector has ``all`` and ``any`` inclusion groups plus
 optional exclusions. Selectors can be restricted to named ecoinvent versions
 and can declare expected minimum and maximum match counts for coverage checks.
 
+Supplier selectors use ``reference product`` for the exchanged infrastructure
+product and ``name`` for the supplying activity name. These can differ: for
+example, ``wind turbine construction, ...`` supplies ``wind turbine, ...``.
+The audit resolves supplier activity names through the linked dataset so it
+uses the same identity convention as Premise exports. Fuel-specific custom
+vehicle and other explicitly named-activity selectors retain ``name``.
+
 Supplier and biosphere assignments may also combine ``caller_match`` with
 ``exchange_match``. This makes the relationship explicit: a construction
 profile can depend on the technology and geography of the electricity-producing
@@ -144,7 +151,12 @@ selectors, which outrank general direct selectors, country-proxy selectors, and
 generic fallbacks. A ``proxy`` assignment therefore applies only when no direct
 selector matches. Priority and selector specificity break ties.
 Equal-precedence matches that select different profiles raise an error instead
-of silently choosing one. The audit API reports raw and selected match counts,
+of silently choosing one. Cement and iron/steel relationships also have explicit world-profile proxies
+for IAM region labels that are not covered by a direct country or regional
+selector. Direct selectors retain precedence. These fallbacks do not imply
+that world fleet composition describes each IAM region.
+
+The audit API reports raw and selected match counts,
 uncovered records, and expected-count violations.
 
 The selector operators mirror the stable subset of dataset-filter behavior used

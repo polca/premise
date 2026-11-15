@@ -13,7 +13,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: EV charger, level 3, with pantograph, 450 kW
       case_sensitive: false
@@ -49,7 +49,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: EV charger, level 3, plugin, 200 kW
       case_sensitive: false
@@ -125,7 +125,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: EV charger, level 3, plugin, 200 kW
       case_sensitive: false
@@ -818,23 +818,23 @@ assignments:
       case_sensitive: false
   exchange_match:
     any:
-    - field: name
+    - field: reference product
       operator: startswith
       value: gearbox, for lorry
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: retarder, for lorry
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: suspension, for lorry
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: tires and wheels, for lorry
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: fuel tank,
       case_sensitive: false
@@ -889,19 +889,19 @@ assignments:
       case_sensitive: false
   exchange_match:
     any:
-    - field: name
+    - field: reference product
       operator: startswith
       value: photovoltaics, electric installation for
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: photovoltaic slanted-roof installation,
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: photovoltaic facade installation,
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: photovoltaic flat-roof installation,
       case_sensitive: false
@@ -932,7 +932,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: construction work, heat and power co-generation unit, 160kW electrical
       case_sensitive: false
@@ -957,7 +957,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id005
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: wind power plant, 2MW, offshore, fixed parts
       case_sensitive: false
@@ -1148,7 +1148,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: tanker, for liquefied natural gas
       case_sensitive: false
@@ -1238,11 +1238,11 @@ assignments:
       value: unit
       case_sensitive: false
     any:
-    - field: name
+    - field: reference product
       operator: startswith
       value: furnace, wood chips, with silo,
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: heat and power co-generation unit, organic Rankine cycle,
       case_sensitive: false
@@ -1312,7 +1312,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id010
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: municipal waste incineration facility
       case_sensitive: false
@@ -1386,7 +1386,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - train, passenger, regional
@@ -1426,7 +1426,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id011
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - offshore platform, petroleum
@@ -1534,7 +1534,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id013
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: gas boiler
       case_sensitive: false
@@ -1595,7 +1595,7 @@ assignments:
   caller_exclude: *id012
   exchange_match: &id016
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - oil boiler, 10kW
@@ -1659,7 +1659,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id018
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - furnace, logs, 30kW
@@ -1715,7 +1715,7 @@ assignments:
   caller_exclude: *id017
   exchange_match: &id019
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - furnace, logs, 6kW
@@ -1763,7 +1763,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id020
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: heat pump, brine-water, 10kW
       case_sensitive: false
@@ -1856,7 +1856,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id023
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - cement factory
@@ -2177,7 +2177,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id024
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: blast furnace
       case_sensitive: false
@@ -2270,7 +2270,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id025
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: blast oxygen furnace converter
       case_sensitive: false
@@ -2371,7 +2371,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id027
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - electric arc furnace
@@ -2525,7 +2525,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id028
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - pipeline, natural gas, long distance, high capacity, offshore
@@ -2596,7 +2596,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id029
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - pipeline, petroleum
@@ -2674,7 +2674,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id030
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: goods wagon
       case_sensitive: false
@@ -2745,7 +2745,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id032
     all:
-    - field: name
+    - field: reference product
       operator: in
       value:
       - mine infrastructure, open cast, hard coal
@@ -2804,7 +2804,7 @@ assignments:
     any: *id031
   exchange_match: &id033
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: mine infrastructure, underground, hard coal
       case_sensitive: false
@@ -2853,7 +2853,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: bulk carrier, for dry goods
       case_sensitive: false
@@ -2885,7 +2885,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: container ship
       case_sensitive: false
@@ -2912,7 +2912,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: tanker, for petroleum
       case_sensitive: false
@@ -2952,15 +2952,15 @@ assignments:
       value: unit
       case_sensitive: false
     any:
-    - field: name
+    - field: reference product
       operator: equals
       value: ferry
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: equals
       value: tanker, for liquefied natural gas
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: equals
       value: tanker, for liquid goods other than petroleum and liquefied natural gas
       case_sensitive: false
@@ -3001,11 +3001,11 @@ assignments:
       value: unit
       case_sensitive: false
     any:
-    - field: name
+    - field: reference product
       operator: startswith
       value: aircraft, passenger,
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: aircraft, belly freight,
       case_sensitive: false
@@ -3037,7 +3037,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id034
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: barge
       case_sensitive: false
@@ -3096,7 +3096,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id035
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: barge tanker
       case_sensitive: false
@@ -3210,11 +3210,11 @@ assignments:
       - cubic meter
       case_sensitive: false
     any:
-    - field: name
+    - field: reference product
       operator: startswith
       value: building, hall
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: equals
       value: building, multi-storey
       case_sensitive: false
@@ -3304,7 +3304,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id038
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: building,
       case_sensitive: false
@@ -3313,11 +3313,11 @@ assignments:
       value: unit
       case_sensitive: false
     any:
-    - field: name
+    - field: reference product
       operator: contains
       value: hotel
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: contains
       value: hostel
       case_sensitive: false
@@ -3644,7 +3644,7 @@ assignments:
       operator: startswith
       value: lorry production,
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: contains
       value: 3.5 metric ton
       case_sensitive: false
@@ -3688,7 +3688,7 @@ assignments:
       operator: startswith
       value: lorry production,
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: contains
       value: 3.5 metric ton
       case_sensitive: false
@@ -3722,7 +3722,7 @@ assignments:
       case_sensitive: false
   exchange_match: &id039
     all:
-    - field: name
+    - field: reference product
       operator: equals
       value: concentrated solar power plant, solar thermal parabolic trough, 50 MW
       case_sensitive: false
@@ -3835,11 +3835,11 @@ assignments:
       case_sensitive: false
   exchange_match:
     any:
-    - field: name
+    - field: reference product
       operator: startswith
       value: furnace, wood chips, with silo,
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: heat and power co-generation unit,
       case_sensitive: false
@@ -3877,11 +3877,11 @@ assignments:
       case_sensitive: false
   exchange_match:
     any:
-    - field: name
+    - field: reference product
       operator: glob
       value: wind turbine, *
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: glob
       value: wind power plant, *
       case_sensitive: false
@@ -3915,11 +3915,11 @@ assignments:
       case_sensitive: false
   exchange_match:
     any:
-    - field: name
+    - field: reference product
       operator: glob
       value: wind turbine, *
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: glob
       value: wind power plant, *
       case_sensitive: false
@@ -3951,16 +3951,16 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: photovoltaic
       case_sensitive: false
     any:
-    - field: name
+    - field: reference product
       operator: contains
       value: installation
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: photovoltaic plant,
       case_sensitive: false
@@ -3988,16 +3988,16 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: photovoltaic
       case_sensitive: false
     any:
-    - field: name
+    - field: reference product
       operator: contains
       value: installation
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: photovoltaic plant,
       case_sensitive: false
@@ -4035,7 +4035,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: hydropower plant,
       case_sensitive: false
@@ -4069,7 +4069,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: hydropower plant,
       case_sensitive: false
@@ -4101,7 +4101,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: hydropower plant,
       case_sensitive: false
@@ -4129,7 +4129,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: hydropower plant,
       case_sensitive: false
@@ -4161,7 +4161,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: nuclear power plant,
       case_sensitive: false
@@ -4189,7 +4189,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: nuclear power plant,
       case_sensitive: false
@@ -4230,11 +4230,11 @@ assignments:
       case_sensitive: false
   exchange_match:
     any:
-    - field: name
+    - field: reference product
       operator: startswith
       value: hard coal power plant
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: lignite power plant
       case_sensitive: false
@@ -4266,11 +4266,11 @@ assignments:
       case_sensitive: false
   exchange_match:
     any:
-    - field: name
+    - field: reference product
       operator: startswith
       value: hard coal power plant
       case_sensitive: false
-    - field: name
+    - field: reference product
       operator: startswith
       value: lignite power plant
       case_sensitive: false
@@ -4302,7 +4302,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: gas power plant, combined cycle
       case_sensitive: false
@@ -4330,7 +4330,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: gas power plant, combined cycle
       case_sensitive: false
@@ -4358,7 +4358,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: gas turbine,
       case_sensitive: false
@@ -4390,7 +4390,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: glob
       value: gas power plant, *MW electrical
       case_sensitive: false
@@ -4418,7 +4418,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: glob
       value: gas power plant, *MW electrical
       case_sensitive: false
@@ -4450,7 +4450,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: geothermal power plant,
       case_sensitive: false
@@ -4478,7 +4478,7 @@ assignments:
       case_sensitive: false
   exchange_match:
     all:
-    - field: name
+    - field: reference product
       operator: startswith
       value: geothermal power plant,
       case_sensitive: false
@@ -4898,3 +4898,155 @@ assignments:
     - '3.12'
   expected_matches:
     minimum: 1
+- id: proxy-global-gem-gcct-cement-plant-construction-vintage
+  profile: gem-gcct-world-cement-plant-construction-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all: []
+    any:
+    - field: name
+      operator: startswith
+      value: cement production
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: clinker production
+      case_sensitive: false
+  caller_exclude:
+    any:
+    - field: name
+      operator: startswith
+      value: market for
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: market group for
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: reference product
+      operator: in
+      value:
+      - cement factory
+      - integrated cement plant
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 0
+- id: proxy-global-gem-gist-blast-furnace-construction-vintage
+  profile: gem-gist-world-blast-furnace-construction-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: pig iron production
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: reference product
+      operator: equals
+      value: blast furnace
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 0
+- id: proxy-global-gem-gist-basic-oxygen-furnace-construction-vintage
+  profile: gem-gist-world-basic-oxygen-furnace-construction-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all:
+    - field: name
+      operator: startswith
+      value: steel production, converter
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: reference product
+      operator: equals
+      value: blast oxygen furnace converter
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 0
+- id: proxy-global-gem-gist-electric-arc-furnace-construction-vintage
+  profile: gem-gist-world-electric-arc-furnace-construction-vintage-2026
+  target: supplier
+  kind: proxy
+  priority: 10
+  caller_match:
+    all: []
+    any:
+    - field: name
+      operator: startswith
+      value: cast iron production
+      case_sensitive: false
+    - field: name
+      operator: startswith
+      value: steel production, electric
+      case_sensitive: false
+  exchange_match:
+    all:
+    - field: reference product
+      operator: in
+      value:
+      - electric arc furnace
+      - electric arc furnace converter
+      case_sensitive: false
+    - field: unit
+      operator: equals
+      value: unit
+      case_sensitive: false
+  applicability:
+    ecoinvent_versions:
+    - '3.8'
+    - '3.9'
+    - 3.9.1
+    - '3.10'
+    - 3.10.1
+    - '3.11'
+    - '3.12'
+  expected_matches:
+    minimum: 0

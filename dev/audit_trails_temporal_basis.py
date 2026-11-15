@@ -110,7 +110,7 @@ def count_basis(records, relationships, registry, stocks, version):
             if exchange.get("type", "technosphere") != "technosphere":
                 continue
             supplier = records.get(tuple(exchange.get("input", ())), {})
-            name = exchange.get("name") or supplier.get("name", "")
+            name = supplier.get("name") or exchange.get("name", "")
             product = (
                 exchange.get("product")
                 or exchange.get("reference product")
