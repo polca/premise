@@ -12781,7 +12781,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "7b52d3c90f1aceafb346a1386b025cc9b9e21e50ac96582c80fd15517d1333f3"
+          "fingerprint": "d805fd0ab29dab6b03afde10ec1ac682b19306d839640ce01abe5b497a0f56fe"
         },
         {
           "source": {
@@ -12794,7 +12794,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "1a94e9f09de29b9b2ee189bcdd8e4d84d53a527064053a1b31ab6d2edaa45fbe"
+          "fingerprint": "28f7237c24beae5af586b906ed377f51ddf67b1bab7f4298262a00ff1783a946"
         }
       ]
     },
@@ -186064,7 +186064,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "93d8494460aeafa50806c61e838f38a8bff49864555cbdf5cacc6b57e665ae2a"
+          "fingerprint": "2c97dc1cb762fe6289c907803fc0c0425334a3e8d226f15a82eeb4848ffae8e4"
         }
       ]
     },
@@ -292756,6 +292756,2532 @@
             "system_model": "cutoff"
           },
           "fingerprint": "2200d141cbc53b69a52f9278d84d57cd5e669140e5c305d2c660a1f149b1fd58"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-22fb05598c337210",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_38_native_market",
+      "review_path": "export/uvek_ships_38_remaining_review.json",
+      "review_sha256": "35adef27c7bc9b30d9c4a2eb49e2bf4e32ca16f1eb972067abc1cf64718c1956",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening suppliers, preserve signed reference bases and final delivery, and disclose moisture, infrastructure, allocation, chemistry and score limitations. No physical omission or system-model crossing.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for wood chips, dry, measured as dry mass",
+          "reference product": "wood chips, dry, measured as dry mass",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "RER",
+            "name": "market for wood chips, dry, measured as dry mass",
+            "reference product": "wood chips, dry, measured as dry mass",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "753c36f7c852688d6e5c251cd9ef20a2b17d53ce7f80f9020942fe688ada4e40",
+          "metadata_sha256": "65e614554ecb13b14523cfe987d06467d0a0a4d8acaa1b2fe4a21a92b5756655",
+          "nonproduction_exchange_count": 7,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "cross-laminated timber production",
+              "reference product": "wood chips, dry, measured as dry mass",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "b2f1e3ef2ad54dad6143a46bb7404d9dd171e19929ae0766305abcd73f5e89c1",
+            "metadata_sha256": "0bf518b75e84861bb28ba2031e5b61c2afc80d21fc24095505bde1b972bc4f35",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "glued laminated timber production, average glue mix",
+              "reference product": "wood chips, dry, measured as dry mass",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "e47c6e522620b0f5966b45092672f5a7b9b6ed96f7a44e8ea338033a96e59f37",
+            "metadata_sha256": "772c8b88106384785274766d9cb89247564cae0eed2e541871715fe466af5c34",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "glued solid timber production",
+              "reference product": "wood chips, dry, measured as dry mass",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "8436d4619d182ac08c3c94e34d2ebaddd8840bb2badc25f7370651ff957d6849",
+            "metadata_sha256": "0e8f130a76ae0341de084cbeb50a51deb9aca4317cce279cbebd1cf5d45b088d",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "plywood production",
+              "reference product": "wood chips, dry, measured as dry mass",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "21f8959f6d4f1eef79eddd76c066964bc99401a16e41c782d932911d34211f61",
+            "metadata_sha256": "78d3f47ab04cfc1fe53f4c0a141cdc987f37a780205642adf9f6ba4769d10f2f",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "structural timber production",
+              "reference product": "wood chips, dry, measured as dry mass",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "c784787dcd07dee3c99e854e8e48c1e476d30be07625aaf4e96a25d0f028c92e",
+            "metadata_sha256": "8712286e3d2530f64ad3dcbd6e70018e62dc9ff8c4c045d76404fd46a1859aa6",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "three and five layered board production",
+              "reference product": "wood chips, dry, measured as dry mass",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "c6567f3c1772d6c91648c86d06373d621eff9c54b60465796f346b89e95c7a57",
+            "metadata_sha256": "da89d7225ef76370cbd9a2aafb490caa5fa23a7afb5db124b4134cf46401d857",
+            "reference_amounts": [
+              1.0
+            ]
+          }
+        ],
+        "basis": "Replace the hardwood-only wet-sawmill heuristic with the complete native RER production mix of wet wood chips measured as kg dry mass. Source dry chips are co-products of six timber-manufacturing activities; native replaces those allocated producer inventories with its historical forest/sawmill/species mixture. Both reference1kg dry wood, so caller dry mass remains unchanged despite the wet native product. Retain every source co-product quantity and final delivery separately.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-38-wood-market",
+        "boundary_checks": {
+          "source_reference_amount": 1,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 7,
+          "freight_entries": 1,
+          "source_background_formula_count": 1,
+          "source_parameter_formulas_transplanted": false,
+          "capacity_moisture_lifetime_or_concentration_scaling": false
+        },
+        "preserved_profiles": [],
+        "prior_approval": null,
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "51a968d9c39b15d3501e88519fb24743be8461a960c759eedaea72142d1ad93b",
+              "metadata_sha256": "5987327d81d6aba95727ecb1c50cf63962da9ef2ced5e27f326a72a35dcef603"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d8dd2e60c7e35033226ecf926135e5f4a55a5a98e52b1b59629780d69c0950a8",
+              "metadata_sha256": "737360ca6387aa33dbaba5f5f428bb906e7e8e00af87afc7e1a075ff69ffcdc9"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1633cec2e87a2d0529d4b66ccc570a18db1d622546726ed13d2918f8d1a514a9",
+              "metadata_sha256": "a9e0d163229fb1bd205e950246fc26cfe79bb03adda181c3256c85fddde32a80"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6c3a3a7967e503d7ec8e67f0a02d26b5678d38785adf5097fac54db8548d750b",
+              "metadata_sha256": "2ef01f09150b303576d30707b5505e5353917db6123f82a29ad0b4970f7d3124"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6475cc133be191701b945110383c936c9085720fcaffbea3fd240fa5e2c6689c",
+              "metadata_sha256": "55cce11708a2bd60c45954324ebdc68b573da7a2ba0a40e3657d33f6c603debd"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "7a6fda825440fc335dec1b458715c7c072db58fda34c27773c98d25a76d1c75d",
+              "metadata_sha256": "43ab93af1f5e5b7d0bcc9bf8c2812788d609ea4ca50931b84e03a53ee7a104f0"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "27faa5893110728e7897e662b47a804433d8c005bd1e301d95df98204f229a40",
+              "metadata_sha256": "fe5b762b3ec90b89b81a8edd54d491a822e0e09d94cf48331fa6040c8a9cdc03"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "81d228dd9a222f3b134bf3949a720229c16cea4f85a89fbc79923313d2e6bc24",
+              "metadata_sha256": "7886452383da80acd3e880df1384efdd5e68ece2320a19fa598642984a978362"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "815f79d7b1b9835cf6f35e09a00f8911614f9f1c98c7a80e47553607a5216bc5",
+              "metadata_sha256": "ab8421828e6f48b6a79e907f899a5cc7a6612f0ccdcb31926ab641cb8c8db562"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d570e7fef9617f42aba42f43666cc922133bc5727d4b874d1365934e044fc863",
+              "metadata_sha256": "ae2b34b6678be931114b58e86d9357efb31b81c278b3fe1fe70b69d927fbfc29"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b6e851ebf77fe63cb4861c6a4b2c1b86cf9e69c3f7acb444e5a5786b456ae098",
+              "metadata_sha256": "bdf92d5db26cd3029b187ddc78ab9a3dcce19908e1178a71d6fdfb0df9d14f4d"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6125673cfd1213909106a78fbeb4ba7a664de29bc1bf1aa99c2f32a0fa5150d8",
+              "metadata_sha256": "478b13b36f2be161ce6ce1c3419c412955d5e490048dce8a5bd20d569da344b5"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9a62ba3f827a33f72c102cdd064a2ce01ea1b5b95cc78e56bcd1e48eec1bc34f",
+              "metadata_sha256": "4d7a6093af2c23c0335708f0578067cef03fc6acf630d404f7e7e183a6b2bbba"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "3b1a87f0abc6b812f6a6fbb4a189dc0bc7d555206da659d383fc79b1079df505",
+              "metadata_sha256": "c5c5e44ca4b45cb814d138ae27e9ff2c0a1ff86a332b987022f1cf221b6a7ab6"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "420938becbcdf23041a5677edbd266c81f0ad63c24dac85ff29e0bf30e1e448e",
+              "metadata_sha256": "e26084993604713733398e5828811473d767d1c67e69ba5dac2bc48d60bec136"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "80c1cb9554fc018d1d881a5a71561b28507dc86e62ccb0c5bf4c2993eb4cc1cd",
+              "metadata_sha256": "333e28eae04c41d773330fb02528f15d8244dab082439543f5cbf093848f40d8"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a4245db5fe4e2223d41a380bc66064616ebeb2b8a70cc8c4f1dcfb36f302ac53",
+              "metadata_sha256": "914f1c5f80929e56991146561fa79095d0c7f2af6e6e0d102ec53fe870992569"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "cc8e4e4332829d5750831d6efafcb82403790edcaf0f5fb5e5559fe84ef62786",
+              "metadata_sha256": "06c4926c93b8844eb066bf73796ded36f9f62afe91e52631ef78967f7f0a48a7"
+            }
+          ]
+        },
+        "silica_allocation_verification": null
+      },
+      "limitations": [
+        "Replace the hardwood-only wet-sawmill heuristic with the complete native RER production mix of wet wood chips measured as kg dry mass. Source dry chips are co-products of six timber-manufacturing activities; native replaces those allocated producer inventories with its historical forest/sawmill/species mixture. Both reference1kg dry wood, so caller dry mass remains unchanged despite the wet native product. Retain every source co-product quantity and final delivery separately.",
+        "This is a moisture and supply-boundary screening proxy, not a dry-chip-equivalent product: native moisture, allocated timber-drying burdens, species, forest/co-product split and transport differ. Any missing allocated drying burden and gasification implications have unquantified score effects. Do not invent an extra dryer, water exchange, dry-to-wet mass correction, wood yield, carbon content or heating-value multiplier. Retain separately modelled caller processing, water, fuel and emissions.",
+        "Only the independently inspected ecoinvent3.8cutoff source is added. Preserve signed caller quantities, supported uncertainty, formulas and separate emissions at factor+1. No inverse route, cross-system-model mapping or permission for an uninspected source version is inferred. Other qualified profiles retain their supplier and reference bases.",
+        "Retain all original source producer quantities and final-market freight entries separately without renormalization. Each producer branch uses the complete native screening supplier once at its source weight. Native internal upstream transport remains internal; retained final market delivery is separate. Native geographic sourcing, production mix, allocation, age, emissions, land use and internal uncertainty differ, with unquantified score effects. No source/native LCI or LCIA equivalence is asserted.",
+        "Freight uses complete native same-mode tonne-km services. Vehicle/locomotive/vessel size, fleet, fuel, loading, cargo allocation, geography and emissions differ; Chinese rail may use the complete native coal-freight fleet as a bulk-mineral fleet proxy. Add no payload, distance, mode-substitution, infrastructure or moisture multiplier. Background parameter/formula graphs and correlations are not transplanted without their context; already-calculated nominal coefficients and supported marginal uncertainty are retained, and caller formulas remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "f045fac312fda09b5b41c5900b9bbbe704a98530b93f753de07275b91d000bbe"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7740a48a01851669",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_ships_38_remaining_review.json",
+      "review_sha256": "35adef27c7bc9b30d9c4a2eb49e2bf4e32ca16f1eb972067abc1cf64718c1956",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening suppliers, preserve signed reference bases and final delivery, and disclose moisture, infrastructure, allocation, chemistry and score limitations. No physical omission or system-model crossing.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for sulfuric acid",
+          "reference product": "sulfuric acid",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "RER",
+            "name": "market for sulfuric acid",
+            "reference product": "sulfuric acid",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "177934507a2b5a4048508ef4ef0ee97b59b4cd43a59aac683923b6b7cfb85f84",
+          "metadata_sha256": "f601a63be2b8bb030f7bec91bf74916d8c0ab4a0870ec543a08fce81ca6d770c",
+          "nonproduction_exchange_count": 5,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "sulfuric acid production",
+              "reference product": "sulfuric acid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "58bbf3ffb2baccef05eae976e23c1406ad53e9ad1d1c760c405ef6109ebd0b21",
+            "metadata_sha256": "0e498ad2e0a008b117f5dba943eb74d62e43452b975da4d0b87058db2109def7",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "zinc sulfide production",
+              "reference product": "sulfuric acid",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "23805f8999f3172f9b1c728b18f7786d7721360e44a9c287de710778570de8aa",
+            "metadata_sha256": "b2e1234dcdc0e58e97a1d4fad829a717838fac65ec4a17b01e2039d7d6c7e90f",
+            "reference_amounts": [
+              1.0
+            ]
+          }
+        ],
+        "basis": "Use complete native sulfuric-acid production per kg active H2SO4, while retaining both source producer weights and all three final freight entries. Native explicitly refers to100%acid, so no solution-concentration or water multiplier is applied. Its35%zero-attributed-burden smelter-gas assumption is already embedded by multiplying the remaining inventory by0.65; do not apply that allocation twice or add an independent smelter-gas credit. Source sulfur-burning/zinc-sulfide co-product allocation differs and is not reconstructed.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-38-acid-market",
+        "boundary_checks": {
+          "source_reference_amount": 1,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 5,
+          "freight_entries": 3,
+          "source_background_formula_count": 0,
+          "source_parameter_formulas_transplanted": false,
+          "capacity_moisture_lifetime_or_concentration_scaling": false
+        },
+        "preserved_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.6",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "location": "RER",
+              "name": "Sulphuric acid, liquid, at plant",
+              "reference product": "Sulphuric acid, liquid, at plant",
+              "unit": "kilogram"
+            },
+            "conversion_factor": 1,
+            "physical_supplier_and_reference_unchanged": true
+          },
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "target": {
+              "location": "RER",
+              "name": "Sulphuric acid, liquid, at plant",
+              "reference product": "Sulphuric acid, liquid, at plant",
+              "unit": "kilogram"
+            },
+            "conversion_factor": 1,
+            "physical_supplier_and_reference_unchanged": true
+          }
+        ],
+        "prior_approval": {
+          "decision_sha256": "3bde260723f91d861e588404a92ea06a8320236f7956eba608ea5ec0d5dcd1f2",
+          "review_path": "export/uvek_pilot_bulk_chemical_ceramic_review.json",
+          "review_sha256": "da951118603f6c67dc64d7226e6fd9365ebce1f3a6759cc8ba609b80d85feb2e",
+          "scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.6",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "7b52d3c90f1aceafb346a1386b025cc9b9e21e50ac96582c80fd15517d1333f3"
+            },
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "1a94e9f09de29b9b2ee189bcdd8e4d84d53a527064053a1b31ab6d2edaa45fbe"
+            }
+          ]
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "51a968d9c39b15d3501e88519fb24743be8461a960c759eedaea72142d1ad93b",
+              "metadata_sha256": "5987327d81d6aba95727ecb1c50cf63962da9ef2ced5e27f326a72a35dcef603"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d8dd2e60c7e35033226ecf926135e5f4a55a5a98e52b1b59629780d69c0950a8",
+              "metadata_sha256": "737360ca6387aa33dbaba5f5f428bb906e7e8e00af87afc7e1a075ff69ffcdc9"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1633cec2e87a2d0529d4b66ccc570a18db1d622546726ed13d2918f8d1a514a9",
+              "metadata_sha256": "a9e0d163229fb1bd205e950246fc26cfe79bb03adda181c3256c85fddde32a80"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6c3a3a7967e503d7ec8e67f0a02d26b5678d38785adf5097fac54db8548d750b",
+              "metadata_sha256": "2ef01f09150b303576d30707b5505e5353917db6123f82a29ad0b4970f7d3124"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6475cc133be191701b945110383c936c9085720fcaffbea3fd240fa5e2c6689c",
+              "metadata_sha256": "55cce11708a2bd60c45954324ebdc68b573da7a2ba0a40e3657d33f6c603debd"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "7a6fda825440fc335dec1b458715c7c072db58fda34c27773c98d25a76d1c75d",
+              "metadata_sha256": "43ab93af1f5e5b7d0bcc9bf8c2812788d609ea4ca50931b84e03a53ee7a104f0"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "27faa5893110728e7897e662b47a804433d8c005bd1e301d95df98204f229a40",
+              "metadata_sha256": "fe5b762b3ec90b89b81a8edd54d491a822e0e09d94cf48331fa6040c8a9cdc03"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "81d228dd9a222f3b134bf3949a720229c16cea4f85a89fbc79923313d2e6bc24",
+              "metadata_sha256": "7886452383da80acd3e880df1384efdd5e68ece2320a19fa598642984a978362"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "815f79d7b1b9835cf6f35e09a00f8911614f9f1c98c7a80e47553607a5216bc5",
+              "metadata_sha256": "ab8421828e6f48b6a79e907f899a5cc7a6612f0ccdcb31926ab641cb8c8db562"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d570e7fef9617f42aba42f43666cc922133bc5727d4b874d1365934e044fc863",
+              "metadata_sha256": "ae2b34b6678be931114b58e86d9357efb31b81c278b3fe1fe70b69d927fbfc29"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b6e851ebf77fe63cb4861c6a4b2c1b86cf9e69c3f7acb444e5a5786b456ae098",
+              "metadata_sha256": "bdf92d5db26cd3029b187ddc78ab9a3dcce19908e1178a71d6fdfb0df9d14f4d"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6125673cfd1213909106a78fbeb4ba7a664de29bc1bf1aa99c2f32a0fa5150d8",
+              "metadata_sha256": "478b13b36f2be161ce6ce1c3419c412955d5e490048dce8a5bd20d569da344b5"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9a62ba3f827a33f72c102cdd064a2ce01ea1b5b95cc78e56bcd1e48eec1bc34f",
+              "metadata_sha256": "4d7a6093af2c23c0335708f0578067cef03fc6acf630d404f7e7e183a6b2bbba"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "3b1a87f0abc6b812f6a6fbb4a189dc0bc7d555206da659d383fc79b1079df505",
+              "metadata_sha256": "c5c5e44ca4b45cb814d138ae27e9ff2c0a1ff86a332b987022f1cf221b6a7ab6"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "420938becbcdf23041a5677edbd266c81f0ad63c24dac85ff29e0bf30e1e448e",
+              "metadata_sha256": "e26084993604713733398e5828811473d767d1c67e69ba5dac2bc48d60bec136"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "80c1cb9554fc018d1d881a5a71561b28507dc86e62ccb0c5bf4c2993eb4cc1cd",
+              "metadata_sha256": "333e28eae04c41d773330fb02528f15d8244dab082439543f5cbf093848f40d8"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a4245db5fe4e2223d41a380bc66064616ebeb2b8a70cc8c4f1dcfb36f302ac53",
+              "metadata_sha256": "914f1c5f80929e56991146561fa79095d0c7f2af6e6e0d102ec53fe870992569"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "cc8e4e4332829d5750831d6efafcb82403790edcaf0f5fb5e5559fe84ef62786",
+              "metadata_sha256": "06c4926c93b8844eb066bf73796ded36f9f62afe91e52631ef78967f7f0a48a7"
+            }
+          ]
+        },
+        "silica_allocation_verification": null
+      },
+      "limitations": [
+        "Use complete native sulfuric-acid production per kg active H2SO4, while retaining both source producer weights and all three final freight entries. Native explicitly refers to100%acid, so no solution-concentration or water multiplier is applied. Its35%zero-attributed-burden smelter-gas assumption is already embedded by multiplying the remaining inventory by0.65; do not apply that allocation twice or add an independent smelter-gas credit. Source sulfur-burning/zinc-sulfide co-product allocation differs and is not reconstructed.",
+        "Only the independently inspected ecoinvent3.8cutoff source is added. Preserve signed caller quantities, supported uncertainty, formulas and separate emissions at factor+1. No inverse route, cross-system-model mapping or permission for an uninspected source version is inferred. Other qualified profiles retain their supplier and reference bases.",
+        "Retain all original source producer quantities and final-market freight entries separately without renormalization. Each producer branch uses the complete native screening supplier once at its source weight. Native internal upstream transport remains internal; retained final market delivery is separate. Native geographic sourcing, production mix, allocation, age, emissions, land use and internal uncertainty differ, with unquantified score effects. No source/native LCI or LCIA equivalence is asserted.",
+        "Freight uses complete native same-mode tonne-km services. Vehicle/locomotive/vessel size, fleet, fuel, loading, cargo allocation, geography and emissions differ; Chinese rail may use the complete native coal-freight fleet as a bulk-mineral fleet proxy. Add no payload, distance, mode-substitution, infrastructure or moisture multiplier. Background parameter/formula graphs and correlations are not transplanted without their context; already-calculated nominal coefficients and supported marginal uncertainty are retained, and caller formulas remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "3be6b73dc60d6a880313fe6345efe3b9c13a9aeadae56a9a93e08ced68d85a23"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5943576bea71c0de",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_38_native_market",
+      "review_path": "export/uvek_ships_38_remaining_review.json",
+      "review_sha256": "35adef27c7bc9b30d9c4a2eb49e2bf4e32ca16f1eb972067abc1cf64718c1956",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening suppliers, preserve signed reference bases and final delivery, and disclose moisture, infrastructure, allocation, chemistry and score limitations. No physical omission or system-model crossing.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for dolomite",
+          "reference product": "dolomite",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "RoW",
+            "name": "market for dolomite",
+            "reference product": "dolomite",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "10621e2d0523e7347aff0e2ba68ecd2590e6e4cad7d47d828c94100e406fbd7e",
+          "metadata_sha256": "039f8e6faea100fcc122099fb57ca127373de98a4bfcf9979e16c77fe401d95c",
+          "nonproduction_exchange_count": 10,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "dolomite production",
+              "reference product": "dolomite",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "359bb72e397d74feb2b42313c9ea4265e909d9f12d6eb5544f5b1dfb57e0e43c",
+            "metadata_sha256": "fb95c9c80643634eeb3d1b4e4bbbe7aca5507b5cf7c5d02d61631d929651f7d8",
+            "reference_amounts": [
+              1.0
+            ]
+          }
+        ],
+        "basis": "Use complete native milled dolomite per kg mineral, retaining the original producer and all nine final freight rows. Native carbonate extraction/crushing/milling is a European approximation based on lime-mining data with weak process evidence and no water emissions. Source RoW site water, geology, mining/milling technology, allocation and geographic fleet differ; those omissions within the native model and score effects remain explicit. Do not substitute calcined lime, CO2 release or add an invented calcination step.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-38-dolomite-market",
+        "boundary_checks": {
+          "source_reference_amount": 1,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 10,
+          "freight_entries": 9,
+          "source_background_formula_count": 0,
+          "source_parameter_formulas_transplanted": false,
+          "capacity_moisture_lifetime_or_concentration_scaling": false
+        },
+        "preserved_profiles": [],
+        "prior_approval": null,
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "51a968d9c39b15d3501e88519fb24743be8461a960c759eedaea72142d1ad93b",
+              "metadata_sha256": "5987327d81d6aba95727ecb1c50cf63962da9ef2ced5e27f326a72a35dcef603"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d8dd2e60c7e35033226ecf926135e5f4a55a5a98e52b1b59629780d69c0950a8",
+              "metadata_sha256": "737360ca6387aa33dbaba5f5f428bb906e7e8e00af87afc7e1a075ff69ffcdc9"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1633cec2e87a2d0529d4b66ccc570a18db1d622546726ed13d2918f8d1a514a9",
+              "metadata_sha256": "a9e0d163229fb1bd205e950246fc26cfe79bb03adda181c3256c85fddde32a80"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6c3a3a7967e503d7ec8e67f0a02d26b5678d38785adf5097fac54db8548d750b",
+              "metadata_sha256": "2ef01f09150b303576d30707b5505e5353917db6123f82a29ad0b4970f7d3124"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6475cc133be191701b945110383c936c9085720fcaffbea3fd240fa5e2c6689c",
+              "metadata_sha256": "55cce11708a2bd60c45954324ebdc68b573da7a2ba0a40e3657d33f6c603debd"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "7a6fda825440fc335dec1b458715c7c072db58fda34c27773c98d25a76d1c75d",
+              "metadata_sha256": "43ab93af1f5e5b7d0bcc9bf8c2812788d609ea4ca50931b84e03a53ee7a104f0"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "27faa5893110728e7897e662b47a804433d8c005bd1e301d95df98204f229a40",
+              "metadata_sha256": "fe5b762b3ec90b89b81a8edd54d491a822e0e09d94cf48331fa6040c8a9cdc03"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "81d228dd9a222f3b134bf3949a720229c16cea4f85a89fbc79923313d2e6bc24",
+              "metadata_sha256": "7886452383da80acd3e880df1384efdd5e68ece2320a19fa598642984a978362"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "815f79d7b1b9835cf6f35e09a00f8911614f9f1c98c7a80e47553607a5216bc5",
+              "metadata_sha256": "ab8421828e6f48b6a79e907f899a5cc7a6612f0ccdcb31926ab641cb8c8db562"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d570e7fef9617f42aba42f43666cc922133bc5727d4b874d1365934e044fc863",
+              "metadata_sha256": "ae2b34b6678be931114b58e86d9357efb31b81c278b3fe1fe70b69d927fbfc29"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b6e851ebf77fe63cb4861c6a4b2c1b86cf9e69c3f7acb444e5a5786b456ae098",
+              "metadata_sha256": "bdf92d5db26cd3029b187ddc78ab9a3dcce19908e1178a71d6fdfb0df9d14f4d"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6125673cfd1213909106a78fbeb4ba7a664de29bc1bf1aa99c2f32a0fa5150d8",
+              "metadata_sha256": "478b13b36f2be161ce6ce1c3419c412955d5e490048dce8a5bd20d569da344b5"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9a62ba3f827a33f72c102cdd064a2ce01ea1b5b95cc78e56bcd1e48eec1bc34f",
+              "metadata_sha256": "4d7a6093af2c23c0335708f0578067cef03fc6acf630d404f7e7e183a6b2bbba"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "3b1a87f0abc6b812f6a6fbb4a189dc0bc7d555206da659d383fc79b1079df505",
+              "metadata_sha256": "c5c5e44ca4b45cb814d138ae27e9ff2c0a1ff86a332b987022f1cf221b6a7ab6"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "420938becbcdf23041a5677edbd266c81f0ad63c24dac85ff29e0bf30e1e448e",
+              "metadata_sha256": "e26084993604713733398e5828811473d767d1c67e69ba5dac2bc48d60bec136"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "80c1cb9554fc018d1d881a5a71561b28507dc86e62ccb0c5bf4c2993eb4cc1cd",
+              "metadata_sha256": "333e28eae04c41d773330fb02528f15d8244dab082439543f5cbf093848f40d8"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a4245db5fe4e2223d41a380bc66064616ebeb2b8a70cc8c4f1dcfb36f302ac53",
+              "metadata_sha256": "914f1c5f80929e56991146561fa79095d0c7f2af6e6e0d102ec53fe870992569"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "cc8e4e4332829d5750831d6efafcb82403790edcaf0f5fb5e5559fe84ef62786",
+              "metadata_sha256": "06c4926c93b8844eb066bf73796ded36f9f62afe91e52631ef78967f7f0a48a7"
+            }
+          ]
+        },
+        "silica_allocation_verification": null
+      },
+      "limitations": [
+        "Use complete native milled dolomite per kg mineral, retaining the original producer and all nine final freight rows. Native carbonate extraction/crushing/milling is a European approximation based on lime-mining data with weak process evidence and no water emissions. Source RoW site water, geology, mining/milling technology, allocation and geographic fleet differ; those omissions within the native model and score effects remain explicit. Do not substitute calcined lime, CO2 release or add an invented calcination step.",
+        "Only the independently inspected ecoinvent3.8cutoff source is added. Preserve signed caller quantities, supported uncertainty, formulas and separate emissions at factor+1. No inverse route, cross-system-model mapping or permission for an uninspected source version is inferred. Other qualified profiles retain their supplier and reference bases.",
+        "Retain all original source producer quantities and final-market freight entries separately without renormalization. Each producer branch uses the complete native screening supplier once at its source weight. Native internal upstream transport remains internal; retained final market delivery is separate. Native geographic sourcing, production mix, allocation, age, emissions, land use and internal uncertainty differ, with unquantified score effects. No source/native LCI or LCIA equivalence is asserted.",
+        "Freight uses complete native same-mode tonne-km services. Vehicle/locomotive/vessel size, fleet, fuel, loading, cargo allocation, geography and emissions differ; Chinese rail may use the complete native coal-freight fleet as a bulk-mineral fleet proxy. Add no payload, distance, mode-substitution, infrastructure or moisture multiplier. Background parameter/formula graphs and correlations are not transplanted without their context; already-calculated nominal coefficients and supported marginal uncertainty are retained, and caller formulas remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "e5d523b6f4d682b1e68fbc0805a3df62110251db8b0520eaaf6de7341b842caf"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-dbd744f486420f56",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_final_market",
+      "review_path": "export/uvek_ships_38_remaining_review.json",
+      "review_sha256": "35adef27c7bc9b30d9c4a2eb49e2bf4e32ca16f1eb972067abc1cf64718c1956",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening suppliers, preserve signed reference bases and final delivery, and disclose moisture, infrastructure, allocation, chemistry and score limitations. No physical omission or system-model crossing.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for silica sand",
+          "reference product": "silica sand",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for silica sand",
+            "reference product": "silica sand",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "e7c1a6fdc186c360467dc1fc524df8d9a03689f931db4cc65c05f29b93212beb",
+          "metadata_sha256": "65ac57a521da043dfdf13d2d185ddf995faad3d7e904791897116ea7dff16ceb",
+          "nonproduction_exchange_count": 8,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "cryolite production, from fluosilicic acid",
+              "reference product": "silica sand",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "f8925db60d0964057d542fa1c36f2b82ad5564a0fa626e23ef8a55de69fd9062",
+            "metadata_sha256": "67e6ddf7340f71a2a13404a14bb8fc6343966752a354cd9eed16004b3c8b3b57",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "silica sand production",
+              "reference product": "silica sand",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "06ea8ecf54a6718932efde1579a3a4b33e5e95afbcad5ce377d23b59d914e1a6",
+            "metadata_sha256": "f0abbcd4e226491c68b1a2b547f9774a4a54addc1a4b4bfd15448abcbaa2e475",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "silica sand production",
+              "reference product": "silica sand",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "ad2d1b68dafb1d4ba9203ad964c3ead94d6493bd62fdee941179ae2912004a86",
+            "metadata_sha256": "f4ab5b210f58760106c51b877d6e6a77e850a2e8ab3d17fe5d824153caebb79c",
+            "reference_amounts": [
+              1.0
+            ]
+          }
+        ],
+        "basis": "Retain two ordinary dried-silica producers using complete native dried silica sand, plus the chemical co-product branch and five original final freight entries. Independent source3.8 inspection confirms all12 nonproduction flows of co-product silica equal0.0312 times the paired cryolite inventory. Represent that branch by0.0312kg complete native cryolite per source co-product kg as an allocated-production-burden proxy, not physical cryolite in sand. Native hydrogen-fluoride production differs from source fluosilicic-acid chemistry; feedstocks, allocation, recovery, energy and emissions differ. Add neither ordinary quarry burden nor recovered-sand credit to that branch. Source3.8 and3.9 share supplier identities but not all coefficients/statistics, so3.8 receives its own retained-delivery helper.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-38-silica-market",
+        "boundary_checks": {
+          "source_reference_amount": 1,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 8,
+          "freight_entries": 5,
+          "source_background_formula_count": 0,
+          "source_parameter_formulas_transplanted": false,
+          "capacity_moisture_lifetime_or_concentration_scaling": false
+        },
+        "preserved_profiles": [
+          {
+            "source_profile": {
+              "family": "ecoinvent",
+              "system_model": "cutoff",
+              "version": "3.9"
+            },
+            "selected_rule_sha256": "bbc8b25569e7d96897fceb402ce40d59a490b10a99f555d6bb8b7fdd443bb0df",
+            "selected_rule_unchanged": true
+          }
+        ],
+        "prior_approval": {
+          "decision_sha256": "50b8b589cb6804598c4e5a79a9ba8d5baa4acc0b6144e51a51fd819356078796",
+          "review_path": "export/uvek_fuels_39_final_markets_review.json",
+          "review_sha256": "3202607466b7966e8d2366cc544e03a7ad7403bc4f86b4933b14b823885c0cc1",
+          "scopes": [
+            {
+              "source": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              },
+              "target": {
+                "family": "uvek",
+                "version": "2025",
+                "system_model": "cutoff"
+              },
+              "fingerprint": "93d8494460aeafa50806c61e838f38a8bff49864555cbdf5cacc6b57e665ae2a"
+            }
+          ]
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "51a968d9c39b15d3501e88519fb24743be8461a960c759eedaea72142d1ad93b",
+              "metadata_sha256": "5987327d81d6aba95727ecb1c50cf63962da9ef2ced5e27f326a72a35dcef603"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d8dd2e60c7e35033226ecf926135e5f4a55a5a98e52b1b59629780d69c0950a8",
+              "metadata_sha256": "737360ca6387aa33dbaba5f5f428bb906e7e8e00af87afc7e1a075ff69ffcdc9"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1633cec2e87a2d0529d4b66ccc570a18db1d622546726ed13d2918f8d1a514a9",
+              "metadata_sha256": "a9e0d163229fb1bd205e950246fc26cfe79bb03adda181c3256c85fddde32a80"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6c3a3a7967e503d7ec8e67f0a02d26b5678d38785adf5097fac54db8548d750b",
+              "metadata_sha256": "2ef01f09150b303576d30707b5505e5353917db6123f82a29ad0b4970f7d3124"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6475cc133be191701b945110383c936c9085720fcaffbea3fd240fa5e2c6689c",
+              "metadata_sha256": "55cce11708a2bd60c45954324ebdc68b573da7a2ba0a40e3657d33f6c603debd"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "7a6fda825440fc335dec1b458715c7c072db58fda34c27773c98d25a76d1c75d",
+              "metadata_sha256": "43ab93af1f5e5b7d0bcc9bf8c2812788d609ea4ca50931b84e03a53ee7a104f0"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "27faa5893110728e7897e662b47a804433d8c005bd1e301d95df98204f229a40",
+              "metadata_sha256": "fe5b762b3ec90b89b81a8edd54d491a822e0e09d94cf48331fa6040c8a9cdc03"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "81d228dd9a222f3b134bf3949a720229c16cea4f85a89fbc79923313d2e6bc24",
+              "metadata_sha256": "7886452383da80acd3e880df1384efdd5e68ece2320a19fa598642984a978362"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "815f79d7b1b9835cf6f35e09a00f8911614f9f1c98c7a80e47553607a5216bc5",
+              "metadata_sha256": "ab8421828e6f48b6a79e907f899a5cc7a6612f0ccdcb31926ab641cb8c8db562"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d570e7fef9617f42aba42f43666cc922133bc5727d4b874d1365934e044fc863",
+              "metadata_sha256": "ae2b34b6678be931114b58e86d9357efb31b81c278b3fe1fe70b69d927fbfc29"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b6e851ebf77fe63cb4861c6a4b2c1b86cf9e69c3f7acb444e5a5786b456ae098",
+              "metadata_sha256": "bdf92d5db26cd3029b187ddc78ab9a3dcce19908e1178a71d6fdfb0df9d14f4d"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6125673cfd1213909106a78fbeb4ba7a664de29bc1bf1aa99c2f32a0fa5150d8",
+              "metadata_sha256": "478b13b36f2be161ce6ce1c3419c412955d5e490048dce8a5bd20d569da344b5"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9a62ba3f827a33f72c102cdd064a2ce01ea1b5b95cc78e56bcd1e48eec1bc34f",
+              "metadata_sha256": "4d7a6093af2c23c0335708f0578067cef03fc6acf630d404f7e7e183a6b2bbba"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "3b1a87f0abc6b812f6a6fbb4a189dc0bc7d555206da659d383fc79b1079df505",
+              "metadata_sha256": "c5c5e44ca4b45cb814d138ae27e9ff2c0a1ff86a332b987022f1cf221b6a7ab6"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "420938becbcdf23041a5677edbd266c81f0ad63c24dac85ff29e0bf30e1e448e",
+              "metadata_sha256": "e26084993604713733398e5828811473d767d1c67e69ba5dac2bc48d60bec136"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "80c1cb9554fc018d1d881a5a71561b28507dc86e62ccb0c5bf4c2993eb4cc1cd",
+              "metadata_sha256": "333e28eae04c41d773330fb02528f15d8244dab082439543f5cbf093848f40d8"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a4245db5fe4e2223d41a380bc66064616ebeb2b8a70cc8c4f1dcfb36f302ac53",
+              "metadata_sha256": "914f1c5f80929e56991146561fa79095d0c7f2af6e6e0d102ec53fe870992569"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "cc8e4e4332829d5750831d6efafcb82403790edcaf0f5fb5e5559fe84ef62786",
+              "metadata_sha256": "06c4926c93b8844eb066bf73796ded36f9f62afe91e52631ef78967f7f0a48a7"
+            }
+          ]
+        },
+        "silica_allocation_verification": {
+          "source_profile": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "witnesses": [
+            {
+              "identity": {
+                "name": "cryolite production, from fluosilicic acid",
+                "location": "GLO",
+                "unit": "kilogram",
+                "reference product": "silica sand"
+              },
+              "inventory_sha256": "f8925db60d0964057d542fa1c36f2b82ad5564a0fa626e23ef8a55de69fd9062",
+              "metadata_sha256": "67e6ddf7340f71a2a13404a14bb8fc6343966752a354cd9eed16004b3c8b3b57",
+              "nonproduction_rows": 12
+            },
+            {
+              "identity": {
+                "name": "cryolite production, from fluosilicic acid",
+                "location": "GLO",
+                "unit": "kilogram",
+                "reference product": "cryolite"
+              },
+              "inventory_sha256": "8b71338a4bc7fd5ed28737e9271de25fab2ce7911bdc565293d237dd3f38100d",
+              "metadata_sha256": "b84a2bf7dff88292e31d0bab524795c3a46484128c9b1abb3cbc430ca5837d24",
+              "nonproduction_rows": 12
+            }
+          ],
+          "nonproduction_rows": 12,
+          "all_nonproduction_ratio": 0.0312,
+          "relative_tolerance": 1e-12,
+          "same_keys": true,
+          "full_source_vectors_kept_private": true
+        }
+      },
+      "limitations": [
+        "Retain two ordinary dried-silica producers using complete native dried silica sand, plus the chemical co-product branch and five original final freight entries. Independent source3.8 inspection confirms all12 nonproduction flows of co-product silica equal0.0312 times the paired cryolite inventory. Represent that branch by0.0312kg complete native cryolite per source co-product kg as an allocated-production-burden proxy, not physical cryolite in sand. Native hydrogen-fluoride production differs from source fluosilicic-acid chemistry; feedstocks, allocation, recovery, energy and emissions differ. Add neither ordinary quarry burden nor recovered-sand credit to that branch. Source3.8 and3.9 share supplier identities but not all coefficients/statistics, so3.8 receives its own retained-delivery helper.",
+        "Only the independently inspected ecoinvent3.8cutoff source is added. Preserve signed caller quantities, supported uncertainty, formulas and separate emissions at factor+1. No inverse route, cross-system-model mapping or permission for an uninspected source version is inferred. Other qualified profiles retain their supplier and reference bases.",
+        "Retain all original source producer quantities and final-market freight entries separately without renormalization. Each producer branch uses the complete native screening supplier once at its source weight. Native internal upstream transport remains internal; retained final market delivery is separate. Native geographic sourcing, production mix, allocation, age, emissions, land use and internal uncertainty differ, with unquantified score effects. No source/native LCI or LCIA equivalence is asserted.",
+        "Freight uses complete native same-mode tonne-km services. Vehicle/locomotive/vessel size, fleet, fuel, loading, cargo allocation, geography and emissions differ; Chinese rail may use the complete native coal-freight fleet as a bulk-mineral fleet proxy. Add no payload, distance, mode-substitution, infrastructure or moisture multiplier. Background parameter/formula graphs and correlations are not transplanted without their context; already-calculated nominal coefficients and supported marginal uncertainty are retained, and caller formulas remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "2aa6fd04b32b6bf6a4ddd1221bc981c37ab97c0630ac28d46b5d98dcded697ee"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-521cdbc6ec8f1e0d",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_38_native_market",
+      "review_path": "export/uvek_ships_38_remaining_review.json",
+      "review_sha256": "35adef27c7bc9b30d9c4a2eb49e2bf4e32ca16f1eb972067abc1cf64718c1956",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening suppliers, preserve signed reference bases and final delivery, and disclose moisture, infrastructure, allocation, chemistry and score limitations. No physical omission or system-model crossing.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for industrial furnace, natural gas",
+          "reference product": "industrial furnace, natural gas",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for industrial furnace, natural gas",
+            "reference product": "industrial furnace, natural gas",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "335e997d004007af76b4a6d61209481dffb27f4719a8f86874acf3e1bbf8f2ab",
+          "metadata_sha256": "7141ea9c327a0359f4b00f3fe4dc16ff47da85507c0702d2e17d049dbaacbb68",
+          "nonproduction_exchange_count": 2,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "industrial furnace production, natural gas",
+              "reference product": "industrial furnace, natural gas",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "inventory_sha256": "3a1c1eede95dc8f2f4a911c4c08588b42f7c49ca13ed0bcfaec5460a7df35644",
+            "metadata_sha256": "2aa40aadc08537af01dc785886c791912a613afff3262ead8368fdd07344cdfa",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "industrial furnace production, natural gas",
+              "reference product": "industrial furnace, natural gas",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "inventory_sha256": "9d0c2c6e3ff09a2930425096921c790a0ef99cfeb65d5e7bb30f6c2f90a3716a",
+            "metadata_sha256": "1af7b1ced762f052bbf9ae25e2481d647e3dea4b178fc7580c20dc808136b811",
+            "reference_amounts": [
+              1.0
+            ]
+          }
+        ],
+        "basis": "Use the complete native industrial natural-gas-furnace infrastructure per source unit, preserving both source regional supplier shares. Source documentation says about100kW gas input but explicitly says its production inventory is identical to a1MW oil furnace. Native is labelled1MW with20year life and includes equipment, manufacturing energy and disposal. This is an ambiguous source-size/infrastructure screening proxy, not a capacity-equivalence claim. Do not invent a0.1 or10 size/lifetime multiplier, add fuel-operation energy, or count a second furnace; manufacturing materials, geography, disposal, allocation and vintage differences have unquantified score effects.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-38-furnace-market",
+        "boundary_checks": {
+          "source_reference_amount": 1,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 2,
+          "freight_entries": 0,
+          "source_background_formula_count": 0,
+          "source_parameter_formulas_transplanted": false,
+          "capacity_moisture_lifetime_or_concentration_scaling": false
+        },
+        "preserved_profiles": [],
+        "prior_approval": null,
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "51a968d9c39b15d3501e88519fb24743be8461a960c759eedaea72142d1ad93b",
+              "metadata_sha256": "5987327d81d6aba95727ecb1c50cf63962da9ef2ced5e27f326a72a35dcef603"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d8dd2e60c7e35033226ecf926135e5f4a55a5a98e52b1b59629780d69c0950a8",
+              "metadata_sha256": "737360ca6387aa33dbaba5f5f428bb906e7e8e00af87afc7e1a075ff69ffcdc9"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1633cec2e87a2d0529d4b66ccc570a18db1d622546726ed13d2918f8d1a514a9",
+              "metadata_sha256": "a9e0d163229fb1bd205e950246fc26cfe79bb03adda181c3256c85fddde32a80"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6c3a3a7967e503d7ec8e67f0a02d26b5678d38785adf5097fac54db8548d750b",
+              "metadata_sha256": "2ef01f09150b303576d30707b5505e5353917db6123f82a29ad0b4970f7d3124"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6475cc133be191701b945110383c936c9085720fcaffbea3fd240fa5e2c6689c",
+              "metadata_sha256": "55cce11708a2bd60c45954324ebdc68b573da7a2ba0a40e3657d33f6c603debd"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "7a6fda825440fc335dec1b458715c7c072db58fda34c27773c98d25a76d1c75d",
+              "metadata_sha256": "43ab93af1f5e5b7d0bcc9bf8c2812788d609ea4ca50931b84e03a53ee7a104f0"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "27faa5893110728e7897e662b47a804433d8c005bd1e301d95df98204f229a40",
+              "metadata_sha256": "fe5b762b3ec90b89b81a8edd54d491a822e0e09d94cf48331fa6040c8a9cdc03"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "81d228dd9a222f3b134bf3949a720229c16cea4f85a89fbc79923313d2e6bc24",
+              "metadata_sha256": "7886452383da80acd3e880df1384efdd5e68ece2320a19fa598642984a978362"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "815f79d7b1b9835cf6f35e09a00f8911614f9f1c98c7a80e47553607a5216bc5",
+              "metadata_sha256": "ab8421828e6f48b6a79e907f899a5cc7a6612f0ccdcb31926ab641cb8c8db562"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d570e7fef9617f42aba42f43666cc922133bc5727d4b874d1365934e044fc863",
+              "metadata_sha256": "ae2b34b6678be931114b58e86d9357efb31b81c278b3fe1fe70b69d927fbfc29"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b6e851ebf77fe63cb4861c6a4b2c1b86cf9e69c3f7acb444e5a5786b456ae098",
+              "metadata_sha256": "bdf92d5db26cd3029b187ddc78ab9a3dcce19908e1178a71d6fdfb0df9d14f4d"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6125673cfd1213909106a78fbeb4ba7a664de29bc1bf1aa99c2f32a0fa5150d8",
+              "metadata_sha256": "478b13b36f2be161ce6ce1c3419c412955d5e490048dce8a5bd20d569da344b5"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9a62ba3f827a33f72c102cdd064a2ce01ea1b5b95cc78e56bcd1e48eec1bc34f",
+              "metadata_sha256": "4d7a6093af2c23c0335708f0578067cef03fc6acf630d404f7e7e183a6b2bbba"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "3b1a87f0abc6b812f6a6fbb4a189dc0bc7d555206da659d383fc79b1079df505",
+              "metadata_sha256": "c5c5e44ca4b45cb814d138ae27e9ff2c0a1ff86a332b987022f1cf221b6a7ab6"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "420938becbcdf23041a5677edbd266c81f0ad63c24dac85ff29e0bf30e1e448e",
+              "metadata_sha256": "e26084993604713733398e5828811473d767d1c67e69ba5dac2bc48d60bec136"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "80c1cb9554fc018d1d881a5a71561b28507dc86e62ccb0c5bf4c2993eb4cc1cd",
+              "metadata_sha256": "333e28eae04c41d773330fb02528f15d8244dab082439543f5cbf093848f40d8"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a4245db5fe4e2223d41a380bc66064616ebeb2b8a70cc8c4f1dcfb36f302ac53",
+              "metadata_sha256": "914f1c5f80929e56991146561fa79095d0c7f2af6e6e0d102ec53fe870992569"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "cc8e4e4332829d5750831d6efafcb82403790edcaf0f5fb5e5559fe84ef62786",
+              "metadata_sha256": "06c4926c93b8844eb066bf73796ded36f9f62afe91e52631ef78967f7f0a48a7"
+            }
+          ]
+        },
+        "silica_allocation_verification": null
+      },
+      "limitations": [
+        "Use the complete native industrial natural-gas-furnace infrastructure per source unit, preserving both source regional supplier shares. Source documentation says about100kW gas input but explicitly says its production inventory is identical to a1MW oil furnace. Native is labelled1MW with20year life and includes equipment, manufacturing energy and disposal. This is an ambiguous source-size/infrastructure screening proxy, not a capacity-equivalence claim. Do not invent a0.1 or10 size/lifetime multiplier, add fuel-operation energy, or count a second furnace; manufacturing materials, geography, disposal, allocation and vintage differences have unquantified score effects.",
+        "Only the independently inspected ecoinvent3.8cutoff source is added. Preserve signed caller quantities, supported uncertainty, formulas and separate emissions at factor+1. No inverse route, cross-system-model mapping or permission for an uninspected source version is inferred. Other qualified profiles retain their supplier and reference bases.",
+        "Retain all original source producer quantities and final-market freight entries separately without renormalization. Each producer branch uses the complete native screening supplier once at its source weight. Native internal upstream transport remains internal; retained final market delivery is separate. Native geographic sourcing, production mix, allocation, age, emissions, land use and internal uncertainty differ, with unquantified score effects. No source/native LCI or LCIA equivalence is asserted.",
+        "Freight uses complete native same-mode tonne-km services. Vehicle/locomotive/vessel size, fleet, fuel, loading, cargo allocation, geography and emissions differ; Chinese rail may use the complete native coal-freight fleet as a bulk-mineral fleet proxy. Add no payload, distance, mode-substitution, infrastructure or moisture multiplier. Background parameter/formula graphs and correlations are not transplanted without their context; already-calculated nominal coefficients and supported marginal uncertainty are retained, and caller formulas remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ff526662394b37ea6ee693a85290e1ea68bba29e9b31851b5114aa9ee649e195"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-46b87a43a45c92f8",
+      "operation": "replace",
+      "mapping_method": "reviewed_ships_38_native_market",
+      "review_path": "export/uvek_ships_38_remaining_review.json",
+      "review_sha256": "35adef27c7bc9b30d9c4a2eb49e2bf4e32ca16f1eb972067abc1cf64718c1956",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal. Use complete native screening suppliers, preserve signed reference bases and final delivery, and disclose moisture, infrastructure, allocation, chemistry and score limitations. No physical omission or system-model crossing.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for synthetic gas factory",
+          "reference product": "synthetic gas factory",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for synthetic gas factory",
+            "reference product": "synthetic gas factory",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "add317af467366f6b4a21856f0ccebe9114c583957068c5185c3aa58c50fcb4d",
+          "metadata_sha256": "0ef4ad58685b646eff9ec5bce16707d2a6419389c62fb8640077565b758ad768",
+          "nonproduction_exchange_count": 2,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "synthetic gas factory construction",
+              "reference product": "synthetic gas factory",
+              "location": "CH",
+              "unit": "unit"
+            },
+            "inventory_sha256": "88f9d61b7c59333f4f2eb3051d0939322a99bd3b51f8384880476ed4f3bb0977",
+            "metadata_sha256": "6a2bd2ef2a6e8bfaca47f64b482a682919f3e5b1f4433d6166fe4295f52f1e3d",
+            "reference_amounts": [
+              1.0
+            ]
+          },
+          {
+            "identity": {
+              "name": "synthetic gas factory construction",
+              "reference product": "synthetic gas factory",
+              "location": "RoW",
+              "unit": "unit"
+            },
+            "inventory_sha256": "233854752b89d972687dc290b20c215ca0c7f7a172411e96dafdc38f9a366d7b",
+            "metadata_sha256": "bd13bad8112d54f2ff63fe4b8253c0d43059f4b26cda8b892fcc48d2b2763349",
+            "reference_amounts": [
+              1.0
+            ]
+          }
+        ],
+        "basis": "Use complete native Swiss synthetic-gas-plant construction per unit, preserving both source regional supplier shares. Source and native describe a5MWth-output gasifier with50year life; native includes dryer, comminution, gasifier, gas conditioning, buildings, land use and dismantling. Retain that complete infrastructure once, without capacity, throughput, wood-drying or lifetime scaling. Geographic construction supplies, material/energy quantities, allocation, age and internal uncertainty can differ; score effects remain unquantified. This is plant construction, not gas production or gasifier operation.",
+        "conversion_factor": 1,
+        "recipe_id": "ships-38-syngas-market",
+        "boundary_checks": {
+          "source_reference_amount": 1,
+          "target_reference_amount": 1,
+          "caller_conversion_factor": 1,
+          "native_input_count": 2,
+          "freight_entries": 0,
+          "source_background_formula_count": 0,
+          "source_parameter_formulas_transplanted": false,
+          "capacity_moisture_lifetime_or_concentration_scaling": false
+        },
+        "preserved_profiles": [],
+        "prior_approval": null,
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "51a968d9c39b15d3501e88519fb24743be8461a960c759eedaea72142d1ad93b",
+              "metadata_sha256": "5987327d81d6aba95727ecb1c50cf63962da9ef2ced5e27f326a72a35dcef603"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8496871de053ce8a70b39531f4eda4f8532a235e4881aaf8a6f393b149c6efb0",
+              "metadata_sha256": "8c795eea4f351dabbfc92de69dc20492da53a616acb47ae1319acec310385b08"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d8dd2e60c7e35033226ecf926135e5f4a55a5a98e52b1b59629780d69c0950a8",
+              "metadata_sha256": "737360ca6387aa33dbaba5f5f428bb906e7e8e00af87afc7e1a075ff69ffcdc9"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1633cec2e87a2d0529d4b66ccc570a18db1d622546726ed13d2918f8d1a514a9",
+              "metadata_sha256": "a9e0d163229fb1bd205e950246fc26cfe79bb03adda181c3256c85fddde32a80"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6c3a3a7967e503d7ec8e67f0a02d26b5678d38785adf5097fac54db8548d750b",
+              "metadata_sha256": "2ef01f09150b303576d30707b5505e5353917db6123f82a29ad0b4970f7d3124"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6475cc133be191701b945110383c936c9085720fcaffbea3fd240fa5e2c6689c",
+              "metadata_sha256": "55cce11708a2bd60c45954324ebdc68b573da7a2ba0a40e3657d33f6c603debd"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "0e2d71a603e662928f41f1a79430098f11bda9b08d9ec145b60710afc47ff121",
+              "metadata_sha256": "18ad314e1226b8ab8ab04be26f0fb0e991a9619f581a930262f54919cc3ccef3"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "7a6fda825440fc335dec1b458715c7c072db58fda34c27773c98d25a76d1c75d",
+              "metadata_sha256": "43ab93af1f5e5b7d0bcc9bf8c2812788d609ea4ca50931b84e03a53ee7a104f0"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "27faa5893110728e7897e662b47a804433d8c005bd1e301d95df98204f229a40",
+              "metadata_sha256": "fe5b762b3ec90b89b81a8edd54d491a822e0e09d94cf48331fa6040c8a9cdc03"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "81d228dd9a222f3b134bf3949a720229c16cea4f85a89fbc79923313d2e6bc24",
+              "metadata_sha256": "7886452383da80acd3e880df1384efdd5e68ece2320a19fa598642984a978362"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "815f79d7b1b9835cf6f35e09a00f8911614f9f1c98c7a80e47553607a5216bc5",
+              "metadata_sha256": "ab8421828e6f48b6a79e907f899a5cc7a6612f0ccdcb31926ab641cb8c8db562"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "name": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "reference product": "Wood chips, production mix, wet, measured as dry mass, at forest road & at sawmill",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d570e7fef9617f42aba42f43666cc922133bc5727d4b874d1365934e044fc863",
+              "metadata_sha256": "ae2b34b6678be931114b58e86d9357efb31b81c278b3fe1fe70b69d927fbfc29"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, barge",
+                "reference product": "Transport, barge",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "8dfd99174434709ec317338ef637fa8e6841898accea4770d7910de7c89fa7b0",
+              "metadata_sha256": "22ea7909644698e64590db4af0a206286fd10a828f7fe381e5cc2f53db6991c3"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            },
+            {
+              "identity": {
+                "name": "Sulphuric acid, liquid, at plant",
+                "reference product": "Sulphuric acid, liquid, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "b6e851ebf77fe63cb4861c6a4b2c1b86cf9e69c3f7acb444e5a5786b456ae098",
+              "metadata_sha256": "bdf92d5db26cd3029b187ddc78ab9a3dcce19908e1178a71d6fdfb0df9d14f4d"
+            },
+            {
+              "identity": {
+                "name": "Dolomite, at plant",
+                "reference product": "Dolomite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6125673cfd1213909106a78fbeb4ba7a664de29bc1bf1aa99c2f32a0fa5150d8",
+              "metadata_sha256": "478b13b36f2be161ce6ce1c3419c412955d5e490048dce8a5bd20d569da344b5"
+            },
+            {
+              "identity": {
+                "location": "US",
+                "name": "Transport, freight, rail, diesel",
+                "reference product": "Transport, freight, rail, diesel",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "9a62ba3f827a33f72c102cdd064a2ce01ea1b5b95cc78e56bcd1e48eec1bc34f",
+              "metadata_sha256": "4d7a6093af2c23c0335708f0578067cef03fc6acf630d404f7e7e183a6b2bbba"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic freight ship",
+                "reference product": "Transport, transoceanic freight ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "3b1a87f0abc6b812f6a6fbb4a189dc0bc7d555206da659d383fc79b1079df505",
+              "metadata_sha256": "c5c5e44ca4b45cb814d138ae27e9ff2c0a1ff86a332b987022f1cf221b6a7ab6"
+            },
+            {
+              "identity": {
+                "location": "CH",
+                "name": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "reference product": "Transport, freight, lorry, 3.5t gross weight, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "aed182b8dc681a0524239aa2edb91205824d1672a34fb40125641132c5374933",
+              "metadata_sha256": "1286d8f8a747b963c8191d073a2c5242fc926fa508d0be6b522dc672654e4d20"
+            },
+            {
+              "identity": {
+                "name": "Cryolite, at plant",
+                "reference product": "Cryolite, at plant",
+                "location": "RER",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "420938becbcdf23041a5677edbd266c81f0ad63c24dac85ff29e0bf30e1e448e",
+              "metadata_sha256": "e26084993604713733398e5828811473d767d1c67e69ba5dac2bc48d60bec136"
+            },
+            {
+              "identity": {
+                "name": "Silica sand, at plant",
+                "reference product": "Silica sand, at plant",
+                "location": "DE",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "80c1cb9554fc018d1d881a5a71561b28507dc86e62ccb0c5bf4c2993eb4cc1cd",
+              "metadata_sha256": "333e28eae04c41d773330fb02528f15d8244dab082439543f5cbf093848f40d8"
+            },
+            {
+              "identity": {
+                "name": "Industrial furnace, 1MW, natural gas",
+                "reference product": "Industrial furnace, 1MW, natural gas",
+                "location": "RER",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "a4245db5fe4e2223d41a380bc66064616ebeb2b8a70cc8c4f1dcfb36f302ac53",
+              "metadata_sha256": "914f1c5f80929e56991146561fa79095d0c7f2af6e6e0d102ec53fe870992569"
+            },
+            {
+              "identity": {
+                "name": "Synthetic gas plant",
+                "reference product": "Synthetic gas plant",
+                "location": "CH",
+                "unit": "unit"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "cc8e4e4332829d5750831d6efafcb82403790edcaf0f5fb5e5559fe84ef62786",
+              "metadata_sha256": "06c4926c93b8844eb066bf73796ded36f9f62afe91e52631ef78967f7f0a48a7"
+            }
+          ]
+        },
+        "silica_allocation_verification": null
+      },
+      "limitations": [
+        "Use complete native Swiss synthetic-gas-plant construction per unit, preserving both source regional supplier shares. Source and native describe a5MWth-output gasifier with50year life; native includes dryer, comminution, gasifier, gas conditioning, buildings, land use and dismantling. Retain that complete infrastructure once, without capacity, throughput, wood-drying or lifetime scaling. Geographic construction supplies, material/energy quantities, allocation, age and internal uncertainty can differ; score effects remain unquantified. This is plant construction, not gas production or gasifier operation.",
+        "Only the independently inspected ecoinvent3.8cutoff source is added. Preserve signed caller quantities, supported uncertainty, formulas and separate emissions at factor+1. No inverse route, cross-system-model mapping or permission for an uninspected source version is inferred. Other qualified profiles retain their supplier and reference bases.",
+        "Retain all original source producer quantities and final-market freight entries separately without renormalization. Each producer branch uses the complete native screening supplier once at its source weight. Native internal upstream transport remains internal; retained final market delivery is separate. Native geographic sourcing, production mix, allocation, age, emissions, land use and internal uncertainty differ, with unquantified score effects. No source/native LCI or LCIA equivalence is asserted.",
+        "Freight uses complete native same-mode tonne-km services. Vehicle/locomotive/vessel size, fleet, fuel, loading, cargo allocation, geography and emissions differ; Chinese rail may use the complete native coal-freight fleet as a bulk-mineral fleet proxy. Add no payload, distance, mode-substitution, infrastructure or moisture multiplier. Background parameter/formula graphs and correlations are not transplanted without their context; already-calculated nominal coefficients and supported marginal uncertainty are retained, and caller formulas remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "0f3403d61957bdcf09d7b433b81a7b9dea6d8458cfd3363784868c004c79d9db"
         }
       ]
     }

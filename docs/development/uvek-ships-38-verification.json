@@ -1,0 +1,236 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "foreground_datapackage_filesystem": "memory",
+  "transient_activities": 12,
+  "foreground_biosphere_flows": 1,
+  "native_suppliers": 13,
+  "signed_foreground_LCI_solves": 12,
+  "independent_native_reference_LCI_solves": 6,
+  "foreground_emissions_preserved": true,
+  "new_brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "native_source_and_biosphere_metadata_preserved": true,
+  "database_registry_unchanged": true,
+  "checks": [
+    {
+      "rule_id": "bp-22fb05598c337210",
+      "source": {
+        "location": "RER",
+        "name": "market for wood chips, dry, measured as dry mass",
+        "reference product": "wood chips, dry, measured as dry mass",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 1.7145396213891217e-10,
+      "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+      "full_graph_residual": {
+        "residual_before": 6.202855760173629e-11,
+        "residual_after": 1.3877787807814457e-17,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 1.3064263645420676e-10,
+        "residual_after": 3.060417388702473e-17,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    },
+    {
+      "rule_id": "bp-7740a48a01851669",
+      "source": {
+        "location": "RER",
+        "name": "market for sulfuric acid",
+        "reference product": "sulfuric acid",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 5.358415933187644e-10,
+      "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+      "full_graph_residual": {
+        "residual_before": 1.5950060240353445e-09,
+        "residual_after": 1.1102230246251565e-16,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 1.1520701384050402e-09,
+        "residual_after": 7.216054830551797e-17,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    },
+    {
+      "rule_id": "bp-5943576bea71c0de",
+      "source": {
+        "location": "RoW",
+        "name": "market for dolomite",
+        "reference product": "dolomite",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 2.8440056841667893e-12,
+      "refined_max_abs_inventory_difference": 4.440892098500626e-16,
+      "full_graph_residual": {
+        "residual_before": 5.303537918209738e-10,
+        "residual_after": 2.7755575615628914e-17,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 5.540114767129162e-10,
+        "residual_after": 1.3877787807814457e-17,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    },
+    {
+      "rule_id": "bp-dbd744f486420f56",
+      "source": {
+        "location": "GLO",
+        "name": "market for silica sand",
+        "reference product": "silica sand",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 8.194345646472811e-09,
+      "refined_max_abs_inventory_difference": 8.881784197001252e-16,
+      "full_graph_residual": {
+        "residual_before": 2.4489647626039692e-11,
+        "residual_after": 2.1159920944887522e-16,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 2.8680245102476095e-11,
+        "residual_after": 2.1160915486222806e-16,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    },
+    {
+      "rule_id": "bp-521cdbc6ec8f1e0d",
+      "source": {
+        "location": "GLO",
+        "name": "market for industrial furnace, natural gas",
+        "reference product": "industrial furnace, natural gas",
+        "unit": "unit"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "unit",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 1.8189894035458565e-12,
+      "refined_max_abs_inventory_difference": 7.105427357601002e-15,
+      "full_graph_residual": {
+        "residual_before": 2.0983842962417343e-05,
+        "residual_after": 3.0495417423107105e-12,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 2.0983842962417343e-05,
+        "residual_after": 3.0495417423107105e-12,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    },
+    {
+      "rule_id": "bp-46b87a43a45c92f8",
+      "source": {
+        "location": "GLO",
+        "name": "market for synthetic gas factory",
+        "reference product": "synthetic gas factory",
+        "unit": "unit"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "unit",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 1.1641532182693481e-10,
+      "refined_max_abs_inventory_difference": 5.820766091346741e-11,
+      "full_graph_residual": {
+        "residual_before": 0.00032973984084793594,
+        "residual_after": 1.0289259940214016e-10,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 0.00032973984084793594,
+        "residual_after": 1.2705351357152643e-10,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    }
+  ],
+  "qualification_limit": "Verifies six source3.8 market helpers against flattened complete native demand and retained caller emissions. Does not establish source/native composition,manufacturing-route,geography,allocation or score/stochastic equivalence,or full shipping-sector qualification.",
+  "resource_preservation": {
+    "changed_rules": [
+      "bp-22fb05598c337210",
+      "bp-46b87a43a45c92f8",
+      "bp-521cdbc6ec8f1e0d",
+      "bp-5943576bea71c0de",
+      "bp-7740a48a01851669",
+      "bp-dbd744f486420f56"
+    ],
+    "unchanged_rules": 30469,
+    "existing_recipes_unchanged": true,
+    "added_recipes": [
+      "ships-38-acid-market",
+      "ships-38-dolomite-market",
+      "ships-38-furnace-market",
+      "ships-38-silica-market",
+      "ships-38-syngas-market",
+      "ships-38-wood-market"
+    ],
+    "silica_39_selected_rule_unchanged": true,
+    "acid_36_39_supplier_and_scale_preserved": true
+  },
+  "tests": {
+    "brightpath_signed_reference_and_prior_profile_cases": 19,
+    "premise_cache_withdrawal_and_prior_scope_cases": 13
+  },
+  "workflow": {
+    "status": "failed",
+    "exception_type": "PremiseValidationError",
+    "message": "All shipping inventory cohorts prepared and the shared shipping callback completed. Exhaustive graph validation then refused a newly connected technosphere cycle. Shipping remains unqualified; cycle origin and dataset-filter coverage still require investigation.",
+    "failed_stage": "exhaustive graph validation",
+    "snapshot_freshness_diagnostic_only": true,
+    "public_scope_guard_bypassed_for_diagnostic_only": true,
+    "live_public_qualification_claimed": false,
+    "validation_disabled": false,
+    "brightway_export_performed": false,
+    "elapsed_seconds": 55.39235425007064
+  }
+}
