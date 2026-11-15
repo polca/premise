@@ -1,4 +1,5 @@
 # content of test_electricity.py
+import copy
 import math
 import os
 from pathlib import Path
@@ -73,6 +74,93 @@ def test_consequential_msw_map_uses_electricity_conversion_provider():
     electricity.complete_consequential_powerplant_map()
 
     assert electricity.powerplant_map["Biomass MSW"] == [treatment, valid]
+
+
+@pytest.mark.parametrize("system_model", ["cutoff", "consequential"])
+@pytest.mark.parametrize(
+    "model,technology,expected_proxies",
+    [("image", "Coal PC", 0), ("tiam-ucl", "Coal USC", 2)],
+)
+def test_missing_power_plants_follow_scenario_technology_scope(
+    monkeypatch, system_model, model, technology, expected_proxies
+):
+    proxy = electricity_module.load_electricity_variables()["Coal USC"]["proxy"]
+    original = {
+        "name": proxy["name"],
+        "reference product": proxy["reference product"],
+        "location": "ZA",
+        "unit": "kilowatt hour",
+        "parameters": {"efficiency": 0.45},
+        "exchanges": [
+            {
+                "name": proxy["name"],
+                "product": proxy["reference product"],
+                "unit": "kilowatt hour",
+                "amount": 1.0,
+                "type": "production",
+                "input": ("source", "plant"),
+            }
+        ],
+    }
+    source = copy.deepcopy(original)
+    electricity = object.__new__(Electricity)
+    electricity.model = model
+    electricity.system_model = system_model
+    electricity.database = [original]
+    # The represented technology only produces in the future. Market windows
+    # extending beyond the current year must still be able to use its proxies.
+    electricity.year = 2020
+    electricity.iam_data = SimpleNamespace(
+        electricity_mix=xr.DataArray(
+            [[[0.0, 1.0]]],
+            dims=("region", "variables", "year"),
+            coords={
+                "region": ["World"],
+                "variables": [technology],
+                "year": [2020, 2050],
+            },
+        )
+    )
+    electricity.powerplant_fuels_map = {"Coal USC": []}
+    electricity.fuels_specs = {}
+    electricity.fuel_map_reverse = {}
+    indexed = []
+    electricity.add_to_index = indexed.append
+    completed = []
+    electricity.complete_consequential_powerplant_map = lambda: completed.append(True)
+
+    def fetch_proxies(*, datasets):
+        regional = copy.deepcopy(datasets[0])
+        regional["location"] = "World"
+        return {"World": regional}
+
+    electricity.fetch_proxies = fetch_proxies
+    monkeypatch.setattr(
+        electricity_module, "find_fuel_efficiency", lambda **kwargs: 0.45
+    )
+
+    class Mapping:
+        def __init__(self, database, model):
+            self.database = database
+
+        def generate_powerplant_map(self):
+            return {technology: self.database}
+
+    monkeypatch.setattr(electricity_module, "InventorySet", Mapping)
+
+    electricity.create_missing_power_plant_datasets()
+
+    assert original == source
+    assert len(electricity.database) == 1 + expected_proxies
+    assert completed == [True]
+    assert electricity.powerplant_map == {technology: electricity.database}
+    assert electricity.powerplant_map_rev[original["name"]] == technology
+    assert len(indexed) == expected_proxies // 2
+    for dataset in electricity.database[1:]:
+        assert dataset["name"] == proxy["new name"]
+        assert dataset["exchanges"][0]["name"] == proxy["new name"]
+        assert "input" not in dataset["exchanges"][0]
+        assert "parameters" not in dataset
 
 
 def test_coal_power_plant_data_caches_selections_and_emission_factors():

@@ -63,6 +63,12 @@ and Swiss reservoir-water flows, then creates regional generation activities.
 It constructs the voltage markets before applying the IAM combustion-efficiency
 step and relinking suppliers. Aluminium-market adjustments run from 2020.
 
+Missing generation routes are created only for technologies represented in the
+scenario's mapped electricity time series. A technology with zero production
+in the selected year remains eligible when it appears in that series, so future
+electricity-market windows can still use it. Proxy definitions belonging only
+to other IAMs do not create additional plants in this scenario.
+
 For a selected activity, the IAM efficiency step rescales **all technosphere
 and biosphere exchanges**, leaving the production exchange unchanged. Fuel
 filters determine the starting efficiency; they do not limit the exchanges

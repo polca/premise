@@ -2231,11 +2231,16 @@ class Electricity(BaseTransformation):
 
     def create_missing_power_plant_datasets(self) -> None:
         """
-        Create missing power plant datasets.
-        We use proxy datasets, copy them and rename them.
+        Create missing power plant datasets represented in the IAM scenario.
+
+        Keep technologies available across the full time series, including those
+        with zero production in the current year but production in future years.
         """
 
+        technologies = set(self.iam_data.electricity_mix.coords["variables"].values)
         for tech, variable in load_electricity_variables().items():
+            if tech not in technologies:
+                continue
             if not variable.get("exists in database", True):
                 try:
                     original = list(

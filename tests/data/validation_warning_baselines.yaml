@@ -8,22 +8,20 @@ cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     review:
       date: '2026-11-15'
-      source_commit: c671d0d1ac6092db93a224c937411dd7ccc92e8c
+      source_commit: e23d606d57d15c58691fc4ce96af09a92201ba46
       method: >-
         Full compact-backend no-write update of ecoinvent 3.12 cutoff with
         encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
-        structured ruleset-10 certificate: zero errors and 342 unsuppressed
-        current warnings. Nickel electrolyte tracing follows matching m3
-        reference units without a density assumption. Lead receives the same
-        guarded nominal co-product boundary as copper/silver in the primary
-        zinc-smelter route. The cobalt-industry copper-anode aggregate retains
-        its supplied allocated Copper extraction instead of losing it at a
-        blanket carrier clearing. Numerical changes are restricted to that
-        Copper resource and the added Lead resource; supplier quantities and
-        other exchanges are unchanged. Scope coverage records 74 preserved
-        decisions (41 covered upstream, nine outside scope, five unresolved
-        copper boundaries and 19 content/allocation cases). Other warning
-        counts are unchanged.
+        structured ruleset-10 certificate: zero errors and 314 unsuppressed
+        current warnings. Missing electricity proxies are created only for
+        technologies present in the mapped scenario time series, including
+        future-only production. This removes 168 unused IMAGE proxy datasets
+        defined for other IAMs and their 28 CO2 warnings. No retained activity
+        amount, supplier or classification changes; no technosphere exchanges
+        reference the removed proxies. All other warning counts are unchanged.
+        Metal resource scope retains 74 preserved decisions (41 covered
+        upstream, nine outside scope, five unresolved copper boundaries and
+        19 content/allocation cases).
       limitations: >-
         Counts record existing methodological and data limitations for this
         case only. Warnings remain visible; new rules or increased counts fail.
@@ -38,7 +36,7 @@ cases:
         Copper is not a purity assay. Lead uses the existing nominal attribution
         convention, not a complete physical deallocation of the source recipe.
     warning_rule_counts:
-      LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT: 90
+      LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT: 62
       LEGACY.ELECTRICITY_EFFICIENCY_POSSIBLY_INCORRECT: 11
       # Aggregate diagnostics for 78 unverified-scope and 653 unsupported-year
       # material-rule applications. Source material amounts are preserved.
