@@ -90,8 +90,8 @@ and global applicability. Chain-derived factors are attribution conventions;
 their original database-version derivations still require scientific review.
 Moving them into data does not establish independently measured ore grades.
 
-Compression model assumptions live in
-``premise/data/fuels/compression_parameters.json`` with their limitations.
+Hydrogen tank-compression assumptions are recorded in the vehicle metadata and
+documented in :doc:`/methodology/fuels/hydrogen`.
 Photovoltaic lifetime metadata and country adapters share the lifetime in
 ``premise/data/solar/pv_2026_parameters.json``. Independent auditor contracts and
 fuel plausibility ranges live in

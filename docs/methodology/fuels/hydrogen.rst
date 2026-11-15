@@ -55,8 +55,7 @@ The generated low-pressure hydrogen market includes the imported
 `hydrogen supply, distributed by pipeline <https://clic.psi.ch/datasets/hydrogen-supply-distributed-by-pipeline/>`__ service. Its source comment
 states delivery at **30 bar**, after transmission, storage and distribution.
 Its electricity includes those upstream operations, not final preparation for
-the refreshed vehicle's 700-bar tank. The legacy ``add_compression_electricity``
-helper for other delivery routes is not called by this market-generation path.
+the refreshed vehicle's 700-bar tank.
 
 The refreshed car/truck adapters apply the carculator_utils intercooled
 compression model from 30 to 700 bar, using its default 300 K, three equal-ratio
