@@ -21203,7 +21203,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "195ba269198a217f022c0d628904880c9aad640206d22ea24f5689b7b610ff8d"
+          "fingerprint": "52e29f9ad63ceeb2b3c5f8eafb1314ba04657202616bcd3844f68c1b2c3178e7"
         }
       ]
     },
@@ -276654,7 +276654,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "bf387c3136f4e1f621c2261c26daa06f7232625e8d939a334e55c085fb1bdfd3"
+          "fingerprint": "0ccad7421f1e7e83325a3749ca73f7aef9029501b9530ba66417f6047d567469"
         }
       ]
     },
@@ -282309,7 +282309,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "6c59bd21bdf11fb93c7bd2906108f15db5b5d98ada4ed755f983df7e76956bd7"
+          "fingerprint": "0552aaaf223fb6edc309667f8b0a9c3435506bc596ff2cb245bc76145475ea3b"
         }
       ]
     },
@@ -296770,6 +296770,1085 @@
             "system_model": "cutoff"
           },
           "fingerprint": "ea7b8824b29f3152708db0df89673787a520e7317a4aef534b0aa5a7c93a91ad"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-1a39c7b4c1f58b77",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for polyphenylene sulfide",
+          "reference product": "polyphenylene sulfide",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polyphenylene sulfide",
+            "reference product": "polyphenylene sulfide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "37eb43ba031078835c8432b3c29b6c448d88d081858b0c82cdb13a2a9278ebe7",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "0778d695e152040913864d891ea6bebd"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyphenylene sulfide, at plant",
+              "reference product": "Polyphenylene sulfide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "a6f684545a07aef9980c63b61313b874e6068f860974272482cabab15ccf10e1",
+            "source_database": "bafu",
+            "source_code": "bafu-281410"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyphenylene sulfide, at plant",
+              "reference product": "Polyphenylene sulfide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "eac78536896cdc639d58c03863a1313a5a8503cfef5cfe3d2b128d0d4c1478d7",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "d3193b2a4c310004544e0657da17a60e"
+          }
+        },
+        "boundary_checks": [
+          "Solid PPS polymer in both inventories. Native production has estimated energy/infrastructure, incomplete process emissions and no solid-waste inventory; these missing details are not physically zero. Source global market delivery and production mix are replaced by the complete native at-plant inventory."
+        ]
+      },
+      "limitations": [
+        "Solid PPS polymer in both inventories. Native production has estimated energy/infrastructure, incomplete process emissions and no solid-waste inventory; these missing details are not physically zero. Source global market delivery and production mix are replaced by the complete native at-plant inventory.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fb83515b385a92aaf4084fc3564aadab8d5a538adf5e21255781bc7b85ccf802"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f0ea84b691223768",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for locomotive",
+          "reference product": "locomotive",
+          "location": "GLO",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for locomotive",
+            "reference product": "locomotive",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "2c8c74240229f83594ae0faae18f749af8d20e0792e1a7dd79571250e8083ea0",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "c82419402e2192e78e275a3ad74b4e55"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Locomotive",
+              "reference product": "Locomotive",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "89d9e397dc26057936020d42d8cc40e1add98d128a9a6acd83645dafb012b79e",
+            "source_database": "bafu",
+            "source_code": "bafu-348643"
+          },
+          "2026": {
+            "identity": {
+              "name": "Locomotive",
+              "reference product": "Locomotive",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "f8cf633630584ce6fffcc1864049ac929db7e099bd1cc887f2f4894d016a3189",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "d7384c58bb7ac81b9ebc04304a9fb263"
+          }
+        },
+        "boundary_checks": [
+          "Both represent one complete 84-tonne locomotive with a 40-year design life. Native RE460 material inventory omits detailed electronics and small parts; it is a conventional-locomotive manufacturing proxy inside the separately specified fuel-cell locomotive foreground. Keep all separately listed hydrogen drivetrain parts; no second glider, lifetime multiplier or operating energy is added."
+        ]
+      },
+      "limitations": [
+        "Both represent one complete 84-tonne locomotive with a 40-year design life. Native RE460 material inventory omits detailed electronics and small parts; it is a conventional-locomotive manufacturing proxy inside the separately specified fuel-cell locomotive foreground. Keep all separately listed hydrogen drivetrain parts; no second glider, lifetime multiplier or operating energy is added.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e87bde5a2509fc49663a04bfda4d60698f810e85b68815fb1125c8ac24aad51e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b86c5c966757b8c9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for goods wagon",
+          "reference product": "goods wagon",
+          "location": "GLO",
+          "unit": "unit"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for goods wagon",
+            "reference product": "goods wagon",
+            "location": "GLO",
+            "unit": "unit"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "0aacc07d5ef8e46d423c3b26e5b82753da8a405f677130d6298fa061615a92f6",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "2d2e7429d73ea11d30878029899eda02"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Goods wagon",
+              "reference product": "Goods wagon",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "6f44c7873d28bfd8acbfdea36b4dd47f24c958129dfcfe094770cbd71b86824c",
+            "source_database": "bafu",
+            "source_code": "bafu-301872"
+          },
+          "2026": {
+            "identity": {
+              "name": "Goods wagon",
+              "reference product": "Goods wagon",
+              "location": "RER",
+              "unit": "unit"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "9a2486384a7632e5fa0833538cc7db3d884b3c80d5f79b6660aadef1e3c5cafd",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "5ce02b44e0ad9e153cb0356fe2de42e7"
+          }
+        },
+        "boundary_checks": [
+          "Both represent one complete average goods wagon. Native 27-tonne design mixes closed and tank wagons and includes manufacturing. Preserve caller units and lifetime usage factors; do not substitute a tonne-km service for a wagon or add another wagon glider."
+        ]
+      },
+      "limitations": [
+        "Both represent one complete average goods wagon. Native 27-tonne design mixes closed and tank wagons and includes manufacturing. Preserve caller units and lifetime usage factors; do not substitute a tonne-km service for a wagon or add another wagon glider.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "26a3e18e4c5b3f5235a1f20c7db368d03e96a04ca57b71f9bc164ff3afba7719"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-3e953694d9531d69",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for phenolic resin",
+          "reference product": "phenolic resin",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for phenolic resin",
+            "reference product": "phenolic resin",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "82f8490fd77abde0cf76d552a854e44f6d39398e7ece994acac07cfdac045ecc",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "9da4f8cd604819c65b67f18efbc7daf7"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Phenolic resin, at plant",
+              "reference product": "Phenolic resin, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "1a3377e91b346f759f1b9895482921bd97a9ce40d4796e8e3513b8c29f9b4484",
+            "source_database": "bafu",
+            "source_code": "bafu-388174"
+          },
+          "2026": {
+            "identity": {
+              "name": "Phenolic resin, at plant",
+              "reference product": "Phenolic resin, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "943c1896253edef81a6bfef6a6ebc10fc229085b3a9a731733269418a32cc84d",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "31a53ba29a39449a4d8c7ff32f33e5ef"
+          }
+        },
+        "boundary_checks": [
+          "Both represent pure phenolic resin per kg, not a water solution. Native production has estimated energy/infrastructure, incomplete process emissions and no solid-waste inventory. No solvent, purity or dry-mass multiplier is introduced."
+        ]
+      },
+      "limitations": [
+        "Both represent pure phenolic resin per kg, not a water solution. Native production has estimated energy/infrastructure, incomplete process emissions and no solid-waste inventory. No solvent, purity or dry-mass multiplier is introduced.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b1d0ab8a0a7ea40a83017998a9959e342c77103e01d5e17a30ba830b8373c8d7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ff83b71c804cabb4",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for gold",
+          "reference product": "gold",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for gold",
+            "reference product": "gold",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "653912aaffc3d1fa9eda3bc7f22a525a4dba94da7ec5d458197a7b67f9021b0d",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "e8bad36c3d2ebe27cdfc2a22b4fca2d0"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Gold, at regional storage",
+              "reference product": "Gold, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "31dab07b9594dad152e35dca3a7df923ef350ea0ebd8cce62941575e26cd5a3c",
+            "source_database": "bafu",
+            "source_code": "bafu-473651"
+          },
+          "2026": {
+            "identity": {
+              "name": "Gold, at regional storage",
+              "reference product": "Gold, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "49a256fc5bf80434469f7bf57672d685ae7b89357ce53ff5419a7d3d2fae72c3",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "e91f04de78f0f9a533a9b423093f8bf6"
+          }
+        },
+        "boundary_checks": [
+          "Both supply refined gold per kg. Native European storage mixes primary and secondary metal and delivery to Europe; source global supply mix, refining, allocation, recycling share, purity and geography differ. No extra recycling credit, ore-grade correction or freight overlay is added."
+        ]
+      },
+      "limitations": [
+        "Both supply refined gold per kg. Native European storage mixes primary and secondary metal and delivery to Europe; source global supply mix, refining, allocation, recycling share, purity and geography differ. No extra recycling credit, ore-grade correction or freight overlay is added.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "eb0841ed031311413b92bfdc5dfd8b1cfcce2ec4d7fe7e9eb9b462761caed27f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e9cdd018f5d75d22",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for palladium",
+          "reference product": "palladium",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for palladium",
+            "reference product": "palladium",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "7c1d0b3e6baeece8d75990c6a4a084ff9f50a0f3aebb21a29a4230dd0baa818c",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "9e444c6755c1f4312373b05cedd7eafa"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Palladium, at regional storage",
+              "reference product": "Palladium, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "e6a6bf01861df2e75856db4cf738c83d89d4ab48a843f4ad773c110b2a85b776",
+            "source_database": "bafu",
+            "source_code": "bafu-412121"
+          },
+          "2026": {
+            "identity": {
+              "name": "Palladium, at regional storage",
+              "reference product": "Palladium, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "152d9ce079502dbb1d325ad0378f2ebf255e4c6b965b73ebc18e67ddd7d8a510",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "14e77f7b76aff87641484911b052d533"
+          }
+        },
+        "boundary_checks": [
+          "Both supply palladium metal per kg. Native European storage is an older primary/secondary supply mix. Mining co-product allocation, recovery, refining, geographic mix and delivery differ; no extra metal credit or grade multiplier is added."
+        ]
+      },
+      "limitations": [
+        "Both supply palladium metal per kg. Native European storage is an older primary/secondary supply mix. Mining co-product allocation, recovery, refining, geographic mix and delivery differ; no extra metal credit or grade multiplier is added.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0e7876b368e41b370f4b5f09bab48b04dca2f2057c5d89883a2100a98de3a4d0"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-548c151eafe8725b",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for phosphorus, white, liquid",
+          "reference product": "phosphorus, white, liquid",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for phosphorus, white, liquid",
+            "reference product": "phosphorus, white, liquid",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "0bf22eaa5c687990ea1361873a101485a0ec137b1a8904a87ed2d505df6a140d",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "47def3be0aa3d1307da6e64b2a77350e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Phosphorus, white, liquid, at plant",
+              "reference product": "Phosphorus, white, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "44051f30b5a4bf26e5f85312239daef427ff57534377c230a0054b00dba8566d",
+            "source_database": "bafu",
+            "source_code": "bafu-168705"
+          },
+          "2026": {
+            "identity": {
+              "name": "Phosphorus, white, liquid, at plant",
+              "reference product": "Phosphorus, white, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "efa0754d5301a0438e4bb97a2b7cadfac3b756e7b9d8a32317ee1c174156c5ca",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "a468657182e33daa5a04c6f2ea2e3cc9"
+          }
+        },
+        "boundary_checks": [
+          "The native identity, CAS, P4 formula and phosphate-rock electric-furnace route establish elemental white phosphorus. Its comment incorrectly says liquid ozone; retain that source documentation defect explicitly rather than treating it as a different product. Both references are kg of elemental product, so no P-to-P4 factor, solution multiplier or invented chemical route is added."
+        ]
+      },
+      "limitations": [
+        "The native identity, CAS, P4 formula and phosphate-rock electric-furnace route establish elemental white phosphorus. Its comment incorrectly says liquid ozone; retain that source documentation defect explicitly rather than treating it as a different product. Both references are kg of elemental product, so no P-to-P4 factor, solution multiplier or invented chemical route is added.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "31455c389319e8de5c2ae22a11d22442a6a0d6bb4541766b56b095898d8b6f87"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-60b0673da5bb6e7b",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for printed wiring board, for through-hole mounting, Pb free surface",
+          "reference product": "printed wiring board, for through-hole mounting, Pb free surface",
+          "location": "GLO",
+          "unit": "square meter"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for printed wiring board, for through-hole mounting, Pb free surface",
+            "reference product": "printed wiring board, for through-hole mounting, Pb free surface",
+            "location": "GLO",
+            "unit": "square meter"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "1e577eecf4dcefcc3f6057d89750cec30c8be54524f5ab4787a3573d932876ee",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "e9808ce21c375223c3fa96c4bbe798f4"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Printed wiring board, through-hole, lead-free surface, at plant",
+              "reference product": "Printed wiring board, through-hole, lead-free surface, at plant",
+              "location": "GLO",
+              "unit": "square meter"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "b15ba4e54a3812599e4e3d18c51e7f0ca957ee49a114f32859554c393bd3af41",
+            "source_database": "bafu",
+            "source_code": "bafu-505060"
+          },
+          "2026": {
+            "identity": {
+              "name": "Printed wiring board, through-hole, lead-free surface, at plant",
+              "reference product": "Printed wiring board, through-hole, lead-free surface, at plant",
+              "location": "GLO",
+              "unit": "square meter"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "45384583347844bdae19399ec2e2799334e2c95f0894fa5a9c790d51fa9a97a0",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "9a8e71fb532fbd8ff2c7dcfde1da5fd8"
+          }
+        },
+        "boundary_checks": [
+          "Both represent one square metre of unmounted two-layer FR4 through-hole board with lead-free surface and 3.08 kg/m2 area mass. Native documentation also contains a conflicting surface-mount wording; use the specific functional-unit definition and warn. Keep caller area and separately purchased components; do not convert m2 to kg or add a second mounted-board inventory."
+        ]
+      },
+      "limitations": [
+        "Both represent one square metre of unmounted two-layer FR4 through-hole board with lead-free surface and 3.08 kg/m2 area mass. Native documentation also contains a conflicting surface-mount wording; use the specific functional-unit definition and warn. Keep caller area and separately purchased components; do not convert m2 to kg or add a second mounted-board inventory.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "17c1829ca3984b2166b73b726e21a22c8d254d811903542e923fbfd3460a7dfc"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-711b4feda57acd26",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for ferrite",
+          "reference product": "ferrite",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for ferrite",
+            "reference product": "ferrite",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "0adb6d865e1c3df717e934583765ff18ebe2d54d68cc52516212731046a5a537",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "8f31e6bfdf899786774126b794acb6cb"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Ferrite, at plant",
+              "reference product": "Ferrite, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "2e0f2e77d09d7b8f250557e8a8ed088fd47ac39fa9ae7ac011f2d4fe49db0705",
+            "source_database": "bafu",
+            "source_code": "bafu-230647"
+          },
+          "2026": {
+            "identity": {
+              "name": "Ferrite, at plant",
+              "reference product": "Ferrite, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "a78154cf322ba1408e7157f4266ecddf376af13e77eb3558f4582d02b5d8022a",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "888ecf0c16c0e2c131bfe20875901dbb"
+          }
+        },
+        "boundary_checks": [
+          "Native MnZn ferrite is a screening representative for the source generic ferrite. Composition, grade and magnetic performance are not proven identical. Native inventory explicitly omits wastes and direct emissions; the absence is not physical zero. Keep one kg per signed source kg, no iron-content or performance correction."
+        ]
+      },
+      "limitations": [
+        "Native MnZn ferrite is a screening representative for the source generic ferrite. Composition, grade and magnetic performance are not proven identical. Native inventory explicitly omits wastes and direct emissions; the absence is not physical zero. Keep one kg per signed source kg, no iron-content or performance correction.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5ca306f71b8300f8f81cc7831a9b42d85c103c19ac12d72ade4b238630eb52ab"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-612859ed6ea4236c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for resistor, surface-mounted",
+          "reference product": "resistor, surface-mounted",
+          "location": "GLO",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for resistor, surface-mounted",
+            "reference product": "resistor, surface-mounted",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "a79710321587e3b8cfa12618ab1e5ddf233d3fcdd37286710706a4600899ae56",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "ea8e8c64a0022376ce113074bde3565f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Resistor, SMD type, surface mounting, at plant",
+              "reference product": "Resistor, SMD type, surface mounting, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "829550c9044593ba63f0c6fd237b79002ce3a6c5f537a262b81b7ce94fc8b82d",
+            "source_database": "bafu",
+            "source_code": "bafu-183914"
+          },
+          "2026": {
+            "identity": {
+              "name": "Resistor, SMD type, surface mounting, at plant",
+              "reference product": "Resistor, SMD type, surface mounting, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "fc3c07cc085fd7f57ca531c01577d4f0a3bfdcb70e9fe9effa34ca8fb2cec7a9",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "b275a9b937f7e0706ba11cf5f9f6842f"
+          }
+        },
+        "boundary_checks": [
+          "Both represent surface-mount resistors per kg, with the same documented 9.8 mg representative component mass. Native manufacturing details are partly estimated. Preserve signed kg, not component counts, and retain separate board/assembly purchases."
+        ]
+      },
+      "limitations": [
+        "Both represent surface-mount resistors per kg, with the same documented 9.8 mg representative component mass. Native manufacturing details are partly estimated. Preserve signed kg, not component counts, and retain separate board/assembly purchases.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a0555813206351a44f287e17f0f2ba8c849c989da60d75436efb5540662698df"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4389bb6ee9ab35e9",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market group for electricity, medium voltage",
+          "reference product": "electricity, medium voltage",
+          "location": "Europe without Switzerland",
+          "unit": "kilowatt hour"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market group for electricity, medium voltage",
+            "reference product": "electricity, medium voltage",
+            "location": "Europe without Switzerland",
+            "unit": "kilowatt hour"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "1d64299a8f09cc3862ed388cdd5a089688df5a25e8e8177e4a521a6be9fb3899",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "ae79d22fc0af860c30a8f505a178d17c"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "ENTSO-E",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "15980f00042fed22bbdd5d9971cf152dc5fc89635028fddba99fab9b122eb9cf",
+            "source_database": "bafu",
+            "source_code": "bafu-412025"
+          },
+          "2026": {
+            "identity": {
+              "name": "Electricity, medium voltage, at grid",
+              "reference product": "Electricity, medium voltage, at grid",
+              "location": "ENTSO-E",
+              "unit": "kilowatt hour"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "611b7b2118be4057c1acdf57defde983a02a13295215713c222d73b91f9fb4b4",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "a839265bfdbdfc9e36723c53ae33fbd7"
+          }
+        },
+        "boundary_checks": [
+          "Both are delivered medium-voltage electricity per kWh. The native ENTSO-E grid is a geographic proxy for the source Europe-without-Switzerland market group. Keep the complete native grid losses and infrastructure once, then ordinary shared Premise electricity relinking; no additional loss factor or generation-only substitute is introduced."
+        ]
+      },
+      "limitations": [
+        "Both are delivered medium-voltage electricity per kWh. The native ENTSO-E grid is a geographic proxy for the source Europe-without-Switzerland market group. Keep the complete native grid losses and infrastructure once, then ordinary shared Premise electricity relinking; no additional loss factor or generation-only substitute is introduced.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "cf224416ea22df87fc9b6dabd2e529d3a6ab8f76b4ac542f02a76b7d98d9604f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-cc63c9f08414f90f",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "sheet rolling, steel",
+          "reference product": "sheet rolling, steel",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "sheet rolling, steel",
+            "reference product": "sheet rolling, steel",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "cd9fad6033d217c407304acb9500e3e103b2fff3a457545f50c492e12eddf9a0",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "5a3719ab8695ca44a9e5d2edd6c32b7f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Sheet rolling, steel",
+              "reference product": "Sheet rolling, steel",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "33d7830d6a02b5add976f697942547b9d476d53372141251a1875703633743c8",
+            "source_database": "bafu",
+            "source_code": "bafu-168302"
+          },
+          "2026": {
+            "identity": {
+              "name": "Sheet rolling, steel",
+              "reference product": "Sheet rolling, steel",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "1882af58ac1ae58f1f8321f398254d8488043d376ff2ff2de2a77cd2d977ce72",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "8be8b763c8637ee6ea2df91cc48f02a1"
+          }
+        },
+        "boundary_checks": [
+          "Both are cold-rolling services per kg of unalloyed/low-alloy steel; neither includes the principal steel being rolled. Keep the caller steel and ferrosilicon material bill separate. Native replacement steel and process losses belong to the service and remain; do not delete them or add the entire processed steel again. Electrical-steel applicability remains a warned technology proxy."
+        ]
+      },
+      "limitations": [
+        "Both are cold-rolling services per kg of unalloyed/low-alloy steel; neither includes the principal steel being rolled. Keep the caller steel and ferrosilicon material bill separate. Native replacement steel and process losses belong to the service and remain; do not delete them or add the entire processed steel again. Electrical-steel applicability remains a warned technology proxy.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "9d70ebcc2bc37bc7602d568584820c46886021d78783177d589ab523c4441332"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-50840fb5920cae64",
+      "operation": "replace",
+      "mapping_method": "product_checked",
+      "review_path": "export/uvek_hydrogen_train_direct_312_review.json",
+      "review_sha256": "5ca880f0e916160f37f627a788870932607479345514cd70d29bef4d4ea2cf95",
+      "authorization": "Standing user instruction to auto-approve coming modelling decisions, log for later review and prioritize actual scenario dependencies.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "name": "market for brass",
+          "reference product": "brass",
+          "location": "RoW",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for brass",
+            "reference product": "brass",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "primary_record_sha256": "6192d2fde07672af20b87bdb84c344fcc3e7d4e95bf06f1dc6d7d14b10c0ff82",
+          "source_database": "ecoinvent-3.12-cutoff",
+          "source_code": "348a3c44f4d349e78e30c707303213cb"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Brass, at plant",
+              "reference product": "Brass, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "96f6f20ebffcfe0c7990116d689810fc5570cf6c52bc060cd2d5a7006d1c8744",
+            "source_database": "bafu",
+            "source_code": "bafu-287690"
+          },
+          "2026": {
+            "identity": {
+              "name": "Brass, at plant",
+              "reference product": "Brass, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "primary_record_sha256": "88e67d84aa50966ff50ea330def4c40cf256d01ed99b08d56edfbb8d77b50cfd",
+            "source_database": "BAFU:2026-reimported",
+            "source_code": "31e5d1a53efa30f37e96503732fe4986"
+          }
+        },
+        "boundary_checks": [
+          "Both represent cast brass with 70% copper and 30% zinc per kg. Native Swiss-delivery/European-production model is theoretical and documented as poor quality. Keep complete native melting/casting once, with no copper-content multiplier, separate recovery credit or invented delivery route."
+        ]
+      },
+      "limitations": [
+        "Both represent cast brass with 70% copper and 30% zinc per kg. Native Swiss-delivery/European-production model is theoretical and documented as poor quality. Keep complete native melting/casting once, with no copper-content multiplier, separate recovery credit or invented delivery route.",
+        "Screening correspondence, not scientific equivalence. Source market production mix and final delivery may differ from the complete native producer or storage boundary; internal allocation, technology, grade, age and uncertainty can differ.",
+        "Preserve caller signed quantities, formulas, uncertainty and all separate purchases/emissions at factor +1. Native upstream biosphere exclusions and changed score effects remain unquantified.",
+        "Only the independently inspected ecoinvent 3.12 cut-off source profile is newly reviewed. No consequential, cross-system-model, reverse or other-release permission is created."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8eafa0b6ee96eca9c26b148e2aff5eb88e2fa7907594aa4c60521b5d0d9f1e73"
         }
       ]
     }
