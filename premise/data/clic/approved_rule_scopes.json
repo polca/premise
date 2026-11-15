@@ -290199,6 +290199,212 @@
           "fingerprint": "000dcc9f1d4baba0e052fa0ef6e020310b980309679af5facdaf40d51aa18d1b"
         }
       ]
+    },
+    {
+      "rule_id": "bp-3f2bdc14588c01de",
+      "operation": "replace",
+      "mapping_method": "reviewed_nmc532_battery_312",
+      "review_path": "export/uvek_nmc532_battery_312_review.json",
+      "review_sha256": "1a3f756d2a637aad69a08ddc7ab450fba50d67f08b99bb3f576aff3589ddd430",
+      "authorization": "Standing user auto-approval of coming modelling decisions. Use a complete same-family native NMC pack as a bounded background screening proxy, naming chemistry differences and unquantified effects; retain signed mass, both source market shares and freight. Do not coalesce IAM technology aliases.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for battery, Li-ion, NMC532, rechargeable",
+          "reference product": "battery, Li-ion, NMC532, rechargeable",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "location": "GLO",
+            "name": "market for battery, Li-ion, NMC532, rechargeable",
+            "reference product": "battery, Li-ion, NMC532, rechargeable",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "f8e470e3e083b708dbfc51b5ecf1f7ff440355c33b35c447f093aefbb84d5eb7",
+          "metadata_sha256": "24fe25f507af8379b1a8e4809ffc432a1ea7f5da64e16210c35778d000eaec71",
+          "nonproduction_exchange_count": 6,
+          "direct_biosphere_exchanges": 0
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "battery production, Li-ion, NMC532, rechargeable",
+              "reference product": "battery, Li-ion, NMC532, rechargeable",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "d175738c23783f717e5210004ff26c28f9d46c6dce4c1da7fdad53d4a9c21e78",
+            "metadata_sha256": "7b436ccd4e5ea4e8ad932a6da8a1970098833ae129351ad953b38df071c8fd9b"
+          },
+          {
+            "identity": {
+              "name": "battery production, Li-ion, NMC532, rechargeable",
+              "reference product": "battery, Li-ion, NMC532, rechargeable",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "inventory_sha256": "a88fd8ac36159bb46f48d968a9a3958d07bf7e84dd50c70bd2c14fd372f40088",
+            "metadata_sha256": "6bf964414b8424026d029ae91ab76c64b2ca57d797523755e15264ab71a59a07"
+          }
+        ],
+        "basis": "Use the complete native NMC111 battery pack as an explicitly approximate background hardware proxy for the required source3.12cutoff NMC532 market. Both are complete prismatic rechargeable lithium-ion packs per positive1kg. Native2025/2026 have no inspected NMC532 complete pack; the NMC622 candidate is cell-only and cannot replace a complete pack. This is not a chemistry-equivalent match: nominal cathode Ni:Mn:Co changes from5:3:2 to1:1:1. No independent cathode, metal-demand, LCIA, capacity or lifetime equivalence is asserted.",
+        "conversion_factor": 1,
+        "recipe_id": "nmc532-312-native-pack-screening-market",
+        "boundary_checks": {
+          "producer_entries": 2,
+          "final_freight_entries": 4,
+          "input_count": 6,
+          "complete_pack_not_cell_only": true,
+          "source_and_target_reference_unit": "kilogram",
+          "capacity_or_lifetime_scaling": false
+        },
+        "native_witnesses": {
+          "2025": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "76db97fdf763de4780ae656cde92801edff0c19b3e33dd3f14d5b06cb3908284",
+              "metadata_sha256": "712e45bc407a1e90507dd9adf86ab06f3776a5dd9b762c1b7e9639a6dd2b802e"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "48fbaa6e3873f04123115b3b5ed40356d647777f499858167cea61feffc47859",
+              "metadata_sha256": "d644449b36db60004e99d0823380a33e4bb811901e59ea741608d47335037fcb"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "22d4f5fe504956cb8774ee629f64ea5799f0eba27e825034f8a6ad6e2076e32c",
+              "metadata_sha256": "1712dcc1e47789fd051de828c7fa8576057a018e81bae15590c87e3285c8eae6"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "bfc7d9e7e4cf300178df599162a669f5cf889b3409d343999efc6753bc484459",
+              "metadata_sha256": "03407e29c161b23e19c2f7a40a63ccb0c6af3ae75e1b15a8411f63a9094c58ed"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+              "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92"
+            }
+          ],
+          "2026": [
+            {
+              "identity": {
+                "name": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "reference product": "Battery, Li-ion, NMC111, rechargeable, prismatic",
+                "location": "GLO",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "828db5811b665339b46951cb73d2e8384762d69a05fd52f2d1d1efc5a9eb3c61",
+              "metadata_sha256": "744b8049f96b279ca5b5a4c3c0d354870668d2b2755f1aee42de35cd1707df97"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, aircraft, freight",
+                "reference product": "Transport, aircraft, freight",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "4dc78391f9cc65dc4a80578e6eb7e2fc547aa32ed91f74ac47ce39d06bb58e86",
+              "metadata_sha256": "ecebabaaca63251d3bbbc1b427e0c1791f26eb6e54fbc2089682d03197eabdec"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, lorry, fleet average",
+                "reference product": "Transport, freight, lorry, fleet average",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "1dce512cce0f49d845545ea0ed7d0a6e9f64ed59e5583c9ad0185f0fd4d6c0fd",
+              "metadata_sha256": "2e25c36bfe498c028ee90845bf35d49ed777fb811dc4c2353e70e567f87d5c35"
+            },
+            {
+              "identity": {
+                "location": "OCE",
+                "name": "Transport, transoceanic container ship",
+                "reference product": "Transport, transoceanic container ship",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44",
+              "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce"
+            },
+            {
+              "identity": {
+                "location": "RER",
+                "name": "Transport, freight, rail",
+                "reference product": "Transport, freight, rail",
+                "unit": "ton kilometer"
+              },
+              "reference_amount": 1,
+              "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+              "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476"
+            }
+          ]
+        },
+        "existing_recipe_dependencies": {}
+      },
+      "limitations": [
+        "Use the complete native NMC111 battery pack as an explicitly approximate background hardware proxy for the required source3.12cutoff NMC532 market. Both are complete prismatic rechargeable lithium-ion packs per positive1kg. Native2025/2026 have no inspected NMC532 complete pack; the NMC622 candidate is cell-only and cannot replace a complete pack. This is not a chemistry-equivalent match: nominal cathode Ni:Mn:Co changes from5:3:2 to1:1:1. No independent cathode, metal-demand, LCIA, capacity or lifetime equivalence is asserted.",
+        "Native inventory retains NMC111 cells, module packaging, battery management, casing, cooling materials, assembly energy and infrastructure. Source Winjobi2020/Dai2019 NMC532 designs and CN/RoW manufacturing are replaced by the native global Dai2019/Crenna2021 design. Cathode metal ratios, material quantities, cell/pack fraction, manufacturing energy, allocation, internal uncertainty, supply geography and vintage differ; their score effect is unquantified. Do not rescale or blend native cells by metal fractions without a separately reviewed inventory.",
+        "Retain both original market producer quantities separately and all four final-delivery quantities and statistics. Preserve signed caller kg quantities, formulas, supported uncertainty, foreground ownership and separate emissions. No physical exchange is omitted, no capacity/lifetime multiplier is invented and no extra cell, module packaging, BMS, cooling or plant is added to the complete pack.",
+        "Preserve original final-market air, diesel-lorry, heavy-fuel-oil container and rail services through complete native freight per unchanged signed tonne-km. Native manufacturing/component freight stays internal. Geography, cargo allocation, fleet, traction, loading, vessel, fuel, emissions, age and uncertainty are screening differences; add no distance, payload or infrastructure multipliers.",
+        "Approval is restricted to the exact independently inspected ecoinvent3.12cutoff source and existing UVEK2025-to2026 route. No permission for uninspected source releases, inverse routes or different system models is inferred. No native alias or IAM technology classifier is changed to treat NMC532 and NMC111 as equivalent."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a1a9d887e524af9de54444ba2bcf2b432099a976d7167d1516a2ec7e979a1c4f"
+        }
+      ]
     }
   ],
   "superseded_operations": [
