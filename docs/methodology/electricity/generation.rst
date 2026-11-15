@@ -289,6 +289,14 @@ finite amounts in kilograms in either case. This diagnostic does not
 independently verify a plant's capture rate, upstream carbon balance or storage
 performance, and it does not change exchange amounts.
 
+For diesel, the diagnostic uses the default net calorific value of 43 MJ/kg
+and CO2 factor of 0.0741 kg/MJ from the `IPCC 2006 Guidelines, Volume 2,
+Chapter 1, Tables 1.2 and 1.4
+<https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_1_Ch1_Introduction.pdf>`__.
+These are generic validation references, rather than measurements of the
+regional fuel supply. They do not replace the inventory's fuel or emission
+amounts.
+
 See :ref:`generation-worked-example` for the relative and absolute
 calculations, including the non-fuel exchanges scaled by this step.
 

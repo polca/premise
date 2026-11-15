@@ -28,7 +28,9 @@ LHV:
   biomass: 20
   wood chips: 18.9
   biomethane: 47.5
-  diesel: 38
+  # IPCC 2006, Volume 2, Chapter 1, Table 1.2: 43 TJ/Gg = 43 MJ/kg.
+  # https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_1_Ch1_Introduction.pdf
+  diesel: 43
   peat: 10
 
 
@@ -43,7 +45,8 @@ CO2:
   biomass: 0.09
   wood chips: 0.09
   biomethane: 0.054
-  diesel: 0.0732
+  # Same source, Table 1.4: 74,100 kg CO2/TJ = 0.0741 kg CO2/MJ.
+  diesel: 0.0741
   peat: 0.09
 
 fuel units:

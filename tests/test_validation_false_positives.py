@@ -150,6 +150,50 @@ def test_electricity_efficiency_boundary_roundoff(efficiency, warn):
     )
 
 
+@pytest.mark.parametrize(
+    "co2,warn",
+    [
+        pytest.param(0.753796390662003, False, id="reviewed-peru-inventory"),
+        pytest.param(0.85, False, id="within-ipcc-factor-tolerance"),
+        pytest.param(0.86, True, id="beyond-ipcc-factor-tolerance"),
+        pytest.param(0.0, True, id="missing-combustion-emissions"),
+        pytest.param(1.5, True, id="excess-combustion-emissions"),
+    ],
+)
+def test_diesel_electricity_uses_mass_based_ipcc_references(co2, warn):
+    dataset = {
+        "name": "electricity production, oil",
+        "reference product": "electricity, high voltage",
+        "unit": "kilowatt hour",
+        "location": "PE",
+        "exchanges": [
+            {
+                "name": "market for diesel",
+                "product": "diesel",
+                "unit": "kilogram",
+                "type": "technosphere",
+                "amount": 0.21357564488008188,
+            },
+            {
+                "name": "Carbon dioxide, fossil",
+                "unit": "kilogram",
+                "type": "biosphere",
+                "categories": ("air",),
+                "amount": co2,
+            },
+        ],
+    }
+    before = copy.deepcopy(dataset)
+    validator = validator_for(ElectricityValidation, [dataset])
+
+    validator.check_efficiency()
+
+    assert dataset == before
+    assert [issue.rule_id for issue in validator.validation_issues] == (
+        ["LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT"] if warn else []
+    )
+
+
 def ccs_electricity_dataset(air_co2, captured_co2, capture_unit="kilogram"):
     return {
         "name": "electricity production, natural gas, combined cycle power plant",

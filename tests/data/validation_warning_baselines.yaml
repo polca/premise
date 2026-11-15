@@ -3,29 +3,30 @@ metadata:
     Reviewed unsuppressed validation-warning counts. A new rule or a count above
     the recorded value fails certification unless the exception is documented
     by a narrow version/system-model suppression.
-  validation_ruleset_version: 11
+  validation_ruleset_version: 12
 cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
     review:
       date: '2026-11-15'
-      source_commit: be98b491b8bdb3f64bc87b22fb71cf986a402e36
+      source_commit: 851362b4e4bb7917a92ba9ec0012d49e6538fa2a
       method: >-
         Full compact-backend no-write update of ecoinvent 3.12 cutoff with
         encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
-        structured ruleset-11 certificate: zero errors and 313 unsuppressed
-        current warnings. Direct-combustion electricity carbon checks compare
-        fuel carbon with air plus captured CO2 using the existing 20% relative
-        tolerance. This resolves one synthetic-gas CCS warning caused by
-        applying that tolerance to the small residual after capture. Invalid
-        capture quantities/units and negative direct residuals remain warnings.
-        Oil-CCS wrappers buy upstream generation and retain the capture-credit
-        comparison, including their negative air adjustments. Every inventory
-        amount, provider and classification signature is unchanged. All other
-        warning counts are unchanged. Missing generation proxies remain
-        restricted to technologies represented in the scenario time series.
+        structured ruleset-12 certificate: zero errors and 312 unsuppressed
+        current warnings. Diesel electricity validation uses the IPCC 2006
+        defaults of 43 MJ/kg and 0.0741 kg CO2/MJ (Volume 2, Chapter 1,
+        Tables 1.2 and 1.4). This resolves the Peru oil-power CO2 diagnostic
+        caused by the previous low diesel heating-value reference. Every
+        inventory amount, provider and classification signature is unchanged;
+        all other warning counts are unchanged. Direct-combustion CCS checks
+        retain the gross-carbon comparison, and upstream-generation wrappers
+        retain their capture-credit comparison. Missing generation proxies
+        remain restricted to technologies represented in the scenario series.
       limitations: >-
         Counts record existing methodological and data limitations for this
         case only. Warnings remain visible; new rules or increased counts fail.
+        IPCC diesel defaults are generic screening factors, not measured
+        regional fuel properties or validation of every source emission amount.
         The carbon-balance tolerance does not independently verify capture
         rates, upstream-generation carbon balances or storage performance.
         The old zero-lead reference warning is no longer emitted. Native CNG
@@ -39,7 +40,7 @@ cases:
         Copper is not a purity assay. Lead uses the existing nominal attribution
         convention, not a complete physical deallocation of the source recipe.
     warning_rule_counts:
-      LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT: 61
+      LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT: 60
       LEGACY.ELECTRICITY_EFFICIENCY_POSSIBLY_INCORRECT: 11
       # Aggregate diagnostics for 78 unverified-scope and 653 unsupported-year
       # material-rule applications. Source material amounts are preserved.
