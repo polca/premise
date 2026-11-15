@@ -82,6 +82,15 @@ direct air capture (solvent, high-temp) with storage:
       - hydrogen
 
 direct air capture (sorbent, low-temp, heat pump) with storage:
+  coverage_notes:
+    image:
+      related_variables:
+        - Carbon Capture|Geological Storage|Direct Air Capture
+        - Final Energy|Carbon Management|Direct Air Capture
+      explanation: >-
+        Aggregate DAC capture and energy do not identify solid-sorbent deployment
+        or its electricity use. Aggregate DAC is already mapped to the solvent
+        route; assigning it again would overlap that production.
   iam_aliases:
     remind: Emi|CO2|CDR|+|DACCS
     remind-eu: Emi|CO2|CDR|+|DACCS
@@ -129,6 +138,11 @@ direct air capture (sorbent, low-temp) with storage:
       - hydrogen
 
 enhanced rock weathering:
+  coverage_notes:
+    image:
+      explanation: >-
+        Weathering removal and electricity require their own scenario outputs;
+        missing exports do not demonstrate zero deployment.
   iam_aliases:
     remind: Emi|CO2|CDR|+|EW
     remind-eu: Emi|CO2|CDR|+|EW
@@ -196,6 +210,13 @@ biomass power generation, with CCS:
       fltr: carbon dioxide, captured and stored, at wood burning power plant, pipeline 200km, storage 1000m
 
 biomass heat generation, with CCS:
+  coverage_notes:
+    image:
+      related_variables:
+        - Secondary Energy|Heat|Biomass
+      explanation: >-
+        Biomass heat output is energy, not captured CO2, and does not identify
+        the share produced with CCS.
   iam_aliases:
       image: Carbon Removal|Geological Storage|Biomass|Heat
   efficiency_use_aliases:
@@ -233,6 +254,14 @@ biofuels, with CCS:
       fltr: carbon dioxide, captured and stored, from a biomass fermentation plant
 
 cement production, non-fossil CO2, with CCS:
+  coverage_notes:
+    image:
+      related_variables:
+        - Carbon Capture|Energy|Demand|Industry|Biomass
+      explanation: >-
+        Industrial biomass capture does not isolate cement or its MEA process.
+        The cement transformation already accounts for biogenic capture;
+        adding removal quantities requires checking for double counting.
   iam_aliases:
       image: Carbon Removal|Geological Storage|Biomass|Industry
   energy_use_aliases:
@@ -251,12 +280,24 @@ cement production, non-fossil CO2, with CCS:
       fltr: carbon dioxide, captured and stored, at cement production plant, from non-fossil carbon dioxide, using monoethanolamine
 
 afforestation, eucalyptus plantation:
+    coverage_notes:
+        image:
+            explanation: >-
+                Plantation removal needs a dedicated output. Generic forest
+                uptake would require separating natural regeneration from
+                managed planting and assigning plantation types.
     iam_aliases:
         image: Carbon Removal|Land Use|Re/Afforestation|Plantation
     ecoinvent_aliases:
         fltr: carbon dioxide, captured and stored, by re/afforestation, eucalyptus
 
 afforestation, poplar plantation:
+    coverage_notes:
+        image:
+            explanation: >-
+                Plantation removal needs a dedicated output. Generic forest
+                uptake would require separating natural regeneration from
+                managed planting and assigning plantation types.
     iam_aliases:
         image: Carbon Removal|Land Use|Re/Afforestation|Plantation
     ecoinvent_aliases:

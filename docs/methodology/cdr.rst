@@ -49,6 +49,33 @@ lists retain their additive meaning, including diagnostics for missing
 components. This fallback policy applies only to the five reviewed IMAGE CDR
 groups; it does not supply missing CDR pathways or energy data.
 
+The IAM loader prints one CDR coverage report for unavailable requirements and
+retains its entries in ``iam_data.cdr_data_coverage``. Each entry records the
+missing variable names, affected technologies and production/energy/efficiency
+roles, available additive components, related series and explanatory notes.
+Shared missing variables, such as the plantation-removal alias, are reported
+together with all affected technology assignments. Later market, volume and
+efficiency reads do not repeat those diagnostics. Other missing IAM variables
+continue to be reported.
+
+``missing export`` means that the requested names are absent from the supplied
+file; it does not establish that IMAGE cannot model the pathway or that its
+deployment is zero. ``insufficient technology detail`` means that a reviewed
+related series exists but cannot supply the requested quantity. For example,
+aggregate DAC does not identify solid-sorbent deployment, biomass heat output
+does not measure captured CO2, and industrial biomass capture does not isolate
+cement with MEA capture. Related series are context, never replacement aliases.
+Partially available additive lists are marked ``missing additive components``;
+their available components retain the existing summation behavior. This report
+does not change selection, normalization, efficiency defaults or missing values.
+
+For plantation removal, IMAGE distinguishes natural regeneration from active
+planting and management in its
+`forestry documentation <https://models.pbl.nl/image/Land_and_biodiversity_policies/Forestry_sector>`__.
+Its `cement documentation <https://models.pbl.nl/image/Energy_demand_-_Cement>`__
+also distinguishes capture routes. Broader forest or industrial totals therefore
+need additional allocation evidence before use with these specific inventories.
+
 Using this update
 ~~~~~~~~~~~~~~~~~~~
 

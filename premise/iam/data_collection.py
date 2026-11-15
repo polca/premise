@@ -693,9 +693,16 @@ class IAMDataCollection:
 
         self.data = data
 
+        reported_cdr_gaps = self.__report_cdr_data_coverage(
+            data, cdr_prod_vars, cdr_energy_vars, cdr_efficiency_vars
+        )
         cdr_prod_vars, cdr_energy_vars, cdr_efficiency_vars = (
             self.__resolve_cdr_alias_fallbacks(
-                data, cdr_prod_vars, cdr_energy_vars, cdr_efficiency_vars
+                data,
+                cdr_prod_vars,
+                cdr_energy_vars,
+                cdr_efficiency_vars,
+                reported_missing_variables=reported_cdr_gaps,
             )
         )
         cdr_energy_use_vars = self.__flatten_cdr_energy_variable_labels(cdr_energy_vars)
@@ -841,6 +848,7 @@ class IAMDataCollection:
             input_vars=cdr_prod_vars,
             system_model=self.system_model,
             sector="cdr",
+            reported_missing_variables=reported_cdr_gaps,
         )
 
         self.biomass_mix = self.__fetch_market_data(
@@ -919,6 +927,7 @@ class IAMDataCollection:
             data=data,
             input_vars=cdr_energy_use_vars,
             normalize=False,
+            reported_missing_variables=reported_cdr_gaps,
         )
 
         self.electricity_technology_efficiencies = self.get_iam_efficiencies(
@@ -1027,6 +1036,7 @@ class IAMDataCollection:
             production_labels=cdr_prod_vars,
             energy_labels_by_carrier=cdr_efficiency_energy_vars,
             efficiency_labels_by_carrier=cdr_efficiency_index_vars,
+            reported_missing_variables=reported_cdr_gaps,
         )
 
         self.road_freight_efficiencies = self.get_vehicle_efficiencies(
@@ -1120,6 +1130,7 @@ class IAMDataCollection:
 
         self.production_volumes = self.__get_iam_production_volumes(
             data=data,
+            reported_missing_variables=reported_cdr_gaps,
             input_vars={
                 **electricity_prod_vars,
                 **fuel_prod_vars,
@@ -1274,8 +1285,119 @@ class IAMDataCollection:
 
         return dict_vars
 
-    def __resolve_cdr_alias_fallbacks(
+    def __report_cdr_data_coverage(
         self, data, production_labels, energy_labels, efficiency_labels
+    ):
+        """Report unavailable CDR requirements once without altering their inputs.
+
+        Related variables are explanatory context, never replacement aliases.
+        Shared missing requirements retain all their technology assignments.
+        """
+        available = set(data.variables.values)
+        mapping = load_yaml_cached(IAM_CDR_VARS)
+        gaps = {}
+
+        def collect(technology, kind, carrier, spec):
+            candidates = cdr_alias_candidates(spec)
+            if isinstance(spec, dict):
+                if any(name in available for name in candidates):
+                    return
+                mode = "fallback"
+            else:
+                mode = "additive" if isinstance(spec, list) else "single"
+            missing = tuple(name for name in candidates if name not in available)
+            if not missing:
+                return
+            key = mode, missing
+            gap = gaps.setdefault(
+                key,
+                {
+                    "selection": mode,
+                    "missing_variables": list(missing),
+                    "requirements": [],
+                    "available_components": [],
+                    "related_variables": [],
+                    "notes": [],
+                    "status": "missing export",
+                },
+            )
+            gap["requirements"].append(
+                {"technology": technology, "kind": kind, "carrier": carrier}
+            )
+            note = (
+                mapping.get(technology, {})
+                .get("coverage_notes", {})
+                .get(self.model, {})
+            )
+            for field, names in (
+                ("available_components", candidates if mode == "additive" else []),
+                ("related_variables", note.get("related_variables", [])),
+            ):
+                for name in names:
+                    if name in available and name not in gap[field]:
+                        gap[field].append(name)
+            explanation = note.get("explanation")
+            if explanation and explanation not in gap["notes"]:
+                gap["notes"].append(explanation)
+            if gap["available_components"]:
+                gap["status"] = "missing additive components"
+            elif gap["related_variables"]:
+                gap["status"] = "insufficient technology detail"
+
+        for technology, spec in production_labels.items():
+            collect(technology, "production", None, spec)
+        for kind, labels in (
+            ("energy", energy_labels),
+            ("efficiency", efficiency_labels),
+        ):
+            for technology, carriers in labels.items():
+                for carrier, spec in carriers.items():
+                    collect(technology, kind, carrier, spec)
+
+        self.cdr_data_coverage = list(gaps.values())
+        if gaps:
+            print(
+                f"CDR data coverage for {self.model} / {self.pathway}: "
+                f"{getattr(self, 'iam_source_file', self.filepath_iam_files)}"
+            )
+            print(
+                "Missing export: requested names are absent from this file; "
+                "this does not establish that the model lacks the technology."
+            )
+            print(
+                "Insufficient technology detail: related series exist but are "
+                "not equivalent replacements. No proxy quantities are supplied "
+                "for these gaps."
+            )
+            for gap in self.cdr_data_coverage:
+                requirements = [
+                    f"{r['technology']} ({r['kind']}"
+                    + (f", {r['carrier']}" if r["carrier"] else "")
+                    + ")"
+                    for r in gap["requirements"]
+                ]
+                print(f"- {'; '.join(requirements)}: {gap['status']}")
+                if gap["selection"] == "fallback":
+                    print("  None of the alternative names is present.")
+                for name in gap["missing_variables"]:
+                    print(f"  Missing: {name}")
+                for name in gap["available_components"]:
+                    print(f"  Available additive component: {name}")
+                for name in gap["related_variables"]:
+                    print(f"  Related series (not substituted): {name}")
+                for note in gap["notes"]:
+                    print(f"  Note: {note}")
+        return {
+            name for gap in self.cdr_data_coverage for name in gap["missing_variables"]
+        }
+
+    def __resolve_cdr_alias_fallbacks(
+        self,
+        data,
+        production_labels,
+        energy_labels,
+        efficiency_labels,
+        reported_missing_variables=(),
     ):
         """Resolve explicit alternatives once for every CDR consumer.
 
@@ -1295,9 +1417,10 @@ class IAMDataCollection:
                     continue
                 selected = next((v for v in candidates if v in available), None)
                 if selected is None:
-                    missing.append(
-                        f"{prefix}{label} (none of: {'; '.join(candidates)})"
-                    )
+                    if not set(candidates).issubset(reported_missing_variables):
+                        missing.append(
+                            f"{prefix}{label} (none of: {'; '.join(candidates)})"
+                        )
                 else:
                     result[label] = selected
             return result
@@ -1443,6 +1566,7 @@ class IAMDataCollection:
                 url = get_scenario_url(self.model, self.pathway)
                 file_path = download_csv(file_name + ".csv", url, download_folder)
 
+        self.iam_source_file = file_path
         external_fingerprint = stable_fingerprint(
             getattr(self, "external_scenarios", None)
         )
@@ -1675,6 +1799,7 @@ class IAMDataCollection:
         system_model: str = "cutoff",
         normalize: bool = True,
         sector: str = None,
+        reported_missing_variables=(),
     ) -> [xr.DataArray, None]:
         """
         This method retrieves the market share for each technology,
@@ -1702,8 +1827,9 @@ class IAMDataCollection:
 
         missing_vars = set(vars) - set(data.variables.values)
 
-        if missing_vars:
-            print_missing_variables(missing_vars, str(self.filepath_iam_files))
+        unreported = missing_vars - set(reported_missing_variables)
+        if unreported:
+            print_missing_variables(unreported, str(self.filepath_iam_files))
 
         available_vars = list(set(vars) - missing_vars)
 
@@ -1793,6 +1919,7 @@ class IAMDataCollection:
         production_labels: dict,
         energy_labels_by_carrier: Dict[str, Dict[str, List[str]]],
         efficiency_labels_by_carrier: Dict[str, Dict[str, str]] = None,
+        reported_missing_variables=(),
     ) -> [xr.DataArray, None]:
         """
         Retrieve CDR efficiency changes separately by carrier group.
@@ -1820,12 +1947,14 @@ class IAMDataCollection:
                     data=data,
                     production_labels=production_labels,
                     energy_labels=energy_labels,
+                    reported_missing_variables=reported_missing_variables,
                 )
 
             if efficiency_labels:
                 index_efficiencies = self.get_iam_efficiencies(
                     data=data,
                     efficiency_labels=efficiency_labels,
+                    reported_missing_variables=reported_missing_variables,
                 )
                 if index_efficiencies is not None:
                     if efficiencies is None:
@@ -1996,6 +2125,7 @@ class IAMDataCollection:
         production_labels: dict = None,
         energy_labels: dict = None,
         use_absolute_efficiency: bool = False,
+        reported_missing_variables=(),
     ) -> [xr.DataArray, None]:
         """
         This method retrieves efficiency values for the specified sector,
@@ -2036,8 +2166,9 @@ class IAMDataCollection:
                 for label in labels
             ]
             missing_vars = set(efficiency_label_values) - set(data.variables.values)
-            if missing_vars:
-                print_missing_variables(missing_vars, str(self.filepath_iam_files))
+            unreported = missing_vars - set(reported_missing_variables)
+            if unreported:
+                print_missing_variables(unreported, str(self.filepath_iam_files))
 
             efficiency_data = []
             for premise_variable, iam_variables in normalized_efficiency_labels.items():
@@ -2152,7 +2283,7 @@ class IAMDataCollection:
         return eff_data
 
     def __get_iam_production_volumes(
-        self, input_vars, data, fill: bool = False
+        self, input_vars, data, fill: bool = False, reported_missing_variables=()
     ) -> [xr.DataArray, None]:
         """
         Returns n xarray with production volumes for different sectors:
@@ -2187,8 +2318,9 @@ class IAMDataCollection:
         vars_flat = flatten_list_to_strings(input_vars.values())
         missing_vars = set(vars_flat) - set(data.variables.values)
 
-        if missing_vars:
-            print_missing_variables(missing_vars, str(self.filepath_iam_files))
+        unreported = missing_vars - set(reported_missing_variables)
+        if unreported:
+            print_missing_variables(unreported, str(self.filepath_iam_files))
 
         # Build the output per requested label to preserve duplicates
         pieces = []
