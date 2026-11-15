@@ -2168,3 +2168,8 @@ Replaced the different-chemical lithium-carbonate candidate with retained RER/Ro
 ## Component supply boundaries and C2F6 — 14 November 2026
 
 Reviewed foil as whole native historical supply without a duplicate delivery helper,recording inferred3.8transport lineage and extra0.0623air tkm. Cable/passive markets retain final delivery on documented manufacturing boundaries;corrected C2F6 to native Hexafluorethane with explicit50%route substitution. Three helpers retain four producer/eight delivery entries. Focused57Brightpath and12broader resource checks pass,plus signed actual-Brightway native-demand consistency without database writes. Fresh/cached cohort39to35. Separator reconstruction exposes42additional unreviewed dependencies outside that count; no coated-separator substitution is approved. Eight sectors remain qualified. See [review](uvek-components-fgas-39-review.md) and [verification](uvek-components-fgas-39-verification.json).
+
+
+## Forty separator electricity inputs — 15 November 2026
+
+Verified forty delivered-MV reference coordinates and both native releases. Retained seventeen national/one regional supply; corrected twenty-two unsupported-country Swiss candidates to explicit global geographic proxies. Five older approvals/fingerprints and eighteen raw rules remain unchanged. No helpers, runtime/YAML change or omission. Brightpath33,sourcePremise11 and selectedinstalled8checks pass,with aggregate signed native-demand LCI consistency and clean generator replay. The separate separator dependency backlog falls42to2; current first3.9cohort remains35 and eight sectors qualified. See [review](uvek-separator-grids-39-review.md) and [verification](uvek-separator-grids-39-verification.json).

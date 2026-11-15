@@ -2298,7 +2298,7 @@
         "qualification": "Only the reviewed exact source profiles are qualified. Complete sector preparation, shared transformation and export remain unfinished."
       },
       "current_mapping_frontier": {
-        "date": "2026-11-14",
+        "date": "2026-11-15",
         "status": "inventory_preparation_incomplete",
         "source_profile": {
           "family": "ecoinvent",
@@ -2314,19 +2314,33 @@
         },
         "unapproved_correspondence_count_in_current_39_cohort": 35,
         "count_scope": "Unique rules in the inspected first ecoinvent 3.9 cut-off battery cohort; not datasets or all remaining source profiles.",
-        "verification": "docs/development/uvek-components-fgas-39-verification.json",
+        "verification": "docs/development/uvek-separator-grids-39-verification.json",
         "export_performed": false,
         "validation_disabled": false,
-        "next_action": "Review remaining named material/chemical cases and batch the42additional exact3.9separator reconstruction dependencies. Preserve wet-PE technology; inspect matching native national grids or explicit broader geographic proxies rather than inherit22Swiss fallbacks.",
+        "next_action": "Review remaining European dichloromethane and global paraffin scopes,then reconstruct the actual wet-PEseparator source inventories. Continue the separate35first-cohort mapping rules through shared Premise logic.",
         "live_freshness_verified": true,
-        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all35 pending first3.9-cohort details. This excludes additional nested reconstruction dependencies.",
+        "mapping_diagnostic": "Fresh standard CLIC resolution and integrity-checked cached graph agree on all35 pending first3.9-cohort details. Separately,the40separator grid dependencies now pass exact-profile scope checks;two chemical dependency rules remain.",
         "separate_separator_reconstruction_dependencies": {
-          "unique_rules": 42,
-          "electricity": 40,
+          "unique_rules": 2,
+          "electricity": 0,
           "chemicals": 2,
-          "current_nonSwiss_country_candidates_pointing_to_Swiss_supply": 22,
           "included_in_current_first_cohort_count": false,
-          "approved_by_this_packet": false
+          "previous_unique_rules": 42,
+          "resolved_electricity_rules": 40,
+          "remaining": [
+            {
+              "name": "market for dichloromethane",
+              "reference product": "dichloromethane",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            {
+              "name": "market for paraffin",
+              "reference product": "paraffin",
+              "location": "GLO",
+              "unit": "kilogram"
+            }
+          ]
         }
       }
     },
@@ -3622,7 +3636,7 @@
     "runtime_change": "One case-insensitive exclusion in the existing shared plant-efficiency selector; observed inventory coefficients unchanged."
   },
   "current_snapshot": {
-    "date": "2026-11-14",
+    "date": "2026-11-15",
     "qualified_for_encrypted_REMIND_SSP2_NPi_2050": [
       "biomass",
       "electricity",
@@ -3638,7 +3652,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-cdr-qualification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-components-fgas-39-verification.json",
+    "latest_mapping_review": "docs/development/uvek-separator-grids-39-verification.json",
     "verified_native_source_limits": [
       {
         "source_identity": {
