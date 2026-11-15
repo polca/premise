@@ -2353,7 +2353,12 @@ def test_transport_sums_all_modes_and_routes_with_one_primary_weight():
     )
     metals.transport_lookup = build_transport_lookup(metals.metals_transport)
     metals.metals_transport_activities = {
-        mode.lower(): {"name": mode, "reference product": mode, "unit": "ton kilometer"}
+        mode.lower(): {
+            "name": mode,
+            "reference product": mode,
+            "unit": "ton kilometer",
+            "location": "GLO",
+        }
         for mode in ["Air", "Sea", "Road", "Railway"]
     }
     dataset = {

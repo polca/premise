@@ -9,6 +9,7 @@ Integrates projections regarding use of metals in the economy from:
 import uuid
 import ast
 import re
+import warnings
 from functools import lru_cache
 from typing import Optional
 from collections import Counter, defaultdict
@@ -38,6 +39,7 @@ from ..inventory.inventory_store import (
     get_scenario_inventory,
     replace_scenario_inventory,
 )
+from ..inventory.activity_maps import get_mapping
 from ..core.transformation import (
     BaseTransformation,
     Dict,
@@ -263,7 +265,9 @@ class PostAllocationCorrectionError(ValueError):
     """Raised when a metal post-allocation correction cannot be applied safely."""
 
 
-def _update_metals(scenario, version, system_model):
+def _update_metals(
+    scenario, version, system_model, family="ecoinvent", biosphere_version=None
+):
 
     metals = Metals(
         database=get_scenario_inventory(scenario),
@@ -275,6 +279,8 @@ def _update_metals(scenario, version, system_model):
         system_model=system_model,
         cache=scenario.get("cache"),
         index=scenario.get("index"),
+        family=family,
+        biosphere_version=biosphere_version,
     )
 
     metals.create_metal_markets()
@@ -291,6 +297,11 @@ def _update_metals(scenario, version, system_model):
         "market diagnostics": list(metals.market_diagnostics),
         "resource diagnostics": list(metals.resource_diagnostics),
         "methodology": metals.methodology_summary(),
+        **(
+            {"native freight providers": metals.transport_provider_provenance}
+            if family != "ecoinvent"
+            else {}
+        ),
     }
 
     validate = MetalsValidation(
@@ -301,7 +312,7 @@ def _update_metals(scenario, version, system_model):
         database=metals.database,
         iam_data=scenario["iam data"],
         system_model=metals.system_model,
-        version=metals.version,
+        version=metals.biosphere_version,
     )
 
     mining_shares_mapping = load_mining_shares_mapping(metals.version)
@@ -391,8 +402,27 @@ def build_transport_lookup(dataframe: pd.DataFrame) -> Dict[tuple, list[int]]:
     return dict(lookup)
 
 
-def select_transport_provider(database, mode: str) -> dict:
+def select_transport_provider(database, mode: str, family="ecoinvent") -> dict:
     """Select freight services in tonne-km, never vehicle manufacture in units."""
+    if family != "ecoinvent":
+        aliases = get_mapping(
+            DATA_DIR / "metals/freight_providers.yaml", f"{family}_aliases"
+        )[mode]
+        provider = ws.get_one(
+            database,
+            *[ws.equals(key, value) for key, value in aliases["fltr"].items()],
+        )
+        production = [e for e in provider["exchanges"] if e["type"] == "production"]
+        if (
+            not aliases.get("native_limitations")
+            or aliases.get("native_reference_amount") != 1
+            or provider["unit"] != "ton kilometer"
+            or provider.get("clic provenance")
+            or len(production) != 1
+            or production[0]["amount"] != 1
+        ):
+            raise MetalsConfigError(f"Invalid native {mode!r} freight reference.")
+        return provider
     terms = {
         "air": ("aircraft", "long haul"),
         "sea": ("sea", "container ship"),
@@ -1363,6 +1393,8 @@ class Metals(BaseTransformation):
         system_model: str,
         cache: dict = None,
         index: dict = None,
+        family: str = "ecoinvent",
+        biosphere_version: str = None,
     ):
         super().__init__(
             database,
@@ -1374,6 +1406,8 @@ class Metals(BaseTransformation):
             system_model,
             cache,
             index,
+            family=family,
+            biosphere_version=biosphere_version,
         )
 
         # ``write_log`` is already called at each created, updated, or relinked
@@ -1415,7 +1449,7 @@ class Metals(BaseTransformation):
             item.activity_name: item for item in self.technology_conversions
         }
 
-        inv = InventorySet(self.database, self.version)
+        inv = InventorySet(self.database, self.version, self.model, family=self.family)
 
         self.activities_metals_map: Dict[str, Set] = (  # 2
             inv.generate_metals_activities_map()
@@ -1425,9 +1459,21 @@ class Metals(BaseTransformation):
         self.alt_names = load_metals_alternative_names()
 
         self.metals_transport_activities = {
-            mode: select_transport_provider(self.database, mode)
+            mode: select_transport_provider(self.database, mode, family=self.family)
             for mode in ("air", "sea", "railway", "road")
         }
+        self.transport_provider_provenance = {}
+        if self.family != "ecoinvent":
+            self.transport_provider_provenance = get_mapping(
+                DATA_DIR / "metals/freight_providers.yaml", f"{self.family}_aliases"
+            )
+            for mode, row in self.transport_provider_provenance.items():
+                warnings.warn(
+                    f"Native metals {mode} freight proxy: "
+                    + " ".join(row["native_limitations"]),
+                    UserWarning,
+                    stacklevel=2,
+                )
 
         self.build_db_indexes()
         self.material_update_diagnostics: List[dict] = []
@@ -2382,7 +2428,7 @@ class Metals(BaseTransformation):
         return {
             name
             for name, category, subcategory, unit in biosphere_flows_dictionary(
-                version=self.version
+                version=getattr(self, "biosphere_version", self.version)
             )
             if (category, subcategory) == NATURAL_RESOURCE_IN_GROUND
             and unit == "kilogram"
@@ -3331,7 +3377,7 @@ class Metals(BaseTransformation):
                         self.metals_transport_activities[
                             row["TransportMode Label"].lower()
                         ]["reference product"],
-                        "GLO",  # fixed location
+                        provider["location"],
                         self.metals_transport_activities[
                             row["TransportMode Label"].lower()
                         ]["unit"],

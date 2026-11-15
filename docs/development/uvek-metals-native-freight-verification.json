@@ -1,0 +1,119 @@
+{
+  "native_freight_references": [
+    {
+      "mode": "air",
+      "identity": {
+        "name": "Transport, aircraft, freight, long-haul",
+        "reference product": "Transport, aircraft, freight, long-haul",
+        "location": "RER",
+        "unit": "ton kilometer"
+      },
+      "reference_amount": 1,
+      "metadata_sha256": "c045b64a0b1b9da8cc67e27dff767e1a958fec5fbceb92f75d96639ec4faa084",
+      "inventory_sha256": "22cd77d964f9b738543dfc24ed729f5076ca7f8707b945a1665d2c8f9a817b97"
+    },
+    {
+      "mode": "sea",
+      "identity": {
+        "name": "Transport, transoceanic container ship",
+        "reference product": "Transport, transoceanic container ship",
+        "location": "OCE",
+        "unit": "ton kilometer"
+      },
+      "reference_amount": 1,
+      "metadata_sha256": "2bb3d84c656e7c5472dbea11260c1e0c451d2dcdc94dabd28b55aca2165a51ce",
+      "inventory_sha256": "6a8e016af6d8fbbff8b883f346e2b5367df5253ee6338761be535dee06f96a44"
+    },
+    {
+      "mode": "railway",
+      "identity": {
+        "name": "Transport, freight, rail",
+        "reference product": "Transport, freight, rail",
+        "location": "RER",
+        "unit": "ton kilometer"
+      },
+      "reference_amount": 1,
+      "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476",
+      "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81"
+    },
+    {
+      "mode": "road",
+      "identity": {
+        "name": "Transport, freight, lorry, diesel, fleet average, long haul",
+        "reference product": "Transport, freight, lorry, diesel, fleet average, long haul",
+        "location": "RER",
+        "unit": "ton kilometer"
+      },
+      "reference_amount": 1,
+      "metadata_sha256": "23eee99337207a6a54501fe2b22abd48017996287a95e4e3513c7356b7ddd870",
+      "inventory_sha256": "98a4e79ce84606513b998b2a0d41f77e731c905cb72388970cb449be3e246787"
+    }
+  ],
+  "focused_tests_passed": 247,
+  "real_snapshot_workflow": {
+    "inventory_preparation_passed": true,
+    "status": "diagnostic_update_and_graph_checks_passed",
+    "activities": 12040,
+    "validation_errors": 0,
+    "sector": "metals",
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "freshness": "snapshot",
+    "validation_disabled": false,
+    "export_performed": false,
+    "elapsed_seconds": 51.67887620802503
+  },
+  "applicability_audit": {
+    "role_match_counts": {
+      "ICEV": 0,
+      "EV": 0,
+      "Wind-DDPM": 0,
+      "Wind-Gearbox": 0,
+      "PEMFC": 0,
+      "SOFC - Y": 0,
+      "PEMEL": 0,
+      "AEL": 0,
+      "HTEL - Yttrium": 0,
+      "c-Si": 0,
+      "a-Si": 0,
+      "CIGS": 0,
+      "CdTe": 0,
+      "perovskite": 0,
+      "Parabolic Trough - PB": 0,
+      "CSP Tower - PB": 0,
+      "Nuclear": 0
+    },
+    "compiled_material_pairs": 0,
+    "positive_temporally_eligible_rule_count": 27,
+    "positive_temporally_eligible_technology_roles": [
+      "CIGS",
+      "CdTe",
+      "EV",
+      "HTEL - Yttrium",
+      "PEMEL",
+      "PEMFC",
+      "SOFC - Y",
+      "Wind-DDPM",
+      "Wind-Gearbox",
+      "a-Si",
+      "c-Si",
+      "perovskite"
+    ],
+    "mining_share_support": {
+      "first_year": 2020,
+      "last_year": 2030,
+      "requested_year_supported": false
+    },
+    "market_diagnostic_reasons": {
+      "market_preserved_year_outside_support": 103
+    }
+  },
+  "new_brightway_databases": 0,
+  "verified_sector_count": 10,
+  "remaining_sector_count": 9,
+  "metals_qualified": false,
+  "production_python_files_changed": [
+    "premise/materials/metals.py",
+    "premise/database/new_database.py"
+  ],
+  "qualification_limit": "Shared update and graph checks pass diagnostically, but absent aliases leave 27 supported positive intensity rules unmatched. Do not mark metals operational from this empty execution."
+}

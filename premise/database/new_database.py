@@ -2930,6 +2930,7 @@ class NewDatabase:
                 "fuels",
                 "emissions",
                 "mining",
+                "metals",
                 "renewable",
                 "cdr",
                 "cars",

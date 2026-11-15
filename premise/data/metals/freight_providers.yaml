@@ -1,0 +1,65 @@
+air:
+  uvek_aliases:
+    fltr:
+      name: Transport, aircraft, freight, long-haul
+      reference product: Transport, aircraft, freight, long-haul
+      location: RER
+      unit: ton kilometer
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native long-haul freight-aircraft service includes aircraft and airport infrastructure,
+      operation, maintenance and fuel/emissions. Native aircraft design, loading, route, LTO/cruise
+      allocation, geography and vintage replace the unspecified global source service.
+    - Keep the existing tonne-kilometre amounts, transport distances, mode shares and market-building
+      logic. Preserve the complete supplier inventory once; apply no extra payload, vehicle-km, distance,
+      infrastructure or fuel correction. Native source biosphere exclusions and score differences
+      remain unquantified.
+sea:
+  uvek_aliases:
+    fltr:
+      name: Transport, transoceanic container ship
+      reference product: Transport, transoceanic container ship
+      location: OCE
+      unit: ton kilometer
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native ocean-container service includes the vessel, ports, operation, fuel and emissions.
+      The historical vessel, route, payload, geography and vintage are a proxy for the original global
+      market.
+    - Keep the existing tonne-kilometre amounts, transport distances, mode shares and market-building
+      logic. Preserve the complete supplier inventory once; apply no extra payload, vehicle-km, distance,
+      infrastructure or fuel correction. Native source biosphere exclusions and score differences
+      remain unquantified.
+railway:
+  uvek_aliases:
+    fltr:
+      name: Transport, freight, rail
+      reference product: Transport, freight, rail
+      location: RER
+      unit: ton kilometer
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native European average electric/diesel freight-rail service includes shunting, vehicles
+      and railway infrastructure. The native energy/fleet mix, allocation, geography and vintage replace
+      the original global freight market.
+    - Keep the existing tonne-kilometre amounts, transport distances, mode shares and market-building
+      logic. Preserve the complete supplier inventory once; apply no extra payload, vehicle-km, distance,
+      infrastructure or fuel correction. Native source biosphere exclusions and score differences
+      remain unquantified.
+road:
+  uvek_aliases:
+    fltr:
+      name: Transport, freight, lorry, diesel, fleet average, long haul
+      reference product: Transport, freight, lorry, diesel, fleet average, long haul
+      location: RER
+      unit: ton kilometer
+    native_reference_amount: 1
+    native_limitations:
+    - Complete native European diesel long-haul fleet service covers all size classes and is extrapolated
+      from Switzerland. Selecting long haul for the existing inter-country metals-distance table is
+      a screening choice; fleet composition, loading, delivery patterns, geography and 2020 technology
+      differ from the original unspecified global lorry market.
+    - Keep the existing tonne-kilometre amounts, transport distances, mode shares and market-building
+      logic. Preserve the complete supplier inventory once; apply no extra payload, vehicle-km, distance,
+      infrastructure or fuel correction. Native source biosphere exclusions and score differences
+      remain unquantified.
