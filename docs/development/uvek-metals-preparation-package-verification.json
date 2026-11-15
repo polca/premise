@@ -1,0 +1,65 @@
+{
+  "brightpath_commit": "a945340170a4314aabfee9497dee4c1cb0193ecd",
+  "private_environment_only": true,
+  "user_environment_changed": false,
+  "new_brightway_databases": 0,
+  "tests": {
+    "Brightpath": 11,
+    "Premise_result_log": "metals-chemical-wheel-premise-tests.log",
+    "Premise": 98,
+    "total": 109
+  },
+  "wheel_sha256": "eaa09f5bc64ab3c23ca1e1702418d5b76a9cd21befd06b431fd6f06a370d0312",
+  "installed_module": {
+    "module": "/private/tmp/premise-all-sectors/mapping-validation-env/lib/python3.13/site-packages/brightpath/__init__.py",
+    "resource": "/private/tmp/premise-all-sectors/mapping-validation-env/lib/python3.13/site-packages/brightpath/data/export/uvek_metals_38_chemical_markets_review.json"
+  },
+  "resource_checks": [
+    {
+      "resource": "ecoinvent-to-uvek-2025.json",
+      "sha256": "fd2b23080cb2b9349fd94ace7a8c448ffe38d510b804c49cab444b25ec32c223",
+      "bytes_match_clean_tracked_source": true
+    },
+    {
+      "resource": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "bytes_match_clean_tracked_source": true
+    },
+    {
+      "resource": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "bytes_match_clean_tracked_source": true
+    }
+  ],
+  "cleanup": [
+    {
+      "owned_directory": "metals-chemical-package-wheel",
+      "bytes_removed": 44257483
+    },
+    {
+      "owned_directory": "metals-chemical-installed-checks",
+      "bytes_removed": 326672
+    },
+    {
+      "owned_directory": "metals-chemical-clean-package",
+      "bytes_removed": 954986204
+    }
+  ],
+  "premise_tested_code_commit": "c4a0f63ae8cd554d082702347174802a9a840b79",
+  "clean_generation_proof": "uvek-metals-38-chemical-markets-verification.json",
+  "clean_generation_all_three_resources_byte_identical": true,
+  "seven_native_process_templates_verified": "uvek-metals-native-process-templates-verification.json",
+  "verified_sector_count": 10,
+  "remaining_sector_count": 9,
+  "metals_qualified": false,
+  "production_python_files_changed_in_batch": [
+    "premise/inventory/clic_hybrid.py",
+    "premise/inventory/replacement_quantities.py"
+  ],
+  "owned_temporary_bytes_removed": 1609338007,
+  "final_metadata_refinement": "After installed tests, the PGM warnings explicitly state that complete source/native upstream resource balances are not established. All physical recipes, source guards, selectors and donor exclusions are unchanged; source-module final changes only extend docstrings.",
+  "batch_commits": {
+    "Brightpath": 1,
+    "Premise": 6
+  }
+}
