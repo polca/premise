@@ -1,9 +1,59 @@
 import json
+from pathlib import Path
 
 import pytest
 import yaml
 
 from benchmarks.check_validation_warnings import main, warning_regressions
+from premise.validation.validation_framework import VALIDATION_RULESET_VERSION
+
+BASELINE_PATH = Path(__file__).parent / "data" / "validation_warning_baselines.yaml"
+
+
+def test_packaged_warning_baseline_matches_current_ruleset():
+    baseline = yaml.safe_load(BASELINE_PATH.read_text(encoding="utf-8"))
+    assert (
+        baseline["metadata"]["validation_ruleset_version"] == VALIDATION_RULESET_VERSION
+    ), "Review the certification warning baseline when changing validation rules."
+
+
+@pytest.mark.parametrize("extra_warning", [False, True])
+def test_cli_enforces_packaged_warning_limits(extra_warning, tmp_path, monkeypatch):
+    baseline = yaml.safe_load(BASELINE_PATH.read_text(encoding="utf-8"))
+    case = "ecoinvent-3.12-cutoff-image-SSP2-M-2050"
+    counts = dict(baseline["cases"][case]["warning_rule_counts"])
+    if extra_warning:
+        counts["LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT"] += 1
+    profile = tmp_path / "profile.json"
+    profile.write_text(
+        json.dumps(
+            {
+                "validation": {
+                    "ruleset_version": VALIDATION_RULESET_VERSION,
+                    "warning_count": sum(counts.values()),
+                    "warning_rule_counts": counts,
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "check_validation_warnings.py",
+            "--baseline",
+            str(BASELINE_PATH),
+            "--profile",
+            str(profile),
+            "--case",
+            case,
+        ],
+    )
+    if extra_warning:
+        with pytest.raises(SystemExit, match="New validation warnings"):
+            main()
+    else:
+        main()
 
 
 def test_warning_gate_accepts_equal_or_reduced_counts():

@@ -3,10 +3,39 @@ metadata:
     Reviewed unsuppressed validation-warning counts. A new rule or a count above
     the recorded value fails certification unless the exception is documented
     by a narrow version/system-model suppression.
-  validation_ruleset_version: 6
+  validation_ruleset_version: 7
 cases:
   ecoinvent-3.12-cutoff-image-SSP2-M-2050:
+    review:
+      date: '2026-11-15'
+      source_commit: 3e45bcf07e6cdcd0efdaf4151050a351603cfb07
+      method: >-
+        Full compact-backend no-write update of ecoinvent 3.12 cutoff with
+        encrypted IMAGE SSP2-M data, year 2050, PYTHONHASHSEED=0. Reviewed the
+        structured certificate: zero errors and 484 unsuppressed warnings.
+      limitations: >-
+        Counts record existing methodological and data limitations for this
+        case only. Warnings remain visible; new rules or increased counts fail.
+        The old zero-lead reference warning is no longer emitted. Missing CNG
+        carbon properties, germanium providers and unresolved extraction paths
+        remain open limitations, not evidence of a validated physical balance.
     warning_rule_counts:
       LEGACY.CO2_EMISSIONS_POSSIBLY_INCORRECT: 90
-      LEGACY.ELECTRICITY_EFFICIENCY_POSSIBLY_INCORRECT: 13
-      LEGACY.NO_EMISSION_FACTOR_FOR_LEAD: 27
+      LEGACY.ELECTRICITY_EFFICIENCY_POSSIBLY_INCORRECT: 11
+      # Aggregate diagnostics for 78 unverified-scope and 653 unsupported-year
+      # material-rule applications. Source material amounts are preserved.
+      LEGACY.METALS_MATERIAL_RULE_COMPONENT_SCOPE_UNVERIFIED: 1
+      LEGACY.METALS_MATERIAL_RULE_YEAR_OUTSIDE_SUPPORT: 1
+      # Market share evidence ends in 2030; do not extrapolate it to 2050.
+      LEGACY.METAL_MARKET_PRESERVED_YEAR_OUTSIDE_SUPPORT: 103
+      # Two germanium-concentrate provider lookups retain source inputs.
+      LEGACY.METAL_MATERIAL_PROVIDER_UNAVAILABLE: 2
+      # 48 unresolved paths and 27 retained extractions; no forced resource fix.
+      LEGACY.METAL_RESOURCE_CORRECTION_PRESERVED: 75
+      # Residual NMVOC and absent THC totals cannot establish parent aggregates.
+      LEGACY.TRANSPORT_EMISSION_SCOPE_UNAVAILABLE: 27
+      # 27 each for NOx, methane and benzene: combined inventory versus a hot-only
+      # heuristic screen, with cold-start/evaporation/deterioration unresolved.
+      LEGACY.TRANSPORT_HOT_EMISSION_DIAGNOSTIC: 81
+      # Vehicle-grade natural gas in kg has no matched carbon properties.
+      LEGACY.VEHICLE_FUEL_CARBON_UNAVAILABLE: 93
