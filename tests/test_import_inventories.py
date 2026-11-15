@@ -545,6 +545,109 @@ def test_fill_data_gaps_matches_technosphere_exchange_location(tmp_path):
     assert "replacement location" not in exchange
 
 
+@pytest.mark.parametrize(
+    "source_categories,target_categories",
+    [
+        (("air",), ("air", "unspecified")),
+        (("air", "unspecified"), ("air",)),
+        (["air"], "air::unspecified"),
+        ("air", ["air", "unspecified"]),
+        (("air", "urban air close to ground"), ("air", "urban air close to ground")),
+    ],
+)
+def test_biosphere_amount_filling_normalizes_only_equivalent_compartments(
+    tmp_path, source_categories, target_categories
+):
+    source = {
+        "name": "source process",
+        "reference product": "source product",
+        "location": "RER",
+        "exchanges": [
+            {
+                "type": "biosphere",
+                "name": "Nitrogen oxides",
+                "unit": "kilogram",
+                "categories": source_categories,
+                "amount": 0.002,
+            },
+            # Same pollutant, different compartment or unit: never add these.
+            {
+                "type": "biosphere",
+                "name": "Nitrogen oxides",
+                "unit": "kilogram",
+                "categories": ("water", "unspecified"),
+                "amount": 99,
+            },
+            {
+                "type": "biosphere",
+                "name": "Nitrogen oxides",
+                "unit": "gram",
+                "categories": source_categories,
+                "amount": 99,
+            },
+        ],
+    }
+    original = deepcopy(source)
+    importer = get_base_inventory_import(tmp_path, [source])
+    exchange = {
+        "type": "biosphere",
+        "name": "Nitrogen oxides",
+        "unit": "kilogram",
+        "categories": target_categories,
+        "amount": 0,
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RER",
+    }
+    importer.fill_data_gaps(exchange)
+    assert exchange["amount"] == pytest.approx(0.002)
+    assert exchange["categories"] == target_categories
+    assert "replacement name" not in exchange
+    assert source == original
+
+
+@pytest.mark.parametrize(
+    "target_categories",
+    [
+        ("air", "urban air close to ground"),
+        ("air", "non-urban air or from high stacks"),
+        ("water", "unspecified"),
+    ],
+)
+def test_biosphere_amount_filling_does_not_broaden_compartments(
+    tmp_path, target_categories, capsys
+):
+    source = {
+        "name": "source process",
+        "reference product": "source product",
+        "location": "RER",
+        "exchanges": [
+            {
+                "type": "biosphere",
+                "name": "Nitrogen oxides",
+                "unit": "kilogram",
+                "categories": ("air",),
+                "amount": 0.002,
+            }
+        ],
+    }
+    importer = get_base_inventory_import(tmp_path, [source])
+    exchange = {
+        "type": "biosphere",
+        "name": "Nitrogen oxides",
+        "unit": "kilogram",
+        "categories": target_categories,
+        "amount": 0,
+        "replacement name": "source process",
+        "replacement product": "source product",
+        "replacement location": "RER",
+    }
+    original = deepcopy(exchange)
+    importer.fill_data_gaps(exchange)
+    assert exchange == original
+    assert "Could not find a valid amount" in capsys.readouterr().out
+
+
 def test_fill_data_gaps_sums_technosphere_exchanges_without_location(tmp_path):
     dbc = get_base_inventory_import(tmp_path, get_replacement_source_db())
     exchange = {

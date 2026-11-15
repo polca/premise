@@ -74,6 +74,7 @@ from ..energy.heat import _update_heat
 from ..inventory.inventory_imports import (
     AdditionalInventory,
     BaseInventoryImport,
+    BIOSPHERE_MIGRATION_CACHE_VERSION,
     DefaultInventory,
 )
 from ..inventory.clean_datasets import source_normalization_data
@@ -1046,14 +1047,19 @@ class NewDatabase:
             else self.keep_source_db_uncertainty
         )
         uncertainty_label = "w_uncertainty" if uncertainty else "wo_uncertainty"
-        inventory_label = "_inventories" if inventories else ""
+        inventory_label = (
+            f"_inventories_biosphere_v{BIOSPHERE_MIGRATION_CACHE_VERSION}"
+            if inventories
+            else ""
+        )
         if inventories and getattr(self, "inventory_source", "workbooks") == "clic":
             fingerprint = (
                 getattr(self, "_clic_semantic_fingerprint", None) or "unresolved"
             )
             return DIR_CACHED_DB / (
                 f"cached_{''.join(map(str, __version__))}_v{CACHE_SCHEMA_VERSION}_"
-                f"{self._cache_database_name(db_name)}_{uncertainty_label}_inventories_clic_{fingerprint}.pickle"
+                f"{self._cache_database_name(db_name)}_{uncertainty_label}"
+                f"{inventory_label}_clic_{fingerprint}.pickle"
             )
         if inventories:
             # Vehicle specifications, wrappers and battery inventories must

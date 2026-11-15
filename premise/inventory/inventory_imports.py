@@ -49,8 +49,8 @@ _MATCH_IGNORED_KEYS = frozenset({"unit", "allocation", "comment"})
 _COMPILED_MIGRATION_CACHE_SIZE = 64
 _COMPILED_RULE_INDEX_CACHE = {}
 _COMPILED_BIOSPHERE_RULE_CACHE = {}
-# Imported inventories produced by name-only biosphere migrations are stale.
-BIOSPHERE_MIGRATION_CACHE_VERSION = 2
+# Invalidate prepared imports after biosphere migration or amount-filling fixes.
+BIOSPHERE_MIGRATION_CACHE_VERSION = 3
 
 
 logging.basicConfig(
@@ -1572,13 +1572,14 @@ class BaseInventoryImport:
                             sum_amount += e["amount"]
 
                     elif exc["type"] == "biosphere":
+                        categories = _biosphere_categories(exc["categories"])
                         for e in ws.biosphere(
                             ds,
                             ws.equals("name", exc["name"]),
-                            ws.equals("categories", exc["categories"]),
                             ws.equals("unit", exc["unit"]),
                         ):
-                            sum_amount += e["amount"]
+                            if _biosphere_categories(e.get("categories")) == categories:
+                                sum_amount += e["amount"]
 
                     else:
                         raise ValueError(

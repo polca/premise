@@ -326,6 +326,7 @@ def import_retained_inventories(
     """Reuse only preparation certified for the same source graph and CLIC inputs."""
     from .clic_download import _write_json
     from .clic_harmonize import _gzip_write
+    from .inventory_imports import BIOSPHERE_MIGRATION_CACHE_VERSION
 
     graph = registry()["hybrid_sources"]
     hashes = {
@@ -357,6 +358,7 @@ def import_retained_inventories(
     fingerprint = content_hash(
         {
             "schema": 1,
+            "biosphere_preparation_version": BIOSPHERE_MIGRATION_CACHE_VERSION,
             "plan": plan.fingerprint,
             "workbooks": hashes,
             "version": version,

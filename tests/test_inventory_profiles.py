@@ -285,6 +285,31 @@ def test_profile_data_changes_invalidate_imports_without_invalidating_source(
     assert builder._database_cache_path("profile-cache") == source_path
 
 
+@pytest.mark.parametrize("inventory_source", ["workbooks", "clic"])
+def test_biosphere_preparation_version_invalidates_only_import_cache(
+    monkeypatch, inventory_source
+):
+    import premise.database.new_database as module
+
+    builder = object.__new__(module.NewDatabase)
+    builder.version, builder.system_model = "3.12", "cutoff"
+    builder.keep_imports_uncertainty = builder.keep_source_db_uncertainty = False
+    builder.inventory_source = inventory_source
+    builder._clic_semantic_fingerprint = "unchanged-clic-inputs"
+    source_path = builder._database_cache_path("biosphere-fill-test")
+    imports_path = builder._database_cache_path("biosphere-fill-test", inventories=True)
+    monkeypatch.setattr(
+        module,
+        "BIOSPHERE_MIGRATION_CACHE_VERSION",
+        module.BIOSPHERE_MIGRATION_CACHE_VERSION + 1,
+    )
+    assert builder._database_cache_path("biosphere-fill-test") == source_path
+    assert (
+        builder._database_cache_path("biosphere-fill-test", inventories=True)
+        != imports_path
+    )
+
+
 def companion_sources():
     from premise.core.filesystem_constants import INVENTORY_DIR
 
