@@ -295290,24 +295290,27 @@
       "rule_id": "bp-7dd6b6497336da23",
       "mapping_method": "heuristic_similarity",
       "review_path": "export/uvek_metals_38_native_services_review.json",
-      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "review_sha256": "75af2c313241dc22d4d99e7ff12abd30ff2bb49046c8b9ee9cca3126d5b91ed9",
       "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
       "inspection": {
         "kind": "industrial_natural_gas_heat",
         "source_witness": {
           "identity": {
+            "location": "RoW",
             "name": "heat production, natural gas, at industrial furnace >100kW",
             "reference product": "heat, district or industrial, natural gas",
-            "location": "RoW",
             "unit": "megajoule"
           },
+          "source_project": "ecoinvent-3.8-cutoff",
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "1a78ca13d4b59418ca8791efa9a0db09",
           "reference_amounts": [
             1.0
           ],
-          "metadata_sha256": "543c1cc98c8df1f74b774d07a9ed3f38f07281aa1c999809614c81514cf391ba",
-          "inventory_sha256": "c02456076e167262c3b28cc1ff679f73f22a065f3ed6f3fe5e5b4e03fcb79303",
+          "metadata_sha256": "0e8a9e1b86efb7d90aa68d778a7e3cc83f314067c181958356dbffa11d10fbb0",
+          "inventory_sha256": "aa9b32ad8816ddf25f82799fe499e95a16def3a092a55efd3983c662c88a08fa",
           "comment_sha256": "ee66a4ece224ce75040d71562dd00558da316a7b293293c1aa58685c65565bc8",
-          "nonproduction_exchange_count": 26
+          "nonproduction_exchange_count": 35
         },
         "native_witnesses": {
           "2025": {
@@ -295368,24 +295371,27 @@
       "rule_id": "bp-c63ae5eb4e863136",
       "mapping_method": "heuristic_similarity",
       "review_path": "export/uvek_metals_38_native_services_review.json",
-      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "review_sha256": "75af2c313241dc22d4d99e7ff12abd30ff2bb49046c8b9ee9cca3126d5b91ed9",
       "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
       "inspection": {
         "kind": "national_high_voltage_grid",
         "source_witness": {
           "identity": {
+            "location": "AR",
             "name": "market for electricity, high voltage",
             "reference product": "electricity, high voltage",
-            "location": "AR",
             "unit": "kilowatt hour"
           },
+          "source_project": "ecoinvent-3.8-cutoff",
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "14d530a21ccdf0c5e6a2485897da4204",
           "reference_amounts": [
             1.0
           ],
-          "metadata_sha256": "f518e740a1630c393b4a7cffef97e184764a71352b08a8fff9911891434e2192",
-          "inventory_sha256": "55078f94901eecee903343ae0768ae1fc99e65e1f1dd599505df3b4c6be76f5d",
+          "metadata_sha256": "8e888c558e989efa373f2b2faeedb9844662d5cb6af4a714f4b61560d33b82d1",
+          "inventory_sha256": "300f8f8b064f22ed2542cf1e91ef890f06030213dcf9345e918507e3436bdfa4",
           "comment_sha256": "975c2f8b78e4b10a24af62dc73c4eac16e9edafb37c6d5ffe84563eaa4410e80",
-          "nonproduction_exchange_count": 1
+          "nonproduction_exchange_count": 20
         },
         "native_witnesses": {
           "2025": {
@@ -295446,24 +295452,27 @@
       "rule_id": "bp-340c161226265e8b",
       "mapping_method": "heuristic_similarity",
       "review_path": "export/uvek_metals_38_native_services_review.json",
-      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "review_sha256": "75af2c313241dc22d4d99e7ff12abd30ff2bb49046c8b9ee9cca3126d5b91ed9",
       "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
       "inspection": {
         "kind": "national_high_voltage_grid",
         "source_witness": {
           "identity": {
+            "location": "CL",
             "name": "market for electricity, high voltage",
             "reference product": "electricity, high voltage",
-            "location": "CL",
             "unit": "kilowatt hour"
           },
+          "source_project": "ecoinvent-3.8-cutoff",
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "358ece6115380b2173099327bab7ba37",
           "reference_amounts": [
             1.0
           ],
-          "metadata_sha256": "95e7c3b9e43dcc9f5bd19f5bd463d1f7cfb09b99f87eed0871681705dcc64148",
-          "inventory_sha256": "bb35b898c4babf77978fd926c488977013b1847122e2a9c2ff450d4da3c73ceb",
+          "metadata_sha256": "d215f03e7f26cbd96966e61419df621ed61a7089652346884875cd163ce31b74",
+          "inventory_sha256": "65358c709da3f0843a5a53868499a642c8de92fe66e311d9e3ab7015b4554a29",
           "comment_sha256": "4670d2db4365b6a78b59356f0d2a9c223b1ab2b60fbc1095e79e21221688d444",
-          "nonproduction_exchange_count": 1
+          "nonproduction_exchange_count": 15
         },
         "native_witnesses": {
           "2025": {
@@ -295524,24 +295533,27 @@
       "rule_id": "bp-94e99d669f988a94",
       "mapping_method": "reviewed_complete_kerosene_delivery_39",
       "review_path": "export/uvek_metals_38_native_services_review.json",
-      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "review_sha256": "75af2c313241dc22d4d99e7ff12abd30ff2bb49046c8b9ee9cca3126d5b91ed9",
       "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
       "inspection": {
         "kind": "delivered_petroleum_kerosene",
         "source_witness": {
           "identity": {
+            "location": "RoW",
             "name": "market for kerosene",
             "reference product": "kerosene",
-            "location": "RoW",
             "unit": "kilogram"
           },
+          "source_project": "ecoinvent-3.8-cutoff",
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "f615134e6ac28aca9ddfa97e40d068ea",
           "reference_amounts": [
             1.0
           ],
-          "metadata_sha256": "bbf8ef63a5e79be4eb70ed66cb87b6539b5077772b9c5ae16850498b839c775e",
-          "inventory_sha256": "23d545aa9733237c83dc6e7fc414207cbc7198237db3615d16a89da32420dabd",
+          "metadata_sha256": "e97af940a8e1728c5722265359d720b7818391d7ac6503d2d594d68bba153d69",
+          "inventory_sha256": "fdca8273dcbb1bb48e5e5c370214381ed23be16cbcf5d97d04453bad09f0948d",
           "comment_sha256": "99044cd39db65cdcde96f28d968e1890d4afa0f8ff9c2b971bf78da55ad7bf7f",
-          "nonproduction_exchange_count": 26
+          "nonproduction_exchange_count": 75
         },
         "native_witnesses": {
           "2025": {
@@ -295602,22 +295614,25 @@
       "rule_id": "bp-6b465f371713f763",
       "mapping_method": "followup_review",
       "review_path": "export/uvek_metals_38_native_services_review.json",
-      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "review_sha256": "75af2c313241dc22d4d99e7ff12abd30ff2bb49046c8b9ee9cca3126d5b91ed9",
       "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
       "inspection": {
         "kind": "dry_bulk_ocean_freight",
         "source_witness": {
           "identity": {
+            "location": "GLO",
             "name": "market for transport, freight, sea, bulk carrier for dry goods",
             "reference product": "transport, freight, sea, bulk carrier for dry goods",
-            "location": "GLO",
             "unit": "ton kilometer"
           },
+          "source_project": "ecoinvent-3.8-cutoff",
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "2408656ea70006fdcbc44ac8a7d68ac5",
           "reference_amounts": [
             1.0
           ],
-          "metadata_sha256": "1c52da23e39e136e28a2a0aa2cf8504c2133d108a89ec940912bb5574c5b8f45",
-          "inventory_sha256": "d2da2839bd33d60d89eb15a6c2a51dcf60d9074a2d7a09b8446ce7ac2afcdc57",
+          "metadata_sha256": "d719ca3ad3332d5a7adb7fafb6c818f4ffea4246e6e017a51df7c1140a8d19d6",
+          "inventory_sha256": "bef02f0408f0d44eb402b07677b612250f1f75427e0fd33708d3fc47e2fcd584",
           "comment_sha256": "9c216be602c71c69f915f0e2edf5141d6be8c7c0df57bf004398d8c844d64d59",
           "nonproduction_exchange_count": 1
         },
@@ -295680,24 +295695,27 @@
       "rule_id": "bp-740fb596590b99e4",
       "mapping_method": "heuristic_similarity",
       "review_path": "export/uvek_metals_38_native_services_review.json",
-      "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+      "review_sha256": "75af2c313241dc22d4d99e7ff12abd30ff2bb49046c8b9ee9cca3126d5b91ed9",
       "authorization": "User standing autonomous approval for coming modelling decisions, with explicit warnings and review logs.",
       "inspection": {
         "kind": "national_high_voltage_grid",
         "source_witness": {
           "identity": {
+            "location": "CN",
             "name": "market group for electricity, high voltage",
             "reference product": "electricity, high voltage",
-            "location": "CN",
             "unit": "kilowatt hour"
           },
+          "source_project": "ecoinvent-3.8-cutoff",
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "5b4a85bacb3e0342226782fbfcb54f0c",
           "reference_amounts": [
             1.0
           ],
-          "metadata_sha256": "721cbdca23f900b2cf74d759e6c7b574c3e364a3e5fa269a27c9e56874f63562",
-          "inventory_sha256": "c551840675ad23eeaf76a9148ccb50fe0a3b98309361fdbb6902296a42e23c6a",
+          "metadata_sha256": "0ce1fb709821790221ccf6487402b5fc7b321f32acde586b8f7cd208c09f4f91",
+          "inventory_sha256": "01f82ce642f1897a4ce9bf832e03fae2e6e612a79006d88b3258da2ce44fe8f5",
           "comment_sha256": "7f8fe1bd34abd24a374062203fec5a79e3af9f07e15a47a57cf2e28cd94f1375",
-          "nonproduction_exchange_count": 1
+          "nonproduction_exchange_count": 2
         },
         "native_witnesses": {
           "2025": {

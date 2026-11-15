@@ -58,3 +58,14 @@ match 28 records across only two roles; counts alone do not qualify those
 matches. Explicit native aliases and the shared sector's family propagation
 must be reviewed before an operational metals claim. This audit changes no
 filters or sector code. See `uvek-metals-native-filter-audit.json`.
+
+Source-evidence correction: the first inspection selected an audit scenario
+by matching a database-name substring. All six identities have now been
+reinspected in the exact original `ecoinvent-3.8-cutoff` database. Their names,
+units and positive one-unit references are confirmed. The frozen source
+metadata/inventory hashes and Premise review hashes are corrected and now
+include the explicit database and activity code. Native evidence, targets,
+factors, sign profiles and physical migration-resource bytes are unchanged.
+Two focused evidence/replay tests pass, and all six corrected approvals validate.
+The earlier installed-package receipt describes its recorded historical commit;
+packaging is rechecked for the next published batch.

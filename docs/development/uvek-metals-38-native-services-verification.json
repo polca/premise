@@ -47,7 +47,7 @@
   "scope_limit": "Six complete native service correspondences only; not source/native score equivalence or metals-sector qualification.",
   "brightpath_commit": "a22602c",
   "review_path": "export/uvek_metals_38_native_services_review.json",
-  "review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+  "review_sha256": "75af2c313241dc22d4d99e7ff12abd30ff2bb49046c8b9ee9cca3126d5b91ed9",
   "brightpath_tests_passed": 49,
   "premise_tests_passed": 23,
   "first_source38_refusals_before": 16,
@@ -118,5 +118,18 @@
       }
     ],
     "owned_package_temporary_bytes_removed": 997187647
-  }
+  },
+  "source_evidence_correction": {
+    "exact_original_source_database": "ecoinvent-3.8-cutoff",
+    "source_identities_confirmed": 6,
+    "all_source_reference_amounts_positive_one": true,
+    "all_source_units_match_native": true,
+    "mapping_targets_factors_sign_profiles_and_native_evidence_unchanged": true,
+    "review_sha256": "75af2c313241dc22d4d99e7ff12abd30ff2bb49046c8b9ee9cca3126d5b91ed9",
+    "prior_review_sha256": "0001aa92533c1f456fb1efea1368b8fbbf7314d0c8531e26751233cdf2764487",
+    "migration_resource_bytes_changed": false,
+    "new_brightway_databases": 0
+  },
+  "corrected_evidence_tests_passed": 2,
+  "all_six_corrected_evidence_approvals_validated": true
 }
