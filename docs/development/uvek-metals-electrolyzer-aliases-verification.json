@@ -1,0 +1,122 @@
+{
+  "native_stack_reference_evidence": [
+    {
+      "role": "PEMEL",
+      "identity": {
+        "name": "Electrolyzer production, 1MWe, PEM, Stack",
+        "reference product": "Electrolyzer production, 1MWe, PEM, Stack",
+        "location": "RER",
+        "unit": "unit"
+      },
+      "positive_reference_amount": 1,
+      "capacity_MWe": 1,
+      "intensity_unit": "kg/MW",
+      "conversion_factor": 1,
+      "metadata_sha256": "e486929bad9b58f1a75d3d4b2264c20805cf9846071be561e5ddff729ced30da",
+      "inventory_sha256": "205a9475b5d65b520a5c6c8225fb657708982da3b2dfea23b9e2e026517f0a20",
+      "existing_source_conversion": "electrolyzer-production-1mwe-pem-stack",
+      "exclusions": [
+        "Balance of Plant",
+        "assembly",
+        "treatment",
+        "hydrogen production"
+      ]
+    },
+    {
+      "role": "AEL",
+      "identity": {
+        "name": "Electrolyzer production, 1MWe, AEC, Stack",
+        "reference product": "Electrolyzer production, 1MWe, AEC, Stack",
+        "location": "RER",
+        "unit": "unit"
+      },
+      "positive_reference_amount": 1,
+      "capacity_MWe": 1,
+      "intensity_unit": "kg/MW",
+      "conversion_factor": 1,
+      "metadata_sha256": "a0f82fc05fe22d8bde794146bd54397304eb67144071bc9bd6c911a913fa5914",
+      "inventory_sha256": "9cdfb71a706fcd5c8b54e8eaac62000d7b8471b5175e00164dd5130cf66ab955",
+      "existing_source_conversion": "electrolyzer-production-1mwe-aec-stack",
+      "exclusions": [
+        "Balance of Plant",
+        "assembly",
+        "treatment",
+        "hydrogen production"
+      ]
+    },
+    {
+      "role": "HTEL - Yttrium",
+      "identity": {
+        "name": "Electrolyzer production, 1MWe, SOEC, Stack",
+        "reference product": "Electrolyzer production, 1MWe, SOEC, Stack",
+        "location": "RER",
+        "unit": "unit"
+      },
+      "positive_reference_amount": 1,
+      "capacity_MWe": 1,
+      "intensity_unit": "kg/MW",
+      "conversion_factor": 1,
+      "metadata_sha256": "b8ade507e91c49dd136606fb2a15300a02c8497258b5c4dd80a18dc92adf8358",
+      "inventory_sha256": "3755f06f3ae707dd70a030d7015ea1faa3e9b7b8c6bf826337d73ad656913692",
+      "existing_source_conversion": "electrolyzer-production-1mwe-soec-stack",
+      "exclusions": [
+        "Balance of Plant",
+        "assembly",
+        "treatment",
+        "hydrogen production"
+      ]
+    }
+  ],
+  "focused_tests_passed": 251,
+  "existing_conversions_unchanged": 62,
+  "new_conversions": 3,
+  "role_match_counts": {
+    "ICEV": 0,
+    "EV": 0,
+    "Wind-DDPM": 0,
+    "Wind-Gearbox": 0,
+    "PEMFC": 0,
+    "SOFC - Y": 0,
+    "PEMEL": 1,
+    "AEL": 1,
+    "HTEL - Yttrium": 1,
+    "c-Si": 0,
+    "a-Si": 0,
+    "CIGS": 0,
+    "CdTe": 0,
+    "perovskite": 0,
+    "Parabolic Trough - PB": 0,
+    "CSP Tower - PB": 0,
+    "Nuclear": 0
+  },
+  "material_update_metrics": {
+    "compiled pairs": 22,
+    "executed pairs": 22,
+    "provider index lookups": 7
+  },
+  "decisions": {
+    "metals.material_rule.design_incomplete": 6,
+    "metals.material_rule.year_outside_support": 14,
+    "metals.material_rule.provider_missing": 1,
+    "metals.material_rule.intensity_missing": 1
+  },
+  "applied_material_updates": 0,
+  "real_snapshot_workflow": {
+    "inventory_preparation_passed": true,
+    "status": "diagnostic_update_and_graph_checks_passed",
+    "activities": 12040,
+    "validation_errors": 0,
+    "sector": "metals",
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "freshness": "snapshot",
+    "validation_disabled": false,
+    "export_performed": false,
+    "elapsed_seconds": 55.85550950001925
+  },
+  "runtime_python_changes": [],
+  "source_inventory_vectors_committed": false,
+  "new_brightway_databases": 0,
+  "metals_qualified": false,
+  "remaining_missing_role_aliases": 14,
+  "qualification_limit": "Three native roles and unit conversions match, but all22decisions stillpreserve source for explicit time/intensity/design/provider reasons. Resolve eligible supply interfaces and remainingequipmentfilters before qualifyingmetals."
+}

@@ -464,3 +464,27 @@ conversions:
   intensity_unit: kg metal/kg vehicle
   factor: 1.0
   comment: Explicit identity conversion for one kilogram of the canonical lorry-frame component.
+- id: uvek-2026-electrolyzer-pem-stack
+  activity:
+    name: Electrolyzer production, 1MWe, PEM, Stack
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1.0
+  description: The native reference provides one 1 MWe stack. Apply the existing kg/MW intensity with
+    factor 1; no balance-of-plant or complete hydrogen-service conversion is inferred.
+- id: uvek-2026-electrolyzer-aec-stack
+  activity:
+    name: Electrolyzer production, 1MWe, AEC, Stack
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1.0
+  description: The native reference provides one 1 MWe stack. Apply the existing kg/MW intensity with
+    factor 1; no balance-of-plant or complete hydrogen-service conversion is inferred.
+- id: uvek-2026-electrolyzer-soec-stack
+  activity:
+    name: Electrolyzer production, 1MWe, SOEC, Stack
+  ecoinvent_unit: unit
+  intensity_unit: kg/MW
+  factor: 1.0
+  description: The native reference provides one 1 MWe stack. Apply the existing kg/MW intensity with
+    factor 1; no balance-of-plant or complete hydrogen-service conversion is inferred.

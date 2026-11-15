@@ -131,6 +131,18 @@ SOFC - Y:
 ##    mask:
 ##      - micro gas turbine
 PEMEL:
+  uvek_aliases:
+    fltr:
+      name: Electrolyzer production, 1MWe, PEM, Stack
+      reference product: Electrolyzer production, 1MWe, PEM, Stack
+      unit: unit
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Apply the existing kg/MW stack intensities to this native positive one-unit, 1 MWe stack. Balance
+      of plant, assembly, treatment and the complete hydrogen-production service are separate boundaries;
+      their inventories remain unchanged. Native technology, composition, vintage and source-biosphere
+      limitations remain; score equivalence is not established.
   ecoinvent_aliases:
     fltr:
       - electrolyzer production
@@ -146,12 +158,36 @@ PEMEL:
       - methanol
       - treatment
 AEL:
+  uvek_aliases:
+    fltr:
+      name: Electrolyzer production, 1MWe, AEC, Stack
+      reference product: Electrolyzer production, 1MWe, AEC, Stack
+      unit: unit
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Apply the existing kg/MW stack intensities to this native positive one-unit, 1 MWe stack. Balance
+      of plant, assembly, treatment and the complete hydrogen-production service are separate boundaries;
+      their inventories remain unchanged. Native technology, composition, vintage and source-biosphere
+      limitations remain; score equivalence is not established.
   ecoinvent_aliases:
     # Stack intensities do not describe motor drives or balance-of-plant equipment.
     fltr:
       name: electrolyzer production, 1MWe, AEC, Stack
       reference product: electrolyzer, 1MWe, AEC, Stack
 HTEL - Yttrium:
+  uvek_aliases:
+    fltr:
+      name: Electrolyzer production, 1MWe, SOEC, Stack
+      reference product: Electrolyzer production, 1MWe, SOEC, Stack
+      unit: unit
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Apply the existing kg/MW stack intensities to this native positive one-unit, 1 MWe stack. Balance
+      of plant, assembly, treatment and the complete hydrogen-production service are separate boundaries;
+      their inventories remain unchanged. Native technology, composition, vintage and source-biosphere
+      limitations remain; score equivalence is not established.
 #HTEL:
   ecoinvent_aliases:
     # Stack intensities do not describe motor drives or ceramic/glass components.
