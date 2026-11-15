@@ -1,0 +1,297 @@
+{
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "foreground_datapackage_filesystem": "memory",
+  "transient_activities": 9,
+  "foreground_biosphere_flows": 1,
+  "native_suppliers": 14,
+  "signed_foreground_LCI_solves": 10,
+  "independent_native_reference_LCI_solves": 5,
+  "foreground_emissions_preserved": true,
+  "new_brightway_databases": 0,
+  "new_registered_activities": 0,
+  "new_processed_files": 0,
+  "native_source_and_biosphere_metadata_preserved": true,
+  "database_registry_unchanged": true,
+  "checks": [
+    {
+      "rule_id": "bp-4d3399f22574aeb4",
+      "source": {
+        "location": "GLO",
+        "name": "market for ammonium chloride",
+        "reference product": "ammonium chloride",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 2.3641115376449306e-07,
+      "refined_max_abs_inventory_difference": 1.7053025658242404e-13,
+      "full_graph_residual": {
+        "residual_before": 1.867145365648557e-08,
+        "residual_after": 5.866158988122141e-16,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 2.5117514871996052e-09,
+        "residual_after": 1.2770952723649887e-15,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    },
+    {
+      "rule_id": "bp-0cbbd373574b3465",
+      "source": {
+        "location": "RoW",
+        "name": "market for calcium chloride",
+        "reference product": "calcium chloride",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 3.0527161243298906e-07,
+      "refined_max_abs_inventory_difference": 2.842170943040401e-14,
+      "full_graph_residual": {
+        "residual_before": 2.3441097194538637e-10,
+        "residual_after": 4.440892098500626e-16,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 1.0741757054839507e-08,
+        "residual_after": 8.881784197001252e-16,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    },
+    {
+      "rule_id": "bp-f5fcdac403308760",
+      "source": {
+        "location": "GLO",
+        "name": "market for neutralising agent, sodium hydroxide-equivalent",
+        "reference product": "neutralising agent, sodium hydroxide-equivalent",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 7.113339961506426e-07,
+      "refined_max_abs_inventory_difference": 2.2737367544323206e-13,
+      "full_graph_residual": {
+        "residual_before": 1.1794213523754501e-08,
+        "residual_after": 8.881784197001252e-16,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 2.7594730354057714e-08,
+        "residual_after": 2.3472871815445104e-16,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    },
+    {
+      "rule_id": "bp-39c85a579d30850c",
+      "source": {
+        "location": "RoW",
+        "name": "market for quicklime, milled, packed",
+        "reference product": "quicklime, milled, packed",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 1.1088289397775952e-08,
+      "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+      "full_graph_residual": {
+        "residual_before": 8.927875521395437e-11,
+        "residual_after": 5.495030040407231e-16,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 5.224955279946655e-10,
+        "residual_after": 5.495030040404385e-16,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    },
+    {
+      "rule_id": "bp-7a43861ae0ccad22",
+      "source": {
+        "location": "GLO",
+        "name": "market for soda ash, light, crystalline, heptahydrate",
+        "reference product": "soda ash, light, crystalline, heptahydrate",
+        "unit": "kilogram"
+      },
+      "source_caller_amount": 2.5,
+      "unit": "kilogram",
+      "standard_signed_LCIs_finite_and_reverse": true,
+      "agrees_with_flattened_native_material_and_delivery_plus_caller_emissions_after_iterative_refinement": true,
+      "unrefined_max_abs_inventory_difference": 5.2456385901678004e-08,
+      "refined_max_abs_inventory_difference": 1.4210854715202004e-14,
+      "full_graph_residual": {
+        "residual_before": 2.004988151984543e-09,
+        "residual_after": 2.220446049250313e-16,
+        "correction_steps": 6
+      },
+      "native_reference_residual": {
+        "residual_before": 2.4896691981991164e-09,
+        "residual_after": 2.220446049250313e-16,
+        "correction_steps": 6
+      },
+      "comparison_tolerance": {
+        "rtol": 1e-08,
+        "atol": 1e-11
+      },
+      "numeric_note": "Independent LU factorizations of the augmented and native-only matrices can differ at small flows. Six correction solves use long-double residuals on the unchanged matrices; mapping coefficients and comparison tolerances are unchanged."
+    }
+  ],
+  "qualification_limit": "Verifies five source3.8 chemical correspondences,including four market helpers against flattened complete native demand and retained caller emissions. Does not establish source/native composition,manufacturing-route,geography,allocation or score/stochastic equivalence,or full metals-sector qualification.",
+  "review_path": "export/uvek_metals_38_chemical_markets_review.json",
+  "review_sha256": "a262df6ead9d285a194d52b94988ec082ca52b20873f302ac9f05ca1e25a6e26",
+  "Brightpath_tests_passed": 11,
+  "Premise_connector_tests_passed": 6,
+  "additional_current_basis_replay_tests_passed": 2,
+  "new_helpers": 4,
+  "retained_source_producer_entries": 9,
+  "retained_final_market_freight_entries": 30,
+  "nested_freight_correspondences": 17,
+  "new_standalone_freight_permissions": 0,
+  "new_physical_foreground_omissions_in_this_mapping_group": 0,
+  "current_caustic_cell_basis_verification": {
+    "2025": {
+      "diaphragm": {
+        "paired_allocated_salt_input_ratio_NaOH_to_chlorine": 0.997487684729064,
+        "supports_active_mass_reference_not_half_mass_solution": true,
+        "witnesses": {
+          "NaOH": {
+            "salt_kg_per_reference_kg": 0.80996,
+            "metadata_sha256": "3720741eb008c3f7194532aa06c3f7f71aafc55d3bca6d3f5134a0756a8a3b44",
+            "inventory_sha256": "7f3d4a2c9d1c388dd4b0ec821a1ef6bb4d96c0c5691ac45665c3854636cbd82a",
+            "comment_sha256": "607ffb4174ac59057b949085585f2efbae76b83b7697dd5ce38c591ebc8e6a2b"
+          },
+          "chlorine": {
+            "salt_kg_per_reference_kg": 0.812,
+            "metadata_sha256": "e2cabf9f8226ebbd3a43e1f235b01f08cc30d7102c9a804d79c71360e9af50c1",
+            "inventory_sha256": "b38344ea77ab5e8fdd345d0caf3f7139299864396a6c37e8e3b73390641bb828",
+            "comment_sha256": "607ffb4174ac59057b949085585f2efbae76b83b7697dd5ce38c591ebc8e6a2b"
+          }
+        }
+      },
+      "membrane": {
+        "paired_allocated_salt_input_ratio_NaOH_to_chlorine": 0.997487684729064,
+        "supports_active_mass_reference_not_half_mass_solution": true,
+        "witnesses": {
+          "NaOH": {
+            "salt_kg_per_reference_kg": 0.80996,
+            "metadata_sha256": "3b22b36581ace5300b158377f3c598bb3b1ddb8ea6b40f7467f4bfe0b8298d99",
+            "inventory_sha256": "1395b3bab16cf3e212790a1214d1098bc7b72cc9ae90aaf11df97f59328b140d",
+            "comment_sha256": "8ab4d574576ebfe7088f831f53dbd0a6795d6e761679fd6a2e948057d18d8da6"
+          },
+          "chlorine": {
+            "salt_kg_per_reference_kg": 0.812,
+            "metadata_sha256": "18b4944155c294af7cde3390302f2a5af18d82f86175b7b635d53b62c880b652",
+            "inventory_sha256": "b996584acfd72058a47a5d463e8c815740d5e6544138d36dde4808e82cd46f1c",
+            "comment_sha256": "8ab4d574576ebfe7088f831f53dbd0a6795d6e761679fd6a2e948057d18d8da6"
+          }
+        }
+      },
+      "mercury": {
+        "paired_allocated_salt_input_ratio_NaOH_to_chlorine": 0.997487684729064,
+        "supports_active_mass_reference_not_half_mass_solution": true,
+        "witnesses": {
+          "NaOH": {
+            "salt_kg_per_reference_kg": 0.80996,
+            "metadata_sha256": "36b0b224cbeb6e5c3b253d84b01371a7feb55f6111ff8eafcab3cf7ea14a4749",
+            "inventory_sha256": "b0fabef89aba96ba346203acbc69f3a078dcef7a2761c13b0868fe0a97f2b6bd",
+            "comment_sha256": "2c9422c5203de58e2e3c4187130e534d2a8a2fd9b761ac7631f21fdbb3b3bb21"
+          },
+          "chlorine": {
+            "salt_kg_per_reference_kg": 0.812,
+            "metadata_sha256": "17f59da0f89d59324f208653fbf4415f87fefad1705d0086d28ce4064b11365e",
+            "inventory_sha256": "5b3b4a83b331237f67830229bae3508023e9573816f71adaa043e8082ebd739f",
+            "comment_sha256": "2c9422c5203de58e2e3c4187130e534d2a8a2fd9b761ac7631f21fdbb3b3bb21"
+          }
+        }
+      }
+    },
+    "2026": {
+      "diaphragm": {
+        "paired_allocated_salt_input_ratio_NaOH_to_chlorine": 0.997487684729064,
+        "supports_active_mass_reference_not_half_mass_solution": true,
+        "witnesses": {
+          "NaOH": {
+            "salt_kg_per_reference_kg": 0.80996,
+            "metadata_sha256": "13e914954841ce48eb4bca972a0b18c9b5785f2eda6091333c5f49af4ae9fcfa",
+            "inventory_sha256": "ae1f9c5eea7603df262ed31cf64af22b244094e02e618e92192a32ad8268a6bd",
+            "comment_sha256": "dea7e7c8068123fb4478fe656ad23916cdf066e9ccf04e9bf6e67b9729aa8059"
+          },
+          "chlorine": {
+            "salt_kg_per_reference_kg": 0.812,
+            "metadata_sha256": "5684027bc2d93e46613f3d0ff3c55b87145ff88de624171072c3987d90f7a298",
+            "inventory_sha256": "cbcdf20b78510ebbff675c26f2e15d546a75dec2fd01a9f49d48d10f334f0f05",
+            "comment_sha256": "1c5a7f53bfa2618b5aa61eeee36b923fa8a142dfc9b9b0ba65b2ddfa85577a6b"
+          }
+        }
+      },
+      "membrane": {
+        "paired_allocated_salt_input_ratio_NaOH_to_chlorine": 0.997487684729064,
+        "supports_active_mass_reference_not_half_mass_solution": true,
+        "witnesses": {
+          "NaOH": {
+            "salt_kg_per_reference_kg": 0.80996,
+            "metadata_sha256": "fe8196f3529da8eab841ad53330118841a2f70ea2bb21be4c867fa1de79a85df",
+            "inventory_sha256": "289854d16044f645f4e23dddb8060f2607191097f04a1fe11e9ec85b7cfeaa08",
+            "comment_sha256": "3b87cad64a2a93c953796e8c42ab49d5f9fca4ad29e70a3f9ca01cacf21a5a72"
+          },
+          "chlorine": {
+            "salt_kg_per_reference_kg": 0.812,
+            "metadata_sha256": "18edb266ff8788e099a7c3110c9245ea2141f94212a2f16d7f01adc08b68c54e",
+            "inventory_sha256": "fad4cf636b12ff3e8a6dda30f1fce75a3ba82d0060dcda68cea5beed9a9e5185",
+            "comment_sha256": "515f6dd153eb1dcdf93e3ee9702abd1c77a9682e1033726015450be5b31ac30b"
+          }
+        }
+      },
+      "mercury": {
+        "paired_allocated_salt_input_ratio_NaOH_to_chlorine": 0.997487684729064,
+        "supports_active_mass_reference_not_half_mass_solution": true,
+        "witnesses": {
+          "NaOH": {
+            "salt_kg_per_reference_kg": 0.80996,
+            "metadata_sha256": "2aa7d1b3dffb439a58d5e8b6f31f224d1d8878ad38b9a240ece4194ee923e015",
+            "inventory_sha256": "46833197c684ce9d2ab9cf0c31292af8e163a8168eb1bdbf0141b12509b298e5",
+            "comment_sha256": "d17446a4df2a465a791675c1f13956a9c36a1063f876be9d238549a870168e47"
+          },
+          "chlorine": {
+            "salt_kg_per_reference_kg": 0.812,
+            "metadata_sha256": "1cf735df592abd0cda62f968321b0059a74d4db9e92e696388d6b28de6091430",
+            "inventory_sha256": "527e6b9e91a5679506228acecb9a6f7bef5d1463fc8b9f5ab49062ae8905f70d",
+            "comment_sha256": "7e07a426217b15f21398a1a8b84440573d086b0b7c6451271f22b6cc815aa01f"
+          }
+        }
+      }
+    }
+  },
+  "first_source38_technosphere_refusals_after": 0,
+  "subsequent_unmatched_elementary_flows": 3,
+  "sector_qualified": false,
+  "production_python_changes": []
+}

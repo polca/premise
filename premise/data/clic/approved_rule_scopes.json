@@ -296234,6 +296234,544 @@
           "fingerprint": "1f11e019a0fbcd66b65990916cff7391d503bcbfbedfdd74ea44e505910b0b04"
         }
       ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-4d3399f22574aeb4",
+      "mapping_method": "reviewed_metals_38_chemical_market",
+      "review_path": "export/uvek_metals_38_chemical_markets_review.json",
+      "review_sha256": "a262df6ead9d285a194d52b94988ec082ca52b20873f302ac9f05ca1e25a6e26",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal; explicit proxy/basis/uncertainty warnings and review records required.",
+      "limitations": [
+        "Retain all three original producer weights and all four final freight entries for the pure-NH4Cl market. The chlorosilane co-product uses complete native ammonium chloride from chlorosilane; the Hou/Solvay branch uses complete native modified-Solvay ammonium chloride. The source direct ammonia/HCl synthesis branch uses that same complete native ammonium-chloride stock as an explicit production-route screening proxy. Source95%yield and its ammonia/HCl inventory are replaced by the native route, not preserved or rescaled. Coproduct allocation, reaction route, input specification, energy, waste and vintage differ.",
+        "Only the exact independently inspected source3.8 cut-off profile is added; other source versions and system models gain no permission. Keep signed caller quantities, supported uncertainty/formulas and separately listed emissions at factor+1.",
+        "Complete native production models replace source process inventories with explicit route, allocation, geography, vintage, emissions and uncertainty differences. Source/native score and stochastic equivalence are not asserted; effects remain unquantified. No purity, hydrate, solution, density, yield or efficiency multiplier is invented.",
+        "Retain every final-market producer share and freight amount separately, without renormalization. Complete native same-mode freight includes vehicle/vessel/port/rail/road operation and infrastructure; country, fleet, fuel mix, emission standard, load, empty trips and vintage differ. Generic global or unavailable national rail mixes use reviewed complete native rail proxies; US rail uses its complete native US diesel fleet. No payload, distance, mode-substitution or second infrastructure factor is added. Source background formulas/parameter graphs and correlations are not transplanted without context; nominal quantities and supported marginal statistics are retained."
+      ],
+      "inspection": {
+        "kind": "ammonium_chloride",
+        "source_witness": {
+          "identity": {
+            "name": "market for ammonium chloride",
+            "reference product": "ammonium chloride",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "01334c40407d7072040c20715f9ff8d7",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "030a289cafd48668b9f10f2c4f3a8e037b063aeea18c70ce7d2ea1b6f2bf6977",
+          "inventory_sha256": "03c0f5e92d00342b0b2eddd86f0e9f624530e9bff2b5693163113ee0a5ce99e5",
+          "activity_comment_sha256": "441fbc53585257741b8913933dec5c0c7f1548bad9eb5a414e511ec244f2971c"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "amination of chlorosilane",
+              "reference product": "ammonium chloride",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "d74fc272b61aa6b66ba0e805f19652e0",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "1bed79bfde1752a3c399cec06d67d2cf51d55a72000cbf172a154ab751e4d4f0",
+            "inventory_sha256": "a80d6d2fd8a34a9b98f026fce330dea0132e8bf9313d75a9356c5096d5055879",
+            "activity_comment_sha256": "8da7591f0c37106892cb83c8de84158818364bfecca2c40b40630bc0dc10f19f"
+          },
+          {
+            "identity": {
+              "name": "ammonium chloride production",
+              "reference product": "ammonium chloride",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "7f1f52009efa0fee728689afa4b54772",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "96b1c6a4227568687b6b754e4614d39cd2c732fcd7355babf7cb2ba6fd8bf5c5",
+            "inventory_sha256": "9f7f55fa23ee3f2bb07d0d0b17bbf543917991d401e532d15853f400e9e2b35d",
+            "activity_comment_sha256": "abf01107c5ad6d171ba18719244a184c5699c31fcf8173b8b936516cb2c78eec"
+          },
+          {
+            "identity": {
+              "name": "modified Solvay process, Hou's process",
+              "reference product": "ammonium chloride",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "2ac752c78cd6bddf9640ce8368971546",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "3d1491b52d969c22279fa718760c29ca58ae173cb862d858315e07e70a6cbe98",
+            "inventory_sha256": "9ceb9fad8e8914c6ab01078b0f26c2f3ec959b707b8dcb4b142705c0339a81a4",
+            "activity_comment_sha256": "3f28c5bee77990a130c7d559c292a9f6270a706b193dae13638e162a40d87113"
+          }
+        ],
+        "conversion_factor": 1,
+        "boundary_checks": {
+          "source_reference_pure_chemical": true,
+          "producer_entries_retained": 3,
+          "freight_entries_retained": 4,
+          "direct_ammonia_HCl_branch_route_proxy": true
+        },
+        "recipe_id": "metals-38-ammonium_chloride-market",
+        "packaged_review_sections": [
+          "native_witnesses",
+          "freight_correspondences",
+          "native_active_basis_revalidation",
+          "native_current_caustic_cell_basis_checks",
+          "authorization_evidence"
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "bdfac96a613068c732b374d634b157057f8b7d2c0d41793470bdddb2d2e2f31f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-0cbbd373574b3465",
+      "mapping_method": "reviewed_metals_38_chemical_market",
+      "review_path": "export/uvek_metals_38_chemical_markets_review.json",
+      "review_sha256": "a262df6ead9d285a194d52b94988ec082ca52b20873f302ac9f05ca1e25a6e26",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal; explicit proxy/basis/uncertainty warnings and review records required.",
+      "limitations": [
+        "Retain all three pure-CaCl2 producer entries and ten final freight entries. Use complete native allocated Solvay calcium chloride for the Solvay branch and complete native allyl-chloride hypochlorination CaCl2 for its epichlorohydrin co-product branch. The rare-earth co-product branch uses the complete native Solvay CaCl2 stock as an explicit production/allocation proxy; do not add a rare-earth or calcium recovery credit. Native co-product economics and process boundaries differ. Source declares pure CaCl2; no factor based on generic text mentioning77%de-icing flakes is applied.",
+        "Only the exact independently inspected source3.8 cut-off profile is added; other source versions and system models gain no permission. Keep signed caller quantities, supported uncertainty/formulas and separately listed emissions at factor+1.",
+        "Complete native production models replace source process inventories with explicit route, allocation, geography, vintage, emissions and uncertainty differences. Source/native score and stochastic equivalence are not asserted; effects remain unquantified. No purity, hydrate, solution, density, yield or efficiency multiplier is invented.",
+        "Retain every final-market producer share and freight amount separately, without renormalization. Complete native same-mode freight includes vehicle/vessel/port/rail/road operation and infrastructure; country, fleet, fuel mix, emission standard, load, empty trips and vintage differ. Generic global or unavailable national rail mixes use reviewed complete native rail proxies; US rail uses its complete native US diesel fleet. No payload, distance, mode-substitution or second infrastructure factor is added. Source background formulas/parameter graphs and correlations are not transplanted without context; nominal quantities and supported marginal statistics are retained."
+      ],
+      "inspection": {
+        "kind": "calcium_chloride",
+        "source_witness": {
+          "identity": {
+            "name": "market for calcium chloride",
+            "reference product": "calcium chloride",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "92a3bb87d87e228d5fac17943f7678a6",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "0f455541f2ae136c97e4ee68215959d6cb17a252304b577c06d6644002b44436",
+          "inventory_sha256": "98d3250feee919ce9115bb4da32f1370db3120aeec38cd2130f81050670889bd",
+          "activity_comment_sha256": "416eb60da20871311bd96ed4a1e1cc4fc61faf376f5a5a2f6a52654c32b1ab7e"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "epichlorohydrin production from allyl chloride",
+              "reference product": "calcium chloride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "04e93fb644b3754a78f739994d4bb00b",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "e716836adc00d90f3ce5a92475d8a12d91266789aa3288eebde4b5834589ac5f",
+            "inventory_sha256": "e022d335018bbded5dfba3e552542625a4b08e11aac345ef7fe8e559adb7d299",
+            "activity_comment_sha256": "96b5e9befacf1eee5528e17fd45a941e8afec288fbc3163d705a6321ccf18390"
+          },
+          {
+            "identity": {
+              "name": "soda production, solvay process",
+              "reference product": "calcium chloride",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "e8a1a81141401ef307718f9b327f31b5",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "046d2d07c4a199984671b1bb1953750668c30c919ac395f4ac63ec9069210c5e",
+            "inventory_sha256": "6a50392740d8cb310034c484534c20aef10230259b5542a23a0c083810884e15",
+            "activity_comment_sha256": "dfc15e21eed3fb4dd46e30f5fc1f08b89ed56fbfe16a4853e1833f1f0f242f20"
+          },
+          {
+            "identity": {
+              "name": "rare earth oxides production, from rare earth oxide concentrate, 70% REO",
+              "reference product": "calcium chloride",
+              "location": "CN-SC",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "9f565fc7b771ea620471737f0af8763d",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "7304e6f2bcf437df3cf14e30b9f026b3b42a523a200a0921b2d5273b4c7af4c3",
+            "inventory_sha256": "6256eeb542b82ddc4b3c8f7343fe229f5a55259fdd9bb0121ed282a7d4e2e89f",
+            "activity_comment_sha256": "2b4b64368240256178589bb580b283d56c344105ebf7b8794f758fcae131100d"
+          }
+        ],
+        "conversion_factor": 1,
+        "boundary_checks": {
+          "source_reference_pure_chemical": true,
+          "producer_entries_retained": 3,
+          "freight_entries_retained": 10,
+          "rare_earth_coproduct_route_proxy": true,
+          "flake_77_percent_multiplier": false
+        },
+        "recipe_id": "metals-38-calcium_chloride-market",
+        "packaged_review_sections": [
+          "native_witnesses",
+          "freight_correspondences",
+          "native_active_basis_revalidation",
+          "native_current_caustic_cell_basis_checks",
+          "authorization_evidence"
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "45f1b8c794a753597aa435564ee3eaa8fbba7563c876f8acef149b59692e1c8e"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-f5fcdac403308760",
+      "mapping_method": "reviewed_metals_38_chemical_market",
+      "review_path": "export/uvek_metals_38_chemical_markets_review.json",
+      "review_sha256": "a262df6ead9d285a194d52b94988ec082ca52b20873f302ac9f05ca1e25a6e26",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal; explicit proxy/basis/uncertainty warnings and review records required.",
+      "limitations": [
+        "Correct the chemically unrelated lithium-hydroxide heuristic with complete native European caustic-soda production per kg active NaOH, used here as an alkalinity screening proxy per kg source NaOH-equivalent. The source generic market contains carbonate, bicarbonate and caustic soda, all already measured in NaOH-equivalent units; its NaOH converter purchases1kg active NaOH per equivalent. Its original reagent portfolio and upstream delivery are replaced, not reconstructed. The previously reviewed native50%solution stocks have an active-NaOH reference, so apply no factor2 or0.5, dilution water or extra chlorine/coproduct credit. Neutralization capacity is the matched function; reagent-specific pH, reaction products, use-phase CO2 and source portfolio are not claimed equivalent. Preserve separately modelled caller emissions without adding a reaction credit or invented use-phase emission.",
+        "Only the exact independently inspected source3.8 cut-off profile is added; other source versions and system models gain no permission. Keep signed caller quantities, supported uncertainty/formulas and separately listed emissions at factor+1.",
+        "Complete native production models replace source process inventories with explicit route, allocation, geography, vintage, emissions and uncertainty differences. Source/native score and stochastic equivalence are not asserted; effects remain unquantified. No purity, hydrate, solution, density, yield or efficiency multiplier is invented."
+      ],
+      "inspection": {
+        "kind": "NaOH_equivalent_neutralizer",
+        "source_witness": {
+          "identity": {
+            "name": "market for neutralising agent, sodium hydroxide-equivalent",
+            "reference product": "neutralising agent, sodium hydroxide-equivalent",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "7ebcef588121fcbdd7adbbf5af354b8a",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "28849cf946cc548e3e1d6550b40457ca3e1711b75204c92e19ed295e8aafaa12",
+          "inventory_sha256": "b70db1be9e84054e5aa711d0f68cec52c04e5f457c2db43b0ca01d6f9de171ba",
+          "activity_comment_sha256": "8ef0720113ef2f70296d8187041cf8cc3665c68a2710937697609831a72acc07"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "soda ash, dense, to generic market for neutralising agent",
+              "reference product": "neutralising agent, sodium hydroxide-equivalent",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "e3eb7dfb83270ca47aad775f32792514",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "3e2bc5cd577df967b65a62c2f80ca3e1ebe5203d520ecce4d58c2cc7f06c5eb9",
+            "inventory_sha256": "da094d5bd50e565c9b4239a2e4bbb8456445a4fe42fb53381fa0810c82bd5998",
+            "activity_comment_sha256": "453a7bf09287d2e23748b05e5a01ca617bda0280a3d09334539b718e66db2bad"
+          },
+          {
+            "identity": {
+              "name": "soda ash, light, crystalline, heptahydrate, to generic market for neutralising agent",
+              "reference product": "neutralising agent, sodium hydroxide-equivalent",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "dc5b5679235676b303236f2ddf8f9a79",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "ba2abeb0f217ba93361cdf2e55414b3d28038f6239f0935a836ebd0a9d685fe1",
+            "inventory_sha256": "372f1f722392737b7591f4084ec68acf72b6465279f1ea22dddeed52483b3906",
+            "activity_comment_sha256": "a6c5f0d217e5508ec368657de11d13195e4853cc60713e3f14a9e406c0299368"
+          },
+          {
+            "identity": {
+              "name": "sodium bicarbonate, to generic market for neutralising agent",
+              "reference product": "neutralising agent, sodium hydroxide-equivalent",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "3c7498b1639bca728eba8622e7cc7a9e",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "eb35210c4e7c54db5ceed51090e5fe18a67f02e2e42b998323ba3b085ced87d6",
+            "inventory_sha256": "61b7ee3d1e27368600bdb287c89b0f533a113717588e84bf8be8cf22d98404db",
+            "activity_comment_sha256": "2518e57789136788f6d056f3c824633d3b5d3232a9c0ceee1247580d1da77456"
+          },
+          {
+            "identity": {
+              "name": "sodium hydroxide to generic market for neutralising agent",
+              "reference product": "neutralising agent, sodium hydroxide-equivalent",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "0a3f9550750a31c8584d72255e13301d",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "693fceae6cef1d731a8cf586e4bc3faabf1f23a47f7e086bc119b34b778b1967",
+            "inventory_sha256": "8bea801856b82692f8f89c95bdf27823f2c6b13bafd706b2842e988c458562d4",
+            "activity_comment_sha256": "1488b20d32a782b6088e34bffb552efdfc5e3fe28f04a3ffa9129bc1cc58c885"
+          }
+        ],
+        "conversion_factor": 1,
+        "boundary_checks": {
+          "native_active_NaOH_reference_kg": 1,
+          "caller_NaOH_equivalent_kg": 1,
+          "source_reagent_portfolio_replaced": true,
+          "source_delivery_reconstructed": false,
+          "water_or_50_percent_multiplier": false,
+          "same_chemical_portfolio_claimed": false
+        },
+        "recipe_id": null,
+        "packaged_review_sections": [
+          "native_witnesses",
+          "freight_correspondences",
+          "native_active_basis_revalidation",
+          "native_current_caustic_cell_basis_checks",
+          "authorization_evidence"
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "06a16520e894f3deba2f83d911c31da30e27d9c2f246f147f713d2afc3e106ee"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-39c85a579d30850c",
+      "mapping_method": "reviewed_metals_38_chemical_market",
+      "review_path": "export/uvek_metals_38_chemical_markets_review.json",
+      "review_sha256": "a262df6ead9d285a194d52b94988ec082ca52b20873f302ac9f05ca1e25a6e26",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal; explicit proxy/basis/uncertainty warnings and review records required.",
+      "limitations": [
+        "Retain the original positive1kg producer and twelve final freight entries, using complete native packed milled quicklime per kg. The exact original source chain explicitly mills quicklime in pieces and packs it; it is not the separate limestone-milling ambiguity. Native quicklime includes upstream calcination, milling and packing. Do not add a second kiln, bag, packing service, heat or CO2 release. Source/native kiln fuel, dust control, geography, packing and vintage differ. Generic native CAS/synonym inconsistencies do not justify changing CaO to hydrated lime or adding a stoichiometric mass correction; the documented process and formula are the chosen basis.",
+        "Only the exact independently inspected source3.8 cut-off profile is added; other source versions and system models gain no permission. Keep signed caller quantities, supported uncertainty/formulas and separately listed emissions at factor+1.",
+        "Complete native production models replace source process inventories with explicit route, allocation, geography, vintage, emissions and uncertainty differences. Source/native score and stochastic equivalence are not asserted; effects remain unquantified. No purity, hydrate, solution, density, yield or efficiency multiplier is invented.",
+        "Retain every final-market producer share and freight amount separately, without renormalization. Complete native same-mode freight includes vehicle/vessel/port/rail/road operation and infrastructure; country, fleet, fuel mix, emission standard, load, empty trips and vintage differ. Generic global or unavailable national rail mixes use reviewed complete native rail proxies; US rail uses its complete native US diesel fleet. No payload, distance, mode-substitution or second infrastructure factor is added. Source background formulas/parameter graphs and correlations are not transplanted without context; nominal quantities and supported marginal statistics are retained."
+      ],
+      "inspection": {
+        "kind": "packed_quicklime",
+        "source_witness": {
+          "identity": {
+            "name": "market for quicklime, milled, packed",
+            "reference product": "quicklime, milled, packed",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "5b2a03b72a0035f52f2180bb00c2c810",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "5f0cf662288c199a6425cc00dc4a834525c9bbf3acc6722abcc5d99e38d1e977",
+          "inventory_sha256": "377c7ab1d6aa78daf7e3eaacaaebaf1dcbc7f19953a7e5ee2c7b39923cf89642",
+          "activity_comment_sha256": "8d12bfa6c708abdfc0795efc5c0a448aed6691222411c10b692a8f8557369b31"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "quicklime production, milled, packed",
+              "reference product": "quicklime, milled, packed",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "f511512e33e6186f3055bb7da5179887",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "a3b2043af8ca3447547d222fb56138f819d3caac7b46327f9ab0ee9692790730",
+            "inventory_sha256": "e96e1c757d6aad6c9ec9a06eec1653eadc5fd0970807fd8a67364759a2693aac",
+            "activity_comment_sha256": "b7b1b90bab5733e82607e8e45cfb40067fe5fd04f38c2f87b4380f4687de7edd"
+          }
+        ],
+        "conversion_factor": 1,
+        "boundary_checks": {
+          "source_mills_quicklime_in_pieces": true,
+          "producer_entries_retained": 1,
+          "freight_entries_retained": 12,
+          "additional_calcination_or_hydration_added": false
+        },
+        "recipe_id": "metals-38-packed_quicklime-market",
+        "packaged_review_sections": [
+          "native_witnesses",
+          "freight_correspondences",
+          "native_active_basis_revalidation",
+          "native_current_caustic_cell_basis_checks",
+          "authorization_evidence"
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "126b7d827b43232883addda59d580711237533047423cd64cfe0737cc4bafb9f"
+        }
+      ]
+    },
+    {
+      "operation": "replace",
+      "rule_id": "bp-7a43861ae0ccad22",
+      "mapping_method": "reviewed_metals_38_chemical_market",
+      "review_path": "export/uvek_metals_38_chemical_markets_review.json",
+      "review_sha256": "a262df6ead9d285a194d52b94988ec082ca52b20873f302ac9f05ca1e25a6e26",
+      "authorization": "Standing user auto-approval of coming modelling decisions and autonomous remaining-sector goal; explicit proxy/basis/uncertainty warnings and review records required.",
+      "limitations": [
+        "Correct the unrelated LED heuristic using complete native light-soda powder for each of the two Solvay producer entries, retaining all four final freight entries. The source market label says crystalline heptahydrate, while its Solvay documentation describes Na2CO3 and its own neutralizer converter uses1.325kg of this product per kgNaOH-equivalent, the same coefficient as dry dense soda. Preserve that implemented carbonate-function basis at factor+1 per source kg; this is not independently verified physical heptahydrate equivalence. The source hydration/label inconsistency and unknown score effect remain explicit. Do not infer seven waters of crystallization, add water/heat, or apply an invented dry-to-hydrate multiplier. Native light soda excludes densification; source carbonate/bicarbonate/calcium-chloride co-product allocation and native33%/67%soda/CaCl2 allocation differ.",
+        "Only the exact independently inspected source3.8 cut-off profile is added; other source versions and system models gain no permission. Keep signed caller quantities, supported uncertainty/formulas and separately listed emissions at factor+1.",
+        "Complete native production models replace source process inventories with explicit route, allocation, geography, vintage, emissions and uncertainty differences. Source/native score and stochastic equivalence are not asserted; effects remain unquantified. No purity, hydrate, solution, density, yield or efficiency multiplier is invented.",
+        "Retain every final-market producer share and freight amount separately, without renormalization. Complete native same-mode freight includes vehicle/vessel/port/rail/road operation and infrastructure; country, fleet, fuel mix, emission standard, load, empty trips and vintage differ. Generic global or unavailable national rail mixes use reviewed complete native rail proxies; US rail uses its complete native US diesel fleet. No payload, distance, mode-substitution or second infrastructure factor is added. Source background formulas/parameter graphs and correlations are not transplanted without context; nominal quantities and supported marginal statistics are retained."
+      ],
+      "inspection": {
+        "kind": "light_soda_implemented_reference_basis",
+        "source_witness": {
+          "identity": {
+            "name": "market for soda ash, light, crystalline, heptahydrate",
+            "reference product": "soda ash, light, crystalline, heptahydrate",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "source_database": "ecoinvent-3.8-cutoff",
+          "activity_code": "c4b52d03dcf6c46f8e020d037098c950",
+          "reference_amounts": [
+            1.0
+          ],
+          "metadata_sha256": "b68eb4fcf0a2385f24e26c410f22e2de3933c053ed252afc2f23738118afb638",
+          "inventory_sha256": "4cafb134125560bc0a48fa0624a8b70893b734bfa5233ad37be6eaa9c800c3f2",
+          "activity_comment_sha256": "6c6aff7b2ee5abd3e4d9bc0ded463b018250926f30ca8b80d0531f96c6fe52b6"
+        },
+        "source_producer_witnesses": [
+          {
+            "identity": {
+              "name": "soda production, solvay process",
+              "reference product": "soda ash, light, crystalline, heptahydrate",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "6cca8b20bbc029cc568b969e692ab167",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "8dfdb11f43d944abcdd12c37e33894483671668181aab620da4b5c8e64bf016d",
+            "inventory_sha256": "211f6e6adbd9ac4162dc2064cab7eb1631eb622d26cb7430521a35aa4cdff716",
+            "activity_comment_sha256": "1a24de0cc3acd04780e944f9c5fde77ce7d318b530cb658d0953fb99f6994905"
+          },
+          {
+            "identity": {
+              "name": "soda production, solvay process",
+              "reference product": "soda ash, light, crystalline, heptahydrate",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source_database": "ecoinvent-3.8-cutoff",
+            "activity_code": "7991749e6e39826f33746cfbcde89d72",
+            "reference_amounts": [
+              1.0
+            ],
+            "metadata_sha256": "6f3bd3470139005541fd28afb8816c2b6bd27ba2ad2dea1ab1aee75a31e55a9e",
+            "inventory_sha256": "6bd30a35d7eff2951288d47a84788bb7e2f00514019fec3c7dee9273f43b8367",
+            "activity_comment_sha256": "dfc15e21eed3fb4dd46e30f5fc1f08b89ed56fbfe16a4853e1833f1f0f242f20"
+          }
+        ],
+        "conversion_factor": 1,
+        "boundary_checks": {
+          "source_label_mentions_heptahydrate": true,
+          "source_own_neutralizer_kg_soda_per_kg_NaOH_equivalent": 1.325,
+          "implemented_source_reference_basis_preserved": true,
+          "physical_heptahydrate_equivalence_verified": false,
+          "producer_entries_retained": 2,
+          "freight_entries_retained": 4,
+          "hydration_multiplier_or_water_added": false
+        },
+        "recipe_id": "metals-38-light_soda_implemented_reference_basis-market",
+        "packaged_review_sections": [
+          "native_witnesses",
+          "freight_correspondences",
+          "native_active_basis_revalidation",
+          "native_current_caustic_cell_basis_checks",
+          "authorization_evidence"
+        ]
+      },
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.8",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "ea7b8824b29f3152708db0df89673787a520e7317a4aef534b0aa5a7c93a91ad"
+        }
+      ]
     }
   ],
   "superseded_operations": [
