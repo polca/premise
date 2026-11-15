@@ -1,0 +1,204 @@
+{
+  "primary_native_supplier_evidence": [
+    {
+      "identity": {
+        "name": "Iridium production",
+        "reference product": "Iridium production",
+        "unit": "kilogram",
+        "location": "GLO"
+      },
+      "reference_amount": 1,
+      "reference_unit": "kilogram",
+      "metadata_sha256": "8b4a4513d70fd2b650d4b90978ca59ad642ce87b12eff57722b6e94c108adf6e",
+      "inventory_sha256": "38d9145e1e8217bc8eacfd9d6a821a8abd1cc1c760f9b47a2e0df21b0a429240",
+      "publisher_process_uuid": "8a6c655d-b743-3945-a1a6-e070f70c48b2",
+      "publisher_xml_sha256": "3656c718fb35f6e54a159d0ece844d5b737adbe2b75683d44e966bd33d21fd26",
+      "publisher_reference_amount": 1.0,
+      "publisher_reference_unit": "kg",
+      "publisher_output_amount": 1.0,
+      "existing_stack_input": true,
+      "direct_biosphere_entries": 31,
+      "technosphere_entries": 0,
+      "explicit_own_iridium_resource": false
+    },
+    {
+      "identity": {
+        "name": "Platinum, at regional storage",
+        "reference product": "Platinum, at regional storage",
+        "unit": "kilogram",
+        "location": "RER"
+      },
+      "reference_amount": 1,
+      "reference_unit": "kilogram",
+      "metadata_sha256": "22b89244533243b52d28b71461f746f98f7b0b37d7f500d0cf8682cb0f4bd791",
+      "inventory_sha256": "5d4d386c0e93ad08791581985d974dee72a11d49d0bb21baadfc74f1938c8d77",
+      "publisher_process_uuid": "7a020379-c844-32ff-8fde-fb468f6661b5",
+      "publisher_xml_sha256": "a8f5e3b2636c4f70e792731942bb1f6c1b051472ad8db17614b61c276ed6f912",
+      "publisher_reference_amount": 1.0,
+      "publisher_reference_unit": "kg",
+      "publisher_output_amount": 1.0,
+      "existing_stack_input": true,
+      "direct_biosphere_entries": 0,
+      "technosphere_entries": 4,
+      "explicit_own_iridium_resource": false
+    }
+  ],
+  "focused_tests_passed": 398,
+  "real_snapshot_workflow": {
+    "inventory_preparation_passed": true,
+    "status": "diagnostic_update_and_graph_checks_passed",
+    "activities": 12040,
+    "validation_errors": 0,
+    "sector": "metals",
+    "public_scope_gate_bypassed_for_diagnostic_only": true,
+    "freshness": "snapshot",
+    "validation_disabled": false,
+    "export_performed": false,
+    "elapsed_seconds": 51.644483000040054
+  },
+  "material_metrics": {
+    "compiled pairs": 22,
+    "executed pairs": 22,
+    "provider index lookups": 9
+  },
+  "material_decision_reasons": {
+    "metals.material_rule.applied": 2,
+    "metals.material_rule.year_outside_support": 14,
+    "metals.material_rule.zero_intensity": 1,
+    "metals.material_rule.provider_missing": 1,
+    "metals.material_rule.design_incomplete": 3,
+    "metals.material_rule.intensity_missing": 1
+  },
+  "applied_matched_PEM_decisions": [
+    {
+      "material rule id": "pemel-iridium-iridium",
+      "element": "Iridium",
+      "status": "updated",
+      "reason code": "metals.material_rule.applied",
+      "provider name": "Iridium production",
+      "target direct amount": 0.1052631578947368
+    },
+    {
+      "material rule id": "pemel-platinum-platinum",
+      "element": "Platinum",
+      "status": "updated",
+      "reason code": "metals.material_rule.applied",
+      "provider name": "Platinum, at regional storage",
+      "target direct amount": 0.3081921922823021
+    },
+    {
+      "material rule id": "pemel-ruthenium-ruthenium",
+      "element": "Ruthenium",
+      "status": "updated",
+      "reason code": "metals.material_rule.zero_intensity",
+      "provider name": "market for ruthenium",
+      "target direct amount": 0.0
+    }
+  ],
+  "in_memory_updated_PEM_LCI": {
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "source": "BAFU:2026-reimported",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "updated_stack": "Electrolyzer production, 1MWe, PEM, Stack",
+    "native_background_columns_overlaid": 15,
+    "final_native_columns_checked": [
+      {
+        "native_activity_id": 360710578991087616,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710586469531653,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710572900958209,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710586448560128,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710578198364160,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710572494110728,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710573047758852,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710575698558976,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710573156810752,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710584905056256,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710581176320000,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710589804003330,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710586511474690,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710572389253121,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      },
+      {
+        "native_activity_id": 360710573760790529,
+        "full_technosphere_column_matches_final_scenario": true,
+        "full_biosphere_column_matches_final_scenario": true
+      }
+    ],
+    "signed_LCI_solves": 2,
+    "original_native_baseline_LCI_solves": 1,
+    "overlay_cancellation_uses_actual_processed_matrix": true,
+    "finite_and_signed_reversing": true,
+    "matrix_shape": [
+      11947,
+      11947
+    ],
+    "iridium_kg_per_1MW_stack": 0.1052631578947368,
+    "platinum_kg_per_1MW_stack": 0.3081921922823021,
+    "existing_supplier_geographies_preserved": true,
+    "ruthenium_zero_design_preserved": true,
+    "new_brightway_databases": 0,
+    "new_processed_files": 0,
+    "database_registry_and_source_biosphere_metadata_unchanged": true,
+    "qualification_limit": "Checks the updated native PEM stack with every native background column changed by the actual metals diagnostic, including resource corrections; it does not qualify all metals technologies, all added CLIC foregrounds, source/native LCIA equivalence, source Ir inventory completeness or exports."
+  },
+  "runtime_python_changes": [],
+  "new_brightway_databases": 0,
+  "verified_sector_count": 10,
+  "remaining_sector_count": 9,
+  "metals_qualified": false,
+  "qualification_limit": "Existing native PEM supply interfaces and matched catalyst quantities are verified. Other native technology filters, material suppliers and eligible-year market/update/export checks remain unfinished."
+}

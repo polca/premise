@@ -214,6 +214,58 @@
         "gallium, high-grade"
       ],
       "source_reference": "utils/import/migrations/cutoff/ecoinvent-3.10-cutoff-ecoinvent-3.11-cutoff.json"
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for iridium",
+        "iridium"
+      ],
+      "target": [
+        "Iridium production",
+        "Iridium production"
+      ],
+      "source_reference": "docs/development/uvek-metals-native-pem-suppliers.md",
+      "limitations": [
+        "Existing native GLO-labelled, Europe-2000-2004 aggregated iridium supply per published kg. Opaque emissions-only inventory excludes investment goods and has no explicit own-iridium resource flow. Preserve its published kg reference despite its inherited narrative tonne description; infer no 1000-fold correction. Its source gaps and unquantified score differences remain."
+      ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "market for platinum",
+        "platinum"
+      ],
+      "target": [
+        "Platinum, at regional storage",
+        "Platinum, at regional storage"
+      ],
+      "source_reference": "docs/development/uvek-metals-native-pem-suppliers.md",
+      "limitations": [
+        "Use the existing native regional-storage supply only via an explicitly declared exact existing-input fallback at its existing location. Retain the complete historical primary/secondary supply mix, delivery, allocation and source uncertainty; no new regional producer or additional mining/refining burden is selected."
+      ]
+    },
+    {
+      "versions": [
+        "2026"
+      ],
+      "source": [
+        "Platinum, at regional storage",
+        "platinum"
+      ],
+      "target": [
+        "Platinum, at regional storage",
+        "Platinum, at regional storage"
+      ],
+      "source_reference": "docs/development/uvek-metals-native-pem-suppliers.md",
+      "limitations": [
+        "Use the existing native regional-storage supply only via an explicitly declared exact existing-input fallback at its existing location. Retain the complete historical primary/secondary supply mix, delivery, allocation and source uncertainty; no new regional producer or additional mining/refining burden is selected.",
+        "The base fallback retains canonical product platinum for schema validation; this version-scoped alias resolves it to the exact native reference product. Other source versions do not gain this native fallback."
+      ]
     }
   ]
 }

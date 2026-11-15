@@ -1437,7 +1437,16 @@ rules:
   existing_provider_fallback:
     name: iridium production, economic allocation, proxy
     reference_product: iridium
-  comment: If the configured market is absent, retain one already linked kilogram iridium economic-allocation proxy supplier and its geography. Check exact identity and one-kg reference output; do not select another producer or infer a market mix. Apply only with the matched NREL 87625 catalyst group; see pem_catalyst_reference.json for the loading trajectory and limitations.
+  comment: >-
+    If the configured market is absent, retain one already linked kilogram iridium
+    economic-allocation proxy supplier and its geography. Check exact identity and one-kg
+    reference output; do not select another producer or infer a market mix. Apply only with the
+    matched NREL 87625 catalyst group; see pem_catalyst_reference.json for the loading
+    trajectory and limitations. For UVEK 2026, the existing native Iridium production supplier
+    is an opaque Europe-2000-2004 aggregate labelled GLO. It excludes investment goods and has
+    no explicit iridium-resource input. The original archive quantitatively references one kg
+    although its narrative describes a tonne: retain the published unit without a guessed
+    multiplier. These source limitations and score effects remain unquantified.
   exchange_amount_factor: 1.0
   application: set_direct_amount
   ecoinvent_form: iridium
@@ -2932,11 +2941,22 @@ rules:
   provider:
     name: market for platinum
     reference_product: platinum
+  existing_provider_fallback:
+    name: Platinum, at regional storage
+    reference_product: platinum
   exchange_amount_factor: 1.0
   application: set_direct_amount
   ecoinvent_form: platinum
   intensity_form: platinum
-  comment: Matched Pt total comprises cathode catalyst plus separate PTL and bipolar-plate coatings. Default coating case assumes 100 nm on both nominal faces using documented footprint proxies; catalyst loadings decline separately. See pem_catalyst_reference.json for component calculation, sensitivities and remaining coverage gaps.
+  comment: >-
+    Matched Pt total comprises cathode catalyst plus separate PTL and bipolar-plate coatings.
+    Default coating case assumes 100 nm on both nominal faces using documented footprint
+    proxies; catalyst loadings decline separately. See pem_catalyst_reference.json for component
+    calculation, sensitivities and remaining coverage gaps. For UVEK 2026, retain the exact
+    native regional-storage platinum input at its existing geography and published kg reference.
+    Its complete historical primary/secondary supply, delivery, allocation and vintage remain;
+    score differences are unquantified. The fallback is not a licence to select a new regional
+    producer.
 - id: ael-platinum-platinum
   enabled: true
   technology: AEL

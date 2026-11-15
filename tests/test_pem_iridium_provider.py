@@ -347,10 +347,10 @@ def test_fallback_configuration_is_explicit_and_same_product(
         load_material_rules.cache_clear()
 
 
-def test_fallback_is_opted_in_only_for_pem_iridium():
+def test_fallback_is_limited_to_reviewed_pem_iridium_and_native_platinum():
     assert [
         r.id for r in load_material_rules().rules if r.existing_provider_fallback
-    ] == ["pemel-iridium-iridium"]
+    ] == ["pemel-iridium-iridium", "pemel-platinum-platinum"]
     assert rule().existing_provider_fallback == ProviderSelector(PROXY, "iridium")
 
 
