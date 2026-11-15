@@ -228,3 +228,37 @@ def test_ecoinvent_supply_selection_retains_original_filters():
     assert inv.generate_fuel_map(model="remind", for_markets=True)["natural gas"] == [
         source
     ]
+
+
+@pytest.mark.parametrize("change,expected", [(1.5, 45.3), (1.1, 54 / 1.1)])
+def test_hydrogen_iam_efficiency_applies_the_logged_energy_floor(change, expected):
+    from types import SimpleNamespace
+
+    import xarray as xr
+
+    from premise.fuels.hydrogen import HydrogenMixin
+
+    role = "hydrogen, from electrolysis, PEM"
+    driver = SimpleNamespace(
+        year=2050,
+        fuel_efficiencies=xr.DataArray(
+            [1], dims=["variables"], coords={"variables": [role]}
+        ),
+        find_iam_efficiency_change=lambda **kwargs: change,
+    )
+    dataset = {
+        "location": "EUR",
+        "exchanges": [
+            {
+                "name": "electricity, low voltage",
+                "unit": "kilowatt hour",
+                "type": "technosphere",
+                "amount": 54,
+            }
+        ],
+    }
+    HydrogenMixin._adjust_hydrogen_efficiency(driver, dataset, role)
+    assert dataset["exchanges"][0]["amount"] == pytest.approx(expected)
+    assert dataset["exchanges"][0]["amount"] == pytest.approx(
+        dataset["log parameters"]["new energy input for hydrogen production"]
+    )

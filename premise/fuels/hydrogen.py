@@ -148,6 +148,9 @@ class HydrogenMixin:
                 location=dataset["location"],
             )
             new_energy_use = max(scaling_factor * initial_energy_use, floor_value)
+            scaling_factor = (
+                new_energy_use / initial_energy_use if initial_energy_use else 1
+            )
         elif "electrolysis" in technology:
             new_energy_use, min_energy_use, max_energy_use = (
                 adjust_electrolysis_electricity_requirement(self.year, efficiency)

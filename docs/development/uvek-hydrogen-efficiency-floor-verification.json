@@ -1,0 +1,151 @@
+{
+  "date": "2026-11-15",
+  "problem": "IAM efficiency branch logged a minimum-capped energy value but applied the original uncapped ratio.",
+  "before_fix_stage_trace": [
+    {
+      "stage": "before_efficiency",
+      "electricity_kWh": 53.99999999999997,
+      "production_amounts": [
+        1.0
+      ]
+    },
+    {
+      "stage": "after_efficiency",
+      "electricity_kWh": 45.12328767123287,
+      "production_amounts": [
+        1.0
+      ]
+    },
+    {
+      "stage": "before_Fuels_relink",
+      "electricity_kWh": 45.12328767123287,
+      "production_amounts": [
+        1.0
+      ]
+    },
+    {
+      "stage": "after_Fuels_relink",
+      "electricity_kWh": 45.12328767123287,
+      "production_amounts": [
+        1.0
+      ]
+    },
+    {
+      "stage": "final_validated_inventory",
+      "electricity_kWh": 45.12328767123287,
+      "production_amounts": [
+        1.0
+      ]
+    }
+  ],
+  "after_fix_native_PEM_energy": [
+    {
+      "region": "CAZ",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "CHA",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "EUR",
+      "actual_kWh": 45.29999999999999,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "IND",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "JPN",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "LAM",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "MEA",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "NEU",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "OAS",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "REF",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "SSA",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    },
+    {
+      "region": "USA",
+      "actual_kWh": 45.3,
+      "logged_target_kWh": 45.3
+    }
+  ],
+  "actual_matches_logged_target_all12regions": true,
+  "regressions": {
+    "passed": 233,
+    "capped_and_uncapped_cases_checked": true,
+    "before_fix_capped_case": "failed",
+    "before_fix_uncapped_case": "passed",
+    "black": "passed",
+    "ruff": "passed",
+    "documentation_reference_check": "passed"
+  },
+  "native_source_metadata_unchanged": true,
+  "exhaustive_graph_validation_errors": 0,
+  "signed_LCI": {
+    "complete_transformed_activities": 13122,
+    "transient_matrix_filesystem": "memory",
+    "signed_LCI_solves": 6,
+    "checks": [
+      {
+        "name": "market for hydrogen, gaseous, low pressure",
+        "location": "EUR",
+        "functional_unit": "1kgH2",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "market for hydrogen, gaseous, low pressure",
+        "location": "World",
+        "functional_unit": "1kgH2",
+        "signed_LCIs_finite_and_reverse": true
+      },
+      {
+        "name": "Hydrogen production, gaseous, 30 bar, from PEM electrolysis, from grid electricity",
+        "location": "EUR",
+        "functional_unit": "1kgH2",
+        "signed_LCIs_finite_and_reverse": true
+      }
+    ],
+    "brightway_database_writes": 0,
+    "registered_activities": 0,
+    "registry_unchanged": true,
+    "score_or_original_native_equivalence_claimed": false,
+    "biosphere_compartment_convention": "Explicit unspecified subcompartment and root compartment are canonicalized identically;name andunit stay exact."
+  },
+  "runtime_change": "Recompute the applied factor from the existing minimum-capped energy target. No new equation,background-specific branch or inventory is introduced.",
+  "new_migration_rules": 0,
+  "new_helper_inventories": 0,
+  "public_scope_gate_bypassed_for_diagnostic_only": true,
+  "export_performed": false,
+  "full_fuels_qualification_claimed": false
+}
