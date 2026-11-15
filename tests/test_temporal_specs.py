@@ -2192,9 +2192,11 @@ def test_platform_selector_geography_and_offshore_boundary(version, location, ki
     registry = TemporalRegistry.from_directory(DATA_DIR / "trails" / "temporal")
     supplier = {"name": "offshore platform, petroleum", "unit": "unit"}
     caller = {
-        "name": "petroleum and gas production, off-shore"
-        if version == "3.8"
-        else "petroleum and gas production, offshore",
+        "name": (
+            "petroleum and gas production, off-shore"
+            if version == "3.8"
+            else "petroleum and gas production, offshore"
+        ),
         "location": location,
     }
     result = registry.resolve(
