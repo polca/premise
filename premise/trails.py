@@ -38,7 +38,13 @@ from .iam.scenario_downloader import (
 )
 from .core.filesystem_constants import DATA_DIR
 from .core.utils import load_database, dump_database
-from .lifecycle_timing import load_lifecycle_timing_rows, retirement_profile
+from .lifecycle_timing import (
+    construction_age_profile,
+    load_lifecycle_timing_rows,
+    load_retirement_asset_links,
+    remaining_life_profile,
+    retirement_profile,
+)
 from .temporal_legacy import compile_legacy_rows
 from .temporal_specs import TemporalRegistry, profile_to_temporal_parameters
 
@@ -167,6 +173,9 @@ class TrailsDataPackage:
             self.dataset_lifetimes,
         ) = self._load_temporal_specs(legacy_temporal_rows)
         self.lifecycle_timing = load_lifecycle_timing_rows(legacy_temporal_rows)
+        self.retirement_asset_links = load_retirement_asset_links(
+            TEMPORAL_REGISTRY_DIR / "retirement_links.yaml"
+        )
         self.temporal_classifications = self._load_temporal_classifications_from_rows(
             legacy_temporal_rows
         )
@@ -954,7 +963,9 @@ class TrailsDataPackage:
                     "path": relpath,
                     "profile": "tabular-data-resource",
                     "encoding": "utf-8",
-                    "dialect": {"delimiter": ";"},
+                    "dialect": {
+                        "delimiter": "," if file.name == "end_of_life_timing.csv" else ";"
+                    },
                 }
             )
 
@@ -1388,6 +1399,7 @@ class TrailsDataPackage:
         long_term_biosphere = getattr(self, "long_term_biosphere_params", [])
         dataset_lifetimes = getattr(self, "dataset_lifetimes", {})
         lifecycle_timing = getattr(self, "lifecycle_timing", {})
+        retirement_asset_links = getattr(self, "retirement_asset_links", {})
         temporal_registry = getattr(self, "temporal_registry", None)
         outdir = Path.cwd() / "trails_temp"
         outfile = outdir / "temporal_distribution_faulty_exchanges.csv"
@@ -1403,6 +1415,84 @@ class TrailsDataPackage:
         long_term_matches = []
         retirement_assignments = []
         selector_assignments = []
+
+        def _construction_retirement(key, caller, scenario, caller_lifetime):
+            """Use only the construction of the asset being retired.
+
+            Return explicit provenance for unresolved cases, without clipping
+            old assets, borrowing unrelated factory ages or changing amounts.
+            """
+            asset_keys = retirement_asset_links.get(key)
+            if not asset_keys:
+                raise ValueError("No reviewed construction-to-retirement asset link.")
+            candidates = [
+                exchange
+                for exchange in caller.get("exchanges", [])
+                if exchange.get("type") == "technosphere"
+                and exchange.get("amount", 0) != 0
+                and (
+                    (exchange.get("name") or "").strip(),
+                    (
+                        exchange.get("product")
+                        or exchange.get("reference product")
+                        or ""
+                    ).strip(),
+                )
+                in asset_keys
+            ]
+            if len(candidates) != 1:
+                raise ValueError(
+                    "The caller must consume exactly one matching construction exchange."
+                )
+            asset = candidates[0]
+            asset_key = (
+                asset["name"].strip(),
+                (asset.get("product") or asset.get("reference product")).strip(),
+            )
+            params = stock_assets.get(asset_key)
+            evidence = "legacy construction-timing assumption"
+            profile_id = ""
+            if temporal_registry is not None and temporal_registry.assignments:
+                record = {**asset, "reference product": asset_key[1]}
+                resolution = temporal_registry.resolve(
+                    record,
+                    target="supplier",
+                    context={
+                        "ecoinvent_version": getattr(self, "source_version", None),
+                        "year": scenario.get("year"),
+                        "geography": record.get("location"),
+                    },
+                    caller_record=caller,
+                )
+                if resolution is not None:
+                    profile = temporal_registry.profiles[resolution.profile_id]
+                    params = profile_to_temporal_parameters(profile)
+                    profile_id = resolution.profile_id
+                    evidence = profile.get("evidence", {}).get("status", "unspecified")
+            if params is None:
+                raise ValueError(
+                    "The matching asset has no construction timing profile."
+                )
+            age_offsets, age_weights = construction_age_profile(params)
+            lifetime = params.get("lifetime")
+            if lifetime is None:
+                lifetime = caller_lifetime
+            offsets, weights = remaining_life_profile(
+                lifetime, age_offsets, age_weights
+            )
+            return (
+                offsets,
+                weights,
+                {
+                    "fixed_lifetime": lifetime,
+                    "construction_dataset_name": asset_key[0],
+                    "construction_reference_product": asset_key[1],
+                    "construction_profile_id": profile_id,
+                    "construction_evidence": evidence,
+                    "construction_offsets": json.dumps(age_offsets),
+                    "construction_weights": json.dumps(age_weights),
+                },
+            )
 
         def _scenario_label(value):
             return " | ".join(
@@ -1801,12 +1891,45 @@ class TrailsDataPackage:
                             continue
 
                         if is_end_of_life:
-                            try:
-                                offsets, weights = retirement_profile(
-                                    reference,
-                                    ds_lifetime,
-                                    caller_timing,
+                            basis = (
+                                "stationary_fleet_fallback"
+                                if reference == "existing_fleet"
+                                else (
+                                    "new_asset_fixed_lifetime"
+                                    if reference == "new_asset"
+                                    else "current_event"
                                 )
+                            )
+                            construction = {}
+                            fallback_reason = ""
+                            try:
+                                if (
+                                    reference == "existing_fleet"
+                                    and (caller_timing or {})
+                                    .get("assumption", "")
+                                    .startswith("Explicit stationary-stock proxy")
+                                    and not (
+                                        caller_profile is not None
+                                        and caller_profile["quantity"] == "fleet_age"
+                                    )
+                                ):
+                                    try:
+                                        offsets, weights, construction = (
+                                            _construction_retirement(
+                                                key, ds, scenario, ds_lifetime
+                                            )
+                                        )
+                                        basis = "matched_construction_profile"
+                                    except (ValueError, TypeError) as error:
+                                        fallback_reason = str(error)
+                                elif reference == "existing_fleet":
+                                    basis = "explicit_fleet_age_profile"
+                                if basis != "matched_construction_profile":
+                                    offsets, weights = retirement_profile(
+                                        reference,
+                                        ds_lifetime,
+                                        caller_timing,
+                                    )
                             except ValueError as error:
                                 _record_fault(ds, e, str(error))
                                 continue
@@ -1822,14 +1945,40 @@ class TrailsDataPackage:
                                     "exchange_name": sup_name,
                                     "exchange_product": sup_ref,
                                     "timing_reference": reference,
-                                    "fixed_lifetime": (caller_timing or {}).get(
-                                        "lifetime", ds_lifetime
+                                    "fixed_lifetime": construction.get(
+                                        "fixed_lifetime",
+                                        (caller_timing or {}).get(
+                                            "lifetime", ds_lifetime
+                                        ),
                                     ),
-                                    "timing_assumption": (caller_timing or {}).get(
-                                        "assumption", ""
+                                    "timing_assumption": (
+                                        "Fixed-life retirement derived from the matching construction-age weights. "
+                                        "The construction evidence and lifetime remain assumptions, not an IAM cohort model."
+                                        if construction
+                                        else (caller_timing or {}).get("assumption", "")
                                     ),
                                     "temporal_offsets": json.dumps(offsets),
                                     "temporal_weights": json.dumps(weights),
+                                    "retirement_basis": basis,
+                                    "construction_dataset_name": construction.get(
+                                        "construction_dataset_name", ""
+                                    ),
+                                    "construction_reference_product": construction.get(
+                                        "construction_reference_product", ""
+                                    ),
+                                    "construction_profile_id": construction.get(
+                                        "construction_profile_id", ""
+                                    ),
+                                    "construction_evidence": construction.get(
+                                        "construction_evidence", ""
+                                    ),
+                                    "construction_offsets": construction.get(
+                                        "construction_offsets", ""
+                                    ),
+                                    "construction_weights": construction.get(
+                                        "construction_weights", ""
+                                    ),
+                                    "fallback_reason": fallback_reason,
                                 }
                             )
                             continue

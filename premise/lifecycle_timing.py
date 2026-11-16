@@ -9,12 +9,98 @@ import json
 import math
 from collections import defaultdict
 
+import yaml
+
 TIMING_REFERENCES = {
     "new_asset",
     "existing_fleet",
     "current_output",
     "lifecycle_event",
 }
+
+
+def load_retirement_asset_links(path):
+    """Read reviewed links from retirement suppliers to the assets they retire.
+
+    These are asset identities, not fuzzy name matches. Geographic variants of
+    the same asset are allowed, but the calling service must actually consume
+    one of the declared assets.
+    """
+    with open(path, encoding="utf-8") as stream:
+        document = yaml.safe_load(stream)
+    if not isinstance(document, dict) or document.get("schema_version") != 1:
+        raise ValueError("Retirement links require schema_version: 1.")
+    links = {}
+    for row in document.get("retirement_asset_links", []):
+        supplier = row["retirement_supplier"]
+        key = (supplier["name"], supplier["reference_product"])
+        assets = row["construction_suppliers"]
+        values = tuple((asset["name"], asset["reference_product"]) for asset in assets)
+        if not values or key in links or any(not all(value) for value in values):
+            raise ValueError(f"Invalid or duplicate retirement asset link: {key}")
+        links[key] = values
+    return links
+
+
+def construction_age_profile(parameters):
+    """Annualise bounded construction timing without changing its shape.
+
+    Uniform and triangular profiles use the same integer support and tent
+    weights as TRAILS. Explicit profiles preserve their supplied weights.
+    Unsupported or unbounded distributions are rejected, not approximated by
+    an unrelated fleet. This helper does not import TRAILS.
+    """
+    distribution = parameters.get("temporal_distribution")
+    if distribution == 6:
+        offsets = parameters.get("temporal_offsets")
+        weights = parameters.get("temporal_weights")
+        if not offsets or weights is None or len(offsets) != len(weights):
+            raise ValueError("Construction offsets and weights must be aligned.")
+        offsets = [float(value) for value in offsets]
+        weights = [float(value) for value in weights]
+    elif distribution in {1, 4, 5}:
+        minimum = parameters.get("temporal_min")
+        maximum = parameters.get("temporal_max")
+        if distribution == 1 and minimum is None and maximum is None:
+            minimum = maximum = parameters.get("temporal_loc")
+        if minimum is None or maximum is None:
+            raise ValueError("Construction timing requires finite explicit bounds.")
+        if not all(math.isfinite(float(v)) for v in [minimum, maximum]):
+            raise ValueError("Construction timing requires finite explicit bounds.")
+        offsets = list(range(int(minimum), int(maximum) + 1))
+        if not offsets:
+            raise ValueError("Construction timing has empty annual support.")
+        if distribution == 4:
+            weights = [1.0] * len(offsets)
+        elif distribution == 5:
+            loc = float(parameters.get("temporal_loc") or 0)
+            distances = [abs(value - loc) for value in offsets]
+            maximum_distance = max(distances)
+            weights = (
+                [maximum_distance - distance for distance in distances]
+                if maximum_distance
+                else [1.0] * len(offsets)
+            )
+        else:
+            loc = parameters.get("temporal_loc")
+            target = round(float(loc)) if loc is not None else 0
+            nearest = min(offsets, key=lambda value: abs(value - target))
+            weights = [float(value == nearest) for value in offsets]
+    else:
+        raise ValueError("Construction timing has no supported bounded age profile.")
+    if any(not math.isfinite(value) or value > 0 for value in offsets):
+        raise ValueError("Fleet construction offsets must be finite and non-positive.")
+    if any(not math.isfinite(value) or value < 0 for value in weights):
+        raise ValueError("Construction weights must be finite and nonnegative.")
+    total = sum(weights)
+    if not math.isfinite(total) or total <= 0:
+        raise ValueError("Construction weights must have positive finite total mass.")
+    positive = [
+        (offset, weight / total)
+        for offset, weight in zip(offsets, weights)
+        if weight > 0
+    ]
+    return [v[0] for v in positive], [v[1] for v in positive]
 
 
 def remaining_life_profile(lifetime, age_offsets, age_weights):

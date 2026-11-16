@@ -1,0 +1,35 @@
+schema_version: 1
+# Only link the retired asset itself. Unrelated factory capital is excluded.
+# These links preserve the existing construction evidence, including explicitly
+# assumed legacy profiles. A link does not promote that evidence to empirical.
+retirement_asset_links:
+- retirement_supplier:
+    name: treatment of direct air capture system, solvent-based, 1MtCO2
+    reference_product: direct air capture system
+  construction_suppliers:
+  - name: direct air capture system, solvent-based, 1MtCO2
+    reference_product: direct air capture system
+- retirement_supplier:
+    name: treatment of direct air capture system, sorbent-based, 100ktCO2
+    reference_product: direct air capture system
+  construction_suppliers:
+  - name: direct air capture system, sorbent-based, 100ktCO2
+    reference_product: direct air capture system
+- retirement_supplier:
+    name: dismantling, BIGCC power plant 450MW
+    reference_product: dismantling, BIGCC power plant 450MW
+  construction_suppliers:
+  - name: construction, BIGCC power plant 450MW
+    reference_product: construction, BIGCC power plant 450MW
+- retirement_supplier:
+    name: EPR decommissioning
+    reference_product: EPR decommissioning
+  construction_suppliers:
+  - name: EPR construction
+    reference_product: EPR construction
+- retirement_supplier:
+    name: installation disassembly, for LiS battery
+    reference_product: disassembled installation
+  construction_suppliers:
+  - name: installation production, for LiS battery
+    reference_product: installation
