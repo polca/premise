@@ -6,6 +6,7 @@ import pytest
 
 import premise
 import premise.new_database as new_database_module
+import premise.validation.validation_framework as framework_module
 from premise.inventory_store import CompactInventoryStore, InventoryStore
 from premise.new_database import NewDatabase
 from premise.validation_framework import (
@@ -122,6 +123,49 @@ def test_baseline_snapshot_combines_fingerprints_and_cycle_audit(valid_inventory
 
     assert dict(fingerprints) == dict(inventory_activity_fingerprints(store))
     assert cycles == inventory_cycle_signatures(store)
+
+
+@pytest.mark.parametrize("checkpointed", [False, True])
+def test_graph_validation_scans_once_and_cached_certification_does_not_rescan(
+    valid_inventory, tmp_path, monkeypatch, checkpointed
+):
+    store = CompactInventoryStore(valid_inventory)
+    if checkpointed:
+        store = InventoryStore.open(
+            store.checkpoint(tmp_path / "source.inventory-store")
+        )
+    scans = {"metadata": 0, "storage": 0}
+
+    def counted(iterator, name):
+        def iterate(inventory):
+            scans[name] += 1
+            yield from iterator(inventory)
+
+        return iterate
+
+    for name, iterator_name in (
+        ("metadata", "_iter_activity_metadata"),
+        ("storage", "_iter_storage"),
+    ):
+        monkeypatch.setattr(
+            framework_module,
+            iterator_name,
+            counted(getattr(framework_module, iterator_name), name),
+        )
+
+    def no_materialization(*args, **kwargs):
+        raise AssertionError("Graph validation must use storage views")
+
+    monkeypatch.setattr(store, "materialize", no_materialization)
+    validator = InventoryGraphValidator(store)
+    first = validator.certify()
+    assert first.report.valid
+    assert scans == {"metadata": 1, "storage": 1}
+
+    second = validator.certify()
+    assert second.cache_key == first.cache_key
+    assert second.report.phase_results[0].reused
+    assert scans == {"metadata": 1, "storage": 1}
 
 
 @pytest.mark.parametrize(

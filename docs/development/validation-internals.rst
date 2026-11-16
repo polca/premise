@@ -34,6 +34,28 @@ Validation is read-only and cannot be disabled through the public API.
 Unsuppressed errors stop an update before checkpointing or export; warnings and
 narrow, versioned suppressions remain visible in the immutable report.
 
+Exhaustive graph validation stages
+----------------------------------
+
+``InventoryGraphValidator.validate()`` coordinates the exhaustive checks in
+``premise/validation/validation_framework.py``:
+
+1. Index activity metadata once. The private index holds the original read-only
+   payload views and provider lookup tables, without copying the inventory.
+2. Resolve the declared targets and cardinality. Unaffected activities remain
+   available as suppliers and, when requested, enter the scope fingerprint check.
+3. Traverse exchange storage once. Activity and exchange checks share parsed
+   fields; provider checks resolve explicit links before semantic fallbacks.
+   Market-share sign checks wait for all reference-production rows.
+4. Check the accumulated supplier vectors, scope, coverage, algorithm and cycles.
+5. Apply suppressions and construct the immutable report in the existing rule
+   order. A non-applicable intent returns its sector phase without exchange checks.
+
+Certificate lookup remains outside this traversal. Reusing a certificate for the
+same generation and validation inputs performs no graph scan. Refactoring these
+stages preserves the ruleset version and certificate identity; a change to the
+meaning of a check requires the corresponding ruleset update.
+
 Imported rechargeable-battery classifications
 ---------------------------------------------
 

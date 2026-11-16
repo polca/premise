@@ -1087,6 +1087,17 @@ def load_validation_suppressions() -> tuple[ValidationSuppression, ...]:
     return _load_suppressions(DATA_DIR / "utils" / "validation" / "suppressions.yaml")
 
 
+@dataclass(frozen=True, slots=True)
+class _ActivityIndex:
+    """Provider lookup tables built once from immutable activity metadata views."""
+
+    keys_by_id: dict[int, tuple[Any, Any, Any]]
+    activity_payloads: dict[int, Mapping[str, Any]]
+    ids_by_key: dict[tuple[Any, Any, Any], list[int]]
+    ids_by_name_location: dict[tuple[Any, Any], list[int]]
+    ids_by_identifier: dict[tuple[Any, Any], int]
+
+
 class InventoryGraphValidator:
     """Single-pass, read-only validator for an inventory-store generation."""
 
@@ -1193,10 +1204,54 @@ class InventoryGraphValidator:
         return certificate
 
     def validate(self) -> ValidationReport:
+        """Validate metadata, selected exchanges and graph contracts without inventory mutation."""
+
         started = time.perf_counter()
         rules = {
             rule_id: _Accumulator(rule_id, severity) for rule_id, severity in RULES
         }
+
+        index = self._index_activities()
+        intent = self.intent
+        if intent is not None and intent.applicability == "not_applicable":
+            results = tuple(
+                ValidationRuleResult(
+                    rule_id=rule_id,
+                    severity=severity,
+                    applicability="not_applicable",
+                    checked_object_count=0,
+                    expected=intent.applicability_reason,
+                    actual="not applicable",
+                )
+                for rule_id, severity in RULES
+            )
+            return self._report(
+                results, f"sector:{intent.transformation}:graph", "sector", started
+            )
+
+        target_ids, resolved_target_ids, scope_fingerprint_keys = self._resolve_targets(
+            index, rules["GRAPH.RULE_TARGET_CARDINALITY"]
+        )
+        adjacency, fingerprints, actual_vectors = self._check_inventory(
+            index, rules, target_ids, scope_fingerprint_keys
+        )
+        self._check_graph(
+            rules,
+            index.keys_by_id,
+            resolved_target_ids,
+            adjacency,
+            fingerprints,
+            actual_vectors,
+        )
+        results = tuple(
+            self._apply_suppressions(rule.result()) for rule in rules.values()
+        )
+
+        return self._report(results, "graph:full", "graph", started)
+
+    def _index_activities(self) -> _ActivityIndex:
+        """Index metadata once, retaining read-only payload views for provider checks."""
+
         keys_by_id: dict[int, tuple[Any, Any, Any]] = {}
         activity_payloads: dict[int, Mapping[str, Any]] = {}
         ids_by_key: dict[tuple[Any, Any, Any], list[int]] = defaultdict(list)
@@ -1214,34 +1269,24 @@ class InventoryGraphValidator:
             if payload.get("database") is not None and payload.get("code") is not None:
                 ids_by_identifier[(payload["database"], payload["code"])] = activity_id
 
-        intent = self.intent
-        if intent is not None and intent.applicability == "not_applicable":
-            results = tuple(
-                ValidationRuleResult(
-                    rule_id=rule_id,
-                    severity=severity,
-                    applicability="not_applicable",
-                    checked_object_count=0,
-                    expected=intent.applicability_reason,
-                    actual="not applicable",
-                )
-                for rule_id, severity in RULES
-            )
-            phase = ValidationPhaseResult(
-                phase_id=f"sector:{intent.transformation}:graph",
-                kind="sector",
-                rule_results=results,
-                elapsed_seconds=time.perf_counter() - started,
-            )
-            return ValidationReport(
-                scenario_identity=self.scenario_identity,
-                store_generation=self.generation,
-                ruleset_version=VALIDATION_RULESET_VERSION,
-                certificate_key=self.cache_key,
-                rule_results=results,
-                phase_results=(phase,),
-            )
+        return _ActivityIndex(
+            keys_by_id=keys_by_id,
+            activity_payloads=activity_payloads,
+            ids_by_key=ids_by_key,
+            ids_by_name_location=ids_by_name_location,
+            ids_by_identifier=ids_by_identifier,
+        )
 
+    def _resolve_targets(self, index: _ActivityIndex, cardinality: _Accumulator):
+        """Return checked IDs, resolved declarations, and unaffected fingerprint keys.
+
+        Untargeted validation still checks the whole inventory; declared targets
+        determine cardinality and coverage independently of that traversal.
+        """
+
+        intent = self.intent
+        keys_by_id = index.keys_by_id
+        ids_by_key = index.ids_by_key
         target_ids = set(keys_by_id)
         resolved_target_ids: set[int] = set(keys_by_id) if intent is None else set()
         if intent is not None and (
@@ -1256,7 +1301,6 @@ class InventoryGraphValidator:
             if intent.targeted:
                 target_ids = set(resolved_target_ids)
 
-        cardinality = rules["GRAPH.RULE_TARGET_CARDINALITY"]
         if intent is None:
             cardinality.applicability = "not_applicable"
         else:
@@ -1281,9 +1325,6 @@ class InventoryGraphValidator:
                     expected=expected_count,
                     actual=found_target_count,
                 )
-
-        adjacency: dict[int, set[int]] = defaultdict(set)
-        fingerprint_rows: dict[tuple[Any, Any, Any], list[str]] = defaultdict(list)
         scope_targeted_keys = set(intent.affected_activity_keys) if intent else set()
         if intent is not None:
             scope_targeted_keys.update(
@@ -1296,14 +1337,27 @@ class InventoryGraphValidator:
             if intent is not None and intent.baseline_fingerprints
             else set()
         )
+
+        return target_ids, resolved_target_ids, scope_fingerprint_keys
+
+    def _check_inventory(
+        self, index: _ActivityIndex, rules, target_ids, scope_fingerprint_keys
+    ):
+        """Collect scope fingerprints, edges and supplier vectors in one traversal.
+
+        Only selected activities undergo exchange checks. Every activity remains
+        available through the metadata index when resolving their providers.
+        """
+
+        keys_by_id = index.keys_by_id
+        adjacency: dict[int, set[int]] = defaultdict(set)
+        fingerprint_rows: dict[tuple[Any, Any, Any], list[str]] = defaultdict(list)
         actual_vectors: dict[
             tuple[Any, Any, Any], dict[tuple[Any, Any, Any], float]
         ] = {}
 
         for activity_id, payload, exchanges in _iter_storage(self.store):
             key = keys_by_id[activity_id]
-            activity_code = payload.get("code")
-            activity_unit = payload.get("unit")
             if key in scope_fingerprint_keys:
                 fingerprint_rows[key].append(
                     _stored_activity_fingerprint(
@@ -1312,386 +1366,448 @@ class InventoryGraphValidator:
                 )
             if activity_id not in target_ids:
                 continue
+            actual_vectors[key] = self._check_activity(
+                index, rules, activity_id, payload, exchanges, adjacency
+            )
+        fingerprints = {
+            key: values[0] if len(values) == 1 else _stable_hash(sorted(values))
+            for key, values in fingerprint_rows.items()
+        }
 
-            required = rules["GRAPH.REQUIRED_ACTIVITY_FIELDS"]
-            required.checked += 1
-            missing = [
+        return adjacency, fingerprints, actual_vectors
+
+    def _check_activity(
+        self, index: _ActivityIndex, rules, activity_id, payload, exchanges, adjacency
+    ):
+        """Check one selected activity and return its supplier vector.
+
+        Market-share sign checks wait until all production rows are known, so
+        negative reference products are supported regardless of exchange order.
+        Field checks stay in this loop to reuse parsed values without creating
+        a per-exchange context object.
+        """
+
+        intent = self.intent
+        key = index.keys_by_id[activity_id]
+        activity_code = payload.get("code")
+        activity_unit = payload.get("unit")
+        required = rules["GRAPH.REQUIRED_ACTIVITY_FIELDS"]
+        required.checked += 1
+        missing = [
+            field_name
+            for field_name in self.required_activity_fields
+            if not payload.get(field_name)
+        ]
+        if missing:
+            required.issue(
+                "Activity is missing required fields.",
+                activity_id=activity_id,
+                activity_key=key,
+                activity_code=payload.get("code"),
+                expected=self.required_activity_fields,
+                actual=missing,
+            )
+
+        reference_productions = 0
+        negative_reference_product = False
+        activity_name_lower = str(key[0] or "").lower()
+        activity_product_lower = str(key[1] or "").lower()
+        waste_tokens = (
+            "waste",
+            "treatment",
+            "scrap",
+            "residue",
+            "sewage",
+            "sludge",
+            "tailing",
+        )
+        is_share_market = (
+            activity_name_lower.startswith("market for ")
+            or activity_name_lower.startswith("market group for ")
+        ) and not any(
+            token in activity_name_lower or token in activity_product_lower
+            for token in waste_tokens
+        )
+        market_candidates = []
+        seen_supplier_rows: dict[
+            tuple[Any, ...], list[tuple[int, Mapping[str, Any]]]
+        ] = {}
+        vector: dict[tuple[Any, Any, Any], float] = defaultdict(float)
+
+        for exchange_id, exchange in exchanges:
+            exchange_type = exchange.get("type")
+            exchange_name = exchange.get("name")
+            exchange_unit = exchange.get("unit")
+            exchange_amount = exchange.get("amount")
+            exchange_product = exchange.get(
+                "product", exchange.get("reference product")
+            )
+            exchange_location = exchange.get("location")
+            uncertainty_type = exchange.get("uncertainty type", 0)
+            required_exchange = rules["GRAPH.REQUIRED_EXCHANGE_FIELDS"]
+            required_exchange.checked += 1
+            common_values = {
+                "name": exchange_name,
+                "unit": exchange_unit,
+                "type": exchange_type,
+                "amount": exchange_amount,
+                "product": exchange_product,
+                "location": exchange_location,
+            }
+            exchange_required_fields = self.required_exchange_fields
+            if exchange_type in {"production", "technosphere"}:
+                exchange_required_fields += ("product", "location")
+            elif exchange_type == "biosphere":
+                exchange_required_fields += ("categories",)
+            missing_exchange_fields = [
                 field_name
-                for field_name in self.required_activity_fields
-                if not payload.get(field_name)
+                for field_name in exchange_required_fields
+                if _missing_required(
+                    exchange.get(field_name)
+                    if field_name == "categories"
+                    else common_values[field_name]
+                )
             ]
-            if missing:
-                required.issue(
-                    "Activity is missing required fields.",
+            if missing_exchange_fields:
+                required_exchange.issue(
+                    "Exchange is missing required fields.",
                     activity_id=activity_id,
                     activity_key=key,
-                    activity_code=payload.get("code"),
-                    expected=self.required_activity_fields,
-                    actual=missing,
+                    activity_code=activity_code,
+                    exchange_id=exchange_id,
+                    expected=tuple(exchange_required_fields),
+                    actual=missing_exchange_fields,
+                )
+            exchange_type_rule = rules["GRAPH.EXCHANGE_TYPE"]
+            exchange_type_rule.checked += 1
+            if exchange_type not in self.valid_exchange_types:
+                exchange_type_rule.issue(
+                    "Exchange has an invalid or missing type.",
+                    activity_id=activity_id,
+                    activity_key=key,
+                    activity_code=activity_code,
+                    exchange_id=exchange_id,
+                    expected=tuple(sorted(self.valid_exchange_types)),
+                    actual=exchange_type,
                 )
 
-            reference_productions = 0
-            negative_reference_product = False
-            activity_name_lower = str(key[0] or "").lower()
-            activity_product_lower = str(key[1] or "").lower()
-            waste_tokens = (
-                "waste",
-                "treatment",
-                "scrap",
-                "residue",
-                "sewage",
-                "sludge",
-                "tailing",
-            )
-            is_share_market = (
-                activity_name_lower.startswith("market for ")
-                or activity_name_lower.startswith("market group for ")
-            ) and not any(
-                token in activity_name_lower or token in activity_product_lower
-                for token in waste_tokens
-            )
-            market_candidates = []
-            seen_supplier_rows: dict[
-                tuple[Any, ...], list[tuple[int, Mapping[str, Any]]]
-            ] = {}
-            vector: dict[tuple[Any, Any, Any], float] = defaultdict(float)
-            for exchange_id, exchange in exchanges:
-                exchange_type = exchange.get("type")
-                exchange_name = exchange.get("name")
-                exchange_unit = exchange.get("unit")
-                exchange_amount = exchange.get("amount")
-                exchange_product = exchange.get(
-                    "product", exchange.get("reference product")
+            finite_rule = rules["GRAPH.FINITE_NUMERIC"]
+            finite_rule.checked += 1
+            if not _finite(exchange_amount):
+                finite_rule.issue(
+                    "Exchange amount must be a finite numeric value.",
+                    activity_id=activity_id,
+                    activity_key=key,
+                    activity_code=activity_code,
+                    exchange_id=exchange_id,
+                    expected="finite numeric amount",
+                    actual=exchange_amount,
                 )
-                exchange_location = exchange.get("location")
-                uncertainty_type = exchange.get("uncertainty type", 0)
-                required_exchange = rules["GRAPH.REQUIRED_EXCHANGE_FIELDS"]
-                required_exchange.checked += 1
-                common_values = {
-                    "name": exchange_name,
-                    "unit": exchange_unit,
-                    "type": exchange_type,
-                    "amount": exchange_amount,
-                    "product": exchange_product,
-                    "location": exchange_location,
-                }
-                exchange_required_fields = self.required_exchange_fields
-                if exchange_type in {"production", "technosphere"}:
-                    exchange_required_fields += ("product", "location")
-                elif exchange_type == "biosphere":
-                    exchange_required_fields += ("categories",)
-                missing_exchange_fields = [
-                    field_name
-                    for field_name in exchange_required_fields
-                    if _missing_required(
-                        exchange.get(field_name)
-                        if field_name == "categories"
-                        else common_values[field_name]
-                    )
-                ]
-                if missing_exchange_fields:
-                    required_exchange.issue(
-                        "Exchange is missing required fields.",
-                        activity_id=activity_id,
-                        activity_key=key,
-                        activity_code=activity_code,
-                        exchange_id=exchange_id,
-                        expected=tuple(exchange_required_fields),
-                        actual=missing_exchange_fields,
-                    )
-                exchange_type_rule = rules["GRAPH.EXCHANGE_TYPE"]
-                exchange_type_rule.checked += 1
-                if exchange_type not in self.valid_exchange_types:
-                    exchange_type_rule.issue(
-                        "Exchange has an invalid or missing type.",
-                        activity_id=activity_id,
-                        activity_key=key,
-                        activity_code=activity_code,
-                        exchange_id=exchange_id,
-                        expected=tuple(sorted(self.valid_exchange_types)),
-                        actual=exchange_type,
-                    )
 
-                finite_rule = rules["GRAPH.FINITE_NUMERIC"]
-                finite_rule.checked += 1
-                if not _finite(exchange_amount):
-                    finite_rule.issue(
-                        "Exchange amount must be a finite numeric value.",
-                        activity_id=activity_id,
-                        activity_key=key,
-                        activity_code=activity_code,
-                        exchange_id=exchange_id,
-                        expected="finite numeric amount",
-                        actual=exchange_amount,
-                    )
+            self._check_uncertainty(
+                rules["GRAPH.UNCERTAINTY"],
+                activity_id,
+                key,
+                exchange_id,
+                exchange,
+                uncertainty_type,
+                exchange_amount,
+                activity_code,
+            )
+            if exchange_type == "production":
+                production = rules["GRAPH.PRODUCTION_REFERENCE"]
+                production.checked += 1
+                exchange_key = (
+                    exchange_name if exchange_name is not None else key[0],
+                    exchange_product if exchange_product is not None else key[1],
+                    exchange_location if exchange_location is not None else key[2],
+                )
+                if (
+                    exchange_key == key
+                    and (exchange_unit if exchange_unit is not None else activity_unit)
+                    == activity_unit
+                ):
+                    reference_productions += 1
+                    if _finite(exchange_amount) and float(exchange_amount) < 0:
+                        negative_reference_product = True
+                    production_amount = rules["GRAPH.REFERENCE_PRODUCTION_AMOUNT"]
+                    production_amount.checked += 1
+                    amount = exchange_amount
+                    if not _finite(amount) or float(amount) == 0.0:
+                        production_amount.issue(
+                            "Reference-production amount must be finite and non-zero.",
+                            activity_id=activity_id,
+                            activity_key=key,
+                            activity_code=activity_code,
+                            exchange_id=exchange_id,
+                            expected="non-zero production amount",
+                            actual=amount,
+                        )
+                continue
 
-                self._check_uncertainty(
-                    rules["GRAPH.UNCERTAINTY"],
+            if exchange_type != "technosphere":
+                continue
+
+            provider_key = (
+                exchange_name,
+                exchange_product,
+                exchange_location,
+            )
+            if _finite(exchange_amount):
+                vector[provider_key] += float(exchange_amount)
+
+            resolved_id, exchange_input, has_input_identifier = self._resolve_provider(
+                index,
+                rules,
+                activity_id,
+                activity_code,
+                exchange_id,
+                exchange,
+                provider_key,
+                exchange_unit,
+            )
+            if resolved_id is not None:
+                adjacency[activity_id].add(resolved_id)
+            expected_entries = (
+                intent.intended_suppliers.get(key, ()) if intent is not None else ()
+            )
+            if expected_entries:
+                fallback = rules["GRAPH.GEOGRAPHIC_FALLBACK"]
+                fallback.checked += 1
+                self._check_geographic_fallback(
+                    fallback,
                     activity_id,
                     key,
                     payload,
                     exchange_id,
                     exchange,
-                    uncertainty_type,
-                    exchange_amount,
-                    activity_code,
+                    expected_entries,
                 )
 
-                if exchange_type == "production":
-                    production = rules["GRAPH.PRODUCTION_REFERENCE"]
-                    production.checked += 1
-                    exchange_key = (
-                        exchange_name if exchange_name is not None else key[0],
-                        exchange_product if exchange_product is not None else key[1],
-                        exchange_location if exchange_location is not None else key[2],
-                    )
-                    if (
-                        exchange_key == key
-                        and (
-                            exchange_unit
-                            if exchange_unit is not None
-                            else activity_unit
-                        )
-                        == activity_unit
-                    ):
-                        reference_productions += 1
-                        if _finite(exchange_amount) and float(exchange_amount) < 0:
-                            negative_reference_product = True
-                        production_amount = rules["GRAPH.REFERENCE_PRODUCTION_AMOUNT"]
-                        production_amount.checked += 1
-                        amount = exchange_amount
-                        if not _finite(amount) or float(amount) == 0.0:
-                            production_amount.issue(
-                                "Reference-production amount must be finite and non-zero.",
-                                activity_id=activity_id,
-                                activity_key=key,
-                                activity_code=activity_code,
-                                exchange_id=exchange_id,
-                                expected="non-zero production amount",
-                                actual=amount,
-                            )
-                    continue
-
-                if exchange_type != "technosphere":
-                    continue
-
-                provider_key = (
-                    exchange_name,
-                    exchange_product,
-                    exchange_location,
+            if (
+                is_share_market
+                and exchange_unit == activity_unit
+                and exchange_product == key[1]
+                and not any(
+                    token in str(exchange_name or "").lower() for token in waste_tokens
                 )
-                if _finite(exchange_amount):
-                    vector[provider_key] += float(exchange_amount)
-                provider_id = None
-                exchange_input = exchange.get("input")
-                has_input_identifier = (
-                    isinstance(exchange_input, (tuple, list))
-                    and len(exchange_input) == 2
-                )
-                if has_input_identifier:
-                    provider_id = ids_by_identifier.get(tuple(exchange_input))
-                matches = ids_by_key.get(provider_key, ())
+            ):
+                market_candidates.append((exchange_id, exchange_amount))
 
-                stale = rules["GRAPH.STALE_SUPPLIER"]
-                stale.checked += 1
-                if has_input_identifier and provider_id is None:
-                    stale.issue(
-                        "Technosphere exchange carries an input identifier absent from the inventory graph.",
-                        activity_id=activity_id,
-                        activity_key=key,
-                        activity_code=activity_code,
-                        exchange_id=exchange_id,
-                        expected="existing (database, code) provider",
-                        actual=tuple(exchange_input),
-                    )
-
-                exists = rules["GRAPH.PROVIDER_EXISTS"]
-                exists.checked += 1
-                if provider_id is None and not matches:
-                    exists.issue(
-                        "Technosphere exchange links to no activity in the inventory graph.",
-                        activity_id=activity_id,
-                        activity_key=key,
-                        activity_code=activity_code,
-                        exchange_id=exchange_id,
-                        expected="one provider",
-                        actual=0,
-                    )
-
-                ambiguous = rules["GRAPH.PROVIDER_AMBIGUOUS"]
-                ambiguous.checked += 1
-                if provider_id is None and len(matches) > 1:
-                    ambiguous.issue(
-                        "Technosphere exchange has multiple providers and no resolving input identifier.",
-                        activity_id=activity_id,
-                        activity_key=key,
-                        activity_code=activity_code,
-                        exchange_id=exchange_id,
-                        expected=1,
-                        actual=len(matches),
-                    )
-
-                agreement = rules["GRAPH.PROVIDER_PRODUCT_UNIT"]
-                agreement.checked += 1
-                resolved_id = (
-                    provider_id
-                    if provider_id is not None
-                    else (matches[0] if len(matches) == 1 else None)
-                )
-                if resolved_id is not None:
-                    provider = activity_payloads[resolved_id]
-                    expected_product = provider.get(
-                        "reference product", provider.get("product")
-                    )
-                    expected_unit = provider.get("unit")
-                    if (
-                        exchange_name != provider.get("name")
-                        or exchange_location != provider.get("location")
-                        or exchange_product != expected_product
-                        or exchange_unit != expected_unit
-                    ):
-                        agreement.issue(
-                            "Technosphere exchange product or unit disagrees with its provider.",
-                            activity_id=activity_id,
-                            activity_key=key,
-                            activity_code=activity_code,
-                            exchange_id=exchange_id,
-                            expected={
-                                "product": expected_product,
-                                "unit": expected_unit,
-                                "name": provider.get("name"),
-                                "location": provider.get("location"),
-                            },
-                            actual={
-                                "product": exchange_product,
-                                "unit": exchange_unit,
-                                "name": exchange_name,
-                                "location": exchange_location,
-                            },
-                        )
-                    adjacency[activity_id].add(resolved_id)
-                elif not matches:
-                    name_location_matches = ids_by_name_location.get(
-                        (exchange_name, exchange_location), ()
-                    )
-                    if name_location_matches:
-                        agreement.issue(
-                            "Technosphere provider name/location exists but product does not match.",
-                            activity_id=activity_id,
-                            activity_key=key,
-                            activity_code=activity_code,
-                            exchange_id=exchange_id,
-                            expected=sorted(
-                                {
-                                    activity_payloads[item].get("reference product")
-                                    for item in name_location_matches
-                                }
-                            ),
-                            actual=exchange_product,
-                        )
-
-                expected_entries = (
-                    intent.intended_suppliers.get(key, ()) if intent is not None else ()
-                )
-                if expected_entries:
-                    fallback = rules["GRAPH.GEOGRAPHIC_FALLBACK"]
-                    fallback.checked += 1
-                    self._check_geographic_fallback(
-                        fallback,
-                        activity_id,
-                        key,
-                        payload,
-                        exchange_id,
-                        exchange,
-                        expected_entries,
-                    )
-
-                if (
-                    is_share_market
-                    and exchange_unit == activity_unit
-                    and exchange_product == key[1]
-                    and not any(
-                        token in str(exchange_name or "").lower()
-                        for token in waste_tokens
-                    )
-                ):
-                    market_candidates.append((exchange_id, exchange_amount))
-
-                duplicate = rules["GRAPH.DUPLICATE_SUPPLIER"]
-                duplicate.checked += 1
-                # Repeated links to one provider can represent distinct source
-                # components and are supported. Reject only an accidental
-                # byte-equivalent exchange record, while resolving the
-                # provider independently of ambiguous semantic activity keys.
-                supplier_signature = (
-                    ("provider-id", resolved_id)
-                    if resolved_id is not None
-                    else (
-                        (
-                            "input",
-                            *tuple(exchange_input),
-                        )
-                        if has_input_identifier
-                        else ("provider-key", *provider_key)
-                    )
-                )
-                previous_rows = seen_supplier_rows.setdefault(supplier_signature, [])
-                matching_exchange_id = next(
+            duplicate = rules["GRAPH.DUPLICATE_SUPPLIER"]
+            duplicate.checked += 1
+            # Repeated links to one provider can represent distinct source
+            # components and are supported. Reject only an accidental
+            # byte-equivalent exchange record, while resolving the
+            # provider independently of ambiguous semantic activity keys.
+            supplier_signature = (
+                ("provider-id", resolved_id)
+                if resolved_id is not None
+                else (
                     (
-                        previous_exchange_id
-                        for previous_exchange_id, previous_exchange in previous_rows
-                        if dict(previous_exchange) == dict(exchange)
-                    ),
-                    None,
-                )
-                if matching_exchange_id is not None:
-                    duplicate.issue(
-                        "Activity contains an exact duplicate supplier exchange.",
-                        activity_id=activity_id,
-                        activity_key=key,
-                        activity_code=payload.get("code"),
-                        exchange_id=exchange_id,
-                        expected="one supplier exchange",
-                        actual={
-                            "first_exchange_id": matching_exchange_id,
-                            "supplier": _exchange_provider_key(exchange),
-                            "amount": exchange_amount,
-                        },
+                        "input",
+                        *tuple(exchange_input),
                     )
-                else:
-                    previous_rows.append((exchange_id, exchange))
-
-            if not negative_reference_product:
-                market_share = rules["GRAPH.NEGATIVE_MARKET_SHARE"]
-                market_share.checked += len(market_candidates)
-                for exchange_id, exchange_amount in market_candidates:
-                    if _finite(exchange_amount) and float(exchange_amount) < 0:
-                        market_share.issue(
-                            "A market supplier share is negative.",
-                            activity_id=activity_id,
-                            activity_key=key,
-                            activity_code=activity_code,
-                            exchange_id=exchange_id,
-                            expected=">= 0",
-                            actual=exchange_amount,
-                        )
-
-            production = rules["GRAPH.PRODUCTION_REFERENCE"]
-            if reference_productions != 1:
-                production.issue(
-                    "Activity must have exactly one matching reference-production exchange.",
+                    if has_input_identifier
+                    else ("provider-key", *provider_key)
+                )
+            )
+            previous_rows = seen_supplier_rows.setdefault(supplier_signature, [])
+            matching_exchange_id = next(
+                (
+                    previous_exchange_id
+                    for previous_exchange_id, previous_exchange in previous_rows
+                    if dict(previous_exchange) == dict(exchange)
+                ),
+                None,
+            )
+            if matching_exchange_id is not None:
+                duplicate.issue(
+                    "Activity contains an exact duplicate supplier exchange.",
                     activity_id=activity_id,
                     activity_key=key,
                     activity_code=payload.get("code"),
-                    expected=1,
-                    actual=reference_productions,
+                    exchange_id=exchange_id,
+                    expected="one supplier exchange",
+                    actual={
+                        "first_exchange_id": matching_exchange_id,
+                        "supplier": _exchange_provider_key(exchange),
+                        "amount": exchange_amount,
+                    },
                 )
-            actual_vectors[key] = dict(vector)
+            else:
+                previous_rows.append((exchange_id, exchange))
+        if not negative_reference_product:
+            market_share = rules["GRAPH.NEGATIVE_MARKET_SHARE"]
+            market_share.checked += len(market_candidates)
+            for exchange_id, exchange_amount in market_candidates:
+                if _finite(exchange_amount) and float(exchange_amount) < 0:
+                    market_share.issue(
+                        "A market supplier share is negative.",
+                        activity_id=activity_id,
+                        activity_key=key,
+                        activity_code=activity_code,
+                        exchange_id=exchange_id,
+                        expected=">= 0",
+                        actual=exchange_amount,
+                    )
 
-        fingerprints = {
-            key: values[0] if len(values) == 1 else _stable_hash(sorted(values))
-            for key, values in fingerprint_rows.items()
-        }
+        production = rules["GRAPH.PRODUCTION_REFERENCE"]
+        if reference_productions != 1:
+            production.issue(
+                "Activity must have exactly one matching reference-production exchange.",
+                activity_id=activity_id,
+                activity_key=key,
+                activity_code=payload.get("code"),
+                expected=1,
+                actual=reference_productions,
+            )
+
+        return dict(vector)
+
+    def _resolve_provider(
+        self,
+        index: _ActivityIndex,
+        rules,
+        activity_id,
+        activity_code,
+        exchange_id,
+        exchange,
+        provider_key,
+        exchange_unit,
+    ):
+        """Return resolved ID, input and identifier presence after provider checks.
+
+        Explicit links take precedence over semantic matches. Stale identifiers
+        remain findings even when an unambiguous semantic fallback exists.
+        """
+
+        key = index.keys_by_id[activity_id]
+        activity_payloads = index.activity_payloads
+        ids_by_key = index.ids_by_key
+        ids_by_name_location = index.ids_by_name_location
+        ids_by_identifier = index.ids_by_identifier
+        exchange_name, exchange_product, exchange_location = provider_key
+        provider_id = None
+        exchange_input = exchange.get("input")
+        has_input_identifier = (
+            isinstance(exchange_input, (tuple, list)) and len(exchange_input) == 2
+        )
+        if has_input_identifier:
+            provider_id = ids_by_identifier.get(tuple(exchange_input))
+        matches = ids_by_key.get(provider_key, ())
+
+        stale = rules["GRAPH.STALE_SUPPLIER"]
+        stale.checked += 1
+        if has_input_identifier and provider_id is None:
+            stale.issue(
+                "Technosphere exchange carries an input identifier absent from the inventory graph.",
+                activity_id=activity_id,
+                activity_key=key,
+                activity_code=activity_code,
+                exchange_id=exchange_id,
+                expected="existing (database, code) provider",
+                actual=tuple(exchange_input),
+            )
+
+        exists = rules["GRAPH.PROVIDER_EXISTS"]
+        exists.checked += 1
+        if provider_id is None and not matches:
+            exists.issue(
+                "Technosphere exchange links to no activity in the inventory graph.",
+                activity_id=activity_id,
+                activity_key=key,
+                activity_code=activity_code,
+                exchange_id=exchange_id,
+                expected="one provider",
+                actual=0,
+            )
+
+        ambiguous = rules["GRAPH.PROVIDER_AMBIGUOUS"]
+        ambiguous.checked += 1
+        if provider_id is None and len(matches) > 1:
+            ambiguous.issue(
+                "Technosphere exchange has multiple providers and no resolving input identifier.",
+                activity_id=activity_id,
+                activity_key=key,
+                activity_code=activity_code,
+                exchange_id=exchange_id,
+                expected=1,
+                actual=len(matches),
+            )
+
+        agreement = rules["GRAPH.PROVIDER_PRODUCT_UNIT"]
+        agreement.checked += 1
+        resolved_id = (
+            provider_id
+            if provider_id is not None
+            else (matches[0] if len(matches) == 1 else None)
+        )
+        if resolved_id is not None:
+            provider = activity_payloads[resolved_id]
+            expected_product = provider.get(
+                "reference product", provider.get("product")
+            )
+            expected_unit = provider.get("unit")
+            if (
+                exchange_name != provider.get("name")
+                or exchange_location != provider.get("location")
+                or exchange_product != expected_product
+                or exchange_unit != expected_unit
+            ):
+                agreement.issue(
+                    "Technosphere exchange product or unit disagrees with its provider.",
+                    activity_id=activity_id,
+                    activity_key=key,
+                    activity_code=activity_code,
+                    exchange_id=exchange_id,
+                    expected={
+                        "product": expected_product,
+                        "unit": expected_unit,
+                        "name": provider.get("name"),
+                        "location": provider.get("location"),
+                    },
+                    actual={
+                        "product": exchange_product,
+                        "unit": exchange_unit,
+                        "name": exchange_name,
+                        "location": exchange_location,
+                    },
+                )
+        elif not matches:
+            name_location_matches = ids_by_name_location.get(
+                (exchange_name, exchange_location), ()
+            )
+            if name_location_matches:
+                agreement.issue(
+                    "Technosphere provider name/location exists but product does not match.",
+                    activity_id=activity_id,
+                    activity_key=key,
+                    activity_code=activity_code,
+                    exchange_id=exchange_id,
+                    expected=sorted(
+                        {
+                            activity_payloads[item].get("reference product")
+                            for item in name_location_matches
+                        }
+                    ),
+                    actual=exchange_product,
+                )
+
+        return resolved_id, exchange_input, has_input_identifier
+
+    def _check_graph(
+        self,
+        rules,
+        keys_by_id,
+        resolved_target_ids,
+        adjacency,
+        fingerprints,
+        actual_vectors,
+    ):
+        """Finish scope, algorithm, coverage and cycle checks on the accumulated graph."""
+
+        intent = self.intent
         self._check_scope(rules["GRAPH.TRANSFORMATION_SCOPE"], keys_by_id, fingerprints)
         self._check_supplier_vectors(rules["METHOD.SUPPLIER_VECTOR"], actual_vectors)
         self._check_algorithm(rules["METHOD.CONSEQUENTIAL_ALGORITHM"])
@@ -1727,12 +1843,14 @@ class InventoryGraphValidator:
                 actual=sorted(cycle, key=repr),
             )
 
-        results = tuple(
-            self._apply_suppressions(rule.result()) for rule in rules.values()
-        )
+    def _report(
+        self, results, phase_id: str, phase_kind: ValidationPhaseKind, started: float
+    ) -> ValidationReport:
+        """Assemble one phase without changing certificate identity or rule ordering."""
+
         phase = ValidationPhaseResult(
-            phase_id="graph:full",
-            kind="graph",
+            phase_id=phase_id,
+            kind=phase_kind,
             rule_results=results,
             elapsed_seconds=time.perf_counter() - started,
         )
@@ -1750,7 +1868,6 @@ class InventoryGraphValidator:
         rule: _Accumulator,
         activity_id: int,
         activity_key: tuple[Any, Any, Any],
-        activity: Mapping[str, Any],
         exchange_id: int,
         exchange: Mapping[str, Any],
         uncertainty_type: Any,
@@ -1841,34 +1958,6 @@ class InventoryGraphValidator:
                         actual={"negative": negative},
                         **common,
                     )
-
-    @staticmethod
-    def _is_market_share(
-        activity: Mapping[str, Any],
-        exchange: Mapping[str, Any],
-        negative_reference_product: bool = False,
-    ) -> bool:
-        name = str(activity.get("name", "")).lower()
-        product = str(activity.get("reference product", "")).lower()
-        supplier = str(exchange.get("name", "")).lower()
-        waste_tokens = (
-            "waste",
-            "treatment",
-            "scrap",
-            "residue",
-            "sewage",
-            "sludge",
-            "tailing",
-        )
-        return (
-            (name.startswith("market for ") or name.startswith("market group for "))
-            and not negative_reference_product
-            and exchange.get("unit") == activity.get("unit")
-            and exchange.get("product")
-            == activity.get("reference product", activity.get("product"))
-            and not any(token in name or token in product for token in waste_tokens)
-            and not any(token in supplier for token in waste_tokens)
-        )
 
     @staticmethod
     def _check_geographic_fallback(
