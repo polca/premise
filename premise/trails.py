@@ -964,7 +964,9 @@ class TrailsDataPackage:
                     "profile": "tabular-data-resource",
                     "encoding": "utf-8",
                     "dialect": {
-                        "delimiter": "," if file.name == "end_of_life_timing.csv" else ";"
+                        "delimiter": (
+                            "," if file.name == "end_of_life_timing.csv" else ";"
+                        )
                     },
                 }
             )
