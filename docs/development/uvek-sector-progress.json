@@ -2953,8 +2953,12 @@
       "latest_native_mapping_review": "docs/development/uvek-native-rail-verification.json",
       "current_native_first_checkpoint": "native_electric_and_diesel_aliases_checked_required_hydrogen_migration_pending",
       "current_required_frontier": {
-        "evidence": "docs/development/uvek-twelve-sector-checkpoint-2026-11-15.json#actual_hydrogen_train_frontier",
-        "first_cohort_unapproved_rules": 5,
+        "evidence": "docs/development/uvek-hydrogen-train-three-markets-312-verification.json#actual_train_import",
+        "first_cohort_unapproved_rules": 2,
+        "remaining_categories": [
+          "Ferrosilicon production and delivery",
+          "Mixed-plastic waste treatment and collection"
+        ],
         "later_cohorts_not_complete": true,
         "native_electric_and_diesel_mappings_retained": true
       }
@@ -3720,7 +3724,7 @@
     "latest_combined_export_evidence": "docs/development/uvek-native-buses-verification.json",
     "latest_example_notebook_evidence": "docs/development/uvek-colleague-notebook-verification-2026-11-13.json",
     "interpretation": "Historical first-pass audits below are preserved as history and do not override later linked runtime qualification.",
-    "latest_mapping_review": "docs/development/uvek-hydrogen-train-direct-suppliers.md",
+    "latest_mapping_review": "docs/development/uvek-hydrogen-train-three-markets-312.md",
     "verified_native_source_limits": [
       {
         "source_identity": {
@@ -3805,11 +3809,12 @@
     ],
     "latest_shared_transport_review": "docs/development/uvek-native-two-wheelers.md",
     "latest_combined_run_freshness": "Recorded CLIC archive snapshot 20261110T030235Z-613ea498808a; live freshness was not checked by this run.",
-    "latest_packaged_resource_checks": "docs/development/uvek-twelve-sector-checkpoint-2026-11-15.json#reproducible_packaging",
+    "latest_packaged_resource_checks": "docs/development/uvek-hydrogen-train-three-markets-312-verification.json#reproducible_generation",
     "latest_native_first_checkpoint": "docs/development/uvek-twelve-sector-checkpoint-2026-11-15.json",
     "latest_owned_database_cleanup": "docs/development/uvek-native-first-checkpoint-2026-11-15.json#cleanup",
     "latest_combined_no_write_evidence": "docs/development/uvek-native-two-wheelers-verification.json",
     "qualification_evidence_note": "Latest actual Brightway export covers eleven sectors; the twelve-sector checkpoint adds 182 no-write signed LCI checks and a complete comparison against that export. Full goal remains unfinished.",
-    "latest_owned_analysis_cleanup": "docs/development/uvek-twelve-sector-checkpoint-2026-11-15.json#cleanup"
+    "latest_owned_analysis_cleanup": "docs/development/uvek-hydrogen-train-three-markets-312-verification.json#cleanup",
+    "latest_train_mapping_verification": "docs/development/uvek-hydrogen-train-three-markets-312-verification.json"
   }
 }

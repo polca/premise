@@ -1,0 +1,176 @@
+{
+  "date": "2026-11-16",
+  "source_profile": {
+    "family": "ecoinvent",
+    "version": "3.12",
+    "system_model": "cutoff"
+  },
+  "target": {
+    "technosphere": {
+      "family": "uvek",
+      "version": "2026",
+      "system_model": "cutoff"
+    },
+    "biosphere": {
+      "family": "ecoinvent",
+      "version": "3.10"
+    }
+  },
+  "new_exact_profile_market_scopes": [
+    "bp-011b0c14ef8a369d",
+    "bp-dbd744f486420f56",
+    "bp-ef673f7bc19f4581"
+  ],
+  "prior_physical_scopes_preserved": [
+    {
+      "rule_id": "bp-ef673f7bc19f4581",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "physical_rule_and_old_reference_sign_decision_unchanged": true
+    },
+    {
+      "rule_id": "bp-dbd744f486420f56",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "physical_rule_and_old_reference_sign_decision_unchanged": true
+    },
+    {
+      "rule_id": "bp-011b0c14ef8a369d",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "physical_rule_and_old_reference_sign_decision_unchanged": true
+    },
+    {
+      "rule_id": "bp-dbd744f486420f56",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "physical_rule_and_old_reference_sign_decision_unchanged": true
+    }
+  ],
+  "review_sha256": "92188700d50b7bb98b5d7ca3a4adc5a163e4f2f21b50fd73fa203f126d153a7e",
+  "native_definitions_independently_verified": 11,
+  "native_releases_checked": [
+    "2025",
+    "2026"
+  ],
+  "source_specific_market_helpers": 3,
+  "retained_final_delivery_entries": 18,
+  "source_marginal_uncertainty_and_pedigree_retained": true,
+  "source_and_native_reference_checks": {
+    "titanium_dioxide_source": 1,
+    "silica_sand_source": 1,
+    "hazardous_market_and_source_treatments": -1,
+    "native_disposal": 1,
+    "hazardous_caller_conversion_factor": -1,
+    "hazardous_source_feed_water_fraction": 0.25,
+    "hazardous_source_net_heating_value_MJ_per_kg": 17,
+    "hazardous_separate_modelled_electricity_heat_credits": 0,
+    "native_incineration_portions_kg": [
+      0.5,
+      0.5
+    ],
+    "redundant_treatment_wrapper_helpers_added": 0
+  },
+  "silica_coproduct_allocation": {
+    "exact_input_UUID_type_unit_groups": 14,
+    "all_input_coefficients_proportional": true,
+    "biosphere_compartments_remain_distinct_by_exact_source_flow_UUID": true,
+    "ratio": 0.03119999999999999
+  },
+  "tests": {
+    "Brightpath_selected_legacy_migrations_new_review_storage_manifest": 142,
+    "Premise_selected_signed_cached_markets_prior_approvals_omissions": 45,
+    "entire_repository_suites_run": false,
+    "positive_and_negative_normal_uncertainty_callers": true,
+    "cold_and_warm_cache_checked": true,
+    "source_nonmutation_checked": true,
+    "all_25_native_helper_entries_compared_field_by_field": true
+  },
+  "reproducible_generation": {
+    "resources": [
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "byte_identical": true
+      },
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "byte_identical": true
+      },
+      {
+        "name": "ecoinvent-to-uvek-2025.json",
+        "sha256": "a5c29b831b0138f281f13bf43b6fbca010966036794a4220d7523fa94f150b1e",
+        "byte_identical": true
+      }
+    ],
+    "count": 3
+  },
+  "actual_train_import": {
+    "roots": 6,
+    "foregrounds": 34,
+    "remaining_first_cohort_rule_ids": [
+      "bp-ab66d17baa663f1c",
+      "bp-b7606642f4256898"
+    ],
+    "remaining_first_cohort_unapproved_rule_count": 2,
+    "later_source_cohorts_complete": false,
+    "whole_train_sector_qualified": false,
+    "new_regular_Brightway_databases": 0
+  },
+  "cleanup": {
+    "owned_obsolete_files_removed_bytes": 198258083,
+    "current_package_latest_wheel_and_active_combined_checkpoint_preserved": true,
+    "regular_Brightway_databases_untouched": true
+  },
+  "runtime_Python_changed_for_these_markets": false,
+  "notebook_changed": false,
+  "operational_sectors": 12,
+  "registered_sectors": 19,
+  "full_goal_complete": false,
+  "freshness": "Recorded CLIC snapshot 20261110T030235Z-613ea498808a, published 2026-11-10T03:03:34.737828+00:00; live freshness not checked by this diagnostic.",
+  "next_ferrosilicon_primary_review": {
+    "actual_source312_manufacturing_nodes": [
+      {
+        "location": "CN",
+        "technosphere_exchanges": 13,
+        "biosphere_exchanges": 8
+      },
+      {
+        "location": "RoW",
+        "technosphere_exchanges": 94,
+        "biosphere_exchanges": 8
+      }
+    ],
+    "actual_direct_inert_waste_markets": [
+      {
+        "location": "RoW",
+        "source_reference_amount": -1.0,
+        "nonproduction_exchanges": 4,
+        "clinker_treatment_entries": 0,
+        "source_inventory_sha256": "5f57f0301567268045bf2a72eb73a72b5e6b04092b9f24991a147d3ad0986be1"
+      },
+      {
+        "location": "RER",
+        "source_reference_amount": -1.0,
+        "nonproduction_exchanges": 2,
+        "clinker_treatment_entries": 0,
+        "source_inventory_sha256": "549c97194b5989a8aa06d3e2b7d7b96382b542f66047ce8122f2806a641cdd33"
+      }
+    ],
+    "decision": "Audit the actual source3.12 manufacturing nodes. Do not copy source3.9 co-processing omission approvals onto the newer direct waste markets, which contain no clinker entries.",
+    "foregrounds_and_markets_remain_private": true
+  }
+}
