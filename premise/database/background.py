@@ -60,11 +60,12 @@ def validate_uvek_scope(sectors):
             "buses",
             "two_wheelers",
             "trains",
+            "cars",
         }
     )
     if unsupported:
         raise ValueError(
-            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers and trains; "
+            "UVEK 2026 supports biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains and cars; "
             f"unsupported sectors: {unsupported}."
         )
     return list(selected)

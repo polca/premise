@@ -9,7 +9,7 @@
     "biosphere_version": "3.10"
   },
   "registry_source": "premise/database/new_database.py:NewDatabase.update",
-  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers and trains. The unchanged no-argument default selects biomass, electricity and heat. Other sectors remain gated until verified.",
+  "current_scope_gate": "Public UVEK updates admit biomass, electricity, heat, cement, steel, mining, renewable, cdr, fuels, ships, buses, two_wheelers, trains and cars. The unchanged no-argument default selects biomass, electricity and heat. Installed-package/export qualification of cars is being completed; other sectors remain gated.",
   "sectors": [
     {
       "sector": "biomass",
@@ -2355,7 +2355,7 @@
     },
     {
       "sector": "cars",
-      "status": "shared_standalone_and_combined_verified_public_admission_pending",
+      "status": "public_api_enabled_installed_export_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
@@ -2393,8 +2393,8 @@
       },
       "blockers": [
         {
-          "code": "public_package_and_export_qualification",
-          "finding": "All required current-archive car cohorts now migrate, and standalone/combined14-sector shared transformations, exhaustive graph checks, independent physical checks and86signedLCIs per run pass. Public installed-package admission and real Brightway export remain pending."
+          "code": "installed_package_and_export_qualification",
+          "finding": "Cars is admitted after shared standalone/combined graph, physical and representative LCI checks. A fresh installed-package public run and real export are the remaining qualification checks."
         }
       ],
       "decisions": [
@@ -2459,7 +2459,8 @@
         "Four signed source3.7 conversion cases pass for twelve reviewed suppliers across both native releases. The missing exact CNG profile was caught and excluded pending its mapping correction.",
         "Twenty-one focused historical-model and stock checks pass after a minimal Brightpath resource-validator correction. Exact model stock authority and caller-profile restrictions remain enforced; the source3.7 alloy recipe and full car transformation are not yet qualified.",
         "Nine source3.7 correction migration/replay checks pass; all three forward resources regenerate byte-identically.",
-        "Actual standalone and combined14-sector shared runs each produce390regional services and13markets; exhaustive graph checks, independent physical/share checks and86signedLCIs each pass without a Brightway database write."
+        "Actual standalone and combined14-sector shared runs each produce390regional services and13markets; exhaustive graph checks, independent physical/share checks and86signedLCIs each pass without a Brightway database write.",
+        "Twenty focused UVEK background/scope/car-filter/exact-approval checks pass; no-argument defaults remain biomass/electricity/heat and unverified sectors remain refused."
       ],
       "integration_exports": [
         {

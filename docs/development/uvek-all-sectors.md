@@ -23,7 +23,7 @@ mappings outside the central sector registry in the audit.
 ## Starting evidence
 
 The public update registry contains 19 built-in updates and the external-scenario
-adapter. The UVEK scope guard currently admits only biomass, electricity and heat.
+adapter. At the starting checkpoint the UVEK scope guard admitted only biomass, electricity and heat.
 Several other constructors still explicitly request ecoinvent aliases or use the
 source release as a biosphere release. Removing the scope guard alone is unsafe.
 
@@ -2188,3 +2188,14 @@ Retained two source manufacturing vectors58/12rows,five directair emissions each
 ## Six chemical supplies and explicit TiO2 routes — 15 November 2026
 
 Reviewed benzaldehyde,TiO2,lanthanum oxide,zirconia,phthalic anhydride andpropylene oxide. Five helpers retain11producer/18delivery entries;single-producer propylene oxide stays direct. TiO2uses separately verified chloride/sulfate native plants at original24.10596/75.89404%shares. Rare-earth ore-route andzirconia nano-grade substitutions remain explicit screening limits. No new omissions orruntime changes. Brightpath43focused+12resource andPremise10source+10installed pass,with12signedLCIs/6native-demand comparisons andcleanforward replay. Fresh/cached battery34to28,eight sectors qualified. Nextpitchpreflight finds7unreviewed inputs,including incorrect petroleum-to-coke candidate;correct native delivered crude exists inkg. See [review](uvek-battery-chemicals-39-review.md) and [verification](uvek-battery-chemicals-39-verification.json).
+
+## Car admission after the shared integration checks
+
+The car route is now admitted through the same public update registry after
+standalone and combined 14-sector graph checks, independent checks of all
+390 regional services and 13 market mixes, and 86 signed LCIs per graph.
+The only Premise runtime edit in this admission group adds `cars` to the
+existing verified-sector set and its error message. No transformation equation
+or NewDatabase default changes. Twenty focused scope, filter and exact-approval
+checks pass. Installed-package and real-export qualification are recorded
+separately in the sector progress tracker.
