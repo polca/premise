@@ -37,3 +37,12 @@ This is a mapping milestone only. The first actual nine-root CLIC import finds
 47 unapproved correspondences in its first source-version cohort. Additional
 cohorts and the real car update remain unfinished. Cars is not admitted through
 the public UVEK gate on the strength of this static mapping review.
+
+The shared transport registry must also identify the car alias file. The actual
+combined output initially had no native source-assumption comments, despite
+those limitations being present in the YAML. Adding
+`car.aliases_file: transport_passenger_cars.yaml` in `vehicles_map.yaml`
+activates the existing shared annotator. A focused test verifies warnings,
+retained original comments, unchanged exchanges, idempotency and the unchanged
+ecoinvent path. All five native-car mapping tests pass. This is a YAML-only
+runtime correction; the export verification checks the resulting comments.

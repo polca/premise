@@ -1,11 +1,16 @@
 """Native car aliases select complete services and preserve missing classes."""
 
 import json
+import warnings
+from copy import deepcopy
 from pathlib import Path
+
+import pytest
 
 from premise.core.filesystem_constants import VARIABLES_DIR
 from premise.inventory.activity_maps import InventorySet, get_mapping
 from premise.inventory.clic_requirements import required_roots
+from premise.transport.transport import Transport, get_vehicles_mapping
 
 
 def test_native_car_filters_select_reviewed_complete_services_only():
@@ -122,3 +127,38 @@ def test_retained_car_classes_match_complete_fossil_petrol_and_medium_pressure_c
     assert canonical_vehicle_energy_product(petrol["name"], "kilogram") == "petrol"
     assert canonical_vehicle_energy_product(gas["name"], "kilogram") == "natural gas"
     assert canonical_vehicle_energy_product(gas["name"], "cubic meter") != "natural gas"
+
+
+def test_native_car_assumptions_reach_comments_without_changing_inventory():
+    role = "passenger car, battery electric, large"
+    definitions = get_mapping(
+        VARIABLES_DIR / "transport_passenger_cars.yaml", "uvek_aliases", "remind"
+    )
+    source = {
+        **definitions[role]["fltr"],
+        "comment": "Original source description.",
+        "exchanges": [{"type": "production", "amount": 1}],
+    }
+    before = deepcopy(source)
+    transport = Transport.__new__(Transport)
+    transport.mapping = get_vehicles_mapping()
+    transport.vehicle_type = "car"
+    transport.family = "uvek"
+    transport.model = "remind"
+    transport.vehicle_map = {role: [source]}
+    with pytest.warns(UserWarning, match="source assumptions"):
+        transport.annotate_source_assumptions()
+    assert source["comment"].startswith(before["comment"])
+    assert all(
+        note in source["comment"] for note in definitions[role]["native_limitations"]
+    )
+    assert source["exchanges"] == before["exchanges"]
+    with warnings.catch_warnings(record=True) as emitted:
+        transport.annotate_source_assumptions()
+    assert not emitted
+    assert source["comment"].count("Premise transport source assumptions:") == 1
+    transport.family = "ecoinvent"
+    source.clear()
+    source.update(deepcopy(before))
+    transport.annotate_source_assumptions()
+    assert source == before

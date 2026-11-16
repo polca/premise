@@ -58,6 +58,7 @@ bus:
   unit: person kilometer
   name: transport, passenger bus
 car:
+  aliases_file: transport_passenger_cars.yaml
   sizes:
     - Mini
     - Small
