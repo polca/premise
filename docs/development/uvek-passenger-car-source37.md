@@ -1,4 +1,4 @@
-# Source-3.7 car supplies and unresolved corrections
+# Source-3.7 car supplies and separate corrections
 
 Twelve of the 15 refused source-3.7 correspondences now have independently
 checked references and exact approvals. These inputs are used: the full
@@ -30,17 +30,15 @@ uncertainty remain unchanged. Four signed conversion tests pass across both
 native releases. No migration rule, new helper or runtime Python change is
 included in this approval group; score differences remain unquantified.
 
-Three cases remain unfinished. The AlLi candidate is a chemically different
-AlMg3 alloy and is not approved. The delivered-petrol candidate stops at a
-refinery and is not approved; a native fossil supply including distribution is
-being checked instead. The compressed-natural-gas candidate has a compatible
-positive kg reference, but its migration rule lacks the exact source-3.7
-profile decision. A focused conversion test caught that missing profile before
-approval, and the case is reserved for the correction group.
+Three cases required separate correction: the different AlMg3 alloy, the
+refinery-only petrol supply and the missing exact CNG profile. All are now
+resolved in the separately documented source-3.7 correction group. The actual
+shared car update and the combined 14-sector run pass their graph, physical
+and representative signed-LCI checks. See
+`uvek-passenger-car-source37-corrections.md` for the models and limitations.
 
-The complete shared car update, physical checks, regional markets, combined
-scenario and finite LCIs remain required. Cars is not admitted by the public
-scope gate, and this review writes no Brightway database.
+Public package admission and a real export remain to be verified. This review
+writes no Brightway database.
 
 A separate minimal Brightpath validator correction is now tested. The existing
 engine supports an explicitly declared historical inventory model, but semantic
@@ -50,5 +48,5 @@ model version, while retaining exact caller-profile approval, unresolved
 defaults and the original stock authority digest. Twenty-one focused stock and
 historical-model checks pass, including invalid versions, system models,
 missing declarations and unprofiled callers. This changes only Brightpath
-resource validation; no Premise Python module is changed. The alloy recipe and
-full car update remain unfinished.
+resource validation; no Premise Python module is changed. The three correction recipes and both diagnostic car runs now pass; public
+package/export qualification remains separate.

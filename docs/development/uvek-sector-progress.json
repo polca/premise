@@ -2355,14 +2355,14 @@
     },
     {
       "sector": "cars",
-      "status": "native_templates_reviewed_import_in_progress",
+      "status": "shared_standalone_and_combined_verified_public_admission_pending",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
       "native_mapping_coverage": {
-        "kind": "exact_native_template_filters_checked_sector_run_pending",
+        "kind": "thirty_roles_shared_runtime_graph_physical_and_LCI_verified",
         "files": [
           {
             "path": "premise/iam_variables_mapping/transport_passenger_cars.yaml",
@@ -2388,75 +2388,13 @@
           }
         ],
         "native_complete_reference_definitions_checked": 33,
-        "runtime_verified": false,
+        "runtime_verified": true,
         "review": "docs/development/uvek-native-car-alias-review.json"
       },
       "blockers": [
         {
-          "code": "scope_gate",
-          "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Thirteen verified sectors are admitted; cars remains gated pending real shared update, graph/physical validation and finite LCIs."
-        },
-        {
-          "code": "current_required_import_cohort",
-          "finding": "The last actual shared import stopped on15 source3.7 rules. Twelve now have exact scopes and four signed conversion checks. Three need correction: wrong AlLi alloy, refinery-only delivered petrol and a missing exact CNG source3.7 profile. Complete import and car transformation remain unqualified.",
-          "review": "docs/development/uvek-passenger-car-source37-verification.json",
-          "reviewed_source310_rule_ids": [
-            "bp-15a5350bb1bcdb67",
-            "bp-1a39c7b4c1f58b77",
-            "bp-37b9b46586e881e7",
-            "bp-3c10f9aaee8ffe42",
-            "bp-4458360e03e22566",
-            "bp-4f69327dbf9d3e42",
-            "bp-61babdae6914f05a",
-            "bp-64033d1871a0085f",
-            "bp-68dbc38e44c4b3fe",
-            "bp-7b57882e271d26d2",
-            "bp-7ca3587cbfe4ce9b",
-            "bp-82cb48b8f46820d5",
-            "bp-8a6394dd395bb22d",
-            "bp-8b6f1fcdfadf34af",
-            "bp-9caeb1b3bd66b612",
-            "bp-af24bec618befedb",
-            "bp-e9cdd018f5d75d22",
-            "bp-eb04730488ad462a",
-            "bp-edf1518533a281df",
-            "bp-ef673f7bc19f4581",
-            "bp-f7dd94e542cba21d"
-          ],
-          "current_source_version": "3.7",
-          "reviewed_source38_rule_ids": [
-            "bp-d643951f06313a19",
-            "bp-4844549cc0c07d18",
-            "bp-0028acc612584b3f",
-            "bp-fa83088d5d2b33b6",
-            "bp-25caf9ffefc8a1ab",
-            "bp-2bab3a3e3d0b3ad7"
-          ],
-          "remaining_rule_ids": [
-            "bp-c4e4184b24112209",
-            "bp-745c517f85a78ba7",
-            "bp-ec3106bc66684767"
-          ],
-          "reviewed_source37_rule_ids": [
-            "bp-2b69270ca0d2f18c",
-            "bp-4591e06aab54c64b",
-            "bp-51cccf3b2edc49df",
-            "bp-5c972a6c76ece968",
-            "bp-8a6394dd395bb22d",
-            "bp-ab1d27770658d83e",
-            "bp-d21d0bac2a023032",
-            "bp-e4846f25fbe74153",
-            "bp-eeab173462697d8e",
-            "bp-f2cc63366560c955",
-            "bp-f3e2b8a4dc2df13f",
-            "bp-fa83088d5d2b33b6"
-          ]
-        },
-        {
-          "code": "sector_integration_unfinished",
-          "path": "premise/transport/transport.py",
-          "finding": "Exact native selection and shared classification checks pass. The complete real car update, efficiency/fixed-input/fuel-carbon/battery-policy/market checks, combined run and signed LCIs remain unfinished."
+          "code": "public_package_and_export_qualification",
+          "finding": "All required current-archive car cohorts now migrate, and standalone/combined14-sector shared transformations, exhaustive graph checks, independent physical checks and86signedLCIs per run pass. Public installed-package admission and real Brightway export remain pending."
         }
       ],
       "decisions": [
@@ -2495,6 +2433,10 @@
         {
           "review": "docs/development/uvek-passenger-car-source37.md",
           "decision": "Approve twelve used car supplies and wear services with correct unit/lifecycle boundaries and existing treatment sign reversals. Hold the different-alloy, incomplete-petrol-supply and missing-CNG-profile cases for correction."
+        },
+        {
+          "review": "docs/development/uvek-passenger-car-source37-corrections.md",
+          "decision": "Reconstruct the actual AlLi market and producer inputs, retain older-model stock/omission authorities, use complete fossil petrol delivery and add exact source3.7 CNG support. Preserve source evaluated quantities, marginal uncertainty and ten formula audits; record missing internal parameterization and source-grade limitations."
         }
       ],
       "implementation_commits": [
@@ -2515,9 +2457,38 @@
         "Four source3.8 signed conversion cases pass across both native releases. Actual shared car preparation is being retried with six additional exact approvals.",
         "Actual shared preparation clears all six reviewed source3.8 cases and reaches15 required source3.7 correspondences; no car callback or sector admission yet.",
         "Four signed source3.7 conversion cases pass for twelve reviewed suppliers across both native releases. The missing exact CNG profile was caught and excluded pending its mapping correction.",
-        "Twenty-one focused historical-model and stock checks pass after a minimal Brightpath resource-validator correction. Exact model stock authority and caller-profile restrictions remain enforced; the source3.7 alloy recipe and full car transformation are not yet qualified."
+        "Twenty-one focused historical-model and stock checks pass after a minimal Brightpath resource-validator correction. Exact model stock authority and caller-profile restrictions remain enforced; the source3.7 alloy recipe and full car transformation are not yet qualified.",
+        "Nine source3.7 correction migration/replay checks pass; all three forward resources regenerate byte-identically.",
+        "Actual standalone and combined14-sector shared runs each produce390regional services and13markets; exhaustive graph checks, independent physical/share checks and86signedLCIs each pass without a Brightway database write."
       ],
-      "integration_exports": [],
+      "integration_exports": [
+        {
+          "kind": "diagnostic_no_write",
+          "sectors": [
+            "biomass",
+            "electricity",
+            "heat",
+            "cement",
+            "steel",
+            "mining",
+            "renewable",
+            "cdr",
+            "fuels",
+            "ships",
+            "buses",
+            "two_wheelers",
+            "trains",
+            "cars"
+          ],
+          "activities": 17208,
+          "regional_car_services": 390,
+          "regional_car_markets": 13,
+          "signed_LCIs": 86,
+          "verification": "docs/development/uvek-passenger-car-source37-corrections-verification.json",
+          "public_scope_gate_bypassed": true,
+          "Brightway_export": false
+        }
+      ],
       "static_audit": {
         "callback": "_update_vehicles",
         "module": "premise/transport/transport.py",

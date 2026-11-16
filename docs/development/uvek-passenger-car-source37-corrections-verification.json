@@ -1,0 +1,269 @@
+{
+  "date": "2026-11-16",
+  "new_exact_source37_correction_scopes": 3,
+  "old_scopes_rebound_after_exact_effective_rule_comparison": [
+    {
+      "rule_id": "bp-745c517f85a78ba7",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-745c517f85a78ba7",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    }
+  ],
+  "review_sha256": "cf39a0b9f7bf2063e1eb1a3eaaacb05973b52931c7e64fb71651bafe24b5ed6b",
+  "reconstructed_alloy_market": 1,
+  "producer_inventories": 2,
+  "native_delivered_fossil_petrol": 1,
+  "exact_CNG_profile_extension": 1,
+  "original_alloy_inputs_retained": 85,
+  "original_source_formula_audits": 10,
+  "runtime_Python_changes": false,
+  "new_source_omissions": 0,
+  "new_Brightway_databases": 0,
+  "car_sector_qualified": false,
+  "tests": {
+    "Brightpath_migration_replay_passed": 9,
+    "Premise_car_energy_validation_regressions_passed": 88,
+    "historical_stock_profile_checks_passed": 21
+  },
+  "clean_generation": [
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "identical": true,
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "bytes": 18596725
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "identical": true,
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "bytes": 18596319
+    },
+    {
+      "file": "ecoinvent-to-uvek-2025.json",
+      "identical": true,
+      "sha256": "0f2d3a11b50e78a425bf5c4bee8475f91a2cacc1c5d16140e3cfa4677b68c415",
+      "bytes": 70568552
+    }
+  ],
+  "generator_lint": {
+    "baseline_generator_lint_diagnostics": [
+      [
+        "I001",
+        635,
+        9
+      ],
+      [
+        "I001",
+        744,
+        9
+      ]
+    ],
+    "new_generator_lint_diagnostics": []
+  },
+  "historical_stock_validator_fix_commit": "9d3b9ad",
+  "integration": {
+    "standalone": {
+      "graph": {
+        "status": "standalone_car_shared_update_and_exhaustive_graph_checks_passed",
+        "activities": 12731,
+        "CLIC_records": 381,
+        "source_prototypes_by_role": {
+          "passenger car, battery electric, large": 1,
+          "passenger car, fuel cell electric, large": 1,
+          "passenger car, compressed gas, large": 2,
+          "passenger car, plugin gasoline hybrid, large": 2,
+          "passenger car, gasoline, large": 2,
+          "passenger car, battery electric, medium": 1,
+          "passenger car, fuel cell electric, medium": 1,
+          "passenger car, compressed gas, medium": 2,
+          "passenger car, plugin gasoline hybrid, medium": 2,
+          "passenger car, gasoline, medium": 2,
+          "passenger car, battery electric, mini": 1,
+          "passenger car, fuel cell electric, mini": 1,
+          "passenger car, compressed gas, mini": 1,
+          "passenger car, plugin gasoline hybrid, mini": 1,
+          "passenger car, gasoline, mini": 1,
+          "passenger car, battery electric, medium SUV": 1,
+          "passenger car, fuel cell electric, medium SUV": 1,
+          "passenger car, compressed gas, medium SUV": 2,
+          "passenger car, plugin gasoline hybrid, medium SUV": 2,
+          "passenger car, gasoline, medium SUV": 2,
+          "passenger car, battery electric, small": 1,
+          "passenger car, fuel cell electric, small": 1,
+          "passenger car, compressed gas, small": 2,
+          "passenger car, plugin gasoline hybrid, small": 2,
+          "passenger car, gasoline, small": 2,
+          "passenger car, battery electric, van": 1,
+          "passenger car, fuel cell electric, van": 1,
+          "passenger car, compressed gas, van": 1,
+          "passenger car, plugin gasoline hybrid, van": 1,
+          "passenger car, gasoline, van": 1
+        },
+        "regional_services": 390,
+        "regional_markets": 13,
+        "public_scope_gate_bypassed_for_diagnostic_only": true,
+        "validation_disabled": false,
+        "new_Brightway_databases": 0,
+        "processed_files_unchanged": true,
+        "elapsed_seconds": 77.903101917007,
+        "sector_qualified": false,
+        "scenario_checkpoint_basename": "1a7b5e7f991046439fb9f6757cd66d99.inventory-store"
+      },
+      "physical": {
+        "status": "standalone_shared_car_physical_checks_passed",
+        "services_checked": 390,
+        "markets_checked": 13,
+        "source_templates": 42,
+        "role_count": 30,
+        "minimum_energy_policy_MJ_per_vehicle_km": 0.852,
+        "floor_adjusted_services": 0,
+        "IAM_efficiency_source_counts": {
+          "unavailable": 276,
+          "energy/service": 114
+        },
+        "largest_relative_total_CO2_screen_difference": 0.046066834060803696,
+        "complete_combustion_screen_tolerance": 0.1,
+        "battery_sizing_contracts_in_selected_sources": 0,
+        "battery_policy": "Existing source services have no range-sizing contract; preserve their stock/service demands under the shared legacy policy. No capacity is inferred from native pack kg.",
+        "new_Brightway_databases": 0,
+        "sector_qualified": false
+      },
+      "LCI": {
+        "status": "standalone_shared_car_signed_LCIs_passed",
+        "activities": 12731,
+        "exchanges": 444840,
+        "regional_services": 390,
+        "regional_and_World_markets": 13,
+        "service_roles_solved_in_EUR": 30,
+        "selected_demands": 43,
+        "signed_LCI_solves": 86,
+        "matrix_shape": [
+          12731,
+          12731
+        ],
+        "new_Brightway_databases": 0,
+        "registry_and_processed_file_names_unchanged": true,
+        "combined_run_complete": false,
+        "public_run_complete": false,
+        "LCIA_equivalence_claimed": false,
+        "sector_qualified": false
+      }
+    },
+    "combined": {
+      "graph": {
+        "status": "combined_fourteen_sector_shared_update_and_exhaustive_graph_checks_passed",
+        "activities": 17208,
+        "CLIC_records": 1317,
+        "source_prototypes_by_role": {
+          "passenger car, battery electric, large": 1,
+          "passenger car, fuel cell electric, large": 1,
+          "passenger car, compressed gas, large": 2,
+          "passenger car, plugin gasoline hybrid, large": 2,
+          "passenger car, gasoline, large": 2,
+          "passenger car, battery electric, medium": 1,
+          "passenger car, fuel cell electric, medium": 1,
+          "passenger car, compressed gas, medium": 2,
+          "passenger car, plugin gasoline hybrid, medium": 2,
+          "passenger car, gasoline, medium": 2,
+          "passenger car, battery electric, mini": 1,
+          "passenger car, fuel cell electric, mini": 1,
+          "passenger car, compressed gas, mini": 1,
+          "passenger car, plugin gasoline hybrid, mini": 1,
+          "passenger car, gasoline, mini": 1,
+          "passenger car, battery electric, medium SUV": 1,
+          "passenger car, fuel cell electric, medium SUV": 1,
+          "passenger car, compressed gas, medium SUV": 2,
+          "passenger car, plugin gasoline hybrid, medium SUV": 2,
+          "passenger car, gasoline, medium SUV": 2,
+          "passenger car, battery electric, small": 1,
+          "passenger car, fuel cell electric, small": 1,
+          "passenger car, compressed gas, small": 2,
+          "passenger car, plugin gasoline hybrid, small": 2,
+          "passenger car, gasoline, small": 2,
+          "passenger car, battery electric, van": 1,
+          "passenger car, fuel cell electric, van": 1,
+          "passenger car, compressed gas, van": 1,
+          "passenger car, plugin gasoline hybrid, van": 1,
+          "passenger car, gasoline, van": 1
+        },
+        "regional_services": 390,
+        "regional_markets": 13,
+        "public_scope_gate_bypassed_for_diagnostic_only": true,
+        "validation_disabled": false,
+        "new_Brightway_databases": 0,
+        "processed_files_unchanged": true,
+        "elapsed_seconds": 301.21942537499126,
+        "sectors": [
+          "biomass",
+          "electricity",
+          "heat",
+          "cement",
+          "steel",
+          "mining",
+          "renewable",
+          "cdr",
+          "fuels",
+          "ships",
+          "buses",
+          "two_wheelers",
+          "trains",
+          "cars"
+        ],
+        "sector_qualified": false,
+        "scenario_checkpoint_basename": "3dca9fa1d08e494e809a90a4fbbd1290.inventory-store"
+      },
+      "physical": {
+        "status": "combined_shared_car_physical_checks_passed",
+        "services_checked": 390,
+        "markets_checked": 13,
+        "source_templates": 42,
+        "role_count": 30,
+        "minimum_energy_policy_MJ_per_vehicle_km": 0.852,
+        "floor_adjusted_services": 0,
+        "IAM_efficiency_source_counts": {
+          "unavailable": 276,
+          "energy/service": 114
+        },
+        "largest_relative_total_CO2_screen_difference": 0.014807518758421456,
+        "complete_combustion_screen_tolerance": 0.1,
+        "battery_sizing_contracts_in_selected_sources": 0,
+        "battery_policy": "Existing source services have no range-sizing contract; preserve their stock/service demands under the shared legacy policy. No capacity is inferred from native pack kg.",
+        "new_Brightway_databases": 0,
+        "sector_qualified": false
+      },
+      "LCI": {
+        "status": "combined_shared_car_signed_LCIs_passed",
+        "activities": 17208,
+        "exchanges": 528788,
+        "regional_services": 390,
+        "regional_and_World_markets": 13,
+        "service_roles_solved_in_EUR": 30,
+        "selected_demands": 43,
+        "signed_LCI_solves": 86,
+        "matrix_shape": [
+          17208,
+          17208
+        ],
+        "new_Brightway_databases": 0,
+        "registry_and_processed_file_names_unchanged": true,
+        "combined_run_complete": true,
+        "public_run_complete": false,
+        "LCIA_equivalence_claimed": false,
+        "sector_qualified": false
+      }
+    }
+  },
+  "public_admission_and_export_complete": false
+}
