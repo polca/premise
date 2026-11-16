@@ -315361,6 +315361,797 @@
           "fingerprint": "071040f9a85f1fd4b3910f6690030a21127bae95f4c2503f7f03bd8536ffec6b"
         }
       ]
+    },
+    {
+      "rule_id": "bp-12872d805d95ab97",
+      "operation": "replace",
+      "mapping_method": "reviewed_manganese_dioxide_complete_supply",
+      "review_path": "export/uvek_battery_manganese_dioxide_39_review.json",
+      "review_sha256": "7d0db45e381b3e9307a87f758f1be44951a15b2b4d0648c6cbe3d4e2967f57d5",
+      "authorization": "Standing autonomous goal and auto-approval: preserve the actually required source model and signed reference basis, with documented screening limits.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for manganese dioxide",
+          "reference product": "manganese dioxide",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for manganese dioxide",
+            "reference product": "manganese dioxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 6,
+          "inventory_sha256": "cb42067500e9bd15a3ff70376876d741122e8122fa05f654297896e9438df8c7",
+          "metadata_sha256": "80540b93f13e37e9ea8ee14bf9eee298999e7299d7d794a31b8106f66d2fd603",
+          "comment_sha256": "3d05f411e4c82f9bb709ad82db616131c258fe2105172a81f8ede0b15da4976f",
+          "product_information_sha256": "4c7406696b843e93894682836bfeb0838b3573ebacfa9b570763e2d72872de91"
+        },
+        "producer_witness": {
+          "identity": {
+            "name": "manganese dioxide production",
+            "reference product": "manganese dioxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 22,
+          "inventory_sha256": "8c266b35278f4d9bda1e3e52d3ec5c65372de3aaaba0e9be3b04fe71d4c787ff",
+          "metadata_sha256": "6a6454f910ff01ca2303cecc8822184e8481304ad3d6b4f00a57714a8910ec3a",
+          "comment_sha256": "7875ef74cc052a3137191db465091d7f9b3f1aafcbd6072c62cdfe7523dbcac4",
+          "product_information_sha256": "4c7406696b843e93894682836bfeb0838b3573ebacfa9b570763e2d72872de91"
+        },
+        "paired_treatment_witnesses": [
+          {
+            "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+            "reference product": "used Li-ion battery",
+            "location": "GLO",
+            "unit": "kilogram",
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 22
+          },
+          {
+            "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+            "reference product": "cobalt",
+            "location": "GLO",
+            "unit": "kilogram",
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 0
+          }
+        ],
+        "source_rule_dependency_scopes": [
+          {
+            "rule_id": "bp-05200779ee64a17f",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "e569945184f828afc91b1179146c30f989032090e6215f17c5693a27d4cbce84"
+          },
+          {
+            "rule_id": "bp-1338a8724acf99de",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "f4f251d95c39cbc1aaec47b7be92181e67a81a9fbfc14276a40f474218f8d97a"
+          },
+          {
+            "rule_id": "bp-15a5350bb1bcdb67",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "ae8b018b351cfa81b8fa592b4f8286e7b640ea125b6f22c27edbe395251eb5a4"
+          },
+          {
+            "rule_id": "bp-3c10f9aaee8ffe42",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "fc5a96385623fc7fcc490b4199ac99930bf88dd435ab0a05325b04dddf1d2bc0"
+          },
+          {
+            "rule_id": "bp-50d00531fead75d6",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "f48ea14c30a2c8c46e50c35236bdae09cc38fe3a87e58b45482351860210617a"
+          },
+          {
+            "rule_id": "bp-55c88a17f0ffb64f",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "34080709bb3c9b79e0c7ac5fa92bcf71fff508ba4e0e2495471e9749de7e6d75"
+          },
+          {
+            "rule_id": "bp-59f60997076df042",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "7e3a9c0b005de2c057289e4a681dd1e555b0d1d3467406c45e32a516dcbe70ec"
+          },
+          {
+            "rule_id": "bp-5a3b5a4a13938317",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "95cf6bb71cbbb1c4997533a550c744cfb58ea018f1843ca3c52c201d66c22f87"
+          },
+          {
+            "rule_id": "bp-5b8c937d3fb21468",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "616d6fde98cfe5573545399edbfab9d1f0d57d7b655ff62a2068330312ad6759"
+          },
+          {
+            "rule_id": "bp-61babdae6914f05a",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "b8164f1c53e7605adbae2087dfb5fb90c8adcdb8b3482c5732a4e3cde61c953c"
+          },
+          {
+            "rule_id": "bp-7532c17fac15ff33",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "b5c3102040c9ca1b09fb97fbca03c371854cdcd7b819f756605850cf1c57e47e"
+          },
+          {
+            "rule_id": "bp-7740a48a01851669",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "28f7237c24beae5af586b906ed377f51ddf67b1bab7f4298262a00ff1783a946"
+          },
+          {
+            "rule_id": "bp-999a70594224e212",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "42ebbd356e1bcb91a1b4bf9b416970e4514286ba96dd4b1ab65751dc6fd17b70"
+          },
+          {
+            "rule_id": "bp-9f7197c47047750a",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "1a8700f33408104200e233a122e1eeca3137e21ac0c795b4c4a5d9e9ccb53354"
+          },
+          {
+            "rule_id": "bp-abc1d07ff55a5bbe",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "f99a0ce1f6e668cf7c96fb63414428c445fad49acc463c840596c4dd1105e129"
+          },
+          {
+            "rule_id": "bp-c87d564423c75554",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "2be4fae657f50c6a4143f84286154d202da5385923604e8efbcebe397b580414"
+          }
+        ],
+        "borrowed_recipe_dependencies": [
+          "chemical-heat-water-1ced12d9ab9a80752fd2",
+          "pcc-39-chemical-heat-retained-water-uncertainty",
+          "pilot-wastewater-native-plant-only-13e44131b50b181f4131",
+          "pilot-wastewater-routes-29ebb2064bdb50293c1f",
+          "pilot-wastewater-routes-39cbd83822dc810e03e3",
+          "pilot-wastewater-routes-925e10d1da0e457f8cfc",
+          "pilot-wastewater-routes-9931675e08e4f23932b2",
+          "pilot-wastewater-routes-994071bdc70226a1f893",
+          "pilot-wastewater-routes-997a7bcd8a81ffa6ee79",
+          "pilot-wastewater-routes-bd88b9549e9e5edabb3e",
+          "pilot-wastewater-routes-d842e2a4b036631ca64a",
+          "pilot-wastewater-routes-e4001c3975d57642d229",
+          "pilot-wastewater-routes-eff76270716fb3e521c0",
+          "steel-39-global-natural-gas-production-heat-mix"
+        ]
+      },
+      "limitations": [
+        "Reconstruct the inspected source3.9cut-off semisynthetic manganese-dioxide model at its already allocated coefficients. Preserve all13technosphere and9biosphere entries, both market producer shares and all four final-delivery entries. Do not rebalance this allocated inventory as an unallocated chemical reaction or add a manganese-sulfate coproduct credit.",
+        "The source technology is a semisynthetic route with stated95%yield, not the dominant electrolytic battery-grade route. Preserve the source yield already embedded in its coefficients; infer no extra electrolysis, reaction yield, purity, capacity or grade multiplier. Source grade/performance, co-product allocation and representativeness remain limitations.",
+        "Use the native Mn2O3 process only as the actual consumed precursor, never as a direct substitute for MnO2 or lithium manganese oxide. Both precursor references are positive one kg and both identify Mn2O3/CAS1317-34-6. The native CN-labelled patent-based carbonate-roasting process, energy and background geography replace the source global precursor supply mix and delivery. Grade, vintage, production route, allocation and score differences are unquantified.",
+        "Retain the positive-reference production-only recovered-MnO2 coproduct as a distinct allocated stock. The inspected paired negative-reference battery-treatment service contains processing burdens. Do not add a native pyroprocessing inventory or avoided-primary credit to the empty allocated coproduct; this is not a claim that physical recycling is burden-free.",
+        "Reuse the independently reviewed source3.9heat, steam, wastewater, factory, electricity, sulfuric-acid, tap-water and freight correspondences. Native operating technology, grid/fleet mix, delivery, geography, allocation, vintage, internal uncertainty and BAFU excluded biosphere flows remain screening differences. Caller signs, uncertainty, formulas and separate emissions remain unchanged; score effects are unquantified.",
+        "Approve only the exact source ecoinvent3.9cut-off context and the UVEK2025/native2026 route with the tested canonical ecoinvent3.10biosphere. Other source versions, patches, inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "68ba7918b1f4694dd0262d3a11980615f5d1cdcd875ae5cd8e8f82412b2bd606"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-31162f957bc156a9",
+      "operation": "replace",
+      "mapping_method": "reviewed_manganese_dioxide_allocated_stock",
+      "review_path": "export/uvek_battery_manganese_dioxide_39_review.json",
+      "review_sha256": "7d0db45e381b3e9307a87f758f1be44951a15b2b4d0648c6cbe3d4e2967f57d5",
+      "authorization": "Standing autonomous goal and auto-approval: preserve the actually required source model and signed reference basis, with documented screening limits.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+          "reference product": "manganese dioxide",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+            "reference product": "manganese dioxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 0,
+          "inventory_sha256": "3861ce4310d6b30f401e82b90401dee37040e608a85b61962090303d20d1d933",
+          "metadata_sha256": "e3a6f5117b6479a02e6a6e4be01a105f7b385e04e80bca8521b715733269cb88",
+          "comment_sha256": "23d8d3b887cd90d17ae8e1ee6f9c7757fcf673af5e4077dee050d585d7606ed7",
+          "product_information_sha256": "4c7406696b843e93894682836bfeb0838b3573ebacfa9b570763e2d72872de91"
+        },
+        "producer_witness": {
+          "identity": {
+            "name": "manganese dioxide production",
+            "reference product": "manganese dioxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 22,
+          "inventory_sha256": "8c266b35278f4d9bda1e3e52d3ec5c65372de3aaaba0e9be3b04fe71d4c787ff",
+          "metadata_sha256": "6a6454f910ff01ca2303cecc8822184e8481304ad3d6b4f00a57714a8910ec3a",
+          "comment_sha256": "7875ef74cc052a3137191db465091d7f9b3f1aafcbd6072c62cdfe7523dbcac4",
+          "product_information_sha256": "4c7406696b843e93894682836bfeb0838b3573ebacfa9b570763e2d72872de91"
+        },
+        "paired_treatment_witnesses": [
+          {
+            "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+            "reference product": "used Li-ion battery",
+            "location": "GLO",
+            "unit": "kilogram",
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 22
+          },
+          {
+            "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+            "reference product": "cobalt",
+            "location": "GLO",
+            "unit": "kilogram",
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 0
+          }
+        ],
+        "source_rule_dependency_scopes": [
+          {
+            "rule_id": "bp-05200779ee64a17f",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "e569945184f828afc91b1179146c30f989032090e6215f17c5693a27d4cbce84"
+          },
+          {
+            "rule_id": "bp-1338a8724acf99de",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "f4f251d95c39cbc1aaec47b7be92181e67a81a9fbfc14276a40f474218f8d97a"
+          },
+          {
+            "rule_id": "bp-15a5350bb1bcdb67",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "ae8b018b351cfa81b8fa592b4f8286e7b640ea125b6f22c27edbe395251eb5a4"
+          },
+          {
+            "rule_id": "bp-3c10f9aaee8ffe42",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "fc5a96385623fc7fcc490b4199ac99930bf88dd435ab0a05325b04dddf1d2bc0"
+          },
+          {
+            "rule_id": "bp-50d00531fead75d6",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "f48ea14c30a2c8c46e50c35236bdae09cc38fe3a87e58b45482351860210617a"
+          },
+          {
+            "rule_id": "bp-55c88a17f0ffb64f",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "34080709bb3c9b79e0c7ac5fa92bcf71fff508ba4e0e2495471e9749de7e6d75"
+          },
+          {
+            "rule_id": "bp-59f60997076df042",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "7e3a9c0b005de2c057289e4a681dd1e555b0d1d3467406c45e32a516dcbe70ec"
+          },
+          {
+            "rule_id": "bp-5a3b5a4a13938317",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "95cf6bb71cbbb1c4997533a550c744cfb58ea018f1843ca3c52c201d66c22f87"
+          },
+          {
+            "rule_id": "bp-5b8c937d3fb21468",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "616d6fde98cfe5573545399edbfab9d1f0d57d7b655ff62a2068330312ad6759"
+          },
+          {
+            "rule_id": "bp-61babdae6914f05a",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "b8164f1c53e7605adbae2087dfb5fb90c8adcdb8b3482c5732a4e3cde61c953c"
+          },
+          {
+            "rule_id": "bp-7532c17fac15ff33",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "b5c3102040c9ca1b09fb97fbca03c371854cdcd7b819f756605850cf1c57e47e"
+          },
+          {
+            "rule_id": "bp-7740a48a01851669",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "28f7237c24beae5af586b906ed377f51ddf67b1bab7f4298262a00ff1783a946"
+          },
+          {
+            "rule_id": "bp-999a70594224e212",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "42ebbd356e1bcb91a1b4bf9b416970e4514286ba96dd4b1ab65751dc6fd17b70"
+          },
+          {
+            "rule_id": "bp-9f7197c47047750a",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "1a8700f33408104200e233a122e1eeca3137e21ac0c795b4c4a5d9e9ccb53354"
+          },
+          {
+            "rule_id": "bp-abc1d07ff55a5bbe",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "f99a0ce1f6e668cf7c96fb63414428c445fad49acc463c840596c4dd1105e129"
+          },
+          {
+            "rule_id": "bp-c87d564423c75554",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "2be4fae657f50c6a4143f84286154d202da5385923604e8efbcebe397b580414"
+          }
+        ],
+        "borrowed_recipe_dependencies": [
+          "chemical-heat-water-1ced12d9ab9a80752fd2",
+          "pcc-39-chemical-heat-retained-water-uncertainty",
+          "pilot-wastewater-native-plant-only-13e44131b50b181f4131",
+          "pilot-wastewater-routes-29ebb2064bdb50293c1f",
+          "pilot-wastewater-routes-39cbd83822dc810e03e3",
+          "pilot-wastewater-routes-925e10d1da0e457f8cfc",
+          "pilot-wastewater-routes-9931675e08e4f23932b2",
+          "pilot-wastewater-routes-994071bdc70226a1f893",
+          "pilot-wastewater-routes-997a7bcd8a81ffa6ee79",
+          "pilot-wastewater-routes-bd88b9549e9e5edabb3e",
+          "pilot-wastewater-routes-d842e2a4b036631ca64a",
+          "pilot-wastewater-routes-e4001c3975d57642d229",
+          "pilot-wastewater-routes-eff76270716fb3e521c0",
+          "steel-39-global-natural-gas-production-heat-mix"
+        ]
+      },
+      "limitations": [
+        "Retain the positive-reference production-only recovered-MnO2 coproduct as a distinct allocated stock. The inspected paired negative-reference battery-treatment service contains processing burdens. Do not add a native pyroprocessing inventory or avoided-primary credit to the empty allocated coproduct; this is not a claim that physical recycling is burden-free.",
+        "Approve only the exact source ecoinvent3.9cut-off context and the UVEK2025/native2026 route with the tested canonical ecoinvent3.10biosphere. Other source versions, patches, inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "a56d6501595f65db7f1f5a2798c0d2ad5bdf51c5149d5f9fe0ac2eef7fffd76b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-853511a523eb9ea1",
+      "operation": "replace",
+      "mapping_method": "reviewed_manganese_iii_oxide_precursor",
+      "review_path": "export/uvek_battery_manganese_dioxide_39_review.json",
+      "review_sha256": "7d0db45e381b3e9307a87f758f1be44951a15b2b4d0648c6cbe3d4e2967f57d5",
+      "authorization": "Standing autonomous goal and auto-approval: preserve the actually required source model and signed reference basis, with documented screening limits.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for manganese(III) oxide",
+          "reference product": "manganese(III) oxide",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for manganese(III) oxide",
+            "reference product": "manganese(III) oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 6,
+          "inventory_sha256": "2e90f33ded7155971966fab5e0e8e65cb2f2183c9405654c80c0e0374d22d321",
+          "metadata_sha256": "4bf59cae513b5725b4b8ad3ea9de39780dd522d67cacd55d2a7994c9f5dcb5af",
+          "comment_sha256": "af34d1f9c7c32a0e1c4da0c7ec101ff372f9f540044c13d3c275d8d47da02c79",
+          "product_information_sha256": "1821a69d1a27fe6ca461983b1b4ce11f683e5def79929827f18f8e95f2e5675a"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Manganese oxide (Mn2O3), at plant",
+              "reference product": "Manganese oxide (Mn2O3), at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 12,
+            "inventory_sha256": "779ba28cabe9a2cd44bcbda915ab360b6340bb1f6733a0f6cb0f3c41506c4609",
+            "metadata_sha256": "cc100df548ec2b54c7258e1525d3ca2ca47aae6ad030fb4820ebdb6eb282318a",
+            "comment_sha256": "7413e1755c82323659bdacb46699bdf46947f067a3e76d31726a2aaef122773a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Manganese oxide (Mn2O3), at plant",
+              "reference product": "Manganese oxide (Mn2O3), at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 12,
+            "inventory_sha256": "fddc245f92b24aab1b2f57c70ee9fb19ccba510aff8687f45d29fe44bec64f1f",
+            "metadata_sha256": "cb2f86567b9067466de795f91245d476ce8b691c8c3588c12ebffcc8eff9ed0f",
+            "comment_sha256": "2018b8f0f94f82f18a4360299c021c3cd2a94168d2c63964c9f6fce028a4dd62",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "producer_witness": {
+          "identity": {
+            "name": "manganese dioxide production",
+            "reference product": "manganese dioxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 22,
+          "inventory_sha256": "8c266b35278f4d9bda1e3e52d3ec5c65372de3aaaba0e9be3b04fe71d4c787ff",
+          "metadata_sha256": "6a6454f910ff01ca2303cecc8822184e8481304ad3d6b4f00a57714a8910ec3a",
+          "comment_sha256": "7875ef74cc052a3137191db465091d7f9b3f1aafcbd6072c62cdfe7523dbcac4",
+          "product_information_sha256": "4c7406696b843e93894682836bfeb0838b3573ebacfa9b570763e2d72872de91"
+        },
+        "paired_treatment_witnesses": [
+          {
+            "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+            "reference product": "used Li-ion battery",
+            "location": "GLO",
+            "unit": "kilogram",
+            "reference_amounts": [
+              -1.0
+            ],
+            "nonproduction_count": 22
+          },
+          {
+            "name": "treatment of used Li-ion battery, pyrometallurgical treatment",
+            "reference product": "cobalt",
+            "location": "GLO",
+            "unit": "kilogram",
+            "reference_amounts": [
+              1.0
+            ],
+            "nonproduction_count": 0
+          }
+        ],
+        "source_rule_dependency_scopes": [
+          {
+            "rule_id": "bp-05200779ee64a17f",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "e569945184f828afc91b1179146c30f989032090e6215f17c5693a27d4cbce84"
+          },
+          {
+            "rule_id": "bp-1338a8724acf99de",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "f4f251d95c39cbc1aaec47b7be92181e67a81a9fbfc14276a40f474218f8d97a"
+          },
+          {
+            "rule_id": "bp-15a5350bb1bcdb67",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "ae8b018b351cfa81b8fa592b4f8286e7b640ea125b6f22c27edbe395251eb5a4"
+          },
+          {
+            "rule_id": "bp-3c10f9aaee8ffe42",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "fc5a96385623fc7fcc490b4199ac99930bf88dd435ab0a05325b04dddf1d2bc0"
+          },
+          {
+            "rule_id": "bp-50d00531fead75d6",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "f48ea14c30a2c8c46e50c35236bdae09cc38fe3a87e58b45482351860210617a"
+          },
+          {
+            "rule_id": "bp-55c88a17f0ffb64f",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "34080709bb3c9b79e0c7ac5fa92bcf71fff508ba4e0e2495471e9749de7e6d75"
+          },
+          {
+            "rule_id": "bp-59f60997076df042",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "7e3a9c0b005de2c057289e4a681dd1e555b0d1d3467406c45e32a516dcbe70ec"
+          },
+          {
+            "rule_id": "bp-5a3b5a4a13938317",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "95cf6bb71cbbb1c4997533a550c744cfb58ea018f1843ca3c52c201d66c22f87"
+          },
+          {
+            "rule_id": "bp-5b8c937d3fb21468",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "616d6fde98cfe5573545399edbfab9d1f0d57d7b655ff62a2068330312ad6759"
+          },
+          {
+            "rule_id": "bp-61babdae6914f05a",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "b8164f1c53e7605adbae2087dfb5fb90c8adcdb8b3482c5732a4e3cde61c953c"
+          },
+          {
+            "rule_id": "bp-7532c17fac15ff33",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "b5c3102040c9ca1b09fb97fbca03c371854cdcd7b819f756605850cf1c57e47e"
+          },
+          {
+            "rule_id": "bp-7740a48a01851669",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "28f7237c24beae5af586b906ed377f51ddf67b1bab7f4298262a00ff1783a946"
+          },
+          {
+            "rule_id": "bp-999a70594224e212",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "42ebbd356e1bcb91a1b4bf9b416970e4514286ba96dd4b1ab65751dc6fd17b70"
+          },
+          {
+            "rule_id": "bp-9f7197c47047750a",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "1a8700f33408104200e233a122e1eeca3137e21ac0c795b4c4a5d9e9ccb53354"
+          },
+          {
+            "rule_id": "bp-abc1d07ff55a5bbe",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "f99a0ce1f6e668cf7c96fb63414428c445fad49acc463c840596c4dd1105e129"
+          },
+          {
+            "rule_id": "bp-c87d564423c75554",
+            "source": {
+              "family": "ecoinvent",
+              "version": "3.9",
+              "system_model": "cutoff"
+            },
+            "fingerprint": "2be4fae657f50c6a4143f84286154d202da5385923604e8efbcebe397b580414"
+          }
+        ],
+        "borrowed_recipe_dependencies": [
+          "chemical-heat-water-1ced12d9ab9a80752fd2",
+          "pcc-39-chemical-heat-retained-water-uncertainty",
+          "pilot-wastewater-native-plant-only-13e44131b50b181f4131",
+          "pilot-wastewater-routes-29ebb2064bdb50293c1f",
+          "pilot-wastewater-routes-39cbd83822dc810e03e3",
+          "pilot-wastewater-routes-925e10d1da0e457f8cfc",
+          "pilot-wastewater-routes-9931675e08e4f23932b2",
+          "pilot-wastewater-routes-994071bdc70226a1f893",
+          "pilot-wastewater-routes-997a7bcd8a81ffa6ee79",
+          "pilot-wastewater-routes-bd88b9549e9e5edabb3e",
+          "pilot-wastewater-routes-d842e2a4b036631ca64a",
+          "pilot-wastewater-routes-e4001c3975d57642d229",
+          "pilot-wastewater-routes-eff76270716fb3e521c0",
+          "steel-39-global-natural-gas-production-heat-mix"
+        ]
+      },
+      "limitations": [
+        "Use the native Mn2O3 process only as the actual consumed precursor, never as a direct substitute for MnO2 or lithium manganese oxide. Both precursor references are positive one kg and both identify Mn2O3/CAS1317-34-6. The native CN-labelled patent-based carbonate-roasting process, energy and background geography replace the source global precursor supply mix and delivery. Grade, vintage, production route, allocation and score differences are unquantified.",
+        "Reuse the independently reviewed source3.9heat, steam, wastewater, factory, electricity, sulfuric-acid, tap-water and freight correspondences. Native operating technology, grid/fleet mix, delivery, geography, allocation, vintage, internal uncertainty and BAFU excluded biosphere flows remain screening differences. Caller signs, uncertainty, formulas and separate emissions remain unchanged; score effects are unquantified.",
+        "Approve only the exact source ecoinvent3.9cut-off context and the UVEK2025/native2026 route with the tested canonical ecoinvent3.10biosphere. Other source versions, patches, inverse and cross-system-model routes remain unapproved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "version": "2025",
+            "system_model": "cutoff"
+          },
+          "fingerprint": "9fd19a3a506a35c94b15e59112ba8d46b9c5c701ef62c98f70c9342706a6d985"
+        }
+      ]
     }
   ],
   "superseded_operations": [

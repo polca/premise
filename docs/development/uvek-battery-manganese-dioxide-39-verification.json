@@ -1,0 +1,117 @@
+{
+  "date": "2026-11-16",
+  "status": "manganese_supply_mapping_verified_remaining_sectors_unfinished",
+  "review": "brightpath/data/export/uvek_battery_manganese_dioxide_39_review.json",
+  "review_sha256": "7d0db45e381b3e9307a87f758f1be44951a15b2b4d0648c6cbe3d4e2967f57d5",
+  "resource_change": {
+    "review_sha256": "7d0db45e381b3e9307a87f758f1be44951a15b2b4d0648c6cbe3d4e2967f57d5",
+    "native_resource_sha256": "82ed35768527b76375c262259bd8d4b2532673bb79c9796331d9196234771736",
+    "changed_rules": [
+      "bp-12872d805d95ab97",
+      "bp-31162f957bc156a9",
+      "bp-853511a523eb9ea1"
+    ],
+    "new_recipes": 3,
+    "all_old_recipes_unchanged": true,
+    "all_other_rules_unchanged": true,
+    "new_scopes": 3
+  },
+  "generator_reproduction": [
+    {
+      "file": "ecoinvent-to-uvek-2025.json",
+      "identical": true,
+      "sha256": "82ed35768527b76375c262259bd8d4b2532673bb79c9796331d9196234771736",
+      "bytes": 70602951
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+      "identical": true,
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "bytes": 18596319
+    },
+    {
+      "file": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+      "identical": true,
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "bytes": 18596725
+    }
+  ],
+  "Brightpath_focused_tests_passed": 25,
+  "Premise_fresh_cache_withdrawal_tests_passed": 4,
+  "inventory_checks": {
+    "status": "complete_MnO2_model_matches_independently_converted_raw_producer_and_original_freight",
+    "project": "bafu-2026-ecospold2-biosphere-310",
+    "source_database": "BAFU:2026-reimported",
+    "biosphere": "ecoinvent-3.10-biosphere",
+    "transient_activities": 21,
+    "matrix_shape": [
+      11968,
+      11968
+    ],
+    "signed_finite_LCI_solves": 6,
+    "independent_source_producer_comparison": true,
+    "original_four_market_freight_entries_retained": true,
+    "recovered_stock_demand": 0.00166389351081531,
+    "allocated_stock_inventory_is_zero": true,
+    "max_absolute_inventory_difference": 0.0,
+    "comparison_tolerance": {
+      "rtol": 1e-08,
+      "atol": 1e-11
+    },
+    "new_Brightway_databases": 0,
+    "new_registered_activities": 0,
+    "new_processed_files": 0,
+    "source_and_biosphere_metadata_preserved": true,
+    "qualification_limit": "Converted target-model consistency and signs, not original ecoinvent versus UVEK LCIA equivalence, stochastic correlations, complete battery update or export."
+  },
+  "actual_first_cohorts": {
+    "battery": {
+      "before": 10,
+      "after": 9,
+      "remaining_rule_ids": [
+        "bp-168324086066bce9",
+        "bp-2149df101fadeeb2",
+        "bp-5943576bea71c0de",
+        "bp-6b5607ff035d8448",
+        "bp-6e3f61d03dd09ea6",
+        "bp-9dba49829fbe9454",
+        "bp-bce58f1fed0f56b1",
+        "bp-c18af03acca016b9",
+        "bp-d700fe3d29d48083"
+      ],
+      "diagnostic_only": true
+    },
+    "final energy": {
+      "before": 19,
+      "after": 18,
+      "remaining_rule_ids": [
+        "bp-090187e1cd9f8fc7",
+        "bp-14c85826881a6371",
+        "bp-168324086066bce9",
+        "bp-3e953694d9531d69",
+        "bp-3f19534eb7d97f64",
+        "bp-6dd0791575d822ca",
+        "bp-996fc7b49f1ed29c",
+        "bp-9dba49829fbe9454",
+        "bp-a73848b70d94bf8a",
+        "bp-aa9896866f9437f6",
+        "bp-bcce1e75e09e77c0",
+        "bp-c18af03acca016b9",
+        "bp-c39b53689522c694",
+        "bp-d700fe3d29d48083",
+        "bp-dfd19ab20aef043f",
+        "bp-e69da1d0d93a9f73",
+        "bp-f0ea84b691223768",
+        "bp-f1810846999bc5bf"
+      ],
+      "diagnostic_only": true
+    }
+  },
+  "qualified_sectors": 14,
+  "newly_qualified_sectors": 0,
+  "Premise_production_Python_changed": false,
+  "Brightpath_runtime_Python_changed": false,
+  "maintainer_Python_changes": "Generic atomic review loader and six-line generator hook; subsequent cases extend index and review data.",
+  "new_foreground_omissions": 0,
+  "source_profile_scope": "ecoinvent 3.9 cutoff only; other source profiles remain unapproved."
+}
