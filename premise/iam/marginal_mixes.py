@@ -24,50 +24,42 @@ CONSTRAINED_SUPPLIERS = DATA_DIR / "consequential" / "constrained_suppliers.yaml
 
 @lru_cache
 def get_lifetime(list_tech: Tuple) -> np.ndarray:
-    """
-    Fetch lifetime values for different technologies from a .yaml file.
+    """Load lifetimes in requested technology order, retaining duplicates.
+
+    Missing technologies print a warning and are omitted from the result.
+
     :param list_tech: technology labels to find lifetime values for.
-    :type list_tech: list
-    :return: a numpy array with technology lifetime values
-    :rtype: DataArray
+    :type list_tech: tuple
+    :return: a float array of technology lifetimes in years
+    :rtype: numpy.ndarray
     """
     with open(IAM_LIFETIMES, "r", encoding="utf-8") as stream:
-        dict_ = yaml.safe_load(stream)
+        lifetimes = yaml.safe_load(stream)
 
-    dict_ = {k: v for k, v in dict_.items() if k in list_tech}
-
-    val = []
+    values = []
     for tech in list_tech:
-        if tech in dict_.keys():
-            val.append(dict_[tech])
+        if tech in lifetimes:
+            values.append(lifetimes[tech])
         else:
             print(f"WARNING: {tech} not found in lifetimes.yaml")
 
-    return np.array(val, dtype=float)
+    return np.array(values, dtype=float)
 
 
 @lru_cache
 def get_leadtime(list_tech: Tuple) -> np.ndarray:
-    """
-    Fetch lead-time values for different technologies from a .yaml file.
+    """Load lead times in requested technology order, retaining duplicates.
+
     :param list_tech: technology labels to find lead-time values for.
-    :type list_tech: list
-    :return: a numpy array with technology lead-time values
-    :rtype: np.array
+    :type list_tech: tuple
+    :return: a float array of technology lead times in years
+    :rtype: numpy.ndarray
+    :raises KeyError: if a requested technology has no lead-time entry
     """
     with open(IAM_LEADTIMES, "r", encoding="utf-8") as stream:
-        dict_ = yaml.safe_load(stream)
+        leadtimes = yaml.safe_load(stream)
 
-    dict_ = {k: dict_[k] for k in list(list_tech)}
-
-    val = []
-    for tech in list_tech:
-        if tech in dict_.keys():
-            val.append(dict_[tech])
-        else:
-            print(f"WARNING: {tech} not found in leadtimes.yaml")
-
-    return np.array(val, dtype=float)
+    return np.array([leadtimes[tech] for tech in list_tech], dtype=float)
 
 
 def get_list_contrained_suppliers() -> list[str]:
