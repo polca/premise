@@ -1,0 +1,681 @@
+{
+  "date": "2026-11-16",
+  "authorization": "Standing autonomous modelling approval; complete native class proxies with explicit warnings, retain correct CLIC classes where native services are absent.",
+  "native_roles": [
+    {
+      "role": "passenger car, battery electric, large",
+      "native_name": "Transport, passenger car, battery electric, NMC-622 battery, Large, 2021",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, battery electric, NMC-622 battery, Large, 2021",
+            "reference product": "Transport, passenger car, battery electric, NMC-622 battery, Large, 2021",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "4388ee76b08a348e3b79e853b3c45ca2a4b62b9330009bcc4c67019487e15313",
+          "source_metadata_sha256": "9b75c1ab432692a329406aca68cf6404ac6932f7fdc4a81caa9df4130dff7b0e",
+          "source_comment_sha256": "d1e59a5c01ebcbefda800bd06036eafce9494130f20b3f95dc540b3a042f14f1"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion factor. NMC-622 with ordinary grid charging represents generic BEV; certified-electricity, LFP and NCA variants remain outside this role."
+      ]
+    },
+    {
+      "role": "passenger car, fuel cell electric, large",
+      "native_name": "Transport, passenger car, fuel cell electric, SMR of natural gas, Large, 2021",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, fuel cell electric, SMR of natural gas, Large, 2021",
+            "reference product": "Transport, passenger car, fuel cell electric, SMR of natural gas, Large, 2021",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "3693e92f690fa87fe7c3199eba63de9edabe41f0c934a1658d2051de38510084",
+          "source_metadata_sha256": "e65b55e91a4383c35be135a3b083efa5c33bfd465067d591aecf3a8bad9161e6",
+          "source_comment_sha256": "4a06680d6f4385b7dd66b34998b42b079cf519be4d6725ac87dca62f0a85a7bd"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion factor. Retain the complete existing 700-bar SMR-hydrogen fuelling supply; no extra terminal-compression electricity is added."
+      ]
+    },
+    {
+      "role": "passenger car, compressed gas, large",
+      "native_name": "Transport, passenger car, compressed gas, Large, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, compressed gas, Large, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, compressed gas, Large, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "85ff8f6a7a88e89dc828f7baae9b2b65fbe3731a105c94c70954c650d07a5a60",
+          "source_metadata_sha256": "cb73744764ec45e20b7cf8ced2666aebcf3f324fa41d33cd0e9762e909046983",
+          "source_comment_sha256": "54100497d1892e0ad9baba99387a3d5cecec09f3ad7b54983cb8a53cb60f9a19"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, compressed gas, Large, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, compressed gas, Large, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "bff3cf02bdbac3c902af73b39e763002967f353a1585a1b8b4edf08dd6b2b12e",
+          "source_metadata_sha256": "5e1e881a4b17ffe7cfbe6612404b753459432bfefb13b55c2adbe93aee1b33ec",
+          "source_comment_sha256": "7fe5d9c61b93bb50b9269f796c6558f11d48f30917b54ba63d8c1374f7821586"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion factor."
+      ]
+    },
+    {
+      "role": "passenger car, plugin gasoline hybrid, large",
+      "native_name": "Transport, passenger car, plugin gasoline hybrid, Large, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, plugin gasoline hybrid, Large, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, plugin gasoline hybrid, Large, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "6f1c36c0082b19ab2f17e57df12491a75de8aededd66a731c6db4b50a4c40391",
+          "source_metadata_sha256": "f5f578ddb1e186c46b506c52a65cb9f1ed8d3fc2dfd96d192ba65a4def7c6233",
+          "source_comment_sha256": "5d5d64747df9162bb91fef329d8faa734f158d161f378d5bcd3feb40bb0d4bd7"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, plugin gasoline hybrid, Large, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, plugin gasoline hybrid, Large, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "2141e32f24b320aa4728edf9fce4edc0c790476f0640dfa5a20d7848b72a3d19",
+          "source_metadata_sha256": "95ef18eb639bc687f9c69a0a5aff1641840fd2497cb4146dc5266792b4b7b7d8",
+          "source_comment_sha256": "8977340ab5f9ddf17e36ae894aecf28f9622833344f44b7ccd148dbf1ba7ff59"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion factor. Retain the source electric utility factor and scale its purchased petrol and electricity through the common IAM factor, without inventing a future charging share."
+      ]
+    },
+    {
+      "role": "passenger car, gasoline, large",
+      "native_name": "Transport, passenger car, gasoline, Large, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, gasoline, Large, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, gasoline, Large, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "6de4062288eaf7a335ed283da12c3936d32a4033411d5f4f0689fb178d95713c",
+          "source_metadata_sha256": "a472360dc83dde887d9b4673150fb1c5e3845e625dc7d8aeadc73924af28ff9a",
+          "source_comment_sha256": "ea7e93da581bcd5c97fa0b0814c79fc61c04b4a04db21152ef220d53f1b6341f"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, gasoline, Large, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, gasoline, Large, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "7cd977b5105a18caf90d286817972017174feb81dbe55213511b0186fe87cb6f",
+          "source_metadata_sha256": "30dc2419d7c56a459e3b9fac1baad6508295469b421002819a05b42e364e995c",
+          "source_comment_sha256": "d3d57b4a0e7eff7102847bffbc02be205c71f24b48f3ab5c10ff461d626e4f0b"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion factor."
+      ]
+    },
+    {
+      "role": "passenger car, battery electric, medium",
+      "native_name": "Transport, passenger car, battery electric, NMC-622 battery, Medium, 2021",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, battery electric, NMC-622 battery, Medium, 2021",
+            "reference product": "Transport, passenger car, battery electric, NMC-622 battery, Medium, 2021",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "e28e32d0801ef3c9b07a71345afecb3d2fb606daf16f5d90df38fb8d901cf9ee",
+          "source_metadata_sha256": "cd0359e74db72aeeffc853a890b6cb2f111f288a52b98a8cfcaf94ee4242a6be",
+          "source_comment_sha256": "eb9dc3a0fcd2b334b652626e5c7f5902829c9b95fbcf8665360f4387a55b5a61"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion factor. NMC-622 with ordinary grid charging represents generic BEV; certified-electricity, LFP and NCA variants remain outside this role."
+      ]
+    },
+    {
+      "role": "passenger car, fuel cell electric, medium",
+      "native_name": "Transport, passenger car, fuel cell electric, SMR of natural gas, Medium, 2021",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, fuel cell electric, SMR of natural gas, Medium, 2021",
+            "reference product": "Transport, passenger car, fuel cell electric, SMR of natural gas, Medium, 2021",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "31c237fd23fec517f8eb9cd26c49671a0f1bd197a03f4def5e02535645bc4842",
+          "source_metadata_sha256": "5875b95513e3209a42def778f5498b3cc6866763977d71990b0c5bdd321239bf",
+          "source_comment_sha256": "9b7af1b8f862e75d9e65ea8811ed8c36dca47fc52587e0a9b2eebadf1a85ee7d"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion factor. Retain the complete existing 700-bar SMR-hydrogen fuelling supply; no extra terminal-compression electricity is added."
+      ]
+    },
+    {
+      "role": "passenger car, compressed gas, medium",
+      "native_name": "Transport, passenger car, compressed gas, Medium, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, compressed gas, Medium, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, compressed gas, Medium, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "07adbb812b086f721b54793de24224f2ba6d41503f1c85e1b74322dca9d35fa3",
+          "source_metadata_sha256": "94792754479ceded70f15ccf082a73a938af5959fa26ac2beaa090c24ad9b314",
+          "source_comment_sha256": "1578f9ffbed24a25ac40c965dbb746cc9596447f642b39fc3437d0404cb720f6"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, compressed gas, Medium, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, compressed gas, Medium, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "b72c06a320045d6cdb26531360bbe8c46b3c1feb068552bfe3ad475c518c0c0c",
+          "source_metadata_sha256": "f9616879bd8b7d99370e7e46a819e95370d117445f53922da9befb13303faab8",
+          "source_comment_sha256": "62b072877918371f6dc6bb218db5ed4b89c4bc9c38b4c6e1d932f0b8997bbbc1"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion factor."
+      ]
+    },
+    {
+      "role": "passenger car, plugin gasoline hybrid, medium",
+      "native_name": "Transport, passenger car, plugin gasoline hybrid, Medium, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, plugin gasoline hybrid, Medium, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, plugin gasoline hybrid, Medium, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "030800c5a82cd9a6da5e7d15e530b15dd7cbe4664283fdde05ccc4011f71fb5d",
+          "source_metadata_sha256": "b5a11c00324363b939525afd50b107bb6e24316209eb9d5b2f38fa58147ed982",
+          "source_comment_sha256": "a4b006bbbe4aae4fa5d843b30adcab24d6c239809ac99c98c0e922031541460f"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, plugin gasoline hybrid, Medium, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, plugin gasoline hybrid, Medium, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "0d24a8dad6177caa1fb3a6f5a3758e30c25e52ea14e030db6bb87de264af8ca0",
+          "source_metadata_sha256": "55c507c42119b22cbcc1cf407b5fc467d92fcd8be2f47e88802a9972301b8051",
+          "source_comment_sha256": "9874151b32d672a5ce063068a60c6771215ce59b12e2bb64071fcaba74272392"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion factor. Retain the source electric utility factor and scale its purchased petrol and electricity through the common IAM factor, without inventing a future charging share."
+      ]
+    },
+    {
+      "role": "passenger car, gasoline, medium",
+      "native_name": "Transport, passenger car, gasoline, Medium, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, gasoline, Medium, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, gasoline, Medium, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "9bab20fe8fffce2559dea8683d7f098364f395dd879e3ee0ecce6ad914e7199b",
+          "source_metadata_sha256": "e1bf5337171ed517c8bec7a61c33e5a8d3c4a41b5782fb2b64b009b0b4dd3af8",
+          "source_comment_sha256": "7368c00ea1cffae56cdd4417586ee9568ab47cfbfe85aaba9fe5e52fca508faa"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, gasoline, Medium, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, gasoline, Medium, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "dd1880ec71b00d5d8deb33d2f8c4de38025976cabf566a50e4b5dc7bd766f349",
+          "source_metadata_sha256": "50f3de8e495911ea40433d6024b0e2806d27ef1f71fdf96a0a61c93e44dfd464",
+          "source_comment_sha256": "b9fb5289b896396bb2818e89756f966a9ce5a650b7ccb8aea7644d3e0646df7e"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion factor."
+      ]
+    },
+    {
+      "role": "passenger car, battery electric, mini",
+      "native_name": "Transport, passenger car, battery electric, NMC-622 battery, Micro, 2021",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, battery electric, NMC-622 battery, Micro, 2021",
+            "reference product": "Transport, passenger car, battery electric, NMC-622 battery, Micro, 2021",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "b79db260357a33c966a7cb03bdd4cbfbb117486ad1ac42419752609778645612",
+          "source_metadata_sha256": "e43739e9754fc397b122a455f9c25ca721f1fcc017185162287d85d477790dab",
+          "source_comment_sha256": "aec492635f863b3ca778ba968ad792e05990229089eac94f81cbf49ad1de91e7"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Micro class as the representative of this IAM role, without a mass or class-conversion factor. Native Micro BEV is an explicit small-electric-car screening representative; no combustion, gas, hybrid or van role is assigned to it. NMC-622 with ordinary grid charging represents generic BEV; certified-electricity, LFP and NCA variants remain outside this role."
+      ]
+    },
+    {
+      "role": "passenger car, battery electric, medium SUV",
+      "native_name": "Transport, passenger car, battery electric, NMC-622 battery, Large SUV, 2021",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, battery electric, NMC-622 battery, Large SUV, 2021",
+            "reference product": "Transport, passenger car, battery electric, NMC-622 battery, Large SUV, 2021",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "84a093c07eb5c528af457aba798faeba12f9e0864019b349d9a97a3311897e0b",
+          "source_metadata_sha256": "b4bdacfb120cf2578e5a729ea86cf4e828c6efd219cc82fafe2c883177442e0f",
+          "source_comment_sha256": "cda3dfa17b9e720fcd916cbc852133f1f0d92e768b120cd7b1ed355b25151467"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV. Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence. NMC-622 with ordinary grid charging represents generic BEV; certified-electricity, LFP and NCA variants remain outside this role."
+      ]
+    },
+    {
+      "role": "passenger car, fuel cell electric, medium SUV",
+      "native_name": "Transport, passenger car, fuel cell electric, SMR of natural gas, Large SUV, 2021",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, fuel cell electric, SMR of natural gas, Large SUV, 2021",
+            "reference product": "Transport, passenger car, fuel cell electric, SMR of natural gas, Large SUV, 2021",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "c75f201c261c59a3ce1330076a8a0f830da4917f24a2faa36a58c05c85678189",
+          "source_metadata_sha256": "5c1858c0abcbb3084ba9d771785c1cf35092fdaade27fa53bb26e9490c5973ee",
+          "source_comment_sha256": "8a327b08beba6354adc88c5d134fa4dabe39935f6a8d24a44aecee0a0443a66a"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV. Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence. Retain the complete existing 700-bar SMR-hydrogen fuelling supply; no extra terminal-compression electricity is added."
+      ]
+    },
+    {
+      "role": "passenger car, compressed gas, medium SUV",
+      "native_name": "Transport, passenger car, compressed gas, Large SUV, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, compressed gas, Large SUV, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, compressed gas, Large SUV, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "9dc09feff98ce43c64d1876a42e7f2f09c398701ec73d9b4e5acaf5d8aa0ed4e",
+          "source_metadata_sha256": "89b49cbdfe60edb9da8bea13f654c727096950fc885f0ef2bd1b6e7fe869fa2f",
+          "source_comment_sha256": "e24287e3bd97ee6c380d791ca150c97b9ab6010c058348e33e81d84b01ef45ce"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, compressed gas, Large SUV, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, compressed gas, Large SUV, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "c8b9cd439ac68a3cfaad71b109d0031e3861e0d327e7b604db9540d601ef1ecd",
+          "source_metadata_sha256": "1a359999b84acad4de8cd5091c3f57e14c3b6f29abee70d601aa22f06a1333a0",
+          "source_comment_sha256": "d1f9229835aa5ab8f6faa239d462e312d419ad0f6be5b8c4ee7cb828d4412f12"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV. Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence."
+      ]
+    },
+    {
+      "role": "passenger car, plugin gasoline hybrid, medium SUV",
+      "native_name": "Transport, passenger car, plugin gasoline hybrid, Large SUV, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, plugin gasoline hybrid, Large SUV, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, plugin gasoline hybrid, Large SUV, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "99edc85ad88a9b09e0601f81fc2706deb74c7d096335ac96cb79732ce3095744",
+          "source_metadata_sha256": "687c2befa2e91ab325760debc904b89536263c60b8168e968b4e378998bd7a3f",
+          "source_comment_sha256": "25d63e1ff2c960af5cea5d5844cc7efbe2c04df85f74aa530a959ed02bda6bb3"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, plugin gasoline hybrid, Large SUV, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, plugin gasoline hybrid, Large SUV, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "9bcd5b213377dc2d2a158e312697e8e3421729eddaac488ef651e653d08437ce",
+          "source_metadata_sha256": "2a31ffbabf2b5c501c68b4f1f1cce7c2648a8b1aba82df70ebbc1c92bd831e00",
+          "source_comment_sha256": "df0eefd3ae6b1780636ee32ba29b89471805e8e25efd6ae0fdcdc2efe129b89f"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV. Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence. Retain the source electric utility factor and scale its purchased petrol and electricity through the common IAM factor, without inventing a future charging share."
+      ]
+    },
+    {
+      "role": "passenger car, gasoline, medium SUV",
+      "native_name": "Transport, passenger car, gasoline, Large SUV, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, gasoline, Large SUV, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, gasoline, Large SUV, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "ff22ac1ee6909a0ddd9df71aeb63fd98c56f98eb7c3df6c02cae017b4b81ece4",
+          "source_metadata_sha256": "2972f474df7b8a66b52e13a6956d83d15ed4c67d2f1416f7852b572954dd52dd",
+          "source_comment_sha256": "c7d9d1f6626ffad709023edb8ea4f9bcb3d253466d3c6abe77aecb20868a5a36"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, gasoline, Large SUV, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, gasoline, Large SUV, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "0b3a2d91d87cc215bf7a5e922031e1e3d5c8d9e74e7d69622d136816cb10c13b",
+          "source_metadata_sha256": "8e487ef31b9b5d7e5c13035b5253e5479f0443be68ff76d7203b09355255a68c",
+          "source_comment_sha256": "aab8f7d29d306b118e6a70985e986d9acff475db4c976a656f4a37f4085eb76b"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV. Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence."
+      ]
+    },
+    {
+      "role": "passenger car, battery electric, small",
+      "native_name": "Transport, passenger car, battery electric, NMC-622 battery, Compact, 2021",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, battery electric, NMC-622 battery, Compact, 2021",
+            "reference product": "Transport, passenger car, battery electric, NMC-622 battery, Compact, 2021",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "12b081abab546535230a06569230c5c98834c5129d114f6c144fb2a8221807c8",
+          "source_metadata_sha256": "e2928b7670d765d714f5267e3eaad47cf697108c813ab35a231cd3436a84d1ad",
+          "source_comment_sha256": "a8c5a8d003fbdd02d46bf263d163975b8e97c4fc342ce899243570de5b02f779"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass and capacity may differ and are not corrected by an invented factor. NMC-622 with ordinary grid charging represents generic BEV; certified-electricity, LFP and NCA variants remain outside this role."
+      ]
+    },
+    {
+      "role": "passenger car, fuel cell electric, small",
+      "native_name": "Transport, passenger car, fuel cell electric, SMR of natural gas, Compact, 2021",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, fuel cell electric, SMR of natural gas, Compact, 2021",
+            "reference product": "Transport, passenger car, fuel cell electric, SMR of natural gas, Compact, 2021",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "fad2f4a70dcdc12c2d01e9f647a92ba4c8a82a4789335dd99a056d217712841d",
+          "source_metadata_sha256": "6651e724e7abfdabc52ec402511a565028922dcd19c8291022f1d591cfdc3524",
+          "source_comment_sha256": "95548626f6e95f5c0b91c5dcd0f077f91127a6e16b443cbc86d9796e0a0057ca"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass and capacity may differ and are not corrected by an invented factor. Retain the complete existing 700-bar SMR-hydrogen fuelling supply; no extra terminal-compression electricity is added."
+      ]
+    },
+    {
+      "role": "passenger car, compressed gas, small",
+      "native_name": "Transport, passenger car, compressed gas, Compact, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, compressed gas, Compact, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, compressed gas, Compact, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "19fd646ebd4e87d0bb2b26f795df9e877d2badb94ec2215d2a2f3e513e84a124",
+          "source_metadata_sha256": "993e219f962c7bbaacbd18cf10ea70a7beaa42e304d4fc15e00466ca05381560",
+          "source_comment_sha256": "88c3cd9fa13a53e7fdaa56090d5fe1b3dc0b733f4ca1a5741a8dc61efbf69346"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, compressed gas, Compact, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, compressed gas, Compact, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "35570ce4868cd501bcf5ef9ec83324e9935e0cacc6cdf32989ca7201c8ae682d",
+          "source_metadata_sha256": "0488608b9e053b446b13c3e93a03cddc4952397eaa1864e50d3966c5de2e95ae",
+          "source_comment_sha256": "4dce500fabb6c473a9763da3ac680f93e9f7d7b653e40a0417bf9876240e5be4"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass and capacity may differ and are not corrected by an invented factor."
+      ]
+    },
+    {
+      "role": "passenger car, plugin gasoline hybrid, small",
+      "native_name": "Transport, passenger car, plugin gasoline hybrid, Compact, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, plugin gasoline hybrid, Compact, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, plugin gasoline hybrid, Compact, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "880dcfa6df044730b6f527a2ef00dd0eee575d53e82abad730ac7207b3dad24c",
+          "source_metadata_sha256": "c97940f9336c41e702c9b087461722c741c192830baf423ee41b34d5ca60f6bc",
+          "source_comment_sha256": "bec0508f9990e1df3d8f23585d9ed7c57b8636986ab9bd288850326755a873f6"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, plugin gasoline hybrid, Compact, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, plugin gasoline hybrid, Compact, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "c7f27d8d5f933ad5179c64663c50ccd58e04bc36785b424bca66fe57b3c1177e",
+          "source_metadata_sha256": "b154ec46eb498276da52989bcd3a0dee0fbb0ff92130d1e76c01cb4d2a984e17",
+          "source_comment_sha256": "a09eef6f09d8006d3207b8ac84482d955e51a60112fd0cc5cb7ade635b163080"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass and capacity may differ and are not corrected by an invented factor. Retain the source electric utility factor and scale its purchased petrol and electricity through the common IAM factor, without inventing a future charging share."
+      ]
+    },
+    {
+      "role": "passenger car, gasoline, small",
+      "native_name": "Transport, passenger car, gasoline, Compact, 2021, EURO-6d",
+      "source_reference_amount": 1,
+      "unit": "kilometer",
+      "sources": [
+        {
+          "identity": {
+            "name": "Transport, passenger car, gasoline, Compact, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, gasoline, Compact, 2021, EURO-6d",
+            "location": "RER",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "8e266857c4b1292cd171613117735a8ff2dadd75adb5d2a2a27bccbaf23adce2",
+          "source_metadata_sha256": "98c289044450e7c270065749981c6ecda466143f2a2b45a2951bfebd22a94397",
+          "source_comment_sha256": "370cd9300dab4bc1a07e20463dc38097fffdf122a3a93b25612115680533b6b0"
+        },
+        {
+          "identity": {
+            "name": "Transport, passenger car, gasoline, Compact, 2021, EURO-6d",
+            "reference product": "Transport, passenger car, gasoline, Compact, 2021, EURO-6d",
+            "location": "CH",
+            "unit": "kilometer"
+          },
+          "source_inventory_sha256": "2f8fee2c47a5f2b8e86a5d66e438c5be31c893a3e7efc9b24298d0517617de14",
+          "source_metadata_sha256": "e093f43dde772c9253f281ea77a827c950c64b2b903007a0c80630a93f063bb1",
+          "source_comment_sha256": "237d437473b70388d9b8fc7ffd653db7ab9aa3c88f401d8bb323ddc9426fa67d"
+        }
+      ],
+      "limitations": [
+        "Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization, IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance, wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier is added.",
+        "These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions. Score effects are unquantified.",
+        "Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their own existing sizing policy.",
+        "Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass and capacity may differ and are not corrected by an invented factor."
+      ]
+    }
+  ],
+  "remaining_CLIC_roles": [
+    "passenger car, fuel cell electric, mini",
+    "passenger car, compressed gas, mini",
+    "passenger car, plugin gasoline hybrid, mini",
+    "passenger car, gasoline, mini",
+    "passenger car, battery electric, van",
+    "passenger car, fuel cell electric, van",
+    "passenger car, compressed gas, van",
+    "passenger car, plugin gasoline hybrid, van",
+    "passenger car, gasoline, van"
+  ],
+  "active_REMIND_roles": 30,
+  "native_role_count": 21,
+  "native_complete_reference_definitions_checked": 33,
+  "source_family": "uvek",
+  "source_version": "2026",
+  "biosphere_version": "3.10",
+  "qualified": false
+}

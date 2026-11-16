@@ -3,6 +3,45 @@
 # vehicle energy intensity (MJ/vehicle-km; distinct from fleet volumes)
 ---
 'passenger car, battery electric, large':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, battery electric, NMC-622 battery, Large, 2021
+      reference product: Transport, passenger car, battery electric, NMC-622 battery, Large, 2021
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion
+      factor. NMC-622 with ordinary grid charging represents generic BEV; certified-electricity, LFP and NCA variants
+      remain outside this role.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|BEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|BEV
@@ -27,6 +66,48 @@
     fltr:
       - electricity
 'passenger car, fuel cell electric, large':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, fuel cell electric, SMR of natural gas, Large, 2021
+      reference product: Transport, passenger car, fuel cell electric, SMR of natural gas, Large, 2021
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion
+      factor. Retain the complete existing 700-bar SMR-hydrogen fuelling supply; no extra terminal-compression electricity
+      is added.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      - Hydrogen production, steam methane reforming of natural gas, 25 bar
+      - market for hydrogen, gaseous
+      - market for hydrogen, gaseous, low pressure
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      unit: kilogram
+    - name: Hydrogen production, steam methane reforming of natural gas, 25 bar
+      unit: kilogram
+    - name: market for hydrogen, gaseous
+      unit: kilogram
+    - name: market for hydrogen, gaseous, low pressure
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|FCEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|FCEV
@@ -51,6 +132,49 @@
     fltr:
       - hydrogen
 'passenger car, compressed gas, large':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, compressed gas, Large, 2021, EURO-6d
+      reference product: Transport, passenger car, compressed gas, Large, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion
+      factor.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gas vehicles
+      - Natural gas, from high pressure network (1-5 bar), at service station
+      - market for natural gas, high pressure
+      - market group for natural gas, high pressure
+      unit:
+      - kilogram
+      - cubic meter
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gas vehicles
+      unit: kilogram
+    - name: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    - name: market for natural gas, high pressure
+      unit: cubic meter
+    - name: market group for natural gas, high pressure
+      unit: cubic meter
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Gases
@@ -76,6 +200,68 @@
     fltr:
       - natural gas
 'passenger car, plugin gasoline hybrid, large':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, plugin gasoline hybrid, Large, 2021, EURO-6d
+      reference product: Transport, passenger car, plugin gasoline hybrid, Large, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion
+      factor. Retain the source electric utility factor and scale its purchased petrol and electricity through the
+      common IAM factor, without inventing a future charging share.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit:
+      - kilogram
+      - kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hybrid electric
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Hybrid electric
@@ -102,6 +288,56 @@
       - electricity
       - petrol, low-sulfur
 'passenger car, gasoline, large':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, gasoline, Large, 2021, EURO-6d
+      reference product: Transport, passenger car, gasoline, Large, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large class as the representative of this IAM role, without a mass or class-conversion
+      factor.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car|Liquids
@@ -127,6 +363,45 @@
     fltr:
       - gasoline
 'passenger car, battery electric, medium':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, battery electric, NMC-622 battery, Medium, 2021
+      reference product: Transport, passenger car, battery electric, NMC-622 battery, Medium, 2021
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion
+      factor. NMC-622 with ordinary grid charging represents generic BEV; certified-electricity, LFP and NCA variants
+      remain outside this role.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|BEV
@@ -153,6 +428,48 @@
     fltr:
       - electricity
 'passenger car, fuel cell electric, medium':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, fuel cell electric, SMR of natural gas, Medium, 2021
+      reference product: Transport, passenger car, fuel cell electric, SMR of natural gas, Medium, 2021
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion
+      factor. Retain the complete existing 700-bar SMR-hydrogen fuelling supply; no extra terminal-compression electricity
+      is added.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      - Hydrogen production, steam methane reforming of natural gas, 25 bar
+      - market for hydrogen, gaseous
+      - market for hydrogen, gaseous, low pressure
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      unit: kilogram
+    - name: Hydrogen production, steam methane reforming of natural gas, 25 bar
+      unit: kilogram
+    - name: market for hydrogen, gaseous
+      unit: kilogram
+    - name: market for hydrogen, gaseous, low pressure
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|FCEV
@@ -181,6 +498,49 @@
     fltr:
       - hydrogen
 'passenger car, compressed gas, medium':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, compressed gas, Medium, 2021, EURO-6d
+      reference product: Transport, passenger car, compressed gas, Medium, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion
+      factor.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gas vehicles
+      - Natural gas, from high pressure network (1-5 bar), at service station
+      - market for natural gas, high pressure
+      - market group for natural gas, high pressure
+      unit:
+      - kilogram
+      - cubic meter
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gas vehicles
+      unit: kilogram
+    - name: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    - name: market for natural gas, high pressure
+      unit: cubic meter
+    - name: market group for natural gas, high pressure
+      unit: cubic meter
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Gases
@@ -221,6 +581,68 @@
     fltr:
       - liquefied petroleum gas
 'passenger car, plugin gasoline hybrid, medium':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, plugin gasoline hybrid, Medium, 2021, EURO-6d
+      reference product: Transport, passenger car, plugin gasoline hybrid, Medium, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion
+      factor. Retain the source electric utility factor and scale its purchased petrol and electricity through the
+      common IAM factor, without inventing a future charging share.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit:
+      - kilogram
+      - kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hybrid electric
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Hybrid electric
@@ -300,6 +722,56 @@
       fltr:
       - diesel
 'passenger car, gasoline, medium':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, gasoline, Medium, 2021, EURO-6d
+      reference product: Transport, passenger car, gasoline, Medium, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Medium class as the representative of this IAM role, without a mass or class-conversion
+      factor.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Medium|Midsize Car|Liquids
@@ -350,6 +822,46 @@
       - gasoline
       - petrol, low-sulfur
 'passenger car, battery electric, mini':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, battery electric, NMC-622 battery, Micro, 2021
+      reference product: Transport, passenger car, battery electric, NMC-622 battery, Micro, 2021
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Micro class as the representative of this IAM role, without a mass or class-conversion
+      factor. Native Micro BEV is an explicit small-electric-car screening representative; no combustion, gas, hybrid
+      or van role is assigned to it. NMC-622 with ordinary grid charging represents generic BEV; certified-electricity,
+      LFP and NCA variants remain outside this role.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|BEV
@@ -368,6 +880,26 @@
     fltr:
       - electricity
 'passenger car, fuel cell electric, mini':
+  uvek_aliases:
+    use_legacy_templates: true
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      - Hydrogen production, steam methane reforming of natural gas, 25 bar
+      - market for hydrogen, gaseous
+      - market for hydrogen, gaseous, low pressure
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      unit: kilogram
+    - name: Hydrogen production, steam methane reforming of natural gas, 25 bar
+      unit: kilogram
+    - name: market for hydrogen, gaseous
+      unit: kilogram
+    - name: market for hydrogen, gaseous, low pressure
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|FCEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|FCEV
@@ -386,6 +918,28 @@
     fltr:
       - hydrogen
 'passenger car, compressed gas, mini':
+  uvek_aliases:
+    use_legacy_templates: true
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gas vehicles
+      - Natural gas, from high pressure network (1-5 bar), at service station
+      - market for natural gas, high pressure
+      - market group for natural gas, high pressure
+      unit:
+      - kilogram
+      - cubic meter
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gas vehicles
+      unit: kilogram
+    - name: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    - name: market for natural gas, high pressure
+      unit: cubic meter
+    - name: market group for natural gas, high pressure
+      unit: cubic meter
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Gases
@@ -406,6 +960,46 @@
     fltr:
       - natural gas
 'passenger car, plugin gasoline hybrid, mini':
+  uvek_aliases:
+    use_legacy_templates: true
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit:
+      - kilogram
+      - kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hybrid electric
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Hybrid electric
@@ -427,6 +1021,35 @@
       - electricity
       - petrol, low-sulfur
 'passenger car, gasoline, mini':
+  uvek_aliases:
+    use_legacy_templates: true
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Mini Car|Liquids
@@ -447,6 +1070,47 @@
     fltr:
       - gasoline
 'passenger car, battery electric, medium SUV':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, battery electric, NMC-622 battery, Large SUV, 2021
+      reference product: Transport, passenger car, battery electric, NMC-622 battery, Large SUV, 2021
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion
+      factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV.
+      Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence. NMC-622
+      with ordinary grid charging represents generic BEV; certified-electricity, LFP and NCA variants remain outside
+      this role.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|BEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|BEV
@@ -463,6 +1127,49 @@
     fltr:
       - electricity
 'passenger car, fuel cell electric, medium SUV':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, fuel cell electric, SMR of natural gas, Large SUV, 2021
+      reference product: Transport, passenger car, fuel cell electric, SMR of natural gas, Large SUV, 2021
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion
+      factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV.
+      Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence. Retain
+      the complete existing 700-bar SMR-hydrogen fuelling supply; no extra terminal-compression electricity is added.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      - Hydrogen production, steam methane reforming of natural gas, 25 bar
+      - market for hydrogen, gaseous
+      - market for hydrogen, gaseous, low pressure
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      unit: kilogram
+    - name: Hydrogen production, steam methane reforming of natural gas, 25 bar
+      unit: kilogram
+    - name: market for hydrogen, gaseous
+      unit: kilogram
+    - name: market for hydrogen, gaseous, low pressure
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|FCEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|FCEV
@@ -479,6 +1186,50 @@
     fltr:
       - hydrogen
 'passenger car, compressed gas, medium SUV':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, compressed gas, Large SUV, 2021, EURO-6d
+      reference product: Transport, passenger car, compressed gas, Large SUV, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion
+      factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV.
+      Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gas vehicles
+      - Natural gas, from high pressure network (1-5 bar), at service station
+      - market for natural gas, high pressure
+      - market group for natural gas, high pressure
+      unit:
+      - kilogram
+      - cubic meter
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gas vehicles
+      unit: kilogram
+    - name: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    - name: market for natural gas, high pressure
+      unit: cubic meter
+    - name: market group for natural gas, high pressure
+      unit: cubic meter
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Gases
@@ -497,6 +1248,70 @@
     fltr:
       - natural gas
 'passenger car, plugin gasoline hybrid, medium SUV':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, plugin gasoline hybrid, Large SUV, 2021, EURO-6d
+      reference product: Transport, passenger car, plugin gasoline hybrid, Large SUV, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion
+      factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV.
+      Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence. Retain
+      the source electric utility factor and scale its purchased petrol and electricity through the common IAM factor,
+      without inventing a future charging share.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit:
+      - kilogram
+      - kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hybrid electric
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Hybrid electric
@@ -516,6 +1331,57 @@
       - electricity
       - petrol, low-sulfur
 'passenger car, gasoline, medium SUV':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, gasoline, Large SUV, 2021, EURO-6d
+      reference product: Transport, passenger car, gasoline, Large SUV, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Large SUV class as the representative of this IAM role, without a mass or class-conversion
+      factor. The legacy internal role name is medium SUV, while the actual REMIND variable covers Large Car and SUV.
+      Native Large SUV is an explicit representative of that broad category, not a claim of size equivalence.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Large Car and SUV|Liquids
@@ -534,6 +1400,46 @@
     fltr:
       - gasoline
 'passenger car, battery electric, small':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, battery electric, NMC-622 battery, Compact, 2021
+      reference product: Transport, passenger car, battery electric, NMC-622 battery, Compact, 2021
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion
+      factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass
+      and capacity may differ and are not corrected by an invented factor. NMC-622 with ordinary grid charging represents
+      generic BEV; certified-electricity, LFP and NCA variants remain outside this role.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|BEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|BEV
@@ -550,6 +1456,49 @@
     fltr:
       - electricity
 'passenger car, fuel cell electric, small':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, fuel cell electric, SMR of natural gas, Compact, 2021
+      reference product: Transport, passenger car, fuel cell electric, SMR of natural gas, Compact, 2021
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion
+      factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass
+      and capacity may differ and are not corrected by an invented factor. Retain the complete existing 700-bar SMR-hydrogen
+      fuelling supply; no extra terminal-compression electricity is added.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      - Hydrogen production, steam methane reforming of natural gas, 25 bar
+      - market for hydrogen, gaseous
+      - market for hydrogen, gaseous, low pressure
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      unit: kilogram
+    - name: Hydrogen production, steam methane reforming of natural gas, 25 bar
+      unit: kilogram
+    - name: market for hydrogen, gaseous
+      unit: kilogram
+    - name: market for hydrogen, gaseous, low pressure
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|FCEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|FCEV
@@ -566,6 +1515,50 @@
     fltr:
       - hydrogen
 'passenger car, compressed gas, small':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, compressed gas, Compact, 2021, EURO-6d
+      reference product: Transport, passenger car, compressed gas, Compact, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion
+      factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass
+      and capacity may differ and are not corrected by an invented factor.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gas vehicles
+      - Natural gas, from high pressure network (1-5 bar), at service station
+      - market for natural gas, high pressure
+      - market group for natural gas, high pressure
+      unit:
+      - kilogram
+      - cubic meter
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gas vehicles
+      unit: kilogram
+    - name: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    - name: market for natural gas, high pressure
+      unit: cubic meter
+    - name: market group for natural gas, high pressure
+      unit: cubic meter
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Gases
@@ -584,6 +1577,70 @@
     fltr:
       - natural gas
 'passenger car, plugin gasoline hybrid, small':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, plugin gasoline hybrid, Compact, 2021, EURO-6d
+      reference product: Transport, passenger car, plugin gasoline hybrid, Compact, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion
+      factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass
+      and capacity may differ and are not corrected by an invented factor. Retain the source electric utility factor
+      and scale its purchased petrol and electricity through the common IAM factor, without inventing a future charging
+      share.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit:
+      - kilogram
+      - kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Hybrid electric
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Hybrid electric
@@ -603,6 +1660,57 @@
       - electricity
       - petrol, low-sulfur
 'passenger car, gasoline, small':
+  uvek_aliases:
+    use_legacy_templates: false
+    fltr:
+      name: Transport, passenger car, gasoline, Compact, 2021, EURO-6d
+      reference product: Transport, passenger car, gasoline, Compact, 2021, EURO-6d
+      unit: kilometer
+    exact: true
+    native_reference_amount: 1
+    native_limitations:
+    - Use the complete native passenger-car service per positive vehicle-kilometre through the shared regionalization,
+      IAM efficiency, energy floor, fuel-carbon and fleet-market methods. Retain vehicle production, maintenance,
+      wear, road, disposal and all ancillary burdens once; no occupancy, payload, lifetime or production multiplier
+      is added.
+    - These 2021-labelled native services are historical prototypes; some electric/fuel-cell documentation states
+      a 2020 technology basis. Preserve their source design and the shared relative IAM calculation, warning about
+      class, geography, driving cycle, fleet, vintage, allocation, internal uncertainty and native biosphere exclusions.
+      Score effects are unquantified.
+    - Legacy complete native vehicles have no declared capacity-market sizing contract. Retain their installed kg-based
+      pack and vehicle-mass model under the existing shared legacy-inventory policy; do not fabricate a kWh-capacity
+      purchase or constant-range contract from rounded specifications. The separate marked CLIC vehicles retain their
+      own existing sizing policy.
+    - Use the complete native Compact class as the representative of this IAM role, without a mass or class-conversion
+      factor. Native Compact is an explicit screening proxy for the REMIND Subcompact Car category; body size, mass
+      and capacity may differ and are not corrected by an invented factor.
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Small|Subcompact Car|Liquids
@@ -621,6 +1729,23 @@
     fltr:
       - gasoline
 'passenger car, battery electric, van':
+  uvek_aliases:
+    use_legacy_templates: true
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit: kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|BEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|BEV
@@ -637,6 +1762,26 @@
     fltr:
       - electricity
 'passenger car, fuel cell electric, van':
+  uvek_aliases:
+    use_legacy_templates: true
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      - Hydrogen production, steam methane reforming of natural gas, 25 bar
+      - market for hydrogen, gaseous
+      - market for hydrogen, gaseous, low pressure
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station
+      unit: kilogram
+    - name: Hydrogen production, steam methane reforming of natural gas, 25 bar
+      unit: kilogram
+    - name: market for hydrogen, gaseous
+      unit: kilogram
+    - name: market for hydrogen, gaseous, low pressure
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|FCEV
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|FCEV
@@ -653,6 +1798,28 @@
     fltr:
       - hydrogen
 'passenger car, compressed gas, van':
+  uvek_aliases:
+    use_legacy_templates: true
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gas vehicles
+      - Natural gas, from high pressure network (1-5 bar), at service station
+      - market for natural gas, high pressure
+      - market group for natural gas, high pressure
+      unit:
+      - kilogram
+      - cubic meter
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gas vehicles
+      unit: kilogram
+    - name: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    - name: market for natural gas, high pressure
+      unit: cubic meter
+    - name: market group for natural gas, high pressure
+      unit: cubic meter
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Gases
@@ -671,6 +1838,46 @@
     fltr:
       - natural gas
 'passenger car, plugin gasoline hybrid, van':
+  uvek_aliases:
+    use_legacy_templates: true
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      - Electricity, low voltage, at grid
+      - market group for electricity, low voltage
+      - market for electricity, low voltage
+      unit:
+      - kilogram
+      - kilowatt hour
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
+    - name: Electricity, low voltage, at grid
+      unit: kilowatt hour
+    - name: market group for electricity, low voltage
+      unit: kilowatt hour
+    - name: market for electricity, low voltage
+      unit: kilowatt hour
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hybrid electric
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Hybrid electric
@@ -690,6 +1897,35 @@
       - electricity
       - petrol, low-sulfur
 'passenger car, gasoline, van':
+  uvek_aliases:
+    use_legacy_templates: true
+  uvek_fuel_aliases:
+    fltr:
+      name:
+      - Fuel supply for gasoline vehicles
+      - Petrol, at regional storage
+      - Petrol, unleaded, at regional storage
+      - market for petrol
+      - market for petrol, low-sulfur
+      - market group for petrol, low-sulfur
+      - market for gasoline
+      unit: kilogram
+    exact: true
+    exact_identities:
+    - name: Fuel supply for gasoline vehicles
+      unit: kilogram
+    - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, unleaded, at regional storage
+      unit: kilogram
+    - name: market for petrol
+      unit: kilogram
+    - name: market for petrol, low-sulfur
+      unit: kilogram
+    - name: market group for petrol, low-sulfur
+      unit: kilogram
+    - name: market for gasoline
+      unit: kilogram
   iam_aliases:
     remind: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids
     remind-eu: ES|Transport|Pass|Road|LDV|Four Wheelers|Large|Van|Liquids
