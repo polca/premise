@@ -311,8 +311,10 @@ def get_act_dict_structure(ind, acts_ind, db_name) -> dict:
 
 
 def correct_biosphere_flow(name, cat, unit, version):
-    """
-    Correct the biosphere flow name if it is outdated.
+    """Resolve an exact biosphere identity before trying compartment aliases.
+
+    Unmapped identities raise ValueError. A configured alias pointing to a
+    missing catalog entry retains KeyError.
     """
 
     bio_dict = biosphere_flows_dictionary(version)
@@ -324,22 +326,20 @@ def correct_biosphere_flow(name, cat, unit, version):
         main_cat = cat[0]
         sub_cat = "unspecified"
 
-    if (name, main_cat, sub_cat, unit) not in bio_dict:
-        if bio_flows_correspondence.get(main_cat, {}).get(name, {}):
-            name = bio_flows_correspondence[main_cat][name]
-            return bio_dict[(name, main_cat, sub_cat, unit)]
+    key = (name, main_cat, sub_cat, unit)
+    if key in bio_dict:
+        return bio_dict[key]
 
-    if (name, main_cat, sub_cat, unit) not in bio_dict:
-        raise ValueError(
-            f"{name, cat, unit, version} not found in biosphere dictionary."
-        )
+    canonical_name = bio_flows_correspondence.get(main_cat, {}).get(name)
+    if canonical_name:
+        return bio_dict[(canonical_name, main_cat, sub_cat, unit)]
 
-    return bio_dict[(name, main_cat, sub_cat, unit)]
+    raise ValueError(f"{name, cat, unit, version} not found in biosphere dictionary.")
 
 
 def get_exchange(ind, acts_ind, db_name, version, amount=1.0):
+    """Reconstruct one exchange, replacing only zero production amounts by one."""
     name, ref, cat, loc, unit, flow_type = acts_ind[ind]
-    _ = lambda x: x if x != 0 else 1.0
     return {
         "name": name,
         "product": ref,
@@ -347,7 +347,7 @@ def get_exchange(ind, acts_ind, db_name, version, amount=1.0):
         "location": loc,
         "categories": cat,
         "type": flow_type,
-        "amount": amount if flow_type != "production" else _(amount),
+        "amount": amount if flow_type != "production" or amount != 0 else 1.0,
         "input": (
             ("biosphere3", correct_biosphere_flow(name, cat, unit, version))
             if flow_type == "biosphere"
