@@ -116,5 +116,24 @@
   },
   "public_sectors_qualified": 14,
   "remaining_sector_count": 5,
-  "new_Brightway_databases": 0
+  "new_Brightway_databases": 0,
+  "installed_package_checks": {
+    "status": "installed_packages_four_native_supply_harmonization_checks_passed",
+    "Brightpath_Git_revision": "35307d913faf3d7befccc5a49f8c2897263b88f5",
+    "source_checkout_modules_loaded": false,
+    "Premise_review_ledger_matches_checkout": true,
+    "review_sha256": "598abc9a5630411c2ba5b113c17f70fba2a95a0b53f41cd465a7bf9ef8b13eac",
+    "tests_passed": 4,
+    "new_Brightway_databases": 0
+  },
+  "packaging": {
+    "Premise_wheel_sha256": "e4a0639228005ec8c60d379f41cbe3a9e6a0184aad31b6d2e97c68080b8f29ad",
+    "packaged_files_identical_to_checkout": [
+      "premise/data/clic/approved_rule_scopes.json",
+      "premise/data/transport/vehicles_map.yaml",
+      "premise/database/background.py"
+    ],
+    "Brightpath_dependency": "35307d913faf3d7befccc5a49f8c2897263b88f5",
+    "production_Python_changes_in_this_batch": false
+  }
 }

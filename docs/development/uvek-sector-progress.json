@@ -1340,6 +1340,14 @@
         "in_range_mining_market_check_required": true,
         "qualification": false,
         "finding": "Graph pass is not coverage: one Ti provider is missing, three SOEC ceramic decisions are held by an incomplete provider group, and103source mining markets are retained outside2020\u20132030support."
+      },
+      "latest_in_range_filter_review": {
+        "review": "docs/development/uvek-metals-actual-year-coverage-2026-11-16.json",
+        "year": 2030,
+        "created_metal_markets": 4,
+        "markets_preserved_missing_supplier": 48,
+        "markets_preserved_missing_transport": 51,
+        "full_sector_qualified": false
       }
     },
     {

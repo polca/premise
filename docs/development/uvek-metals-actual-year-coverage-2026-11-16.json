@@ -1,0 +1,2458 @@
+{
+  "date": "2026-11-16",
+  "status": "actual_shared_metals_coverage_gaps_identified_not_qualified",
+  "project": "bafu-2026-ecospold2-biosphere-310",
+  "source": "BAFU:2026-reimported",
+  "biosphere": "ecoinvent-3.10-biosphere",
+  "model": "remind",
+  "pathway": "SSP2-NPi",
+  "years": {
+    "2050": {
+      "status": "diagnostic_update_and_graph_checks_passed",
+      "activities_before_update": 12040,
+      "activities_after_update": 12040,
+      "prepared_inventory_count": 93,
+      "material_update_metrics": {
+        "compiled pairs": 97,
+        "executed pairs": 97,
+        "provider index lookups": 9
+      },
+      "decision_reasons": {
+        "metals.material_rule.year_outside_support": 20,
+        "metals.material_rule.intensity_missing": 13,
+        "metals.material_rule.component_scope_unverified": 57,
+        "metals.material_rule.applied": 2,
+        "metals.material_rule.zero_intensity": 1,
+        "metals.material_rule.provider_missing": 1,
+        "metals.material_rule.design_incomplete": 3
+      },
+      "eligible_technology_role_counts": {
+        "ICEV": 0,
+        "EV": 3,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 0,
+        "PEMFC": 0,
+        "SOFC - Y": 0,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 0,
+        "a-Si": 0,
+        "CIGS": 0,
+        "CdTe": 0,
+        "perovskite": 0,
+        "Parabolic Trough - PB": 0,
+        "CSP Tower - PB": 0,
+        "Nuclear": 0
+      },
+      "market_diagnostics": [
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "aluminium hydroxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "aluminium oxide, metallurgical",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "aluminium, cast alloy",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "aluminium, primary, ingot",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "aluminium, primary, liquid",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "antimony",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "bauxite",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "bentonite",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "beryllium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "beryllium hydroxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "boric acid, anhydrous, powder",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "boric oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "boron carbide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "boron trifluoride",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "cadmium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "calcium borates",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "cerium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "chromite ore concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "chromium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "cobalt",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "cobalt hydroxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "cobalt sulfate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "copper concentrate, sulfide ore",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "copper, anode",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "copper, cathode",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "copper-cobalt ore",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "dolomite",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "dysprosium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "erbium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "europium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "ferroniobium, 66% Nb",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "gadolinium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "gallium, semiconductor-grade",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "germanium, concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "gold",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "graphite",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "graphite ore, mined",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "hafnium sponge",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "hafnium tetrachloride",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "holmium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "ilmenite, 54% titanium dioxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "indium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "indium rich leaching residues, from zinc production",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "iridium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "iron ore concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "lanthanum oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "lanthanum-cerium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "lead",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "lead concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "lithium carbonate, battery grade",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "lithium hydroxide, battery grade",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "lutetium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "magnesium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "manganese",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "manganese concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "molybdenite",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "molybdenum",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "neodymium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "nickel concentrate, 16% Ni",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "nickel, class 1",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "palladium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "phosphate rock, beneficiated",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "phosphoric acid, fertiliser grade, without water, in 70% solution state",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "phosphorus, white, liquid",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "platinum",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "platinum group metal concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "potash salt",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "praseodymium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "pyrochlore concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "rare earth carbonate concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "rhenium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "ruthenium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "rutile, 95% titanium dioxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "samarium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "sand",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "scandium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "selenium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "silica sand",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "silicon, metallurgical grade",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "silver",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "sodium borates",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "spodumene",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "stibnite concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "strontium sulfate, 90% SrSO4",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "sulfur",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "tantalum concentrate, 30% Ta2O5",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "tellurium, semiconductor-grade",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "terbium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "thulium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "tin",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "tin concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "titanium",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "titanium sponge",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "titanium tetrachloride",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "tungsten concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "uranium ore, as U",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "vanadium bearing magnetite",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "vanadium pentoxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "ytterbium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "yttrium oxide",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "zinc",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "zinc concentrate",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        },
+        {
+          "reason": "market_preserved_year_outside_support",
+          "metal": "zircon",
+          "requested_year": 2050,
+          "first_year": 2020,
+          "last_year": 2030
+        }
+      ],
+      "resource_diagnostic_reasons": {
+        "preserved_extraction": 3,
+        "preserved_unsupported_unit": 1
+      },
+      "applied_market_shares": {},
+      "methodology": {
+        "system model": "cutoff",
+        "requested year": 2050,
+        "unsupported years": "preserve source; no extrapolation or endpoint hold",
+        "consequential supply": "preserve source marginal markets and substitution resource flows",
+        "attributional resource correction": "declared attribution convention; not a physical recovery model",
+        "recycling": "source-market shares; no dynamic scrap-stock model",
+        "mining constraints": "not modelled; no ore-grade, capacity or depletion projection",
+        "market decisions": {
+          "market_preserved_year_outside_support": 103
+        },
+        "material decisions": {
+          "metals.material_rule.year_outside_support": 20,
+          "metals.material_rule.intensity_missing": 13,
+          "metals.material_rule.component_scope_unverified": 57,
+          "metals.material_rule.applied": 2,
+          "metals.material_rule.zero_intensity": 1,
+          "metals.material_rule.provider_missing": 1,
+          "metals.material_rule.design_incomplete": 3
+        }
+      },
+      "market_reason_counts": {
+        "market_preserved_year_outside_support": 103
+      }
+    },
+    "2030": {
+      "status": "diagnostic_update_and_graph_checks_passed",
+      "activities_before_update": 12040,
+      "activities_after_update": 12090,
+      "prepared_inventory_count": 93,
+      "material_update_metrics": {
+        "compiled pairs": 97,
+        "executed pairs": 97,
+        "provider index lookups": 9
+      },
+      "decision_reasons": {
+        "metals.material_rule.year_outside_support": 20,
+        "metals.material_rule.intensity_missing": 13,
+        "metals.material_rule.component_scope_unverified": 57,
+        "metals.material_rule.applied": 2,
+        "metals.material_rule.zero_intensity": 1,
+        "metals.material_rule.provider_missing": 1,
+        "metals.material_rule.design_incomplete": 3
+      },
+      "eligible_technology_role_counts": {
+        "ICEV": 0,
+        "EV": 3,
+        "Wind-DDPM": 0,
+        "Wind-Gearbox": 0,
+        "PEMFC": 0,
+        "SOFC - Y": 0,
+        "PEMEL": 1,
+        "AEL": 1,
+        "HTEL - Yttrium": 1,
+        "c-Si": 0,
+        "a-Si": 0,
+        "CIGS": 0,
+        "CdTe": 0,
+        "perovskite": 0,
+        "Parabolic Trough - PB": 0,
+        "CSP Tower - PB": 0,
+        "Nuclear": 0
+      },
+      "market_diagnostics": [
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "aluminium hydroxide",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AU": 0.1536222511310835,
+            "BA": 0.001529314362442395,
+            "BR": 0.0748905520639867,
+            "CA": 0.01149222165076294,
+            "CN": 0.5480174641323202,
+            "FR": 0.003756118986391339,
+            "DE": 0.007700043922102245,
+            "GR": 0.005177344263986148,
+            "GN": 0.002123293496921971,
+            "IN": 0.04991404204334261,
+            "ID": 0.008163183910257459,
+            "IR": 0.001763870471114184,
+            "IE": 0.01391185340389246,
+            "JM": 0.01385003519761443,
+            "JP": 0.0001606101454104991,
+            "KZ": 0.01070116796775298,
+            "RO": 0.00365137585233683,
+            "RU": 0.02143541983153809,
+            "SA": 0.01309740811428285,
+            "ES": 0.01181074054080893,
+            "TR": 0.001953181872923496,
+            "US": 0.01014152126325661,
+            "UA": 0.01293006399875355,
+            "AE": 0.00799302120304077,
+            "VE": 0.0003185188900459855,
+            "VN": 0.009895381283630796
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "aluminium oxide, metallurgical",
+          "process": "{'equals': 'aluminium oxide production'}",
+          "product": "{'equals': 'aluminium oxide, metallurgical'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "aluminium, cast alloy",
+          "process": "{'equals': 'aluminium ingot, primary, to aluminium, cast alloy market'}",
+          "product": "{'equals': 'aluminium, cast alloy'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "aluminium, primary, ingot",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AR": 0.006080921953808206,
+            "AU": 0.02414846002368629,
+            "AZ": 0.000498952763695543,
+            "BH": 0.02008941488777283,
+            "BA": 0.001177262210377023,
+            "BR": 0.01108400751570086,
+            "CM": 0.000892263071028754,
+            "CA": 0.04753696790833886,
+            "CN": 0.5662483971225573,
+            "EG": 0.004346365029140762,
+            "FR": 0.006427897959465501,
+            "DE": 0.008188977341783964,
+            "GH": 0.0006118588379550381,
+            "GR": 0.002862390494863173,
+            "IS": 0.0113243251526552,
+            "IN": 0.05571960744836482,
+            "ID": 0.003516709497831268,
+            "IR": 0.005760434231380684,
+            "KZ": 0.004052123262228738,
+            "MY": 0.01249230434751609,
+            "ME": 0.0006166494704603526,
+            "MZ": 0.008851973540982503,
+            "NL": 0.0008357199376975447,
+            "NZ": 0.00527815858525228,
+            "NO": 0.02056989482340314,
+            "OM": 0.005641886270850338,
+            "QA": 0.01005349337691173,
+            "RO": 0.004380278482077217,
+            "RU": 0.05631323267920332,
+            "SA": 0.01498567944178506,
+            "SK": 0.002603047025572549,
+            "SI": 0.000998126107746389,
+            "ZA": 0.01111600720104764,
+            "ES": 0.004100930549296502,
+            "SE": 0.001892020230698159,
+            "TJ": 0.00138156622087118,
+            "TR": 0.001200764891896286,
+            "US": 0.01460189447768226,
+            "AE": 0.04007727582267036,
+            "GB": 0.0006371075217233204,
+            "VE": 0.000804652282021056
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "aluminium, primary, liquid",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AR": 0.006080921953808206,
+            "AU": 0.02414846002368629,
+            "AZ": 0.000498952763695543,
+            "BH": 0.02008941488777283,
+            "BA": 0.001177262210377023,
+            "BR": 0.01108400751570086,
+            "CM": 0.000892263071028754,
+            "CA": 0.04753696790833886,
+            "CN": 0.5662483971225573,
+            "EG": 0.004346365029140762,
+            "FR": 0.006427897959465501,
+            "DE": 0.008188977341783964,
+            "GH": 0.0006118588379550381,
+            "GR": 0.002862390494863173,
+            "IS": 0.0113243251526552,
+            "IN": 0.05571960744836482,
+            "ID": 0.003516709497831268,
+            "IR": 0.005760434231380684,
+            "KZ": 0.004052123262228738,
+            "MY": 0.01249230434751609,
+            "ME": 0.0006166494704603526,
+            "MZ": 0.008851973540982503,
+            "NL": 0.0008357199376975447,
+            "NZ": 0.00527815858525228,
+            "NO": 0.02056989482340314,
+            "OM": 0.005641886270850338,
+            "QA": 0.01005349337691173,
+            "RO": 0.004380278482077217,
+            "RU": 0.05631323267920332,
+            "SA": 0.01498567944178506,
+            "SK": 0.002603047025572549,
+            "SI": 0.000998126107746389,
+            "ZA": 0.01111600720104764,
+            "ES": 0.004100930549296502,
+            "SE": 0.001892020230698159,
+            "TJ": 0.00138156622087118,
+            "TR": 0.001200764891896286,
+            "US": 0.01460189447768226,
+            "AE": 0.04007727582267036,
+            "GB": 0.0006371075217233204,
+            "VE": 0.000804652282021056
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "antimony",
+          "missing_primary_fraction": 0.0007852200838555787,
+          "missing_origins": {
+            "IR": 0.0007852200838555787
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "bauxite",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AU": 0.2983294008080461,
+            "BA": 0.002292013115323338,
+            "BR": 0.1020421876811164,
+            "CN": 0.1574689063030289,
+            "CO": 2.799679785840885e-05,
+            "HR": 3.992199011362516e-05,
+            "DO": 6.746922004532039e-05,
+            "FJ": 7.045021959124484e-05,
+            "FR": 0.0003922524938258293,
+            "GH": 0.003347073812814543,
+            "GR": 0.004586128990590747,
+            "GN": 0.2129348053966421,
+            "GY": 0.003892385379059944,
+            "HU": 3.283696675863107e-06,
+            "IN": 0.06444835343657215,
+            "ID": 0.04859622176069368,
+            "IR": 0.003128486483602965,
+            "CI": 0.0003416805798387412,
+            "JM": 0.02440607315520951,
+            "KZ": 0.01380872066849139,
+            "MY": 0.001359251610899497,
+            "ME": 0.002155204759234733,
+            "MZ": 2.117148505868757e-05,
+            "PK": 0.0003057073842367813,
+            "RU": 0.01671521015166171,
+            "SA": 0.01474062781474374,
+            "SL": 0.005204940435085631,
+            "SB": 0.003087271911070568,
+            "TZ": 1.134367942570891e-08,
+            "TR": 0.005861288114800185,
+            "US": 0.0005511332619338269,
+            "VE": 0.0002279470588093059,
+            "VN": 0.00954642267964515
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "bentonite",
+          "process": "{'equals': 'bentonite quarry operation'}",
+          "product": "{'equals': 'bentonite'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "beryllium",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "CN": 0.079,
+            "JP": 0.169,
+            "KZ": 0.25,
+            "US": 0.502
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "beryllium hydroxide",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "CN": 0.2643619725470259,
+            "MG": 0.002711404846636163,
+            "MZ": 0.03131672597864769,
+            "US": 0.6870022030164379,
+            "UG": 0.01372648703609558,
+            "ZM": 0.0008812065751567531
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "boric acid, anhydrous, powder",
+          "process": "{'equals': 'boric acid production, anhydrous, powder'}",
+          "product": "{'equals': 'boric acid, anhydrous, powder'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "boric oxide",
+          "process": "{'equals': 'boric oxide production'}",
+          "product": "{'equals': 'boric oxide'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "boron carbide",
+          "missing_primary_fraction": 0.05125523012552302,
+          "missing_origins": {
+            "BO": 0.05125523012552302
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "boron trifluoride",
+          "process": "{'equals': 'boron trifluoride production'}",
+          "product": "{'equals': 'boron trifluoride'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "cadmium",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AR": 0.0029812191807850933,
+            "BR": 0.008538694243231301,
+            "BG": 0.013708438487367329,
+            "CA": 0.06377741149182445,
+            "CN": 0.3189465095179299,
+            "DE": 0.019817352935854706,
+            "IN": 0.00040496329912398637,
+            "JP": 0.08531801250905785,
+            "KZ": 0.06376017901101069,
+            "KR": 0.19304686631644513,
+            "KP": 0.008616240406893341,
+            "MX": 0.046786185409430824,
+            "NL": 0.03963470587170941,
+            "NO": 0.01625022940740088,
+            "PE": 0.02843359334274799,
+            "PL": 0.007694302683355748,
+            "RU": 0.058590434766874644,
+            "US": 0.023694661118956736
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "calcium borates",
+          "missing_primary_fraction": 1.0000000000000002,
+          "missing_origins": {
+            "AR": 0.01757068614599566,
+            "BO": 0.03368232199882184,
+            "CL": 0.05450890009282547,
+            "CN": 0.03133978815388569,
+            "IR": 0.0002026639633951274,
+            "KZ": 0.06783503929412486,
+            "PE": 0.01361224026302629,
+            "RU": 0.01071793620847173,
+            "TR": 0.5941593217147287,
+            "US": 0.1763711021647247
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "cerium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'cerium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "chromite ore concentrate",
+          "process": "{'equals': 'chromite ore concentrate production'}",
+          "product": "{'equals': 'chromite ore concentrate'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "chromium",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AL": 0.005,
+            "BR": 0.012,
+            "CN": 0.404,
+            "FI": 0.034,
+            "DE": 0.002,
+            "IN": 0.088,
+            "ID": 0.004,
+            "JP": 0.002,
+            "KZ": 0.139,
+            "OM": 0.005,
+            "RU": 0.033,
+            "ZA": 0.241,
+            "SE": 0.009,
+            "TR": 0.011,
+            "ZW": 0.011
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "cobalt hydroxide",
+          "missing_primary_fraction": 0.050102507253427665,
+          "missing_origins": {
+            "MG": 0.01597030923730806,
+            "NA": 0.012776247389846444,
+            "NC": 0.012236701067110008,
+            "PG": 0.009119249559163153
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "copper concentrate, sulfide ore",
+          "missing_primary_fraction": 0.0005794785864996489,
+          "missing_origins": {
+            "NA": 0.0005794785864996489
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "copper, anode",
+          "missing_primary_fraction": 0.002640022701482515,
+          "missing_origins": {
+            "NA": 0.002640022701482515
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "copper, cathode",
+          "missing_primary_fraction": 0.00047536179737977483,
+          "missing_origins": {
+            "NA": 0.00047536179737977483
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "copper-cobalt ore",
+          "missing_primary_fraction": 0.0659739433175158,
+          "missing_origins": {
+            "CU": 0.012137827893890094,
+            "MG": 0.015970309237308057,
+            "NA": 0.012776247389846443,
+            "PG": 0.009119249559163151,
+            "PH": 0.015970309237308057
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "dolomite",
+          "process": "{'equals': 'dolomite production'}",
+          "product": "{'equals': 'dolomite'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "dysprosium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'dysprosium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "erbium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'erbium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "europium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'europium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "ferroniobium, 66% Nb",
+          "process": "{'equals': 'ferroniobium production, from pyrochlore concentrate, 66% Nb'}",
+          "product": "{'equals': 'ferroniobium, 66% Nb'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "gadolinium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'gadolinium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "gallium, semiconductor-grade",
+          "process": "{'either': [{'equals': 'gallium production, semiconductor-grade'}, {'equals': 'high-grade gallium production, from low-grade gallium'}]}",
+          "product": "{'either': [{'equals': 'gallium, semiconductor-grade'}, {'equals': 'gallium, high-grade'}]}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "gold",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "DZ": 3.751292673140401e-05,
+            "AO": 7.05629007648596e-06,
+            "AR": 0.0147077209262605,
+            "AM": 0.00146571810024648,
+            "AU": 0.09447443635772158,
+            "AZ": 0.00107671749346585,
+            "BJ": 1.50775428984743e-06,
+            "BO": 0.010327151922709402,
+            "BW": 0.000269043675480375,
+            "BR": 0.0248477906966856,
+            "BG": 0.0025400231868485702,
+            "BF": 0.0168448721668618,
+            "BI": 0.00041909538240599107,
+            "CM": 0.000146674337316358,
+            "CA": 0.0574710702661144,
+            "CF": 0.000113262502253339,
+            "CL": 0.01095081940716187,
+            "CN": 0.114699753952593,
+            "CO": 0.013342057400688303,
+            "CG": 4.5232628695422806e-05,
+            "CD": 0.0124178643311834,
+            "CR": 0.0008234147727714772,
+            "CY": 1.1398622431246601e-05,
+            "DO": 0.00917197089599987,
+            "EC": 0.0025675849352669805,
+            "EG": 0.00443695901399142,
+            "GQ": 6.03101715938971e-05,
+            "ER": 0.0011157381744871001,
+            "SZ": 1.14589326028404e-06,
+            "ET": 0.001407277543972,
+            "FJ": 0.000362403821107728,
+            "FI": 0.00262415587622206,
+            "GF": 0.00295519840810096,
+            "GA": 6.03101715938971e-05,
+            "GE": 0.00122411555284133,
+            "DE": 1.92992549100471e-06,
+            "GH": 0.0387703938091368,
+            "GR": 0.000813946075831235,
+            "GT": 9.933085261514861e-05,
+            "GN": 0.0175833702180291,
+            "GY": 0.00561469604487704,
+            "HN": 0.000655450944882474,
+            "IN": 0.0004358012999375,
+            "ID": 0.0294361282413777,
+            "IR": 0.00221694159762006,
+            "CI": 0.009816927871025012,
+            "JP": 0.00198715984384732,
+            "KZ": 0.0316027711558885,
+            "KE": 0.000109282030928142,
+            "KR": 6.356692085996759e-05,
+            "KP": 0.00301550857969486,
+            "KG": 0.00604307919370849,
+            "LA": 0.0014328490567278099,
+            "LR": 0.00185055730518714,
+            "MG": 0.000568905848645232,
+            "MY": 0.000708644516228291,
+            "ML": 0.018690122176948702,
+            "MR": 0.0031549456964199505,
+            "MX": 0.040372774758215,
+            "MN": 0.00579466159691323,
+            "MA": 6.73664616703831e-05,
+            "MZ": 0.000142030454103628,
+            "MM": 0.000292926503431558,
+            "NA": 0.002049580871447,
+            "NZ": 0.00242597665236451,
+            "NI": 0.0025954482345433598,
+            "NE": 0.00112876517155138,
+            "NG": 0.00325674926607045,
+            "MK": 0.000197817362827983,
+            "OM": 1.8093051478169103e-07,
+            "PA": 0.00056733778418379,
+            "PG": 0.01804444147986446,
+            "PE": 0.0365013442232596,
+            "PH": 0.00645662604032784,
+            "PL": 0.000205959235993159,
+            "RO": 0.00017857841808952902,
+            "RU": 0.08912214986944962,
+            "RW": 0.0033973925862274103,
+            "SA": 0.0034241703024150997,
+            "SN": 0.00458960405829557,
+            "RS": 0.000593210847797572,
+            "SL": 4.8971859334244506e-05,
+            "SK": 0.00012279150936517398,
+            "ZA": 0.0337720677179493,
+            "SS": 6.03101715938971e-05,
+            "ES": 0.0005132998704356581,
+            "SD": 0.0206079856336346,
+            "SR": 0.007102125806897321,
+            "SE": 0.002457639492451307,
+            "TW": 1.08558308869015e-06,
+            "TJ": 0.0022432971426066,
+            "TZ": 0.01485722984164177,
+            "TG": 0.00361861029563383,
+            "TR": 0.010281678053327602,
+            "US": 0.0628965129925298,
+            "UG": 2.41240686375588e-06,
+            "GB": 9.46869694024185e-06,
+            "UY": 9.20936320238809e-05,
+            "UZ": 0.028986033430772502,
+            "VE": 0.00329625242846445,
+            "VN": 0.000174296395906363,
+            "ZM": 0.00126168878974433,
+            "ZW": 0.00848938037390015
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "graphite",
+          "missing_primary_fraction": 0.0010080077256896778,
+          "missing_origins": {
+            "NA": 0.0010080077256896778
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "graphite ore, mined",
+          "missing_primary_fraction": 0.0010080077256896778,
+          "missing_origins": {
+            "NA": 0.0010080077256896778
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "hafnium sponge",
+          "process": "{'equals': 'hafnium sponge production, from hafnium tetrachloride'}",
+          "product": "{'equals': 'hafnium sponge'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "hafnium tetrachloride",
+          "process": "{'equals': 'zirconium and hafnium tetrachloride production, from zircon'}",
+          "product": "{'equals': 'hafnium tetrachloride'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "holmium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'holmium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "ilmenite, 54% titanium dioxide",
+          "process": "{'equals': 'heavy mineral sand quarry operation'}",
+          "product": "{'equals': 'ilmenite, 54% titanium dioxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "indium",
+          "process": "{'equals': 'indium production'}",
+          "product": "{'equals': 'indium'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "indium rich leaching residues, from zinc production",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "BE": 0.0250860796851943,
+            "BR": 0.00614854894244958,
+            "CA": 0.07156910969011311,
+            "CN": 0.613625184456468,
+            "FR": 0.045745204131824896,
+            "IT": 0.00614854894244958,
+            "JP": 0.0860796851942941,
+            "KR": 0.12297097884899201,
+            "PE": 0.014018691588785099,
+            "RU": 0.008607968519429422
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "iridium",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "CA": 0.015,
+            "RU": 0.001,
+            "ZA": 0.935,
+            "ZW": 0.049
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "iron ore concentrate",
+          "missing_primary_fraction": 2.1471418047499566e-05,
+          "missing_origins": {
+            "BT": 9.573027493114432e-06,
+            "MW": 1.3269626128274803e-06,
+            "NA": 1.0571427941557654e-05
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "lanthanum oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'lanthanum oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "lanthanum-cerium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth oxide concentrate, 70% REO'}",
+          "product": "{'equals': 'lanthanum-cerium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "lead",
+          "process": "{'equals': 'primary lead production from concentrate'}",
+          "product": "{'equals': 'lead'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "lead concentrate",
+          "missing_primary_fraction": 0.0025907494439496104,
+          "missing_origins": {
+            "XK": 0.00104046092191552,
+            "NA": 0.0015502885220340904
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "lithium carbonate, battery grade",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AR": 0.14096967355611395,
+            "AU": 0.07859324468278386,
+            "BR": 0.0005737487018935616,
+            "CA": 0.0077498149660436355,
+            "CL": 0.11867035650831834,
+            "CN": 0.586308825976281,
+            "FI": 0.005054343564547683,
+            "DE": 0.017352455740068884,
+            "PT": 0.00960302327315984,
+            "KR": 0.01448868471935081,
+            "TR": 0.00019124956729785387,
+            "US": 0.02044457874414058
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "lutetium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'lutetium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "magnesium",
+          "process": "{'equals': 'magnesium production, electrolysis'}",
+          "product": "{'equals': 'magnesium'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "manganese",
+          "process": "{'equals': 'manganese production'}",
+          "product": "{'equals': 'manganese'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "manganese concentrate",
+          "missing_primary_fraction": 0.0005797535262606499,
+          "missing_origins": {
+            "NA": 0.0005797535262606499
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "molybdenite",
+          "missing_primary_fraction": 6.799155001016468e-06,
+          "missing_origins": {
+            "NO": 6.799155001016468e-06
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "molybdenum",
+          "missing_primary_fraction": 0.03490822160621877,
+          "missing_origins": {
+            "IR": 0.025634174184832305,
+            "MN": 0.009274047421386471
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "neodymium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'neodymium oxide'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "nickel concentrate, 16% Ni",
+          "missing_primary_fraction": 0.002055402426731689,
+          "missing_origins": {
+            "XK": 0.002000777959487548,
+            "MA": 5.462446724414121e-05
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "nickel, class 1",
+          "missing_primary_fraction": 0.017665860318829715,
+          "missing_origins": {
+            "GT": 0.00744697596449527,
+            "XK": 0.0026660901968853954,
+            "MM": 0.00755279415744905
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "palladium",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AU": 0.002305455914062286,
+            "CA": 0.07225419869034187,
+            "CN": 0.00547141640877781,
+            "FI": 0.003955170861557414,
+            "PL": 2.901508701624596e-05,
+            "RU": 0.3651755951616099,
+            "RS": 0.0003257979770681332,
+            "ZA": 0.4337867424264406,
+            "US": 0.05972962912915776,
+            "ZW": 0.05696697834396806
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "phosphate rock, beneficiated",
+          "missing_primary_fraction": 0.0014140245626375124,
+          "missing_origins": {
+            "CU": 2.5945103316307255e-06,
+            "IQ": 0.000879642782836081,
+            "MW": 3.7594454705329213e-06,
+            "ML": 0.00027553699721918304,
+            "VE": 0.00025249082678008457
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "phosphoric acid, fertiliser grade, without water, in 70% solution state",
+          "process": "{'equals': 'phosphoric acid production, dihydrate process'}",
+          "product": "{'equals': 'phosphoric acid, fertiliser grade, without water, in 70% solution state'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "phosphorus, white, liquid",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "CN": 0.785,
+            "KZ": 0.064,
+            "US": 0.106,
+            "VN": 0.045
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "platinum",
+          "process": "{'equals': 'platinum group metal mine operation, ore with high palladium content'}",
+          "product": "{'equals': 'platinum'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "platinum group metal concentrate",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "CN": 0.014083063032410257,
+            "ET": 0.0023062424021874964,
+            "FI": 0.0075147224340940824,
+            "PL": 4.844573683149109e-05,
+            "ZA": 0.8856832707857559,
+            "ZW": 0.09036425560872072
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "potash salt",
+          "process": "{'equals': 'potash salt production'}",
+          "product": "{'equals': 'potash salt'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "praseodymium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'praseodymium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "pyrochlore concentrate",
+          "process": "{'equals': 'niobium mine operation and beneficiation, from pyrochlore ore'}",
+          "product": "{'equals': 'pyrochlore concentrate'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "rare earth carbonate concentrate",
+          "missing_primary_fraction": 0.9999999999999999,
+          "missing_origins": {
+            "AU": 0.06957017914780304,
+            "BI": 0.0008652905825364766,
+            "CN": 0.7020282084729906,
+            "IN": 0.015949917634132286,
+            "MG": 0.009387586508650455,
+            "MY": 0.0010799806044299609,
+            "MM": 0.12571202802888437,
+            "RU": 0.010330426718867088,
+            "US": 0.06220296451818823,
+            "VN": 0.0028734177835173565
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "rhenium",
+          "missing_primary_fraction": 1.0000000000000002,
+          "missing_origins": {
+            "CL": 0.5458015267175573,
+            "CN": 0.05725190839694657,
+            "KZ": 0.019083969465648862,
+            "PL": 0.17938931297709923,
+            "RU": 0.03816793893129772,
+            "US": 0.16030534351145043
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "ruthenium",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "CA": 0.014014014014014012,
+            "RU": 0.001001001001001001,
+            "ZA": 0.9359359359359359,
+            "ZW": 0.04904904904904905
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "rutile, 95% titanium dioxide",
+          "process": "{'equals': 'heavy mineral sand quarry operation'}",
+          "product": "{'equals': 'rutile, 95% titanium dioxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "samarium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'samarium oxide'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "sand",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AR": 0.005550950322695223,
+            "AU": 0.0059210136775415916,
+            "BG": 0.01239712238735271,
+            "CA": 0.007142222748534573,
+            "CN": 0.13004026289300738,
+            "FR": 0.5085114571614662,
+            "DE": 0.015446444431286647,
+            "IN": 0.01768902836165552,
+            "ID": 0.0052104920362366185,
+            "IT": 0.019983421161702885,
+            "MY": 0.006217064361418677,
+            "MX": 0.0038486588904020395,
+            "NL": 0.07993368464681133,
+            "PL": 0.007904553259518044,
+            "RU": 0.010805849961513413,
+            "ZA": 0.0032417549884540234,
+            "ES": 0.008874119249215459,
+            "TR": 0.01643081295517792,
+            "US": 0.12700574338326723,
+            "GB": 0.007845343122742618
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "scandium oxide",
+          "process": "{'equals': 'scandium oxide production, from rare earth tailings'}",
+          "product": "{'equals': 'scandium oxide'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "selenium",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AM": 0.005634437683119228,
+            "BE": 0.056344376831192276,
+            "CA": 0.022143340094658532,
+            "CL": 0.028172188415596138,
+            "CN": 0.35147622267297746,
+            "FI": 0.028622943430245736,
+            "DE": 0.10649087221095314,
+            "JP": 0.2099954924498533,
+            "KZ": 0.003211629479377964,
+            "MX": 0.03307414919990984,
+            "PE": 0.012564796033355917,
+            "PH": 0.019720531890917326,
+            "PL": 0.02005859815190443,
+            "RU": 0.05285102546765837,
+            "RS": 0.005803470813612809,
+            "SE": 0.009465855307640311,
+            "US": 0.033243182330403444,
+            "UZ": 0.0011268875366238415
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "silica sand",
+          "process": "{'equals': 'silica sand production'}",
+          "product": "{'equals': 'silica sand'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "silicon, metallurgical grade",
+          "missing_primary_fraction": 0.9999999999999999,
+          "missing_origins": {
+            "AU": 0.005681818181818181,
+            "BT": 0.009659090909090907,
+            "BR": 0.04482954545454545,
+            "CA": 0.005568181818181818,
+            "CN": 0.7045454545454545,
+            "FR": 0.014034090909090906,
+            "DE": 0.0071590909090909075,
+            "IS": 0.012556818181818178,
+            "IN": 0.006704545454545453,
+            "KZ": 0.013749999999999997,
+            "MY": 0.01005681818181818,
+            "NO": 0.041022727272727266,
+            "PL": 0.005568181818181818,
+            "RU": 0.07295454545454544,
+            "ES": 0.006647727272727271,
+            "US": 0.03539772727272727,
+            "UA": 0.003863636363636363
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "silver",
+          "missing_primary_fraction": 0.005087053457600821,
+          "missing_origins": {
+            "BW": 0.0004958423456098468,
+            "CY": 6.326185958522976e-06,
+            "DO": 0.004363130825194018,
+            "CI": 4.623546582215173e-06,
+            "NA": 0.00021713055425621864
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "sodium borates",
+          "process": "{'either': [{'equals': 'sodium borate mine operation and beneficiation'}, {'equals': 'sodium borates mine operation and beneficiation'}]}",
+          "product": "{'equals': 'sodium borates'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "spodumene",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "AU": 0.4930369613737559,
+            "BR": 0.026895166994007732,
+            "CA": 0.07552002163079685,
+            "CN": 0.09852464946968248,
+            "CD": 0.055255545082310946,
+            "ET": 0.018776733374141433,
+            "FI": 0.00827052516019683,
+            "DE": 0.004560868536578954,
+            "GH": 0.02360172796018331,
+            "ML": 0.08415356363622709,
+            "PT": 0.01292778092809638,
+            "US": 0.015052055363824248,
+            "ZW": 0.08342440049019792
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "stibnite concentrate",
+          "process": "{'equals': 'stibnite mine operation and beneficiation'}",
+          "product": "{'equals': 'stibnite concentrate'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "strontium sulfate, 90% SrSO4",
+          "process": "{'equals': 'strontium mine operation and beneficiation'}",
+          "product": "{'equals': 'strontium sulfate, 90% SrSO4'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "sulfur",
+          "missing_primary_fraction": 0.028521912671796063,
+          "missing_origins": {
+            "DZ": 0.0001405670260732182,
+            "BA": 5.535248352711187e-05,
+            "BG": 0.007051314333040232,
+            "CU": 0.000323964824990946,
+            "EC": 7.02835130366091e-05,
+            "JO": 0.0068877842775876925,
+            "KW": 0.01173734667711372,
+            "LY": 0.00037475169151119975,
+            "MA": 0.0008434021564393092,
+            "NA": 0.0010160606345650431,
+            "SY": 2.1085053910982733e-05
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "tantalum concentrate, 30% Ta2O5",
+          "process": "{'equals': 'tantalum mine operation and beneficiation'}",
+          "product": "{'equals': 'tantalum concentrate, 30% Ta2O5'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "tellurium, semiconductor-grade",
+          "process": "{'equals': 'tellurium production, semiconductor-grade'}",
+          "product": "{'equals': 'tellurium, semiconductor-grade'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "terbium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'terbium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "thulium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'thulium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "tin",
+          "process": "{'equals': 'tin production'}",
+          "product": "{'equals': 'tin'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "tin concentrate",
+          "missing_primary_fraction": 0.0004965428694020196,
+          "missing_origins": {
+            "NA": 0.0004965428694020196
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "titanium",
+          "process": "{'equals': 'titanium production'}",
+          "product": "{'equals': 'titanium'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "titanium sponge",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "CN": 0.5257731958762887,
+            "JP": 0.2268041237113402,
+            "KZ": 0.07216494845360825,
+            "RU": 0.1443298969072165,
+            "UA": 0.030927835051546393
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "titanium tetrachloride",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "CN": 0.5257731958762887,
+            "JP": 0.2268041237113402,
+            "KZ": 0.07216494845360825,
+            "RU": 0.1443298969072165,
+            "UA": 0.030927835051546393
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "tungsten concentrate",
+          "missing_primary_fraction": 0.0011159219747355258,
+          "missing_origins": {
+            "KG": 0.0011159219747355258
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "uranium ore, as U",
+          "missing_primary_fraction": 0.17973108797481563,
+          "missing_origins": {
+            "IR": 0.0012288786482334906,
+            "NA": 0.09857958316739684,
+            "PK": 0.0008533879501621444,
+            "UA": 0.013263545163186705,
+            "UZ": 0.06580569304583643
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "vanadium bearing magnetite",
+          "process": "{'equals': 'vanadium bearing magnetite production'}",
+          "product": "{'equals': 'vanadium bearing magnetite'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "vanadium pentoxide",
+          "missing_primary_fraction": 1.0,
+          "missing_origins": {
+            "BR": 0.054114994363021425,
+            "CN": 0.693348365276212,
+            "IN": 0.015783540022547917,
+            "JP": 0.025930101465614433,
+            "KR": 0.004509582863585119,
+            "RU": 0.10146561443066517,
+            "ZA": 0.09244644870349493,
+            "TW": 0.003382187147688839,
+            "VN": 0.009019165727170238
+          }
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "ytterbium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'ytterbium oxide'}"
+        },
+        {
+          "reason": "market_preserved_supplier_missing",
+          "metal": "yttrium oxide",
+          "process": "{'equals': 'rare earth oxides production, from rare earth carbonate concentrate'}",
+          "product": "{'equals': 'yttrium oxide'}"
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "zinc",
+          "missing_primary_fraction": 0.003404183002386701,
+          "missing_origins": {
+            "NA": 0.003404183002386701
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "zinc concentrate",
+          "missing_primary_fraction": 0.008662737041376987,
+          "missing_origins": {
+            "CG": 0.00021155124179067844,
+            "XK": 0.0003117279125273471,
+            "NA": 0.008139457887058962
+          }
+        },
+        {
+          "reason": "market_preserved_transport_missing",
+          "metal": "zircon",
+          "missing_primary_fraction": 0.17207061025469356,
+          "missing_origins": {
+            "KE": 0.033970656638470244,
+            "MG": 0.01976265066171037,
+            "MZ": 0.06779707700717401,
+            "NG": 0.0004613930844168438,
+            "SN": 0.050078832862922085
+          }
+        }
+      ],
+      "resource_diagnostic_reasons": {
+        "preserved_extraction": 3,
+        "preserved_unsupported_unit": 1
+      },
+      "applied_market_shares": {
+        "cobalt": {
+          "primary share": 1.0,
+          "secondary share": 0.0,
+          "primary suppliers": [
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "AU",
+              "unit": "kilogram",
+              "amount": 0.02436951492757772,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "BE",
+              "unit": "kilogram",
+              "amount": 0.011134895854637339,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "BR",
+              "unit": "kilogram",
+              "amount": 0.00029238570067279007,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "CA",
+              "unit": "kilogram",
+              "amount": 0.044753191624740375,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "CN",
+              "unit": "kilogram",
+              "amount": 0.6786378159242644,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "CD",
+              "unit": "kilogram",
+              "amount": 0.00028481094158800275,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "FI",
+              "unit": "kilogram",
+              "amount": 0.10846752019052028,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "FR",
+              "unit": "kilogram",
+              "amount": 0.000492359340511175,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "IN",
+              "unit": "kilogram",
+              "amount": 0.00015149518169574618,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "JP",
+              "unit": "kilogram",
+              "amount": 0.02852199785785812,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "MG",
+              "unit": "kilogram",
+              "amount": 0.017799168897433215,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "MA",
+              "unit": "kilogram",
+              "amount": 0.015663086835523195,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "NC",
+              "unit": "kilogram",
+              "amount": 0.00891549144279466,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "NO",
+              "unit": "kilogram",
+              "amount": 0.030842904041436952,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "RU",
+              "unit": "kilogram",
+              "amount": 0.014205703187610117,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "ZA",
+              "unit": "kilogram",
+              "amount": 0.0068536420199155545,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt metal production, from copper mining, via electrolysis, economic allocation",
+              "product": "cobalt",
+              "location": "ZM",
+              "unit": "kilogram",
+              "amount": 0.008614016031220126,
+              "type": "technosphere"
+            }
+          ],
+          "secondary suppliers": []
+        },
+        "cobalt sulfate": {
+          "primary share": 1.0,
+          "secondary share": 0.0,
+          "primary suppliers": [
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "AU",
+              "unit": "kilogram",
+              "amount": 0.09429759065227088,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "BE",
+              "unit": "kilogram",
+              "amount": 0.007983086698060332,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "CA",
+              "unit": "kilogram",
+              "amount": 0.06585918673774564,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "CN",
+              "unit": "kilogram",
+              "amount": 0.6166942145379118,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "CD",
+              "unit": "kilogram",
+              "amount": 0.000998269393633169,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "FI",
+              "unit": "kilogram",
+              "amount": 0.051390417432074724,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "FR",
+              "unit": "kilogram",
+              "amount": 0.0019955159702646644,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "ID",
+              "unit": "kilogram",
+              "amount": 0.019957205336649995,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "JP",
+              "unit": "kilogram",
+              "amount": 0.020955474730283162,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "MG",
+              "unit": "kilogram",
+              "amount": 0.027940292034710323,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "MA",
+              "unit": "kilogram",
+              "amount": 0.009978602668324996,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "NO",
+              "unit": "kilogram",
+              "amount": 0.03243045867205624,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "ZA",
+              "unit": "kilogram",
+              "amount": 0.0029937853638978334,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "UG",
+              "unit": "kilogram",
+              "amount": 0.004989301334162498,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "US",
+              "unit": "kilogram",
+              "amount": 0.007608735675447892,
+              "type": "technosphere"
+            },
+            {
+              "name": "cobalt sulfate production, from copper mining, economic allocation",
+              "product": "cobalt sulfate",
+              "location": "ZM",
+              "unit": "kilogram",
+              "amount": 0.033927862762506,
+              "type": "technosphere"
+            }
+          ],
+          "secondary suppliers": []
+        },
+        "germanium, concentrate": {
+          "primary share": 1.0,
+          "secondary share": 0.0,
+          "primary suppliers": [
+            {
+              "name": "zinc mine operation",
+              "product": "germanium, concentrate",
+              "location": "CN",
+              "unit": "kilogram",
+              "amount": 0.9146341463414634,
+              "type": "technosphere"
+            },
+            {
+              "name": "zinc mine operation",
+              "product": "germanium, concentrate",
+              "location": "RU",
+              "unit": "kilogram",
+              "amount": 0.05487804878048781,
+              "type": "technosphere"
+            },
+            {
+              "name": "zinc mine operation",
+              "product": "germanium, concentrate",
+              "location": "US",
+              "unit": "kilogram",
+              "amount": 0.03048780487804878,
+              "type": "technosphere"
+            }
+          ],
+          "secondary suppliers": []
+        },
+        "lithium hydroxide, battery grade": {
+          "primary share": 1.0,
+          "secondary share": 0.0,
+          "primary suppliers": [
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "AR",
+              "unit": "kilogram",
+              "amount": 0.14096967355611398,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "AU",
+              "unit": "kilogram",
+              "amount": 0.07859324468278389,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "BR",
+              "unit": "kilogram",
+              "amount": 0.0005737487018935617,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "CA",
+              "unit": "kilogram",
+              "amount": 0.007749814966043637,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "CL",
+              "unit": "kilogram",
+              "amount": 0.11867035650831836,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "CN",
+              "unit": "kilogram",
+              "amount": 0.5863088259762809,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "FI",
+              "unit": "kilogram",
+              "amount": 0.005054343564547685,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "DE",
+              "unit": "kilogram",
+              "amount": 0.017352455740068887,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "PT",
+              "unit": "kilogram",
+              "amount": 0.009603023273159842,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "KR",
+              "unit": "kilogram",
+              "amount": 0.014488684719350813,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "TR",
+              "unit": "kilogram",
+              "amount": 0.0001912495672978539,
+              "type": "technosphere"
+            },
+            {
+              "name": "lithium hydroxide production, battery grade",
+              "product": "lithium hydroxide, battery grade",
+              "location": "US",
+              "unit": "kilogram",
+              "amount": 0.02044457874414054,
+              "type": "technosphere"
+            }
+          ],
+          "secondary suppliers": []
+        }
+      },
+      "methodology": {
+        "system model": "cutoff",
+        "requested year": 2030,
+        "unsupported years": "preserve source; no extrapolation or endpoint hold",
+        "consequential supply": "preserve source marginal markets and substitution resource flows",
+        "attributional resource correction": "declared attribution convention; not a physical recovery model",
+        "recycling": "source-market shares; no dynamic scrap-stock model",
+        "mining constraints": "not modelled; no ore-grade, capacity or depletion projection",
+        "market decisions": {
+          "market_preserved_transport_missing": 51,
+          "market_preserved_supplier_missing": 48
+        },
+        "material decisions": {
+          "metals.material_rule.year_outside_support": 20,
+          "metals.material_rule.intensity_missing": 13,
+          "metals.material_rule.component_scope_unverified": 57,
+          "metals.material_rule.applied": 2,
+          "metals.material_rule.zero_intensity": 1,
+          "metals.material_rule.provider_missing": 1,
+          "metals.material_rule.design_incomplete": 3
+        }
+      },
+      "market_reason_counts": {
+        "market_preserved_transport_missing": 51,
+        "market_preserved_supplier_missing": 48
+      }
+    }
+  },
+  "qualification_limit": "Internal diagnostic admission bypass only; graph validation remains enabled. No new Brightway database or claim of complete physical coverage. Existing shared rules deliberately preserve unsupported component intensities and out-of-support historical market shares. Supplier and filter gaps remain unfinished work.",
+  "required_next_work": [
+    "Adapt the source-compatible in-range mining supplier filters, retaining physical product and contained-metal reference bases.",
+    "Distinguish the 51 missing-transport-data dispositions from the 48 missing-supplier filter dispositions; no invented route distances.",
+    "Resolve the missing titanium supply and SOEC group without treating titanium-zinc roofing plate as titanium metal or mineral concentrate as refined oxide.",
+    "Check physically representative changes, finite LCIs, combined interaction and real public export before qualifying metals."
+  ],
+  "native_PEM_source_limitation": "The native PEM stack contains a titanium-zinc plate input. This is not an independently verified titanium-metal provider or a reason to add a second metal inventory without resolving the component boundary.",
+  "new_Brightway_databases": 0
+}

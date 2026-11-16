@@ -2251,3 +2251,26 @@ The completed car qualification also allows retiring350,066,118bytes of
 obsolete task-owned wheels, pip cache and duplicate generation inputs. Original
 sources, biosphere, active checkpoints and the latest verified export remain.
 See [cleanup receipt](uvek-car-public-review-cleanup-2026-11-16.json).
+
+
+## Metals: in-range coverage, not just a graph pass — 16 November 2026
+
+The actual2030shared run creates four metal markets and executes97material
+decisions. Another48markets retain source because the mining-sheet supplier
+filters do not match;51retain source because transport data is unavailable.
+The source2050run instead retains all103markets outside the2020–2030support.
+These different reasons must not be combined into a mapping backlog or treated
+as evidence that all markets work. Supplier filters need source-compatible
+aliases; missing transport observations are not a license to invent distances.
+
+One titanium provider and the three-part SOEC ceramic design remain unresolved.
+In particular, the native PEM stack's titanium-zinc roofing plate does not
+establish a titanium-metal input. Mapping it to metal or adding metal on top
+would change the component boundary without a documented correction. The
+existing source is preserved while that issue is reviewed. See
+[actual-year coverage](uvek-metals-actual-year-coverage-2026-11-16.json).
+
+The fourteen-supply review also passes four fresh/cache/withdrawal checks using
+installed Premise and GitHub-installed Brightpath35307d9, without source-checkout
+module imports. The completed five-commit batch is published at Premise24608dcf
+and Brightpath35307d9. No production Python changed in this batch.
