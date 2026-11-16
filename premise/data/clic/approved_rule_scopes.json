@@ -307726,6 +307726,1074 @@
           "fingerprint": "bd6c107ffe29dfd4003fd60e674557555c97496457275c7b223bcfd3d04c8c09"
         }
       ]
+    },
+    {
+      "rule_id": "bp-d21d0bac2a023032",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-d21d0bac2a023032",
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, low-alloyed, hot rolled",
+          "reference product": "steel, low-alloyed, hot rolled",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Steel, low-alloyed, at plant",
+          "reference product": "Steel, low-alloyed, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "code": "fe4c40958e75f46a130e5768e02d158f",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "market for steel, low-alloyed, hot rolled",
+          "product": "steel, low-alloyed, hot rolled",
+          "unit": "kilogram",
+          "location": "GLO",
+          "metadata_sha256": "59e4ed3577a7e951c06181db3272dbd62d9f528c75f2fd8bc631dfe1475935d4",
+          "inventory_sha256": "5980ed2f900efbb1aae737f155147491d4d9a4bd53b5a3668335a80a88adf7d2",
+          "activity_comment_sha256": "60cfb48a23b0fceec1a1399e1ea05eae42d11bcb9c44de023cb48877e2638c53",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": 1.0,
+          "nonproduction_count": 2
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-185969",
+            "database": "bafu",
+            "name": "Steel, low-alloyed, at plant",
+            "product": "Steel, low-alloyed, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "eb35e086f911eddae104aef934074d0c48591c424581f21de6a42969303e55e7",
+            "inventory_sha256": "65f0c668a8afb2efd0dc2914cff81588503283cddebb4e40f2a2141dcb5b30dd",
+            "activity_comment_sha256": "07b08f4a397a70097336a1bb811860460858e05dc4c35c8618e9c8f297678fc4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 3
+          },
+          "2026": {
+            "code": "e402fe96f7523f54ffdbf8b11f50eba3",
+            "database": "BAFU:2026-reimported",
+            "name": "Steel, low-alloyed, at plant",
+            "product": "Steel, low-alloyed, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "0d6e806d694e636e78e7d45b2a42b8b005127dc66045d1bd9d2e4731d50c5002",
+            "inventory_sha256": "94ff9254144046ec89c7bbb443b53daa2c3ccc4ff96be3d359e685cf71286ed2",
+            "activity_comment_sha256": "f1e3bdf9b0f47f95dc47a92ef768ecbc9656df4f76edb5065c41fbd0c3cddebb",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 3
+          }
+        }
+      },
+      "limitations": [
+        "Native low-alloy steel explicitly includes its 37% electric/63% converter production mix and one kg of hot rolling. Source manufacturing shares differ. Do not add a second hot-rolling service, and preserve the separate positive and negative lightweighting steel entries.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "82c770eb696118c5e197b1fc3ff088403908f216f0f1976f38fbdac89a4be0e4"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8a6394dd395bb22d",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-8a6394dd395bb22d",
+        "source": {
+          "location": "RER",
+          "name": "metal working, average for aluminium product manufacturing",
+          "reference product": "metal working, average for aluminium product manufacturing",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Aluminium product manufacturing, average metal working",
+          "reference product": "Aluminium product manufacturing, average metal working",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "code": "54a89fd7ef8929903ddafc5eff1a7de7",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "metal working, average for aluminium product manufacturing",
+          "product": "metal working, average for aluminium product manufacturing",
+          "unit": "kilogram",
+          "location": "RER",
+          "metadata_sha256": "ffe438ad77dd831ba79c29e45d1c245fada3d65ec84bf99dfe444ba48885fe21",
+          "inventory_sha256": "c0cb499788ab97fe35f620281abbc8a36ae784f5841eee7f94a9ed753fe55dfc",
+          "activity_comment_sha256": "0c4c89c8ccf06bb445037be0be19b17aa1432e887e821e553e5af5f4b7e614d7",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": 1.0,
+          "nonproduction_count": 6
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-548129",
+            "database": "bafu",
+            "name": "Aluminium product manufacturing, average metal working",
+            "product": "Aluminium product manufacturing, average metal working",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "cf28cfb2d1166650c5565a4a0e01f49289098bacaa20d6fbf21d02cf157cc87a",
+            "inventory_sha256": "961fd77211b7fddcd3a03f607bae6f0e323099e2a5c2c34d47d28d415cc4a903",
+            "activity_comment_sha256": "cde4002bc0d9badae3d6cd6e9ea852fed1144880c7bdfafd37e98e548836e7ac",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 5
+          },
+          "2026": {
+            "code": "ac78375d36e0a34a71ac87858ea77c69",
+            "database": "BAFU:2026-reimported",
+            "name": "Aluminium product manufacturing, average metal working",
+            "product": "Aluminium product manufacturing, average metal working",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "10eed59296b10313051f3d7738ab367d0c79078ad3b6e958d2a6d52e3d733088",
+            "inventory_sha256": "283f11393e6647ab71e7421bfc3a3d6858a3ed54a502ead1e926d17eefc8e0c1",
+            "activity_comment_sha256": "5bb89eb07f142b53f1e5f7da9403b1f0445bea7b8c74b5c1ecaa8655e3408b5f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 5
+          }
+        }
+      },
+      "limitations": [
+        "Both provide metalworking per kg final aluminium product, excluding principal metal stock. Preserve separately listed stock, replacement losses and any degreasing; no extra material, casting or rolling is added.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e7b79bf60f16b5ccbf632194fda1ac21f20af98bbbf0c3ded6cdf3b0a2e2c7e9"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-5c972a6c76ece968",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-5c972a6c76ece968",
+        "source": {
+          "location": "GLO",
+          "name": "market for glider, passenger car",
+          "reference product": "glider, passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Glider, for passenger car",
+          "reference product": "Glider, for passenger car",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "code": "09318d150d2a79082e317d4c4ca15153",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "market for glider, passenger car",
+          "product": "glider, passenger car",
+          "unit": "kilogram",
+          "location": "GLO",
+          "metadata_sha256": "319233d491f9899c89c90f91beba2ba4c49450fa18fa70bf9b6e71a736e4a137",
+          "inventory_sha256": "8992ac7e28369dbe8543fb933f41bd5c715ab9da92a5560338e0cdac38265a2c",
+          "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": 1.0,
+          "nonproduction_count": 1
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-601002",
+            "database": "bafu",
+            "name": "Glider, for passenger car",
+            "product": "Glider, for passenger car",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "5aec26bd1ec6ba0f7ac3906e5401be6e4086ec2405e5eff2e48cf1afd438dbc7",
+            "inventory_sha256": "aee3c2d7d251490362886e3b50175e152c08088f9fbd5959c235ab7bf83362d9",
+            "activity_comment_sha256": "4094a9bc4c926c85ab98a1c9461411ff107a81f3357753fd37be6ef1aff341e9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 44
+          },
+          "2026": {
+            "code": "f3a9f90916657ba9343418f06cb4f461",
+            "database": "BAFU:2026-reimported",
+            "name": "Glider, for passenger car",
+            "product": "Glider, for passenger car",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "997d632bbfeb68495afa49cf22fc551bb6d9c70e52207f74dc1fabb1f1abdf96",
+            "inventory_sha256": "e7cbdb3dfa8a360427e735918b798c8d3f61df56ea5be3e6900d1caa8966a4ef",
+            "activity_comment_sha256": "a5bce8d6770ed261df430f584258641bde9eceb617495808c42fb5b600dba0e4",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 44
+          }
+        }
+      },
+      "limitations": [
+        "Both glider definitions use kg of complete car body/chassis, rather than one whole car. The source producer has a negative used-glider input and native production includes its positive disposal service. Preserve original caller kg and lifecycle boundary; no 800-kg multiplier or second glider-disposal exchange is added. Native composition represents a historical compact glider.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5952f309676e36b1eb4dba48d5d5185ecfa7be7742ac84919979970ab3709c3c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ab1d27770658d83e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-ab1d27770658d83e",
+        "source": {
+          "location": "CH",
+          "name": "market for waste plastic, industrial electronics",
+          "reference product": "waste plastic, industrial electronics",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+          "reference product": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1.0,
+        "source_witness": {
+          "code": "ec1faaad425c5653ca8e80c68d203e66",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "market for waste plastic, industrial electronics",
+          "product": "waste plastic, industrial electronics",
+          "unit": "kilogram",
+          "location": "CH",
+          "metadata_sha256": "25e379f01d108f1d0f0320cdb3ac20a62c2dbf49f68431ebd0eab52e50d2bfd9",
+          "inventory_sha256": "aa1389a8782b334ce796add846bfa90664d4cb36179fb4448ab87c63ed394846",
+          "activity_comment_sha256": "6bd29539360c499f4edfcc172cd466ee2007e3892424bf0bc5a6ad5bc4209b58",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": -1.0,
+          "nonproduction_count": 3
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-308127",
+            "database": "bafu",
+            "name": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+            "product": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+            "unit": "kilogram",
+            "location": "CH",
+            "metadata_sha256": "2af3a5da179ebf4e7061afda26332bdde52cc697b9ad9edd67192b3a6116b86f",
+            "inventory_sha256": "d981bafe0ef989d3e6f6d5d34aa3794caa27f674d14079a80171c4684e407577",
+            "activity_comment_sha256": "220cf0ad8a5f0b8ca9f967d9060e26461e11ef9de6cfe5cb7225a2f18c96f1c5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 140
+          },
+          "2026": {
+            "code": "f6341311446e6494d85595693ced24f1",
+            "database": "BAFU:2026-reimported",
+            "name": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+            "product": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+            "unit": "kilogram",
+            "location": "CH",
+            "metadata_sha256": "d2c059665dc37798c321d8200fe818ae77494e666ed990f6eb8b05944a42df66",
+            "inventory_sha256": "4d2acea10ead270778384f536f0585dc00fa3618887c626493ded2f9363a7b28",
+            "activity_comment_sha256": "d244975d6561088fc4ac568d2a071280219c67a4664b204d8e077b5bd138e869",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 142
+          }
+        }
+      },
+      "limitations": [
+        "Source waste reference is negative one kg, native disposal service positive one kg: retain the existing factor minus one. The complete native industrial-electronics-plastic incinerator is a screening replacement for source fly-ash-extraction treatment and its market freight. Ash extraction, residues, recovery, composition, energy allocation and delivery differ; no separate recovery credit or duplicate freight is added.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "001d7299ab1a020a780fb075157b5559aa5c853d899026504281f9556b1fd708"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-fa83088d5d2b33b6",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-fa83088d5d2b33b6",
+        "source": {
+          "location": "RER",
+          "name": "polyethylene production, high density, granulate",
+          "reference product": "polyethylene, high density, granulate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyethylene, HDPE, granulate, at plant",
+          "reference product": "Polyethylene, HDPE, granulate, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "code": "db53dd7456969fcb4134728a55fdb7b5",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "polyethylene production, high density, granulate",
+          "product": "polyethylene, high density, granulate",
+          "unit": "kilogram",
+          "location": "RER",
+          "metadata_sha256": "57ffb4265170fba879dda5581f4fdde02f06aca07507dd696825644788b43d36",
+          "inventory_sha256": "82014107a5946f41a5eda1290fe2d1dc3c3a7d6d9d9e2e76ee12f6c619ad1de7",
+          "activity_comment_sha256": "3fed4b19208206fe1f8bbd07a6af05055fd5d14fa895e58053a81ffa6b7b52a9",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": 1.0,
+          "nonproduction_count": 52
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-599376",
+            "database": "bafu",
+            "name": "Polyethylene, HDPE, granulate, at plant",
+            "product": "Polyethylene, HDPE, granulate, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "fc954d0337336fca11ed20ffca59c51b44cb83514a9fad14277a8c8eca2d087b",
+            "inventory_sha256": "cac81e9c3ffcc0511aa8ce93ce59f9ed76c6e5ea247b824ff6a1455e48ef5266",
+            "activity_comment_sha256": "0c1043038d73c61148ceac04ec64bff3ee15d9c2cade94d427234021c9fcf603",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 408
+          },
+          "2026": {
+            "code": "bd788c487a8cb97cb279c7954abda937",
+            "database": "BAFU:2026-reimported",
+            "name": "Polyethylene, HDPE, granulate, at plant",
+            "product": "Polyethylene, HDPE, granulate, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "29df786ca0dd4c88a057568141ca68555dd22d8adb6347981a9507dd1cb802e2",
+            "inventory_sha256": "ede7bffe5843afa2ba487d89b8c4d4acb8d1751e56a3fc54c607e36d20dcb674",
+            "activity_comment_sha256": "ed946c8aca355e2d873a2ed6b788e0483f32b1be602a8ca165abf2c3c93e91fc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 412
+          }
+        }
+      },
+      "limitations": [
+        "Both supply virgin HDPE granulate per kg. The complete native European eco-profile, including the documented 2023 methane update, replaces the source disaggregated production model.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b0fe23224cb0e9960d1eab2368c8586888d525f7884fa29edebc4f4b18da3ba8"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4591e06aab54c64b",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-4591e06aab54c64b",
+        "source": {
+          "location": "RER",
+          "name": "maintenance, passenger car",
+          "reference product": "passenger car maintenance",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Maintenance, passenger car",
+          "reference product": "Maintenance, passenger car",
+          "unit": "unit"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "code": "efdbbd487ffe88e033e32672c4995f0b",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "maintenance, passenger car",
+          "product": "passenger car maintenance",
+          "unit": "unit",
+          "location": "RER",
+          "metadata_sha256": "594221a132a29d4c3bc3025f4b608085bb1d0e70809d539812c712db51bce384",
+          "inventory_sha256": "b322eb379a2ec7195766c76cdb012871b492a7b5c764621e01f6e67839985c88",
+          "activity_comment_sha256": "2bf96513a4b92819a98f2c8529001c57e6a40b679d3db950be1daf4a7520817e",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": 1.0,
+          "nonproduction_count": 21
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-287489",
+            "database": "bafu",
+            "name": "Maintenance, passenger car",
+            "product": "Maintenance, passenger car",
+            "unit": "unit",
+            "location": "RER",
+            "metadata_sha256": "091094e1f6ee0711cc92e57cc863ea41d33779c596b82c8880a137c2d82ba2ff",
+            "inventory_sha256": "8f58711c83c606978ed575576f1ff5869cf07456c0913165e716549edac8ba09",
+            "activity_comment_sha256": "86e4aa71269d4376fb65b010b70daa383db8a2023fd167a0fbb7a7ed93603082",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 13
+          },
+          "2026": {
+            "code": "e1234cf8e0308fbfdcbebc8a06346baf",
+            "database": "BAFU:2026-reimported",
+            "name": "Maintenance, passenger car",
+            "product": "Maintenance, passenger car",
+            "unit": "unit",
+            "location": "RER",
+            "metadata_sha256": "c268372996ce03dd3ee8223c6ae12ed565714a14de5417e47c537102e74dd4bc",
+            "inventory_sha256": "56f8b838201780918d1892214b5aee1286cc70215d0712cf6bcf64f8d987b2dd",
+            "activity_comment_sha256": "dce95be8e230b1be2def6473e60e48643cb36d124e68d48c30712805de3c50c9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 13
+          }
+        }
+      },
+      "limitations": [
+        "Both passenger-car maintenance definitions use the historical Golf A4 service model. One unit is the maintenance service, not a vehicle-km or kg. Retain the existing caller lifetime demand without adding a new lifetime or vehicle-mass multiplier.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "387f157a666c485dfd15c3ee43f9c67c73ec487cb0939b9b893e9db96dcd0447"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e4846f25fbe74153",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-e4846f25fbe74153",
+        "source": {
+          "location": "RER",
+          "name": "treatment of brake wear emissions, passenger car",
+          "reference product": "brake wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Brake wear emissions, passenger car",
+          "reference product": "Brake wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1.0,
+        "source_witness": {
+          "code": "13c14764020d27a1946988fbcb4cd8c3",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "treatment of brake wear emissions, passenger car",
+          "product": "brake wear emissions, passenger car",
+          "unit": "kilogram",
+          "location": "RER",
+          "metadata_sha256": "e15f7698ba68efadd0a82861baefda0dc80fb5a3f4c7089b26bd1c0e210b962a",
+          "inventory_sha256": "bc77b6537925accd5a4747279bf0ff830beba08a6654e7fbd694bb013b143d61",
+          "activity_comment_sha256": "bf241ba4d0662dae418261ac85e4c29e7df521ae34af952a5e7299bffa472d23",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": -1.0,
+          "nonproduction_count": 35
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-451198",
+            "database": "bafu",
+            "name": "Brake wear emissions, passenger car",
+            "product": "Brake wear emissions, passenger car",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "65deb3b45615fc7b8b56a4a278a5d2752a6af842d9761642604bd3e852f30615",
+            "inventory_sha256": "a2da1b67607c2f4ebd0c2edf09d0233e873c81392c5c8aa913106ce406a3bc46",
+            "activity_comment_sha256": "05e59f202d2c97b795146c6e5b01dc0da19af89975ea7a95cf06307e787f7c1a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 33
+          },
+          "2026": {
+            "code": "fad6f571d2a3235373de54a9c07e3a51",
+            "database": "BAFU:2026-reimported",
+            "name": "Brake wear emissions, passenger car",
+            "product": "Brake wear emissions, passenger car",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "05953d554106d1c03c5caaac09a7ae6f17cacf9e46941b0687e765e60cffd5a9",
+            "inventory_sha256": "573a34a28a8a8397a750b87b6cdab9a06064a98a393e2774d4ce96e03970d249",
+            "activity_comment_sha256": "21b470335a7dad1aa84d75c555ab1501c35e5f33529229951bc6e682bc0869e5",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 35
+          }
+        }
+      },
+      "limitations": [
+        "Source brake-wear removal reference is minus one kg; native brake-wear emission service is plus one kg. Retain factor minus one. This produces wear emissions, rather than environmental cleanup. Retain the complete native particulate/metal and compartment model; no avoided-emission credit or caller-wear mass rescaling.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "084217e40baa6fbbc3324c408c1816d245bdd34f82073e669210e99f98469e90"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-51cccf3b2edc49df",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-51cccf3b2edc49df",
+        "source": {
+          "location": "RER",
+          "name": "treatment of road wear emissions, passenger car",
+          "reference product": "road wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Road wear emissions, passenger car",
+          "reference product": "Road wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1.0,
+        "source_witness": {
+          "code": "d50f7c55f394c02b037d3355046089d2",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "treatment of road wear emissions, passenger car",
+          "product": "road wear emissions, passenger car",
+          "unit": "kilogram",
+          "location": "RER",
+          "metadata_sha256": "07be3ba82033fc8c8c5c7983308a30ddea2324a5e087ea578f834e0abada6af4",
+          "inventory_sha256": "cc13899e6dfcf1c4f1a9bc15ae3796f07304984e3ac22d091e5280ca75d296f8",
+          "activity_comment_sha256": "679d9da21c5bc6590c57062890ed06c9d35d5756da266a953ec01af147462c3e",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": -1.0,
+          "nonproduction_count": 3
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-289953",
+            "database": "bafu",
+            "name": "Road wear emissions, passenger car",
+            "product": "Road wear emissions, passenger car",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "3ac66b55f4480bf9738bee5991785b0a20c979854a827be46bbcfb349d8e396a",
+            "inventory_sha256": "afe6616fa8efffe2a772eaf0a1441d5f78d90b524582f6397da5cadb181d1627",
+            "activity_comment_sha256": "ed7d2e2ece27d8bc040ba91534eaab67e8f2edee30ad25128be3e6178e581067",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 3
+          },
+          "2026": {
+            "code": "ab3e980125c060f0f4fd62189445b31f",
+            "database": "BAFU:2026-reimported",
+            "name": "Road wear emissions, passenger car",
+            "product": "Road wear emissions, passenger car",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "3ded862035aa14f24908822d4baabac71463b76f3386b5302e7f298e5e35ea50",
+            "inventory_sha256": "b5fdb6bc2197649c481edc1e1e75b3b0b01f6402bad34dec6482a9d28717fea7",
+            "activity_comment_sha256": "0395088d29229edf1ee62a1f5d5772e9a2860dbb2b1d084be7d62a710a2b61a2",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 3
+          }
+        }
+      },
+      "limitations": [
+        "Source road-wear removal reference is minus one kg; native road-wear emission service is plus one kg. Retain factor minus one. Keep the native species/compartment model and source caller wear mass; no cleanup credit or new particle split.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "52b9999ffb4b973c6aa9bdc8b0f773f72bc3a681a84c62e848fcc6a3ebaa5510"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-eeab173462697d8e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-eeab173462697d8e",
+        "source": {
+          "location": "RER",
+          "name": "treatment of tyre wear emissions, passenger car",
+          "reference product": "tyre wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Tyre wear emissions, passenger car",
+          "reference product": "Tyre wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1.0,
+        "source_witness": {
+          "code": "60fff71842cc06f09f25be603d943af7",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "treatment of tyre wear emissions, passenger car",
+          "product": "tyre wear emissions, passenger car",
+          "unit": "kilogram",
+          "location": "RER",
+          "metadata_sha256": "a0ae6244c20b3e32cdc31f1874a400341c95051c18b20704ab71e8f74d87686e",
+          "inventory_sha256": "0292fd66545c0d44c9a317087379142a3dfdaa51f756db689f651240f1d76a04",
+          "activity_comment_sha256": "f86b7247d9badc57f78f581c7a2185a14439ecdb39f204913a269832f7cfbba0",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": -1.0,
+          "nonproduction_count": 99
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-236383",
+            "database": "bafu",
+            "name": "Tyre wear emissions, passenger car",
+            "product": "Tyre wear emissions, passenger car",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "9f3a6fdfc1256fd2dd57d962c0bb583c1240722e717a705b7b28eb762d31a526",
+            "inventory_sha256": "54f3ed44beaed0a523f0e6e6052c046682e1d56821d8bdf833e7bce726958c75",
+            "activity_comment_sha256": "05e59f202d2c97b795146c6e5b01dc0da19af89975ea7a95cf06307e787f7c1a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 95
+          },
+          "2026": {
+            "code": "5b18089f60ebee3b8cd785ae94ac4f35",
+            "database": "BAFU:2026-reimported",
+            "name": "Tyre wear emissions, passenger car",
+            "product": "Tyre wear emissions, passenger car",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "2672dd37a9366bbbfa02389a907f7e86c3cedaebddc66d26b3841296835791a5",
+            "inventory_sha256": "d7e01d51e2c27fbb33034bab9c7cd58ae9955820e58fe2c726eabdb90ffb7e93",
+            "activity_comment_sha256": "8ba1f86213a649439b6a7a3e04cda91b0dbbdbce81f9dcd5d8a98fa4954f2bd1",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 99
+          }
+        }
+      },
+      "limitations": [
+        "Source tyre-wear removal reference is minus one kg; native tyre-wear emission service is plus one kg. Retain factor minus one. Keep native species/compartment assumptions, without inventing a microplastic fraction, recycling credit or additional wear exchange.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "be7f9a06b735f2c5451ca56d28995f415f9aa4d8dba7b4bddd412720e1f9825f"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f2cc63366560c955",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-f2cc63366560c955",
+        "source": {
+          "location": "GLO",
+          "name": "market for refrigerant R134a",
+          "reference product": "refrigerant R134a",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Refrigerant R134a, at plant",
+          "reference product": "Refrigerant R134a, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "code": "6450d351c73da17f5f30b8ba4f4e18b7",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "market for refrigerant R134a",
+          "product": "refrigerant R134a",
+          "unit": "kilogram",
+          "location": "GLO",
+          "metadata_sha256": "5268ef7d7dbd0b1d8e1e6e694b3f2ee776f0e1c0999787e75d4a4876b1c840c0",
+          "inventory_sha256": "fe90b18705ae8302c30ba5fe4b0fb2288dd95d835a73182b57013b619b3f0a02",
+          "activity_comment_sha256": "0ad71558cb72652ada44a2ffb39c0c2e5b2f91a2e6e7340f2a93393ee39bac21",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": 1.0,
+          "nonproduction_count": 5
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-191385",
+            "database": "bafu",
+            "name": "Refrigerant R134a, at plant",
+            "product": "Refrigerant R134a, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "7bea7655e6d597257ea4946a6b26023b265b23d22a00327fa6da68d390d30c87",
+            "inventory_sha256": "b94aee08a2d233591191753a0819ab0ee058b6af7c77c1812157acff7f1613fc",
+            "activity_comment_sha256": "c23620dca75b2bb8fcd570697f6f5e643deb6755194f71095ba3b4daea352cb9",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 11
+          },
+          "2026": {
+            "code": "7971566c01bba99e00137f8aa30a6f3a",
+            "database": "BAFU:2026-reimported",
+            "name": "Refrigerant R134a, at plant",
+            "product": "Refrigerant R134a, at plant",
+            "unit": "kilogram",
+            "location": "RER",
+            "metadata_sha256": "e8d11f9e0d978cb11b207e98059ed259f87ff6aa800d1ebfe9b8af979217d134",
+            "inventory_sha256": "aced9bdea5fb8f97c9dcd18582a1ef638c7305136170c0f731df8a9280991336",
+            "activity_comment_sha256": "f0662af10494f757bdc5abb4c6f6bf42e5b7cb501953e4e6cc06910478ed627a",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 11
+          }
+        }
+      },
+      "limitations": [
+        "Both supply R134a, C2H2F4, per kg. Complete native production uses its documented 50/50 trichloroethylene/tetrachloroethylene model, replacing source production and delivery. The separately listed caller leakage is unchanged; no new leakage or refrigerant-recovery credit.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "0ff674eef7c2041ac970b5ec5c1fdd4e3cb7ac688c71252d6a1548b97e112687"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-f3e2b8a4dc2df13f",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-f3e2b8a4dc2df13f",
+        "source": {
+          "location": "GLO",
+          "name": "market for road",
+          "reference product": "road",
+          "unit": "meter-year"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Road",
+          "reference product": "Road",
+          "unit": "meter-year"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "code": "7183759a2948f7c99056601b088951ce",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "market for road",
+          "product": "road",
+          "unit": "meter-year",
+          "location": "GLO",
+          "metadata_sha256": "011b6ac0797fe52bd82be321aab7ec2d0854217d7d68138b09fdbab600705211",
+          "inventory_sha256": "be9cb37bcc40995800932ea9e04559dd25de7eefa723d3df347b9afe6fe481ff",
+          "activity_comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": 1.0,
+          "nonproduction_count": 2
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-506930",
+            "database": "bafu",
+            "name": "Road",
+            "product": "Road",
+            "unit": "meter-year",
+            "location": "CH",
+            "metadata_sha256": "896e0481cf8d76c72f23611dbe599269fa7ebcb6cae5e44013a0f76c36974fa0",
+            "inventory_sha256": "ffbb40a9a202509eba3c57f84551b7908f1281564e44b24ee301d798e73c44ee",
+            "activity_comment_sha256": "f7d09e05a25375ec1899985e331fe2717e0661555a5a70af27f7438e87b31925",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 14
+          },
+          "2026": {
+            "code": "52e8095f5af077baf786bc6003218e2c",
+            "database": "BAFU:2026-reimported",
+            "name": "Road",
+            "product": "Road",
+            "unit": "meter-year",
+            "location": "CH",
+            "metadata_sha256": "ff0b54ed0a2118ccae1c223b23196f61c6fda3929635fa5b228a3340d5101765",
+            "inventory_sha256": "b1b4b58ae43e65cdb8dd72bd69c6f19cf982cbf25d1d4e818f6fc6dd6773035d",
+            "activity_comment_sha256": "714fce3aa53a7da7557cf83bd6deb7ca1d9662be55d144876eef334e43117c81",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 14
+          }
+        }
+      },
+      "limitations": [
+        "Both road services use meter-year. Native Swiss roads include construction, renewal layers, tunnels and bridges with their documented lifetimes. Preserve caller meter-years, without multiplying by the native 100-year road lifetime; geographic/network differences remain explicit.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b19f2049b77f104f553ed583d3c13ee0004d0e9da05d3bb830b83c238d5d86f3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-2b69270ca0d2f18c",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_direct_37_review.json",
+      "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+      "authorization": "Standing user instruction to work autonomously, auto-approve decisions and log limitations for later review.",
+      "inspection": {
+        "rule_id": "bp-2b69270ca0d2f18c",
+        "source": {
+          "location": "RER",
+          "name": "market for road maintenance",
+          "reference product": "road maintenance",
+          "unit": "meter-year"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Operation, maintenance, road",
+          "reference product": "Operation, maintenance, road",
+          "unit": "meter-year"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "code": "081c255150fcf21e1375bffead965936",
+          "database": "ecoinvent-3.7-cutoff",
+          "name": "market for road maintenance",
+          "product": "road maintenance",
+          "unit": "meter-year",
+          "location": "RER",
+          "metadata_sha256": "35f0dee3a0ed81cc1ab5c3358bc0639f6afc8be1bc18b91a5e4d46bc1c2ff404",
+          "inventory_sha256": "ab9a7f0d973d11fed9648d7d2a3c121213ebea67a59013d2b37c0867d629d2ad",
+          "activity_comment_sha256": "412b4064aa8aa81a3727017ba50c576890150822af12133ccb6ebbbae61b0d92",
+          "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reference_amount": 1.0,
+          "nonproduction_count": 2
+        },
+        "native_witnesses": {
+          "2025": {
+            "code": "bafu-349679",
+            "database": "bafu",
+            "name": "Operation, maintenance, road",
+            "product": "Operation, maintenance, road",
+            "unit": "meter-year",
+            "location": "CH",
+            "metadata_sha256": "f11dc5f80d869301bcaf525aefd294e4c7c28e50615c0c1c37cb48bfd15b5731",
+            "inventory_sha256": "c103aec0094276ff805ea63504463b18b9e0fdd6a0fa4ddf1b0e71cb0234068f",
+            "activity_comment_sha256": "72b8250bfa4a3eb162cb93b476d7bf4f8e57cfdcb78499718b32b315ff02b9cc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1,
+            "nonproduction_count": 17
+          },
+          "2026": {
+            "code": "b0735fd41fb47d13a9089ac38fef2d11",
+            "database": "BAFU:2026-reimported",
+            "name": "Operation, maintenance, road",
+            "product": "Operation, maintenance, road",
+            "unit": "meter-year",
+            "location": "CH",
+            "metadata_sha256": "64d81914053025853165615f2a3fc8e1e1c8905c73d86504dca35955afa7504f",
+            "inventory_sha256": "d5b6b83d6c15a7cdf50029168197ec89241e4832cb724af6f7ff33da5950acbe",
+            "activity_comment_sha256": "4479a07aabd49978eea38e80ba937caae911d2936b5e660e4d63fe0434489333",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "reference_amount": 1.0,
+            "nonproduction_count": 17
+          }
+        }
+      },
+      "limitations": [
+        "Both road-maintenance services use meter-year. Native operations include de-icing, marking, lighting and land use; material renewal belongs to the separate road-construction process. Keep both source demands and avoid adding renewal twice.",
+        "Keep the native complete inventory at the signed reference demand, including its documented allocation, upstream supply and end-of-life boundaries. Preserve caller formula and uncertainty.",
+        "Native technology, production mixes, geography, vintage, market delivery and internal uncertainty replace the source model; score differences remain unquantified.",
+        "Native 2026 biosphere exclusions remain as documented in the reimported BAFU source. No missing native flow is restored by this correspondence."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.7",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "559f46b88f83beb483cdf753c2de7c88d422cc8a4aae5924cef59c5eec663c7f"
+        }
+      ]
     }
   ],
   "superseded_operations": [

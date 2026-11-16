@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-16",
+  "new_exact_source37_direct_scopes": 12,
+  "runtime_Python_changes": false,
+  "migration_rules_changed": false,
+  "new_helpers": 0,
+  "new_source_omissions": 0,
+  "Brightway_databases_written": 0,
+  "review_sha256": "0c7a5490e7cfcfd5eab8fe77034060cd5135f29ed3ef22fd528bf015b0c0b107",
+  "focused_signed_quantity_tests_passed": 4,
+  "full_car_sector_qualified": false,
+  "remaining_corrections": [
+    "bp-c4e4184b24112209",
+    "bp-ec3106bc66684767",
+    "bp-745c517f85a78ba7"
+  ],
+  "positive_lightweighting_foreground_reachability_checked": true,
+  "glider_source_producer_and_native_lifecycle_boundaries_checked": true
+}
