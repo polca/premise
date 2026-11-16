@@ -315085,6 +315085,282 @@
           "fingerprint": "91d70db00bb31fe8bee410e03ffff988dcb3c002051ab5dfe071242ad762573e"
         }
       ]
+    },
+    {
+      "rule_id": "bp-a0e1fb8e9d6f6146",
+      "operation": "replace",
+      "mapping_method": "named_native_teos_proxy",
+      "review_path": "export/uvek_battery_three_native_39_review.json",
+      "review_sha256": "7f970725eda9f08a09e2cdf729a6da5cab37c8db2d9effeaa53d8daea6c6ba9c",
+      "authorization": "Standing autonomous goal and auto-approval of modelling decisions with warnings and review log.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for tetraethyl orthosilicate",
+          "reference product": "tetraethyl orthosilicate",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Tetraethylorthosilicat",
+          "reference product": "Tetraethylorthosilicat",
+          "location": "RER",
+          "unit": "kilogram"
+        },
+        "source_witnesses": {
+          "3.9": {
+            "identity": {
+              "name": "market for tetraethyl orthosilicate",
+              "reference product": "tetraethyl orthosilicate",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 5,
+            "inventory_sha256": "ac8d983779e7aea5f85ff9f30e690f21298525e7b84ae5b21a9a0e29bdce4e29",
+            "metadata_sha256": "d5302414f153eb3db3c531fb22148e7ae5d5029b71c1f69cad5929b145926c4e",
+            "comment_sha256": "1ac74281d1d1d285528b8e1ec7bbbe5e8136cd37c5937d3282035a0bdcc18745",
+            "product_information_sha256": "e1d29009f1fcb30d5b2567685b9bdfe3cc6265aa66023731df030dd47bac4013"
+          }
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Tetraethylorthosilicat",
+              "reference product": "Tetraethylorthosilicat",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 3,
+            "inventory_sha256": "9a6b7b3a3eb35ad4ffc6d2c1964d92726df64ba43048c2c690c13e46b0b997f0",
+            "metadata_sha256": "99e976a5507981ddbcd81cacebc1b68177551180b25920b2f7e572c5c0722625",
+            "comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Tetraethylorthosilicat",
+              "reference product": "Tetraethylorthosilicat",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 3,
+            "inventory_sha256": "9e9bbed40478ad3b2304be2c539906d8217429d0b5c7479b46d968dd539404ad",
+            "metadata_sha256": "c9e485e877ac6abc05ae358811ede3da594cceb9d3a991f8b571efb0191b4743",
+            "comment_sha256": "f1f73e02ef31d64eb7b4025275fe190501f97d4a948935187271018c6ce7c0f6",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Same named tetraethyl orthosilicate chemical and nominal positive one-kg reference; replace a generic-chemicals match with the existing specific native product, while retaining native three-input inventory limitations.",
+        "actual_nonzero_battery_uses": 2
+      },
+      "limitations": [
+        "Replace the generic organic-chemicals candidate with the named native Tetraethylorthosilicat supply per one nominal kg. Native inventory explicitly contains metallurgical silicon0.135kg, ethanol0.885kg and electricity0.225797347kWh per kg, and no explicit emissions or factory input. Its process route, catalyst, coproduct, purity and emission coverage are not documented; do not infer chemical or performance equivalence to the source silicon-tetrachloride alcoholysis process. Source producer shares and final delivery are replaced. No extra silicon chlorination, acid credit, reaction yield or stoichiometric multiplier is invented.",
+        "Retain signed caller quantities, caller formulas and supported uncertainty. This is a complete published native-inventory screening proxy, not an inventory or LCIA-equivalence claim. No extra market transport, processing, credit or emissions are added around the native supply.",
+        "Native geography, technology, vintage, allocation, grade and internal uncertainty differ. BAFU reimported inventory excludes documented unsupported biosphere flows. Score effects remain unquantified.",
+        "Authorize only independently inspected ecoinvent cut-off source profiles enumerated here and the UVEK2025/native2026 route. No inverse or cross-system-model conversion is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a58664eb7b05b7962c481fb94a1ea614f5a9f03b45ce87e91c5f4bc0007f6fec"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c67b624e8f0271ba",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_battery_three_native_39_review.json",
+      "review_sha256": "7f970725eda9f08a09e2cdf729a6da5cab37c8db2d9effeaa53d8daea6c6ba9c",
+      "authorization": "Standing autonomous goal and auto-approval of modelling decisions with warnings and review log.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for lithium hydroxide",
+          "reference product": "lithium hydroxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Lithium hydroxide, at plant",
+          "reference product": "Lithium hydroxide, at plant",
+          "unit": "kilogram"
+        },
+        "source_witnesses": {
+          "3.9": {
+            "identity": {
+              "name": "market for lithium hydroxide",
+              "reference product": "lithium hydroxide",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 5,
+            "inventory_sha256": "1b5e0c57fb10f8fad9177505187b69cbd055d7d53022635b463c5ca704efd593",
+            "metadata_sha256": "489860115aab272b44e55ecfc4ce13cbbda1e0dfd74fc02fa50affc2c084b875",
+            "comment_sha256": "bfd7ff4f0d7d782181b29cc249acde7dcf75c163bdadccd4cf773712d2bc3cbe",
+            "product_information_sha256": "0bfe12af80e89cd39c93a0de2f3beeb6e6a7a581e5b92a1adf8a90586f0401da"
+          }
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Lithium hydroxide, at plant",
+              "reference product": "Lithium hydroxide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 16,
+            "inventory_sha256": "774ba8adc9f0de4b61d8afc29bee4a2b585f1308577cc8d269b566d04145ea83",
+            "metadata_sha256": "ac25fc344b5a2d2d84e39ec8242bff7a657a04f14466fa740698fa469e369cf7",
+            "comment_sha256": "038c8ce28cde9ceb647f3f9ccad94e7a8d88c097eb39760c9a31638adf59593f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Lithium hydroxide, at plant",
+              "reference product": "Lithium hydroxide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 16,
+            "inventory_sha256": "4cddea3ddf85364df4e372ac71b75e7e36baeffcf60d3ae617e8e3a6643eb86f",
+            "metadata_sha256": "cc28270439b06a9a0dc2d166bf90190e478f54e568a2d1ef56c999470dcb7d91",
+            "comment_sha256": "e406798bb2a110c5426477e4b5d5682cc00acc4437db76b052cdf3825d563202",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": 1,
+        "functional_basis": "Nominal one-kg lithium hydroxide supply on both source and native reference exchanges; explicitly different co-product allocation and incompletely specified chemical grade.",
+        "actual_nonzero_battery_uses": 1
+      },
+      "limitations": [
+        "Both source and native refer to nominal lithium hydroxide made through lithium-carbonate/calcium-hydroxide processing. Use the complete native one-kg LiOH supply with its published co-product allocation. Native lithium-carbonate input0.52631kg/kg differs materially from the inspected source producer1.6227970530005518kg/kg; allocation, yield and energy differences are not claimed preserved. Native hydration state, purity and battery-grade performance are unverified. Do not infer a solution, monohydrate, active-mass or yield multiplier; preserve the published nominal LiOH reference and warn explicitly.",
+        "Retain signed caller quantities, caller formulas and supported uncertainty. This is a complete published native-inventory screening proxy, not an inventory or LCIA-equivalence claim. No extra market transport, processing, credit or emissions are added around the native supply.",
+        "Native geography, technology, vintage, allocation, grade and internal uncertainty differ. BAFU reimported inventory excludes documented unsupported biosphere flows. Score effects remain unquantified.",
+        "Authorize only independently inspected ecoinvent cut-off source profiles enumerated here and the UVEK2025/native2026 route. No inverse or cross-system-model conversion is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "482e2a8661ef5bdf9d64119b4b85de757c792cef96ab0317525d3630f1869dc2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7677d034cd2ee677",
+      "operation": "replace",
+      "mapping_method": "pairwise_review",
+      "review_path": "export/uvek_battery_three_native_39_review.json",
+      "review_sha256": "7f970725eda9f08a09e2cdf729a6da5cab37c8db2d9effeaa53d8daea6c6ba9c",
+      "authorization": "Standing autonomous goal and auto-approval of modelling decisions with warnings and review log.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for waste polyvinylchloride product",
+          "reference product": "waste polyvinylchloride product",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, building, polyvinylchloride products, to final disposal",
+          "reference product": "Disposal, building, polyvinylchloride products, to final disposal",
+          "unit": "kilogram"
+        },
+        "source_witnesses": {
+          "3.9": {
+            "identity": {
+              "name": "market for waste polyvinylchloride product",
+              "reference product": "waste polyvinylchloride product",
+              "location": "Europe without Switzerland",
+              "unit": "kilogram"
+            },
+            "reference_amount": -1.0,
+            "nonproduction_count": 1,
+            "inventory_sha256": "37f293f43b8a1003e61978aedb2594fc7b77f51bcc4cd3fcaaac96cea51d3b79",
+            "metadata_sha256": "7e4a28057f4d3bb78a2d806f3666193ba421339a1a090e577e8044a825413a8e",
+            "comment_sha256": "cdea177e3c35d389ee228715186ff07def5be3105592bfa74e80f7d015890f60",
+            "product_information_sha256": "9ea945432cf81ed0568d3a20205e4eab0f5c9db6ab42fcfb3def3cd49a56fdff"
+          }
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, building, polyvinylchloride products, to final disposal",
+              "reference product": "Disposal, building, polyvinylchloride products, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "nonproduction_count": 2,
+            "inventory_sha256": "5ba4faa1c28069d03ae33774aa6aedaa48b26daa84218f3279cb1fa0a7ed4b1c",
+            "metadata_sha256": "af363d47b458216597633d2aa5cb5c0eae1abd6dff752a018dc08c37b0280e97",
+            "comment_sha256": "1852e7c665d91c0b707066ccd3def00e1dbadadf6b9712df8154fb2a0da1ee5f",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, building, polyvinylchloride products, to final disposal",
+              "reference product": "Disposal, building, polyvinylchloride products, to final disposal",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "nonproduction_count": 2,
+            "inventory_sha256": "bd6919210e4ad65675b97933c3b285442e00fb0823d392c5bf6076bcabe374ff",
+            "metadata_sha256": "a8204ef2b621976adc6af3b79240d0dc7655a4a4216e8e97a4433bbe367589c9",
+            "comment_sha256": "ed06a24aa3a84ad5e7893671a2e1effc79369f0c04629da5032f8c436a7a6d44",
+            "product_information_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "conversion_factor": -1,
+        "functional_basis": "One kg of PVC-product waste treatment, preserving the independently checked negative-waste to positive-treatment-service reference convention.",
+        "actual_nonzero_battery_uses": 1
+      },
+      "limitations": [
+        "Use the complete Swiss building-PVC final-disposal inventory as a screening proxy for the source European PVC-product treatment market. Source waste reference is negative one kg and native treatment reference is positive one kg: apply exactly factor-1. Native includes demolition, handling and final disposal; source collection/market-group treatment shares are replaced, not preserved. Source waste has0.2%water while native describes one kg PVC. Demolition boundary, waste route, moisture, recovery/allocation, geography and vintage differ. No added demolition, extra recovery credit, dry-mass correction or guessed route share is introduced.",
+        "Retain signed caller quantities, caller formulas and supported uncertainty. This is a complete published native-inventory screening proxy, not an inventory or LCIA-equivalence claim. No extra market transport, processing, credit or emissions are added around the native supply.",
+        "Native geography, technology, vintage, allocation, grade and internal uncertainty differ. BAFU reimported inventory excludes documented unsupported biosphere flows. Score effects remain unquantified.",
+        "Authorize only independently inspected ecoinvent cut-off source profiles enumerated here and the UVEK2025/native2026 route. No inverse or cross-system-model conversion is authorized."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "071040f9a85f1fd4b3910f6690030a21127bae95f4c2503f7f03bd8536ffec6b"
+        }
+      ]
     }
   ],
   "superseded_operations": [
