@@ -303380,6 +303380,209 @@
           "fingerprint": "f94a93392a8beb87f2b67077d3d4374655435b19cb0b880ae4d59484600bc107"
         }
       ]
+    },
+    {
+      "rule_id": "bp-a8ee5a92b554b3db",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_quicklime_312_review.json",
+      "review_sha256": "4bacce1918333f48e6518715e8c71ae13071a4711ebadaa02df35a6b5ccf4746",
+      "authorization": "Standing autonomous approval of actual required screening supplies with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for quicklime, milled, loose",
+          "reference product": "quicklime, milled, loose",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Quicklime, milled, loose, at plant",
+          "reference product": "Quicklime, milled, loose, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for quicklime, milled, loose",
+            "reference product": "quicklime, milled, loose",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "0a6cfcb28fc55de3fb3895b948aa9ffb8ed46696fc0cc181a38fe7b68ddfff83",
+          "metadata_sha256": "806d64ee598935b2df1c77e5e9cdd926834259a5e87febc3d83d0bf2b4cc4878",
+          "comment_sha256": "c5a4d7ed965f662a1bfc399b6d6f817d536b2a359a11024379a4a358ff7a6cd7"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Quicklime, milled, loose, at plant",
+              "reference product": "Quicklime, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "6c3e45cf13d57672732d6b06a93c33a4eb0e0d46e4fc2c914d57ed5b2b2f66da",
+            "metadata_sha256": "48c189f1eb41902532f583016b94aa0b83b674a7336b0433142f31e7e38ab207",
+            "comment_sha256": "d883bb45143b037911c4ed44739af5efb29295772ee294d25629f5aed14817bd"
+          },
+          "2026": {
+            "identity": {
+              "name": "Quicklime, milled, loose, at plant",
+              "reference product": "Quicklime, milled, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "e7294737042b71dc47f098515143756dff3f47ef77336324d5a92a9e61b6ae6d",
+            "metadata_sha256": "b9426deee113c119e4d2bf75118d686f2693c274ccfdada1cd96789de92b43d0",
+            "comment_sha256": "9f1c95afa39640aee2f5662fff54ee66f295567e0bbebc7b9ebc794e06709dd3"
+          }
+        },
+        "source_milling_witness": {
+          "identity": {
+            "name": "quicklime production, milled, loose",
+            "reference product": "quicklime, milled, loose",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "fe17e2c247a70bdbc6d2c8cd23db3991c2bc53a2d8464b3ed2abe735b2c7d18f",
+          "metadata_sha256": "5ead86f659019fe8dfad6dbb5201ce2b06950cab58a9a3a5efd75824300f7b50",
+          "comment_sha256": "3bc5098feb9a38f24d75abfc2cc0178a53dec7c290ddbb4957a7b8d6fa35dd65"
+        },
+        "source_calcination_witness": {
+          "identity": {
+            "name": "quicklime production, in pieces, loose",
+            "reference product": "quicklime, in pieces, loose",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1,
+          "inventory_sha256": "ec91a436d1c22d6fd829fe771f67018ae869364c7a1ce1dbec244b919419314e",
+          "metadata_sha256": "1df953f30d41930dbb7037ad7e646fbc3f05bff66e9dfe15e5cb04ff954db1bb",
+          "comment_sha256": "9140533e4efaf1524c8a52add40d35c8267dd069cf0a52e9303eabafac63cdb9"
+        },
+        "native_calcination_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Quicklime, in pieces, loose, at plant",
+              "reference product": "Quicklime, in pieces, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "a7b6ea6c17eeee0cd6509fb03048954ab233e8b17212a949f13a4d0afa218974",
+            "metadata_sha256": "87b6c636b5abf86e9912d5709ede43bcece858d45b268d79d4ce53ee91fac8fd",
+            "comment_sha256": "e64d5863279a14af2ee354cbb2ab1096217e0d72539c0a765aca2f59e8a77120"
+          },
+          "2026": {
+            "identity": {
+              "name": "Quicklime, in pieces, loose, at plant",
+              "reference product": "Quicklime, in pieces, loose, at plant",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "f2dcef02e14217350985872622b9bf749113dd614582fe7eab7b7cb0bd388b92",
+            "metadata_sha256": "9f42416a7b3d81960741f54a727f05191c5aa755707ad9eb1f72bcfbce11fde4",
+            "comment_sha256": "f5f554d7e612f85d3df19b28f4a82f7a8d35f4712acf214d71717a457769a2df"
+          }
+        }
+      },
+      "limitations": [
+        "The independently inspected source3.12 market supplies milled loose quicklime. Its producer buys quicklime pieces from a calcination process. The native milled product likewise buys native quicklime pieces. Native2026 documentation explicitly includes calcination in vertical kilns; native2025 has the same inspected positive limestone, heavy-fuel-oil and fossil-CO2 coordinates. This is a complete calcined quicklime supply, not crushed limestone alone; do not extrapolate the older source3.9 loose-lime documentation defect to this release.",
+        "Both source and native complete references are positive one kg. Preserve signed caller kg, marginal uncertainty and separate purchases at factor +1. Native CaO formula, actual calcination chain and named product establish the function; native CAS/synonym text is inconsistent and is retained as a documentation limitation. No inferred hydration, CaO-to-CaCO3, purity or second calcination multiplier is introduced.",
+        "Use complete native Swiss loose quicklime as a screening proxy. Source global/Rest-of-World production mix, final delivery, kiln fuel, calcination emissions, allocation, processing, equipment life, internal uncertainty and mapped-biosphere exclusions differ, with unquantified score effects. No other version, reverse or consequential permission follows."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "fd7058c5619a7bc4a13483ee8d2cd9052495f6d00b3db4e996f563787eeff582"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d34d680500083bd5",
+      "operation": "replace",
+      "mapping_method": "reviewed_market_composition",
+      "review_path": "export/uvek_market_composition_review.json",
+      "review_sha256": "0e49ba8d9f3358a075bc3de8b697cace5621ddb6b4b2cb952a4d7866e6ee962e",
+      "authorization": "Standing autonomous approval of actual required mappings with warning and review log.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for scrap lead acid battery",
+          "reference product": "scrap lead acid battery",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for scrap lead acid battery",
+            "reference product": "scrap lead acid battery",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 1,
+          "inventory_sha256": "6c1bb73bf0d4f8795cdeb8898416085dc75600c06fa7a635e9792f723fe26b01",
+          "metadata_sha256": "a1f56692533b9c02c5be88c58a334e957889a4148661f2eb4ea1316d5df14a22",
+          "comment_sha256": "9498f9ee171972c9d1e4729e0d18b254b06a70a2643cca750b70a36d1a4a0a81"
+        },
+        "allocated_stock_witness": {
+          "identity": {
+            "name": "scrap lead acid battery, Recycled Content cut-off",
+            "reference product": "scrap lead acid battery",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "nonproduction_count": 0,
+          "inventory_sha256": "90cc2f941c1421279425cbacb6f8493f4b71975399216fff30bc8e1f7e704eab",
+          "metadata_sha256": "0d43a1609316c6f0d06b19ce4cea2985f8f6e9899cbcb4279afb3c99b5d6c8bf",
+          "comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "selected_recipe": "market-composition-8f7208d484c766baa16c",
+        "existing_recipe_inputs_unchanged": true
+      },
+      "limitations": [
+        "Reviewed exact-profile inventory assembly with explicitly approved cut-off allocation supplies: retain every original processing, supply, freight and signed recovery coefficient. Independently inspected positive-reference Recycled Content cut-off stocks have production only and retain that allocation boundary as separate foreground suppliers. Negative stock inputs remain product credits with the source allocation burden; negative inputs to negative treatment references remain treatment demand and use their own sign factors. No actual recycling/treatment stage, uncharacterized inventory, unknown supplier or negative-reference empty service is assigned zero. Other resolved component correspondences retain their technology, geography, composition and allocation approximations; scientific and LCIA equivalence is not established. Internal background uncertainty/formulas are not reconstructed. Preserve caller signed quantities, uncertainty/formulas, foreground suppliers, production and separate emissions/credits. Export and score the entire returned helper hierarchy. Only the enumerated verified profiles are approved; explicitly pending counterpart profiles remain blocked and no reverse is inferred.",
+        "The exact source3.12 market contains only one positive purchase of the independently verified production-only Recycled Content cut-off stock. No freight, recycling process, waste treatment or emission is dropped. Reuse the existing exact-profile recipe and stock allocation; this does not mean actual lead-battery recycling has zero life-cycle burdens. No migration recipe, physical omission, allocation credit, other source profile or cross-system-model route is added."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "77ea773221795a502e55e25086737981310a9257960289afb6f845a796cdf616"
+        }
+      ]
     }
   ],
   "superseded_operations": [

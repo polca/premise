@@ -1,0 +1,112 @@
+{
+  "brightpath_commit": "9c48f73",
+  "wheel_sha256": "46a72fd004c7fe5945b09a268547acffbd63b73a14a39021757c792fb7df58d0",
+  "review_resources_verified": {
+    "brightpath/data/export/uvek_passenger_car_direct_312_review.json": "86b07fc30778584bae61a50a1ea5a8e1802b4f330a58f1436901452c0906fd78",
+    "brightpath/data/export/uvek_passenger_car_services_312_review.json": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+    "brightpath/data/export/uvek_passenger_car_quicklime_312_review.json": "4bacce1918333f48e6518715e8c71ae13071a4711ebadaa02df35a6b5ccf4746"
+  },
+  "migration_resource_and_manifest_byte_identical": true,
+  "date": "2026-11-16",
+  "first_source_cohort_unapproved_history": [
+    47,
+    18,
+    7,
+    6,
+    5
+  ],
+  "installed_wheel_first_cohort": {
+    "roots": 9,
+    "foregrounds": 48,
+    "remaining_unapproved_rule_ids": [
+      "bp-3c10f9aaee8ffe42",
+      "bp-5a3b5a4a13938317",
+      "bp-6266394c5017e628",
+      "bp-8dd9eafe3bba7d6f",
+      "bp-a04e605696e65e2c"
+    ],
+    "later_source_cohorts_not_yet_verified": true
+  },
+  "Brightpath_quicklime_tests_passed": 4,
+  "documentation_references_generated_and_checked": true,
+  "new_Brightway_databases": 0,
+  "car_sector_qualified": false,
+  "allocated_lead_stock": {
+    "date": "2026-11-16",
+    "source_profile": {
+      "family": "ecoinvent",
+      "version": "3.12",
+      "system_model": "cutoff"
+    },
+    "source": {
+      "location": "GLO",
+      "name": "market for scrap lead acid battery",
+      "reference product": "scrap lead acid battery",
+      "unit": "kilogram"
+    },
+    "source_witness": {
+      "identity": {
+        "name": "market for scrap lead acid battery",
+        "reference product": "scrap lead acid battery",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "reference_amount": 1.0,
+      "nonproduction_count": 1,
+      "inventory_sha256": "6c1bb73bf0d4f8795cdeb8898416085dc75600c06fa7a635e9792f723fe26b01",
+      "metadata_sha256": "a1f56692533b9c02c5be88c58a334e957889a4148661f2eb4ea1316d5df14a22",
+      "comment_sha256": "9498f9ee171972c9d1e4729e0d18b254b06a70a2643cca750b70a36d1a4a0a81"
+    },
+    "allocated_stock_witness": {
+      "identity": {
+        "name": "scrap lead acid battery, Recycled Content cut-off",
+        "reference product": "scrap lead acid battery",
+        "location": "GLO",
+        "unit": "kilogram"
+      },
+      "reference_amount": 1.0,
+      "nonproduction_count": 0,
+      "inventory_sha256": "90cc2f941c1421279425cbacb6f8493f4b71975399216fff30bc8e1f7e704eab",
+      "metadata_sha256": "0d43a1609316c6f0d06b19ce4cea2985f8f6e9899cbcb4279afb3c99b5d6c8bf",
+      "comment_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "selected_recipe": "market-composition-8f7208d484c766baa16c",
+    "existing_recipe_inputs_unchanged": true,
+    "runtime_Python_changes": false,
+    "migration_rule_or_recipe_changes": false,
+    "new_source_omissions": 0,
+    "new_Brightway_databases": 0,
+    "car_sector_qualified": false
+  },
+  "owned_temporary_cleanup": {
+    "files": [
+      {
+        "artifact": "native-car-services-regenerated/ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "bytes": 18596319,
+        "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a"
+      },
+      {
+        "artifact": "native-car-services-regenerated/ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "bytes": 18596725,
+        "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3"
+      },
+      {
+        "artifact": "native-car-services-regenerated/ecoinvent-to-uvek-2025.json",
+        "bytes": 70368099,
+        "sha256": "5dccdaf5649558b3fdef902d93c7068b8fcfe810373038fd69ea006fd3d1a64d"
+      },
+      {
+        "artifact": "before-native-car-services.private.json",
+        "bytes": 59614990,
+        "sha256": "f99dd2bd158bc71361e6dfc86b55cb5551766a06dce91d36483160067f19357c"
+      },
+      {
+        "artifact": "train-complete-import-wheel/brightpath-1.0.0a14-py3-none-any.whl",
+        "bytes": 45412566,
+        "sha256": "668b1feb6168acf9d4da5456e3dfd6333bb97f11967133f92ecd73eea2899dbd"
+      }
+    ],
+    "bytes_removed": 212588699,
+    "active_new_wheel_and_scenario_checkpoints_retained": true
+  }
+}

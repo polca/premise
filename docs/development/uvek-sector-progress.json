@@ -2369,102 +2369,114 @@
     },
     {
       "sector": "cars",
-      "status": "audited_not_operational",
+      "status": "native_templates_reviewed_import_in_progress",
       "requirements": [
         "Family-aware native supplier matching and exact source/reference-basis review.",
         "Correct canonical ecoinvent3.10biosphere handling, complete links and physical invariants.",
         "Real public API update/certification/export and finite LCI; combined/default regression."
       ],
       "native_mapping_coverage": {
-        "kind": "static_declarations_only",
+        "kind": "exact_native_template_filters_checked_sector_run_pending",
         "files": [
           {
             "path": "premise/iam_variables_mapping/transport_passenger_cars.yaml",
             "ecoinvent_role_count": 35,
-            "explicit_nonempty_uvek_role_count": 0,
+            "explicit_nonempty_uvek_role_count": 21,
             "missing_or_empty_uvek_roles": [
-              "passenger car, battery electric, large",
-              "passenger car, fuel cell electric, large",
-              "passenger car, compressed gas, large",
-              "passenger car, plugin gasoline hybrid, large",
-              "passenger car, gasoline, large",
-              "passenger car, battery electric, medium",
-              "passenger car, fuel cell electric, medium",
-              "passenger car, compressed gas, medium",
               "passenger car, liquefied petroleum gas, medium",
-              "passenger car, plugin gasoline hybrid, medium",
               "passenger car, diesel hybrid, medium",
               "passenger car, plugin diesel hybrid, medium",
               "passenger car, diesel, medium",
-              "passenger car, gasoline, medium",
               "passenger car, hybrid gasoline, medium",
-              "passenger car, battery electric, mini",
               "passenger car, fuel cell electric, mini",
               "passenger car, compressed gas, mini",
               "passenger car, plugin gasoline hybrid, mini",
               "passenger car, gasoline, mini",
-              "passenger car, battery electric, medium SUV",
-              "passenger car, fuel cell electric, medium SUV",
-              "passenger car, compressed gas, medium SUV",
-              "passenger car, plugin gasoline hybrid, medium SUV",
-              "passenger car, gasoline, medium SUV",
-              "passenger car, battery electric, small",
-              "passenger car, fuel cell electric, small",
-              "passenger car, compressed gas, small",
-              "passenger car, plugin gasoline hybrid, small",
-              "passenger car, gasoline, small",
               "passenger car, battery electric, van",
               "passenger car, fuel cell electric, van",
               "passenger car, compressed gas, van",
               "passenger car, plugin gasoline hybrid, van",
               "passenger car, gasoline, van"
             ],
-            "interpretation": "Static role declarations only; CLIC-only definitions and native matching require separate runtime coverage inspection."
+            "interpretation": "Thirty current REMIND roles: twenty-one native roles and nine retained CLIC classes. Five additional ecoinvent roles are outside this REMIND role set; no claim of their native coverage."
           }
         ],
-        "runtime_verified": false
+        "native_complete_reference_definitions_checked": 33,
+        "runtime_verified": false,
+        "review": "docs/development/uvek-native-car-alias-review.json"
       },
       "blockers": [
         {
           "code": "scope_gate",
           "path": "premise/database/background.py:validate_uvek_scope",
-          "finding": "Public UVEK gate admits biomass/electricity/heat; the other16requested sectors still require verified implementations."
+          "finding": "Thirteen verified sectors are admitted; cars remains gated pending real shared update, graph/physical validation and finite LCIs."
         },
         {
-          "code": "family_dispatch",
-          "path": "premise/database/new_database.py:NewDatabase.update",
-          "finding": "Biomass, electricity and heat receive source_family and biosphere_version explicitly. Other sector callbacks still need family-aware dispatch and canonical biosphere handling."
+          "code": "current_required_import_cohort",
+          "finding": "Installed Brightpath wheel resolves the nine actual CLIC roots (48 foregrounds), but the first source3.12 cohort still refuses five correspondences. Later source cohorts have not yet completed. This is not a global unresolved-rule count.",
+          "remaining_rule_ids": [
+            "bp-3c10f9aaee8ffe42",
+            "bp-5a3b5a4a13938317",
+            "bp-6266394c5017e628",
+            "bp-8dd9eafe3bba7d6f",
+            "bp-a04e605696e65e2c"
+          ],
+          "review": "docs/development/uvek-passenger-car-quicklime-stock-312-verification.json"
         },
         {
-          "code": "sector_implementation_and_integration",
-          "path": "premise/transport/transport.py:47",
-          "finding": "No UVEK runtime update/export evidence for this sector; audit hard-coded names, technology units/boundaries, IAM coverage, supplementary inventories and shared transformation assumptions before enabling."
-        },
-        {
-          "code": "inventory_family_default",
+          "code": "sector_integration_unfinished",
           "path": "premise/transport/transport.py",
-          "finding": "InventorySet calls omit family= and therefore select ecoinvent aliases by default; native UVEK alias handling is not wired here."
+          "finding": "Exact native selection and shared classification checks pass. The complete real car update, efficiency/fixed-input/fuel-carbon/battery-policy/market checks, combined run and signed LCIs remain unfinished."
         }
       ],
-      "decisions": [],
-      "implementation_commits": [],
-      "tests": [],
+      "decisions": [
+        {
+          "review": "docs/development/uvek-native-car-aliases.md",
+          "decision": "Use complete native car services for twenty-one current roles; retain nine missing Mini/Van classes through CLIC, with reviewed class/geography/vintage and battery-policy limitations."
+        },
+        {
+          "review": "docs/development/uvek-native-car-energy.md",
+          "decision": "Read exact YAML energy labels and capitalized native vehicle prefixes through the existing shared policies; no changed efficiency, energy-floor, carbon or sizing equation."
+        },
+        {
+          "review": "docs/development/uvek-passenger-car-services-312.md",
+          "decision": "Preserve existing treatment sign rules; correct rail mode and EURO-VI freight, and add four independently checked exact source3.12 positive-reference decisions. No runtime change or new helper."
+        },
+        {
+          "review": "docs/development/uvek-passenger-car-quicklime-stock-312.md",
+          "decision": "Approve the independently verified calcined-quicklime chain and reuse the existing exact-profile allocated lead-battery stock recipe without inventing or dropping processing."
+        }
+      ],
+      "implementation_commits": [
+        "a8f25d0e",
+        "5c837eaa",
+        "c71b9fe9",
+        "446953a6"
+      ],
+      "tests": [
+        "229 focused shared car/vehicle-energy/emissions/carbon/hydrogen/rail tests passed; not a full-suite or real car scenario pass.",
+        "Five direct-supply, six service and four quicklime Brightpath tests passed in separate focused groups.",
+        "Four Premise exact-approval/drift checks passed after the service changes. The installed-wheel frontier also validates the entire approval ledger.",
+        "All three forward migration resources regenerate byte-identically; documentation reference generation and --check passed."
+      ],
       "integration_exports": [],
       "static_audit": {
         "callback": "_update_vehicles",
         "module": "premise/transport/transport.py",
-        "module_sha256": "55bb622162b5d71702bbdc53ee82584871b2ee29920c0e2a5af925f1f6725fe0",
-        "update_function_line": 47,
+        "module_sha256": "6cdd9850415dcd4dda2b5f4cf28bfbc7671cabefb68010378afb9e22f4384261",
+        "update_function_line": 48,
         "declared_arguments": [
           "scenario",
           "vehicle_type",
           "version",
-          "system_model"
+          "system_model",
+          "family",
+          "biosphere_version"
         ],
         "inventory_set_calls": [
           {
-            "line": 210,
-            "family_keyword_supplied": false
+            "line": 246,
+            "family_keyword_supplied": true
           }
         ],
         "biosphere_dictionary_calls": [],
@@ -2472,7 +2484,7 @@
         "role_files": [
           "transport_passenger_cars.yaml"
         ],
-        "limitation": "Static first pass; zero matches or silent no-op have not been accepted as successful transformations."
+        "limitation": "Current static dispatch observation; native template selection is tested, but no real car scenario or export is qualified yet."
       },
       "production_heat_correspondence_review": {
         "review": "docs/development/uvek-production-heat-boundary-review.md",
