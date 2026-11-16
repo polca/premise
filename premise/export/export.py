@@ -1238,6 +1238,8 @@ class Export:
     Lookup CSVs identify the numbered activities, products and biosphere flows.
     Each file export builds fresh indexes and shares them across coordinate and
     lookup files. Standalone coordinate methods also use current inventory data.
+    Coordinate generation resolves each activity's number when needed and reuses
+    it for the remaining exchanges in that activity.
 
     :ivar db: transformed database
     :vartype db: list
@@ -1277,18 +1279,24 @@ class Export:
 
         try:
             for ds in self.db:
+                activity_index = None
                 for exc in ds["exchanges"]:
+                    exchange_type = exc["type"]
+                    if exchange_type not in ("production", "technosphere"):
+                        continue
+                    if activity_index is None:
+                        activity_index = index_A[
+                            (
+                                ds["name"],
+                                ds["reference product"],
+                                ds["unit"],
+                                ds["location"],
+                            )
+                        ]
 
-                    if exc["type"] == "production":
+                    if exchange_type == "production":
                         row = [
-                            index_A[
-                                (
-                                    ds["name"],
-                                    ds["reference product"],
-                                    ds["unit"],
-                                    ds["location"],
-                                )
-                            ],
+                            activity_index,
                             index_A[
                                 (
                                     exc["name"],
@@ -1307,18 +1315,9 @@ class Export:
                             0,
                             0,
                         ]
-                        list_exchanges.append(row)
-
-                    if exc["type"] == "technosphere":
+                    else:
                         row = [
-                            index_A[
-                                (
-                                    ds["name"],
-                                    ds["reference product"],
-                                    ds["unit"],
-                                    ds["location"],
-                                )
-                            ],
+                            activity_index,
                             index_A[
                                 (
                                     exc["name"],
@@ -1341,7 +1340,7 @@ class Export:
                             1 if exc["amount"] < 0 else 0,
                             1,
                         ]
-                        list_exchanges.append(row)
+                    list_exchanges.append(row)
 
         except KeyError:
             print(f"KeyError for {exc} in {ds['name']}")
@@ -1359,20 +1358,23 @@ class Export:
         list_rows = []
 
         for ds in self.db:
+            activity_index = None
             for exc in ds["exchanges"]:
                 if exc["type"] == "biosphere":
                     try:
                         ind_B = biosphere_codes[exc["input"][1]]
-
-                        row = [
-                            index_A[
+                        if activity_index is None:
+                            activity_index = index_A[
                                 (
                                     ds["name"],
                                     ds["reference product"],
                                     ds["unit"],
                                     ds["location"],
                                 )
-                            ],
+                            ]
+
+                        row = [
+                            activity_index,
                             ind_B,
                             exc["amount"],
                             exc.get("uncertainty type", 0),

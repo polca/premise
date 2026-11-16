@@ -215,3 +215,62 @@ def test_matrix_indexes_are_built_once_per_file_export(tmp_path, monkeypatch):
     assert set(calls.values()) == {1}
     exporter.export_db_to_matrices()
     assert set(calls.values()) == {2}
+
+
+@pytest.mark.parametrize(
+    "matrix,exchanges",
+    [
+        ("A", []),
+        ("A", [{"type": "biosphere"}]),
+        ("B", []),
+        ("B", [{"type": "production"}]),
+    ],
+)
+def test_coordinate_helpers_ignore_activities_without_relevant_exchanges(
+    matrix, exchanges
+):
+    exporter = object.__new__(module.Export)
+    exporter.db = [{"exchanges": exchanges}]
+
+    if matrix == "A":
+        assert exporter._create_A_matrix_coordinates({}) == []
+    else:
+        assert exporter._create_B_matrix_coordinates({}, {}) == []
+
+
+def test_missing_technosphere_provider_keeps_partial_rows_and_stops(tmp_path, capsys):
+    scenario = matrix_scenario("3.12")
+    consumer = scenario["database"][1]
+    consumer["exchanges"] = consumer["exchanges"][:3]
+    consumer["exchanges"][1]["location"] = "missing"
+    exporter = module.Export(scenario, tmp_path, "3.12", "cutoff")
+    before = deepcopy(scenario)
+
+    rows = exporter.create_A_matrix_coordinates()
+
+    assert [row[:3] for row in rows] == [[0, 0, 1.0], [1, 1, 1.0]]
+    assert capsys.readouterr().out == (
+        f"KeyError for {consumer['exchanges'][1]} in {consumer['name']}\n"
+    )
+    assert scenario == before
+
+
+def test_missing_biosphere_uuid_before_valid_flow_does_not_stop_export(
+    tmp_path, monkeypatch, capsys
+):
+    flow = ("known", "air", "unspecified", "kilogram")
+    monkeypatch.setattr(
+        module, "biosphere_flows_dictionary", lambda version: {flow: "known"}
+    )
+    scenario = matrix_scenario("3.12")
+    consumer = scenario["database"][1]
+    known = consumer["exchanges"][-1]
+    missing = {**known, "input": ("biosphere", "missing")}
+    consumer["exchanges"] = [missing, known]
+    exporter = module.Export(scenario, tmp_path, "3.12", "cutoff")
+
+    assert exporter.create_B_matrix_coordinates() == [
+        (),
+        [1, 0, 0.0, 0, 0.0, None, None, None, None, 0, 1],
+    ]
+    assert capsys.readouterr().out.count("Cannot find the biosphere flow known") == 1
