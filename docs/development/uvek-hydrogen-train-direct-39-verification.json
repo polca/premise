@@ -1,0 +1,154 @@
+{
+  "date": "2026-11-16",
+  "source_profile": "ecoinvent 3.9 cutoff",
+  "target": {
+    "technosphere": "UVEK 2026 cutoff",
+    "biosphere": "ecoinvent 3.10"
+  },
+  "approval": {
+    "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+    "new_exact_profile_scopes": 12,
+    "prior_scopes_unchanged": [
+      {
+        "rule_id": "bp-14d8fca280d9c0bb",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint_and_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-6ce52de989145df6",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint_and_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-8ad41ac985efe967",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint_and_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-385650baf6c0e83b",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.8",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint_and_rule_unchanged": true
+      },
+      {
+        "rule_id": "bp-b86c5c966757b8c9",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "old_fingerprint_and_rule_unchanged": true
+      }
+    ],
+    "source_profile": {
+      "family": "ecoinvent",
+      "version": "3.9",
+      "system_model": "cutoff"
+    },
+    "native_reference_definitions_checked": 24,
+    "runtime_Python_changed": false
+  },
+  "maintenance_reference_basis": {
+    "checks": [
+      {
+        "rule_id": "bp-4366742ae4b2a62a",
+        "coordinate": "electricity",
+        "source_and_native_total": 11000.0,
+        "unit": "kilowatt hour",
+        "same_product_split_claimed": false
+      },
+      {
+        "rule_id": "bp-4366742ae4b2a62a",
+        "coordinate": "polyvinyl",
+        "source_and_native_total": 40.0,
+        "unit": "kilogram",
+        "same_product_split_claimed": false
+      },
+      {
+        "rule_id": "bp-4366742ae4b2a62a",
+        "coordinate": "cast iron",
+        "source_and_native_total": 3510.0,
+        "unit": "kilogram",
+        "same_product_split_claimed": false
+      },
+      {
+        "rule_id": "bp-ff25bd952d38ade5",
+        "coordinate": "electricity",
+        "source_and_native_total": 34100.0,
+        "unit": "kilowatt hour",
+        "same_product_split_claimed": false
+      },
+      {
+        "rule_id": "bp-ff25bd952d38ade5",
+        "coordinate": "polyvinyl",
+        "source_and_native_total": 40.0,
+        "unit": "kilogram",
+        "same_product_split_claimed": false
+      },
+      {
+        "rule_id": "bp-ff25bd952d38ade5",
+        "coordinate": "coke",
+        "source_and_native_total": 2330.0,
+        "unit": "megajoule",
+        "same_product_split_claimed": false
+      }
+    ],
+    "lifetime_multiplier_added": false
+  },
+  "tests": {
+    "Brightpath_new_reference_and_manifest_tests_passed": 6,
+    "Premise_signed_cold_warm_tests_passed": 2,
+    "native_versions_checked": [
+      "2025",
+      "2026"
+    ],
+    "entire_repository_suites_run": false
+  },
+  "reproducible_generation": {
+    "count": 3,
+    "resources": [
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "byte_identical": true
+      },
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "byte_identical": true
+      },
+      {
+        "name": "ecoinvent-to-uvek-2025.json",
+        "sha256": "4b815981b57705be27040ae57682d99355ce34c6387b4326ba814b6102f736c8",
+        "byte_identical": true
+      }
+    ]
+  },
+  "actual_train_import": {
+    "status": "harmonized",
+    "roots": 6,
+    "foregrounds": 34,
+    "records_after_harmonization": 89,
+    "new_Brightway_databases": 0
+  },
+  "runtime_Python_changed": false,
+  "notebook_changed": false,
+  "train_update_qualified": false,
+  "operational_sectors": 12,
+  "goal_complete": false
+}

@@ -299158,6 +299158,810 @@
           "fingerprint": "71f9548d90d955f3ec34b4c1895cb1cfbbbcf16a1b90853ae733b1e717f565cb"
         }
       ]
+    },
+    {
+      "rule_id": "bp-0811b7af5811d981",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for maintenance, goods wagon",
+          "reference product": "maintenance, goods wagon",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Maintenance, goods wagon",
+          "reference product": "Maintenance, goods wagon",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "df0ba4638414cff1dc31abfb659c62215a91d341f65588d319f93b1127ec22a8",
+        "source_metadata_sha256": "0736bbf0d12bf4c54ecfeb6a95fee0336c30d087e8c0dec2764563d9643aafd7",
+        "source_definition_sha256": "1ba2650e033fbeb4799ecc98afbdbb038309015dc9e40af7f40d363c09760d90",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "b22ef6c61a5859ec6943a9d081cad2850e2b20284995912fb84cd36044379a1f",
+            "metadata_sha256": "d212804c0e51f8c0bb904bab3bdfee25982ba2cc8ae9c417b488be8c80390006",
+            "comment_sha256": "e0c7f322ab0bd6bf3448bea59d179397b2f07612f1ed8c52098ff6e637b21e98"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "32652b4b6e833c3577eaa26ccc6a725529265809028db0cbd470b7b01dd62a39",
+            "metadata_sha256": "2c98413ae791292d9984049e59a7490be0824105610b19922c4f675d1cbc12ec",
+            "comment_sha256": "065b502441249c2de054408598a05dbc687b0fde9b67640d442ec193f79aed3e"
+          }
+        }
+      },
+      "limitations": [
+        "Global goods-wagon maintenance service mix becomes the complete native European service based on Swiss workshops. Source market documents no delivery or losses. The actual European source producer and native process share workshop allocation (95% wagon, 5% locomotive) and matching electricity/total-PVC/cast-iron inventory quantities. Retain caller service units without an added year or lifetime factor; current regional service shares and internal energy/material boundaries are screening differences.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "dfa86878a493b58cce4c8e0238d5e475955060fac937825ecf309cf24ff21951"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-11b03a904a2b8cdd",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for railway track",
+          "reference product": "railway track",
+          "unit": "meter-year"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Railway track",
+          "reference product": "Railway track",
+          "unit": "meter-year"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "1f583111dc6b4e22b8cb30c6299694e71995657a6214bac28b0765979766b546",
+        "source_metadata_sha256": "e9160c9af9fad516630c747898261c3cef2b432a397aa264d3738c062d3ed09a",
+        "source_definition_sha256": "a3711522f5146c8dfb66d275184fff28aa7e5ef1623d33716884d482c3384776",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "meter-year",
+            "inventory_sha256": "67e1f2f98ea39b3625563a9fbf3cbb141b9f7aeb0efebe3183fe5d3e0e252438",
+            "metadata_sha256": "de36d156b8e14a933ca3cbb499bc9b66a14f3d46e597db3ac84a1d38d7de3884",
+            "comment_sha256": "0b5f701ac6acd8a59d2819c95f8b4c22dbd0ddaa28e0b9d7ccf4baaca6458265"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "meter-year",
+            "inventory_sha256": "10cc00408c64ace8f1a20471589d2f806938c0ff89b28ed6fb22138ac5d81c5d",
+            "metadata_sha256": "c943b995bc5f5678cc6ae6083afb4435e994b7e2027c772b00d1f4983d54e83a",
+            "comment_sha256": "cf0189b8cc60a60dd99c594812da3bcd5ca3cb9ee8177453b7e059921a31450f"
+          }
+        }
+      },
+      "limitations": [
+        "Global railway-track market becomes the complete native Swiss railway-track service per metre-year. Both documentation describe two-way track and 100-year infrastructure life. Preserve metre-year as given without applying a 100-year or single/double-track correction. Native tunnels, bridges, signalling, maintenance, demolition and geography replace the source infrastructure mix; no additional track or allocation layer is added.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "551ab4d40bfdaa47ac3210fcd11b1e0e1f5ed7f324bed570a6aafaa7ff683ea3"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-14d8fca280d9c0bb",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for capacitor, film type, for through-hole mounting",
+          "reference product": "capacitor, film type, for through-hole mounting",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Capacitor, film, through-hole mounting, at plant",
+          "reference product": "Capacitor, film, through-hole mounting, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "a94dd14c684ff720c083908cc84c54052aeaa7e4f01770a88ba7826c4b140e08",
+        "source_metadata_sha256": "06127441c78bc9a7997344d483ab493da518f8d96201da729710209475a4adfc",
+        "source_definition_sha256": "44b8bb6db451fbc1bf65422e822faa25e658977a49240c54be8ab096b8c25e97",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "49fbcb82f70cd521766ccd04dfcd686accc2eb7e883c394d26482b57d20134c8",
+            "metadata_sha256": "e6d939414e0da441017ea3b9e20d3f71c4760f93d57c303229fc833a698ac0b9",
+            "comment_sha256": "923c9572578510c3926bc83e2b23700e7b32c1cbe773700d0ca2dbe13681c93f"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "5e6eac1b085b5ed6a5a83ed98735e9d714d1b9174dcbbf0e1dd518edd798d044",
+            "metadata_sha256": "534cb126af7efd0c74e54b00e6aecb8c38d542a45abcfcf1ed2a7c83e3de2cb5",
+            "comment_sha256": "a0be935051c4c3932e5b5e993fd426e48f9c32c261e9dfa6c6b8f0e93e83d44d"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native film capacitors are through-hole components referenced per kg, documenting a representative 0.7-g component. Preserve kg, without converting to piece count. Native component materials and production are complete; source-market delivery and internal processing differ. No additional capacitor construction inventory is added.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7789d264f1260052f623eaadbf4c6f344f7704ae70a296508cb616a82e478ac6"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-385650baf6c0e83b",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for diesel",
+          "reference product": "diesel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Diesel, at regional storage",
+          "reference product": "Diesel, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "50b04a08858fcc65e8003322a69bf2dda4508f5987f8f96770db17fff7d6d557",
+        "source_metadata_sha256": "b207fee1ac494720a5ee21bc1c5489a6db4c6acabdc3592565d4601b2f68fe16",
+        "source_definition_sha256": "1e47a6956de05e47e46996c847ff7efbdf83848d1427a00be3ed0e0e435651ab",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "f8c9d27404f9cfc654d66bf4eae7f60f36346cba61ae0060e78836ae37930325",
+            "metadata_sha256": "8eda5190e1d47b751c75697a0883e051595d3da2cca104bf4cc05b7194ed0d0a",
+            "comment_sha256": "b8a8df58f274168464e0abfcc155f02aff939d9ca4ac252740083f300081271a"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "05f6e30b9e586eca3864ee94d93c337b6b5c2caaff0ee0f8a0c9f7acb7c18c29",
+            "metadata_sha256": "dabd09ac71c1187be9842074f85d183fbcb192a522e95f831770583463b8a340",
+            "comment_sha256": "6fe505238aad0833a76a7cb7e1cf499f6a3bb7133e812c14081d9580c2bd10eb"
+          }
+        }
+      },
+      "limitations": [
+        "Europe-without-Switzerland delivered diesel becomes complete native European diesel at regional storage per kg. Native boundary includes refinery-to-user transport, storage/petrol-station operation, evaporation and effluents. Preserve diesel mass without heating-value conversion, extra storage or extra delivery. Petroleum supply, geography, vintage, losses and internal uncertainty differ.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "15bd20581cf9ea5b91706cacebd4f08d40cd29bbd925433f5cf685f59515ebd2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4366742ae4b2a62a",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "maintenance, goods wagon",
+          "reference product": "maintenance, goods wagon",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Maintenance, goods wagon",
+          "reference product": "Maintenance, goods wagon",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "d01d5d2cf2d168205e4da837cae23b4420d4dc37008de884ad09e5d766d60d63",
+        "source_metadata_sha256": "8ad1c20edc95e854bed39e66810ee1b215cdffb6002246f8bdb976219f40c917",
+        "source_definition_sha256": "69f05963e20ef13807cba2efd8e3e51d4cd49418d2958c44090d503b29583bd0",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "b22ef6c61a5859ec6943a9d081cad2850e2b20284995912fb84cd36044379a1f",
+            "metadata_sha256": "d212804c0e51f8c0bb904bab3bdfee25982ba2cc8ae9c417b488be8c80390006",
+            "comment_sha256": "e0c7f322ab0bd6bf3448bea59d179397b2f07612f1ed8c52098ff6e637b21e98"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "32652b4b6e833c3577eaa26ccc6a725529265809028db0cbd470b7b01dd62a39",
+            "metadata_sha256": "2c98413ae791292d9984049e59a7490be0824105610b19922c4f675d1cbc12ec",
+            "comment_sha256": "065b502441249c2de054408598a05dbc687b0fde9b67640d442ec193f79aed3e"
+          }
+        }
+      },
+      "limitations": [
+        "European goods-wagon maintenance and native European service use the Swiss-workshop allocation. Matching electricity, cast-iron and PVC quantities support a common service basis. Retain units without a lifetime multiplier. Complete native energy, paint solution, waste routes and allocation replace source internals; no extra maintenance or vehicle construction is added.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e3a17e2810980c60b2d51231ebb2554c8babd0fc30dd079cd095408ee18030be"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-454d0d8023d948c5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market group for diesel",
+          "reference product": "diesel",
+          "unit": "kilogram"
+        },
+        "target": {
+          "name": "Diesel, at regional storage",
+          "reference product": "Diesel, at regional storage",
+          "unit": "kilogram",
+          "location": "RER"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "68ddd6b4ccc0e9799bceca1459c1e56ec6afed6dc35eb9845c32e76866fd8954",
+        "source_metadata_sha256": "d62501d0d6f7150c1c1c7d3808ba84729105f6ce66662af6a2e269dd68641d9a",
+        "source_definition_sha256": "8b25f3b8155b44f456012495297486cdbd5e9e6d6503d950e07f635c96a05794",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "f8c9d27404f9cfc654d66bf4eae7f60f36346cba61ae0060e78836ae37930325",
+            "metadata_sha256": "8eda5190e1d47b751c75697a0883e051595d3da2cca104bf4cc05b7194ed0d0a",
+            "comment_sha256": "b8a8df58f274168464e0abfcc155f02aff939d9ca4ac252740083f300081271a"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "05f6e30b9e586eca3864ee94d93c337b6b5c2caaff0ee0f8a0c9f7acb7c18c29",
+            "metadata_sha256": "dabd09ac71c1187be9842074f85d183fbcb192a522e95f831770583463b8a340",
+            "comment_sha256": "6fe505238aad0833a76a7cb7e1cf499f6a3bb7133e812c14081d9580c2bd10eb"
+          }
+        }
+      },
+      "limitations": [
+        "Replace the unapproved global-diesel to Swiss refinery-gate suggestion with complete native European diesel at regional storage per kg, preserving a delivered-fuel boundary. This remains an explicit European geographic screening proxy for the global supply group. Native delivery, storage, evaporation and effluents are included; no extra freight, loss or energy factor is introduced. Global refinery/supply mix, geography, allocation, internal uncertainty and score remain different.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "aaa4ecaede06cfeef068d568c700fb221e4bac896944865293372bb2325b140d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-6ce52de989145df6",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for sawnwood, board, softwood, raw, dried (u=10%)",
+          "reference product": "sawnwood, board, softwood, raw, dried (u=10%)",
+          "unit": "cubic meter"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sawnwood, board, softwood, raw, dried (u=10%), at sawmill",
+          "reference product": "Sawnwood, board, softwood, raw, dried (u=10%), at sawmill",
+          "unit": "cubic meter"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "8eecfa8b216d34da4d8126922dafdfdfb94451157164c58f290c6991d9c1721d",
+        "source_metadata_sha256": "a8af8e5865e70cbc5751d0b036e9a77c4d516b58e3423e2340a46ca2ec6c1b35",
+        "source_definition_sha256": "b3a77a3c0af77d0a404b7184f62d8b7aaafb79f9c507fbde4bfd48d15e8e12e0",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "inventory_sha256": "3a85743ceeb1d6621e46f738f93cd1706efd7a602b2d2b5b9f6e4c88be664374",
+            "metadata_sha256": "2fb053686aa06431c9569e0d31fa0cddc5abf6b1db60fd3fbbdedeffc7dfd831",
+            "comment_sha256": "0d3d211f3d12cc325b60a1564f05835ecabcfa0c231c09c740fcee3663c9c5dc"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "cubic meter",
+            "inventory_sha256": "51799a5ebfcc96983d82efd2eec51fa44123bbd82000e82a7aaf76131173b2ef",
+            "metadata_sha256": "05322640fea6410e8a5283df323addb3c6c1e24e559327edd4d85e10758909d6",
+            "comment_sha256": "b80de83148deff1db145f1237f3477db563ea58b22977a255fd701c9201d9781"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native are softwood sawn boards dried to the declared u=10% state per cubic metre. Preserve volume without density, moisture or dry-mass conversion. Use the complete European sawmill process for Europe-without-Switzerland supply; drying, forestry, allocation, delivery, geography, vintage and internal uncertainty differ.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6ce1e1366b3484b17f8765f3a3e4b9b8d966cea3fff01ff775f1edf4c4b4b710"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-8ad41ac985efe967",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "US",
+          "name": "market group for electricity, low voltage",
+          "reference product": "electricity, low voltage",
+          "unit": "kilowatt hour"
+        },
+        "target": {
+          "location": "US",
+          "name": "Electricity, low voltage, at grid",
+          "reference product": "Electricity, low voltage, at grid",
+          "unit": "kilowatt hour"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "1458e58ad5ceb28a057b231839e56e765d86109930d519364b631487f881a484",
+        "source_metadata_sha256": "67fe0df8d7acbde5bbc4b163a3238c9ee2f279856d0c4ae854ba1cdc113ae50d",
+        "source_definition_sha256": "25ed5c2a8d9457db7743ceb3ff84ca8d67067ff809c02b52270833793f7cb09c",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "inventory_sha256": "c5eb5185f2d1c334455392796431884513f4ceb2950485ffebb502121d754fe7",
+            "metadata_sha256": "d65b80c5f338f7db3e28f03305b091327b4158a217d66fa304656bccc6e967bd",
+            "comment_sha256": "5ac7469195fa3dc0015ab869c48c92d695715d379f574beaa3d006bd0ab04164"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilowatt hour",
+            "inventory_sha256": "7049b9386955c446c6137cd3894786f625dab6914433b217c41d77e9bc806768",
+            "metadata_sha256": "6faae49d6d371afa3263fd7d7731c1d3dc35ef93d430226b4b027db9ccb1675f",
+            "comment_sha256": "0022d9aafdcf91ec418676d4b41114442c3f3348401c2bb44392a3aae4ab4b58"
+          }
+        }
+      },
+      "limitations": [
+        "US market-group low-voltage electricity becomes the complete native US low-voltage grid per kWh. Retain voltage and country; native grid includes its own losses, distribution network and switching emissions. Do not add another loss or infrastructure multiplier. Generation, imports/trade, voltage-loss split, allocation and historical vintage differ from the source.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "c3ad959a68998a6c85fc36fdeb6e8e12db7b63f6e67a31d45e2d86aef0eed2c7"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b86c5c966757b8c9",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for goods wagon",
+          "reference product": "goods wagon",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Goods wagon",
+          "reference product": "Goods wagon",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "b1d6a74c14b036601682b89c56049a0922f49ecd2d3dea864b22a52ab0c3ee2d",
+        "source_metadata_sha256": "7e42e9d404cd57f72ac21a83be4fc28bc2dd40d871e6aaefcdd0917665c41e36",
+        "source_definition_sha256": "c89a64729dfd6fe7c67835a98096f0c11cf78067f3572ccc70d7b2b87370ac0c",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "efc31c83787f2b4c282add95a9fafaf66f42bf84e7652595cc7e750d1ec4a80c",
+            "metadata_sha256": "b3ca1eb8aaa6aed5f88f9b2c96e14d0fde24702ef70666b0649c12e82c4bc4ae",
+            "comment_sha256": "e4bdbb7c3b0bdb39b1745d5aacca91e7d892650576db8e6e6e5f35e5180048e1"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "649586a46e398241694e78e7b73b9ef8fec803a6ffe7265efa6d40042de600b5",
+            "metadata_sha256": "9fbdcc6d97e94ad7b837ba8f81a6aeccac5b67c4a77eba1e8e042b716846b379",
+            "comment_sha256": "86ce07d15fa2ae99f43ec2c992a9390656694afbfe165690ab1db59ffba4cf30"
+          }
+        }
+      },
+      "limitations": [
+        "Global average-goods-wagon market becomes the complete native European average wagon per unit. Native model uses a 27-tonne average wagon, a 40-year life and a mixed closed/tank fleet; source service likewise represents an average goods wagon. Preserve vehicle units without lifetime, load or material scaling. Global fleet mix and final delivery are replaced by the native model; no separate wagon-material or infrastructure inventory is added.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b64fb7f1ecd35134114e270a71b0148e89d1e6ae26b1ddc78f4547412c5ca8ba"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-c55c10b7983cff8d",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for printed wiring board, through-hole mounted, unspecified, Pb free",
+          "reference product": "printed wiring board, through-hole mounted, unspecified, Pb free",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Printed wiring board, through-hole mounted, unspec., Pb free, at plant",
+          "reference product": "Printed wiring board, through-hole mounted, unspec., Pb free, at plant",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "f1a226a0425bcc6e812ad4f98a94cf5858fae72b9edd17d64b8fe8e66a91236a",
+        "source_metadata_sha256": "4da792229bc529952470cb0296b97ed7c3130e7246c5f22b2a789eeaf78c6ec8",
+        "source_definition_sha256": "868fe0f7d1e078fedf97ee81e6b24eadf76aeda8fadf8dadb41f21c64d891d76",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "ba1b4b690573ef173a91d19a4790d5e20fa69c6777189055d17e2697dcefb921",
+            "metadata_sha256": "e0394bd35bdff47a5bf35ae57f7e8601f5bd0b183b70bf81663d296be7077290",
+            "comment_sha256": "deccd75f28721c49e77be1944a7111ce5686b4ce20765a411f74c2a80c080045"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "kilogram",
+            "inventory_sha256": "24fe01abdf6a73acb462dd74b3487ae5a247ac47cfd66bf4eb1065074f1378eb",
+            "metadata_sha256": "66715d788d78e9270b5474a7ce5f79a7b0c4b7f258581001ff82e536cc06f51e",
+            "comment_sha256": "bd5c658de6d8eac7ba1927be6f72709ca6fd843c5e53c035e5c1b1ddec382eb9"
+          }
+        }
+      },
+      "limitations": [
+        "Source and native are complete unspecified through-hole mounted lead-free printed wiring boards per kg, including mounted components and assembly. Preserve kg, caller separately listed components and separate assembly as recorded, without adding another assembly burden. Component mix, energy regionalization, 2023 updates, market delivery and internal uncertainty remain model differences.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "900d111b073b14494f0761cf409aaa009d1d369a687676d37ae85ed69ffeda0e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-d3c08a974e613e3c",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "GLO",
+          "name": "market for maintenance, locomotive",
+          "reference product": "maintenance, locomotive",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Maintenance, locomotive",
+          "reference product": "Maintenance, locomotive",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "ebe867d98cfb7f6c275a9d59a3acc85385d9614eb3aedc10782ad70b8676776d",
+        "source_metadata_sha256": "e7b2f9ea799a314e1fbccf4294fc18ce8e486455822c2881a290d33300434f3d",
+        "source_definition_sha256": "c882378d193aacb080cec2a8f9de91922855ea94040f38e12f25480b4d3bb6ba",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "a8f074b27eef10f4ba8aae12f02680088b2ed9d32c84f443feebcda9f2d263f8",
+            "metadata_sha256": "267b7b3af95339dcfa58ba5b2cb434da370556b642e9307a6e4ba214854d0362",
+            "comment_sha256": "4beada4c6a36eb4dbf22a41d771f8f6e7b8920243ee84489c618aa52a76bf546"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "840d3c20dcbfe0f541e3eab71457eb19847615196641eb81db022533237ef94d",
+            "metadata_sha256": "cf3074055895cb8212f083be772d407757adce303260bc176f73cc573586831a",
+            "comment_sha256": "7575f2ee198c40a7069ad0e6e17f080a4b2133e63791635a6d7065b38d929ec3"
+          }
+        }
+      },
+      "limitations": [
+        "Global locomotive-maintenance service mix becomes the complete native European service based on Swiss workshops. Source market documents no delivery or losses. The actual European source producer and native process share workshop allocation (5% locomotive, 95% wagon) and matching 34100 kWh electricity, 40 kg total PVC and 2330 MJ coke coordinates. Retain service units without an added 40-year or annual factor; regional service shares and internal energy/material boundaries remain proxy limitations.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ae456611b136e91c128668af5bebfc898aba275cfec4985155a85c7d628f7301"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ff25bd952d38ade5",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_hydrogen_train_direct_39_review.json",
+      "review_sha256": "31d8e3b769437c7a15e270796b720f929ab352b135495920f344198b89f2cbe3",
+      "authorization": "Standing user autonomous approval for actual required mappings, with decisions and screening limitations logged for review.",
+      "inspection": {
+        "source": {
+          "location": "RER",
+          "name": "maintenance, locomotive",
+          "reference product": "maintenance, locomotive",
+          "unit": "unit"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Maintenance, locomotive",
+          "reference product": "Maintenance, locomotive",
+          "unit": "unit"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": 1,
+        "source_inventory_sha256": "9c2e42a10c399d95dcdead3429b514ad68b4876b8a5adc9461ab11ffacbb85e1",
+        "source_metadata_sha256": "3e564246c9c754ac8e5eea3d6d4363502d53806147dbbde3d0b6c02614f691dc",
+        "source_definition_sha256": "4e48875496c0edbdef0865c7bd1c113c5f655c5e2aac6630a0695581b082515a",
+        "native_reference_witnesses": {
+          "2025": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "a8f074b27eef10f4ba8aae12f02680088b2ed9d32c84f443feebcda9f2d263f8",
+            "metadata_sha256": "267b7b3af95339dcfa58ba5b2cb434da370556b642e9307a6e4ba214854d0362",
+            "comment_sha256": "4beada4c6a36eb4dbf22a41d771f8f6e7b8920243ee84489c618aa52a76bf546"
+          },
+          "2026": {
+            "reference_amount": 1,
+            "unit": "unit",
+            "inventory_sha256": "840d3c20dcbfe0f541e3eab71457eb19847615196641eb81db022533237ef94d",
+            "metadata_sha256": "cf3074055895cb8212f083be772d407757adce303260bc176f73cc573586831a",
+            "comment_sha256": "7575f2ee198c40a7069ad0e6e17f080a4b2133e63791635a6d7065b38d929ec3"
+          }
+        }
+      },
+      "limitations": [
+        "European locomotive maintenance and native European service both use the documented Swiss-workshop allocation; matching 34100 kWh electricity, 40 kg total PVC and 2330 MJ coke coordinates support the common service basis. Source documentation also mentions a 40-year vehicle life; do not multiply service inputs by 40 or reinterpret them as annual units. Energy technology, paint solution basis, waste routes and allocation remain native-model limitations.",
+        "Only the independently inspected source3.9 cut-off coordinate is approved. All source and native2025/native2026 reference exchanges are positive one of the same declared unit. Keep caller signed quantities, marginal uncertainty, formulas, separate emissions and ownership with factor +1; no inferred sign, lifetime, density, energy, loss, allocation or recovery multiplier.",
+        "Use complete native functional screening suppliers. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ, with unquantified score effects. Source market production shares, final delivery and internal uncertainty are replaced by the complete native boundary unless separately retained by the caller. No LCIA equivalence or independent reverse/consequential route is claimed."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "10de771580a1eaef0ce2ab79a321c573ca069a9ad9f855c040492d8f2107887d"
+        }
+      ]
     }
   ],
   "superseded_operations": [
