@@ -420,9 +420,23 @@ class Transport(BaseTransformation):
                     if resolved_name is None:
                         continue
 
+                    original_supplier = (
+                        exc["name"],
+                        exc.get("product", exc.get("reference product")),
+                        exc.get("location"),
+                    )
                     exc["name"] = resolved_name
                     exc["product"] = self.mapping[self.vehicle_type]["name"]
                     exc["location"] = resolved_location
+                    if original_supplier != (
+                        exc["name"],
+                        exc["product"],
+                        exc["location"],
+                    ):
+                        exc["comment"] = (
+                            f"{exc.get('comment') or ''}\nTransport supplier before "
+                            f"regional relinking: {original_supplier!r}."
+                        ).strip()
                     if "reference product" in exc:
                         exc["reference product"] = exc["product"]
                     exc.pop("input", None)

@@ -1,5 +1,7 @@
 """Native complete rail services replace only their own fuel-class imports."""
 
+import pytest
+
 from premise.core.filesystem_constants import VARIABLES_DIR
 from premise.inventory.activity_maps import InventorySet, get_mapping
 from premise.inventory.clic_requirements import required_roots
@@ -128,3 +130,79 @@ def test_native_generic_freight_users_follow_the_shared_relinker():
     assert transport["exchanges"] == [original]
     assert passenger["exchanges"][0]["unit"] == "person kilometer"
     assert passenger["exchanges"][0]["name"] == original["name"]
+
+
+@pytest.mark.parametrize(
+    "locations, duplicate", [(("IT", "AT"), False), (("IT", "IT"), True)]
+)
+def test_relinking_keeps_distinct_origins_without_hiding_exact_duplicates(
+    locations, duplicate
+):
+    from test_validation_framework import rule_issues, validate
+
+    owner = Transport.__new__(Transport)
+    owner.model = "remind"
+    owner.vehicle_type = "train"
+    owner.mapping = get_vehicles_mapping()
+    owner._find_available_transport_market = lambda **kwargs: (
+        "market for transport, freight, train",
+        "EUR",
+    )
+    owner.database = [
+        {
+            "name": "material",
+            "reference product": "material",
+            "location": "EUR",
+            "unit": "kilogram",
+            "database": "test-db",
+            "code": "material",
+            "exchanges": [
+                {
+                    "name": "material",
+                    "product": "material",
+                    "location": "EUR",
+                    "unit": "kilogram",
+                    "type": "production",
+                    "amount": 1,
+                },
+                *[
+                    {
+                        "name": "Transport, freight, rail",
+                        "product": "Transport, freight, rail",
+                        "location": location,
+                        "unit": "ton kilometer",
+                        "type": "technosphere",
+                        "amount": 0.1,
+                        "uncertainty type": 3,
+                        "loc": 0.1,
+                        "scale": 0.02,
+                    }
+                    for location in locations
+                ],
+            ],
+        },
+        {
+            "name": "market for transport, freight, train",
+            "reference product": "transport, freight, train",
+            "location": "EUR",
+            "unit": "ton kilometer",
+            "database": "test-db",
+            "code": "supplier",
+            "exchanges": [
+                {
+                    "name": "market for transport, freight, train",
+                    "product": "transport, freight, train",
+                    "location": "EUR",
+                    "unit": "ton kilometer",
+                    "type": "production",
+                    "amount": 1,
+                }
+            ],
+        },
+    ]
+    owner.relink_transport_datasets()
+    edges = owner.database[0]["exchanges"][1:]
+    assert all(e["amount"] == e["loc"] == 0.1 and e["scale"] == 0.02 for e in edges)
+    assert (edges[0]["comment"] == edges[1]["comment"]) is duplicate
+    report = validate(owner.database)
+    assert bool(rule_issues(report, "GRAPH.DUPLICATE_SUPPLIER")) is duplicate
