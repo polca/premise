@@ -113,5 +113,23 @@
   "Brightpath_runtime_Python_changed": false,
   "maintainer_Python_changes": "Generic atomic review loader and six-line generator hook; subsequent cases extend index and review data.",
   "new_foreground_omissions": 0,
-  "source_profile_scope": "ecoinvent 3.9 cutoff only; other source profiles remain unapproved."
+  "source_profile_scope": "ecoinvent 3.9 cutoff only; other source profiles remain unapproved.",
+  "packaged_install_check": {
+    "status": "installed_wheel_migration_integrity_fresh_cache_and_withdrawal_checks_passed",
+    "Brightpath_source_revision": "34e0c0228d54cd19a62244bf504ea34ec3cd3bc3",
+    "installation": "wheels built from committed local checkouts; GitHub availability checked separately after the batch push",
+    "source_checkout_modules_loaded": false,
+    "Premise_review_ledger_matches_checkout": true,
+    "review_and_resource_bytes_match_checkout": true,
+    "Premise_dependency_pin_matches_Brightpath": true,
+    "review_sha256": "7d0db45e381b3e9307a87f758f1be44951a15b2b4d0648c6cbe3d4e2967f57d5",
+    "tests_passed": 21,
+    "wheel_sha256": {
+      "premise-2.6.0-py3-none-any.whl": "cf427adff4429c1df3e739c053f88bb3cb7571f52ee2cc87ef2d145bfcc06dd2",
+      "brightpath-1.0.0a14-py3-none-any.whl": "fce0980b03bc8873ed4f34aece99eb9e93402888a5dd6a5ba60c02849b3e8435"
+    },
+    "new_Brightway_databases": 0
+  },
+  "retired_owned_intermediate_bytes": 178398946,
+  "cleanup_scope": "Byte-identical temporary candidate and regenerated resource copies only; source databases, biosphere, last verified export, active checkpoints and current test wheels retained."
 }

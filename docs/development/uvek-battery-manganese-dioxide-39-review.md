@@ -42,3 +42,10 @@ nine pending rules, and final energy's from 19 to 18. Both updates still stop on
 other required correspondences. No additional sector or complete battery export
 is qualified by this change; the previously verified count remains 14 of 19.
 See the [verification record](uvek-battery-manganese-dioxide-39-verification.json).
+
+Installed wheels pass another 21 migration, integrity, cache and withdrawal
+checks. All imported Premise/Brightpath modules come from the isolated installed
+environment, with packaged review bytes matching the committed resources.
+The colleague instructions pin the matching Brightpath revision. Superseded
+temporary candidate and regenerated-resource copies were removed after their
+checksums matched the committed data; no Brightway database was deleted.
