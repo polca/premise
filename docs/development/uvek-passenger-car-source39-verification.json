@@ -1,0 +1,96 @@
+{
+  "date": "2026-11-16",
+  "new_exact_source_39_scopes": 8,
+  "old_scopes_rebound_after_exact_effective_rule_comparison": [
+    {
+      "rule_id": "bp-4529f104ab14ba19",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-4529f104ab14ba19",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-0011da9202e829d4",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.10",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-86d40fed1e499150",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-4529f104ab14ba19",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.8",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-7546b19438a70c79",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.12",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    }
+  ],
+  "review_sha256": "073094ffa72451482e3e72586108ff33329b87adad46c9c5ff52be515104078f",
+  "direct_supplies": 6,
+  "allocated_oxide_market_models": 2,
+  "source_allocation_checks": 4,
+  "uuid_type_unit_groups_checked": 348,
+  "runtime_Python_changes": false,
+  "new_source_omissions": 0,
+  "new_Brightway_databases": 0,
+  "car_sector_qualified": false,
+  "tests": {
+    "focused_Brightpath_passed": 7
+  },
+  "clean_regeneration": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": {
+      "byte_identical": true,
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "bytes": 18596725
+    },
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": {
+      "byte_identical": true,
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "bytes": 18596319
+    },
+    "ecoinvent-to-uvek-2025.json": {
+      "byte_identical": true,
+      "sha256": "d876cc6c5e5d647a61f60270eeddb0f072bc22685407e74a57a5fbd48ab7b3bc",
+      "bytes": 70420484
+    }
+  },
+  "archive_scope": {
+    "isolated_cohort_archive": "20261110T030235Z-613ea498808a",
+    "subsequent_full_workflow_archive": "20261116T105339Z-a5e07aec4916",
+    "subsequent_full_workflow_first_unapproved_source_version": "3.10",
+    "subsequent_full_workflow_first_unapproved_correspondences": 21,
+    "latest_archive_car_import_completed": false
+  }
+}

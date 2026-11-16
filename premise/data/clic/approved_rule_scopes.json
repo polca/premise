@@ -22425,7 +22425,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "3a7fdc2a281ec7e4cccdd6c0eb6abb96d85b458f03b82815ef722f40ba9c42b5"
+          "fingerprint": "9c52de89409ec81626451c9068dd058f5a80468501df55fa74d5afb1026806ff"
         }
       ],
       "fingerprint_migrations": [
@@ -124805,7 +124805,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "8ffb25f65cf73024472185edca000de632cd7addb330604489c6f4c3079c2bfd"
+          "fingerprint": "b22fd547341216cc668dea63bc71a4414d665f8b57caa32f52436e134ca63f93"
         }
       ]
     },
@@ -127899,7 +127899,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "6b6bd8ccc9ad3e8bc46f2329e58f51bf73bd72ff48e7f9b1612c67655d1bc359"
+          "fingerprint": "0ac90ede3c6446997a528466e8165124bd8d2279270f8ff0b88bf1af9c39eded"
         }
       ]
     },
@@ -199571,7 +199571,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "241bb4050f4379d84a044799a0e0a1909035e8e85f8ec0363753c35a6fbc8067"
+          "fingerprint": "df3345a99f556144a2c8e9225869b24553efda3851ee03f3260f25dc2a565920"
         }
       ]
     },
@@ -304059,6 +304059,1006 @@
             "version": "2025"
           },
           "fingerprint": "41465ab7f6a532e32c4320862a901ee0cd65ff3aae2cf014942f4df2bfc95984"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-0011da9202e829d4",
+      "operation": "replace",
+      "mapping_method": "reviewed_heat_native_route",
+      "review_path": "export/uvek_passenger_car_39_review.json",
+      "review_sha256": "073094ffa72451482e3e72586108ff33329b87adad46c9c5ff52be515104078f",
+      "authorization": "Standing autonomous approval of actual required mappings with warnings; the previously approved allocated co-production proxy approach is reused with independent source-vector evidence.",
+      "inspection": {
+        "rule_id": "bp-0011da9202e829d4",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland and Austria",
+          "name": "steel production, electric, low-alloyed",
+          "reference product": "steel, low-alloyed",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Steel, electric, un- and low-alloyed, at plant",
+          "reference product": "Steel, electric, un- and low-alloyed, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "identity": {
+            "name": "steel production, electric, low-alloyed",
+            "reference product": "steel, low-alloyed",
+            "location": "Europe without Switzerland and Austria",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "9e3e176c3c09764a868a075b43d7f3b836c0370c3df3cc6d1f1a85e60cdfc758",
+          "metadata_sha256": "8bf7d1a866efe265bba890455b3f9337b3bfe87dbc4e4310fd16bc94b32ae087",
+          "comment_sha256": "949c15ea6a3522c967568e79c2b0a09b3c3f0092f8e5c255bd96d8465dffcdfc"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Steel, electric, un- and low-alloyed, at plant",
+              "reference product": "Steel, electric, un- and low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "8e70de31dbbf9ca9113ff033d77b530d966ffd5cdcf5229c22a28c9ff0fcf6e5",
+            "metadata_sha256": "cb9b335b3c50194a4a9e59089eba031f48b0a1177c19c6b61c8888db88d2c3c2",
+            "comment_sha256": "d8e06ca21c31057dd2821c058b9ca5e5b90aaa6cdf4dd4c7f75ce64829623376"
+          },
+          "2026": {
+            "identity": {
+              "name": "Steel, electric, un- and low-alloyed, at plant",
+              "reference product": "Steel, electric, un- and low-alloyed, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "14bd845795574af1acf1fa23c683480ad2d97870a014b5be5ae9b184929f137b",
+            "metadata_sha256": "1faa7164a15d3a430747695291c0d51763fa7ef992268470de3dcd94a1eddb77",
+            "comment_sha256": "abb0be8294ca068caeca419a7450ca2f3a832fd3a5ce90820136765f5cc39d1e"
+          }
+        }
+      },
+      "limitations": [
+        "Both actual processes supply secondary low-alloy steel from electric-arc steelmaking and casting per kg. The source generic product text mentions BOF, but its process-specific documentation describes EAF; do not infer a BOF route from that template text. Native European scrap-only EAF replaces the source regional input/furnace mix, with warnings for scrap/primary share, alloy/secondary metallurgy, casting, allocation, vintage and emissions. No hot-rolling or additional metal-content factor is added.",
+        "Only the independently inspected source3.9 cut-off coordinate is newly approved. Preserve signed caller quantities, formulas, marginal uncertainty and separate purchases/emissions relative to the exact source reference. Native technology, allocation, geography, vintage, internal uncertainty and mapped-biosphere exclusions differ; score effects are unquantified. No new source omission, reverse route, other release or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "ca5e930b6a59b51530070067792c510f52981214d5cbcaff2b09cf6205a7537c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-082cc2361b7e427d",
+      "operation": "replace",
+      "mapping_method": "reviewed_car_39_allocated_rare_earth_processing",
+      "review_path": "export/uvek_passenger_car_39_review.json",
+      "review_sha256": "073094ffa72451482e3e72586108ff33329b87adad46c9c5ff52be515104078f",
+      "authorization": "Standing autonomous approval of actual required mappings with warnings; the previously approved allocated co-production proxy approach is reused with independent source-vector evidence.",
+      "inspection": {
+        "rule_id": "bp-082cc2361b7e427d",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for terbium oxide",
+          "reference product": "terbium oxide",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_witness": {
+          "identity": {
+            "name": "market for terbium oxide",
+            "reference product": "terbium oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "9a9ef1da3105e50e9d557986a93141eb68b848b6cc098f0c176561beda2fc187",
+          "metadata_sha256": "9597e755bf171aa63b27320b226b75639aa8f9b7e62f96397b53b30eb68a80c1",
+          "comment_sha256": "e96f1ea9cf5c971ed0b437ecdd7bda6b7018ee8502fb644006495d1325a2c6f8"
+        },
+        "recipe_id": "car-39-allocated-oxide-082cc2361b7e427d",
+        "native_reference_process_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Neodymium oxide, at plant",
+              "reference product": "Neodymium oxide, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "bdb36af0fd5cfebae726104a43ca310c2b69a0e17fd0311781d510abb243733e",
+            "metadata_sha256": "783b58d521d7fb6de2ec58912a93792b5370e3419844662c1e941d04b44a4b14",
+            "comment_sha256": "d1b2a133f836b480537b4b1e3b5124336868072c7978fa472bb9283e2e8869ca"
+          },
+          "2026": {
+            "identity": {
+              "name": "Neodymium oxide, at plant",
+              "reference product": "Neodymium oxide, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "9ff8d0b2d6192fea0c8ec1cb94310f03cdbdf4b3e3bd24ffab4b275afad2286d",
+            "metadata_sha256": "0611469d47c6d1bdcc3393f302503583c7212fcfc11a4bf3afd4ef2524769ef3",
+            "comment_sha256": "983e0eb95c8081b4995f37190c28c7b750190c26f2aab9d580e631174d54d5f5"
+          }
+        },
+        "allocation_checks": [
+          {
+            "source_witness": {
+              "identity": {
+                "name": "rare earth oxides production, from rare earth carbonate concentrate",
+                "reference product": "terbium oxide",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1.0,
+              "inventory_sha256": "a119ed0eec516555bbca59803c78387026f79a9a71a35985e7a8b4bd68aac0f1",
+              "metadata_sha256": "91800c3ff87fece0059e21394a5a3df739d106fb5569106ecdaf982267db114d",
+              "comment_sha256": "e216d803fdccdb3e312233fc5c771041555f6e2173044a3debe1f01c620878a5"
+            },
+            "reference_process_witness": {
+              "identity": {
+                "name": "rare earth oxides production, from rare earth carbonate concentrate",
+                "reference product": "neodymium oxide",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1.0,
+              "inventory_sha256": "c981a2cfc1ce4337ad31ee6ac67b0af04eec879571814e9e7a9912e8f2c9d5cf",
+              "metadata_sha256": "d0eff404a690d6902ee8ca9f9a619050dabf6d2442c472a33b0c90ba1602c415",
+              "comment_sha256": "e216d803fdccdb3e312233fc5c771041555f6e2173044a3debe1f01c620878a5"
+            },
+            "nonzero_uuid_type_unit_groups": 136,
+            "support_equal": true,
+            "all_groups_proportional": true,
+            "ratio": 0.054339365941466294,
+            "ratio_min": 0.054339365941466274,
+            "ratio_max": 0.05433936594146631,
+            "relative_tolerance": 1e-10,
+            "absolute_tolerance": 1e-15
+          },
+          {
+            "source_witness": {
+              "identity": {
+                "name": "rare earth oxides production, from rare earth carbonate concentrate",
+                "reference product": "terbium oxide",
+                "location": "CN-FJ",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1.0,
+              "inventory_sha256": "6edec82ad0351a9c07bfdf348e613394cb1f7148ed503fcb07dd3cf1e258fa42",
+              "metadata_sha256": "7a808131b67bd10b1e5dfe2484b46e44a7abcb751fd9bf27ae78a07fd4352a9e",
+              "comment_sha256": "18f988982f134244156d1f7948a7f54d0a070ae300aa3468424f9a2eb55894b0"
+            },
+            "reference_process_witness": {
+              "identity": {
+                "name": "rare earth oxides production, from rare earth carbonate concentrate",
+                "reference product": "neodymium oxide",
+                "location": "CN-FJ",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1.0,
+              "inventory_sha256": "55bfc8887da3900e5096c44231a6e54fb224cb595b86941c25d627b1eb9d049b",
+              "metadata_sha256": "5b6c5337a8a3a5eb1d4e29d940f57280b5913df15fdb93f4ff60ea7a910d9c92",
+              "comment_sha256": "18f988982f134244156d1f7948a7f54d0a070ae300aa3468424f9a2eb55894b0"
+            },
+            "nonzero_uuid_type_unit_groups": 38,
+            "support_equal": true,
+            "all_groups_proportional": true,
+            "ratio": 0.054339365941466294,
+            "ratio_min": 0.05433936594146628,
+            "ratio_max": 0.05433936594146631,
+            "relative_tolerance": 1e-10,
+            "absolute_tolerance": 1e-15
+          }
+        ],
+        "bindings": [
+          {
+            "source": {
+              "name": "rare earth oxides production, from rare earth carbonate concentrate",
+              "reference product": "terbium oxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source_coefficient": 0.688448446779664,
+            "reference_process_factor": 0.054339365941466294,
+            "model_activity_quantity": 0.037409852081394246,
+            "allocation_reference_not_material_feed": true
+          },
+          {
+            "source": {
+              "name": "rare earth oxides production, from rare earth carbonate concentrate",
+              "reference product": "terbium oxide",
+              "location": "CN-FJ",
+              "unit": "kilogram"
+            },
+            "source_coefficient": 0.311551553220336,
+            "reference_process_factor": 0.054339365941466294,
+            "model_activity_quantity": 0.01692951386007205,
+            "allocation_reference_not_material_feed": true
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_coefficient": 0.3091,
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_unchanged": true
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_coefficient": 0.0246,
+            "target": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_unchanged": true
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_coefficient": 0.2088,
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_unchanged": true
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_coefficient": 0.599,
+            "target": {
+              "location": "OCE",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_unchanged": true
+          }
+        ]
+      },
+      "limitations": [
+        "Retain the named terbium oxide product and positive one-kg reference; reject the unrelated lithium-manganese-oxide heuristic. For each of the two actual source producers, every nonzero UUID/type/unit group is proportional to the neodymium-oxide output of the same rare-earth-carbonate joint process (136 groups for RoW, 38 for CN-FJ). Use those observed source allocation ratios to demand the complete native neodymium-oxide reference processing activity. This is an allocated-processing burden proxy, not a claim that neodymium oxide is the same chemical or a material conversion to another element. Preserve both original producer entries after this explicit reference-process scaling, and all four original freight quantities and marginal uncertainty without aggregation or renormalization. No new chemical-content, molar-mass, price, recovery or yield factor is inferred.",
+        "The native Chinese process uses bastnasite-derived rare-earth co-production, whereas the source producers refine ion-adsorption-clay carbonates. The complete native processing inventory is a screening technology/ore proxy for both source regions; their actual route, mining/resource-depletion pattern, separation, purity, allocation, internal uncertainty and emissions are not reproduced. Source-specific observed allocation ratios do not validate native allocation prices, commodity performance or equivalent scores. Geographic production differences are replaced; original source quantities remain visible in the bindings. No standalone holmium/terbium mining inventory, avoided-metal credit or literal source-exchange omission is invented. Score effects, including element-specific resource limitations, are unquantified.",
+        "Only the independently inspected source3.9 cut-off coordinate is newly approved. Preserve signed caller quantities, formulas, marginal uncertainty and separate purchases/emissions relative to the exact source reference. Native technology, allocation, geography, vintage, internal uncertainty and mapped-biosphere exclusions differ; score effects are unquantified. No new source omission, reverse route, other release or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b2d74821f1ca648e0be0713fc07151ec4588c84640be890f2c1c1f8017ccf423"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-4529f104ab14ba19",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_material",
+      "review_path": "export/uvek_passenger_car_39_review.json",
+      "review_sha256": "073094ffa72451482e3e72586108ff33329b87adad46c9c5ff52be515104078f",
+      "authorization": "Standing autonomous approval of actual required mappings with warnings; the previously approved allocated co-production proxy approach is reused with independent source-vector evidence.",
+      "inspection": {
+        "rule_id": "bp-4529f104ab14ba19",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for steel, chromium steel 18/8",
+          "reference product": "steel, chromium steel 18/8",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Steel, electric, chromium steel 18/8, at plant",
+          "reference product": "Steel, electric, chromium steel 18/8, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "identity": {
+            "name": "market for steel, chromium steel 18/8",
+            "reference product": "steel, chromium steel 18/8",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "31fbf0d0af20872b507e9620c60e4c7807553a7a6f34c02ffc7abea61ee552f6",
+          "metadata_sha256": "660ce46e0735728e757a050fac127861ed757e64ad3738cb52ca5146a3c47256",
+          "comment_sha256": "e0b19eda4d2b55c815c5f93af8b05bcf1cead642127c13b0474ebf3d7da08c54"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Steel, electric, chromium steel 18/8, at plant",
+              "reference product": "Steel, electric, chromium steel 18/8, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "41b081e3b2e1820ba7b83892e03c520e70eb093b917b757e4013dc1ca11dc4cd",
+            "metadata_sha256": "5eca2f758625b1e6a6359665960a155ab2c649bde9fa833c7c0dd84853d41b3c",
+            "comment_sha256": "f5336bd3c9a435862e360c84e3f3a5b4bee625732bcb83b4f7a9d26d32575587"
+          },
+          "2026": {
+            "identity": {
+              "name": "Steel, electric, chromium steel 18/8, at plant",
+              "reference product": "Steel, electric, chromium steel 18/8, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "4381555d35cc00fb0e9b9c01ade6031bbabb112d4aa5c56dd7d928216d1b95a9",
+            "metadata_sha256": "3e45964a95eeef3951dc8cffd856d3a7ce39d6c369e944aef69c8ef8f30e6b33",
+            "comment_sha256": "b4303be50bc289eb41b912c33dcc3cf250186ed892ff4dfc18187630b5996763"
+          }
+        }
+      },
+      "limitations": [
+        "Source chromium steel 18/8 remains complete native chromium-steel 18/8 supply per kg. Native stock is a secondary scrap-based European EAF/casting mix. Source global primary/secondary shares, specific composition, refining, final delivery and internal uncertainty are replaced; do not equate alloy performance or add another alloying/rolling/recovery credit.",
+        "Only the independently inspected source3.9 cut-off coordinate is newly approved. Preserve signed caller quantities, formulas, marginal uncertainty and separate purchases/emissions relative to the exact source reference. Native technology, allocation, geography, vintage, internal uncertainty and mapped-biosphere exclusions differ; score effects are unquantified. No new source omission, reverse route, other release or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "964b1ca96273fd9d48a23b9bcead379b107dddb6379f3a494ab5ddc6c8a086f5"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-607f324065d6487f",
+      "operation": "replace",
+      "mapping_method": "reviewed_car_39_allocated_rare_earth_processing",
+      "review_path": "export/uvek_passenger_car_39_review.json",
+      "review_sha256": "073094ffa72451482e3e72586108ff33329b87adad46c9c5ff52be515104078f",
+      "authorization": "Standing autonomous approval of actual required mappings with warnings; the previously approved allocated co-production proxy approach is reused with independent source-vector evidence.",
+      "inspection": {
+        "rule_id": "bp-607f324065d6487f",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for holmium oxide",
+          "reference product": "holmium oxide",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1,
+        "source_witness": {
+          "identity": {
+            "name": "market for holmium oxide",
+            "reference product": "holmium oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "d004ddc1a09acd3fece7618d30b81f9a77326b75b8a4c96a62d395740722636d",
+          "metadata_sha256": "ebfe76c842f1fd96450aaf83d96c0bf98deacd39f32451fcb928f4c168960cd4",
+          "comment_sha256": "235a6702f898e23a8029e842e4d41f4d1ba0451dd70f7ab7b332b3c1ad564320"
+        },
+        "recipe_id": "car-39-allocated-oxide-607f324065d6487f",
+        "native_reference_process_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Neodymium oxide, at plant",
+              "reference product": "Neodymium oxide, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "bdb36af0fd5cfebae726104a43ca310c2b69a0e17fd0311781d510abb243733e",
+            "metadata_sha256": "783b58d521d7fb6de2ec58912a93792b5370e3419844662c1e941d04b44a4b14",
+            "comment_sha256": "d1b2a133f836b480537b4b1e3b5124336868072c7978fa472bb9283e2e8869ca"
+          },
+          "2026": {
+            "identity": {
+              "name": "Neodymium oxide, at plant",
+              "reference product": "Neodymium oxide, at plant",
+              "location": "CN",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "9ff8d0b2d6192fea0c8ec1cb94310f03cdbdf4b3e3bd24ffab4b275afad2286d",
+            "metadata_sha256": "0611469d47c6d1bdcc3393f302503583c7212fcfc11a4bf3afd4ef2524769ef3",
+            "comment_sha256": "983e0eb95c8081b4995f37190c28c7b750190c26f2aab9d580e631174d54d5f5"
+          }
+        },
+        "allocation_checks": [
+          {
+            "source_witness": {
+              "identity": {
+                "name": "rare earth oxides production, from rare earth carbonate concentrate",
+                "reference product": "holmium oxide",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1.0,
+              "inventory_sha256": "79ffbb639336cff99f7e37cfd65d8542559e05badb562b63d4dd9d1d83b43d18",
+              "metadata_sha256": "af00be08572743239efe542e82d6da108ee53c3e20244526d1178c8c45e43b7c",
+              "comment_sha256": "e216d803fdccdb3e312233fc5c771041555f6e2173044a3debe1f01c620878a5"
+            },
+            "reference_process_witness": {
+              "identity": {
+                "name": "rare earth oxides production, from rare earth carbonate concentrate",
+                "reference product": "neodymium oxide",
+                "location": "RoW",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1.0,
+              "inventory_sha256": "c981a2cfc1ce4337ad31ee6ac67b0af04eec879571814e9e7a9912e8f2c9d5cf",
+              "metadata_sha256": "d0eff404a690d6902ee8ca9f9a619050dabf6d2442c472a33b0c90ba1602c415",
+              "comment_sha256": "e216d803fdccdb3e312233fc5c771041555f6e2173044a3debe1f01c620878a5"
+            },
+            "nonzero_uuid_type_unit_groups": 136,
+            "support_equal": true,
+            "all_groups_proportional": true,
+            "ratio": 5.487880121582749,
+            "ratio_min": 5.487880121582747,
+            "ratio_max": 5.487880121582751,
+            "relative_tolerance": 1e-10,
+            "absolute_tolerance": 1e-15
+          },
+          {
+            "source_witness": {
+              "identity": {
+                "name": "rare earth oxides production, from rare earth carbonate concentrate",
+                "reference product": "holmium oxide",
+                "location": "CN-FJ",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1.0,
+              "inventory_sha256": "6db79a4c8eb9e74be2e8901f8adc1e0b4cba11e1b4e98cb1f53246b1acca292b",
+              "metadata_sha256": "0b8fe17ddddcee013641d69146cd99bfc40dd08e1556f92958752cb60f662e4f",
+              "comment_sha256": "18f988982f134244156d1f7948a7f54d0a070ae300aa3468424f9a2eb55894b0"
+            },
+            "reference_process_witness": {
+              "identity": {
+                "name": "rare earth oxides production, from rare earth carbonate concentrate",
+                "reference product": "neodymium oxide",
+                "location": "CN-FJ",
+                "unit": "kilogram"
+              },
+              "reference_amount": 1.0,
+              "inventory_sha256": "55bfc8887da3900e5096c44231a6e54fb224cb595b86941c25d627b1eb9d049b",
+              "metadata_sha256": "5b6c5337a8a3a5eb1d4e29d940f57280b5913df15fdb93f4ff60ea7a910d9c92",
+              "comment_sha256": "18f988982f134244156d1f7948a7f54d0a070ae300aa3468424f9a2eb55894b0"
+            },
+            "nonzero_uuid_type_unit_groups": 38,
+            "support_equal": true,
+            "all_groups_proportional": true,
+            "ratio": 5.487880121582748,
+            "ratio_min": 5.487880121582747,
+            "ratio_max": 5.487880121582751,
+            "relative_tolerance": 1e-10,
+            "absolute_tolerance": 1e-15
+          }
+        ],
+        "bindings": [
+          {
+            "source": {
+              "name": "rare earth oxides production, from rare earth carbonate concentrate",
+              "reference product": "holmium oxide",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "source_coefficient": 0.688448446779664,
+            "reference_process_factor": 5.487880121582749,
+            "model_activity_quantity": 3.778122545816637,
+            "allocation_reference_not_material_feed": true
+          },
+          {
+            "source": {
+              "name": "rare earth oxides production, from rare earth carbonate concentrate",
+              "reference product": "holmium oxide",
+              "location": "CN-FJ",
+              "unit": "kilogram"
+            },
+            "source_coefficient": 0.311551553220336,
+            "reference_process_factor": 5.487880121582748,
+            "model_activity_quantity": 1.7097575757661116,
+            "allocation_reference_not_material_feed": true
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight train",
+              "reference product": "transport, freight train",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_coefficient": 0.3091,
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_unchanged": true
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight, inland waterways, barge",
+              "reference product": "transport, freight, inland waterways, barge",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_coefficient": 0.0246,
+            "target": {
+              "location": "RER",
+              "name": "Transport, barge",
+              "reference product": "Transport, barge",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_unchanged": true
+          },
+          {
+            "source": {
+              "name": "market group for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, unspecified",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_coefficient": 0.2088,
+            "target": {
+              "location": "RER",
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_unchanged": true
+          },
+          {
+            "source": {
+              "name": "market for transport, freight, sea, container ship",
+              "reference product": "transport, freight, sea, container ship",
+              "location": "GLO",
+              "unit": "ton kilometer"
+            },
+            "source_coefficient": 0.599,
+            "target": {
+              "location": "OCE",
+              "name": "Transport, transoceanic container ship",
+              "reference product": "Transport, transoceanic container ship",
+              "unit": "ton kilometer"
+            },
+            "quantity_and_marginal_uncertainty_unchanged": true
+          }
+        ]
+      },
+      "limitations": [
+        "Retain the named holmium oxide product and positive one-kg reference; reject the unrelated lithium-manganese-oxide heuristic. For each of the two actual source producers, every nonzero UUID/type/unit group is proportional to the neodymium-oxide output of the same rare-earth-carbonate joint process (136 groups for RoW, 38 for CN-FJ). Use those observed source allocation ratios to demand the complete native neodymium-oxide reference processing activity. This is an allocated-processing burden proxy, not a claim that neodymium oxide is the same chemical or a material conversion to another element. Preserve both original producer entries after this explicit reference-process scaling, and all four original freight quantities and marginal uncertainty without aggregation or renormalization. No new chemical-content, molar-mass, price, recovery or yield factor is inferred.",
+        "The native Chinese process uses bastnasite-derived rare-earth co-production, whereas the source producers refine ion-adsorption-clay carbonates. The complete native processing inventory is a screening technology/ore proxy for both source regions; their actual route, mining/resource-depletion pattern, separation, purity, allocation, internal uncertainty and emissions are not reproduced. Source-specific observed allocation ratios do not validate native allocation prices, commodity performance or equivalent scores. Geographic production differences are replaced; original source quantities remain visible in the bindings. No standalone holmium/terbium mining inventory, avoided-metal credit or literal source-exchange omission is invented. Score effects, including element-specific resource limitations, are unquantified.",
+        "Only the independently inspected source3.9 cut-off coordinate is newly approved. Preserve signed caller quantities, formulas, marginal uncertainty and separate purchases/emissions relative to the exact source reference. Native technology, allocation, geography, vintage, internal uncertainty and mapped-biosphere exclusions differ; score effects are unquantified. No new source omission, reverse route, other release or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "e8d2427d53059bada7af85293daf59fa23cb50561bb23d97471be9c86c6be608"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7546b19438a70c79",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_39_review.json",
+      "review_sha256": "073094ffa72451482e3e72586108ff33329b87adad46c9c5ff52be515104078f",
+      "authorization": "Standing autonomous approval of actual required mappings with warnings; the previously approved allocated co-production proxy approach is reused with independent source-vector evidence.",
+      "inspection": {
+        "rule_id": "bp-7546b19438a70c79",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for graphite",
+          "reference product": "graphite",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Graphite, at plant",
+          "reference product": "Graphite, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "identity": {
+            "name": "market for graphite",
+            "reference product": "graphite",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "35180701158d3d71fbdda1687349609976f139820093077417c8339a9287d195",
+          "metadata_sha256": "c8f9b14c2795a14e0a7664128336f80cf5815b5a59c543d5560c93e3ae079a73",
+          "comment_sha256": "3fdadbb40a59c73d20c64969422694840590c22022d746d172c3ff5aa325f45e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Graphite, at plant",
+              "reference product": "Graphite, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "b7dcdf6e53447ca7698a139ce9875b4051faae15d70f8b6e029535ecd9f433c3",
+            "metadata_sha256": "d3ca92d9854842f0f5aaec0d9b94b94c16db7887d98a7abe60e1260d3b130005",
+            "comment_sha256": "e76d2798bd969ca9ddcd33b4844d881e8953e3a81df7a23c6398e4a6e0d84473"
+          },
+          "2026": {
+            "identity": {
+              "name": "Graphite, at plant",
+              "reference product": "Graphite, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "e9c9d8500f7e0f6ddb81a570d7fd9d1826fff3bc971d848287973862e3e88dff",
+            "metadata_sha256": "83c96a1ab5ef7279ff3a2214e7b088bb21d9f277aa9b40660d986b6aed445e3e",
+            "comment_sha256": "bd51e0bab0f987dc672a1b4ba5be4204e24b284e68d28098b98574dd79b9c7d9"
+          }
+        }
+      },
+      "limitations": [
+        "Graphite remains kg of graphite mineral using complete native European milled graphite. Native data are an old lime-mining/crushing/milling analogy and omit water emissions. Those exclusions are not physical zeros. Source production mix, purity, processing and delivery differ; no synthetic-graphite, carbon-content or purification factor is invented.",
+        "Only the independently inspected source3.9 cut-off coordinate is newly approved. Preserve signed caller quantities, formulas, marginal uncertainty and separate purchases/emissions relative to the exact source reference. Native technology, allocation, geography, vintage, internal uncertainty and mapped-biosphere exclusions differ; score effects are unquantified. No new source omission, reverse route, other release or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "6aa7122263ef203fa20c7d017bf2f11eb1dddc5e3b2810fb8efd7672581a001b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-785d3ed7e6f39c4f",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_39_review.json",
+      "review_sha256": "073094ffa72451482e3e72586108ff33329b87adad46c9c5ff52be515104078f",
+      "authorization": "Standing autonomous approval of actual required mappings with warnings; the previously approved allocated co-production proxy approach is reused with independent source-vector evidence.",
+      "inspection": {
+        "rule_id": "bp-785d3ed7e6f39c4f",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for boric oxide",
+          "reference product": "boric oxide",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Boric oxide, at plant",
+          "reference product": "Boric oxide, at plant",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "identity": {
+            "name": "market for boric oxide",
+            "reference product": "boric oxide",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "676e2b5105ee85a0ea824623b5342187fccce92b5e66b878c0c0dfdf673565aa",
+          "metadata_sha256": "d55faddf4b82c4511b28f8893c599e9b36ff37a86fd2ac64d72c1781ef6d3b02",
+          "comment_sha256": "9632ebc29fdcbef2e5ad2ae70876ad9209da98827d8aa19572a1799d50ce279e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Boric oxide, at plant",
+              "reference product": "Boric oxide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "1404074f3ef538864bc6f6d3934ff13b2fb753fae9b5e814063c0d2fd4a47cb5",
+            "metadata_sha256": "f9c7e481de5b31fa2def657a28b2c84500cc41e294a8a382c797ade72d94f218",
+            "comment_sha256": "f67e5783490a431f0bc654046af2a76b6c25368577a7ae44a2ad6a716db92526"
+          },
+          "2026": {
+            "identity": {
+              "name": "Boric oxide, at plant",
+              "reference product": "Boric oxide, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "3604fa3a4e665f6bd70431436ab54efd37a12ceb645e7691e486fd1a8d619c01",
+            "metadata_sha256": "4c7851728776ef7d16057a707867d43ba0760d9f7fd0df0bab3ccef844ce5b58",
+            "comment_sha256": "d4044856bb5eeeac4da2193a3f27111389d7b2e871cc4098f61410a55ac5fffc"
+          }
+        }
+      },
+      "limitations": [
+        "Boric oxide remains pure B2O3 per kg, using the native process that produces boric oxide from boric acid. This is not direct substitution by boric acid. Native raw materials are stoichiometric estimates and energy/emissions/infrastructure/transport are approximate; source manufacturing and delivery are replaced without a boron-content, hydration or purity multiplier.",
+        "Only the independently inspected source3.9 cut-off coordinate is newly approved. Preserve signed caller quantities, formulas, marginal uncertainty and separate purchases/emissions relative to the exact source reference. Native technology, allocation, geography, vintage, internal uncertainty and mapped-biosphere exclusions differ; score effects are unquantified. No new source omission, reverse route, other release or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d4a433c6f355bfac82843a44a82a2e94597f4284e092e9598be057929223d194"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-86d40fed1e499150",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_39_review.json",
+      "review_sha256": "073094ffa72451482e3e72586108ff33329b87adad46c9c5ff52be515104078f",
+      "authorization": "Standing autonomous approval of actual required mappings with warnings; the previously approved allocated co-production proxy approach is reused with independent source-vector evidence.",
+      "inspection": {
+        "rule_id": "bp-86d40fed1e499150",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for hazardous waste, for underground deposit",
+          "reference product": "hazardous waste, for underground deposit",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "DE",
+          "name": "Disposal, hazardous waste, 0% water, to underground deposit",
+          "reference product": "Disposal, hazardous waste, 0% water, to underground deposit",
+          "unit": "kilogram"
+        },
+        "conversion_factor": -1.0,
+        "source_witness": {
+          "identity": {
+            "name": "market for hazardous waste, for underground deposit",
+            "reference product": "hazardous waste, for underground deposit",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "86bcbf602724f281063b14b95970575b02490d45528a9b479d6fc3f101887f4e",
+          "metadata_sha256": "75b1d710a660ef269879cbd305dd4ee7dec64f96b473a18ee0f8b68ca3af4392",
+          "comment_sha256": "cbb63aad59b137a88e1f3de7f6e21d006a7e546243c598285ea6fe70d4859e73"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, hazardous waste, 0% water, to underground deposit",
+              "reference product": "Disposal, hazardous waste, 0% water, to underground deposit",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "d4aa171da4bc964632bc2d8f11e6bf265e278f19eda77028e1c458186b08f5b8",
+            "metadata_sha256": "b8c8cb805ab565ecd8d30273b2763a116289369cb1628cb3f42dea3b2f82d9aa",
+            "comment_sha256": "3afe079f46acf8a872b3d12a779a7f45dd392f4395a5a11c0d95f6602e7616c5"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, hazardous waste, 0% water, to underground deposit",
+              "reference product": "Disposal, hazardous waste, 0% water, to underground deposit",
+              "location": "DE",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "80712eed65e9f1f264a35df9404c1c9804f3acf5cf6e1b3e42951d754d8c9f04",
+            "metadata_sha256": "469f4e239ee3805b58399c85d9ea55c36bca7792c9a27c02e656557795660442",
+            "comment_sha256": "eca71a545649b9312dd35ddc0582c496363afbaf0ebc10a97fc35639af443a37"
+          }
+        }
+      },
+      "limitations": [
+        "Hazardous waste for underground deposition retains the existing factor -1 from its negative kg reference to the positive native service reference. Use complete native dry-waste packaging and disposal in a German salt mine. Source composition and collection/transport mix are replaced. Native exclusion of waste-material emissions and long-term flooding risk is a model limitation, not proof of perfect containment or zero future emissions. No extra recovery credit is added.",
+        "Only the independently inspected source3.9 cut-off coordinate is newly approved. Preserve signed caller quantities, formulas, marginal uncertainty and separate purchases/emissions relative to the exact source reference. Native technology, allocation, geography, vintage, internal uncertainty and mapped-biosphere exclusions differ; score effects are unquantified. No new source omission, reverse route, other release or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "1f476fc86a566d70e621fa604e22a1018135dfed0b2c646e30c554b48c070e20"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b71da2d46fa8d8de",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_39_review.json",
+      "review_sha256": "073094ffa72451482e3e72586108ff33329b87adad46c9c5ff52be515104078f",
+      "authorization": "Standing autonomous approval of actual required mappings with warnings; the previously approved allocated co-production proxy approach is reused with independent source-vector evidence.",
+      "inspection": {
+        "rule_id": "bp-b71da2d46fa8d8de",
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for tantalum powder, capacitor-grade",
+          "reference product": "tantalum powder, capacitor-grade",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Tantalum, powder, capacitor-grade, at regional storage",
+          "reference product": "Tantalum, powder, capacitor-grade, at regional storage",
+          "unit": "kilogram"
+        },
+        "conversion_factor": 1.0,
+        "source_witness": {
+          "identity": {
+            "name": "market for tantalum powder, capacitor-grade",
+            "reference product": "tantalum powder, capacitor-grade",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "913bab1652e070b4398326f147557ec84e08ae629bbfd716f65916343777b268",
+          "metadata_sha256": "df47cfbea8758b73f06eab753b6c737b4e2815df952e7cff12c398b76425ed73",
+          "comment_sha256": "ae43f8ba8bb7d1866713923b3ee57a90ce6acd224e1cb6546412f614a342025c"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Tantalum, powder, capacitor-grade, at regional storage",
+              "reference product": "Tantalum, powder, capacitor-grade, at regional storage",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "44ea4b0f2befb3d01bc26a14c2e38083943c45137d581de68850ee0945d8f2c9",
+            "metadata_sha256": "bdf88d912178867f828b7d29004fd67085666274805b7237f702e8051fd38c44",
+            "comment_sha256": "17100d5a0e469b832d746e1311357ed0381e69791678a1a4210c07c1129766a3"
+          },
+          "2026": {
+            "identity": {
+              "name": "Tantalum, powder, capacitor-grade, at regional storage",
+              "reference product": "Tantalum, powder, capacitor-grade, at regional storage",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "2d1ab0c0cbfa6730a80b0275566aa3ddde4aa1bd7b86a6e3c550557db4044f19",
+            "metadata_sha256": "f8a8af0fd35d30221eb146f4eba768ffe3dbabec446737f86f6c67ca070acdb2",
+            "comment_sha256": "994bf60247b976297a5fdc86fd26e58c9d4f8c7b949ec7cba268766c6e73fa7e"
+          }
+        }
+      },
+      "limitations": [
+        "Tantalum remains capacitor-grade metal powder per kg, not alloying feed or tantalum oxide. The complete native storage process includes primary Australian tantalite mining and European purification/reduction; native documentation excludes tin co-production and secondary routes. Preserve caller kg, with warnings for source mix, ore, purity/powder properties, allocation, geography, vintage and delivery, without an invented metal-content or recycling multiplier.",
+        "Only the independently inspected source3.9 cut-off coordinate is newly approved. Preserve signed caller quantities, formulas, marginal uncertainty and separate purchases/emissions relative to the exact source reference. Native technology, allocation, geography, vintage, internal uncertainty and mapped-biosphere exclusions differ; score effects are unquantified. No new source omission, reverse route, other release or cross-system-model conversion is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.9",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "b2eb99924ef2273e5b870b8a31677a3908a4c918e11befedef8ea01c672113d2"
         }
       ]
     }
