@@ -26968,7 +26968,12 @@
             "nonproduction_exchanges": 162
           }
         ],
-        "limitations": "Preserve the complete original3.9RoW/DE mixed-plastic and3.12RoW untreated-wood market treatment shares and every original collection-freight exchange without renormalization. Negative source waste references require factor-1 to positive treatment helpers. Open-burning/open-dump/unsanitary branches use complete inspected source-emission helpers: no physical emission, fossil/biogenic split, land, water, resource flow or marginal uncertainty is omitted, and no branch is replaced by controlled disposal or empty allocation. The unsanitary native diesel-MJ and skid-steer-m3 services reuse exact earlier operating inventory witnesses; retain their technology, fleet/filter, allocation, geography and vintage limitations, without extra fuel or infrastructure. Controlled fractions use complete native ordinary mixed-plastic incineration/sanitary-landfill or untreated-wood incineration, with all44 declared composition/heating-value coordinates matched to native2026; unknown entries stay unknown. Native2025 comments are shorter but full inventories and positive references are inspected. Native controlled-process emissions, biosphere coverage, water/oxygen, residue, background energy, allocation, technology, geography and vintage differ; score effects are unquantified and no LCIA equality is claimed. The source3.12wood comment reports3.5MJ thermal output versus native3.49MJ; retain the complete native service with an explicit reporting/performance limitation, not an efficiency correction or added heat credit. Do not rescale by product-name moisture labels: actual composition matches; no dry-mass/heating-value, capacity, lifetime or allocation multiplier is introduced. Preserve original road and country-specific rail tkm separately through complete native RER same-mode freight services. The inspected CN/RoW rail markets include steam, electric and diesel supply; their whole-country traction mixes are geographic/fleet proxies, not individual steam-to-electric correspondences. Original source country freight quantities and uncertainty remain intact, while vehicle/traction/fuel/load/age/duty/background shares are not reconstructed. No extra vehicle, road or track is added. Canonical source biosphere labels use the same publisher UUID/unit/full receiving context in3.10. CAS/label metadata changes, including calcium/sodium ionic labels and missing NOx/PCB CAS, are retained as warnings; no chemical stoichiometry, charge/mass conversion, speciation proxy or compartment relocation is inferred. Retain the3.12wood controlled-branch nonphysical waste indicator once outside the native process, which lacks it; keep its exact source amount where supported, or omit only that indicator with an explicit warning and omission audit under the existing policy. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and collection. No new recycling/recovery credit, fly-ash-extraction proxy, paperboard disposal proxy, inverse or cross-system-model route is added. Only the three enumerated exact cut-off profiles qualify. Raw child-rule hashes are drift witnesses, not approval of unrelated heuristic endpoints."
+        "limitations": "Preserve the complete original3.9RoW/DE mixed-plastic and3.12RoW untreated-wood market treatment shares and every original collection-freight exchange without renormalization. Negative source waste references require factor-1 to positive treatment helpers. Open-burning/open-dump/unsanitary branches use complete inspected source-emission helpers: no physical emission, fossil/biogenic split, land, water, resource flow or marginal uncertainty is omitted, and no branch is replaced by controlled disposal or empty allocation. The unsanitary native diesel-MJ and skid-steer-m3 services reuse exact earlier operating inventory witnesses; retain their technology, fleet/filter, allocation, geography and vintage limitations, without extra fuel or infrastructure. Controlled fractions use complete native ordinary mixed-plastic incineration/sanitary-landfill or untreated-wood incineration, with all44 declared composition/heating-value coordinates matched to native2026; unknown entries stay unknown. Native2025 comments are shorter but full inventories and positive references are inspected. Native controlled-process emissions, biosphere coverage, water/oxygen, residue, background energy, allocation, technology, geography and vintage differ; score effects are unquantified and no LCIA equality is claimed. The source3.12wood comment reports3.5MJ thermal output versus native3.49MJ; retain the complete native service with an explicit reporting/performance limitation, not an efficiency correction or added heat credit. Do not rescale by product-name moisture labels: actual composition matches; no dry-mass/heating-value, capacity, lifetime or allocation multiplier is introduced. Preserve original road and country-specific rail tkm separately through complete native RER same-mode freight services. The inspected CN/RoW rail markets include steam, electric and diesel supply; their whole-country traction mixes are geographic/fleet proxies, not individual steam-to-electric correspondences. Original source country freight quantities and uncertainty remain intact, while vehicle/traction/fuel/load/age/duty/background shares are not reconstructed. No extra vehicle, road or track is added. Canonical source biosphere labels use the same publisher UUID/unit/full receiving context in3.10. CAS/label metadata changes, including calcium/sodium ionic labels and missing NOx/PCB CAS, are retained as warnings; no chemical stoichiometry, charge/mass conversion, speciation proxy or compartment relocation is inferred. Retain the3.12wood controlled-branch nonphysical waste indicator once outside the native process, which lacks it; keep its exact source amount where supported, or omit only that indicator with an explicit warning and omission audit under the existing policy. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and collection. No new recycling/recovery credit, fly-ash-extraction proxy, paperboard disposal proxy, inverse or cross-system-model route is added. Only the three enumerated exact cut-off profiles qualify. Raw child-rule hashes are drift witnesses, not approval of unrelated heuristic endpoints.",
+        "model_review_extension": {
+          "review_path": "export/uvek_hydrogen_train_plastic_312_review.json",
+          "review_sha256": "dd9ed8945e6d265bce418c28b0b4a76188aea352b90434b263948c797b4c24b4",
+          "prior_profile_physics_unchanged": true
+        }
       },
       "limitations": [
         "Preserve the complete original3.9RoW/DE mixed-plastic and3.12RoW untreated-wood market treatment shares and every original collection-freight exchange without renormalization. Negative source waste references require factor-1 to positive treatment helpers. Open-burning/open-dump/unsanitary branches use complete inspected source-emission helpers: no physical emission, fossil/biogenic split, land, water, resource flow or marginal uncertainty is omitted, and no branch is replaced by controlled disposal or empty allocation. The unsanitary native diesel-MJ and skid-steer-m3 services reuse exact earlier operating inventory witnesses; retain their technology, fleet/filter, allocation, geography and vintage limitations, without extra fuel or infrastructure. Controlled fractions use complete native ordinary mixed-plastic incineration/sanitary-landfill or untreated-wood incineration, with all44 declared composition/heating-value coordinates matched to native2026; unknown entries stay unknown. Native2025 comments are shorter but full inventories and positive references are inspected. Native controlled-process emissions, biosphere coverage, water/oxygen, residue, background energy, allocation, technology, geography and vintage differ; score effects are unquantified and no LCIA equality is claimed. The source3.12wood comment reports3.5MJ thermal output versus native3.49MJ; retain the complete native service with an explicit reporting/performance limitation, not an efficiency correction or added heat credit. Do not rescale by product-name moisture labels: actual composition matches; no dry-mass/heating-value, capacity, lifetime or allocation multiplier is introduced. Preserve original road and country-specific rail tkm separately through complete native RER same-mode freight services. The inspected CN/RoW rail markets include steam, electric and diesel supply; their whole-country traction mixes are geographic/fleet proxies, not individual steam-to-electric correspondences. Original source country freight quantities and uncertainty remain intact, while vehicle/traction/fuel/load/age/duty/background shares are not reconstructed. No extra vehicle, road or track is added. Canonical source biosphere labels use the same publisher UUID/unit/full receiving context in3.10. CAS/label metadata changes, including calcium/sodium ionic labels and missing NOx/PCB CAS, are retained as warnings; no chemical stoichiometry, charge/mass conversion, speciation proxy or compartment relocation is inferred. Retain the3.12wood controlled-branch nonphysical waste indicator once outside the native process, which lacks it; keep its exact source amount where supported, or omit only that indicator with an explicit warning and omission audit under the existing policy. Preserve caller signed quantities, uncertainty, formulas, ownership, separate emissions and collection. No new recycling/recovery credit, fly-ash-extraction proxy, paperboard disposal proxy, inverse or cross-system-model route is added. Only the three enumerated exact cut-off profiles qualify. Raw child-rule hashes are drift witnesses, not approval of unrelated heuristic endpoints."
@@ -26985,7 +26990,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "186715425db515136cea5ee04f3da4461a1e43eac2b26767e674a94fcb6cf5e2"
+          "fingerprint": "753f5f5230ef9eab5169d02283cee1f2dce6c8dd5a99583c0277c86718882dfb"
         }
       ]
     },
@@ -298850,6 +298855,307 @@
             "version": "2025"
           },
           "fingerprint": "f138031624b23728dc438ef1ae62b0bd1b285e282d0ae16b129df31823338a7d"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-b7606642f4256898",
+      "operation": "replace",
+      "mapping_method": "reviewed_pilot_uncontrolled_market",
+      "review_path": "export/uvek_hydrogen_train_plastic_312_review.json",
+      "review_sha256": "dd9ed8945e6d265bce418c28b0b4a76188aea352b90434b263948c797b4c24b4",
+      "authorization": "Standing user autonomous modelling approval; retain current market composition and explicitly reuse reviewed complete older treatment models with warnings.",
+      "inspection": {
+        "source": {
+          "location": "RoW",
+          "name": "market for waste plastic, mixture",
+          "reference product": "waste plastic, mixture",
+          "unit": "kilogram"
+        },
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source_reference_amount": -1,
+        "source_inventory_sha256": "25658e297f005a42c42494477db3a40b0b6806bf22a02e835dd3bf41f0c7edf2",
+        "source_metadata_sha256": "83d5d50538e76e84f349c838e1479591e85c5c1200dc704cfd3d173b110ac60a",
+        "recipe_id": "train-312-mixed-plastic-market-reviewed-historical-treatments",
+        "bindings": [
+          {
+            "source_identity": {
+              "name": "market for transport, freight, lorry, unspecified",
+              "reference product": "transport, freight, lorry, diesel, unspecified",
+              "location": "RoW",
+              "unit": "ton kilometer"
+            },
+            "target": {
+              "name": "Transport, freight, lorry, fleet average",
+              "reference product": "Transport, freight, lorry, fleet average",
+              "location": "RER",
+              "unit": "ton kilometer",
+              "type": "technosphere"
+            },
+            "source_amount": 0.077,
+            "target_amount": 0.077,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, open burning",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-47f078cd8777b2ffee6b",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.09748885507974975,
+            "target_amount": 0.09748885507974975,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, open dump, moist infiltration class (300mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-d97401d85dc6937c1015",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.02510361611927728,
+            "target_amount": 0.02510361611927728,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, open dump, very wet infiltration class (1000mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-115ccf6e5a7d4b77b003",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.05813468996043161,
+            "target_amount": 0.05813468996043161,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, unsanitary landfill, moist infiltration class (300mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-1e2fc13f5a3c64bf38ab",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.06238154231143716,
+            "target_amount": 0.06238154231143716,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, municipal incineration",
+              "reference product": "waste plastic, mixture",
+              "location": "RoW",
+              "unit": "kilogram"
+            },
+            "target": {
+              "name": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "reference product": "Disposal, plastics, mixture, 15.3% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram",
+              "type": "technosphere"
+            },
+            "source_amount": -0.1076891338053883,
+            "target_amount": 0.1076891338053883,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, open dump, dry infiltration class (100mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-4e5bf5233a96c9261ef7",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.05001848324517654,
+            "target_amount": 0.05001848324517654,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, unsanitary landfill, very wet infiltration class (1000mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-1dab8fa953babddd3ff0",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.07927457721877038,
+            "target_amount": 0.07927457721877038,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, unsanitary landfill, wet infiltration class (500mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-1044da215e8b4b5e8195",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.2349924967556407,
+            "target_amount": 0.2349924967556407,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, unsanitary landfill, hyperarid infiltration class (-250mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-2c14097c53e33416a98f",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.0351073127683126,
+            "target_amount": 0.0351073127683126,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, open dump, hyperarid infiltration class (-250mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-43d329e8efc0f039b7d4",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.02415987115238716,
+            "target_amount": 0.02415987115238716,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, open dump, wet infiltration class (500mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-f666986de334f4bf9412",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.1538304296030901,
+            "target_amount": 0.1538304296030901,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          },
+          {
+            "source_identity": {
+              "name": "treatment of waste plastic, mixture, unsanitary landfill, dry infiltration class (100mm)",
+              "reference product": "waste plastic, mixture",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "target": {
+              "recipe": "pilot-uncontrolled-source-50d3fe3dfd881966b5d5",
+              "inventory_source_profile": {
+                "family": "ecoinvent",
+                "version": "3.9",
+                "system_model": "cutoff"
+              }
+            },
+            "source_amount": -0.07181899198033839,
+            "target_amount": 0.07181899198033839,
+            "marginal_uncertainty_preserved_after_treatment_sign_conversion": true
+          }
+        ],
+        "inventory_model_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "model_recipe_count": 11,
+        "model_zero_stock_count": 0,
+        "model_literal_omission_count": 0
+      },
+      "limitations": [
+        "Exact source3.12 cut-off RoW mixed-plastic market screening decision: retain all twelve current treatment shares and its single current collection-lorry entry, 0.077 tonne-km per signed kg of waste. Preserve the current market marginal uncertainty and pedigree, without renormalization. Source waste reference is negative one kg; the service helper is positive one kg, so the caller factor remains -1, including signed uncertainty and formulas.",
+        "Eleven uncontrolled-burning/open-dump/unsanitary-landfill branches use the complete already reviewed source3.9-derived treatment inventories as explicit older-model proxies for the same named treatment and infiltration classes. Their source3.12 internal emissions, elemental composition, energy, water, infrastructure, allocation and internal uncertainty are replaced by the older model, not claimed retained. Market shares are current, while these treatment models are historical. The source market fossil-carbon property changes from about 0.747344 to 0.748045 kg/kg; no invented elemental, emission or heating-value correction is applied. The score effect remains unquantified.",
+        "The controlled 0.1076891338053883 kg/kg portion uses the complete native Swiss mixed-plastic municipal incinerator as a geographic and technology proxy. Source and native product labels establish a wet mixed-plastic basis with 15.3% water; source releases report about 30.79 MJ/kg net heating value. This does not establish exact updated elemental composition or process-performance equivalence. Native emissions, residues, energy recovery, infrastructure, allocation, vintage and internal uncertainty replace the source process. No additional energy-recovery or avoided-emission credit is added.",
+        "Collection uses the complete native RER fleet-average lorry at the unchanged current tonne-km; country, fleet, load, vehicle class, age and fuel shares are proxy limitations. Historical treatment recipes retain all prior documented biosphere exclusions, native diesel/skid-steer substitutions and chemical-label limitations. No new source-input omission, zero-stock supplier, quantity multiplier, reverse route, consequential route or other source-version permission is added. Caller separate emissions and ownership remain unchanged."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "71f9548d90d955f3ec34b4c1895cb1cfbbbcf16a1b90853ae733b1e717f565cb"
         }
       ]
     }

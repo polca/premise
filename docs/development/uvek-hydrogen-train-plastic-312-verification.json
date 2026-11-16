@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-16",
+  "rule_id": "bp-b7606642f4256898",
+  "target": {
+    "technosphere": "UVEK 2026 cutoff",
+    "biosphere": "ecoinvent 3.10"
+  },
+  "source_and_model_scopes": {
+    "new_source_scope": {
+      "family": "ecoinvent",
+      "version": "3.12",
+      "system_model": "cutoff"
+    },
+    "model_source_scope": {
+      "family": "ecoinvent",
+      "version": "3.9",
+      "system_model": "cutoff"
+    },
+    "rebound_older_scopes": [
+      {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.9",
+          "system_model": "cutoff"
+        },
+        "old_physical_rule_unchanged": true
+      }
+    ],
+    "review_sha256": "dd9ed8945e6d265bce418c28b0b4a76188aea352b90434b263948c797b4c24b4",
+    "new_source_input_omissions": 0
+  },
+  "current_market_input_entries": 13,
+  "current_treatment_shares": 12,
+  "current_collection_road_tkm": 0.077,
+  "historical_complete_treatment_models_reused_unchanged": 11,
+  "new_source_input_omissions": 0,
+  "tests": {
+    "Brightpath_selected_passed": 23,
+    "Premise_new_signed_cold_warm_cases_passed": 2,
+    "Premise_test_package_source": "current local Brightpath checkout",
+    "entire_repository_suites_run": false
+  },
+  "historical_authoring_fixture": {
+    "published_resource_already_differs_from_historical_authoring_bindings": 1,
+    "examples": [
+      [
+        "ecoinvent-3.9-cutoff",
+        "market for transport, freight train",
+        "transport, freight train",
+        "CN",
+        "ton kilometer"
+      ]
+    ]
+  },
+  "reproducible_generation": {
+    "count": 3,
+    "resources": [
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json",
+        "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+        "byte_identical": true
+      },
+      {
+        "name": "ecoinvent-to-ecoinvent-3.10-biosphere.json",
+        "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+        "byte_identical": true
+      },
+      {
+        "name": "ecoinvent-to-uvek-2025.json",
+        "sha256": "be8c9f329f6eab05c18bfbdc1af6b2e8e1a377faef58970a697a44bd7aaf3e67",
+        "byte_identical": true
+      }
+    ]
+  },
+  "actual_train_import": {
+    "roots": 6,
+    "foregrounds": 34,
+    "source_312_group_no_longer_refused": true,
+    "next_source_profile": "ecoinvent 3.9 cutoff",
+    "next_unapproved_rule_count": 12,
+    "next_unapproved_rule_ids": [
+      "bp-0811b7af5811d981",
+      "bp-11b03a904a2b8cdd",
+      "bp-14d8fca280d9c0bb",
+      "bp-385650baf6c0e83b",
+      "bp-4366742ae4b2a62a",
+      "bp-454d0d8023d948c5",
+      "bp-6ce52de989145df6",
+      "bp-8ad41ac985efe967",
+      "bp-b86c5c966757b8c9",
+      "bp-c55c10b7983cff8d",
+      "bp-d3c08a974e613e3c",
+      "bp-ff25bd952d38ade5"
+    ],
+    "later_cohorts_complete": false,
+    "whole_train_sector_qualified": false,
+    "new_Brightway_databases": 0,
+    "freshness": "recorded archive snapshot 20261110T030235Z-613ea498808a"
+  },
+  "runtime_Python_changed": false,
+  "notebook_changed": false,
+  "operational_sectors": 12,
+  "full_goal_complete": false
+}
