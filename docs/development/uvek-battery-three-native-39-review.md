@@ -37,3 +37,10 @@ Actual battery preparation changes13to10pending first-cohort correspondences;
 final energy changes21to19. Across the two review groups, the changes are27to10
 and29to19 respectively. These are first-cohort counts, not whole-sector
 qualification. See [verification](uvek-battery-three-native-39-verification.json).
+
+The updated wheel also passes four fresh/cache/withdrawal checks using
+GitHub-installed Brightpath134eb47 and installed Premise. Every loaded Premise
+and Brightpath module was checked to be inside the isolated environment.
+Thirty-six historical-override regressions pass after correcting an existing
+test fixture; the original conflict reproduces on baseline35307d9. This changes
+the test's authoring-stage input, without changing the production generator.

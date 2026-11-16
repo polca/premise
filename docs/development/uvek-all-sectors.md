@@ -2291,3 +2291,12 @@ fall from13to10for battery and21to19for final energy, or27to10and29to19across
 both recent review groups. Fourteen sectors remain qualified. See
 [review](uvek-battery-three-native-39-review.md) and
 [verification](uvek-battery-three-native-39-verification.json).
+
+
+The second installed-package check passes four fresh/cache/withdrawal cases with
+GitHub Brightpath134eb47 and the matching Premise wheel; no source-checkout
+modules are loaded. Another198,124,516bytes of superseded generation, task-owned
+pip cache and an old wheel are removed. Sources, biosphere, the latest verified
+export and checkpoints remain. See
+[verification](uvek-battery-three-native-39-verification.json) and
+[cleanup](uvek-battery-native-review-cleanup-2026-11-16.json).

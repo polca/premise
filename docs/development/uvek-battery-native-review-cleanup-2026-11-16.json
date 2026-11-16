@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-16",
+  "removed": [
+    {
+      "owned_path": "battery-three-native-39-generated",
+      "bytes_removed": 107763331
+    },
+    {
+      "owned_path": "battery-native-direct-39-pip-cache",
+      "bytes_removed": 67469106
+    },
+    {
+      "owned_path": "battery-native-direct-39-premise-wheel",
+      "bytes_removed": 22892079
+    }
+  ],
+  "bytes_removed": 198124516,
+  "reason": "Committed generated resources and hashes retain the review; prior task-owned pip cache and wheel are superseded by the new installed-package check.",
+  "Brightway_databases_removed": 0,
+  "source_biosphere_latest_export_and_checkpoints_preserved": true
+}

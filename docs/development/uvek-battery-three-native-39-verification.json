@@ -83,5 +83,28 @@
   "production_Python_changes": 0,
   "generator_Python_changes": 0,
   "new_Brightway_databases": 0,
-  "packaged_install_check": "Pending updated dependency pin and installed-package verification; source-checkout results are not an installed-package claim."
+  "packaged_install_check": {
+    "status": "installed_packages_four_native_supply_harmonization_checks_passed",
+    "Brightpath_Git_revision": "134eb47ae75e1e9f384e01cccb8a7b766ec57e35",
+    "source_checkout_modules_loaded": false,
+    "Premise_review_ledger_matches_checkout": true,
+    "review_sha256": "7f970725eda9f08a09e2cdf729a6da5cab37c8db2d9effeaa53d8daea6c6ba9c",
+    "tests_passed": 4,
+    "new_Brightway_databases": 0
+  },
+  "packaged_wheel": {
+    "Premise_wheel_sha256": "d3d8764252583ae88456808e877b2e3f6339691df523e8f8bdf8401643f86f54",
+    "packaged_approval_ledger_matches_checkout": true,
+    "Brightpath_dependency": "134eb47ae75e1e9f384e01cccb8a7b766ec57e35"
+  },
+  "historical_override_regressions_passed": 36,
+  "historical_override_test_baseline": {
+    "baseline_revision": "35307d913faf3d7befccc5a49f8c2897263b88f5",
+    "unchanged_source_rule_and_override": true,
+    "unchanged_generator_Python": true,
+    "reproduced_error": "Reviewed UVEK decision conflicts with regenerated target: ('heat and power co-generation, natural gas, 1MW electrical, lean burn', 'electricity, high voltage', 'RoW', 'kilowatt hour')",
+    "cause": "An early historical override pass is being replayed over the final operational rule, which has a later independently reviewed supplier. The historical authoring-stage fixture is the appropriate input for that test.",
+    "production_or_generator_changes_needed": false
+  },
+  "integrity_manifest_was_refreshed_before_passing_tests": true
 }
