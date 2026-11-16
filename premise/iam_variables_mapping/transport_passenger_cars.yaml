@@ -925,6 +925,7 @@
       name:
       - Fuel supply for gas vehicles
       - Natural gas, from high pressure network (1-5 bar), at service station
+      - Natural gas, from medium pressure network (0.1-1 bar), at service station
       - market for natural gas, high pressure
       - market group for natural gas, high pressure
       unit:
@@ -935,6 +936,8 @@
     - name: Fuel supply for gas vehicles
       unit: kilogram
     - name: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    - name: Natural gas, from medium pressure network (0.1-1 bar), at service station
       unit: kilogram
     - name: market for natural gas, high pressure
       unit: cubic meter
@@ -967,6 +970,7 @@
       name:
       - Fuel supply for gasoline vehicles
       - Petrol, at regional storage
+      - Petrol, fossil, at regional storage
       - Petrol, unleaded, at regional storage
       - market for petrol
       - market for petrol, low-sulfur
@@ -983,6 +987,8 @@
     - name: Fuel supply for gasoline vehicles
       unit: kilogram
     - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, fossil, at regional storage
       unit: kilogram
     - name: Petrol, unleaded, at regional storage
       unit: kilogram
@@ -1028,6 +1034,7 @@
       name:
       - Fuel supply for gasoline vehicles
       - Petrol, at regional storage
+      - Petrol, fossil, at regional storage
       - Petrol, unleaded, at regional storage
       - market for petrol
       - market for petrol, low-sulfur
@@ -1039,6 +1046,8 @@
     - name: Fuel supply for gasoline vehicles
       unit: kilogram
     - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, fossil, at regional storage
       unit: kilogram
     - name: Petrol, unleaded, at regional storage
       unit: kilogram
@@ -1805,6 +1814,7 @@
       name:
       - Fuel supply for gas vehicles
       - Natural gas, from high pressure network (1-5 bar), at service station
+      - Natural gas, from medium pressure network (0.1-1 bar), at service station
       - market for natural gas, high pressure
       - market group for natural gas, high pressure
       unit:
@@ -1815,6 +1825,8 @@
     - name: Fuel supply for gas vehicles
       unit: kilogram
     - name: Natural gas, from high pressure network (1-5 bar), at service station
+      unit: kilogram
+    - name: Natural gas, from medium pressure network (0.1-1 bar), at service station
       unit: kilogram
     - name: market for natural gas, high pressure
       unit: cubic meter
@@ -1845,6 +1857,7 @@
       name:
       - Fuel supply for gasoline vehicles
       - Petrol, at regional storage
+      - Petrol, fossil, at regional storage
       - Petrol, unleaded, at regional storage
       - market for petrol
       - market for petrol, low-sulfur
@@ -1861,6 +1874,8 @@
     - name: Fuel supply for gasoline vehicles
       unit: kilogram
     - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, fossil, at regional storage
       unit: kilogram
     - name: Petrol, unleaded, at regional storage
       unit: kilogram
@@ -1904,6 +1919,7 @@
       name:
       - Fuel supply for gasoline vehicles
       - Petrol, at regional storage
+      - Petrol, fossil, at regional storage
       - Petrol, unleaded, at regional storage
       - market for petrol
       - market for petrol, low-sulfur
@@ -1915,6 +1931,8 @@
     - name: Fuel supply for gasoline vehicles
       unit: kilogram
     - name: Petrol, at regional storage
+      unit: kilogram
+    - name: Petrol, fossil, at regional storage
       unit: kilogram
     - name: Petrol, unleaded, at regional storage
       unit: kilogram

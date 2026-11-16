@@ -32,3 +32,14 @@ These checks also exposed a regression in the preceding rail callback: an empty
 rail-only keyword was passed to car and truck accounting callbacks. That keyword
 is now supplied only for trains, preserving the original car/truck protocol and
 the reviewed rail behavior.
+
+The retained Mini/Van classes also recognize the exact kg-based native
+"Petrol, fossil, at regional storage" and medium-initial-pressure CNG service
+station supplies. Six role filters gain those labels with strict name/unit
+pairs; the shared energy-label YAML gains the same two classifications.
+Wrong-unit records remain excluded, and all ecoinvent definitions are unchanged.
+The complete fossil petrol supply includes distribution and has no biomass
+ethanol input; the CNG station already includes compression electricity and
+losses. This adds no pressure conversion or extra loss/compression factor.
+Eighty-eight focused native/legacy car, energy and validation regressions pass.
+No Premise Python module is changed by this classification group.

@@ -90,3 +90,35 @@ def test_native_car_fuel_filters_do_not_cross_units_or_select_equipment():
             assert rows == [gas]
         else:
             assert ", gasoline," in role and rows == [petrol]
+
+
+def test_retained_car_classes_match_complete_fossil_petrol_and_medium_pressure_cng():
+    from premise.transport.vehicle_energy import canonical_vehicle_energy_product
+
+    petrol = {"name": "Petrol, fossil, at regional storage", "unit": "kilogram"}
+    gas = {
+        "name": "Natural gas, from medium pressure network (0.1-1 bar), at service station",
+        "unit": "kilogram",
+    }
+    selected = InventorySet(
+        [
+            petrol,
+            gas,
+            {**petrol, "unit": "kilowatt hour"},
+            {**gas, "unit": "cubic meter"},
+        ],
+        "2026",
+        "remind",
+        family="uvek",
+    ).generate_vehicle_fuel_map("car")
+    expected = {
+        f"passenger car, {powertrain}, {size}"
+        for powertrain in ("gasoline", "plugin gasoline hybrid", "compressed gas")
+        for size in ("mini", "van")
+    }
+    assert set(selected) == expected
+    for role, records in selected.items():
+        assert records == [gas if ", compressed gas," in role else petrol]
+    assert canonical_vehicle_energy_product(petrol["name"], "kilogram") == "petrol"
+    assert canonical_vehicle_energy_product(gas["name"], "kilogram") == "natural gas"
+    assert canonical_vehicle_energy_product(gas["name"], "cubic meter") != "natural gas"

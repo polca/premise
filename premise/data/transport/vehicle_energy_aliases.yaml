@@ -15,6 +15,9 @@ Fuel supply for gas vehicles:
 Petrol, at regional storage:
   product: petrol
   unit: kilogram
+Petrol, fossil, at regional storage:
+  product: petrol
+  unit: kilogram
 Petrol, unleaded, at regional storage:
   product: petrol
   unit: kilogram
@@ -22,6 +25,9 @@ Diesel, at regional storage:
   product: diesel
   unit: kilogram
 Natural gas, from high pressure network (1-5 bar), at service station:
+  product: natural gas
+  unit: kilogram
+Natural gas, from medium pressure network (0.1-1 bar), at service station:
   product: natural gas
   unit: kilogram
 Hydrogen, gaseous, 700 bar, from SMR of NG, at fuelling station:
