@@ -10,6 +10,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+from support.certification import certification_report
+
 from premise import olca_export
 
 # This public biosphere identity also occurs in full ecoinvent scenarios.
@@ -212,9 +214,12 @@ def test_newdatabase_loads_method_package_and_keeps_preparation_and_reports(
     ndb.version, ndb.system_model, ndb.biosphere_name = "3.12", "cutoff", "biosphere3"
     calls = []
     monkeypatch.setattr(ndb, "_load_original_database", lambda: [])
-    monkeypatch.setattr(
-        ndb, "_ensure_semantic_certification", lambda s: calls.append("certify")
-    )
+
+    def certify(definition):
+        calls.append("certify")
+        return certification_report(definition)
+
+    monkeypatch.setattr(ndb, "_ensure_semantic_certification", certify)
     monkeypatch.setattr(module, "load_database", lambda **kw: deepcopy(scenario))
     monkeypatch.setattr(
         module, "_prepare_database", lambda **kw: calls.append("prepare")

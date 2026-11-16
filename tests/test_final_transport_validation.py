@@ -215,7 +215,6 @@ def test_certification_refreshes_exhaust_and_persists_history(
     }
     store = CompactInventoryStore([vehicle("car", "BRA", 1)])
     database = object.__new__(NewDatabase)
-    database._validation_enabled = True
     monkeypatch.setattr(database, "_validation_source_fingerprint", lambda: "source")
     monkeypatch.setattr(database, "_validation_iam_fingerprint", lambda scenario: "iam")
 

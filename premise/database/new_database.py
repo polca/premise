@@ -740,10 +740,6 @@ class NewDatabase:
         if inventory_backend not in {"compact", "legacy"}:
             raise ValueError("inventory_backend must be either 'compact' or 'legacy'.")
         self.inventory_backend = inventory_backend
-        # Critical methodological certification has no public off switch. The
-        # compact backend is the production/performance path; legacy remains a
-        # compatibility and output-equivalence oracle under the same contract.
-        self._validation_enabled = True
         self._validation_reports = {}
         self._validation_iam_fingerprints = {}
         self._source_inventory_store = None
@@ -2079,17 +2075,19 @@ class NewDatabase:
         intent: ValidationIntent | None = None,
         raise_on_error: bool = True,
         exhaustive: bool = False,
-    ) -> ValidationCertificate | None:
+    ) -> ValidationCertificate:
         """Certify one exact store generation and attach its immutable report.
 
         Production updates combine the low-cost sector contracts recorded while
         transformations still own their targets.  A complete graph traversal is
         reserved for explicit diagnostics, inventories without sector coverage,
         and stores mutated after their production certificate was issued.
+
+        A certificate is always returned unless certification raises. Setting
+        ``raise_on_error=False`` retains error findings for diagnostics; the
+        inventory is still checked.
         """
 
-        if not getattr(self, "_validation_enabled", False):
-            return None
         started = time.perf_counter()
         sector_phases = []
         for phase_payload in scenario.get("_validation_phase_results", ()):
@@ -2397,11 +2395,14 @@ class NewDatabase:
                 exc_info=True,
             )
 
-    def _ensure_semantic_certification(self, scenario: dict) -> ValidationReport | None:
-        """Reuse certification or recertify after an inventory mutation."""
+    def _ensure_semantic_certification(self, scenario: dict) -> ValidationReport:
+        """Return a current report, recovering absent or stale certification.
 
-        if not getattr(self, "_validation_enabled", False):
-            return None
+        Cached reports must match the ruleset and any resident store generation.
+        Missing, malformed or outdated payloads are recertified; validation
+        errors keep their diagnostic artifacts and propagate to the caller.
+        """
+
         stored_report = scenario.get("_validation_report")
         store = scenario.get("_inventory_store")
         report = None
@@ -2436,7 +2437,7 @@ class NewDatabase:
         except PremiseValidationError as error:
             self._generate_validation_diagnostic(error, scenario, store)
             raise
-        return certificate.report if certificate is not None else None
+        return certificate.report
 
     def get_validation_report(
         self, scenario: int = 0, *, exhaustive: bool = False
@@ -2461,22 +2462,9 @@ class NewDatabase:
             certificate = self._certify_scenario_store(
                 definition, store, exhaustive=True
             )
-            report = certificate.report if certificate is not None else None
+            report = certificate.report
         else:
             report = self._ensure_semantic_certification(definition)
-        if report is None:
-            # The accessor never creates a public validation-off switch.
-            store = self._ensure_scenario_store(definition)
-            certificate = InventoryGraphValidator(
-                store,
-                scenario_identity=self._scenario_identity(definition),
-                source_fingerprint=self._validation_source_fingerprint(),
-                iam_fingerprint=self._validation_iam_fingerprint(definition),
-                system_model=getattr(self, "system_model", "cutoff"),
-                version=getattr(self, "version", "unknown"),
-            ).certify(raise_on_error=False)
-            definition["_validation_report"] = certificate.report.to_dict()
-            report = certificate.report
         cached = getattr(self, "_validation_reports", {}).get(
             self._scenario_identity(definition)
         )

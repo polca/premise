@@ -121,6 +121,17 @@ diagnostics.
 Validation certificate scope
 ----------------------------
 
+Certification is mandatory for scenario updates and exports. Internal
+certification methods return a certificate or report, or raise a validation
+error. ``raise_on_error=False`` retains findings for diagnostics while still
+running the checks. Unit tests of unrelated storage and export mechanics use
+explicit test substitutes rather than a runtime validation-disable flag.
+
+Missing, malformed, and outdated cached report payloads are recovered through
+certification. A matching store certificate can be reused during recovery.
+Export phases remain in memory for reporting and are excluded from the
+semantic report persisted with the scenario checkpoint.
+
 The production certificate combines sector-specific checks evaluated while
 the transformation still owns direct references to its changed activities.
 They check coverage, finite physical values, reference production, market

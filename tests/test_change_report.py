@@ -6,6 +6,8 @@ from pathlib import Path
 import openpyxl
 import pyarrow.parquet as pq
 import pytest
+
+from support.certification import certification_report
 import premise
 
 from premise.change_report import (
@@ -315,7 +317,9 @@ def test_generate_change_report_before_update_is_clear_runtime_error():
         database.generate_change_report()
 
 
-def test_explicit_report_works_when_automatic_reports_are_disabled(tmp_path):
+def test_explicit_report_works_when_automatic_reports_are_disabled(
+    tmp_path, monkeypatch
+):
     source, final = _synthetic_stores()
     database = object.__new__(NewDatabase)
     database.scenarios = [
@@ -329,7 +333,9 @@ def test_explicit_report_works_when_automatic_reports_are_disabled(tmp_path):
     ]
     database._source_inventory_store = source
     database._compact_source_checkpoint = None
-    database._validation_enabled = False
+    monkeypatch.setattr(
+        database, "_ensure_semantic_certification", certification_report
+    )
     database._validation_reports = {}
     database._validation_iam_fingerprints = {}
     database.generate_reports = False
@@ -444,7 +450,6 @@ def test_validation_failure_automatically_builds_failed_workbook(tmp_path, monke
     database.scenarios = [scenario]
     database._source_inventory_store = source
     database._compact_source_checkpoint = None
-    database._validation_enabled = False
     database._validation_reports = {}
     database._validation_iam_fingerprints = {}
     database.generate_reports = True

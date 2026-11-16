@@ -7,10 +7,11 @@ from shutil import copytree
 
 import numpy as np
 import pytest
+
+from support.certification import certification_certificate
 from wurst import searching as ws
 
 import premise.new_database as new_database_module
-import premise.inventory_store as inventory_store_module
 import premise.utils as utils_module
 from premise.brightway25 import _prepare_fast_exchange_payload
 from premise.inventory_store import (
@@ -1171,8 +1172,11 @@ def test_inventory_backend_selector_remains_publicly_compatible():
     assert LegacyInventoryStore([]).backend_name == "legacy"
 
 
-def test_new_database_runtime_materialization_is_not_attached_to_scenario(inventory):
+def test_new_database_runtime_materialization_is_not_attached_to_scenario(
+    inventory, monkeypatch
+):
     obj = object.__new__(NewDatabase)
+    monkeypatch.setattr(obj, "_certify_scenario_store", certification_certificate)
     obj._inventory_api_active = True
     obj._source_inventory_store = CompactInventoryStore(inventory)
     obj.scenarios = [{"model": "image", "pathway": "SSP2-Base", "year": 2050}]

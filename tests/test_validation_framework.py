@@ -13,6 +13,7 @@ from premise.validation_framework import (
     ActivitySelector,
     InventoryGraphValidator,
     PremiseValidationError,
+    ValidationCertificate,
     ValidationIntent,
     ValidationPhaseResult,
     ValidationReport,
@@ -23,6 +24,7 @@ from premise.validation_framework import (
     inventory_cycle_signatures,
     inventory_store_fingerprint,
 )
+from premise.validation.validation_framework import VALIDATION_RULESET_VERSION
 
 SUPPLIER_KEY = ("fuel production", "fuel", "CH")
 MARKET_KEY = ("market for fuel", "fuel", "CH")
@@ -534,7 +536,6 @@ def test_seeded_randomized_invalid_amount_mutations_are_deterministic(valid_inve
 
 def configured_new_database(valid_inventory):
     database = object.__new__(NewDatabase)
-    database._validation_enabled = True
     database._validation_reports = {}
     database._validation_baseline_cycles = frozenset()
     database.source = "test-db"
@@ -548,6 +549,67 @@ def configured_new_database(valid_inventory):
     database.inventories_cache_filepath = None
     database.scenarios = []
     return database
+
+
+@pytest.mark.parametrize("cached_report", [None, "malformed", "outdated"])
+def test_new_database_recovers_cached_report_and_preserves_export_history(
+    valid_inventory, cached_report
+):
+    database = configured_new_database(valid_inventory)
+    store = CompactInventoryStore(valid_inventory)
+    definition = {
+        "model": "image",
+        "pathway": "path",
+        "year": 2050,
+        "_inventory_store": store,
+    }
+    database.scenarios = [definition]
+    certificate = database._certify_scenario_store(definition, store)
+    export_phase = ValidationPhaseResult(
+        phase_id="export:brightway", kind="export", rule_results=()
+    )
+    identity = database._scenario_identity(definition)
+    database._validation_reports[identity] = certificate.report.with_phase(export_phase)
+    if cached_report is None:
+        del definition["_validation_report"]
+    elif cached_report == "malformed":
+        definition["_validation_report"] = {"ruleset_version": "invalid"}
+    else:
+        definition["_validation_report"]["ruleset_version"] = (
+            VALIDATION_RULESET_VERSION - 1
+        )
+
+    report = database.get_validation_report()
+
+    assert isinstance(report, ValidationReport)
+    assert report.valid
+    assert report.ruleset_version == VALIDATION_RULESET_VERSION
+    assert report.certificate_key == certificate.cache_key
+    assert report.get_phase(export_phase.phase_id) == export_phase
+    assert database._validation_reports[identity].get_phase(export_phase.phase_id) == (
+        export_phase
+    )
+    persisted = ValidationReport.from_dict(definition["_validation_report"])
+    assert persisted.ruleset_version == VALIDATION_RULESET_VERSION
+    assert persisted.get_phase(export_phase.phase_id) is None
+    assert store.materialize(restore_metadata=True) == valid_inventory
+
+
+def test_nonraising_certification_still_checks_invalid_inventory(valid_inventory):
+    database = configured_new_database(valid_inventory)
+    invalid = copy.deepcopy(valid_inventory)
+    invalid[0]["exchanges"][0]["amount"] = math.nan
+    store = CompactInventoryStore(invalid)
+    definition = {"model": "image", "pathway": "path", "year": 2050}
+
+    certificate = database._certify_scenario_store(
+        definition, store, raise_on_error=False
+    )
+
+    assert isinstance(certificate, ValidationCertificate)
+    assert rule_issues(certificate.report, "GRAPH.FINITE_NUMERIC")
+    assert not certificate.report.valid
+    assert definition["_validation_report"] == certificate.report.to_dict()
 
 
 def test_new_database_persists_and_exposes_completed_report(

@@ -8,6 +8,8 @@ from pathlib import Path
 
 import pytest
 
+from support.certification import certification_report
+
 from premise.change_report import (
     _PreparedExchange,
     _canonical_json,
@@ -212,7 +214,9 @@ def test_simapro_releases_export_inventory_and_reuses_source(tmp_path, monkeypat
         assert view._resolved_store is None
 
     monkeypatch.setattr(database, "_load_original_database", load_original)
-    monkeypatch.setattr(database, "_ensure_semantic_certification", lambda *_: None)
+    monkeypatch.setattr(
+        database, "_ensure_semantic_certification", certification_report
+    )
     monkeypatch.setattr(database, "_record_export_validation_phase", lambda *_: None)
     monkeypatch.setattr(database, "_run_automatic_reports", reports)
     monkeypatch.setattr(simapro_module, "check_brightpath", lambda: None)

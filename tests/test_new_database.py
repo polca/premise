@@ -6,6 +6,8 @@ from pathlib import Path
 
 import pytest
 
+from support.certification import certification_report
+
 try:
     import xarray  # noqa: F401
 except ModuleNotFoundError:
@@ -416,6 +418,7 @@ def test_write_db_to_brightway_fast_path_reuses_export_session_check(monkeypatch
     )
 
     obj = object.__new__(NewDatabase)
+    monkeypatch.setattr(obj, "_ensure_semantic_certification", certification_report)
     obj.biosphere_name = "test-biosphere"
     obj.version = "3.12"
     obj.generate_reports = False
@@ -508,6 +511,7 @@ def test_write_db_to_brightway_fast_path_respects_disabled_failure_reports(monke
     monkeypatch.setattr(new_database_module, "delete_all_pickles", lambda: None)
 
     obj = object.__new__(NewDatabase)
+    monkeypatch.setattr(obj, "_ensure_semantic_certification", certification_report)
     obj.biosphere_name = "test-biosphere"
     obj.version = "3.12"
     obj.generate_reports = False
@@ -691,6 +695,7 @@ def test_write_superstructure_to_brightway_uses_fast_writer_after_full_preparati
     )
 
     obj = object.__new__(NewDatabase)
+    monkeypatch.setattr(obj, "_ensure_semantic_certification", certification_report)
     obj.biosphere_name = "test-biosphere"
     obj.version = "3.12"
     obj.generate_reports = False
