@@ -141838,7 +141838,7 @@
             "version": "2025",
             "system_model": "cutoff"
           },
-          "fingerprint": "32862a0bfbd1f20ebc1e305d0d131a565fe4cb8800be9598fec8dd9bc9abb922"
+          "fingerprint": "b5c3102040c9ca1b09fb97fbca03c371854cdcd7b819f756605850cf1c57e47e"
         }
       ]
     },
@@ -277481,7 +277481,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "5f8faf46a81a68d9e5d2b438178ced4ba2fb9752ff7818bc02cf2aafd849d3f0"
+          "fingerprint": "f0a98649bf717112c3a1faddbd1f38777318a513ada641cdb312d8acfed2a478"
         }
       ]
     },
@@ -281036,7 +281036,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "12958879d13d8ddda4ffe3aa92c535c19978837d0a4b30696face7d8636183ba"
+          "fingerprint": "7ac6ca4031b1d9f720c88d1e66d812e26e712a2432c0e14e719ed5bf20a73b0b"
         }
       ]
     },
@@ -281132,7 +281132,7 @@
             "system_model": "cutoff",
             "version": "2025"
           },
-          "fingerprint": "aaf6b9d78ced157774a773dbb0349704d38acb2fe07028acfadcbd737abb3752"
+          "fingerprint": "69e73b2a85dfc075109c712d91241ad087ffd6edab37b6fe85cf813ab8fe1304"
         }
       ]
     },
@@ -302454,6 +302454,930 @@
             "version": "2025"
           },
           "fingerprint": "06c2ddaa48d2c9f7b50c9cfd9b5ff45ebf62632d5808a76ac2f86b28ed1a5517"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-15cba0ab8cf2223b",
+      "operation": "replace",
+      "mapping_method": "reviewed_chemical_markets_39_retained_delivery",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for polyester resin, unsaturated",
+          "reference product": "polyester resin, unsaturated",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Polyester resin, unsaturated, at plant",
+          "reference product": "Polyester resin, unsaturated, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for polyester resin, unsaturated",
+            "reference product": "polyester resin, unsaturated",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "9797f1c2209adad8d2ada586cd27d96c37a1215f55870f85086595473ff1b9df",
+          "metadata_sha256": "05bbe511b14c2f396dc031d8d356fb41c100682cc63b7ea644543ddcd447bed9",
+          "comment_sha256": "2c8aa52af5fe79d8446e2564cf6ad81de31f00c0dd2daa751999d8897a1cfd36"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Polyester resin, unsaturated, at plant",
+              "reference product": "Polyester resin, unsaturated, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "62eb1c42cbbd57d4797625b374cf9b552091ea0e171cd6a2bf2fc397316fac4e",
+            "metadata_sha256": "0cd7dd1d266b5410dbf943e4881e5bad084fed8cc19a13d798c1b72e69fa248b",
+            "comment_sha256": "a8ae3f74f3f88851f59b21deb3423ba39ec97b060bfc14567208823428eaf7b4"
+          },
+          "2026": {
+            "identity": {
+              "name": "Polyester resin, unsaturated, at plant",
+              "reference product": "Polyester resin, unsaturated, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "46ff9e3ae39bcda19c86c229807d7073688f877d91b2248d82bfcd85edd555bd",
+            "metadata_sha256": "9d409a626ad8bcb290c981f14a89aacbf3b38930ee88acf4a4f14f219473ed37",
+            "comment_sha256": "013eacdf942b7150121a49c90bff7fe290f5fd88c78774666cc47eb12afed915"
+          }
+        }
+      },
+      "limitations": [
+        "Use complete native unsaturated-polyester resin per kg for this independently inspected source3.12 supply, without inventing a dilution, curing or dry-mass multiplier. Native polymer formulation, feedstock, manufacturing, allocation, geography and final-delivery boundary replace the source market and have unquantified score effects. The separately reviewed source3.9 retained-delivery recipe and all its quantities remain unchanged; it is not silently extrapolated to this release. Native documentation explicitly omits further inputs and solid wastes; absent inventory detail is not physical zero.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "7c1a7d7534e0cc4528880353a1152b697c57cb9aed1e419303ee6ad46cc09d6a"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-51cccf3b2edc49df",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "treatment of road wear emissions, passenger car",
+          "reference product": "road wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Road wear emissions, passenger car",
+          "reference product": "Road wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "treatment of road wear emissions, passenger car",
+            "reference product": "road wear emissions, passenger car",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "fae55980b4f019c7792354557b6528bfd6681e1f30518fc87c34c5373107a2f5",
+          "metadata_sha256": "12022df256ea1224df90c7a0234f301d62f4653bb25861a00f3d9b6729ec53a9",
+          "comment_sha256": "40ab7d6d403b7736059344d84f499aa12ad915eccb847ec71b0ea3514c7794a4"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Road wear emissions, passenger car",
+              "reference product": "Road wear emissions, passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "afe6616fa8efffe2a772eaf0a1441d5f78d90b524582f6397da5cadb181d1627",
+            "metadata_sha256": "3ac66b55f4480bf9738bee5991785b0a20c979854a827be46bbcfb349d8e396a",
+            "comment_sha256": "ed7d2e2ece27d8bc040ba91534eaab67e8f2edee30ad25128be3e6178e581067"
+          },
+          "2026": {
+            "identity": {
+              "name": "Road wear emissions, passenger car",
+              "reference product": "Road wear emissions, passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "b5fdb6bc2197649c481edc1e1e75b3b0b01f6402bad34dec6482a9d28717fea7",
+            "metadata_sha256": "3ded862035aa14f24908822d4baabac71463b76f3386b5302e7f298e5e35ea50",
+            "comment_sha256": "0395088d29229edf1ee62a1f5d5772e9a2860dbb2b1d084be7d62a710a2b61a2"
+          }
+        }
+      },
+      "limitations": [
+        "Passenger-car road wear remains the complete kg-based road-abrasion release inventory. The exact source reference is -1 kg and both native references are +1 kg. Factor -1 preserves service demand; keep the caller road purchase and separate exhaust unchanged. Native partitioning, material composition and mapped-biosphere coverage differ.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "df08dbc09255c2c79c19b252a907f8c238e8ce46223fabee3db8afe73dd5898c"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-56d89eddd1ac15a4",
+      "operation": "replace",
+      "mapping_method": "curated_legacy",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for cobalt",
+          "reference product": "cobalt",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "GLO",
+          "name": "Cobalt, at plant",
+          "reference product": "Cobalt, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for cobalt",
+            "reference product": "cobalt",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "5a7bb1f706d06ad0367357a62888d58a089a597600fb542b4dfe2c69ce15168b",
+          "metadata_sha256": "3bfeffadcbb2d9d8f998e8926cd3378290bee2e55b026128c688524a58ab579f",
+          "comment_sha256": "dd0602658b2b8fd1a768506138031b65562860d2c5911c26ed64e8af5634c79f"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Cobalt, at plant",
+              "reference product": "Cobalt, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ec2d310e64b4ec143f974d815232dd6afca05a9f3bfa0153601878184a67a814",
+            "metadata_sha256": "739e440252eee96e23e7716c471e64069848ae1261d267c530331c8621c26143",
+            "comment_sha256": "cc5ecf5e8b84b1bee744c5c7d97b076143cf045809749632aa58abb4e0451614"
+          },
+          "2026": {
+            "identity": {
+              "name": "Cobalt, at plant",
+              "reference product": "Cobalt, at plant",
+              "location": "GLO",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "5e038271b846ab3dcda325756e4e85628ce3b6b6cf9c993d66464c7df43bdf80",
+            "metadata_sha256": "fb95e937b27ab0ed7a55250f713f7353922861b31908ac47e20c67abf4af104b",
+            "comment_sha256": "d748e785b5a4611c454f044a00234164567c4c893aec9b4467a693524b6e3103"
+          }
+        }
+      },
+      "limitations": [
+        "The exact source and complete native cobalt references are kg of cobalt metal, not cobalt concentrate or oxide. Preserve factor +1. Native production is an old, weak nickel-mining/beneficiation analogy with approximate oxide reduction and missing further-treatment emissions, overburden/tailings and losses. These omissions are source limitations, not physical zeros; global source production mix and delivery are replaced without an added metal-content or recovery multiplier.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "d998cd0e6f5b8ee4d3a859a019d68da41e3855f9f5870351562d3e7734385936"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-60df3e3a867ea691",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for used powertrain from electric passenger car, manual dismantling",
+          "reference product": "used powertrain from electric passenger car, manual dismantling",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Disposal, powertrain, for electric passenger car",
+          "reference product": "Disposal, powertrain, for electric passenger car",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for used powertrain from electric passenger car, manual dismantling",
+            "reference product": "used powertrain from electric passenger car, manual dismantling",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "5e7eaef67bfe46affb57e6ed22afd8b54874e86337fae0185fb2db88aac07f0a",
+          "metadata_sha256": "5a1a9f736f767e816a1835d20045c3244d9ec6a5a74bf4213bcd14a0e6e80169",
+          "comment_sha256": "8002befca7162dfdab23f306898b1f269f3e3b9dbf100b63cdc0b0c4cc9e3add"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, powertrain, for electric passenger car",
+              "reference product": "Disposal, powertrain, for electric passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "6706c83281bd356c879bb63f7f64ce04ed4dcbbee8fd8f5cf4bba86027909953",
+            "metadata_sha256": "49ffed40125b91cb8560fec130a3432e5f4cb1fe3e0a4e9d49db0dfd1011e0fb",
+            "comment_sha256": "d21eefab8295d6d8fb41347dc399dc3961a43128fcf9e4b365e3eb66a5cea56a"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, powertrain, for electric passenger car",
+              "reference product": "Disposal, powertrain, for electric passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "88b1094d6037fc36100027cd1675bf6af88f4f2ee78f988c0f7bee62aa9075ea",
+            "metadata_sha256": "e6041b4026d74c60dbb69899bfe7d09e0657d69fd7dde7f7fef50a8bd28e1cab",
+            "comment_sha256": "2576cb661cb8cfc10faf351437716e971169679e35484b87232ad971ef3847d4"
+          }
+        }
+      },
+      "limitations": [
+        "Used electric-car powertrain dismantling becomes the complete native electric-powertrain disposal service per kg. Native documentation describes manual dismantling and the historical 100 kW drivetrain. Factor -1 converts the negative source waste reference to the positive native disposal reference. Internal collection, dismantling, scrap and downstream treatment boundaries replace the source market and may differ; no second glider, motor, recycling credit or artificial recovery yield is added.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "a6a30903d3e092b5fec7ea1fbf956937ed9a2d862704b5f8078f9a8c76c1be7b"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7532c17fac15ff33",
+      "operation": "replace",
+      "mapping_method": "reviewed_fuels_39_silica_dependency",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RoW",
+          "name": "market for sulfuric acid",
+          "reference product": "sulfuric acid",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Sulphuric acid, liquid, at plant",
+          "reference product": "Sulphuric acid, liquid, at plant",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for sulfuric acid",
+            "reference product": "sulfuric acid",
+            "location": "RoW",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "bbea361d7838ac28d3e21616e2626e69e9314ae4c6151493dac603fd82662c17",
+          "metadata_sha256": "ff9d2e9e14f420ef1791bc6ab7881a0ed8458b7dcca4d48aa6688b54aea8fffa",
+          "comment_sha256": "020848e29cb5f7c24f8c8886027375dbdc6ca6094e8e3e04f909e6e7a3f5f694"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Sulphuric acid, liquid, at plant",
+              "reference product": "Sulphuric acid, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "d8dd2e60c7e35033226ecf926135e5f4a55a5a98e52b1b59629780d69c0950a8",
+            "metadata_sha256": "737360ca6387aa33dbaba5f5f428bb906e7e8e00af87afc7e1a075ff69ffcdc9",
+            "comment_sha256": "8eddc9f27c968db22e773479d9aff0c16519e078451d568c26ae6f6e0d8a1c49"
+          },
+          "2026": {
+            "identity": {
+              "name": "Sulphuric acid, liquid, at plant",
+              "reference product": "Sulphuric acid, liquid, at plant",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "b6e851ebf77fe63cb4861c6a4b2c1b86cf9e69c3f7acb444e5a5786b456ae098",
+            "metadata_sha256": "bdf92d5db26cd3029b187ddc78ab9a3dcce19908e1178a71d6fdfb0df9d14f4d",
+            "comment_sha256": "7d9fa8b7a92d1bd718946f0a4c8fabd4dfb02ce0b5ba994c0b91010782949de9"
+          }
+        }
+      },
+      "limitations": [
+        "The exact source and complete native liquid sulphuric-acid references both represent kg of 100% acid. Native documentation assigns 35% of smelter-gas acid burden-free and scales its other production burdens accordingly. Preserve factor +1 without a solution dilution or extra sulphur credit. Source production mix and final transport/storage are replaced by the native at-plant model, with explicit route, allocation and delivery limitations.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "612b53572e586f4b0fbb939c24902dab448a2bae846518647c019016f00a7911"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-7b0f21cdcfdbf2d9",
+      "operation": "replace",
+      "mapping_method": "reviewed_passenger_car_services_312",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "Europe without Switzerland",
+          "name": "market for transport, freight, train, fleet average",
+          "reference product": "transport, freight, train, fleet average",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "name": "Transport, freight, rail",
+          "reference product": "Transport, freight, rail",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, train, fleet average",
+            "reference product": "transport, freight, train, fleet average",
+            "location": "Europe without Switzerland",
+            "unit": "ton kilometer"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "a7050f5eb95d98bf5bceca2d5c2b1e1f21508b2425b8dbac3de27304fe9bb88e",
+          "metadata_sha256": "670a0cce46bdb032be63e22b729deb9841e10e1a67320f59ed80b0166df1a743",
+          "comment_sha256": "5e545db6aad476a2c5c5b05f4b656f9f1d434a8aa99c2a80dd066f971e6acbce"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "4af095b1c680e50755cc7969de9c7b096ce871af491062204697dd4d3c617400",
+            "metadata_sha256": "bf0b92330f5550e4ff8ca6fb8c07a5e36f231d0ece20aeda1672d032024f8d92",
+            "comment_sha256": "1df979a6bc0882b7d94bc3904a8832568a6c5463344665f169125ea352d9d7a5"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, freight, rail",
+              "reference product": "Transport, freight, rail",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "d21630645414a88763748d1e1cae72eaa78561f67bae72f1dfa2024d292bad81",
+            "metadata_sha256": "a086e7cd14dc8078d57f5caaa5dc4fa25a8cd4b4dcac023249504ba59e713476",
+            "comment_sha256": "da69ddf1a7bd9c6a5875566456db36cee98d7997affe7edfd22d55ac7241aee3"
+          }
+        }
+      },
+      "limitations": [
+        "Correct the road-freight heuristic to complete native European rail freight per tonne-km. Native rail includes electric/diesel energy, shunting, vehicle production and maintenance and rail infrastructure. Preserve transport mode and caller tonne-km at factor +1. Native historical energy mix, train loading, infrastructure, allocation and geography differ; no separate lorry or rail infrastructure layer is added.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "366f2865e35451109df8ab9c667f36bbf6f53057c56e8d1ecc69b021e3b57aa2"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ab1d27770658d83e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "CH",
+          "name": "market for waste plastic, industrial electronics",
+          "reference product": "waste plastic, industrial electronics",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "CH",
+          "name": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+          "reference product": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for waste plastic, industrial electronics",
+            "reference product": "waste plastic, industrial electronics",
+            "location": "CH",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "732439e9804c21181da6648527f0851a735e9bf9daae660b59d722fd1dff6155",
+          "metadata_sha256": "5ea10d8eb7a75f54ad69975d962286ec62b31182bbeaec7b3fe774eca69c3c18",
+          "comment_sha256": "654cf55c179f3a129e2149554ff6537c54bf0d350bc55a9b4d6a5e67f295d941"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+              "reference product": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "d981bafe0ef989d3e6f6d5d34aa3794caa27f674d14079a80171c4684e407577",
+            "metadata_sha256": "2af3a5da179ebf4e7061afda26332bdde52cc697b9ad9edd67192b3a6116b86f",
+            "comment_sha256": "220cf0ad8a5f0b8ca9f967d9060e26461e11ef9de6cfe5cb7225a2f18c96f1c5"
+          },
+          "2026": {
+            "identity": {
+              "name": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+              "reference product": "Disposal, plastic, industr. electronics, 15.3% water, to municipal incineration",
+              "location": "CH",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "4d2acea10ead270778384f536f0585dc00fa3618887c626493ded2f9363a7b28",
+            "metadata_sha256": "d2c059665dc37798c321d8200fe818ae77494e666ed990f6eb8b05944a42df66",
+            "comment_sha256": "d244975d6561088fc4ac568d2a071280219c67a4664b204d8e077b5bd138e869"
+          }
+        }
+      },
+      "limitations": [
+        "Industrial-electronics plastic waste becomes the complete native municipal-incineration service per kg, factor -1 from the negative source waste reference. Native title states 15.3% water but its composition text lists a conflicting moisture value; do not claim equal water composition or infer a dry-mass correction. Native energy recovery, residues, metal fractions, ash extraction, treatment shares and collection/delivery replace the source CH market and have unquantified score effects. No additional avoided-energy or metal-recovery credit is added.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "93ebfa2745a0d994888f7506491e92476191b27693a06fc89545f2de1d7da561"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e4846f25fbe74153",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "treatment of brake wear emissions, passenger car",
+          "reference product": "brake wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Brake wear emissions, passenger car",
+          "reference product": "Brake wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "treatment of brake wear emissions, passenger car",
+            "reference product": "brake wear emissions, passenger car",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "44a8cee0bafcde38939568bc6ac7a96ed58ecdae960030ae6d02af80bd3888fd",
+          "metadata_sha256": "383cfe13d7179ab302f3852dc4bdab4d98ac514ef758d77933e56adcd5b6126d",
+          "comment_sha256": "a7ac12ea8e054d30aa541c4c0edc63846d26483be470b1659625d31f3af8a5ef"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Brake wear emissions, passenger car",
+              "reference product": "Brake wear emissions, passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "a2da1b67607c2f4ebd0c2edf09d0233e873c81392c5c8aa913106ce406a3bc46",
+            "metadata_sha256": "65deb3b45615fc7b8b56a4a278a5d2752a6af842d9761642604bd3e852f30615",
+            "comment_sha256": "05e59f202d2c97b795146c6e5b01dc0da19af89975ea7a95cf06307e787f7c1a"
+          },
+          "2026": {
+            "identity": {
+              "name": "Brake wear emissions, passenger car",
+              "reference product": "Brake wear emissions, passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "573a34a28a8a8397a750b87b6cdab9a06064a98a393e2774d4ce96e03970d249",
+            "metadata_sha256": "05953d554106d1c03c5caaac09a7ae6f17cacf9e46941b0687e765e60cffd5a9",
+            "comment_sha256": "21b470335a7dad1aa84d75c555ab1501c35e5f33529229951bc6e682bc0869e5"
+          }
+        }
+      },
+      "limitations": [
+        "Passenger-car brake wear remains a kg-based non-exhaust release inventory, not vehicle exhaust or avoided disposal. The exact source reference is -1 kg and both native release references are +1 kg. Factor -1 preserves service demand and does not create a negative emissions credit. Differences in airborne/water/soil fractions, composition, uncertainty and biosphere exclusions remain screening limitations.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "5bc2cb169d2c1ff0ff20eab8ed8443c6e59fb4c22e36df8e01dfadf022dece45"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-e9ef5ee03d6520f5",
+      "operation": "replace",
+      "mapping_method": "product_checked",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "GLO",
+          "name": "market for molybdenum",
+          "reference product": "molybdenum",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Molybdenum, at regional storage",
+          "reference product": "Molybdenum, at regional storage",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for molybdenum",
+            "reference product": "molybdenum",
+            "location": "GLO",
+            "unit": "kilogram"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "addbd0a197b48ee650a256222595649df146ea74a98253baee1f5634937b3119",
+          "metadata_sha256": "129f0f0818d3c438853fe49cf37630095bbdf2cbe3d8fdfd4394ef0a4b743e4b",
+          "comment_sha256": "8e434e1ceb44a68520fd00952347901fe33a9bcd0adbf98fc730be61e8493e6e"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Molybdenum, at regional storage",
+              "reference product": "Molybdenum, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "513ed32de5834402b4354e33f55a955fa93ec66cb309e640a9f57a913240977a",
+            "metadata_sha256": "77699087120f6822432e938a095e2ebe71acf994169bec04ac3f558c6ee970ec",
+            "comment_sha256": "4f65e57bc62724f44e94f9008c2af8c89882bb351eb7784983f4a53a6ff89a3a"
+          },
+          "2026": {
+            "identity": {
+              "name": "Molybdenum, at regional storage",
+              "reference product": "Molybdenum, at regional storage",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "d0fd9a93d0dc889c9ff98c7615adbf7ba4825a91ab7ebbc69a9d3988653f7828",
+            "metadata_sha256": "25bfedea2e3ef559f28391300197533d9eca21eda2584be0ea412369abcf374e",
+            "comment_sha256": "a7a3713e4980ee4c60cbb27b82045b8c0846248c7f6958bf1d235c70b0ed52eb"
+          }
+        }
+      },
+      "limitations": [
+        "The source and complete native storage process reference kg of molybdenum metal, not molybdenite concentrate. Native documentation uses an approximate zinc-metallurgy analogy (80% hydrometallurgical and 20% pyrometallurgical), states poor data quality, and distinguishes metal use from alloying-feed products. Preserve factor +1 without a contained-Mo correction; refining route, product quality, allocation, primary/secondary mix, geography and delivery differences remain warnings.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "207341d32893a40892f93e2876896718c1e5b85c55ffd140f34a7011420bf134"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-eeab173462697d8e",
+      "operation": "replace",
+      "mapping_method": "heuristic_similarity",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "treatment of tyre wear emissions, passenger car",
+          "reference product": "tyre wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "target": {
+          "location": "RER",
+          "name": "Tyre wear emissions, passenger car",
+          "reference product": "Tyre wear emissions, passenger car",
+          "unit": "kilogram"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "treatment of tyre wear emissions, passenger car",
+            "reference product": "tyre wear emissions, passenger car",
+            "location": "RER",
+            "unit": "kilogram"
+          },
+          "reference_amount": -1.0,
+          "inventory_sha256": "4e7d71ddc23299625e7f66c0e297fdeb242f670e621e4ee64d3088cfa36667b0",
+          "metadata_sha256": "8249af22c3220c435657171debe0ac2b6c5171c3fa3e945e5805b510c1ab6493",
+          "comment_sha256": "ca36876c8e298ead1a4101ae40d97b470e3754ca4fe24564f0c88e6ad8bc4b95"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Tyre wear emissions, passenger car",
+              "reference product": "Tyre wear emissions, passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "54f3ed44beaed0a523f0e6e6052c046682e1d56821d8bdf833e7bce726958c75",
+            "metadata_sha256": "9f3a6fdfc1256fd2dd57d962c0bb583c1240722e717a705b7b28eb762d31a526",
+            "comment_sha256": "05e59f202d2c97b795146c6e5b01dc0da19af89975ea7a95cf06307e787f7c1a"
+          },
+          "2026": {
+            "identity": {
+              "name": "Tyre wear emissions, passenger car",
+              "reference product": "Tyre wear emissions, passenger car",
+              "location": "RER",
+              "unit": "kilogram"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "d7e01d51e2c27fbb33034bab9c7cd58ae9955820e58fe2c726eabdb90ffb7e93",
+            "metadata_sha256": "2672dd37a9366bbbfa02389a907f7e86c3cedaebddc66d26b3841296835791a5",
+            "comment_sha256": "8ba1f86213a649439b6a7a3e04cda91b0dbbdbce81f9dcd5d8a98fa4954f2bd1"
+          }
+        }
+      },
+      "limitations": [
+        "Passenger-car tyre wear remains the complete kg-based tyre-abrasion release inventory. The exact source reference is -1 kg and both native references are +1 kg. Factor -1 preserves service demand and leaves separate tyre production and vehicle exhaust with the caller. Native particle-size and air/water/soil partitioning and biosphere exclusions may differ.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "8f4d51c576f6796c37b231cc6f5f4cbd646bda975bffdd7dd73854b89ced077e"
+        }
+      ]
+    },
+    {
+      "rule_id": "bp-ff69d56618594d0b",
+      "operation": "replace",
+      "mapping_method": "reviewed_passenger_car_services_312",
+      "review_path": "export/uvek_passenger_car_services_312_review.json",
+      "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+      "authorization": "Standing autonomous modelling approval for actual required correspondences, with warnings and logged decisions.",
+      "inspection": {
+        "source_profile": {
+          "family": "ecoinvent",
+          "version": "3.12",
+          "system_model": "cutoff"
+        },
+        "source": {
+          "location": "RER",
+          "name": "market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 6",
+          "reference product": "transport, freight, lorry, 16-32 metric ton, diesel, EURO 6",
+          "unit": "ton kilometer"
+        },
+        "target": {
+          "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+          "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+          "location": "RER",
+          "unit": "ton kilometer"
+        },
+        "source_witness": {
+          "identity": {
+            "name": "market for transport, freight, lorry, 16-32 metric ton, diesel, EURO 6",
+            "reference product": "transport, freight, lorry, 16-32 metric ton, diesel, EURO 6",
+            "location": "RER",
+            "unit": "ton kilometer"
+          },
+          "reference_amount": 1.0,
+          "inventory_sha256": "8a0b3f80b3b95ee28777776face0d6df9835dd59cd6c680cc6f2c16f5d516be9",
+          "metadata_sha256": "27ca27b04138e97b348ce95f736b5d19a08b19425b5a8bc902fe7454c272ad70",
+          "comment_sha256": "f7675f04b383768d8b5dcfffa43e1736d9254bf0e2e5aedf3659e94a9a459f22"
+        },
+        "native_witnesses": {
+          "2025": {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1,
+            "inventory_sha256": "ab158abf69847c0259bacff43543d3c14c65692fa9bee7cd3df3489f784c4c8e",
+            "metadata_sha256": "a0d68f70c9c35fcc0f38585cd98b485da456e4a09401ec0e1df319fea46d94b9",
+            "comment_sha256": "92f5062cf6e226a8ac64b17d4cc741db625dde39c1a9a0b065731778fe0aba89"
+          },
+          "2026": {
+            "identity": {
+              "name": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+              "reference product": "Transport, freight, lorry, diesel, 26t gross weight, 2020, EURO-VI, long haul",
+              "location": "RER",
+              "unit": "ton kilometer"
+            },
+            "reference_amount": 1.0,
+            "inventory_sha256": "e07a71dc03400583982a572bca8e42decce9a8aaced6831de1d83905fd5fcc72",
+            "metadata_sha256": "4e53b12300358bc501824766bdebf4b077fe21821e493f0e9c423a82f0b98772",
+            "comment_sha256": "7d62461676b8994fa6de37011b4f721c234fa64ddfb146f4394dea23729eebf7"
+          }
+        }
+      },
+      "limitations": [
+        "Use complete native European 26t diesel EURO-VI long-haul freight as a screening representative of the source European 16-32t diesel EURO6 market, replacing the older 32t EURO-V candidate. Both references are positive tonne-km. Source documentation gives a 5.79t average freight load; native gives 7.66t and a 700000 km design life. Keep caller tonne-km at factor +1 with explicit load, vehicle size, duty cycle, lifetime, geography and allocation warnings; do not apply another payload, empty-return or lifetime multiplier.",
+        "Only source ecoinvent3.12 cut-off is newly reviewed. Preserve caller signs relative to the inspected reference coordinate, uncertainty, formulas and separate purchases/emissions. Native technology, allocation, geography, vintage, internal uncertainty and biosphere exclusions differ; score effects are unquantified. No new physical omission, reverse permission or cross-system-model route is approved."
+      ],
+      "scopes": [
+        {
+          "source": {
+            "family": "ecoinvent",
+            "version": "3.12",
+            "system_model": "cutoff"
+          },
+          "target": {
+            "family": "uvek",
+            "system_model": "cutoff",
+            "version": "2025"
+          },
+          "fingerprint": "f94a93392a8beb87f2b67077d3d4374655435b19cb0b880ae4d59484600bc107"
         }
       ]
     }

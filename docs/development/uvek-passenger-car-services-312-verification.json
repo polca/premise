@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-16",
+  "new_exact_312_scopes": 11,
+  "existing_treatment_rules_unchanged": 5,
+  "freight_corrections": 2,
+  "positive_profile_extensions": 4,
+  "old_scopes_rebound_after_exact_effective_rule_comparison": [
+    {
+      "rule_id": "bp-7532c17fac15ff33",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-15cba0ab8cf2223b",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-56d89eddd1ac15a4",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    },
+    {
+      "rule_id": "bp-e9ef5ee03d6520f5",
+      "source_profile": {
+        "family": "ecoinvent",
+        "version": "3.9",
+        "system_model": "cutoff"
+      },
+      "effective_old_profile_rule_unchanged": true
+    }
+  ],
+  "review_sha256": "1479f238b58dd4d5e9a5bce20b1cd639676bbd86836b2ec2ba595c8a4e56602a",
+  "new_helpers": 0,
+  "source_omissions": 0,
+  "runtime_Python_changes": false,
+  "new_Brightway_databases": 0,
+  "car_sector_qualified": false,
+  "tests": {
+    "Brightpath": {
+      "passed": 6
+    },
+    "Premise_exact_approval_and_drift_checks": {
+      "passed": 4,
+      "deselected": 828
+    }
+  },
+  "reproducible_generation": {
+    "ecoinvent-to-ecoinvent-3.10-biosphere-v2.json": {
+      "sha256": "99dbd1e8ff410e1acb1652377a236a2e7f1200a0a26da9655db610098fcfc4e3",
+      "byte_identical": true,
+      "size": 18596725
+    },
+    "ecoinvent-to-ecoinvent-3.10-biosphere.json": {
+      "sha256": "585b86f001109450d0be3f95929cc1cfb9512706a38b5e012493cf2d2fa69c5a",
+      "byte_identical": true,
+      "size": 18596319
+    },
+    "ecoinvent-to-uvek-2025.json": {
+      "sha256": "5dccdaf5649558b3fdef902d93c7068b8fcfe810373038fd69ea006fd3d1a64d",
+      "byte_identical": true,
+      "size": 70368099
+    }
+  },
+  "first_cohort_unapproved_after": 7
+}
