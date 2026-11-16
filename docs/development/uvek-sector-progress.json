@@ -2514,7 +2514,8 @@
         "The actual shared preparation clears source3.10 and reaches source3.8; that next cohort still needs review. No sector admission or database write.",
         "Four source3.8 signed conversion cases pass across both native releases. Actual shared car preparation is being retried with six additional exact approvals.",
         "Actual shared preparation clears all six reviewed source3.8 cases and reaches15 required source3.7 correspondences; no car callback or sector admission yet.",
-        "Four signed source3.7 conversion cases pass for twelve reviewed suppliers across both native releases. The missing exact CNG profile was caught and excluded pending its mapping correction."
+        "Four signed source3.7 conversion cases pass for twelve reviewed suppliers across both native releases. The missing exact CNG profile was caught and excluded pending its mapping correction.",
+        "Twenty-one focused historical-model and stock checks pass after a minimal Brightpath resource-validator correction. Exact model stock authority and caller-profile restrictions remain enforced; the source3.7 alloy recipe and full car transformation are not yet qualified."
       ],
       "integration_exports": [],
       "static_audit": {

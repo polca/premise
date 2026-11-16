@@ -41,3 +41,14 @@ approval, and the case is reserved for the correction group.
 The complete shared car update, physical checks, regional markets, combined
 scenario and finite LCIs remain required. Cars is not admitted by the public
 scope gate, and this review writes no Brightway database.
+
+A separate minimal Brightpath validator correction is now tested. The existing
+engine supports an explicitly declared historical inventory model, but semantic
+validation incorrectly compared its nested cut-off-stock authority with the
+outer caller version. The correction checks the stock against the declared
+model version, while retaining exact caller-profile approval, unresolved
+defaults and the original stock authority digest. Twenty-one focused stock and
+historical-model checks pass, including invalid versions, system models,
+missing declarations and unprofiled callers. This changes only Brightpath
+resource validation; no Premise Python module is changed. The alloy recipe and
+full car update remain unfinished.

@@ -15,5 +15,14 @@
     "bp-745c517f85a78ba7"
   ],
   "positive_lightweighting_foreground_reachability_checked": true,
-  "glider_source_producer_and_native_lifecycle_boundaries_checked": true
+  "glider_source_producer_and_native_lifecycle_boundaries_checked": true,
+  "historical_model_stock_validation": {
+    "before": "A valid exact source3.7 caller using an explicitly declared source3.9 model with approved stocks was refused as a root-profile mismatch.",
+    "focused_checks_passed": 21,
+    "deselected_unrelated_cases": 67,
+    "Brightpath_runtime_module": "brightpath/migrations/schema.py",
+    "Premise_runtime_Python_changes": false,
+    "stock_authority_and_exact_root_guards_retained": true,
+    "alloy_recipe_completed": false
+  }
 }
